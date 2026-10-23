@@ -32,10 +32,22 @@ v1SkillArea:
   label: Environmental Law & Regulation
 editorialNote:
   en: 'Rewritten from the v1 task text: "Review project proposals to determine permitting needs" (WP-05).'
+instrumentSensitivity:
+- mechanism: DM-06
+  rationale:
+    en: Changes to species-consultation triggers change which consultations a proposal sets off.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+- mechanism: DM-07
+  rationale:
+    en: Changes to historic-preservation review and its programme alternatives change which reviews a proposal sets off.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

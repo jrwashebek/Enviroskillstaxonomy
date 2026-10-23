@@ -1,19 +1,58 @@
 id: seed:v1-5.6.5
 type: Competency
 prefLabel:
-  en: Participatory methods and community-based research
+  en: Conduct participatory and community-based environmental research
+altLabel:
+  en:
+  - Participatory methods and community-based research
+  - Community-based participatory research (CBPR)
+  - Participatory mapping
+  - Co-produced research
+definition:
+  en: 'Designing and carrying out environmental research and monitoring in partnership with community members who share in setting questions, choosing methods, collecting and interpreting data and deciding how findings are used: partnership and data agreements, research ethics review and consent, participatory methods such as participatory mapping and photo-based methods, building community data capacity, joint interpretation and returning findings in usable form. Excludes community-science data collection to a programme protocol (v1 5.4.4), conventional social science surveys (v1 5.6.2), collaborative decision processes (v1 5.2.3) and cumulative-burden analysis (DB-C52).'
 statement:
-  en: Conducting research and planning processes in partnership with communities, ensuring community members shape questions, methods, and use of findings.
-competencyType: practice
+  en: Builds a research partnership in which community members share in setting the questions, choosing methods, collecting and interpreting data and deciding how findings are used; agrees data ownership, access and consent terms before collection; builds community capacity to collect and analyze data; and returns findings in forms and languages the community can use.
 notation:
 - scheme: EMSTv1
   value: 5.6.5
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:dc-pr-l1-a
+  - seed:dc-pr-l1-b
+- level: L2
+  indicators:
+  - seed:dc-pr-l2-a
+  - seed:dc-pr-l2-b
+  - seed:dc-pr-l2-c
+- level: L3
+  indicators:
+  - seed:dc-pr-l3-a
+  - seed:dc-pr-l3-b
+  - seed:dc-pr-l3-c
+- level: L4
+  indicators:
+  - seed:dc-pr-l4-a
+  - seed:dc-pr-l4-b
+homeModule: core
+reusability: cross-subsector
+learningDesign:
+  assessmentContext:
+    en: Assess through partnership and data agreements, research protocols, joint-analysis records and partner feedback; field and community settings.
+  recommendedModes:
+  - WBL
+  - MEN
+  - CAP
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Domain:
   code: '5'
   label: Communication & Engagement Skills
@@ -21,14 +60,16 @@ v1SkillArea:
   code: '5.6'
   label: Social Science & Behavioral Change (New)
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (X05). Rationale: Survivor for participatory and community-based research; absorbs 6.7.3 CBPR (IA duplicate finding); Tribal research-code enactments held (TN verdict). Role verdicts considered: IA:change|LC:change|TN:carry.'
+  en: S2 close-out B (A4 DC; ADR-0030 §4 core residue). Rewritten in place as the survivor for participatory and community-based research; absorbs v1 6.7.3 (CBPR; IA duplicate finding). The six v1 task seeds are rewritten so that the merged duplicates become distinct partnership, interpretation and data-agreement tasks. Enactments for partners with their own research codes stay held under ADR-0007 §D and are not authored here. Environmental justice is an altLabel context only (ADR-0016). v1 Expert indicators naming recognition or publication are retired (B03, B04). Needed by R09 (P1) and R26 (P2). Basis [J].
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:dc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-dc@1
   derivedFrom:
   - v1Key: v1:5.6.5
     v1Code: 5.6.5
@@ -39,7 +80,7 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:5.6.5
     v1Code: 5.6.5
     v1Table: source_text/competencies
@@ -53,155 +94,9 @@ provenance:
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0030
+  - ADR-0016
+  - ADR-0007
+  - ADR-0004
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Participatory methods and community-based research
-  v1Description: Conducting research and planning processes in partnership with communities, ensuring community members shape questions, methods, and use of findings.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:5.6.5:foundational
-    knowledge: Understands participatory research principles; recognizes extractive research
-    application: Supports community-engaged research
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.6.5:foundational:I1
-      n: 1
-      text: Engages respectfully with community research partners
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:foundational:I2
-      n: 2
-      text: Understands community priorities and concerns
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:foundational:I3
-      n: 3
-      text: Contributes to participatory processes
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:foundational:I4
-      n: 4
-      text: Recognizes power dynamics in research relationships
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:foundational:I5
-      n: 5
-      text: Values community knowledge alongside academic knowledge
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:5.6.5:intermediate
-    knowledge: Applies participatory research methods and frameworks
-    application: Conducts participatory research projects
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.6.5:intermediate:I1
-      n: 1
-      text: Co-designs research with community partners
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:intermediate:I2
-      n: 2
-      text: Uses participatory methods (photovoice, participatory mapping, etc.)
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:intermediate:I3
-      n: 3
-      text: Builds community research capacity
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:intermediate:I4
-      n: 4
-      text: Shares decision-making power with community
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:intermediate:I5
-      n: 5
-      text: Ensures community benefit from research
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:intermediate:I6
-      n: 6
-      text: Navigates tensions between academic and community priorities
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:5.6.5:advanced
-    knowledge: Expert in community-based participatory research (CBPR) and related approaches
-    application: Leads major participatory research initiatives
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.6.5:advanced:I1
-      n: 1
-      text: Establishes equitable community-academic partnerships
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:advanced:I2
-      n: 2
-      text: Addresses systemic inequities through research partnerships
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:advanced:I3
-      n: 3
-      text: Develops community research infrastructure
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:advanced:I4
-      n: 4
-      text: Publishes collaborative research with community co-authors
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:advanced:I5
-      n: 5
-      text: Uses research to advance community priorities
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:advanced:I6
-      n: 6
-      text: Trains researchers in participatory approaches
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:advanced:I7
-      n: 7
-      text: Achieves recognized success in community-engaged scholarship
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:5.6.5:expert
-    knowledge: Shapes participatory research practices in environmental field
-    application: Leads transformative research partnerships at institutional level
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.6.5:expert:I1
-      n: 1
-      text: Directs community-engaged research programs
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:expert:I2
-      n: 2
-      text: Influences research institutions toward equitable partnerships
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:expert:I3
-      n: 3
-      text: Develops innovative participatory research frameworks
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:expert:I4
-      n: 4
-      text: Achieves recognition for community-engaged scholarship
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:expert:I5
-      n: 5
-      text: Publishes extensively on participatory research practice
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:expert:I6
-      n: 6
-      text: Demonstrates significant community outcomes from research partnerships
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.5:expert:I7
-      n: 7
-      text: Mentors participatory research practitioners
-      origin: restored-from-source-text
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:5.6.5:sector:public_agencies
-    text: Co-management with tribes and communities, community science
-  - sector: private_sector
-    v1Key: v1:5.6.5:sector:private_sector
-    text: Stakeholder-engaged impact assessment
-  - sector: ngos
-    v1Key: v1:5.6.5:sector:ngos
-    text: Community-led research, documentation of local knowledge
-  - sector: consulting
-    v1Key: v1:5.6.5:sector:consulting
-    text: Participatory planning and assessment services
-  - sector: academia
-    v1Key: v1:5.6.5:sector:academia
-    text: Community-based participatory research, engaged scholarship
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

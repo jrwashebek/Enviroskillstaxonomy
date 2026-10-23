@@ -1,0 +1,39 @@
+id: seed:fs-c15-l4-b
+type: Indicator
+prefLabel:
+  en: Writes contingent workforce actions with a named trigger
+competency: seed:FS-C15
+level: L4
+statement:
+  en: Writes contingent workforce actions with a named trigger, owner and lead time for each, so that managers can act when a signpost moves.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:fs-c15-contingent-actions
+distinguishingAttribute: ATT-CPX
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lm-agent@s2-closeout-b
+  - emstagent:fs-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lm-fs@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

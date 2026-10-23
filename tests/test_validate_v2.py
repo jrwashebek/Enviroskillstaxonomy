@@ -1,6 +1,8 @@
 """WP-01: cross-record rules fail on seeded violations (tests/fixtures/violations/*) and pass on the base tree."""
 from __future__ import annotations
 
+import json
+
 import pytest
 
 from conftest import FIXTURES, L, overlay_tree
@@ -306,3 +308,25 @@ def test_state_class_competency_targets_are_computed(tmp_path):
 def test_live_tree_has_no_untyped_instrument_links():
     import convert_instrument_links
     assert convert_instrument_links.convert(L.DATA_V2, check=True) == (0, 0), "run python scripts/convert_instrument_links.py"
+
+
+def test_redundant_edges_mirror_twice_and_provision_task(tmp_path):
+    data = overlay_tree(tmp_path)
+    mech = json.loads(L.SCHEMA_OUT.read_text())["$defs"]["v_driverMechanism"]["enum"][0]
+    cmp_p = next((data / "core" / "competencies").glob("CMP-*.yaml"))
+    cmp = L.load_yaml(cmp_p)
+    cmp["instrumentSensitivity"] = [{"mechanism": mech, "evidenceLabel": "E", "sources": []}]
+    other = _valid("Competency", id="seed:fx-mirror-b", mirrors=[{"target": cmp["id"], "relation": "applicant-mirror"}])
+    cmp["mirrors"] = [{"target": "seed:fx-mirror-b", "relation": "applicant-mirror"}]
+    L.write_yaml(cmp_p, cmp)
+    L.write_yaml(data / "core" / "competencies" / "seed-fx-mirror-b.yaml", other)
+    tsk_p = next((data / "core" / "tasks").glob("TSK-*.yaml"))
+    tsk = L.load_yaml(tsk_p)
+    tsk["instrumentSensitivity"] = [{"mechanism": mech, "evidenceLabel": "E"}]
+    L.write_yaml(tsk_p, tsk)
+    pw = _valid("Pathway", id="seed:fx-pw", sequence=[{"step": 1, "tasks": [], "formationProvisions": [
+        {"task": tsk["id"], "responses": ["observed-wbl"], "releaseCriterion": {"en": "x"}, "mentorRequired": True}]}])
+    L.write_yaml(data / "core" / "pathways" / "seed-fx-pw.yaml", pw)
+    codes = run(data).codes()
+    for c in ("W-EDGE-REDUNDANT", "E-MIRROR-TWICE", "E-PROVISION-TASK"):
+        assert c in codes, (c, sorted(codes))

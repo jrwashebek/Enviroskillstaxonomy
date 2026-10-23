@@ -1,0 +1,44 @@
+id: seed:dc-pr-review-ai-coding
+type: Task
+prefLabel:
+  en: Review AI-generated coding or summaries of community-contributed text and images against the sources and partner review, correcting misattributions
+statement:
+  en: Review AI-generated coding or summaries of community-contributed text and images against the sources and partner review, correcting misattributions
+textSha256: 341417f0a902e1b973302ded7a5c437ee7bbd3d715754f3c0aec9d85f5df2b03
+supports:
+- competency: seed:v1-5.6.5
+  strength: primary
+- competency: seed:DC-CAND-13
+  strength: contributing
+workFunction: WF-REVIEW
+fieldDependency: remote
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split: review of machine coding alongside joint interpretation (seed:v1-6.7.3-T2).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:dc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-dc@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0005
