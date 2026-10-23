@@ -1,7 +1,7 @@
 id: seed:v1-5-3-4-b-l4-b
 type: Indicator
 prefLabel:
-  en: Coaches supervisors through documenting job-related selection and assignment decisions, reviewing each record against the procedure.
+  en: Reviews selection records across units each year against the procedure, returning each record that lacks job-related reasons for the choice made.
 layer: L1
 module: core
 status: draft
@@ -13,21 +13,18 @@ sensitivity: public
 competency: seed:v1-5.3.4-B
 level: L4
 statement:
-  en: Coaches supervisors through documenting job-related selection and assignment decisions, reviewing each record against the procedure.
+  en: Reviews selection records across units each year against the procedure, returning each record that lacks job-related reasons for the choice made.
 augmentationMode: unaided
 assessmentMethods:
-- portfolio-review
+- record-audit
 useClass: develop
-obs4: 2
+obs4: 3
 jurisdictionVariable: false
-evidencePlan:
-  en: Pilot the assessment method with two trained raters on synthetic cases before use; promote to obs4 3 only after IO double-coding.
 evidenceTypes:
-- coaching record
+- audit record
 servedTasks:
 - seed:fh-document-selection-reasons
-- seed:fh-assign-by-stated-criteria
-distinguishingAttribute: ATT-FOR
+distinguishingAttribute: ATT-SCO
 provenance:
   method: llm-assisted
   agent:

@@ -316,6 +316,9 @@ COMPETENCIES = [
                 I("Builds a translation guide for a recurring career move, recording the receiving employer's confirmation "
                   "of each equivalence and the date it was last checked.", PORT, attr="ATT-GUI",
                   tasks=["seed:cm-build-translation-guide"], evidence=["translation guide"]),
+                I("Reviews a translation guide against the receiving employer's current qualification standards each "
+                  "year, recording each equivalence revised and why.", RA, attr="ATT-SCO",
+                  tasks=["seed:cm-build-translation-guide"], evidence=["guide review log"]),
                 I("Coaches career advisers or corps staff through translating sample records, reviewing each translation "
                   "against the guide before they advise candidates.", PORT, attr="ATT-FOR", obs4=2,
                   tasks=["seed:cm-build-translation-guide", "seed:cm-rewrite-experience-record"],
@@ -398,6 +401,9 @@ COMPETENCIES = [
                 I("Sets the organization's recruitment and selection procedures so that every stage uses criteria "
                   "traceable to a job analysis, with an annual review of outcomes.", PORT, attr="ATT-GUI",
                   tasks=["seed:fh-remove-non-job-requirements", "seed:v1-5.3.4-T3"], evidence=["procedure"]),
+                I("Reviews selection records across units each year against the procedure, returning each record that "
+                  "lacks job-related reasons for the choice made.", RA, attr="ATT-SCO",
+                  tasks=["seed:fh-document-selection-reasons"], evidence=["audit record"]),
                 I("Coaches supervisors through documenting job-related selection and assignment decisions, reviewing each "
                   "record against the procedure.", PORT, attr="ATT-FOR", obs4=2,
                   tasks=["seed:fh-document-selection-reasons", "seed:fh-assign-by-stated-criteria"],

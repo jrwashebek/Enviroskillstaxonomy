@@ -21,6 +21,11 @@ def role(k):
     return "seed:" + k
 
 
+def variant(k, actor_):
+    """RoleVariant seed key (CR-IA-001: seed:<role_key>/<sector_actor>); used where the source is sector-specific (CR-FH-001 #7)."""
+    return "seed:" + k + "/" + actor_
+
+
 def wf(k):
     return "vocab:work_functions#" + k
 
@@ -286,12 +291,12 @@ def headcount_signals():
                    direction="decline", dconf="high", drivers=["fiscal", "policy-reform", "workforce-capacity"], reliability="B", impact=3,
                    sources=["LM-128"], **common))
     out.append(sig("headcount/park-rangers-minus-34pct", "Federal park rangers fell 34.1% (Sep 2024 - Jan 2026)",
-                   targetId=role("R21-park-ranger-visitor-resource"),
+                   targetId=variant("R21-park-ranger-visitor-resource", "federal"), targetType="RoleVariant",
                    measure={"name": "headcount_change_share", "value": -0.341, "unit": "share", "ci95": None, "n": None,
                             "denominator": "federal park rangers Sep 2024"},
                    observed=obs, source="LM-128", release="PPS analysis of OPM data to Jan 2026", corpus=corpus_pps,
                    method="Secondary analysis of OPM data (PPS) (V1-02).",
-                   crosswalkPath="OPM series 0025 Park Ranger -> mvp_role_set R21 federal variant (X4 pending)", direction="decline",
+                   crosswalkPath="OPM series 0025 Park Ranger -> R21 federal variant (X4 pending)", direction="decline",
                    dconf="high", drivers=["fiscal", "policy-reform", "workforce-capacity"], reliability="B", impact=2, sources=["LM-128"], **common))
     out.append(sig("headcount/federal-under-30-share", "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
                    targetId=actor("federal"),
@@ -324,7 +329,7 @@ def headcount_signals():
                    drivers=["fiscal", "policy-reform", "workforce-capacity", "demographic"], reliability="B", impact=3, sources=["LM-129"],
                    note="Top-of-ladder mechanism: tacit expertise left fastest at year-end 2025 (ADR-0008 s6 top-of-ladder loss).", **common))
     out.append(sig("headcount/usfs-seasonal-hiring-2025-2026", "USFS hired no non-fire seasonal staff in 2025; committed to 2,000 seasonals for 2026",
-                   targetId=role("R02-field-resource-technician"),
+                   targetId=variant("R02-field-resource-technician", "federal"), targetType="RoleVariant",
                    measure={"name": "non_fire_seasonal_hires_committed", "value": 2000, "unit": "seasonal positions (2026 commitment)", "ci95": None,
                             "n": None, "denominator": "USFS seasonal hiring", "baseline": {"value": 0, "ci95": None, "n": None, "note": "2025 non-fire seasonal hires"}},
                    observed={"start": "2026-02-12", "end": "2026-03-18"}, comparison={"start": "2025-01-01", "end": "2025-12-31"},

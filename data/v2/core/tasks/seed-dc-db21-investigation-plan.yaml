@@ -8,6 +8,8 @@ textSha256: ebe1374757428c7ea2efcf75628ee0b295a61f3bee4f5327f984a66e6c2b51ca
 supports:
 - competency: seed:DB-C21
   strength: primary
+- competency: seed:FC-C16
+  strength: contributing
 workFunction: WF-PLAN
 fieldDependency: remote-capable
 formationDependency: partial
@@ -25,6 +27,7 @@ provenance:
   method: llm-assisted
   agent:
   - emstagent:A4-DC@wp-04
+  - emstagent:dc-agent@s2-closeout-b
   generatedAt: '2026-10-23T14:00:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: wp04-dc-authoring@1
@@ -32,3 +35,5 @@ provenance:
   reviewStatus: unreviewed
   adr:
   - ADR-0003
+editorialNote:
+  en: 'S2 (DB review): contributing link to FC-C16 (trace-level sampling without contamination).'

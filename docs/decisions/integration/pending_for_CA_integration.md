@@ -8,3 +8,10 @@ decision (accept / change / reject) and, if accepted, application by the lane ow
 - Proposed change in `vocab/rules/` (CA lane): `display-gate@1.0.0.yaml` → `status: superseded`, `supersededBy: display-gate@1.1.0`; `display-gate@1.1.0.yaml` → `status: active`, append an activation note to `changeNote`.
 - IO's judgment calls for CA to confirm: (a) reviewed job-analysis values display with marker `editorial` and the review status in the label, rather than a new "reviewed" decision value; (b) editorial design values may show in develop views only after a `pid:` reviewer has reviewed them; (c) View 2 shows unreviewed target levels only in describe-tier views.
 - DE follow-up if accepted: `scripts/rules/gated_values.py` must call `decide()` for role rows with `field`, `validationStatus`, `reviewers`, `context`.
+
+## P-02 Activate the six WP-08/HR view rules (from DE, Batch 2)
+- DE implemented and tested the six HR view rules (ported view generators) but the status flip from interim to `active` in `vocab/rules/` is a CA-lane change and was not applied.
+- Decide: activate as-is, or activate with changes; record in ADR-0031 and DECISION_LOG.
+
+## P-03 Test-fixture duplication (from DE, Batch 2)
+- WP-05 fixtures and WP-08 view tests were copied into `tests/`; the originals remain under `docs/build/`. Decide whether `docs/build/` copies are retired or kept as build history.

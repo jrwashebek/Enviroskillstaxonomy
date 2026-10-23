@@ -172,6 +172,8 @@ def build_indicator(ind, comp, level, idx, span_min):
         rec["distinguishingAttribute"] = ind["attr"]
     if ind.get("critical"):
         rec["safetyOrLegalCritical"] = True
+    if comp.get("reviewBy") and rec["lifecycleState"] in ("proposed", "emerging"):
+        rec["reviewBy"] = comp["reviewBy"]
     derived = [{"v1Key": k, "relation": "rewritten"} for k in ind.get("v1", [])] or None
     rec["provenance"] = prov(comp["agents"], "J", ind.get("sources"), derived, comp.get("adr"))
     return path_for("indicators", rid), rec
@@ -196,6 +198,8 @@ def build_enactment(e, comp):
             links.append(item)
         rec["characteristicInstruments"] = links
     rec["note"] = lm(e["note"])
+    if comp.get("reviewBy") and rec["lifecycleState"] in ("proposed", "emerging"):
+        rec["reviewBy"] = comp["reviewBy"]
     agents = list(comp["agents"]) + (["SL"] if e.get("sl_reviewed") and "SL" not in comp["agents"] else [])
     if e.get("editorial"):
         rec["editorialNote"] = lm(e["editorial"])
