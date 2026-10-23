@@ -1,0 +1,53 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: emst.roles
+  size: 1
+  alias: role
+permalink: "/roles/{{ role.slug }}/"
+eleventyComputed:
+  title: "{{ role.title }}"
+  crumbs: [["/roles/", "Roles"], [null, "{{ role.title }}"]]
+---
+{% import "macros.njk" as m %}
+<h1>{{ role.title }}</h1>
+{% if role.altLabels.length %}<p class="emst-muted">Also called: {{ role.altLabels | join(", ") }}</p>{% endif %}
+<p class="emst-lede">{{ role.functionStatement }}</p>
+{{ m.meta(role.tier, role.evidence, "lifecycle: " + (role.lifecycleState or "not set")) }}
+{% if role.lifecycleState == "emerging" or role.lifecycleState == "proposed" %}
+<div class="emst-callout emst-callout--warn" role="note">
+  <p><strong>{{ role.lifecycleState | titlecase }} role.</strong> Shown for foresight and curriculum exploration only. Review by {{ role.reviewBy or "not set" }}.</p>
+  {% if role.counterSignal %}<p><strong>What would show it is not forming:</strong> {{ role.counterSignal }}</p>{% endif %}
+</div>
+{% endif %}
+
+<h2>Choose a variant</h2>
+{% if role.variants.length %}
+<ul class="emst-cards">
+  {% for v in role.variants %}
+  <li class="emst-card">
+    <h3><a href="{{ v.url | url }}">{{ v.actorLabel }}</a></h3>
+    <p>Authority position: {{ v.authorityPositionLabel or "not set" }}{% if v.subtype %} · {{ v.subtype }}{% endif %}</p>
+    <p><a href="{{ v.url | url }}">How it is changing</a> · <a href="{{ v.gapUrl | url }}">Gap check</a> · <a href="{{ v.pathwaysUrl | url }}">Where it can lead</a></p>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div class="emst-callout emst-callout--empty" role="status"><p>No sector-actor variants of this role are in this build yet.</p></div>
+{% endif %}
+
+<h2>Role levels</h2>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Role levels">
+<table class="usa-table usa-table--compact">
+  <caption>Role levels and the proficiency band each spans</caption>
+  <thead><tr><th scope="col">Role level</th><th scope="col">Proficiency band</th></tr></thead>
+  <tbody>{% for l in role.roleLevels %}<tr><td>{{ l.key | titlecase }}</td><td>{{ l.band | join(" to ") }}</td></tr>{% endfor %}</tbody>
+</table>
+</div>
+<p>Primary work function: {{ role.primaryWorkFunctionLabel or "not set" }} <span class="emst-muted">(editorial classification of the role, not a rated value)</span>.</p>
+
+{% set occ = role.crosswalks | where("noTerm", false) %}
+{% if role.crosswalks.length %}
+<h2>Draft occupation and series crosswalks</h2>
+{{ m.crosswalkTable(role.crosswalks, "Draft crosswalks for this role (SOC, O*NET-SOC, OPM series)", true) }}
+{% endif %}
