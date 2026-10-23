@@ -8,6 +8,10 @@ textSha256: 8d47c81becc0fc21b31111980ac8e5eabc86d23253559ec13ce3397d1ab638bd
 supports:
 - competency: seed:DB-C19
   strength: primary
+- competency: seed:v1-4.4.4-A
+  strength: contributing
+- competency: seed:FC-C24
+  strength: contributing
 workFunction: WF-ASSESS
 workflowProfiles:
 - WP-PROJECT
@@ -37,6 +41,7 @@ provenance:
   method: llm-assisted
   agent:
   - emstagent:db-agent@wp-06
+  - emstagent:db-agent@s2-closeout-b
   generatedAt: '2026-10-23T14:30:00Z'
   evidenceLabel: J
   reviewStatus: unreviewed
@@ -46,3 +51,5 @@ provenance:
   - ADR-0018
   - ADR-0003
   - ADR-0004
+editorialNote:
+  en: 'S2 (CR-FC-002 #1): contributing links to core v1-4.4.4-A and FC-C24 added.'

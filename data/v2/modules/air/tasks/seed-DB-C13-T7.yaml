@@ -1,0 +1,44 @@
+id: seed:DB-C13-T7
+type: Task
+prefLabel:
+  en: Document changes in conditions around a monitoring station, such as new obstructions, construction or vandalism, that affect siting criteria
+statement:
+  en: Document changes in conditions around a monitoring station, such as new obstructions, construction or vandalism, that affect siting criteria
+textSha256: d5ab42c005dd667c31b3bb4bea8a04e84d45b005184a92fcde98c740d594601b
+supports:
+- competency: seed:DB-C13
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: on-site-required
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: seasonal
+  placeBoundness: site-specific
+  credentialGate: none
+  currencyDecay: M
+homeModule: air
+subsectors:
+- P01
+layer: L2
+module: air
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+editorialNote:
+  en: 'CR-FC-002 #2 (from merged FC-C17): station-condition task.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0005

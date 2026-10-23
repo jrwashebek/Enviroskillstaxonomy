@@ -1,16 +1,17 @@
 id: seed:SL-C07
 type: Competency
 prefLabel:
-  en: Conduct environmental public health inspections and plan reviews
+  en: Review plans and evaluate sites for environmental health permits
 altLabel:
   en:
-  - Sanitarian inspection
-  - Environmental health specialist inspection
-  - Retail food and onsite wastewater programme inspection
+  - Environmental health plan review
+  - Onsite wastewater site evaluation
+  - Food establishment plan review
+  - Sanitarian plan review
 definition:
-  en: Risk-based inspection of food establishments, onsite wastewater systems, private wells, recreational water, institutions and housing against sanitary and health codes, with review of construction plans and permit applications for those facilities, practised by local and state environmental health programmes. Excludes outbreak investigation (LC-C-07) and laboratory analysis.
+  en: 'Deciding before construction or operation whether a proposed food establishment, onsite wastewater system, private well, public pool or similar facility can meet health codes: checking submissions, reviewing plans and design calculations, evaluating soils and separation distances in the field, setting approval conditions and deciding variances, practised by local and state environmental health programmes. Excludes routine and complaint inspections of operating facilities, which are the envhealth enactment of core SL-C03, outbreak investigation (LC-C-07) and laboratory analysis.'
 statement:
-  en: Inspects regulated facilities and premises against health codes, prioritizing findings by public-health risk; reviews plans and site evaluations before construction or operating permits are issued; educates operators; orders correction or closure where an imminent hazard exists; and documents findings to the standard needed for follow-up and enforcement.
+  en: Checks permit submissions for completeness, reviews facility plans and design calculations against health codes, evaluates soils, separation distances and site conditions in the field, sets approval conditions that a pre-opening or final inspection can verify, and decides variances with the equivalent protection required, before construction or operating permits are issued.
 competencyType: practice
 levelSpan:
   min: L1
@@ -18,20 +19,20 @@ levelSpan:
 levels:
 - level: L1
   indicators:
-  - seed:ind-sl-c07-l1-a
-  - seed:ind-sl-c07-l1-b
+  - seed:ind-sl-c07-l1-c
+  - seed:ind-sl-c07-l1-d
 - level: L2
   indicators:
-  - seed:ind-sl-c07-l2-a
-  - seed:ind-sl-c07-l2-b
+  - seed:ind-sl-c07-l2-c
+  - seed:ind-sl-c07-l2-d
 - level: L3
   indicators:
   - seed:ind-sl-c07-l3-a
-  - seed:ind-sl-c07-l3-b
+  - seed:ind-sl-c07-l3-c
 - level: L4
   indicators:
-  - seed:ind-sl-c07-l4-a
-  - seed:ind-sl-c07-l4-b
+  - seed:ind-sl-c07-l4-c
+  - seed:ind-sl-c07-l4-d
 homeModule: envhealth
 subsectors:
 - H01
@@ -45,11 +46,12 @@ validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 editorialNote:
-  en: 'WP-06: Survivor for EH inspections and plan reviews; absorbs DB-C27 (same task core). Home of role R26 environmental health specialist. REHS/RS (issued by NEHA, V3-08) and state sanitarian registration are Credential gates that define legal scope in some states (ADR-0006 rule 3a), not levels. Code editions (food code, pool code) are L5 instruments. Basis [E] for the function in state and local classes (SL-035, SL-052, SL-060); [J] for content.'
+  en: 'WP-06: Survivor for EH inspections and plan reviews; absorbs DB-C27 (same task core). Home of role R26 environmental health specialist. REHS/RS (issued by NEHA, V3-08) and state sanitarian registration are Credential gates that define legal scope in some states (ADR-0006 rule 3a), not levels. Code editions (food code, pool code) are L5 instruments. Basis [E] for the function in state and local classes (SL-035, SL-052, SL-060); [J] for content. | S2 close-out B (A6 DB; ADR-0030 §3.2 duplicate scan). Refocused on plan review and site evaluation for environmental health permits: its inspection core repeated core SL-C03, so the routine and complaint inspection tasks (T1, T4, T5, T6) and their indicators now belong to the envhealth enactment of SL-C03 (seed:ena-sl-c03-envhealth), with health-code indicator variants and imminent-hazard closure. Survivor for EH plan reviews; absorbs DB-C27. REHS/RS registration is a Credential, not a level (T-8). Module record, so the core count does not change. R26 role profile still targets SL-C07; WP-08 to add the SL-C03 target. Basis [J].'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:db-agent@wp-06
+  - emstagent:db-agent@s2-closeout-b
   generatedAt: '2026-10-23T14:30:00Z'
   sources:
   - SL-035
@@ -61,7 +63,7 @@ provenance:
   evidenceLabel: J
   reviewStatus: unreviewed
   toolVersion: claude-opus-5-5
-  promptVersion: wp06-module-authoring@1
+  promptVersion: wp06-module-authoring@1 + s2b-db@1
   adr:
   - ADR-0018
   - ADR-0003

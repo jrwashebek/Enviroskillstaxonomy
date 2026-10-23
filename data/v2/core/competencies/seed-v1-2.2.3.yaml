@@ -10,7 +10,7 @@ definition:
 statement:
   en: 'Designs and runs quality assurance and control for environmental data from collection to release: writes QA protocols; applies range, consistency and completeness checks; audits datasets; designs, tunes and audits automated anomaly flags and corrections on sensor and batch data; records every flag and correction; and trains others on validation rules.'
 editorialNote:
-  en: 'Rewritten by WP-04 (title/description defect fixed); absorbs v1 2.6.4 (design and audit of automated QC). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-MONITOR (DC). Rationale: Durable share high; absorbs 2.6.4 (design and audit of automated QC); title/description defect fixed (DC, IA verdicts). Role verdicts considered: DC:change|IA:change. Title and description were merged in the v1 database and are split here from the source text.'
+  en: 'Rewritten by WP-04 (title/description defect fixed); absorbs v1 2.6.4 (design and audit of automated QC). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-MONITOR (DC). Rationale: Durable share high; absorbs 2.6.4 (design and audit of automated QC); title/description defect fixed (DC, IA verdicts). Role verdicts considered: DC:change|IA:change. Title and description were merged in the v1 database and are split here from the source text. | S2 (CR-DB-001 #3 ruling): laboratory data review task seed:db-v1-2.2.3-lab-review and L2 indicator added by DB (data-user side of DB-C53, MOD-18). DC review pending.'
 notation:
 - scheme: EMSTv1
   value: 2.2.3
@@ -27,6 +27,7 @@ levels:
   indicators:
   - seed:ind-v1-2.2.3-l2-a
   - seed:ind-v1-2.2.3-l2-b
+  - seed:ind-v1-2.2.3-l2-c
 - level: L3
   indicators:
   - seed:ind-v1-2.2.3-l3-a
@@ -49,6 +50,7 @@ provenance:
   method: llm-assisted
   agent:
   - emstagent:A4-DC@wp-04
+  - emstagent:db-agent@s2-closeout-b
   generatedAt: '2026-10-23T14:00:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: wp04-dc-authoring@1

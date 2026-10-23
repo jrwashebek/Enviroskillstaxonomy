@@ -21,22 +21,27 @@ ownership: public
 deliveryModel: in-house
 instruments:
 - instrument: seed:ins/federal-land-use-authorizations
+  role: requires
 credentialGates:
 - credential: seed:crd-certified-professional-in-rangeland-management
   kind: preferred
 indicativeGradeOrBand:
   scheme: GS
-  band: GS-5 to GS-7 [entry]; GS-9 to GS-11 [journey]; GS-12 to GS-13 [senior]
+  byRoleLevel:
+    entry: GS-5 to GS-7
+    journey: GS-9 to GS-11
+    senior: GS-12 to GS-13
   label: not a classification criterion
 disclaimers:
 - Not a classification basis / not a job analysis / not for RIF or rating decisions.
 - 'Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results.'
 editorialNote:
-  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8). indicativeGradeOrBand is FH judgment from the FH Phase 2 proficiency proposal (report section 6.2), never a classification criterion; the bracketed role levels say which band each level is read against.
+  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8). indicativeGradeOrBand is FH judgment from the FH Phase 2 proficiency proposal (report section 6.2), never a classification criterion; indicativeGradeOrBand.byRoleLevel gives the band each role level is read against.
 provenance:
   method: llm-assisted
   agent:
   - emstagent:fh-agent@wp-08
+  - emstagent:fh-agent@s2-closeout-a
   generatedAt: '2026-10-23T17:00:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1

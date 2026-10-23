@@ -1,0 +1,58 @@
+id: seed:DB-C56
+type: Competency
+prefLabel:
+  en: Set harvest regulations and manage game populations from survey and harvest data
+altLabel:
+  en:
+  - Wildlife population and harvest management
+  - Season and bag-limit setting
+  - Game management
+definition:
+  en: 'Managing hunted and trapped wildlife populations toward stated population and harvest objectives: designing and running population and harvest surveys, estimating abundance, recruitment and harvest rates with their uncertainty, recommending seasons, bag limits and quotas through the agency''s regulation process, and evaluating each season against the objectives. Excludes fish populations and fisheries harvest (v1 1.4.5, DB-C49), protected-species consultation (FH-C01), population dynamics as a knowledge area (v1 1.4.1) and wildlife capture and handling (FC-C15).'
+statement:
+  en: Designs and runs population and harvest surveys, estimates abundance, recruitment and harvest rates with their uncertainty, recommends seasons, bag limits and quotas that meet stated population and harvest objectives through the agency's regulation process, and evaluates each season's outcome against those objectives before the next cycle.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - seed:ind-db-c56-l1-a
+  - seed:ind-db-c56-l1-b
+- level: L2
+  indicators:
+  - seed:ind-db-c56-l2-a
+  - seed:ind-db-c56-l2-b
+- level: L3
+  indicators:
+  - seed:ind-db-c56-l3-a
+  - seed:ind-db-c56-l3-b
+homeModule: wildlife
+subsectors:
+- L02
+reusability: subsector-specific
+layer: L1
+module: wildlife
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+editorialNote:
+  en: 'S2 close-out B (A6 DB; CR-DB-001 #5 ruling, ADR-0030 §1.3). Module candidate for MOD-12 wildlife (wave 1): wildlife population and harvest management is the core work of state fish and wildlife agencies and had no module competency. Module growth, not core, so G-9 is unaffected; the disposition row is added by the CA at WP-16 (disposition_amendments.csv). Authored for R15 at P2 starter-kit depth (L1-L3, two indicators per level). Field-survey anchors (T1, T2, L1 indicators) await FC review. Draws on core v1 4.1.2 (wildlife detection) and knowledge area v1 1.4.1. Basis [J].'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0030
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

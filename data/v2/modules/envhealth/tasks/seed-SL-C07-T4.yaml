@@ -6,7 +6,7 @@ statement:
   en: Inspect a public swimming pool's water chemistry, circulation and safety equipment, closing the pool when an imminent health hazard exists
 textSha256: eba3363fed7e722162bccee9657135e8d40dad42daa65c12b5b3d743d4db7b78
 supports:
-- competency: seed:SL-C07
+- competency: seed:SL-C03
   strength: primary
 workFunction: WF-ENFORCE
 workflowProfiles:
@@ -35,6 +35,7 @@ provenance:
   method: llm-assisted
   agent:
   - emstagent:db-agent@wp-06
+  - emstagent:db-agent@s2-closeout-b
   generatedAt: '2026-10-23T14:30:00Z'
   evidenceLabel: J
   reviewStatus: unreviewed
@@ -44,3 +45,5 @@ provenance:
   - ADR-0018
   - ADR-0003
   - ADR-0004
+editorialNote:
+  en: 'S2 (ADR-0030 §3.2): re-pointed from SL-C07 to core SL-C03; listed in seed:ena-sl-c03-envhealth.additionalTasks. Text unchanged, so craft ratings stay current.'

@@ -21,11 +21,27 @@ ownership: public
 deliveryModel: in-house
 instruments:
 - instrument: seed:ins/state-sepa-ca
+  role: requires
+  note:
+    en: Example state.
 - instrument: seed:ins/state-sepa-mn
+  role: requires
+  note:
+    en: Example state.
 - instrument: seed:ins/state-sepa-ny
+  role: requires
+  note:
+    en: Example state.
 - instrument: seed:ins/state-sepa-wa
+  role: requires
+  note:
+    en: Example state.
 - instrument: seed:ins/ceqa-2025-reforms
+  role: constrains
 - instrument: seed:ins/nepa-assignment-23usc327
+  role: enables
+  note:
+    en: Federal review by assignment to state transportation agencies.
 disclaimers:
 - Not a classification basis / not a job analysis / not for RIF or rating decisions.
 - 'Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results.'
@@ -35,6 +51,7 @@ provenance:
   method: llm-assisted
   agent:
   - emstagent:fh-agent@wp-08
+  - emstagent:fh-agent@s2-closeout-a
   generatedAt: '2026-10-23T17:00:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1

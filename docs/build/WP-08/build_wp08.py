@@ -24,6 +24,12 @@ import wp08lib as W  # noqa: E402
 from wp08lib import L  # noqa: E402
 
 import roles_p1  # noqa: E402
+import importlib.util as _ilu  # noqa: E402
+_s2 = _ilu.spec_from_file_location("s2a_moves_variants", HERE.parent / "S2-closeout-A" / "moves_variants.py")
+_s2m = _ilu.module_from_spec(_s2)
+_s2.loader.exec_module(_s2m)
+_S2_VARIANT_ROLES = {k: {i.split("/", 1)[-1] if "/" in i else i: r for i, r in v.items()} for k, v in _s2m.ROLES.items()}
+_S2_BAND = _s2m.parse
 import roles_p2  # noqa: E402
 import roles_p3p4  # noqa: E402
 import variants as VAR  # noqa: E402
@@ -312,7 +318,20 @@ def variant_record(idx, spec, v, role_tasks):
                 problem(f"{vid}: taskDrops {d} not in the role bundle")
         base["taskDrops"] = drops
     if v.instruments:
-        base["instruments"] = [W.sk(f"ins/{i}") for i in v.instruments]
+        # Typed links (CR-SC-001 #2; ADR-0030 §6). Roles were set in S2 by docs/build/S2-closeout-A/moves_variants.py;
+        # this builder reuses that table so a re-run reproduces them.
+        roles = _S2_VARIANT_ROLES.get(vid, {})
+        links = []
+        for i in v.instruments:
+            item = {"instrument": W.sk(f"ins/{i}")}
+            if i in roles:
+                item["role"] = roles[i][0]
+                if roles[i][1]:
+                    item["note"] = {"en": roles[i][1]}
+            else:
+                problem(f"{vid}: instrument link {i} has no role in the S2 role table")
+            links.append(item)
+        base["instruments"] = links
     if v.gates:
         base["credentialGates"] = [{"credential": W.sk(f"crd-{c}"), "kind": k} for c, k in v.gates]
     if v.signoff:
@@ -324,7 +343,9 @@ def variant_record(idx, spec, v, role_tasks):
     if v.juris:
         base["jurisdictionalContext"] = v.juris
     if v.band:
-        base["indicativeGradeOrBand"] = {"scheme": v.scheme, "band": v.band, "label": "not a classification criterion"}
+        # byRoleLevel replaces the micro-format (CR-FH-001 #6; ADR-0030 §1.9).
+        base["indicativeGradeOrBand"] = {"scheme": v.scheme, "byRoleLevel": _S2_BAND(v.band),
+                                         "label": "not a classification criterion"}
     if v.actor in ("federal", "state", "local"):
         base["disclaimers"] = [W.DISCLAIMER, W.DRAFT_NOTICE]
     note = ("Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 "
@@ -332,7 +353,7 @@ def variant_record(idx, spec, v, role_tasks):
             "attached; until then views do not show them (SPEC section 10 rule 8).")
     if v.band:
         note += (" indicativeGradeOrBand is FH judgment from the FH Phase 2 proficiency proposal (report section 6.2), "
-                 "never a classification criterion; the bracketed role levels say which band each level is read against.")
+                 "never a classification criterion; indicativeGradeOrBand.byRoleLevel gives the band each role level is read against.")
     base["editorialNote"] = {"en": note}
     base["provenance"] = W.prov(adr=["ADR-0006", "ADR-0007", "ADR-0017", "ADR-0022"])
     return vid, base

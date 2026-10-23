@@ -21,6 +21,9 @@ ownership: nonprofit
 deliveryModel: contracted
 instruments:
 - instrument: seed:ins/americorps-grant-terminations
+  role: constrains
+  note:
+    en: Terminations, injunction and FY2026 settlement bound programme funding.
 credentialGates:
 - credential: seed:crd-wilderness-first-aid
   kind: preferred
@@ -30,6 +33,7 @@ provenance:
   method: llm-assisted
   agent:
   - emstagent:fh-agent@wp-08
+  - emstagent:fh-agent@s2-closeout-a
   generatedAt: '2026-10-23T17:00:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1

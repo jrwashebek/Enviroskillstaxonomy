@@ -1,0 +1,38 @@
+id: seed:ind-v1-2.2.3-l2-c
+type: Indicator
+prefLabel:
+  en: Reviews a laboratory data package against holding times
+competency: seed:v1-2.2.3
+level: L2
+statement:
+  en: Reviews a laboratory data package against holding times, qualifiers and quality-control results, accepting, qualifying or rejecting each result for use in a compliance decision.
+augmentationMode: unaided
+assessmentMethods:
+- seeded-error-work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:db-v1-2.2.3-lab-review
+distinguishingAttribute: ATT-KNO
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

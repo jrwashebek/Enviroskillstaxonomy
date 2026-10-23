@@ -6,7 +6,7 @@ statement:
   en: Review an inspection report drafted from dictated notes or a digital checklist against field observations before issuing it to the operator
 textSha256: c7c47bfe7ca50b7e4be57c11e3fa5ca6cb896e3673989b1436e6a2a4463515a6
 supports:
-- competency: seed:SL-C07
+- competency: seed:SL-C03
   strength: primary
 workFunction: WF-ENFORCE
 workflowProfiles:
@@ -25,11 +25,12 @@ validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 editorialNote:
-  en: Review task split from report drafting where speech-to-text and drafting tools compress production (ADR-0003 G-2).
+  en: 'Review task split from report drafting where speech-to-text and drafting tools compress production (ADR-0003 G-2). | S2 (ADR-0030 §3.2): re-pointed from SL-C07 to core SL-C03; listed in seed:ena-sl-c03-envhealth.additionalTasks. Text unchanged, so craft ratings stay current.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:db-agent@wp-06
+  - emstagent:db-agent@s2-closeout-b
   generatedAt: '2026-10-23T14:30:00Z'
   evidenceLabel: J
   reviewStatus: unreviewed

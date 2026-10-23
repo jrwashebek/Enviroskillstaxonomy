@@ -709,9 +709,14 @@ class Builder:
     def core_size(self, released):
         core = sum(1 for r in released.values() if r.get("type") == "Competency" and r.get("module") == "core"
                    and r.get("status") not in ("superseded", "withdrawn"))
-        held_core = sum(1 for rid, r in self.records.items() if r.get("type") == "Competency" and r.get("module") == "core"
-                        and r.get("status") not in ("superseded", "withdrawn") and self.is_held(rid, r))
-        return core, held_core
+        held_core = {rid for rid, r in self.records.items() if r.get("type") == "Competency" and r.get("module") == "core"
+                     and r.get("status") not in ("superseded", "withdrawn") and self.is_held(rid, r)}
+        # held candidates decided core-v2.0 count toward G-9 even before they are authored ("held items included")
+        cands = L.ROOT / "docs" / "decisions" / "candidate_disposition.csv"
+        if cands.exists():
+            core_cands = {f"seed:{r['cand_id']}" for r in L.read_csv(cands) if r.get("decision") == "core-v2.0"}
+            held_core |= {k for k in self.held_keys & core_cands if k not in self.records}
+        return core, len(held_core)
 
     def g9_applies(self):
         """The G-9 gate applies to release builds of 2.0.0-rc.1 or later (not -dev, not the rc.0 test fixtures)."""
