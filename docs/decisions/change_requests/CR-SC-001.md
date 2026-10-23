@@ -12,7 +12,7 @@
 4. **The venue-applicability rule is not implemented.** ADR-0016 §3-4 asks views to compute `venueApplicability` and `federalApplicability` from instrument status. No rule file or build step exists yet. WP-05 wrote a prototype, synthetic fixtures and tests:
    - `docs/build/WP-05/ci/venue_applicability.py`
    - `ci/fixtures/` (the fixtures validate with `validate_v2.py --data-root`)
-   - `ci/test_venue_applicability.py` (6 tests pass)
+   - `ci/test_venue_applicability.py` (the tests pass)
    Its output for the live data is in `docs/build/WP-05/generated/`.
 5. **"Delegated constraints" has no field.** The brief asks for structured actor enactments covering authority basis, principals and delegated constraints. WP-05 writes the constraints inside `authorityBasis` after the label "Delegated constraints:". An example is `seed:ena-sl-c02-state-regulator`.
 

@@ -40,8 +40,8 @@ All counts are generated in `generated/wp05_counts.json` and `generated/wp05_wri
 
 ## Sensitivity edges, instruments, venue applicability, mirror links
 - **Task-level edges:** the schema has no Task field for them, so they are generated in `generated/task_sensitivity_edges.csv` (`gen_edges.py`) as inherited drafts with a review-by date. See CR-SC-001.
-- **Instruments:** registered `seed:ins/*` IDs are linked from enactments. Instruments the registry still lacks are listed with citation hints and proposed IDs in `instruments_to_register.csv` (for LM). Five rows were verified this session: the EJ executive orders and their 2025 revocations, NJ EJ law and rules, NY ECL 70-0118, and EO 14303 (`sources.csv` WP05-001..004).
-- **Venue applicability (ADR-0016):** prototype in `ci/venue_applicability.py`, with synthetic fixtures that pass `validate_v2.py --data-root` and 6 passing tests in `ci/test_venue_applicability.py`. Live output is in `generated/venue_applicability.csv` and `generated/federal_applicability.json`.
+- **Instruments:** registered `seed:ins/*` IDs are linked from enactments. Instruments the registry still lacks are listed with citation hints and proposed IDs in `instruments_to_register.csv` (for LM). The rows marked verified-this-session were checked this session: the EJ executive orders and their 2025 revocations, NJ EJ law and rules, NY ECL 70-0118, and EO 14303 (`sources.csv` WP05-001..004).
+- **Venue applicability (ADR-0016):** prototype in `ci/venue_applicability.py`, with synthetic fixtures that pass `validate_v2.py --data-root` and passing tests in `ci/test_venue_applicability.py`. Live output is in `generated/venue_applicability.csv` and `generated/federal_applicability.json`.
   - These are computed fields, never stored in records.
   - DB-C52's federal and state values read `permitted` with `basisLinked = false` until LM registers the instruments above.
   - Known defect: removal or enabling instruments read as "required basis". CR-SC-001 item 2 fixes this.
@@ -101,4 +101,4 @@ All counts are generated in `generated/wp05_counts.json` and `generated/wp05_wri
   - `federalApplicability` must be read from the computed view, never from records.
   - Show "basis not yet linked" when `basisLinked = false`.
   - Never render the LLM craft passes (G0).
-  - 9 indicators have obs4 = 2 with evidence plans.
+  - Indicators with obs4 = 2 carry evidence plans (count in `generated/wp05_counts.json`).
