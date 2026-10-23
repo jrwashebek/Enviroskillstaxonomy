@@ -1,0 +1,70 @@
+v1 -> O*NET calibration pilot summary (n=60; seed 20261023)
+Match quality: {'weak': 59, 'moderate': 1}
+Matched to environmental O*NET-SOC: 29 of 60
+
+Crosstab v1 auto type x Eloundou HUMAN label (matched task):
+eloundou_human_label  E0  E1  E2  All
+v1_auto_type                         
+A                      4   4   8   16
+Ac                     4   3   9   16
+H                      8   1   7   16
+S                      1   1   2    4
+V                      1   1   6    8
+All                   18  10  32   60
+
+Crosstab v1 auto type x GPT-4 automation rubric (matched task):
+eloundou_gpt4_automation  T0  T1  T2  T3  T4  All
+v1_auto_type                                     
+A                          2   6   4   3   1   16
+Ac                         1   5   7   2   1   16
+H                          2   9   5   0   0   16
+S                          0   1   3   0   0    4
+V                          0   2   4   2   0    8
+All                        5  23  23   7   2   60
+
+Crosstab v1 auto type x Microsoft physical-task flag:
+ms_physical_task  False  True  All
+v1_auto_type                      
+A                     9     6   15
+Ac                   12     4   16
+H                    11     5   16
+S                     4     0    4
+V                     6     1    7
+All                  42    16   58
+
+Mean neighbourhood exposure (beta, top-5 similarity-weighted) by v1 auto type:
+              neighbourhood_beta_top5  neighbourhood_physical_top5  match_similarity
+v1_auto_type                                                                        
+A                               0.470                        0.392             0.159
+Ac                              0.448                        0.239             0.184
+H                               0.288                        0.234             0.167
+S                               0.541                        0.049             0.225
+V                               0.552                        0.246             0.152
+
+Same, strong+moderate matches only:
+              n_all  neighbourhood_beta_top5  neighbourhood_physical_top5
+v1_auto_type                                                             
+A                16                      NaN                          NaN
+Ac               16                      NaN                          NaN
+H                16                    0.328                          0.0
+S                 4                      NaN                          NaN
+V                 8                      NaN                          NaN
+
+Mean neighbourhood exposure by v1 tacit density:
+          neighbourhood_beta_top5  neighbourhood_physical_top5
+v1_tacit                                                      
+Hi                          0.352                        0.254
+Lo                          0.495                        0.218
+Med                         0.444                        0.354
+
+Mean neighbourhood exposure by v1 career-ladder position:
+           neighbourhood_beta_top5  neighbourhood_physical_top5
+v1_career                                                      
+C                            0.467                        0.207
+P                            0.385                        0.345
+
+Concordance checks (matched task):
+  v1 H tasks whose matched O*NET task is human-rated E0: 8/16
+  v1 Ac/S/V tasks whose matched O*NET task is human-rated E1 or E2: 22/28
+  v1 Ac/S/V tasks matched E1 (direct exposure): 5/28
+  v1 A tasks matched E0 (external says unexposed): 4/16
