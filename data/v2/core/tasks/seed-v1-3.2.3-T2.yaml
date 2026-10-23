@@ -1,22 +1,28 @@
 id: seed:v1-3.2.3-T2
 type: Task
 prefLabel:
-  en: Facilitate team alignment on shared outcomes across programs or projects
+  en: Align teams across programmes or projects on shared outcomes, recording which team is accountable for each objective
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Facilitate team alignment on shared outcomes across programs or projects
-textSha256: a2c18e70d44f48faab4a44f1c587612ae15f2259c9bc236e7381c36616391a3f
+  en: Align teams across programmes or projects on shared outcomes, recording which team is accountable for each objective
+textSha256: 6a33a13ceb075feb9d1370bf791525c3ef4d0d9961ac317cdb90c347254c1523
 supports:
 - competency: seed:v1-3.2.4
   strength: primary
+workFunction: WF-MANAGE
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 3.2.3:T2
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T2
 v1Domain:
   code: '3'
@@ -25,14 +31,17 @@ v1SkillArea:
   code: '3.2'
   label: Strategic Planning
 editorialNote:
-  en: Supports re-pointed from v1 competency 3.2.3 to seed:v1-3.2.4 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'S2 close-out A. Rewritten from the v1 task text: "Facilitate team alignment on shared outcomes across programs or projects".'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:3.2.3:T2
     v1Code: 3.2.3
@@ -42,9 +51,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

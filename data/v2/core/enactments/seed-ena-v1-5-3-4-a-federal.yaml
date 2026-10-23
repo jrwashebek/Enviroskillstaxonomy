@@ -1,0 +1,52 @@
+id: seed:ena-v1-5-3-4-a-federal
+type: Enactment
+prefLabel:
+  en: Federal programmes, facilities and engagement
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:v1-5.3.4-A
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: Federal disability-rights law for federally conducted programmes, facilities and electronic information; agency language-access policies; the executive orders that directed meaningful engagement with affected communities on environmental decisions were revoked in January 2025.
+principal:
+  en: The responsible official for the programme or decision.
+accountabilityVenue:
+  en: Agency civil-rights offices; federal courts.
+characteristicInstruments:
+- instrument: seed:ins/eo-14173
+  role: removed-requirement
+  note:
+    en: Revoked EO 12898, whose participation and translation provisions applied to environmental decisions; never a basis.
+- instrument: seed:ins/eo-14148
+  role: removed-requirement
+  note:
+    en: Revoked EO 14096 and its engagement provisions; never a basis.
+note:
+  en: 'ADR-0016: applicability is computed. The revoking orders are linked as removed-requirement and never decide the value; the disability-rights and language-access instruments are not yet registered, so the federal value reads ''basis not yet linked'' until LM registers them.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - WP05-001
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

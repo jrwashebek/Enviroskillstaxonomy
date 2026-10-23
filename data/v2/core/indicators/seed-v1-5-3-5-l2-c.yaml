@@ -1,0 +1,45 @@
+id: seed:v1-5-3-5-l2-c
+type: Indicator
+prefLabel:
+  en: Reports back on each commitment made to a community, stating whether it was kept, changed or dropped and why.
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:v1-5.3.5
+level: L2
+statement:
+  en: Reports back on each commitment made to a community, stating whether it was kept, changed or dropped and why.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- commitment report
+servedTasks:
+- seed:sc-report-on-commitments
+distinguishingAttribute: ATT-GUI
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

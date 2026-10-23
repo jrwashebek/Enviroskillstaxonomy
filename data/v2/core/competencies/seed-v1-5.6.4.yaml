@@ -1,19 +1,64 @@
 id: seed:v1-5.6.4
 type: Competency
 prefLabel:
-  en: Social marketing for sustainability
+  en: Design and evaluate behaviour-change programmes for environmental outcomes
+altLabel:
+  en:
+  - Social marketing for sustainability
+  - Community-based social marketing
+  - Environmental behaviour change
+  - Environmental psychology and behaviour-change theory
+definition:
+  en: 'Designing, piloting and evaluating programmes that change specific behaviours with environmental consequences (water and energy use, waste sorting, wildlife feeding, spread of invasive species, fire-safe practices): selecting target behaviours, researching barriers and motivators with the audience, choosing behaviour-change tools grounded in theory, piloting with a comparison, and measuring behaviour rather than awareness. Behaviour-change theory is held as this competency''s knowledge statements (from v1 5.6.1). Excludes general social science research (v1 5.6.2), public information (v1 5.1.1) and environmental education (v1 5.4.1).'
 statement:
-  en: Applying commercial marketing techniques to promote voluntary behavior change for environmental and social good.
-competencyType: practice
+  en: Selects target behaviours with environmental consequences, researches the audience's barriers and motivators, designs interventions with behaviour-change tools grounded in theory, pilots them with a comparison group, and measures behaviour rather than awareness before scaling, revising or stopping the programme.
 notation:
 - scheme: EMSTv1
   value: 5.6.4
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:lc-bc-l1-a
+  - seed:lc-bc-l1-b
+- level: L2
+  indicators:
+  - seed:lc-bc-l2-a
+  - seed:lc-bc-l2-b
+  - seed:lc-bc-l2-c
+- level: L3
+  indicators:
+  - seed:lc-bc-l3-a
+  - seed:lc-bc-l3-b
+  - seed:lc-bc-l3-c
+- level: L4
+  indicators:
+  - seed:lc-bc-l4-a
+  - seed:lc-bc-l4-b
+knowledge:
+- seed:lc-ks-bc-theories
+- seed:lc-ks-bc-awareness-gap
+- seed:lc-ks-bc-tools
+- seed:lc-ks-bc-measurement
+- seed:lc-ks-bc-ethics
+homeModule: core
+reusability: cross-subsector
+learningDesign:
+  assessmentContext:
+    en: Assess through audience research, intervention designs, pilot and evaluation records; knowledge statements by knowledge test.
+  recommendedModes:
+  - CL
+  - WS
+  - CAP
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Domain:
   code: '5'
   label: Communication & Engagement Skills
@@ -21,14 +66,16 @@ v1SkillArea:
   code: '5.6'
   label: Social Science & Behavioral Change (New)
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | MODE-ENGAGE (X04). Rationale: Rewritten as designing and evaluating behaviour-change programmes. Role verdicts considered: none recorded.'
+  en: S2 close-out B (A8 LC; ADR-0030 §3.1 M1). Rewritten in place as the survivor for designing and evaluating behaviour-change programmes; absorbs v1 5.6.1 (environmental psychology and behaviour-change theory), which underpins this one practice and becomes its knowledge statements (ADR-0003 knowledge-area test). v1 5.6.1-T2 (formative research) duplicated 5.6.4-T1 and is superseded into it; 5.6.1-T1 and T3 are rewritten here. The '4 Ps' marketing frame is not carried as a task. No P1 role needs it (S3). Basis [J].
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
   derivedFrom:
   - v1Key: v1:5.6.4
     v1Code: 5.6.4
@@ -39,7 +86,7 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:5.6.4
     v1Code: 5.6.4
     v1Table: source_text/competencies
@@ -53,155 +100,7 @@ provenance:
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0030
+  - ADR-0003
+  - ADR-0004
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Social marketing for sustainability
-  v1Description: Applying commercial marketing techniques to promote voluntary behavior change for environmental and social good.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:5.6.4:foundational
-    knowledge: Understands social marketing basics and how it differs from commercial marketing
-    application: Supports social marketing campaigns
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.6.4:foundational:I1
-      n: 1
-      text: Assists with audience research
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:foundational:I2
-      n: 2
-      text: Creates marketing materials following brand guidelines
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:foundational:I3
-      n: 3
-      text: Implements marketing tactics (events, social media, etc.)
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:foundational:I4
-      n: 4
-      text: Tracks basic metrics
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:foundational:I5
-      n: 5
-      text: Understands the 4 Ps framework
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:5.6.4:intermediate
-    knowledge: Applies social marketing frameworks systematically
-    application: Designs and implements social marketing campaigns
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.6.4:intermediate:I1
-      n: 1
-      text: Conducts formative research for campaign design
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:intermediate:I2
-      n: 2
-      text: Segments audiences and develops personas
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:intermediate:I3
-      n: 3
-      text: Applies 4 Ps to design comprehensive campaigns
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:intermediate:I4
-      n: 4
-      text: Creates compelling messages and calls to action
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:intermediate:I5
-      n: 5
-      text: Uses multiple marketing channels strategically
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:intermediate:I6
-      n: 6
-      text: Tests messages and materials
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:intermediate:I7
-      n: 7
-      text: Evaluates campaign effectiveness
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:5.6.4:advanced
-    knowledge: Expert in social marketing strategy and evaluation
-    application: Leads major social marketing initiatives
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.6.4:advanced:I1
-      n: 1
-      text: Develops comprehensive social marketing strategies
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:advanced:I2
-      n: 2
-      text: Manages large marketing budgets
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:advanced:I3
-      n: 3
-      text: Uses sophisticated targeting and segmentation
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:advanced:I4
-      n: 4
-      text: Conducts A/B testing and optimization
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:advanced:I5
-      n: 5
-      text: Achieves measurable behavior change outcomes
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:advanced:I6
-      n: 6
-      text: Integrates digital and traditional marketing effectively
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:advanced:I7
-      n: 7
-      text: Trains practitioners in social marketing
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:5.6.4:expert
-    knowledge: Shapes social marketing practice in environmental sector
-    application: Leads transformative marketing initiatives at scale
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.6.4:expert:I1
-      n: 1
-      text: Directs organizational marketing strategy
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:expert:I2
-      n: 2
-      text: Develops innovative social marketing approaches
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:expert:I3
-      n: 3
-      text: Achieves recognition for marketing excellence
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:expert:I4
-      n: 4
-      text: Publishes on social marketing practices
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:expert:I5
-      n: 5
-      text: Demonstrates population-level behavior change through marketing
-      origin: restored-from-source-text
-    - v1Key: v1:5.6.4:expert:I6
-      n: 6
-      text: Influences social marketing standards and ethics
-      origin: restored-from-source-text
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:5.6.4:sector:public_agencies
-    text: Conservation behavior campaigns, recreation behavior management
-  - sector: private_sector
-    v1Key: v1:5.6.4:sector:private_sector
-    text: Sustainable consumption, corporate behavior change programs
-  - sector: ngos
-    v1Key: v1:5.6.4:sector:ngos
-    text: Issue campaigns, fundraising, advocacy
-  - sector: consulting
-    v1Key: v1:5.6.4:sector:consulting
-    text: Social marketing strategy and implementation services
-  - sector: academia
-    v1Key: v1:5.6.4:sector:academia
-    text: Social marketing research, extension campaigns
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

@@ -1,19 +1,43 @@
 id: seed:v1-3.2.5
 type: Competency
 prefLabel:
-  en: Adaptive management planning
+  en: Run the adaptive management cycle and evaluate programme performance
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: 'The capability to run plan, monitor, evaluate and adjust cycles for environmental programmes and projects: set performance measures and decision triggers, use monitoring results to evaluate effectiveness, adjust plans and work plans when triggers are met, record what was learned and report results and spending transparently. Generic evaluation methods are referenced, not covered; private project delivery metrics are a separate competency.'
 statement:
-  en: Creating flexible plans that can be adjusted as conditions change or as new information becomes available.
+  en: Sets performance measures and decision triggers for a programme or project, uses monitoring results and new science or stakeholder input to evaluate effectiveness, adjusts plans and annual work plans when triggers are met, records lessons learned, and reports results and spending to funders and the public in a form they can check.
 competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - adaptive management
+  - performance monitoring and evaluation
+  - programme evaluation
+  - Conservation Standards
+  - impact measurement
+  - results reporting
+  - lessons learned
+instrumentSensitivity:
+- mechanism: DM-19
+  rationale:
+    en: Grant and appropriation reporting terms set which performance measures a programme must report.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
 notation:
 - scheme: EMSTv1
   value: 3.2.5
-layer: L1
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Domain:
   code: '3'
   label: Management & Administrative Skills
@@ -21,14 +45,19 @@ v1SkillArea:
   code: '3.2'
   label: Strategic Planning
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-LEARN. Rationale: Adaptive management planning is environmental-specific and cited in plans for decades. Role verdicts considered: none recorded.'
-license: CC0-1.0
-sensitivity: public
+  en: 'S2 close-out A (A5 SC with SL; reviewers A3 FC and A4 DC). Survivor of the adaptive management cycle (ADR-0030 §3.1 M4): absorbs v1 3.1.5 (performance monitoring and evaluation) and the durable remainder of 3.4.5 (results and spending transparency; its dashboards and platforms go to L4). Plan, monitor, evaluate and adjust is one cycle in environmental programmes, as in the Conservation Standards (altLabel). Generic programme evaluation referenced from O*NET/ESCO (G-8); private delivery metrics stay with PS-C03. The 3.1.5 task seeds re-pointed by DE are rewritten here. Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-LEARN. Rationale: Adaptive management planning is environmental-specific and cited in plans for decades.'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-042
   derivedFrom:
   - v1Key: v1:3.2.5
     v1Code: 3.2.5
@@ -39,7 +68,7 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:3.2.5
     v1Code: 3.2.5
     v1Table: source_text/competencies
@@ -54,182 +83,27 @@ provenance:
     v1Code: 3.4.5
     relation: merged-from
     note: v1 3.4.5 (move-to-tools) → seed:v1-3.2.5 per v1_disposition.csv
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Adaptive management planning
-  v1Description: Creating flexible plans that can be adjusted as conditions change or as new information becomes available.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:3.2.5:foundational
-    knowledge: Understands adaptive management concepts
-    application: Participates in adaptive processes
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:3.2.5:foundational:I1
-      n: 1
-      text: Understands adaptive management cycle
-      origin: database
-    - v1Key: v1:3.2.5:foundational:I2
-      n: 2
-      text: Collects monitoring data for adaptation
-      origin: database
-    - v1Key: v1:3.2.5:foundational:I3
-      n: 3
-      text: Recognizes when plans need adjustment
-      origin: database
-    - v1Key: v1:3.2.5:foundational:I4
-      n: 4
-      text: Participates in review and adaptation meetings
-      origin: database
-    - v1Key: v1:3.2.5:foundational:I5
-      n: 5
-      text: Documents lessons learned
-      origin: database
-    - v1Key: v1:3.2.5:foundational:I6
-      n: 6
-      text: Adjusts activities based on guidance
-      origin: database
-    - v1Key: v1:3.2.5:foundational:I7
-      n: 7
-      text: Understands learning orientation
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:3.2.5:intermediate
-    knowledge: Applies adaptive management frameworks
-    application: Implements adaptive management
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:3.2.5:intermediate:I1
-      n: 1
-      text: Designs adaptive management plans
-      origin: database
-    - v1Key: v1:3.2.5:intermediate:I2
-      n: 2
-      text: Establishes monitoring for learning
-      origin: database
-    - v1Key: v1:3.2.5:intermediate:I3
-      n: 3
-      text: Facilitates reflection and learning sessions
-      origin: database
-    - v1Key: v1:3.2.5:intermediate:I4
-      n: 4
-      text: Adjusts plans based on monitoring
-      origin: database
-    - v1Key: v1:3.2.5:intermediate:I5
-      n: 5
-      text: Documents adaptive decisions
-      origin: database
-    - v1Key: v1:3.2.5:intermediate:I6
-      n: 6
-      text: Uses structured decision-making
-      origin: database
-    - v1Key: v1:3.2.5:intermediate:I7
-      n: 7
-      text: Manages uncertainty explicitly
-      origin: restored-from-source-text
-    - v1Key: v1:3.2.5:intermediate:I8
-      n: 8
-      text: Communicates adaptive approach to stakeholders
-      origin: restored-from-source-text
-    - v1Key: v1:3.2.5:intermediate:I9
-      n: 9
-      text: Integrates learning into next planning cycles
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:3.2.5:advanced
-    knowledge: Expert in adaptive management and organizational learning
-    application: Leads adaptive management programs
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:3.2.5:advanced:I1
-      n: 1
-      text: Designs comprehensive adaptive management systems
-      origin: database
-    - v1Key: v1:3.2.5:advanced:I2
-      n: 2
-      text: Integrates monitoring, evaluation, and learning
-      origin: database
-    - v1Key: v1:3.2.5:advanced:I3
-      n: 3
-      text: Uses scenario planning for adaptation
-      origin: database
-    - v1Key: v1:3.2.5:advanced:I4
-      n: 4
-      text: Manages under high uncertainty
-      origin: database
-    - v1Key: v1:3.2.5:advanced:I5
-      n: 5
-      text: Creates learning organizations
-      origin: database
-    - v1Key: v1:3.2.5:advanced:I6
-      n: 6
-      text: Facilitates complex adaptive processes
-      origin: database
-    - v1Key: v1:3.2.5:advanced:I7
-      n: 7
-      text: Evaluates adaptive management effectiveness
-      origin: restored-from-source-text
-    - v1Key: v1:3.2.5:advanced:I8
-      n: 8
-      text: Trains practitioners in adaptive management
-      origin: restored-from-source-text
-    - v1Key: v1:3.2.5:advanced:I9
-      n: 9
-      text: Publishes adaptive management case studies
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:3.2.5:expert
-    knowledge: Shapes adaptive management practice
-    application: Provides adaptive management leadership
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:3.2.5:expert:I1
-      n: 1
-      text: Develops innovative adaptive approaches
-      origin: database
-    - v1Key: v1:3.2.5:expert:I2
-      n: 2
-      text: Influences adaptive management frameworks
-      origin: database
-    - v1Key: v1:3.2.5:expert:I3
-      n: 3
-      text: Leads organizational learning initiatives
-      origin: database
-    - v1Key: v1:3.2.5:expert:I4
-      n: 4
-      text: Provides expert adaptive management consultation
-      origin: database
-    - v1Key: v1:3.2.5:expert:I5
-      n: 5
-      text: Publishes influential adaptive management research
-      origin: database
-    - v1Key: v1:3.2.5:expert:I6
-      n: 6
-      text: Advances adaptive environmental management
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:3.2.5:sector:public_agencies
-    text: Adaptive resource management, learning-based planning
-  - sector: private_sector
-    v1Key: v1:3.2.5:sector:private_sector
-    text: Agile strategy, adaptive business planning
-  - sector: ngos
-    v1Key: v1:3.2.5:sector:ngos
-    text: Adaptive conservation, learning-focused programs
-  - sector: consulting
-    v1Key: v1:3.2.5:sector:consulting
-    text: Adaptive project management
-  - sector: academia
-    v1Key: v1:3.2.5:sector:academia
-    text: Adaptive research programs, learning frameworks
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030
+levels:
+- level: L2
+  indicators:
+  - seed:v1-3-2-5-l2-a
+  - seed:v1-3-2-5-l2-b
+  - seed:v1-3-2-5-l2-c
+- level: L3
+  indicators:
+  - seed:v1-3-2-5-l3-a
+  - seed:v1-3-2-5-l3-b
+  - seed:v1-3-2-5-l3-c
+- level: L4
+  indicators:
+  - seed:v1-3-2-5-l4-a
+  - seed:v1-3-2-5-l4-b
+  - seed:v1-3-2-5-l4-c

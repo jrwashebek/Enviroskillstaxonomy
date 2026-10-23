@@ -1,22 +1,30 @@
 id: seed:v1-3.2.4-T3
 type: Task
 prefLabel:
-  en: Integrate adaptive management practices into the implementation plan
+  en: Build monitoring checkpoints and decision rules for adjusting course into a programme's implementation plan
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Integrate adaptive management practices into the implementation plan
-textSha256: f3a809ce4b01db4e4e7aadd0eb57c0a81e013bd48cd71001cc50ec4ac8667df6
+  en: Build monitoring checkpoints and decision rules for adjusting course into a programme's implementation plan
+textSha256: e67b8093b51a2957c37a0a55b98d2693c1cb32a4cbf4e3b5425c4c06649b2eb2
 supports:
 - competency: seed:v1-3.2.4
   strength: primary
+- competency: seed:v1-3.2.5
+  strength: contributing
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 3.2.4:T3
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T3
 v1Domain:
   code: '3'
@@ -25,14 +33,17 @@ v1SkillArea:
   code: '3.2'
   label: Strategic Planning
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'S2 close-out A. Rewritten from the v1 task text: "Integrate adaptive management practices into the implementation plan".'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:3.2.4:T3
     v1Code: 3.2.4
@@ -42,9 +53,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

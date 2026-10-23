@@ -1,22 +1,28 @@
 id: seed:v1-3.2.5-T3
 type: Task
 prefLabel:
-  en: Use monitoring data to inform annual work plan revisions
+  en: Revise the annual work plan from the year's monitoring results, stating which results changed which activities
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Use monitoring data to inform annual work plan revisions
-textSha256: e765c6c6e188e74c073a55b1b960baba6d9e999b5956fa67ae828cd31c3eada7
+  en: Revise the annual work plan from the year's monitoring results, stating which results changed which activities
+textSha256: ec25860c4e8b3bd803b15216492328bac2bc949fd5deab88452f0bde617a4220
 supports:
 - competency: seed:v1-3.2.5
   strength: primary
+workFunction: WF-LEARN
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 3.2.5:T3
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T3
 v1Domain:
   code: '3'
@@ -25,14 +31,17 @@ v1SkillArea:
   code: '3.2'
   label: Strategic Planning
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'S2 close-out A. Rewritten from the v1 task text: "Use monitoring data to inform annual work plan revisions".'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:3.2.5:T3
     v1Code: 3.2.5
@@ -42,9 +51,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

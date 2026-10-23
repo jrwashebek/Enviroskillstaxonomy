@@ -1,19 +1,52 @@
 id: seed:v1-5.3.5
 type: Competency
 prefLabel:
-  en: Environmental justice principles
+  en: Build working partnerships with communities affected by environmental decisions
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: 'The capability to build and keep working relationships with communities that bear the effects of environmental decisions, so that they shape priorities, analyses and actions over time: identifying and reaching the people affected, sharing information and decision timelines, supporting community-led action and keeping commitments. Distributional analysis and relations owed to other governments are separate competencies.'
 statement:
-  en: Understanding how environmental benefits and burdens affect different communities and working to ensure that land management promotes fairness.
+  en: Identifies the communities that bear a decision's effects and who speaks for them, builds relationships before decisions are framed, shares information and timelines in usable forms, involves communities in setting priorities and reviewing analyses, supports community-led action, and keeps and reports on the commitments made.
 competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - environmental justice
+  - EJ
+  - community partnerships
+  - community organizing
+  - frontline community engagement
+  - community benefits
+instrumentSensitivity:
+- mechanism: DM-04
+  rationale:
+    en: Federal orders that required engagement with affected communities were revoked in 2025, while state cumulative-impact laws require it for covered permits.
+  evidenceLabel: E
+  sources:
+  - WP05-001
+  - WP05-002
+  - WP05-003
+- mechanism: DM-10
+  rationale:
+    en: State burden and siting standards make community input part of what a permit decision must address.
+  evidenceLabel: E
+  sources:
+  - WP05-002
+  - WP05-003
 notation:
 - scheme: EMSTv1
   value: 5.3.5
-layer: L1
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Domain:
   code: '5'
   label: Communication & Engagement Skills
@@ -21,14 +54,22 @@ v1SkillArea:
   code: '5.3'
   label: Cultural Competency
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | MODE-ENGAGE (X03). Rationale: Rewritten as building working partnerships with communities affected by environmental decisions (ADR-0016); absorbs 5.6.3; EJ as altLabel; Tribal content separated (TN verdict). Role verdicts considered: TN:change.'
-license: CC0-1.0
-sensitivity: public
+  en: 'S2 close-out A (A5 SC with SL; reviewers TN (G-TN) and CP). Named by the work performed under ADR-0016''s uniform rule; environmental justice is a search alias only. Absorbs v1 5.6.3 (community organizing), which becomes the advocate-position enactment. Distributional and cumulative-burden analysis is DB-C52; discretionary engagement design is SC-C06; stakeholder analysis is v1 5.2.1. Content specific to Tribal nations is held and separated (TN verdict; ADR-0007 §D): no Tribal enactment is authored. Federal applicability is computed from typed links: the revoked federal orders are requires links whose status is rescinded, and the revoking orders are removed-requirement. Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | MODE-ENGAGE (X03). Rationale: Rewritten as building working partnerships with communities affected by environmental decisions (ADR-0016); absorbs 5.6.3; EJ as altLabel; Tribal content separated (TN verdict).'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - DB-060
+  - WP05-001
+  - WP05-002
+  - WP05-003
   derivedFrom:
   - v1Key: v1:5.3.5
     v1Code: 5.3.5
@@ -39,7 +80,7 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:5.3.5
     v1Code: 5.3.5
     v1Table: source_text/competencies
@@ -50,158 +91,31 @@ provenance:
     v1Code: 5.6.3
     relation: merged-from
     note: v1 5.6.3 (merge) → seed:v1-5.3.5 per v1_disposition.csv
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Environmental justice principles
-  v1Description: Understanding how environmental benefits and burdens affect different communities and working to ensure that land management promotes fairness.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:5.3.5:foundational
-    knowledge: Understands environmental justice (EJ) concepts; aware of disproportionate impacts
-    application: Recognizes EJ issues; considers equity in work
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.3.5:foundational:I1
-      n: 1
-      text: Defines environmental justice and can give examples
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:foundational:I2
-      n: 2
-      text: Recognizes environmental justice communities
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:foundational:I3
-      n: 3
-      text: Understands concept of disproportionate impact
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:foundational:I4
-      n: 4
-      text: Aware of Executive Order 12898 and other EJ policy
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:foundational:I5
-      n: 5
-      text: Considers equity when planning outreach or projects
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:5.3.5:intermediate
-    knowledge: Applies EJ screening tools; understands structural causes of environmental injustice
-    application: Integrates EJ analysis into projects and planning
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.3.5:intermediate:I1
-      n: 1
-      text: Uses EJ screening tools (EJSCREEN, CalEnviroScreen, etc.)
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:intermediate:I2
-      n: 2
-      text: Identifies environmental justice communities and concerns
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:intermediate:I3
-      n: 3
-      text: Conducts meaningful engagement with frontline communities
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:intermediate:I4
-      n: 4
-      text: Analyzes distribution of benefits and burdens
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:intermediate:I5
-      n: 5
-      text: Considers cumulative impacts
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:intermediate:I6
-      n: 6
-      text: Documents EJ considerations in NEPA or similar processes
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:5.3.5:advanced
-    knowledge: Expert in EJ analysis and policy; understands intersectionality
-    application: Leads EJ initiatives; ensures equity is centered in decisions
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.3.5:advanced:I1
-      n: 1
-      text: Conducts comprehensive EJ impact assessments
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:advanced:I2
-      n: 2
-      text: Designs projects that affirmatively address environmental injustice
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:advanced:I3
-      n: 3
-      text: Builds authentic partnerships with EJ communities
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:advanced:I4
-      n: 4
-      text: Ensures EJ communities have meaningful role in decision-making
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:advanced:I5
-      n: 5
-      text: Addresses historical harms and patterns of exclusion
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:advanced:I6
-      n: 6
-      text: Influences organizational EJ policy and practice
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:advanced:I7
-      n: 7
-      text: Applies participatory research and co-design approaches
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:5.3.5:expert
-    knowledge: Recognized EJ leader; shapes sector understanding and practice
-    application: Advances environmental justice at systemic/policy level
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.3.5:expert:I1
-      n: 1
-      text: Leads transformative EJ initiatives with measurable outcomes
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:expert:I2
-      n: 2
-      text: Influences EJ policy at agency or governmental level
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:expert:I3
-      n: 3
-      text: Develops innovative EJ frameworks and tools
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:expert:I4
-      n: 4
-      text: Achieves recognition from EJ communities for partnership quality
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:expert:I5
-      n: 5
-      text: Publishes on environmental justice practice
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:expert:I6
-      n: 6
-      text: Mentors EJ practitioners across sector
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.5:expert:I7
-      n: 7
-      text: Advocates for systemic change to address root causes
-      origin: restored-from-source-text
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:5.3.5:sector:public_agencies
-    text: EJ analysis for permitting, equitable distribution of resources, Title VI
-  - sector: private_sector
-    v1Key: v1:5.3.5:sector:private_sector
-    text: Community benefit agreements, impact mitigation, just transition planning
-  - sector: ngos
-    v1Key: v1:5.3.5:sector:ngos
-    text: EJ advocacy, community organizing, frontline community support
-  - sector: consulting
-    v1Key: v1:5.3.5:sector:consulting
-    text: EJ assessment services, community engagement for EJ communities
-  - sector: academia
-    v1Key: v1:5.3.5:sector:academia
-    text: EJ research, community-based participatory research, policy analysis
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030
+levels:
+- level: L1
+  indicators:
+  - seed:v1-5-3-5-l1-a
+  - seed:v1-5-3-5-l1-b
+- level: L2
+  indicators:
+  - seed:v1-5-3-5-l2-a
+  - seed:v1-5-3-5-l2-b
+  - seed:v1-5-3-5-l2-c
+- level: L3
+  indicators:
+  - seed:v1-5-3-5-l3-a
+  - seed:v1-5-3-5-l3-b
+  - seed:v1-5-3-5-l3-c
+- level: L4
+  indicators:
+  - seed:v1-5-3-5-l4-a
+  - seed:v1-5-3-5-l4-b
+  - seed:v1-5-3-5-l4-c

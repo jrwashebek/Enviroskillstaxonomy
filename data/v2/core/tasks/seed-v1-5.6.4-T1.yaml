@@ -1,22 +1,36 @@
 id: seed:v1-5.6.4-T1
 type: Task
 prefLabel:
-  en: Conduct audience research to understand motivations, barriers, and communication preferences
+  en: Conduct audience research on a target behaviour, recording barriers, motivators and preferred channels for each audience segment
 statement:
-  en: Conduct audience research to understand motivations, barriers, and communication preferences
-textSha256: dbe26e16992d67e6b274814e6ba7d3e2eba3baf430774c5f027d524e8d2885a1
+  en: Conduct audience research on a target behaviour, recording barriers, motivators and preferred channels for each audience segment
+textSha256: 226750c95948748fa71a45ee03638e807975fafc5652ef28b8e1402538fdc3d5
 supports:
 - competency: seed:v1-5.6.4
   strength: primary
+workFunction: WF-ASSESS
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- public
+fieldDependency: remote-capable
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 5.6.4:T1
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 v1Tier: T1
 v1Domain:
   code: '5'
@@ -25,14 +39,16 @@ v1SkillArea:
   code: '5.6'
   label: Social Science & Behavioral Change (New)
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: Rewritten to v2 task rules (one verb, 8-30 words, no product or instrument names; ADR-0003 G-2).
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
   derivedFrom:
   - v1Key: v1:5.6.4:T1
     v1Code: 5.6.4
@@ -42,9 +58,10 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0003
+  - ADR-0005
   - ADR-0011
-  - ADR-0013

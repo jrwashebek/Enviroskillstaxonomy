@@ -1,22 +1,28 @@
 id: seed:v1-3.5.3-T3
 type: Task
 prefLabel:
-  en: Prioritize which changes are essential and which can wait to prevent overwhelm
+  en: Rank proposed changes by legal requirement, mission risk and cost of delay, deferring those below the line with a stated review date
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Prioritize which changes are essential and which can wait to prevent overwhelm
-textSha256: 30622796af118f8d98f6bd075502029d5ad2aee16e7af484709cb7825d8856e4
+  en: Rank proposed changes by legal requirement, mission risk and cost of delay, deferring those below the line with a stated review date
+textSha256: a09d1cc490ecef9f363cc46d75c9ff7229270b78ee550f25b8db1cf297a54c67
 supports:
 - competency: seed:v1-3.2.4
   strength: primary
+workFunction: WF-MANAGE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 3.5.3:T3
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T3
 v1Domain:
   code: '3'
@@ -25,14 +31,17 @@ v1SkillArea:
   code: '3.5'
   label: Leadership
 editorialNote:
-  en: Supports re-pointed from v1 competency 3.5.3 to seed:v1-3.2.4 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'S2 close-out A. Rewritten from the v1 task text: "Prioritize which changes are essential and which can wait to prevent overwhelm".'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:3.5.3:T3
     v1Code: 3.5.3
@@ -42,9 +51,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

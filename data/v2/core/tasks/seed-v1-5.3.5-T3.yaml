@@ -1,22 +1,32 @@
 id: seed:v1-5.3.5-T3
 type: Task
 prefLabel:
-  en: Prioritize actions that address historical inequities in land access or management
+  en: Set programme priorities with an affected community's representatives, recording the commitments made and the date each is due
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Prioritize actions that address historical inequities in land access or management
-textSha256: 1042943cf1b8ecba8b4aaff8ffab1e8ef0fdec603d2c4b773a9789a3de752a68
+  en: Set programme priorities with an affected community's representatives, recording the commitments made and the date each is due
+textSha256: 04fdbd2daf34ff3b760dc68a101f563063861e77dffb3628ed0ab2884856bb5c
 supports:
 - competency: seed:v1-5.3.5
   strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- public
 notation:
 - scheme: EMSTv1
   value: 5.3.5:T3
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T3
 v1Domain:
   code: '5'
@@ -25,14 +35,17 @@ v1SkillArea:
   code: '5.3'
   label: Cultural Competency
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'S2 close-out A. Rewritten from the v1 task text: "Prioritize actions that address historical inequities in land access or management".'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:5.3.5:T3
     v1Code: 5.3.5
@@ -42,9 +55,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

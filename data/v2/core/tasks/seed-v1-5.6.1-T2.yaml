@@ -14,7 +14,7 @@ notation:
 layer: L2
 module: core
 homeModule: core
-status: draft
+status: superseded
 useTier: exploratory
 validationStatus: seed-v1
 v1Tier: T2
@@ -25,13 +25,14 @@ v1SkillArea:
   code: '5.6'
   label: Social Science & Behavioral Change (New)
 editorialNote:
-  en: Supports re-pointed from v1 competency 5.6.1 to seed:v1-5.6.4 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: 'Supports re-pointed from v1 competency 5.6.1 to seed:v1-5.6.4 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). | S2 close-out B (ADR-0030 §3.1 M1): duplicates 5.6.4-T1 (audience research on barriers and motivators); superseded into it (merged-from lineage kept in provenance).'
 license: CC0-1.0
 sensitivity: public
 provenance:
   method: v1-migration
   agent:
   - emstagent:migrate_v1@1.0.0
+  - emstagent:lc-agent@s2-closeout-b
   generatedAt: '2026-10-23T12:00:00Z'
   derivedFrom:
   - v1Key: v1:5.6.1:T2
@@ -48,3 +49,5 @@ provenance:
   adr:
   - ADR-0011
   - ADR-0013
+replacedBy:
+- seed:v1-5.6.4-T1
