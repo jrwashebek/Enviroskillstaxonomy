@@ -1,0 +1,40 @@
+id: seed:cm-rewrite-experience-record
+type: Task
+prefLabel:
+  en: Rewrite an experience record for a target position so that each specialized-experience requirement is matched to described work with its dates, scope and results
+layer: L2
+module: core
+status: draft
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Rewrite an experience record for a target position so that each specialized-experience requirement is matched to described work with its dates, scope and results
+textSha256: 432b8d095863bc8242002efbba99865de1a9f1e0c9bc3370b6a66306b5f9ec17
+supports:
+- competency: seed:CC-CM-02
+  strength: primary
+workFunction: WF-MANAGE
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+reviewBy: '2027-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  - emstagent:cm-code@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

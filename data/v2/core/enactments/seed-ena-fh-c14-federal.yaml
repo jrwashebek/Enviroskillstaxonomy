@@ -1,0 +1,50 @@
+id: seed:ena-fh-c14-federal
+type: Enactment
+prefLabel:
+  en: Federal vacancy approval and annual staffing plan
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:FH-C14
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: An executive order of 2025-10-15 requires an agency strategic hiring committee to approve the creation or filling of each vacancy and requires annual staffing plans with quarterly updates; OPM staffing-plan guidance followed on 2026-07-30.
+principal:
+  en: The strategic hiring committee and the programme's approving official.
+accountabilityVenue:
+  en: OPM and OMB review of staffing plans; appropriations oversight.
+characteristicInstruments:
+- instrument: seed:ins/eo-14356-hiring-accountability
+  role: requires
+- instrument: seed:ins/obbba-ira-rescissions
+  role: constrains
+  note:
+    en: Rescinded unobligated staffing funds.
+note:
+  en: 'The order sets no hiring ratio; an interim ratio applied through OPM and OMB guidance until plans were filed [E: V1-08].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - FH-029
+  - FH-045
+  - V1-08
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

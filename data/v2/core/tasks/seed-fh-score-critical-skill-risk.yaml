@@ -1,0 +1,38 @@
+id: seed:fh-score-critical-skill-risk
+type: Task
+prefLabel:
+  en: Score critical-skill risk for a unit's competencies from criticality, scarcity, time to proficiency and the retirement eligibility of current holders
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Score critical-skill risk for a unit's competencies from criticality, scarcity, time to proficiency and the retirement eligibility of current holders
+textSha256: d9abcd54aafb70f4341db57d8a1251f5e2a177dea38309b5bb449234b9c4861b
+supports:
+- competency: seed:FH-C14
+  strength: primary
+workFunction: WF-MANAGE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

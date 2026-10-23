@@ -1,0 +1,43 @@
+id: seed:fh-c13-l2-a
+type: Indicator
+prefLabel:
+  en: Rates a position's tasks for importance and frequency on the agency's scale and links each task to competencies, with no task left unlinked in the job-analysis record.
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:FH-C13
+level: L2
+statement:
+  en: Rates a position's tasks for importance and frequency on the agency's scale and links each task to competencies, with no task left unlinked in the job-analysis record.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- job-analysis rating sheet
+servedTasks:
+- seed:fh-rate-position-tasks
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

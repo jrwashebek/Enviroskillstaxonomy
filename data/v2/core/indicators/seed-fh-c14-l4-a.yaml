@@ -1,0 +1,45 @@
+id: seed:fh-c14-l4-a
+type: Indicator
+prefLabel:
+  en: Prepares a programme's staffing-plan entries ranked by mission risk, with an alternative to hiring considered and recorded for each request.
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:FH-C14
+level: L4
+statement:
+  en: Prepares a programme's staffing-plan entries ranked by mission risk, with an alternative to hiring considered and recorded for each request.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- staffing-plan entries
+servedTasks:
+- seed:fh-prepare-staffing-plan-entry
+- seed:fh-choose-staffing-alternative
+distinguishingAttribute: ATT-SCO
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

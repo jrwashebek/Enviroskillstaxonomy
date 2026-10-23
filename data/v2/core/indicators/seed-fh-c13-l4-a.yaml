@@ -1,0 +1,45 @@
+id: seed:fh-c13-l4-a
+type: Indicator
+prefLabel:
+  en: Leads a subject-matter panel through the job analysis for a new or restructured position, resolving rating disagreements and documenting the result as the job-analysis record.
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:FH-C13
+level: L4
+statement:
+  en: Leads a subject-matter panel through the job analysis for a new or restructured position, resolving rating disagreements and documenting the result as the job-analysis record.
+augmentationMode: unaided
+assessmentMethods:
+- portfolio-review
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- job-analysis record
+servedTasks:
+- seed:fh-rate-position-tasks
+- seed:fh-calibrate-sme-ratings
+distinguishingAttribute: ATT-SCO
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

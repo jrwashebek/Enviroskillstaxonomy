@@ -33,6 +33,10 @@ PROVISIONS = S.REPO / "docs" / "build" / "WP-07" / "formation_provisions.csv"
 OUT = S.DATA / "core" / "pathways"
 GEN = HERE / "generated"
 EMST_RELEASE = "2.0.0-rc.1"
+FOREST_HOMED = {"seed:lc-pw-cor2-corps-to-fire-operations", "seed:lc-pw-cor2-fire-operations-to-fire-intelligence",
+                "seed:lc-pw-cor2-fire-operations-to-fuels-specialist"}
+FOREST_NOTE = (" Homed in the forest module (MOD-11): its fire roles and fire competencies are MOD-11 records, and core "
+               "records may not depend on module records (SPEC §3.2).")
 CLO_RX = re.compile(r"\s*CLOs:\s*((seed:[A-Za-z0-9._/-]+?@L\d)(,\s*)?)+\.?")
 CLO_ITEM = re.compile(r"(seed:[A-Za-z0-9._/-]+?)@(L\d)")
 FORM_RX = re.compile(r"\s*Formation \([^)]*\):\s*seed:[A-Za-z0-9._/-]+:\s*[^.]*\.")
@@ -162,6 +166,10 @@ def pathways():
         if S.AG["LC"] not in ag:
             ag.append(S.AG["LC"])
         dest = OUT / f.name
+        if rec["id"] in FOREST_HOMED:   # fire roles and competencies are MOD-11 records: core may not depend on them
+            rec["module"] = "forest"
+            rec["editorialNote"] = {"en": rec["editorialNote"]["en"] + FOREST_NOTE}
+            dest = S.DATA / "modules" / "forest" / "pathways" / f.name
         L.write_yaml(dest, dict(rec))
         S.log(rec["id"], "Pathway", dest, "move-from-staging", "37")
         f.unlink()
