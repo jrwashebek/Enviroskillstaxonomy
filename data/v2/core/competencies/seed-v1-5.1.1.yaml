@@ -1,19 +1,64 @@
 id: seed:v1-5.1.1
 type: Competency
 prefLabel:
-  en: Written communication for diverse audiences
+  en: Communicate technical environmental information in writing and speech
+altLabel:
+  en:
+  - Written communication for diverse audiences
+  - Public speaking and presentation
+  - Science communication and storytelling
+  - Public information and media relations
+  - Plain-language writing
+  - Digital outreach
+definition:
+  en: 'Turning technical environmental information (findings, data, plans, rules and decisions) into accurate written, spoken and visual products for specialist and public audiences: plain-language summaries, reports, fact sheets, presentations, public-meeting remarks, news releases, media interviews, testimony and digital posts. Covers audience analysis, accuracy checks with subject experts, accessibility and translation, clearance, and answering public and media questions. Excludes risk and crisis messaging under uncertainty (DB-C29, TX-E), briefing decision-makers for authoritative decisions (SC-C18), designing public engagement (SC-C06) and interpretation (v1 5.1.3).'
 statement:
-  en: Creating clear written materials that effectively reach different groups, from technical reports for professionals to simple explanations for general audiences.
-competencyType: practice
+  en: Analyzes the audience and purpose, then writes, presents and adapts technical environmental information into accurate, accessible products for specialist and public audiences, checks them with subject experts before release, and answers public and media questions without overstating certainty, so that readers and listeners can use the information correctly.
 notation:
 - scheme: EMSTv1
   value: 5.1.1
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:lc-comm-l1-a
+  - seed:lc-comm-l1-b
+  - seed:lc-comm-l1-c
+- level: L2
+  indicators:
+  - seed:lc-comm-l2-a
+  - seed:lc-comm-l2-b
+  - seed:lc-comm-l2-c
+  - seed:lc-comm-l2-d
+- level: L3
+  indicators:
+  - seed:lc-comm-l3-a
+  - seed:lc-comm-l3-b
+  - seed:lc-comm-l3-c
+- level: L4
+  indicators:
+  - seed:lc-comm-l4-a
+  - seed:lc-comm-l4-b
+  - seed:lc-comm-l4-c
+homeModule: core
+reusability: transversal
+learningDesign:
+  assessmentContext:
+    en: Assess through work samples (summaries, fact sheets, releases) scored against a plain-language and accuracy rubric, observed presentations and simulated media interviews.
+  recommendedModes:
+  - WS
+  - CL
+  - SIM
+  - MEN
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Domain:
   code: '5'
   label: Communication & Engagement Skills
@@ -21,14 +66,16 @@ v1SkillArea:
   code: '5.1'
   label: Public Communication
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | MODE-ENGAGE. Rationale: Rewritten as communicating technical environmental information in writing and speech to specialist and public audiences; absorbs 5.1.2 and 5.1.5; D5 indicators restored from source text (misparsed in the database, LC verdict); crosswalk to OPM Writing and Oral Communication instead of parallel definitions (FH verdict; X9). Role verdicts considered: FH:change|LC:change.'
+  en: 'S2 close-out B (A8 LC; ADR-0030 §3.1 M2). Rewritten in place as the survivor for communicating technical environmental information in writing and speech: absorbs v1 5.1.2 (presentation), 5.1.5 (science communication), 5.5.4 (public information and media relations) and, through it, 5.1.4 (digital outreach; platforms are L4). Risk and crisis messaging stays in DB-C29 (TX-E); generic public relations is referenced from O*NET and ESCO (G-8); crosswalk to OPM Writing and Oral Communication goes through X9 (FH verdict). v1 D5 indicators restored from source text were rewritten; Expert indicators naming recognition or publication are retired (B03, B04). Needed by R12 and R13 (P1). Basis [J].'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
   derivedFrom:
   - v1Key: v1:5.1.1
     v1Code: 5.1.1
@@ -39,7 +86,7 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:5.1.1
     v1Code: 5.1.1
     v1Table: source_text/competencies
@@ -62,126 +109,12 @@ provenance:
     v1Code: 5.5.4
     relation: merged-from
     note: v1 5.5.4 (merge) → seed:v1-5.1.1 per v1_disposition.csv
+  sources:
+  - LC-034
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0030
+  - ADR-0004
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Written communication for diverse audiences
-  v1Description: Creating clear written materials that effectively reach different groups, from technical reports for professionals to simple explanations for general audiences.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:5.1.1:foundational
-    knowledge: Understands basic principles of plain language and audience awareness
-    application: Creates simple documents with supervision; identifies target audience
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.1.1:foundational:I1
-      n: 1
-      text: Writes clear sentences with appropriate reading level for general audiences
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:foundational:I2
-      n: 2
-      text: Uses templates effectively with guidance
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:foundational:I3
-      n: 3
-      text: Incorporates feedback to revise drafts
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:foundational:I4
-      n: 4
-      text: Identifies when technical jargon needs explanation
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:5.1.1:intermediate
-    knowledge: Applies audience analysis frameworks; understands literacy levels and accessibility standards
-    application: Independently creates diverse written products; adapts tone and format
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.1.1:intermediate:I1
-      n: 1
-      text: Produces publication-ready content with minimal revision
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:intermediate:I2
-      n: 2
-      text: Adapts complex technical information for multiple audiences without losing accuracy
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:intermediate:I3
-      n: 3
-      text: Designs documents following accessibility guidelines (readability, visual hierarchy)
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:intermediate:I4
-      n: 4
-      text: Conducts basic audience analysis to inform writing approach
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:5.1.1:advanced
-    knowledge: Expert in strategic communication; understands cultural and linguistic nuances
-    application: Leads writing projects; mentors others; ensures organizational consistency
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.1.1:advanced:I1
-      n: 1
-      text: Translates highly complex or controversial topics for diverse stakeholders
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:advanced:I2
-      n: 2
-      text: Develops style guides and writing standards for teams
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:advanced:I3
-      n: 3
-      text: Crafts narratives that connect emotionally while maintaining scientific credibility
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:advanced:I4
-      n: 4
-      text: Evaluates and improves others' written products
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:advanced:I5
-      n: 5
-      text: Navigates sensitive topics with appropriate framing
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:5.1.1:expert
-    knowledge: Shapes organizational voice; influences field-wide communication practices
-    application: Sets communication strategy; represents organization in high-stakes situations
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.1.1:expert:I1
-      n: 1
-      text: Develops innovative communication approaches that become models for the field
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:expert:I2
-      n: 2
-      text: Writes for national audiences, congressional testimony, or major media
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:expert:I3
-      n: 3
-      text: Advises leadership on communication strategy during crises or controversies
-      origin: restored-from-source-text
-    - v1Key: v1:5.1.1:expert:I4
-      n: 4
-      text: Publishes on communication best practices
-      origin: restored-from-source-text
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:5.1.1:sector:public_agencies
-    text: NEPA documents, resource management plans, visitor guides, public notices
-  - sector: private_sector
-    v1Key: v1:5.1.1:sector:private_sector
-    text: Sustainability reports, ESG disclosures, community newsletters, impact assessments
-  - sector: ngos
-    v1Key: v1:5.1.1:sector:ngos
-    text: Annual reports, donor communications, advocacy materials, campaign messaging
-  - sector: consulting
-    v1Key: v1:5.1.1:sector:consulting
-    text: Technical memoranda, permit applications, public involvement summaries
-  - sector: academia
-    v1Key: v1:5.1.1:sector:academia
-    text: Extension publications, policy briefs, research summaries for public audiences
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

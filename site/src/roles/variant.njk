@@ -106,12 +106,12 @@ eleventyComputed:
   {% for t in v.role.competencyTargets %}
   <tr><td><a href="{{ t.competency.url | url }}">{{ t.competency.title }}</a> {{ m.moduleTag(t.competency) }} {{ m.lifecycleTag(t.competency.lifecycleState) if t.competency.lifecycleState != "established" }}</td>
   {% for l in v.role.roleLevels %}<td>{{ t.targetLevels[l.key] or "–" }}</td>{% endfor %}
-  {% if v.actor == "federal" %}<td>{% if t.competency.federal %}{% if t.competency.federal.value == "basis-not-yet-linked" %}basis not yet linked{% elif t.competency.federal.value == "not-shown-unverified" %}not shown (unverified instrument){% else %}{{ t.competency.federal.value | replace("-", " ") }}{% if not t.competency.federal.basisLinked %}, basis not yet linked{% endif %}{% endif %}{% else %}not computed (no federal enactment linked){% endif %}</td>{% endif %}</tr>
+  {% if v.actor == "federal" %}<td>{% if t.competency.federal %}{% if t.competency.federal.value == "basis-not-yet-linked" %}basis not yet linked{% elif t.competency.federal.value == "not-shown-unverified" %}not shown (unverified instrument){% else %}{{ t.competency.federal.value | replace("-", " ") }}{% if not t.competency.federal.basisLinked %}, basis not yet linked{% elif not t.competency.federal.basisVerified %}, basis status not yet verified{% endif %}{% endif %}{% else %}not computed (no federal enactment linked){% endif %}</td>{% endif %}</tr>
   {% endfor %}
   </tbody>
 </table>
 </div>
-<p class="emst-muted">Importance and "distinguishing" flags for these competencies are job-analysis values: assessment pending (job analysis).{% if v.actor == "federal" %} Federal applicability is read only from the computed view ({{ "prototype computation; 'required basis' is never shown from it" if emst.venue.source == "wp05-prototype" else emst.venue.source }}; as of {{ emst.venue.asOf }}). Nothing is excluded from this view (project lead default, Q4).{% endif %}</p>
+<p class="emst-muted">Importance and "distinguishing" flags for these competencies are job-analysis values: assessment pending (job analysis).{% if v.actor == "federal" %} Federal applicability is read only from the computed view ({{ "prototype computation; 'required basis' is never shown from it" if emst.venue.source == "wp05-prototype" else ("rule " + emst.venue.rule + " over the release records") }}; as of {{ emst.venue.asOf }}). Nothing is excluded from this view (project lead default, Q4).{% endif %}</p>
 
 <h2>Crosswalks and credentials</h2>
 {% if v.credentialGates.length %}<p>Credentials that may be involved (agent-drafted link, not a verified requirement; credential issuer verified): {% for g in v.credentialGates %}{{ g.title }} (drafted as {{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}

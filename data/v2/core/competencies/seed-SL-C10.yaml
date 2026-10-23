@@ -34,12 +34,16 @@ instrumentSensitivity:
   rationale:
     en: Grant and assistance programmes fund many state assistance offices.
   evidenceLabel: J
+mirrors:
+- target: seed:DB-C26
+  relation: regulated-party-mirror
 editorialNote:
-  en: 'WP-05 (A5 SC; SL reviewed). Compliance and technical assistance recurs in every regulatory module (G-4); FL DEP and PA DEP classes name it as a core duty, and v1 had public education but none aimed at regulated parties [E: SL-059, SL-080]. Mirror: DB-C26 (the regulated party''s compliance system).'
+  en: 'WP-05 (A5 SC; SL reviewed). Compliance and technical assistance recurs in every regulatory module (G-4); FL DEP and PA DEP classes name it as a core duty, and v1 had public education but none aimed at regulated parties [E: SL-059, SL-080]. Mirror: DB-C26 (the regulated party''s compliance system). S2 close-out A (A5 SC; CR-SC-001 #3): mirror links migrated from docs/build/WP-05/mirror_links.csv.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

@@ -1,0 +1,46 @@
+id: seed:lc-comm-verify-drafted
+type: Task
+prefLabel:
+  en: Verify an AI-drafted or machine-translated public document against its source, correcting each error of fact, emphasis or tone before release
+statement:
+  en: Verify an AI-drafted or machine-translated public document against its source, correcting each error of fact, emphasis or tone before release
+textSha256: 81927ea4261118c67d578689590c0c5fb79c39a2530210f10de3b720b12396c5
+supports:
+- competency: seed:v1-5.1.1
+  strength: primary
+- competency: seed:DC-CAND-13
+  strength: contributing
+workFunction: WF-REVIEW
+modes:
+- MODE-ENGAGE
+fieldDependency: remote
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split: verification of drafted or translated text alongside the production tasks.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0005

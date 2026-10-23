@@ -21,17 +21,32 @@ accountabilityVenue:
   en: Inspectors general; courts (decisions made under superseded versions).
 characteristicInstruments:
 - instrument: seed:ins/ceq-nepa-regs-removal
+  role: constrains
+  note:
+    en: A tracked change; not a basis.
 - instrument: seed:ins/ceq-nepa-guidance-2025
+  role: requires
+  note:
+    en: Directed agencies to revise their procedures, the translation this enactment performs.
 - instrument: seed:ins/doi-nepa-procedures
+  role: constrains
 - instrument: seed:ins/usda-nepa-procedures
+  role: constrains
 - instrument: seed:ins/esa-harm-rescission
+  role: constrains
 - instrument: seed:ins/ghg-endangerment-rescission
+  role: constrains
+  note:
+    en: A tracked change; not a basis.
 note:
   en: 'The 2025-26 sequence (interim and final removal of government-wide regulations, department procedures, court decisions) is the reference case for this competency [E: V2-01].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

@@ -66,7 +66,14 @@ The same script also runs the claims-hygiene and display rules:
 - no held seed key;
 - no e-mail addresses or phone numbers.
 
-`tools/test-checks.mjs` seeds 16 violations into a fixture page and confirms that the checker reports each one.
+It also enforces the WP-15 sign-off (`docs/methods/WP15_SIGNOFF.md`, `docs/methods/claims_register.csv`):
+
+- **Unverified or held register rows are mapped.** Every unverified or held row the explorer uses must be mapped in `claims/register_map.yaml`, and so must every signal that cites one of those rows' sources.
+- **Unverified records are labelled.** Every mapped instrument or signal title is followed by "Unverified — not for citation".
+- **Judgment dates do not appear.** Event days dated by judgment (REG-08) never appear.
+- **Wrong forms fail the build.** No `do_not_say` wrong form appears: the register's quoted phrases of 12 or more characters, plus the context patterns in `claims/do_not_publish.yaml` for short forms such as 'realigned' or 'final'.
+
+`tools/test-checks.mjs` seeds 19 violations into a fixture page and confirms that the checker reports each one.
 
 `tools/browser-checks.mjs` loads 50 pages in a local Chromium (playwright-core with the browsers in `PLAYWRIGHT_BROWSERS_PATH`). On each page it:
 
@@ -87,9 +94,9 @@ Reports are written to `reports/`.
 
 | View | Pages | Source in the release |
 |---|---|---|
-| **View 1: How this role is changing** | `/roles/<role>/<variant>/` | `RoleProfile`, `RoleVariant`, `Task`, display gate view, v1 `ExposureAssessment` (drawer only), watch signals, instruments |
+| **View 1: How this role is changing** | `/roles/<role>/<variant>/` | `RoleProfile`, `RoleVariant`, `Task`, display gate view, v1 `ExposureAssessment` (drawer only), watch signals, instruments (typed links and sensitivity edges); summary per role-change@0.1.0 |
 | **View 2: Gap check** (local-only) | `/gap-check/<role>/<variant>/`, `/gap-check/competencies/`, `/gap-check/team/` | competency targets, indicators |
-| **View 3: Where it can lead** (exploratory) | `/pathways/<role>/<variant>/`, `/pathways/` | computed overlaps between draft role profiles, X11 translation seed, frictions and pathways when present |
+| **View 3: Where it can lead** (exploratory) | `/pathways/<role>/<variant>/`, `/pathways/` | pathway-edges@0.1.0 overlaps between draft role profiles, X11 translation seed, frictions and pathways when present |
 | **View 4: What's coming** | `/whats-coming/` | watch items, emerging and proposed roles (P3 roles appear only here) and competencies, signals, change indicators, instruments and dated events, signposts, scenarios, no-regret moves |
 | **Federal Series Profile** | `/federal-series/<code>/` | series register, X4, WP-08 generated profiles |
 | **State Class View** | `/state-classes/<class>/` | state-class register, X5, WP-08 generated views |
@@ -104,7 +111,10 @@ These are enforced in `lib/model.mjs` and checked in `tools/check-output.mjs`.
 - **v1 values only in the drawer.** v1 analyst values appear only in each task's evidence drawer, labelled "v1 single-analyst prior, LLM-assisted, unvalidated — not for decisions". They are never counted and never used in a headline.
 - **Badges on every figure.** Every figure carries a use-tier badge and an evidence badge. Agent drafts say so.
 - **Computed federal applicability.** It is read only from the computed view, and nothing is excluded (Q4 default).
-- **Module content out of default HR views.** Module and non-established competency content is kept out of the default HR views and placed in a collapsed, labelled section.
+- **Module content out of default HR views** (CR-CP-001 ruling B5). Cross-role lists show core content only. Role-scoped views (role page, Federal Series Profile, State Class View) show the role's home-module content labelled "editorial section, not a stewarded module". Other modules and non-established items are placed in a collapsed, labelled section.
+- **Editorial design values versus job-analysis values** (CR-CP-001 ruling B4; display-gate@1.1.0). Bundle membership, role levels, formation flags and target levels show as "editorial draft". Importance, time share, critical, needed-at-entry and distinguishing show "Assessment pending (job analysis)". View 1 counts tasks rather than shares. HR views list duties without percentages ("% time: set by the supervisor; EMST supplies none before job analysis"). The gap check ranks by gap size alone.
+- **Claims register.** Records tied to unverified register rows show only their title and "Unverified — not for citation". Signal direction and driver tags are agent drafts and are not shown. P3 roles appear only in What's coming.
+- **No "required basis" from the prototype.** The federal-applicability prototype never shows "required basis" (CR-CP-001 ruling A1).
 - **Credentials never stated as requirements.** Credential gates are never presented as requirements. A credential appears as "may be involved (agent-drafted link)" only when its issuer is verified; others are counted, not shown.
 - **Proposed realignments.** Series that OPM has proposed for realignment read "proposed, not final".
 - **No recommended pathways.** Pathways are never "recommended".
@@ -115,6 +125,8 @@ These are enforced in `lib/model.mjs` and checked in `tools/check-output.mjs`.
 - **No v2 assessments.** No v2 multi-rater assessment exists, so every "how is this changing" value is "assessment pending".
 - **No external context.** External index context is absent: those records are third-party licensed and excluded from releases.
 - **Stop-gap computed views.** Federal applicability (WP-05 prototype) and the HR views (WP-08 generators) are stop-gaps until `build_release.py` emits them (CR-CP-001).
+- **Job-analysis values hidden.** Importance, time shares, critical and needed-at-entry flags stay hidden until reviewed (CR-CP-001 B4). Role-change summaries are task counts.
+- **Not cleared for external publication.** The WP-15 sign-off covers internal drafts and the NGO-pilot preview only, pending AS co-signature and the re-checks.
 - **Exports.** Exports are CSV and print-to-PDF. DOCX exports (IDP, PD skeleton) are not built.
 
 Licence: Apache-2.0 for this code; data and standard text CC0 1.0. USWDS is in the public domain, with its fonts under the SIL Open Font License.

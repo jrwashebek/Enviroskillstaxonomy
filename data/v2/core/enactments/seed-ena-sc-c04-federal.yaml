@@ -21,14 +21,22 @@ accountabilityVenue:
   en: Federal courts; agency legal review.
 characteristicInstruments:
 - instrument: seed:ins/nepa-fra-2023
+  role: requires
+  note:
+    en: Section 107(f) sponsor preparation under agency supervision.
 - instrument: seed:ins/doi-nepa-procedures
+  role: requires
 - instrument: seed:ins/nepa-s112-fee
+  role: enables
 note:
   en: 'Department procedures keep specific steps for applicant-prepared documents and require the bureau to document its evaluation [E: SC-038].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

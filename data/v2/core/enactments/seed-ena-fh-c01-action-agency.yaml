@@ -21,14 +21,28 @@ accountabilityVenue:
   en: Federal courts (citizen suits); the consulting agency's opinion.
 characteristicInstruments:
 - instrument: seed:ins/esa-harm-rescission
+  role: constrains
+  note:
+    en: Narrows the regulatory definition of harm used in effects analysis.
 - instrument: seed:ins/esa-4d-4b2-rules
+  role: constrains
 - instrument: seed:ins/esa-s4-s7-regs-2025
+  role: constrains
+  note:
+    en: Proposed amendments to the consultation regulations.
+- instrument: seed:ins/esa-s7-regs-current
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
 note:
   en: 'Rule changes in 2025-26 (harm rescission effective 2026-09-14, litigated; blanket 4(d) rule eliminated; section 4 and 7 rules proposed) change determinations, not the consultation skill [E: V2-05].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

@@ -1,0 +1,45 @@
+id: seed:db-c42-unified-command
+type: Task
+prefLabel:
+  en: Establish unified command with cooperating agencies for a multi-jurisdiction environmental emergency, recording each agency's authority, objectives and delegated responsibilities
+statement:
+  en: Establish unified command with cooperating agencies for a multi-jurisdiction environmental emergency, recording each agency's authority, objectives and delegated responsibilities
+textSha256: 9522edd1a1cf42abf9711e47a86d7cdfca4272907a5c131152217b72c676a530
+supports:
+- competency: seed:DB-C42
+  strength: primary
+workFunction: WF-RESPOND
+relationshipTypes:
+- intergovernmental
+fieldDependency: on-site-preferred
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: general
+  credentialGate: internal-qualification
+  currencyDecay: H
+credentialGates:
+- credential: seed:crd-nims-ics-training
+  kind: required
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0005

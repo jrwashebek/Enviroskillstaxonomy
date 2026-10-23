@@ -14,7 +14,9 @@ competency: seed:SL-C02
 enactmentKind: actor
 actorType: state-agency
 authorityBasis:
-  en: 'State statute and rules; for delegated or authorized federal programmes (water discharge permits, air operating permits, hazardous waste permits, assumed dredge-and-fill permits) also the federal authorization. Delegated constraints: state requirements at least as stringent as the federal minimum; federal review of and objection to draft permits; withdrawal or reversion of authority.'
+  en: State statute and rules; for delegated or authorized federal programmes (water discharge permits, air operating permits, hazardous waste permits, assumed dredge-and-fill permits) also the federal authorization.
+delegatedConstraints:
+  en: State requirements at least as stringent as the federal minimum; federal review of and objection to draft permits; withdrawal or reversion of authority.
 principal:
   en: The agency director or bureau chief who signs permits; the permit appeal board.
 accountabilityVenue:
@@ -22,14 +24,37 @@ accountabilityVenue:
 authorityPosition: regulator
 characteristicInstruments:
 - instrument: seed:ins/florida-404-assumption
+  role: enables
+  note:
+    en: One state's assumption (vacated 2026-03-27); an example, not the basis.
 - instrument: seed:ins/wotus-definition
+  role: constrains
+- instrument: seed:ins/cwa-402-npdes
+  role: requires
+  note:
+    en: State programme authorization. Registered without dated events; basis linked, status not yet verified.
+- instrument: seed:ins/caa-title-v
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+- instrument: seed:ins/caa-nsr-psd
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+- instrument: seed:ins/rcra-permits
+  role: requires
+  note:
+    en: State authorization. Registered without dated events; basis linked, status not yet verified.
 note:
   en: 'SL review: the state permit writer is the modal state regulatory job (PA NPDES permit writer; MI EGLE permit analysts; TX Environmental Protection Specialist III) [E: SL-079, SL-076, SL-050]. Florida''s assumed 404 programme reverted to the Corps in 2026, showing that delegated authority is contingent [E: SC-021].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
   - emstagent:a5-sl-review@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

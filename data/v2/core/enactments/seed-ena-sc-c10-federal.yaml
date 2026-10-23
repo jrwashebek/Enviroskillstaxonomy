@@ -21,14 +21,30 @@ accountabilityVenue:
   en: GAO and inspector-general audits; appropriations hearings.
 characteristicInstruments:
 - instrument: seed:ins/fy2026-interior-approps
+  role: enables
+  note:
+    en: Funds the programme year and carries conditions.
 - instrument: seed:ins/obbba-ira-rescissions
+  role: constrains
+  note:
+    en: Rescinded unobligated balances; limits what can be obligated.
 - instrument: seed:ins/nepa-s112-fee
+  role: enables
+  note:
+    en: Fee revenue.
+- instrument: seed:ins/appropriations-law
+  role: requires
+  note:
+    en: Purpose, time and amount. Registered without dated events; basis linked, status not yet verified.
 note:
   en: 'FY2026 Interior appropriations and the 2025 rescission of unobligated conservation and staffing funds set the current federal base [E: instrument registry seeds].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

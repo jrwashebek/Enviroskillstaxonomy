@@ -62,7 +62,11 @@ def test_base_tree_release_contents_and_exports_parse(tmp_path):
     data = overlay_tree(tmp_path / "src")
     b, files = build(data, tmp_path / "out", version="2.0.0-rc.0")
     graph = json.loads(files["emst.bundle.jsonld"])["@graph"]
-    assert {r["type"] for r in graph} == {"Release", "Competency", "Task", "Indicator"}
+    assert {r["type"] for r in graph} == {"Release", "Competency", "Task", "Indicator", "CompetencyLevelOutcome"}
+    clo = [r for r in graph if r["type"] == "CompetencyLevelOutcome"]
+    cmp = next(r for r in graph if r["type"] == "Competency")
+    assert [c["id"] for c in clo] == [f"{cmp['id']}/levels/{lv['level']}" for lv in cmp["levels"]]
+    assert clo[0]["indicators"] == cmp["levels"][0]["indicators"]
     g = rdflib.Graph()
     g.parse(data=files["emst.skos.ttl"].decode(), format="turtle")
     assert len(g) > 100
@@ -172,7 +176,7 @@ def test_inverse_links_are_computed_into_bundle_and_view(tmp_path):
     assert graph[cmp["id"]]["enactments"][0]["enactmentKind"] == _valid("Enactment")["enactmentKind"]
     view = json.loads(files["views/inverse_links.json"])
     row = next(r for r in view if r.get("competency") == cmp["id"])
-    assert row["enactments"][0]["enactment"] == "seed:fx-ena" and row["ruleVersion"] == "1.1.0"
+    assert row["enactments"][0]["enactment"] == "seed:fx-ena" and row["ruleVersion"] == "1.2.0"
     assert next(r for r in view if r.get("task") == tsk["id"])["tools"] == ["seed:fx-tool"]
 
 

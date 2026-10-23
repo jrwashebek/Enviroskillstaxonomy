@@ -743,7 +743,10 @@ def build_x1(inp: Inputs, plan: Plan, recs: dict) -> list[dict]:
             keys = [rid for rid, _ in actual]
             types = dict(actual)
             if len(keys) < len(planned):
-                keys += [t["key"] for t in planned if t["key"] not in recs and t["key"] not in keys]
+                # planned targets not yet covered by a record citing this v1 key: unauthored ones are pending; an
+                # authored target that predates the disposition (e.g. a candidate a merge was re-targeted to,
+                # ADR-0030 §3.1) is still the object, so every v1 key stays accounted for (P-DE-08)
+                keys += [t["key"] for t in planned if t["key"] not in keys]
             kinds = {t["key"]: t["kind"] for t in planned}
             pred = {"merge": "emst:mergedInto", "split": "emst:splitInto", "hold-for-tribal-review": "emst:replacedBy",
                     "move-to-tools": "emst:replacedBy"}[dec]
@@ -940,7 +943,7 @@ def main(argv=None) -> int:
     recs = current_records(L.DATA_V2)
     for path, rec in list(comps.values()) + list(tasks.values()):
         have = recs.get(rec["id"])
-        if have is None or (not args.x1_only and have.get("validationStatus") == "seed-v1"):
+        if have is None or (not args.x1_only and path in outputs):     # only seeds this run (re)writes
             recs[rec["id"]] = rec
     x1 = build_x1(inp, plan, recs)
     outputs[L.X1_TSV] = x1_text(x1)

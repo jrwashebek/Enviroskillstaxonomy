@@ -141,5 +141,6 @@ These are design-excluded (ADR-0012), and the output checks in `tools/check-outp
    - federal applicability (WP-05 prototype);
    - the HR views (WP-08 generators).
 
-   The explorer re-checks every ID against the release bundle, so held or excluded records cannot appear. The data still bypass `build_release.py`'s own gate until those views are emitted by the release.
+   The explorer re-checks every ID against the release bundle, so held or excluded records cannot appear. The data still bypass `build_release.py`'s own gate until those views are emitted by the release. The CA accepted CR-CP-001 A1–A3, and DE ports these views into the release; the explorer switches automatically when `views/venue_applicability.json` and `views/federal-series/` appear.
+7. **Unverified external claims.** The WP-15 sign-off clears the explorer for internal drafts and the NGO-pilot preview only. Records tied to unverified register rows render as "Unverified — not for citation". `check-output.mjs` section E fails the build on any `do_not_say` wrong form.
 6. **Preview profile.** The current build includes draft records, by design for the pilot preview, and every page says so. A distribution build should use a tagged release (`EMST_RELEASE_DIR`).

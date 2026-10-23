@@ -57,3 +57,28 @@ AUTHORING_GUIDE, `scripts/build_release.py`, the "For WP-12" notes in WP-03, WP-
   render WP-08's generated views (`docs/build/WP-08/generated/`, rules proposed in CR-FH-001), every ID re-checked
   against the release bundle; module or non-established content goes into a collapsed, labelled section (ADR-0018:
   modules out of default HR views; applied to competency content, not to module-homed roles themselves).
+- 17:40 Coordinator direction (WP-08 done): rebuilt with 37 RoleProfiles / 140 released variants (18 Tribal stubs held).
+  P3 roles (R31–R36) render only in What's coming (no role, gap-check or pathway pages; anchors from search, X4 and
+  pathways). Credentials shown only as "may be involved (agent-drafted link, not a verified requirement; issuer
+  verified)", never as requirements. Series realignment wording "Realignment proposed, not final".
+- 17:55 Accessibility fixes from the scripted checks: footer build hash widened the page at 320 px (wrap long codes);
+  file input overflowed under WCAG 1.4.12 text spacing (max-width); link targets under 24 px (vertical padding); focus
+  ring darkened to #1a4480 (3:1 on every background). The text-spacing check first used an injected <style>, which
+  the page CSP blocked (good); it now applies the overrides through CSSOM. "Clear everything" asks before discarding.
+- 18:10 CA ruled on CR-CP-001 (accept A1–A3, decide B4–B6, confirm C7–C8). Implemented: prototype venue view never
+  shows "required-basis"; display-gate@1.1.0 B4 split (editorial design values labelled "editorial draft";
+  importance, timeShare, critical, neededAtEntry, distinguishing -> "Assessment pending (job analysis)"; View 1 counts
+  per role level per role-change@0.1.0; FSP/SCV duties without percentages; gap-check ranking by gap size only);
+  pathway-edges@0.1.0 (origin highest level vs destination first level); B5 home-module content in role-scoped HR views;
+  View 1 drivers now list instruments via typed links and sensitivity edges with dated status.
+- 18:30 Coordinator direction (WP-15 sign-off): `claims/register_map.yaml` maps the 14 unverified rows and the held
+  row; records tied to them render title + "Unverified — not for citation" with no status or dates; J-dated event days
+  suppressed (REG-08); base instruments without events say "status not recorded" (REG-09); venue values resting on an
+  unverified instrument not shown; signal direction and driver tags removed from all signal displays (agent drafts);
+  a wildcard matching a register wrong form (WF-07) is left out. `check-output.mjs` section E fails on unmapped rows,
+  unlabelled titles, judgment dates or any `do_not_say` wrong form (register quotes ≥ 12 chars +
+  `claims/do_not_publish.yaml` context patterns). R06: the explorer never rendered "NWCG is not a party" (it is only in
+  WP-08's change_view note, which the explorer does not read for text); the alignment renders only as the registry
+  instrument "USWFS-USFS aligned federal wildland fire qualification standards" with its dated status, and the wrong
+  form now fails the build. The PMS 310-1 sentence was not added: it is not in the release or the register.
+- js-yaml 4.1.1 -> 4.3.2 (GHSA-h67p-54hq-rp68 and related, build-time only); `npm audit` 0 vulnerabilities.

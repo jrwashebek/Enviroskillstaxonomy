@@ -1,0 +1,38 @@
+id: seed:ind-db-c42-l2-c
+type: Indicator
+prefLabel:
+  en: Briefs an incoming relief on the position's open tasks
+competency: seed:DB-C42
+level: L2
+statement:
+  en: Briefs an incoming relief on the position's open tasks, hazards and commitments from the unit log before the assignment is transferred.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:db-c42-transfer
+distinguishingAttribute: ATT-AUT
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

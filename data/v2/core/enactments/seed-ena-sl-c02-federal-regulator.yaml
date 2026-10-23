@@ -22,13 +22,42 @@ accountabilityVenue:
 authorityPosition: regulator
 characteristicInstruments:
 - instrument: seed:ins/wotus-definition
+  role: constrains
+  note:
+    en: Jurisdictional definition; limits scope, never a basis.
 - instrument: seed:ins/ghg-endangerment-rescission
+  role: removed-requirement
+  note:
+    en: Rescission; never a basis (ADR-0030 §1, SL-C02 defect).
+- instrument: seed:ins/cwa-402-npdes
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+- instrument: seed:ins/caa-title-v
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+- instrument: seed:ins/caa-nsr-psd
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+- instrument: seed:ins/rcra-permits
+  role: requires
+  note:
+    en: Where the federal regulator issues the permit. Registered without dated events; basis linked, status not yet verified.
+- instrument: seed:ins/cwa-404
+  role: requires
+  note:
+    en: Outside assumed states. Registered without dated events; basis linked, status not yet verified.
 note:
   en: Same permit-writing performance; the authority basis is federal and the oversight relationship runs the other way (mirror of the state delegated enactment of SC-C14) [J].
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

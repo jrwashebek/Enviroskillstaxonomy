@@ -21,22 +21,40 @@ accountabilityVenue:
   en: Federal courts under substantial deference (Seven County, 2025); inspectors general; Congress.
 characteristicInstruments:
 - instrument: seed:ins/nepa-fra-2023
+  role: requires
 - instrument: seed:ins/ceq-nepa-regs-removal
+  role: removed-requirement
+  note:
+    en: 'Removed the government-wide regulations; never a basis (CR-SC-001 #2).'
 - instrument: seed:ins/ceq-nepa-guidance-2025
+  role: constrains
 - instrument: seed:ins/doi-nepa-procedures
+  role: requires
 - instrument: seed:ins/usda-nepa-procedures
+  role: requires
 - instrument: seed:ins/dot-nepa-procedures
+  role: requires
 - instrument: seed:ins/epa-nepa-procedures
+  role: requires
+  note:
+    en: Proposed; decides nothing until in force.
 - instrument: seed:ins/nepa-s112-fee
+  role: enables
 - instrument: seed:ins/seven-county
+  role: constrains
 - instrument: seed:ins/usfs-objection-rule
+  role: constrains
 - instrument: seed:ins/ceq-permitting-data-standard
+  role: constrains
 note:
   en: 'The same review skill is enacted against different, versioned department procedures (DOI handbook; USDA 7 CFR 1b; DOT; EPA proposed), so knowing which procedure and version governs each step is part of federal performance [E: V2-01].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

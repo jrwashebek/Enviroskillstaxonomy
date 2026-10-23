@@ -1,0 +1,44 @@
+id: seed:lc-supv-l2-b
+type: Indicator
+prefLabel:
+  en: Conducts a performance review that cites observed work products and events for each rating
+competency: seed:v1-3.3.1
+level: L2
+statement:
+  en: Conducts a performance review that cites observed work products and events for each rating, recording the employee's response and the coaching agreed.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+- structured-interview-bars
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:v1-3.3.1-T2
+distinguishingAttribute: ATT-AUT
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@s2-closeout-b
+  - emstagent:io-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
+  derivedFrom:
+  - v1Key: v1:3.3.1:intermediate:I2
+    relation: rewritten
+  - v1Key: v1:3.3.1:intermediate:I3
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

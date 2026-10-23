@@ -21,15 +21,41 @@ accountabilityVenue:
   en: State courts; state administrative appeal bodies.
 characteristicInstruments:
 - instrument: seed:ins/ceqa-2025-reforms
+  role: constrains
+  note:
+    en: Example state only; other states' statutes are not yet registered.
+- instrument: seed:ins/state-sepa-ca
+  role: requires
+  note:
+    en: Example state only; other states' statutes are not yet registered.
+- instrument: seed:ins/state-sepa-wa
+  role: requires
+  note:
+    en: Example state only; other states' statutes are not yet registered.
+- instrument: seed:ins/state-sepa-mn
+  role: requires
+  note:
+    en: Example state only; other states' statutes are not yet registered.
+- instrument: seed:ins/state-sepa-ny
+  role: requires
+  note:
+    en: Example state only; other states' statutes are not yet registered.
+- instrument: seed:ins/nepa-assignment-23usc327
+  role: enables
+  note:
+    en: State transportation agencies may carry federal review by assignment. Registered without dated events; basis linked, status not yet verified.
 additionalTasks:
 - seed:sc-joint-review-document
 note:
   en: 'SL review: states staff whole units for their own acts (MPCA Environmental Review Unit) and DOTs run both regimes in one position (Caltrans) [E: SL-070, SL-038]. State exemptions and streamlining change on their own schedules (California 2025 trailer bills) [E: V2-16].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
   - emstagent:a5-sl-review@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

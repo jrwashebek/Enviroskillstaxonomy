@@ -19,13 +19,21 @@ principal:
   en: The licensed supervisor in responsible charge; the licensing board.
 accountabilityVenue:
   en: State licensing boards.
+characteristicInstruments:
+- instrument: seed:ins/state-licensing-acts-wi
+  role: constrains
+  note:
+    en: Limits use of a licensed title in classified positions. Example state only; other states' statutes are not yet registered.
 note:
   en: 'SL review: class plans are split by licence, so moving into a licensed class is a credential gate, not a proficiency step [E: SL-055, SL-054].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
   - emstagent:a5-sl-review@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

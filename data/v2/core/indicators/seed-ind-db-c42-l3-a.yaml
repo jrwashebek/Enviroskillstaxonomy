@@ -1,0 +1,39 @@
+id: seed:ind-db-c42-l3-a
+type: Indicator
+prefLabel:
+  en: Sets environmental unit objectives across operational periods
+competency: seed:DB-C42
+level: L3
+statement:
+  en: Sets environmental unit objectives across operational periods, reconciling cooperating agencies' sampling and cleanup priorities into one plan that the planning section accepts.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:db-c42-iap-inputs
+- seed:db-c42-unified-command
+distinguishingAttribute: ATT-SCO
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

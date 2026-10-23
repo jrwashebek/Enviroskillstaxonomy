@@ -1,0 +1,44 @@
+id: seed:lc-supv-l3-a
+type: Indicator
+prefLabel:
+  en: Prepares a performance improvement plan that states the deficient standard
+competency: seed:v1-3.3.1
+level: L3
+statement:
+  en: Prepares a performance improvement plan that states the deficient standard, the support offered, the review dates and the consequence, within personnel rules and the labour agreement.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:lc-supv-pip
+distinguishingAttribute: ATT-CPX
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@s2-closeout-b
+  - emstagent:io-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
+  derivedFrom:
+  - v1Key: v1:3.3.1:advanced:I7
+    relation: rewritten
+  - v1Key: v1:3.3.1:advanced:I4
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

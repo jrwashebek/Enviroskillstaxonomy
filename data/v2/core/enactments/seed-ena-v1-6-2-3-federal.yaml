@@ -22,15 +22,26 @@ accountabilityVenue:
 authorityPosition: resource-manager
 characteristicInstruments:
 - instrument: seed:ins/usfs-objection-rule
+  role: constrains
 - instrument: seed:ins/usda-nepa-procedures
+  role: requires
+  note:
+    en: Review of plan revisions and amendments.
 - instrument: seed:ins/doi-nepa-procedures
+  role: requires
 - instrument: seed:ins/roadless-rule-rescission
+  role: removed-requirement
+  note:
+    en: Proposed rescission of a planning-area prohibition; never a basis.
 note:
   en: 'Objection windows and review levels for plans changed with the 2025-26 procedure revisions [J; E: SC-009 for the objection rule].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

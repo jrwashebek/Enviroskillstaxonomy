@@ -96,13 +96,20 @@ if (existsSync(venueInRelease)) {
   meta.venue = { source: "release-view", path: venueInRelease };
 } else {
   const proto = join(ROOT, "docs", "build", "WP-05", "ci", "venue_applicability.py");
+  mkdirSync(venueDir, { recursive: true });
   let asOf = "2026-10-23";
   try {
     const notes = readFileSync(join(releaseDir, "RELEASE_NOTES.md"), "utf-8");
     const m = notes.match(/Released: (\d{4}-\d{2}-\d{2})/);
     if (m) asOf = m[1];
   } catch { /* keep default */ }
-  if (existsSync(proto)) {
+  // Preferred: the registered rule venue-applicability@1.0.0 (scripts/rules/venue_applicability.py) applied to the
+  // release bundle by site/tools/venue_view.py. Fallback: the WP-05 prototype (never shows "required-basis").
+  const viaRule = spawnSync(python, [join(SITE, "tools", "venue_view.py"), releaseDir, join(venueDir, "venue_applicability.json"), "--as-of", asOf],
+    { cwd: ROOT, stdio: ["ignore", "inherit", "inherit"] });
+  if (viaRule.status === 0) {
+    meta.venue = { source: "rule-over-release", path: join(venueDir, "venue_applicability.json"), asOf, rule: "venue-applicability@1.0.0" };
+  } else if (existsSync(proto)) {
     mkdirSync(venueDir, { recursive: true });
     const r = spawnSync(python, [proto, "--as-of", asOf, "--out", venueDir], { cwd: ROOT, stdio: ["ignore", "inherit", "inherit"] });
     meta.venue = r.status === 0

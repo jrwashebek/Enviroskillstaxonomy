@@ -1,22 +1,36 @@
 id: seed:v1-5.1.4-T1
 type: Task
 prefLabel:
-  en: Create engaging content for agency social media accounts to raise awareness
+  en: Write posts for the programme's public digital channels that explain a technical topic accurately within each channel's length limits
 statement:
-  en: Create engaging content for agency social media accounts to raise awareness
-textSha256: ac32fe2a22b3f1b0e0f7fffd5099422d87e719289ecea97c4168cf31164a67ed
+  en: Write posts for the programme's public digital channels that explain a technical topic accurately within each channel's length limits
+textSha256: dabff818ed02426b958a28d3d64c37a7775830ca92af3f36d8e30ea03d45c03b
 supports:
 - competency: seed:v1-5.1.1
   strength: primary
+workFunction: WF-MANAGE
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- public
+fieldDependency: remote
+formationDependency: 'no'
+reproductionRegime:
+  mentorshipDependence: L
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: H
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 5.1.4:T1
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 v1Tier: T1
 v1Domain:
   code: '5'
@@ -25,14 +39,16 @@ v1SkillArea:
   code: '5.1'
   label: Public Communication
 editorialNote:
-  en: Supports re-pointed from v1 competency 5.1.4 to seed:v1-5.1.1 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: Rewritten to v2 task rules (one verb, 8-30 words, no product or instrument names; ADR-0003 G-2). Channel platforms are L4 tools; the durable task is accurate short-form explanation.
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
   derivedFrom:
   - v1Key: v1:5.1.4:T1
     v1Code: 5.1.4
@@ -42,9 +58,10 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0003
+  - ADR-0005
   - ADR-0011
-  - ADR-0013

@@ -164,10 +164,15 @@ export function buildModel({ root, releaseDir, meta }) {
   const agreementIndex = loadJson(join(views, "agreement", "index.json"), { studies: [] });
 
   // ---------------------------------------------------------------- venue / federal applicability (computed view)
-  const venue = { source: meta?.venue?.source || "unavailable", asOf: meta?.venue?.asOf || null, rows: [] };
-  if (venue.source === "release-view") {
+  const venue = { source: meta?.venue?.source || "unavailable", asOf: meta?.venue?.asOf || null, rows: [], rule: null };
+  if (venue.source === "release-view" || venue.source === "rule-over-release") {
     const v = loadJson(meta.venue.path, []);
-    venue.rows = Array.isArray(v) ? v : (v.rows || []);
+    venue.rule = Array.isArray(v) ? null : `${v.header?.ruleId}@${v.header?.ruleVersion}`;
+    venue.rows = (Array.isArray(v) ? v : (v.rows || [])).map((r) => {
+      const insts = (r.deciding || []).map((x) => x.instrument);
+      if (insts.some((i) => claims.byInstrument.has(i))) return { ...r, venueApplicability: "not-shown-unverified", basisLinked: false, withheld: true };
+      return r;
+    });
   } else if (venue.source === "wp05-prototype" && existsSync(meta.venue.path)) {
     // CR-CP-001 ruling A1: the prototype over-reads rescissions, so it may not show "required-basis"; it shows
     // "basis not yet linked" instead until venue-applicability@1.0.0 ships in the release.
@@ -183,7 +188,8 @@ export function buildModel({ root, releaseDir, meta }) {
   for (const r of venue.rows) {
     if (r.sectorActor === "tribal" || !records.has(r.competency)) continue;   // held content never enters a view
     if (!venueBy.has(r.competency)) venueBy.set(r.competency, []);
-    venueBy.get(r.competency).push({ actor: r.sectorActor, value: r.venueApplicability, asOf: r.asOf, basisLinked: !!r.basisLinked });
+    venueBy.get(r.competency).push({ actor: r.sectorActor, value: r.venueApplicability, asOf: r.asOf, basisLinked: !!r.basisLinked,
+      basisVerified: r.basisVerified !== false, requires: (r.deciding || []).map((x) => x.instrument) });
   }
 
   // ---------------------------------------------------------------- shared helpers
@@ -808,7 +814,7 @@ export function buildModel({ root, releaseDir, meta }) {
   };
 
   return {
-    release, labels, gateLabels, counts, figures, venue: { source: venue.source, asOf: venue.asOf, n: venueBy.size }, hr,
+    release, labels, gateLabels, counts, figures, venue: { source: venue.source, asOf: venue.asOf, n: venueBy.size, rule: venue.rule }, hr,
     claims: { signoff: claims.signoff, unverifiedInstruments: [...claims.byInstrument.keys()].length },
     competencies, coreCompetencies: competencies.filter((c) => !c.isModule), moduleList,
     roles, rolesMain: roles.filter((r) => !r.whatsComingOnly), variants, pathwaysFrom, translations, pathwayRecords: pathwayRecs.length,

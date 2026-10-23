@@ -10,7 +10,8 @@ Outputs in --out (default dist/<version>/):
   sssom/strict-1.0/<set>.sssom.tsv  generated SSSOM 1.0-strict rendering (1.1-only justifications -> UnspecifiedMatching)
   views/*.json                computed views, each row stamped ruleId/ruleVersion/buildCommit from the active rule file
                               in vocab/rules/ (ADR-0021; ADR-0029 §4): counts, inverse_links, effective_use_tier,
-                              assessment_staleness, change_indicators, display_gate; views/agreement/<study>.json
+                              assessment_staleness, change_indicators, display_gate, venue_applicability;
+                              views/agreement/<study>.json (ADR-0030 adds the CLO nodes and the HR views)
   RELEASE_NOTES.md            generated counts; held items reported only as a count
   delta.json                  added/changed/superseded/withdrawn IDs vs --previous bundle
   SHA256SUMS                  checksums of every file
@@ -46,7 +47,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import emstlib as L  # noqa: E402
 from rules import (agreement, assessment_staleness, change_indicator, effective_use_tier, gated_values,  # noqa: E402
-                   inverse_links, io_bridge, registry)
+                   inverse_links, io_bridge, registry, venue_applicability)
 
 V1_LICENSE = "LicenseRef-EMSTv1-PendingDedication"
 CC0_IRI = "https://creativecommons.org/publicdomain/zero/1.0/"
@@ -65,6 +66,8 @@ THIRD_PARTY_LICENSE = "LicenseRef-EMST-third-party-index-derived"
 EXCLUDE_THIRD_PARTY = "third-party index-derived licence (ADR-0013; ADR-0029 §9.6)"
 EXCLUDE_HELD = "held (Tribal content hold, ADR-0007 §D)"
 DEPENDENT_FIELDS = ("task", "competency", "subject", "targetId", "variantOf")
+G9_RANGE = (120, 180)          # counts@1.0.0 coreCompetencies incl. held core (ADR-0030 §3.4; G-9)
+X1_HELD_COMMENT = "decision={decision}; ADR-0011; one or more successors held (ADR-0007 §D)"
 WAIVER_COLUMNS = ["record_id", "rule_id", "text_sha256", "waiver_class", "reviewer", "second_reviewer", "decided_on", "rationale"]
 
 
@@ -273,6 +276,7 @@ class Builder:
         if extra:
             self.stamped.add(("inverse-links", str(self.rules["inverse-links"]["version"])))
         graph = [dict(r, **extra.get(rid, {})) for rid, r in released.items()]
+        graph += self.clo_nodes(released)
         mappings = self._mapping_rows(released)
         for set_name, rows in sorted(mappings.items()):
             for r in rows:
@@ -287,6 +291,36 @@ class Builder:
                     "buildCommit": self.commit}
         # everything in the default graph: release manifest first, then records sorted by id, then mappings
         return L.dump_json({"@context": ctx, "@graph": [manifest] + graph})
+
+    @staticmethod
+    def clo_nodes(released):
+        """Computed CompetencyLevelOutcome nodes (CR-LC-001 #3; vocab/identifiers.yaml#form.clo_iri). Never source
+        records: one per released competency level, with that level's indicators only, and one per enactment level
+        with indicator variants (generic indicators plus the enactment's variants at that level)."""
+        nodes = []
+        levels_of = {}
+        for rid, r in released.items():
+            if r.get("type") != "Competency":
+                continue
+            for lv in r.get("levels") or []:
+                if not isinstance(lv, dict) or not lv.get("level"):
+                    continue
+                inds = [i for i in lv.get("indicators") or [] if i in released]
+                levels_of.setdefault(rid, {})[lv["level"]] = inds
+                nodes.append({"id": f"{rid}/levels/{lv['level']}", "type": "CompetencyLevelOutcome", "competency": rid,
+                              "level": lv["level"], "indicators": inds})
+        for rid, e in released.items():
+            if e.get("type") != "Enactment" or not e.get("indicatorVariants"):
+                continue
+            variants = [released[i] for i in e["indicatorVariants"] if i in released]
+            generic = levels_of.get(e.get("competency"), {})
+            for lv in sorted({v.get("level") for v in variants if v.get("level")} | set(generic)):
+                vids = sorted(v["id"] for v in variants if v.get("level") == lv)
+                if not vids:
+                    continue
+                nodes.append({"id": f"{rid}/levels/{lv}", "type": "CompetencyLevelOutcome", "competency": e.get("competency"),
+                              "enactment": rid, "level": lv, "indicators": generic.get(lv, []) + vids})
+        return sorted(nodes, key=lambda n: n["id"])
 
     # ---------------------------------------------------------------- CSV + datapackage
     TABLES = {
@@ -487,9 +521,24 @@ class Builder:
                 m = dec_rx.match(r.get("comment", "") or "")
                 if m and "withheld" in r.get("comment", ""):
                     r["comment"] = m.group(1) + "; " + r["comment"].split("; ", 1)[-1]
+                if name.startswith("emst-v1/") and self._names_held(r.get("comment", "")):
+                    r["comment"] = X1_HELD_COMMENT.format(decision=(m.group(1).split("=", 1)[1] if m else "unknown"))
             sets[name] = out_rows
         self._mcache = sets
         return sets
+
+    def _held_bare(self):
+        """Held seed keys and their bare candidate IDs (seed:TN-C11 -> TN-C11), as boundary-anchored patterns."""
+        if not hasattr(self, "_held_rx"):
+            keys = set(self.held_keys)
+            bare = {k[len("seed:"):] for k in keys if k.startswith("seed:")}
+            self._held_rx = [(k, re.compile(r"(?<![A-Za-z0-9._/:-])" + re.escape(k) + r"(?![A-Za-z0-9._/-])")) for k in sorted(keys)]
+            self._bare_rx = [(b, re.compile(r"(?<![A-Za-z0-9-])" + re.escape(b) + r"(?![0-9A-Za-z])")) for b in sorted(bare)]
+        return self._held_rx, self._bare_rx
+
+    def _names_held(self, text: str) -> bool:
+        held_rx, bare_rx = self._held_bare()
+        return any(rx.search(text or "") for _, rx in held_rx + bare_rx)
 
     def sssom(self, released):
         files = {}
@@ -538,6 +587,26 @@ class Builder:
                 names += [v for v in (r.get("prefLabel") or {}).values() if isinstance(v, str)] + list(r.get("productExamples") or [])
         return names
 
+    @staticmethod
+    def three_module_recurrence(released):
+        """Core practice competencies -> distinct modules where they recur (module enactments, supporting tasks'
+        home modules, role profiles that target them) (CR-DB-001 #1; reported, never stored)."""
+        rec = {cid: set() for cid, c in released.items() if c.get("type") == "Competency" and c.get("module") == "core"
+               and c.get("competencyType") == "practice" and c.get("status") not in ("superseded", "withdrawn")}
+        for r in released.values():
+            t = r.get("type")
+            if t == "Enactment" and r.get("enactmentKind") == "module" and r.get("competency") in rec:
+                rec[r["competency"]].add(r.get("enactedInModule"))
+            elif t == "Task" and r.get("status") not in ("superseded", "withdrawn"):
+                for s in r.get("supports") or []:
+                    if isinstance(s, dict) and s.get("competency") in rec:
+                        rec[s["competency"]].add(r.get("homeModule") or r.get("module"))
+            elif t == "RoleProfile":
+                for ct in r.get("competencyTargets") or []:
+                    if isinstance(ct, dict) and ct.get("competency") in rec:
+                        rec[ct["competency"]].add(r.get("homeModule") or r.get("module"))
+        return {c: sorted(m - {None, "core"}) for c, m in rec.items()}
+
     def views(self, released):
         st = self._stamp
         files = {}
@@ -579,6 +648,8 @@ class Builder:
         files["views/agreement/index.json"] = {**dg_stamp, "schema": "validation/display_gates.yaml#agreement_result_schema",
                                                "studies": sorted(results)}
         files["views/display_gate.json"] = gated_values.compute(released, self.rules["display-gate"], results, dg_stamp)
+        files["views/venue_applicability.json"] = venue_applicability.compute(released, self.date, st("venue-applicability"))
+        self.recurrence = self.three_module_recurrence(released)
         return {k: L.dump_json(v).encode() for k, v in files.items()}
 
     # ---------------------------------------------------------------- delta, notes, self-check
@@ -610,12 +681,33 @@ class Builder:
         waived = Counter(h.rule_id for h in getattr(self, "waived", []))
         lines += ["", "## Lint waivers applied (data/v2/governance/lint_waivers.csv)", "", "| Rule | Waived hits |", "|---|---|"]
         lines += [f"| {k} | {v} |" for k, v in sorted(waived.items())] or ["| (none) | 0 |"]
+        low = sum(1 for m in getattr(self, "recurrence", {}).values() if len(m) < 3)
+        lines += ["", "## Three-module recurrence (CR-DB-001; for the Editorial Board, not a gate)", "",
+                  f"Core practice competencies recurring in fewer than three modules: {low} of {len(getattr(self, 'recurrence', {}))}."]
+        core, held_core = self.core_size(released)
+        lines += ["", "## Core size (G-9)", "", f"Core competencies: {core} released + held core reported as a count ({held_core}); "
+                  f"range {G9_RANGE[0]}-{G9_RANGE[1]} (counts@1.0.0)."]
         lines += ["", "## Computed-view rules", "", "| Rule | Version |", "|---|---|"]
         lines += [f"| {r} | {v} |" for r, v in sorted(self.stamped)]
         lines += ["", "Held Tribal-related items are reported only as a count (ADR-0007 §D); nothing Tribal-related is published "
                   "before a Tribal Advisory Council approves.", "", "## Delta", "",
                   f"added {len(delta['added'])} · changed {len(delta['changed'])} · superseded {len(delta['superseded'])} · withdrawn {len(delta['withdrawn'])}", ""]
         return "\n".join(lines)
+
+    def core_size(self, released):
+        core = sum(1 for r in released.values() if r.get("type") == "Competency" and r.get("module") == "core"
+                   and r.get("status") not in ("superseded", "withdrawn"))
+        held_core = sum(1 for rid, r in self.records.items() if r.get("type") == "Competency" and r.get("module") == "core"
+                        and r.get("status") not in ("superseded", "withdrawn") and self.is_held(rid, r))
+        return core, held_core
+
+    def g9_applies(self):
+        """The G-9 gate applies to release builds of 2.0.0-rc.1 or later (not -dev, not the rc.0 test fixtures)."""
+        m = re.match(r"^(\d+)\.(\d+)\.(\d+)(?:-(rc)\.(\d+))?$", self.version)
+        if self.profile != "release" or not m:
+            return False
+        major, minor, patch, rc, n = m.groups()
+        return (int(major), int(minor), int(patch)) > (2, 0, 0) or rc is None or int(n) >= 1
 
     def self_check(self, files):
         """Release gate re-applied to the output: no held key, no v1Seed, no pending-licence record, no Tribal text."""
@@ -630,10 +722,22 @@ class Builder:
                 problems.append(f"held key {k} present in release output")
         if any('"v1Seed"' in json.dumps(r) for r in doc["@graph"]):
             problems.append("v1Seed present in bundle")
+        _, bare_rx = self._held_bare()                    # bare candidate IDs of held keys (ADR-0030 §3.3; RULINGS §18.1)
+        for b, rx in bare_rx:
+            for name, blob in sorted(files.items()):
+                if rx.search(blob.decode("utf-8", "replace")):
+                    problems.append(f"held candidate ID {b} present in {name}")
+                    break
+        core, held_core = self.core_size(self.released)
+        total = core + held_core
+        if self.g9_applies() and not (G9_RANGE[0] <= total <= G9_RANGE[1]):
+            problems.append(f"G-9: {total} core competencies (incl. held) outside {G9_RANGE[0]}-{G9_RANGE[1]}")
+        elif not self.g9_applies():
+            print(f"I-CORE-SIZE core competencies {core} + held {held_core} = {total} (G-9 range {G9_RANGE[0]}-{G9_RANGE[1]})")
         if THIRD_PARTY_LICENSE in graph_text or THIRD_PARTY_LICENSE in others:
             problems.append(f"{THIRD_PARTY_LICENSE} record present in release output (ADR-0029 §9.6)")
         for r in doc["@graph"]:
-            for f in self.inverse_fields.get(r.get("type"), set()) - {"tools", "enactments", "tasks"}:
+            for f in self.inverse_fields.get(r.get("type"), set()) - {"tools", "enactments", "tasks", "mirroredBy"}:
                 if f in r:
                     problems.append(f"stored inverse {f} on {r.get('id')}")
         if self.licensing.get("v1Dedication") != "granted" and not self.include_pending and V1_LICENSE in graph_text:

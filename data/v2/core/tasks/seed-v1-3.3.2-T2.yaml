@@ -1,22 +1,32 @@
 id: seed:v1-3.3.2-T2
 type: Task
 prefLabel:
-  en: Schedule routine maintenance and safety inspections for critical assets
+  en: Schedule preventive maintenance and safety inspections for critical assets from failure history and manufacturer intervals
 statement:
-  en: Schedule routine maintenance and safety inspections for critical assets
-textSha256: 5f2c3f52acbfb4db3996a8a94d2c9a872325f52fe08e833d7851385fd2711ea8
+  en: Schedule preventive maintenance and safety inspections for critical assets from failure history and manufacturer intervals
+textSha256: 38a9be16d9ff398578cc70f428b115464e916ef0c15e0122828151da2a6e8f5f
 supports:
 - competency: seed:DB-C05
   strength: primary
+workFunction: WF-OPERATE
+fieldDependency: remote-capable
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: seasonal
+  placeBoundness: system-specific
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 3.3.2:T2
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 v1Tier: T2
 v1Domain:
   code: '3'
@@ -25,14 +35,16 @@ v1SkillArea:
   code: '3.3'
   label: Resource Administration
 editorialNote:
-  en: Supports re-pointed from v1 competency 3.3.2 to seed:DB-C05 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: Rewritten to v2 task rules (one verb, 8-30 words, no product or instrument names; ADR-0003 G-2).
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
   derivedFrom:
   - v1Key: v1:3.3.2:T2
     v1Code: 3.3.2
@@ -42,9 +54,10 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0003
+  - ADR-0005
   - ADR-0011
-  - ADR-0013

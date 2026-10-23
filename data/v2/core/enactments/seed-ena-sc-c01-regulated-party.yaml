@@ -22,13 +22,22 @@ accountabilityVenue:
 authorityPosition: regulated-party
 characteristicInstruments:
 - instrument: seed:ins/nepa-s112-fee
+  role: enables
+  note:
+    en: Sponsor opt-in.
 - instrument: seed:ins/fast-41
+  role: enables
+  note:
+    en: Covered-project status is an option for sponsors.
 note:
   en: 'Mirror of SL-C02 (the deciding authority): the same authority map, built to secure rather than decide authorizations [J; PS-C11 absorbed].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

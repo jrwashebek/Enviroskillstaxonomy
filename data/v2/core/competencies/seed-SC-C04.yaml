@@ -37,12 +37,16 @@ instrumentSensitivity:
   evidenceLabel: E
   sources:
   - V2-04
+mirrors:
+- target: seed:ena-sl-c08-consultant
+  relation: preparer-mirror
 editorialNote:
-  en: 'WP-05 (A5 SC). Agency staff shift from authoring to supervising under sponsor-prepared and sponsor-paid review [E: SC-014, SC-038, V2-04]. Mirror: the service-provider enactment of SL-C08 (preparer) [J].'
+  en: 'WP-05 (A5 SC). Agency staff shift from authoring to supervising under sponsor-prepared and sponsor-paid review [E: SC-014, SC-038, V2-04]. Mirror: the service-provider enactment of SL-C08 (preparer) [J]. S2 close-out A (A5 SC; CR-SC-001 #3): mirror links migrated from docs/build/WP-05/mirror_links.csv.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

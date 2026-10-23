@@ -1,22 +1,34 @@
 id: seed:v1-5.1.2-T3
 type: Task
 prefLabel:
-  en: Prepare and practice accessible messages for diverse and non-technical audiences
+  en: Rehearse a public presentation with a non-specialist listener, revising the terms and visuals the listener could not follow
 statement:
-  en: Prepare and practice accessible messages for diverse and non-technical audiences
-textSha256: 875444ab1ef79484d62aea447733e6199893a041525ffe14e8a54cf04f124154
+  en: Rehearse a public presentation with a non-specialist listener, revising the terms and visuals the listener could not follow
+textSha256: 73e7af2b88c92de08904079de111349aae9dd50fa7ed3550efcf60d05759877c
 supports:
 - competency: seed:v1-5.1.1
   strength: primary
+workFunction: WF-MANAGE
+modes:
+- MODE-ENGAGE
+fieldDependency: remote-capable
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: L
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: L
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 5.1.2:T3
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 v1Tier: T3
 v1Domain:
   code: '5'
@@ -25,14 +37,16 @@ v1SkillArea:
   code: '5.1'
   label: Public Communication
 editorialNote:
-  en: Supports re-pointed from v1 competency 5.1.2 to seed:v1-5.1.1 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: Rewritten to v2 task rules (one verb, 8-30 words, no product or instrument names; ADR-0003 G-2).
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
   derivedFrom:
   - v1Key: v1:5.1.2:T3
     v1Code: 5.1.2
@@ -42,9 +56,10 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0003
+  - ADR-0005
   - ADR-0011
-  - ADR-0013

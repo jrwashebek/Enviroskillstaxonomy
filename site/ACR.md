@@ -12,7 +12,7 @@
 1. **Automated rules.** axe-core 4.14.0 ran with the tags `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa` and `wcag22aa`.
    - Each sampled page was tested twice: as loaded, and with every `<details>` disclosure open, so hidden content was tested too.
    - The sample covers every template plus heavier instances: role-change, gap-check and pathways pages for several roles, federal series and state class pages, competency and module pages. The list is in `reports/browser-checks.json`.
-   - Result: **0 violations**.
+   - Result: **0 violations** on 71 sampled pages (run of 2026-10-23, after the CR-CP-001 and WP-15 changes). The scripted reflow, text-spacing, target-size, focus and network checks also passed on every sampled page.
    - axe also returned "needs review" (incomplete) results for colour contrast, where it could not compute a background. Causes: text in grid-laid definition lists, a `<select>` with a background image, and SVG chart text. Those were checked by hand (1.4.3 below).
    - One best-practice item (`landmark-unique`) is reported; it does not count toward conformance.
 2. **Scripted checks** (`tools/browser-checks.mjs`) on each sampled page:

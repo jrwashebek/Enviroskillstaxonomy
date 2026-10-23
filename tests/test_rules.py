@@ -54,7 +54,7 @@ def test_one_active_or_interim_version_per_rule():
     active = registry.active_rules()
     assert set(active) == {d["ruleId"] for d in DOCS.values()}
     assert active["effective-use-tier"]["version"] == "1.0.0"
-    assert active["inverse-links"]["version"] == "1.1.0"
+    assert active["inverse-links"]["version"] == "1.2.0"          # ADR-0030: mirrored_by landed with its test
 
 
 def _stamps(node, out):

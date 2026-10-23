@@ -1,22 +1,32 @@
 id: seed:v1-3.5.2-T1
 type: Task
 prefLabel:
-  en: Create team cohesion and culture when members work remotely, in field sites, and in offices
+  en: Hold regular team meetings that give remote, field and office staff the same information and a turn to raise issues
 statement:
-  en: Create team cohesion and culture when members work remotely, in field sites, and in offices
-textSha256: a86d624a959a6c101c9b6872834416566eda375a7f299f3a10b3416d29ff70ae
+  en: Hold regular team meetings that give remote, field and office staff the same information and a turn to raise issues
+textSha256: 50366dd98f76aea58c69d82e6efeb797a07991bf9092da00442e8e4e8fc26ee4
 supports:
 - competency: seed:v1-3.3.1
   strength: primary
+workFunction: WF-MANAGE
+fieldDependency: remote-capable
+formationDependency: 'no'
+reproductionRegime:
+  mentorshipDependence: L
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: L
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 3.5.2:T1
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 v1Tier: T1
 v1Domain:
   code: '3'
@@ -25,14 +35,17 @@ v1SkillArea:
   code: '3.5'
   label: Leadership
 editorialNote:
-  en: Supports re-pointed from v1 competency 3.5.2 to seed:v1-3.3.1 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: Rewritten to v2 task rules (one verb, 8-30 words, no product or instrument names; ADR-0003 G-2).
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:lc-agent@s2-closeout-b
+  - emstagent:io-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
   derivedFrom:
   - v1Key: v1:3.5.2:T1
     v1Code: 3.5.2
@@ -42,9 +55,10 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0003
+  - ADR-0005
   - ADR-0011
-  - ADR-0013
