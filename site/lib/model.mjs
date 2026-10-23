@@ -125,6 +125,24 @@ export function buildModel({ root, releaseDir, meta }) {
     return out;
   }
   const gates = loadYaml(join(root, "validation", "display_gates.yaml"));
+  // WP-15 claims register (docs/methods/claims_register.csv) and CP's map to records (site/claims/register_map.yaml):
+  // records tied to unverified rows render as "Unverified — not for citation"; held rows never render.
+  const claims = { rows: new Map(), byInstrument: new Map(), suppressEventLabels: new Set(), noEventRow: null, signoff: null };
+  {
+    const regPath = join(root, "docs", "methods", "claims_register.csv");
+    const mapPath = join(root, "site", "claims", "register_map.yaml");
+    if (existsSync(regPath)) for (const r of parseCsv(readFileSync(regPath, "utf-8"))) claims.rows.set(r.claim_id, r);
+    const map = existsSync(mapPath) ? loadYaml(mapPath) : { rows: {} };
+    for (const [id, m] of Object.entries(map.rows || {})) {
+      const row = claims.rows.get(id);
+      if (!row || !["unverified", "held"].includes(row.status)) continue;      // re-verified rows stop suppressing
+      for (const i of m.instruments || []) { if (!claims.byInstrument.has(i)) claims.byInstrument.set(i, []); claims.byInstrument.get(i).push(id); }
+      for (const l of m.events_with_evidence_label || []) claims.suppressEventLabels.add(l);
+      if (m.events_with_evidence_label) claims.eventRow = id;
+      if (m.instruments_without_events) claims.noEventRow = id;
+    }
+    claims.signoff = existsSync(join(root, "docs", "methods", "WP15_SIGNOFF.md")) ? "docs/methods/WP15_SIGNOFF.md" : null;
+  }
   const gateLabels = gates.labels;
 
   // ---------------------------------------------------------------- computed views
@@ -152,6 +170,9 @@ export function buildModel({ root, releaseDir, meta }) {
     // "basis not yet linked" instead until venue-applicability@1.0.0 ships in the release.
     venue.rows = parseCsv(readFileSync(meta.venue.path, "utf-8")).map((r) => {
       const linked = r.basisLinked === "True" || r.basisLinked === "true";
+      // WP-15 sign-off: a value that rests on an instrument whose register row is unverified is not shown.
+      const insts = String(r.instruments || "").split("|").map((x) => x.split("=")[0]).filter(Boolean);
+      if (insts.some((i) => claims.byInstrument.has(i))) return { ...r, venueApplicability: "not-shown-unverified", basisLinked: false, withheld: true };
       return r.venueApplicability === "required-basis" ? { ...r, venueApplicability: "basis-not-yet-linked", basisLinked: false, withheld: true } : { ...r, basisLinked: linked };
     });
   }
@@ -585,10 +606,16 @@ export function buildModel({ root, releaseDir, meta }) {
     const evs = (eventsBy.get(i.id) || []).slice().sort((a, b) => a.eventDate.localeCompare(b.eventDate));
     const past = evs.filter((e) => e.eventDate <= asOf);
     const status = past.length ? past[past.length - 1].statusAfter : "no-event";
+    const unverified = claims.byInstrument.get(i.id) || [];
+    const noEvents = evs.length === 0;
     return {
       id: i.id, title: en(i.prefLabel), type: i.instrumentType || "", jurisdiction: i.jurisdiction || "", citation: i.citation || "",
       mechanisms: (i.mechanisms || []).map((m) => ({ code: m, label: labels.mechanism[m] || m })), status, statusText: labels.instrumentStatus[status] || "",
-      events: evs.map((e) => ({ date: e.eventDate, type: e.eventType, statusAfter: e.statusAfter, direction: e.direction || "", reviewBy: e.reviewBy || "", future: e.eventDate > asOf, evidence: e.evidenceLabel || "" })),
+      unverified, noEvents, noEventRow: noEvents ? claims.noEventRow : null,
+      events: unverified.length ? [] : evs.map((e) => {
+        const judged = claims.suppressEventLabels.has(e.evidenceLabel || "S");
+        return { date: judged ? null : e.eventDate, dateSuppressed: judged, claimId: judged ? claims.eventRow : null, type: e.eventType, statusAfter: e.statusAfter, direction: e.direction || "", reviewBy: e.reviewBy || "", future: e.eventDate > asOf, evidence: e.evidenceLabel || "" };
+      }),
       nextReview: evs.map((e) => e.reviewBy).filter(Boolean).sort()[0] || "", evidence: evidenceOf(i),
     };
   }).filter((i) => releasable(i.title + i.citation)).sort((a, b) => a.title.localeCompare(b.title));
@@ -776,6 +803,7 @@ export function buildModel({ root, releaseDir, meta }) {
 
   return {
     release, labels, gateLabels, counts, figures, venue: { source: venue.source, asOf: venue.asOf, n: venueBy.size }, hr,
+    claims: { signoff: claims.signoff, unverifiedInstruments: [...claims.byInstrument.keys()].length },
     competencies, coreCompetencies: competencies.filter((c) => !c.isModule), moduleList,
     roles, rolesMain: roles.filter((r) => !r.whatsComingOnly), variants, pathwaysFrom, translations, pathwayRecords: pathwayRecs.length,
     signals: signalVMs, watchItems, instruments: instrumentVMs, changeIndicators, scenarios,

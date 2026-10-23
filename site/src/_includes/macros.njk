@@ -117,8 +117,6 @@
   <dl class="emst-dl">
     <dt>About</dt><dd>{{ s.targetLabel }}</dd>
     <dt>Signal family</dt><dd>{{ s.family }}</dd>
-    <dt>Direction</dt><dd>{{ s.direction or "not stated" }}{% if s.directionConfidence %} (confidence {{ s.directionConfidence }}){% endif %}</dd>
-    <dt>Drivers</dt><dd>{{ s.drivers | join(", ") or "not tagged" }}</dd>
     {% if s.measure %}<dt>Measure</dt><dd data-figure-inline>{% if s.measure.value != null %}{{ s.measure.value }} {{ s.measure.unit }}{% endif %}{% if s.measure.n != null %} (n = {{ s.measure.n }}{% if s.measure.denominator %} {{ s.measure.denominator }}{% endif %}){% endif %}{% if s.measure.n != null and s.measure.n < 10 %}; too few to say{% endif %}</dd>{% endif %}
     {% if s.period %}<dt>Observed</dt><dd>{{ s.period.start }} to {{ s.period.end }}</dd>{% endif %}
     <dt>Source release</dt><dd>{{ s.sourceRelease or s.source }}</dd>
@@ -134,10 +132,21 @@
 <div class="emst-callout" data-figure data-use-tier="describe" data-evidence="computed">
   <p><strong>Where this work has a current legal basis</strong> (computed from linked policy instruments, as of {{ c.venue[0].asOf }}{% if venueInfo.source == "wp05-prototype" %}; prototype computation pending change request CR-SC-001{% endif %})</p>
   <ul class="usa-list">
-  {% for v in c.venue %}<li>{{ v.actor | titlecase }}: {{ v.value | replace("-", " ") }}{% if not v.basisLinked %}, basis not yet linked{% endif %}</li>{% endfor %}
+  {% for v in c.venue %}<li>{{ v.actor | titlecase }}: {% if v.value == "basis-not-yet-linked" %}basis not yet linked{% elif v.value == "not-shown-unverified" %}not shown (rests on an instrument record that is not re-verified){% else %}{{ v.value | replace("-", " ") }}{% if not v.basisLinked %}, basis not yet linked{% endif %}{% endif %}</li>{% endfor %}
   </ul>
-  <p class="emst-muted">"Required basis" means a linked instrument in force requires or enables this work; "permitted" means no linked instrument requires it and it remains lawful; "no current basis" means every linked instrument is inactive. Shown with no exclusions (project lead default, Q4). The rule cannot yet tell an instrument that requires the work from one that only enables it, so "required basis" may overstate.</p>
+  <p class="emst-muted">"Permitted" means no linked instrument in force requires the work and it remains lawful; "no current basis" means every linked instrument is inactive. "Required basis" is not shown from the prototype computation, which cannot yet tell an instrument that requires the work from one that removed a requirement (CR-CP-001 ruling A1); it reads "basis not yet linked" instead. Shown with no exclusions (project lead default, Q4).</p>
   <p class="emst-meta"><span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>describe</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>computed from draft instrument links (agent drafts, unreviewed)</span></p>
 </div>
 {% endif %}
+{%- endmacro %}
+
+{#- Instrument status, applying the WP-15 sign-off (claims register): unverified rows show no status or dates. -#}
+{% macro instrumentState(i) -%}
+{% if i.unverified.length %}<strong>Unverified — not for citation</strong> (claims register {{ i.unverified | join(", ") }})
+{%- elif i.noEvents %}status not recorded in EMST (no dated event; not re-verified{% if i.noEventRow %}; claims register {{ i.noEventRow }}{% endif %})
+{%- else %}{{ i.status | replace("-", " ") }}{% endif %}
+{%- endmacro %}
+
+{% macro instrumentEvents(i) -%}
+{% if i.unverified.length %}not shown{% else %}{% for e in i.events %}{% if e.dateSuppressed %}{{ e.type }}{% if e.statusAfter %} → {{ e.statusAfter }}{% endif %} (date not re-verified; claims register {{ e.claimId }}){% else %}{{ e.date }} {{ e.type }}{% if e.statusAfter %} → {{ e.statusAfter }}{% endif %}{% if e.future %} (scheduled){% endif %}{% endif %}{% if not loop.last %}; {% endif %}{% else %}none recorded{% endfor %}{% endif %}
 {%- endmacro %}

@@ -55,9 +55,13 @@ fields:
 # Inverse links are computed in bundles; storing them on the "one" side would let the two sides drift (IA §3).
 inverse_fields_by_type:
   Task: [tools]                                        # inverse of Tool.servesTasks (ADR-0029 §1.2)
-  Competency: [tasks, indicatorsByLevel, enactments]    # enactments: inverse of Enactment.competency (ADR-0029 §1.2)
+  Competency: [tasks, indicatorsByLevel, enactments, mirroredBy]    # mirroredBy: inverse of mirrors[] (ADR-0030; inverse-links@1.2.0)
+  Enactment: [mirroredBy]
   RoleProfile: [variants]
   Instrument: [events]
+# computed fields at one path only (type -> dotted paths); the same key elsewhere is a source field
+computed_paths_by_type:
+  StateClassRecord: [emstMapping.competencyTargets]   # competency targets are computed (ADR-0030; RULINGS_FOR_DE §19.4)
 # Inverse fields tolerated on DRAFT records during the S1 transition (warning W-COMPUTED-FIELD-DEPRECATED); an error
 # from status candidate on. The build ignores the stored value and recomputes it (inverse-links@1.1.0; ADR-0029 §1.2).
 transitional_on_drafts:

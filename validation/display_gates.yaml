@@ -19,8 +19,9 @@
 # raters is never counted as human agreement (PHASE4_BUILD_PLAN §1 rule 2).
 
 gates: emst-display-gates
-version: 1.0.0-draft
-status: draft
+version: 1.1.0                              # implements vocab/rules/display-gate@1.1.0.yaml (CR-CP-001 B4; ADR-0030 §1.8)
+status: active
+supersedes: 1.0.0-draft
 lastReviewed: 2026-10-23
 steward: IO
 license: CC0-1.0
@@ -156,6 +157,9 @@ not_alpha_gated:
   editorial_definitions:
     - {field: RoleProfile.primaryWorkFunction, label: "editorial classification", requirement: "reviewed by CA or the owning WP lead"}
     - {field: RoleVariant.sectorActor, label: "editorial classification", requirement: "definition of the variant"}
+    - {field: RoleVariant.sectorActorSubtype, label: "editorial classification", requirement: "definition of the variant"}
+    - {field: Enactment.actorType, label: "editorial classification", requirement: "definition of the enactment"}
+    - {field: Competency.transversalCluster, label: "editorial classification", requirement: "ADR-0025 cluster assignment"}
     - {field: RoleVariant.authorityPosition, label: "editorial classification", requirement: "definition of the variant; assigning postings, PDs or state classes to a position IS gated (unit.authorityPosition)"}
     - {field: Competency.homeModule, label: "editorial decision", requirement: "CA decision under G-4; the G-4 agreement test informs the rule, it does not gate display"}
     - {field: Competency.competencyType, label: "editorial classification", requirement: "ADR-0003 typing rules"}
@@ -176,7 +180,51 @@ agreement_result_schema:
   optional: [strata, perCategory, confusionMatrixRef, icc, notes]
   strata_item: [key, value, nUnits, alpha, ciLower, ciUpper]
   ruleId: display-gate
-  ruleVersion: 1.0.0-draft
+  ruleVersion: 1.1.0
+
+# Role-profile bundle values (display-gate@1.1.0; CR-CP-001 B4 ruling, ADR-0030 §1.8). These are stored on RoleProfile
+# records (WP-08), not as L5 ratings, so they are gated by review status rather than by alpha. Evaluated by
+# display_gate.py#decide_role_value (decide() routes any value carrying one of these `field` names there).
+# Field names must equal vocab/rules/display-gate@1.1.0.yaml#definition (checked in validation/tests).
+role_profile_values:
+  status_order: [seed-v1, draft, reviewed, panel-retained, job-analysis-confirmed, criterion-supported]
+  human_reviewer_prefix: "pid:"            # an emstagent:, llm or empty reviewer never counts as review
+  contexts: [role, pathway, gap-check, federal-series-profile, state-class-view, catalogue, select]
+  hr_classification_contexts: [federal-series-profile, state-class-view]
+  editorial_design_values:
+    fields: [RoleProfile.taskBundle.task, RoleProfile.roleLevels, RoleProfile.taskBundle.formationTask,
+             RoleProfile.competencyTargets.competency, RoleProfile.competencyTargets.targetLevel]
+    marker: editorial
+    unreviewed:                              # validationStatus < reviewed, or no pid: reviewer
+      label: editorial_draft
+      view_tiers: [exploratory, describe]    # "at describe tier only" (ruling); never develop or select while unreviewed
+    reviewed:                                # validationStatus >= reviewed with a pid: reviewer
+      label: editorial_reviewed
+      view_tiers: [exploratory, describe, develop]   # [J] IO parameter: a person has reviewed the design statement
+    never_in_contexts: [select]
+    note: "A target level is a role-design statement the Delphi validates later (PR-4), not a measured rating."
+  job_analysis_values:
+    fields: [RoleProfile.taskBundle.importance, RoleProfile.taskBundle.timeShare, RoleProfile.taskBundle.critical,
+             RoleProfile.taskBundle.neededAtEntry, RoleProfile.competencyTargets.importance,
+             RoleProfile.competencyTargets.distinguishing, RoleProfile.competencyTargets.criticalForSelection]
+    marker: editorial                        # rendered values are human-reviewed, not alpha-gated; the label carries the status
+    pending_label: assessment_pending_job_analysis
+    min_status: reviewed                     # with a pid: reviewer
+    hr_classification_min_status:            # FSP and SCV: % time and importance are classification factors
+      fields: [RoleProfile.taskBundle.timeShare, RoleProfile.taskBundle.importance]
+      min_status: job-analysis-confirmed
+      pending_label: fsp_time_share_notice
+    select_min_status: job-analysis-confirmed   # [J] ADR-0024 §3: selection use needs job-analysis confirmation
+    status_labels: {reviewed: status_reviewed, panel-retained: status_reviewed, job-analysis-confirmed: status_job_analysis_confirmed, criterion-supported: status_job_analysis_confirmed}
+    rollups: "Computed views that aggregate these values (job-family membership weights, role-change summaries) use them only at the same thresholds; otherwise job-family weights are 1 and role-change summaries count tasks, not time (CR-CP-001 B4; RULINGS_FOR_DE §19.1)."
+  role_labels:
+    editorial_draft: "Editorial draft (agent-drafted, unreviewed)."
+    editorial_reviewed: "Editorial (reviewed by a person; not yet validated by a panel or job analysis)."
+    assessment_pending_job_analysis: "Assessment pending (job analysis)."
+    fsp_time_share_notice: "% time: set by the supervisor; EMST supplies none before job analysis."
+    status_reviewed: "Reviewed by a person; not yet confirmed by job analysis."
+    status_job_analysis_confirmed: "Confirmed by job analysis for this function cluster."
+  data_download: "The gate governs views only; records and the release bundle keep every value with its validationStatus."
 
 # Seeded cases DE's CI must reproduce (mirrored in validation/tests/test_display_gates.py).
 ci_seeded_cases:
@@ -193,3 +241,13 @@ ci_seeded_cases:
   - {case: "stratum with 40 units below gate while overall passes", expect: hidden, label: below_gate}
   - {case: "tentative value in a select view", expect: hidden, label: below_gate}
   - {case: "held Tribal record", expect: not-rendered, label: none}
+  - {case: "agent-drafted target level in a describe role view", expect: editorial, label: editorial_draft}
+  - {case: "agent-drafted target level in a develop view", expect: hidden, label: editorial_draft}
+  - {case: "target level in a select context", expect: hidden}
+  - {case: "agent-drafted timeShare in a role view", expect: pending, label: assessment_pending_job_analysis}
+  - {case: "timeShare reviewed by pid: in a role view", expect: editorial, label: status_reviewed}
+  - {case: "timeShare reviewed by an emstagent: only", expect: pending, label: assessment_pending_job_analysis}
+  - {case: "timeShare reviewed (not job-analysis-confirmed) in the Federal Series Profile", expect: pending, label: fsp_time_share_notice}
+  - {case: "critical flag reviewed by pid: in the Federal Series Profile", expect: editorial, label: status_reviewed}
+  - {case: "importance job-analysis-confirmed in the State Class View", expect: editorial, label: status_job_analysis_confirmed}
+  - {case: "unknown role-profile field", expect: hidden}

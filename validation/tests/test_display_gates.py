@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
+import yaml
 import pytest
 
 VAL = Path(__file__).resolve().parents[1]
@@ -215,3 +216,95 @@ def test_weak_category_caps_marker_at_tentative():
     r = result(0.85, perCategory=[{"category": "2", "nUnits": 14, "alpha": 0.42}, {"category": "0", "nUnits": 60, "alpha": 0.9}])
     assert dec(v=value(category="2"), r=r)["marker"] == "tentative"
     assert dec(v=value(category="0"), r=r)["marker"] == "production"
+
+
+# ------------------------------------------------------------------------------------------- display-gate@1.1.0 role-profile values
+RULE_110 = VAL.parent / "vocab" / "rules" / "display-gate@1.1.0.yaml"
+ED = "RoleProfile.competencyTargets.targetLevel"
+TS = "RoleProfile.taskBundle.timeShare"
+
+
+def rv(field, status="draft", reviewers=("emstagent:wp08@1",), **kw):
+    v = {"field": field, "validationStatus": status, "reviewers": list(reviewers)}
+    v.update(kw)
+    return v
+
+
+def rdec(v, tier="describe", context="role"):
+    return G.decide(v, None, GATES, tier, None, context)
+
+
+@pytest.mark.skipif(not RULE_110.exists(), reason="CA rule file not present")
+def test_role_field_lists_match_the_ca_rule_file():
+    rule = yaml.safe_load(RULE_110.read_text(encoding="utf-8"))["definition"]
+    rp = GATES["role_profile_values"]
+    assert set(rp["editorial_design_values"]["fields"]) == set(rule["editorial_design_values"])
+    assert set(rp["job_analysis_values"]["fields"]) == set(rule["job_analysis_values"])
+    editorial = {e["field"] for e in GATES["not_alpha_gated"]["editorial_definitions"]}
+    assert editorial == set(rule["editorial_fields"])
+    assert GATES["version"] == "1.1.0" and GATES["agreement_result_schema"]["ruleVersion"] == "1.1.0"
+
+
+def test_every_role_label_resolves():
+    rp = GATES["role_profile_values"]
+    used = {rp["editorial_design_values"]["unreviewed"]["label"], rp["editorial_design_values"]["reviewed"]["label"],
+            rp["job_analysis_values"]["pending_label"], rp["job_analysis_values"]["hr_classification_min_status"]["pending_label"],
+            *rp["job_analysis_values"]["status_labels"].values()}
+    assert used <= set(rp["role_labels"])
+
+
+@pytest.mark.parametrize("field", ["RoleProfile.taskBundle.task", "RoleProfile.roleLevels", "RoleProfile.taskBundle.formationTask",
+                                   "RoleProfile.competencyTargets.competency", ED])
+def test_agent_drafted_editorial_design_values_render_labelled_at_describe(field):
+    d = rdec(rv(field))
+    assert d["render"] and d["marker"] == "editorial" and d["label"] == "editorial_draft"
+
+
+def test_editorial_drafts_not_in_develop_and_never_in_select():
+    assert not rdec(rv(ED), tier="develop")["render"]
+    assert not rdec(rv(ED), tier="select")["render"]
+    assert not rdec(rv(ED, "reviewed", ["pid:p-0007"]), context="select")["render"]
+    d = rdec(rv(ED, "reviewed", ["pid:p-0007"]), tier="develop", context="gap-check")
+    assert d["render"] and d["label"] == "editorial_reviewed"
+
+
+@pytest.mark.parametrize("field", ["RoleProfile.taskBundle.importance", TS, "RoleProfile.taskBundle.critical",
+                                   "RoleProfile.taskBundle.neededAtEntry", "RoleProfile.competencyTargets.importance",
+                                   "RoleProfile.competencyTargets.distinguishing", "RoleProfile.competencyTargets.criticalForSelection"])
+def test_agent_drafted_job_analysis_values_are_pending(field):
+    d = rdec(rv(field))
+    assert not d["render"] and d["marker"] == "pending" and d["label"] == "assessment_pending_job_analysis"
+
+
+def test_job_analysis_value_needs_a_person_and_reviewed_status():
+    assert not rdec(rv(TS, "reviewed", ["emstagent:wp08@1"]))["render"]          # agent review is not review
+    assert not rdec(rv(TS, "draft", ["pid:p-0007"]))["render"]                    # a person but status draft
+    d = rdec(rv(TS, "reviewed", ["pid:p-0007"]))
+    assert d["render"] and d["marker"] == "editorial" and d["label"] == "status_reviewed"
+    assert rdec(rv(TS, "reviewed", reviewers=(), reviewedBy="pid:p-0007"))["render"]
+
+
+@pytest.mark.parametrize("context", ["federal-series-profile", "state-class-view"])
+def test_hr_views_need_job_analysis_confirmed_for_time_share_and_importance(context):
+    d = rdec(rv(TS, "reviewed", ["pid:p-0007"]), context=context)
+    assert not d["render"] and d["label"] == "fsp_time_share_notice"
+    assert not rdec(rv("RoleProfile.taskBundle.importance", "panel-retained", ["pid:p-0007"]), context=context)["render"]
+    d = rdec(rv("RoleProfile.taskBundle.importance", "job-analysis-confirmed", ["pid:p-0007"]), context=context)
+    assert d["render"] and d["label"] == "status_job_analysis_confirmed"
+    assert rdec(rv("RoleProfile.taskBundle.critical", "reviewed", ["pid:p-0007"]), context=context)["render"]
+
+
+def test_select_context_needs_job_analysis_confirmed():
+    assert not rdec(rv("RoleProfile.competencyTargets.criticalForSelection", "reviewed", ["pid:p-0007"]), tier="select", context="select")["render"]
+    assert rdec(rv("RoleProfile.competencyTargets.criticalForSelection", "job-analysis-confirmed", ["pid:p-0007"]), tier="select", context="select")["render"]
+
+
+def test_role_values_fail_closed():
+    assert not rdec(rv("RoleProfile.taskBundle.colour"))["render"]
+    assert not rdec(rv(ED), context="somewhere")["render"]
+    assert rdec(rv(ED, held=True))["marker"] == "not-rendered"
+    assert not rdec({"field": TS})["render"]
+
+
+def test_rated_values_unaffected_by_role_routing():
+    assert dec(r=result(0.85))["marker"] == "production"

@@ -49,7 +49,7 @@ crumbs: [[null, "What's coming"]]
     {% if r.counterSignal %}<dt>What would show it is not forming</dt><dd>{{ r.counterSignal }}</dd>{% endif %}
     {% if r.variants.length %}<dt>Sectors drafted</dt><dd>{% for v in r.variants %}{% if v.whatsComingOnly %}{{ v.actorLabel }}{% else %}<a href="{{ v.url | url }}">{{ v.actorLabel }}</a>{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</dd>{% endif %}
     {% if r.feeders and r.feeders.length %}<dt>Roles it could grow from</dt><dd>{% for f in r.feeders %}<a href="{{ f.url | url }}">{{ f.title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>{% endif %}
-    {% if r.scenarioSensitivityList.length %}<dt>Demand by scenario (foresight judgment)</dt><dd>{% for x in r.scenarioSensitivityList %}{{ x.scenario }}: {{ x.direction }}{% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
+    {% if r.scenarioSensitivityList.length %}<dt>Demand by scenario (agent-drafted hypothesis, S; not a finding)</dt><dd>{% for x in r.scenarioSensitivityList %}{{ x.scenario }}: {{ x.direction }}{% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
     {% if r.evidenceSignalIds.length %}<dt>Signals behind it</dt><dd>{{ r.evidenceSignalIds.length }} signal record{{ "s" if r.evidenceSignalIds.length != 1 }} at watch (none counts as a change indicator yet)</dd>{% endif %}
   </dl>
   {{ m.meta(r.tier, r.evidence, "agent draft; exploratory") }}
@@ -75,7 +75,7 @@ crumbs: [[null, "What's coming"]]
 {% else %}<p>None in this build.</p>{% endif %}
 
 <h2>Change signals</h2>
-<p>Every signal below is at <strong>watch</strong>: it is recorded and dated, but it moves no change indicator. A change indicator moves only when two independent signal families point the same way, over two periods, through close crosswalk matches, with a named human reviewer.</p>
+<p>Every signal below is at <strong>watch</strong>: it is recorded and dated, but it moves no change indicator. A change indicator moves only when two independent signal families point the same way, over two periods, through close crosswalk matches, with a named human reviewer. The direction and driver tags attached to each signal are agent drafts and are not shown as findings.</p>
 {% for grp in emst.signals | groupBy("family") %}
 <details class="emst-disclosure">
   <summary>{{ grp.key | titlecase }} signals ({{ grp.items.length }})</summary>
@@ -83,10 +83,10 @@ crumbs: [[null, "What's coming"]]
   <div class="emst-table-wrap" tabindex="0" role="region" aria-label="{{ grp.key }} signals">
   <table class="usa-table usa-table--compact" data-figure data-use-tier="exploratory" data-evidence="{{ (grp.items | fig).ev.label }}">
     <caption>{{ grp.key | titlecase }} signals. <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> {{ m.evBadge((grp.items | fig).ev) }}</caption>
-    <thead><tr><th scope="col">Signal</th><th scope="col">About</th><th scope="col">Direction</th><th scope="col">Measure</th><th scope="col">Reliability</th><th scope="col">Source release</th><th scope="col">Review by</th></tr></thead>
+    <thead><tr><th scope="col">Signal</th><th scope="col">About</th><th scope="col">Measure (as reported by the source)</th><th scope="col">Reliability</th><th scope="col">Source release</th><th scope="col">Review by</th></tr></thead>
     <tbody>
     {% for s in grp.items %}
-    <tr><td>{{ s.title }}</td><td>{{ s.targetLabel }}</td><td>{{ s.direction or "not stated" }}{% if s.directionConfidence %} ({{ s.directionConfidence }} confidence){% endif %}</td>
+    <tr><td>{{ s.title }}</td><td>{{ s.targetLabel }}</td>
     <td>{% if s.measure %}{% if s.measure.value != null %}{{ s.measure.value }} {{ s.measure.unit }}{% endif %}{% if s.measure.n != null %} (n = {{ s.measure.n }}){% endif %}{% if s.measure.n != null and s.measure.n < 10 %}; too few to say{% endif %}{% else %}not measured{% endif %}</td>
     <td>{{ s.reliability }}</td><td>{{ s.sourceRelease or s.source }}</td><td>{{ s.reviewBy }}</td></tr>
     {% endfor %}
@@ -102,7 +102,7 @@ crumbs: [[null, "What's coming"]]
 <p>The build evaluated {{ emst.changeIndicators.length }} possible change indicators with rule {{ emst.release.changeRule }}. {{ moving.length }} moved. Every one stays at watch because {{ reasonText["ER-0-NOT-ACTIVE"] }}, and because {{ reasonText["ER-1-ONE-FAMILY"] }}.</p>
 
 <h2>Policy instruments and dated events</h2>
-<p>Instruments that change what environmental work requires, with their status as of the release date ({{ emst.release.date }}). Statuses are recorded from events with sources; dates after the release date are scheduled, not yet in effect.</p>
+<p>Instruments that change what environmental work requires, with their status as of the release date ({{ emst.release.date }}). Statuses come from dated events with sources; dates after the release date are scheduled, not yet in effect. Records whose facts the verification pass has not re-checked say "Unverified — not for citation" and show no status or dates (WP-15 sign-off, claims register).</p>
 <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Policy instruments">
 <table class="usa-table usa-table--compact usa-table--striped" data-figure data-use-tier="describe" data-evidence="{{ emst.figures.instruments.ev.label }}">
   <caption>Instrument registry ({{ emst.instruments.length }}). {{ m.tierBadge(emst.figures.instruments.tier) }} {{ m.evBadge(emst.figures.instruments.ev) }}</caption>
@@ -110,8 +110,8 @@ crumbs: [[null, "What's coming"]]
   <tbody>
   {% for i in emst.instruments %}
   <tr><td>{{ i.title }}{% if i.citation %} <span class="emst-muted">({{ i.citation }})</span>{% endif %}</td><td>{{ i.type }}</td><td>{{ i.jurisdiction }}</td>
-  <td>{{ i.status | replace("-", " ") }}</td>
-  <td>{% for e in i.events %}{{ e.date }} {{ e.type }}{% if e.statusAfter %} → {{ e.statusAfter }}{% endif %}{% if e.future %} (scheduled){% endif %}{% if not loop.last %}; {% endif %}{% else %}none recorded{% endfor %}</td>
+  <td>{{ m.instrumentState(i) }}</td>
+  <td>{{ m.instrumentEvents(i) }}</td>
   <td>{{ i.nextReview or "not set" }}</td></tr>
   {% endfor %}
   </tbody>

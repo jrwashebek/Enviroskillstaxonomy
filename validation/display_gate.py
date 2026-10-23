@@ -11,7 +11,13 @@ explorer (CP, WP-12) renders only values whose decision says `render: True`, and
 `value`  : {dimension, codebookVersion, raterTypes[], nHumanRaters, humanConsensus (bool), textSha256,
             stratum {key: value}, held (bool), llmGatePassed (bool), decisionPath}
 `result` : agreement result as in display_gates.yaml#agreement_result_schema, or None.
-Returns  : {render: bool, marker: production|tentative|hidden|drawer-only|not-rendered, label: str|None, reason: str}
+Returns  : {render: bool, marker: production|tentative|editorial|pending|hidden|drawer-only|not-rendered, label: str|None, reason: str}
+
+display-gate@1.1.0 adds role-profile bundle values (CR-CP-001 B4): pass {field: 'RoleProfile.<path>', validationStatus,
+reviewers[]} and a `context` (role | pathway | gap-check | federal-series-profile | state-class-view | catalogue | select);
+decide() routes them to decide_role_value(). Editorial design values render marker 'editorial' with an editorial label;
+job-analysis values render 'pending' until a pid: reviewer and validationStatus >= reviewed (FSP/SCV % time and
+importance only from job-analysis-confirmed). Labels resolve in display_gates.yaml#role_profile_values.role_labels.
 
 Fail closed: anything missing or malformed yields render False.
 """
@@ -100,11 +106,78 @@ def dimension_marker(result: dict | None, gates: dict, stratum: dict | None = No
     return overall, note
 
 
-def decide(value: dict, result: dict | None, gates: dict, view_tier: str = "describe",
-           current_text_sha256: str | None = None) -> dict:
+def _role_fields(gates: dict) -> tuple[set, set]:
+    rp = gates.get("role_profile_values") or {}
+    return (set((rp.get("editorial_design_values") or {}).get("fields") or []),
+            set((rp.get("job_analysis_values") or {}).get("fields") or []))
+
+
+def _human_reviewed(value: dict, rp: dict) -> bool:
+    prefix = rp.get("human_reviewer_prefix", "pid:")
+    revs = value.get("reviewers") or []
+    if isinstance(revs, str):
+        revs = [revs]
+    revs = list(revs) + ([value["reviewedBy"]] if value.get("reviewedBy") else [])
+    return any(isinstance(r, str) and r.startswith(prefix) for r in revs)
+
+
+def _status_at_least(value: dict, minimum: str, rp: dict) -> bool:
+    order = rp["status_order"]
+    st = value.get("validationStatus")
+    return st in order and order.index(st) >= order.index(minimum)
+
+
+def decide_role_value(value: dict, gates: dict, view_tier: str = "describe", context: str = "role") -> dict:
+    """display-gate@1.1.0 for RoleProfile bundle values (CR-CP-001 B4).
+
+    value: {field (e.g. 'RoleProfile.taskBundle.timeShare'), validationStatus, reviewers[] or reviewedBy, held}
+    context: role | pathway | gap-check | federal-series-profile | state-class-view | catalogue | select
+    Returns the same shape as decide(); marker 'editorial' when rendered (human review, not alpha), 'pending'
+    for job-analysis values awaiting review, 'hidden' otherwise. Fail closed on anything unknown.
+    """
     def out(render, marker, label, reason=""):
         return {"render": render, "marker": marker, "label": label, "reason": reason or (label or "")}
 
+    rp = gates.get("role_profile_values")
+    if not rp:
+        return out(False, "hidden", None, "gates file has no role_profile_values (fail closed)")
+    if value.get("held"):
+        return out(False, "not-rendered", None, "held content (ADR-0007)")
+    if context not in rp["contexts"] or view_tier not in gates["use_tier_admission"]:
+        return out(False, "hidden", None, f"unknown context {context!r} or view tier {view_tier!r} (fail closed)")
+    editorial, job = _role_fields(gates)
+    field = value.get("field")
+    reviewed = _human_reviewed(value, rp) and _status_at_least(value, "reviewed", rp)
+    is_select = context == "select" or view_tier == "select"
+    if field in editorial:
+        ed = rp["editorial_design_values"]
+        if is_select or context in ed.get("never_in_contexts", []):
+            return out(False, "hidden", None, "editorial design values never render in a select context")
+        branch = ed["reviewed"] if reviewed else ed["unreviewed"]
+        if view_tier not in branch["view_tiers"]:
+            return out(False, "hidden", branch["label"], f"{branch['label']} not admitted in a {view_tier} view")
+        return out(True, ed["marker"], branch["label"])
+    if field in job:
+        ja = rp["job_analysis_values"]
+        if not reviewed:
+            return out(False, "pending", ja["pending_label"], "agent-drafted or unreviewed job-analysis value")
+        hr = ja["hr_classification_min_status"]
+        if context in rp["hr_classification_contexts"] and field in hr["fields"] and not _status_at_least(value, hr["min_status"], rp):
+            return out(False, "pending", hr["pending_label"], f"{field} renders in HR classification views only from {hr['min_status']}")
+        if is_select and not _status_at_least(value, ja["select_min_status"], rp):
+            return out(False, "hidden", ja["pending_label"], f"select contexts need {ja['select_min_status']}")
+        return out(True, ja["marker"], ja["status_labels"].get(value.get("validationStatus"), "status_reviewed"))
+    return out(False, "hidden", None, f"unknown role-profile field {field!r} (fail closed)")
+
+
+def decide(value: dict, result: dict | None, gates: dict, view_tier: str = "describe",
+           current_text_sha256: str | None = None, context: str = "role") -> dict:
+    def out(render, marker, label, reason=""):
+        return {"render": render, "marker": marker, "label": label, "reason": reason or (label or "")}
+
+    editorial, job = _role_fields(gates)
+    if value.get("field") in editorial | job or str(value.get("field") or "").startswith("RoleProfile."):
+        return decide_role_value(value, gates, view_tier, context)
     if value.get("held"):
         return out(False, "not-rendered", None, "held content (ADR-0007)")
     rater_types = set(value.get("raterTypes") or [])

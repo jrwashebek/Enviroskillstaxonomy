@@ -71,6 +71,10 @@
    "@id": "emstv:accountabilityVenue",
    "@container": "@language"
   },
+  "actingInstrument": {
+   "@id": "emstv:actingInstrument",
+   "@type": "@id"
+  },
   "actorType": {
    "@id": "emstv:actorType"
   },
@@ -190,6 +194,9 @@
    "@type": "@id",
    "@container": "@set"
   },
+  "byRoleLevel": {
+   "@id": "emstv:byRoleLevel"
+  },
   "careFlag": {
    "@id": "emstv:careFlag",
    "@type": "xsd:boolean"
@@ -206,7 +213,6 @@
   },
   "characteristicInstruments": {
    "@id": "emstv:characteristicInstruments",
-   "@type": "@id",
    "@container": "@set"
   },
   "checkedOn": {
@@ -227,6 +233,10 @@
   },
   "classTitle": {
    "@id": "emstv:classTitle"
+  },
+  "cloOutcomes": {
+   "@id": "emstv:cloOutcomes",
+   "@container": "@set"
   },
   "closureType": {
    "@id": "emstv:closureType"
@@ -265,6 +275,9 @@
   "consensus": {
    "@id": "emstv:consensus"
   },
+  "contentChangeType": {
+   "@id": "emstv:contentChangeType"
+  },
   "core": {
    "@id": "emstv:core",
    "@type": "xsd:boolean"
@@ -280,6 +293,10 @@
   "costNote": {
    "@id": "emstv:costNote",
    "@container": "@language"
+  },
+  "count": {
+   "@id": "emstv:count",
+   "@type": "xsd:integer"
   },
   "counterSignal": {
    "@id": "emstv:counterSignal",
@@ -365,6 +382,10 @@
   },
   "degreeRule": {
    "@id": "emstv:degreeRule"
+  },
+  "delegatedConstraints": {
+   "@id": "emstv:delegatedConstraints",
+   "@container": "@language"
   },
   "deliveryModel": {
    "@id": "emstv:deliveryModel"
@@ -522,6 +543,10 @@
   "formationDependency": {
    "@id": "emstv:formationDependency"
   },
+  "formationProvisions": {
+   "@id": "emstv:formationProvisions",
+   "@container": "@set"
+  },
   "formationTask": {
    "@id": "emstv:formationTask",
    "@type": "xsd:boolean"
@@ -625,7 +650,6 @@
   },
   "instruments": {
    "@id": "emstv:instruments",
-   "@type": "@id",
    "@container": "@set"
   },
   "interRaterAgreement": {
@@ -760,6 +784,10 @@
   "memberRule": {
    "@id": "emstv:memberRule"
   },
+  "mentorRequired": {
+   "@id": "emstv:mentorRequired",
+   "@type": "xsd:boolean"
+  },
   "mentorshipDependence": {
    "@id": "emstv:mentorshipDependence"
   },
@@ -772,6 +800,10 @@
   },
   "min": {
    "@id": "emstv:min"
+  },
+  "mirrors": {
+   "@id": "emstv:mirrors",
+   "@container": "@set"
   },
   "mitigation": {
    "@id": "emstv:mitigation",
@@ -955,6 +987,9 @@
   "quality": {
    "@id": "emstv:quality"
   },
+  "quota": {
+   "@id": "emstv:quota"
+  },
   "raterId": {
    "@id": "emstv:raterId"
   },
@@ -1002,6 +1037,10 @@
   "release": {
    "@id": "emstv:release"
   },
+  "releaseCriterion": {
+   "@id": "emstv:releaseCriterion",
+   "@container": "@language"
+  },
   "relevance": {
    "@id": "emstv:relevance"
   },
@@ -1038,6 +1077,10 @@
   "resourceType": {
    "@id": "emstv:resourceType"
   },
+  "responses": {
+   "@id": "emstv:responses",
+   "@container": "@set"
+  },
   "result": {
    "@id": "emstv:result"
   },
@@ -1073,8 +1116,7 @@
    "@id": "dct:rights"
   },
   "role": {
-   "@id": "emstv:role",
-   "@type": "@id"
+   "@id": "emstv:role"
   },
   "roleLevel": {
    "@id": "emstv:roleLevel"
@@ -1399,7 +1441,8 @@
    "@container": "@set"
   },
   "unit": {
-   "@id": "emstv:unit"
+   "@id": "emstv:unit",
+   "@container": "@language"
   },
   "url": {
    "@id": "schema:url"

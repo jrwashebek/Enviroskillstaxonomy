@@ -9,8 +9,12 @@ Checks (issue codes are stable; tests and authoring agents rely on them):
                E-MODULE-SUBSECTOR E-SEED-CANDIDATE E/W-NOTATION-INTERIM E/W-INDEPENDENCE-KEY-UNLISTED
                E-ORG-TARGET-TRIBAL W-ORG-SMALL-N W-MVP-ROLE-TARGET I-SP12-QUARANTINE E-REVIEW-EVENT-STATUS
                E-LEVEL-DISTRIBUTION W-ROLE-KEY W-COMPUTED-FIELD-DEPRECATED
+               (ADR-0030) E/W-MODULE-SUBSECTOR (enactments) E/W-INSTRUMENT-ROLE-MISSING E-INSTRUMENT-LINK-DUPLICATE
+               E-ACTING-SELF E-EDGE-REVIEWBY W-EDGE-REVIEW-OVERDUE E-PROVISION-TASK
   cross-record E-ID-DUPLICATE E-REF-DANGLING W-REF-PENDING E-REF-TYPE E-DEPENDENCY-DIRECTION E-TRIBAL-INHERIT
                I-STALE-ASSESSMENT W-COMPETENCY-NO-TASK W-SUPERSEDED-TARGET E-PR2-ATTRIBUTE
+               (ADR-0030) I-SUPERSEDED-TARGET-HELD W-EDGE-REDUNDANT E-MIRROR-TWICE E-MIRROR-SELF E-CLO-ENACTMENT-INDICATOR
+               E/W-THREE-MODULE I-THREE-MODULE-RECURRENCE E-THREE-MODULE-EXCEPTION-FORMAT W-THREE-MODULE-EXCEPTION-EXPIRED
   waivers      E-WAIVER-FORMAT E-WAIVER-SIGNER I-WAIVER-VOID   (data/v2/governance/lint_waivers.csv; ADR-0029 §5)
   registry     E-REGISTRY-FORMAT E-REGISTRY-APPEND-ONLY E-REGISTRY-TRANSITION E-REGISTRY-MISSING E-REGISTRY-ORPHAN
   crosswalks   E-SSSOM-FORMAT E-SSSOM-VALUE E-SSSOM-THIRD-PARTY-TEXT E-X1-INCOMPLETE E-X1-DECISION E-X1-DUPLICATE
@@ -92,6 +96,14 @@ TYPED_LINKS = {
     ("Pathway", "toVariant"): {"RoleVariant", "RoleProfile"},
     ("Tool", "servesTasks"): {"Task"},
     ("Tool", "servesCompetencies"): {"Competency"},
+    # ADR-0030 (RULINGS_FOR_DE §16-§17)
+    ("Enactment", "characteristicInstruments.instrument"): {"Instrument"},
+    ("RoleVariant", "instruments.instrument"): {"Instrument"},
+    ("DriverEvent", "actingInstrument"): {"Instrument"},
+    ("Competency", "mirrors.target"): {"Competency", "Enactment"},
+    ("Pathway", "cloOutcomes.competency"): {"Competency"},
+    ("Pathway", "sequence.cloOutcomes.competency"): {"Competency"},
+    ("Pathway", "sequence.formationProvisions.task"): {"Task"},
 }
 LINEAGE_KEYS = {"replaces", "replacedBy"}
 RELEASABLE_STATUSES = {"candidate", "published", "deprecated", "superseded", "withdrawn"}
@@ -102,6 +114,8 @@ SEED_V1_FORBIDDEN = {"candidate", "published", "deprecated", "superseded", "with
 IN_FORCE_STATUSES = {"interim-in-force", "in-force", "in-force-litigated", "issued"}
 WAIVER_COLUMNS = ["record_id", "rule_id", "text_sha256", "waiver_class", "reviewer", "second_reviewer", "decided_on", "rationale"]
 WAIVERS_REL = Path("governance") / "lint_waivers.csv"
+THREE_MODULE_REL = Path("governance") / "three_module_exceptions.yaml"
+ROLE_REF_RE = re.compile(r"^seed:(R\d{2}-[a-z0-9-]+)(/([a-z-]+)(/[a-z0-9-]+)?)?$")
 SELECTION_FLAGS = {("use", "selection"), ("use_class", "selection"), ("useClass", "selection"), ("selection_use", "true")}
 
 
@@ -179,6 +193,16 @@ def _lang_values(v):
     return []
 
 
+def validation_date() -> str:
+    """The date edges and register rows are checked against: SOURCE_DATE_EPOCH when set, else today (UTC)."""
+    import datetime as _dt
+    import os as _os
+    sde = _os.environ.get("SOURCE_DATE_EPOCH")
+    if sde:
+        return _dt.datetime.fromtimestamp(int(sde), _dt.timezone.utc).date().isoformat()
+    return _dt.datetime.now(_dt.timezone.utc).date().isoformat()
+
+
 class Validator:
     def __init__(self, data_root: Path = L.DATA_V2, strict: bool = False, registry_base: Path | None = None,
                  repo_root: Path = L.ROOT, use_git_base: bool = True, check_x1: bool | None = None):
@@ -189,6 +213,8 @@ class Validator:
         self.use_git_base = use_git_base
         self.check_x1 = check_x1
         self.r = Report()
+        self.three_module_recurrence: dict[str, list] = {}
+        self.today = validation_date()
         self.schema = json.loads(L.SCHEMA_OUT.read_text(encoding="utf-8"))
         self.validator = Draft202012Validator(self.schema)
         lint = L.SCHEMA_DIR / "lint"
@@ -218,6 +244,7 @@ class Validator:
         self.computed_names = cf | snake
         self.inverse = {t: set(v) for t, v in (self.computed.get("inverse_fields_by_type") or {}).items()}
         self.transitional = {t: set(v) for t, v in (self.computed.get("transitional_on_drafts") or {}).items()}
+        self.computed_paths = {t: list(v) for t, v in (self.computed.get("computed_paths_by_type") or {}).items()}
         th = self.gov["tribal_hold"]
         self.tribal_triggers = [_compile(p) for p in th["triggers"]]
         self.tribal_skip = set(th.get("skip_keys", []))
@@ -243,8 +270,8 @@ class Validator:
             for line in tools.read_text(encoding="utf-8").splitlines():
                 try:
                     for ex in (json.loads(line).get("productExamples") or []):
-                        if len(ex) >= 3:
-                            self.products.append((ex, self._term_rx({"term": ex})))
+                        if len(ex) >= 3:            # product names are proper nouns: match case-sensitively (CR-DC-001)
+                            self.products.append((ex, self._term_rx({"term": ex, "cs": True})))
                 except Exception:  # noqa: BLE001 - parse errors are reported by the record pass
                     pass
 
@@ -378,10 +405,30 @@ class Validator:
         return {"v1Dedication": d.get("v1Dedication", "pending")}
 
     def _load_planned_targets(self):
+        """Planned references (W-REF-PENDING; CR-LC-001 #1): v1 disposition targets, candidates decided for v2.0, and
+        MVP role and variant keys (is_planned covers the role pattern)."""
+        out = set()
         p = self.data / "migration" / "v1_targets.csv"
-        if not p.exists():
-            return set()
-        return {r["target_key"] for r in L.read_csv(p) if r.get("target_key")}
+        if p.exists():
+            out |= {r["target_key"] for r in L.read_csv(p) if r.get("target_key")}
+        c = self.repo / "docs" / "decisions" / "candidate_disposition.csv"
+        if c.exists():
+            out |= {f"seed:{r['cand_id']}" for r in L.read_csv(c) if r.get("decision") in ("core-v2.0", "module-v2.0")}
+        return out
+
+    def is_planned(self, ref: str) -> bool:
+        if ref in self.planned:
+            return True
+        m = ROLE_REF_RE.match(ref)
+        if not m or m.group(1) not in self.role_keys:
+            return False
+        return m.group(3) is None or m.group(3) in self.sector_actor_terms
+
+    def planned_is_held(self, ref: str) -> bool:
+        if ref in self.hold["keys"]:
+            return True
+        m = ROLE_REF_RE.match(ref)
+        return bool(m and m.group(3) and m.group(3) in self.tribal_actors)
 
     def _load_source_ids(self):
         ids = set()
@@ -495,6 +542,7 @@ class Validator:
         self.check_location(loc, rec)
         self.check_id(loc, rec)
         self.check_computed(loc, rec)
+        self.check_computed_paths(loc, rec)
         self.check_personal(loc, rec)
         self.check_governed(loc, rec)
         self.check_hash(loc, rec)
@@ -506,6 +554,10 @@ class Validator:
         if loc.area not in ("core", "register", "other") and typ in ("Competency", "Task") \
                 and rec.get("validationStatus") != "seed-v1" and not rec.get("subsectors"):
             self.r.add("E-MODULE-SUBSECTOR", loc, "module records must cite at least one subsector code (WP-06; ADR-0018)", rid)
+        if typ == "Enactment" and rec.get("enactmentKind") == "module" and not rec.get("subsectors") \
+                and rec.get("status") not in LIVE_EXCLUDED_STATUSES:
+            code = "E-MODULE-SUBSECTOR" if rec.get("status") in AT_OR_AFTER_CANDIDATE else "W-MODULE-SUBSECTOR"
+            self.r.add(code, loc, "module enactments cite at least one subsector code in `subsectors` (CR-DB-001 #2; ADR-0030)", rid)
 
     def check_semantics(self, loc, rec):
         """Record-level rules from the ADR-0029 rulings that JSON Schema cannot express cleanly."""
@@ -513,7 +565,7 @@ class Validator:
         # §1.3 no seed-v1 at candidate. Seed-keyed superseded/withdrawn v1 stubs (never minted) are exempt: CR-DE-004.
         if rec.get("validationStatus") == "seed-v1" and status in SEED_V1_FORBIDDEN \
                 and (status in AT_OR_AFTER_CANDIDATE or (isinstance(rid, str) and rid.startswith("emst:"))):
-            self.r.add("E-SEED-CANDIDATE", loc, f"seed-v1 content cannot be {status}: rewrite it as a draft and review it first (ADR-0029 §1.3)", rid)
+            self.r.add("E-SEED-CANDIDATE", loc, f"seed-v1 content cannot be {status}: rewrite it as a draft and review it first (ADR-0029 §1.3; ADR-0030 §1.1)", rid)
         # §8.2 interim EMST-* notation schemes (pre-ADR-0029 encoding of typed fields)
         interim = sorted({n.get("scheme") for n in rec.get("notation") or []
                           if isinstance(n, dict) and str(n.get("scheme", "")).startswith("EMST-")})
@@ -536,6 +588,42 @@ class Validator:
                 self.r.add("E-REVIEW-EVENT-STATUS", loc, f"a submitted-for-review event cannot put an instrument {rec.get('statusAfter')} (use under-review; ADR-0029 §8.2)", rid)
         elif typ in ("RoleProfile", "RoleVariant") and isinstance(rid, str) and rid.startswith("seed:"):
             self._check_role_key(loc, rid, typ)
+        if typ == "DriverEvent" and rec.get("actingInstrument") and rec.get("actingInstrument") == rec.get("instrument"):
+            self.r.add("E-ACTING-SELF", loc, "actingInstrument names the event's own instrument (ADR-0030)", rid)
+        if typ in ("Enactment", "RoleVariant"):
+            self._check_instrument_links(loc, rec)
+        if typ in ("Task", "Competency"):
+            for i, e in enumerate(rec.get("instrumentSensitivity") or []):
+                if not isinstance(e, dict):
+                    continue
+                if e.get("evidenceLabel") in ("J", "S") and not e.get("reviewBy") and status in AT_OR_AFTER_CANDIDATE:
+                    self.r.add("E-EDGE-REVIEWBY", loc, f"instrumentSensitivity[{i}] ({e.get('mechanism')}) is labelled {e.get('evidenceLabel')} and needs reviewBy (ADR-0030)", rid)
+                if e.get("reviewBy") and str(e["reviewBy"]) < self.today:
+                    self.r.add("W-EDGE-REVIEW-OVERDUE", loc, f"instrumentSensitivity[{i}] ({e.get('mechanism')}) review was due {e['reviewBy']}", rid)
+        if typ == "Pathway":
+            for j, stp in enumerate(rec.get("sequence") or []):
+                tasks = set(stp.get("tasks") or []) if isinstance(stp, dict) else set()
+                for prov in (stp.get("formationProvisions") or []) if isinstance(stp, dict) else []:
+                    if isinstance(prov, dict) and prov.get("task") not in tasks:
+                        self.r.add("E-PROVISION-TASK", loc, f"sequence[{j}] formation provision for {prov.get('task')} is not one of that step's tasks", rid)
+
+    def _check_instrument_links(self, loc, rec):
+        rid, status = rec.get("id"), rec.get("status")
+        field = "characteristicInstruments" if rec.get("type") == "Enactment" else "instruments"
+        seen = Counter()
+        missing = []
+        for item in rec.get(field) or []:
+            if not isinstance(item, dict):
+                continue                                  # schema reports the shape (run scripts/convert_instrument_links.py)
+            seen[item.get("instrument")] += 1
+            if not item.get("role"):
+                missing.append(item.get("instrument"))
+        for ins, n in sorted(seen.items(), key=lambda kv: str(kv[0])):
+            if n > 1:
+                self.r.add("E-INSTRUMENT-LINK-DUPLICATE", loc, f"{field} lists {ins} {n} times; one link per instrument", rid)
+        if missing and status not in LIVE_EXCLUDED_STATUSES:
+            code = "E-INSTRUMENT-ROLE-MISSING" if status in AT_OR_AFTER_CANDIDATE else "W-INSTRUMENT-ROLE-MISSING"
+            self.r.add(code, loc, f"{len(missing)} {field} link(s) without a role (requires | enables | constrains | removed-requirement); untyped links decide nothing (ADR-0030)", rid)
 
     def _check_signal(self, loc, rec):
         rid = rec.get("id")
@@ -631,6 +719,14 @@ class Validator:
                     self.r.add("W-COMPUTED-FIELD-DEPRECATED", loc, f"{k} on {typ} is now a computed inverse (ADR-0029 §1.2): remove it before candidate; the build ignores it", rid)
                 else:
                     self.r.add("E-COMPUTED-FIELD", loc, f"{k} on {typ} is an inverse link computed in bundles; store the link on the other side", rid)
+
+    def check_computed_paths(self, loc, rec):
+        for dotted in self.computed_paths.get(rec.get("type"), []):
+            head, _, leaf = dotted.rpartition(".")
+            node = rec.get(head) if head else rec
+            for item in (node if isinstance(node, list) else [node]):
+                if isinstance(item, dict) and leaf in item:
+                    self.r.add("E-COMPUTED-FIELD", loc, f"{dotted} is computed (State Class View) and never stored (ADR-0030; RULINGS_FOR_DE §19.4)", rec.get("id"))
 
     def check_personal(self, loc, rec):
         rid = rec.get("id")
@@ -810,10 +906,14 @@ class Validator:
                 dotted = ".".join(path)
                 target = self.records.get(ref)
                 if target is None:
-                    if ref in self.planned and not self.strict:
-                        self.r.add("W-REF-PENDING", loc, f"{dotted} -> {ref} is a planned v1 disposition target not yet authored", rid)
+                    planned = self.is_planned(ref)
+                    if planned and not self.strict:
+                        self.r.add("W-REF-PENDING", loc, f"{dotted} -> {ref} is a planned target (v1 disposition, v2.0 candidate or MVP role) not yet authored", rid)
                     else:
                         self.r.add("E-REF-DANGLING", loc, f"{dotted} -> {ref} does not resolve to any record", rid)
+                    if (planned or ref in self.hold["keys"]) and path[0] not in LINEAGE_KEYS and self.planned_is_held(ref) \
+                            and not self.is_held(rid, rec):
+                        self.r.add("E-TRIBAL-INHERIT", loc, f"{dotted} -> {ref} is a held planned reference; this record must be flagged held too (ADR-0007 §D; CR-LC-001)", rid)
                     continue
                 tloc, trec = target
                 want = TYPED_LINKS.get((typ, dotted))
@@ -825,7 +925,11 @@ class Validator:
                     self.r.add("E-DEPENDENCY-DIRECTION", loc, f"core record depends on module record {ref} via {dotted}", rid)
                 if typ == "Task" and dotted == "supports.competency" and trec.get("status") in LIVE_EXCLUDED_STATUSES \
                         and rec.get("status") not in LIVE_EXCLUDED_STATUSES:
-                    self.r.add("W-SUPERSEDED-TARGET", loc, f"task supports {ref}, which is {trec.get('status')}: reassign to its successor(s) {trec.get('replacedBy', [])}", rid)
+                    succ = [x for x in trec.get("replacedBy") or []]
+                    if self.is_held(rid, rec) and succ and all(self.is_held(x) or self.planned_is_held(x) for x in succ):
+                        self.r.add("I-SUPERSEDED-TARGET-HELD", loc, f"held task supports {ref}, whose successors are all held: re-pointed after a Tribal Advisory Council exists (ADR-0030 §3.2)", rid)
+                    else:
+                        self.r.add("W-SUPERSEDED-TARGET", loc, f"task supports {ref}, which is {trec.get('status')}: reassign to its successor(s) {trec.get('replacedBy', [])}", rid)
             # hold inheritance
             if not self.is_held(rid, rec):
                 for dotted in DEPENDENT_LINKS.get(typ, []):
@@ -843,6 +947,120 @@ class Validator:
             self.r.add(code, loc, "competency is not supported by any task (SPEC §5.2; ADR-0003 G-1)", rid)
         self.check_pr2()
         self.check_waivers_current()
+        self.check_edges_redundant()
+        self.check_mirrors()
+        self.check_clo_variants()
+        self.check_three_module()
+
+    def check_edges_redundant(self):
+        """W-EDGE-REDUNDANT (CR-SC-001 #1): a Task edge already carried by a competency the task supports as primary,
+        with no sources beyond that competency's edge."""
+        for rid in self.by_type.get("Task", []):
+            loc, rec = self.records[rid]
+            edges = [e for e in rec.get("instrumentSensitivity") or [] if isinstance(e, dict)]
+            if not edges:
+                continue
+            prim = {}
+            for sup in rec.get("supports") or []:
+                if isinstance(sup, dict) and sup.get("strength") == "primary" and sup.get("competency") in self.records:
+                    for e in self.records[sup["competency"]][1].get("instrumentSensitivity") or []:
+                        if isinstance(e, dict):
+                            prim.setdefault(e.get("mechanism"), set()).update(e.get("sources") or [])
+            for e in edges:
+                m = e.get("mechanism")
+                if m in prim and set(e.get("sources") or []) <= prim[m]:
+                    self.r.add("W-EDGE-REDUNDANT", loc, f"edge {m} is inherited from a primary competency; keep task edges task-specific (ADR-0030)", rid)
+
+    def check_mirrors(self):
+        """Mirrors live on the authority side only (CR-SC-001 #3): never both directions, never self."""
+        listed = {}
+        own_enactments = defaultdict(set)
+        for eid in self.by_type.get("Enactment", []):
+            c = self.records[eid][1].get("competency")
+            if c:
+                own_enactments[c].add(eid)
+        for rid in self.by_type.get("Competency", []):
+            listed[rid] = {m.get("target") for m in self.records[rid][1].get("mirrors") or [] if isinstance(m, dict)}
+        for rid, targets in listed.items():
+            loc, _ = self.records[rid]
+            for t in sorted(x for x in targets if x):
+                if t == rid or t in own_enactments[rid]:
+                    self.r.add("E-MIRROR-SELF", loc, f"mirrors -> {t} is the record itself or one of its own enactments", rid)
+                    continue
+                back = listed.get(t, set())
+                if t in self.records and self.records[t][1].get("type") == "Enactment":
+                    back = listed.get(self.records[t][1].get("competency"), set())
+                    if rid in back or (back & own_enactments[rid]):
+                        self.r.add("E-MIRROR-TWICE", loc, f"mirror {rid} <-> {t} is stored on both sides; keep it on the authority side only", rid)
+                elif rid in back or (back & own_enactments[rid]):
+                    if rid < t:                       # report each pair once
+                        self.r.add("E-MIRROR-TWICE", loc, f"mirror {rid} <-> {t} is stored on both sides; keep it on the authority side only", rid)
+
+    def check_clo_variants(self):
+        """E-CLO-ENACTMENT-INDICATOR (CR-LC-001 #4): enactment indicator variants never appear in the competency's levels[]."""
+        for eid in self.by_type.get("Enactment", []):
+            loc, e = self.records[eid]
+            comp = self.records.get(e.get("competency"), (None, {}))[1]
+            generic = {i for lv in comp.get("levels") or [] if isinstance(lv, dict) for i in lv.get("indicators") or []}
+            for i in sorted(set(e.get("indicatorVariants") or []) & generic):
+                self.r.add("E-CLO-ENACTMENT-INDICATOR", loc, f"indicator variant {i} is also listed in {e.get('competency')} levels[]; variants belong to the enactment only", eid)
+        for pid in self.by_type.get("Pathway", []):
+            loc, rec = self.records[pid]
+            outs = list(rec.get("cloOutcomes") or []) + [o for st in rec.get("sequence") or [] if isinstance(st, dict) for o in st.get("cloOutcomes") or []]
+            for o in outs:
+                if not isinstance(o, dict) or o.get("competency") not in self.records:
+                    continue
+                c = self.records[o["competency"]][1]
+                if c.get("type") == "Competency" and o.get("level") not in {lv.get("level") for lv in c.get("levels") or [] if isinstance(lv, dict)}:
+                    self.r.add("E-REF-TYPE", loc, f"cloOutcomes {o['competency']} has no level {o.get('level')} in its levels[] (CR-LC-001 #2)", pid)
+
+    def check_three_module(self):
+        """Three-module rule (ADR-0003 G-4; CR-DB-001 #1; ADR-0030 §1.3) and its exception register."""
+        p = self.data / THREE_MODULE_REL
+        reg = L.load_yaml(p) if p.exists() else {}
+        exceptions = {}
+        for i, row in enumerate((reg or {}).get("exceptions") or []):
+            where = f"{p}:exceptions[{i}]"
+            need = ("competency", "modules", "rationale", "decidedBy", "decidedOn", "reviewBy", "decidedIn")
+            if not isinstance(row, dict) or any(not row.get(k) for k in need) or not isinstance(row.get("modules"), list) \
+                    or not re.match(r"^(pid:|CA$)", str(row.get("decidedBy", ""))):
+                self.r.add("E-THREE-MODULE-EXCEPTION-FORMAT", where, f"rows need {', '.join(need)}; decidedBy is pid:… or CA")
+                continue
+            if str(row["reviewBy"]) < self.today:
+                self.r.add("W-THREE-MODULE-EXCEPTION-EXPIRED", where, f"exception for {row['competency']} was due for review {row['reviewBy']}")
+            if row["competency"] not in self.records:
+                self.r.add("E-REF-DANGLING", where, f"exception names {row['competency']}, which does not resolve")
+            exceptions[row["competency"]] = row
+        mods = defaultdict(set)
+        for eid in self.by_type.get("Enactment", []):
+            e = self.records[eid][1]
+            if e.get("enactmentKind") == "module" and e.get("status") not in LIVE_EXCLUDED_STATUSES and e.get("enactedInModule"):
+                mods[e.get("competency")].add(e["enactedInModule"])
+        task_home = defaultdict(set)
+        for tid in self.by_type.get("Task", []):
+            t = self.records[tid][1]
+            if t.get("status") in LIVE_EXCLUDED_STATUSES:
+                continue
+            for sup in t.get("supports") or []:
+                if isinstance(sup, dict):
+                    task_home[sup.get("competency")].add(t.get("homeModule") or t.get("module"))
+        role_home = defaultdict(set)
+        for pid in self.by_type.get("RoleProfile", []):
+            r = self.records[pid][1]
+            for ct in r.get("competencyTargets") or []:
+                if isinstance(ct, dict):
+                    role_home[ct.get("competency")].add(r.get("homeModule") or r.get("module"))
+        for cid in self.by_type.get("Competency", []):
+            loc, c = self.records[cid]
+            if c.get("module") != "core" or c.get("competencyType") != "practice" or c.get("status") in LIVE_EXCLUDED_STATUSES:
+                continue
+            m = mods.get(cid, set())
+            if len(m) in (1, 2) and cid not in exceptions:
+                code = "E-THREE-MODULE" if c.get("status") in AT_OR_AFTER_CANDIDATE else "W-THREE-MODULE"
+                self.r.add(code, loc, f"core practice competency enacted in only {len(m)} module(s) ({', '.join(sorted(m))}): add a third module enactment, move it to its home module, or ask the CA for an exception (ADR-0003 G-4)", cid)
+            recurrence = sorted(x for x in (m | task_home.get(cid, set()) | role_home.get(cid, set())) if x and x != "core")
+            self.three_module_recurrence[cid] = recurrence
+            self.r.add("I-THREE-MODULE-RECURRENCE", loc, f"modules where this competency recurs: {', '.join(recurrence) or '(none)'} ({len(recurrence)})", cid)
 
     def check_pr2(self):
         """E-PR2-ATTRIBUTE (ADR-0029 §5.4): above the competency's lowest level that has indicators (from levels[]),

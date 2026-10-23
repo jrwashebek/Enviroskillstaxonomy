@@ -1,0 +1,28 @@
+# Map from WP-15 claims-register rows (docs/methods/claims_register.csv) to the release records the explorer renders.
+# Owner: CP (WP-12). Read by lib/model.mjs (to label or suppress) and tools/check-output.mjs (to verify).
+# Rule (WP15_SIGNOFF.md §2.1-2.2): a record tied to an `unverified` row renders only as its title plus
+# "Unverified — not for citation (claims register <id>)", with no status, date or event detail; a `held` row's records
+# never render. The check fails if an unverified or held row used by the explorer has no entry here.
+# Licence: CC0-1.0.
+version: 1
+source: docs/methods/claims_register.csv
+signoff: docs/methods/WP15_SIGNOFF.md
+rows:
+  NEPA-09: {instruments: [seed:ins/dot-nepa-procedures, seed:ins/epa-nepa-procedures]}
+  ESA-02: {instruments: [seed:ins/esa-4d-4b2-rules]}
+  ESA-03: {instruments: [seed:ins/esa-s4-s7-regs-2025]}
+  CWA-02: {instruments: [seed:ins/florida-404-assumption]}
+  DISC-03: {instruments: [seed:ins/sec-climate-disclosure]}
+  REG-01: {instruments: [seed:ins/epermit-act]}
+  REG-02: {instruments: [seed:ins/long-term-gna-act]}
+  REG-03: {instruments: [seed:ins/co-hb26-1205]}
+  REG-04: {instruments: [seed:ins/fix-our-forests-act]}
+  REG-05: {instruments: [seed:ins/ghgrp-reconsideration]}
+  REG-06: {instruments: [seed:ins/obbba-ira-rescissions]}
+  REG-07: {instruments: [seed:ins/tx-hb-3923]}
+  # Baseline event days dated by LM judgment (evidenceLabel J on the event): the date is suppressed.
+  REG-08: {events_with_evidence_label: [J, S]}
+  # Base instruments registered without events: no status is rendered ("status not recorded").
+  REG-09: {instruments_without_events: true}
+  # Held: no record reaches the release; listed so the check knows the row is handled.
+  TRB-01: {held: true}
