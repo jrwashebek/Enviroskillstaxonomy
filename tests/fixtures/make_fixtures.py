@@ -199,8 +199,12 @@ def main():
                    "".join(f"{i},{t},core,2026-10-23,emstagent:fixture@1,candidate,,\n" for i, t in rows), encoding="utf-8")
     gov = tree / "governance"
     gov.mkdir(parents=True, exist_ok=True)
-    for name in ("tribal_hold.yaml", "licensing.yaml"):
-        (gov / name).write_text((L.DATA_V2 / "governance" / name).read_text(encoding="utf-8"), encoding="utf-8")
+    (gov / "tribal_hold.yaml").write_text((L.DATA_V2 / "governance" / "tribal_hold.yaml").read_text(encoding="utf-8"), encoding="utf-8")
+    # The fixture tree keeps the ADR-0013 FALLBACK state (v1 dedication pending) so the licence gate stays tested;
+    # the repository itself records the project lead's CC0 dedication (PROJECT_LEAD_DECISIONS.md Q2).
+    (gov / "licensing.yaml").write_text(
+        "# Synthetic fixture: exercises the ADR-0013 fallback (v1 dedication pending). Not the repository state.\n"
+        "v1Dedication: pending\nv1DedicationRecord: null\n", encoding="utf-8")
     print("fixtures written")
 
 

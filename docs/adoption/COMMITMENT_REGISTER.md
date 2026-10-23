@@ -66,7 +66,7 @@ A machine-readable version of this table for CI is in `commitment_register.schem
 
 1. `personal_data` is `false` on every row; any email address, phone number or personal-name pattern in any field fails the build.
 2. `status ∈ {signed, active, completed}` ⇒ `date_signed`, `artifact_reference`, `year_five_owner_org`, `year_five_owner_role`, `year_five_plan` present and `evidence_label = E`.
-3. `tribal_related = true` ⇒ `tac_approval_id` present. While no TAC exists, CI rejects any such row. <!-- PENDING Q1 -->
+3. `tribal_related = true` ⇒ `tac_approval_id` present. While no TAC exists, CI rejects any such row; once one exists, its approval ID is binding (Q1 accepted). <!-- DECIDED Q1 (2026-10-23, PROJECT_LEAD_DECISIONS.md): TAC binding consent authority accepted; the content hold continues until a TAC exists -->
 4. `review_by` is in the future at build time for every row not `completed`, `lapsed`, `withdrawn` or `terminated`; overdue rows are listed in the build report.
 5. `commitment_id` values are unique and append-only (edits change status and dates; rows are never deleted).
 6. **Claims check:** any organization named in a release artifact, kit or publication with the words *committed, partner, pilot organization, design partner, adopter, steward, funder, co-publisher* must appear in the register with `status ∈ {signed, active}` and a role matching the claim; otherwise the claims-hygiene lint fails (ADR-0027 §3).

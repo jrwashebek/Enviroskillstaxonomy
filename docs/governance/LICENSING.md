@@ -1,7 +1,7 @@
 # EMST Licensing Notices
 
 - **Work package:** WP-13 · **Author:** A10b (AS) · **Date:** 2026-10-23
-- **Builds:** ADR-0013 (accepted, **conditional on the project lead's written CC0 dedication of v1-derived content**, Q2), ADR-0007 §D 9 (Tribal namespace), ADR-0010 (releases, DOI), SPEC §16.3, governance charter Art. 10–11.
+- **Builds:** ADR-0013 (accepted; its condition — the project lead's CC0 dedication of v1-derived content — was **met on 2026-10-23**, Q2, recorded in `docs/decisions/PROJECT_LEAD_DECISIONS.md`), ADR-0007 §D 9 (Tribal namespace), ADR-0010 (releases, DOI), SPEC §16.3, governance charter Art. 10–11.
 - **Status:** draft text for the three licence files and the third-party licence register that ship with each release. The CI checks it relies on are DE's (ADR-0013 consequences). This page is not legal advice; counsel for the Steward should review it before 2.0.0.
 
 > **AS dissent, recorded and not reopened here.** AS argued for CC BY 4.0 on content text (provenance, adoption measurement, funder visibility). The CA chose CC0 for everything adopters embed, securing version citation through marks, DOIs and release stamps instead (ADR-0013, dissent). This notice implements the decision as made.
@@ -33,7 +33,7 @@
 | `docs/adoption/*_template.md`, `docs/governance/module_stewardship_agreement_template.md`, the commitment register schema, `docs/adoption/ecosystem_atlas.csv` | CC0 1.0 **[J]** | templates are copied into adopters' own agreements and the atlas is data; treating them as data removes attribution friction. CA to confirm this reading of ADR-0013 §1. |
 | `scripts/**`, `tests/**`, `.github/**`, explorer source | Apache-2.0 | DCO sign-off on contributions |
 | `external/**` | each file's own licence | attribution file per source; never merged into CC0 bundles |
-| `legacy/**` | **v1 terms as they stand** | v1 asserted both CC0 and CC BY 4.0 [E: CP-005, AS-048]. <!-- PENDING Q2: on the lead's written CC0 dedication, v1-derived text moves into the CC0 data files; default — rc.1 ships with v1-derived text excluded from CC0 files (IDs, structure and crosswalks only), v1 wording stays in legacy/ under its current terms. --> |
+| `legacy/**` and `data/v1_baseline/**` (v1 content authored by the project lead) | **CC0 1.0** | The project lead dedicated the v1 text (competency titles, descriptions, tasks, indicators, source text) to CC0 on 2026-10-23, resolving v1's CC0 / CC BY 4.0 contradiction [E: CP-005, AS-048]; v2 records derived from it ship in the CC0 data files. Third-party material in `legacy/` is **not** covered (next row). <!-- DECIDED Q2 (2026-10-23, PROJECT_LEAD_DECISIONS.md): CC0 dedication of the v1 text accepted --> |
 | `legacy/v1/reference_only/` | third-party, git-ignored | read and cite, never copy (SAF handbook) |
 
 ## 3. Licence files (text to place at the repository root in the first v2 commit)
@@ -73,8 +73,13 @@ Exclusions (not covered by this dedication):
   - Tribally stewarded namespaces (emst:tribal-<steward>/...), which carry the
     contributor's chosen licence and are excluded from bulk releases unless the
     contributor has opted in;
-  - text derived from EMST v1 until the v1 rights holder's written CC0 dedication
-    is recorded in docs/decisions/.            <!-- PENDING Q2 -->
+  - third-party material held with the v1 files (e.g. the SAF Accreditation
+    Handbook), which is never redistributed.
+
+The EMST v1 text authored by the project lead (legacy/v1/ and data/v1_baseline/)
+is dedicated to the public domain under CC0 1.0 by its author (decision recorded
+in docs/decisions/PROJECT_LEAD_DECISIONS.md, 2026-10-23); v2 records derived
+from it are covered by this dedication.
 
 Citation request (not a condition): please cite the release ID and DOI, e.g.
 "EMST <release>, doi:<doi>". "EMST", "EMST-conformant" and "EMST-mapped" are marks
@@ -101,11 +106,13 @@ Third-party figures, quotations and data inside publications keep their own
 terms and are credited where they appear.
 ```
 
-## 4. Dedication statement (for the project lead)
+## 4. Dedication statement
+
+The project lead **accepted** the CC0 dedication on 2026-10-23 (Q2; `docs/decisions/PROJECT_LEAD_DECISIONS.md`). The decision covers the v1 content in `legacy/v1/` and `data/v1_baseline/` authored by the project lead and excludes third-party material. The statement below is the optional signed form the lead may add to that file for downstream counsel. <!-- DECIDED Q2 (2026-10-23, PROJECT_LEAD_DECISIONS.md): CC0 dedication of the v1 text accepted -->
 
 > I, the author of the EMST v1 content (competency titles, descriptions, tasks, proficiency statements, indicators and the v1 source text), dedicate that content to the public domain under CC0 1.0 Universal, so that EMST v2 records derived from it may be released under CC0. Dated and signed: ____________.
 
-Until this statement is signed and recorded in `docs/decisions/`, the default in §2 applies. <!-- PENDING Q2 -->
+The decision applies now; the signature is a convenience for counsel, not a condition.
 
 ## 5. Third-party licence register (seed)
 

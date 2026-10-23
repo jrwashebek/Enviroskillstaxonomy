@@ -7,14 +7,14 @@ Path map (ADR-0013 §7)
 - Apache-2.0 (LICENSE): code — scripts/, tests/, .github/ and pyproject.toml.
 - CC-BY-4.0 (LICENSE-PUBLICATIONS): narrative publications (flagship report, briefing decks, role-change briefs,
   research papers, explorer prose) as marked in each publication.
-- Excluded from CC0 and kept under their own terms:
-  * v1-derived text. The v1 taxonomy text (competency titles, descriptions, tasks, indicators and source text) is
-    the project lead's own work. Its CC0 dedication is PENDING the project lead's written decision
-    (docs/decisions/questions_for_project_lead.md, Q2). Until it is recorded in data/v2/governance/licensing.yaml,
-    records carrying v1 wording are marked `license: LicenseRef-EMSTv1-PendingDedication`, are NOT covered by
-    this dedication, and are excluded from every CC0 release file; v1 material in legacy/ stays under its
-    current terms.
-  * Third-party material (O*NET, ESCO, AEI, accreditor and credential-body text, licensed posting data): never in
+- Dedication of the v1 text and exclusions:
+  * v1-derived text is covered. The project lead dedicated the v1 text they authored (competency titles,
+    descriptions, tasks, indicators and source text in legacy/v1/ and data/v1_baseline/) to the public domain
+    under CC0 1.0 on 2026-10-23 (docs/decisions/PROJECT_LEAD_DECISIONS.md, Q2; ADR-0013 main path). v2 records
+    derived from it are CC0-1.0 and ship in the CC0 data files. The dedication does not extend to third-party
+    material that v1 quoted or relied on (below).
+  * Third-party material (O*NET, ESCO, AEI, accreditor and credential-body text such as the SAF Accreditation
+    Handbook, which is never redistributed, and licensed posting data): never in
     CC0 files; crosswalks carry external IDs only; any permitted upstream text lives in external/ with its own
     licence and attribution (ADR-0013 §5).
   * Tribally stewarded content: in its own namespace with the contributor's chosen licence, labels and withdrawal

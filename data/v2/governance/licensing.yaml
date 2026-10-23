@@ -1,13 +1,19 @@
-# Licensing state read by scripts/validate_v2.py and scripts/build_release.py (ADR-0013). Licence: CC0-1.0.
-# v1Dedication: the project lead's written CC0 dedication of the v1 text (questions_for_project_lead.md Q2).
-#   pending  -> records carrying v1 wording use license LicenseRef-EMSTv1-PendingDedication and are EXCLUDED from
-#               the CC0 data files of every release (IDs, structure and crosswalks only), per the Q2 default.
-#   granted  -> set only when the dedication is recorded; add `v1DedicationRecord` (decision or commit reference).
-v1Dedication: pending
-v1DedicationRecord: null
+# Licensing state read by scripts/validate_v2.py, scripts/migrate_v1.py and scripts/build_release.py (ADR-0013).
+# Licence: CC0-1.0.
+# v1Dedication: the project lead's CC0 dedication of the v1 text (questions_for_project_lead.md Q2).
+#   granted  -> v1-derived records carry license CC0-1.0 and ship in the CC0 data files (ADR-0013 main path).
+#   pending  -> (fallback, no longer in force) v1 wording carried LicenseRef-EMSTv1-PendingDedication and was
+#               excluded from CC0 files. The validator and release gate keep this mechanism for forks and tests.
+v1Dedication: granted
+v1DedicationRecord: >-
+  docs/decisions/PROJECT_LEAD_DECISIONS.md, Q2 "Accepted — CC0", 2026-10-23 (project lead, working session).
+  Covers the v1 text the project lead authored in legacy/v1/ and data/v1_baseline/ (competency titles,
+  descriptions, tasks, indicators, source text). Excludes third-party material: the SAF Accreditation Handbook is
+  never redistributed; upstream O*NET/ESCO text stays out of CC0 files.
+v1DedicatedOn: '2026-10-23'
 licences:
   data_and_standard_text: CC0-1.0          # LICENSE-DATA
   narrative_publications: CC-BY-4.0        # LICENSE-PUBLICATIONS
   code: Apache-2.0                         # LICENSE
-  v1_derived_text_pending: LicenseRef-EMSTv1-PendingDedication
+  v1_derived_text: CC0-1.0                 # dedicated by the project lead (Q2)
   tribal_namespaces: contributor-chosen    # ADR-0013 §6; excluded from bulk CC0 unless opted in

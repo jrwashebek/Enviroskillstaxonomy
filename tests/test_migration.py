@@ -49,6 +49,16 @@ def test_seed_records_validate_without_errors(real_report):
     assert errs == []
 
 
+def test_v1_text_is_cc0_under_the_lead_dedication():
+    lic = L.load_yaml(L.GOVERNANCE / "licensing.yaml")
+    assert lic["v1Dedication"] == "granted" and "PROJECT_LEAD_DECISIONS.md" in lic["v1DedicationRecord"]
+    assert migrate_v1.V1_LICENSE == "CC0-1.0"
+    assert INFO["licensing"]["license"] == "CC0-1.0"
+    for rid, (_, r) in RECS.items():
+        if (r.get("provenance") or {}).get("method") == "v1-migration":
+            assert r["license"] == "CC0-1.0" and "ADR-0013" in r["provenance"]["adr"], rid
+
+
 def test_every_seed_has_provenance_and_legacy_facets():
     for typ in ("Competency", "Task"):
         for rid, r in seeds(typ).items():

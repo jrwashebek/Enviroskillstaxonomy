@@ -17,7 +17,8 @@ Rules: content comes from the source text where the database lost it (D5 Knowled
 indicators, 19 title/description splits); v1 tags migrate as prior evidence only (rater v1-analyst-01, low
 confidence, misalignment flags); stored summaries (modal fields, counts, Zero-Core, FPP, stability tier, reform
 count) are not migrated; held Tribal content is flagged (ADR-0007 §D); v1-derived text carries
-LicenseRef-EMSTv1-PendingDedication (ADR-0013, Q2 pending).
+CC0-1.0: the project lead dedicated the v1 text to the public domain (PROJECT_LEAD_DECISIONS.md Q2, 2026-10-23;
+ADR-0013). Without that dedication (licensing.yaml v1Dedication: pending) the fallback LicenseRef applies.
 
 Authoring safety: an existing seed file is NEVER overwritten once it has left validationStatus seed-v1 or moved;
 use --force only on a clean checkout. Assessment batches, X1, and migration/ files are regenerated.
@@ -48,7 +49,13 @@ MIGRATION_TS = "2026-10-23T12:00:00Z"      # fixed so reruns are byte-identical
 MIGRATION_DATE = "2026-10-23"
 ASSESSED_AT = "2026-02-23"                 # date of the copyB workbook; original session dates were not recorded
 REVIEW_BY_EMERGING = "2028-10-23"          # +24 months (vocab/lifecycle_states.yaml emerging)
-V1_LICENSE = "LicenseRef-EMSTv1-PendingDedication"
+V1_PENDING_LICENSE = "LicenseRef-EMSTv1-PendingDedication"
+_LIC = L.load_yaml(L.GOVERNANCE / "licensing.yaml") if (L.GOVERNANCE / "licensing.yaml").exists() else {}
+V1_DEDICATED = _LIC.get("v1Dedication") == "granted"
+# The project lead dedicated the v1 text to CC0 (PROJECT_LEAD_DECISIONS.md Q2, 2026-10-23): migrated records are
+# CC0-1.0. If a fork lacks the dedication, licensing.yaml says pending and the ADR-0013 fallback licence applies.
+V1_LICENSE = "CC0-1.0" if V1_DEDICATED else V1_PENDING_LICENSE
+V1_ADR = ["ADR-0011", "ADR-0010", "ADR-0013"]
 LEVELS = [("foundational", "L1"), ("intermediate", "L2"), ("advanced", "L3"), ("expert", "L4")]
 SECTORS = ["public_agencies", "private_sector", "ngos", "consulting", "academia"]
 SOURCE_TEXT = L.ROOT / "legacy" / "v1" / "docs" / "20251202_SkillsTaxonomy_Core_V2 (1).txt"
@@ -328,7 +335,7 @@ def build_competency(inp: Inputs, plan: Plan, code: str) -> tuple[Path, dict]:
                               + ("; title/description split" if split else "")})
     # merged-from / split-from lineage onto v1-seed targets is added by add_lineage()
     rec["provenance"] = {"method": "v1-migration", "agent": [AGENT], "generatedAt": MIGRATION_TS, "derivedFrom": dfrom,
-                         "evidenceLabel": "J", "reviewStatus": "unreviewed", "adr": ["ADR-0011", "ADR-0010"]}
+                         "evidenceLabel": "J", "reviewStatus": "unreviewed", "adr": V1_ADR}
     rec["v1Seed"] = build_v1_seed(inp, code, c, split)
     base = L.DATA_V2 / ("core" if area == "core" else f"modules/{area}")
     return base / "competencies" / f"{L.id_to_stem(rid)}.yaml", rec
@@ -421,7 +428,7 @@ def build_task(inp: Inputs, plan: Plan, t: dict) -> tuple[Path, dict]:
                          "derivedFrom": [{"v1Key": key, "v1Code": code, "v1Table": "tasks", "v1Sheet": "Competencies",
                                           "v1Row": int(t["source_row_text"]), "v1Fields": ["Job Tasks"],
                                           "workbookSha256": inp.copyb, "relation": "carried"}],
-                         "evidenceLabel": "J", "reviewStatus": "unreviewed", "adr": ["ADR-0011"]}
+                         "evidenceLabel": "J", "reviewStatus": "unreviewed", "adr": ["ADR-0011", "ADR-0013"]}
     base = L.DATA_V2 / ("core" if area == "core" else f"modules/{area}")
     return base / "tasks" / f"{L.id_to_stem(rid)}.yaml", rec
 
@@ -469,7 +476,7 @@ def _rater(method, instrument, codebook):
 
 def _prov(derived):
     return {"method": "v1-migration", "agent": [AGENT], "generatedAt": MIGRATION_TS, "derivedFrom": derived,
-            "evidenceLabel": "J", "confidence": "low", "reviewStatus": "unreviewed", "adr": ["ADR-0008", "ADR-0011"]}
+            "evidenceLabel": "J", "confidence": "low", "reviewStatus": "unreviewed", "adr": ["ADR-0008", "ADR-0011", "ADR-0013"]}
 
 
 def exposure_records(inp: Inputs, plan: Plan):
@@ -920,8 +927,12 @@ def main(argv=None) -> int:
             "generatedAt": MIGRATION_TS,
             "inputs": {str(p.relative_to(L.ROOT)): L.sha256_file(p) for p in sorted(
                 [*(inp.base.glob("*.csv")), *(inp.base.glob("source_text/*.csv")), inp.base / "BUILD_INFO.json",
-                 L.DISPOSITION, L.CANDIDATES, SOURCE_TEXT, D7_RECORD, TASK10_RECORD]) if p.exists()},
+                 L.DISPOSITION, L.CANDIDATES, SOURCE_TEXT, D7_RECORD, TASK10_RECORD,
+                 L.ROOT / "docs" / "decisions" / "PROJECT_LEAD_DECISIONS.md", L.GOVERNANCE / "licensing.yaml"]) if p.exists()},
             "copyBWorkbookSha256": inp.copyb,
+            "licensing": {"v1Dedication": _LIC.get("v1Dedication", "pending"), "license": V1_LICENSE,
+                          "record": L.normalize_text(str(_LIC.get("v1DedicationRecord") or "")),
+                          "basis": "ADR-0013; questions_for_project_lead.md Q2; docs/decisions/PROJECT_LEAD_DECISIONS.md"},
             "counts (generated)": {
                 "competencySeeds": len(comps), "taskSeeds": len(tasks),
                 "competencySeedsByDecision": dict(sorted(Counter(plan.decision(c) for c in comps).items())),

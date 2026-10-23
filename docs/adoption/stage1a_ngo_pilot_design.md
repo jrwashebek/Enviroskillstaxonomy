@@ -3,7 +3,8 @@
 - **Work package:** WP-13 · **Author:** A10b (AS, with CM for metrics and gates) · **Date:** 2026-10-23 · **Licence:** CC BY 4.0
 - **Supersedes:** AS Phase 2 `docs/research/adoption-stewardship/ngo_pilot_design.md` (draft), updated to the ADRs and corrected facts.
 - **Builds:** ADR-0014 (rollout; **provisional-pending-verification** — dates re-checked at each stage gate), ADR-0006 (corridors COR-1…COR-3), ADR-0012 (no personal data), ADR-0023 (theory of change, gates), ADR-0024 (use tiers; describe/develop only), ADR-0027 (v2.0 product, claims hygiene), ADR-0007 (Tribal hold); `gate_metrics_G1_G2.csv`; `pilot_mou_template.md`.
-- **Pending answers that change this text:** Q1 (Tribal), Q3 (signatory), Q5 (parallel tracks), Q6 (theory of change wording), Q9 (funding). Each place is marked.
+- **Project lead decisions applied (2026-10-23, `docs/decisions/PROJECT_LEAD_DECISIONS.md`):** Q1 accepted (TAC binding consent authority; the Tribal gate nevertheless stays closed until compensation is funded and a TAC exists); Q5 accepted (Stage 1a and Stage 1b run in parallel, Stage 1b co-producing artifacts from 2027); Q7 (v1 figures only as methodology history; this design cites none).
+- **Pending answers that change this text:** Q3 (signatory), Q4 (federal default views), Q6 (theory of change wording), Q9 (funding). Each place is marked.
 
 > **No organization named in this document has committed to the pilot.** Names are recruitment channels or illustrative candidates. An organization becomes a pilot member only when a signed MOU is entered in the commitment register (charter Art. 12).
 
@@ -50,12 +51,12 @@ The pilot uses the three P1 corridors fixed in ADR-0006. Every corridor ends in 
 | C | Watershed council or river organization | 2 | River Network; state watershed council networks (candidate channels) [J] | restoration project management, monitoring, grant reporting |
 | D | Prescribed-fire or fire-adapted-communities NGO | 1 | prescribed-fire training exchange and learning-network partners (candidate channel) [J] | COR-2 entry |
 | E | Community environmental health or environmental-justice organization | 1 | regional networks (candidate channel) [J] | community monitoring; permitting participation from the community side |
-| F | Tribal-serving NGO | **0** | **none: the Tribal outreach gate is closed** (`docs/governance/tribal_gate_procedures.md`) | <!-- PENDING Q1: only if the lead accepts Q1, compensation is funded and a TAC exists, and then only by invitation through the TAC's process; never a quota (M-25) --> |
+| F | Tribal-serving NGO | **0** | **none: the Tribal outreach gate is closed** (`docs/governance/tribal_gate_procedures.md`) | Q1 is accepted, but the slot stays at 0 until compensation is funded and a TAC exists, and then only by invitation through the TAC's process; never a quota (M-25). <!-- DECIDED Q1 (2026-10-23, PROJECT_LEAD_DECISIONS.md): TAC binding consent authority accepted; the content hold continues until a TAC exists --> <!-- PENDING Q9 --> |
 | G | Statewide intermediary (e.g. state association of conservation districts or land trust coalition) | 1 | national associations (candidate channel) [J] | tests whether an intermediary can carry EMST to members |
 | H | Data-heavy conservation science or restoration NGO | 1 | practitioner networks (candidate channel) [J] | tests Data craft and human-AI practice content |
 | — | Reserve (fills from B, C or G if F stays empty) | 1 | — | keeps the cohort at 12 |
 
-**Shadow users (not cohort members).** Two or three state HR or training staff and one or two federal classification or training staff review NGO-produced artifacts and corridor endpoints. They give the pilot its state and federal validity check. Under the Q5 default, shadow review is **informal** and no artifacts are co-produced with them until the lead answers. <!-- PENDING Q5 --> Federal shadow-user feedback is collected with Paperwork Reduction Act-aware design (no identical questions to ten or more members of the public without clearance; CP).
+**Shadow users (not cohort members).** Two or three state HR or training staff and one or two federal classification or training staff review NGO-produced artifacts and corridor endpoints. They give the pilot its state and federal validity check. They are drawn from the agencies co-producing artifacts in the parallel Stage 1b design-partner track (`stage1b_design_partner_packages.md`), and their reviews are recorded under those agencies' design-partner letters. <!-- DECIDED Q5 (2026-10-23, PROJECT_LEAD_DECISIONS.md): parallel tracks accepted; Stage 1b co-produces artifacts from 2027 --> Federal shadow-user feedback is collected with Paperwork Reduction Act-aware design (no identical questions to ten or more members of the public without clearance; CP).
 
 ## 4. Selection
 
@@ -125,7 +126,7 @@ Dates follow ADR-0014 and are re-checked at each stage gate.
 | Apr – May 2027 (weeks 1–8) | UC4/UC5 on data files; research round 1 on rc.1 views | — |
 | Jun – Aug 2027 (weeks 9–20) | UC1–UC3; research round 2; first artifacts | explorer views (WP-12) |
 | Sep 2027 | Midpoint workshop; contribution story v1 | — |
-| Sep – Dec 2027 | Embedding: second artifacts; repeat use; shadow-user reviews | <!-- PENDING Q5 --> |
+| Sep – Dec 2027 | Embedding: second artifacts; repeat use; shadow-user reviews | Stage 1b design-partner letters signed and registered <!-- DECIDED Q5 (2026-10-23, PROJECT_LEAD_DECISIONS.md): parallel tracks accepted; Stage 1b co-produces artifacts from 2027 --> |
 | Jan – Feb 2028 | Close-out; evidence pack; adoption-economics interviews | — |
 | **Mar 2028** | **Gate G1 decision** (EB, or CA/lead if the EB is not constituted), with the WVP's binding usefulness veto | `gate_metrics_G1_G2.csv`; charter Art. 4.6 |
 
@@ -147,7 +148,7 @@ Dates follow ADR-0014 and are re-checked at each stage gate.
 | Contingency (10%) | $30k | $61k | |
 | **Total** | **≈ $331k** | **≈ $671k** | **planning figure ≈ $0.5M** |
 
-The Phase 2 line for Tribal-serving participation ($10k–$30k) is removed while the Tribal gate is closed <!-- PENDING Q1 -->. WVP compensation is budgeted in the evaluation and governance lines of the sustainability model, not here.
+The Phase 2 line for Tribal-serving participation ($10k–$30k) is removed while the Tribal gate is closed (Q1 accepted; compensation not yet funded) <!-- DECIDED Q1 (2026-10-23, PROJECT_LEAD_DECISIONS.md): TAC binding consent authority accepted; the content hold continues until a TAC exists --> <!-- PENDING Q9 -->. WVP compensation is budgeted in the evaluation and governance lines of the sustainability model, not here.
 
 **Funding sources** are candidates only; V3 found active environment programmes at Moore, Walton and Doris Duke and AI programmes at Bezos Earth Fund, Google.org and Schmidt Sciences, but **none runs a programme dedicated to environmental workforce skills** [E: V3-10]. Pilot funders will be asked to accept EMST-described workforce outcomes in grantee reporting (the first grant-condition lever).
 

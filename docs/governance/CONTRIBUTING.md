@@ -74,7 +74,7 @@ Sentinel reports, NLP drift reports, upstream releases (O*NET, ESCO, OPM issuanc
 
 - **Nothing Tribal-related is published** until a Tribal Advisory Council constituted by Tribal governments and inter-Tribal organizations exists and approves it (ADR-0007 §D). T requests are logged at triage and held; they are not opened for public comment.
 - **Never submit:** Indigenous knowledge content, sacred or cultural site locations, consultation records, material shared in confidence, characterizations or scores of named Tribes, Tribal employers' documents or postings, or person-level Tribal data. CI rejects some of these automatically; editors reject the rest.
-- If you are a Tribal government, inter-Tribal organization or Tribal professional and wish to raise something with EMST, you will be able to do so through the Tribal Liaison once a TAC exists. Until then, please know that the project will not use anything you send in any release. See `tribal_gate_procedures.md`. <!-- PENDING Q1 -->
+- If you are a Tribal government, inter-Tribal organization or Tribal professional and wish to raise something with EMST, you will be able to do so through the Tribal Liaison once a TAC exists; the project lead has decided that the TAC will hold binding consent authority over Tribal-related content, which no other EMST body can override. Until a TAC exists, please know that the project will not use anything you send in any release. See `tribal_gate_procedures.md`. <!-- DECIDED Q1 (2026-10-23, PROJECT_LEAD_DECISIONS.md): TAC binding consent authority accepted; the content hold continues until a TAC exists -->
 
 ## 7. Decisions, records and appeals
 

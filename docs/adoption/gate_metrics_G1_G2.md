@@ -8,7 +8,7 @@
 
 | Gate | Decision | When | Who decides |
 |---|---|---|---|
-| **G1** | Does EMST move from the Stage 1a NGO pilot (and Stage 1b co-production) to **Stage 2 federal and state adoption** (2028–29)? | March 2028 | the EB — or, if the EB is not yet constituted, the project lead as interim EB <!-- PENDING Q8 --> — with the Workforce Voice Panel's **binding usefulness veto** and ratification by stratum |
+| **G1** | Does EMST move from the Stage 1a NGO pilot (and Stage 1b co-production, approved by the lead under Q5) to **Stage 2 federal and state adoption** (2028–29)? | March 2028 | the EB — or, if the EB is not yet constituted, the project lead as interim EB <!-- PENDING Q8 --> — with the Workforce Voice Panel's **binding usefulness veto** and ratification by stratum |
 | **G2** | Does EMST move to **Stage 3, the whole sector including academia** (2029–31)? | at the G2 review after Stage 2 | the EB, with WVP ratification; the AC is consulted |
 
 A gate **passes** only when every *hard* and *hard stop* condition passes and every *threshold* condition meets its threshold. *Supporting* metrics are reported, not decisive. *Watch* metrics run from day one and can trigger warnings at any time.
@@ -67,7 +67,7 @@ A gate **passes** only when every *hard* and *hard stop* condition passes and ev
 5. **No telemetry.** The explorer is static and local-first; there is no in-tool analytics. CM's "in-tool prompt" for M-06 is implemented as a link to a survey hosted by the research partner, never as tracking.
 6. **Attribution discipline.** A gain is attributed to EMST only if the artifact chain is documented, the gain exceeds comparison units, it does not coincide only with hiring-freeze lifting or hiring-reform events, and movers report EMST use (logic model §5); otherwise it is logged as "co-occurring, not attributable".
 7. **Commitments count only from the register.** G1-07, AS-G1b–d, G2-04, G2-06 and G2-07 count only entries with `status ∈ {signed, active}` (`COMMITMENT_REGISTER.md`).
-8. **Tribal participation** is never a target, never counted toward breadth and never solicited while the Tribal gate is closed (`docs/governance/tribal_gate_procedures.md`). <!-- PENDING Q1 -->
+8. **Tribal participation** is never a target, never counted toward breadth and never solicited while the Tribal gate is closed (`docs/governance/tribal_gate_procedures.md`). Q1 is accepted, but the gate stays closed until compensation is funded and a TAC exists. <!-- DECIDED Q1 (2026-10-23, PROJECT_LEAD_DECISIONS.md): TAC binding consent authority accepted; the content hold continues until a TAC exists --> <!-- PENDING Q9 -->
 
 ## 4. Changes from CM's Phase 2 framework (for CM to confirm)
 
