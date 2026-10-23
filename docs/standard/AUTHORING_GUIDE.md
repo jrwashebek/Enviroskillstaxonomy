@@ -98,7 +98,7 @@ id: seed:fc-hazard-brief
 type: Task
 prefLabel: {en: Brief a field crew on site hazards and escape routes before work begins}
 statement: {en: Brief a field crew on site hazards and escape routes before work begins}
-textSha256: <python -c "import sys; sys.path.insert(0,'scripts'); import emstlib as L; print(L.text_sha256('<statement>'))">
+textSha256: <SHA-256 of the normalized statement; see the command below>
 supports: [{competency: 'seed:FC-C18', strength: primary}]
 workFunction: WF-ASSESS              # one primary function (vocab/work_functions.yaml)
 fieldDependency: on-site-required    # on-site-required | on-site-preferred | remote-capable | remote
@@ -115,7 +115,9 @@ sensitivity: public
 provenance: {method: llm-assisted, agent: ['emstagent:fc-agent@wp-03'], generatedAt: '2026-10-24T10:00:00Z', toolVersion: <model>, promptVersion: <prompt>, evidenceLabel: J, reviewStatus: unreviewed}
 ```
 
-Task text: one imperative verb, 8–30 words, no compound verbs, no product names (a tool *class* is fine when it changes the work condition). `textSha256` must equal the hash of the normalized `statement.en` (validator tells you the expected value).
+Task text: one imperative verb, 8–30 words, no compound verbs, no product names (a tool *class* is fine when it changes the work condition). `textSha256` must equal the hash of the normalized `statement.en`; compute it with `python -c "import sys; sys.path.insert(0, 'scripts'); import emstlib as L; print(L.text_sha256('YOUR STATEMENT'))"` (the validator's `E-TEXT-HASH` message also prints the expected value).
+
+YAML tip: in a `{en: ...}` flow map, quote any text containing a comma or a colon: `{en: 'Revises the plan, then records it.'}`.
 
 **Indicator** (`data/v2/core/indicators/seed-fc-c18-l2-a.yaml`)
 
@@ -125,7 +127,7 @@ type: Indicator
 prefLabel: {en: Revises the job hazard analysis when site conditions change}
 competency: seed:FC-C18
 level: L2
-statement: {en: Revises the job hazard analysis when site conditions differ from the plan, and records the change before work resumes.}
+statement: {en: 'Revises the job hazard analysis when site conditions differ from the plan, and records the change before work resumes.'}
 augmentationMode: unaided            # unaided | assisted | supervisory
 assessmentMethods: [task-book-observation]
 useClass: develop                    # describe | develop (select is not used in v2.0)
@@ -143,7 +145,7 @@ sensitivity: public
 provenance: {method: llm-assisted, agent: ['emstagent:io-agent@wp-03'], generatedAt: '2026-10-24T10:00:00Z', toolVersion: <model>, promptVersion: <prompt>, evidenceLabel: J, reviewStatus: unreviewed}
 ```
 
-Then list it on the competency: `levels: [{level: L2, indicators: [seed:fc-c18-l2-a, seed:fc-c18-l2-b]}]` (2–5 per published level). Indicator lint (twelve banned constructions, `schema/lint/indicator_lint.yaml`) runs on every statement.
+Then list it on the competency: `levels: [{level: L2, indicators: [seed:fc-c18-l2-a, seed:fc-c18-l2-b]}]` (2–5 per published level). Indicator lint is IO's WP-11 linter (`validation/lint_indicators.py`, rules in `validation/indicator_lint_rules.yaml`: B01–B12 and the publication rules); `validate_v2.py` runs it on every indicator, competency, task and knowledge statement and falls back to `schema/lint/indicator_lint.yaml` only if it is missing. Record the attribute that separates a level from the one below in `distinguishingAttribute` (ATT-AUT … ATT-FOR).
 
 **Enactment** (`data/v2/modules/forest/enactments/seed-ena-fc-c18-forest.yaml`): `type: Enactment`, `competency`, `enactmentKind: actor | module | craft`, `note` (language map); actor enactments also need `actorType`, `authorityBasis`, `principal`, `accountabilityVenue`; module enactments `enactedInModule`; craft enactments `craft`. Plus the common base (`prefLabel`, `layer: L1`, `module`, `status`, `lifecycleState`, `useTier`, `validationStatus`, `license`, `sensitivity`, `provenance`).
 
@@ -159,6 +161,8 @@ Then list it on the competency: `levels: [{level: L2, indicators: [seed:fc-c18-l
 ```
 
 Three independent passes = three `raterId`s, coded blind to the parent competency and any prior label. Agreement is computed by CI; never type it in.
+
+**L5 and L6 field names that differ from the SPEC text** (CR-DE-001): ChangeSignal uses `signalStatus` (watch | active | retired), SeriesRecord `seriesStatus`, Source `sourceStatus`; their titles go in `prefLabel`. `status` is always the editorial status. Coded values come from `vocab/` exactly (e.g. `crosswalkMinMatchType: skos:closeMatch`, not `close`; `reviewStatus: unreviewed`, not `machine-coded`); periods are `{start, end}` as `YYYY`, `YYYY-MM` or `YYYY-MM-DD` with an optional `note`. Fields proposed in CR-LM-001/002 are not in the schema until the CA decides.
 
 **Tool (L4)**: `type: Tool`, `layer: L4`, `toolType`, `vendorNeutral`, `servesTasks` or `servesCompetencies` (L4 points at L1/L2, never the reverse), `lifecycleState: watch | established | declining | withdrawn`, plus the common base. Product names go in `productExamples` (the typing lint learns them automatically).
 
@@ -191,7 +195,7 @@ What the seed's `status` means:
 
 `derivedFrom` items: `{v1Key, relation, v1Table?, v1Row?, workbookSha256?, sourceTextLine?, note?}`; `relation ∈ carried | rewritten | split-from | merged-from | recovered | prior-evidence | reference-only`. Keys resolve to `data/v1_baseline/` (`v1:4.1.1`, `v1:4.1.1:T2`, `v1:4.1.1:advanced:I7`, `v1:4.1.1:sector:ngos`). Cite indicator keys when you rewrite a v1 indicator. After authoring, DE regenerates X1 with `python scripts/migrate_v1.py --x1-only` (CI fails `E-X1-STALE` otherwise); X1 picks up every live record whose `derivedFrom` names a v1 key.
 
-**v1 tags are prior evidence only** (`data/v2/assessments/emst-v1-*/`; `raterType: v1-analyst`, `raterId: v1-analyst-01`, `confidence: low`). Read them for context; never copy a v1 craft, stage, family, exposure or lens value into a v2 field, and never cite them as v2 findings.
+**v1 tags are prior evidence only** (`data/v2/assessments/emst-v1-*/`; `raterType: v1-analyst`, `raterId: v1-analyst-01`, `confidence: low`). Read them for context; never copy a v1 craft, stage, family, exposure or lens value into a v2 field, and never cite them as v2 findings. These batches, X1 and `data/v2/migration/` are regenerated by `scripts/migrate_v1.py`: do not edit them. The v1 stability tier, modal fields and counts were deliberately not migrated (ADR-0011 rule 5; CR-DE-003).
 
 ## 7. Licence on each record (ADR-0013; lead's Q2 pending)
 
@@ -223,6 +227,7 @@ No names, e-mail addresses, phone numbers or person-level fields anywhere under 
 python scripts/build_schema.py --check     # schema current with vocab/
 python scripts/validate_v2.py               # all data; exit 1 on any error
 python scripts/validate_v2.py --json /tmp/report.json   # full list, filter by your ids
+python validation/lint_indicators.py data/v2 --tools-lexicon data/v2/tools/tools.jsonl   # IO's full lint report
 python -m pytest -q                         # tests, incl. seeded-violation fixtures
 ```
 

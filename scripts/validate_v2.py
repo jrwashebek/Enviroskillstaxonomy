@@ -188,6 +188,7 @@ class Validator:
         self.source_ids = self._load_source_ids()
         self.v1keys, self.v1_competencies = self._load_v1_keys()
         self.copyb_sha = self._copyb_sha()
+        self.io_lint = self._load_io_linter()
 
     # ------------------------------------------------------------------ configuration
     def _prep_patterns(self):
@@ -230,6 +231,57 @@ class Validator:
         esc = re.escape(t["term"])
         return re.compile(r"(?<![A-Za-z0-9])" + esc + r"(?![A-Za-z0-9])", 0 if t.get("cs") else re.I)
 
+    def _load_io_linter(self):
+        """IO's WP-11 indicator linter (validation/lint_indicators.py) is authoritative for B01-B12 and the publication
+        rules when present; schema/lint/indicator_lint.yaml is the fallback."""
+        p = self.repo / "validation" / "lint_indicators.py"
+        if not p.exists():
+            return None
+        try:
+            import importlib.util
+            spec = importlib.util.spec_from_file_location("emst_io_lint", p)
+            mod = importlib.util.module_from_spec(spec)
+            sys.modules["emst_io_lint"] = mod          # dataclasses resolve their module through sys.modules
+            spec.loader.exec_module(mod)
+            tools = self.data / "tools" / "tools.jsonl"
+            names = mod.load_jsonl_names(tools if tools.exists() else None, ["prefLabel", "productExamples"],
+                                         {"software-product", "platform", "model", "dataset-product", "instrument-model"})
+            linter = mod.Linter(mod.load_rules(), "release" if self.strict else "ci", mod.load_waivers(mod.DEFAULT_WAIVERS), names, [])
+            return mod, linter
+        except Exception as e:  # noqa: BLE001
+            self._io_lint_error = f"{type(e).__name__}: {e}"
+            return None
+
+    def check_io_lint(self):
+        if getattr(self, "_io_lint_error", None):
+            self.r.add("W-LINT-ENGINE", "validation/lint_indicators.py", f"IO linter unavailable, fallback rules used: {self._io_lint_error}")
+        if not self.io_lint:
+            return
+        mod, linter = self.io_lint
+        recs, locs = [], {}
+        for rid, (loc, rec) in self.records.items():
+            if rec.get("type") in ("Indicator", "Competency", "Task", "KnowledgeStatement"):
+                recs.append(mod.Record(rec, str(loc)))
+                locs[rid] = (loc, rec)
+        try:
+            hits = linter.lint_set(recs)
+        except Exception as e:  # noqa: BLE001
+            self.r.add("W-LINT-ENGINE", "validation/lint_indicators.py", f"IO linter failed ({type(e).__name__}: {e}); fallback rules used")
+            self.io_lint = None
+            for rid, (loc, rec) in locs.items():
+                self._fallback_indicator_lint(loc, rec)
+            return
+        for h in hits:
+            if h.severity == "info" or h.status == "waived":
+                continue
+            loc, rec = locs.get(h.record_id, (h.source, {}))
+            if rec.get("type") != "Indicator" and h.rule_id.split("-")[0] in ("B09", "B10"):
+                continue        # products/instruments in competency/task text: reported once, by E/W-LINT-TYPING
+            seed = rec.get("validationStatus") == "seed-v1"
+            code = "E-LINT-INDICATOR" if (h.fails and not seed) else "W-LINT-INDICATOR"
+            m = f" [{h.match}]" if h.match else ""
+            self.r.add(code, loc, f"{h.rule_id}{m}: {h.message}", h.record_id)
+
     def _load_hold(self):
         p = self.data / "governance" / "tribal_hold.yaml"
         d = L.load_yaml(p) if p.exists() else {}
@@ -251,7 +303,7 @@ class Validator:
 
     def _load_source_ids(self):
         ids = set()
-        for p in sorted((self.repo / "docs" / "research").rglob("sources.csv")):
+        for p in sorted((self.repo / "docs").rglob("sources.csv")):      # research lanes + docs/methods (CR-LM-001 #9)
             try:
                 for row in L.read_csv(p):
                     if row.get("source_id"):
@@ -332,6 +384,7 @@ class Validator:
         for loc, rec in L.iter_records(self.data):
             self.check_record(loc, rec)
         self.check_duplicates_and_index()
+        self.check_io_lint()
         self.check_cross_record()
         self.check_registry()
         self.check_crosswalks()
@@ -496,22 +549,8 @@ class Validator:
                     for term, rx in self.instruments:
                         if rx.search(s):
                             self.r.add(f"{sev}-LINT-TYPING", loc, f"{f} names an L5 instrument {term!r} (ADR-0003 T-4/T-7): write regulation-neutral text; link the instrument in L5", rid)
-        if typ == "Indicator":
-            for s in _lang_values(rec.get("statement")):
-                for rule, rx in self.ilint_rules:
-                    rsev = "W" if (seed or rule.get("severity") == "warning") else "E"
-                    if rx is not None and rx.search(s):
-                        self.r.add(f"{rsev}-LINT-INDICATOR", loc, f"{rule['id']} {rule['name']}: {rule['fix']}", rid)
-                    if rule.get("lexicon") == "products":
-                        for term, trx in self.products:
-                            if trx.search(s):
-                                self.r.add(f"{rsev}-LINT-INDICATOR", loc, f"{rule['id']} names product {term!r}: {rule['fix']}", rid)
-                    if rule.get("lexicon") == "instruments":
-                        for term, trx in self.instruments:
-                            if trx.search(s):
-                                self.r.add(f"{rsev}-LINT-INDICATOR", loc, f"{rule['id']} names instrument {term!r}: {rule['fix']}", rid)
-                if L.word_count(s) > 30:
-                    self.r.add(f"{sev}-LINT-LENGTH", loc, f"indicator has {L.word_count(s)} words (max 30)", rid)
+        if typ == "Indicator" and self.io_lint is None:
+            self._fallback_indicator_lint(loc, rec)
         if typ == "Competency":
             s = (rec.get("statement") or {}).get("en", "")
             if L.word_count(s) > 60:
@@ -523,6 +562,29 @@ class Validator:
                 self.r.add(f"{sev}-LINT-LENGTH", loc, f"task statement has {n} words (8–30, ADR-0003 G-2)", rid)
             if re.match(r"^\s*\w+\s+(and|or)\s+\w+\b", s):
                 self.r.add(f"{sev}-LINT-LENGTH", loc, "compound verb at start of task statement (G-2: one verb per task)", rid)
+
+    def _fallback_indicator_lint(self, loc, rec):
+        """B1-B12 from schema/lint/indicator_lint.yaml; used only when IO's linter is unavailable."""
+        if rec.get("type") != "Indicator":
+            return
+        rid = rec.get("id")
+        seed = rec.get("validationStatus") == "seed-v1"
+        sev = "W" if seed else "E"
+        for s in _lang_values(rec.get("statement")):
+            for rule, rx in self.ilint_rules:
+                rsev = "W" if (seed or rule.get("severity") == "warning") else "E"
+                if rx is not None and rx.search(s):
+                    self.r.add(f"{rsev}-LINT-INDICATOR", loc, f"{rule['id']} {rule['name']}: {rule['fix']}", rid)
+                if rule.get("lexicon") == "products":
+                    for term, trx in self.products:
+                        if trx.search(s):
+                            self.r.add(f"{rsev}-LINT-INDICATOR", loc, f"{rule['id']} names product {term!r}: {rule['fix']}", rid)
+                if rule.get("lexicon") == "instruments":
+                    for term, trx in self.instruments:
+                        if trx.search(s):
+                            self.r.add(f"{rsev}-LINT-INDICATOR", loc, f"{rule['id']} names instrument {term!r}: {rule['fix']}", rid)
+            if L.word_count(s) > 30:
+                self.r.add(f"{sev}-LINT-LENGTH", loc, f"indicator has {L.word_count(s)} words (max 30)", rid)
 
     def check_provenance(self, loc, rec):
         rid, typ = rec.get("id"), rec.get("type")
@@ -539,7 +601,7 @@ class Validator:
             self.r.add("E-LLM-DRAFT", loc, "raterType llm values carry evidence label S until reviewed", rid)
         for sid in sorted(set(prov.get("sources") or []) | set(rec.get("sources") or [])):
             if isinstance(sid, str) and not L.is_record_ref(sid) and sid not in self.source_ids:
-                self.r.add("E-SOURCE-UNRESOLVED", loc, f"source {sid!r} does not resolve to any docs/research/*/sources.csv or key-facts row", rid)
+                self.r.add("E-SOURCE-UNRESOLVED", loc, f"source {sid!r} does not resolve to any docs/**/sources.csv or key-facts row", rid)
         v1_text = False
         for d in prov.get("derivedFrom") or []:
             key = d.get("v1Key")

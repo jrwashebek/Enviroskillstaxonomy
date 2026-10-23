@@ -1,6 +1,7 @@
 # EMST CI (WP-01). Every push and pull request: schema current with vocab/, all data valid (JSON Schema + cross-record
-# rules incl. Tribal hold, personal data, typing/indicator lint, computed-field-in-source, registry append-only,
-# module/core namespaces, v1 completeness), migration deterministic, release build reproducible, tests.
+# rules incl. Tribal hold, personal data, typing lint, IO's indicator lint (validation/lint_indicators.py),
+# computed-field-in-source, registry append-only, module/core namespaces, v1 completeness), migration deterministic,
+# release build reproducible (tests/test_build_release.py), tests.
 # Actions are pinned by commit SHA (CP supply-chain guidance); bump with the tag noted in the comment.
 name: ci
 on:
@@ -40,6 +41,9 @@ jobs:
           fi
       - name: Validate all data (cross-record rules)
         run: python scripts/validate_v2.py --registry-base "$RUNNER_TEMP/registry.base.csv" --json "$RUNNER_TEMP/validation.json"
+      - name: IO indicator lint report (WP-11; the gate is validate_v2, which runs the same linter with v1 seeds as warnings)
+        continue-on-error: true
+        run: python validation/lint_indicators.py data/v2 --tools-lexicon data/v2/tools/tools.jsonl
       - name: v1 migration is deterministic and X1 is current
         run: python scripts/migrate_v1.py --check
       - name: Tests (seeded-violation fixtures, minting, migration, reproducible build)

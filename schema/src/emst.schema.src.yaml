@@ -130,11 +130,12 @@ $defs:
       sources: {type: array, items: {$ref: '#/$defs/SourceId'}, uniqueItems: true}
   PublicationRuleCheck:
     type: object
+    description: 'Result of one publication rule at one level (SPEC §8.2). Values per CR-IO-001 (interim, pending CA).'
     additionalProperties: false
     required: [result]
     properties:
-      result: {enum: [pass, fail, pending]}
-      evidence: {type: string}
+      result: {enum: [pass, fail, pending, not-applicable]}
+      evidence: {type: array, items: {anyOf: [{$ref: '#/$defs/SourceId'}, {$ref: '#/$defs/RecordRef'}, {type: string, minLength: 1}]}}
       checkedOn: {$ref: '#/$defs/Date'}
 
   DecisionRef:
@@ -456,7 +457,7 @@ $defs:
       evidencePlan: {$ref: '#/$defs/Text'}
       jurisdictionVariable: {type: boolean}
       servedTasks: {$ref: '#/$defs/RefList'}
-      differsOn: {type: array, uniqueItems: true, items: {$ref: '#/$defs/v_proficiencyAttribute'}}
+      distinguishingAttribute: {$ref: '#/$defs/v_proficiencyAttribute', description: 'Attribute on which this indicator differs from the adjacent lower level (SPEC §8.2 PR-2; CR-IO-001, interim).'}
       safetyOrLegalCritical: {type: boolean}
     unevaluatedProperties: false
 
