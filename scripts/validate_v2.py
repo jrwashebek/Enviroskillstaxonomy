@@ -518,7 +518,7 @@ class Validator:
         interim = sorted({n.get("scheme") for n in rec.get("notation") or []
                           if isinstance(n, dict) and str(n.get("scheme", "")).startswith("EMST-")})
         if interim:
-            code = "E-NOTATION-INTERIM" if (status in AT_OR_AFTER_CANDIDATE or self.strict) else "W-NOTATION-INTERIM"
+            code = "E-NOTATION-INTERIM" if status in AT_OR_AFTER_CANDIDATE else "W-NOTATION-INTERIM"
             self.r.add(code, loc, f"interim notation scheme(s) {', '.join(interim)}: move each value to its typed field (ADR-0029 §8; AUTHORING_GUIDE §12)", rid)
         if typ == "ChangeSignal":
             self._check_signal(loc, rec)
@@ -627,7 +627,7 @@ class Validator:
             if k in self.computed_names:
                 self.r.add("E-COMPUTED-FIELD", loc, f"computed field {'/'.join(map(str, path + (k,)))} is not allowed in source records (SPEC §14.2; ADR-0021)", rid)
             if not path and k in self.inverse.get(typ, set()):
-                if k in self.transitional.get(typ, set()) and rec.get("status") == "draft" and not self.strict:
+                if k in self.transitional.get(typ, set()) and rec.get("status") == "draft":
                     self.r.add("W-COMPUTED-FIELD-DEPRECATED", loc, f"{k} on {typ} is now a computed inverse (ADR-0029 §1.2): remove it before candidate; the build ignores it", rid)
                 else:
                     self.r.add("E-COMPUTED-FIELD", loc, f"{k} on {typ} is an inverse link computed in bundles; store the link on the other side", rid)

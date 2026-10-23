@@ -1,22 +1,30 @@
 id: seed:v1-3.6.3-T2
 type: Task
 prefLabel:
-  en: Apply AI-powered sentiment analysis to understand stakeholder priorities and concerns at scale
+  en: Review automated theme or sentiment analysis of party input against a sample of the original submissions, correcting each misread priority
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Apply AI-powered sentiment analysis to understand stakeholder priorities and concerns at scale
-textSha256: 88b6bd46efa497446f79e1cd07e9e4519d6d90a07ce8944a7072d95bf99ffcba
+  en: Review automated theme or sentiment analysis of party input against a sample of the original submissions, correcting each misread priority
+textSha256: 3181a529a38b09f2e1d293c11b1aa225120e6641f372bb66893c744beb9a0b45
 supports:
 - competency: seed:v1-5.2.1
   strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+modes:
+- MODE-ENGAGE
 notation:
 - scheme: EMSTv1
   value: 3.6.3:T2
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T2
 v1Domain:
   code: '3'
@@ -25,14 +33,16 @@ v1SkillArea:
   code: '3.6'
   label: Corporate Sustainability & Esg Management
 editorialNote:
-  en: Supports re-pointed from v1 competency 3.6.3 to seed:v1-5.2.1 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'Rewritten from the v1 task text: "Apply AI-powered sentiment analysis to understand stakeholder priorities and concerns at scale" (WP-05).'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:3.6.3:T2
     v1Code: 3.6.3
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

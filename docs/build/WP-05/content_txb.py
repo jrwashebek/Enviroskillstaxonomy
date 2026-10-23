@@ -31,8 +31,9 @@ COMPETENCIES = [
         "derived": [],
         "sources": [],
         "editorial": "WP-05 (A5 SC). v1 7.1.2 rewrite moved to the transversal layer with observable indicators "
-                     "(ADR-0025). TN's verdict that Tribal governments are authorities with standing is preserved as a "
-                     "held enactment for TN to draft under the Tribal hold; this record is written actor-neutrally and "
+                     "(ADR-0025). TN's verdict that Tribal governments are authorities with standing is reserved for TN to "
+                     "draft as a held enactment under the Tribal hold (not authored here); this record is written "
+                     "actor-neutrally and "
                      "names no Tribal content.",
         "tasks": [
             T("seed:v1-7.1.2-T1", "Evaluate a proposed ecological intervention against reversibility, precedent and "

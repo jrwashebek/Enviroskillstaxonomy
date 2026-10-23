@@ -1,22 +1,30 @@
 id: seed:v1-6.6.1-T1
 type: Task
 prefLabel:
-  en: Conduct greenhouse gas inventories for organizations, projects, or jurisdictions
+  en: Compile a greenhouse gas inventory for an organization or jurisdiction, documenting boundaries, activity data, emission factors and methods for each source.
 statement:
-  en: Conduct greenhouse gas inventories for organizations, projects, or jurisdictions
-textSha256: 2e4c659c09ce9fdfa5e576aacc9cd19ff8234507dc1e18c4963f0871c2671ede
-supports:
-- competency: seed:v1-6.6.1
-  strength: primary
+  en: Compile a greenhouse gas inventory for an organization or jurisdiction, documenting boundaries, activity data, emission factors and methods for each source.
+textSha256: 6c710e65a5783d7c951da62aebe95e3cbbe50278bd7c499d5a8aa6b968ca1672
+editorialNote:
+  en: 'Split from v1 6.6.1: inventories -> PS-C09; project quantification (T2) -> PS-C06 in the markets module (left for WP-06/WP-05); verification plans (T3) -> PS-C07. v1 competency 6.6.1 is split: reassign this task to one of [''seed:PS-C09'', ''seed:PS-C06'', ''seed:PS-C07''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
 notation:
 - scheme: EMSTv1
   value: 6.6.1:T1
+supports:
+- competency: seed:PS-C09
+  strength: primary
+workFunction: WF-MONITOR.attest
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T1
 v1Domain:
   code: '6'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '6.6'
   label: Environmental Markets
-editorialNote:
-  en: 'v1 competency 6.6.1 is split: reassign this task to one of [''seed:PS-C09'', ''seed:PS-C06'', ''seed:PS-C07''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:6.6.1:T1
     v1Code: 6.6.1
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

@@ -1,0 +1,38 @@
+id: seed:db-c06-l2-b
+type: Indicator
+prefLabel:
+  en: Switches a process or monitoring network to manual operation in a drill, reaching a…
+competency: seed:DB-C06
+level: L2
+statement:
+  en: Switches a process or monitoring network to manual operation in a drill, reaching a safe state within the facility's target time.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:dc-db06-fallback-drill
+distinguishingAttribute: ATT-CPX
+safetyOrLegalCritical: true
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

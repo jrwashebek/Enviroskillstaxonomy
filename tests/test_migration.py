@@ -5,7 +5,6 @@ import json
 import re
 from collections import Counter, defaultdict
 
-import pytest
 
 from conftest import L
 

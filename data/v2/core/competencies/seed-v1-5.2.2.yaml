@@ -1,19 +1,40 @@
 id: seed:v1-5.2.2
 type: Competency
 prefLabel:
-  en: Meeting facilitation and design
+  en: Design and facilitate meetings among parties with differing views
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to design and facilitate meetings, workshops and working sessions among parties with differing views, in person or online, and to carry their outcomes into the decision. Meeting platforms are L4 tools.
 statement:
-  en: Planning and leading effective gatherings where diverse stakeholders can productively discuss issues and work toward solutions.
+  en: 'Designs and facilitates meetings, workshops and working sessions among parties with differing views, in person or online: sets purpose, agenda and ground rules, manages participation and group dynamics, records outcomes and commitments, and follows up so that the meeting''s results carry into the decision.'
 competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - meeting facilitation and design
+  - workshop facilitation
+  - virtual meeting facilitation
+instrumentSensitivity:
+- mechanism: DM-04
+  rationale:
+    en: Discretion over participation changes when and how meetings are convened.
+  evidenceLabel: E
+  sources:
+  - SC-038
 notation:
 - scheme: EMSTv1
   value: 5.2.2
-layer: L1
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Domain:
   code: '5'
   label: Communication & Engagement Skills
@@ -21,14 +42,16 @@ v1SkillArea:
   code: '5.2'
   label: Stakeholder Engagement
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | MODE-ENGAGE. Rationale: Relational core (SC carry); absorbs facilitation from 2.5.1. Role verdicts considered: none recorded.'
-license: CC0-1.0
-sensitivity: public
+  en: 'WP-05 (A5 SC). v1 5.2.2 carried with v2 indicators; absorbs the facilitation remainder of v1 2.5.1 (platforms moved to L4; the 2.5.1 tasks were rewritten by WP-04 and already point here). Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | MODE-ENGAGE. Rationale: Relational core (SC carry); absorbs facilitation from 2.5.1. Role verdicts considered: none recorded.'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:5.2.2
     v1Code: 5.2.2
@@ -39,7 +62,7 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:5.2.2
     v1Code: 5.2.2
     v1Table: source_text/competencies
@@ -50,158 +73,29 @@ provenance:
     v1Code: 2.5.1
     relation: merged-from
     note: v1 2.5.1 (move-to-tools) → seed:v1-5.2.2 per v1_disposition.csv
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Meeting facilitation and design
-  v1Description: Planning and leading effective gatherings where diverse stakeholders can productively discuss issues and work toward solutions.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:5.2.2:foundational
-    knowledge: Understands basic meeting design and facilitation techniques
-    application: Supports meeting logistics; co-facilitates simple meetings
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.2.2:foundational:I1
-      n: 1
-      text: Manages meeting logistics (space, materials, technology)
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:foundational:I2
-      n: 2
-      text: Takes notes and documents discussions accurately
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:foundational:I3
-      n: 3
-      text: Co-facilitates small group discussions with guidance
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:foundational:I4
-      n: 4
-      text: Uses basic facilitation tools (flip charts, small group breakouts)
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:foundational:I5
-      n: 5
-      text: Follows meeting plans effectively
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:5.2.2:intermediate
-    knowledge: Applies participatory meeting design principles; understands group dynamics
-    application: Independently facilitates routine stakeholder meetings
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.2.2:intermediate:I1
-      n: 1
-      text: Designs meeting agendas that achieve stated objectives
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:intermediate:I2
-      n: 2
-      text: Facilitates meetings of 20-50 participants effectively
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:intermediate:I3
-      n: 3
-      text: Uses diverse engagement techniques (brainstorming, prioritization, world café)
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:intermediate:I4
-      n: 4
-      text: Manages dominant participants and draws out quieter voices
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:intermediate:I5
-      n: 5
-      text: Navigates moderate disagreement constructively
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:intermediate:I6
-      n: 6
-      text: Creates inclusive, accessible meeting environments
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:intermediate:I7
-      n: 7
-      text: Produces clear meeting summaries and action items
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:5.2.2:advanced
-    knowledge: Expert in facilitation theory; skilled in conflict and complexity
-    application: Facilitates complex multi-day processes and contentious meetings
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.2.2:advanced:I1
-      n: 1
-      text: Designs sophisticated multi-meeting processes for complex issues
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:advanced:I2
-      n: 2
-      text: Facilitates contentious meetings where stakeholders have significant conflicts
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:advanced:I3
-      n: 3
-      text: Uses advanced techniques (consensus building, interest-based negotiation, scenario planning)
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:advanced:I4
-      n: 4
-      text: Co-designs processes collaboratively with stakeholders
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:advanced:I5
-      n: 5
-      text: Manages power dynamics and ensures equitable participation
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:advanced:I6
-      n: 6
-      text: Trains others in facilitation skills
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:advanced:I7
-      n: 7
-      text: Adapts facilitation approach real-time to emerging dynamics
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:5.2.2:expert
-    knowledge: Master facilitator; shapes facilitation practices in environmental field
-    application: Facilitates highest-stakes processes; advises on facilitation strategy
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.2.2:expert:I1
-      n: 1
-      text: Facilitates complex multi-party negotiations on major controversies
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:expert:I2
-      n: 2
-      text: Serves as lead facilitator for national or regional planning processes
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:expert:I3
-      n: 3
-      text: Provides mediation in environmental disputes
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:expert:I4
-      n: 4
-      text: Develops innovative facilitation methods
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:expert:I5
-      n: 5
-      text: Achieves recognized credentials (IAF Certified Professional Facilitator, etc.)
-      origin: restored-from-source-text
-    - v1Key: v1:5.2.2:expert:I6
-      n: 6
-      text: Mentors senior facilitators
-      origin: restored-from-source-text
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:5.2.2:sector:public_agencies
-    text: Public scoping meetings, collaborative forest planning, advisory committee meetings
-  - sector: private_sector
-    v1Key: v1:5.2.2:sector:private_sector
-    text: Community advisory panels, project consultation meetings
-  - sector: ngos
-    v1Key: v1:5.2.2:sector:ngos
-    text: Coalition meetings, strategy sessions, community planning workshops
-  - sector: consulting
-    v1Key: v1:5.2.2:sector:consulting
-    text: Professional facilitation services, collaborative process design
-  - sector: academia
-    v1Key: v1:5.2.2:sector:academia
-    text: Research partnership meetings, community engagement for studies
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - seed:v1-5-2-2-l1-a
+  - seed:v1-5-2-2-l1-b
+- level: L2
+  indicators:
+  - seed:v1-5-2-2-l2-a
+  - seed:v1-5-2-2-l2-b
+- level: L3
+  indicators:
+  - seed:v1-5-2-2-l3-a
+  - seed:v1-5-2-2-l3-b
+- level: L4
+  indicators:
+  - seed:v1-5-2-2-l4-a
+  - seed:v1-5-2-2-l4-b

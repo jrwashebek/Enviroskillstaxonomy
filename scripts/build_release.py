@@ -33,7 +33,6 @@ included records. Two consecutive builds from the same inputs are byte-identical
 from __future__ import annotations
 
 import argparse
-import copy
 import datetime as dt
 import json
 import os

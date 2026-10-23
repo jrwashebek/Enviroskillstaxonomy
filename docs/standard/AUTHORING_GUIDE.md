@@ -246,7 +246,7 @@ Issue codes you will meet: `E-SCHEMA` (field missing, wrong value, unknown field
 
 ## 12. Changes since S0 (ADR-0029, CA rulings of 2026-10-23; SPEC 2.0.0-draft.2)
 
-Schema `2.0.0-draft.2` is generated from the amended `vocab/`. Most S0 records stay valid; the items marked **adapt** need a change in records written before the rulings. Drafts get a warning; the same issue is an error at `candidate` and in `--strict` (release) mode.
+Schema `2.0.0-draft.2` is generated from the amended `vocab/`. Most S0 records stay valid; the items marked **adapt** need a change in records written before the rulings. Drafts get a warning; the same issue is an error once the record is `candidate` or later.
 
 | # | Change | What you do |
 |---|---|---|

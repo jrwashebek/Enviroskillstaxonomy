@@ -50,3 +50,34 @@ a reviewed or selection-grade mapping (ADR-0022 §4). **No public alignment clai
 - Open for SL: verify Lewis County grade 122 mapping to the 2026 schedule; retrieve PA OA job specifications (class
   codes) and current TX Park Ranger / Hydrologist pay (2019 values recorded as dated); mvp_role_set R37's PA example
   is a regulator-side class (mirror only), mapped to R12 instead.
+- X7 built: `x7_esco.py` (candidates from `pipelines/linker` hybrid index, IDs only, to `work/`) + LLM review
+  decisions `curation/x7_esco_review.csv` → `crosswalks/esco/1.2.0`. VERSION GAP: v1.2.1 unreachable; pinned to the
+  v1.2.0 skill URIs bundled in esco-skill-extractor 0.1.18 (sha256 in the set yml). Many lexical homonym candidates
+  rejected as `Not` rows so they do not resurface. Navigation-grade at most; no ESCO alignment claim.
+- X9 built: `x9_ecq.py` + `curation/x9_ecq.csv` → `crosswalks/opm-ecq/2025-10-01`. Five current ECQs and their
+  15 competencies re-verified on OPM's page 2026-10-23 (`reference/opm_ecq_2025-10-01.csv`); retired names never
+  targets. FWCI / USA Hire / OPM general competency parts of X9 not built (scope given: five-ECQ only).
+- X8 / X11 seeds: `x8_x11_private.py` → `crosswalks/emst-private-ja/0.1.0` (PS reference job architecture) and
+  `emst-public-private/0.1.0` (PS translation rows with friction fields; `emst:mirrorRole` for inverted authority
+  pairs). TR-14 (cultural resources / government-to-government) not seeded — Tribal hold, left for TN.
+- Linker (DP-18): `pipelines/linker/emst_linker` 0.2.0 (TF-IDF + BM25 + optional WordLlama, min-max fusion,
+  ranker-agreement confidence; PII strip and Tribal quarantine before linking; `aggregate()` refuses to count
+  without gold-set quality — `UncorrectedCountError`). Gold-set design `GOLD_SET_DESIGN.md` (GS-LINK, 600 units).
+  No gold set exists yet, so no linkerQuality is published.
+- X2 prep and run: `pipelines/onet/fetch_onet.py` (31.0 fetch 403; 27.2 = Eloundou base cached in scratch),
+  `pipelines/x2/` protocol, provisional P1 frame, candidates, coder A (agent) on 273 units, merge →
+  `crosswalks/onet-task/27.2`. Kappa: not computable (one coder); `coder_prompt.md` ready for a blind coder B in a
+  fresh context. Coder A NoTermFound share 56% (ADR-0022 expected ≈30%): v2 P1 tasks are dominated by
+  specification, review and AI-output validation work with no O*NET task counterpart — a finding, not a defect.
+- Tooling: `report_counts.py` (counts → `crosswalk_counts.json`), `build_all.sh`, `tests/test_sssomlib.py`.
+
+## Open items (end of session 2026-10-23)
+
+1. X2 coder B (blind, fresh context, `pipelines/x2/coder_prompt.md`), then `kappa.py` and `merge_x2.py`; κ ≥ 0.6
+   gate before any exposure join. Agent–agent κ is to be labelled agent agreement, not human reliability.
+2. Re-pins: O*NET 31.0 (X2, X3 O*NET-SOC check), ESCO v1.2.1 (X7) via the upstream-diff pipeline; DWAs for X2.
+3. P1 frame (`p1_frame.yaml`) is provisional until WP-08 authors task bundles; re-run X2 candidates then.
+4. WP-08: once variants exist, re-run `x5_state_classes.py` (links `roleVariant`) and `rekey.py` if keys differ.
+5. FH: verify the 6 added OPM series titles/groups; SL: items above; PA class codes (OA job specs).
+6. X9 FWCI / USA Hire parts; X10 is LC/IO's (fails the WP-09 profile — not mine, not changed).
+7. Human review of every set: all rows are agent drafts (`raterType llm`, evidence S unless cited).

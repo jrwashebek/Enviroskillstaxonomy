@@ -1,0 +1,33 @@
+mapping_set_id: https://w3id.org/emst/crosswalks/onet-task/27.2
+mapping_set_version: 0.1.0-draft
+mapping_set_title: X2 EMST P1-corridor tasks to O*NET 27.2 task statements
+mapping_set_description: 'EMST v2 tasks in the provisional P1 frame (pipelines/x2/p1_frame.yaml) coded against O*NET task statements of the role family''s O*NET-SOC pool (from X3), per pipelines/x2/CODING_PROTOCOL.md. Release 27.2: the Eloundou-labelled task set ADR-0022 requires; O*NET 31.0 (target) was not downloadable on 2026-10-23 and will be produced by the upstream diff. DWAs pending (Tasks-to-DWAs file not available offline). review_status: single-coder-candidate | two-coder-agreed-target | needs-adjudication. Inter-coder kappa in pipelines/x2/work/x2_kappa.json (generated).'
+subject_source: emstsrc:emst-v2-tasks
+subject_source_version: 2.0.0-draft (frame 0.1.0-provisional)
+object_source: emstsrc:onet-tasks
+object_source_version: O*NET 27.2
+mapping_tool: pipelines/x2/merge_x2.py@0.1.0
+see_also:
+- https://www.onetcenter.org/dictionary/31.0/csv/task_statements.html
+- https://github.com/openai/GPTs-are-GPTs
+comment: O*NET content CC BY 4.0 (USDOL/ETA); this set stores O*NET IDs only.
+license: https://creativecommons.org/publicdomain/zero/1.0/
+creator_id:
+- emstagent:ia-wp09@phase4
+mapping_date: '2026-10-23'
+curie_map:
+  emst: https://w3id.org/emst/
+  seed: https://w3id.org/emst/seed/
+  emstagent: https://w3id.org/emst/agent/
+  sssom: https://w3id.org/sssom/
+  semapv: https://w3id.org/semapv/vocab/
+  skos: http://www.w3.org/2004/02/skos/core#
+  ONET: https://w3id.org/emst/ext/onet-task/
+  emstsrc: https://w3id.org/emst/sources/
+extension_definitions:
+- slot_name: record_id
+  property: https://w3id.org/sssom/record_id
+  type_hint: xsd:string
+- slot_name: reviewer_agreement
+  property: https://w3id.org/sssom/reviewer_agreement
+  type_hint: xsd:double

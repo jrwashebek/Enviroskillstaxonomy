@@ -36,7 +36,7 @@ GEN = "2026-10-23T14:30:00Z"
 CORE = L.DATA_V2 / "core"
 ASM_DIR = L.DATA_V2 / "assessments" / "emst-craft@0.1"
 CONTENT_MODULES = ["content_review", "content_authorize", "content_enforce", "content_rules", "content_agreements",
-                   "content_txb", "content_extra", "content_extra2"]
+                   "content_txb", "content_extra", "content_extra2", "content_engage"]
 ADR_BASE = ["ADR-0003", "ADR-0004", "ADR-0007", "ADR-0016", "ADR-0017", "ADR-0025", "ADR-0028", "WP-05"]
 LEVELS = ["L1", "L2", "L3", "L4", "L5"]
 
@@ -87,6 +87,27 @@ def merge_derived(existing, extra):
     return out or None
 
 
+# ------------------------------------------------------------------ immutable v1 text (keeps re-runs idempotent)
+import re  # noqa: E402
+HOLD_RX = re.compile(r"\btrib(e|es|al)\b|\bindigenous\b|\btreat(y|ies)\b|government-to-government|\bTHPO", re.I)
+V1_TASK_TEXT = {r["key"]: r["text"] for r in L.read_csv(ROOT / "data" / "v1_baseline" / "tasks.csv")}
+V1_DISPOSITION = {r["v1_code"]: r for r in L.read_csv(ROOT / "docs" / "decisions" / "v1_disposition.csv")}
+
+
+def v1_task_text(rid):
+    key = "v1:" + rid[len("seed:v1-"):].replace("-T", ":T") if rid.startswith("seed:v1-") else None
+    return V1_TASK_TEXT.get(key, "")
+
+
+def v1_disposition_note(rid):
+    d = V1_DISPOSITION.get(rid[len("seed:v1-"):]) if rid.startswith("seed:v1-") else None
+    if not d:
+        return ""
+    return L.normalize_text(f"v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): {d['decision']} → "
+                            f"{d['target']}. Rationale: {d['rationale']} Role verdicts considered: "
+                            f"{d['role_verdicts_considered']}.")
+
+
 # ------------------------------------------------------------------ builders
 def build_task(t, comp_id):
     rid = t["id"]
@@ -119,8 +140,12 @@ def build_task(t, comp_id):
             if k in existing:
                 rec[k] = existing[k]
         derived = merge_derived((existing.get("provenance") or {}).get("derivedFrom"), t.get("derived"))
-        old = (existing.get("statement") or {}).get("en", "")
-        note = (note + " " if note else "") + f"Rewritten from the v1 task text: \"{old}\" (WP-05)."
+        old = v1_task_text(rid)
+        if old and HOLD_RX.search(old):
+            note = (note + " " if note else "") + ("Rewritten from the v1 task text (not quoted here because it names "
+                                                   "held content; see data/v1_baseline/tasks.csv) (WP-05).")
+        elif old:
+            note = (note + " " if note else "") + f"Rewritten from the v1 task text: \"{old}\" (WP-05)."
     elif t.get("derived"):
         derived = [{"v1Key": k, "relation": rel} for k, rel in t["derived"]]
     if note:
@@ -210,7 +235,7 @@ def build_competency(c):
             if k in existing:
                 rec[k] = existing[k]
         derived = merge_derived((existing.get("provenance") or {}).get("derivedFrom"), c.get("derived"))
-        old_note = (existing.get("editorialNote") or {}).get("en", "")
+        old_note = v1_disposition_note(rid)
         note = (note + " " if note else "") + ("Seed note kept: " + old_note if old_note else "")
     elif c.get("derived"):
         derived = [{"v1Key": k, "relation": rel} for k, rel in c["derived"]]

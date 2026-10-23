@@ -135,7 +135,7 @@ def test_enactments_are_transitional_on_drafts_only(tmp_path):
     L.write_yaml(d / "seed-fx-ena.yaml", _valid("Competency", id="seed:fx-ena", enactments=["emst:core/CMP-AB12CDN"]))
     rep = run(data)
     assert "W-COMPUTED-FIELD-DEPRECATED" in rep.codes() and "E-COMPUTED-FIELD" not in rep.codes()
-    assert "E-COMPUTED-FIELD" in run(data, strict=True).codes()
+    assert "E-COMPUTED-FIELD" not in run(data, strict=True).codes()     # drafts never ship; the build ignores the field
     cmp = next(d.glob("CMP-*.yaml"))
     rec = L.load_yaml(cmp)
     rec["enactments"] = ["seed:fx-ena"]

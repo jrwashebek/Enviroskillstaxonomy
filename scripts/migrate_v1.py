@@ -906,9 +906,10 @@ def main(argv=None) -> int:
             elif have[0] != path or have[1].get("validationStatus") != "seed-v1":
                 skipped.append(rec["id"])            # authored or moved: never overwritten
             elif L.dump_yaml(have[1]) != L.dump_yaml(rec):
+                # still seed-v1 but edited by an author (e.g. superseded, supports re-pointed): an authored change,
+                # never overwritten without --force, and not a --check failure
                 drift.append(str(path.relative_to(L.ROOT)))
-                if not args.check:
-                    outputs[path] = L.dump_yaml(rec)
+                skipped.append(rec["id"])
             else:
                 outputs[path] = L.dump_yaml(rec)
         for path, recs in batches.items():
@@ -955,16 +956,16 @@ def main(argv=None) -> int:
         outputs[L.DATA_V2 / "migration" / "MIGRATION_INFO.json"] = L.dump_json(info)
     if args.check:
         bad = [str(p.relative_to(L.ROOT)) for p, txt in outputs.items() if not p.exists() or p.read_text(encoding="utf-8") != txt]
-        bad += drift
         for b in bad[:40]:
             print("DIFFERS", b)
-        print(f"{'FAIL' if bad else 'OK'}: {len(bad)} generated files differ; {len(skipped)} authored seeds left untouched")
+        print(f"{'FAIL' if bad else 'OK'}: {len(bad)} generated files differ; {len(skipped)} authored seeds left untouched "
+              f"({len(drift)} still seed-v1 but edited by authors)")
         return 1 if bad else 0
     for p, txt in outputs.items():
         p.parent.mkdir(parents=True, exist_ok=True)
         if not p.exists() or p.read_text(encoding="utf-8") != txt:
             p.write_text(txt, encoding="utf-8")
-    print(f"wrote {len(outputs)} files; {len(skipped)} authored seeds left untouched; {len(drift)} untouched seeds refreshed")
+    print(f"wrote {len(outputs)} files; {len(skipped)} authored seeds left untouched ({len(drift)} still seed-v1 but edited by authors)")
     return 0
 
 

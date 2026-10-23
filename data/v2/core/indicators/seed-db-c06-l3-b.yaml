@@ -1,0 +1,38 @@
+id: seed:db-c06-l3-b
+type: Indicator
+prefLabel:
+  en: Runs incident-response drills with manual fallback for a team, documenting the gaps found and…
+competency: seed:DB-C06
+level: L3
+statement:
+  en: Runs incident-response drills with manual fallback for a team, documenting the gaps found and the corrective actions assigned.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:dc-db06-fallback-drill
+distinguishingAttribute: ATT-FOR
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

@@ -1,0 +1,38 @@
+id: seed:dc-db06-fallback-drill
+type: Task
+prefLabel:
+  en: Run an incident-response drill that switches a plant or monitoring network to manual operation, recording the time to a safe state and the gaps found.
+statement:
+  en: Run an incident-response drill that switches a plant or monitoring network to manual operation, recording the time to a safe state and the gaps found.
+textSha256: 85cfb94d19d7b5e02cff0a917f5694047d343bd551afa9f4f758d9c24184a876
+supports:
+- competency: seed:DB-C06
+  strength: primary
+workFunction: WF-RESPOND
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: system-specific
+  currencyDecay: H
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003

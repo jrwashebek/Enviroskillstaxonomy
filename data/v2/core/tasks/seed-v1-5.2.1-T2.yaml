@@ -1,22 +1,33 @@
 id: seed:v1-5.2.1-T2
 type: Task
 prefLabel:
-  en: Conduct interviews or surveys to gather stakeholder perspectives
+  en: Gather affected parties' perspectives on a proposed decision through interviews or surveys, recording responses against the questions asked
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Conduct interviews or surveys to gather stakeholder perspectives
-textSha256: eb8b9d7cd0f8d0a264f12b5805c3f1d1ff4c39bfd5003cfd9ccf44ba42ac848c
+  en: Gather affected parties' perspectives on a proposed decision through interviews or surveys, recording responses against the questions asked
+textSha256: a82e793effffd16066cf08c6728434832dc288fbd81e2d3f93675741553cc5c7
 supports:
 - competency: seed:v1-5.2.1
   strength: primary
+workFunction: WF-PLAN
+fieldDependency: on-site-preferred
+formationDependency: partial
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- stakeholder
+- public
 notation:
 - scheme: EMSTv1
   value: 5.2.1:T2
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T2
 v1Domain:
   code: '5'
@@ -25,14 +36,16 @@ v1SkillArea:
   code: '5.2'
   label: Stakeholder Engagement
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'Rewritten from the v1 task text: "Conduct interviews or surveys to gather stakeholder perspectives" (WP-05).'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:5.2.1:T2
     v1Code: 5.2.1
@@ -42,9 +55,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

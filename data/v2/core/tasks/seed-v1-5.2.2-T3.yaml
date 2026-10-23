@@ -1,22 +1,30 @@
 id: seed:v1-5.2.2-T3
 type: Task
 prefLabel:
-  en: Document meeting outcomes and follow up on commitments
+  en: Document meeting outcomes and commitments, sending participants a summary and tracking each commitment to completion
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Document meeting outcomes and follow up on commitments
-textSha256: 3408404b0f0105c5c046071b8a10291bc9658c68492cb7eed76e93b6be9a8ce8
+  en: Document meeting outcomes and commitments, sending participants a summary and tracking each commitment to completion
+textSha256: 1995b55c4069411216bc30c4b48841a58de322f5e8337aea59bc4e4571299d4f
 supports:
 - competency: seed:v1-5.2.2
   strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+modes:
+- MODE-ENGAGE
 notation:
 - scheme: EMSTv1
   value: 5.2.2:T3
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T3
 v1Domain:
   code: '5'
@@ -25,14 +33,16 @@ v1SkillArea:
   code: '5.2'
   label: Stakeholder Engagement
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'Rewritten from the v1 task text: "Document meeting outcomes and follow up on commitments" (WP-05).'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:5.2.2:T3
     v1Code: 5.2.2
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
