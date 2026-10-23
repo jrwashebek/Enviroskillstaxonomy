@@ -1,3 +1,5 @@
+> **Superseded (2026-10-23).** This is the WP-14 handback for draft 0.9. Draft 0.9.1 applies the evidence review, the package review and the WP-15 corrections: several headline findings below were reworded, the claims list now has 280 rows (none awaiting a register row) and F05/F06 were rebuilt with sensitivity checks. See `docs/review/fixlog_A.md`. Kept for the record only.
+
 I wrote `figures/` and `claims_used.csv`. The harness refused the write of `flagship_report.md` ("subagents should return findings as text"), so its full text follows below. LM's WP-15 sign-off clears it for internal drafts and the NGO-pilot preview only; external release needs AS co-sign and the moving-fact re-checks.
 
 The coordinator's updates are in: S. 5653, the Colorado draft rules, the USFS objection rule, NIFC figures, and the `do_not_say` wording.

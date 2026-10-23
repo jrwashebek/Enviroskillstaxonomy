@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Build the chart datasets for the flagship report "How environmental jobs are changing".
 
-WP-14 (A10: AS with CP), EMST v2, 2026-10-23. Licence of this script: Apache-2.0.
-The CSV outputs are CC BY 4.0 as part of the report; third-party values keep their own
-terms and are credited in each row (docs/governance/LICENSING.md section 5).
+WP-14 (A10: AS with CP), EMST v2, 2026-10-23; review-fix pass (Fix-A) 2026-10-23.
+Licence of this script: Apache-2.0. The CSV outputs are CC BY 4.0 as part of the report;
+third-party values keep their own terms and are credited in each row
+(docs/governance/LICENSING.md section 5).
 
 Run from the repository root:
     python3 -I docs/package/report/figures/build_figures.py
@@ -16,15 +17,24 @@ Rules this script enforces (WP-14 acceptance; ADR-0027; PROJECT_LEAD_DECISIONS Q
     (ADR-0013 amendment, CR-LM-002). The exposure-profile chart is therefore NOT built.
   * Tribal-flagged or held records are excluded (ADR-0007 section D); the script fails
     if one would be written.
-  * Every hard-coded value is checked against the text of the verification record it
-    comes from, so a later correction to that record breaks the build instead of
-    silently diverging.
+  * Key hard-coded values are checked against the text of the verification record they
+    come from (a needle check: the build fails if the string no longer appears). It does
+    not check every cell.
+  * No figure cites a superseded verification record. check() fails on status
+    'superseded', and every source_ids cell written to a figure passes through cite(),
+    which fails on a superseded ID unless SUPERSEDED_SUCCESSORS names the current
+    claims-register row that replaces it (and that row is itself checked).
+  * F05 and F06 use plan-level bootstrap intervals (seeded) and sensitivity checks computed
+    from openlmp_plan_level_extract.csv (written by extract_openlmp_plans.py); the build
+    fails unless that extract reproduces the plan-equal means stored in the L5 signals.
   * Deterministic: same inputs, same outputs.
 """
 import csv
 import glob
 import json
 import os
+import random
+import statistics
 import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", ".."))
@@ -53,6 +63,8 @@ def write_csv(name, header, rows):
         w = csv.writer(f, lineterminator="\n")
         w.writerow(header)
         for r in rows:
+            if "source_ids" in r:
+                r = dict(r, source_ids=cite(r["source_ids"], name))
             w.writerow([r.get(h, "") for h in header])
     return path
 
@@ -62,27 +74,71 @@ QUEUE = {}
 for r in read_csv(os.path.join(VER, "ALL_queue_results.csv")):
     QUEUE.setdefault(r["item_id"], r)
 CLAIMS = {r["claim_id"]: r for r in read_csv(os.path.join(ROOT, "docs", "methods", "claims_register.csv"))}
+USABLE = ("verified", "corrected", "verified-partial", "derived")
+
+# A superseded verification record may not be cited. Where a figure's input data still carry
+# one (data/v2 provenance, outside this script's control), it is replaced by the current
+# claims-register row named here, and the build checks that row is usable and still says
+# what the figure needs (needle). Any other superseded ID fails the build.
+SUPERSEDED_SUCCESSORS = {
+    "CP-043": ("AIGOV-02", "SB 26-189"),   # Colorado SB 24-205 entry superseded by SB 26-189
+    "IO-034": ("AIGOV-02", "SB 26-189"),
+    "V4-07": ("BLS-01", "2025-35"),       # 2024-34 cycle claim superseded by the 2025-35 release
+}
+
+
+def record(source_id):
+    """Return (text, status) for a verification record, or (None, None) if the ID is not one."""
+    if source_id in KEY_FACTS:
+        return (KEY_FACTS[source_id]["correct_statement"] + " " + KEY_FACTS[source_id]["note"],
+                KEY_FACTS[source_id]["verification_status"])
+    if source_id in QUEUE:
+        return QUEUE[source_id]["finding"], QUEUE[source_id]["verification_status"]
+    if source_id in CLAIMS:
+        return CLAIMS[source_id]["claim"], CLAIMS[source_id]["status"]
+    return None, None
 
 
 def check(source_id, *needles):
-    """Fail the build unless every needle appears in the verification text for source_id."""
-    if source_id in KEY_FACTS:
-        text = KEY_FACTS[source_id]["correct_statement"] + " " + KEY_FACTS[source_id]["note"]
-        status = KEY_FACTS[source_id]["verification_status"]
-    elif source_id in QUEUE:
-        text = QUEUE[source_id]["finding"]
-        status = QUEUE[source_id]["verification_status"]
-    elif source_id in CLAIMS:
-        text = CLAIMS[source_id]["claim"]
-        status = CLAIMS[source_id]["status"]
-    else:
+    """Fail the build unless the record is usable (never superseded) and every needle appears in it."""
+    text, status = record(source_id)
+    if text is None:
         sys.exit(f"build_figures: unknown verification id {source_id}")
-    if status not in ("verified", "corrected", "superseded", "verified-partial", "derived"):
+    if status not in USABLE:
         sys.exit(f"build_figures: {source_id} has status {status}; not usable")
     for n in needles:
         if n not in text:
             sys.exit(f"build_figures: '{n}' not found in verification record {source_id}; re-check the figure")
     return status
+
+
+def cite(source_ids, where=""):
+    """Apply the superseded rule to a ';'-separated source_ids cell (see SUPERSEDED_SUCCESSORS)."""
+    out = []
+    for s in [x for x in source_ids.split(";") if x]:
+        _, status = record(s)
+        if status == "superseded":
+            if s not in SUPERSEDED_SUCCESSORS:
+                sys.exit(f"build_figures: {where} cites superseded record {s} with no successor; re-check the figure")
+            succ, needle = SUPERSEDED_SUCCESSORS[s]
+            check(succ, needle)
+            s = succ
+        elif status is not None and status not in USABLE:
+            sys.exit(f"build_figures: {where} cites {s} with status {status}; not usable")
+        if s not in out:
+            out.append(s)
+    return ";".join(out)
+
+
+def boot_ci(values, idx_sets):
+    """Percentile bootstrap 95% interval of the mean, over pre-drawn resample index sets."""
+    means = sorted(sum(values[i] for i in s) / len(s) for s in idx_sets)
+    b = len(means)
+    return means[int(0.025 * b)], means[int(0.975 * b) - 1]
+
+
+def resamples(n, rng, b=10000):
+    return [[int(rng.random() * n) for _ in range(n)] for _ in range(b)]
 
 
 def no_tribal(rec):
@@ -95,7 +151,11 @@ def no_tribal(rec):
 INDEX = []
 
 
-def register(fid, fname, headline, chart, source_note, tier="describe", evidence="E (external sources read and verified; see source_ids per row)"):
+E_DEFAULT = "E (external sources read; AI-agent checks recorded in the claims register; see source_ids per row)"
+DERIV = "EMST derivation from an E source (counts and classification computed by EMST; not reviewed by a human)"
+
+
+def register(fid, fname, headline, chart, source_note, tier="describe", evidence=E_DEFAULT):
     INDEX.append({
         "figure_id": fid, "file": fname, "headline": headline, "suggested_chart_form": chart,
         "source_note": source_note, "use_tier": tier, "evidence_label": evidence, "as_of": AS_OF,
@@ -118,12 +178,12 @@ def f1():
          "value_kind": "exact", "level_start": fed["baseline"]["value"], "level_end": fed["value"],
          "period_start": "2024-09", "period_end": "2026-01", "base": "on-board employees, PPS analysis of OPM data",
          "publisher": "Partnership for Public Service", "source_ids": "V1-01;WF-01"},
-        {"unit": "USDA Forest Service", "measure": "net change in employees", "value_pct": -25.0,
-         "value_kind": "lower bound (source says 'more than a quarter'; no exact figure published)",
+        {"unit": "USDA Forest Service", "measure": "net change in employees", "value_pct": "", "value_pct_bound": -25.0,
+         "value_kind": "bound only: a decline of more than 25% (source says 'more than a quarter'; no exact figure published); value_pct left blank so the row is not plotted as exact",
          "period_start": "2024-09", "period_end": "2026-01", "base": "on-board employees, PPS analysis of OPM data",
          "publisher": "Partnership for Public Service", "source_ids": "V1-02;WF-02"},
-        {"unit": "National Park Service", "measure": "net change in employees", "value_pct": -25.0,
-         "value_kind": "lower bound (source says 'more than a quarter'; no exact figure published)",
+        {"unit": "National Park Service", "measure": "net change in employees", "value_pct": "", "value_pct_bound": -25.0,
+         "value_kind": "bound only: a decline of more than 25% (source says 'more than a quarter'; no exact figure published); value_pct left blank so the row is not plotted as exact",
          "period_start": "2024-09", "period_end": "2026-01", "base": "on-board employees, PPS analysis of OPM data",
          "publisher": "Partnership for Public Service", "source_ids": "V1-02;WF-02"},
         {"unit": "Federal park rangers (occupation)", "measure": "net change in employees", "value_pct": -34.1,
@@ -139,12 +199,13 @@ def f1():
          "base": "employees, Agri-Pulse analysis of OPM data (different period from PPS rows)",
          "publisher": "Agri-Pulse", "source_ids": "LM-030"},
     ]
-    hdr = ["unit", "measure", "value_pct", "value_kind", "level_start", "level_end", "period_start", "period_end", "base", "publisher", "source_ids"]
+    hdr = ["unit", "measure", "value_pct", "value_pct_bound", "value_kind", "level_start", "level_end", "period_start", "period_end", "base", "publisher", "source_ids"]
     write_csv("f01_public_capacity_change.csv", hdr, rows)
     register("F01", "f01_public_capacity_change.csv",
-             "Between Sep 2024 and Jan 2026 the federal civilian workforce fell 12%, and the two largest land-management agencies each lost more than a quarter of their staff: a fiscal and policy shock, not an AI effect.",
-             "Dot plot of percentage change by unit, one row per unit, each labelled with its own period and base; lower-bound rows drawn as an open marker with an arrow; no bars, no ranking across bases; table beside the chart.",
-             "Partnership for Public Service (OPM data, to Jan 2026); Inside Climate News (OPM data, Mar 6 2026); Agri-Pulse (OPM data, Jan 21 2026). Bases differ by row and must not be compared as one series; USDA OIG reports a different USFS figure (16% in 2025) on another base. Sector-wide figures exclude Tribal, state, local, NGO and private workforces.")
+             "Between Sep 2024 and Jan 2026 the federal civilian workforce fell 12%, and the two largest land-management agencies by staff each lost more than a quarter of their employees. The sources tie the decline to personnel and hiring actions (deferred resignations, hiring controls, grant terminations); AI's employment effect has not been measured.",
+             "Dot plot of percentage change by unit, one row per unit, each labeled with its own period and base; the two bound-only rows (value_pct blank, value_pct_bound -25) drawn as an open marker with an arrow, never as an exact point; no bars, no ranking across bases; table beside the chart.",
+             "Partnership for Public Service (OPM data, to Jan 2026; excludes USPS, the Foreign Service and much of the intelligence community); Inside Climate News (OPM data, Mar 6 2026); Agri-Pulse (OPM data, Jan 21 2026). Bases differ by row and must not be compared as one series; USDA OIG data reported in the press give a different USFS figure (16% in 2025) on another base. 'Largest' is by staff (BLM manages the most land). Federal figures only: they exclude Tribal, state, local, NGO and private workforces.",
+             evidence="E for the values; J for the attribution sentence in the headline (sources: Inside Climate News on deferred resignations; EO 14356 on hiring controls; AmeriCorps litigation sources on grant terminations)")
 
 
 # ---------------------------------------------------------------- F2 AI by type x stage
@@ -171,12 +232,25 @@ def f2():
     tot["total"] = len(rows)
     out.append(tot)
     assert tot["total"] == 504 and tot["Deployed"] == 61 and (tot["total"] - tot["Stage not reported"]) == 347
+    typed = tot["total"] - sum(grid[("Not classified", s)] for s in stages)
+    cml = sum(grid[("Classical ML", s)] for s in stages)
+    check("RPT-27", f"{cml} classical machine learning", f"{typed} report an AI type")
+    epa_offices = {"OFA", "OAR", "OECA", "AO", "OCSPP", "OW"}
+    units = {}
+    for r in rows:
+        b = r["agency_bureau"]
+        u = "EPA" if (r["agency"] == "EPA" or b in epa_offices or b.startswith("Region ")) else b
+        units[u] = units.get(u, 0) + 1
+    assert len(units) == 11 and sum(units.values()) == 504, units
+    check("OMB-02", "eleven environmental units", "USGS 187", "NOAA 157")
+    unit_list = ", ".join(f"{u} {n}" for u, n in sorted(units.items(), key=lambda x: (-x[1], x[0])))
     hdr = ["ai_type"] + stages + ["total"]
     write_csv("f02_federal_env_ai_use_cases_type_by_stage.csv", hdr, out)
     register("F02", "f02_federal_env_ai_use_cases_type_by_stage.csv",
-             "Most AI in federal environmental bureaus is classical machine learning for science work, and most of it is not yet deployed: 61 of the 347 use cases that report a stage are in production.",
-             "Stacked horizontal bars by AI type (segments = development stage, Deployed first), with the 'stage not reported' segment shown hatched and labelled; table beside the chart.",
-             "OMB 2025 Federal Agency AI Use Case Inventory (README as of Apr 13 2026), environmental bureaus of USDA, DOI, DOC (NOAA) and EPA as extracted by EMST LM (docs/research/labor-market-ai-impact/scripts/omb_inventory_env.py). 'Deployed' = development_stage 'Deployed' only; OMB's README pools deployed and piloted. NOAA reported no stages. Self-reported by agencies; registration is not use.")
+             f"Classical machine learning for science work is the largest type of registered AI in eleven federal environmental units ({cml} of the {typed} use cases that report a type; {tot['total'] - typed} report none), and most use cases are not yet deployed: 61 of the 347 that report a stage are in production.",
+             "Stacked horizontal bars by AI type (segments = development stage, Deployed first), with the 'not classified' row and the 'stage not reported' segment shown hatched and labeled; table beside the chart.",
+             f"OMB 2025 Federal Agency AI Use Case Inventory (README as of Apr 13 2026). Eleven environmental units, nine bureaus and two USDA mission areas, as extracted by EMST's labor-market analysis (docs/research/labor-market-ai-impact/scripts/omb_inventory_env.py): {unit_list} (EPA offices and regions pooled). 'Deployed' = development_stage 'Deployed' only; OMB's README pools deployed and piloted. NOAA's 157 records report neither a type nor a stage. Self-reported by agencies; registration is not use.",
+             evidence=DERIV)
 
 
 # ---------------------------------------------------------------- F3 AI by function
@@ -193,10 +267,12 @@ def f3():
     assert nepa["use_cases_all_stages"] == 5 and nepa["deployed"] == 0
     write_csv("f03_federal_env_ai_use_cases_by_function.csv",
               ["function_family", "use_cases_all_stages", "deployed", "not_deployed_or_unreported"], out)
+    check("RPT-28", "species and wildlife detection 89 (11 deployed)", "NEPA, environmental review and permitting 5 (0)")
     register("F03", "f03_federal_env_ai_use_cases_by_function.csv",
-             "Species detection, remote sensing, water and fire lead federal environmental AI; none of the five use cases in NEPA, environmental review or permitting is deployed.",
+             "Species detection, remote sensing, water and fire lead federal environmental AI; none of the five use cases in NEPA, environmental review or permitting is deployed. NOAA's 157 records report no stage and are counted as not deployed or unreported.",
              "Horizontal bars of use cases per function family with the deployed share as a darker inner bar; families overlap (keyword-classified), so no totals row; table beside the chart.",
-             "OMB 2025 Federal Agency AI Use Case Inventory; EMST LM keyword classification of use-case names and descriptions (a use case can fall in more than one family). 'Deployed' = development_stage 'Deployed' only.")
+             "OMB 2025 Federal Agency AI Use Case Inventory, eleven environmental units (see F02); EMST keyword classification of use-case names and descriptions (a use case can fall in more than one family; the NEPA family's pattern includes the broad term 'permit'). 'Deployed' = development_stage 'Deployed' only; 'not_deployed_or_unreported' includes NOAA's 157 records, which report no stage.",
+             evidence=DERIV)
 
 
 # ---------------------------------------------------------------- F4 COTS drafting at scale
@@ -215,67 +291,134 @@ def f4():
         if not any(k in uc.lower() for k in kw):
             continue
         out.append({"department": dept, "commercial_ai_use_case_category": uc,
-                    "licence_or_user_band": r["Estimated # of Licenses/Users"]})
+                    "license_or_user_band": r["Estimated # of Licenses/Users"]})
     out.sort(key=lambda x: (x["department"], x["commercial_ai_use_case_category"]))
     assert {x["department"] for x in out} == {"USDA", "DOI", "EPA"}
     write_csv("f04_commercial_genai_drafting_tools_at_scale.csv",
-              ["department", "commercial_ai_use_case_category", "licence_or_user_band"], out)
+              ["department", "commercial_ai_use_case_category", "license_or_user_band"], out)
+    check("RPT-03", "knowledge-retrieval chat assistant at 50,000+", "writing tool at 50,000+")
     register("F04", "f04_commercial_genai_drafting_tools_at_scale.csv",
-             "Commercial AI tools for drafting, summarizing, writing and search are licensed at 10,000 or more users in each of the three main federal environmental departments: availability at workforce scale, which is not the same as use.",
-             "Small table (department x use-case category) with the licence band as the cell value; no chart needed. Product names are deliberately omitted.",
-             "OMB 2025 consolidated COTS AI use cases (ombegov GitHub), rows for USDA, DOI and EPA marked in use with a band of 10,000+ licences or users. Licence bands are agency estimates; they measure availability, not frequency or quality of use.")
+             "Commercial AI tools for drafting, summarizing, writing and search are licensed at 10,000 or more users in each of the three main federal environmental departments (at USDA the only such tool is a search and knowledge-retrieval assistant; at Interior, a writing tool): availability at workforce scale, which is not the same as use.",
+             "Small table (department x use-case category) with the license band as the cell value; no chart needed. Product names are deliberately omitted.",
+             "OMB 2025 consolidated COTS AI use cases (ombegov GitHub), rows for USDA, DOI and EPA marked in use with a band of 10,000+ licenses or users. Interior and USDA bands are department-wide, not limited to environmental staff. The keyword filter includes 'knowledge retrieval'; without it USDA would not appear, so do not describe the USDA row as a drafting or summarizing assistant. License bands are agency estimates; they measure availability, not frequency or quality of use.")
 
 
 # ---------------------------------------------------------------- F5/F6 plan requirements
 def f5_f6():
     recs = read_jsonl(os.path.join(SIG, "openlmp.jsonl"))
-    check("PLAN-01", "30.7%", "2.7%", "22.2%", "1.8%")
+    check("PLAN-01", "30.7%", "2.7%", "22.2%", "1.8%", "17 of the 36", "24 of the 84")
     check("PLAN-02", "11.9 to 24.9", "4.7 to 5.0", "6.2 to 4.3")
+    plans = read_csv(os.path.join(OUT, "openlmp_plan_level_extract.csv"))
+    eras = {"1982-rule": [p for p in plans if p["rule"] == "1982-rule"], "2012-rule": [p for p in plans if p["rule"] == "2012-rule"]}
+    def measure_col(name):  # signal measure name -> extract column
+        if name.startswith("monitoring_component_share"):
+            return "n_monitoring"
+        kind, key = name.split(":")
+        if kind.startswith("mentions_per_1000_components"):
+            return "term_" + key
+        if kind.startswith("coordination_touchpoints_per_1000"):
+            return "touchpoint_" + key
+        sys.exit(f"build_figures: unexpected OpenLMP measure {name}")
+
+    def vals(ps, col):
+        scale = 1.0 if col == "n_monitoring" else 1000.0
+        return [scale * int(p[col]) / int(p["n_components"]) for p in ps]
+
+    variants = [  # (variant id, label, filter)
+        ("all", "all documents (headline; signal record values)", lambda p: True),
+        ("no_monitoring_reports", "excluding monitoring evaluation reports", lambda p: p["doc_kind"] != "monitoring_report"),
+        ("plans_only", "plan documents only (excluding monitoring reports and stand-alone monitoring plans)", lambda p: p["doc_kind"] == "plan"),
+        ("with_monitoring", "excluding documents with no component typed as monitoring", lambda p: int(p["n_monitoring"]) > 0),
+        ("plans_only_with_monitoring", "plan documents only, with at least one component typed as monitoring", lambda p: p["doc_kind"] == "plan" and int(p["n_monitoring"]) > 0),
+    ]
+    rng = random.Random(20261023)
+    sub, idx = {}, {}
+    for vid, _, keep in variants:
+        for er, ps in eras.items():
+            sub[(vid, er)] = [p for p in ps if keep(p)]
+            idx[(vid, er)] = resamples(len(sub[(vid, er)]), rng)
+
+    def stats(vid, er, col):
+        v = vals(sub[(vid, er)], col)
+        lo, hi = boot_ci(v, idx[(vid, er)])
+        nd = 4 if col == "n_monitoring" else 2
+        return round(statistics.fmean(v), nd), round(lo, nd), round(hi, nd), len(v)
+
+    def overlap(a, b):
+        return "yes" if max(a[1], b[1]) <= min(a[2], b[2]) else "no"
+
     f5rows, f6rows = [], []
     for d in recs:
         if not no_tribal(d):
             continue  # Tribal touchpoints are quarantined (careFlag); TN decides how they are shown
         m = d["measure"]
-        base, sens = m.get("baseline", {}), m.get("sensitivity", {})
         name = m["name"]
-        row = {
-            "measure": name.split(":")[-1].replace("_plan_equal", "").replace("_", " "),
-            "unit": m["unit"],
-            "rule_1982_plan_equal": base.get("value"), "rule_1982_ci95_low": (base.get("ci95") or [None, None])[0],
-            "rule_1982_ci95_high": (base.get("ci95") or [None, None])[1], "rule_1982_n_plans": base.get("n"),
-            "rule_2012_plan_equal": m.get("value"), "rule_2012_ci95_low": (m.get("ci95") or [None, None])[0],
-            "rule_2012_ci95_high": (m.get("ci95") or [None, None])[1], "rule_2012_n_plans": m.get("n"),
-            "rule_1982_component_weighted": sens.get("baselineValue"), "rule_2012_component_weighted": sens.get("value"),
-            "signal_id": d["id"],
-        }
-        lo82, hi82 = row["rule_1982_ci95_low"], row["rule_1982_ci95_high"]
-        lo12, hi12 = row["rule_2012_ci95_low"], row["rule_2012_ci95_high"]
-        if None in (lo82, hi82, lo12, hi12):
-            row["plan_equal_cis_overlap"] = "not computed"
+        col = measure_col(name)
+        sens = m.get("sensitivity", {})
+        a82, a12 = stats("all", "1982-rule", col), stats("all", "2012-rule", col)
+        # the extract must reproduce the stored plan-equal means and n (ties the extract to the signal record)
+        nd = 4 if col == "n_monitoring" else 2
+        assert (a82[0], a82[3]) == (round(m["baseline"]["value"], nd), m["baseline"]["n"]), (name, a82, m["baseline"])
+        assert (a12[0], a12[3]) == (round(m["value"], nd), m["n"]), (name, a12, m["value"])
+        label = name.split(":")[-1].replace("_", " ")
+        if col == "n_monitoring":
+            for vid, vlabel, _ in variants:
+                s82, s12 = stats(vid, "1982-rule", col), stats(vid, "2012-rule", col)
+                cw82 = sum(int(p["n_monitoring"]) for p in sub[(vid, "1982-rule")]) / sum(int(p["n_components"]) for p in sub[(vid, "1982-rule")])
+                cw12 = sum(int(p["n_monitoring"]) for p in sub[(vid, "2012-rule")]) / sum(int(p["n_components"]) for p in sub[(vid, "2012-rule")])
+                if vid == "all":
+                    assert (round(cw82, 4), round(cw12, 4)) == (sens["baselineValue"], sens["value"])
+                f5rows.append({"measure": "components typed as monitoring (share of document components)", "variant": vid, "documents_included": vlabel,
+                               "unit": "share of document components",
+                               "rule_1982_plan_equal": s82[0], "rule_1982_ci95_low": s82[1], "rule_1982_ci95_high": s82[2], "rule_1982_n_documents": s82[3],
+                               "rule_2012_plan_equal": s12[0], "rule_2012_ci95_low": s12[1], "rule_2012_ci95_high": s12[2], "rule_2012_n_documents": s12[3],
+                               "rule_1982_component_weighted": round(cw82, 4), "rule_2012_component_weighted": round(cw12, 4),
+                               "plan_equal_cis_overlap": overlap(s82, s12), "ci_method": "percentile bootstrap over documents, 10,000 resamples, seed 20261023",
+                               "signal_id": d["id"] if vid == "all" else ""})
         else:
-            row["plan_equal_cis_overlap"] = "yes" if max(lo82, lo12) <= min(hi82, hi12) else "no"
-        if name.startswith("monitoring_component_share"):
-            row["measure"] = "monitoring components (share of plan components)"
-            f5rows.append(row)
-        else:
-            f6rows.append(row)
-    assert len(f5rows) == 1 and len(f6rows) == 9
-    hdr = ["measure", "unit", "rule_1982_plan_equal", "rule_1982_ci95_low", "rule_1982_ci95_high", "rule_1982_n_plans",
-           "rule_2012_plan_equal", "rule_2012_ci95_low", "rule_2012_ci95_high", "rule_2012_n_plans",
-           "rule_1982_component_weighted", "rule_2012_component_weighted", "plan_equal_cis_overlap", "signal_id"]
-    write_csv("f05_plan_monitoring_share_by_rule.csv", hdr, f5rows)
+            p82, p12 = stats("plans_only", "1982-rule", col), stats("plans_only", "2012-rule", col)
+            f6rows.append({"measure": label, "unit": m["unit"],
+                           "rule_1982_plan_equal": a82[0], "rule_1982_ci95_low": a82[1], "rule_1982_ci95_high": a82[2], "rule_1982_n_documents": a82[3],
+                           "rule_2012_plan_equal": a12[0], "rule_2012_ci95_low": a12[1], "rule_2012_ci95_high": a12[2], "rule_2012_n_documents": a12[3],
+                           "rule_1982_component_weighted": sens.get("baselineValue"), "rule_2012_component_weighted": sens.get("value"),
+                           "plan_equal_cis_overlap": overlap(a82, a12),
+                           "plans_only_1982": p82[0], "plans_only_1982_ci95_low": p82[1], "plans_only_1982_ci95_high": p82[2], "plans_only_1982_n": p82[3],
+                           "plans_only_2012": p12[0], "plans_only_2012_ci95_low": p12[1], "plans_only_2012_ci95_high": p12[2], "plans_only_2012_n": p12[3],
+                           "plans_only_cis_overlap": overlap(p82, p12),
+                           "ci_method": "percentile bootstrap over documents, 10,000 resamples, seed 20261023", "signal_id": d["id"]})
+    assert len(f5rows) == len(variants) and len(f6rows) == 9
+    kinds = {k: sum(1 for p in eras["2012-rule"] if p["doc_kind"] == k) for k in ("monitoring_report", "monitoring_plan", "plan")}
+    any82 = sum(1 for p in eras["1982-rule"] if int(p["n_monitoring"]) > 0)
+    assert (kinds["monitoring_report"], kinds["monitoring_plan"], any82, len(eras["1982-rule"])) == (17, 5, 24, 84)
+    po = [r for r in f5rows if r["variant"] == "plans_only"][0]
+    hdr5 = ["measure", "variant", "documents_included", "unit", "rule_1982_plan_equal", "rule_1982_ci95_low", "rule_1982_ci95_high", "rule_1982_n_documents",
+            "rule_2012_plan_equal", "rule_2012_ci95_low", "rule_2012_ci95_high", "rule_2012_n_documents",
+            "rule_1982_component_weighted", "rule_2012_component_weighted", "plan_equal_cis_overlap", "ci_method", "signal_id"]
+    write_csv("f05_plan_monitoring_share_by_rule.csv", hdr5, f5rows)
     f6rows.sort(key=lambda x: x["measure"])
-    write_csv("f06_plan_content_rates_by_rule.csv", hdr, f6rows)
-    note = ("OpenLMP 0.1.0 plan components (catalog 2026-10-21, CC0), derived by EMST LM (docs/methods/scripts/wp10_lmp.py). "
-            "Cross-era comparison of different plans, not a time series; about 95% of components are USDA Forest Service plans, all in western states. "
-            "Headline weights each plan equally (95% CI = mean +/- 1.96 SE); component-weighted values are the sensitivity check. Mentions measure what plans name, not obligations. "
+    hdr6 = ["measure", "unit", "rule_1982_plan_equal", "rule_1982_ci95_low", "rule_1982_ci95_high", "rule_1982_n_documents",
+            "rule_2012_plan_equal", "rule_2012_ci95_low", "rule_2012_ci95_high", "rule_2012_n_documents",
+            "rule_1982_component_weighted", "rule_2012_component_weighted", "plan_equal_cis_overlap",
+            "plans_only_1982", "plans_only_1982_ci95_low", "plans_only_1982_ci95_high", "plans_only_1982_n",
+            "plans_only_2012", "plans_only_2012_ci95_low", "plans_only_2012_ci95_high", "plans_only_2012_n", "plans_only_cis_overlap",
+            "ci_method", "signal_id"]
+    write_csv("f06_plan_content_rates_by_rule.csv", hdr6, f6rows)
+    note = ("OpenLMP 0.1.0 documents (catalog 2026-10-21, CC0), derived by EMST (docs/methods/scripts/wp10_lmp.py for the signal records; "
+            "docs/package/report/figures/extract_openlmp_plans.py for the plan-level extract used here). Western national forests only: "
+            "the comparison uses 120 USDA Forest Service documents (84 under the 1982 rule, 36 under the 2012 rule), and about 95% of all corpus components are Forest Service plans in western states. "
+            "Cross-era comparison of different documents, not a time series. Each document is weighted equally (component-weighted values are a second check); "
+            "95% intervals are percentile bootstrap intervals over documents (seeded), which replace the earlier normal approximation. "
+            "Document type (plan, monitoring evaluation report, stand-alone monitoring plan) is classified by EMST from catalog titles. "
+            "Components are as typed or extracted by OpenLMP, whose extraction method differs by era; mentions measure what documents name, not obligations or funded work. "
             "Tribal touchpoints are excluded pending Tribal Advisory Council review.")
     register("F05", "f05_plan_monitoring_share_by_rule.csv",
-             "Forest plans written under the 2012 Planning Rule devote about 31% of their components to monitoring, against about 3% under the 1982 rule: a durable demand for monitoring design, evaluation and reporting.",
-             "Paired dot plot (1982 rule vs 2012 rule) with 95% CI whiskers for the plan-equal values; component-weighted values as hollow markers; table beside the chart.", note)
+             f"In western national-forest documents, components typed as monitoring make up about 31% of each 2012-rule document against about 3% of each 1982-rule plan, but the gap mostly reflects document type: {kinds['monitoring_report']} of the 36 2012-rule documents are monitoring evaluation reports and {kinds['monitoring_plan']} are stand-alone monitoring plans. Among plan documents alone the shares are about {round(100 * po['rule_2012_plan_equal'])}% and {round(100 * po['rule_1982_plan_equal'])}%, with overlapping intervals; only {any82} of the 84 older plans have any component typed as monitoring, so the older baseline is probably partly an extraction artifact.",
+             "Paired dot plot (1982 rule vs 2012 rule) with 95% bootstrap whiskers, one row per variant, headline row first and labeled as such; component-weighted values as hollow markers; rows whose intervals overlap labeled 'not distinguishable'; table beside the chart.",
+             note, evidence="EMST derivation from OpenLMP (CC0); document-type classification and sensitivity checks by EMST; not reviewed by a human")
     register("F06", "f06_plan_content_rates_by_rule.csv",
-             "Newer plans name climate, data and models, and carbon far more often; the apparent tripling of coordination is mostly a weighting artifact, with only partnership touchpoints rising (and weakly) when each plan counts equally.",
-             "Small multiples, one panel per measure: 1982 vs 2012 plan-equal means with CI whiskers, component-weighted as hollow markers; panels where CIs overlap labelled 'not distinguishable'; table beside the chart.", note)
+             "In western national-forest documents, 2012-rule documents name climate change, data and models, and carbon far more often than 1982-rule plans, and the difference holds among plan documents alone. The apparent tripling of coordination is mostly a weighting artifact: partnership touchpoints rise, but distinguishably so only among plan documents.",
+             "Small multiples, one panel per measure: 1982 vs 2012 plan-equal means with bootstrap whiskers for all documents and for plan documents only; component-weighted as hollow markers; panels where intervals overlap labeled 'not distinguishable'; table beside the chart.",
+             note, evidence="EMST derivation from OpenLMP (CC0); document-type classification by EMST; not reviewed by a human")
 
 
 # ---------------------------------------------------------------- F7 BLS projections
@@ -315,17 +458,20 @@ def f7():
             assert abs(v - 34.6) < 1e-9
             src = "BLS-01;V4-07"
         occ = d["prefLabel"]["en"].split(" for ", 1)[1].split(" (")[0]
-        out.append({"soc_2018": soc, "occupation": occ, "soc_major_group": grp, "projected_change_2025_35_pct": v,
+        role = ("reference only (not an environmental occupation)" if soc == "15-2051" else
+                "environmental occupation in EMST scope; broad occupation, mostly outside environmental work" if soc == "13-1041" else
+                "environmental occupation in EMST scope")
+        out.append({"soc_2018": soc, "occupation": occ, "soc_major_group": grp, "role_in_figure": role, "projected_change_2025_35_pct": v,
                     "all_occupations_pct": d["measure"]["baseline"]["value"],
-                    "relative_to_all_occupations": "faster" if v > 3.5 + 1 else ("slower or declining" if v < 3.5 - 1 else "about average"),
+                    "emst_band_relative_to_average": "faster" if v > 3.5 + 1 else ("slower or declining" if v < 3.5 - 1 else "about average"),
                     "source_ids": src})
     out.sort(key=lambda x: -x["projected_change_2025_35_pct"])
     write_csv("f07_bls_projections_2025_35.csv",
-              ["soc_2018", "occupation", "soc_major_group", "projected_change_2025_35_pct", "all_occupations_pct", "relative_to_all_occupations", "source_ids"], out)
+              ["soc_2018", "occupation", "soc_major_group", "role_in_figure", "projected_change_2025_35_pct", "all_occupations_pct", "emst_band_relative_to_average", "source_ids"], out)
     register("F07", "f07_bls_projections_2025_35.csv",
              "Official 2025-35 projections show analytical, engineering and technician occupations growing faster than the +3.5% all-occupation average, foresters slower, and forest and conservation workers and water operators declining.",
-             "Dot plot of projected percentage change by occupation with a vertical reference line at +3.5%; 'about average' band of +/-1 point shaded; data scientists shown with an axis break; table beside the chart.",
-             "U.S. Bureau of Labor Statistics, Employment Projections 2025-35 (released Aug 27 2026), Table 1.2 and Occupational Outlook Handbook pages. Projections are context, not evidence of skill change; BLS does not attribute these occupation projections to AI. The 'about average' band (+/-1 point) is an EMST display convention, not a BLS category. Wildland firefighters are not counted separately.")
+             "Dot plot of projected percentage change by occupation with a vertical reference line at +3.5%; EMST's 'about average' band of +/-1 point shaded and labeled as EMST's convention; data scientists shown with an axis break and labeled 'reference, not environmental'; table beside the chart.",
+             "U.S. Bureau of Labor Statistics, Employment Projections 2025-35 (released Aug 27 2026), Table 1.2 and Occupational Outlook Handbook pages. Projections are context, not evidence of skill change; BLS does not attribute these occupation projections to AI. The faster / about average / slower bands (+/-1 point around +3.5%) are an EMST display convention, not BLS categories. Data scientists are a reference point, not an environmental occupation. Compliance officers (13-1041) is a broad occupation, mostly outside environmental work. Wildland firefighters are not counted separately.")
 
 
 # ---------------------------------------------------------------- F8 entry-path indicators
@@ -359,10 +505,11 @@ def f8():
                  "period": "2025", "scope": "USFS Trail Program Status Report as cited in a congressional letter",
                  "source_ids": "LM-034;FC-015"})
     write_csv("f08_entry_path_indicators.csv", ["indicator", "value", "unit", "period", "scope", "source_ids"], rows)
+    check("WF-06", "July 2025", "coalition only")
     register("F08", "f08_entry_path_indicators.csv",
-             "The entry rungs are thinning now, for fiscal and policy reasons: no non-fire seasonal hiring at the Forest Service in 2025, conservation internship postings down 44% on one board, and fewer than 8 in 100 federal employees under 30.",
+             "In federal land agencies and conservation corps the entry rungs thinned in 2025-26: no non-fire seasonal hiring at the Forest Service in 2025, conservation internship postings down 44% on one board, and fewer than 8 in 100 federal employees under 30.",
              "Indicator table (one row per indicator, each with its own unit, period and scope) with a small inline bar for the percentage rows only; do not plot rows on a common axis.",
-             "National Parks Traveler (Nov 10 2025) on Conservation Job Board data; Partnership for Public Service (OPM data); Office of Rep. Neguse (Mar 23 2026) relaying USFS statements; Rep. Schrier et al. letter (Mar 23 2026) citing the USFS Trail Program Status Report. Each row has its own base. These are signals with fiscal and policy drivers; none is attributed to AI.")
+             "National Parks Traveler (Nov 10 2025) on Conservation Job Board data; Partnership for Public Service (OPM data); Office of Rep. Neguse (press release Mar 23 2026 on a letter of Mar 18 2026) relaying USFS statements, including that the 2025 seasonal decision was due to budget constraints; Rep. Schrier et al. letter (Mar 23 2026) citing the USFS Trail Program Status Report. Each row has its own base. These signals followed personnel, hiring and grant decisions; none of these sources attributes them to AI. AmeriCorps context for the postings row: terminations were enjoined in the plaintiff states (Jun 2025), reinstatement eligibility was extended to grantees elsewhere (Jul 2025, uptake undocumented), and the Sep 2026 settlement covers FY2026 and the coalition jurisdictions only.")
 
 
 # ---------------------------------------------------------------- F9 policy timeline
@@ -426,11 +573,11 @@ def f9():
     # Scheduled dates published in verified records (not yet DriverEvents); each checked against its record.
     sched = [
         ("2026-11-10", "California SB 253: first Scope 1-2 reports due", "Disclosure and markets", "US-CA", "V2-15;DISC-01", ("V2-15", "Nov 10, 2026")),
-        ("2027-01-01", "Colorado SB 26-189 (automated decision tools: notice and disclosure) takes effect", "AI governance", "US-CO", "CP-043;AIGOV-02", ("CP-043", "effective Jan 1, 2027")),
+        ("2027-01-01", "Colorado SB 26-189 (automated decision tools: notice and disclosure) takes effect", "AI governance", "US-CO", "AIGOV-02", ("AIGOV-02", "2027-01-01")),
         ("2027-01-01", "FedRAMP Consolidated Rules mandatory for all stakeholders", "AI governance", "US", "V2-10;CMP-02", ("V2-10", "Jan 1, 2027 mandatory")),
         ("2027-01", "USWFS-USFS aligned federal wildland fire qualification standards take effect (the alignment is between USWFS and USFS standards)", "Wildland fire", "US", "V3-13;WF-10", ("V3-13", "effective January 2027")),
         ("2026-10-26", "Colorado Attorney General: comments and hearing on interim draft SB 26-189 rules", "AI governance", "US-CO", "LM-155;AIGOV-03", ("AIGOV-03", "2026-10-26")),
-        ("2027-02-01", "AmeriCorps litigation stay ends (settlement covers FY2026 only)", "Entry pathways", "US", "V1-05;WF-06", ("V1-05", "Feb 1, 2027")),
+        ("2027-02-01", "AmeriCorps litigation stay ends (the Sep 2026 settlement covers FY2026 and the coalition jurisdictions only)", "Entry pathways", "US", "V1-05;WF-06", ("V1-05", "Feb 1, 2027")),
         ("2027-03-19", "EU CSRD transposition deadline after Omnibus I", "Disclosure and markets", "EU", "V2-15;DISC-02", ("V2-15", "Mar 19, 2027")),
         ("2027-04-26", "ADA Title II web accessibility compliance date for public entities of 50,000+ (WCAG 2.1 AA)", "Accessibility", "US", "V2-11;CMP-01", ("V2-11", "Apr 26, 2027")),
     ]
@@ -438,22 +585,43 @@ def f9():
         check(cid, needle)
         rows.append({"date": date, "kind": "scheduled (published date)", "event_type": "scheduled", "status_after": "",
                      "domain": lab, "jurisdiction": jur, "label": label, "instrument_id": "", "source_ids": src})
+    # Recorded events published in corrected register rows but not yet DriverEvents in data/v2/events
+    # (evidence review R15 and R33; data change requested in CR-FIX-A-003). Month precision as published.
+    recorded = [
+        ("2025-07", "notice", "reinstatement offered", "Entry pathways", "US",
+         "AmeriCorps tells grantees whose grants were terminated on 25 Apr 2025, including programs in states outside the litigation, that they are eligible for reinstatement (uptake undocumented)",
+         "WF-06", ("WF-06", "July 2025")),
+        ("2026-07", "certification granted", "in effect pending appeal", "Cumulative-burden analysis (state basis)", "US-NJ",
+         "New Jersey Supreme Court grants certification to review the NJDEP environmental justice rules; the rules remain in effect while the appeal is pending",
+         "EJ-02", ("EJ-02", "certification in July 2026")),
+    ]
+    for date, etype, after, lab, jur, label, src, (cid, needle) in recorded:
+        check(cid, needle)
+        rows.append({"date": date, "kind": "recorded event", "event_type": etype, "status_after": after,
+                     "domain": lab, "jurisdiction": jur, "label": label, "instrument_id": "", "source_ids": src})
     # Pending actions recorded only as watch signals (no event type exists for pre-publication actions).
     check("V2-14", "Jul 24, 2026")
     check("V2-17", "Jul 10, 2026")
     rows.append({"date": "2026-07-24", "kind": "pending (watch)", "event_type": "advanced to OIRA review", "status_after": "unpublished",
                  "domain": "Environmental review", "jurisdiction": "US", "label": "ACHP votes to advance a proposed rewrite of 36 CFR part 800 (Section 106); at OIRA, unpublished as of Oct 9 2026",
                  "instrument_id": "", "source_ids": "V2-14;NHPA-01"})
+    check("UAS-01", "Pending Review")
     rows.append({"date": "2026-07-10", "kind": "pending (watch)", "event_type": "final rule at OIRA review", "status_after": "unpublished",
-                 "domain": "Field technology", "jurisdiction": "US", "label": "FAA Part 108 (BVLOS) final rule at OIRA review; unpublished as of Oct 21 2026 (trade-press status)",
+                 "domain": "Field technology", "jurisdiction": "US", "label": "FAA Part 108 (BVLOS) final rule at OIRA review; unpublished as of Oct 21 2026 (trade press); OIRA review record still pending on Oct 23 2026",
                  "instrument_id": "", "source_ids": "V2-17;UAS-01"})
     rows.sort(key=lambda r: (r["date"], r["domain"], r["label"]))
     write_csv("f09_policy_instrument_timeline_2025_2027.csv",
               ["date", "kind", "event_type", "status_after", "domain", "jurisdiction", "label", "instrument_id", "source_ids"], rows)
+    changes = {"final", "effective", "enacted", "rescinded", "enjoined", "decided", "interim", "notice"}
+    in_window = [r for r in rows if r["kind"] == "recorded event" and r["date"][:4] in ("2025", "2026")]
+    n_change = sum(1 for r in in_window if r["event_type"] in changes)
+    n_other = len(in_window) - n_change
+    n_2027 = sum(1 for r in rows if r["kind"].startswith("scheduled") and r["date"][:4] == "2027")
     register("F09", "f09_policy_instrument_timeline_2025_2027.csv",
-             "In 2025-26 policy instruments reshaped review, authorization, hiring and disclosure work faster than any technology did, and more dated changes are already scheduled for 2027.",
-             "Horizontal timeline with one swimlane per domain; recorded events as filled markers, scheduled dates as hollow markers, pending actions as dashed markers; status labels in text, not colour alone; table beside the chart.",
-             "EMST L5 instrument registry and driver events (data/v2/instruments, data/v2/events; agent-recorded, unreviewed) filtered to events whose dates rest on verified records (V1-V4 key facts, the corrections register and the WP-15 re-checks of 2026-10-23); scheduled and pending items from the same verified records. Bills are shown at their recorded stage only; none is law. Litigation outcomes after the dates shown were not checked. Held (Tribal-related) instruments excluded.")
+             f"EMST's registry records {n_change} dated policy actions in 2025-26 that changed or settled rules for review, authorization, hiring, disclosure or entry pathways (finalized, took effect, enacted, rescinded, enjoined, decided by a court, or a reinstatement offer), plus {n_other} other dated steps (proposals, bills, a court's grant of review); {n_2027} more dated changes are scheduled for 2027. The timeline holds no technology-adoption data, so it cannot by itself show that policy moved faster than technology.",
+             "Horizontal timeline with one swimlane per domain; recorded events as filled markers, scheduled dates as hollow markers, pending actions as dashed markers; status labels in text, not color alone; table beside the chart.",
+             "EMST L5 instrument registry and driver events (data/v2/instruments, data/v2/events; agent-recorded, unreviewed) filtered to events whose dates rest on verification records (V1-V4 key facts, the corrections register and the WP-15 re-checks of 2026-10-23). Filter rule: an event is admitted if all its sources are verification records, or if any source is a WP-15 re-check; some admitted events also cite a role source row that no verification pass re-checked (for example the objection-rule event cites SC-009). Two recorded events (AmeriCorps, July 2025; New Jersey Supreme Court, July 2026) come from corrected claims-register rows and are not yet in data/v2/events. Scheduled and pending items come from the same records; future dates are as of 2026-10-23 and must be re-checked. Superseded verification records are replaced by their current register rows (see SUPERSEDED_SUCCESSORS in the script). Bills are shown at their recorded stage only; none is law. Litigation outcomes after the dates shown were not checked. Held (Tribal-related) instruments excluded.",
+             evidence="EMST record of external events (agent-recorded); dates checked against verification records and the claims register")
 
 
 # ---------------------------------------------------------------- F10 corridors
@@ -461,9 +629,9 @@ def f10():
     roles = [r for r in read_csv(os.path.join(ROOT, "docs", "decisions", "mvp_role_set.csv")) if r["corridor"].startswith("COR")]
     assert len(roles) == 13
     corridor_name = {
-        "COR-1": "Corps and field entry -> technician -> monitoring and data -> geospatial",
-        "COR-2": "Fire operations -> fuels and prescribed fire -> fire intelligence",
-        "COR-3": "Restoration and land stewardship -> review, permitting and compliance -> programme management",
+        "COR-1": "Field and data corridor: corps and field entry -> technician -> monitoring and data -> geospatial",
+        "COR-2": "Fire corridor: fire operations -> fuels and prescribed fire -> fire intelligence",
+        "COR-3": "Stewardship and regulation corridor: restoration and land stewardship -> review, permitting and compliance -> program management",
     }
     out = []
     seq = {}
@@ -486,10 +654,10 @@ def f10():
               ["corridor", "corridor_name", "step", "role_key", "role_title", "work_function", "role_levels", "lifecycle_state",
                "sector_actor_variants_released", "change_indicator_active", "context_signals_attached_watch", "v2_multi_rater_assessment"], out)
     register("F10", "f10_p1_corridors_and_roles.csv",
-             "EMST v2's first 13 role profiles form three corridors that cross all three crafts and end in state and federal role variants; no role yet has a change indicator that has passed EMST's evidence rule.",
+             "EMST v2's first 13 role profiles form three corridors that are designed to cross all three crafts and end in state and federal role variants; no role yet has a change indicator that has passed EMST's evidence rule.",
              "Three horizontal swimlanes (one per corridor) of role boxes in step order, with levels as a band inside each box and 'emerging' roles outlined dashed; a footer row per box shows 'change indicator: none active' and the count of watch signals. No craft blends or change ratings are drawn: those are agent drafts awaiting multi-rater assessment.",
-             "EMST mvp_role_set.csv (ADR-0006, CA decision) and WP-08 generated change views (docs/build/WP-08/generated/change_view/). Indicator status is computed by the ADR-0028 evidence rule (two independent signal families, two periods, named human review); every attached signal is at watch status. Tribal variants are held and not shown.",
-             tier="describe", evidence="Structure: CA decision (ADR-0006). Indicator status: computed. No agent ratings shown.")
+             "EMST mvp_role_set.csv (ADR-0006, a decision record drafted by EMST's AI agents) and the generated role change views (docs/build/WP-08/generated/change_view/). 'Designed to cross all three crafts' describes the corridor design; the craft ratings that would show it are agent drafts and are deliberately not charted. Indicator status is computed by the ADR-0028 evidence rule (two independent signal families, two periods, named human review); every attached signal is at watch status. Tribal variants are held and not shown.",
+             tier="describe", evidence="Structure: EMST decision record (ADR-0006). Indicator status: computed. No agent ratings shown.")
 
 
 def main():
@@ -498,13 +666,13 @@ def main():
         "figure_id": "NOT-BUILT-1", "file": "",
         "headline": "Two exposure profiles (analytical vs field occupations on capability and usage indices)",
         "suggested_chart_form": "Held: would be a paired dot plot of occupation percentiles on a capability index and a usage index.",
-        "source_note": "Not built. Values derive from the Eloundou et al. replication labels and Microsoft 'Working with AI' results files, whose licence terms are not yet in the third-party licence register (ADR-0013 amendment; CR-LM-002). The finding appears in the report as attributed prose. Build once AS/CP record the terms.",
+        "source_note": "Not built. Values derive from the Eloundou et al. replication labels and Microsoft 'Working with AI' results files, whose license terms are not yet in the third-party license register (ADR-0013 amendment; CR-LM-002). The finding appears in the report as attributed prose. Build once EMST records the terms; BLS's public-domain AI exposure categories are a license-free alternative once ingested.",
         "use_tier": "", "evidence_label": "", "as_of": AS_OF})
     INDEX.append({
         "figure_id": "NOT-BUILT-2", "file": "",
         "headline": "Craft blend by priority role",
         "suggested_chart_form": "Omitted.",
-        "source_note": "Omitted by rule: every v2 craft rating is an agent draft (raterType llm, validationStatus draft) pending the IO craft-rating pilot and the alpha gate (ADR-0005, ADR-0024); v1 craft tags are prior evidence only. Charting either would display an LLM rating or a v1 value.",
+        "source_note": "Omitted by rule: every v2 craft rating is an agent draft (raterType llm, validationStatus draft) pending the craft-rating pilot and the agreement gate (ADR-0005, ADR-0024); v1 craft tags are prior evidence only. Charting either would display an LLM rating or a v1 value.",
         "use_tier": "", "evidence_label": "", "as_of": AS_OF})
     write_csv("figures_index.csv", ["figure_id", "file", "headline", "suggested_chart_form", "source_note", "use_tier", "evidence_label", "as_of"], INDEX)
     print(f"build_figures: wrote {len([i for i in INDEX if i['file']])} figure datasets and figures_index.csv to {os.path.relpath(OUT, ROOT)}")
