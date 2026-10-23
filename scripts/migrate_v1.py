@@ -21,7 +21,8 @@ summary, one that departs from its rule carries judgment and migrates as prior e
 CC0-1.0: the project lead dedicated the v1 text to the public domain (PROJECT_LEAD_DECISIONS.md Q2, 2026-10-23;
 ADR-0013). Without that dedication (licensing.yaml v1Dedication: pending) the fallback LicenseRef applies.
 
-Authoring safety: an existing seed file is NEVER overwritten once it has left validationStatus seed-v1 or moved;
+Authoring safety: an existing seed file is NEVER overwritten once it has left validationStatus seed-v1, moved, or
+been edited by an author (any difference from the generated text);
 use --force only on a clean checkout. Assessment batches, X1, and migration/ files are regenerated.
 
 Usage:
