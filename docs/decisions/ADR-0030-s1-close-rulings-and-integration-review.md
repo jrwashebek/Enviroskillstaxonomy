@@ -168,11 +168,12 @@ From S1 close, the records in `data/v2/` are the source of truth. The S1 generat
 - **DB-C53** follows the home-module rule (ADR-0018 §6). The deliverable's sufficiency is governed by laboratory accreditation and methods wherever the data go. The part that genuinely recurs, the data user's review, is already a core practice.
 - **Merges.** The five merges all fold a generic or single-practice v1 item into an environmental survivor. That is exactly what G-8 and the knowledge-area test require, and none of them touches ADR-0016's or ADR-0007's protected content.
 - **Freezing the builders** is the only way several agents can edit one record set in S2 without silent loss.
+- **Role-bundle values.** Percentage of time and criticality are what a job analysis measures. Percentage of time is also a classification factor in federal position descriptions. Showing agent guesses in a view labelled "not a classification basis" would invite exactly that use. Target levels, by contrast, are role-design statements that the gap check and pathways cannot work without, and the Delphi will validate them as statements. They are shown, labelled.
 
 ## Consequences
 
 - SPEC 2.0.0-draft.3. After DE's rebuild, the schema is 2.0.0-draft.3.
-  - `build_schema.py --check` reports `v_closureType` STALE until DE regenerates.
+  - `build_schema.py --check` reports two STALE definitions until DE regenerates: `v_closureType` and `StateClassFields`.
   - The new vocabulary keys (`instrument_link_roles`, `mirror_relations`, `formation_responses`) are not yet wired, so they do not make the check stale.
   - Data validation is unaffected: 0 errors on 2026-10-23.
 - 49 enactments change shape when DE converts them, with no change of meaning. Until SC and DB set roles, the venue view reports their links as `untypedLinks` and decides nothing from them.
@@ -185,4 +186,5 @@ From S1 close, the records in `data/v2/` are the source of truth. The S1 generat
 - **DB:** keeping DB-C53 in a wave-2 module leaves laboratory roles without rc.1 content. Accepted: no P1 or P2 role is a laboratory analyst. R24 and R26 get the data-user side in core.
 - **LC:** `responses[]` as an array is less strict than one response per provision. It is accepted because real provisions combine supervised repetitions with a validation drill.
 - **FS, CM:** the merge list leaves FS-C15 and CC-CM-02 standing; the CA judged headroom of five sufficient without touching ADR-0025 or ADR-0023 content.
+- **CP and FH:** View 1 and the HR kits lose time shares until job analysis. Accepted: supervisors set % time in their own position descriptions, and the kits say so. The explorer's fail-closed reading was the right default.
 - **Trade-off named:** central S2 work orders put more load on WP-08's agents. The alternative, reopening five finished WPs, would compete with the S2 critical path and with the builder freeze.
