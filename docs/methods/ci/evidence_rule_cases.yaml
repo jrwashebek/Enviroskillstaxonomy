@@ -1,0 +1,137 @@
+# ADR-0028 s2 evidence-rule test cases for DE's CI (owner A9 LM, WP-10). SYNTHETIC FIXTURES: every signal below is
+# invented for testing and describes no real observation. Each case lists partial ChangeSignal / ExposureAssessment
+# records; the test fills the remaining required fields from `defaults`. Expected outcome: moves | watch | invalid,
+# plus a reason code that must appear (see docs/methods/ci/evidence_rule.py).
+version: 0.1.0
+synthetic: true
+defaults:
+  type: ChangeSignal
+  targetId: mvp-role:R99-synthetic-role
+  direction: augment
+  drivers: [AI]
+  crosswalkMinMatchType: skos:closeMatch
+  reviewStatus: reviewed
+  reviewer: pid:synthetic-reviewer-01
+  personalData: false
+  careFlag: false
+  tribalPrograms: false
+  signalStatus: watch
+  observedPeriod: {start: '2026-01', end: '2026-03'}
+indicator: {targetId: mvp-role:R99-synthetic-role, direction: augment, driver: AI, kind: role-change}
+
+cases:
+  - id: C01-two-families-two-periods
+    description: Postings and plan requirements agree, postings observed in two consecutive quarters, close match, reviewed.
+    expect: moves
+    signals:
+      - {id: 'seed:sig/synthetic/c01-a', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c01-b', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+      - {id: 'seed:sig/synthetic/c01-c', signalFamily: plan-requirements, independenceKey: synthetic-plans, measure: {name: m-plans}}
+  - id: C02-one-family-two-indices
+    description: Two usage indices from different vendors are still one family (observed-use).
+    expect: watch
+    reason: ER-1-ONE-FAMILY
+    signals:
+      - {id: 'seed:sig/synthetic/c02-a', signalFamily: observed-use, independenceKey: anthropic-economic-index, measure: {name: m-use}}
+      - {id: 'seed:sig/synthetic/c02-b', signalFamily: observed-use, independenceKey: ms-working-with-ai, measure: {name: m-use}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+  - id: C03-single-vendor-two-families
+    description: Capability and observed-use signals both built on one vendor's data cannot move an indicator.
+    expect: watch
+    reason: ER-1-SAME-VENDOR
+    signals:
+      - {id: 'seed:sig/synthetic/c03-a', signalFamily: observed-use, independenceKey: anthropic-economic-index, measure: {name: m-use}}
+      - {id: 'seed:sig/synthetic/c03-b', signalFamily: capability, independenceKey: anthropic-robot-exposure, measure: {name: m-cap}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+  - id: C04-bls-observed-not-independent-of-ms
+    description: BLS 'observed' AI exposure is built on Anthropic and Microsoft data, so it cannot pair with Microsoft usage even across families.
+    expect: watch
+    reason: ER-1-SAME-VENDOR
+    signals:
+      - {id: 'seed:sig/synthetic/c04-a', signalFamily: observed-use, independenceKey: ms-working-with-ai, measure: {name: m-use}}
+      - {id: 'seed:sig/synthetic/c04-b', signalFamily: capability, independenceKey: bls-ai-exposure-observed, measure: {name: m-cap}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+  - id: C05-v1-prior-evidence-never-counts
+    description: A v1-analyst assessment plus one postings family is still one family.
+    expect: watch
+    reason: ER-0-V1-PRIOR-EVIDENCE
+    signals:
+      - {id: 'seed:sig/synthetic/c05-a', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}}
+      - {id: 'seed:asm/synthetic/c05-v1', type: ExposureAssessment, raterType: v1-analyst, instrument: emst-v1-task13}
+  - id: C06-broad-match-only-watch
+    description: Two families agree but one reaches the role only through a broad SOC match.
+    expect: watch
+    reason: ER-3-MATCH-TYPE
+    signals:
+      - {id: 'seed:sig/synthetic/c06-a', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c06-c', signalFamily: headcount, independenceKey: synthetic-hr, measure: {name: m-head}, crosswalkMinMatchType: skos:broadMatch, observedPeriod: {start: '2026-04', end: '2026-06'}}
+  - id: C07-single-period-no-deployment
+    description: Two families, one period each, no registered deployment.
+    expect: watch
+    reason: ER-2-NO-PERSISTENCE
+    signals:
+      - {id: 'seed:sig/synthetic/c07-a', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c07-b', signalFamily: worker-report, independenceKey: synthetic-survey, measure: {name: m-survey}}
+  - id: C08-single-period-plus-registered-deployment
+    description: One period plus a registered deployment satisfies persistence.
+    expect: moves
+    signals:
+      - {id: 'seed:sig/synthetic/c08-a', signalFamily: deployment, independenceKey: ombegov-ai-inventory, registeredDeployment: true, measure: {name: m-deploy}}
+      - {id: 'seed:sig/synthetic/c08-b', signalFamily: worker-report, independenceKey: synthetic-survey, measure: {name: m-survey}}
+  - id: C09-fiscal-shock-cannot-masquerade-as-ai
+    description: A fiscal headcount decline and an AI capability signal for an AI-attributed decline indicator.
+    indicator: {targetId: mvp-role:R99-synthetic-role, direction: decline, driver: AI, kind: role-change}
+    expect: watch
+    reason: ER-4-DRIVER
+    signals:
+      - {id: 'seed:sig/synthetic/c09-a', direction: decline, drivers: [fiscal, workforce-capacity], signalFamily: headcount, independenceKey: opm-ehri-fwd, measure: {name: m-head}}
+      - {id: 'seed:sig/synthetic/c09-b', direction: decline, drivers: [fiscal], signalFamily: headcount, independenceKey: opm-ehri-fwd, measure: {name: m-head}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+      - {id: 'seed:sig/synthetic/c09-c', direction: decline, drivers: [AI], signalFamily: capability, independenceKey: eloundou-gpts-are-gpts, measure: {name: m-cap}}
+  - id: C10-agent-review-is-not-human-review
+    description: Signals reviewed only by a software agent stay watch.
+    expect: watch
+    reason: ER-5-NO-NAMED-REVIEW
+    signals:
+      - {id: 'seed:sig/synthetic/c10-a', signalFamily: postings-pds, independenceKey: synthetic-board, reviewer: 'emstagent:some-agent@1', measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c10-b', signalFamily: plan-requirements, independenceKey: synthetic-plans, reviewStatus: unreviewed, measure: {name: m-plans}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+  - id: C11-directions-disagree
+    description: Families point different ways.
+    expect: watch
+    reason: ER-0-DIRECTION
+    signals:
+      - {id: 'seed:sig/synthetic/c11-a', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c11-b', direction: automate, signalFamily: plan-requirements, independenceKey: synthetic-plans, measure: {name: m-plans}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+  - id: C12-tribal-flag-quarantined
+    description: A careFlag signal is quarantined and never counts until the Tribal Council clears it.
+    expect: watch
+    reason: ER-0-QUARANTINED
+    signals:
+      - {id: 'seed:sig/synthetic/c12-a', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c12-b', careFlag: true, tribalPrograms: true, signalFamily: plan-requirements, independenceKey: synthetic-plans, measure: {name: m-plans}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+  - id: C13-personal-data-invalid
+    description: Any signal with personalData not false invalidates the evaluation.
+    expect: invalid
+    reason: ER-0-PERSONAL-DATA
+    signals:
+      - {id: 'seed:sig/synthetic/c13-a', personalData: true, signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}}
+  - id: C14-policy-family-not-for-skill-change
+    description: A state HR order plus postings may move a role-change indicator but the policy family does not count toward a skill-change indicator.
+    indicator: {targetId: mvp-role:R99-synthetic-role, direction: augment, driver: policy-reform, kind: skill-change}
+    expect: watch
+    reason: ER-1-POLICY-NOT-FOR-SKILL-CHANGE
+    signals:
+      - {id: 'seed:sig/synthetic/c14-a', drivers: [policy-reform], signalFamily: policy, independenceKey: synthetic-state-order, measure: {name: m-order}}
+      - {id: 'seed:sig/synthetic/c14-b', drivers: [policy-reform], signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c14-c', drivers: [policy-reform], signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+  - id: C15-projection-never-counts
+    description: Official projections are context; they cannot be one of the two families.
+    expect: watch
+    reason: ER-1-NONCOUNTING-FAMILY
+    signals:
+      - {id: 'seed:sig/synthetic/c15-a', signalFamily: projection, independenceKey: bls-ep-2025-35, measure: {name: m-proj}}
+      - {id: 'seed:sig/synthetic/c15-b', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c15-c', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+  - id: C16-interim-notation-encoding
+    description: Same as C01 but family and independence key carried in the interim EMST- notation schemes.
+    expect: moves
+    signals:
+      - {id: 'seed:sig/synthetic/c16-a', notation: [{scheme: EMST-signalFamily, value: postings-pds}, {scheme: EMST-independenceKey, value: synthetic-board}], measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c16-b', notation: [{scheme: EMST-signalFamily, value: postings-pds}, {scheme: EMST-independenceKey, value: synthetic-board}], measure: {name: m-postings}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+      - {id: 'seed:sig/synthetic/c16-c', notation: [{scheme: EMST-signalFamily, value: plan-requirements}, {scheme: EMST-independenceKey, value: synthetic-plans}], measure: {name: m-plans}}

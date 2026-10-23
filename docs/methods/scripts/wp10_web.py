@@ -42,58 +42,62 @@ PENDING = ["19-2043", "19-2042", "19-2021", "19-2099", "19-3051", "19-4071", "19
 
 
 def bls_signals():
+    """One record per (SOC, MVP role listing the SOC): the occupation-level projection attached to its role
+    crosswalk target (provisional path until X3)."""
     from wp10_external import role_map
+    from wp10_common import extras
     rm = role_map()
-    out = []
+    out, unattached = [], []
     for soc, title, e25, e35, chg, pct, opn, src in BLS:
         targets = rm.get(soc, [])
-        tpath = "; ".join("%s [%s]" % (k, mt) for k, mt in targets) if targets else "no MVP role lists this code"
+        if not targets:
+            unattached.append(soc)
+            continue
         direction = "grow" if pct > 1.0 else ("decline" if pct < -1.0 else "stable")
         rel = "faster than" if pct > ALL_OCC_PCT + 1.0 else ("slower than" if pct < ALL_OCC_PCT - 1.0 else "about as fast as")
-        r = base("seed:sig/bls-ep-2025-35/%s" % soc, "ChangeSignal",
-                 "BLS projected employment change 2025-35: %s (%s)" % (title, soc),
-                 editorial_note=("Projection, not observation; %s the all-occupation average (+3.5%%). Numeric change %s thousand%s. "
-                                 "Projection drivers are not attributed per occupation in the sources read; BLS cites AI as a driver for some "
-                                 "industries and for office and administrative support (V4-07). Supersedes LM Phase 2's 2022-32 figures."
-                                 % (rel, chg, ("; about %s thousand openings a year" % opn) if opn is not None else "")))
-        r.update({
-            "targetType": "occupation",
-            "targetId": "soc:" + soc,
-            "measure": {"name": "projected_employment_change_percent_2025_35", "value": pct, "unit": "percent", "ci95": None, "n": None,
-                        "denominator": "employment 2025 = %s thousand (2035 projected %s thousand)" % (e25, e35),
-                        "baseline": {"value": ALL_OCC_PCT, "ci95": None, "n": None, "note": "all occupations, 2025-35"}},
-            "observedPeriod": {"start": "2025", "end": "2035", "note": "projection period"},
-            "geography": "US",
-            "source": src,
-            "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
-            "corpus": {"version": "National Employment Matrix 2025-35", "sha256": None, "license": "public-domain-us-government"},
-            "method": "Published BLS figure transcribed from %s; no EMST computation." % ("Table 1.2" if src == "LM-145" else "the OOH page"),
-            "toolVersion": TOOL_VERSION,
-            "promptVersion": PROMPT_VERSION,
-            "crosswalkPath": "native SOC %s; role targets via X3 (pending), provisional per mvp_role_set.csv soc_2018: %s" % (soc, tpath),
-            "crosswalkMinMatchType": "exact",
-            "direction": direction,
-            "directionConfidence": "med",
-            "drivers": ["other"],
-            "steepCategory": "economic",
-            "novelty": 1,
-            "reliability": "A",
-            "corroboration": 1,
-            "careFlag": False,
-            "tribalPrograms": False,
-            "personalData": False,
-            "evidenceLabel": "S",
-            "reviewStatus": "machine-coded",
-            "reviewer": "unassigned",
-            "reviewBy": WATCH_REVIEW_BY,
-            "signalStatus": "watch",
-            "signalFamily": "projection",
-            "independenceKey": "bls-ep-2025-35",
-            "impact": 2,
-            "registeredDeployment": False,
-            "provenance": provenance([src, "LM-132"], "E", method="import"),
-        })
-        out.append(r)
+        for role_key, mt in targets:
+            r = base("seed:sig/bls-ep-2025-35/%s/%s" % (soc, role_key), "ChangeSignal",
+                     "BLS projected employment change 2025-35 for %s (%s), attached to %s" % (title, soc, role_key),
+                     editorial_note=("Projection, not observation; %s the all-occupation average (+3.5%%). Numeric change %s thousand%s. "
+                                     "Projection drivers are not attributed per occupation in the sources read; BLS cites AI as a driver for some "
+                                     "industries and for office and administrative support (V4-07). Supersedes LM Phase 2's 2022-32 figures."
+                                     % (rel, chg, ("; about %s thousand openings a year" % opn) if opn is not None else "")),
+                     notation=extras(family="projection", indep="bls-ep-2025-35", impact=2,
+                                     baseline="value=3.5; unit=percent; all occupations 2025-35"))
+            r.update({
+                "targetType": "RoleProfile",
+                "targetId": "mvp-role:" + role_key,
+                "measure": {"name": "projected_employment_change_percent_2025_35", "value": pct, "unit": "percent", "ci95": None, "n": None,
+                            "denominator": "employment 2025 = %s thousand (2035 projected %s thousand)" % (e25, e35)},
+                "observedPeriod": {"start": "2025", "end": "2035", "note": "projection period"},
+                "geography": "US",
+                "source": src,
+                "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+                "corpus": {"version": "National Employment Matrix 2025-35", "sha256": None, "license": "public-domain-us-government"},
+                "method": "Published BLS figure transcribed from %s (see docs/methods/sources.csv %s); no EMST computation." % (
+                    "Table 1.2" if src == "LM-145" else "the OOH page", src),
+                "toolVersion": TOOL_VERSION,
+                "promptVersion": PROMPT_VERSION,
+                "crosswalkPath": ["native SOC %s (BLS National Employment Matrix code)" % soc,
+                                  "X3 role -> SOC (pending WP-09); provisional: docs/decisions/mvp_role_set.csv soc_2018 lists %s for %s" % (soc, role_key)],
+                "crosswalkMinMatchType": "skos:closeMatch" if mt == "close" else "skos:broadMatch",
+                "direction": direction,
+                "directionConfidence": "med",
+                "drivers": ["other"],
+                "steepCategory": "economic",
+                "novelty": 1,
+                "reliability": "A",
+                "corroboration": 1,
+                "careFlag": False,
+                "tribalPrograms": False,
+                "personalData": False,
+                "evidenceLabel": "S",
+                "reviewStatus": "unreviewed",
+                "reviewBy": WATCH_REVIEW_BY,
+                "signalStatus": "watch",
+                "provenance": provenance([src, "LM-132"], "E", method="import"),
+            })
+            out.append(r)
     return out
 
 

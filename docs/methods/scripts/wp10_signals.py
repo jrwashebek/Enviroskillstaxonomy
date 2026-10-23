@@ -7,29 +7,61 @@ no person-level rows. Tribal-related signals are quarantined (careFlag = true, h
 """
 import os
 
-from wp10_common import (ROOT, base, provenance, write_jsonl, sha256_file, RECHECK_PENDING, RECHECK_SETTLED,
+from wp10_common import (ROOT, base, provenance, write_jsonl, sha256_file, extras, RECHECK_PENDING,
                          WATCH_REVIEW_BY, AS_OF, TOOL_VERSION, PROMPT_VERSION)
 
 LMR = "docs/research/labor-market-ai-impact"
+PRED = {"exact": "skos:exactMatch", "close": "skos:closeMatch", "related": "skos:relatedMatch",
+        "broad": "skos:broadMatch", "narrow": "skos:narrowMatch"}
 
 
 def role(k):
-    return "seed:role/" + k
+    """Role targets are the planned MVP role keys (docs/decisions/mvp_role_set.csv) until WP-08 authors RoleProfile
+    seeds; an ExternalRef so nothing dangles. CR-LM-001 asks for the mechanical re-point."""
+    return "mvp-role:" + k
 
 
 def wf(k):
     return "vocab:work_functions#" + k
 
 
-def sig(key, label, *, targetType, targetId, measure, observed, comparison=None, geography="US", sectorActor=None,
+def actor(k):
+    return "vocab:sector_actors#" + k
+
+
+def ttype(target):
+    if target.startswith("mvp-role:"):
+        return "RoleProfile"
+    if target.startswith("seed:ins/"):
+        return "Instrument"
+    if target.startswith("vocab:"):
+        return "VocabularyTerm"
+    raise ValueError(target)
+
+
+def sig(key, label, *, targetId, measure, observed, comparison=None, geography="US", sectorActor=None,
         source, release, corpus, method, crosswalkPath, matchType, direction, dconf, drivers, steep, novelty,
         reliability, corroboration, family, indep, impact, sources, signposts=None, registered=False,
-        held=False, note=None, definition=None):
-    r = base("seed:sig/" + key, "ChangeSignal", label, definition=definition, editorial_note=note, held=held)
+        held=False, note=None, definition=None, baseline=None, sensitivity=None, points=None, targetType=None):
+    mb, ms = measure.get("baseline"), measure.get("sensitivity")
+    if mb and baseline is None:
+        baseline = "value=%s; ci95=%s; n=%s%s" % (mb.get("value"), mb.get("ci95"), mb.get("n"),
+                                                 ("; " + mb["note"]) if mb.get("note") else "")
+    if ms and sensitivity is None:
+        sensitivity = "weighting=%s; value=%s; baselineValue=%s" % (ms.get("weighting"), ms.get("value"), ms.get("baselineValue"))
+    if measure.get("value") is None:
+        raise ValueError("measure.value must be a number: " + key)
+    nota = extras(family=family, indep=indep, impact=impact, registered=registered if family == "deployment" else None,
+                  signpost=signposts, points=points, baseline=baseline, sensitivity=sensitivity)
+    r = base("seed:sig/" + key, "ChangeSignal", label, definition=definition, editorial_note=note, held=held, notation=nota)
+    m = {"name": measure["name"], "value": measure["value"], "unit": measure["unit"],
+         "ci95": measure.get("ci95"), "n": measure.get("n"), "denominator": measure.get("denominator") or "not applicable"}
+    if isinstance(m["n"], float):
+        m["n"] = int(m["n"])
     r.update({
-        "targetType": targetType,
+        "targetType": targetType or ttype(targetId),
         "targetId": targetId,
-        "measure": measure,
+        "measure": m,
         "observedPeriod": observed,
         "geography": geography,
         "source": source,
@@ -38,8 +70,8 @@ def sig(key, label, *, targetType, targetId, measure, observed, comparison=None,
         "method": method,
         "toolVersion": TOOL_VERSION,
         "promptVersion": PROMPT_VERSION,
-        "crosswalkPath": crosswalkPath,
-        "crosswalkMinMatchType": matchType,
+        "crosswalkPath": crosswalkPath if isinstance(crosswalkPath, list) else [crosswalkPath],
+        "crosswalkMinMatchType": PRED[matchType],
         "direction": direction,
         "directionConfidence": dconf,
         "drivers": drivers,
@@ -51,22 +83,15 @@ def sig(key, label, *, targetType, targetId, measure, observed, comparison=None,
         "tribalPrograms": bool(held),
         "personalData": False,
         "evidenceLabel": "S",
-        "reviewStatus": "machine-coded",
-        "reviewer": "unassigned",
+        "reviewStatus": "unreviewed",
         "reviewBy": WATCH_REVIEW_BY if not held else RECHECK_PENDING,
         "signalStatus": "watch",
-        "signalFamily": family,
-        "independenceKey": indep,
-        "impact": impact,
-        "registeredDeployment": bool(registered),
         "provenance": provenance(sources, "E"),
     })
     if comparison:
         r["comparisonPeriod"] = comparison
     if sectorActor:
         r["sectorActor"] = sectorActor
-    if signposts:
-        r["scenarioSignposts"] = signposts
     return r
 
 
@@ -77,10 +102,10 @@ def openlmp_signals():
     cat_sha = sha256_file(d["catalog_path"])
     corpus = {"version": "OpenLMP 0.1.0 (catalog generated 2026-10-21)", "sha256": cat_sha, "license": "CC0-1.0"}
     e82, e12 = d["eras"]["1982-rule"], d["eras"]["2012-rule"]
-    obs = {"start": "2012-rule framework", "end": AS_OF,
-           "note": "Plans and amendments under the 2012 Planning Rule (plan years %s-%s as catalogued)" % tuple(e12["years"])}
-    comp = {"start": "1982-rule framework", "end": AS_OF,
-            "note": "Plans under the 1982 Planning Rule (plan years %s-%s as catalogued)" % tuple(e82["years"])}
+    obs = {"start": "2012", "end": AS_OF[:4],
+           "note": "Plans and amendments under the 2012 Planning Rule framework (catalogued plan years %s-%s); a framework era, not a calendar window" % tuple(e12["years"])}
+    comp = {"start": "1982", "end": "2012",
+            "note": "Plans under the 1982 Planning Rule framework (catalogued plan years %s-%s; many remain in force)" % tuple(e82["years"])}
     common = dict(observed=obs, comparison=comp, geography="US-West", sectorActor="federal",
                   source="LM-144", release="OpenLMP 0.1.0; WP-10 derivation 2026-10-23", corpus=corpus,
                   steep="political", family="plan-requirements", indep="openlmp-usfs-western-plans",
@@ -98,7 +123,7 @@ def openlmp_signals():
     m12, m82 = e12["monitoring_share_plan_equal"], e82["monitoring_share_plan_equal"]
     out.append(sig("openlmp/monitoring-share-2012-vs-1982",
                    "Monitoring requirements as a share of plan components: 2012-rule vs 1982-rule land management plans",
-                   targetType="work-function", targetId=wf("WF-MONITOR"),
+                   targetId=wf("WF-MONITOR"),
                    measure={"name": "monitoring_component_share_plan_equal", "value": m12["value"], "unit": "share of plan components",
                             "ci95": m12["ci95"], "n": m12["n"], "denominator": "plans (each weighted equally)",
                             "baseline": {"value": m82["value"], "ci95": m82["ci95"], "n": m82["n"]},
@@ -125,7 +150,7 @@ def openlmp_signals():
         c["steep"] = steep
         out.append(sig("openlmp/term-%s-2012-vs-1982" % k.replace("_", "-"),
                        "%s: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans" % label,
-                       targetType="work-function", targetId=target,
+                       targetId=target,
                        measure={"name": "mentions_per_1000_components_plan_equal:" + k, "value": a["value"], "unit": "mentions per 1,000 components",
                                 "ci95": a["ci95"], "n": a["n"], "denominator": "plans (each weighted equally)",
                                 "baseline": {"value": b["value"], "ci95": b["ci95"], "n": b["n"]},
@@ -148,7 +173,7 @@ def openlmp_signals():
         direction = "grow" if (pe_ratio and pe_ratio > 1.25 and cw_ratio and cw_ratio > 1.25) else "stable"
         out.append(sig("openlmp/touchpoint-%s-2012-vs-1982" % k.replace("_", "-"),
                        "%s per 1,000 plan components, 2012-rule vs 1982-rule plans" % label,
-                       targetType="work-function", targetId="vocab:work_functions#MODE-ENGAGE",
+                       targetId="vocab:work_functions#MODE-ENGAGE",
                        measure={"name": "coordination_touchpoints_per_1000_plan_equal:" + k, "value": a["value"], "unit": "tagged components per 1,000",
                                 "ci95": a["ci95"], "n": a["n"], "denominator": "plans (each weighted equally)",
                                 "baseline": {"value": b["value"], "ci95": b["ci95"], "n": b["n"]},
@@ -164,7 +189,7 @@ def openlmp_signals():
     # 4 Tribal touchpoints: computed, quarantined (careFlag) - TN decides any representation
     a, b = e12["touchpoints_per_1000_plan_equal"]["tribal"], e82["touchpoints_per_1000_plan_equal"]["tribal"]
     out.append(sig("openlmp/touchpoint-tribal-2012-vs-1982", "Tribal coordination touchpoints in plan components (held)",
-                   targetType="work-function", targetId="vocab:work_functions#MODE-ENGAGE",
+                   targetId="vocab:work_functions#MODE-ENGAGE",
                    measure={"name": "coordination_touchpoints_per_1000_plan_equal:tribal", "value": a["value"], "unit": "tagged components per 1,000",
                             "ci95": a["ci95"], "n": a["n"], "denominator": "plans (each weighted equally)",
                             "baseline": {"value": b["value"], "ci95": b["ci95"], "n": b["n"]}},
@@ -205,7 +230,7 @@ def omb_signals():
     out = []
     for fam, n, dep, target, label, direction, drivers, registered, note in rows:
         out.append(sig("omb-ai-inventory-2025/%s" % fam, "%s: registered federal environmental-bureau use cases (2025 inventory)" % label,
-                       targetType="work-function", targetId=target,
+                       targetId=target,
                        measure={"name": "use_cases_deployed", "value": dep, "unit": "use cases at development_stage=deployed",
                                 "ci95": None, "n": n, "denominator": "use cases in the function family (all stages)"},
                        method=meth, crosswalkPath="OMB use case text -> keyword function family '%s' -> %s" % (fam, target),
@@ -213,7 +238,7 @@ def omb_signals():
                        novelty=1, reliability="A", corroboration=1, impact=2, registered=registered and dep > 0, note=note, **common))
     # COTS availability (drafting tools at workforce scale)
     out.append(sig("omb-ai-inventory-2025/cots-genai-drafting-scale", "Commercial generative-AI drafting and summarization tools licensed at workforce scale (EPA, DOI, USDA)",
-                   targetType="work-function", targetId=wf("WF-REVIEW"),
+                   targetId=wf("WF-REVIEW"),
                    measure={"name": "departments_with_cots_genai_drafting_at_10000_plus_users", "value": 3, "unit": "departments",
                             "ci95": None, "n": 3, "denominator": "environmental departments examined (EPA, DOI, USDA)"},
                    method="Consolidated COTS use-case file: EPA M365 Copilot/Azure OpenAI 10,000-50,000 users; DOI writing tools 50,000+; USDA Copilot Chat 50,000+ (LM Phase 2 omb_cots_ai_env_departments_2025.csv). Licences are availability, not use.",
@@ -233,7 +258,7 @@ def headcount_signals():
                   matchType="close", novelty=1, corroboration=1)
     obs = {"start": "2024-09-30", "end": "2026-01-31"}
     out.append(sig("headcount/usfs-gt25pct-2024-09-to-2026-01", "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
-                   targetType="organization", targetId="org:US-USDA-FS",
+                   targetId=actor("federal"),
                    measure={"name": "headcount_change_share", "value": -0.25, "unit": "share (upper bound: 'more than a quarter')",
                             "ci95": None, "n": None, "denominator": "USFS employees Sep 2024 (PPS base)"},
                    observed=obs, source="LM-128", release="PPS analysis of OPM data to Jan 2026", corpus=corpus_pps,
@@ -242,7 +267,7 @@ def headcount_signals():
                    drivers=["fiscal", "policy-reform", "workforce-capacity"], reliability="B", impact=3, sources=["LM-128"],
                    note="Driver is fiscal and policy (deferred resignation, RIF, hiring freeze), not AI. Must never be read as automation.", **common))
     out.append(sig("headcount/nps-gt25pct-2024-09-to-2026-01", "National Park Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
-                   targetType="organization", targetId="org:US-DOI-NPS",
+                   targetId=actor("federal"),
                    measure={"name": "headcount_change_share", "value": -0.25, "unit": "share (upper bound: 'more than a quarter')",
                             "ci95": None, "n": None, "denominator": "NPS employees Sep 2024 (PPS base)"},
                    observed=obs, source="LM-128", release="PPS analysis of OPM data to Jan 2026", corpus=corpus_pps,
@@ -250,7 +275,7 @@ def headcount_signals():
                    direction="decline", dconf="high", drivers=["fiscal", "policy-reform", "workforce-capacity"], reliability="B", impact=3,
                    sources=["LM-128"], **common))
     out.append(sig("headcount/park-rangers-minus-34pct", "Federal park rangers fell 34.1% (Sep 2024 - Jan 2026)",
-                   targetType="role-profile", targetId=role("R21-park-ranger-visitor-resource"),
+                   targetId=role("R21-park-ranger-visitor-resource"),
                    measure={"name": "headcount_change_share", "value": -0.341, "unit": "share", "ci95": None, "n": None,
                             "denominator": "federal park rangers Sep 2024"},
                    observed=obs, source="LM-128", release="PPS analysis of OPM data to Jan 2026", corpus=corpus_pps,
@@ -258,7 +283,7 @@ def headcount_signals():
                    crosswalkPath="OPM series 0025 Park Ranger -> mvp_role_set R21 federal variant (X4 pending)", direction="decline",
                    dconf="high", drivers=["fiscal", "policy-reform", "workforce-capacity"], reliability="B", impact=2, sources=["LM-128"], **common))
     out.append(sig("headcount/federal-under-30-share", "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
-                   targetType="organization", targetId="org:US-federal-civilian",
+                   targetId=actor("federal"),
                    measure={"name": "under_30_share", "value": 0.079, "unit": "share of employees", "ci95": None, "n": None,
                             "denominator": "federal civilian employees", "baseline": {"value": 0.089, "ci95": None, "n": None}},
                    observed={"start": "2026-01-31", "end": "2026-01-31"}, comparison={"start": "2024-09-30", "end": "2024-09-30"},
@@ -268,7 +293,7 @@ def headcount_signals():
                    drivers=["fiscal", "policy-reform", "workforce-capacity", "demographic"], reliability="B", impact=3, sources=["LM-128"],
                    note="Entry-path signal: the rung is thinning through hiring policy, not AI (LM Phase 2 Q2).", **common))
     out.append(sig("headcount/federal-civilian-minus-12pct", "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
-                   targetType="organization", targetId="org:US-federal-civilian",
+                   targetId=actor("federal"),
                    measure={"name": "headcount", "value": 2035344, "unit": "employees", "ci95": None, "n": None, "denominator": "federal civilian employees",
                             "baseline": {"value": 2313216, "ci95": None, "n": None}},
                    observed={"start": "2026-01-31", "end": "2026-01-31"}, comparison={"start": "2024-09-30", "end": "2024-09-30"},
@@ -277,7 +302,7 @@ def headcount_signals():
                    crosswalkPath="governmentwide -> organization", direction="decline", dconf="high",
                    drivers=["fiscal", "policy-reform", "workforce-capacity"], reliability="B", impact=3, sources=["LM-128"], **common))
     out.append(sig("headcount/epa-12849-jan-2026", "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
-                   targetType="organization", targetId="org:US-EPA",
+                   targetId=actor("federal"),
                    measure={"name": "headcount", "value": 12849, "unit": "employees", "ci95": None, "n": None, "denominator": "EPA employees",
                             "baseline": {"value": None, "ci95": None, "n": None, "note": "more than 4,000 higher a year earlier"}},
                    observed={"start": "2026-01-31", "end": "2026-01-31"}, comparison={"start": "2025-01-20", "end": "2025-01-20"},
@@ -288,7 +313,7 @@ def headcount_signals():
                    drivers=["fiscal", "policy-reform", "workforce-capacity", "demographic"], reliability="B", impact=3, sources=["LM-129"],
                    note="Top-of-ladder mechanism: tacit expertise left fastest at year-end 2025 (ADR-0008 s6 top-of-ladder loss).", **common))
     out.append(sig("headcount/usfs-seasonal-hiring-2025-2026", "USFS hired no non-fire seasonal staff in 2025; committed to 2,000 seasonals for 2026",
-                   targetType="role-profile", targetId=role("R02-field-resource-technician"),
+                   targetId=role("R02-field-resource-technician"),
                    measure={"name": "non_fire_seasonal_hires_committed", "value": 2000, "unit": "seasonal positions (2026 commitment)", "ci95": None,
                             "n": None, "denominator": "USFS seasonal hiring", "baseline": {"value": 0, "ci95": None, "n": None, "note": "2025 non-fire seasonal hires"}},
                    observed={"start": "2026-02-12", "end": "2026-03-18"}, comparison={"start": "2025-01-01", "end": "2025-12-31"},
@@ -311,18 +336,18 @@ def postings_signals():
                   steep="economic", family="postings-pds", indep="conservation-job-board", matchType="related", novelty=1,
                   reliability="C", corroboration=1, sources=["LM-130"])
     out.append(sig("postings/conservation-job-board-internships-2025", "Paid conservation internship postings fell 43.8% year over year (Mar-Sep 2025, one board)",
-                   targetType="role-profile", targetId=role("R02-field-resource-technician"),
+                   targetId=role("R02-field-resource-technician"),
                    measure={"name": "postings_yoy_change", "value": -0.438, "unit": "share", "ci95": None, "n": None, "denominator": "paid internship postings, same months 2024"},
                    crosswalkPath="internship postings -> entry level of R02 (feeder)", direction="decline", dconf="med",
                    drivers=["fiscal"], impact=2, signposts=["vocab:scenarios#SP-03"], **common))
     out.append(sig("postings/conservation-job-board-americorps-2025", "AmeriCorps conservation positions posted fell 42% year over year (Mar-Sep 2025, one board)",
-                   targetType="role-profile", targetId=role("R01-conservation-corps-member"),
+                   targetId=role("R01-conservation-corps-member"),
                    measure={"name": "postings_yoy_change", "value": -0.42, "unit": "share", "ci95": None, "n": None, "denominator": "AmeriCorps postings, same months 2024"},
                    crosswalkPath="AmeriCorps conservation postings -> R01", direction="decline", dconf="med",
                    drivers=["fiscal", "policy-reform"], impact=2, signposts=["vocab:scenarios#SP-03"],
                    note="2025 grant terminations were largely reinstated in plaintiff jurisdictions and settled for FY2026 (driver events); re-read in the 2026 window.", **common))
     out.append(sig("postings/conservation-job-board-all-2025", "All conservation postings fell 29.4% year over year (Mar-Sep 2025, one board)",
-                   targetType="organization", targetId="org:conservation-job-board-market",
+                   targetId=actor("ngo"),
                    measure={"name": "postings_yoy_change", "value": -0.294, "unit": "share", "ci95": None, "n": None, "denominator": "all postings, same months 2024"},
                    crosswalkPath="board-wide -> organization", direction="decline", dconf="med", drivers=["fiscal", "policy-reform"], impact=2,
                    signposts=["vocab:scenarios#SP-03"], **common))
@@ -333,7 +358,7 @@ def postings_signals():
 def review_tooling_signals():
     out = []
     out.append(sig("deployment/permitting-ai-shared-services", "PNNL PermitAI shared services: SearchNEPA available to federal NEPA reviewers; DraftNEPABench released",
-                   targetType="work-function", targetId=wf("WF-REVIEW"),
+                   targetId=wf("WF-REVIEW"),
                    measure={"name": "shared_ai_services_available_to_federal_reviewers", "value": 1, "unit": "service in use (SearchNEPA)", "ci95": None,
                             "n": None, "denominator": "PermitAI modules (SearchNEPA, CommentNEPA, WriteNEPA, EngageNEPA, PermitCE, PermitReg, PermitLex)"},
                    observed={"start": "2025-05-02", "end": "2026-06-29"}, geography="US", sectorActor="federal", source="LM-110",
@@ -345,7 +370,7 @@ def review_tooling_signals():
                    sources=["LM-110", "SC-009"],
                    note="Reclassified from SC's PI-TECH-04 (tools are L4, not instruments). Availability is not registered deployment: the 2025 OMB inventory shows 0 of 5 review/permitting use cases deployed."))
     out.append(sig("capability/draftnepabench-coding-agents", "Benchmark of AI agents drafting EIS sections (DraftNEPABench, PNNL with OpenAI)",
-                   targetType="work-function", targetId=wf("WF-REVIEW"),
+                   targetId=wf("WF-REVIEW"),
                    measure={"name": "benchmark_test_cases", "value": 102, "unit": "test cases", "ci95": None, "n": 19, "denominator": "contributing agencies"},
                    observed={"start": "2026-05-27", "end": "2026-06-29"}, geography="US", sectorActor="federal", source="LM-110",
                    release="Presented 2026-05-27/29; PNNL release 2026-06-29", corpus={"version": "DraftNEPABench", "sha256": None, "license": "not checked"},
@@ -361,7 +386,7 @@ def review_tooling_signals():
 def policy_watch_signals():
     out = []
     out.append(sig("policy/nhpa-s106-nprm-at-oira", "Section 106 regulations rewrite: ACHP voted to advance an NPRM (2026-07-24); at OIRA; unpublished",
-                   targetType="instrument", targetId="seed:ins/nhpa-s106-regs",
+                   targetId="seed:ins/nhpa-s106-regs",
                    measure={"name": "rulemaking_stage", "value": 0, "unit": "published proposals (0 = pre-publication at OIRA)", "ci95": None, "n": None, "denominator": None},
                    observed={"start": "2026-07-24", "end": "2026-10-09"}, geography="US", sectorActor="federal", source="LM-112",
                    release="Kelley Drye 2026-09-11; ACHP news through 2026-10-09", corpus={"version": "secondary + agency news index", "sha256": None, "license": "cited"},
@@ -371,7 +396,7 @@ def policy_watch_signals():
                    family="policy", indep="federal-register-pipeline", impact=3, sources=["LM-112"],
                    note="When NEPA accelerates, s.106 and ESA review become the critical path (SC). Final rule considered unlikely before 2027. Re-check Federal Register before publication; ACHP meets 2026-11-10."))
     out.append(sig("policy/faa-part-108-final-at-oira", "FAA Part 108 BVLOS final rule at OIRA since 2026-07-10; unpublished as of 2026-10-21",
-                   targetType="instrument", targetId="seed:ins/faa-part-108",
+                   targetId="seed:ins/faa-part-108",
                    measure={"name": "rulemaking_stage", "value": 0, "unit": "published final rules (0 = at OIRA)", "ci95": None, "n": None, "denominator": None},
                    observed={"start": "2026-07-10", "end": "2026-10-21"}, geography="US", sectorActor="federal", source="LM-116",
                    release="Trade press 2026-09-08 and 2026-10-21", corpus={"version": "trade press", "sha256": None, "license": "cited"},
@@ -413,7 +438,7 @@ def foresight_signals():
          "reshape", ["fiscal", "policy-reform", "climate"], "environmental", 2, "B", "policy", "fs-data-discontinuity", 2, ["FS-037"], ["vocab:scenarios#SP-11"],
          "Public climate-risk data function migrates to a nonprofit refugium. Supports FS-C16."),
         ("ws-10-obbba-ira-rescissions", "WS-10", "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
-         "organization", "org:US-federal-land-agencies", ("programme_lines_rescinded", 3, "named programme lines (UCF, NPS hiring, USFS NEPA staff)", "IRA lines cited by FS-036"), "2025-07-04", "federal",
+         "organization", actor("federal"), ("programme_lines_rescinded", 3, "named programme lines (UCF, NPS hiring, USFS NEPA staff)", "IRA lines cited by FS-036"), "2025-07-04", "federal",
          "decline", ["fiscal", "policy-reform"], "political", 1, "B", "policy", "fs-fiscal", 3, ["FS-036"], None,
          "Removes funded hiring lines and implementation pipelines; also removes community forestry technical-assistance capacity (FS-C16)."),
         ("ws-31-firesat-operational", "WS-31", "Three operational FireSat satellites launched; early-adopter data Q4 2026; global access 2028",
@@ -425,23 +450,23 @@ def foresight_signals():
          "grow", ["climate"], "environmental", 1, "A", "plan-requirements", "nifc-imsr", 3, ["FS-034"], ["vocab:scenarios#SP-10"],
          "Predetermined pressure in all scenarios; workload signal, not a skill-change signal. Family coded as demand pressure (closest: plan-requirements); see CR-LM-001 on a 'workload' family."),
         ("ws-14-epa-ai-strategy", "WS-14", "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
-         "organization", "org:US-EPA", ("strategy_published", 1, "strategy", "agency AI strategies"), "2025-10-01", "federal",
+         "organization", actor("federal"), ("strategy_published", 1, "strategy", "agency AI strategies"), "2025-10-01", "federal",
          "new", ["AI", "policy-reform"], "political", 2, "A", "policy", "agency-ai-strategy", 2, ["FS-031"], None,
          "AI governance roles formalized inside a regulator (relevant to R32 environmental AI assurance officer)."),
         ("ws-33-gao-opm-capacity", "WS-33", "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
-         "organization", "org:US-OPM", ("headcount_change_share", -0.35, "share", "OPM employees Dec 2024"), "2026-07-20", "federal",
+         "organization", actor("federal"), ("headcount_change_share", -0.35, "share", "OPM employees Dec 2024"), "2026-07-20", "federal",
          "decline", ["fiscal", "policy-reform", "workforce-capacity"], "political", 2, "A", "headcount", "gao-opm", 2, ["FS-029"], ["vocab:scenarios#SP-01"],
          "The classification and skills-policy machinery EMST's first users rely on is thinned (adoption-relevant)."),
     ]
-    for (key, ws, label, ttype, target, meas, date, actor, direction, drivers, steep, novelty, rel, family, indep, impact, sources, signposts, note) in rows:
-        out.append(sig("foresight/" + key, label, targetType=ttype, targetId=target,
+    for (key, ws, label, _ttype, target, meas, date, sact, direction, drivers, steep, novelty, rel, family, indep, impact, sources, signposts, note) in rows:
+        out.append(sig("foresight/" + key, label, targetId=target,
                        measure={"name": meas[0], "value": meas[1], "unit": meas[2], "ci95": None, "n": None, "denominator": meas[3]},
-                       observed={"start": date, "end": date}, sectorActor=actor, crosswalkPath="FS %s -> %s" % (ws, target), source=sources[0],
+                       observed={"start": date, "end": date}, sectorActor=sact, crosswalkPath="FS %s -> %s" % (ws, target), source=sources[0],
                        direction=direction, dconf="low", drivers=drivers, steep=steep, novelty=novelty, reliability=rel, family=family,
                        indep=indep, impact=impact, sources=sources, signposts=signposts, note=note, **fs))
     # DC-CAND-17 deployment evidence: agentic use cases in USDA/DOI/EPA inventory (DC-001)
     out.append(sig("deployment/agentic-use-cases-usda-doi-epa-2025", "Agentic AI use cases in the 2025 USDA, DOI and EPA inventories: 8 of 438, 2 deployed (both administrative)",
-                   targetType="work-function", targetId=wf("WF-ASSESS"),
+                   targetId=wf("WF-ASSESS"),
                    measure={"name": "agentic_use_cases_deployed", "value": 2, "unit": "deployed agentic use cases (administrative)", "ci95": None, "n": 8,
                             "denominator": "agentic-classed use cases among 438 USDA/DOI/EPA use cases"},
                    observed={"start": "2025-01-01", "end": "2025-12-22"}, geography="US", sectorActor="federal", source="DC-001",
@@ -452,8 +477,8 @@ def foresight_signals():
                    family="deployment", indep="ombegov-ai-inventory", impact=2, registered=False, sources=["DC-001"],
                    note="Supports DC-CAND-17; environmental deployments not yet evidenced (S)."))
     out.append(sig("policy/omb-m-26-04-llm-contract-terms", "OMB M-26-04 requires LLM solicitations to include acceptable-use, model/system/data cards and feedback terms",
-                   targetType="instrument", targetId="seed:ins/omb-m-26-04",
-                   measure={"name": "procurement_policy_update_deadline_met", "value": None, "unit": "agency policies updated by 2026-03-11 (not counted)", "ci95": None, "n": None, "denominator": "agencies"},
+                   targetId="seed:ins/omb-m-26-04",
+                   measure={"name": "llm_solicitation_terms_required", "value": 1, "unit": "memo in force (1 = requirement applies)", "ci95": None, "n": None, "denominator": "OMB memoranda governing LLM procurement"},
                    observed={"start": "2025-12-11", "end": "2026-03-11"}, geography="US", sectorActor="federal", source="LM-111",
                    release="M-26-04 (2025-12-11)", corpus={"version": "memo text", "sha256": None, "license": "US government work"},
                    method="Policy signal (V2-09). Disclosure of AI use and validation becomes a contract term for LLM purchases; consultancies selling AI-augmented services face disclosure terms.",
@@ -470,15 +495,15 @@ def signpost_signals():
     reading points to; it is FS's call at quarterly triage, coded here as a draft."""
     out = []
 
-    def sp(key, label, spid, measure, observed, actor, source, release, method, direction, drivers, rel, family, indep, impact,
+    def sp(key, label, spid, measure, observed, sact, source, release, method, direction, drivers, rel, family, indep, impact,
            sources, points, note):
-        r = sig("signpost/" + key, label, targetType="scenario-signpost", targetId="vocab:scenarios#" + spid, measure=measure,
-                observed=observed, geography="US", sectorActor=actor, source=source, release=release,
+        r = sig("signpost/" + key, label, targetId="vocab:scenarios#" + spid, measure=measure,
+                observed=observed, geography="US", sectorActor=sact, source=source, release=release,
                 corpus={"version": release, "sha256": None, "license": "cited"},
                 method=method, crosswalkPath="signpost reading -> %s (vocab/scenarios.yaml signposts)" % spid, matchType="close",
                 direction=direction, dconf="low", drivers=drivers, steep="political", novelty=1, reliability=rel, corroboration=1,
-                family=family, indep=indep, impact=impact, sources=sources, signposts=["vocab:scenarios#" + spid], note=note)
-        r["pointsToward"] = points
+                family=family, indep=indep, impact=impact, sources=sources, signposts=["vocab:scenarios#" + spid], note=note,
+                points=points)
         return r
 
     out.append(sp("sp-01-entry-share-federal", "Signpost SP-01 (AX-1): under-30 share of federal workforce 7.9% (Jan 2026) vs 8.9% (Sep 2024)", "SP-01",

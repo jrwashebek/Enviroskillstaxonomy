@@ -9,7 +9,7 @@ Every event date here traces to a verified fact (V1-xx, V2-xx, V3-xx, V4 registe
 row; events that rest only on SC/FS rows and were not re-verified say so in editorialNote and carry the
 pending re-check date.
 """
-from wp10_common import base, provenance, slug, RECHECK_PENDING, RECHECK_SETTLED, RECHECK_HISTORIC
+from wp10_common import base, provenance, resolve, AGENT, RECHECK_PENDING, RECHECK_SETTLED, RECHECK_HISTORIC
 
 # statusAfter values used (proposed vocabulary in CR-LM-001):
 STATUS_AFTER = ["pending-legislation", "proposed", "interim-in-force", "final-not-yet-effective", "in-force",
@@ -175,7 +175,7 @@ add("eu-omnibus-i", "PI-DISC-03", "EU Omnibus I Directive amending CSRD and CSDD
 add("good-neighbor-authority", "PI-GNA-01", "Good Neighbor Authority incl. EXPLORE Act amendments",
     "16 U.S.C. 2113a; P.L. 118-234 s.351", "agreement-authority", "US", ["DM-12", "DM-15"], ["SC-030", "SC-031"],
     [("enacted", "2025-01-04", "expands", "in-force", ["SC-031"], "J", H,
-      "EXPLORE Act amendments (counties and Tribes may retain revenue through FY2028; recreation GNA). Signing day is J; SC-031 dated 2025-01-07.")])
+      "EXPLORE Act amendments (non-state partners may retain revenue through FY2028; recreation GNA). Signing day is J; SC-031 dated 2025-01-07.")])
 add("long-term-gna-act", "PI-GNA-02", "Long-term Good Neighbor Authority Act (H.R. 7951)", "H.R. 7951, 119th Congress", "statute", "US",
     ["DM-12"], ["SC-032"],
     [("introduced", "2026-03-19", "expands", "pending-legislation", ["SC-032"], "E", P, "SC row; farm bill drafts pending.")])
@@ -254,7 +254,7 @@ add("opm-ai-in-hiring-memo", None, "OPM memo Use of Artificial Intelligence in t
 add("uswfs-so-3448", None, "Secretarial Order 3448 establishing the U.S. Wildland Fire Service", "DOI SO 3448 (directed by SO 3443)",
     "executive-order", "US", ["DM-16", "DM-05"], ["LM-125"],
     [("final", "2026-01-12", "reshapes", "in-force", ["LM-125"], "E", S,
-      "Unifies BIA, BLM, NPS and FWS fire plus OWF and OAS; USFS fire NOT moved (consolidation only proposed in the FY2027 budget) (V1-06).")],
+      "Unifies the fire programmes of four DOI bureaus plus OWF and OAS; USFS fire NOT moved (consolidation only proposed in the FY2027 budget) (V1-06).")],
     note="instrumentType executive-order is used for a department-level Secretarial Order; CR-LM-001 proposes a 'secretarial-order' or 'agency-order' value.")
 add("wildland-fire-quals-alignment", None, "USWFS-USFS aligned federal wildland fire qualification standards (IQCS 2026 Transition Plan)",
     "2026 IQCS Transition Plan; Federal Wildland Fire Qualifications Supplement", "standard-with-legal-force", "US", ["DM-17", "DM-16"], ["LM-141"],
@@ -323,9 +323,9 @@ def build():
                 "jurisdiction": x["juris"],
                 "direction": direction,
                 "statusAfter": status_after,
-                "sources": sorted(src),
+                "sources": resolve(src),
                 "evidenceLabel": label,
-                "recordedBy": "emstagent:A9-LM@claude-opus-5-5",
+                "recordedBy": AGENT,
                 "reviewBy": review_by,
                 "provenance": provenance(src, label),
             })

@@ -1,0 +1,45 @@
+id: seed:watch-DC-CAND-17
+type: WatchItem
+prefLabel:
+  en: Supervise agentic AI workflows in environmental analysis
+layer: L5
+module: core
+status: draft
+license: CC0-1.0
+sensitivity: public
+scopeNote:
+  en: 'Counter-signal (what would show it is not forming): No environmental agentic use case reaches deployed stage in the 2026 federal inventory, and no posting or PD in the October 2026 baseline names agent supervision duties; or agent tasks are absorbed by existing AI-output validation (DC-CAND-01/-13).'
+editorialNote:
+  en: 'Signals span three families (capability, deployment, postings) and two sector actors (federal, private), so the ADR-0015 count for ''proposed'' is close; evidence remains S because environmental deployments are not evidenced. Disposition: candidate_disposition.csv row DC-CAND-17 (watch).'
+notation:
+- scheme: EMST-candidate
+  value: DC-CAND-17
+lifecycleState: watch
+reviewBy: '2027-10-23'
+signals:
+- seed:sig/capability/draftnepabench-coding-agents
+- seed:sig/deployment/agentic-use-cases-usda-doi-epa-2025
+- seed:sig/foresight/ws-29-mercor-agent-training
+hypothesizedEntity:
+  type: Competency
+  label:
+    en: Supervise agentic AI workflows in environmental analysis
+  functionStatement:
+    en: Scope tasks delegated to AI agents that plan and take multi-step actions; set permissions and stop conditions; insert checkpoints; review action logs; detect silent failure; and answer for the result.
+outcome: open
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A9-LM@claude-opus-5-5
+  - emstagent:wp10-builder@0.2.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  toolVersion: docs/methods/scripts/build_wp10.py@0.2.0
+  promptVersion: PHASE4-WP10-A9-LM@2026-10-23
+  adr: ADR-0015
+  sources:
+  - DC-001
+  - DC-032
+  - FS-038
+  - V2-08

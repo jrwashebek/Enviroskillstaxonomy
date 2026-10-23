@@ -156,7 +156,8 @@
    "@id": "emstv:bargainingUnit"
   },
   "basis": {
-   "@id": "emstv:basis"
+   "@id": "emstv:basis",
+   "@container": "@language"
   },
   "boundaryCriteria": {
    "@id": "emstv:boundaryCriteria",
@@ -321,8 +322,7 @@
    "@id": "emstv:cycleDependence"
   },
   "date": {
-   "@id": "emstv:date",
-   "@type": "xsd:date"
+   "@id": "emstv:date"
   },
   "decidedBy": {
    "@id": "emstv:decidedBy"
@@ -382,8 +382,7 @@
    "@id": "emstv:directionConfidence"
   },
   "disclaimers": {
-   "@id": "emstv:disclaimers",
-   "@container": "@set"
+   "@id": "emstv:disclaimers"
   },
   "dispersion": {
    "@id": "emstv:dispersion",
@@ -453,8 +452,7 @@
    "@container": "@set"
   },
   "evidence": {
-   "@id": "emstv:evidence",
-   "@container": "@set"
+   "@id": "emstv:evidence"
   },
   "evidenceLabel": {
    "@id": "emstv:evidenceLabel"
@@ -544,8 +542,7 @@
    "@id": "emstv:governedData"
   },
   "highPriority": {
-   "@id": "emstv:highPriority",
-   "@type": "xsd:boolean"
+   "@id": "emstv:highPriority"
   },
   "homeModule": {
    "@id": "emstv:homeModule"
@@ -581,9 +578,7 @@
    "@container": "@set"
   },
   "indicators": {
-   "@id": "emstv:indicators",
-   "@type": "@id",
-   "@container": "@set"
+   "@id": "emstv:indicators"
   },
   "indigenousDataFlag": {
    "@id": "emstv:indigenousDataFlag"
@@ -592,8 +587,7 @@
    "@id": "emstv:industry"
   },
   "instrument": {
-   "@id": "emstv:instrument",
-   "@type": "@id"
+   "@id": "emstv:instrument"
   },
   "instrumentSensitivity": {
    "@id": "emstv:instrumentSensitivity",
@@ -649,15 +643,14 @@
    "@id": "emstv:kind"
   },
   "knowledge": {
-   "@id": "emstv:knowledge",
-   "@type": "@id",
-   "@container": "@set"
+   "@id": "emstv:knowledge"
   },
   "knowledgeApplicationOrigin": {
    "@id": "emstv:knowledgeApplicationOrigin"
   },
   "label": {
-   "@id": "emstv:label"
+   "@id": "emstv:label",
+   "@container": "@language"
   },
   "lastChangedIn": {
    "@id": "emstv:lastChangedRelease"
@@ -691,7 +684,8 @@
    "@container": "@set"
   },
   "license": {
-   "@id": "dct:license"
+   "@id": "dct:license",
+   "@type": "@id"
   },
   "licensesRequired": {
    "@id": "emstv:licensesRequired",
@@ -802,8 +796,7 @@
    "@type": "xsd:boolean"
   },
   "notation": {
-   "@id": "emstv:notation",
-   "@container": "@set"
+   "@id": "emstv:notation"
   },
   "note": {
    "@id": "skos:note",
@@ -820,12 +813,10 @@
    "@id": "emstv:objectScheme"
   },
   "obs4": {
-   "@id": "emstv:obs4",
-   "@type": "xsd:integer"
+   "@id": "emstv:obs4"
   },
   "obs4Flags": {
-   "@id": "emstv:obs4Flags",
-   "@container": "@set"
+   "@id": "emstv:obs4Flags"
   },
   "observedPeriod": {
    "@id": "dct:temporal",
@@ -1130,14 +1121,10 @@
    "@container": "@set"
   },
   "servesCompetencies": {
-   "@id": "emstv:servesCompetencies",
-   "@type": "@id",
-   "@container": "@set"
+   "@id": "emstv:servesCompetencies"
   },
   "servesTasks": {
-   "@id": "emstv:servesTasks",
-   "@type": "@id",
-   "@container": "@set"
+   "@id": "emstv:servesTasks"
   },
   "severity": {
    "@id": "emstv:severity"
@@ -1187,8 +1174,7 @@
    "@id": "emstv:sourceType"
   },
   "sources": {
-   "@id": "dct:source",
-   "@container": "@set"
+   "@id": "dct:source"
   },
   "specEffectiveDate": {
    "@id": "emstv:specEffectiveDate",
@@ -1198,7 +1184,8 @@
    "@id": "emstv:start"
   },
   "statement": {
-   "@id": "emstv:statement"
+   "@id": "emstv:statement",
+   "@container": "@language"
   },
   "statistic": {
    "@id": "emstv:statistic"
@@ -1247,9 +1234,7 @@
    "@id": "emstv:supervisoryStatus"
   },
   "supports": {
-   "@id": "emstv:supports",
-   "@type": "@id",
-   "@container": "@set"
+   "@id": "emstv:supports"
   },
   "tacitExperienceRequirement": {
    "@id": "emstv:tacitExperienceRequirement"
@@ -1445,8 +1430,7 @@
    "@id": "emstv:validationStatus"
   },
   "value": {
-   "@id": "skos:notation",
-   "@type": "xsd:double"
+   "@id": "skos:notation"
   },
   "values": {
    "@id": "emstv:values",
@@ -1563,6 +1547,15 @@
   "released": {
    "@id": "dct:issued",
    "@type": "xsd:date"
+  },
+  "notice": {
+   "@id": "emstv:notice"
+  },
+  "indigenousKnowledgeStatement": {
+   "@id": "emstv:indigenousKnowledgeStatement"
+  },
+  "buildCommit": {
+   "@id": "emstv:buildCommit"
   }
  }
 }

@@ -334,35 +334,13 @@ def build_context(schema: dict) -> dict:
     defs = schema["$defs"]
     terms: dict[str, dict] = {}
 
+    shapes: dict[str, set] = {}
+
     def visit(props):
         for name, sch in props.items():
-            if name in ("type", "id") or name in terms:
+            if name in ("type", "id"):
                 continue
-            iri = FIXED_IRIS.get(name, f"emstv:{name}")
-            shape = _shape(sch, defs)
-            t = {"@id": iri}
-            if name in JSON_BLOBS:
-                t["@type"] = "@json"
-            elif shape == "lang":
-                t["@container"] = "@language"
-            elif shape == "ref":
-                t["@type"] = "@id"
-            elif shape == "refset":
-                t["@type"] = "@id"
-                t["@container"] = "@set"
-            elif shape == "date":
-                t["@type"] = "xsd:date"
-            elif shape == "datetime":
-                t["@type"] = "xsd:dateTime"
-            elif shape == "bool":
-                t["@type"] = "xsd:boolean"
-            elif shape == "int":
-                t["@type"] = "xsd:integer"
-            elif shape == "num":
-                t["@type"] = "xsd:double"
-            elif shape == "list":
-                t["@container"] = "@set"
-            terms[name] = t
+            shapes.setdefault(name, set()).add(_shape(sch, defs))
 
     def collect(sch, depth=0):
         if depth > 8 or not isinstance(sch, dict):
@@ -385,6 +363,35 @@ def build_context(schema: dict) -> dict:
         if name == "Mapping":
             continue
         collect(defs[name])
+    # one mapping per term from all the shapes it takes; conflicting shapes give a plain term
+    for name in sorted(shapes):
+        sh = {x for x in shapes[name] if x != "obj"} or {"obj"}
+        if sh <= {"lang", "str"} and "lang" in sh:
+            sh = {"lang"}
+        shape = sh.pop() if len(sh) == 1 else "plain"
+        t = {"@id": FIXED_IRIS.get(name, f"emstv:{name}")}
+        if name in JSON_BLOBS:
+            t["@type"] = "@json"
+        elif shape == "lang":
+            t["@container"] = "@language"
+        elif shape == "ref":
+            t["@type"] = "@id"
+        elif shape == "refset":
+            t["@type"] = "@id"
+            t["@container"] = "@set"
+        elif shape == "date":
+            t["@type"] = "xsd:date"
+        elif shape == "datetime":
+            t["@type"] = "xsd:dateTime"
+        elif shape == "bool":
+            t["@type"] = "xsd:boolean"
+        elif shape == "int":
+            t["@type"] = "xsd:integer"
+        elif shape == "num":
+            t["@type"] = "xsd:double"
+        elif shape == "list":
+            t["@container"] = "@set"
+        terms[name] = t
     ctx = {"@version": 1.1, **PREFIXES, "id": "@id", "type": "@type"}
     for t in schema["$defs"]["v_entityType"]["enum"]:
         ctx[t] = "sssom:Mapping" if t == "Mapping" else f"emstv:{t}"
@@ -408,6 +415,10 @@ def build_context(schema: dict) -> dict:
     ctx["emstRelease"] = {"@id": "owl:versionInfo"}
     ctx["schemaVersion"] = {"@id": "dct:conformsTo"}
     ctx["released"] = {"@id": "dct:issued", "@type": "xsd:date"}
+    ctx["notice"] = {"@id": "emstv:notice"}
+    ctx["indigenousKnowledgeStatement"] = {"@id": "emstv:indigenousKnowledgeStatement"}
+    ctx["buildCommit"] = {"@id": "emstv:buildCommit"}
+    ctx["license"] = {"@id": "dct:license", "@type": "@id"}
     return {"@context": ctx}
 
 

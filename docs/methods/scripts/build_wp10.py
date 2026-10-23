@@ -2,8 +2,10 @@
 """Build the WP-10 L5 seed (instruments, driver events, change signals, watch items, external assessments).
 
 Run: python3 -I docs/methods/scripts/build_wp10.py   (from the repo root; -I is safe because imports are by path)
-Deterministic. Writes only under data/v2/signals/, data/v2/assessments/external/ and docs/methods/generated/.
-Counts are generated into docs/methods/generated/wp10_counts.json; no count is typed anywhere.
+Deterministic. Layout follows docs/standard/AUTHORING_GUIDE.md s2 (DE): ChangeSignal -> data/v2/signals/<yyyy>/;
+Instrument -> data/v2/instruments/; DriverEvent -> data/v2/events/<yyyy>.jsonl; WatchItem -> data/v2/core/watch-items/;
+external-index ExposureAssessments are STAGED in docs/methods/staging/ until CR-LM-002 lets the schema express their
+occupation/role grain. Counts are generated into docs/methods/generated/wp10_counts.json; no count is typed anywhere.
 """
 import csv
 import json
@@ -19,15 +21,32 @@ import wp10_registry  # noqa: E402
 OPTIONAL = ["wp10_signals", "wp10_watch", "wp10_external"]
 
 
+def promote_external():
+    """After CR-LM-002 is accepted: copy staged external-index assessments into the validated tree."""
+    import shutil
+    src = os.path.join(ROOT, "docs/methods/staging/assessments-external")
+    dst = os.path.join(ROOT, "data/v2/assessments/external")
+    for dirpath, _, files in os.walk(src):
+        for fn in files:
+            if fn.endswith(".jsonl"):
+                rel = os.path.relpath(os.path.join(dirpath, fn), src)
+                os.makedirs(os.path.dirname(os.path.join(dst, rel)), exist_ok=True)
+                shutil.copyfile(os.path.join(dirpath, fn), os.path.join(dst, rel))
+                print("promoted", rel)
+
+
 def main():
+    if "--promote-external" in sys.argv:
+        promote_external()
+        return
     counts = {}
     instruments, events, disposition = wp10_registry.build()
-    write_jsonl("data/v2/signals/registry/instruments.jsonl", instruments)
+    write_jsonl("data/v2/instruments/instruments.jsonl", instruments)
     by_year = {}
     for e in events:
         by_year.setdefault(e["eventDate"][:4], []).append(e)
     for y, evs in by_year.items():
-        write_jsonl("data/v2/signals/events/%s.jsonl" % y, evs)
+        write_jsonl("data/v2/events/%s.jsonl" % y, evs)
     counts["Instrument"] = len(instruments)
     counts["DriverEvent"] = len(events)
     counts["Instrument_held_tribal"] = sum(1 for r in instruments if r.get("indigenousDataFlag"))

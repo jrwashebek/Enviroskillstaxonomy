@@ -1,0 +1,34 @@
+# Synthetic INVALID fixture (WP-01). Seeded violation: system-executes without deployment evidence
+id: seed:fx-asm-exp
+type: ExposureAssessment
+prefLabel:
+  en: Exposure rating of seed:fx-tsk
+layer: L5
+module: core
+status: draft
+license: CC0-1.0
+sensitivity: public
+task: seed:fx-tsk
+taskTextSha256: f7ad11c32c7a3ce0d40b0bab4620a532ea941e29bcfd466f0c78a4cbed668080
+technicalExposure:
+- vector: sensing
+  level: E1
+deploymentMode: system-executes
+raterType: analyst
+raterId: pid:fx-rater-01
+assessedAt: '2026-10-23'
+method: fixture
+confidence: med
+instrument: emst-exposure@2.0
+codebookVersion: '2.0'
+evidenceLabel: S
+sources: []
+editorialNote:
+  en: Synthetic test fixture; not EMST content.
+provenance:
+  method: human-authoring
+  agent:
+  - emstagent:fixture@1
+  generatedAt: '2026-10-23T00:00:00Z'
+  evidenceLabel: S
+  reviewStatus: unreviewed

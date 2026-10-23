@@ -1,0 +1,43 @@
+# Synthetic INVALID fixture (WP-01). Seeded violation: emerging role without counterSignal/reviewBy
+id: seed:fx-rol
+type: RoleProfile
+prefLabel:
+  en: Field monitoring technician
+layer: L3
+module: core
+status: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: Synthetic role.
+functionStatement:
+  en: Collects field samples and observations to protocol.
+primaryWorkFunction: WF-ASSESS
+roleLevels:
+- key: entry
+  levelBand:
+  - L1
+  - L2
+taskBundle:
+- task: seed:fx-tsk
+  importance: 5
+  timeShare: 0.4
+  critical: true
+  neededAtEntry: true
+competencyTargets:
+- competency: seed:fx-cmp
+  targetLevels:
+    entry: L1
+homeModule: core
+lifecycleState: emerging
+useTier: describe
+validationStatus: draft
+editorialNote:
+  en: Synthetic test fixture; not EMST content.
+provenance:
+  method: human-authoring
+  agent:
+  - emstagent:fixture@1
+  generatedAt: '2026-10-23T00:00:00Z'
+  evidenceLabel: S
+  reviewStatus: unreviewed

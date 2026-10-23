@@ -1,10 +1,10 @@
-"""WP-10 L5 watch items (ADR-0015 s2; SPEC 5.15): DC-CAND-17, PS-C19, FS-C16; TN-C13 held/quarantined.
+"""WP-10 L5 watch items (ADR-0015 s2; SPEC 5.15): DC-CAND-17, PS-C19, FS-C16 (TN-C13 stays held and is not authored).
 
 A watch item = a signal cluster + a hypothesized entity, review-by +12 months, lapses without new evidence.
 Promotion to lifecycle `proposed` needs >= 3 independent signals of >= 2 types from >= 2 sector actors, or one
 mandate with an effective date (vocab/lifecycle_states.yaml). Each item carries its counter-signal (FS s7).
 """
-from wp10_common import base, provenance, write_jsonl, WATCH_REVIEW_BY, RECHECK_PENDING
+from wp10_common import base, provenance, write_yaml_record, WATCH_REVIEW_BY
 
 ITEMS = [
     dict(cand="DC-CAND-17", key="supervise-agentic-ai-workflows",
@@ -39,36 +39,27 @@ ITEMS = [
          note="Overlaps rewritten v1 1.5.3; watch until distinct demand is documented in state/local postings (SL, IA). Both signals are supply-side (data and funding withdrawal), not demand."),
 ]
 
-HELD = dict(cand="TN-C13", key="tn-c13-held", label="Held watch item (Tribal gate)",
-            note=("Quarantined under ADR-0007: TN-C13 describes Tribal-internal programme work. EMST does not author it unilaterally; "
-                  "no signals are authored or linked under the Tribal gate. A Tribal Advisory Council decides whether and how it is described."))
+# TN-C13 is NOT authored here: it stays held and quarantined (data/v2/governance/tribal_hold.yaml lists TN-C01..TN-C13).
+# No signals are authored or linked for it under the Tribal gate; a Tribal Advisory Council decides whether and how it
+# is described (ADR-0007; candidate_disposition.csv row TN-C13).
+WATCH_DIR = "data/v2/core/watch-items"
 
 
 def build():
     recs = []
     for it in ITEMS:
-        r = base("seed:watch/" + it["key"], "WatchItem", it["label"], editorial_note=it["note"],
+        r = base("seed:watch-" + it["cand"], "WatchItem", it["label"], editorial_note=it["note"],
+                 scope_note="Counter-signal (what would show it is not forming): " + it["counter"],
                  notation=[{"scheme": "EMST-candidate", "value": it["cand"]}])
         r.update({
-            "signals": it["signals"],
-            "hypothesizedEntity": {"type": it["etype"], "label": it["label"], "functionStatement": it["fn"]},
-            "reviewBy": WATCH_REVIEW_BY,
-            "outcome": "open",
             "lifecycleState": "watch",
-            "counterSignal": it["counter"],
-            "provenance": provenance(it["sources"], "S", note_adr="ADR-0015"),
+            "reviewBy": WATCH_REVIEW_BY,
+            "signals": it["signals"],
+            "hypothesizedEntity": {"type": it["etype"], "label": {"en": it["label"]}, "functionStatement": {"en": it["fn"]}},
+            "outcome": "open",
+            "provenance": provenance(it["sources"], "S", adr="ADR-0015"),
         })
         recs.append(r)
-    h = base("seed:watch/" + HELD["key"], "WatchItem", HELD["label"], editorial_note=HELD["note"],
-             notation=[{"scheme": "EMST-candidate", "value": HELD["cand"]}], held=True)
-    h.update({
-        "signals": [],
-        "hypothesizedEntity": {"type": "Competency", "label": "Held", "functionStatement": "Held pending Tribal review."},
-        "reviewBy": RECHECK_PENDING,
-        "outcome": "open",
-        "lifecycleState": "watch",
-        "provenance": provenance([], "S", note_adr="ADR-0007"),
-    })
-    recs.append(h)
-    write_jsonl("data/v2/signals/watch/watch_items.jsonl", recs)
-    return {"WatchItem": len(recs), "WatchItem_held_tribal": 1}
+    for r in recs:
+        write_yaml_record(WATCH_DIR, r)
+    return {"WatchItem": len(recs)}

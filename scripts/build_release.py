@@ -176,8 +176,8 @@ class Builder:
                 y = self._redact(x)
                 if y is not _DROP:
                     out[k] = y
-            if any(self._held_ref(x) for x in v.values() if isinstance(x, str)) and not out.get("competency", True):
-                return _DROP
+            if any(self._held_ref(x) for x in v.values() if isinstance(x, str)):
+                return _DROP          # an object that names held content is dropped whole (e.g. a supports link)
             return out
         return v
 

@@ -1,0 +1,51 @@
+# DRAFT release workflow (WP-01; finalized with CA in WP-16). Builds on a version tag, never on main.
+# Gates: strict validation (pending references, draft leaks, held content and personal data are errors), tests,
+# reproducible build (built twice and compared), SHA256SUMS. Publication (GitHub release, Zenodo DOI via the
+# repository integration, signing and SBOM per CP's security packet) stays manual until WP-16 signs off.
+name: release
+on:
+  push:
+    tags: ['v[0-9]+.[0-9]+.[0-9]+', 'v[0-9]+.[0-9]+.[0-9]+-rc.[0-9]+']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version without the v (e.g. 2.0.0-rc.1)'
+        required: true
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      VERSION: ${{ github.event.inputs.version || github.ref_name }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1   # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+        with:
+          python-version: '3.13'
+      - run: pip install -q -e ".[dev]"
+      - name: Normalize version
+        run: echo "VERSION=${VERSION#v}" >> "$GITHUB_ENV"
+      - name: Strict validation and tests
+        run: |
+          python scripts/build_schema.py --check
+          python scripts/validate_v2.py --strict --no-git-base
+          python -m pytest -q
+      - name: Build twice and compare (determinism gate)
+        run: |
+          export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
+          prev="$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || true)"
+          prev_args=()
+          if [ -n "$prev" ] && [ -f "dist/${prev#v}/emst.bundle.jsonld" ]; then prev_args=(--previous "dist/${prev#v}/emst.bundle.jsonld"); fi
+          python scripts/build_release.py --version "$VERSION" --out dist/a "${prev_args[@]}"
+          python scripts/build_release.py --version "$VERSION" --out dist/b --no-validate "${prev_args[@]}"
+          diff -r dist/a dist/b
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9   # v7.0.2
+        with:
+          name: emst-${{ env.VERSION }}
+          path: dist/a
+      # Manual until WP-16: `gh release create v$VERSION dist/a/* --prerelease` (needs contents: write),
+      # Zenodo archive via the GitHub integration, cosign signing and SBOM (CP security packet).

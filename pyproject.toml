@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emst"
+version = "2.0.0.dev1"
+description = "Environmental Management Skills Taxonomy v2: schema, validation, ID minting, v1 migration and release build"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0 (code); CC0-1.0 (data and standard text, see LICENSE-DATA)"}
+# Exact pins: the release build must be reproducible byte for byte (WP-01 acceptance).
+dependencies = [
+  "jsonschema==4.26.0",
+  "referencing==0.37.0",
+  "PyYAML==6.0.3",
+  "rdflib==7.6.0",
+  "PyLD==3.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==9.1.1",
+  "openpyxl==3.1.5",          # v1 baseline extractor (scripts/extract_v1.py --check)
+]
+audit = [
+  "pandas==3.0.5",
+  "scikit-learn==1.9.1",      # Phase 1 audit only (scripts/audit_v1.py)
+]
+
+[tool.setuptools]
+py-modules = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
