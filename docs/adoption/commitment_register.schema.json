@@ -1,0 +1,314 @@
+{
+  "$comment": "EMST commitment register (WP-13). Frictionless Table Schema. Cross-field rules (signed rows need date_signed, artifact_reference, year-five owner and evidence E; tribal_related rows need tac_approval_id) are documented in docs/adoption/COMMITMENT_REGISTER.md section 4 and enforced by CI.",
+  "title": "EMST commitment register",
+  "path": "data/v2/registers/commitments.csv",
+  "license": "CC0-1.0",
+  "primaryKey": "commitment_id",
+  "fields": [
+    {
+      "name": "commitment_id",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "pattern": "^CR-[0-9]{4}-[0-9]{3}$",
+        "unique": true
+      }
+    },
+    {
+      "name": "organization_name",
+      "type": "string",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "sector_actor",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "federal",
+          "state",
+          "local",
+          "tribal",
+          "ngo",
+          "private",
+          "academic"
+        ]
+      }
+    },
+    {
+      "name": "organization_subtype",
+      "type": "string"
+    },
+    {
+      "name": "jurisdiction",
+      "type": "string"
+    },
+    {
+      "name": "role_in_emst",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "host",
+          "incubator",
+          "funder",
+          "pilot-anchor",
+          "pilot-organization",
+          "design-partner-federal",
+          "design-partner-state",
+          "design-partner-local",
+          "shadow-user",
+          "workforce-board",
+          "module-advisory-partner",
+          "module-steward",
+          "consortium-member",
+          "validation-partner",
+          "research-partner",
+          "data-provider",
+          "co-publisher",
+          "adopter",
+          "vendor-conformance",
+          "other"
+        ]
+      }
+    },
+    {
+      "name": "stage",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "stage-0",
+          "stage-1a",
+          "stage-1b",
+          "stage-2",
+          "stage-3",
+          "ongoing"
+        ]
+      }
+    },
+    {
+      "name": "rung",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "1-aware",
+          "2-try",
+          "3-use-in-one-decision",
+          "4-embed-in-system",
+          "5-co-govern"
+        ]
+      }
+    },
+    {
+      "name": "commitment_summary",
+      "type": "string",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "artifact_type",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "letter-of-intent",
+          "MOU",
+          "DUA",
+          "MSA",
+          "advisory-partner-letter",
+          "grant-agreement",
+          "host-agreement",
+          "CESU-task-agreement",
+          "contract",
+          "written-confirmation",
+          "public-statement",
+          "other"
+        ]
+      }
+    },
+    {
+      "name": "artifact_reference",
+      "type": "string"
+    },
+    {
+      "name": "gate_artifact",
+      "type": "string"
+    },
+    {
+      "name": "emst_release_cited",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "offered",
+          "signed",
+          "active",
+          "completed",
+          "lapsed",
+          "withdrawn",
+          "terminated"
+        ]
+      }
+    },
+    {
+      "name": "date_offered",
+      "type": "date"
+    },
+    {
+      "name": "date_signed",
+      "type": "date"
+    },
+    {
+      "name": "effective_from",
+      "type": "date"
+    },
+    {
+      "name": "effective_to",
+      "type": "date"
+    },
+    {
+      "name": "review_by",
+      "type": "date",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "emst_signatory_role",
+      "type": "string"
+    },
+    {
+      "name": "partner_signatory_role",
+      "type": "string"
+    },
+    {
+      "name": "emst_contact_role",
+      "type": "string",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "partner_contact_role",
+      "type": "string"
+    },
+    {
+      "name": "year_five_owner_org",
+      "type": "string"
+    },
+    {
+      "name": "year_five_owner_role",
+      "type": "string"
+    },
+    {
+      "name": "year_five_plan",
+      "type": "string",
+      "description": "maintained-by-owner | transfers-to-steward | transfers-to-successor | sunsets-by-design | unknown, then \"; \" and a note"
+    },
+    {
+      "name": "funding_usd",
+      "type": "number",
+      "constraints": {
+        "minimum": 0
+      }
+    },
+    {
+      "name": "funding_period",
+      "type": "string"
+    },
+    {
+      "name": "data_shared",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "none",
+          "public-documents",
+          "de-identified-artifacts",
+          "aggregates-only"
+        ]
+      }
+    },
+    {
+      "name": "personal_data",
+      "type": "boolean",
+      "constraints": {
+        "required": true,
+        "enum": [
+          false
+        ]
+      }
+    },
+    {
+      "name": "tribal_related",
+      "type": "boolean",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "tac_approval_id",
+      "type": "string"
+    },
+    {
+      "name": "feeds_metrics",
+      "type": "string"
+    },
+    {
+      "name": "evidence_label",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "E",
+          "J",
+          "S"
+        ]
+      }
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "recorded_by_role",
+      "type": "string",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "recorded_on",
+      "type": "date",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "last_reviewed_on",
+      "type": "date",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "notes",
+      "type": "string"
+    }
+  ],
+  "missingValues": [
+    ""
+  ]
+}

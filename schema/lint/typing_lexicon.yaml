@@ -1,0 +1,103 @@
+# Typing lint lexicon (ADR-0003 T-1/T-4; SPEC §18.4): L1/L2 text must not name an L4 product or an L5 instrument.
+# A tool CLASS may be named when it changes the work condition ("validate AI detections", "GIS", "UAS"), so only
+# products, vendors and named instruments are listed. Seeded from DC's L4 seed (docs/research/data-craft/
+# tools_layer_proposal.csv), PS's examples (ADR-0003 dissent) and SC's instrument registry
+# (docs/research/statecraft/policy_landscape_2026.csv). WP-04 (DC) and WP-10 (SC/LM) extend it; scripts/validate_v2.py
+# also adds every `productExamples` entry of data/v2/tools/tools.jsonl automatically.
+# `cs: true` = case-sensitive (acronyms). Licence: CC0-1.0.
+version: 0.1.0
+applies_to:
+  Competency: [prefLabel, statement, definition]
+  Task: [statement, prefLabel]
+  Indicator: [statement]
+  KnowledgeStatement: [statement]
+  Enactment: [note]                       # products only; enactments may describe an authority basis
+products:
+  - {term: ArcGIS}
+  - {term: Esri, cs: true}
+  - {term: QGIS}
+  - {term: Google Earth Engine}
+  - {term: Earth Engine}
+  - {term: Planetary Computer}
+  - {term: Survey123}
+  - {term: Field Maps}
+  - {term: iNaturalist}
+  - {term: MegaDetector}
+  - {term: SpeciesNet}
+  - {term: BirdNET}
+  - {term: VIAME, cs: true}
+  - {term: tidyverse}
+  - {term: Jupyter}
+  - {term: GitHub}
+  - {term: GitLab}
+  - {term: PostgreSQL}
+  - {term: PostGIS}
+  - {term: ChatGPT}
+  - {term: Copilot}
+  - {term: Gemini, cs: true}
+  - {term: Azure OpenAI}
+  - {term: Prithvi}
+  - {term: OlmoEarth}
+  - {term: AlphaEarth}
+  - {term: TerraTorch}
+  - {term: Dioptra}
+  - {term: EMDS, cs: true}
+  - {term: InVEST, cs: true}
+  - {term: EJScreen}
+  - {term: Tableau}
+  - {term: Power BI}
+  - {term: Trello}
+  - {term: Asana, cs: true}
+  - {term: Workiva}
+  - {term: Diligent, cs: true}
+  - {term: EQuIS, cs: true}
+  - {term: HEC-RAS}
+  - {term: HEC-HMS}
+  - {term: AERMOD}
+  - {term: SWMM, cs: true}
+  - {term: Excel, cs: true}
+  - {term: Microsoft}
+  - {term: Google, cs: true}
+  - {term: AutoCAD}
+  - {term: Pix4D}
+  - {term: DroneDeploy}
+  - {term: Salesforce}
+  - {term: Workday}
+  - {term: SuccessFactors}
+instruments:
+  - {term: NEPA, cs: true}
+  - {term: National Environmental Policy Act}
+  - {term: Endangered Species Act}
+  - {term: Clean Water Act}
+  - {term: Clean Air Act}
+  - {term: CWA, cs: true}
+  - {term: RCRA, cs: true}
+  - {term: CERCLA, cs: true}
+  - {term: SDWA, cs: true}
+  - {term: TSCA, cs: true}
+  - {term: FIFRA, cs: true}
+  - {term: NHPA, cs: true}
+  - {term: Section 106}
+  - {term: Section 7 consultation}
+  - {term: Section 404}
+  - {term: Section 401}
+  - {term: Title V, cs: true}
+  - {term: NPDES, cs: true}
+  - {term: CFR, cs: true}
+  - {term: Executive Order}
+  - {term: OMB M-}
+  - {term: CEQ, cs: true}
+  - {term: Part 107}
+  - {term: Part 108}
+  - {term: WOTUS, cs: true}
+  - {term: SB 253}
+  - {term: Good Neighbor Agreement}
+  - {term: Chance to Compete Act}
+  - {term: UGESP, cs: true}
+  - {term: Uniform Guidelines}
+  - {term: FLPMA, cs: true}
+  - {term: NFMA, cs: true}
+  - {term: Planning Rule}
+  - {term: Fiscal Responsibility Act}
+  - {term: SPEED Act}
+  - {term: One Federal Decision}

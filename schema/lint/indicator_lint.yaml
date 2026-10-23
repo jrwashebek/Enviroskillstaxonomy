@@ -1,0 +1,78 @@
+# Indicator lint — the twelve banned constructions (SPEC §5.3; IO indicator_writing_rules.md §7, P-IO-04).
+# Starting specification taken from IO's lint patterns; WP-11 (IO) owns the rule content and hands revisions to
+# WP-01 (DE), who maintains this file. Patterns are Python regular expressions, case-insensitive. `scope: start`
+# anchors at the start of the sentence; `scope: anywhere` searches the whole sentence. Every hit routes the record
+# to human revision. Severity: error for authored records, warning for validationStatus = seed-v1.
+# B8 (adjective-only gradation) and B12 (non-job-related access) need adjacent-level comparison or human judgement;
+# their patterns are coarse and run as warnings only. Licence: CC0-1.0.
+source: docs/research/io-validation/indicator_writing_rules.md §7 (IO, 2026-10-23)
+version: 0.1.0
+applies_to:
+  Indicator: [statement]
+rules:
+  - id: B1
+    name: internal-state verbs
+    scope: start
+    pattern: '(understands|knows|is aware|aware of|familiar with|appreciates|comprehends|grasps|has knowledge)\b'
+    fix: Move to a knowledge statement, or use explains / identifies / distinguishes + object.
+  - id: B2
+    name: level labels as content
+    scope: start
+    pattern: '(expert in|proficient in|skilled in|deep understanding|comprehensive expertise)\b'
+    fix: State the performance.
+  - id: B3
+    name: reputation, influence, status
+    scope: anywhere
+    pattern: '^(shapes|influences|advances|transforms)\b|recogni[sz]ed (as|expert|authority|leader)|thought leader|achieves recognition|\binfluential\b|adopted (widely|sector-wide)|field-wide|\bnationally\b|\binternationally\b'
+    fix: Describe the work product the influence came from.
+  - id: B4
+    name: proxies
+    scope: anywhere
+    pattern: '^(publishes|presents at|holds)\b|^completes .*training|^has \d+ years|years of experience|\bcertified\b|\blicensed\b'
+    fix: Move to a qualification gate (Credential) or an evidence source.
+  - id: B5
+    name: outcome guarantees
+    scope: start
+    pattern: '(ensures|guarantees|achieves|demonstrates significant)\b'
+    fix: State the controlling behaviour and its check.
+  - id: B6
+    name: empty verbs
+    scope: start
+    pattern: '(supports|assists with|contributes to|participates in|is involved in|handles|addresses|leverages|utilizes|works effectively)\b'
+    fix: Name the specific contribution and its product.
+  - id: B7
+    name: compound performances
+    scope: anywhere
+    pattern: '^\s*\w+s\s+(?:\w+\s+){0,2}?(and|or)\s+\w+s\b'
+    fix: Split into two indicators.
+  - id: B8
+    name: adjective-only gradation
+    scope: anywhere
+    severity: warning
+    pattern: '\b(basic|simple|complex|sophisticated|comprehensive|advanced|major)\b'
+    fix: Change autonomy, condition or standard explicitly (check against the adjacent level).
+  - id: B9
+    name: vendor, tool or model names
+    scope: anywhere
+    pattern: '\b(AI-powered|machine learning|blockchain|digital twin)\b'
+    lexicon: products
+    fix: Name the function; move the tool to L4.
+  - id: B10
+    name: hard-coded jurisdiction rules
+    scope: anywhere
+    lexicon: instruments
+    pattern: '\bSEC climate disclosure rule\b|\b\d{4} Planning Rule\b'
+    fix: Write "applicable federal/state/Tribal/local requirements" and set jurisdictionVariable = true.
+  - id: B11
+    name: trait or attitude
+    scope: anywhere
+    pattern: '\b(respectful|passionate|values|committed to|demonstrates integrity)\b'
+    fix: Describe the behaviour.
+  - id: B12
+    name: non-job-related access
+    scope: anywhere
+    severity: warning
+    pattern: '\b(owns a vehicle|unlimited availability|available at all times|able to lift \d+)\b'
+    fix: Tie to an essential function or delete.
+length:
+  Indicator.statement: {max_words: 30}

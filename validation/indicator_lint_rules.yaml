@@ -1,0 +1,418 @@
+# EMST v2 — indicator lint and publication rules (WP-11 output 1; consumed by WP-01 CI)
+#
+# Owner: IO (A8) · Status: draft for CA ratification · Date: 2026-10-23
+# Decision basis: SPEC §5.3 (twelve banned constructions), §8.2 (publication rules), §18.4; ADR-0003 T-1/T-4;
+#   ADR-0004 §5; ADR-0024 §3; vocab/proficiency_levels.yaml#publication_rules;
+#   docs/research/io-validation/indicator_writing_rules.md §2, §5, §7, §9 (Phase 2 source of these patterns).
+# Implementation: validation/lint_indicators.py (reference linter; DE wires it into CI). Tests: validation/tests/.
+#
+# HOW TO READ THIS FILE
+# - Every pattern is a Python `re` regular expression, matched with re.IGNORECASE unless `case_sensitive: true`,
+#   against the NORMALIZED statement (see `normalization`). Patterns marked `anchor: start` are matched only at the
+#   start of the statement (the implied actor is the subject, so the first word is the main verb).
+# - Rules with `kind: computed` are not single regexes; the algorithm is described in `algorithm` and implemented
+#   in lint_indicators.py. Their lexicons are in `lexicons` below.
+# - Severity:
+#     error  -> fails CI on any record; cannot be waived except as a recorded false positive (see `waivers`).
+#     warn   -> routes the indicator to human revision; passes CI in draft; FAILS release mode for any indicator
+#               whose useClass is `select` unless waived (SPEC §5.3: select requires OBS-4 = 3 with no lint flags).
+#     info   -> reported only.
+# - `applies_to` lists the record types and fields a rule runs on. The typing subset (B09, B10) also runs on
+#   competency, task and knowledge-statement text because ADR-0003 T-4 bans L4 products and L5 instruments from
+#   all L1/L2 text; DE's typing lint may supersede these two with the L4/L5 registries as lexicons.
+# - Examples: every rule lists `fail` examples (must be flagged) and `pass` examples (must not be flagged by THAT
+#   rule). validation/tests/test_lint_indicators.py asserts both, so this file and the linter cannot drift.
+#   All examples are synthetic text written for this file, except where marked `v1:` (v1 indicator text, quoted
+#   as a negative example) or `IO-exemplar:` (docs/research/io-validation/exemplar_rewrites.csv).
+# - A lint pass is a screen, not validation. Passing lint does not make an indicator observable, assessable or
+#   job-related; OBS-4 double-coding (spec_gold_sets.md) and SME review still apply (ADR-0024 §3).
+
+ruleset: emst-indicator-lint
+version: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+steward: IO
+license: CC0-1.0
+
+normalization:
+  unicode: NFKC
+  replace: {"‘": "'", "’": "'", "“": '"', "”": '"', "–": "-", "—": "-", " ": " "}
+  collapse_whitespace: true
+  strip: true
+  text_sha256: "SHA-256 of the UTF-8 bytes of the normalized statement; used to key waivers (a waiver lapses when the text changes)."
+
+record_text_fields:
+  Indicator: [statement]
+  Competency: [statement, prefLabel]
+  Task: [statement]
+  KnowledgeStatement: [statement]
+  language: en          # language maps are read at key `en`; plain strings are accepted (authoring CSVs)
+
+severity_levels:
+  error: {ci: fail, release: fail, waivable: false-positive-only}
+  warn: {ci: pass, release: "fail when useClass = select and unwaived", waivable: true}
+  info: {ci: pass, release: pass, waivable: n/a}
+
+modes:
+  ci: "Errors fail. Warnings are reported. Publication rules PUB-01..PUB-08 run on every Indicator; PUB-10..PUB-14 run when competency context is available."
+  release: "As ci, plus: unwaived warnings fail for useClass = select; PUB-12 (assessability) and PUB-14 (evidence behind rule-check claims) fail for records with status candidate or published."
+
+# ----------------------------------------------------------------------------------------------------------------
+# THE TWELVE BANNED CONSTRUCTIONS (SPEC §5.3; indicator_writing_rules.md §7)
+# ----------------------------------------------------------------------------------------------------------------
+banned_constructions:
+
+  - id: B01
+    name: internal-state verbs
+    why: "Not observable (OBS-4 = 1). Content validity rests on observable work behaviour; an inferred mental state is not one."
+    fix: "Move the content to a KnowledgeStatement assessed by knowledge check, or state the behaviour that shows it (explains, identifies, distinguishes + object)."
+    applies_to: [Indicator]
+    patterns:
+      - {id: B01a, severity: error, anchor: start, regex: '(understands?|knows|is aware|aware of|awareness of|is familiar|familiar with|appreciates|comprehends|grasps|believes|is (sensitive|attuned|mindful)|has (a |an )?(good |solid |working |basic |deep |thorough )?(knowledge|understanding|awareness|appreciation|grasp)|possesses (a |an )?(\w+ )?(knowledge|understanding|awareness))\b'}
+      - {id: B01b, severity: error, anchor: start, regex: 'recogni[sz]es (that|the (importance|need|value|role|significance|complexity))\b'}
+      - {id: B01c, severity: error, regex: '\b(demonstrates|shows|displays|exhibits|conveys) (an? |the )?(\w+ )?(understanding|awareness|knowledge|appreciation|familiarity|grasp)\b'}
+      - {id: B01d, severity: warn, regex: '\b(understanding|awareness|appreciation) of\b'}
+    examples:
+      fail:
+        - "v1: Understands basic disturbance types and their ecological effects"
+        - "Is familiar with the program's sampling protocol."
+        - "Recognizes the importance of chain of custody for water samples."
+        - "Demonstrates a working understanding of fire behavior in grass fuels."
+      pass:
+        - "Explains to a landowner how the planned thinning changes fire behavior in the stand, citing the fuel model used."
+        - "Recognizes and reports a suspected hazardous-materials release before entering the site, following the field safety plan."
+
+  - id: B02
+    name: level labels as content
+    why: "Circular: uses the level to define the level (v1 Advanced level began 'Expert in…' in 217 of 222 competencies)."
+    fix: "State the performance and the condition or standard that makes it this level (autonomy, guidelines, complexity, scope, knowledge, augmented practice, formation of others)."
+    applies_to: [Indicator]
+    patterns:
+      - {id: B02a, severity: error, anchor: start, regex: '(is )?(an? )?(expert|proficient|skilled|competent|adept|accomplished|seasoned|experienced) (in|at|with)\b'}
+      - {id: B02b, severity: error, regex: '\b((deep|comprehensive|thorough|expert|advanced)[- ](expertise|mastery)|mastery of|expert-level|advanced-level|deep (understanding|expertise))\b'}
+      - {id: B02c, severity: error, regex: '\bat (an? |the )?(foundational|intermediate|advanced|expert|senior|journey(man)?|entry|strategic|lead) level\b'}
+      - {id: B02d, severity: error, case_sensitive: true, regex: '\b(L[1-5]|[Ll]evel [1-5]|[Ll]evel (one|two|three|four|five))\b'}
+    examples:
+      fail:
+        - "v1: Expert in landscape-scale restoration planning"
+        - "Proficient in water-quality sampling methods."
+        - "Performs wetland delineation at an advanced level."
+        - "Applies L3 judgment to permit conditions."
+      pass:
+        - "Delineates a wetland boundary on an assigned site independently, so that the delineation passes the program's field verification."
+
+  - id: B03
+    name: reputation, influence and status
+    why: "OBS-4 = 0: scored by other people's opinions and by opportunity, not by the person's performance."
+    fix: "Describe the work product the influence came from (a method, standard, decision record or design) and its standard."
+    applies_to: [Indicator]
+    patterns:
+      - {id: B03a, severity: error, anchor: start, regex: '(shapes|influences|advances|transforms|inspires|champions|drives|pioneers|elevates|revolutioni[sz]es)\b'}
+      - {id: B03b, severity: error, regex: '\b((is |are )?recogni[sz]ed (as|by|for|expert|authority|leader)|achieves recognition|thought[- ]leader(ship)?|influential|renowned|reputation|sought out|go-to (person|expert|resource)|respected (by|as|for))\b'}
+      - {id: B03c, severity: error, regex: '\b(widely (adopted|cited|respected|recogni[sz]ed|used)|adopted (widely|sector-wide|nationally|internationally)|(field|sector|industry)-wide (impact|influence|recognition|adoption|leadership))\b'}
+      - {id: B03d, severity: warn, regex: '\b(nationally|internationally|across the (field|sector|profession))\b'}
+    examples:
+      fail:
+        - "v1: Shapes understanding of ecosystem theory"
+        - "Is recognized as an authority on groundwater modeling."
+        - "Develops methods that are widely adopted across agencies."
+        - "Leads monitoring work that is respected by partner agencies."
+      pass:
+        - "Sets the statistical acceptance criteria for a monitoring program and documents their basis so that external reviewers can reproduce the design decision."
+
+  - id: B04
+    name: proxies (credentials, training completion, publications, tenure)
+    why: "Criterion contamination: a credential, course, publication or years of experience is evidence about a person's history, not a performance; tenure has near-zero validity and adverse-impact risk (ADR-0004 rationale)."
+    fix: "Move the credential to a Credential gate on the task or role variant (ADR-0003 T-8); move publications to evidenceTypes; delete tenure (typicalTimeToLevel is descriptive only)."
+    applies_to: [Indicator]
+    patterns:
+      - {id: B04a, severity: error, anchor: start, regex: '(publishes|presents at|holds|has held|possesses|earns|obtains|attends)\b'}
+      - {id: B04b, severity: error, anchor: start, regex: 'completes\b.*\b(training|course|certification|class|curriculum|hours|workshop)\b'}
+      - {id: B04c, severity: error, regex: '\b(\d+\+?\s*(-\s*\d+\s*)?(years?|yrs?)\s+(of\s+)?(experience|service|practice|in the field)|years? of (experience|service|practice))\b'}
+      - {id: B04d, severity: error, regex: '\b(is|be|being|becomes?) (a |an )?(certified|licensed|credentialed|registered)\b|^(certified|licensed|credentialed)\b'}
+      - {id: B04e, severity: error, regex: '\b(holds?|holding|possess(es|ing)?|obtains?|obtaining|earns?|earning|has|have) (a |an |the )?(current |valid |relevant |required )?(\w+ )?(degree|licen[cs]e|certification|certificate|credential|qualification card|accreditation)\b'}
+      - {id: B04f, severity: error, regex: '\b(bachelor''?s|master''?s|doctoral|doctorate|ph\.?\s?d\.?)\b'}
+      - {id: B04g, severity: error, regex: '\b(completion of|completes|completed|attendance at)\b.*\b(training|course|workshop|conference|webinar)\b'}
+    examples:
+      fail:
+        - "v1: Completes OSHA HAZWOPER Technician (40-hour) training"
+        - "Publishes peer-reviewed research on invasive species."
+        - "Has 5 years of experience in prescribed fire."
+        - "Holds a current pesticide applicator license."
+        - "Is certified as a wetland delineator."
+      pass:
+        - "Identifies to species the birds detected by sight and sound on a point-count route, with an error rate within the program's observer-certification threshold."
+        - "Certifies a trainee's qualification on task-book tasks after observing performance against the position standard."
+
+  - id: B05
+    name: outcome guarantees
+    why: "The outcome is shared with other people, institutions or the environment, so it cannot be scored as the person's performance."
+    fix: "State the controlling behaviour and its check ('so that…', 'and verifies…', 'meeting the criteria in…')."
+    applies_to: [Indicator]
+    patterns:
+      - {id: B05a, severity: error, anchor: start, regex: '(ensures|guarantees|achieves|secures|delivers successful|demonstrates (significant|measurable|substantial)|maximi[sz]es|minimi[sz]es|eliminates|prevents all)\b'}
+      - {id: B05b, severity: warn, regex: '\b(ensur(e|es|ing)|guarantee(s|d|ing)?)\b'}
+    examples:
+      fail:
+        - "v1: Ensures report credibility through third-party assurance"
+        - "Achieves full compliance across all permitted facilities."
+        - "Reviews contractor plans, ensuring that all requirements are met."
+      pass:
+        - "Responds to assurance-provider findings by correcting or defending each finding with documented evidence within the assurance timetable."
+
+  - id: B06
+    name: empty verbs
+    why: "No specific contribution, object or standard; OBS-4 at most 2."
+    fix: "Name the specific contribution and the product it produces."
+    applies_to: [Indicator]
+    patterns:
+      - {id: B06a, severity: error, anchor: start, regex: '(supports|assists( with| in)?|contributes to|participates in|is involved in|involved in|handles|addresses|leverages|utili[sz]es|engages in|helps( to)?|promotes|fosters|embraces|is responsible for|takes part in|deals with|works (effectively|well|closely|collaboratively))\b'}
+      - {id: B06b, severity: warn, regex: '\b(works (effectively|well|closely|collaboratively)|in support of|plays a (key |central )?role)\b'}
+    examples:
+      fail:
+        - "Supports restoration planning efforts."
+        - "Contributes to interagency coordination."
+        - "Leverages remote sensing for habitat analysis."
+      pass:
+        - "Prepares the field-data appendix of a restoration plan, so that every mapped treatment unit has a plot record and a photo point."
+
+  - id: B07
+    name: compound performances
+    why: "Two performances in one statement cannot be scored when only one is done to standard."
+    fix: "Split into two indicators. Alternatives of one decision ('accepts, qualifies or rejects') and the documentation clause of a standard ('…and records the basis') are not compounds."
+    applies_to: [Indicator]
+    kind: computed
+    algorithm: >
+      (a) Leading chain: tokenize the start of the statement; if the first word is in lexicons.verbs and is followed,
+      through commas and a coordinator (and | or | and/or), by one or more further words in lexicons.verbs, the
+      statement leads with coordinated main verbs. Coordinator 'and' or 'and/or' -> error B07a, unless every verb
+      after the first is in lexicons.documentation_verbs ('Measures … and records …' states the measurement's record). Coordinator 'or'
+      -> pass if every verb in the chain is in lexicons.decision_alternatives, else warn B07b.
+      (b) Later clause: ', and <verb>' or ' and then <verb>' where <verb> is in lexicons.unambiguous_verbs and not in
+      lexicons.documentation_verbs -> warn B07c (a possible second performance; documentation of the basis is part
+      of the standard, ADR-0004 §5, indicator_writing_rules.md §5.5).
+    patterns:
+      - {id: B07a, severity: error}
+      - {id: B07b, severity: warn}
+      - {id: B07c, severity: warn}
+    examples:
+      fail:
+        - "v1: Designs and implements monitoring programs"
+        - "Develops and maintains the program's field data system."
+        - "Plans, conducts and reports a stream habitat survey."
+        - "Analyzes the sensor record for drift, and presents the trend to the program board."
+      pass:
+        - "Records presence, symptoms and severity of forest pests on survey plots using the program damage codes, so that records pass QA review."
+        - "Rejects or qualifies an AI-generated recommendation when it conflicts with independent field or regulatory evidence, and records the conflicting evidence and decision."
+        - "Accepts, qualifies or rejects each flagged detection after checking it against the recording."
+
+  - id: B08
+    name: adjective-only gradation
+    why: "Adjacent levels that differ only by adjectives are not distinguishable (PR-2 distinctness); v1 2.7.3 'simple' -> 'comprehensive' -> 'sophisticated'."
+    fix: "Change autonomy, condition, guidelines, scope or standard explicitly and record which attribute changed."
+    applies_to: [Indicator]
+    kind: computed
+    algorithm: >
+      (a) Cross-level (needs competency context): for two indicators of the same competency at adjacent levels, remove
+      every word in lexicons.gradation_terms and compare the remaining normalized token sequences; identical
+      sequences -> error B08a on the higher-level indicator. (b) Single statement: any word in
+      lexicons.gradation_flag_terms -> warn B08b (state the attribute instead). Terms that are attribute descriptors in
+      vocab/proficiency_levels.yaml (routine, non-routine, novel, contested, high-consequence) are not gradation terms.
+    patterns:
+      - {id: B08a, severity: error}
+      - {id: B08b, severity: warn}
+    examples:
+      fail:
+        - "v1: Develops sophisticated digital twin systems"
+        - "Prepares a comprehensive stormwater inspection report."
+      pass:
+        - "Adapts the survey protocol when site conditions prevent standard execution, documenting the deviation and its likely effect on detectability."
+      cross_level_fail:
+        - {lower: "Prepares a basic habitat map from field plots.", higher: "Prepares a comprehensive habitat map from field plots."}
+      cross_level_pass:
+        - {lower: "Prepares a habitat map from field plots under a qualified mapper's direction.", higher: "Prepares a habitat map from field plots independently, documenting where plot data and imagery disagree."}
+
+  - id: B09
+    name: vendor, product, model or technology-family names
+    why: "ADR-0003 T-1/T-4: L1/L2 text names functions; products and technical standards live in L4 and point to tasks. A technology family named as the competency obsolesces with the tool."
+    fix: "Name the function or tool class ('an AI-generated species classification', 'a hydraulic model', 'a geospatial data standard'); move the product to L4 (data/v2/tools/tools.jsonl)."
+    applies_to: [Indicator, Competency, Task, KnowledgeStatement]
+    patterns:
+      - {id: B09a, severity: error, kind: lexicon, lexicon: vendor_products, case_sensitive: true}
+      - {id: B09b, severity: error, case_sensitive: true, regex: '\b(in|using|with|via) R\b|\bR (code|scripts?|packages?)\b'}
+      - {id: B09c, severity: error, regex: '\b(ISO|ASTM|ANSI|IEC|IEEE|NFPA)\s*[A-Z]?\s?\d{2,5}([-:.]\d+)*\b'}
+      - {id: B09d, severity: warn, anchor: start, regex: '(uses|applies|operates|leverages|utili[sz]es|deploys|builds|develops|implements|programs|codes) (an? |the )?(\w+ )?(ai-powered|artificial intelligence|machine[- ]learning|deep[- ]learning|blockchain|digital twins?|large language models?|llms?|generative ai|genai|neural networks?|chatbots?)\b'}
+      - {id: B09e, severity: warn, regex: '\bai-powered\b'}
+      - {id: B09f, severity: error, kind: external_lexicon, source: "data/v2/tools/tools.jsonl", fields: [prefLabel.en, productExamples], when_toolType: [software-product, platform, model, dataset-product, instrument-model], note: "Loaded when the file exists; DE may pass --tools-lexicon."}
+    examples:
+      fail:
+        - "Builds a habitat suitability layer in ArcGIS Pro for the planning unit."
+        - "Runs HEC-RAS to model the floodplain for the restoration reach."
+        - "Writes metadata to ISO 19115 for each dataset."
+        - "Uses machine learning to classify land cover."
+      pass:
+        - "Reviews automated species classifications from an acoustic recorder deployment, verifying a random sample and all low-confidence detections against the recordings."
+        - "Calibrates a hydraulic model against surveyed high-water marks and states the residual error at each mark."
+
+  - id: B10
+    name: hard-coded jurisdiction rules (named statutes, regulations, programmes, orders)
+    why: "Rules change by public process (several v1 references are already outdated). ADR-0003 T-4/T-7: instruments live in the L5 registry; enactments carry jurisdiction specifics."
+    fix: "Write 'the applicable federal, state, Tribal or local requirements' and set jurisdictionVariable = true; the enactment supplies the instrument (characteristicInstruments[])."
+    applies_to: [Indicator, Competency, Task, KnowledgeStatement]
+    patterns:
+      - {id: B10a, severity: error, regex: '\b\d+\s*(C\.?F\.?R\.?|U\.?S\.?C\.?|Stat\.)\s*(§\s*)?\d*|§'}
+      - {id: B10b, severity: error, case_sensitive: true, regex: '\b(NEPA|ESA|CWA|CAA|RCRA|CERCLA|SDWA|TSCA|FIFRA|NHPA|FLPMA|NFMA|MBTA|MMPA|CZMA|EPCRA|SMCRA|SARA|OPA|NPDES|MS4|TMDL|WOTUS|NESHAP|NSPS|MACT|PSD|CEQA|SEPA|MEPA|SEQRA|FAST-41|IIJA|HAZWOPER)\b|\bTitle (V|VI|VII)\b|\bSection (7|106|401|404|10|4\(f\))\b'}
+      - {id: B10c, severity: error, regex: '\b(executive order|e\.?o\.?\s*\d{4,5}|omb (memo(randum)? )?m-\d{2}-\d{2}|part (107|108)|one federal decision|(\d{4} )?planning rule|speed act|(clean water|clean air|endangered species|safe drinking water) act|(sec|epa|osha|faa) (rule|regulation)s?)\b'}
+      - {id: B10d, severity: error, regex: '\b(the|a) [A-Z][\w-]*( [A-Z][\w-]*)* (Act|Rule|Regulation|Ordinance|Directive) of \d{4}\b', case_sensitive: true}
+      - {id: B10e, severity: error, kind: external_lexicon, source: "data/v2/events (L5 Instrument registry, WP-10)", fields: [citation, prefLabel.en, altLabel.en], note: "Loaded when available; DE may pass --instrument-lexicon."}
+    examples:
+      fail:
+        - "Drafts the effects determination for a Section 7 consultation package."
+        - "Writes NPDES permit limits for a municipal discharger."
+        - "Applies 40 CFR 261 to classify a waste stream."
+        - "Prepares the record of decision under the 2012 Planning Rule."
+      pass:
+        - "Drafts permit effluent limits for a municipal discharger that meet the applicable federal, state, Tribal or local requirements, citing the basis for each limit."
+
+  - id: B11
+    name: traits and attitudes
+    why: "Not job behaviour; legally weak and prone to subjective scoring. Integrity is assessed through work products and procedures, never as a trait (exemplar 7.1.3)."
+    fix: "Describe the behaviour (what the person does, records or refuses to do, and under which procedure)."
+    applies_to: [Indicator]
+    patterns:
+      - {id: B11a, severity: error, anchor: start, regex: '(values|cares about|is (passionate|committed|dedicated|motivated|enthusiastic|respectful|honest|ethical|curious|open-minded|empathetic|resilient|flexible|reliable|trustworthy|diligent|humble))\b'}
+      - {id: B11b, severity: error, regex: '\b(passionate|passion for|committed to|commitment to|dedicated to|enthusias(m|tic)|self-starter|team player|positive attitude|can-do|charisma(tic)?|personality|temperament|empathetic|open-minded|growth mindset|work ethic|detail[- ]oriented|people person)\b'}
+      - {id: B11c, severity: error, regex: '\b(demonstrates|shows|displays|acts with|exhibits|maintains (personal|professional)) (personal |professional |high |the highest )?(integrity|honesty|respect|humility|professionalism|ethics|ethical (behaviou?r|conduct))\b'}
+      - {id: B11d, severity: warn, regex: '\b(respectful(ly)?|ethically|honestly|with integrity|professionally)\b'}
+    examples:
+      fail:
+        - "v1: Values local and traditional knowledge"
+        - "Demonstrates integrity in regulatory decisions."
+        - "Is committed to environmental justice."
+      pass:
+        - "Records data-validation changes in the audit log with the reason for each change, so that sample integrity can be traced from collection to report."
+
+  - id: B12
+    name: non-job-related access requirements
+    why: "Access requirements (own vehicle, unlimited availability, unanchored physical demands, citizenship) screen on circumstance; physical and access requirements belong on the role variant, tied to an essential-function analysis (ADA; Rehabilitation Act Section 501), never in a proficiency indicator."
+    fix: "Delete, or move to the role variant's credential gate or position requirements with the essential function it serves."
+    applies_to: [Indicator]
+    patterns:
+      - {id: B12a, severity: error, regex: '\b((owns?|has|have) (a |an |their own |his own |her own )?(personal |private )?(vehicle|car|truck|smartphone|computer|laptop)|personal vehicle|reliable transportation|(valid )?driver''?s licen[cs]e|clean driving record)\b'}
+      - {id: B12b, severity: error, regex: '\b((unlimited|full|24/7|round-the-clock) availability|available (24/7|at all times|on (short|immediate) notice|nights and weekends)|willing(ness)? to (travel|relocate|work (overtime|nights|weekends|long hours)))\b'}
+      - {id: B12c, severity: error, regex: '\b((lift|lifts|lifting|carry|carries|carrying) (up to )?\d+\s*(lb|lbs|pounds|kg|kilograms)|physically fit|physical fitness|good physical condition|able-bodied|(pass(es)?|passing) (a |the )?(physical|fitness|drug|work capacity|pack) test|(stand|walk|sit|hike)(s|ing)? for (long|extended|\d+))\b'}
+      - {id: B12d, severity: error, regex: '\b(native (english )?speaker|(u\.?s\.? )?citizen(ship)?|security clearance|no criminal record)\b'}
+    examples:
+      fail:
+        - "Has a personal vehicle for travel to field sites."
+        - "Lifts 50 lb sampling equipment over rough terrain."
+        - "Is available on short notice for spill response."
+      pass:
+        - "Establishes an isolation zone and access control for a suspected release, using the responder guidebook, before any containment is attempted."
+
+# ----------------------------------------------------------------------------------------------------------------
+# PUBLICATION RULES (SPEC §5.3, §8.2; vocab/proficiency_levels.yaml PR-1..PR-4; ADR-0024 §3)
+# ----------------------------------------------------------------------------------------------------------------
+publication_rules:
+  per_indicator:
+    - {id: PUB-01, severity: error, name: one sentence, rule: "Exactly one sentence after removing abbreviations (e.g., i.e., etc., U.S.)."}
+    - {id: PUB-02, severity: error, name: length, rule: "At most 30 words."}
+    - {id: PUB-03, severity: error, name: required metadata, rule: "competency, level, statement, augmentationMode, assessmentMethods (non-empty), useClass, obs4, jurisdictionVariable and validationStatus are present and use vocabulary values.",
+       vocab: {augmentationMode: [unaided, assisted, supervisory], useClass: [describe, develop, select], obs4: [0, 1, 2, 3], level: [L1, L2, L3, L4, L5],
+               validationStatus: [seed-v1, draft, reviewed, panel-retained, job-analysis-confirmed, criterion-supported]}}
+    - {id: PUB-04, severity: error, name: OBS-4 release thresholds, rule: "obs4 0 or 1 is never released as an indicator; useClass select requires obs4 = 3 and no unwaived lint hit; develop requires obs4 >= 2 and an evidence plan (non-empty evidenceTypes or assessmentMethods); describe requires obs4 >= 2.", source: "SPEC §5.3 obs4; indicator_writing_rules.md §2"}
+    - {id: PUB-05, severity: warn, name: assisted standard includes verification, rule: "augmentationMode = assisted: the statement names the person's verification or accountable decision.",
+       regex: '\b(verif(y|ies|ying|ication)|check(s|ing|ed)?|validat(e|es|ing)|compar(e|es|ing)|cross-check(s|ing)?|review(s|ing)?|confirm(s|ing)?|test(s|ing)?|records? (the |each )?(basis|rationale|decision|change)|document(s|ing)? (the |each )?(basis|rationale|decision|acceptance|rejection|change|deviation)|accept(s|ing|ance)?|reject(s|ing|ion)?|qualif(y|ies|ying)|correct(s|ing|ed)?|flag(s|ging)?|independent (field |data |regulatory )?evidence|adjust(ed|s|ing)?)\b'}
+    - {id: PUB-06, severity: warn, name: supervisory standard includes oversight, rule: "augmentationMode = supervisory: the statement names monitoring, intervention, override or validation of the system.",
+       regex: '\b(monitor|overse|override|intervene|halt|stop|configur|audit|validat|review|verif|check|flag|correct|escalat|reliab|test)\w*'}
+    - {id: PUB-07, severity: error, name: jurisdiction-variable consistency, rule: "A statement that refers to applicable requirements must set jurisdictionVariable = true. (warn: jurisdictionVariable = true without the generic phrase.)",
+       regex: '\bapplicable\b[^.;]{0,60}\b(requirements|rules|law|laws|regulations|standards)\b|\bjurisdiction''?s requirements\b'}
+    - {id: PUB-08, severity: warn, name: unaided mode consistency, rule: "augmentationMode = unaided but the statement describes reviewing or using AI or automated output.",
+       regex: '\b(ai-generated|ai-assisted|automated|machine-generated|model-generated|algorithmic|classifier|large-language-model|llm)\b'}
+  per_competency_level:
+    - {id: PUB-10, severity: error, name: indicator count, rule: "Each published level of a competency has 2-5 indicators (SPEC §5.2 levels[].indicators)."}
+    - {id: PUB-11, severity: error, name: distinctness (PR-2), rule: "B08a cross-level check passes; when Indicator.distinguishingAttribute is present (CR-IO-001) it is one of ATT-AUT, ATT-GUI, ATT-CPX, ATT-SCO, ATT-KNO, ATT-AUG, ATT-FOR."}
+    - {id: PUB-12, severity: error, name: assessability (PR-3), rule: "For a level whose indicators carry useClass develop or select: at least two indicators at the level have obs4 = 3. (Release mode, status candidate or published.)"}
+    - {id: PUB-13, severity: error, name: level within span, rule: "Indicator level lies within the competency's levelSpan {min, max}; Awareness (A) is a knowledge bundle and never carries indicators."}
+    - {id: PUB-14, severity: error, name: rule-check claims need human evidence (PR-1, PR-4), rule: "publicationRuleChecks.existence may be pass only when an indicator at that level has validationStatus job-analysis-confirmed or criterion-supported; publicationRuleChecks.consensus may be pass only when validationStatus is panel-retained or higher. Agent ratings never satisfy PR-1 or PR-4 (PHASE4_BUILD_PLAN §1 rule 2).",
+       status_order: [seed-v1, draft, reviewed, panel-retained, job-analysis-confirmed, criterion-supported]}
+  tier_requirements:
+    note: "[J] IO reading of SPEC §8.2 with ADR-0024 §3, pending CA ratification in CR-IO-001. Values of publicationRuleChecks: pass | fail | pending | not-applicable."
+    describe: {PR-1: [pass, pending], PR-2: [pass], PR-3: [pass, pending], PR-4: [pass, pending], indicator_obs4_min: 2}
+    develop: {PR-1: [pass, pending], PR-2: [pass], PR-3: [pass], PR-4: [pass], indicator_obs4_min: 2}
+    select: {PR-1: [pass], PR-2: [pass], PR-3: [pass], PR-4: [pass], indicator_obs4_min: 3, extra: "double-coded OBS-4 = 3 by two independent human coders; no lint flags (ADR-0024 §3)"}
+
+# ----------------------------------------------------------------------------------------------------------------
+# ADVISORY CHECKS (not among the twelve; info or warn; help authors meet the sentence pattern)
+# ----------------------------------------------------------------------------------------------------------------
+advisories:
+  - {id: A01, severity: warn, name: care verb without object or standard, rule: "manages / coordinates / leads / develops / implements / integrates / oversees + a vague object (issues, programs, partnerships, initiatives, efforts, activities, projects) and no standard marker.",
+     regex: '^(manages|coordinates|leads|develops|implements|integrates|oversees|evaluates) (the |all |various |multiple |key )?(\w+ )?(issues|programs|programmes|partnerships|initiatives|efforts|activities|projects|operations|relationships)\.?$'}
+  - {id: A02, severity: warn, name: vague standard adverb, rule: "effectively, appropriately, adequately, properly, successfully, efficiently as the only standard.",
+     regex: '\b(effectively|appropriately|adequately|properly|successfully|efficiently|as needed|as appropriate)\b'}
+  - {id: A03, severity: info, name: no explicit standard marker, rule: "No 'so that', 'to the', 'within', 'against', 'meeting', 'according to', 'consistent with', 'traceable', 'documenting', 'citing' or similar. OBS-4 = 3 allows professionally implicit standards; an SME should confirm.",
+     regex: '\b(so that|such that|to the|within|against|meeting|meets|according to|consistent with|in accordance|traceable|documenting|documents|citing|cites|records|recording|stating|states|before|until|per the|following the|using the|that (meets|passes|satisfies))\b', invert: true}
+
+# ----------------------------------------------------------------------------------------------------------------
+# LEXICONS
+# ----------------------------------------------------------------------------------------------------------------
+lexicons:
+  # third-person verbs that can head an indicator (IO verb guidance §4 plus exemplar verbs); used by B07
+  verbs: [accepts, adapts, adjudicates, adjusts, administers, advises, allocates, analyzes, analyses, annotates, applies, approves, arbitrates,
+    assembles, assesses, audits, authorizes, benchmarks, briefs, builds, calculates, calibrates, captures, catalogs, categorizes, certifies,
+    characterizes, checks, cites, clarifies, classifies, coaches, codes, collects, communicates, compares, compiles, completes, computes,
+    conducts, configures, confirms, constructs, contains, controls, converts, coordinates, corrects, counts, creates, cruises, customizes,
+    defends, defines, delegates, delineates, delivers, demonstrates, deploys, describes, designs, detects, determines, develops,
+    diagnoses, digitizes, directs, distinguishes, documents, drafts, edits, enforces, enters, escalates, establishes, estimates,
+    evacuates, evaluates, examines, executes, explains, extracts, facilitates, fells, files, flags, flies, follows, forecasts, formulates,
+    governs, identifies, implements, inspects, installs, integrates, interprets, interviews, inventories, investigates, issues, justifies,
+    labels, leads, lists, locates, logs, maintains, manages, maps, measures, mediates, mentors, models, modifies, monitors, negotiates,
+    notes, notifies, observes, operates, orders, organizes, oversees, performs, pilots, places, plans, plants, post-processes, predicts,
+    prepares, presents, prioritizes, processes, procures, produces, programs, projects, proposes, protects, quantifies, ranks, re-measures,
+    reconciles, records, recommends, reconstructs, reduces, refers, rejects, removes, repairs, reports, represents, requests, resolves,
+    responds, restores, retains, reviews, revises, samples, schedules, scopes, screens, selects, sequences, serves, sets, simulates,
+    specifies, sponsors, states, submits, summarizes, supervises, surveys, synthesizes, teaches, tests, traces, tracks, trains, translates,
+    treats, triages, troubleshoots, updates, uses, validates, verifies, weighs, writes, qualifies, establishes]
+  # alternatives of a single accountable decision; 'or'-chains made only of these are not compounds (B07b)
+  decision_alternatives: [accepts, qualifies, rejects, flags, corrects, approves, denies, returns, escalates, defends, revises, retains,
+    excludes, refers, halts, stops, modifies, adjusts, post-processes, re-measures, holds, releases]
+  # verbs that state the documentation part of a standard (ADR-0004 §5; indicator_writing_rules.md §5.5); not compounds (B07c)
+  documentation_verbs: [records, documents, notes, cites, states, logs, flags, lists, justifies, attaches, retains, files, traces,
+    timestamps, signs, reports, labels]
+  # verbs rarely used as plural nouns; used for the later-clause compound check (B07c) to avoid noun false positives
+  unambiguous_verbs: [analyzes, analyses, calculates, conducts, develops, implements, evaluates, prepares, negotiates, explains,
+    presents, identifies, selects, interprets, verifies, validates, trains, coaches, leads, manages, coordinates, facilitates, delivers,
+    writes, builds, installs, operates, maintains, calibrates, collects, approves, inspects, investigates, compiles, communicates,
+    defends, establishes, determines, assesses, characterizes, classifies, diagnoses, supervises, prioritizes, recommends, resolves,
+    translates, teaches, executes, performs, completes, submits, obtains, procures, allocates, governs, certifies, arbitrates, designs,
+    delineates, configures, deploys, integrates, quantifies, synthesizes, troubleshoots]
+  # B08b single-statement warning terms
+  gradation_flag_terms: [basic, simple, complex, sophisticated, comprehensive, advanced, major, minor, high-level, in-depth, extensive,
+    cutting-edge, state-of-the-art, elementary, rudimentary]
+  # B08a cross-level removal terms (superset). Attribute descriptors such as routine, non-routine, novel, contested and
+  # high-consequence are deliberately excluded: they name the complexity attribute, which is a legitimate level difference.
+  gradation_terms: [basic, simple, simpler, complex, more complex, sophisticated, comprehensive, advanced, major, minor, high-level,
+    in-depth, extensive, robust, cutting-edge, state-of-the-art, innovative, elementary, rudimentary, thorough, detailed, increasingly,
+    highly, very, more, most, fully]
+  # starter product lexicon for B09a (case-sensitive, word-bounded); DE adds DC's L4 seed via B09f
+  vendor_products: [ArcGIS, ArcGIS Pro, ArcMap, ArcGIS Online, QGIS, ENVI, ERDAS, IMAGINE, eCognition, Google Earth Engine, Earth Engine,
+    Google Earth, Planetary Computer, Excel, Tableau, Power BI, SAS, SPSS, Stata, MATLAB, Python, Jupyter, HEC-RAS, HEC-HMS, SWMM,
+    MODFLOW, AERMOD, CALPUFF, CMAQ, MOVES, EQuIS, FARSITE, FlamMap, FSim, BehavePlus, IFTDSS, WFDSS, FVS, i-Tree, InVEST, Marxan,
+    ChatGPT, GPT-4, GPT-4o, GPT-5, Claude, Gemini, Copilot, Llama, Workiva, Diligent, Trello, Asana, Salesforce, SharePoint, Survey123,
+    Field Maps, Collector for ArcGIS, Avenza, Trimble, Garmin, DJI, Pix4D, Metashape, DroneDeploy, Wildlife Insights, iNaturalist,
+    eBird, BirdNET, Kaleidoscope, AutoCAD, Civil 3D, LabVIEW, Sentinel-2, Landsat, PlanetScope, MegaDetector]
+
+# ----------------------------------------------------------------------------------------------------------------
+# WAIVERS
+# ----------------------------------------------------------------------------------------------------------------
+waivers:
+  file: validation/waivers/indicator_lint_waivers.csv
+  columns: [record_id, rule_id, text_sha256, waiver_class, reviewer, second_reviewer, decided_on, rationale]
+  waiver_class: [accepted-warning, false-positive]
+  rules:
+    - "A waiver applies only while the record's normalized statement hashes to text_sha256; any edit voids it."
+    - "warn hits may be waived as accepted-warning by one human reviewer with a rationale."
+    - "error hits may be waived only as false-positive, with two human reviewers (reviewer and second_reviewer), e.g. 'ESA' meaning a Phase I site assessment."
+    - "Reviewers are pseudonymous human IDs (ADR-0012). An llm or emstagent: ID can never sign a waiver."
+    - "Waived hits remain in the lint report with status waived; the release report counts them (computed, never typed)."
+  note: "DE may relocate the file (e.g. data/v2/registers/); CR-IO-001 asks CA to fix its home."

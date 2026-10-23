@@ -1,0 +1,55 @@
+# SYNTHETIC FIXTURE (WP-11 tests). Not EMST content; no personal data; seed: keys only.
+- type: Competency
+  id: "seed:fixture-cmp-wildlife-survey"
+  status: draft
+  competencyType: practice
+  statement: {en: "Detect, identify and record wildlife presence to protocol so that data support population inferences."}
+  levelSpan: {min: L1, max: L3}
+  levels:
+    - {level: L1, indicators: ["seed:fx-ind-1", "seed:fx-ind-2"], publicationRuleChecks: {existence: pending, distinctness: pass, assessability: pass, consensus: pending}}
+    - {level: L2, indicators: ["seed:fx-ind-3", "seed:fx-ind-4"], publicationRuleChecks: {existence: pending, distinctness: pass, assessability: pass, consensus: pending}}
+- type: Indicator
+  id: "seed:fx-ind-1"
+  competency: "seed:fixture-cmp-wildlife-survey"
+  level: L1
+  statement: {en: "Records detections on a standardized datasheet under a qualified observer's direction, so that species codes, counts and locations pass the program's QA check."}
+  augmentationMode: unaided
+  assessmentMethods: [task-book observation]
+  evidenceTypes: [observation]
+  useClass: develop
+  obs4: 3
+  jurisdictionVariable: false
+  validationStatus: draft
+- type: Indicator
+  id: "seed:fx-ind-2"
+  competency: "seed:fixture-cmp-wildlife-survey"
+  level: L1
+  statement: {en: "Labels and stores acoustic recorder media following the program chain-of-custody procedure, so that every file traces to a station and deployment date."}
+  augmentationMode: unaided
+  assessmentMethods: [record audit]
+  useClass: develop
+  obs4: 3
+  jurisdictionVariable: false
+  validationStatus: draft
+- type: Indicator
+  id: "seed:fx-ind-3"
+  competency: "seed:fixture-cmp-wildlife-survey"
+  level: L2
+  statement: {en: "Conducts a point-count survey independently on an assigned route, so that detections, distances and effort meet the protocol's data standard."}
+  augmentationMode: unaided
+  assessmentMethods: [work sample]
+  useClass: develop
+  obs4: 3
+  jurisdictionVariable: false
+  validationStatus: draft
+- type: Indicator
+  id: "seed:fx-ind-4"
+  competency: "seed:fixture-cmp-wildlife-survey"
+  level: L2
+  statement: {en: "Reviews automated species classifications from a recorder deployment, verifying a random sample and all low-confidence detections against the recordings."}
+  augmentationMode: assisted
+  assessmentMethods: [seeded-error work sample]
+  useClass: develop
+  obs4: 3
+  jurisdictionVariable: false
+  validationStatus: draft

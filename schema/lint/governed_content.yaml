@@ -1,0 +1,69 @@
+# Governed-content checks: Tribal hold (ADR-0007 §C–§D; SPEC §16.1) and no personal data (ADR-0012 I-1; SPEC §16.2).
+# Used by scripts/validate_v2.py (all source files) and scripts/build_release.py (release gate). Owner: DE, with TN
+# (hold reviewer, gate G-TN) and CP. Patterns are Python regexes, case-insensitive unless `cs: true`. Licence: CC0-1.0.
+version: 0.1.0
+
+tribal_hold:
+  # A record whose releasable text matches any trigger and is not flagged (indigenousDataFlag: true,
+  # approvalStatus: pending-tribal-review, sensitivity: restricted-governed) is a potential leak:
+  # ERROR at status candidate or later, WARNING for drafts (the G-TN worklist). Text inside v1Seed is internal seed
+  # material, never released, and is reported separately.
+  triggers:
+    - '\btrib(e|es|al)\b'
+    - '\bindigenous\b'
+    - '\bnative american\b'
+    - '\bnative hawaiian\b'
+    - '\balaska native\b'
+    - '\bfirst nations\b'
+    - '\btraditional (ecological )?knowledge\b'
+    - {pattern: '\bTEK\b', cs: true}
+    - {pattern: '\bTHPOs?\b', cs: true}
+    - '\btreat(y|ies)\b'
+    - '\bsovereign(ty)? (nation|nations|government|governments)\b'
+    - '\b(tribal|indigenous) (data )?sovereignty\b'
+    - '\bgovernment-to-government\b'
+    - '\bindian (preference|country|self-determination)\b'
+    - '\btrust responsibility\b'
+    - '\bCARE principles\b'
+    - {pattern: '\bANCSA\b', cs: true}
+  # Text fields scanned for leaks (any depth); keys under these are skipped:
+  skip_keys: [v1Seed, provenance, editorialNote]
+
+confidential_markers:
+  # ERROR anywhere under data/v2 (V2: EMST must not hold confidential Tribal information, even under access control).
+  - '\bconfidential (tribal|cultural)\b'
+  - '\bshared in confidence\b'
+  - '\bculturally sensitive (information|location|site)s?\b'
+  - '\brestricted cultural information\b'
+  - '\b(sacred|burial) (site )?locations?\b'
+  - '\bdo not (distribute|disclose)\b'
+
+cultural_site_terms:
+  - '\bsacred sites?\b'
+  - '\bburials?\b'
+  - '\bcultural sites?\b'
+  - '\barchaeological sites?\b'
+  - '\bpetroglyphs?\b'
+  - '\bvillage sites?\b'
+  - '\bceremonial\b'
+  - '\btraditional cultural propert(y|ies)\b'
+  - {pattern: '\bTCPs?\b', cs: true}
+  - '\bheritage sites?\b'
+
+coordinates:
+  # Coordinates co-occurring with cultural-site vocabulary in one record → ERROR anywhere (P-TN-02).
+  patterns:
+    - '-?\b\d{1,2}\.\d{3,}\s*,\s*-?\d{1,3}\.\d{3,}\b'
+    - '\b\d{1,3}°\s*\d{1,2}[''′]'
+  keys: [latitude, longitude, lat, lon, lng, coordinates, geometry, bbox]
+
+personal_data:
+  # ERROR anywhere under data/v2 (ADR-0012 I-1: the steward holds no person-level data).
+  patterns:
+    email: '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}\b'
+    us_phone: '\(?\b\d{3}\)?[-. ]\d{3}[-. ]\d{4}\b'
+    us_ssn: '\b\d{3}-\d{2}-\d{4}\b'
+  allow_emails: []        # e.g. a published organizational contact; none needed in source records
+  forbidden_keys: [name, firstName, lastName, fullName, givenName, familyName, email, emailAddress, phone, telephone,
+                   employeeId, employeeNumber, ssn, dateOfBirth, birthDate, homeAddress, personId, raterName,
+                   applicantName, panelistName, salaryOfPerson, citizenship, tribalEnrollment]

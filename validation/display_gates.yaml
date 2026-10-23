@@ -1,0 +1,187 @@
+# EMST v2 — display gates (WP-11 output 11): machine-readable rules that decide whether a rated value may render.
+#
+# Owner: IO (A8) · Status: draft for CA ratification (semantics in CR-IO-002) · Date: 2026-10-23
+# Consumers: CP explorer and views (WP-12), DE build (WP-01 build_views / build_release), FH generators (WP-08).
+# Reference evaluator: validation/display_gate.py (tests in validation/tests/test_display_gates.py).
+# Agreement statistics: validation/reliability.py (Krippendorff's alpha, unit bootstrap), run by the build on
+#   stored atomic ratings (agreement statistics are COMPUTED, never stored in source records; SPEC §14.2).
+# Decision basis: SPEC §10.4-10.5, §11.5; ADR-0024 §2-5, §12; ADR-0017 status line; ADR-0027 §2; ADR-0008 §5;
+#   ADR-0005 §6, §8; vocab/lifecycle_states.yaml#reliability_gate; vocab/evidence_labels.yaml#rater_types.
+#
+# PRINCIPLE (fail closed). A rated value renders only when ALL hold:
+#   1. its dimension has an ADMISSIBLE human agreement result for the codebook version that produced the value;
+#   2. the lower bound of that result's 95% CI is >= 0.667 (tentative) or >= 0.80 (production), overall AND in the
+#      value's stratum where the stratum was estimated separately;
+#   3. the value itself is a human-backed consensus (never an agent-only value, never a v1 value);
+#   4. the value is not stale (the rated text hash equals the record's current text hash);
+#   5. the view's use tier admits the marker (select views admit production only).
+# Any missing or unparseable input means the value is NOT rendered. An agreement result computed with agent
+# raters is never counted as human agreement (PHASE4_BUILD_PLAN §1 rule 2).
+
+gates: emst-display-gates
+version: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+steward: IO
+license: CC0-1.0
+fail_closed: true
+
+thresholds:
+  statistic: krippendorff_alpha            # metric per dimension below; ICC is reported alongside for interval data but does not gate
+  ci:
+    method: unit-bootstrap-percentile      # resample units with replacement; recompute alpha; percentile interval
+    level: 0.95
+    bound_used: lower                      # the 2.5th percentile of the bootstrap distribution
+    resamples_min: 10000
+    seed_recorded: true
+  production_min_lower_bound: 0.80
+  tentative_min_lower_bound: 0.667         # compared with the unrounded lower bound; 0.667 literally, not 2/3
+  comparison: ">="
+  alpha_undefined: hidden                  # no variation in the data (D_e = 0) -> no evidence -> not rendered
+
+admissibility:                             # an agreement result counts only if every condition holds
+  rater_types_counted: [expert-panel, sme, analyst]
+  rater_types_never_counted: [llm, external-index, v1-analyst]
+  min_units: 120                           # ADR-0024 §4: decisions need 120-200 units (CI about +/-0.04-0.07)
+  min_pairable_raters_per_unit: 2          # units with fewer pairable human values are excluded before counting
+  min_distinct_raters: 3                   # a single pair can never define a gate
+  recommended_raters_per_unit: 6
+  preregistration_id_required: true        # OSF Registries ID plus mirrored repo release tag (ADR-0024 §6)
+  blind_coding_attested: true              # XR-01 / ADR-0005 §6: blind to parent competency, domain, craft, prior labels
+  codebook_version_must_match_values: true
+  max_age_months: 36                       # older results lapse (revalidation; validation_protocol §11)
+  invalidated_by: [codebook MAJOR or MINOR change, change of category set, change of scale (e.g. ordinal-0-2 -> constant-sum-100)]
+
+strata:
+  keys: [module, sectorActor]              # module = home module of the rated task; sectorActor where values are actor-specific
+  separate_estimate_min_units: 30
+  rule: >
+    Where the study has >= 30 units in a stratum, a value in that stratum renders only if the stratum's own lower bound
+    also passes, and its marker is the weaker of the overall and stratum markers. Where a stratum has < 30 units, values
+    render on the overall result with the note `stratum_not_estimated`. (XR-07: module tasks are assessed before any
+    sector-wide conclusion.)
+
+markers:
+  production: {min_lower_bound: 0.80, ui: "no badge; agreement shown in the evidence drawer"}
+  tentative: {min_lower_bound: 0.667, ui: "badge 'Tentative' with alpha, 95% CI and n units in text (never colour alone)"}
+  hidden: {ui: "value not rendered; show the fallback label"}
+
+value_rules:
+  consensus:
+    production: "Value is the consensus of >= 3 human raters: median (ordinal), mean (interval), plurality with >= 2/3 of raters (nominal). No qualifying consensus -> hidden with label no_consensus."
+    tentative: "Value has >= 2 independent human codes that agree, or a documented adjudication of a disagreement."
+  stale: "ExposureAssessment.taskTextSha256 (or the rating's text hash) != the record's current textSha256 -> hidden with label stale."
+  agent_values:
+    llm_only: "Never rendered as a tag; stays draft evidence (raterType llm, validationStatus draft, evidence label S)."
+    llm_first_human_verified: "Counts as a human value only when (a) the dimension passed the LLM-coder gate (protocol_llm_coder_gate.md) for the codebook and frozen model/prompt versions, (b) the decision path (llm-accepted / llm-overridden) and pseudonymous human verifier are recorded, and (c) the dimension's HUMAN agreement result passes the gate. Never for selection-relevant values without a second human."
+    agent_passes_are_not_raters: "Several runs of one model, or several agent passes, are one rater for admissibility; their agreement is run-to-run consistency, never inter-rater reliability."
+  v1_values: "raterType v1-analyst: never rendered as a value, never aggregated, never in a headline; shown only in the task-level evidence drawer with label v1_prior (ADR-0027 §2), and hidden entirely if cognitive-interview comprehension testing fails (protocol_cognitive_interviews.md)."
+  external_index: >
+    raterType external-index renders only as 'external context', never as an EMST tag: aggregated over all matched
+    O*NET tasks from a reviewed X2 mapping set (two independent human coders, weakest match >= closeMatch), with
+    dispersion, index name and release shown (XR-06); never a single-match label; never in a headline number;
+    no change indicator may rest on one vendor's data (ADR-0008 §4).
+  rollups: >
+    Computed competency and role values (craft blends, exposure distributions, work-function and subsector roll-ups)
+    render only from task values that themselves render; marker = the weakest contributing marker; coverage is shown
+    as 'based on k of n tasks'. A role blend renders only when tasks with renderable values carry >= 80% of the role's
+    importance x timeShare mass [J]; otherwise hidden with label insufficient_coverage. Blends are never shown about
+    individuals (ADR-0005 §8).
+  held_content: "Records under the Tribal hold (approvalStatus pending-tribal-review, indigenousDataFlag true, governedData tribal) are never rendered and get no label; release notes report only a count (ADR-0007; PHASE4_BUILD_PLAN §1 rule 4)."
+
+use_tier_admission:                        # which markers a view of a given use tier may show
+  exploratory: [production, tentative]
+  describe: [production, tentative]
+  develop: [production, tentative]
+  select: [production]                     # plus: selection-relevant values double-coded by humans (ADR-0024 §3)
+  note: "The effective use tier of an element is min(lifecycle cap, evidence met, reliability gate of any tag shown) (SPEC §10.4); a tentative tag caps an element shown in a select view at develop."
+
+labels:                                    # fallback text; CP may restyle, not reword, without IO review
+  assessment_pending: "Assessment pending: no multi-rater v2 assessment of this value yet."
+  below_gate: "Not shown: rater agreement for this kind of value is below the publication threshold."
+  insufficient_study: "Not shown: the agreement study for this kind of value is too small or not pre-registered."
+  stale: "Assessment pending: the text changed after it was rated."
+  no_consensus: "Not shown: raters did not reach consensus on this value."
+  insufficient_coverage: "Not shown: too few of this role's tasks have assessed values."
+  stratum_not_estimated: "Agreement was not estimated separately for this module."
+  tentative: "Tentative: rater agreement α = {alpha} (95% CI {ci_lower}–{ci_upper}; {n_units} units)."
+  v1_prior: "v1 single-analyst prior, LLM-assisted, unvalidated — not for decisions."
+  external_context: "External context: {index} ({release}), aggregated over {n_matches} matched O*NET tasks; dispersion {dispersion}. Not an EMST assessment."
+
+# Dimensions gated here. `metric` is the Krippendorff level of measurement. `field` is where the atomic rating lives
+# (L5 rating records, SPEC §5.12-5.13). Each dimension is gated separately (e.g. FC, DC and SC are three gates).
+dimensions:
+  - {id: craft.FC, record: CraftRating, field: "values.FC", metric: ordinal, unit: task, codebook: codebook_craft_ratings.md, scale_alternatives: {constant-sum-100: interval, nominal-defining: nominal}}
+  - {id: craft.DC, record: CraftRating, field: "values.DC", metric: ordinal, unit: task, codebook: codebook_craft_ratings.md, scale_alternatives: {constant-sum-100: interval, nominal-defining: nominal}}
+  - {id: craft.SC, record: CraftRating, field: "values.SC", metric: ordinal, unit: task, codebook: codebook_craft_ratings.md, scale_alternatives: {constant-sum-100: interval, nominal-defining: nominal}}
+  - {id: craft.defining, record: CraftRating, field: "derived: set of crafts rated 2 (or none)", metric: nominal, unit: task, codebook: codebook_craft_ratings.md}
+  - {id: task.fieldDependency, record: CraftRating, field: fieldDependency, metric: ordinal, unit: task, codebook: codebook_craft_ratings.md}
+  - {id: task.formationDependency, record: CraftRating, field: formationDependency, metric: ordinal, unit: task, codebook: codebook_craft_ratings.md}
+  - {id: task.reproductionRegime.mentorshipDependence, record: CraftRating, field: reproductionRegime.mentorshipDependence, metric: ordinal, unit: task, codebook: codebook_craft_ratings.md}
+  - {id: task.reproductionRegime.cycleDependence, record: CraftRating, field: reproductionRegime.cycleDependence, metric: ordinal, unit: task, codebook: codebook_craft_ratings.md}
+  - {id: task.reproductionRegime.placeBoundness, record: CraftRating, field: reproductionRegime.placeBoundness, metric: nominal, unit: task, codebook: codebook_craft_ratings.md}
+  - {id: task.reproductionRegime.currencyDecay, record: CraftRating, field: reproductionRegime.currencyDecay, metric: ordinal, unit: task, codebook: codebook_craft_ratings.md}
+  - {id: task.workFunction, record: FunctionRating, field: workFunction, metric: nominal, unit: task, codebook: codebook_work_function_authority.md, note: "13 primary functions; sub-functions gated separately within parent"}
+  - {id: task.workFunction.subfunction, record: FunctionRating, field: subFunction, metric: nominal, unit: "task within parent function", codebook: codebook_work_function_authority.md}
+  - {id: task.mode.engage, record: FunctionRating, field: "modes contains MODE-ENGAGE", metric: nominal, unit: task, codebook: codebook_work_function_authority.md}
+  - {id: task.mode.engage.relationshipType, record: FunctionRating, field: relationshipType, metric: nominal, unit: "task with MODE-ENGAGE", codebook: codebook_work_function_authority.md, note: "government-to-government values are held content"}
+  - {id: task.mode.resolve, record: FunctionRating, field: "modes contains MODE-RESOLVE", metric: nominal, unit: task, codebook: codebook_work_function_authority.md}
+  - {id: unit.authorityPosition, record: FunctionRating, field: authorityPosition, metric: nominal, unit: "position description, posting, state class or task-in-context assigned to a position", codebook: codebook_work_function_authority.md}
+  - {id: exposure.technical.llm-cognitive, record: ExposureAssessment, field: "technicalExposure[vector=llm-cognitive].level", metric: ordinal, unit: task, codebook: codebook_exposure_XR.md}
+  - {id: exposure.technical.robotics, record: ExposureAssessment, field: "technicalExposure[vector=robotics].level", metric: ordinal, unit: task, codebook: codebook_exposure_XR.md}
+  - {id: exposure.technical.sensing, record: ExposureAssessment, field: "technicalExposure[vector=sensing].level", metric: ordinal, unit: task, codebook: codebook_exposure_XR.md}
+  - {id: exposure.technical.convergent, record: ExposureAssessment, field: "technicalExposure[vector=convergent].level", metric: ordinal, unit: task, codebook: codebook_exposure_XR.md}
+  - {id: exposure.deploymentMode, record: ExposureAssessment, field: deploymentMode, metric: ordinal, unit: "task x sector actor", codebook: codebook_exposure_XR.md, order: [human-executes, assisted, compressive, supervises-system, system-executes]}
+  - {id: exposure.deploymentStage, record: ExposureAssessment, field: deploymentStage, metric: ordinal, unit: "task x sector actor", codebook: codebook_exposure_XR.md}
+  - {id: exposure.strategy, record: ExposureAssessment, field: strategy, metric: nominal, unit: "task x sector actor", codebook: codebook_exposure_XR.md}
+  - {id: exposure.tacitExperienceRequirement, record: ExposureAssessment, field: tacitExperienceRequirement, metric: ordinal, unit: task, codebook: codebook_exposure_XR.md}
+  - {id: exposure.staffingOutcome, record: ExposureAssessment, field: staffingOutcome, metric: nominal, unit: "role variant or organization", codebook: codebook_exposure_XR.md}
+  - {id: exposure.scenario.demandDirection, record: ExposureAssessment, field: demandDirection, metric: nominal, unit: "task x scenario", codebook: codebook_exposure_XR.md}
+  - {id: exposure.scenario.reproductionRisk, record: ExposureAssessment, field: reproductionRisk, metric: ordinal, unit: "task x scenario", codebook: codebook_exposure_XR.md}
+  - {id: relevance.competencyRole, record: RelevanceRating, field: value, metric: ordinal, unit: "competency x role", codebook: instrument_job_analysis_survey.md}
+  - {id: indicator.obs4, record: "OBS-4 coding (L5 rating)", field: obs4, metric: ordinal, unit: indicator, codebook: "docs/research/io-validation/indicator_writing_rules.md §2", note: "gates the select designation; obs4 itself is an authoring field, not a user-facing tag"}
+  - {id: lens.triggers, record: "lens trigger rating", field: lens, metric: nominal, unit: task, codebook: "to be written only if lenses are retained", note: "ADR-0024 §10: retire after two failed codebook iterations"}
+
+# Fields that are editorial definitions or verified facts, not ratings. They are NOT alpha-gated, but each must be
+# labelled as such in the evidence drawer and carries its own requirement. [J] CR-IO-002 asks CA to confirm the list.
+not_alpha_gated:
+  editorial_definitions:
+    - {field: RoleProfile.primaryWorkFunction, label: "editorial classification", requirement: "reviewed by CA or the owning WP lead"}
+    - {field: RoleVariant.sectorActor, label: "editorial classification", requirement: "definition of the variant"}
+    - {field: RoleVariant.authorityPosition, label: "editorial classification", requirement: "definition of the variant; assigning postings, PDs or state classes to a position IS gated (unit.authorityPosition)"}
+    - {field: Competency.homeModule, label: "editorial decision", requirement: "CA decision under G-4; the G-4 agreement test informs the rule, it does not gate display"}
+    - {field: Competency.competencyType, label: "editorial classification", requirement: "ADR-0003 typing rules"}
+    - {field: Task.supports, label: "editorial link", requirement: "job-relatedness for select needs the linkage study (instrument_job_analysis_survey.md §7), ICC(2,k) >= .75"}
+  verified_facts:
+    - {field: Task.credentialGates, requirement: "Credential record with issuerVerified date (ADR-0022)"}
+    - {field: Task.signOffAuthority, requirement: "Credential record or cited legal basis"}
+    - {field: Task.accountabilityConstraint, requirement: "basis cited (statute, regulation or licensure rule)"}
+  consensus_gated_not_alpha:
+    - {field: "Indicator level placement", rule: "Delphi placement >= 70% modal with IQR <= 1 (protocol_modified_delphi.md); otherwise labelled 'draft placement'"}
+    - {field: "Competency retention", rule: "exact Lawshe critical CVR and >= 75% essential or useful; otherwise validationStatus stays below panel-retained"}
+    - {field: "Assessor agreement on qualification sign-offs", rule: ">= .70 (ADR-0024 §3); kits that confer qualification state it"}
+
+# What the build must emit per dimension so the explorer can apply this file (computed; dist/views/agreement/).
+agreement_result_schema:
+  required: [dimension, codebookVersion, metric, alpha, ciLower, ciUpper, bootstrapResamples, seed, nUnits, nDistinctRaters,
+             meanRatersPerUnit, raterTypesCounted, preregistrationId, studyId, studyDate, blindCodingAttested, ruleId, ruleVersion, buildCommit]
+  optional: [strata, perCategory, confusionMatrixRef, icc, notes]
+  strata_item: [key, value, nUnits, alpha, ciLower, ciUpper]
+  ruleId: display-gate
+  ruleVersion: 1.0.0-draft
+
+# Seeded cases DE's CI must reproduce (mirrored in validation/tests/test_display_gates.py).
+ci_seeded_cases:
+  - {case: "lower bound 0.66 overall", expect: hidden, label: below_gate}
+  - {case: "lower bound 0.70", expect: tentative}
+  - {case: "lower bound 0.80", expect: production}
+  - {case: "no agreement result for the dimension", expect: hidden, label: assessment_pending}
+  - {case: "result with 100 units", expect: hidden, label: insufficient_study}
+  - {case: "result whose raterTypesCounted includes llm", expect: hidden, label: insufficient_study}
+  - {case: "codebook version of value != result", expect: hidden, label: assessment_pending}
+  - {case: "value from llm rater only", expect: hidden, label: assessment_pending}
+  - {case: "value from v1-analyst", expect: drawer-only, label: v1_prior}
+  - {case: "stale text hash", expect: hidden, label: stale}
+  - {case: "stratum with 40 units below gate while overall passes", expect: hidden, label: below_gate}
+  - {case: "tentative value in a select view", expect: hidden, label: below_gate}
+  - {case: "held Tribal record", expect: not-rendered, label: none}

@@ -1,0 +1,34 @@
+# SYNTHETIC FIXTURE (WP-11 tests). Seeded violations; not EMST content; no personal data.
+- type: Competency
+  id: "seed:fixture-cmp-bad"
+  status: published
+  competencyType: practice
+  statement: {en: "Plan stormwater inspections."}
+  levelSpan: {min: L1, max: L2}
+  levels:
+    - {level: L2, indicators: ["seed:fx-bad-1"], publicationRuleChecks: {existence: pass, distinctness: pass, assessability: pass, consensus: pass}}
+- type: Indicator
+  id: "seed:fx-bad-1"
+  competency: "seed:fixture-cmp-bad"
+  level: L2
+  statement: {en: "Understands stormwater permit requirements."}
+  augmentationMode: unaided
+  assessmentMethods: [knowledge test]
+  useClass: select
+  obs4: 1
+  jurisdictionVariable: false
+  validationStatus: draft
+- type: Indicator
+  id: "seed:fx-bad-2"
+  competency: "seed:fixture-cmp-bad"
+  level: L4
+  statement: {en: "Writes NPDES permit limits."}
+  augmentationMode: unaided
+  assessmentMethods: [work sample]
+  useClass: develop
+  obs4: 3
+  jurisdictionVariable: false
+  validationStatus: draft
+- type: Task
+  id: "seed:fixture-tsk-bad"
+  statement: {en: "Run HEC-RAS to model the floodplain for a restoration reach."}

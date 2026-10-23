@@ -1,0 +1,33 @@
+# EMST v2 — pre-registration core fields shared by every WP-11 study protocol.
+# Owner: IO · Status: draft · Date: 2026-10-23 · Basis: ADR-0024 §6 (OSF Registries, mirrored as a timestamped repo
+# release), validation_protocol.md §2 (Phase 2). Each protocol adds its own fields under `protocol_specific`.
+# A study may not collect data until every `required` field is filled, frozen, hashed and registered. Changes after
+# registration go to the deviations log with date, reason and expected effect; they never overwrite the registration.
+
+core_required:
+  - {field: study_id, note: "REL-nn reliability; DEL-nn Delphi; CIV-nn cognitive interviews; CSP-nn craft-scale pilot; JAS-nn job-analysis survey; LLM-nn LLM-coder gate; AIP-nn adverse-impact plan"}
+  - {field: protocol_file_and_sha256, note: "path under validation/ and the SHA-256 of the protocol as registered"}
+  - {field: registry, note: "OSF Registries DOI or URL, plus repo release tag prereg/<study_id>"}
+  - {field: registered_on, note: "ISO date; before first data collection"}
+  - {field: aims_and_uses, note: "which EMST use (describe | develop | select) the evidence supports, and which it cannot"}
+  - {field: hypotheses_or_estimands, note: "quantities to estimate and decision questions"}
+  - {field: units_and_sampling_frame, note: "unit type, frame, frame version and hash, strata, sample size and its justification"}
+  - {field: participants, note: "eligibility, recruitment channels, quotas, compensation, composition caps; no personal data in the repo (ADR-0012)"}
+  - {field: instruments, note: "frozen versions with SHA-256: codebooks, forms, item text, task text hashes"}
+  - {field: procedures, note: "training, blinding, ordering, randomization, seeds"}
+  - {field: analysis_plan, note: "statistics, software and repo path + commit; missing-data handling; multiplicity"}
+  - {field: decision_rules, note: "thresholds that decide an outcome, stated before data"}
+  - {field: stop_rules, note: "futility, success, attrition, harm, hard stops"}
+  - {field: exclusion_rules, note: "pre-specified data-quality and participant exclusions; no post-hoc exclusions without a registered rule and a sensitivity analysis"}
+  - {field: rater_and_agent_policy, note: "human rater types counted; whether any LLM or agent is used, for what, and why it is never counted as human agreement"}
+  - {field: tribal_hold_statement, note: "held content excluded from frames; Tribal participation only through Tribal research approval, on Tribal time (ADR-0007; ADR-0024 §7)"}
+  - {field: approvals, note: "IRB or exemption, agency survey approval, union notification, Paperwork Reduction Act determination (CP lane)"}
+  - {field: data_management, note: "where raw data live (outside the repo), what enters the repo (aggregates, pseudonymous IDs), retention, small-cell suppression n >= 5"}
+  - {field: reporting_standard, note: "e.g. CREDES/ACCORD for Delphi; COSMIN-style reporting for reliability; the report template in the protocol"}
+  - {field: roles_and_conflicts, note: "steering group, analysts, conflicts of interest; steering group members never vote or rate"}
+  - {field: deviations_log_path, note: "validation/studies/<study_id>/deviations.md (created at registration)"}
+
+provenance_on_results:
+  - "Every result row records study_id, registry ID, protocol SHA-256, analysis commit and build commit."
+  - "Results enter the repo as aggregates and agreement statistics only; atomic ratings use pseudonymous rater IDs with maps held outside the repo (SPEC §16.2)."
+  - "Phase 4 agent outputs used to draft items or pre-fill values are disclosed in the registration and labelled raterType llm or analyst, validationStatus draft, evidence label S."

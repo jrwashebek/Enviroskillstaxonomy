@@ -1,0 +1,60 @@
+# Fields that are COMPUTED at build time and MUST NOT appear in any source record (SPEC §14.2; ADR-0021; P-DE-04).
+# scripts/validate_v2.py scans every key at every depth of every source record (including v1Values) and fails on a
+# match, in camelCase or snake_case. The closed schema rejects them too; this list gives a precise error and also
+# covers open sub-objects. Owner: DE. Licence: CC0-1.0.
+basis: SPEC §14.2; ADR-0021 "Stored vs computed"; ADR-0011 rule 5 (stored v1 summaries are not migrated)
+fields:
+  # v1 stored summaries (ADR-0011 rule 5; data-audit §1.6, §5)
+  - modalAutoType
+  - modalTacitDensity
+  - modalCareerLadder
+  - modalVector
+  - modalHorizon
+  - modalCldFlag
+  - modalContested
+  - reformFlagCount
+  - stabilityTier
+  - zeroCore
+  - foundationalProfessionalPrep
+  - coreFamilyCount
+  - supportingFamilyCount
+  # v2 computed views (SPEC §14.2)
+  - exposureSummary
+  - exposureDistribution
+  - consensusValue
+  - craftBlend
+  - dominantCraft
+  - competencyWorkFunctions
+  - competencySubsectors
+  - reusabilitySuggestion
+  - familyRelevance
+  - familyBreadth
+  - jobFamilyMembers
+  - members
+  - cldIndicator
+  - careerLadderDestruction
+  - entryPathHealth
+  - entryPathDependence
+  - robustnessClass
+  - scenarioSensitivityProfile
+  - venueApplicability
+  - federalApplicability
+  - currentStatus
+  - priorityScore
+  - effectiveUseTier
+  - agreementStatistics
+  - pathwayScore
+  - directionalCoverage
+  - formationCoverage
+  - gap
+  - clos
+  - currencyInterval
+  - federalSeriesProfile
+  - stateClassView
+  - inverseLinks
+# Inverse links are computed in bundles; storing them on the "one" side would let the two sides drift (IA §3).
+inverse_fields_by_type:
+  Task: [tools]
+  Competency: [tasks, indicatorsByLevel]
+  RoleProfile: [variants]
+  Instrument: [events]
