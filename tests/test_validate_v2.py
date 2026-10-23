@@ -202,3 +202,107 @@ def test_sssom_extension_and_review_provenance(tmp_path):
     prov = [i for i in rep.issues if i.code == "W-SSSOM-REVIEW-PROVENANCE"]
     assert len(prov) == 1 and prov[0].where.endswith(":3")
     assert not rep.errors
+
+
+# ---------------------------------------------------------------- ADR-0030 (RULINGS_FOR_DE Batch 2)
+@pytest.fixture(scope="module")
+def live_validator():
+    return validate_v2.Validator(L.DATA_V2, use_git_base=False)
+
+
+@pytest.mark.parametrize("text,flagged", [
+    ("Map plots in InVEST", True), ("invest time in planning", False), ("Record slack water at the gauge", False),
+    ("Identify maple seedlings", False), ("Collect points in Field Maps", True), ("Read field maps before survey", False),
+])
+def test_product_matching_agrees_with_io_linter(live_validator, text, flagged):
+    """CR-DC-001: product names are matched case-sensitively, the same way in validate_v2 and IO's linter."""
+    de = bool([t for t, rx in live_validator.products if rx.search(text)])
+    assert de is flagged
+    if live_validator.io_lint:
+        _mod, linter = live_validator.io_lint
+        assert bool(linter.product_re.search(text)) is flagged
+
+
+def test_three_module_rule_and_register(tmp_path):
+    data = overlay_tree(tmp_path)
+    cmp = L.load_yaml(next((data / "core" / "competencies").glob("CMP-*.yaml")))
+    d = data / "modules" / "water" / "enactments"
+    ena = _valid("Enactment", id="seed:fx-ena-mod", competency=cmp["id"], enactmentKind="module", enactedInModule="water",
+                 subsectors=["W01"], module="water")
+    for k in ("actorType", "authorityBasis", "principal", "accountabilityVenue", "craft"):
+        ena.pop(k, None)
+    L.write_yaml(d / "seed-fx-ena-mod.yaml", ena)
+    rep = run(data)
+    assert "E-THREE-MODULE" in rep.codes()                         # base competency is a candidate
+    assert "I-THREE-MODULE-RECURRENCE" in rep.codes()
+    reg = data / "governance" / "three_module_exceptions.yaml"
+    reg.write_text(L.dump_yaml({"exceptions": [{"competency": cmp["id"], "modules": ["water"], "rationale": "synthetic",
+                                                "decidedBy": "CA", "decidedOn": "2026-10-23", "reviewBy": "2020-01-01",
+                                                "decidedIn": "ADR-0030"}, {"competency": "seed:nope"}]}))
+    codes = run(data).codes()
+    assert "E-THREE-MODULE" not in codes and "W-THREE-MODULE-EXCEPTION-EXPIRED" in codes and "E-THREE-MODULE-EXCEPTION-FORMAT" in codes
+    ena.pop("subsectors")
+    L.write_yaml(d / "seed-fx-ena-mod.yaml", ena)
+    assert "W-MODULE-SUBSECTOR" in run(data).codes()
+
+
+def test_instrument_links_edges_mirrors_and_clo_rules(tmp_path):
+    data = overlay_tree(tmp_path)
+    cmp_p = next((data / "core" / "competencies").glob("CMP-*.yaml"))
+    cmp = L.load_yaml(cmp_p)
+    ins = _valid("Instrument", id="seed:fx-ins-a")
+    (data / "instruments").mkdir()
+    (data / "instruments" / "i.jsonl").write_text(L.jsonl_line(ins) + "\n")
+    ena = _valid("Enactment", id="seed:fx-ena-links", competency=cmp["id"],
+                 characteristicInstruments=[{"instrument": "seed:fx-ins-a"}, {"instrument": "seed:fx-ins-a", "role": "requires"}],
+                 indicatorVariants=[cmp["levels"][0]["indicators"][0]])
+    L.write_yaml(data / "core" / "enactments" / "seed-fx-ena-links.yaml", ena)
+    cmp["mirrors"] = [{"target": "seed:fx-ena-links", "relation": "regulated-party-mirror"}]
+    cmp["instrumentSensitivity"] = [{"mechanism": _valid("Competency").get("instrumentSensitivity", [{}])[0].get("mechanism", "DM-01"),
+                                     "evidenceLabel": "J"}]
+    L.write_yaml(cmp_p, cmp)
+    ev = _valid("DriverEvent", id="seed:fx-evt-self", instrument="seed:fx-ins-a", actingInstrument="seed:fx-ins-a")
+    (data / "events").mkdir()
+    (data / "events" / "e.jsonl").write_text(L.jsonl_line(ev) + "\n")
+    codes = run(data).codes()
+    for c in ("E-INSTRUMENT-LINK-DUPLICATE", "W-INSTRUMENT-ROLE-MISSING", "E-ACTING-SELF", "E-MIRROR-SELF",
+              "E-CLO-ENACTMENT-INDICATOR", "E-EDGE-REVIEWBY"):
+        assert c in codes, (c, sorted(codes))
+
+
+def test_planned_role_references_and_held_planned_refs(tmp_path):
+    data = overlay_tree(tmp_path)
+    t = _valid("Task", id="seed:fx-planned", supports=[{"competency": "seed:FC-C18", "strength": "primary"}])
+    sig = _valid("ChangeSignal", id="seed:fx-sig-role", targetType="RoleVariant", targetId="seed:R02-field-resource-technician/state")
+    sig2 = _valid("ChangeSignal", id="seed:fx-sig-tribal", targetType="RoleVariant", targetId="seed:R02-field-resource-technician/tribal")
+    L.write_yaml(data / "core" / "tasks" / "seed-fx-planned.yaml", t)
+    (data / "signals" / "fx").mkdir(parents=True)
+    (data / "signals" / "fx" / "s.jsonl").write_text(L.jsonl_line(sig) + "\n" + L.jsonl_line(sig2) + "\n")
+    rep = run(data)
+    by = {}
+    for i in rep.issues:
+        by.setdefault(i.rid, set()).add(i.code)
+    assert "W-REF-PENDING" in by["seed:fx-planned"]                 # candidate decided core-v2.0
+    assert "W-REF-PENDING" in by["seed:fx-sig-role"] and "E-TRIBAL-INHERIT" not in by["seed:fx-sig-role"]
+    assert "E-TRIBAL-INHERIT" in by["seed:fx-sig-tribal"]
+    assert "E-REF-DANGLING" in run(data, strict=True).codes()
+
+
+def test_state_class_competency_targets_are_computed(tmp_path):
+    data = overlay_tree(tmp_path)
+    rec = _valid("StateClassRecord", id="seed:class--fx--001")
+    m = rec.get("emstMapping")
+    items = m if isinstance(m, list) else [m] if isinstance(m, dict) else []
+    if not items:
+        rec["emstMapping"] = [{"roleVariant": "seed:R02-field-resource-technician/state", "competencyTargets": []}]
+    else:
+        items[0]["competencyTargets"] = []
+    d = data / "registers" / "state_classes"
+    d.mkdir(parents=True)
+    L.write_yaml(d / "seed-class--fx--001.yaml", rec)
+    assert "E-COMPUTED-FIELD" in run(data).codes()
+
+
+def test_live_tree_has_no_untyped_instrument_links():
+    import convert_instrument_links
+    assert convert_instrument_links.convert(L.DATA_V2, check=True) == (0, 0), "run python scripts/convert_instrument_links.py"
