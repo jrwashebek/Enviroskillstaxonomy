@@ -1,0 +1,174 @@
+id: seed:lc-pw-cor2-fire-operations-to-fuels-specialist
+type: Pathway
+prefLabel:
+  en: 'Exploratory pathway: wildland fire operations to fuels and prescribed fire specialist'
+definition:
+  en: 'Upskills senior fire operations staff into fuels and prescribed fire work: burn planning, smoke management, go/no-go decisions on qualifying burns, treatment-effectiveness monitoring, project funding and delivery, and evaluating burn crew trainees. Exploratory.'
+notation:
+- scheme: mvp-corridor
+  value: COR-2
+fromVariant: seed:R06-wildland-fire-operations
+toVariant: seed:R07-fuels-prescribed-fire-specialist
+pathwayType: upskill
+modes:
+- WBL
+- FD
+- CL
+- MEN
+- SIM
+emstRelease: 2.0.0-rc.1
+cloOutcomes:
+- competency: seed:v1-4.3.2
+  level: L2
+- competency: seed:v1-4.3.3
+  level: L2
+- competency: seed:DB-C15
+  level: L2
+- competency: seed:DB-C29
+  level: L2
+- competency: seed:v1-4.3.2
+  level: L3
+- competency: seed:v1-4.3.4
+  level: L3
+- competency: seed:DC-CAND-03
+  level: L2
+- competency: seed:v1-4.3.3
+  level: L3
+- competency: seed:PS-C03
+  level: L2
+- competency: seed:PS-C02
+  level: L2
+- competency: seed:SC-C08
+  level: L2
+- competency: seed:IO-C01
+  level: L3
+assessmentPlan:
+  en: 'Each CLO is assessed with the methods its indicators list; field-craft outcomes are assessed at least once in the field, statecraft outcomes in a live or simulated stakeholder or legal-administrative setting, data-craft outcomes on real data with a reproducible product (LC template R4-R5). Assisted-mode outcomes include a seeded-error validation drill. Supervisor formation plan required: the learner''s supervisor works to seed:v1-7.2.2 at L2 or above and a named mentor or evaluator to seed:IO-C01 at L3 (ADR-0026 R7). Training use only; never a selection instrument (IO).'
+sequence:
+- step: 1
+  tasks:
+  - seed:v1-4.3.2-T1
+  - seed:v1-4.3.3-T1
+  - seed:db-4.3.3-t4
+  cloOutcomes:
+  - competency: seed:v1-4.3.2
+    level: L2
+  - competency: seed:v1-4.3.3
+    level: L2
+  formationProvisions:
+  - task: seed:db-4.3.3-t4
+    responses:
+    - observed-wbl
+    quota:
+      count: 2
+      unit: field verification of 2 fuels maps
+    releaseCriterion: corrections recorded; evaluator sign-off
+    mentorRequired: true
+  roleLevel: journey
+  note:
+    en: Burn plans and field-verified fuels assessment.
+- step: 2
+  tasks:
+  - seed:DB-C15-T2
+  - seed:DB-C15-T5
+  - seed:lc-txe-draft-advisory
+  cloOutcomes:
+  - competency: seed:DB-C15
+    level: L2
+  - competency: seed:DB-C29
+    level: L2
+  roleLevel: journey
+  note:
+    en: Smoke management and public smoke messaging.
+- step: 3
+  tasks:
+  - seed:v1-4.3.2-T2
+  - seed:db-4.3.2-t4
+  cloOutcomes:
+  - competency: seed:v1-4.3.2
+    level: L3
+  - competency: seed:v1-4.3.4
+    level: L3
+  formationProvisions:
+  - task: seed:v1-4.3.2-T2
+    responses:
+    - observed-wbl
+    releaseCriterion: task-book sign-off
+    mentorRequired: true
+  roleLevel: senior
+  note:
+    en: Go/no-go and ignition supervision as a trainee on qualifying prescribed fires (R5).
+- step: 4
+  tasks:
+  - seed:v1-4.3.3-T3
+  - seed:v1-4.3.2-T3
+  - seed:dc-03-questions
+  cloOutcomes:
+  - competency: seed:DC-CAND-03
+    level: L2
+  - competency: seed:v1-4.3.3
+    level: L3
+  roleLevel: senior
+  note:
+    en: Monitoring treatment effectiveness and fire effects.
+- step: 5
+  tasks:
+  - seed:v1-3.1.1-T3
+  - seed:lc-txf-write-approach
+  - seed:v1-6.5.3-T2
+  cloOutcomes:
+  - competency: seed:PS-C03
+    level: L2
+  - competency: seed:PS-C02
+    level: L2
+  - competency: seed:SC-C08
+    level: L2
+  roleLevel: senior
+  note:
+    en: Funding and delivering fuels projects with partners (TX-F, agreements).
+- step: 6
+  tasks:
+  - seed:lc-txd-rate-performance
+  - seed:lc-txd-give-feedback
+  cloOutcomes:
+  - competency: seed:IO-C01
+    level: L3
+  roleLevel: senior
+  note:
+    en: 'Formation of others: evaluating burn crew trainees on task books.'
+recognitionOfPriorLearning:
+- seed:crd-wildland-fire-position-qualification
+- seed:crd-state-prescribed-burn-manager
+durationAndCost:
+  hours: 240
+  months: 24
+  costNote: '[J] Trainee assignments on qualifying prescribed fires depend on burn windows, so calendar time is long.'
+alternativeFormationRoutes:
+- Burn-window shortfalls are covered by burn-plan reviews and tabletop go/no-go exercises, which do not replace observed burns [J].
+recommended: false
+layer: learning
+module: forest
+status: draft
+lifecycleState: proposed
+reviewBy: '2027-04-23'
+useTier: exploratory
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'EXPLORATORY, not recommended: no pathway is labelled recommended until it passes CM''s M-03 validation gate (ADR-0023 §5; ADR-0027). Built from the role-profile delta (ADR-0026 R1); hours, months and quotas are LC judgment for pilot calibration. Role records are WP-08''s; frictions attach when CM''s friction register exists. Moved into data/v2 in S2 (CR-LC-001 #1-#3): outcomes are named as CLOs {competency, level} (generic CLO = levels[].indicators; enactment anchors are reached through the enactment CLO, never listed here, CR-LC-001 #4); formation provisions are typed (formationProvisions), and docs/build/WP-07/formation_provisions.csv stays WP-07''s audit copy; role references are planned targets until WP-08 writes the records. Homed in the forest module (MOD-11): its fire roles and fire competencies are MOD-11 records, and core records may not depend on module records (SPEC §3.2).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T14:20:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-pathways@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0026
+  - ADR-0023
+  - ADR-0027
+  - ADR-0004

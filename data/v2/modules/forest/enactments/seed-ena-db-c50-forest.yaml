@@ -6,8 +6,13 @@ competency: seed:DB-C50
 enactmentKind: module
 authorityPosition: resource-manager
 enactedInModule: forest
+subsectors:
+- L01
+- L07
+- L11
 characteristicInstruments:
 - instrument: seed:ins/nhpa-s106-regs
+  role: requires
 note:
   en: Timber sales, fuels treatments, prescribed fire and road work are undertakings that need historic preservation review, often under programmatic agreements that define survey, avoidance and monitoring standards for routine project types. Consultation content held under ADR-0007 §D is not authored here.
 layer: L1
@@ -19,11 +24,12 @@ validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 editorialNote:
-  en: 'WP-06 module enactment of a core competency (ADR-0018 home-module rule; ADR-0003 G-4). Subsectors: L01, L07, L11. Basis: DB Phase 2 subsector analysis [J].'
+  en: 'WP-06 module enactment of a core competency (ADR-0018 home-module rule; ADR-0003 G-4). Basis: DB Phase 2 subsector analysis [J]. Subsectors moved to the subsectors field (CR-DB-001 #2, S2). Instrument link roles set (CR-SC-001 #2, S2; aligned with SC''s actor-enactment roles); only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:db-agent@wp-06
+  - emstagent:db-agent@s2-closeout-b
   generatedAt: '2026-10-23T14:30:00Z'
   evidenceLabel: J
   reviewStatus: unreviewed

@@ -64,8 +64,13 @@ def test_222_competency_and_666_task_seeds():
 
 
 def test_every_v1_key_keeps_its_lineage_in_the_live_tree():
+    """Every v1 key is traceable in the live tree: a record cites it in derivedFrom, or its seed record still exists
+    under its seed:v1-* key (in-place rewrite) or was promoted (seed_map.csv). X1 completeness is tested below."""
     lin = lineage()
-    missing = [k for k in V1_COMPS + V1_TASKS if not lin.get(k)]
+
+    def seed_key(k):
+        return "seed:v1-" + k[3:].replace(":", "-")
+    missing = [k for k in V1_COMPS + V1_TASKS if not lin.get(k) and _live(seed_key(k))[1] is None]
     assert not missing, missing[:10]
     copyb = INFO["copyBWorkbookSha256"]
     for rid, (_, r) in RECS.items():

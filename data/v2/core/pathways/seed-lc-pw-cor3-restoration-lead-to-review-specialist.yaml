@@ -1,0 +1,168 @@
+id: seed:lc-pw-cor3-restoration-lead-to-review-specialist
+type: Pathway
+prefLabel:
+  en: 'Exploratory pathway: restoration project lead to environmental review specialist (field to statecraft bridge)'
+definition:
+  en: 'Moves a restoration project lead into environmental review: mapping authorizations, setting the level of review, preparing and checking analyses, coordinating agencies and the public, analyzing comments and defending the record. It is the field-to-statecraft collaboration bridge kit (P-CM-06). Exploratory.'
+notation:
+- scheme: mvp-corridor
+  value: COR-3
+fromVariant: seed:R09-restoration-project-lead
+toVariant: seed:R10-environmental-review-specialist
+pathwayType: reskill
+modes:
+- CL
+- WBL
+- MEN
+- SIM
+- AIP
+- CAP
+emstRelease: 2.0.0-rc.1
+cloOutcomes:
+- competency: seed:SC-C01
+  level: L2
+- competency: seed:v1-1.8.5-A
+  level: L2
+- competency: seed:SC-C03
+  level: L2
+- competency: seed:SL-C08
+  level: L2
+- competency: seed:SC-C09
+  level: L2
+- competency: seed:DB-C29
+  level: L2
+- competency: seed:DC-CAND-16
+  level: L1
+- competency: seed:DC-CAND-13
+  level: L2
+- competency: seed:v1-7.1.3
+  level: L2
+- competency: seed:SC-C18
+  level: L2
+assessmentPlan:
+  en: 'Each CLO is assessed with the methods its indicators list; field-craft outcomes are assessed at least once in the field, statecraft outcomes in a live or simulated stakeholder or legal-administrative setting, data-craft outcomes on real data with a reproducible product (LC template R4-R5). Assisted-mode outcomes include a seeded-error validation drill. Supervisor formation plan required: the learner''s supervisor works to seed:v1-7.2.2 at L2 or above and a named mentor or evaluator to seed:IO-C01 at L3 (ADR-0026 R7). Training use only; never a selection instrument (IO).'
+sequence:
+- step: 1
+  tasks:
+  - seed:v1-6.1.3-T2
+  - seed:sc-prepare-authority-map
+  - seed:lc-txe-trace-effects
+  cloOutcomes:
+  - competency: seed:SC-C01
+    level: L2
+  - competency: seed:v1-1.8.5-A
+    level: L2
+  roleLevel: journey
+  note:
+    en: Authorizations, pathway and effects across systems.
+- step: 2
+  tasks:
+  - seed:sc-screen-categorical-exclusion
+  - seed:v1-6.1.4-T1
+  - seed:sc-review-ai-drafted-sections
+  cloOutcomes:
+  - competency: seed:SC-C03
+    level: L2
+  - competency: seed:SL-C08
+    level: L2
+  formationProvisions:
+  - task: seed:v1-6.1.4-T1
+    responses:
+    - by-hand-quota
+    quota:
+      count: 2
+      unit: effects sections drafted unaided from the project record
+    releaseCriterion: accepted by a senior reviewer without substantive revision
+    mentorRequired: true
+  roleLevel: journey
+  note:
+    en: Level of review and the analysis; reviewing AI-drafted sections is credited only after the by-hand quota (LC-PW-02).
+- step: 3
+  tasks:
+  - seed:v1-6.5.2-T1
+  - seed:v1-6.1.4-T2
+  cloOutcomes:
+  - competency: seed:SC-C09
+    level: L2
+  - competency: seed:DB-C29
+    level: L2
+  formationProvisions:
+  - task: seed:v1-6.1.4-T2
+    responses:
+    - observed-wbl
+    quota:
+      count: 2
+      unit: scoping meetings under a senior reviewer
+    releaseCriterion: observer notes against the engagement plan
+    mentorRequired: true
+  roleLevel: journey
+  note:
+    en: Coordinating agencies and scoping with the public.
+- step: 4
+  tasks:
+  - seed:v1-6.4.4-T2
+  - seed:dc-13-check-comment-grouping
+  cloOutcomes:
+  - competency: seed:DC-CAND-16
+    level: L1
+  - competency: seed:DC-CAND-13
+    level: L2
+  formationProvisions:
+  - task: seed:v1-6.4.4-T2
+    responses:
+    - by-hand-quota
+    quota:
+      count: 1
+      unit: comment set of at least 200 comments coded by hand
+    releaseCriterion: substantive comments all recovered
+    mentorRequired: true
+  roleLevel: journey
+  note:
+    en: 'Comment analysis: machine-assisted coding is credited only after the by-hand quota.'
+- step: 5
+  tasks:
+  - seed:v1-7.1.3-T2
+  - seed:sc-write-decision-memo
+  cloOutcomes:
+  - competency: seed:v1-7.1.3
+    level: L2
+  - competency: seed:SC-C18
+    level: L2
+  roleLevel: journey
+  note:
+    en: Integrity and the decision memo; capstone moot defence of a level-of-review decision before mock counsel.
+recognitionOfPriorLearning:
+- seed:crd-cerp
+durationAndCost:
+  hours: 160
+  months: 9
+  costNote: '[J] 120-200 structured hours plus one live review under a senior reviewer.'
+alternativeFormationRoutes:
+- Shadow-drafting on live reviews and a moot defence before counsel replace the formation once supplied by drafting whole documents [J].
+recommended: false
+layer: learning
+module: core
+status: draft
+lifecycleState: proposed
+reviewBy: '2027-04-23'
+useTier: exploratory
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'EXPLORATORY, not recommended: no pathway is labelled recommended until it passes CM''s M-03 validation gate (ADR-0023 §5; ADR-0027). Built from the role-profile delta (ADR-0026 R1); hours, months and quotas are LC judgment for pilot calibration. Role records are WP-08''s; frictions attach when CM''s friction register exists. Moved into data/v2 in S2 (CR-LC-001 #1-#3): outcomes are named as CLOs {competency, level} (generic CLO = levels[].indicators; enactment anchors are reached through the enactment CLO, never listed here, CR-LC-001 #4); formation provisions are typed (formationProvisions), and docs/build/WP-07/formation_provisions.csv stays WP-07''s audit copy; role references are planned targets until WP-08 writes the records.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T14:20:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-pathways@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0026
+  - ADR-0023
+  - ADR-0027
+  - ADR-0004

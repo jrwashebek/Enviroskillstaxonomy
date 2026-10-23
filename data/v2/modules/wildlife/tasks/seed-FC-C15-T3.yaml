@@ -30,6 +30,7 @@ provenance:
   method: llm-assisted
   agent:
   - emstagent:db-agent@wp-06
+  - emstagent:db-agent@s2-closeout-b
   generatedAt: '2026-10-23T14:30:00Z'
   evidenceLabel: J
   reviewStatus: unreviewed
@@ -39,3 +40,8 @@ provenance:
   - ADR-0018
   - ADR-0003
   - ADR-0004
+credentialGates:
+- credential: seed:crd-scientific-collection-permit
+  kind: required
+editorialNote:
+  en: 'S2 (CR-DB-001 #7): credential gate to the new scientific collection permit record.'

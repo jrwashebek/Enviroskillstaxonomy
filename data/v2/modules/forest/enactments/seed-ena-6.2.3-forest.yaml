@@ -6,9 +6,15 @@ competency: seed:v1-6.2.3
 enactmentKind: module
 authorityPosition: resource-manager
 enactedInModule: forest
+subsectors:
+- L01
+- L05
+- L07
 characteristicInstruments:
 - instrument: seed:ins/usfs-objection-rule
+  role: constrains
 - instrument: seed:ins/usda-nepa-procedures
+  role: requires
 note:
   en: Land management plans for national forests and grasslands set desired conditions, objectives, standards, guidelines and monitoring; amendments and revisions follow current agency planning and environmental review procedures, with project-level objection processes. The OpenLMP corpus records these plan components as workforce demand.
 layer: L1
@@ -20,11 +26,12 @@ validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 editorialNote:
-  en: 'WP-06 module enactment of a core competency (ADR-0018 home-module rule; ADR-0003 G-4). Subsectors: L01, L05, L07. Basis: DB Phase 2 subsector analysis [J].'
+  en: 'WP-06 module enactment of a core competency (ADR-0018 home-module rule; ADR-0003 G-4). Basis: DB Phase 2 subsector analysis [J]. Subsectors moved to the subsectors field (CR-DB-001 #2, S2). Instrument link roles set (CR-SC-001 #2, S2; aligned with SC''s actor-enactment roles); only requires links decide venue applicability.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:db-agent@wp-06
+  - emstagent:db-agent@s2-closeout-b
   generatedAt: '2026-10-23T14:30:00Z'
   evidenceLabel: J
   reviewStatus: unreviewed
