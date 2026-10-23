@@ -97,3 +97,11 @@ def test_no_held_ids_or_personal_data_in_outputs():
 def test_mirror_links():
     m = json.loads((OUT / "mirror_links.json").read_text())
     assert all(c["linked"] for c in m["acceptanceChecks"])
+
+
+def test_forester_pd_is_labelled():
+    pd = (V.ROOT / "docs" / "package" / "forester_pd_fes_draft.md").read_text(encoding="utf-8")
+    assert "SUBJECT TO CLASSIFICATION REVIEW" in pd and V.DISCLAIMER.split(" / ")[0] in pd
+    for k in range(1, 10):
+        assert f"## Factor {k} " in pd
+    assert "%)" in pd  # major duties carry % time

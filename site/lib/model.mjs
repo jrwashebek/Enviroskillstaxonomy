@@ -595,10 +595,68 @@ export function buildModel({ root, releaseDir, meta }) {
       level: s.levelIndex ? `${s.levelIndex.label || ""} (ordinal ${s.levelIndex.ordinal ?? "?"})` : "", supervisory: s.supervisoryStatus || "",
       specEffective: s.specEffectiveDate || "", specUrl: s.workDescriptionText?.url || "", specRetrieved: s.workDescriptionText?.retrieved || "",
       mq: s.mqText?.paraphrase || "", degreeRule: s.degreeRule || "", licenses: (s.licensesRequired || []).map((l) => ({ credential: l.credential, issuer: l.issuer || "", timing: l.timing || "" })),
-      pay: s.payGradeLabel || s.payMinMax?.rangeLabel || "", payEffective: s.payEffectiveDate || "", appointmentRoute: s.appointmentRoute || [],
+      pay: [s.payGradeLabel || s.payMinMax?.rangeLabel || "", (s.payMinMax && s.payMinMax.min != null && s.payMinMax.max != null) ? `${s.payMinMax.currency || "USD"} ${s.payMinMax.min.toLocaleString("en-US")}–${s.payMinMax.max.toLocaleString("en-US")} ${s.payBasis || ""}`.trim() : ""].filter(Boolean).join(", "), payEffective: s.payEffectiveDate || "", appointmentRoute: s.appointmentRoute || [],
       reviewBy: s.reviewBy || "", evidence: evidenceOf(s), tier: tierOf(s), rows, pending,
     };
   }).sort((a, b) => a.jurisdiction.localeCompare(b.jurisdiction) || a.code.localeCompare(b.code));
+
+  // ---------------------------------------------------------------- generated HR views (WP-08 generators; CR-FH-001)
+  // Every ID the generated views name is re-checked against the release bundle; anything absent (held, excluded,
+  // superseded) is dropped and counted. Credential gates follow SPEC §10.5 rule 8 (verified issuer only). Default HR
+  // content = core and established; module or non-established content is kept for a collapsed, labelled section.
+  const hrSrc = meta?.hrViews || { source: "unavailable" };
+  const hr = { source: hrSrc.source, dropped: 0, stamp: null };
+  const readHr = (rel) => { const p = hrSrc.dir ? join(hrSrc.dir, rel) : null; return p && existsSync(p) ? loadJson(p) : null; };
+  const inRelease = (id) => { const ok = !!id && records.has(id); if (id && !ok) hr.dropped++; return ok; };
+  const instrumentById = new Map(instrumentVMs.map((i) => [i.id, i]));
+  function hrTarget(t) {
+    const c = compById.get(t.competency);
+    if (!c) { hr.dropped++; return null; }
+    return { competency: c, targetLevels: t.targetLevels || {}, importance: t.importance ?? null, distinguishing: !!t.distinguishing, statement: t.statement || "",
+      isDefault: !c.isModule && c.lifecycleState === "established" };
+  }
+  function hrTask(t) { const tv = taskVMs.get(t.task) || (records.has(t.task) ? taskVM(t.task) : null); if (!tv) { hr.dropped++; return null; } return { task: tv, pctTime: t.pctTime ?? null, importance: t.importance ?? null, critical: !!t.critical, neededAtEntry: !!t.neededAtEntry, formationTask: !!t.formationTask }; }
+  const hrGates = (gs) => gatesOf((gs || []).map((g) => ({ credential: g.credential, kind: g.kind })));
+  function fedProfile(code) {
+    const d = readHr(`federal-series/${code}.json`);
+    if (!d) return null;
+    hr.stamp = hr.stamp || d.stamp;
+    const roles = (d.roles || []).filter((r) => inRelease(r.role) && (!r.variant || inRelease(r.variant))).map((r) => ({
+      role: roleById.get(r.role) || null, variant: variantById.get(r.variant) || null, depth: r.tier || "", functionStatement: r.functionStatement || "",
+      x4: r.x4 || null, credentialGates: hrGates(r.credentialGates),
+      instruments: (r.instruments || []).filter((i) => instrumentById.has(i.id)).map((i) => instrumentById.get(i.id)),
+      bands: (r.bands || []).map((b) => {
+        const duties = (b.majorDuties || []).map((m) => {
+          const c = compById.get(m.competency);
+          if (!c) { hr.dropped++; return null; }
+          return { competency: c, duty: m.duty, pctTime: m.pctTime ?? null, tasks: (m.tasks || []).map(hrTask).filter(Boolean), isDefault: !c.isModule && c.lifecycleState === "established" };
+        }).filter(Boolean);
+        const k1 = (b.factor1Knowledge || []).map((f) => { const c = compById.get(f.competency); if (!c) { hr.dropped++; return null; } return { competency: c, statement: f.statement, knowledge: (f.knowledgeStatements || []).map(en), importance: f.importance ?? null, distinguishing: !!f.distinguishing, isDefault: !c.isModule && c.lifecycleState === "established" }; }).filter(Boolean);
+        return { group: b.group || "", band: b.indicativeBand || "", roleLevels: b.roleLevels || [], duties, factor1: k1,
+          neededAtEntry: (b.neededAtEntryTasks || []).map((t) => taskVMs.get(t)).filter(Boolean), critical: (b.criticalTasks || []).map((t) => taskVMs.get(t)).filter(Boolean),
+          distinguishing: (b.distinguishingCompetencies || []).map((c) => compById.get(c)).filter(Boolean) };
+      }),
+    }));
+    const withoutFed = (d.rolesWithoutFederalVariant || []).filter(inRelease).map((id) => roleById.get(id)).filter(Boolean);
+    const feeders = (d.feederOrDestinationRoles || []).map((x) => (typeof x === "string" ? x : x.role)).filter(inRelease).map((id) => roleById.get(id)).filter(Boolean);
+    return { stamp: d.stamp, evidenceNotice: d.evidenceNotice || "", generalCompetencies: d.generalCompetencies || "", roles, withoutFed, feeders };
+  }
+  function classView(recordId) {
+    const stem = String(recordId).replace(/^seed:class\//, "").replace(/\//g, "--");
+    const d = readHr(`state-class/${stem}.json`);
+    if (!d) return null;
+    hr.stamp = hr.stamp || d.stamp;
+    return {
+      stamp: d.stamp, evidenceNotice: d.evidenceNotice || "",
+      mappings: (d.mappings || []).filter((m) => inRelease(m.roleVariant)).map((m) => ({
+        variant: variantById.get(m.roleVariant) || null, roleTitle: m.roleTitle || "", depth: m.tier || "", roleLevels: m.roleLevels || [],
+        matchType: m.matchType || "", confidence: m.confidence ?? "", review: m.review || "", authorityPosition: labels.authorityPosition[m.authorityPosition] || m.authorityPosition || "",
+        targets: (m.competencyTargets || []).map(hrTarget).filter(Boolean), tasks: (m.topTasks || []).map(hrTask).filter(Boolean), credentialGates: hrGates(m.credentialGates),
+      })),
+    };
+  }
+  for (const s of series) s.profile = fedProfile(s.code);
+  for (const c of stateClasses) c.view = classView(c.id);
 
   // ---------------------------------------------------------------- modules (editorial sections; never default HR views)
   const moduleList = [...new Set(competencies.filter((c) => c.isModule).map((c) => c.module))].sort().map((ns) => ({
@@ -637,7 +695,7 @@ export function buildModel({ root, releaseDir, meta }) {
   };
 
   return {
-    release, labels, gateLabels, counts, figures, venue: { source: venue.source, asOf: venue.asOf, n: venueBy.size },
+    release, labels, gateLabels, counts, figures, venue: { source: venue.source, asOf: venue.asOf, n: venueBy.size }, hr,
     competencies, coreCompetencies: competencies.filter((c) => !c.isModule), moduleList,
     roles, variants, pathwaysFrom, translations, pathwayRecords: pathwayRecs.length,
     signals: signalVMs, watchItems, instruments: instrumentVMs, changeIndicators, scenarios,

@@ -1,0 +1,29 @@
+# State Class View (variant): Environmental review specialist (state)
+
+> **Not a classification basis / not a job analysis / not for RIF or rating decisions.**
+>
+> All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.
+
+- **Role:** Environmental review specialist (`seed:R10-environmental-review-specialist`, P1); authority position (editorial): regulator
+- **Generated:** pipelines/views/state_class_view.py@0.1.0, rule state-class-view@0.1.0 (proposed), as of 2026-10-23
+
+## Mapped classes
+
+- Environmental Protection Specialist II (`seed:class/TX/2652`), journey level, `skos:broadMatch` — see `state-class/TX--2652.md`
+- Environmental Protection Specialist III (`seed:class/TX/2653`), senior level, `skos:broadMatch` — see `state-class/TX--2653.md`
+
+## Competency targets by role level (agent draft)
+
+- Build and maintain a defensible administrative record — journey L2, senior L3, lead L4
+- Select, justify and document the appropriate level of environmental review — journey L2, senior L3, lead L4
+- Conduct environmental impact review of proposed actions — journey L2, senior L3, lead L4
+- Review effects of proposed actions on historic properties and resolve them through consultation — journey L2, senior L3, lead L3
+- Validate AI-generated work products before professional use — journey L2, senior L3, lead L3
+- Analyze regulatory, planning and public-comment text at scale with traceable citations — journey L2, senior L3, lead L3
+- Assess effects on protected species and conduct interagency consultation on proposed actions — journey L2, senior L3, lead L3
+- Direct and evaluate applicant- or contractor-prepared environmental documents — journey L2, senior L3, lead L4
+- Coordinate lead, cooperating and participating agencies to a shared schedule — journey L2, senior L3, lead L4
+- Assess litigation exposure and design decisions for resilience on remand — senior L3, lead L4
+
+---
+Not a classification basis / not a job analysis / not for RIF or rating decisions.

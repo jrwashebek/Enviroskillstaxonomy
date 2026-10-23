@@ -206,6 +206,23 @@ def main():
         v = d.get(r["id"] + "/federal")
         if v and v["id"] not in fed_index:
             fed_index[v["id"]] = []
+    for vid, series in sorted(fed_index.items()):
+        v = d.get(vid)
+        role = d.get(v["variantOf"])
+        lines = [f"# Federal Series Profile (variant index): {d.label(vid)}", "", f"> **{V.DISCLAIMER}**", "",
+                 f"- **Role:** {d.label(role['id'])} (`{role['id']}`, {d.tier(role)}); authority position (editorial): {v.get('authorityPosition')}",
+                 f"- **Indicative band:** {(v.get('indicativeGradeOrBand') or {}).get('band', 'not recorded')} (not a classification criterion)",
+                 f"- **Generated:** {GEN}, rule federal-series-profile@0.1.0 (proposed), as of {V.AS_OF}", "", "## Series", ""]
+        if series:
+            for x in series:
+                rec = d.series.get(x["series"]) or {}
+                lines.append(f"- {x['series']} {(rec.get('prefLabel') or {}).get('en', '')} — `{x['predicate']}` (confidence {x['confidence']}); "
+                             f"status: {status_statement(rec) if rec else 'not in register'} See `federal-series/{x['series']}.md`.")
+        else:
+            lines.append("No federal series: X4 records NoTermFound for this role (for corps members, the series listed in X4 "
+                         "are destinations after corps hiring authorities, not the role's own series).")
+        lines += ["", "---", V.DISCLAIMER, ""]
+        V.write_text(V.OUT / "federal-series" / "variants" / f"{V.L.id_to_stem(vid)}.md", "\n".join(lines))
     V.write_json(V.OUT / "federal-series" / "index.json", {"stamp": V.stamp("federal-series-profile", "0.1.0", GEN),
                                                            "disclaimer": V.DISCLAIMER, "series": index})
     V.write_json(V.OUT / "federal-series" / "federal_variant_index.json",

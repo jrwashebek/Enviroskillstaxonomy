@@ -1,0 +1,25 @@
+# State Class View (variant): Hazard mitigation and floodplain manager (state)
+
+> **Not a classification basis / not a job analysis / not for RIF or rating decisions.**
+>
+> All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.
+
+- **Role:** Hazard mitigation and floodplain manager (`seed:R30-hazard-mitigation-floodplain-manager`, P2); authority position (editorial): funder
+- **Generated:** pipelines/views/state_class_view.py@0.1.0, rule state-class-view@0.1.0 (proposed), as of 2026-10-23
+
+## Mapped classes
+
+No class is mapped in the pilot jurisdictions (TX, WA and PA (state), Lewis County WA (county environmental health), Philadelphia Water Department (municipal utility)). The role's targets below are what a jurisdiction would crosswalk its own class specification against.
+
+## Competency targets by role level (agent draft)
+
+- Develop hazard mitigation plans and fundable mitigation projects — journey L2, senior L3, lead L4
+- Administer local floodplain management regulations and flood insurance programme requirements — journey L2, senior L3, lead L4
+- Communicate environmental and health risks under uncertainty — journey L2, senior L3, lead L3
+- Conduct environmental and historic preservation review for disaster recovery and mitigation projects — journey L2, senior L3, lead L4
+- Conduct rapid post-disaster field assessments — journey L2, senior L3, lead L3
+- Assess climate vulnerability of species, ecosystems, infrastructure and communities — journey L2, senior L3, lead L4
+- Plan climate adaptation and integrate climate risk into plans and capital decisions — journey L2, senior L3, lead L4
+
+---
+Not a classification basis / not a job analysis / not for RIF or rating decisions.

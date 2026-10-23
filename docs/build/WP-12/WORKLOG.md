@@ -39,3 +39,21 @@ AUTHORING_GUIDE, `scripts/build_release.py`, the "For WP-12" notes in WP-03, WP-
   federal series (index + 79 profiles), state and local classes (index + 38 views), competencies (index + 232 pages),
   module sections, evidence, challenge, privacy, accessibility, security, download, search, 404. First build: 382 pages
   in about 3 s. WP-08 roles not yet present: empty states render.
+- 16:40 `tools/check-output.mjs` (static: fetches, CSP, JS APIs, release ID, notice, figure badges, v1-drawer
+  containment, claims hygiene, Tribal triggers outside policy text, held keys, personal data, HR disclaimers,
+  "assessment pending", pathway notice) and `tools/test-checks.mjs` (16 seeded violations, each detected).
+  `tools/browser-checks.mjs` (playwright-core + local Chromium + axe-core 4.14.0): network capture, axe WCAG 2.2
+  A/AA (details closed and open), reflow at 320 px, focus visibility, gap-check save/clear/reopen round trip with a
+  sentinel note, team-grid minimum cell of 5, search without requests. First full run: 0 axe violations on 50 pages.
+- 16:50 WP-08 roles appeared (37 RoleProfiles, variants in core and module areas). Rebuilt the preview release
+  (10,749 records; held 122, third-party-index 102, placeholder targets 57 excluded by the release gate). Role, variant,
+  gap-check and pathway pages now generate (839 pages).
+- 17:10 Fixes from review of WP-08 data and notes: (a) credential gates and sign-off are verified facts (SPEC §10.5
+  rule 8): shown only when the credential issuer is verified (19 of 93), otherwise counted as "not shown"; (b) time
+  shares renormalized within each role level (WP-08 note); (c) WP-08's task-level "reshaping claims" and
+  externalContext are NOT rendered: the former are agent change judgments without a multi-rater study (display gate:
+  agent values never render), the latter are third-party-licensed values excluded from release outputs; (d) pathways
+  grouped by destination role with per-sector variants; (e) Federal Series Profile and State Class View pages now
+  render WP-08's generated views (`docs/build/WP-08/generated/`, rules proposed in CR-FH-001), every ID re-checked
+  against the release bundle; module or non-established content goes into a collapsed, labelled section (ADR-0018:
+  modules out of default HR views; applied to competency content, not to module-homed roles themselves).

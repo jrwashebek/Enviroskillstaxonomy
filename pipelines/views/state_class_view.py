@@ -117,6 +117,24 @@ def main():
             v = d.get(f"{r['id']}/{actor}")
             if v and v["id"] not in by_variant:
                 by_variant[v["id"]] = []
+    for vid, classes in sorted(by_variant.items()):
+        v = d.get(vid)
+        role = d.get(v["variantOf"])
+        lv = [r["key"] for r in role["roleLevels"]]
+        lines = [f"# State Class View (variant): {d.label(vid)}", "", f"> **{V.DISCLAIMER}**", ">", f"> {V.EVIDENCE_NOTICE}", "",
+                 f"- **Role:** {d.label(role['id'])} (`{role['id']}`, {d.tier(role)}); authority position (editorial): {v.get('authorityPosition')}",
+                 f"- **Generated:** {GEN}, rule state-class-view@0.1.0 (proposed), as of {V.AS_OF}", "", "## Mapped classes", ""]
+        if classes:
+            lines += [f"- {c['classTitle']} (`{c['classRecord']}`), {'/'.join(c['roleLevels'])} level, `{c['matchType']}` — see `{c['view']}`" for c in classes]
+        else:
+            lines.append(f"No class is mapped in the pilot jurisdictions ({PILOTS}). The role's targets below are what a "
+                         "jurisdiction would crosswalk its own class specification against.")
+        lines += ["", "## Competency targets by role level (agent draft)", ""]
+        for t in V.targets_at(d, role, lv):
+            if t["importance"] >= 4 or t["distinguishing"]:
+                lines.append(f"- {t['label']} — " + ", ".join(f"{k} {x}" for k, x in t["targetLevels"].items()))
+        lines += ["", "---", V.DISCLAIMER, ""]
+        V.write_text(V.OUT / "state-class" / "variants" / f"{V.L.id_to_stem(vid)}.md", "\n".join(lines))
     V.write_json(V.OUT / "state-class" / "variant_index.json",
                  {"stamp": V.stamp("state-class-view", "0.1.0", GEN), "disclaimer": V.DISCLAIMER,
                   "note": f"Every P1-P2 state and local variant with its mapped class records; an empty list means no class is mapped in the pilot jurisdictions ({PILOTS}).",

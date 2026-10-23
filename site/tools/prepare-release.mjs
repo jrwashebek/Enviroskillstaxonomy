@@ -113,6 +113,15 @@ if (existsSync(venueInRelease)) {
   }
 }
 
+// Generated HR views (Federal Series Profile, State Class View). Prefer views shipped in the release build; until
+// build_release.py emits them (CR-FH-001, CR-CP-001) read WP-08's generated output read-only. The model drops any
+// record those views name that is not in the release bundle, so held or excluded content cannot enter a page.
+const hrInRelease = join(releaseDir, "views", "federal-series");
+const hrWp08 = process.env.EMST_HR_VIEWS_DIR || join(ROOT, "docs", "build", "WP-08", "generated");
+if (existsSync(join(hrInRelease, "index.json"))) meta.hrViews = { source: "release-view", dir: join(releaseDir, "views") };
+else if (existsSync(join(hrWp08, "federal-series", "index.json"))) meta.hrViews = { source: "wp08-generated", dir: hrWp08 };
+else meta.hrViews = { source: "unavailable" };
+
 meta.releaseDir = releaseDir;
 writeFileSync(join(CACHE, "release-meta.json"), JSON.stringify(meta, null, 1));
-console.log(`[release] using ${releaseDir} (${meta.source}); venue applicability: ${meta.venue.source}`);
+console.log(`[release] using ${releaseDir} (${meta.source}); venue applicability: ${meta.venue.source}; HR views: ${meta.hrViews.source}`);

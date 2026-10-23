@@ -51,6 +51,7 @@ export default async function (cfg) {
   cfg.addFilter("levelsFor", (comp) => (comp?.levels || []).map((l) => l.level));
   cfg.addFilter("tierText", (t) => ({ exploratory: "Exploratory: foresight and curriculum exploration; not for decisions", describe: "Describe: workforce analytics, planning, curriculum mapping", develop: "Develop: training, task books, IDPs, self-assessment", select: "Select: hiring and promotion input" })[t] || t);
   cfg.addFilter("capText", (c) => ({ levelRule: "limited by the level rule: indicator levels not yet placed by a panel", evidence: "limited by validation evidence not yet met", declaredCeiling: "limited by the author's declared ceiling", lifecycle: "limited by its lifecycle state", lint: "limited by indicator lint", pathway: "limited by the pathway rule" })[c] || (c ? `limited by ${c}` : ""));
+  cfg.addFilter("sentence", (s) => { s = String(s || ""); return s.charAt(0).toUpperCase() + s.slice(1); });
   cfg.addFilter("dateOnly", (s) => String(s || "").slice(0, 10));
 
   // Optional portable build: every link becomes relative so the folder works from disk (file://) or any sub-path.
