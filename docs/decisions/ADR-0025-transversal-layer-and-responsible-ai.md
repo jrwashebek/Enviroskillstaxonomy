@@ -41,7 +41,7 @@ Horizon scanning (FS-C15) is a core **practice** competency in a strategy cluste
 
 ## Rationale
 
-- The people verifying deployed environmental AI are comment analysts, planners and permit staff, not data scientists (FWS DocketScope "verified by analysts"; USDA permitting AI "only recommendations for authorized staff to review") [E: DC-001]; DOL frames AI literacy for the whole public workforce [E: DC-015] — hence a floor. Whether human review is substantive is the hinge of federal AI compliance (M-25-21 "principal basis") [E: DC-001, DC-007] — hence DC specialist content.
+- The people verifying deployed environmental AI are comment analysts, planners and permit staff, not data scientists (FWS DocketScope "verified by analysts"; USDA permitting AI "only recommendations for authorized staff to review") [E: DC-001]; DOL frames AI literacy for the whole public workforce [E: DC-015], and its AI Literacy Framework (TEN 07-25, Feb 13 2026) is an official framework the floor is crosswalked to (X12, ADR-0022), using DOL's official area names such as "Direct AI Effectively" [E: V4] — hence a floor. Whether human review is substantive is the hinge of federal AI compliance (M-25-21 "principal basis") [E: DC-001, DC-007] — hence DC specialist content.
 - SAF's integrative components (C4-5 to C4-9) and ABET outcomes 3, 4, 5 and 7 are transversal and developed across a curriculum [E: LC-001, LC-002]: a typed transversal layer lets a programme map them once.
 
 ## Dissent and trade-offs

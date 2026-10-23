@@ -31,6 +31,7 @@ SSSOM 1.0 mapping sets (1.1 slots `record_id`, `reviewer_agreement` as declared 
 | X9 | Competency → OPM FWCI general and technical competencies; USA Hire coverage; ECQs only in the current five-ECQ framework (Oct 1 2025; Political Savvy, Partnering and Influencing/Negotiating removed — mappings to those names are not made) [E: V2 SC-058] | competency | as OPM publishes (P-FH-03) | WP-05 · FH |
 | X10 | Credential ↔ CLO **evidence-equivalence register** (RPL) | credential × CLO | NWCG quals, FAA Part 107, operator grades, HAZWOPER, CWB, PWS, GISP, REHS; IO validates (P-LC-07) | WP-07 · LC + IO |
 | X11 | Public ↔ private translation (TR-01…TR-38) | competency/role pair | with friction fields (licensure gap, pay direction, posture change) (P-PS-07) | WP-08 · PS + CM |
+| X12 | TX-A transversal floor and TX-* AI practice → **DOL AI Literacy Framework** (TEN 07-25, Feb 13 2026), using its official area names (e.g. "Direct AI Effectively") [E: V4] | competency × level | official framework; re-run on each DOL revision; `NoTermFound` where DOL lacks environmental validation content | WP-05 · DC + LC |
 
 ### 3. Credentials, licensure and sign-off (answers SL Q4, FC Q5, PS Q3)
 
