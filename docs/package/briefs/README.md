@@ -1,76 +1,147 @@
 # Role-change briefs: how 13 environmental roles are changing
 
-*EMST v2 sector-facing package (WP-14) · as of 2026-10-23 · licence CC BY 4.0 · status: WP-15 first pass (2026-10-23): cleared for internal and NGO-pilot preview use; external release awaits AS co-signature and the rc.1 re-check of moving facts on date-sensitive statements*
+*EMST v2 sector-facing package · as of 23 October 2026 · CC BY 4.0*
 
-These two-page briefs are for supervisors, training officers, HR specialists and programme leads in federal, state, local, NGO and private organizations. Each one covers a single role on the three EMST v2 pilot corridors. It describes who does the work, how the work is done today, what is changing and why, what stays human, what to learn next, how people enter the role, where it can lead, and what you can do now.
+> **Status: draft for NGO-pilot preview (2026-10-23).** AI agents checked facts against sources, and some claims await
+> register rows. Not yet reviewed by independent human experts. Date-sensitive statements will be re-checked before
+> external release.
+>
+> **Who wrote these briefs.** They were researched and drafted by a team of AI agents (Anthropic's Claude), each given a
+> specialist role, working to a charter set by the EMST project lead. AI agents checked the facts against sources in
+> October 2026. No independent human expert has reviewed the briefs yet. Role names such as "Chief Taxonomy Architect"
+> or "foresight lead" are AI agent roles, not people.
 
-Every brief comes from EMST v2 records: the role profile and its variants, the generated Federal Series Profile and State Class View, the role-change view, the exploratory learning pathways and the verified-facts register. A brief adds no data of its own. Where a brief and the explorer differ, the explorer and the data release are authoritative.
+These short briefs are for supervisors, training officers, HR specialists, NGO program leads and educators in federal,
+state, local, NGO and private organizations. Each covers one role on EMST's three pilot corridors: who does the work,
+how it is done today, what is expected to change and why, what stays with people, what to learn next, how people enter
+the role, where it can lead, and what you can do now.
+
+Each brief is a **first draft for your staff to correct**. The task lists, expected changes and draft targets were
+written by AI agents and have not been checked by practitioners. Nothing in a brief is a measurement.
 
 ## The briefs
 
+The 13 corridor roles are profiled in full. EMST's online explorer also holds earlier, lower-depth drafts of 18 more
+roles (among them forester, hydrologist and air-quality, drinking-water, wastewater, environmental-health and solid-waste
+roles) and six emerging roles. These briefs cover only the 13.
+
 | Corridor | Brief | Role | Primary work |
 |---|---|---|---|
-| COR-1 Field entry to monitoring and geospatial | [R01](R01-conservation-corps-member.md) | Conservation corps member | Building and treating land in supervised crews |
-| COR-1 | [R02](R02-field-resource-technician.md) | Field resource technician | Collecting field data and samples to protocol |
-| COR-1 | [R03](R03-monitoring-data-technician.md) | Monitoring and data technician | Running sensors and checking data quality |
-| COR-1 | [R04](R04-geospatial-remote-sensing-analyst.md) | Geospatial and remote sensing analyst | Turning imagery and spatial data into decision products |
-| COR-1 | [R05](R05-ground-truth-validation-steward.md) | Ground-truth and validation steward (emerging) | Judging whether remote and AI products can be trusted |
-| COR-2 Fire operations to fuels and fire intelligence | [R06](R06-wildland-fire-operations.md) | Wildland fire operations (crew to supervisor) | Suppression and prescribed-fire operations |
-| COR-2 | [R07](R07-fuels-prescribed-fire-specialist.md) | Fuels and prescribed fire specialist | Planning fuels treatments and prescribed burns |
-| COR-2 | [R08](R08-fire-intelligence-analyst.md) | Fire intelligence analyst | Fire detection, behaviour prediction and decision support |
-| COR-3 Restoration to review, permitting, compliance and programme management | [R09](R09-restoration-project-lead.md) | Restoration and land stewardship project lead | Delivering restoration projects and adapting them |
-| COR-3 | [R10](R10-environmental-review-specialist.md) | Environmental review specialist | Analysing the effects of proposed actions |
-| COR-3 | [R11](R11-environmental-permit-writer.md) | Environmental permit writer | Writing enforceable permits |
-| COR-3 | [R12](R12-environmental-compliance-inspector.md) | Environmental compliance inspector | Inspecting against permits and rules |
-| COR-3 | [R13](R13-resource-program-manager.md) | Resource programme manager | Running programmes, budgets and partnerships |
+| Field and data corridor | [Conservation corps member](R01-conservation-corps-member.md) | Conservation corps member | Building and treating land in supervised crews |
+| Field and data corridor | [Field resource technician](R02-field-resource-technician.md) | Field resource technician | Collecting field data and samples to protocol |
+| Field and data corridor | [Monitoring and data technician](R03-monitoring-data-technician.md) | Monitoring and data technician | Running sensors and checking data quality |
+| Field and data corridor | [Geospatial analyst](R04-geospatial-remote-sensing-analyst.md) | Geospatial and remote sensing analyst | Turning imagery and spatial data into decision products |
+| Field and data corridor | [Ground-truth steward](R05-ground-truth-validation-steward.md) | Ground-truth and validation steward (emerging) | Judging whether remote and AI products can be trusted |
+| Fire corridor | [Wildland fire operations](R06-wildland-fire-operations.md) | Wildland fire operations (crew to supervisor) | Suppression and prescribed-fire operations |
+| Fire corridor | [Fuels and prescribed fire](R07-fuels-prescribed-fire-specialist.md) | Fuels and prescribed fire specialist | Planning fuels treatments and prescribed burns |
+| Fire corridor | [Fire intelligence](R08-fire-intelligence-analyst.md) | Fire intelligence analyst (emerging) | Fire detection, behavior prediction and decision support |
+| Stewardship and regulation corridor | [Restoration project lead](R09-restoration-project-lead.md) | Restoration and land stewardship project lead | Delivering restoration projects and adapting them |
+| Stewardship and regulation corridor | [Environmental review](R10-environmental-review-specialist.md) | Environmental review specialist | Analyzing the effects of proposed actions |
+| Stewardship and regulation corridor | [Permit writer](R11-environmental-permit-writer.md) | Environmental permit writer | Writing enforceable permits |
+| Stewardship and regulation corridor | [Compliance inspector](R12-environmental-compliance-inspector.md) | Environmental compliance inspector | Inspecting against permits and rules |
+| Stewardship and regulation corridor | [Program manager](R13-resource-program-manager.md) | Natural resource and environmental program manager | Running programs, budgets and partnerships |
 
-The corridors and roles are the P1 set fixed in ADR-0006 and listed in `docs/decisions/mvp_role_set.csv`.
+> **For state environmental agencies.** Five briefs cover regulator-side work: the monitoring and data technician,
+> environmental review specialist, permit writer, compliance inspector and program manager. **Not yet covered:** air,
+> water, wastewater, drinking-water, waste and environmental-health roles, which make up much of a state environmental
+> agency. The explorer holds only earlier, lower-depth drafts for some of them, and EMST has not yet written briefs for
+> them or set a date to do so. If your staff rely on EPA-provided training, check its current status, since EPA's own
+> staffing has fallen [J].
 
 ## How to read the evidence labels
 
-EMST v2 is early. Most of what these briefs say about tasks and change was drafted by AI agents and has not yet been tested with practitioners. The labels show how much weight each statement can carry.
-
 | Label | What it means | What you can use it for |
 |---|---|---|
-| **Agent draft** (evidence label **S**) | An AI agent drafted or rated the value. The model and prompt are recorded (`raterType = llm`, `validationStatus = draft`), and no person has reviewed it. Task lists, time shares, the critical, needed-at-entry and formation flags, target levels and change claims all carry this label. | A starting point to test with your own staff. It is not a job analysis, not SME agreement and not a Delphi result. |
-| **Assessment pending** | No multi-rater v2 assessment exists yet for how exposed the task is to change. Every task in every brief carries this label today. | Read the change column as a hypothesis to watch, not a measurement. |
-| **Watch signal** (reliability A–D) | A dated piece of evidence, such as a headcount series, a posting count, a deployment register entry or a capability benchmark, linked to the task or role. Reliability: A = official primary data; B = credible secondary analysis of primary data; C = a single board, listing or trade press; D = unverified. | Context. Under ADR-0028, a change indicator moves only when two independent families of evidence agree, the change persists or is deployed, the match is close, the driver matches and a named person has reviewed it. **No indicator has moved for any role.** |
-| **Driver** | What the evidence says is causing the change: AI, sensing technology, automation and robotics, policy reform, fiscal, workforce capacity, demographic, climate. | Separating AI from budget and policy effects. In the verified sources, the 2025–26 contraction of public environmental staffing follows budgets and policy, and none of those sources attributes it to AI. Driver tags themselves are agent drafts. |
-| **Verified fact** (IDs such as `V1-05` or claim IDs such as `WF-06`) | Checked against a primary or traceable source on 2026-10-23 (`docs/research/_verification/ALL_key_facts.csv`; `docs/methods/claims_register.csv`). Date-sensitive facts carry a re-check date. | Citing in your own documents, with the date. |
-| **[J]** | Judgment by a named EMST role, with its basis stated. | Planning assumptions to calibrate. |
+| **Agent draft** | An AI agent drafted the value; no person has reviewed it. Task lists, formation flags, draft target levels and expected changes carry this label. | A starting point to test with your own staff. It is not a job analysis, not agreement among experts and not a panel result. |
+| **Not shown** | Under EMST's display rule, time shares, importance ratings and "critical", "needed at entry" or "distinguishing" flags stay hidden until a job analysis confirms them. AI-drafted craft ratings are not shown either. The supervisor sets percentages of time. | Nothing to use: the briefs deliberately give no numbers for these. |
+| **Assessment pending** | No assessment of how much a task is changing has yet been made by several independent human raters. This applies to every task today. | Read each expected change as a hypothesis to watch, not a measurement. |
+| **Watch signal** (reliability A–D) | A dated piece of outside evidence linked to a task or role, such as a headcount series, a posting count, an AI inventory entry or a benchmark. A = official primary data; B = credible secondary analysis of primary data; C = a single board, listing or trade press; D = unchecked. | Context. EMST moves a role's change indicator only when two independent families of evidence agree, the change persists or is deployed, the match is close, the driver matches and a named person has reviewed it. **No indicator has moved for any role.** |
+| **Driver** | What the evidence suggests is causing a change: AI, sensing technology, automation and robotics, policy, workforce capacity, demographic, climate. | Separating AI from other causes. In the sources EMST checked, the 2025–26 fall in federal environmental staff followed personnel, hiring and grant decisions (deferred resignations and retirements, hiring controls, grant terminations); appropriations fell far less than staffing. AI's employment effect in these occupations has not been measured. Driver tags themselves are agent drafts. |
+| **Checked fact** (numbered source) | An AI agent checked the claim against a primary or traceable source on 23 October 2026 and recorded it in EMST's claims register. No human fact-checker has reviewed it. Date-sensitive facts say "as of" and carry a re-check date. | Citing in your own documents, with the date and the original source. |
+| **[J]** | Judgment by one of EMST's AI agent roles, with its basis stated. | A planning assumption to calibrate. |
 | **Proposed** | Not final. Example: OPM's April 24, 2026 list of series proposed for realignment. | Never describe it as done. |
-| **Exploratory** | A learning pathway built from the difference between two role profiles and not yet checked against observed career moves. No pathway is labelled "recommended" until it passes the validation gate in ADR-0023 §5. | Designing development, not steering people. |
-| **Held** | Withheld from release. Tribal role variants and Tribal-related content are held under ADR-0007 until a Tribal Advisory Council, constituted by Tribal governments and inter-Tribal organizations, exists and approves. The briefs say where a variant is held and nothing more. | Nothing. Held items are counted, not described. |
+| **Exploratory** | A learning pathway built from the difference between two role profiles and not yet checked against observed career moves. No pathway is called "recommended" until it predicts real career moves clearly better than simple guesses. | Designing development, not steering people. |
+| **Held** | Tribal role variants and Tribal-related content are held until a Tribal Advisory Council, constituted by Tribal governments and inter-Tribal organizations, exists and approves. | Nothing. Held items are not shown and not counted in these briefs; EMST's release notes report only a total count. |
 
-**Proficiency levels** (`vocab/proficiency_levels.yaml`): **L1 Supervised** (work is checked; uses approved tools under prescribed checks), **L2 Independent** (standard assignments; verifies tool outputs against independent evidence), **L3 Senior** (non-routine work; decides when not to use a tool; reviews others' AI-assisted products), **L4 Lead/Expert** (sets the technical approach; designs verified human-AI workflows; certifies others), **L5 Strategic** (defined only where SME panels confirm strategic demand). Role levels map to bands: entry L1–L2, journey L2–L3, senior L3–L4, lead L4.
+**Proficiency levels.** EMST's levels are defined by responsibility, not years:
 
-**Flags in the task tables** (agent drafts, to be verified by a qualified person): **C** critical; **E** needed at entry; **F** formation task, meaning work through which people learn the judgment the role depends on. Time shares are each task's share of the whole role across all its levels.
+- **Supervised (L1):** work is checked; uses approved tools under prescribed checks.
+- **Independent (L2):** handles standard assignments; checks tool outputs against independent evidence.
+- **Senior (L3):** handles non-routine work; decides when not to use a tool; reviews others' AI-assisted work.
+- **Lead or expert (L4):** sets the technical approach; designs checked human-AI workflows; certifies others.
+- **Strategic (L5):** used only where expert panels confirm strategic demand.
 
-**Change types** (`vocab/change_types.yaml`): *new* (work with no earlier analogue), *emerging* (growing but not yet established), *transforming* (established work whose tools or standards are changing materially; each brief says whether the change compresses the work or adds to it), *stable*, *declining*. Role-level change types include *entry path at risk*: the entry roles or formation tasks that feed a role are disappearing.
+Role levels map to bands: entry Supervised to Independent; journey Independent to Senior; senior Senior to Lead; lead
+Lead. A **draft target** in a brief is a design statement drafted by an AI agent for the pilot to test. It is not a
+finding and not a requirement.
+
+**Formation flag.** A task marked **formation** is work through which people learn the judgment the role depends on
+(an agent draft, to be checked by a qualified person).
+
+**Change types.** *New* (work with no earlier analogue), *emerging* (growing but not yet established), *transforming*
+(established work whose tools or standards are changing materially; each brief says whether the change would compress
+the work or add to it), *stable*, *declining*. A role can also have an *entry path at risk*: the entry roles or formation
+tasks that feed it are disappearing.
+
+## A short glossary
+
+- **Formation:** on-the-job development of judgment through supervised, repeated work.
+- **Field craft, data craft, statecraft:** hands-on, place-based skill; turning observation into warranted evidence,
+  including checking AI output; and making decisions stick through law, policy, institutions and relationships.
+- **Corridor:** a sequence of related roles that people can move along, across employers.
+- **Employer type:** federal, state, local, NGO, private or academic. A **role variant** is the version of a role at one
+  employer type.
+- **Federal Series Profile / State Class View:** EMST pages that gather draft duties for one OPM series or one state
+  class. They are drafts for classification review, never a classification.
+- **Series fit:** *close fit*, *broader series* (the series covers more than the role), *more specific series* (the
+  series covers part of the role), *partial fit*, *no matching series*.
+- **By-hand quota:** a set number of unaided products a learner makes before AI-assisted work is credited.
+- **Seeded-error drill:** practice on a product with planted errors that the learner must find.
+- **Ground truth:** field observations that remote, modeled or AI products are checked against.
+- **Claims register:** EMST's list of checked outside claims, each with its source, check date and wording to avoid.
+- **Change indicator:** a flag that a role is changing, shown only when EMST's evidence rule is met. None is shown today.
 
 ## What these briefs do not do
 
-- **No v1 statistics.** Exposure values and percentages from EMST v1 were assigned by a single analyst with LLM assistance. They appear only in the explorer's evidence drawer, labelled "v1 single-analyst prior, LLM-assisted, unvalidated — not for decisions". Sector-facing documents use them only as methodology history (project lead decision Q7, 2026-10-23).
-- **No external index scores.** Occupation-level AI-exposure indices (Eloundou et al.; Microsoft "Working with AI") match these roles only broadly. They are shown only in the explorer's evidence drawer and are excluded from release until their licence terms are verified (ADR-0027 amendment; ADR-0029 §9). BLS 2025–35 projections are cited as context only. They are not evidence that skills are changing.
-- **No selection use.** The briefs, the views and every EMST v2 value are for describing and developing work (use tiers *describe* and *develop*). They are not a classification basis, not a job analysis and not for reduction-in-force, rating or selection decisions. Any selection use needs the employer's own job analysis (5 CFR 300.103 still requires job analysis and a rational relationship to performance [SEL-02]).
-- **No credential or sign-off claims.** A variant may list a credential or sign-off authority, but the briefs do not present it as fact until a verified source is attached (SPEC §10 rule 8).
-- **No recommendations about people.** Pathways are exploratory. "What you can do now" lists actions for organizations, not judgments about individuals.
-- **Nonpartisan.** The briefs describe instruments and their verified status, such as rules removed, proposed or litigated. They do not argue for or against any of them (ADR-0016 §6).
+- **No EMST v1 statistics.** Exposure values and percentages from EMST v1 were assigned by a single analyst with LLM
+  assistance. They appear only in the explorer's evidence drawer, labeled "v1 single-analyst prior, LLM-assisted,
+  unvalidated — not for decisions". Under the project lead's decision, sector-facing documents use them only as
+  methodology history.
+- **No external index scores.** Occupation-level AI-exposure indices match these roles only broadly, and their values
+  are withheld until their license terms are recorded. BLS 2025–35 projections are cited as context only; they are not
+  evidence that skills are changing.
+- **No time shares or flags.** See "Not shown" above. The briefs list tasks in rough work order, not by time.
+- **No selection use.** The briefs and every EMST v2 value are for describing work. They are not a classification basis,
+  not a job analysis and not for reduction-in-force, rating or selection decisions. Any selection use needs the
+  employer's own job analysis: 5 CFR 300.103 still requires job analysis and a rational relationship to performance.
+- **No credential or sign-off claims.** A role may involve a credential or sign-off authority, but the briefs do not
+  present it as a requirement until its issuer is checked against a cited source.
+- **No recommendations about people.** Pathways are exploratory. "What you can do now" lists actions for organizations,
+  not judgments about individuals.
+- **Nonpartisan.** The briefs take no position on the merits of any law, rule, executive action or budget. They describe
+  instruments and their checked status (removed, proposed, litigated), and they suggest workforce-management practices
+  that EMST's foresight analysis judged to hold under every scenario it considered.
+- **No participants implied.** States, agencies and organizations named in the briefs are examples. EMST read the public
+  class plans of a sample of jurisdictions; no agency has been involved, and no organization has committed to anything.
 
-## Where the content comes from
+## Comment or correct
 
-| Content | Source in the repository |
-|---|---|
-| Role definition, variants, task bundle, competency targets | `data/v2/core/roles/`, `data/v2/core/variants/`; fire roles in `data/v2/modules/forest/` (WP-08) |
-| Federal series and state classes | `docs/build/WP-08/generated/federal-series/`, `docs/build/WP-08/generated/state-class/` (generated; WP-09 crosswalks X4, X5) |
-| What is changing | `docs/build/WP-08/generated/change_view/<role>.json` (WP-08 atoms joined with WP-10 signals) |
-| Pathways and formation provisions | `docs/build/WP-07/staging/pathways/`, `docs/build/WP-07/formation_provisions.csv` (exploratory; WP-07) |
-| External facts | `docs/research/_verification/ALL_key_facts.csv`, `docs/methods/claims_register.csv` |
-| Signal method and the evidence rule | `docs/methods/CHANGE_SIGNALS.md` |
-| Scenarios and no-regret moves | `docs/research/strategic-foresight/scenarios.md` §8 |
+To comment, correct an error or ask about the pilot, open an issue at
+[github.com/jrwashebek/Enviroskillstaxonomy/issues](https://github.com/jrwashebek/Enviroskillstaxonomy/issues).
 
-To challenge or correct anything in a brief, use the explorer's "challenge this" route (`site/_site/challenge/`) or the contribution guide (`docs/governance/CONTRIBUTING.md`).
+## License
 
-## Licence
+Text: CC BY 4.0. Cite as: *EMST contributors, "How this role is changing: <role>", EMST v2 role-change brief,
+2026-10-23 draft, CC BY 4.0.* The data the briefs draw on is CC0 1.0. Third-party material keeps its own terms.
 
-Text: CC BY 4.0. Cite as: *EMST contributors, "How this role is changing: <role>", EMST v2 role-change brief, 2026-10-23 draft, CC BY 4.0.* The data the briefs draw on is CC0 1.0. Third-party material keeps its own terms (`docs/governance/LICENSING.md`).
+---
+
+*Technical note on provenance.* Each brief is drawn from EMST v2 records: the role profile and its variants
+(`data/v2/core/roles/`, `data/v2/core/variants/`; fire roles in `data/v2/modules/forest/`), the generated Federal Series
+Profiles and State Class Views (`docs/build/WP-08/generated/`), the role-change views
+(`docs/build/WP-08/generated/change_view/`), the exploratory pathways and formation provisions
+(`docs/build/WP-07/staging/pathways/`, `docs/build/WP-07/formation_provisions.csv`), the foresight scenarios
+(`docs/research/strategic-foresight/scenarios.md`) and the claims register (`docs/methods/claims_register.csv`). A brief
+adds no data of its own; where a brief and the explorer differ, the explorer and the data release are authoritative.
+Each brief's technical note gives its role key and the claims-register rows behind its numbered sources. Display rule:
+`validation/display_gates.yaml` 1.1.0.
