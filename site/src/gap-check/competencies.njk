@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+title: Gap check against chosen competencies
+permalink: /gap-check/competencies/
+crumbs: [["/gap-check/", "Gap check"], [null, "Chosen competencies"]]
+scripts: ["/assets/js/gap-check.js"]
+---
+{% import "gap.njk" as g %}
+{% import "macros.njk" as m %}
+<h1>Gap check against chosen competencies</h1>
+<p class="emst-lede">Open the competencies that matter to you, set the level you are aiming for and say where you are now. Leave the rest closed; only competencies you rate appear in the summary.</p>
+{{ g.privacyNotice() }}
+<script type="application/json" id="emst-gap-meta">{{ {"release_id": emst.release.id, "role_variant_id": null, "role_title": null, "mode": "competencies", "levels": [], "file": "emst-gap-check-competencies.emst.json"} | json | safe }}</script>
+<form class="emst-gap" data-gap-form novalidate>
+{{ g.toolbar("emst-gap-check-competencies.emst.json") }}
+{% set idx = 0 %}
+{% for grp in emst.coreCompetencies | groupBy("typeLabel") %}
+<h2>{{ grp.key }}s</h2>
+{% for c in grp.items %}{% if c.levels.length and (c.levels | first).indicators.length %}
+<details class="emst-disclosure">
+  <summary>{{ c.title }} <span class="emst-muted">({{ c.levels | length }} levels; use tier {{ c.tier.tier }})</span></summary>
+  <div>{{ g.ratingFieldset(c, null, loop.index ~ "-" ~ grp.key | slug, "competencies") }}<p><a href="{{ c.url | url }}">Read the full competency</a></p></div>
+</details>
+{% endif %}{% endfor %}
+{% endfor %}
+</form>
+{{ g.summaryRegion() }}

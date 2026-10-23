@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+title: Gap check
+crumbs: [[null, "Gap check"]]
+---
+{% import "gap.njk" as g %}
+<h1>Gap check</h1>
+<p class="emst-lede">Rate where you are, or where a team member is, against observable indicators, and get a short list of competencies to develop first. It runs entirely in your browser and you keep the result as a file.</p>
+{{ g.privacyNotice() }}
+
+<h2>Start from a role</h2>
+{% if emst.variants.length %}
+<ul class="usa-list">
+{% for r in emst.roles %}{% if r.variants.length %}
+  <li>{{ r.title }}: {% for v in r.variants %}<a href="{{ v.gapUrl | url }}">{{ v.actorLabel }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</li>
+{% endif %}{% endfor %}
+</ul>
+{% else %}
+<div class="emst-callout emst-callout--empty" role="status">
+  <p><strong>No role profiles in this build yet,</strong> so role targets are not available. Role-based gap checks appear here automatically when role profiles are added (WP-08).</p>
+</div>
+{% endif %}
+
+<h2>Start from competencies you choose</h2>
+<p><a class="usa-button" href="{{ '/gap-check/competencies/' | url }}">Gap check against chosen core competencies</a></p>
+<p>Pick any of the core competencies that have indicators, set the level you are aiming for, and rate where you are now.</p>
+
+<h2>Team view</h2>
+<p><a href="{{ '/gap-check/team/' | url }}">Combine five or more saved files into a team grid</a>. Team members share their own files with you through your organization's usual channels; the grid shows counts only and stays on your device.</p>

@@ -593,6 +593,7 @@ export function buildModel({ root, releaseDir, meta }) {
     roles, variants, pathwaysFrom, translations, pathwayRecords: pathwayRecs.length,
     signals: signalVMs, watchItems, instruments: instrumentVMs, changeIndicators, scenarios,
     series, stateClasses, emergingCompetencies, emergingRoles, search, gapCompetencies,
+    titleIndex: Object.fromEntries(competencies.map((c) => [c.id, c.title])),
     stats: {
       tasks: taskVMs.size, indicators: indicators.size, mappings: mappings.length, tools: tools.length,
       v1Assessments: [...v1ByTask.values()].reduce((s, x) => s + x.length, 0), gatedRendering: dgv.rows.filter((r) => r.decision === "production" || r.decision === "tentative").length,

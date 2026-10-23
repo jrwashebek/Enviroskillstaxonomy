@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: emst.variants
+  size: 1
+  alias: v
+permalink: "{{ v.gapUrl }}"
+scripts: ["/assets/js/gap-check.js"]
+eleventyComputed:
+  title: "Gap check: {{ v.role.title }} ({{ v.actorLabel }})"
+---
+{% import "gap.njk" as g %}
+{% import "macros.njk" as m %}
+<h1>Gap check: {{ v.role.title }} <span class="emst-muted">· {{ v.actorLabel }}</span></h1>
+<nav aria-label="Views for this role variant"><p><a href="{{ v.url | url }}">How it is changing</a> · <strong>Gap check</strong> · <a href="{{ v.pathwaysUrl | url }}">Where it can lead</a></p></nav>
+{{ g.privacyNotice() }}
+{{ m.meta(v.role.tier, v.role.evidence, "role targets are drafts") }}
+<script type="application/json" id="emst-gap-meta">{{ {"release_id": emst.release.id, "role_variant_id": v.id, "role_title": v.title, "mode": "role", "levels": v.role.roleLevels, "file": "emst-gap-check-" + v.slug + ".emst.json"} | json | safe }}</script>
+<form class="emst-gap" data-gap-form novalidate>
+{{ g.toolbar("emst-gap-check-" + v.slug + ".emst.json") }}
+<fieldset class="emst-rate" data-role="level-choice">
+  <legend>Which level of this role are you rating against?</legend>
+  {% for l in v.role.roleLevels %}<div class="usa-radio"><input class="usa-radio__input" type="radio" id="lvl-{{ l.key }}" name="role-level" value="{{ l.key }}"{% if loop.first %} checked{% endif %}><label class="usa-radio__label" for="lvl-{{ l.key }}">{{ l.key | titlecase }} (proficiency {{ l.band | join(" to ") }})</label></div>{% endfor %}
+</fieldset>
+<h2>Competencies for this role ({{ v.role.competencyTargets.length }})</h2>
+{% for t in v.role.competencyTargets %}{% if t.competency.levels.length %}
+{{ g.ratingFieldset(t.competency, t, loop.index, "role") }}
+{% else %}
+<p>{{ t.competency.title }}: no levels defined, so it cannot be self-rated yet ({{ t.competency.typeLabel | lower }}).</p>
+{% endif %}{% endfor %}
+</form>
+{{ g.summaryRegion() }}

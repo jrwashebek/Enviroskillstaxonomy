@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+title: Team grid
+permalink: /gap-check/team/
+crumbs: [["/gap-check/", "Gap check"], [null, "Team grid"]]
+scripts: ["/assets/js/team-grid.js"]
+---
+<h1>Team grid</h1>
+<p class="emst-lede">Combine gap-check files that team members chose to share with you. The grid shows how many people chose each level for each competency. Names and notes are never shown.</p>
+<div class="emst-callout" role="note">
+  <p><strong>Everything stays on this device.</strong> Files are read in your browser and nothing is uploaded. The grid needs at least 5 files for the same role variant and level (or 5 competency-mode files); with fewer, it shows nothing, to protect individuals.</p>
+  <p>Collect files only with each person's agreement and through your organization's own channels. Delete them when you no longer need them.</p>
+</div>
+<p class="emst-nojs-note emst-callout emst-callout--warn">The team grid needs JavaScript. Nothing is sent anywhere.</p>
+<div class="emst-js-only">
+  <label class="usa-label" for="emst-team-files">Choose 5 or more gap-check files</label>
+  <input class="usa-file-input" type="file" id="emst-team-files" multiple accept=".json,application/json">
+  <p class="emst-status" role="status" aria-live="polite" data-status></p>
+  <div data-grid></div>
+  <div class="emst-toolbar"><button type="button" class="usa-button usa-button--outline" data-action="team-csv" hidden>Download grid as CSV</button></div>
+</div>
+<script type="application/json" id="emst-team-meta">{{ {"release_id": emst.release.id, "min_cell": 5, "titles": emst.titleIndex } | json | safe }}</script>
