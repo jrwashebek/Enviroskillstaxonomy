@@ -1,0 +1,757 @@
+{
+ "stamp": {
+  "ruleId": "state-class-view",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "classRecord": "seed:class/TX/2682",
+ "class": {
+  "jurisdiction": "Texas",
+  "employerType": "state-agency",
+  "agency": "Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications",
+  "classCode": "2682",
+  "classTitle": "Natural Resources Specialist I",
+  "series": "Natural Resources Specialist I-V",
+  "level": {
+   "ordinal": 1,
+   "label": "I"
+  },
+  "supervisoryStatus": "non-supervisory",
+  "specEffectiveDate": "2026-07-01",
+  "mqLocation": "agency-policy",
+  "mqParaphrase": "Agencies set requirements; substitution allowed where statute permits. TPWD fisheries overlay requires a fisheries or related science degree (SL-056).",
+  "degreeRule": "agency-set",
+  "licensesRequired": [],
+  "pay": {
+   "basis": "annual",
+   "min": 40918,
+   "max": 61130,
+   "label": "B16",
+   "effective": "2026-07-01"
+  },
+  "specUrl": "https://hr.sao.texas.gov/Compensation/JobDescriptions/1860.pdf",
+  "reviewBy": "2027-07-01"
+ },
+ "mappings": [
+  {
+   "roleVariant": "seed:R15-wildlife-biologist/state",
+   "role": "seed:R15-wildlife-biologist",
+   "roleTitle": "Wildlife biologist",
+   "tier": "P2",
+   "authorityPosition": "resource-manager",
+   "roleLevels": [
+    "entry"
+   ],
+   "matchType": "skos:broadMatch",
+   "confidence": 0.5,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-tx:R15-wildlife-biologist/state:2682",
+   "competencyTargets": [
+    {
+     "competency": "seed:FC-C15",
+     "label": "Capture, handle and mark wildlife and fish humanely and safely",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.1.5",
+     "label": "Assess species habitat requirements and habitat condition",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.1.2",
+     "label": "Detect and record wildlife by direct observation, sign and standardized surveys",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FH-C01",
+     "label": "Assess effects on protected species and conduct interagency consultation on proposed actions",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.4.3",
+     "label": "Identify organisms from field characters, specimens, images and recordings",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:FC-C18",
+     "label": "Navigate and travel safely in remote terrain with and without digital aids",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.1.2",
+     "label": "Assess and monitor biodiversity across species and habitats",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-2.2.2",
+     "label": "Analyze environmental data statistically and interpret the results",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:FC-C15-T1",
+     "statement": "Capture animals with traps, nets or electrofishing following the approved animal-care protocol and permit conditions",
+     "pctTime": 8.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:FC-C15-T2",
+     "statement": "Immobilize an animal chemically where authorized, monitoring vital signs until recovery and recording drug doses",
+     "pctTime": 7.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.4.2-T1",
+     "statement": "Deploy camera traps and acoustic recorders at survey stations to the protocol's height, orientation and settings, recording station metadata",
+     "pctTime": 7.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.4.2-T2",
+     "statement": "Conduct ground or aerial counts of target species along defined survey units to support abundance estimation",
+     "pctTime": 7.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.1.5-T1",
+     "statement": "Measure habitat attributes such as cover, structure, water and forage at used and available sites following a habitat-use study protocol",
+     "pctTime": 7.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:FC-C15-T3",
+     "statement": "Mark captured animals with tags or other marks while recording biological data within protocol handling-time and stress limits",
+     "pctTime": 5.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:FC-C15-T4",
+     "statement": "Apply zoonotic disease and personal safety precautions when handling wildlife, including protective equipment and decontamination",
+     "pctTime": 5.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-4.1.2-T1",
+     "statement": "Conduct point-count, transect or call-playback wildlife surveys to protocol, recording detections, distance bands and survey conditions",
+     "pctTime": 5.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.4.4-T1",
+     "statement": "Observe animal movement, foraging and breeding behaviour at study sites, recording behaviour and habitat context on standardized forms",
+     "pctTime": 5.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.4.3-T1",
+     "statement": "Identify regional plants and animals to species with dichotomous keys and diagnostic features, collecting evidence for any record not identified with certainty",
+     "pctTime": 5.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.4.3-T2",
+     "statement": "Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database",
+     "pctTime": 5.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-compile-species-occurrence",
+     "statement": "Compile species and habitat occurrence information for an action area, documenting the sources and survey dates used for each listed species",
+     "pctTime": 5.7,
+     "critical": false,
+     "neededAtEntry": true
+    }
+   ],
+   "credentialGates": []
+  },
+  {
+   "roleVariant": "seed:R16-fisheries-aquatic-biologist/state",
+   "role": "seed:R16-fisheries-aquatic-biologist",
+   "roleTitle": "Fisheries and aquatic biologist",
+   "tier": "P2",
+   "authorityPosition": "resource-manager",
+   "roleLevels": [
+    "entry"
+   ],
+   "matchType": "skos:broadMatch",
+   "confidence": 0.55,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-tx:R16-fisheries-aquatic-biologist/state:2682",
+   "competencyTargets": [
+    {
+     "competency": "seed:v1-1.4.5",
+     "label": "Manage fish populations and habitats to stated conservation and harvest objectives",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C11",
+     "label": "Apply field biosecurity and decontamination protocols",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C12",
+     "label": "Operate small boats and work safely on water in aquatic, coastal and marine field settings",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C15",
+     "label": "Capture, handle and mark wildlife and fish humanely and safely",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.1.3",
+     "label": "Measure water quality and survey aquatic communities in the field",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:FC-C16",
+     "label": "Collect trace-level and genetic environmental samples without contamination",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FH-C10",
+     "label": "Operate fish hatchery and aquatic propagation programmes",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-2.2.2",
+     "label": "Analyze environmental data statistically and interpret the results",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:v1-1.4.5-T1",
+     "statement": "Sample fish populations by electrofishing, netting or hydroacoustics following the survey protocol to estimate abundance and size structure",
+     "pctTime": 9.3,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:FC-C15-T1",
+     "statement": "Capture animals with traps, nets or electrofishing following the approved animal-care protocol and permit conditions",
+     "pctTime": 7.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:FC-C15-T2",
+     "statement": "Immobilize an animal chemically where authorized, monitoring vital signs until recovery and recording drug doses",
+     "pctTime": 7.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-boat-emergency",
+     "statement": "Execute person-overboard, capsize and cold-water immersion procedures for a small-boat crew during drills and real events",
+     "pctTime": 7.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-boat-gear",
+     "statement": "Work sampling gear such as grabs, nets, sondes or traps over the side of a small vessel, keeping crew clear of lines and winches",
+     "pctTime": 7.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.2.4-T1",
+     "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
+     "pctTime": 7.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.2.4-T2",
+     "statement": "Screen field measurement results against applicable water-quality criteria before leaving the site, triggering resampling or notification when an exceedance appears",
+     "pctTime": 7.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-bio-adapt",
+     "statement": "Adapt the decontamination procedure on site when a new pathogen or invasive organism is suspected, escalating the finding before moving on",
+     "pctTime": 7.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-bio-decon",
+     "statement": "Decontaminate boots, gear, boats and vehicles between field sites with the protocol's method and contact time for the target organisms",
+     "pctTime": 7.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:FC-C15-T3",
+     "statement": "Mark captured animals with tags or other marks while recording biological data within protocol handling-time and stress limits",
+     "pctTime": 5.5,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-bio-sequence",
+     "statement": "Sequence site visits from lower-risk to higher-risk waters or stands so that crews cannot carry organisms from infested to uninfested sites",
+     "pctTime": 5.5,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:FH-C10-T1",
+     "statement": "Spawn broodstock following the genetic management plan's mating scheme, recording parentage for each lot",
+     "pctTime": 5.5,
+     "critical": false,
+     "neededAtEntry": false
+    }
+   ],
+   "credentialGates": []
+  },
+  {
+   "roleVariant": "seed:R25-water-wastewater-operator/state",
+   "role": "seed:R25-water-wastewater-operator",
+   "roleTitle": "Water and wastewater treatment operator",
+   "tier": "P2",
+   "authorityPosition": "regulated-party",
+   "roleLevels": [
+    "entry"
+   ],
+   "matchType": "skos:relatedMatch",
+   "confidence": 0.2,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-tx:R25-water-wastewater-operator/state:2682",
+   "competencyTargets": [
+    {
+     "competency": "seed:DB-C01",
+     "label": "Operate drinking water treatment processes to meet water quality targets",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C02",
+     "label": "Operate wastewater treatment and resource-recovery processes to permit limits",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SL-C16",
+     "label": "Practice within licensure scope and responsible charge",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-B"
+    },
+    {
+     "competency": "seed:DB-C06",
+     "label": "Protect operational technology at environmental utilities and facilities",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C24",
+     "label": "Manage field sample custody and field quality control",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.4.1-B",
+     "label": "Apply safety practices and stop-work authority across field, facility and incident settings",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-C"
+    },
+    {
+     "competency": "seed:v1-4.4.4-A",
+     "label": "Work safely on hazardous, industrial and energized field sites",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:v1-4.7.3",
+     "label": "Manage a municipal stormwater programme to meet permit conditions",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:DB-C01-T1",
+     "statement": "Adjust coagulant dosing from jar test results when raw-water turbidity, temperature or organic content changes",
+     "pctTime": 6.6,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C01-T2",
+     "statement": "Verify disinfection contact time against required inactivation values at each operating flow and correct shortfalls before water enters distribution",
+     "pctTime": 6.1,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C02-T1",
+     "statement": "Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits",
+     "pctTime": 6.1,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C02-T2",
+     "statement": "Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it",
+     "pctTime": 6.1,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C01-T3",
+     "statement": "Respond to a treatment upset by isolating the affected process unit, bringing backup treatment online and notifying the primacy agency",
+     "pctTime": 4.8,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C02-T3",
+     "statement": "Route peak wet-weather flows through the plant to protect biological treatment, recording any bypass or overflow for required reporting",
+     "pctTime": 4.8,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C02-T4",
+     "statement": "Operate anaerobic digestion and solids handling to meet biosolids pathogen-reduction and stability requirements while recovering digester gas",
+     "pctTime": 4.8,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:db-c03-monitor-loops",
+     "statement": "Monitor automated control loops and alarms on a treatment process, checking automated responses against field observations of process condition",
+     "pctTime": 4.8,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-coc-complete",
+     "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
+     "pctTime": 4.8,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-qc-collect",
+     "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
+     "pctTime": 4.8,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-4.4.4-T1",
+     "statement": "Identify signs of potential hazardous materials at a field site, such as drums, stained soil, odours or unusual debris, before disturbing them",
+     "pctTime": 4.8,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-4.4.4-T2",
+     "statement": "Isolate an incidentally discovered hazardous material, establishing a safe distance and notifying the designated responder before any further work",
+     "pctTime": 4.8,
+     "critical": false,
+     "neededAtEntry": true
+    }
+   ],
+   "credentialGates": [
+    {
+     "credential": "seed:crd-drinking-water-treatment-operator",
+     "label": "Drinking water treatment operator certification (Grades I-IV / Class A-D, state-specific)",
+     "kind": "required"
+    },
+    {
+     "credential": "seed:crd-wastewater-treatment-operator",
+     "label": "Wastewater treatment operator certification (Grades I-IV)",
+     "kind": "required"
+    }
+   ]
+  }
+ ]
+}

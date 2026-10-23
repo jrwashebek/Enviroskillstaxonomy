@@ -1,0 +1,722 @@
+{
+ "stamp": {
+  "ruleId": "federal-series-profile",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "series": {
+  "code": "2210",
+  "title": "Information Technology Management",
+  "seriesStatus": "active",
+  "statusStatement": "Active (EMST OPM series register, as of 2026-10-23).",
+  "successorSeriesProposed": null,
+  "group": "2200 Information Technology",
+  "qualificationStandardVersion": "Competency-based qualification standard issued 2026-04-13 (E: title)",
+  "positiveEducationRequirement": false,
+  "educationNote": "FH judgment pending verification of the qualification standard",
+  "registerRecord": "seed:opm-series/2210",
+  "registerReviewBy": "2027-01-23",
+  "events": []
+ },
+ "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
+ "roles": [
+  {
+   "role": "seed:R08-fire-intelligence-analyst",
+   "roleTitle": "Fire intelligence analyst (continuous operations)",
+   "tier": "P1",
+   "variant": "seed:R08-fire-intelligence-analyst/federal",
+   "functionStatement": "Give fire managers timely, validated intelligence on fire activity and expected behaviour, with its confidence stated, so that resources are ordered on evidence.",
+   "authorityPosition": "resource-manager",
+   "x4": {
+    "record": "emst-x4:R08-fire-intelligence-analyst:2210",
+    "predicate": "skos:relatedMatch",
+    "confidence": 0.25,
+    "appliesTo": "systems positions",
+    "reviewStatus": "candidate",
+    "evidence": "J"
+   },
+   "credentialGates": [
+    {
+     "credential": "seed:crd-wildland-fire-position-qualification",
+     "label": "Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
+     "kind": "preferred"
+    }
+   ],
+   "signOffAuthority": null,
+   "instruments": [
+    {
+     "id": "seed:ins/uswfs-so-3448",
+     "label": "Secretarial Order 3448 establishing the U.S. Wildland Fire Service"
+    }
+   ],
+   "bands": [
+    {
+     "group": "developmental and full performance",
+     "indicativeBand": "GS-9 to GS-11 (journey)",
+     "roleLevels": [
+      "journey"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:FS-C05",
+       "duty": "Fuse multi-source fire intelligence into operational decision support",
+       "pctTime": 52,
+       "tasks": [
+        {
+         "task": "seed:FS-C05-T1",
+         "statement": "Integrate satellite detections, camera feeds, weather and resource status into a continuously updated situation summary for dispatch",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 23.4
+        },
+        {
+         "task": "seed:FS-C05-T2",
+         "statement": "Adjudicate an automated fire detection against cameras, public reports and other sensors before resources are ordered",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 11.6
+        },
+        {
+         "task": "seed:FS-C05-T3",
+         "statement": "Brief duty officers and incident commanders on fire activity, predicted growth and resource needs at each operational period",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 11.6
+        },
+        {
+         "task": "seed:FS-C05-T4",
+         "statement": "Track the accuracy of detections and spread predictions against observed outcomes, reporting systematic errors to programme managers",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.3.4",
+       "duty": "Predict fire behaviour from fuels, weather and topography for operations and planning",
+       "pctTime": 17,
+       "tasks": [
+        {
+         "task": "seed:v1-4.3.4-T2",
+         "statement": "Predict fire spread, intensity and spotting for an operational period from fuels, weather and topography, stating assumptions",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 11.6
+        },
+        {
+         "task": "seed:db-4.3.4-t4",
+         "statement": "Compare modelled fire behaviour with observed behaviour during an incident, adjusting predictions and recording each discrepancy",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-11",
+       "duty": "Quantify and communicate uncertainty for environmental decisions",
+       "pctTime": 9,
+       "tasks": [
+        {
+         "task": "seed:dc-11-incident-confidence-briefing",
+         "statement": "Brief incident or programme leaders on the confidence of fire behaviour and weather projections, updating the briefing when observations diverge.",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.8
+        },
+        {
+         "task": "seed:dc-11-quantify-sources",
+         "statement": "Quantify the dominant sources of uncertainty in an analysis, such as measurement, sampling, model and scenario, stating which result would change the recommendation.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-12",
+       "duty": "Build, run and validate environmental forecast and scenario systems",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-2.7.3-T3",
+         "statement": "Maintain an operational forecast system's data feeds and model versions, re-validating after each change before results are released.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.1.2",
+       "duty": "Analyze remotely sensed data to map and monitor environmental conditions",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-2.1.2-T1",
+         "statement": "Interpret satellite and aerial imagery to detect changes in vegetation, soil or water condition across a management area between two dates.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-13",
+       "duty": "Validate AI-generated work products before professional use",
+       "pctTime": 4,
+       "tasks": [
+        {
+         "task": "seed:fc-txa-field-check",
+         "statement": "Verify an AI-generated field product, such as a condition map or drafted inspection note, against observations made at the site before it is relied on",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.8
+        },
+        {
+         "task": "seed:fc-txa-escalate",
+         "statement": "Escalate an AI-generated output that conflicts with field evidence, recording the conflicting observation for the analyst and the decision-maker",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.1.4",
+       "duty": "Conduct spatial analysis and modelling of environmental data",
+       "pctTime": 3,
+       "tasks": [
+        {
+         "task": "seed:v1-2.1.4-T1",
+         "statement": "Analyze terrain, habitat connectivity or resource distribution for a planning question, stating the data, projection and accuracy limits that bound the answer.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-09",
+       "duty": "Evaluate model fitness-for-purpose and validate against independent evidence",
+       "pctTime": 3,
+       "tasks": [
+        {
+         "task": "seed:dc-09-envelope-check",
+         "statement": "Check whether a planned use of a model output falls inside the model's intended purpose, data period and area before relying on it.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:FS-C05-T1",
+      "seed:FS-C05-T2",
+      "seed:v1-4.3.4-T2",
+      "seed:v1-2.1.2-T1"
+     ],
+     "criticalTasks": [
+      "seed:FS-C05-T1",
+      "seed:FS-C05-T2",
+      "seed:FS-C05-T3",
+      "seed:v1-4.3.4-T2",
+      "seed:dc-11-incident-confidence-briefing",
+      "seed:fc-txa-escalate"
+     ],
+     "distinguishingCompetencies": [
+      "seed:FS-C05"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:FS-C05",
+       "statement": "Knowledge of and skill in: fuse multi-source fire intelligence into operational decision support (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:v1-4.3.4",
+       "statement": "Knowledge of and skill in: predict fire behaviour from fuels, weather and topography for operations and planning (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DB-C29",
+       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DC-CAND-11",
+       "statement": "Knowledge of and skill in: quantify and communicate uncertainty for environmental decisions (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DC-CAND-12",
+       "statement": "Knowledge of and skill in: build, run and validate environmental forecast and scenario systems (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DC-CAND-13",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C02",
+       "statement": "Knowledge of and skill in: ground-truth remote-sensed, modelled and AI-generated outputs in the field (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-2.1.2",
+       "statement": "Knowledge of and skill in: analyze remotely sensed data to map and monitor environmental conditions (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    },
+    {
+     "group": "senior and lead",
+     "indicativeBand": "GS-12 to GS-13 (senior); GS-13 to GS-14 (lead)",
+     "roleLevels": [
+      "senior",
+      "lead"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:FS-C05",
+       "duty": "Fuse multi-source fire intelligence into operational decision support",
+       "pctTime": 42,
+       "tasks": [
+        {
+         "task": "seed:FS-C05-T1",
+         "statement": "Integrate satellite detections, camera feeds, weather and resource status into a continuously updated situation summary for dispatch",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 18.6
+        },
+        {
+         "task": "seed:FS-C05-T2",
+         "statement": "Adjudicate an automated fire detection against cameras, public reports and other sensors before resources are ordered",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 9.2
+        },
+        {
+         "task": "seed:FS-C05-T3",
+         "statement": "Brief duty officers and incident commanders on fire activity, predicted growth and resource needs at each operational period",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 9.2
+        },
+        {
+         "task": "seed:FS-C05-T4",
+         "statement": "Track the accuracy of detections and spread predictions against observed outcomes, reporting systematic errors to programme managers",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.3.4",
+       "duty": "Predict fire behaviour from fuels, weather and topography for operations and planning",
+       "pctTime": 18,
+       "tasks": [
+        {
+         "task": "seed:v1-4.3.4-T2",
+         "statement": "Predict fire spread, intensity and spotting for an operational period from fuels, weather and topography, stating assumptions",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 9.2
+        },
+        {
+         "task": "seed:db-4.3.4-t4",
+         "statement": "Compare modelled fire behaviour with observed behaviour during an incident, adjusting predictions and recording each discrepancy",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.6
+        },
+        {
+         "task": "seed:v1-4.3.4-T3",
+         "statement": "Brief incident personnel on expected fire behaviour and weather trends, highlighting watch-out situations for each division",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-12",
+       "duty": "Build, run and validate environmental forecast and scenario systems",
+       "pctTime": 14,
+       "tasks": [
+        {
+         "task": "seed:dc-12-skill-tracking",
+         "statement": "Track a forecast system's skill against observations over time, notifying users when skill falls below the level their decisions require.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.6
+        },
+        {
+         "task": "seed:v1-2.7.3-T3",
+         "statement": "Maintain an operational forecast system's data feeds and model versions, re-validating after each change before results are released.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.6
+        },
+        {
+         "task": "seed:dc-12-fitness-requirements",
+         "statement": "Define the fitness requirements of a forecast system for the decisions it serves, including lead time, resolution and acceptable error.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        },
+        {
+         "task": "seed:dc-12-restrict-retire",
+         "statement": "Decide when an operational forecast or scenario system should be restricted or retired, documenting the evidence and informing its users.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-11",
+       "duty": "Quantify and communicate uncertainty for environmental decisions",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:dc-11-incident-confidence-briefing",
+         "statement": "Brief incident or programme leaders on the confidence of fire behaviour and weather projections, updating the briefing when observations diverge.",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.6
+        },
+        {
+         "task": "seed:dc-11-quantify-sources",
+         "statement": "Quantify the dominant sources of uncertainty in an analysis, such as measurement, sampling, model and scenario, stating which result would change the recommendation.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.1.2",
+       "duty": "Analyze remotely sensed data to map and monitor environmental conditions",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:v1-2.1.2-T1",
+         "statement": "Interpret satellite and aerial imagery to detect changes in vegetation, soil or water condition across a management area between two dates.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C02",
+       "duty": "Ground-truth remote-sensed, modelled and AI-generated outputs in the field",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:fc-gt-fitness",
+         "statement": "Decide from field validation evidence whether a remote or AI product is fit for a stated management or regulatory use, documenting its limits",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.1.4",
+       "duty": "Conduct spatial analysis and modelling of environmental data",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:v1-2.1.4-T1",
+         "statement": "Analyze terrain, habitat connectivity or resource distribution for a planning question, stating the data, projection and accuracy limits that bound the answer.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-22",
+       "duty": "Design decision-support products for actual decision contexts",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:dc-22-decision-map",
+         "statement": "Map the decision a product must support, including who decides, when, under what authority and with which constraints, before design starts.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C29",
+       "duty": "Communicate environmental and health risks under uncertainty",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:lc-txe-prepare-message-map",
+         "statement": "Prepare a shared message map with partner agencies for an emerging environmental or health incident",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C15",
+       "duty": "Plan smoke management for prescribed and managed fire within air quality requirements",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:DB-C15-T4",
+         "statement": "Issue public smoke advisories with health partners when monitored or forecast smoke exceeds advisory thresholds",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-09",
+       "duty": "Evaluate model fitness-for-purpose and validate against independent evidence",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:dc-09-envelope-check",
+         "statement": "Check whether a planned use of a model output falls inside the model's intended purpose, data period and area before relying on it.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-13",
+       "duty": "Validate AI-generated work products before professional use",
+       "pctTime": 1,
+       "tasks": [
+        {
+         "task": "seed:fc-txa-escalate",
+         "statement": "Escalate an AI-generated output that conflicts with field evidence, recording the conflicting observation for the analyst and the decision-maker",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.3
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:FS-C05-T1",
+      "seed:FS-C05-T2",
+      "seed:v1-4.3.4-T2",
+      "seed:v1-2.1.2-T1"
+     ],
+     "criticalTasks": [
+      "seed:FS-C05-T1",
+      "seed:FS-C05-T2",
+      "seed:FS-C05-T3",
+      "seed:v1-4.3.4-T2",
+      "seed:dc-11-incident-confidence-briefing",
+      "seed:fc-txa-escalate"
+     ],
+     "distinguishingCompetencies": [
+      "seed:FS-C05"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:FS-C05",
+       "statement": "Knowledge of and skill in: fuse multi-source fire intelligence into operational decision support (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:v1-4.3.4",
+       "statement": "Knowledge of and skill in: predict fire behaviour from fuels, weather and topography for operations and planning (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DB-C29",
+       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DC-CAND-11",
+       "statement": "Knowledge of and skill in: quantify and communicate uncertainty for environmental decisions (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DC-CAND-12",
+       "statement": "Knowledge of and skill in: build, run and validate environmental forecast and scenario systems (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DC-CAND-13",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C02",
+       "statement": "Knowledge of and skill in: ground-truth remote-sensed, modelled and AI-generated outputs in the field (EMST target senior L2, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-2.1.2",
+       "statement": "Knowledge of and skill in: analyze remotely sensed data to map and monitor environmental conditions (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    }
+   ],
+   "changeView": "docs/build/WP-08/generated/change_view/R08-fire-intelligence-analyst.json"
+  }
+ ],
+ "rolesWithoutFederalVariant": [],
+ "feederOrDestinationRoles": []
+}

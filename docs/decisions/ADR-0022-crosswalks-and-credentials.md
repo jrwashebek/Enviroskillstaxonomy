@@ -61,3 +61,5 @@ Fix F10 and F12 code–title errors now; mark F8, F11 and F13 mappings misdirect
   - **Reviewed rows** take `semapv:MappingReview` and keep `original_justification` in `other`. Selection-use subsets are therefore strictly SSSOM 1.0.
   - **Role and variant seed keys** for crosswalk subjects are `seed:<role_key>` and `seed:<role_key>/<sector_actor>[/<slice>]`.
   - **X12** is registered in `vocab/mapping_predicates.yaml` (CR-DE-002).
+
+- **2026-10-23 — CR-LC-001 / ADR-0030 §1.5 (CA).** The X10 object and credential alignment target is the derived **CLO IRI**, `<competency IRI>/levels/<Lx>` (SPEC §12.3). Until minting, rows name the competency seed key with `other: clo_level=Lx`. `Credential.closureType` gains `employer-mandated`: required by employer, agency or interagency policy, but not by statute or regulation.

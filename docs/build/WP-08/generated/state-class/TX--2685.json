@@ -1,0 +1,298 @@
+{
+ "stamp": {
+  "ruleId": "state-class-view",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "classRecord": "seed:class/TX/2685",
+ "class": {
+  "jurisdiction": "Texas",
+  "employerType": "state-agency",
+  "agency": "Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications",
+  "classCode": "2685",
+  "classTitle": "Natural Resources Specialist IV",
+  "series": "Natural Resources Specialist I-V",
+  "level": {
+   "ordinal": 4,
+   "label": "IV"
+  },
+  "supervisoryStatus": "supervisor",
+  "specEffectiveDate": "2026-07-01",
+  "mqLocation": "agency-policy",
+  "mqParaphrase": "Same as NRS I.",
+  "degreeRule": "agency-set",
+  "licensesRequired": [],
+  "pay": {
+   "basis": "annual",
+   "min": 57614,
+   "max": 93138,
+   "label": "B22",
+   "effective": "2026-07-01"
+  },
+  "specUrl": "https://hr.sao.texas.gov/Compensation/JobDescriptions/1860.pdf",
+  "reviewBy": "2027-07-01"
+ },
+ "mappings": [
+  {
+   "roleVariant": "seed:R16-fisheries-aquatic-biologist/state",
+   "role": "seed:R16-fisheries-aquatic-biologist",
+   "roleTitle": "Fisheries and aquatic biologist",
+   "tier": "P2",
+   "authorityPosition": "resource-manager",
+   "roleLevels": [
+    "lead"
+   ],
+   "matchType": "skos:broadMatch",
+   "confidence": 0.45,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-tx:R16-fisheries-aquatic-biologist/state:2685",
+   "competencyTargets": [
+    {
+     "competency": "seed:v1-1.4.5",
+     "label": "Manage fish populations and habitats to stated conservation and harvest objectives",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C49",
+     "label": "Conduct fisheries stock assessments and develop management advice",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C11",
+     "label": "Apply field biosecurity and decontamination protocols",
+     "targetLevels": {
+      "lead": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C12",
+     "label": "Operate small boats and work safely on water in aquatic, coastal and marine field settings",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C15",
+     "label": "Capture, handle and mark wildlife and fish humanely and safely",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.1.3",
+     "label": "Measure water quality and survey aquatic communities in the field",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-03",
+     "label": "Design monitoring and sampling for valid environmental inference",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:FC-C16",
+     "label": "Collect trace-level and genetic environmental samples without contamination",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FH-C10",
+     "label": "Operate fish hatchery and aquatic propagation programmes",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-2.2.2",
+     "label": "Analyze environmental data statistically and interpret the results",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:v1-1.4.5-T1",
+     "statement": "Sample fish populations by electrofishing, netting or hydroacoustics following the survey protocol to estimate abundance and size structure",
+     "pctTime": 5.3,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.4.5-T2",
+     "statement": "Recommend harvest regulations, stocking or habitat actions for a fishery from population assessment results and angler objectives",
+     "pctTime": 5.2,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-1.4.5-T3",
+     "statement": "Assess water quality and habitat conditions limiting a fish population, identifying the factors management can change",
+     "pctTime": 4.1,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:db-1.4.5-t4",
+     "statement": "Estimate age, growth and mortality of a fish population from scale or otolith readings and catch-curve data",
+     "pctTime": 4.1,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:DB-C49-T1",
+     "statement": "Fit a stock assessment model to catch, survey and biological data, documenting model diagnostics and retrospective patterns",
+     "pctTime": 4.1,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:DB-C49-T2",
+     "statement": "Apply a data-limited assessment method to a stock with sparse catch and survey data, stating the uncertainty in reference points",
+     "pctTime": 4.1,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:FC-C15-T1",
+     "statement": "Capture animals with traps, nets or electrofishing following the approved animal-care protocol and permit conditions",
+     "pctTime": 4.1,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:FC-C15-T2",
+     "statement": "Immobilize an animal chemically where authorized, monitoring vital signs until recovery and recording drug doses",
+     "pctTime": 4.1,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-boat-emergency",
+     "statement": "Execute person-overboard, capsize and cold-water immersion procedures for a small-boat crew during drills and real events",
+     "pctTime": 4.1,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-boat-gear",
+     "statement": "Work sampling gear such as grabs, nets, sondes or traps over the side of a small vessel, keeping crew clear of lines and winches",
+     "pctTime": 4.1,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.2.4-T1",
+     "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
+     "pctTime": 4.1,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.2.4-T2",
+     "statement": "Screen field measurement results against applicable water-quality criteria before leaving the site, triggering resampling or notification when an exceedance appears",
+     "pctTime": 4.1,
+     "critical": false,
+     "neededAtEntry": true
+    }
+   ],
+   "credentialGates": []
+  }
+ ]
+}

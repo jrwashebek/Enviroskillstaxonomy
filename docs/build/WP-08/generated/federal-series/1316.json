@@ -1,0 +1,1069 @@
+{
+ "stamp": {
+  "ruleId": "federal-series-profile",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "series": {
+  "code": "1316",
+  "title": "Hydrologic Technician",
+  "seriesStatus": "active",
+  "statusStatement": "Active (EMST OPM series register, as of 2026-10-23).",
+  "successorSeriesProposed": null,
+  "group": "1300 Physical Sciences",
+  "qualificationStandardVersion": "Technical & Medical Support Positions group std (education may substitute)",
+  "positiveEducationRequirement": false,
+  "educationNote": "FH judgment pending verification of the qualification standard",
+  "registerRecord": "seed:opm-series/1316",
+  "registerReviewBy": "2027-01-23",
+  "events": []
+ },
+ "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
+ "roles": [
+  {
+   "role": "seed:R03-monitoring-data-technician",
+   "roleTitle": "Monitoring and data technician",
+   "tier": "P1",
+   "variant": "seed:R03-monitoring-data-technician/federal",
+   "functionStatement": "Produce monitoring data that are fit for decisions by keeping instruments, samples and data streams under verified quality control.",
+   "authorityPosition": "advisor-researcher",
+   "x4": {
+    "record": "emst-x4:R03-monitoring-data-technician:1316",
+    "predicate": "skos:narrowMatch",
+    "confidence": 0.6,
+    "appliesTo": "hydrologic monitoring",
+    "reviewStatus": "candidate",
+    "evidence": "J"
+   },
+   "credentialGates": [
+    {
+     "credential": "seed:crd-remote-pilot-certificate",
+     "label": "FAA Remote Pilot Certificate (Part 107)",
+     "kind": "preferred"
+    }
+   ],
+   "signOffAuthority": null,
+   "instruments": [],
+   "bands": [
+    {
+     "group": "developmental and full performance",
+     "indicativeBand": "GS-3 to GS-5 (entry); GS-6 to GS-7 (journey)",
+     "roleLevels": [
+      "entry",
+      "journey"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:FC-C01",
+       "duty": "Deploy, maintain and verify field sensor networks",
+       "pctTime": 32,
+       "tasks": [
+        {
+         "task": "seed:fc-sensor-service",
+         "statement": "Service deployed field sensors on schedule, cleaning, recalibrating or replacing components and recording each action in the service log",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 9.5
+        },
+        {
+         "task": "seed:v1-2.3.1-T1",
+         "statement": "Install soil moisture, temperature and weather sensors at remote field sites, recording location, height, orientation and installation conditions.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 6.5
+        },
+        {
+         "task": "seed:fc-sensor-sidebyside",
+         "statement": "Run side-by-side checks between deployed sensors and a reference instrument or manual measurement, recording offsets for data correction",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 6.5
+        },
+        {
+         "task": "seed:v1-2.3.1-T2",
+         "statement": "Troubleshoot sensor malfunctions in the field with side-by-side checks against a reference instrument, recording each fault and fix.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.2
+        },
+        {
+         "task": "seed:fc-sensor-siting-bias",
+         "statement": "Re-site a field sensor when site evidence shows siting bias such as shading, sheltering, sediment burial or animal disturbance, recording the change",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.2
+        },
+        {
+         "task": "seed:fc-sensor-manual-visit",
+         "statement": "Decide from telemetry and field cues when a sensor site needs an unscheduled visit or manual sample, recording the trigger and the outcome",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.2.3",
+       "duty": "Assure the quality of environmental data from collection to release",
+       "pctTime": 19,
+       "tasks": [
+        {
+         "task": "seed:dc-223-apply-checks",
+         "statement": "Apply range, consistency and completeness checks to incoming field or laboratory records, flagging failures for correction before entry.",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 6.5
+        },
+        {
+         "task": "seed:dc-223-review-flags",
+         "statement": "Review automated flags on a sensor dataset against field and instrument records, accepting, correcting or rejecting each flag.",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 6.5
+        },
+        {
+         "task": "seed:v1-2.6.4-T2",
+         "statement": "Audit automated flags and corrections on a sensor or batch dataset, measuring false-flag and missed-error rates on a reviewed sample.",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 3.2
+        },
+        {
+         "task": "seed:v1-2.2.3-T2",
+         "statement": "Audit an environmental dataset on a set schedule, identifying errors and anomalies and recording each correction with its basis.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 3.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.1.3",
+       "duty": "Measure water quality and survey aquatic communities in the field",
+       "pctTime": 16,
+       "tasks": [
+        {
+         "task": "seed:v1-1.2.4-T1",
+         "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 6.5
+        },
+        {
+         "task": "seed:v1-4.1.3-T1",
+         "statement": "Measure temperature, pH, dissolved oxygen, conductivity and turbidity in place with field meters calibrated before use and checked afterward",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 6.5
+        },
+        {
+         "task": "seed:v1-4.1.3-T3",
+         "statement": "Conduct side-by-side checks between a deployed water-quality sonde and a calibrated field meter at each service visit, logging drift",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 3.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C24",
+       "duty": "Manage field sample custody and field quality control",
+       "pctTime": 8,
+       "tasks": [
+        {
+         "task": "seed:fc-coc-complete",
+         "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.2
+        },
+        {
+         "task": "seed:fc-qc-collect",
+         "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.2
+        },
+        {
+         "task": "seed:fc-qc-invalid",
+         "statement": "Report field conditions that invalidate samples, such as broken seals, temperature excursions or holding-time breaches, before results are used",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.2.1",
+       "duty": "Design and manage environmental databases",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:dc-221-data-entry",
+         "statement": "Enter field and laboratory records into a monitoring database following the data-entry rules, correcting records the database checks reject.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.2
+        },
+        {
+         "task": "seed:v1-2.2.1-T2",
+         "statement": "Query a monitoring database to answer a programme request, checking the result against known totals before release.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-04",
+       "duty": "Engineer environmental sensor-network and streaming data pipelines",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:v1-2.3.1-T3",
+         "statement": "Transfer data from field sensors into the programme's data system, checking completeness and timestamps against the deployment log.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.2
+        },
+        {
+         "task": "seed:dc-04-versioning",
+         "statement": "Version raw, flagged and corrected sensor data separately so that any released value can be traced to its raw record.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C16",
+       "duty": "Collect trace-level and genetic environmental samples without contamination",
+       "pctTime": 3,
+       "tasks": [
+        {
+         "task": "seed:fc-clean-collect",
+         "statement": "Collect trace-metal, emerging-contaminant or genetic samples using clean-hands procedures and the contaminant-free materials the method specifies",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C02",
+       "duty": "Ground-truth remote-sensed, modelled and AI-generated outputs in the field",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:fc-gt-collect-blind",
+         "statement": "Record reference observations at pre-selected validation points with the reference protocol, without access to the product's predicted value",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:FS-C04",
+       "duty": "Design and steward field reference data for Earth-observation and AI models",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:fs-c04-collect-labels",
+         "statement": "Collect labelled field samples to the reference protocol, recording the metadata that models and validators need to reuse them",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C12",
+       "duty": "Operate small boats and work safely on water in aquatic, coastal and marine field settings",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:fc-boat-operate",
+         "statement": "Operate a small motorboat for field work, completing pre-launch checks, a float plan and a passenger briefing before departure",
+         "importance": 3,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-05",
+       "duty": "Record provenance and AI involvement in work products",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:dc-05-provenance-record",
+         "statement": "Record the source, date, version, method and any AI tool used for a dataset or analysis, using the organization's provenance template.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C23",
+       "duty": "Record field observations with protocol fidelity and data integrity",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:v1-4.1.5-T2",
+         "statement": "Check location accuracy, photo documentation and required fields for each record before leaving the site, correcting errors while conditions can still be observed",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.1-A",
+       "duty": "Manage risk in uncontrolled field environments",
+       "pctTime": 1,
+       "tasks": [
+        {
+         "task": "seed:v1-4.4.1-T1",
+         "statement": "Conduct a job hazard analysis at the actual work site before field activity begins, naming each hazard present and its control",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.0
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.4-A",
+       "duty": "Work safely on hazardous, industrial and energized field sites",
+       "pctTime": 1,
+       "tasks": [
+        {
+         "task": "seed:fc-haz-hasp",
+         "statement": "Follow a site health and safety plan at a contaminated or industrial site, observing zone boundaries, air-monitoring action levels and decontamination steps",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.0
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:v1-2.3.1-T1",
+      "seed:fc-sensor-service",
+      "seed:fc-sensor-sidebyside",
+      "seed:v1-4.1.3-T3",
+      "seed:v1-2.3.1-T2",
+      "seed:v1-1.2.4-T1",
+      "seed:v1-4.1.3-T1",
+      "seed:fc-coc-complete",
+      "seed:fc-qc-collect",
+      "seed:fc-qc-invalid",
+      "seed:v1-2.3.1-T3",
+      "seed:dc-223-apply-checks",
+      "seed:dc-221-data-entry",
+      "seed:v1-4.4.1-T1",
+      "seed:fc-haz-hasp",
+      "seed:dc-05-provenance-record",
+      "seed:v1-4.1.5-T2"
+     ],
+     "criticalTasks": [
+      "seed:fc-sensor-service",
+      "seed:fc-sensor-sidebyside",
+      "seed:v1-4.1.3-T3",
+      "seed:v1-1.2.4-T1",
+      "seed:fc-coc-complete",
+      "seed:fc-qc-collect",
+      "seed:fc-qc-invalid",
+      "seed:dc-223-apply-checks",
+      "seed:dc-223-review-flags",
+      "seed:v1-2.6.4-T2",
+      "seed:fc-boat-operate",
+      "seed:v1-4.4.1-T1",
+      "seed:fc-haz-hasp"
+     ],
+     "distinguishingCompetencies": [
+      "seed:FC-C01",
+      "seed:v1-2.2.3"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:FC-C01",
+       "statement": "Knowledge of and skill in: deploy, maintain and verify field sensor networks (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:FC-C24",
+       "statement": "Knowledge of and skill in: manage field sample custody and field quality control (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-2.2.3",
+       "statement": "Knowledge of and skill in: assure the quality of environmental data from collection to release (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:DC-CAND-04",
+       "statement": "Knowledge of and skill in: engineer environmental sensor-network and streaming data pipelines (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C16",
+       "statement": "Knowledge of and skill in: collect trace-level and genetic environmental samples without contamination (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C23",
+       "statement": "Knowledge of and skill in: record field observations with protocol fidelity and data integrity (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.1.3",
+       "statement": "Knowledge of and skill in: measure water quality and survey aquatic communities in the field (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.1-A",
+       "statement": "Knowledge of and skill in: manage risk in uncontrolled field environments (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.4-A",
+       "statement": "Knowledge of and skill in: work safely on hazardous, industrial and energized field sites (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    },
+    {
+     "group": "senior and lead",
+     "indicativeBand": "GS-8 to GS-9 (senior)",
+     "roleLevels": [
+      "senior"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:FC-C01",
+       "duty": "Deploy, maintain and verify field sensor networks",
+       "pctTime": 32,
+       "tasks": [
+        {
+         "task": "seed:fc-sensor-service",
+         "statement": "Service deployed field sensors on schedule, cleaning, recalibrating or replacing components and recording each action in the service log",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 8.8
+        },
+        {
+         "task": "seed:v1-2.3.1-T1",
+         "statement": "Install soil moisture, temperature and weather sensors at remote field sites, recording location, height, orientation and installation conditions.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 6.0
+        },
+        {
+         "task": "seed:fc-sensor-sidebyside",
+         "statement": "Run side-by-side checks between deployed sensors and a reference instrument or manual measurement, recording offsets for data correction",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 6.0
+        },
+        {
+         "task": "seed:v1-2.3.1-T2",
+         "statement": "Troubleshoot sensor malfunctions in the field with side-by-side checks against a reference instrument, recording each fault and fix.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:fc-sensor-siting-bias",
+         "statement": "Re-site a field sensor when site evidence shows siting bias such as shading, sheltering, sediment burial or animal disturbance, recording the change",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:fc-sensor-manual-visit",
+         "statement": "Decide from telemetry and field cues when a sensor site needs an unscheduled visit or manual sample, recording the trigger and the outcome",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:fc-sensor-network-design",
+         "statement": "Plan sensor siting, redundancy and service intervals for a monitoring network so that data-completeness targets hold under access, weather and budget limits",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.2.3",
+       "duty": "Assure the quality of environmental data from collection to release",
+       "pctTime": 18,
+       "tasks": [
+        {
+         "task": "seed:dc-223-apply-checks",
+         "statement": "Apply range, consistency and completeness checks to incoming field or laboratory records, flagging failures for correction before entry.",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 6.0
+        },
+        {
+         "task": "seed:dc-223-review-flags",
+         "statement": "Review automated flags on a sensor dataset against field and instrument records, accepting, correcting or rejecting each flag.",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 6.0
+        },
+        {
+         "task": "seed:v1-2.6.4-T2",
+         "statement": "Audit automated flags and corrections on a sensor or batch dataset, measuring false-flag and missed-error rates on a reviewed sample.",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:v1-2.2.3-T2",
+         "statement": "Audit an environmental dataset on a set schedule, identifying errors and anomalies and recording each correction with its basis.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.1.3",
+       "duty": "Measure water quality and survey aquatic communities in the field",
+       "pctTime": 15,
+       "tasks": [
+        {
+         "task": "seed:v1-1.2.4-T1",
+         "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 6.0
+        },
+        {
+         "task": "seed:v1-4.1.3-T1",
+         "statement": "Measure temperature, pH, dissolved oxygen, conductivity and turbidity in place with field meters calibrated before use and checked afterward",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 6.0
+        },
+        {
+         "task": "seed:v1-4.1.3-T3",
+         "statement": "Conduct side-by-side checks between a deployed water-quality sonde and a calibrated field meter at each service visit, logging drift",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C24",
+       "duty": "Manage field sample custody and field quality control",
+       "pctTime": 9,
+       "tasks": [
+        {
+         "task": "seed:fc-coc-complete",
+         "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:fc-qc-collect",
+         "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:fc-qc-invalid",
+         "statement": "Report field conditions that invalidate samples, such as broken seals, temperature excursions or holding-time breaches, before results are used",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.5
+        },
+        {
+         "task": "seed:fc-qc-investigate",
+         "statement": "Investigate a field QC failure to its cause, revising the field procedure so that the failure does not recur",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-04",
+       "duty": "Engineer environmental sensor-network and streaming data pipelines",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:v1-2.3.1-T3",
+         "statement": "Transfer data from field sensors into the programme's data system, checking completeness and timestamps against the deployment log.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:dc-04-stream-qc",
+         "statement": "Configure automated quality checks and anomaly flags on a streaming sensor feed, routing flagged data to review before release.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:dc-04-versioning",
+         "statement": "Version raw, flagged and corrected sensor data separately so that any released value can be traced to its raw record.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.2.1",
+       "duty": "Design and manage environmental databases",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:dc-221-data-entry",
+         "statement": "Enter field and laboratory records into a monitoring database following the data-entry rules, correcting records the database checks reject.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:v1-2.2.1-T2",
+         "statement": "Query a monitoring database to answer a programme request, checking the result against known totals before release.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C16",
+       "duty": "Collect trace-level and genetic environmental samples without contamination",
+       "pctTime": 3,
+       "tasks": [
+        {
+         "task": "seed:fc-clean-collect",
+         "statement": "Collect trace-metal, emerging-contaminant or genetic samples using clean-hands procedures and the contaminant-free materials the method specifies",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:FS-C04",
+       "duty": "Design and steward field reference data for Earth-observation and AI models",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:fs-c04-collect-labels",
+         "statement": "Collect labelled field samples to the reference protocol, recording the metadata that models and validators need to reuse them",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C31",
+       "duty": "Calibrate field observers and run field measurement quality assurance",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:fc-qa-hot-check",
+         "statement": "Conduct hot checks alongside a crew during field work, correcting measurement or protocol errors before the crew continues",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C12",
+       "duty": "Operate small boats and work safely on water in aquatic, coastal and marine field settings",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:fc-boat-operate",
+         "statement": "Operate a small motorboat for field work, completing pre-launch checks, a float plan and a passenger briefing before departure",
+         "importance": 3,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-05",
+       "duty": "Record provenance and AI involvement in work products",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:dc-05-provenance-record",
+         "statement": "Record the source, date, version, method and any AI tool used for a dataset or analysis, using the organization's provenance template.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C23",
+       "duty": "Record field observations with protocol fidelity and data integrity",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:v1-4.1.5-T2",
+         "statement": "Check location accuracy, photo documentation and required fields for each record before leaving the site, correcting errors while conditions can still be observed",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.1-A",
+       "duty": "Manage risk in uncontrolled field environments",
+       "pctTime": 1,
+       "tasks": [
+        {
+         "task": "seed:v1-4.4.1-T1",
+         "statement": "Conduct a job hazard analysis at the actual work site before field activity begins, naming each hazard present and its control",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 0.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.4-A",
+       "duty": "Work safely on hazardous, industrial and energized field sites",
+       "pctTime": 1,
+       "tasks": [
+        {
+         "task": "seed:fc-haz-hasp",
+         "statement": "Follow a site health and safety plan at a contaminated or industrial site, observing zone boundaries, air-monitoring action levels and decontamination steps",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 0.9
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:v1-2.3.1-T1",
+      "seed:fc-sensor-service",
+      "seed:fc-sensor-sidebyside",
+      "seed:v1-4.1.3-T3",
+      "seed:v1-2.3.1-T2",
+      "seed:v1-1.2.4-T1",
+      "seed:v1-4.1.3-T1",
+      "seed:fc-coc-complete",
+      "seed:fc-qc-collect",
+      "seed:fc-qc-invalid",
+      "seed:v1-2.3.1-T3",
+      "seed:dc-223-apply-checks",
+      "seed:dc-221-data-entry",
+      "seed:v1-4.4.1-T1",
+      "seed:fc-haz-hasp",
+      "seed:dc-05-provenance-record",
+      "seed:v1-4.1.5-T2"
+     ],
+     "criticalTasks": [
+      "seed:fc-sensor-service",
+      "seed:fc-sensor-sidebyside",
+      "seed:v1-4.1.3-T3",
+      "seed:v1-1.2.4-T1",
+      "seed:fc-coc-complete",
+      "seed:fc-qc-collect",
+      "seed:fc-qc-invalid",
+      "seed:dc-223-apply-checks",
+      "seed:dc-223-review-flags",
+      "seed:v1-2.6.4-T2",
+      "seed:fc-boat-operate",
+      "seed:v1-4.4.1-T1",
+      "seed:fc-haz-hasp"
+     ],
+     "distinguishingCompetencies": [
+      "seed:FC-C01",
+      "seed:v1-2.2.3"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:FC-C01",
+       "statement": "Knowledge of and skill in: deploy, maintain and verify field sensor networks (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:FC-C24",
+       "statement": "Knowledge of and skill in: manage field sample custody and field quality control (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-2.2.3",
+       "statement": "Knowledge of and skill in: assure the quality of environmental data from collection to release (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:DC-CAND-04",
+       "statement": "Knowledge of and skill in: engineer environmental sensor-network and streaming data pipelines (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C16",
+       "statement": "Knowledge of and skill in: collect trace-level and genetic environmental samples without contamination (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C23",
+       "statement": "Knowledge of and skill in: record field observations with protocol fidelity and data integrity (EMST target senior L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.1.3",
+       "statement": "Knowledge of and skill in: measure water quality and survey aquatic communities in the field (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.1-A",
+       "statement": "Knowledge of and skill in: manage risk in uncontrolled field environments (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.4-A",
+       "statement": "Knowledge of and skill in: work safely on hazardous, industrial and energized field sites (EMST target senior L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    }
+   ],
+   "changeView": "docs/build/WP-08/generated/change_view/R03-monitoring-data-technician.json"
+  }
+ ],
+ "rolesWithoutFederalVariant": [],
+ "feederOrDestinationRoles": []
+}

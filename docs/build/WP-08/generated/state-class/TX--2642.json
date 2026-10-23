@@ -1,0 +1,320 @@
+{
+ "stamp": {
+  "ruleId": "state-class-view",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "classRecord": "seed:class/TX/2642",
+ "class": {
+  "jurisdiction": "Texas",
+  "employerType": "state-agency",
+  "agency": "Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications",
+  "classCode": "2642",
+  "classTitle": "Park Ranger III",
+  "series": "Park Ranger I-V",
+  "level": {
+   "ordinal": 3,
+   "label": "III"
+  },
+  "supervisoryStatus": "lead",
+  "specEffectiveDate": "2019-09-01",
+  "mqLocation": "agency-policy",
+  "mqParaphrase": "Same as Park Ranger I.",
+  "degreeRule": "substitutable",
+  "licensesRequired": [],
+  "pay": {
+   "basis": "annual",
+   "min": 39521,
+   "max": 64449,
+   "label": "B18",
+   "effective": "2019-09-01"
+  },
+  "specUrl": "https://hr.sao.texas.gov/Compensation/JobDescriptions/R2641.pdf",
+  "reviewBy": "2027-07-01"
+ },
+ "mappings": [
+  {
+   "roleVariant": "seed:R21-park-ranger-visitor-resource/state",
+   "role": "seed:R21-park-ranger-visitor-resource",
+   "roleTitle": "Park ranger (visitor and resource management)",
+   "tier": "P2",
+   "authorityPosition": "resource-manager",
+   "roleLevels": [
+    "journey"
+   ],
+   "matchType": "skos:closeMatch",
+   "confidence": 0.55,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-tx:R21-park-ranger-visitor-resource/state:2642",
+   "competencyTargets": [
+    {
+     "competency": "seed:v1-5.5.1",
+     "label": "Provide visitor information, orientation and safety messaging in parks and protected areas",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C29",
+     "label": "Communicate environmental and health risks under uncertainty",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-E"
+    },
+    {
+     "competency": "seed:FC-C26",
+     "label": "Assess tree risk and structural condition",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:IA-CC-02",
+     "label": "Plan and manage recreation opportunity and visitor use",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.4.1-A",
+     "label": "Manage risk in uncontrolled field environments",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.4.2",
+     "label": "Provide first aid and emergency medical care in remote field settings",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.4.5",
+     "label": "Communicate during field emergencies and report incidents",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:FC-C18",
+     "label": "Navigate and travel safely in remote terrain with and without digital aids",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C21",
+     "label": "Work alongside landowners, permittees, volunteers and communities on the land",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:IA-CC-03",
+     "label": "Assess and design for scenic resources",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:IA-CC-07",
+     "label": "Monitor and steward wilderness character",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.2.5",
+     "label": "Construct and maintain trails to sustainable design standards",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:v1-5.5.1-T1",
+     "statement": "Orient visitors at a contact station to routes, conditions, regulations and hazards matched to their plans and abilities",
+     "pctTime": 5.3,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-5.5.1-T2",
+     "statement": "Give safety information and trip recommendations tailored to current conditions and each visitor's stated plans",
+     "pctTime": 4.7,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-5.5.1-T3",
+     "statement": "Log visitor questions, incidents and concerns to identify information gaps and revise visitor messaging",
+     "pctTime": 3.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:db-5.5.1-t4",
+     "statement": "Check visitor information from automated or online sources against current site conditions before it is posted or repeated to visitors",
+     "pctTime": 3.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:IA-CC-02-T1",
+     "statement": "Assign recreation opportunity classes to a planning area from setting characteristics, access and existing use",
+     "pctTime": 3.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:IA-CC-02-T2",
+     "statement": "Estimate visitor use and capacity for a site from counts, permits and indicators of resource and social conditions",
+     "pctTime": 3.7,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-4.4.2-T1",
+     "statement": "Assess an injured or ill person in a remote location with a structured patient assessment, giving first aid within the scope of training",
+     "pctTime": 3.7,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-4.4.2-T2",
+     "statement": "Coordinate a medical evacuation from a remote site, passing patient condition, location and landing or access information to responders",
+     "pctTime": 3.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-2.3.5-T1",
+     "statement": "Test field radios and satellite devices for a work area before deployment, programming channels and confirming coverage at key locations",
+     "pctTime": 3.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-2.3.5-T2",
+     "statement": "Set the communication plan for a field operation, including check-in times, frequencies, escalation steps and overdue-person procedures",
+     "pctTime": 3.7,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:fc-tree-remote-verify",
+     "statement": "Verify remote-sensed or analytics-flagged tree risk scores on the ground, recording each override with the field reason",
+     "pctTime": 3.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:lc-txe-answer-public-questions",
+     "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
+     "pctTime": 3.7,
+     "critical": false,
+     "neededAtEntry": true
+    }
+   ],
+   "credentialGates": []
+  }
+ ]
+}

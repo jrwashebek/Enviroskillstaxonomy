@@ -1,0 +1,1077 @@
+{
+ "stamp": {
+  "ruleId": "role-change-inputs",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/change_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "role": "seed:R13-resource-program-manager",
+ "roleTitle": "Natural resource and environmental programme manager",
+ "summary": "Management role that plans and justifies programme budgets, briefs decision-makers, manages land or regulatory programme plans and agreements, tracks instrument and policy change, and protects the programme's capacity to form and keep skilled staff, including how AI tools are governed.",
+ "evidenceNotice": "Reshaping claims are agent drafts (raterType llm, validationStatus draft, evidence S). No task has a v2 multi-rater assessment yet, so every task shows 'assessment pending'. Change indicators count active signals only (ADR-0028); all linked signals are at watch, so no change indicator moves. v1 values appear only as prior-evidence pointers.",
+ "timeShareByClaim": {
+  "emerging": 0.033,
+  "new": 0.049,
+  "no reshaping claim drafted": 0.82,
+  "transforming": 0.098
+ },
+ "roleLevelChange": [
+  {
+   "kind": "transforming-role",
+   "drivers": [
+    "fiscal",
+    "workforce-capacity",
+    "demographic"
+   ],
+   "note": "The federal civilian workforce fell about 12% (Sep 2024 - Jan 2026); EPA's roughly 2,000 year-end-2025 departures had a 30.3-year median service, so knowledge continuity becomes programme work.",
+   "instruments": [],
+   "signals": [
+    {
+     "id": "seed:sig/headcount/federal-civilian-minus-12pct",
+     "label": "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
+     "signalStatus": "watch",
+     "signalFamily": "headcount",
+     "direction": "decline",
+     "drivers": [
+      "fiscal",
+      "policy-reform",
+      "workforce-capacity"
+     ],
+     "reliability": "B",
+     "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+     "evidenceLabel": "S",
+     "reviewBy": "2027-10-23"
+    },
+    {
+     "id": "seed:sig/headcount/epa-12849-jan-2026",
+     "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
+     "signalStatus": "watch",
+     "signalFamily": "headcount",
+     "direction": "decline",
+     "drivers": [
+      "fiscal",
+      "policy-reform",
+      "workforce-capacity",
+      "demographic"
+     ],
+     "reliability": "B",
+     "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
+     "evidenceLabel": "S",
+     "reviewBy": "2027-10-23"
+    }
+   ]
+  }
+ ],
+ "contextSignals": [
+  {
+   "id": "seed:sig/bls-ep-2025-35/11-9121/R13-resource-program-manager",
+   "label": "BLS projected employment change 2025-35 for Natural sciences managers (11-9121), attached to R13-resource-program-manager",
+   "signalStatus": "watch",
+   "signalFamily": "projection",
+   "direction": "grow",
+   "drivers": [
+    "other"
+   ],
+   "reliability": "A",
+   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
+   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-14-epa-ai-strategy",
+   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "new",
+   "drivers": [
+    "AI",
+    "policy-reform"
+   ],
+   "reliability": "A",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-33-gao-opm-capacity",
+   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "A",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/epa-12849-jan-2026",
+   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity",
+    "demographic"
+   ],
+   "reliability": "B",
+   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/federal-civilian-minus-12pct",
+   "label": "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/federal-under-30-share",
+   "label": "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity",
+    "demographic"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/nps-gt25pct-2024-09-to-2026-01",
+   "label": "National Park Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01",
+   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/postings/conservation-job-board-all-2025",
+   "label": "All conservation postings fell 29.4% year over year (Mar-Sep 2025, one board)",
+   "signalStatus": "watch",
+   "signalFamily": "postings-pds",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "C",
+   "sourceRelease": "National Parks Traveler 2025-11-10",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  }
+ ],
+ "changeIndicator": {
+  "active": 0,
+  "status": "no change indicator (0 active signals; ADR-0028 two-family, two-period, human-reviewed rule)"
+ },
+ "externalContext": [
+  {
+   "id": "seed:asm/external/eloundou-2024/11-9121/R13-resource-program-manager",
+   "index": "Eloundou, Manning, Mishkin, Rock - GPTs are GPTs",
+   "release": "Science 2024 replication data (GitHub snapshot read 2026-10-23); O*NET 27.x tasks",
+   "unit": "occupation",
+   "matchType": "skos:closeMatch",
+   "values": {
+    "betaGpt4": 0.531,
+    "betaGpt4Percentile": 0.808,
+    "betaHuman": 0.487,
+    "betaHumanPercentile": 0.77
+   },
+   "dispersion": {
+    "nTasks": 70.0,
+    "shareE0": 0.286,
+    "sharePhysicalTasks": 0.086
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "context only",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  },
+  {
+   "id": "seed:asm/external/ms-working-with-ai-v6/11-9121/R13-resource-program-manager",
+   "index": "Tomlinson, Jaffe, Wang, Counts, Suri - Working with AI: Measuring the Applicability of Generative AI to Occupations",
+   "release": "arXiv:2507.07935 v6 (2025-12-22); results files v1.1",
+   "unit": "occupation",
+   "matchType": "skos:closeMatch",
+   "values": {
+    "aiApplicability": 0.112,
+    "aiApplicabilityPercentile": 0.377,
+    "nonphysicalApplicability": 0.067,
+    "nonphysicalApplicabilityPercentile": 0.501
+   },
+   "dispersion": {
+    "coverageUser": 0.256,
+    "sharePhysicalTasks": 0.086
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "context only",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  }
+ ],
+ "tasks": [
+  {
+   "task": "seed:sc-prepare-budget-justification",
+   "statement": "Prepare a program budget request and justification linking each funding increment to outputs and outcomes the budget office can verify",
+   "timeShare": 0.099,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-reconcile-appropriations",
+   "statement": "Reconcile program obligations and expenditures against appropriations, agreements and fee accounts each month, flagging any use outside purpose or period",
+   "timeShare": 0.065,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-plan-funding-lapse",
+   "statement": "Prepare a continuing-resolution and funding-lapse contingency plan, ranking program activities by legal requirement and consequence of delay",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "transforming",
+     "drivers": [
+      "fiscal"
+     ],
+     "note": "Funding-lapse and rescission planning becomes recurrent.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-brief-appropriators",
+   "statement": "Brief appropriations staff or a governing board on a program budget request, answering questions with figures traceable to the justification",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-design-fee-schedule",
+   "statement": "Design a fee or cost-recovery schedule for a permit or service program within its statutory authority, documenting the cost basis for each fee",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-assess-reversal-risk",
+   "statement": "Assess the reversal risk of a program's key instruments, recording the evidence, the likely triggers and a contingency for each high-risk instrument",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "emerging",
+     "drivers": [
+      "policy-reform"
+     ],
+     "note": "Instrument reversal risk is assessed routinely.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-advise-instrument-choice",
+   "statement": "Advise leadership on the choice and timing of an instrument for a new policy, comparing the durability, speed and litigation exposure of each option",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-classify-program-instruments",
+   "statement": "Classify each instrument a program relies on by type and the process needed to change it, recording who can change it and how quickly",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-write-decision-memo",
+   "statement": "Write a decision memo for an accountable official, stating the decision required, options, evidence, risks and a recommendation within two pages",
+   "timeShare": 0.065,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "transforming",
+     "drivers": [
+      "AI"
+     ],
+     "note": "Drafting tools compress memo production; accountability stays.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-brief-decision-maker",
+   "statement": "Brief a decision-maker orally on a pending decision under time pressure, answering questions and stating where the evidence is uncertain",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-record-frank-advice",
+   "statement": "Advise an official in writing when the evidence does not support a preferred option, recording the advice given in the decision file",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-prepare-staff-report",
+   "statement": "Prepare a staff report for a governing body's public meeting, stating findings, options and the legal basis for each recommended action",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-6.4.5-T1",
+   "statement": "Track bills, ordinances and appropriations measures affecting the program, summarizing each relevant provision's effect on program operations",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/6.4.5-T1/copyB",
+      "seed:v1asm/6.4.5-T1/d6"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-6.4.5-T2",
+   "statement": "Prepare testimony or a briefing for a legislative committee or governing board, stating the program's technical position and its evidence",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/6.4.5-T2/copyB",
+      "seed:v1asm/6.4.5-T2/d6"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-write-change-notice",
+   "statement": "Write a dated change notice explaining what a new rule, guidance or court decision changes for staff, its effective dates and the work in progress it affects",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-train-on-regulatory-change",
+   "statement": "Train staff on a significant regulatory change, testing their application of the new requirement on sample cases",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-6.5.3-T1",
+   "statement": "Draft a memorandum of understanding or interagency agreement that assigns shared responsibilities, resources and decision rights for a joint program",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/6.5.3-T1/copyB",
+      "seed:v1asm/6.5.3-T1/d6"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-6.5.3-T3",
+   "statement": "Monitor an agreement's deliverables, invoices and revenue ledger against its terms, amending the agreement when scope or partners change",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/6.5.3-T3/copyB",
+      "seed:v1asm/6.5.3-T3/d6"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-6.2.3-T1",
+   "statement": "Coordinate an interdisciplinary team drafting a forest, range or refuge management plan, assigning plan components and reconciling conflicting resource objectives",
+   "timeShare": 0.065,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/6.2.3-T1/copyB",
+      "seed:v1asm/6.2.3-T1/d6"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:sc-write-plan-components",
+   "statement": "Write plan components such as desired conditions, objectives, standards and monitoring questions so that later projects can show consistency with them",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-3.1.4-T3",
+   "statement": "Review a proposed agreement for compliance with procurement, grant and cross-cutting requirements before signature, listing each deficiency and its correction",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/3.1.4-T3/copyB",
+      "seed:v1asm/3.1.4-T3/d3_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txd-identify-single-incumbent",
+   "statement": "Identify knowledge held by one or a few people in a unit by rating its criticality and its risk of loss",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "new",
+     "drivers": [
+      "demographic",
+      "workforce-capacity"
+     ],
+     "note": "Identifying single-incumbent knowledge before departures is new routine work.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txd-prepare-handover",
+   "statement": "Prepare a handover record of open commitments, contacts, site conditions and decision history for a transferred assignment",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-7.2.2-T1",
+   "statement": "Analyze a workflow to identify which entry-level tasks form judgment and which of them AI tools or automation now perform",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/7.2.2-T1/copyB",
+      "seed:v1asm/7.2.2-T1/d7_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txd-advise-ai-adoption",
+   "statement": "Advise leadership on the formation consequences of adopting an AI tool before deployment, naming the alternative formation route required",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txd-plan-field-rotations",
+   "statement": "Plan rotations and mentored field assignments that give entry staff graduated exposure to the conditions their role must handle",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-3.1.3-T3",
+   "statement": "Review project progress against the baseline at each reporting period to decide corrective actions",
+   "timeShare": 0.033,
+   "roleLevels": [
+    "senior",
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/3.1.3-T3/copyB",
+      "seed:v1asm/3.1.3-T3/d3_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-21-measures",
+   "statement": "Report data and AI value and risk measures for the organization's portfolio to executives, recommending investment and retirement decisions.",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-3.5.5-T3",
+   "statement": "Set governance rules that keep consequential AI-assisted decisions with accountable people and that weigh affected communities' input on AI priorities.",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "new",
+     "drivers": [
+      "AI",
+      "policy-reform"
+     ],
+     "note": "Programme managers set rules that keep consequential AI-assisted decisions with accountable people.",
+     "instruments": [
+      {
+       "id": "seed:ins/omb-m-25-21",
+       "label": "OMB M-25-21 Accelerating Federal Use of AI through Innovation, Governance, and Public Trust"
+      }
+     ]
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/3.5.5-T3/copyB",
+      "seed:v1asm/3.5.5-T3/d3_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-20-requirements",
+   "statement": "Write technical requirements and acceptance tests for an AI or analytics service before solicitation, tied to a local evaluation set.",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txc-design-learning-process",
+   "statement": "Design a unit learning-from-incidents process that links reporting channels, review triggers and pre-work briefing content",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txe-compare-interventions",
+   "statement": "Compare alternative interventions on a system map to identify leverage points and trade-offs for decision-makers",
+   "timeShare": 0.016,
+   "roleLevels": [
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txd-certify-qualification",
+   "statement": "Certify a candidate's qualification for a position from the completed performance record, evaluator ratings and currency evidence",
+   "timeShare": 0.01,
+   "roleLevels": [
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txf-decide-pursuit",
+   "statement": "Decide whether to pursue a funding or contract opportunity using a documented assessment of fit, capacity and competition",
+   "timeShare": 0.01,
+   "roleLevels": [
+    "lead",
+    "strategic"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  }
+ ]
+}

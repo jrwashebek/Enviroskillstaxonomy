@@ -1,0 +1,99 @@
+{
+ "stamp": {
+  "ruleId": "mirror-links",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/mirror_links.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "pairs": [
+  {
+   "subject": "seed:R12-environmental-compliance-inspector/state",
+   "object": "seed:R37-facility-environmental-compliance-specialist/private",
+   "record": "emst-x11:TR-02:R12-environmental-compliance-inspector/state:R37-facility-environmental-compliance-specialist/private",
+   "subjectPosition": "regulator",
+   "objectPosition": "regulated-party",
+   "confidence": 0.6,
+   "friction": "regulator inspector to regulated-party compliance (inverted authority position)",
+   "positionsInverted": true
+  },
+  {
+   "subject": "seed:R12-environmental-compliance-inspector/federal",
+   "object": "seed:R37-facility-environmental-compliance-specialist/private",
+   "record": "emst-x11:TR-02:R12-environmental-compliance-inspector/federal:R37-facility-environmental-compliance-specialist/private",
+   "subjectPosition": "regulator",
+   "objectPosition": "regulated-party",
+   "confidence": 0.55,
+   "friction": "regulator inspector to regulated-party compliance",
+   "positionsInverted": true
+  },
+  {
+   "subject": "seed:R27-remediation-project-manager/federal",
+   "object": "seed:R27-remediation-project-manager/private",
+   "record": "emst-x11:TR-12:R27-remediation-project-manager/federal:R27-remediation-project-manager/private",
+   "subjectPosition": "regulator",
+   "objectPosition": "service-provider",
+   "confidence": 0.6,
+   "friction": "regulator project manager to responsible-party project manager (inverted authority position)",
+   "positionsInverted": true
+  },
+  {
+   "subject": "seed:R11-environmental-permit-writer/federal",
+   "object": "EMSTpja:PJ-013",
+   "record": "emst-x11:TR-17:R11-environmental-permit-writer/federal:PJ-013",
+   "subjectPosition": "regulator",
+   "objectPosition": "external (PS reference job architecture)",
+   "confidence": 0.5,
+   "friction": "permit decision-maker to applicant-side permit preparer",
+   "positionsInverted": false
+  },
+  {
+   "subject": "seed:R11-environmental-permit-writer/state",
+   "object": "seed:R37-facility-environmental-compliance-specialist/private",
+   "record": "emst-x11:TR-24:R11-environmental-permit-writer/state:R37-facility-environmental-compliance-specialist/private",
+   "subjectPosition": "regulator",
+   "objectPosition": "regulated-party",
+   "confidence": 0.55,
+   "friction": "permit writer to regulated-party wastewater and stormwater compliance (inverted authority position)",
+   "positionsInverted": true
+  },
+  {
+   "subject": "seed:R11-environmental-permit-writer/state",
+   "object": "seed:R37-facility-environmental-compliance-specialist/private/applicant-preparer",
+   "record": "emst-x11:TR-17:R11-environmental-permit-writer/state:R37-facility-environmental-compliance-specialist/private/applicant-preparer",
+   "subjectPosition": "regulator",
+   "objectPosition": "service-provider",
+   "confidence": 0.5,
+   "friction": "permit decision-maker to applicant-side permit preparer (inverted authority position)",
+   "positionsInverted": true
+  },
+  {
+   "subject": "seed:R11-environmental-permit-writer/federal",
+   "object": "seed:R37-facility-environmental-compliance-specialist/private/applicant-preparer",
+   "record": "emst-x11:TR-17:R11-environmental-permit-writer/federal:R37-facility-environmental-compliance-specialist/private/applicant-preparer",
+   "subjectPosition": "regulator",
+   "objectPosition": "service-provider",
+   "confidence": 0.45,
+   "friction": "permit decision-maker to applicant-side permit preparer (inverted authority position)",
+   "positionsInverted": true
+  }
+ ],
+ "acceptanceChecks": [
+  {
+   "from": "R11-environmental-permit-writer",
+   "to": "R37-facility-environmental-compliance-specialist",
+   "linked": true
+  },
+  {
+   "from": "R12-environmental-compliance-inspector",
+   "to": "R37-facility-environmental-compliance-specialist",
+   "linked": true
+  },
+  {
+   "from": "R11-environmental-permit-writer",
+   "to": "R37-facility-environmental-compliance-specialist/private/applicant-preparer",
+   "linked": true
+  }
+ ],
+ "note": "Mirror pairs are agent-drafted X11 rows (review_status candidate); mobility friction fields are in X11 `other`."
+}

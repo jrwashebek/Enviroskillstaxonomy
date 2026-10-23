@@ -1,0 +1,343 @@
+{
+ "stamp": {
+  "ruleId": "state-class-view",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "classRecord": "seed:class/TX/2654",
+ "class": {
+  "jurisdiction": "Texas",
+  "employerType": "state-agency",
+  "agency": "Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications",
+  "classCode": "2654",
+  "classTitle": "Environmental Protection Specialist IV",
+  "series": "Environmental Protection Specialist I-V",
+  "level": {
+   "ordinal": 4,
+   "label": "IV"
+  },
+  "supervisoryStatus": "supervisor",
+  "specEffectiveDate": "2026-07-01",
+  "mqLocation": "agency-policy",
+  "mqParaphrase": "Same as EPS III.",
+  "degreeRule": "agency-set",
+  "licensesRequired": [
+   {
+    "credential": "specialty registration, certification or licensure",
+    "issuer": "varies by specialty",
+    "timing": "for-some-positions"
+   }
+  ],
+  "pay": {
+   "basis": "annual",
+   "min": 57614,
+   "max": 93138,
+   "label": "B22",
+   "effective": "2026-07-01"
+  },
+  "specUrl": "https://hr.sao.texas.gov/Compensation/JobDescriptions/1835.pdf",
+  "reviewBy": "2027-07-01"
+ },
+ "mappings": [
+  {
+   "roleVariant": "seed:R11-environmental-permit-writer/state",
+   "role": "seed:R11-environmental-permit-writer",
+   "roleTitle": "Environmental permit writer",
+   "tier": "P1",
+   "authorityPosition": "regulator",
+   "roleLevels": [
+    "lead"
+   ],
+   "matchType": "skos:relatedMatch",
+   "confidence": 0.35,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-tx:R11-environmental-permit-writer/state:2654",
+   "competencyTargets": [
+    {
+     "competency": "seed:SC-C16",
+     "label": "Draft enforceable, implementable binding instruments",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SL-C02",
+     "label": "Issue environmental permits and resource-use authorizations as the deciding authority",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:SC-C01",
+     "label": "Map the decision authority and procedural pathway for a proposed action",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SC-C02",
+     "label": "Build and maintain a defensible administrative record",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SC-C07",
+     "label": "Negotiate permit conditions, mitigation and agreements using interest-based methods",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SC-C12",
+     "label": "Track regulatory change and translate it into operating guidance",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SC-C14",
+     "label": "Operate within, or oversee, delegated and assumed regulatory programs",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-5.5.2",
+     "label": "Process permit applications and administer issued authorizations",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C29",
+     "label": "Communicate environmental and health risks under uncertainty",
+     "targetLevels": {
+      "lead": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-E"
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:PS-C18",
+     "label": "Maintain independence and manage conflicts of interest across the regulator-regulated boundary",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-B"
+    },
+    {
+     "competency": "seed:SL-C10",
+     "label": "Provide compliance and technical assistance to regulated entities and local governments",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-7.1.3",
+     "label": "Maintain the integrity of regulatory and scientific findings under institutional pressure",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-B"
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:SC-C17",
+     "label": "Assess litigation exposure and design decisions for resilience on remand",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:sc-draft-permit-fact-sheet",
+     "statement": "Draft a permit and its fact sheet so that each condition is measurable, enforceable and traceable to its legal or technical basis",
+     "pctTime": 12.9,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-derive-permit-limits",
+     "statement": "Derive permit limits and conditions from the applicable technical standards and the facility's technical record, documenting the calculation basis for each limit",
+     "pctTime": 12.5,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-check-permit-completeness",
+     "statement": "Review a permit application for administrative and technical completeness, issuing a deficiency notice that lists each missing element and its basis",
+     "pctTime": 8.6,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-review-ai-drafted-permit",
+     "statement": "Review an AI-drafted permit or fact sheet against the application record and permit template, correcting each condition that lacks a traceable basis",
+     "pctTime": 8.6,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:sc-respond-permit-comments",
+     "statement": "Respond to public comments on a draft permit, revising conditions where a comment shows an error and explaining each decision in the response document",
+     "pctTime": 4.3,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-6.4.2-T1",
+     "statement": "Write policy or instrument language that states each obligation, obligated party, deadline and verification method so that compliance can be determined",
+     "pctTime": 4.3,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:sc-test-terms-scenarios",
+     "statement": "Test draft permit conditions or agreement terms against compliance-verification and legal-challenge scenarios, recording each term revised and why",
+     "pctTime": 4.3,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-6.1.3-T2",
+     "statement": "Review a project proposal to identify every authorization, consultation and review it triggers, recording the governing procedure version for each",
+     "pctTime": 4.3,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-negotiate-permit-conditions",
+     "statement": "Negotiate permit conditions or mitigation with an applicant, generating options that meet the governing requirements and recording the agreed terms",
+     "pctTime": 4.3,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:sc-review-automated-permit-checks",
+     "statement": "Review automated eligibility and completeness checks on electronic permit applications, correcting misclassified applications before decisions are issued",
+     "pctTime": 4.3,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-5.5.2-T3",
+     "statement": "Maintain permit records and electronic case files, tracking holders' reporting and expiry dates and referring missed conditions for follow-up",
+     "pctTime": 4.3,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-verify-ai-draft-instrument",
+     "statement": "Verify each term of an AI-generated first draft of an instrument against the governing authority and record before the draft enters review",
+     "pctTime": 2.2,
+     "critical": false,
+     "neededAtEntry": false
+    }
+   ],
+   "credentialGates": [
+    {
+     "credential": "seed:crd-professional-engineer",
+     "label": "Professional Engineer (PE), incl. Environmental and Civil (Water Resources) exams",
+     "kind": "preferred"
+    }
+   ]
+  }
+ ]
+}

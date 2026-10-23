@@ -62,3 +62,8 @@ Sixteen durable mechanisms joined to dated instruments keep competencies from go
   - **Driver events (§3).** They gain `submitted-for-review`, a vocabulary for `statusAfter` (incl. `under-review`) and the instrument type `agency-order`.
   - **Targets.** An occupation is not a target type: occupation-grain signals attach through X3. Government organizations may be targets; Tribal ones never may (V3).
   - **Rule and lane.** The evidence rule is registered as `vocab/rules/change-indicator@1.0.0.yaml`. The WP-10 write lane is ratified.
+
+- **2026-10-23 — CR-SC-001 / ADR-0030 §1.4 (CA).**
+  - **§3:** a link from an enactment or role variant to an Instrument carries a role (`vocab/driver_mechanisms.yaml#instrument_link_roles`). The role belongs to the link, not to the instrument, because one rule can require one actor's work and remove another's (LM).
+  - `DriverEvent.actingInstrument` names the instrument that caused an event. Revoked and revoking instruments stay separate records.
+  - Tasks may carry sensitivity edges, but only task-specific ones: inherited edges are computed.

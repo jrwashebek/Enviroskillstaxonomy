@@ -1,0 +1,986 @@
+{
+ "stamp": {
+  "ruleId": "role-change-inputs",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/change_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "role": "seed:R01-conservation-corps-member",
+ "roleTitle": "Conservation corps member",
+ "summary": "Entry field role that builds and maintains trails, restoration and erosion-control treatments and invasive-species control on public and private lands, working in supervised crews under safety protocols. It is the first formation step for field craft and feeds agency technician roles.",
+ "evidenceNotice": "Reshaping claims are agent drafts (raterType llm, validationStatus draft, evidence S). No task has a v2 multi-rater assessment yet, so every task shows 'assessment pending'. Change indicators count active signals only (ADR-0028); all linked signals are at watch, so no change indicator moves. v1 values appear only as prior-evidence pointers.",
+ "timeShareByClaim": {
+  "no reshaping claim drafted": 0.841,
+  "stable": 0.085,
+  "transforming": 0.074
+ },
+ "roleLevelChange": [
+  {
+   "kind": "entry-path-at-risk",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "note": "Corps capacity depends on grant funding: the 2025 terminations were largely reinstated in plaintiff jurisdictions and the 2026 settlement covers FY2026 only; one job board saw corps postings fall.",
+   "instruments": [
+    {
+     "id": "seed:ins/americorps-grant-terminations",
+     "label": "AmeriCorps FY2025 grant terminations, injunction and 2026 settlement"
+    }
+   ],
+   "signals": [
+    {
+     "id": "seed:sig/postings/conservation-job-board-americorps-2025",
+     "label": "AmeriCorps conservation positions posted fell 42% year over year (Mar-Sep 2025, one board)",
+     "signalStatus": "watch",
+     "signalFamily": "postings-pds",
+     "direction": "decline",
+     "drivers": [
+      "fiscal",
+      "policy-reform"
+     ],
+     "reliability": "C",
+     "sourceRelease": "National Parks Traveler 2025-11-10",
+     "evidenceLabel": "S",
+     "reviewBy": "2027-10-23"
+    },
+    {
+     "id": "seed:sig/bls-ep-2025-35/45-4011/R01-conservation-corps-member",
+     "label": "BLS projected employment change 2025-35 for Forest and conservation workers (45-4011), attached to R01-conservation-corps-member",
+     "signalStatus": "watch",
+     "signalFamily": "projection",
+     "direction": "decline",
+     "drivers": [
+      "other"
+     ],
+     "reliability": "A",
+     "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+     "evidenceLabel": "S",
+     "reviewBy": "2027-10-23"
+    }
+   ]
+  }
+ ],
+ "contextSignals": [
+  {
+   "id": "seed:sig/bls-ep-2025-35/45-4011/R01-conservation-corps-member",
+   "label": "BLS projected employment change 2025-35 for Forest and conservation workers (45-4011), attached to R01-conservation-corps-member",
+   "signalStatus": "watch",
+   "signalFamily": "projection",
+   "direction": "decline",
+   "drivers": [
+    "other"
+   ],
+   "reliability": "A",
+   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
+   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-14-epa-ai-strategy",
+   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "new",
+   "drivers": [
+    "AI",
+    "policy-reform"
+   ],
+   "reliability": "A",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-33-gao-opm-capacity",
+   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "A",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/epa-12849-jan-2026",
+   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity",
+    "demographic"
+   ],
+   "reliability": "B",
+   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/federal-civilian-minus-12pct",
+   "label": "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/federal-under-30-share",
+   "label": "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity",
+    "demographic"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/nps-gt25pct-2024-09-to-2026-01",
+   "label": "National Park Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01",
+   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/postings/conservation-job-board-all-2025",
+   "label": "All conservation postings fell 29.4% year over year (Mar-Sep 2025, one board)",
+   "signalStatus": "watch",
+   "signalFamily": "postings-pds",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "C",
+   "sourceRelease": "National Parks Traveler 2025-11-10",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/postings/conservation-job-board-americorps-2025",
+   "label": "AmeriCorps conservation positions posted fell 42% year over year (Mar-Sep 2025, one board)",
+   "signalStatus": "watch",
+   "signalFamily": "postings-pds",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "C",
+   "sourceRelease": "National Parks Traveler 2025-11-10",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  }
+ ],
+ "changeIndicator": {
+  "active": 0,
+  "status": "no change indicator (0 active signals; ADR-0028 two-family, two-period, human-reviewed rule)"
+ },
+ "externalContext": [
+  {
+   "id": "seed:asm/external/eloundou-2024/45-4011/R01-conservation-corps-member",
+   "index": "Eloundou, Manning, Mishkin, Rock - GPTs are GPTs",
+   "release": "Science 2024 replication data (GitHub snapshot read 2026-10-23); O*NET 27.x tasks",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "betaGpt4": 0.043,
+    "betaGpt4Percentile": 0.101,
+    "betaHuman": 0.065,
+    "betaHumanPercentile": 0.171
+   },
+   "dispersion": {
+    "nTasks": 21.0,
+    "shareE0": 0.905,
+    "sharePhysicalTasks": 0.824
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  },
+  {
+   "id": "seed:asm/external/ms-working-with-ai-v6/45-4011/R01-conservation-corps-member",
+   "index": "Tomlinson, Jaffe, Wang, Counts, Suri - Working with AI: Measuring the Applicability of Generative AI to Occupations",
+   "release": "arXiv:2507.07935 v6 (2025-12-22); results files v1.1",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "aiApplicability": 0.074,
+    "aiApplicabilityPercentile": 0.217,
+    "nonphysicalApplicability": 0.043,
+    "nonphysicalApplicabilityPercentile": 0.387
+   },
+   "dispersion": {
+    "coverageUser": 0.155,
+    "sharePhysicalTasks": 0.824
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  }
+ ],
+ "tasks": [
+  {
+   "task": "seed:v1-4.2.1-T1",
+   "statement": "Install native plantings and seedings to the treatment specification, selecting microsites and handling stock so that it survives transplanting",
+   "timeShare": 0.089,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.2.1-T1/copyB",
+      "seed:v1asm/4.2.1-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-resto-lowtech",
+   "statement": "Build low-tech process-based structures such as beaver dam analogues or post-assisted log structures, placing each from field reading of flow and channel form",
+   "timeShare": 0.057,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.2.1-T2",
+   "statement": "Operate seed drills, tree planters or mulch blowers to the treatment specification, calibrating application rates before each unit",
+   "timeShare": 0.028,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.2.1-T2/copyB",
+      "seed:v1asm/4.2.1-T2/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.7.4-T2",
+   "statement": "Build wildlife habitat features such as brush piles, nest structures and pollinator plantings to the design specification for the target species",
+   "timeShare": 0.028,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.7.4-T2/copyB",
+      "seed:v1asm/4.7.4-T2/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.2.2-T1",
+   "statement": "Treat invasive plants by mechanical, chemical or biological methods to the treatment prescription, protecting non-target vegetation and water",
+   "timeShare": 0.085,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.2.2-T1/copyB",
+      "seed:v1asm/4.2.2-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-edrr-survey",
+   "statement": "Survey high-risk pathways such as trailheads, boat launches and road corridors for new invasive species, recording absences as well as detections",
+   "timeShare": 0.028,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": true,
+   "change": [
+    {
+     "kind": "transforming",
+     "drivers": [
+      "sensing-tech",
+      "AI"
+     ],
+     "note": "Imagery and environmental DNA detections increasingly nominate survey locations; field confirmation and treatment stay with the crew.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.2.4-T1",
+   "statement": "Install check dams, wattles or silt fences to the specification, keying and anchoring each so that flow cannot undercut or bypass it",
+   "timeShare": 0.057,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.2.4-T1/copyB",
+      "seed:v1asm/4.2.4-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.2.4-T3",
+   "statement": "Inspect erosion controls after storm events, repairing or redesigning any that failed and recording the failure mode",
+   "timeShare": 0.028,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.2.4-T3/copyB",
+      "seed:v1asm/4.2.4-T3/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.2.5-T1",
+   "statement": "Construct trail tread to the design grade, outslope and width from a flagged alignment, reading soils and drainage along the segment",
+   "timeShare": 0.085,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [
+    {
+     "kind": "stable",
+     "drivers": [
+      "fiscal"
+     ],
+     "note": "Hand-built trail work is not compressed by current tools; demand follows maintenance funding.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.2.5-T1/copyB",
+      "seed:v1asm/4.2.5-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.2.5-T2",
+   "statement": "Maintain existing trails by clearing drainage structures, brushing corridors and repairing tread before damage spreads",
+   "timeShare": 0.085,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.2.5-T2/copyB",
+      "seed:v1asm/4.2.5-T2/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.2.5-T3",
+   "statement": "Build rock structures such as steps, retaining walls or armored crossings to the specification, selecting and setting stone found on site",
+   "timeShare": 0.028,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.2.5-T3/copyB",
+      "seed:v1asm/4.2.5-T3/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.5.1-T1",
+   "statement": "Use hand tools such as grubbing hoes, axes, crosscut saws and shovels for vegetation, trail and restoration work with safe spacing and body position",
+   "timeShare": 0.085,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.5.1-T1/copyB",
+      "seed:v1asm/4.5.1-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.5.1-T2",
+   "statement": "Restore dull or damaged hand tools to safe working condition by sharpening, rehafting or replacing parts to the tool standard",
+   "timeShare": 0.028,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.5.1-T2/copyB",
+      "seed:v1asm/4.5.1-T2/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-crosscut",
+   "statement": "Cut downed or standing trees with a crosscut saw, sizing up binds, lean and escape routes before each cut",
+   "timeShare": 0.028,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.5.2-T1",
+   "statement": "Fell trees with a chainsaw within the operator's certification limits, planning the face cut, hinge and escape route from the tree's size-up",
+   "timeShare": 0.057,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.5.2-T1/copyB",
+      "seed:v1asm/4.5.2-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-saw-preuse",
+   "statement": "Inspect a chainsaw before use for chain brake, chain catcher, throttle lock and chain condition, removing a defective saw from service",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-saw-buck-limb",
+   "statement": "Cut downed and suspended trees into sections with a chainsaw, reading binds and spring poles before each cut",
+   "timeShare": 0.043,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.4.1-T1",
+   "statement": "Conduct a job hazard analysis at the actual work site before field activity begins, naming each hazard present and its control",
+   "timeShare": 0.023,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [
+    {
+     "kind": "transforming",
+     "drivers": [
+      "AI"
+     ],
+     "note": "Template and AI-drafted hazard analyses are becoming common; the crew task shifts to checking them against the actual site before work.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.4.1-T1/copyB",
+      "seed:v1asm/4.4.1-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-risk-stopwork",
+   "statement": "Stop field work when hazards change beyond the controls in the job hazard analysis, re-briefing the crew before work resumes",
+   "timeShare": 0.009,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-risk-heat-recognize",
+   "statement": "Recognize early heat illness or smoke exposure symptoms in crew members, removing affected people from exposure and starting care",
+   "timeShare": 0.009,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.4.2-T1",
+   "statement": "Assess an injured or ill person in a remote location with a structured patient assessment, giving first aid within the scope of training",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.4.2-T1/copyB",
+      "seed:v1asm/4.4.2-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.4.5-T1",
+   "statement": "Communicate an emergency to dispatch by radio, satellite device or beacon, giving location, nature of the emergency and resources needed in the required format",
+   "timeShare": 0.009,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.4.5-T1/copyB",
+      "seed:v1asm/4.4.5-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.5.3-T3",
+   "statement": "Inspect a field vehicle before each trip for tires, fluids, lights, recovery gear and load security, reporting defects before departure",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.5.3-T3/copyB",
+      "seed:v1asm/4.5.3-T3/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.4.3-T2",
+   "statement": "Navigate off trail to a remote plot or site by map and compass, using satellite positioning as a check rather than the only means",
+   "timeShare": 0.023,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.4.3-T2/copyB",
+      "seed:v1asm/4.4.3-T2/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-bio-decon",
+   "statement": "Decontaminate boots, gear, boats and vehicles between field sites with the protocol's method and contact time for the target organisms",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.1.5-T1",
+   "statement": "Record field observations on a mobile form or paper data sheet at the time of observation, completing every protocol field and metadata element",
+   "timeShare": 0.023,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "transforming",
+     "drivers": [
+      "sensing-tech"
+     ],
+     "note": "Mobile forms replace paper records; completeness rules move into the form, judgment about what to record stays with the observer.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.1.5-T1/copyB",
+      "seed:v1asm/4.1.5-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txc-report-near-miss",
+   "statement": "Report near misses and unsafe conditions through the unit's reporting channel during the shift in which they occur",
+   "timeShare": 0.006,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-01-interpret-product",
+   "statement": "Interpret an environmental map, chart or monitoring summary before using it in a decision, stating what was measured, where, when and at what resolution.",
+   "timeShare": 0.006,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-txa-field-check",
+   "statement": "Verify an AI-generated field product, such as a condition map or drafted inspection note, against observations made at the site before it is relied on",
+   "timeShare": 0.006,
+   "roleLevels": [
+    "entry"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  }
+ ]
+}

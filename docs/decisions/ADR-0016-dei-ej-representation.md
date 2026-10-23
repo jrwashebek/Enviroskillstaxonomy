@@ -40,3 +40,11 @@
 - **AS** and others note renaming can be read as capitulation; mitigated by the uniform rule and visible aliases.
 - **FH** preferred stored applicability flags; adopted as a computed field instead (stays correct when instruments change).
 - **Trade-off named:** federal adoptability and sector completeness are both kept, at the cost of an instrument registry that must be maintained quarterly (P-SC-14).
+
+## Amendments
+
+- **2026-10-23 — CR-SC-001 / ADR-0030 §1.4 (CA).** §3–§4 are implemented by `vocab/rules/venue-applicability@1.0.0.yaml`.
+  - Instrument links carry a role (`requires`, `enables`, `constrains`, `removed-requirement`), and **only `requires` links decide** the value.
+  - A revoking order or a rescission rule is linked as `removed-requirement`. It can neither create a basis nor flip a value back.
+  - "Items whose only basis is a rescinded or inactive federal instrument" means items whose every `requires` link is inactive. Those compute `no-current-basis`.
+  - Q4's default still applies: the value is shown with a note, and nothing is excluded.

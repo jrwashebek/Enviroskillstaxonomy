@@ -150,7 +150,7 @@ for (const f of files) {
     }
     stats.v1Drawers += (html.match(/data-v1-drawer/g) || []).length;
     const outsideDrawers = textOf(removeElementsWith(html, "data-v1-drawer"));
-    for (const k of ["Automation type:", "Career-ladder position:", "Tacit knowledge density:", "Horizon: "]) if (outsideDrawers.includes(k)) fail(f, "D2", `v1 code "${k}" outside the evidence drawer`);
+    for (const k of ["v1 automation type:", "v1 career-ladder position:", "v1 tacit knowledge density:", "v1 horizon:", "v1 vector:"]) if (outsideDrawers.includes(k)) fail(f, "D2", `v1 code "${k}" outside the evidence drawer`);
     for (const d of elementsWith(html, "data-v1-drawer")) if (!d.body.includes("v1 single-analyst prior, LLM-assisted, unvalidated")) fail(f, "D2", "v1 drawer without the v1_prior label");
     const visible = textOf(html);
     const policyFree = textOf(removeElementsWith(html, "data-emst-policy"));

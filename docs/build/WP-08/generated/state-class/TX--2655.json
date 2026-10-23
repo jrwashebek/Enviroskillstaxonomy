@@ -1,0 +1,687 @@
+{
+ "stamp": {
+  "ruleId": "state-class-view",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "classRecord": "seed:class/TX/2655",
+ "class": {
+  "jurisdiction": "Texas",
+  "employerType": "state-agency",
+  "agency": "Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications",
+  "classCode": "2655",
+  "classTitle": "Environmental Protection Specialist V",
+  "series": "Environmental Protection Specialist I-V",
+  "level": {
+   "ordinal": 5,
+   "label": "V"
+  },
+  "supervisoryStatus": "supervisor",
+  "specEffectiveDate": "2026-07-01",
+  "mqLocation": "agency-policy",
+  "mqParaphrase": "Same as EPS III.",
+  "degreeRule": "agency-set",
+  "licensesRequired": [
+   {
+    "credential": "specialty registration, certification or licensure",
+    "issuer": "varies by specialty",
+    "timing": "for-some-positions"
+   }
+  ],
+  "pay": {
+   "basis": "annual",
+   "min": 69572,
+   "max": 114099,
+   "label": "B25",
+   "effective": "2026-07-01"
+  },
+  "specUrl": "https://hr.sao.texas.gov/Compensation/JobDescriptions/1835.pdf",
+  "reviewBy": "2027-07-01"
+ },
+ "mappings": [
+  {
+   "roleVariant": "seed:R28-air-quality-specialist/state",
+   "role": "seed:R28-air-quality-specialist",
+   "roleTitle": "Air quality specialist",
+   "tier": "P2",
+   "authorityPosition": "regulator",
+   "roleLevels": [
+    "lead"
+   ],
+   "matchType": "skos:broadMatch",
+   "confidence": 0.45,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-tx:R28-air-quality-specialist/state:2655",
+   "competencyTargets": [
+    {
+     "competency": "seed:DB-C14",
+     "label": "Build emissions inventories and air quality models for attainment planning",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SL-C02",
+     "label": "Issue environmental permits and resource-use authorizations as the deciding authority",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C13",
+     "label": "Operate ambient air monitoring networks to regulatory quality-assurance criteria",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C29",
+     "label": "Communicate environmental and health risks under uncertainty",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-E"
+    },
+    {
+     "competency": "seed:SC-C14",
+     "label": "Operate within, or oversee, delegated and assumed regulatory programs",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SL-C03",
+     "label": "Conduct regulatory compliance inspections",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C15",
+     "label": "Plan smoke management for prescribed and managed fire within air quality requirements",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C52",
+     "label": "Analyze cumulative burdens and distributional effects of environmental decisions",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-12",
+     "label": "Build, run and validate environmental forecast and scenario systems",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:PS-C09",
+     "label": "Build organizational and jurisdictional greenhouse gas inventories for disclosure and reporting",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SL-C04",
+     "label": "Develop and resolve environmental enforcement cases",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:DB-C14-T1",
+     "statement": "Compile a point, area, mobile and natural source emissions inventory for a planning year with documented methods and activity data",
+     "pctTime": 5.5,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C14-T2",
+     "statement": "Run a photochemical model for an attainment demonstration under an approved modelling protocol, documenting model performance against monitored data",
+     "pctTime": 4.5,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:ena-sl-c02-air-t1",
+     "statement": "Determine whether a proposed modification at a stationary source triggers major new source review from emissions increases and netting",
+     "pctTime": 4.5,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:ena-sl-c02-air-t2",
+     "statement": "Draft operating permit conditions for a major stationary air source with monitoring sufficient to show compliance with each applicable requirement",
+     "pctTime": 4.5,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C14-T3",
+     "statement": "Review a permit applicant's dispersion modelling analysis against the agreed protocol and guidance before accepting its conclusions",
+     "pctTime": 3.6,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C14-T4",
+     "statement": "Check emissions estimates generated automatically from activity or sensor data against source tests and inventory methods before inclusion",
+     "pctTime": 3.6,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:ena-sl-c02-air-t3",
+     "statement": "Review a control technology determination submitted with an air permit application against comparable sources and cost criteria",
+     "pctTime": 3.6,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:ena-sl-c02-air-t4",
+     "statement": "Check permit conditions drafted from a template or AI tool against the source's applicable requirements before public notice",
+     "pctTime": 3.6,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C13-T1",
+     "statement": "Audit a regulatory air monitor's flow and gas calibration against transfer standards following the quality assurance project plan",
+     "pctTime": 3.6,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C13-T2",
+     "statement": "Validate a quarter's ambient monitoring data against quality-assurance criteria, flagging or invalidating values before data certification",
+     "pctTime": 3.6,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-6.1.2-T1",
+     "statement": "Inspect a permitted facility or site against its permit conditions and applicable rules, recording observations, measurements and samples as evidence",
+     "pctTime": 3.6,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:ena-sl-c03-air-t1",
+     "statement": "Read visible emissions from a stationary source following the certified opacity-observation method, recording each reading and observation condition",
+     "pctTime": 3.6,
+     "critical": false,
+     "neededAtEntry": true
+    }
+   ],
+   "credentialGates": [
+    {
+     "credential": "seed:crd-epa-method-9-visible-emissions-observer-certific",
+     "label": "EPA Method 9 visible emissions observer certification",
+     "kind": "preferred"
+    }
+   ]
+  },
+  {
+   "roleVariant": "seed:R13-resource-program-manager/state",
+   "role": "seed:R13-resource-program-manager",
+   "roleTitle": "Natural resource and environmental programme manager",
+   "tier": "P1",
+   "authorityPosition": "regulator",
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "matchType": "skos:relatedMatch",
+   "confidence": 0.3,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-tx:R13-resource-program-manager/state:2655",
+   "competencyTargets": [
+    {
+     "competency": "seed:SC-C10",
+     "label": "Formulate, justify and execute public budgets across appropriations cycles",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L4"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SC-C18",
+     "label": "Brief decision-makers and elected officials for authoritative decisions",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L4"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-21",
+     "label": "Govern enterprise environmental data and AI portfolios",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FH-C07",
+     "label": "Elicit, document and transfer tacit and institutional knowledge before people leave",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-D"
+    },
+    {
+     "competency": "seed:PS-C03",
+     "label": "Deliver environmental projects to budget, schedule and quality",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-F"
+    },
+    {
+     "competency": "seed:SC-C08",
+     "label": "Design and administer cross-jurisdictional stewardship agreements",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SC-C11",
+     "label": "Assess the durability and reversal risk of policy choices and time actions to policy windows",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-3.1.4",
+     "label": "Administer contracts, grants and intergovernmental agreements",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-6.2.3",
+     "label": "Prepare and revise management plans for publicly held lands",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-7.2.2",
+     "label": "Design developmental work experiences that preserve the formation of professional judgment",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-D"
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "senior": "L2",
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "senior": "L2",
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-14",
+     "label": "Design human-in-the-loop review for AI-assisted environmental workflows",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-20",
+     "label": "Specify, evaluate and accept AI and analytics services in procurement",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:IO-C01",
+     "label": "Evaluate and certify others' task performance against position standards",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L4"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-D"
+    },
+    {
+     "competency": "seed:PS-C02",
+     "label": "Develop proposals and grant applications for environmental work",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-F"
+    },
+    {
+     "competency": "seed:SC-C12",
+     "label": "Track regulatory change and translate it into operating guidance",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.8.5-A",
+     "label": "Apply systems thinking across ecological, institutional and technical systems",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-E"
+    },
+    {
+     "competency": "seed:v1-4.4.1-B",
+     "label": "Apply safety practices and stop-work authority across field, facility and incident settings",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L4"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-C"
+    },
+    {
+     "competency": "seed:v1-6.4.5",
+     "label": "Navigate legislative and governing-body processes for environmental programs",
+     "targetLevels": {
+      "senior": "L3",
+      "lead": "L4"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "senior": "L2",
+      "lead": "L2"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "senior": "L2",
+      "lead": "L2"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:sc-prepare-budget-justification",
+     "statement": "Prepare a program budget request and justification linking each funding increment to outputs and outcomes the budget office can verify",
+     "pctTime": 10.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-reconcile-appropriations",
+     "statement": "Reconcile program obligations and expenditures against appropriations, agreements and fee accounts each month, flagging any use outside purpose or period",
+     "pctTime": 6.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-write-decision-memo",
+     "statement": "Write a decision memo for an accountable official, stating the decision required, options, evidence, risks and a recommendation within two pages",
+     "pctTime": 6.7,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-6.2.3-T1",
+     "statement": "Coordinate an interdisciplinary team drafting a forest, range or refuge management plan, assigning plan components and reconciling conflicting resource objectives",
+     "pctTime": 6.7,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:sc-plan-funding-lapse",
+     "statement": "Prepare a continuing-resolution and funding-lapse contingency plan, ranking program activities by legal requirement and consequence of delay",
+     "pctTime": 3.4,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:sc-brief-appropriators",
+     "statement": "Brief appropriations staff or a governing board on a program budget request, answering questions with figures traceable to the justification",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:sc-assess-reversal-risk",
+     "statement": "Assess the reversal risk of a program's key instruments, recording the evidence, the likely triggers and a contingency for each high-risk instrument",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:sc-brief-decision-maker",
+     "statement": "Brief a decision-maker orally on a pending decision under time pressure, answering questions and stating where the evidence is uncertain",
+     "pctTime": 3.4,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-prepare-staff-report",
+     "statement": "Prepare a staff report for a governing body's public meeting, stating findings, options and the legal basis for each recommended action",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-6.4.5-T1",
+     "statement": "Track bills, ordinances and appropriations measures affecting the program, summarizing each relevant provision's effect on program operations",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-write-change-notice",
+     "statement": "Write a dated change notice explaining what a new rule, guidance or court decision changes for staff, its effective dates and the work in progress it affects",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-6.5.3-T1",
+     "statement": "Draft a memorandum of understanding or interagency agreement that assigns shared responsibilities, resources and decision rights for a joint program",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": false
+    }
+   ],
+   "credentialGates": []
+  }
+ ]
+}

@@ -327,6 +327,17 @@ Checklist additions: role seed-key warning and AUTHORING_GUIDE (§11) · SSSOM 1
    - Expect 0 new errors. `docs/decisions/integration/s1_integration_review.py` then reports 175 core competencies (164 releasable plus 11 held).
 5. **`counts@1.0.0#coreCompetencies`:** add the G-9 range check to the release self-check for `--profile release` builds whose `--version` is `2.0.0-rc.1` or later, not `-dev` or the `rc.0` test fixtures. Fail when `coreCompetencies` plus held core is above 180 or below 120. Report the held part only as a count. For other builds, print the value with the range as `I-CORE-SIZE`.
 
+6. **`docs/standard/AUTHORING_GUIDE.md`** (your file). Add:
+   - typed instrument links, with one example per role;
+   - task edges only when they are task-specific;
+   - `mirrors[]` on the authority side;
+   - `Enactment.subsectors` and `delegatedConstraints`;
+   - `formationProvisions` and `cloOutcomes` on pathways;
+   - the CLO rule (enactment variants never in `levels[]`);
+   - planned role references;
+   - the three-module exception register (rows by the CA only);
+   - the S1 builder freeze (ADR-0030 §5).
+
 Checklist additions:
 - schema rebuilt, `v_closureType` current;
 - `v_instrumentLinkRole`, `v_mirrorRelation` and `v_formationResponse` generated;
@@ -346,4 +357,5 @@ Checklist additions:
 - task moves (§18.3);
 - merges (§18.4);
 - G-9 release check (§18.5);
+- AUTHORING_GUIDE (§18.6);
 - `SCHEMA_VERSION` set to 2.0.0-draft.3.

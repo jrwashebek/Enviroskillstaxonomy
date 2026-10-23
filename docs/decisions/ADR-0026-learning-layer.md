@@ -33,3 +33,10 @@ A pathway is the gap between a verified current profile and a target role profil
 - **FC vs LC on simulation and VR:** simulation is right for rare events; it does not replace graduated field exposure for perceptual and situated skills.
 - **DC/PS vs tools layer:** learners and employers hire on tool names; tool modules are first-class *learning* objects with expiry dates and tool-agnostic competency credit (LC disagreement 4).
 - **Granularity vs usability:** CLOs are many (≈ competencies × trainable levels); bundles carry usability as computed views rather than a new stored level.
+
+## Amendments
+
+- **2026-10-23 — CR-LC-001 / ADR-0030 §1.5 (CA).**
+  - **§1:** the CLO is the indicators listed in `Competency.levels[Lx].indicators`. It is craft-neutral. Enactment indicator variants extend it only inside the enactment, and each CLO has a derived IRI (SPEC §12.3).
+  - **§4:** pathways are pinned with `emstRelease`. **LC-PW-06** (AI and data-practice baseline) is the first computed **Bundle** (TX-A floor CLOs at L1, plus TX-D formation design for supervisors), not a Pathway. **LC-PW-01** is `seed:lc-pw-cor3-compliance-inspector-onboarding` (state inspector variant).
+  - **§6 R7:** formation provisions are typed (`formationProvisions[]` with `responses[]` from `vocab/friction_types.yaml#formation_responses`), and `formationCoverage` is computed from them.

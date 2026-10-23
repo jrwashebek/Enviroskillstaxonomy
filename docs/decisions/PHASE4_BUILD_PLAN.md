@@ -77,7 +77,7 @@ Critical path: WP-01 → WP-02 → (WP-03…WP-07) → WP-08 → WP-12 → WP-14
 
 - **Inputs:** SC, SL, FH, PS candidate rows with core targets; D6 rows of `v1_disposition.csv`; ADR-0007 (enactments), ADR-0016, ADR-0017, ADR-0028; V2 key facts.
 - **Outputs:** core competencies for review (SL-C08, SC-C03, SC-C04, SC-C09, DB-C50, DB-C52, FH-C01), authorization (SL-C02 with regulator and resource-manager variants, SC-C01, SC-C14, 5.5.2), inspection and enforcement (SL-C03, SL-C04, SL-C10, DB-C25, DB-C26), rules and resources (SC-C10, SC-C11, SC-C12, SC-C16, SC-C17, SC-C18, 6.4.5, 6.4.3), agreements (SC-C08, 3.1.4), TX-B (7.1.2, 7.1.3, PS-C18, SL-C16); structured actor enactments (authority basis, principals, delegated constraints); sensitivity edges from tasks to L5 instruments; regulation-neutral text with versions in L5.
-- **Acceptance:** no instrument named in L1/L2 text; every regulatory competency has regulator and regulated-party mirror links where they exist; `venueApplicability` computes from instrument status for the DEI/EJ-sensitive items (ADR-0016) on test fixtures; SC-C13 and every Tribal enactment stay held.
+- **Acceptance:** no instrument named in L1/L2 text; every regulatory competency has regulator and regulated-party mirror links where they exist (`Competency.mirrors[]` on the authority side, migrated in S2; ADR-0030); `venueApplicability` computes from the status of typed `requires` links (`venue-applicability@1.0.0`; ADR-0030) for the DEI/EJ-sensitive items (ADR-0016) on test fixtures; SC-C13 and every Tribal enactment stay held.
 
 ### WP-06 Wave-1 module editorial sections (owner A6 DB; FC, DC, SC enactments)
 
@@ -95,6 +95,7 @@ Critical path: WP-01 → WP-02 → (WP-03…WP-07) → WP-08 → WP-12 → WP-14
 
 - **Inputs:** `mvp_role_set.csv`; ADR-0006, ADR-0017; FH `opm_series_register.csv`; SL `state_classification_sample.csv` and minimal common fields; PS reference job architecture; outputs of WP-03…WP-07.
 - **Outputs:** 37 `RoleProfile` records with `RoleVariant`s (authority position, sector actor, industry, ownership, delivery model, sign-off authority); P1 at full depth (15–40 tasks with importance and time share, critical and needed-at-entry flags, 6–12 critical competencies with target levels by role level, all variants, change view); P2 at starter-kit depth; P3 with lifecycle, `reviewBy` and named counter-signal; P4 draft; generators for the Federal Series Profile and the State Class View; dated OPM series register (status incl. `proposed-realignment`); job families computed for navigation.
+- **S2 work orders (amended 2026-10-23, ADR-0030 §4–§6):** cross-lane content from CR-FC-001, CR-FC-002 and CR-DB-001, the SC/DB/LM instrument-role edits, and the 21 unauthored releasable core rows are written inside WP-08 by the agents named in `docs/decisions/integration/s2_work_orders.csv`: rows needed by P1 roles in S2, the rest by the end of S3; anything unauthored at WP-16 is deferred to rc.2 and counted. The S1 builders (`docs/build/WP-03…WP-07`) are frozen: `data/v2/` records are the source of truth. `RoleVariant.instruments[]` are typed `{instrument, role}`. No net-new core competency without a CA offset (headroom after the ADR-0030 merges: 5).
 - **Acceptance:** every role validates; mirror roles linked (R11 ↔ R37 ↔ applicant variant; R12 ↔ R37); each generated Federal Series Profile carries the "not a classification basis / not a job analysis / not for RIF or rating decisions" disclaimer; series proposed for realignment are never shown as realigned; Tribal variants held; no role profile carries personal data.
 
 ### WP-09 Crosswalks X1–X12 (owner A2 IA; FH, SL, LC, PS, DC co-own named sets)
@@ -121,6 +122,7 @@ Critical path: WP-01 → WP-02 → (WP-03…WP-07) → WP-08 → WP-12 → WP-14
 
 - **Inputs:** ADR-0012, ADR-0027; CP MVP design; outputs of WP-08 and WP-10.
 - **Outputs:** Tier 1 static, local-first explorer with View 1 Role Change, View 2 Gap check (local-only), View 3 Pathways (exploratory), View 4 What's coming, for the 13 P1 roles; Federal Series Profile and State Class View pages; evidence drawer showing v1 values only as prior evidence; accessibility conformance report (WCAG 2.2 AA); security packet (applicability statement, SBOM, SSDF mapping, signed release).
+- **Display rules (amended 2026-10-23, ADR-0030 §6):** `federalApplicability`/`venueApplicability` only from `views/venue_applicability.json` (`venue-applicability@1.0.0`), with "basis not yet linked" and "basis linked, status not yet verified" labels; generic CLOs, with enactment anchors behind an enactment filter; `employer-mandated` credentials labelled "Required by employer or agency policy"; mirrors from the computed `mirroredBy`; LLM craft passes as "assessment pending"; held items as counts only.
 - **Acceptance:** no network request carries user-entered data; no personal data stored server-side; axe/Lighthouse accessibility checks pass at AA; every figure shows its use tier and evidence label; "assessment pending" shown where no v2 multi-rater assessment exists; claims-hygiene lint passes.
 
 ### WP-13 Governance, pilot and adoption documents (owner A10 AS with CM; TN gate procedures)
@@ -150,7 +152,7 @@ Critical path: WP-01 → WP-02 → (WP-03…WP-07) → WP-08 → WP-12 → WP-14
 ## 5. Release gate for 2.0.0-rc.1
 
 1. CI green on schema, cross-record rules, typing and indicator lint, Tribal hold, personal data, computed-field and v1-completeness checks.
-2. Core size within the ADR-0003 G-9 range of 120–180 competencies (practice, knowledge areas and transversal), generated by CI; the planning estimate from the dispositions is about 169 published plus 11 held (180, the top of the range), so any net-new core competency needs an offsetting merge approved by the CA, and further consolidation of D3 and D5 items is preferred to growth.
+2. Core size within the ADR-0003 G-9 range of 120–180 competencies (practice, knowledge areas and transversal, held items included), generated by CI and checked by the release self-check (ADR-0030 §3.1: S1 projection 180, 175 after five merges of unauthored v1 seeds); the planning estimate from the dispositions is about 169 published plus 11 held (180, the top of the range), so any net-new core competency needs an offsetting merge approved by the CA, and further consolidation of D3 and D5 items is preferred to growth.
 3. Every published element shows its use tier; nothing is `select`; every displayed tag meets the α gate or is hidden.
 4. All wave-1 module sections present; wave-2 and wave-3 content absent except the early drafts named in the dispositions.
 5. 37 role profiles at their tier depth; Federal Series Profile and State Class View generated for every federal and state variant in P1–P2.

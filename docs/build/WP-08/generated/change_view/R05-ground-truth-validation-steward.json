@@ -1,0 +1,918 @@
+{
+ "stamp": {
+  "ruleId": "role-change-inputs",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/change_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "role": "seed:R05-ground-truth-validation-steward",
+ "roleTitle": "Ground-truth and validation steward",
+ "summary": "Emerging role that designs and stewards field reference data and validation samples for remote, modelled and AI-generated products, codes the field causes of mismatch, calibrates observers and states whether a product is fit for a stated use.",
+ "evidenceNotice": "Reshaping claims are agent drafts (raterType llm, validationStatus draft, evidence S). No task has a v2 multi-rater assessment yet, so every task shows 'assessment pending'. Change indicators count active signals only (ADR-0028); all linked signals are at watch, so no change indicator moves. v1 values appear only as prior-evidence pointers.",
+ "timeShareByClaim": {
+  "emerging": 0.099,
+  "new": 0.102,
+  "no reshaping claim drafted": 0.765,
+  "transforming": 0.034
+ },
+ "roleLevelChange": [
+  {
+   "kind": "new-role",
+   "drivers": [
+    "AI",
+    "sensing-tech"
+   ],
+   "note": "Validation of remote and AI products is forming as a distinct responsibility; no dedicated federal series exists (X4 NoTermFound).",
+   "instruments": [],
+   "signals": [
+    {
+     "id": "seed:sig/bls-ep-2025-35/19-4042/R05-ground-truth-validation-steward",
+     "label": "BLS projected employment change 2025-35 for Environmental science and protection technicians, including health (19-4042), attached to R05-ground-truth-validation-steward",
+     "signalStatus": "watch",
+     "signalFamily": "projection",
+     "direction": "grow",
+     "drivers": [
+      "other"
+     ],
+     "reliability": "A",
+     "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+     "evidenceLabel": "S",
+     "reviewBy": "2027-10-23"
+    }
+   ]
+  }
+ ],
+ "contextSignals": [
+  {
+   "id": "seed:sig/bls-ep-2025-35/15-1299/R05-ground-truth-validation-steward",
+   "label": "BLS projected employment change 2025-35 for Computer occupations, all other (15-1299), attached to R05-ground-truth-validation-steward",
+   "signalStatus": "watch",
+   "signalFamily": "projection",
+   "direction": "grow",
+   "drivers": [
+    "other"
+   ],
+   "reliability": "A",
+   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/bls-ep-2025-35/19-4042/R05-ground-truth-validation-steward",
+   "label": "BLS projected employment change 2025-35 for Environmental science and protection technicians, including health (19-4042), attached to R05-ground-truth-validation-steward",
+   "signalStatus": "watch",
+   "signalFamily": "projection",
+   "direction": "grow",
+   "drivers": [
+    "other"
+   ],
+   "reliability": "A",
+   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
+   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-14-epa-ai-strategy",
+   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "new",
+   "drivers": [
+    "AI",
+    "policy-reform"
+   ],
+   "reliability": "A",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-33-gao-opm-capacity",
+   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "A",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/epa-12849-jan-2026",
+   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity",
+    "demographic"
+   ],
+   "reliability": "B",
+   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/federal-civilian-minus-12pct",
+   "label": "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/federal-under-30-share",
+   "label": "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity",
+    "demographic"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/nps-gt25pct-2024-09-to-2026-01",
+   "label": "National Park Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01",
+   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/omb-ai-inventory-2025/water-hydrology",
+   "label": "AI in water and hydrology monitoring and modelling: registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI",
+    "sensing-tech"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/openlmp/monitoring-share-2012-vs-1982",
+   "label": "Monitoring requirements as a share of plan components: 2012-rule vs 1982-rule land management plans",
+   "signalStatus": "watch",
+   "signalFamily": "plan-requirements",
+   "direction": "grow",
+   "drivers": [
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/openlmp/term-remote-sensing-lidar-drone-2012-vs-1982",
+   "label": "Remote sensing, LiDAR and drone mentions in plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
+   "signalStatus": "watch",
+   "signalFamily": "plan-requirements",
+   "direction": "grow",
+   "drivers": [
+    "sensing-tech",
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/postings/conservation-job-board-all-2025",
+   "label": "All conservation postings fell 29.4% year over year (Mar-Sep 2025, one board)",
+   "signalStatus": "watch",
+   "signalFamily": "postings-pds",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "C",
+   "sourceRelease": "National Parks Traveler 2025-11-10",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  }
+ ],
+ "changeIndicator": {
+  "active": 0,
+  "status": "no change indicator (0 active signals; ADR-0028 two-family, two-period, human-reviewed rule)"
+ },
+ "externalContext": [
+  {
+   "id": "seed:asm/external/eloundou-2024/19-4042/R05-ground-truth-validation-steward",
+   "index": "Eloundou, Manning, Mishkin, Rock - GPTs are GPTs",
+   "release": "Science 2024 replication data (GitHub snapshot read 2026-10-23); O*NET 27.x tasks",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "betaGpt4": 0.456,
+    "betaGpt4Percentile": 0.64,
+    "betaHuman": 0.422,
+    "betaHumanPercentile": 0.68
+   },
+   "dispersion": {
+    "nTasks": 26.0,
+    "shareE0": 0.423,
+    "sharePhysicalTasks": 0.4
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  },
+  {
+   "id": "seed:asm/external/eloundou-2024/19-4071/R05-ground-truth-validation-steward",
+   "index": "Eloundou, Manning, Mishkin, Rock - GPTs are GPTs",
+   "release": "Science 2024 replication data (GitHub snapshot read 2026-10-23); O*NET 27.x tasks",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "betaGpt4": 0.327,
+    "betaGpt4Percentile": 0.46,
+    "betaHuman": 0.327,
+    "betaHumanPercentile": 0.529
+   },
+   "dispersion": {
+    "nTasks": 21.0,
+    "shareE0": 0.429,
+    "sharePhysicalTasks": 0.55
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  },
+  {
+   "id": "seed:asm/external/ms-working-with-ai-v6/19-4042/R05-ground-truth-validation-steward",
+   "index": "Tomlinson, Jaffe, Wang, Counts, Suri - Working with AI: Measuring the Applicability of Generative AI to Occupations",
+   "release": "arXiv:2507.07935 v6 (2025-12-22); results files v1.1",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "aiApplicability": 0.154,
+    "aiApplicabilityPercentile": 0.535,
+    "nonphysicalApplicability": 0.082,
+    "nonphysicalApplicabilityPercentile": 0.569
+   },
+   "dispersion": {
+    "coverageUser": 0.356,
+    "sharePhysicalTasks": 0.4
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  },
+  {
+   "id": "seed:asm/external/ms-working-with-ai-v6/19-4071/R05-ground-truth-validation-steward",
+   "index": "Tomlinson, Jaffe, Wang, Counts, Suri - Working with AI: Measuring the Applicability of Generative AI to Occupations",
+   "release": "arXiv:2507.07935 v6 (2025-12-22); results files v1.1",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "aiApplicability": 0.032,
+    "aiApplicabilityPercentile": 0.064,
+    "nonphysicalApplicability": 0.034,
+    "nonphysicalApplicabilityPercentile": 0.325
+   },
+   "dispersion": {
+    "coverageUser": 0.099,
+    "sharePhysicalTasks": 0.55
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  }
+ ],
+ "tasks": [
+  {
+   "task": "seed:fc-gt-design-sample",
+   "statement": "Design a field validation sample with an analyst, setting strata, sample size and access limits for a remote-sensed or AI product",
+   "timeShare": 0.068,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-gt-collect-blind",
+   "statement": "Record reference observations at pre-selected validation points with the reference protocol, without access to the product's predicted value",
+   "timeShare": 0.099,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [
+    {
+     "kind": "emerging",
+     "drivers": [
+      "AI",
+      "sensing-tech"
+     ],
+     "note": "Blind reference collection grows with product use.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-gt-mismatch",
+   "statement": "Code the likely field cause of each mismatch between a remote product and field observation, such as timing, mixed pixels, hidden understory or location error",
+   "timeShare": 0.068,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-gt-fitness",
+   "statement": "Decide from field validation evidence whether a remote or AI product is fit for a stated management or regulatory use, documenting its limits",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "senior"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-gt-calibration-plots",
+   "statement": "Decide where field calibration plots are still needed for a lidar or imagery-based inventory, targeting conditions where remote estimates fail",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-gt-feedback",
+   "statement": "Report field-coded mismatches to the product's analyst or provider with photos and locations so that the model can be corrected",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fs-c04-plan-reference",
+   "statement": "Plan a regional network of field reference plots and labelled samples that covers the conditions where models must be tested",
+   "timeShare": 0.068,
+   "roleLevels": [
+    "senior"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "new",
+     "drivers": [
+      "AI"
+     ],
+     "note": "Regional reference networks for Earth-observation models are new.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fs-c04-collect-labels",
+   "statement": "Collect labelled field samples to the reference protocol, recording the metadata that models and validators need to reuse them",
+   "timeShare": 0.068,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fs-c04-relabel",
+   "statement": "Relabel reference records when a field revisit shows land change or an original labelling error, versioning the dataset and recording the reason",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fs-c04-maintain",
+   "statement": "Maintain a reference dataset's versions, provenance and access conditions so that each label can be traced to its field observation",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fs-c04-generalize-sensitive",
+   "statement": "Generalize the locations of sensitive species and sites in a reference dataset before sharing, following the dataset's access conditions",
+   "timeShare": 0.017,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fs-c04-regional-validation",
+   "statement": "Validate a model against regional reference data, reporting fitness for use by region, condition and season with stated uncertainty",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-qa-blind-check",
+   "statement": "Re-measure a random sample of crew plots blind to the original data, recording differences for comparison against measurement-quality tolerances",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-qa-calibration-session",
+   "statement": "Run an observer calibration session on reference plots, comparing each observer's calls with the reference observer's",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-qa-agreement",
+   "statement": "Compute agreement between observers or assessors against stated tolerances, identifying the measurements and observers that fall outside them",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-det-review",
+   "statement": "Review classifier-labelled camera, acoustic or genetic detections in a program queue, accepting, rejecting or escalating each against the recording",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "transforming",
+     "drivers": [
+      "AI"
+     ],
+     "note": "Review queues for classifier detections replace manual screening.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-det-error-rates",
+   "statement": "Estimate false-positive and false-negative rates of an automated detector on a verified local validation set, reporting rates by species",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-det-implausible",
+   "statement": "Reject automated detections that are implausible for the place, season or habitat, stating the ecological reason for each rejection",
+   "timeShare": 0.017,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-13-sample-validate",
+   "statement": "Validate a large batch of AI detections or comment codes by drawing a defined sample, reviewing it and estimating the batch error rate.",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-09-independent-validation",
+   "statement": "Validate a model against independent evidence with spatially or temporally blocked hold-outs or field reference data, reporting error by condition.",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-15-label-reference",
+   "statement": "Label items for a reference set following written guidelines without seeing tool outputs, flagging ambiguous items for adjudication.",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "new",
+     "drivers": [
+      "AI"
+     ],
+     "note": "Labelling reference sets blind to tool outputs is new work.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-15-build-set",
+   "statement": "Build a representative reference set for an environmental task with a sampling frame, labelling guide and a double-labelled subset with agreement statistics.",
+   "timeShare": 0.017,
+   "roleLevels": [
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-03-sample-design",
+   "statement": "Design the sampling frame, allocation and sample size for a monitoring programme, documenting the inference each design choice supports.",
+   "timeShare": 0.017,
+   "roleLevels": [
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-1.4.3-T2",
+   "statement": "Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database",
+   "timeShare": 0.017,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/1.4.3-T2/copyB",
+      "seed:v1asm/1.4.3-T2/d1_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.1.1-T1",
+   "statement": "Establish vegetation monitoring plots to protocol and record species composition, cover and density within the program's measurement-quality objectives",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.1.1-T1/copyB",
+      "seed:v1asm/4.1.1-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-veg-validate-remote",
+   "statement": "Compare remote-sensed vegetation cover estimates with plot data across strata, coding the field cause of each disagreement for the analyst",
+   "timeShare": 0.034,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  }
+ ]
+}

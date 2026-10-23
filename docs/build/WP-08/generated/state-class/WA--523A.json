@@ -1,0 +1,715 @@
+{
+ "stamp": {
+  "ruleId": "state-class-view",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "classRecord": "seed:class/WA/523A",
+ "class": {
+  "jurisdiction": "Washington",
+  "employerType": "state-agency",
+  "agency": "Statewide classified service (Office of Financial Management State HR)",
+  "classCode": "523A",
+  "classTitle": "Natural Resource Specialist 6",
+  "series": "Natural Resource Specialist 1-6",
+  "level": {
+   "ordinal": 6,
+   "label": "6"
+  },
+  "supervisoryStatus": "manager",
+  "specEffectiveDate": "2025-07-01",
+  "mqLocation": "spec",
+  "mqParaphrase": "Desirable: bachelor's in listed fields plus 5 years incl. 1 year senior; year-for-year substitution.",
+  "degreeRule": "substitutable",
+  "licensesRequired": [],
+  "pay": {
+   "basis": "monthly",
+   "min": null,
+   "max": null,
+   "label": "Range 66",
+   "effective": "2025-07-01"
+  },
+  "specUrl": "https://ofm.wa.gov/hr-policies/compensation-job-classes/job-classes-salaries/listing/specifications/5876",
+  "reviewBy": "2027-07-01"
+ },
+ "mappings": [
+  {
+   "roleVariant": "seed:R06-wildland-fire-operations/state",
+   "role": "seed:R06-wildland-fire-operations",
+   "roleTitle": "Wildland fire operations (crew to supervisor)",
+   "tier": "P1",
+   "authorityPosition": "resource-manager",
+   "roleLevels": [
+    "lead"
+   ],
+   "matchType": "skos:relatedMatch",
+   "confidence": 0.35,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-wa:R06-wildland-fire-operations/state:523A",
+   "competencyTargets": [
+    {
+     "competency": "seed:v1-4.3.1",
+     "label": "Suppress wildland fire safely with ground tactics and resources",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.4.1-A",
+     "label": "Manage risk in uncontrolled field environments",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.5.2",
+     "label": "Operate chainsaws and other power equipment safely in field conditions",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C18",
+     "label": "Navigate and travel safely in remote terrain with and without digital aids",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C20",
+     "label": "Lead field crews and transfer field judgment to novices",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.3.4",
+     "label": "Predict fire behaviour from fuels, weather and topography for operations and planning",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.4.1-B",
+     "label": "Apply safety practices and stop-work authority across field, facility and incident settings",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-C"
+    },
+    {
+     "competency": "seed:v1-4.4.2",
+     "label": "Provide first aid and emergency medical care in remote field settings",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.4.5",
+     "label": "Communicate during field emergencies and report incidents",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.5.1",
+     "label": "Use and maintain hand tools safely for field work",
+     "targetLevels": {
+      "lead": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:FC-C26",
+     "label": "Assess tree risk and structural condition",
+     "targetLevels": {
+      "lead": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:IO-C01",
+     "label": "Evaluate and certify others' task performance against position standards",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-D"
+    },
+    {
+     "competency": "seed:v1-4.3.2",
+     "label": "Conduct prescribed fire from burn planning through ignition, holding and evaluation",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.5.3-A",
+     "label": "Drive and operate field vehicles safely on unpaved roads and off road",
+     "targetLevels": {
+      "lead": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C29",
+     "label": "Communicate environmental and health risks under uncertainty",
+     "targetLevels": {
+      "lead": "L2"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-E"
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:v1-4.5.5",
+     "label": "Maintain and repair field equipment and vehicles",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:v1-4.3.1-T2",
+     "statement": "Execute a firing operation that removes fuel between the control line and the fire under the firing boss's direction",
+     "pctTime": 8.3,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:db-4.3.1-t4",
+     "statement": "Size up a new fire's fuels, weather, topography and values at risk to recommend initial attack tactics",
+     "pctTime": 8.3,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:db-4.3.1-t5",
+     "statement": "Direct a crew's tactical assignment, adjusting tactics when observed fire behaviour or weather departs from the briefing",
+     "pctTime": 8.3,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:fc-lead-field-day",
+     "statement": "Lead a small crew through a field day, matching tasks to skill and checking novice work early and often",
+     "pctTime": 8.3,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-4.3.4-T3",
+     "statement": "Brief incident personnel on expected fire behaviour and weather trends, highlighting watch-out situations for each division",
+     "pctTime": 4.2,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:db-4.3.4-t4",
+     "statement": "Compare modelled fire behaviour with observed behaviour during an incident, adjusting predictions and recording each discrepancy",
+     "pctTime": 4.2,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:fc-saw-preuse",
+     "statement": "Inspect a chainsaw before use for chain brake, chain catcher, throttle lock and chain condition, removing a defective saw from service",
+     "pctTime": 4.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-risk-briefing",
+     "statement": "Brief a field crew on the day's site hazards, escape routes, safety zones and communication plan before work begins",
+     "pctTime": 4.2,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-4.5.3-T2",
+     "statement": "Drive a four-wheel-drive vehicle on unpaved and off-road routes, selecting gear, speed and line for mud, sand, snow, rock and water crossings",
+     "pctTime": 4.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-tree-worksite",
+     "statement": "Assess hazard trees around a field work site or crew area before work starts, flagging trees that need removal or an exclusion zone",
+     "pctTime": 4.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-lead-readiness",
+     "statement": "Decide whether a novice is ready for independent field work from observed performance against stated criteria, recording the sign-off",
+     "pctTime": 4.2,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:fc-lead-aar",
+     "statement": "Run an after-action review with the crew at the end of a field operation, recording what happened, why and what will change",
+     "pctTime": 4.2,
+     "critical": false,
+     "neededAtEntry": false
+    }
+   ],
+   "credentialGates": [
+    {
+     "credential": "seed:crd-wildland-fire-position-qualification",
+     "label": "Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
+     "kind": "required"
+    }
+   ]
+  },
+  {
+   "roleVariant": "seed:R13-resource-program-manager/state",
+   "role": "seed:R13-resource-program-manager",
+   "roleTitle": "Natural resource and environmental programme manager",
+   "tier": "P1",
+   "authorityPosition": "regulator",
+   "roleLevels": [
+    "lead"
+   ],
+   "matchType": "skos:relatedMatch",
+   "confidence": 0.4,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-wa:R13-resource-program-manager/state:523A",
+   "competencyTargets": [
+    {
+     "competency": "seed:SC-C10",
+     "label": "Formulate, justify and execute public budgets across appropriations cycles",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SC-C18",
+     "label": "Brief decision-makers and elected officials for authoritative decisions",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-21",
+     "label": "Govern enterprise environmental data and AI portfolios",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FH-C07",
+     "label": "Elicit, document and transfer tacit and institutional knowledge before people leave",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-D"
+    },
+    {
+     "competency": "seed:PS-C03",
+     "label": "Deliver environmental projects to budget, schedule and quality",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-F"
+    },
+    {
+     "competency": "seed:SC-C08",
+     "label": "Design and administer cross-jurisdictional stewardship agreements",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SC-C11",
+     "label": "Assess the durability and reversal risk of policy choices and time actions to policy windows",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-3.1.4",
+     "label": "Administer contracts, grants and intergovernmental agreements",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-6.2.3",
+     "label": "Prepare and revise management plans for publicly held lands",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-7.2.2",
+     "label": "Design developmental work experiences that preserve the formation of professional judgment",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-D"
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-14",
+     "label": "Design human-in-the-loop review for AI-assisted environmental workflows",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-20",
+     "label": "Specify, evaluate and accept AI and analytics services in procurement",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:IO-C01",
+     "label": "Evaluate and certify others' task performance against position standards",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-D"
+    },
+    {
+     "competency": "seed:PS-C02",
+     "label": "Develop proposals and grant applications for environmental work",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-F"
+    },
+    {
+     "competency": "seed:SC-C12",
+     "label": "Track regulatory change and translate it into operating guidance",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.8.5-A",
+     "label": "Apply systems thinking across ecological, institutional and technical systems",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-E"
+    },
+    {
+     "competency": "seed:v1-4.4.1-B",
+     "label": "Apply safety practices and stop-work authority across field, facility and incident settings",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-C"
+    },
+    {
+     "competency": "seed:v1-6.4.5",
+     "label": "Navigate legislative and governing-body processes for environmental programs",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "lead": "L2"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "lead": "L2"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:sc-prepare-budget-justification",
+     "statement": "Prepare a program budget request and justification linking each funding increment to outputs and outcomes the budget office can verify",
+     "pctTime": 10.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-reconcile-appropriations",
+     "statement": "Reconcile program obligations and expenditures against appropriations, agreements and fee accounts each month, flagging any use outside purpose or period",
+     "pctTime": 6.7,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-write-decision-memo",
+     "statement": "Write a decision memo for an accountable official, stating the decision required, options, evidence, risks and a recommendation within two pages",
+     "pctTime": 6.7,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-6.2.3-T1",
+     "statement": "Coordinate an interdisciplinary team drafting a forest, range or refuge management plan, assigning plan components and reconciling conflicting resource objectives",
+     "pctTime": 6.7,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:sc-plan-funding-lapse",
+     "statement": "Prepare a continuing-resolution and funding-lapse contingency plan, ranking program activities by legal requirement and consequence of delay",
+     "pctTime": 3.4,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:sc-brief-appropriators",
+     "statement": "Brief appropriations staff or a governing board on a program budget request, answering questions with figures traceable to the justification",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:sc-assess-reversal-risk",
+     "statement": "Assess the reversal risk of a program's key instruments, recording the evidence, the likely triggers and a contingency for each high-risk instrument",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:sc-brief-decision-maker",
+     "statement": "Brief a decision-maker orally on a pending decision under time pressure, answering questions and stating where the evidence is uncertain",
+     "pctTime": 3.4,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-prepare-staff-report",
+     "statement": "Prepare a staff report for a governing body's public meeting, stating findings, options and the legal basis for each recommended action",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-6.4.5-T1",
+     "statement": "Track bills, ordinances and appropriations measures affecting the program, summarizing each relevant provision's effect on program operations",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-write-change-notice",
+     "statement": "Write a dated change notice explaining what a new rule, guidance or court decision changes for staff, its effective dates and the work in progress it affects",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-6.5.3-T1",
+     "statement": "Draft a memorandum of understanding or interagency agreement that assigns shared responsibilities, resources and decision rights for a joint program",
+     "pctTime": 3.4,
+     "critical": false,
+     "neededAtEntry": false
+    }
+   ],
+   "credentialGates": []
+  }
+ ]
+}

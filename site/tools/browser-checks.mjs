@@ -119,7 +119,8 @@ try {
       const det = f.locator("xpath=ancestor::details[1]");
       if (await det.count()) await det.evaluate((d) => { d.open = true; });
       const radios = f.locator('[data-role="self"] input[type=radio]');
-      await radios.nth(i % 2 === 0 ? 0 : 1).check();
+      const rid = await radios.nth(i % 2 === 0 ? 0 : 1).getAttribute("id");
+      await page.locator(`label[for="${rid}"]`).click();          // USWDS radios: the label is the visible control
       const aim = f.locator('[data-role="aim"]');
       if (await aim.count()) await aim.selectOption({ index: (await aim.locator("option").count()) - 1 });
     }
@@ -139,7 +140,11 @@ try {
     const restored = await page.locator('input[type=radio][name^="self-"]:checked').count();
     const noteBack = await fs.nth(0).locator('[data-role="note"]').inputValue();
     const storage = await page.evaluate(() => ({ cookie: document.cookie, local: (() => { try { return localStorage.length; } catch { return -1; } })(), session: (() => { try { return sessionStorage.length; } catch { return -1; } })() }));
-    const after = reqs.slice(atLoad).filter((r) => !r.url.startsWith("blob:") && !r.url.startsWith("data:"));
+    // Requests after load are allowed only as same-origin GETs of static assets (e.g. a CSS icon fetched lazily when a
+    // control first renders); none may carry a body or any user-entered text.
+    const after = reqs.slice(atLoad).filter((r) => !r.url.startsWith("blob:") && !r.url.startsWith("data:"))
+      .filter((r) => !(r.url.startsWith(ORIGIN + "/assets/") && !r.post));
+    report.lazyAssetRequests = reqs.slice(atLoad).filter((r) => r.url.startsWith(ORIGIN + "/assets/")).map((r) => r.url.slice(ORIGIN.length));
     const leaked = reqs.filter((r) => r.url.includes(SENTINEL) || r.post.includes(SENTINEL));
     report.gapCheck = {
       page: gapUrl, rated: n, requestsAtLoad: atLoad, requestsAfterLoad: after.map((r) => r.url), sentinelInRequests: leaked.length,

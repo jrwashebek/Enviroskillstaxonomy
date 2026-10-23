@@ -59,3 +59,7 @@ The build agents chose reversible interim encodings and filed CRs, as ADR-0009 a
 - **DE:** an enumeration in an existing file is less discoverable than a dedicated `l5_registry.yaml`. Accepted cost: each list carries a comment naming its schema field, and moving lists into new files can be revisited at the next schema MINOR together with the generator test.
 - **IO:** gating Task.workFunction thins View 1 until the first reliability study. The CA accepts that over showing an unmeasured classification as fact (ADR-0017).
 - **LM:** listing every active independence key is extra stewardship. It is the only way "no single vendor" can be enforced rather than assumed.
+
+## Amendments
+
+- **2026-10-23 — CR-DE-004 / ADR-0030 §1.1 (CA).** §1 (CR-DE-001), item 3 now reads: no `validationStatus: seed-v1` on `candidate`, `published` or `deprecated` records, nor on `superseded` or `withdrawn` records that carry a minted `emst:` ID. Seed-keyed v1 stubs that are `superseded` or `withdrawn` keep `seed-v1`. The 118 migration stubs remain valid and the migration output is unchanged.

@@ -241,11 +241,11 @@ export function buildModel({ root, releaseDir, meta }) {
       id: a.id, assessedAt: a.assessedAt || "", source: a.method || "", confidence: a.confidence || "low",
       flags: a.v1Flags || [], stale: stale.get(a.id) === true,
       values: [
-        vals.auto_type && ["Automation type", `${vals.auto_type} (${V1_AUTO[vals.auto_type] || "?"})`],
-        vals.tacit_density && ["Tacit knowledge density", vals.tacit_density],
-        vals.career_ladder && ["Career-ladder position", `${vals.career_ladder} (${V1_CAREER[vals.career_ladder] || "?"})`],
-        vals.vector && ["Vector", `${vals.vector} (${V1_VECTOR[vals.vector] || "?"})`],
-        vals.horizon && ["Horizon", `${vals.horizon} (${V1_HORIZON[vals.horizon] || "?"})`],
+        vals.auto_type && ["v1 automation type", `${vals.auto_type} (${V1_AUTO[vals.auto_type] || "?"})`],
+        vals.tacit_density && ["v1 tacit knowledge density", vals.tacit_density],
+        vals.career_ladder && ["v1 career-ladder position", `${vals.career_ladder} (${V1_CAREER[vals.career_ladder] || "?"})`],
+        vals.vector && ["v1 vector", `${vals.vector} (${V1_VECTOR[vals.vector] || "?"})`],
+        vals.horizon && ["v1 horizon", `${vals.horizon} (${V1_HORIZON[vals.horizon] || "?"})`],
       ].filter(Boolean),
       autoType: vals.auto_type || null,
     };

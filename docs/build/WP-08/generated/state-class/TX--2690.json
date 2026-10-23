@@ -1,0 +1,420 @@
+{
+ "stamp": {
+  "ruleId": "state-class-view",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "classRecord": "seed:class/TX/2690",
+ "class": {
+  "jurisdiction": "Texas",
+  "employerType": "state-agency",
+  "agency": "Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications",
+  "classCode": "2690",
+  "classTitle": "Fish and Wildlife Technician III",
+  "series": "Fish and Wildlife Technician I-III",
+  "level": {
+   "ordinal": 3,
+   "label": "III"
+  },
+  "supervisoryStatus": "lead",
+  "specEffectiveDate": "2025-09-01",
+  "mqLocation": "agency-policy",
+  "mqParaphrase": "Same as FWT I.",
+  "degreeRule": "substitutable",
+  "licensesRequired": [
+   {
+    "credential": "driver licence",
+    "issuer": "state of residence",
+    "timing": "for-some-positions"
+   }
+  ],
+  "pay": {
+   "basis": "annual",
+   "min": 45521,
+   "max": 71055,
+   "label": "A18",
+   "effective": "2025-09-01"
+  },
+  "specUrl": "https://hr.sao.texas.gov/Compensation/JobDescriptions/1865.pdf",
+  "reviewBy": "2027-07-01"
+ },
+ "mappings": [
+  {
+   "roleVariant": "seed:R02-field-resource-technician/state",
+   "role": "seed:R02-field-resource-technician",
+   "roleTitle": "Field resource technician",
+   "tier": "P1",
+   "authorityPosition": "resource-manager",
+   "roleLevels": [
+    "journey"
+   ],
+   "matchType": "skos:closeMatch",
+   "confidence": 0.5,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-tx:R02-field-resource-technician/state:2690",
+   "competencyTargets": [
+    {
+     "competency": "seed:FC-C23",
+     "label": "Record field observations with protocol fidelity and data integrity",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.4.3",
+     "label": "Identify organisms from field characters, specimens, images and recordings",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.1.1",
+     "label": "Sample and assess vegetation using standardized field protocols",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.1.2",
+     "label": "Detect and record wildlife by direct observation, sign and standardized surveys",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.1.3",
+     "label": "Measure water quality and survey aquatic communities in the field",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.4.1-A",
+     "label": "Manage risk in uncontrolled field environments",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C02",
+     "label": "Ground-truth remote-sensed, modelled and AI-generated outputs in the field",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C18",
+     "label": "Navigate and travel safely in remote terrain with and without digital aids",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C24",
+     "label": "Manage field sample custody and field quality control",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.1.4",
+     "label": "Describe, test and sample soils in the field",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.4.2",
+     "label": "Provide first aid and emergency medical care in remote field settings",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:FC-C01",
+     "label": "Deploy, maintain and verify field sensor networks",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C11",
+     "label": "Apply field biosecurity and decontamination protocols",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C12",
+     "label": "Operate small boats and work safely on water in aquatic, coastal and marine field settings",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C16",
+     "label": "Collect trace-level and genetic environmental samples without contamination",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C20",
+     "label": "Lead field crews and transfer field judgment to novices",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.4.1-B",
+     "label": "Apply safety practices and stop-work authority across field, facility and incident settings",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-C"
+    },
+    {
+     "competency": "seed:v1-4.5.3-A",
+     "label": "Drive and operate field vehicles safely on unpaved roads and off road",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:FC-C14",
+     "label": "Operate and supervise uncrewed and automated field systems",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C22",
+     "label": "Read site history and reference conditions from landscape evidence",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:v1-4.1.2-T1",
+     "statement": "Conduct point-count, transect or call-playback wildlife surveys to protocol, recording detections, distance bands and survey conditions",
+     "pctTime": 7.7,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-4.1.1-T1",
+     "statement": "Establish vegetation monitoring plots to protocol and record species composition, cover and density within the program's measurement-quality objectives",
+     "pctTime": 7.0,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-4.1.1-T3",
+     "statement": "Identify plants on sample plots to the protocol's required taxonomic level, collecting labelled vouchers for any plant not identified with certainty",
+     "pctTime": 5.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.4.2-T1",
+     "statement": "Deploy camera traps and acoustic recorders at survey stations to the protocol's height, orientation and settings, recording station metadata",
+     "pctTime": 5.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-4.1.3-T1",
+     "statement": "Measure temperature, pH, dissolved oxygen, conductivity and turbidity in place with field meters calibrated before use and checked afterward",
+     "pctTime": 5.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.2.4-T1",
+     "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
+     "pctTime": 5.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.4.3-T1",
+     "statement": "Identify regional plants and animals to species with dichotomous keys and diagnostic features, collecting evidence for any record not identified with certainty",
+     "pctTime": 5.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-4.1.5-T1",
+     "statement": "Record field observations on a mobile form or paper data sheet at the time of observation, completing every protocol field and metadata element",
+     "pctTime": 5.2,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-veg-adapt-protocol",
+     "statement": "Adapt the vegetation sampling layout when burned, flooded or grazed site conditions depart from protocol assumptions, recording the deviation for comparability",
+     "pctTime": 2.6,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-4.1.2-T2",
+     "statement": "Identify wildlife sign such as tracks, scat, nests and feeding remains to species or group, recording a confidence level for each record",
+     "pctTime": 2.6,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-4.1.3-T2",
+     "statement": "Collect benthic macroinvertebrate, algae or fish community samples from a stream reach following the program's habitat-allocation protocol",
+     "pctTime": 2.6,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-4.1.4-T1",
+     "statement": "Describe a soil profile's horizons, colour, texture, structure and coarse fragments in standard terminology on the program's description form",
+     "pctTime": 2.6,
+     "critical": false,
+     "neededAtEntry": true
+    }
+   ],
+   "credentialGates": [
+    {
+     "credential": "seed:crd-wilderness-first-aid",
+     "label": "Wilderness First Aid / Wilderness First Responder",
+     "kind": "preferred"
+    }
+   ]
+  }
+ ]
+}

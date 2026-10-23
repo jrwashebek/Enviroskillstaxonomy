@@ -1,0 +1,893 @@
+{
+ "stamp": {
+  "ruleId": "federal-series-profile",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "series": {
+  "code": "0410",
+  "title": "Zoology",
+  "seriesStatus": "proposed-realignment",
+  "statusStatement": "Active under its current code 0410. OPM's Phase One list proposes realignment to 0401; the proposal is not final as of 2026-10-23. This profile is shown under 0410 and will move only if OPM finalizes it.",
+  "successorSeriesProposed": "0401",
+  "group": "0400 Natural Resources Management & Biological Sciences",
+  "qualificationStandardVersion": "Professional & Scientific Positions group std + series IOR",
+  "positiveEducationRequirement": true,
+  "educationNote": "FH judgment pending verification of the qualification standard",
+  "registerRecord": "seed:opm-series/0410",
+  "registerReviewBy": "2027-01-23",
+  "events": [
+   "seed:evt/opm-series-realignment-proposal/proposed/2026-04-24"
+  ]
+ },
+ "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
+ "roles": [
+  {
+   "role": "seed:R20-ecologist",
+   "roleTitle": "Ecologist",
+   "tier": "P2",
+   "variant": "seed:R20-ecologist/federal",
+   "functionStatement": "Explain how ecosystems are changing and what management can achieve, with stated evidence and uncertainty.",
+   "authorityPosition": "advisor-researcher",
+   "x4": {
+    "record": "emst-x4:R20-ecologist:0410",
+    "predicate": "skos:relatedMatch",
+    "confidence": 0.25,
+    "appliesTo": "zoology positions",
+    "reviewStatus": "candidate",
+    "evidence": "J"
+   },
+   "credentialGates": [],
+   "signOffAuthority": null,
+   "instruments": [],
+   "bands": [
+    {
+     "group": "developmental and full performance",
+     "indicativeBand": "GS-9 to GS-11 (journey)",
+     "roleLevels": [
+      "journey"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:v1-1.1.2",
+       "duty": "Assess and monitor biodiversity across species and habitats",
+       "pctTime": 22,
+       "tasks": [
+        {
+         "task": "seed:v1-1.1.2-T2",
+         "statement": "Analyze long-term biodiversity monitoring data to estimate change in occupancy or richness against conservation objectives, stating uncertainty",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 6.0
+        },
+        {
+         "task": "seed:v1-1.1.2-T1",
+         "statement": "Implement a multi-taxon biodiversity monitoring protocol at assigned sites, coordinating crews, passive detectors and sample collection to schedule",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.9
+        },
+        {
+         "task": "seed:v1-1.1.2-T3",
+         "statement": "Report biodiversity monitoring findings to decision-makers with recommended protections, separating observed change from inference and stating its limits",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:fc-biodiv-adapt",
+         "statement": "Adjust the monitoring schedule or method mix at a site when disturbance, access loss or detector failure threatens the time series, recording the change",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.2.2",
+       "duty": "Analyze environmental data statistically and interpret the results",
+       "pctTime": 13,
+       "tasks": [
+        {
+         "task": "seed:v1-2.2.2-T1",
+         "statement": "Estimate treatment effects on ecological response variables with a method suited to the design, reporting effect sizes and intervals.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:v1-2.2.2-T2",
+         "statement": "Analyze trends in a long-term monitoring dataset, accounting for changes in methods, effort and detection over the record.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:v1-2.2.2-T3",
+         "statement": "Prepare statistical graphics that show the main patterns and their uncertainty for a technical or decision audience.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.1.5",
+       "duty": "Assess species habitat requirements and habitat condition",
+       "pctTime": 8,
+       "tasks": [
+        {
+         "task": "seed:v1-1.1.5-T1",
+         "statement": "Measure habitat attributes such as cover, structure, water and forage at used and available sites following a habitat-use study protocol",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:v1-1.1.5-T3",
+         "statement": "Integrate habitat findings into land-use or project plans as specific measures that avoid or reduce effects on species of concern",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.7.1",
+       "duty": "Recognize and assess ecosystems that have crossed into novel states",
+       "pctTime": 8,
+       "tasks": [
+        {
+         "task": "seed:v1-1.7.1-T2",
+         "statement": "Assess ecological function and conservation value of a novel species assemblage at a site using field indicators of structure, process and habitat",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:v1-1.7.1-T3",
+         "statement": "Determine whether restoration to historical conditions is feasible at a site, documenting the thresholds, drivers and costs that limit recovery",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.7.4",
+       "duty": "Plan for ecological transformation with resist, accept or direct strategies",
+       "pctTime": 8,
+       "tasks": [
+        {
+         "task": "seed:v1-1.7.3-T1",
+         "statement": "Map potential climate refugia from topographic, hydrologic and climate data, stating the assumptions and validation of the refugia model.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:v1-1.7.3-T3",
+         "statement": "Integrate refugia into conservation prioritization and land protection plans, documenting how refugia rank against other criteria.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-03",
+       "duty": "Design monitoring and sampling for valid environmental inference",
+       "pctTime": 8,
+       "tasks": [
+        {
+         "task": "seed:dc-03-method-mix",
+         "statement": "Choose the mix of field, sensor, remote-sensing and community methods for a monitoring programme from cost, detection and comparability evidence.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:dc-03-power",
+         "statement": "Estimate the power of a monitoring design to detect a specified change over a stated period, revising the design when power is insufficient.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.5.2",
+       "duty": "Assess climate vulnerability of species, ecosystems, infrastructure and communities",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:v1-1.5.2-T1",
+         "statement": "Conduct a vulnerability assessment for focal species or ecosystems with an established framework, stating the evidence and confidence for each rating.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:v1-1.5.2-T2",
+         "statement": "Rate climate exposure, sensitivity and adaptive capacity for each management unit from documented evidence, flagging ratings that rest on expert judgment alone.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-6.3.2",
+       "duty": "Assess ecosystem services with production-function models validated against observations",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:v1-6.3.2-T1",
+         "statement": "Quantify ecosystem services such as flood mitigation, carbon storage or pollination for a planning area, stating the beneficiaries and assumptions.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:v1-6.3.2-T2",
+         "statement": "Model ecosystem service supply and flow with a production-function model, validating its estimates against field or monitoring observations.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C22",
+       "duty": "Read site history and reference conditions from landscape evidence",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:fc-sitehist-handover",
+         "statement": "Document site-specific history and variability for a successor before a long-tenure practitioner leaves, walking key locations together where possible",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:fc-sitehist-predict",
+         "statement": "Predict from site-history evidence where a planned treatment will meet legacy conditions, recording each prediction for comparison after treatment",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.4.3",
+       "duty": "Identify organisms from field characters, specimens, images and recordings",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:v1-1.4.3-T1",
+         "statement": "Identify regional plants and animals to species with dichotomous keys and diagnostic features, collecting evidence for any record not identified with certainty",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:v1-1.4.3-T2",
+         "statement": "Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.4.2",
+       "duty": "Build, calibrate and validate predictive and simulation models of environmental systems",
+       "pctTime": 4,
+       "tasks": [
+        {
+         "task": "seed:v1-2.4.2-T2",
+         "statement": "Simulate ecosystem response to alternative land-use and climate scenarios, documenting scenario assumptions and the sensitivity of results to each.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:v1-1.1.2-T1",
+      "seed:v1-1.1.2-T2",
+      "seed:v1-1.1.2-T3",
+      "seed:fc-biodiv-adapt",
+      "seed:v1-1.1.5-T1",
+      "seed:v1-1.1.5-T3",
+      "seed:v1-1.7.1-T2",
+      "seed:v1-1.7.1-T3",
+      "seed:v1-1.7.3-T1",
+      "seed:v1-1.7.3-T3",
+      "seed:dc-03-method-mix",
+      "seed:dc-03-power",
+      "seed:v1-2.2.2-T1",
+      "seed:v1-2.2.2-T2",
+      "seed:v1-2.2.2-T3"
+     ],
+     "criticalTasks": [
+      "seed:v1-1.1.2-T1",
+      "seed:v1-1.1.2-T2"
+     ],
+     "distinguishingCompetencies": [
+      "seed:v1-1.1.2"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:v1-1.1.2",
+       "statement": "Knowledge of and skill in: assess and monitor biodiversity across species and habitats (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:DC-CAND-03",
+       "statement": "Knowledge of and skill in: design monitoring and sampling for valid environmental inference (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-1.1.5",
+       "statement": "Knowledge of and skill in: assess species habitat requirements and habitat condition (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-1.7.1",
+       "statement": "Knowledge of and skill in: recognize and assess ecosystems that have crossed into novel states (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-1.7.4",
+       "statement": "Knowledge of and skill in: plan for ecological transformation with resist, accept or direct strategies (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-2.2.2",
+       "statement": "Knowledge of and skill in: analyze environmental data statistically and interpret the results (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    },
+    {
+     "group": "senior and lead",
+     "indicativeBand": "GS-12 to GS-13 (senior); GS-13 to GS-14 (lead)",
+     "roleLevels": [
+      "senior",
+      "lead"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:v1-1.1.2",
+       "duty": "Assess and monitor biodiversity across species and habitats",
+       "pctTime": 18,
+       "tasks": [
+        {
+         "task": "seed:v1-1.1.2-T2",
+         "statement": "Analyze long-term biodiversity monitoring data to estimate change in occupancy or richness against conservation objectives, stating uncertainty",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.9
+        },
+        {
+         "task": "seed:v1-1.1.2-T1",
+         "statement": "Implement a multi-taxon biodiversity monitoring protocol at assigned sites, coordinating crews, passive detectors and sample collection to schedule",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:v1-1.1.2-T3",
+         "statement": "Report biodiversity monitoring findings to decision-makers with recommended protections, separating observed change from inference and stating its limits",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        },
+        {
+         "task": "seed:fc-biodiv-adapt",
+         "statement": "Adjust the monitoring schedule or method mix at a site when disturbance, access loss or detector failure threatens the time series, recording the change",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.1.5",
+       "duty": "Assess species habitat requirements and habitat condition",
+       "pctTime": 11,
+       "tasks": [
+        {
+         "task": "seed:v1-1.1.5-T1",
+         "statement": "Measure habitat attributes such as cover, structure, water and forage at used and available sites following a habitat-use study protocol",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        },
+        {
+         "task": "seed:v1-1.1.5-T2",
+         "statement": "Evaluate a habitat suitability map against field observations of use and condition, documenting where and why the model fails",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        },
+        {
+         "task": "seed:v1-1.1.5-T3",
+         "statement": "Integrate habitat findings into land-use or project plans as specific measures that avoid or reduce effects on species of concern",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.7.1",
+       "duty": "Recognize and assess ecosystems that have crossed into novel states",
+       "pctTime": 11,
+       "tasks": [
+        {
+         "task": "seed:v1-1.7.1-T1",
+         "statement": "Evaluate whether a site's vegetation, soils and disturbance regime have moved beyond the historical range of variability, citing field and record evidence",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        },
+        {
+         "task": "seed:v1-1.7.1-T2",
+         "statement": "Assess ecological function and conservation value of a novel species assemblage at a site using field indicators of structure, process and habitat",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        },
+        {
+         "task": "seed:v1-1.7.1-T3",
+         "statement": "Determine whether restoration to historical conditions is feasible at a site, documenting the thresholds, drivers and costs that limit recovery",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.7.4",
+       "duty": "Plan for ecological transformation with resist, accept or direct strategies",
+       "pctTime": 11,
+       "tasks": [
+        {
+         "task": "seed:v1-1.7.3-T1",
+         "statement": "Map potential climate refugia from topographic, hydrologic and climate data, stating the assumptions and validation of the refugia model.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        },
+        {
+         "task": "seed:v1-1.7.3-T2",
+         "statement": "Evaluate whether mapped refugia can support climate-sensitive species, using field and monitoring evidence of their current condition.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        },
+        {
+         "task": "seed:v1-1.7.3-T3",
+         "statement": "Integrate refugia into conservation prioritization and land protection plans, documenting how refugia rank against other criteria.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-03",
+       "duty": "Design monitoring and sampling for valid environmental inference",
+       "pctTime": 11,
+       "tasks": [
+        {
+         "task": "seed:dc-03-detection",
+         "statement": "Plan for imperfect detection in a monitoring design, choosing repeat visits or detection models suited to the methods used.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        },
+        {
+         "task": "seed:dc-03-method-mix",
+         "statement": "Choose the mix of field, sensor, remote-sensing and community methods for a monitoring programme from cost, detection and comparability evidence.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        },
+        {
+         "task": "seed:dc-03-power",
+         "statement": "Estimate the power of a monitoring design to detect a specified change over a stated period, revising the design when power is insufficient.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.2.2",
+       "duty": "Analyze environmental data statistically and interpret the results",
+       "pctTime": 11,
+       "tasks": [
+        {
+         "task": "seed:v1-2.2.2-T1",
+         "statement": "Estimate treatment effects on ecological response variables with a method suited to the design, reporting effect sizes and intervals.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        },
+        {
+         "task": "seed:v1-2.2.2-T2",
+         "statement": "Analyze trends in a long-term monitoring dataset, accounting for changes in methods, effort and detection over the record.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.9
+        },
+        {
+         "task": "seed:v1-2.2.2-T3",
+         "statement": "Prepare statistical graphics that show the main patterns and their uncertainty for a technical or decision audience.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.5.2",
+       "duty": "Assess climate vulnerability of species, ecosystems, infrastructure and communities",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-1.5.2-T1",
+         "statement": "Conduct a vulnerability assessment for focal species or ecosystems with an established framework, stating the evidence and confidence for each rating.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:v1-1.5.2-T2",
+         "statement": "Rate climate exposure, sensitivity and adaptive capacity for each management unit from documented evidence, flagging ratings that rest on expert judgment alone.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.4.2",
+       "duty": "Build, calibrate and validate predictive and simulation models of environmental systems",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-2.4.2-T2",
+         "statement": "Simulate ecosystem response to alternative land-use and climate scenarios, documenting scenario assumptions and the sensitivity of results to each.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:v1-2.4.2-T3",
+         "statement": "Present model outputs to stakeholders for an adaptive management decision, stating the conditions under which the projections should not be trusted.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-6.3.2",
+       "duty": "Assess ecosystem services with production-function models validated against observations",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-6.3.2-T1",
+         "statement": "Quantify ecosystem services such as flood mitigation, carbon storage or pollination for a planning area, stating the beneficiaries and assumptions.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:v1-6.3.2-T2",
+         "statement": "Model ecosystem service supply and flow with a production-function model, validating its estimates against field or monitoring observations.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C22",
+       "duty": "Read site history and reference conditions from landscape evidence",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:fc-sitehist-handover",
+         "statement": "Document site-specific history and variability for a successor before a long-tenure practitioner leaves, walking key locations together where possible",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:fc-sitehist-predict",
+         "statement": "Predict from site-history evidence where a planned treatment will meet legacy conditions, recording each prediction for comparison after treatment",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.4.3",
+       "duty": "Identify organisms from field characters, specimens, images and recordings",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-1.4.3-T1",
+         "statement": "Identify regional plants and animals to species with dichotomous keys and diagnostic features, collecting evidence for any record not identified with certainty",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:v1-1.4.3-T2",
+         "statement": "Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:v1-1.1.2-T1",
+      "seed:v1-1.1.2-T2",
+      "seed:v1-1.1.2-T3",
+      "seed:fc-biodiv-adapt",
+      "seed:v1-1.1.5-T1",
+      "seed:v1-1.1.5-T3",
+      "seed:v1-1.7.1-T2",
+      "seed:v1-1.7.1-T3",
+      "seed:v1-1.7.3-T1",
+      "seed:v1-1.7.3-T3",
+      "seed:dc-03-method-mix",
+      "seed:dc-03-power",
+      "seed:v1-2.2.2-T1",
+      "seed:v1-2.2.2-T2",
+      "seed:v1-2.2.2-T3"
+     ],
+     "criticalTasks": [
+      "seed:v1-1.1.2-T1",
+      "seed:v1-1.1.2-T2"
+     ],
+     "distinguishingCompetencies": [
+      "seed:v1-1.1.2"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:v1-1.1.2",
+       "statement": "Knowledge of and skill in: assess and monitor biodiversity across species and habitats (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:DC-CAND-03",
+       "statement": "Knowledge of and skill in: design monitoring and sampling for valid environmental inference (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-1.1.5",
+       "statement": "Knowledge of and skill in: assess species habitat requirements and habitat condition (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-1.7.1",
+       "statement": "Knowledge of and skill in: recognize and assess ecosystems that have crossed into novel states (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-1.7.4",
+       "statement": "Knowledge of and skill in: plan for ecological transformation with resist, accept or direct strategies (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-2.2.2",
+       "statement": "Knowledge of and skill in: analyze environmental data statistically and interpret the results (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    }
+   ],
+   "changeView": null
+  }
+ ],
+ "rolesWithoutFederalVariant": [],
+ "feederOrDestinationRoles": []
+}

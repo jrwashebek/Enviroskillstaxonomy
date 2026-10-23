@@ -1,0 +1,309 @@
+{
+ "stamp": {
+  "ruleId": "state-class-view",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "classRecord": "seed:class/TX/2464",
+ "class": {
+  "jurisdiction": "Texas",
+  "employerType": "state-agency",
+  "agency": "Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications",
+  "classCode": "2464",
+  "classTitle": "Hydrologist III",
+  "series": "Hydrologist I-V",
+  "level": {
+   "ordinal": 3,
+   "label": "III"
+  },
+  "supervisoryStatus": "lead",
+  "specEffectiveDate": "2019-09-01",
+  "mqLocation": "agency-policy",
+  "mqParaphrase": "Same as Hydrologist I.",
+  "degreeRule": "substitutable",
+  "licensesRequired": [],
+  "pay": {
+   "basis": "annual",
+   "min": 48278,
+   "max": 78953,
+   "label": "B21",
+   "effective": "2019-09-01"
+  },
+  "specUrl": "https://hr.sao.texas.gov/Compensation/JobDescriptions/R2465.pdf",
+  "reviewBy": "2027-07-01"
+ },
+ "mappings": [
+  {
+   "roleVariant": "seed:R17-hydrologist/state",
+   "role": "seed:R17-hydrologist",
+   "roleTitle": "Hydrologist",
+   "tier": "P2",
+   "authorityPosition": "resource-manager",
+   "roleLevels": [
+    "senior"
+   ],
+   "matchType": "skos:closeMatch",
+   "confidence": 0.6,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-tx:R17-hydrologist/state:2464",
+   "competencyTargets": [
+    {
+     "competency": "seed:DB-C10",
+     "label": "Plan water supply and allocation under hydrologic uncertainty",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C11",
+     "label": "Characterize groundwater systems and protect drinking water sources",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-2.4.2",
+     "label": "Build, calibrate and validate predictive and simulation models of environmental systems",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-11",
+     "label": "Quantify and communicate uncertainty for environmental decisions",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C07",
+     "label": "Assess stream channel form and function in the field",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-2.2.2",
+     "label": "Analyze environmental data statistically and interpret the results",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.1.3",
+     "label": "Measure water quality and survey aquatic communities in the field",
+     "targetLevels": {
+      "senior": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C08",
+     "label": "Develop pollutant load allocations and watershed restoration plans for impaired waters",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "senior": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-09",
+     "label": "Evaluate model fitness-for-purpose and validate against independent evidence",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "senior": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:FC-C01",
+     "label": "Deploy, maintain and verify field sensor networks",
+     "targetLevels": {
+      "senior": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.5.1",
+     "label": "Analyze and interpret climate observations and projections for management decisions",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "senior": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "senior": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:DB-C10-T2",
+     "statement": "Prepare a drought contingency plan with triggers, stages and response actions tied to supply indicators",
+     "pctTime": 4.1,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C11-T1",
+     "statement": "Run an aquifer test on a supply well or wellfield to estimate transmissivity and storage from drawdown and recovery data",
+     "pctTime": 4.1,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C11-T2",
+     "statement": "Delineate a wellhead or source-water protection area from hydrogeologic data and time-of-travel criteria",
+     "pctTime": 4.1,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-2.4.2-T2",
+     "statement": "Simulate ecosystem response to alternative land-use and climate scenarios, documenting scenario assumptions and the sensitivity of results to each.",
+     "pctTime": 4.1,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-2.4.2-T3",
+     "statement": "Present model outputs to stakeholders for an adaptive management decision, stating the conditions under which the projections should not be trusted.",
+     "pctTime": 4.1,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:DB-C10-T1",
+     "statement": "Forecast water demand and supply under drought and climate scenarios for a utility or basin plan, stating assumptions and uncertainty",
+     "pctTime": 3.3,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C10-T3",
+     "statement": "Evaluate a water-right or allocation application against water availability, priority and impairment of existing users",
+     "pctTime": 3.3,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:DB-C10-T4",
+     "statement": "Compare conjunctive-use, reuse and storage options by yield, cost and reliability for an integrated resource plan",
+     "pctTime": 3.3,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C11-T3",
+     "statement": "Review a well construction or injection well application against construction and protection standards before approval",
+     "pctTime": 3.3,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C11-T4",
+     "statement": "Evaluate contaminant transport toward a supply well from monitoring data and a groundwater model, recommending protective actions",
+     "pctTime": 3.3,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-2.6.3-T1",
+     "statement": "Build a predictive model of fire risk, pest outbreak or water availability, validating it on years or areas withheld from fitting.",
+     "pctTime": 3.3,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-2.6.3-T2",
+     "statement": "Forecast resource management needs from a validated predictive model, stating the horizon and interval for each estimate.",
+     "pctTime": 3.3,
+     "critical": false,
+     "neededAtEntry": true
+    }
+   ],
+   "credentialGates": []
+  }
+ ]
+}

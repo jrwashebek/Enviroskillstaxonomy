@@ -1,0 +1,1803 @@
+{
+ "stamp": {
+  "ruleId": "federal-series-profile",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "series": {
+  "code": "1301",
+  "title": "General Physical Science",
+  "seriesStatus": "active",
+  "statusStatement": "Active (EMST OPM series register, as of 2026-10-23).",
+  "successorSeriesProposed": null,
+  "group": "1300 Physical Sciences",
+  "qualificationStandardVersion": "Professional & Scientific Positions group std + series IOR",
+  "positiveEducationRequirement": true,
+  "educationNote": "FH judgment pending verification of the qualification standard",
+  "registerRecord": "seed:opm-series/1301",
+  "registerReviewBy": "2027-01-23",
+  "events": []
+ },
+ "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
+ "roles": [
+  {
+   "role": "seed:R27-remediation-project-manager",
+   "roleTitle": "Remediation project manager",
+   "tier": "P2",
+   "variant": "seed:R27-remediation-project-manager/federal",
+   "functionStatement": "Bring contaminated sites to protective, documented end states through characterization, remedy selection and oversight.",
+   "authorityPosition": "regulator",
+   "x4": {
+    "record": "emst-x4:R27-remediation-project-manager:1301",
+    "predicate": "skos:relatedMatch",
+    "confidence": 0.35,
+    "appliesTo": "physical science project managers",
+    "reviewStatus": "candidate",
+    "evidence": "J"
+   },
+   "credentialGates": [
+    {
+     "credential": "seed:crd-hazwoper",
+     "label": "HAZWOPER training (40-hour, 24-hour, 8-hour supervisor; 8-hour annual refresher)",
+     "kind": "required"
+    }
+   ],
+   "signOffAuthority": null,
+   "instruments": [],
+   "bands": [
+    {
+     "group": "developmental and full performance",
+     "indicativeBand": "GS-9 to GS-11 (journey)",
+     "roleLevels": [
+      "journey"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:DB-C20",
+       "duty": "Select remedies for contaminated sites and oversee cleanup through long-term stewardship",
+       "pctTime": 15,
+       "tasks": [
+        {
+         "task": "seed:DB-C20-T2",
+         "statement": "Oversee a remediation contractor's field work against the approved design and health and safety plan, documenting deviations and corrective actions",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 6.0
+        },
+        {
+         "task": "seed:DB-C20-T3",
+         "statement": "Decide from performance monitoring data whether to optimize, continue or transition an operating remedy, recording the evidence for the decision",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:DB-C20-T4",
+         "statement": "Conduct a periodic review of a closed site's remedy and institutional controls, recording whether the remedy remains protective",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C19",
+       "duty": "Conduct environmental site assessment and site characterization",
+       "pctTime": 15,
+       "tasks": [
+        {
+         "task": "seed:DB-C19-T2",
+         "statement": "Log soil cores and choose sample intervals in the field from lithology, staining, odor and field-screening readings",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 6.0
+        },
+        {
+         "task": "seed:DB-C19-T3",
+         "statement": "Oversee monitoring well installation and development, verifying screen placement against field lithology before the well is completed",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:DB-C19-T4",
+         "statement": "Update the conceptual site model with new data, identifying the data gaps that still prevent a remedy decision",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-6.7.1",
+       "duty": "Assess human health risks from environmental exposures",
+       "pctTime": 13,
+       "tasks": [
+        {
+         "task": "seed:v1-6.7.1-T1",
+         "statement": "Conduct an exposure assessment for an environmental contaminant, identifying pathways, receptors and exposure concentrations with documented assumptions.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:v1-6.7.1-T2",
+         "statement": "Calculate health risks from environmental exposures with the methods the applicable requirements specify, stating the uncertainty of each estimate.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:v1-6.7.1-T3",
+         "statement": "Communicate health risk findings to affected communities and decision-makers, explaining what the estimates mean for exposure and action.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:PS-C03",
+       "duty": "Deliver environmental projects to budget, schedule and quality",
+       "pctTime": 13,
+       "tasks": [
+        {
+         "task": "seed:v1-2.5.3-T2",
+         "statement": "Prepare progress reports for leadership from the project's tracking records, stating schedule and budget variance.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:v1-3.1.1-T1",
+         "statement": "Break a large project into phased work packages with deliverables, dependencies and decision points",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:v1-3.1.1-T2",
+         "statement": "Maintain the project schedule baseline and record actual progress against it at each reporting period",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C24",
+       "duty": "Manage field sample custody and field quality control",
+       "pctTime": 9,
+       "tasks": [
+        {
+         "task": "seed:fc-coc-complete",
+         "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:fc-qc-collect",
+         "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C04",
+       "duty": "Direct and evaluate applicant- or contractor-prepared environmental documents",
+       "pctTime": 8,
+       "tasks": [
+        {
+         "task": "seed:sc-document-independent-evaluation",
+         "statement": "Document the agency's independent evaluation of a sponsor-prepared document before adoption, recording what was verified and what was changed",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:sc-issue-preparer-standards",
+         "statement": "Issue scope and content standards to a sponsor's contractor preparing an environmental document, specifying data, methods and the agency's review checkpoints",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C18",
+       "duty": "Determine hazardous waste status and manage generator compliance",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:DB-C18-T1",
+         "statement": "Determine whether a waste stream is hazardous from process knowledge and laboratory data, documenting the listing and characteristic evaluation",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:DB-C18-T2",
+         "statement": "Inspect satellite and central accumulation areas for container condition, labelling, dating and segregation, correcting deficiencies before shipment",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C04",
+       "duty": "Develop and resolve environmental enforcement cases",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.5-T1",
+         "statement": "Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:v1-6.1.5-T2",
+         "statement": "Assemble the evidence file for an enforcement case, linking each alleged violation to the inspection findings, records and samples that prove it",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C29",
+       "duty": "Communicate environmental and health risks under uncertainty",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:lc-txe-answer-public-questions",
+         "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:lc-txe-draft-advisory",
+         "statement": "Draft a public advisory that states the hazard, the people affected, the uncertainty and the protective action in plain language",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C21",
+       "duty": "Investigate and manage emerging contaminants across media",
+       "pctTime": 4,
+       "tasks": [
+        {
+         "task": "seed:dc-db21-interpret-results",
+         "statement": "Interpret emerging-contaminant results against current and proposed criteria, stating how the conclusions change if the criteria change.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:DB-C20-T2",
+      "seed:DB-C20-T3",
+      "seed:DB-C20-T4",
+      "seed:DB-C19-T2",
+      "seed:DB-C19-T3",
+      "seed:DB-C19-T4",
+      "seed:v1-6.7.1-T1",
+      "seed:v1-6.7.1-T2",
+      "seed:v1-6.7.1-T3",
+      "seed:fc-coc-complete",
+      "seed:fc-qc-collect",
+      "seed:v1-2.5.3-T2",
+      "seed:v1-3.1.1-T1",
+      "seed:v1-3.1.1-T2",
+      "seed:sc-document-independent-evaluation",
+      "seed:sc-issue-preparer-standards"
+     ],
+     "criticalTasks": [
+      "seed:DB-C20-T2",
+      "seed:DB-C19-T2"
+     ],
+     "distinguishingCompetencies": [
+      "seed:DB-C20"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:DB-C19",
+       "statement": "Knowledge of and skill in: conduct environmental site assessment and site characterization (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DB-C20",
+       "statement": "Knowledge of and skill in: select remedies for contaminated sites and oversee cleanup through long-term stewardship (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:FC-C24",
+       "statement": "Knowledge of and skill in: manage field sample custody and field quality control (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:PS-C03",
+       "statement": "Knowledge of and skill in: deliver environmental projects to budget, schedule and quality (EMST target journey L2).",
+       "knowledgeStatements": [
+        "Estimate at completion equals actual cost to date plus the estimated cost of remaining work; a variance is the difference between it and the approved budget."
+       ],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SC-C04",
+       "statement": "Knowledge of and skill in: direct and evaluate applicant- or contractor-prepared environmental documents (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-6.7.1",
+       "statement": "Knowledge of and skill in: assess human health risks from environmental exposures (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    },
+    {
+     "group": "senior and lead",
+     "indicativeBand": "GS-12 to GS-13 (senior); GS-13 to GS-14 (lead)",
+     "roleLevels": [
+      "senior",
+      "lead"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:DB-C20",
+       "duty": "Select remedies for contaminated sites and oversee cleanup through long-term stewardship",
+       "pctTime": 18,
+       "tasks": [
+        {
+         "task": "seed:DB-C20-T1",
+         "statement": "Evaluate remedial alternatives for a contaminated site against threshold and balancing criteria, documenting the comparison in a feasibility study",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.2
+        },
+        {
+         "task": "seed:DB-C20-T2",
+         "statement": "Oversee a remediation contractor's field work against the approved design and health and safety plan, documenting deviations and corrective actions",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:DB-C20-T3",
+         "statement": "Decide from performance monitoring data whether to optimize, continue or transition an operating remedy, recording the evidence for the decision",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:DB-C20-T4",
+         "statement": "Conduct a periodic review of a closed site's remedy and institutional controls, recording whether the remedy remains protective",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C19",
+       "duty": "Conduct environmental site assessment and site characterization",
+       "pctTime": 17,
+       "tasks": [
+        {
+         "task": "seed:DB-C19-T1",
+         "statement": "Design a sampling and analysis plan that tests the conceptual site model's exposure pathways against stated data quality objectives",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:DB-C19-T2",
+         "statement": "Log soil cores and choose sample intervals in the field from lithology, staining, odor and field-screening readings",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:DB-C19-T3",
+         "statement": "Oversee monitoring well installation and development, verifying screen placement against field lithology before the well is completed",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:DB-C19-T4",
+         "statement": "Update the conceptual site model with new data, identifying the data gaps that still prevent a remedy decision",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-6.7.1",
+       "duty": "Assess human health risks from environmental exposures",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:v1-6.7.1-T1",
+         "statement": "Conduct an exposure assessment for an environmental contaminant, identifying pathways, receptors and exposure concentrations with documented assumptions.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:v1-6.7.1-T2",
+         "statement": "Calculate health risks from environmental exposures with the methods the applicable requirements specify, stating the uncertainty of each estimate.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:v1-6.7.1-T3",
+         "statement": "Communicate health risk findings to affected communities and decision-makers, explaining what the estimates mean for exposure and action.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C24",
+       "duty": "Manage field sample custody and field quality control",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:fc-coc-complete",
+         "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:fc-qc-collect",
+         "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:fc-qc-defend",
+         "statement": "Defend field sampling and custody procedures in declarations or testimony when sample results are challenged in enforcement or litigation",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:PS-C03",
+       "duty": "Deliver environmental projects to budget, schedule and quality",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:v1-2.5.3-T2",
+         "statement": "Prepare progress reports for leadership from the project's tracking records, stating schedule and budget variance.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:v1-3.1.1-T1",
+         "statement": "Break a large project into phased work packages with deliverables, dependencies and decision points",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:v1-3.1.1-T2",
+         "statement": "Maintain the project schedule baseline and record actual progress against it at each reporting period",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C04",
+       "duty": "Direct and evaluate applicant- or contractor-prepared environmental documents",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:sc-document-independent-evaluation",
+         "statement": "Document the agency's independent evaluation of a sponsor-prepared document before adoption, recording what was verified and what was changed",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:sc-evaluate-sponsor-document",
+         "statement": "Evaluate a sponsor-prepared environmental document for adequacy and objectivity, returning specific deficiencies the preparer must correct before adoption",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:sc-issue-preparer-standards",
+         "statement": "Issue scope and content standards to a sponsor's contractor preparing an environmental document, specifying data, methods and the agency's review checkpoints",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C18",
+       "duty": "Determine hazardous waste status and manage generator compliance",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:DB-C18-T1",
+         "statement": "Determine whether a waste stream is hazardous from process knowledge and laboratory data, documenting the listing and characteristic evaluation",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:DB-C18-T2",
+         "statement": "Inspect satellite and central accumulation areas for container condition, labelling, dating and segregation, correcting deficiencies before shipment",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C21",
+       "duty": "Investigate and manage emerging contaminants across media",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:dc-db21-interim-response",
+         "statement": "Recommend interim response and treatment options for an emerging contaminant, comparing performance evidence, cost and handling of residuals.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:dc-db21-interpret-results",
+         "statement": "Interpret emerging-contaminant results against current and proposed criteria, stating how the conclusions change if the criteria change.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C04",
+       "duty": "Develop and resolve environmental enforcement cases",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.5-T1",
+         "statement": "Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:v1-6.1.5-T2",
+         "statement": "Assemble the evidence file for an enforcement case, linking each alleged violation to the inspection findings, records and samples that prove it",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C29",
+       "duty": "Communicate environmental and health risks under uncertainty",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:lc-txe-answer-public-questions",
+         "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:lc-txe-draft-advisory",
+         "statement": "Draft a public advisory that states the hazard, the people affected, the uncertainty and the protective action in plain language",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:DB-C20-T2",
+      "seed:DB-C20-T3",
+      "seed:DB-C20-T4",
+      "seed:DB-C19-T2",
+      "seed:DB-C19-T3",
+      "seed:DB-C19-T4",
+      "seed:v1-6.7.1-T1",
+      "seed:v1-6.7.1-T2",
+      "seed:v1-6.7.1-T3",
+      "seed:fc-coc-complete",
+      "seed:fc-qc-collect",
+      "seed:v1-2.5.3-T2",
+      "seed:v1-3.1.1-T1",
+      "seed:v1-3.1.1-T2",
+      "seed:sc-document-independent-evaluation",
+      "seed:sc-issue-preparer-standards"
+     ],
+     "criticalTasks": [
+      "seed:DB-C20-T1",
+      "seed:DB-C20-T2",
+      "seed:DB-C19-T1",
+      "seed:DB-C19-T2"
+     ],
+     "distinguishingCompetencies": [
+      "seed:DB-C20"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:DB-C19",
+       "statement": "Knowledge of and skill in: conduct environmental site assessment and site characterization (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DB-C20",
+       "statement": "Knowledge of and skill in: select remedies for contaminated sites and oversee cleanup through long-term stewardship (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:FC-C24",
+       "statement": "Knowledge of and skill in: manage field sample custody and field quality control (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:PS-C03",
+       "statement": "Knowledge of and skill in: deliver environmental projects to budget, schedule and quality (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [
+        "Estimate at completion equals actual cost to date plus the estimated cost of remaining work; a variance is the difference between it and the approved budget."
+       ],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SC-C04",
+       "statement": "Knowledge of and skill in: direct and evaluate applicant- or contractor-prepared environmental documents (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-6.7.1",
+       "statement": "Knowledge of and skill in: assess human health risks from environmental exposures (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    }
+   ],
+   "changeView": null
+  },
+  {
+   "role": "seed:R28-air-quality-specialist",
+   "roleTitle": "Air quality specialist",
+   "tier": "P2",
+   "variant": "seed:R28-air-quality-specialist/federal",
+   "functionStatement": "Bring and keep air quality within standards through monitoring, planning, permitting and inspection.",
+   "authorityPosition": "regulator",
+   "x4": {
+    "record": "emst-x4:R28-air-quality-specialist:1301",
+    "predicate": "skos:relatedMatch",
+    "confidence": 0.35,
+    "appliesTo": "physical science positions",
+    "reviewStatus": "candidate",
+    "evidence": "J"
+   },
+   "credentialGates": [],
+   "signOffAuthority": null,
+   "instruments": [
+    {
+     "id": "seed:ins/caa-title-v",
+     "label": "Clean Air Act Title V operating permit programme"
+    },
+    {
+     "id": "seed:ins/caa-nsr-psd",
+     "label": "Clean Air Act new source review and PSD preconstruction permitting"
+    }
+   ],
+   "bands": [
+    {
+     "group": "developmental and full performance",
+     "indicativeBand": "GS-9 to GS-11 (journey)",
+     "roleLevels": [
+      "journey"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:DB-C14",
+       "duty": "Build emissions inventories and air quality models for attainment planning",
+       "pctTime": 18,
+       "tasks": [
+        {
+         "task": "seed:DB-C14-T1",
+         "statement": "Compile a point, area, mobile and natural source emissions inventory for a planning year with documented methods and activity data",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.8
+        },
+        {
+         "task": "seed:DB-C14-T2",
+         "statement": "Run a photochemical model for an attainment demonstration under an approved modelling protocol, documenting model performance against monitored data",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:DB-C14-T3",
+         "statement": "Review a permit applicant's dispersion modelling analysis against the agreed protocol and guidance before accepting its conclusions",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:DB-C14-T4",
+         "statement": "Check emissions estimates generated automatically from activity or sensor data against source tests and inventory methods before inclusion",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C02",
+       "duty": "Issue environmental permits and resource-use authorizations as the deciding authority",
+       "pctTime": 17,
+       "tasks": [
+        {
+         "task": "seed:ena-sl-c02-air-t1",
+         "statement": "Determine whether a proposed modification at a stationary source triggers major new source review from emissions increases and netting",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:ena-sl-c02-air-t2",
+         "statement": "Draft operating permit conditions for a major stationary air source with monitoring sufficient to show compliance with each applicable requirement",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.8
+        },
+        {
+         "task": "seed:ena-sl-c02-air-t3",
+         "statement": "Review a control technology determination submitted with an air permit application against comparable sources and cost criteria",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:ena-sl-c02-air-t4",
+         "statement": "Check permit conditions drafted from a template or AI tool against the source's applicable requirements before public notice",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C13",
+       "duty": "Operate ambient air monitoring networks to regulatory quality-assurance criteria",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:DB-C13-T1",
+         "statement": "Audit a regulatory air monitor's flow and gas calibration against transfer standards following the quality assurance project plan",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:DB-C13-T2",
+         "statement": "Validate a quarter's ambient monitoring data against quality-assurance criteria, flagging or invalidating values before data certification",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:DB-C13-T3",
+         "statement": "Collocate low-cost sensors with a regulatory monitor to derive correction factors, documenting sensor performance before the data are published",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C03",
+       "duty": "Conduct regulatory compliance inspections",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.2-T1",
+         "statement": "Inspect a permitted facility or site against its permit conditions and applicable rules, recording observations, measurements and samples as evidence",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:ena-sl-c03-air-t1",
+         "statement": "Read visible emissions from a stationary source following the certified opacity-observation method, recording each reading and observation condition",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:sc-collect-inspection-evidence",
+         "statement": "Collect samples and photographs during an inspection under chain-of-custody procedures, so that the evidence is admissible in an enforcement proceeding",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C29",
+       "duty": "Communicate environmental and health risks under uncertainty",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:lc-txe-answer-public-questions",
+         "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:lc-txe-draft-advisory",
+         "statement": "Draft a public advisory that states the hazard, the people affected, the uncertainty and the protective action in plain language",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:lc-txe-prepare-message-map",
+         "statement": "Prepare a shared message map with partner agencies for an emerging environmental or health incident",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C14",
+       "duty": "Operate within, or oversee, delegated and assumed regulatory programs",
+       "pctTime": 8,
+       "tasks": [
+        {
+         "task": "seed:sc-answer-oversight-objection",
+         "statement": "Respond to an overseeing agency's objection to a permit issued under delegated authority, revising the permit or defending it with a written record",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        },
+        {
+         "task": "seed:sc-assess-rule-stringency",
+         "statement": "Assess whether a proposed change to program rules keeps them at least as stringent as the delegated authority requires, documenting each provision compared",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C04",
+       "duty": "Develop and resolve environmental enforcement cases",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.5-T1",
+         "statement": "Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:v1-6.1.5-T2",
+         "statement": "Assemble the evidence file for an enforcement case, linking each alleged violation to the inspection findings, records and samples that prove it",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:PS-C09",
+       "duty": "Build organizational and jurisdictional greenhouse gas inventories for disclosure and reporting",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-6.6.1-T1",
+         "statement": "Compile a greenhouse gas inventory for an organization or jurisdiction, documenting boundaries, activity data, emission factors and methods for each source.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:dc-ps09-audit-trail",
+         "statement": "Maintain the evidence trail and controls behind inventory figures so that an assurance provider can trace each figure to its source data.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C52",
+       "duty": "Analyze cumulative burdens and distributional effects of environmental decisions",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-6.7.2-T1",
+         "statement": "Screen a proposed project's area for existing environmental and health burdens using screening indicators, recording each indicator's source, date and known limitations",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:v1-6.7.2-T2",
+         "statement": "Estimate how a proposed permit or project changes cumulative burdens on affected communities, stating the uncertainty and assumptions behind each estimate",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-12",
+       "duty": "Build, run and validate environmental forecast and scenario systems",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-2.7.3-T1",
+         "statement": "Build an operational forecast or scenario system for an ecosystem or infrastructure asset that assimilates real-time sensor observations.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        },
+        {
+         "task": "seed:v1-2.7.3-T2",
+         "statement": "Simulate alternative management actions in a forecast or scenario system, reporting the spread of outcomes and the system's validated range.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C15",
+       "duty": "Plan smoke management for prescribed and managed fire within air quality requirements",
+       "pctTime": 3,
+       "tasks": [
+        {
+         "task": "seed:DB-C15-T2",
+         "statement": "Prepare the smoke management section of a burn plan, identifying sensitive receptors, dispersion limits and contingency actions",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.9
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:DB-C14-T1",
+      "seed:DB-C14-T2",
+      "seed:DB-C14-T3",
+      "seed:DB-C14-T4",
+      "seed:ena-sl-c02-air-t1",
+      "seed:ena-sl-c02-air-t2",
+      "seed:ena-sl-c02-air-t3",
+      "seed:ena-sl-c02-air-t4",
+      "seed:DB-C13-T1",
+      "seed:DB-C13-T2",
+      "seed:DB-C13-T3",
+      "seed:v1-6.1.2-T1",
+      "seed:ena-sl-c03-air-t1",
+      "seed:sc-collect-inspection-evidence",
+      "seed:sc-answer-oversight-objection",
+      "seed:sc-assess-rule-stringency",
+      "seed:lc-txe-answer-public-questions",
+      "seed:lc-txe-draft-advisory",
+      "seed:lc-txe-prepare-message-map"
+     ],
+     "criticalTasks": [
+      "seed:DB-C14-T1",
+      "seed:DB-C14-T2",
+      "seed:ena-sl-c02-air-t1",
+      "seed:ena-sl-c02-air-t2"
+     ],
+     "distinguishingCompetencies": [
+      "seed:DB-C14"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:DB-C14",
+       "statement": "Knowledge of and skill in: build emissions inventories and air quality models for attainment planning (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:SL-C02",
+       "statement": "Knowledge of and skill in: issue environmental permits and resource-use authorizations as the deciding authority (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DB-C13",
+       "statement": "Knowledge of and skill in: operate ambient air monitoring networks to regulatory quality-assurance criteria (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DB-C29",
+       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SC-C14",
+       "statement": "Knowledge of and skill in: operate within, or oversee, delegated and assumed regulatory programs (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SL-C03",
+       "statement": "Knowledge of and skill in: conduct regulatory compliance inspections (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    },
+    {
+     "group": "senior and lead",
+     "indicativeBand": "GS-12 to GS-13 (senior); GS-13 to GS-14 (lead)",
+     "roleLevels": [
+      "senior",
+      "lead"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:DB-C14",
+       "duty": "Build emissions inventories and air quality models for attainment planning",
+       "pctTime": 17,
+       "tasks": [
+        {
+         "task": "seed:DB-C14-T1",
+         "statement": "Compile a point, area, mobile and natural source emissions inventory for a planning year with documented methods and activity data",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.5
+        },
+        {
+         "task": "seed:DB-C14-T2",
+         "statement": "Run a photochemical model for an attainment demonstration under an approved modelling protocol, documenting model performance against monitored data",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.5
+        },
+        {
+         "task": "seed:DB-C14-T3",
+         "statement": "Review a permit applicant's dispersion modelling analysis against the agreed protocol and guidance before accepting its conclusions",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:DB-C14-T4",
+         "statement": "Check emissions estimates generated automatically from activity or sensor data against source tests and inventory methods before inclusion",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C02",
+       "duty": "Issue environmental permits and resource-use authorizations as the deciding authority",
+       "pctTime": 16,
+       "tasks": [
+        {
+         "task": "seed:ena-sl-c02-air-t1",
+         "statement": "Determine whether a proposed modification at a stationary source triggers major new source review from emissions increases and netting",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.5
+        },
+        {
+         "task": "seed:ena-sl-c02-air-t2",
+         "statement": "Draft operating permit conditions for a major stationary air source with monitoring sufficient to show compliance with each applicable requirement",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.5
+        },
+        {
+         "task": "seed:ena-sl-c02-air-t3",
+         "statement": "Review a control technology determination submitted with an air permit application against comparable sources and cost criteria",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:ena-sl-c02-air-t4",
+         "statement": "Check permit conditions drafted from a template or AI tool against the source's applicable requirements before public notice",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C13",
+       "duty": "Operate ambient air monitoring networks to regulatory quality-assurance criteria",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:DB-C13-T1",
+         "statement": "Audit a regulatory air monitor's flow and gas calibration against transfer standards following the quality assurance project plan",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:DB-C13-T2",
+         "statement": "Validate a quarter's ambient monitoring data against quality-assurance criteria, flagging or invalidating values before data certification",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:DB-C13-T3",
+         "statement": "Collocate low-cost sensors with a regulatory monitor to derive correction factors, documenting sensor performance before the data are published",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C03",
+       "duty": "Conduct regulatory compliance inspections",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.2-T1",
+         "statement": "Inspect a permitted facility or site against its permit conditions and applicable rules, recording observations, measurements and samples as evidence",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:ena-sl-c03-air-t1",
+         "statement": "Read visible emissions from a stationary source following the certified opacity-observation method, recording each reading and observation condition",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:sc-collect-inspection-evidence",
+         "statement": "Collect samples and photographs during an inspection under chain-of-custody procedures, so that the evidence is admissible in an enforcement proceeding",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C14",
+       "duty": "Operate within, or oversee, delegated and assumed regulatory programs",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:sc-answer-oversight-objection",
+         "statement": "Respond to an overseeing agency's objection to a permit issued under delegated authority, revising the permit or defending it with a written record",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:sc-assess-rule-stringency",
+         "statement": "Assess whether a proposed change to program rules keeps them at least as stringent as the delegated authority requires, documenting each provision compared",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:sc-audit-local-delivery",
+         "statement": "Audit a local government's delivery of a delegated program against its agreement, issuing findings with the corrective actions required",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C29",
+       "duty": "Communicate environmental and health risks under uncertainty",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:lc-txe-answer-public-questions",
+         "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:lc-txe-draft-advisory",
+         "statement": "Draft a public advisory that states the hazard, the people affected, the uncertainty and the protective action in plain language",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:lc-txe-prepare-message-map",
+         "statement": "Prepare a shared message map with partner agencies for an emerging environmental or health incident",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C15",
+       "duty": "Plan smoke management for prescribed and managed fire within air quality requirements",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:DB-C15-T1",
+         "statement": "Evaluate a burn request against forecast dispersion, current air quality and sensitive receptors before issuing a burn-day decision",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        },
+        {
+         "task": "seed:DB-C15-T2",
+         "statement": "Prepare the smoke management section of a burn plan, identifying sensitive receptors, dispersion limits and contingency actions",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C04",
+       "duty": "Develop and resolve environmental enforcement cases",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.5-T1",
+         "statement": "Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        },
+        {
+         "task": "seed:v1-6.1.5-T2",
+         "statement": "Assemble the evidence file for an enforcement case, linking each alleged violation to the inspection findings, records and samples that prove it",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:PS-C09",
+       "duty": "Build organizational and jurisdictional greenhouse gas inventories for disclosure and reporting",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:v1-6.6.1-T1",
+         "statement": "Compile a greenhouse gas inventory for an organization or jurisdiction, documenting boundaries, activity data, emission factors and methods for each source.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        },
+        {
+         "task": "seed:dc-ps09-audit-trail",
+         "statement": "Maintain the evidence trail and controls behind inventory figures so that an assurance provider can trace each figure to its source data.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C52",
+       "duty": "Analyze cumulative burdens and distributional effects of environmental decisions",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:v1-6.7.2-T1",
+         "statement": "Screen a proposed project's area for existing environmental and health burdens using screening indicators, recording each indicator's source, date and known limitations",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        },
+        {
+         "task": "seed:v1-6.7.2-T2",
+         "statement": "Estimate how a proposed permit or project changes cumulative burdens on affected communities, stating the uncertainty and assumptions behind each estimate",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-12",
+       "duty": "Build, run and validate environmental forecast and scenario systems",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:v1-2.7.3-T1",
+         "statement": "Build an operational forecast or scenario system for an ecosystem or infrastructure asset that assimilates real-time sensor observations.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        },
+        {
+         "task": "seed:v1-2.7.3-T2",
+         "statement": "Simulate alternative management actions in a forecast or scenario system, reporting the spread of outcomes and the system's validated range.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.7
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:DB-C14-T1",
+      "seed:DB-C14-T2",
+      "seed:DB-C14-T3",
+      "seed:DB-C14-T4",
+      "seed:ena-sl-c02-air-t1",
+      "seed:ena-sl-c02-air-t2",
+      "seed:ena-sl-c02-air-t3",
+      "seed:ena-sl-c02-air-t4",
+      "seed:DB-C13-T1",
+      "seed:DB-C13-T2",
+      "seed:DB-C13-T3",
+      "seed:v1-6.1.2-T1",
+      "seed:ena-sl-c03-air-t1",
+      "seed:sc-collect-inspection-evidence",
+      "seed:sc-answer-oversight-objection",
+      "seed:sc-assess-rule-stringency",
+      "seed:lc-txe-answer-public-questions",
+      "seed:lc-txe-draft-advisory",
+      "seed:lc-txe-prepare-message-map"
+     ],
+     "criticalTasks": [
+      "seed:DB-C14-T1",
+      "seed:DB-C14-T2",
+      "seed:ena-sl-c02-air-t1",
+      "seed:ena-sl-c02-air-t2"
+     ],
+     "distinguishingCompetencies": [
+      "seed:DB-C14"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:DB-C14",
+       "statement": "Knowledge of and skill in: build emissions inventories and air quality models for attainment planning (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:SL-C02",
+       "statement": "Knowledge of and skill in: issue environmental permits and resource-use authorizations as the deciding authority (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DB-C13",
+       "statement": "Knowledge of and skill in: operate ambient air monitoring networks to regulatory quality-assurance criteria (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DB-C29",
+       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SC-C14",
+       "statement": "Knowledge of and skill in: operate within, or oversee, delegated and assumed regulatory programs (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SL-C03",
+       "statement": "Knowledge of and skill in: conduct regulatory compliance inspections (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    }
+   ],
+   "changeView": null
+  }
+ ],
+ "rolesWithoutFederalVariant": [],
+ "feederOrDestinationRoles": []
+}

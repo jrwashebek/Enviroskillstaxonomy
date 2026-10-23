@@ -1,0 +1,1206 @@
+{
+ "stamp": {
+  "ruleId": "role-change-inputs",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/change_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "role": "seed:R06-wildland-fire-operations",
+ "roleTitle": "Wildland fire operations (crew to supervisor)",
+ "summary": "Operational fire role from crew member to crew supervisor: constructing and holding fireline, firing and mop-up, saw and hand-tool work, fire weather and behaviour observation, crew safety and emergency response, and, at senior levels, size-up, tactical direction and crew development. Position qualifications are credential gates, not levels.",
+ "evidenceNotice": "Reshaping claims are agent drafts (raterType llm, validationStatus draft, evidence S). No task has a v2 multi-rater assessment yet, so every task shows 'assessment pending'. Change indicators count active signals only (ADR-0028); all linked signals are at watch, so no change indicator moves. v1 values appear only as prior-evidence pointers.",
+ "timeShareByClaim": {
+  "new": 0.008,
+  "no reshaping claim drafted": 0.769,
+  "stable": 0.147,
+  "transforming": 0.076
+ },
+ "roleLevelChange": [
+  {
+   "kind": "transforming-role",
+   "drivers": [
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "note": "Federal wildland fire is being consolidated in the U.S. Wildland Fire Service, and aligned USWFS-USFS qualification standards take effect in January 2027 (NWCG is not a party).",
+   "instruments": [
+    {
+     "id": "seed:ins/uswfs-so-3448",
+     "label": "Secretarial Order 3448 establishing the U.S. Wildland Fire Service"
+    },
+    {
+     "id": "seed:ins/wildland-fire-quals-alignment",
+     "label": "USWFS-USFS aligned federal wildland fire qualification standards (IQCS 2026 Transition Plan)"
+    }
+   ],
+   "signals": []
+  },
+  {
+   "kind": "skill-shift",
+   "drivers": [
+    "climate"
+   ],
+   "note": "Workload grows with fire activity: the 2026 season ran well above the ten-year average.",
+   "instruments": [],
+   "signals": [
+    {
+     "id": "seed:sig/foresight/ws-36-fire-season-2026",
+     "label": "2026 fire season at 63,884 fires and 9.0 million acres YTD (133% and 145% of the 10-year average) as of 2026-10-11",
+     "signalStatus": "watch",
+     "signalFamily": "workload",
+     "direction": "grow",
+     "drivers": [
+      "climate"
+     ],
+     "reliability": "A",
+     "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+     "evidenceLabel": "S",
+     "reviewBy": "2027-10-23"
+    }
+   ]
+  }
+ ],
+ "contextSignals": [
+  {
+   "id": "seed:sig/bls-ep-2025-35/33-2011/R06-wildland-fire-operations",
+   "label": "BLS projected employment change 2025-35 for Firefighters (33-2011), attached to R06-wildland-fire-operations",
+   "signalStatus": "watch",
+   "signalFamily": "projection",
+   "direction": "grow",
+   "drivers": [
+    "other"
+   ],
+   "reliability": "A",
+   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
+   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-14-epa-ai-strategy",
+   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "new",
+   "drivers": [
+    "AI",
+    "policy-reform"
+   ],
+   "reliability": "A",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-33-gao-opm-capacity",
+   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "A",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-36-fire-season-2026",
+   "label": "2026 fire season at 63,884 fires and 9.0 million acres YTD (133% and 145% of the 10-year average) as of 2026-10-11",
+   "signalStatus": "watch",
+   "signalFamily": "workload",
+   "direction": "grow",
+   "drivers": [
+    "climate"
+   ],
+   "reliability": "A",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/epa-12849-jan-2026",
+   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity",
+    "demographic"
+   ],
+   "reliability": "B",
+   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/federal-civilian-minus-12pct",
+   "label": "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/federal-under-30-share",
+   "label": "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity",
+    "demographic"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/nps-gt25pct-2024-09-to-2026-01",
+   "label": "National Park Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01",
+   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/omb-ai-inventory-2025/fire-smoke",
+   "label": "AI in fire and smoke detection, prediction and operations: registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI",
+    "sensing-tech"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  }
+ ],
+ "changeIndicator": {
+  "active": 0,
+  "status": "no change indicator (0 active signals; ADR-0028 two-family, two-period, human-reviewed rule)"
+ },
+ "externalContext": [
+  {
+   "id": "seed:asm/external/eloundou-2024/33-2011/R06-wildland-fire-operations",
+   "index": "Eloundou, Manning, Mishkin, Rock - GPTs are GPTs",
+   "release": "Science 2024 replication data (GitHub snapshot read 2026-10-23); O*NET 27.x tasks",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "betaGpt4": 0.14,
+    "betaGpt4Percentile": 0.242,
+    "betaHuman": 0.088,
+    "betaHumanPercentile": 0.22
+   },
+   "dispersion": {
+    "nTasks": 30.0,
+    "shareE0": 0.9,
+    "sharePhysicalTasks": 0.8
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  },
+  {
+   "id": "seed:asm/external/eloundou-2024/33-2022/R06-wildland-fire-operations",
+   "index": "Eloundou, Manning, Mishkin, Rock - GPTs are GPTs",
+   "release": "Science 2024 replication data (GitHub snapshot read 2026-10-23); O*NET 27.x tasks",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "betaGpt4": 0.219,
+    "betaGpt4Percentile": 0.326,
+    "betaHuman": 0.375,
+    "betaHumanPercentile": 0.612
+   },
+   "dispersion": {
+    "nTasks": 16.0,
+    "shareE0": 0.5,
+    "sharePhysicalTasks": 0.312
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  },
+  {
+   "id": "seed:asm/external/ms-working-with-ai-v6/33-2011/R06-wildland-fire-operations",
+   "index": "Tomlinson, Jaffe, Wang, Counts, Suri - Working with AI: Measuring the Applicability of Generative AI to Occupations",
+   "release": "arXiv:2507.07935 v6 (2025-12-22); results files v1.1",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "aiApplicability": 0.07,
+    "aiApplicabilityPercentile": 0.204,
+    "nonphysicalApplicability": 0.02,
+    "nonphysicalApplicabilityPercentile": 0.218
+   },
+   "dispersion": {
+    "coverageUser": 0.21,
+    "sharePhysicalTasks": 0.8
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  },
+  {
+   "id": "seed:asm/external/ms-working-with-ai-v6/33-2022/R06-wildland-fire-operations",
+   "index": "Tomlinson, Jaffe, Wang, Counts, Suri - Working with AI: Measuring the Applicability of Generative AI to Occupations",
+   "release": "arXiv:2507.07935 v6 (2025-12-22); results files v1.1",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "aiApplicability": 0.049,
+    "aiApplicabilityPercentile": 0.115,
+    "nonphysicalApplicability": 0.045,
+    "nonphysicalApplicabilityPercentile": 0.395
+   },
+   "dispersion": {
+    "coverageUser": 0.077,
+    "sharePhysicalTasks": 0.312
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  }
+ ],
+ "tasks": [
+  {
+   "task": "seed:v1-4.3.1-T1",
+   "statement": "Construct fireline with hand tools or equipment to the specified width and depth while keeping escape routes and safety zones current",
+   "timeShare": 0.147,
+   "roleLevels": [
+    "entry",
+    "journey"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [
+    {
+     "kind": "stable",
+     "drivers": [],
+     "note": "Fireline construction is not compressed by current tools.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.3.1-T1/copyB",
+      "seed:v1asm/4.3.1-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.3.1-T3",
+   "statement": "Mop up heat along the control line until the perimeter meets the incident's containment standard",
+   "timeShare": 0.113,
+   "roleLevels": [
+    "entry",
+    "journey"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.3.1-T3/copyB",
+      "seed:v1asm/4.3.1-T3/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.3.1-T2",
+   "statement": "Execute a firing operation that removes fuel between the control line and the fire under the firing boss's direction",
+   "timeShare": 0.038,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.3.1-T2/copyB",
+      "seed:v1asm/4.3.1-T2/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:db-4.3.1-t4",
+   "statement": "Size up a new fire's fuels, weather, topography and values at risk to recommend initial attack tactics",
+   "timeShare": 0.038,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "transforming",
+     "drivers": [
+      "sensing-tech",
+      "AI"
+     ],
+     "note": "Satellite and camera detection reaches the size-up earlier; ground size-up of fuels and values stays.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [
+     {
+      "id": "seed:sig/omb-ai-inventory-2025/fire-smoke",
+      "label": "AI in fire and smoke detection, prediction and operations: registered federal environmental-bureau use cases (2025 inventory)",
+      "signalStatus": "watch",
+      "signalFamily": "deployment",
+      "direction": "augment",
+      "drivers": [
+       "AI",
+       "sensing-tech"
+      ],
+      "reliability": "A",
+      "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+      "evidenceLabel": "S",
+      "reviewBy": "2027-10-23"
+     }
+    ],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:db-4.3.1-t5",
+   "statement": "Direct a crew's tactical assignment, adjusting tactics when observed fire behaviour or weather departs from the briefing",
+   "timeShare": 0.038,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.3.4-T1",
+   "statement": "Calculate fuel moisture and fire danger indices from on-site fire weather observations for an operational period",
+   "timeShare": 0.038,
+   "roleLevels": [
+    "entry",
+    "journey"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [
+    {
+     "kind": "transforming",
+     "drivers": [
+      "sensing-tech"
+     ],
+     "note": "Automated stations supply indices; hand calculation is kept as a formation task (WP-07 by-hand quota).",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.3.4-T1/copyB",
+      "seed:v1asm/4.3.4-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.3.4-T3",
+   "statement": "Brief incident personnel on expected fire behaviour and weather trends, highlighting watch-out situations for each division",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.3.4-T3/copyB",
+      "seed:v1asm/4.3.4-T3/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:db-4.3.4-t4",
+   "statement": "Compare modelled fire behaviour with observed behaviour during an incident, adjusting predictions and recording each discrepancy",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.2.3-T1",
+   "statement": "Ignite a prescribed fire unit with hand-held devices following the firing pattern and the firing boss's direction",
+   "timeShare": 0.038,
+   "roleLevels": [
+    "entry",
+    "journey"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.2.3-T1/copyB",
+      "seed:v1asm/4.2.3-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.2.3-T3",
+   "statement": "Check holding resources, equipment and crew briefing completion against the burn plan before ignition begins",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.2.3-T3/copyB",
+      "seed:v1asm/4.2.3-T3/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.5.2-T1",
+   "statement": "Fell trees with a chainsaw within the operator's certification limits, planning the face cut, hinge and escape route from the tree's size-up",
+   "timeShare": 0.075,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.5.2-T1/copyB",
+      "seed:v1asm/4.5.2-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-saw-preuse",
+   "statement": "Inspect a chainsaw before use for chain brake, chain catcher, throttle lock and chain condition, removing a defective saw from service",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-saw-decline",
+   "statement": "Decline to fell a tree that exceeds the operator's qualification or shows unmanageable defects, choosing an alternative such as leaving, blasting or mechanical felling",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-saw-evaluate",
+   "statement": "Evaluate other sawyers' felling and bucking in the field against the certification standard, recording each evaluation and any retraining required",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.5.1-T1",
+   "statement": "Use hand tools such as grubbing hoes, axes, crosscut saws and shovels for vegetation, trail and restoration work with safe spacing and body position",
+   "timeShare": 0.075,
+   "roleLevels": [
+    "entry",
+    "journey"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.5.1-T1/copyB",
+      "seed:v1asm/4.5.1-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.5.1-T2",
+   "statement": "Restore dull or damaged hand tools to safe working condition by sharpening, rehafting or replacing parts to the tool standard",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "entry",
+    "journey"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.5.1-T2/copyB",
+      "seed:v1asm/4.5.1-T2/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-risk-briefing",
+   "statement": "Brief a field crew on the day's site hazards, escape routes, safety zones and communication plan before work begins",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-risk-stopwork",
+   "statement": "Stop field work when hazards change beyond the controls in the job hazard analysis, re-briefing the crew before work resumes",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-risk-heat-recognize",
+   "statement": "Recognize early heat illness or smoke exposure symptoms in crew members, removing affected people from exposure and starting care",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-risk-heat-smoke",
+   "statement": "Plan work-rest cycles, hydration and acclimatization for crews working in heat or smoke, adjusting schedules as exposure readings rise",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txc-review-generated-briefing",
+   "statement": "Review a template- or AI-generated hazard briefing against conditions observed on site before delivering it to the crew",
+   "timeShare": 0.008,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "new",
+     "drivers": [
+      "AI"
+     ],
+     "note": "Generated hazard briefings are checked on site before delivery.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.4.5-T1",
+   "statement": "Communicate an emergency to dispatch by radio, satellite device or beacon, giving location, nature of the emergency and resources needed in the required format",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.4.5-T1/copyB",
+      "seed:v1asm/4.4.5-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.3.5-T1",
+   "statement": "Test field radios and satellite devices for a work area before deployment, programming channels and confirming coverage at key locations",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.3.5-T1/copyB",
+      "seed:v1asm/2.3.5-T1/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.4.2-T1",
+   "statement": "Assess an injured or ill person in a remote location with a structured patient assessment, giving first aid within the scope of training",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.4.2-T1/copyB",
+      "seed:v1asm/4.4.2-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.4.2-T2",
+   "statement": "Coordinate a medical evacuation from a remote site, passing patient condition, location and landing or access information to responders",
+   "timeShare": 0.008,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.4.2-T2/copyB",
+      "seed:v1asm/4.4.2-T2/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-nav-device-failure",
+   "statement": "Recover position and continue safely when satellite positioning is degraded or a device fails, switching to map, compass and terrain association",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.5.3-T2",
+   "statement": "Drive a four-wheel-drive vehicle on unpaved and off-road routes, selecting gear, speed and line for mud, sand, snow, rock and water crossings",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.5.3-T2/copyB",
+      "seed:v1asm/4.5.3-T2/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-tree-worksite",
+   "statement": "Assess hazard trees around a field work site or crew area before work starts, flagging trees that need removal or an exclusion zone",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-lead-field-day",
+   "statement": "Lead a small crew through a field day, matching tasks to skill and checking novice work early and often",
+   "timeShare": 0.038,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-lead-readiness",
+   "statement": "Decide whether a novice is ready for independent field work from observed performance against stated criteria, recording the sign-off",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-lead-aar",
+   "statement": "Run an after-action review with the crew at the end of a field operation, recording what happened, why and what will change",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.5.5-T1",
+   "statement": "Perform scheduled maintenance on field equipment and vehicles to the manufacturer's or program's schedule, recording each service",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "entry",
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.5.5-T1/copyB",
+      "seed:v1asm/4.5.5-T1/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-4.3.5-T2",
+   "statement": "Implement emergency stabilization treatments such as mulching, seeding and drainage on burned slopes to the treatment prescription",
+   "timeShare": 0.019,
+   "roleLevels": [
+    "journey"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/4.3.5-T2/copyB",
+      "seed:v1asm/4.3.5-T2/d4_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txd-rate-performance",
+   "statement": "Rate a trainee's observed performance of position tasks on the entrustment-supervision scale in the evaluation context each task requires",
+   "timeShare": 0.011,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:lc-txe-answer-public-questions",
+   "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
+   "timeShare": 0.008,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  }
+ ]
+}

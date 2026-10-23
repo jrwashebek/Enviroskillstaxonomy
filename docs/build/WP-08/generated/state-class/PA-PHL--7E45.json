@@ -1,0 +1,324 @@
+{
+ "stamp": {
+  "ruleId": "state-class-view",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "classRecord": "seed:class/PA-PHL/7E45",
+ "class": {
+  "jurisdiction": "City of Philadelphia, Pennsylvania",
+  "employerType": "utility",
+  "agency": "Philadelphia Water Department (City of Philadelphia civil-service class plan)",
+  "classCode": "7E45",
+  "classTitle": "Water Treatment Plant Operator",
+  "series": "Water treatment plant operations",
+  "level": {
+   "ordinal": 2,
+   "label": "operator"
+  },
+  "supervisoryStatus": "non-supervisory",
+  "specEffectiveDate": "2010-09-01",
+  "mqLocation": "spec",
+  "mqParaphrase": "Twelfth grade plus 1 year operating computer-controlled water, wastewater or sludge processing equipment; operator licence or approved coursework may substitute.",
+  "degreeRule": "not-required",
+  "licensesRequired": [
+   {
+    "credential": "PA motor vehicle operator licence",
+    "issuer": "Pennsylvania",
+    "timing": "at-hire"
+   },
+   {
+    "credential": "HAZMAT emergency response technician (24-hour)",
+    "issuer": "approved training provider",
+    "timing": "within-6-months (if assignment requires)"
+   },
+   {
+    "credential": "PA DEP water or wastewater operator licence (C-level or higher)",
+    "issuer": "Pennsylvania DEP",
+    "timing": "alternative to the experience requirement"
+   }
+  ],
+  "pay": {
+   "basis": "annual",
+   "min": null,
+   "max": null,
+   "label": "Pay range 14",
+   "effective": "2023-07-01"
+  },
+  "specUrl": "https://www.phila.gov/departments/office-of-human-resources/job-specs/7E45.htm",
+  "reviewBy": "2027-07-01"
+ },
+ "mappings": [
+  {
+   "roleVariant": "seed:R25-water-wastewater-operator/local",
+   "role": "seed:R25-water-wastewater-operator",
+   "roleTitle": "Water and wastewater treatment operator",
+   "tier": "P2",
+   "authorityPosition": "regulated-party",
+   "roleLevels": [
+    "journey"
+   ],
+   "matchType": "skos:closeMatch",
+   "confidence": 0.7,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-pa-phl:R25-water-wastewater-operator/local:7E45",
+   "competencyTargets": [
+    {
+     "competency": "seed:DB-C01",
+     "label": "Operate drinking water treatment processes to meet water quality targets",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C02",
+     "label": "Operate wastewater treatment and resource-recovery processes to permit limits",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:SL-C16",
+     "label": "Practice within licensure scope and responsible charge",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 5,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-B"
+    },
+    {
+     "competency": "seed:DB-C03",
+     "label": "Supervise automated and AI-assisted process control in environmental operations",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DB-C06",
+     "label": "Protect operational technology at environmental utilities and facilities",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:FC-C24",
+     "label": "Manage field sample custody and field quality control",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-4.4.1-B",
+     "label": "Apply safety practices and stop-work authority across field, facility and incident settings",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-C"
+    },
+    {
+     "competency": "seed:v1-4.4.4-A",
+     "label": "Work safely on hazardous, industrial and energized field sites",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:v1-4.7.3",
+     "label": "Manage a municipal stormwater programme to meet permit conditions",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:DB-C01-T1",
+     "statement": "Adjust coagulant dosing from jar test results when raw-water turbidity, temperature or organic content changes",
+     "pctTime": 5.7,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C01-T2",
+     "statement": "Verify disinfection contact time against required inactivation values at each operating flow and correct shortfalls before water enters distribution",
+     "pctTime": 5.3,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C02-T1",
+     "statement": "Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits",
+     "pctTime": 5.3,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C02-T2",
+     "statement": "Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it",
+     "pctTime": 5.3,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:sc-check-scope-of-practice",
+     "statement": "Determine whether an assigned task falls within the scope of one's licence or certification, referring out-of-scope work to a qualified professional",
+     "pctTime": 5.3,
+     "critical": true,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:DB-C01-T3",
+     "statement": "Respond to a treatment upset by isolating the affected process unit, bringing backup treatment online and notifying the primacy agency",
+     "pctTime": 4.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C02-T3",
+     "statement": "Route peak wet-weather flows through the plant to protect biological treatment, recording any bypass or overflow for required reporting",
+     "pctTime": 4.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:DB-C02-T4",
+     "statement": "Operate anaerobic digestion and solids handling to meet biosolids pathogen-reduction and stability requirements while recovering digester gas",
+     "pctTime": 4.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:db-c03-manual",
+     "statement": "Run a treatment process in safe manual operation when automation or communications fail, adapting the manual operating procedure to conditions",
+     "pctTime": 4.2,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:db-c03-monitor-loops",
+     "statement": "Monitor automated control loops and alarms on a treatment process, checking automated responses against field observations of process condition",
+     "pctTime": 4.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-coc-complete",
+     "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
+     "pctTime": 4.2,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-qc-collect",
+     "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
+     "pctTime": 4.2,
+     "critical": false,
+     "neededAtEntry": true
+    }
+   ],
+   "credentialGates": [
+    {
+     "credential": "seed:crd-drinking-water-treatment-operator",
+     "label": "Drinking water treatment operator certification (Grades I-IV / Class A-D, state-specific)",
+     "kind": "required"
+    },
+    {
+     "credential": "seed:crd-wastewater-treatment-operator",
+     "label": "Wastewater treatment operator certification (Grades I-IV)",
+     "kind": "required"
+    },
+    {
+     "credential": "seed:crd-wastewater-collection-operator",
+     "label": "Wastewater collection system operator certification",
+     "kind": "preferred"
+    },
+    {
+     "credential": "seed:crd-water-distribution-operator",
+     "label": "Water distribution system operator certification",
+     "kind": "preferred"
+    }
+   ]
+  }
+ ]
+}

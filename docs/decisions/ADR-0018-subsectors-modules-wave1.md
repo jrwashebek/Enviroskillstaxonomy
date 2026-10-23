@@ -59,3 +59,10 @@ v1 covers 11 of DB's 44 subsectors fully, 22 partially and 11 not at all; the "N
 
 - **DB** placed parks in wave 3; the CA moved MOD-15 to wave 1 for federal coverage. **PS** may weigh ESG higher than wave 3; federal ESG disclosure work shrank (SEC rule rescission proposed) while California SB 253 first reports are due 10 Nov 2026 [E: V2-15] — PS's private-sector content enters via core disclosure competencies and private variants in wave 1, the full ESG/markets module in wave 3.
 - **Trade-off named:** breadth beyond public lands now versus the authoring load of central commissioning (~1 extra editorial FTE through 2028).
+
+## Amendments
+
+- **2026-10-23 — CR-DB-001 / ADR-0030 §1.3 (CA).**
+  - **§2, DB-C53:** "Generate legally defensible analytical data" stays in MOD-18 `lab` (wave 2). The laboratory's task core is performed by one job family under one accreditation regime, whatever module the data serve, so it fails the three-module test. The part that recurs across modules is the data user's, and it is core: field custody and field QC in FC-C24, and review of laboratory data for a decision in v1 2.2.3.
+  - **§6:** CI checks the three-module rule. A core practice competency with only one or two module enactments needs a third, its home module, or a row in `data/v2/governance/three_module_exceptions.yaml`. Zero module enactments passes, and recurrence is reported.
+  - **MOD-12** gains module candidate DB-C56, harvest regulation and game population management.

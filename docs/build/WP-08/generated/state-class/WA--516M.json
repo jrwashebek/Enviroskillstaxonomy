@@ -1,0 +1,331 @@
+{
+ "stamp": {
+  "ruleId": "state-class-view",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "classRecord": "seed:class/WA/516M",
+ "class": {
+  "jurisdiction": "Washington",
+  "employerType": "state-agency",
+  "agency": "Statewide classified service (Office of Financial Management State HR)",
+  "classCode": "516M",
+  "classTitle": "Natural Resource Scientist 3",
+  "series": "Natural Resource Scientist 1-4",
+  "level": {
+   "ordinal": 3,
+   "label": "3"
+  },
+  "supervisoryStatus": "lead",
+  "specEffectiveDate": "2025-07-01",
+  "mqLocation": "spec",
+  "mqParaphrase": "Desirable: bachelor's in natural science plus 4 years research; master's = 2 years; Ph.D. = all.",
+  "degreeRule": "substitutable",
+  "licensesRequired": [],
+  "pay": {
+   "basis": "monthly",
+   "min": null,
+   "max": null,
+   "label": "Range 62",
+   "effective": "2025-07-01"
+  },
+  "specUrl": "https://ofm.wa.gov/state-human-resources/compensation-job-classes/ClassifiedJobListing/Specifications/234",
+  "reviewBy": "2027-07-01"
+ },
+ "mappings": [
+  {
+   "roleVariant": "seed:R20-ecologist/state",
+   "role": "seed:R20-ecologist",
+   "roleTitle": "Ecologist",
+   "tier": "P2",
+   "authorityPosition": "advisor-researcher",
+   "roleLevels": [
+    "senior"
+   ],
+   "matchType": "skos:broadMatch",
+   "confidence": 0.45,
+   "review": "unreviewed agent draft",
+   "crosswalkRecord": "emst-x5-wa:R20-ecologist/state:516M",
+   "competencyTargets": [
+    {
+     "competency": "seed:v1-1.1.2",
+     "label": "Assess and monitor biodiversity across species and habitats",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 5,
+     "distinguishing": true,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-03",
+     "label": "Design monitoring and sampling for valid environmental inference",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.1.5",
+     "label": "Assess species habitat requirements and habitat condition",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.7.1",
+     "label": "Recognize and assess ecosystems that have crossed into novel states",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.7.4",
+     "label": "Plan for ecological transformation with resist, accept or direct strategies",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-2.2.2",
+     "label": "Analyze environmental data statistically and interpret the results",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 4,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-02",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "senior": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-13",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "senior": "L1"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:FC-C22",
+     "label": "Read site history and reference conditions from landscape evidence",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.4.3",
+     "label": "Identify organisms from field characters, specimens, images and recordings",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.5.2",
+     "label": "Assess climate vulnerability of species, ecosystems, infrastructure and communities",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-2.4.2",
+     "label": "Build, calibrate and validate predictive and simulation models of environmental systems",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-6.3.2",
+     "label": "Assess ecosystem services with production-function models validated against observations",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 3,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:DC-CAND-01",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "senior": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:DC-CAND-05",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "senior": "L1"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "seed:v1-1.7.2",
+     "label": "Plan assisted migration and managed relocation of species and genotypes",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "seed:v1-1.7.5",
+     "label": "Plan for non-analog ecological futures",
+     "targetLevels": {
+      "senior": "L3"
+     },
+     "importance": 2,
+     "distinguishing": false,
+     "competencyType": "practice",
+     "transversalCluster": null
+    }
+   ],
+   "topTasks": [
+    {
+     "task": "seed:v1-1.1.2-T2",
+     "statement": "Analyze long-term biodiversity monitoring data to estimate change in occupancy or richness against conservation objectives, stating uncertainty",
+     "pctTime": 4.9,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.1.2-T1",
+     "statement": "Implement a multi-taxon biodiversity monitoring protocol at assigned sites, coordinating crews, passive detectors and sample collection to schedule",
+     "pctTime": 4.8,
+     "critical": true,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.1.2-T3",
+     "statement": "Report biodiversity monitoring findings to decision-makers with recommended protections, separating observed change from inference and stating its limits",
+     "pctTime": 3.9,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:fc-biodiv-adapt",
+     "statement": "Adjust the monitoring schedule or method mix at a site when disturbance, access loss or detector failure threatens the time series, recording the change",
+     "pctTime": 3.9,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.1.5-T1",
+     "statement": "Measure habitat attributes such as cover, structure, water and forage at used and available sites following a habitat-use study protocol",
+     "pctTime": 3.9,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.1.5-T2",
+     "statement": "Evaluate a habitat suitability map against field observations of use and condition, documenting where and why the model fails",
+     "pctTime": 3.9,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-1.7.1-T1",
+     "statement": "Evaluate whether a site's vegetation, soils and disturbance regime have moved beyond the historical range of variability, citing field and record evidence",
+     "pctTime": 3.9,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:v1-1.7.1-T2",
+     "statement": "Assess ecological function and conservation value of a novel species assemblage at a site using field indicators of structure, process and habitat",
+     "pctTime": 3.9,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.7.3-T1",
+     "statement": "Map potential climate refugia from topographic, hydrologic and climate data, stating the assumptions and validation of the refugia model.",
+     "pctTime": 3.9,
+     "critical": false,
+     "neededAtEntry": true
+    },
+    {
+     "task": "seed:v1-1.7.3-T2",
+     "statement": "Evaluate whether mapped refugia can support climate-sensitive species, using field and monitoring evidence of their current condition.",
+     "pctTime": 3.9,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:dc-03-detection",
+     "statement": "Plan for imperfect detection in a monitoring design, choosing repeat visits or detection models suited to the methods used.",
+     "pctTime": 3.9,
+     "critical": false,
+     "neededAtEntry": false
+    },
+    {
+     "task": "seed:dc-03-method-mix",
+     "statement": "Choose the mix of field, sensor, remote-sensing and community methods for a monitoring programme from cost, detection and comparability evidence.",
+     "pctTime": 3.9,
+     "critical": false,
+     "neededAtEntry": true
+    }
+   ],
+   "credentialGates": []
+  }
+ ]
+}

@@ -1,0 +1,1145 @@
+{
+ "stamp": {
+  "ruleId": "role-change-inputs",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/change_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "role": "seed:R04-geospatial-remote-sensing-analyst",
+ "roleTitle": "Geospatial and remote sensing analyst",
+ "summary": "Analyst role that maps and monitors environmental conditions from imagery and spatial data, builds and validates detection and spatial models, designs maps for decisions, and states accuracy and uncertainty. Pretrained Earth-observation models change the method layer; validation, transfer testing and fitness-for-purpose judgments grow.",
+ "evidenceNotice": "Reshaping claims are agent drafts (raterType llm, validationStatus draft, evidence S). No task has a v2 multi-rater assessment yet, so every task shows 'assessment pending'. Change indicators count active signals only (ADR-0028); all linked signals are at watch, so no change indicator moves. v1 values appear only as prior-evidence pointers.",
+ "timeShareByClaim": {
+  "new": 0.068,
+  "no reshaping claim drafted": 0.74,
+  "transforming": 0.192
+ },
+ "roleLevelChange": [],
+ "contextSignals": [
+  {
+   "id": "seed:sig/bls-ep-2025-35/15-1299/R04-geospatial-remote-sensing-analyst",
+   "label": "BLS projected employment change 2025-35 for Computer occupations, all other (15-1299), attached to R04-geospatial-remote-sensing-analyst",
+   "signalStatus": "watch",
+   "signalFamily": "projection",
+   "direction": "grow",
+   "drivers": [
+    "other"
+   ],
+   "reliability": "A",
+   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/deployment/agentic-use-cases-usda-doi-epa-2025",
+   "label": "Agentic AI use cases in the 2025 USDA, DOI and EPA inventories: 8 of 438, 2 deployed (both administrative)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "new",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory (DC Phase 2 extract)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-08-disaster-database-discontinued",
+   "label": "Federal billion-dollar disaster database ended; revived by a nonprofit with its former federal lead",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "reshape",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "climate"
+   ],
+   "reliability": "B",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
+   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-14-epa-ai-strategy",
+   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "new",
+   "drivers": [
+    "AI",
+    "policy-reform"
+   ],
+   "reliability": "A",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/foresight/ws-33-gao-opm-capacity",
+   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "A",
+   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/epa-12849-jan-2026",
+   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity",
+    "demographic"
+   ],
+   "reliability": "B",
+   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/federal-civilian-minus-12pct",
+   "label": "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/federal-under-30-share",
+   "label": "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity",
+    "demographic"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/nps-gt25pct-2024-09-to-2026-01",
+   "label": "National Park Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01",
+   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/omb-ai-inventory-2025/forecasting",
+   "label": "AI in weather and climate forecasting: registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/omb-ai-inventory-2025/remote-sensing",
+   "label": "AI remote sensing, imagery and LiDAR analysis: registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI",
+    "sensing-tech"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/omb-ai-inventory-2025/species-detection",
+   "label": "AI species and wildlife detection (acoustic, camera, image): registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI",
+    "sensing-tech"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/openlmp/term-at-risk-species-scc-2012-vs-1982",
+   "label": "At-risk species and species-of-conservation-concern content in plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
+   "signalStatus": "watch",
+   "signalFamily": "plan-requirements",
+   "direction": "grow",
+   "drivers": [
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/openlmp/term-data-or-models-2012-vs-1982",
+   "label": "Data and model dependence of plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
+   "signalStatus": "watch",
+   "signalFamily": "plan-requirements",
+   "direction": "grow",
+   "drivers": [
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "seed:sig/postings/conservation-job-board-all-2025",
+   "label": "All conservation postings fell 29.4% year over year (Mar-Sep 2025, one board)",
+   "signalStatus": "watch",
+   "signalFamily": "postings-pds",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "C",
+   "sourceRelease": "National Parks Traveler 2025-11-10",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  }
+ ],
+ "changeIndicator": {
+  "active": 0,
+  "status": "no change indicator (0 active signals; ADR-0028 two-family, two-period, human-reviewed rule)"
+ },
+ "externalContext": [
+  {
+   "id": "seed:asm/external/eloundou-2024/15-1299.02/R04-geospatial-remote-sensing-analyst",
+   "index": "Eloundou, Manning, Mishkin, Rock - GPTs are GPTs",
+   "release": "Science 2024 replication data (GitHub snapshot read 2026-10-23); O*NET 27.x tasks",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "betaGpt4": 0.593,
+    "betaGpt4Percentile": 0.894,
+    "betaHuman": 0.602,
+    "betaHumanPercentile": 0.925
+   },
+   "dispersion": {
+    "nTasks": null,
+    "shareE0": null,
+    "sharePhysicalTasks": null
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  },
+  {
+   "id": "seed:asm/external/eloundou-2024/19-2099.01/R04-geospatial-remote-sensing-analyst",
+   "index": "Eloundou, Manning, Mishkin, Rock - GPTs are GPTs",
+   "release": "Science 2024 replication data (GitHub snapshot read 2026-10-23); O*NET 27.x tasks",
+   "unit": "occupation",
+   "matchType": "skos:broadMatch",
+   "values": {
+    "betaGpt4": 0.457,
+    "betaGpt4Percentile": 0.642,
+    "betaHuman": 0.446,
+    "betaHumanPercentile": 0.714
+   },
+   "dispersion": {
+    "nTasks": null,
+    "shareE0": null,
+    "sharePhysicalTasks": null
+   },
+   "license": "LicenseRef-EMST-third-party-index-derived",
+   "label": "Occupation-level external index; not specific to this role's tasks",
+   "display": "evidence drawer only (matched more broadly than closeMatch)",
+   "releaseNote": "licence LicenseRef-EMST-third-party-index-derived: excluded from release outputs until the index terms are verified"
+  }
+ ],
+ "tasks": [
+  {
+   "task": "seed:dc-212-preprocess",
+   "statement": "Preprocess imagery for analysis by correcting geometry, radiometry and cloud or shadow contamination, documenting each step and its parameters.",
+   "timeShare": 0.055,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.1.2-T1",
+   "statement": "Interpret satellite and aerial imagery to detect changes in vegetation, soil or water condition across a management area between two dates.",
+   "timeShare": 0.083,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.1.2-T1/copyB",
+      "seed:v1asm/2.1.2-T1/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.1.2-T2",
+   "statement": "Classify preprocessed multispectral imagery into land-cover types using training data whose collection method and date are documented.",
+   "timeShare": 0.082,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [
+    {
+     "kind": "transforming",
+     "drivers": [
+      "AI"
+     ],
+     "note": "Pretrained Earth-observation models and embeddings compress classification production; the analyst's time moves to training data, transfer tests and accuracy assessment.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [
+     {
+      "id": "seed:sig/omb-ai-inventory-2025/remote-sensing",
+      "label": "AI remote sensing, imagery and LiDAR analysis: registered federal environmental-bureau use cases (2025 inventory)",
+      "signalStatus": "watch",
+      "signalFamily": "deployment",
+      "direction": "augment",
+      "drivers": [
+       "AI",
+       "sensing-tech"
+      ],
+      "reliability": "A",
+      "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+      "evidenceLabel": "S",
+      "reviewBy": "2027-10-23"
+     }
+    ],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.1.2-T2/copyB",
+      "seed:v1asm/2.1.2-T2/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.1.2-T3",
+   "statement": "Assess the accuracy of a remotely sensed map against independent field reference data, reporting error by class and condition.",
+   "timeShare": 0.055,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "transforming",
+     "drivers": [
+      "AI",
+      "sensing-tech"
+     ],
+     "note": "Accuracy assessment grows as products multiply.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.1.2-T3/copyB",
+      "seed:v1asm/2.1.2-T3/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-212-reference-design",
+   "statement": "Design the sample of independent reference sites for a map accuracy assessment so that every class and condition of interest is represented.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-212-circularity-check",
+   "statement": "Check whether a map product shares training data with the reference used to validate it, choosing an independent reference when it does.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "new",
+     "drivers": [
+      "AI"
+     ],
+     "note": "Checking that a product's training data and its validation reference are independent is new work.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-212-transfer-test",
+   "statement": "Test the transfer of a pretrained Earth-observation model or embedding to a local ecosystem against independent reference data before using its outputs.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "new",
+     "drivers": [
+      "AI"
+     ],
+     "note": "Testing pretrained models on local ecosystems before use is new work.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-212-specify-product",
+   "statement": "Specify a remote-sensing product for a programme decision, stating its classes, minimum mapping unit, accuracy targets and update frequency.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.1.1-T2",
+   "statement": "Run spatial queries and overlays for an environmental assessment, checking that all layers share a coordinate reference system and compatible scales.",
+   "timeShare": 0.055,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.1.1-T2/copyB",
+      "seed:v1asm/2.1.1-T2/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.1.4-T1",
+   "statement": "Analyze terrain, habitat connectivity or resource distribution for a planning question, stating the data, projection and accuracy limits that bound the answer.",
+   "timeShare": 0.055,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.1.4-T1/copyB",
+      "seed:v1asm/2.1.4-T1/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.1.4-T2",
+   "statement": "Build a predictive spatial model for a conservation planning question, documenting its inputs, assumptions and validation against independent locations.",
+   "timeShare": 0.055,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.1.4-T2/copyB",
+      "seed:v1asm/2.1.4-T2/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.1.4-T3",
+   "statement": "Evaluate alternative management scenarios with overlay and suitability analysis, documenting weights and criteria so that reviewers can test them.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.1.4-T3/copyB",
+      "seed:v1asm/2.1.4-T3/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.1.1-T1",
+   "statement": "Maintain spatial layers of land use, vegetation and infrastructure with topology rules, attribute standards and update dates recorded.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.1.1-T1/copyB",
+      "seed:v1asm/2.1.1-T1/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.1.5-T1",
+   "statement": "Design a map for a stated audience and decision, choosing scale, extent, symbology and colour that the audience reads correctly.",
+   "timeShare": 0.055,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "transforming",
+     "drivers": [
+      "AI"
+     ],
+     "note": "Generative tools draft maps and graphics; design for the decision stays.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.1.5-T1/copyB",
+      "seed:v1asm/2.1.5-T1/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-215-uncertainty-depiction",
+   "statement": "Depict the uncertainty of a mapped or charted estimate with an encoding that intended users read correctly in a comprehension check.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.1.1-T3",
+   "statement": "Produce maps for reports, briefings and field crews at the scale, extent and legibility each use requires.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.1.1-T3/copyB",
+      "seed:v1asm/2.1.1-T3/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.4.1-T1",
+   "statement": "Train a classification model to detect an invasive species in aerial imagery, documenting training data sources, dates and label quality.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.4.1-T1/copyB",
+      "seed:v1asm/2.4.1-T1/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-241-diagnose-failure",
+   "statement": "Diagnose why a detection model fails at a new site or season, choosing between retraining and a documented restriction on its use.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.6.1-T3",
+   "statement": "Validate a detection model against field ground-truth data, reporting error by habitat, season and image condition.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.6.1-T3/copyB",
+      "seed:v1asm/2.6.1-T3/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-09-independent-validation",
+   "statement": "Validate a model against independent evidence with spatially or temporally blocked hold-outs or field reference data, reporting error by condition.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-09-envelope-check",
+   "statement": "Check whether a planned use of a model output falls inside the model's intended purpose, data period and area before relying on it.",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-08-record-environment",
+   "statement": "Record the software environment, package versions and inputs of an analysis so that it can be re-run years later.",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.2.4-T1",
+   "statement": "Write a script that automates a repetitive data-processing step, with tests that confirm it reproduces the manual result on sample data.",
+   "timeShare": 0.027,
+   "roleLevels": [
+    "journey"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.2.4-T1/copyB",
+      "seed:v1asm/2.2.4-T1/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-08-review-ai-code",
+   "statement": "Review AI-generated analysis code line by line against the analysis plan, testing it on cases with known answers before use.",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "journey",
+    "senior"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [
+    {
+     "kind": "new",
+     "drivers": [
+      "AI"
+     ],
+     "note": "Line-by-line review of AI-generated analysis code is new.",
+     "instruments": []
+    }
+   ],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-11-retain-uncertainty",
+   "statement": "Report results with the uncertainty the method provides, such as intervals or confidence classes, keeping it in every summary of the result.",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.2.5-T1",
+   "statement": "Document a dataset's sources, methods, formats and fitness for use in a metadata record that meets the applicable standard.",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": true,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.2.5-T1/copyB",
+      "seed:v1asm/2.2.5-T1/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-07-generalize-copy",
+   "statement": "Generalize sensitive fields in the distributed copy of a dataset, or withhold them, while leaving the stored record unaltered and explaining each withheld field.",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": true,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:fc-gt-design-sample",
+   "statement": "Design a field validation sample with an analyst, setting strata, sample size and access limits for a remote-sensed or AI product",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:v1-2.3.2-T3",
+   "statement": "Verify the positional accuracy of uncrewed-aircraft survey products against independently surveyed check points before release to users",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "journey",
+    "senior",
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": {
+     "records": [
+      "seed:v1asm/2.3.2-T3/copyB",
+      "seed:v1asm/2.3.2-T3/d2_record"
+     ],
+     "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
+    }
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-214-spatial-standards",
+   "statement": "Set spatial-data standards for a programme covering reference systems, topology rules, accuracy reporting and update cycles.",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-22-decision-map",
+   "statement": "Map the decision a product must support, including who decides, when, under what authority and with which constraints, before design starts.",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "lead"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": false,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  },
+  {
+   "task": "seed:dc-13-sample-validate",
+   "statement": "Validate a large batch of AI detections or comment codes by drawing a defined sample, reviewing it and estimating the batch error rate.",
+   "timeShare": 0.014,
+   "roleLevels": [
+    "journey"
+   ],
+   "critical": false,
+   "neededAtEntry": false,
+   "formationTask": true,
+   "change": [],
+   "evidence": {
+    "v2Assessment": "assessment pending (no v2 multi-rater assessment for this task)",
+    "namedSignals": [],
+    "activeSignals": 0,
+    "v1PriorEvidence": null
+   },
+   "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
+  }
+ ]
+}

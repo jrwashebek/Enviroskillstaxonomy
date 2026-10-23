@@ -2,8 +2,9 @@
 
 **Environmental Management Skills Taxonomy, version 2 — normative specification**
 
-- **Specification version:** 2.0.0-draft.2 · **Date:** 2026-10-23 · **Status:** Draft for Phase 4 implementation
-- **Editor:** Chief Taxonomy Architect (CA) · **Decision basis:** ADR-0001 … ADR-0029 in `docs/decisions/`
+- **Specification version:** 2.0.0-draft.3 · **Date:** 2026-10-23 · **Status:** Draft for Phase 4 implementation
+- **Editor:** Chief Taxonomy Architect (CA) · **Decision basis:** ADR-0001 … ADR-0030 in `docs/decisions/`
+- **draft.3 changes:** the CA rulings at S1 close on CR-DB-001, CR-DC-001, CR-DE-004, CR-FC-001, CR-FC-002, CR-LC-001 and CR-SC-001 (ADR-0030). The changed sections are §4, §5.2–§5.5, §5.8, §5.10, §5.16, §5.19, §11.6, §12.3, §14.2, §16.1 and §18.2.
 - **draft.2 changes:** the CA rulings on change requests CR-DE-001…003, CR-IO-001…003, CR-LM-001…003 and CR-IA-001…002 (ADR-0029). The changed sections are §4, §5.1–§5.5, §5.12–§5.17, §5.19–§5.20, §5.24, §8.2, §10.5, §11.3–§11.4, §12.1–§12.2, §14.3, §15 and §17.1.
 - **Licence:** CC0 1.0 (ADR-0013)
 - **Implementers:** Data Engineer & Repository Steward (DE) and Interoperability Architect / Skills Intelligence (IA) build to this document; every other role authors content to it.
@@ -147,7 +148,7 @@ Every stored record (except mapping rows, which follow SSSOM, §15) MUST carry t
 
 Records MUST be closed objects: unknown fields are rejected. **Computed fields (§14) MUST NOT appear in source records**; they appear only in release bundles and views.
 
-**Seed records.** A record with `validationStatus = seed-v1` must carry the common base, but the type-specific MUST fields of §5 apply only when `validationStatus ≠ seed-v1`: seeds cannot honestly supply v2 judgments. The validator lists each seed's gaps. Seed-v1 records are never released, and a record cannot move to `candidate` while it is `seed-v1` (CR-DE-001 #7).
+**Seed records.** A record with `validationStatus = seed-v1` must carry the common base, but the type-specific MUST fields of §5 apply only when `validationStatus ≠ seed-v1`: seeds cannot honestly supply v2 judgments. The validator lists each seed's gaps. Seed-v1 records are never released, and a record cannot move to `candidate` while it is `seed-v1` (CR-DE-001 #7). A seed-keyed v1 stub that is `superseded` or `withdrawn` keeps `seed-v1`, which records that its content was never validated; `seed-v1` is forbidden on `superseded` or `withdrawn` records only once they carry a minted ID (CR-DE-004 #1).
 
 **Field names.** No type-specific field reuses a common-base name: a type's own status is named for its type (`signalStatus`, `seriesStatus`, `sourceStatus`), and no type has a `title` field, because `prefLabel` is the label (CR-DE-001 #1–#2).
 
@@ -181,6 +182,7 @@ Field names are the terms of `schema/emst.context.jsonld`. "Req." gives MUST (M)
 | `learningDesign` | S | `{assessmentContext, recommendedModes[], typicalHoursPerLevelStep, prerequisites[]}` |
 | `typicalTimeToLevel[]` | O | descriptive only, from job-analysis data; never a criterion |
 | `instrumentSensitivity[]` | O | Mechanism IDs (L0) with evidence (§11.6) |
+| `mirrors[]` | O | `{target, relation}`: the other side of the same obligation, stored **only on the authority or overseer side**; `target` is a Competency or an Enactment; `relation` from `vocab/authority_positions.yaml#mirror_relations` (`regulated-party-mirror`, `applicant-mirror`, `preparer-mirror`, `delegate-mirror`); the inverse `mirroredBy[]` is computed (`inverse-links@1.2.0`; CR-SC-001 #3) |
 
 Constraints: a competency MUST be linked from at least one Task (`Task.supports`); `useTier = select` requires at least one linked task with `critical = true` in a validated role variant (ADR-0001, ADR-0024). Titles MUST NOT name an L4 product or an L5 instrument (§5.11, T-4). There is no fixed number of competencies per area.
 
@@ -202,11 +204,11 @@ Constraints: a competency MUST be linked from at least one Task (`Task.supports`
 | `obs4Flags[]`, `safetyOrLegalCritical` | O | IO metadata (`obs4Flags` ⊂ {P, C, O, T}; `useClass = select` requires none) |
 | `validationStatus` | M | §10.5 |
 
-Indicators MUST NOT use the twelve banned constructions (internal-state verbs; level labels as content; reputation and influence; proxies; outcome guarantees; empty verbs; compound performances; adjective-only gradation; vendor names; hard-coded jurisdiction rules; traits; non-job-related access requirements). Adjacent levels MUST differ on a named attribute (§8.2). The set of indicators at one level is the **competency-level outcome (CLO)**.
+Indicators MUST NOT use the twelve banned constructions (internal-state verbs; level labels as content; reputation and influence; proxies; outcome guarantees; empty verbs; compound performances; adjective-only gradation; vendor names; hard-coded jurisdiction rules; traits; non-job-related access requirements). Adjacent levels MUST differ on a named attribute (§8.2). The indicators listed in `Competency.levels[Lx].indicators` form the **competency-level outcome (CLO)** at that level. The CLO is craft-neutral: indicators listed in an `Enactment.indicatorVariants[]` are never part of it and MUST NOT also be listed in `levels[]`. An enactment's CLO is the generic CLO plus its variants at that level. Each CLO has a derived IRI (§12.3), the target of badge alignment and of X10 (CR-LC-001 #3–#4).
 
 ### 5.4 `Enactment` (L1)
 
-`competency` (M); `actorType` (M; sector actor or subtype); `authorityPosition` (O); `jurisdiction` (O); `authorityBasis` (M), `principal` (M), `accountabilityVenue` (M), `characteristicInstruments[]` (S; Instrument IDs), `typicalFrictions[]` (O; FrictionRecord IDs); `additionalTasks[]`, `indicatorVariants[]` (O); `note` (M). Enactments exist only where the actor, module or craft changes the performance. Module enactments and craft enactments (FC/DC/SC) use the same type with `enactmentKind ∈ {actor, module, craft}`.
+`competency` (M); `actorType` (M; sector actor or subtype); `authorityPosition` (O); `jurisdiction` (O); `authorityBasis` (M), `principal` (M), `accountabilityVenue` (M), `delegatedConstraints` (O; constraints a delegating authority places on the actor; CR-SC-001 #5), `characteristicInstruments[]` (S; typed links `{instrument, role, note}` with `role ∈ requires | enables | constrains | removed-requirement` from `vocab/driver_mechanisms.yaml#instrument_link_roles`; `role` M from `candidate`; CR-SC-001 #2), `typicalFrictions[]` (O; FrictionRecord IDs); `additionalTasks[]`, `indicatorVariants[]` (O; never part of the generic CLO, §5.3); `subsectors[]` (M from `candidate` for module enactments; CR-DB-001 #2); `note` (M). Enactments exist only where the actor, module or craft changes the performance. Module enactments and craft enactments (FC/DC/SC) use the same type with `enactmentKind ∈ {actor, module, craft}`.
 
 ### 5.5 `Task` (L2)
 
@@ -227,6 +229,7 @@ Indicators MUST NOT use the twelve banned constructions (internal-state verbs; l
 | `accountabilityConstraint` | O | boolean + basis (human in responsible charge required by law) |
 | `governedData` | O | `tribal` etc. (§16.1) |
 | `homeModule`, `subsectors[]` | M, S | |
+| `instrumentSensitivity[]` | O | task-specific mechanism edges only (§5.16): a task inherits its primary competencies' edges in the computed view, and an edge identical to an inherited one is not stored (CR-SC-001 #1) |
 | `v1Tier` | O | legacy T1/T2/T3 position, provenance only |
 
 Production tasks SHOULD be split from specification, review and defence tasks, and execution-to-protocol from adaptation in place, where both exist. Craft, exposure, function and relevance *judgments* are not fields on Task; they are L5 assessment records (§5.12–§5.13).
@@ -259,7 +262,7 @@ Production tasks SHOULD be split from specification, review and defence tasks, a
 | `authorityPosition` | M | §6.5 |
 | `industry`, `ownership`, `deliveryModel` | S (M for private variants) | §9.2 |
 | `taskAdds[]`, `taskDrops[]`, `taskOverrides[]` | O | relative to the role's bundle |
-| `instruments[]` | O | Instrument IDs that characterize the variant |
+| `instruments[]` | O | typed instrument links `{instrument, role, note}`, as on Enactment (§5.4; CR-SC-001 #2) |
 | `credentialGates[]`, `signOffAuthority` | O | |
 | `toolsCommonlyRequired[]` | O | L4 IDs (private screens on named tools, ADR-0003) |
 | `indicativeGradeOrBand` | O | `{scheme (GS, FWS, state range), band, label: "not a classification criterion"}` |
@@ -275,7 +278,7 @@ Production tasks SHOULD be split from specification, review and defence tasks, a
 
 ### 5.10 `Pathway` (L3/learning)
 
-`fromVariant`, `toVariant` (M); `pathwayType ∈ {new-hire, upskill, reskill, cross-sector, baseline}` (M; `vocab/friction_types.yaml#pathway_types`); `gap[]` (computed in bundles); `outcomes[]` (Indicator/CLO IDs); `modes[]`; `assessmentPlan`; `sequence`; `recognitionOfPriorLearning[]`; `durationAndCost`; `formationCoverage` (computed); `alternativeFormationRoutes[]`; `frictions[]`; `validationStatus`; `recommended` (MUST be false until the pathway passes the M-03 validation gate, ADR-0023).
+`fromVariant`, `toVariant` (M; RoleProfile or RoleVariant; before WP-08's records exist a reference in the CR-IA-001 role-key form to a role in `mvp_role_set.csv` is a planned target, `W-REF-PENDING`; CR-LC-001 #1); `pathwayType ∈ {new-hire, upskill, reskill, cross-sector, baseline}` (M; `vocab/friction_types.yaml#pathway_types`); `emstRelease` (M from `candidate`; the release the pathway is pinned to); `gap[]` (computed in bundles); `outcomes[]` (Indicator IDs); `cloOutcomes[]` (`{competency, level}`, resolved to CLO IRIs); `modes[]`; `assessmentPlan`; `sequence[]` (`{step, tasks[], outcomes[], cloOutcomes[], roleLevel, note, formationProvisions[]}`, where each provision is `{task (one of the step's tasks), responses[] (vocab/friction_types.yaml#formation_responses: observed-wbl, supervised-repetitions, validation-drill, by-hand-quota), quota {count, unit} (M with by-hand-quota or supervised-repetitions), releaseCriterion, mentorRequired}`; ADR-0026 R7; CR-LC-001 #2); `recognitionOfPriorLearning[]`; `durationAndCost`; `formationCoverage` (computed); `alternativeFormationRoutes[]`; `frictions[]`; `validationStatus`; `recommended` (MUST be false until the pathway passes the M-03 validation gate, ADR-0023).
 
 ### 5.11 `Tool` (L4)
 
@@ -344,9 +347,9 @@ Evidence-rule fields (CR-LM-001):
 ### 5.16 `Instrument` and `DriverEvent` (L5)
 
 `Instrument`: `citation` (M), `instrumentType` (M; `vocab/driver_mechanisms.yaml#instrument_types`: statute, regulation, executive-order, agency-order, memo, guidance, court-decision, permit-programme, agreement-authority, disclosure-regime, state-hr-order, standard-with-legal-force), `jurisdiction` (M), `currentStatus` (computed from events), `mechanisms[]` (M; L0 driver-mechanism terms).
-`DriverEvent`: `instrument` (M), `eventType` (M; `#event_types`: introduced | passed-chamber | enacted | proposed | submitted-for-review | interim | final | effective | enjoined | stayed | vacated | remanded | rescinded | decided | expired | sunset), `eventDate` (M), `jurisdiction` (M), `direction` (M; `#event_directions`: expands, contracts, reshapes), `statusAfter` (M; `#instrument_statuses`), `sources[]` (M), `evidenceLabel` (M), `recordedBy` (M), `reviewBy` (M). A `submitted-for-review` event never makes an instrument in force (CR-LM-001 #5–#7).
+`DriverEvent`: `instrument` (M), `eventType` (M; `#event_types`: introduced | passed-chamber | enacted | proposed | submitted-for-review | interim | final | effective | enjoined | stayed | vacated | remanded | rescinded | decided | expired | sunset), `eventDate` (M), `jurisdiction` (M), `direction` (M; `#event_directions`: expands, contracts, reshapes), `statusAfter` (M; `#instrument_statuses`), `sources[]` (M), `evidenceLabel` (M), `recordedBy` (M), `reviewBy` (M), `actingInstrument` (O; the Instrument that caused the event, e.g. a revoking order; CR-SC-001 #2). A `submitted-for-review` event never makes an instrument in force (CR-LM-001 #5–#7). Revoked and revoking instruments are separate records.
 
-Tasks and competencies link to **mechanisms** (L0) through `instrumentSensitivity` edges with evidence; instruments link to mechanisms; sensitivity and venue applicability are computed (§11.6, ADR-0016).
+Tasks and competencies link to **mechanisms** (L0) through `instrumentSensitivity` edges with evidence (`reviewBy` on an edge whose evidence label is J or S, from `candidate`); a task stores only edges its competencies do not already carry. Enactments and role variants link to **instruments** with a typed role (§5.4). Instruments link to mechanisms; sensitivity and venue applicability are computed (§11.6, ADR-0016).
 
 ### 5.17 `FrictionRecord` (L5)
 
@@ -358,7 +361,7 @@ Stored as `ExposureAssessment` construct (c) fields with `scenario` set to an L0
 
 ### 5.19 `Credential` (L6 register)
 
-`credentialType ∈ {licence, certification, certificate, position-qualification, mandated-training-record}` (M; `vocab/authority_positions.yaml#credential_types`); `issuer` (M); `issuingJurisdiction` (S); `legalBasis` (S); `scopeOfPractice` (S); `closureType ∈ {legal-licensure, regulation-mandated-training, voluntary}` (M; `#closure_types`); `renewal` (O); `reciprocity` (O); `ctid` (O); `issuerVerified` (M; boolean with date). Credentials are gates, never proficiency.
+`credentialType ∈ {licence, certification, certificate, position-qualification, mandated-training-record}` (M; `vocab/authority_positions.yaml#credential_types`); `issuer` (M); `issuingJurisdiction` (S); `legalBasis` (S); `scopeOfPractice` (S); `closureType ∈ {legal-licensure, regulation-mandated-training, employer-mandated, voluntary}` (M; `#closure_types`; `employer-mandated` = required for the assignment by employer, agency or interagency policy but not by statute or regulation; CR-LC-001 #5); `renewal` (O); `reciprocity` (O); `ctid` (O); `issuerVerified` (M; boolean with date). Credentials are gates, never proficiency.
 
 ### 5.20 `SeriesRecord` (L6; OPM series register)
 
@@ -576,7 +579,7 @@ Migrated as `raterType = v1-analyst`, `raterId = v1-analyst-01`, low confidence,
 
 ### 11.6 Signals, instruments and the evidence rule
 
-Change signals (§5.14) move a computed change indicator only under the two-family, two-period, close-match, driver-tagged, human-reviewed rule (ADR-0028); otherwise they remain `watch`. Instruments and dated driver events, joined to L0 mechanisms through sensitivity edges, replace v1's reform flags; competency and role sensitivity and **venue applicability** (incl. `federalApplicability ∈ {required-basis, permitted, no-current-basis}` with `asOf`) are computed.
+Change signals (§5.14) move a computed change indicator only under the two-family, two-period, close-match, driver-tagged, human-reviewed rule (ADR-0028); otherwise they remain `watch`. Instruments and dated driver events, joined to L0 mechanisms through sensitivity edges, replace v1's reform flags; competency and role sensitivity and **venue applicability** (incl. `federalApplicability ∈ {required-basis, permitted, no-current-basis}` with `asOf`) are computed. Venue applicability follows `vocab/rules/venue-applicability@1.0.0.yaml`: only `requires` links decide (required-basis if one is active; no-current-basis if all are inactive; permitted otherwise); `enables`, `constrains` and `removed-requirement` links are reported as context and never create or remove a basis; views show `basisLinked`, `basisVerified` and `untypedLinks` (CR-SC-001 #4).
 
 ### 11.7 Computed indicators
 
@@ -605,6 +608,8 @@ One writer (`scripts/mint_id.py`; `scripts/mint_ids.py` is an alias only) mints 
 ### 12.3 Derived identifiers
 
 CASE identifiers, CTIDs (`ce-<uuid>`) and RSD UUIDs are UUIDv5 of the EMST IRI under the namespace UUIDv5(URL, `https://w3id.org/emst/`).
+
+**CLO IRI** (CR-LC-001 #3): `<competency IRI>/levels/<Lx>` (e.g. `https://w3id.org/emst/core/CMP-XXXXXXX/levels/L2`; compact `emst:core/CMP-XXXXXXX/levels/L2`); an enactment's CLO is `<enactment IRI>/levels/<Lx>`. CLO IRIs are derived, never minted or registered, and resolve in the release bundle to a computed `{competency, level, indicators[]}` node. Until minting, X10 rows name the competency seed key with `other: clo_level=Lx` (`vocab/identifiers.yaml#form.clo_iri`).
 
 ### 12.4 Supersession
 
@@ -652,7 +657,7 @@ Authored text; per-rater atomic ratings with instrument version, date, rationale
 
 ### 14.2 Computed (build only; never in source)
 
-Per-task consensus values; competency and role exposure distributions; craft blends and dominant craft; competency roll-ups of work function and subsector; reusability suggestions; family relevance, breadth and job-family membership; CLD (task, role, pathway) with driver attribution; entry-path health; robustness class and scenario sensitivity; instrument sensitivity and venue/federal applicability; Federal Series Profiles and State Class Views; pathway edges, directional coverage, pathway scores and formation coverage; bundle contents and currency; effective use tier; agreement statistics; priority scores; inverse links; all dashboard, README, release-note and documentation counts; the data dictionary.
+Per-task consensus values; competency and role exposure distributions; craft blends and dominant craft; competency roll-ups of work function and subsector; reusability suggestions; family relevance, breadth and job-family membership; CLD (task, role, pathway) with driver attribution; entry-path health; robustness class and scenario sensitivity; instrument sensitivity and venue/federal applicability; Federal Series Profiles and State Class Views; pathway edges, directional coverage, pathway scores and formation coverage (from typed `formationProvisions`); bundle contents and currency; CLO nodes; effective use tier; agreement statistics; priority scores; inverse links (incl. `mirroredBy`); tasks' inherited sensitivity edges and subsectors; three-module recurrence; all dashboard, README, release-note and documentation counts; the data dictionary.
 
 ### 14.3 Rules
 
@@ -682,7 +687,7 @@ Each computed view is produced by a versioned rule (`vocab/rules/<rule-id>@<vers
 
 ### 16.1 Tribal content (ADR-0007)
 
-Invariants: EMST MUST NOT (V1) define, describe, rank or credential Indigenous knowledge; (V2) hold confidential Tribal information, even under access control; (V3) publish characterizations of named Tribes without consent; (V4) ingest Tribal employers' documents or postings by default, including in LLM pipelines; (V5) create a Tribal profession family. Records touching Tribal governments, Indigenous knowledge or Tribal data carry `indigenousDataFlag = true`, `approvalStatus ∈ {pending-tribal-review, approved, withdrawn}`, `aiUsePermitted`, and `sensitivity = restricted-governed` until approved. **Until a Tribal Advisory Council exists and approves, nothing Tribal-related is published.** CI MUST fail release builds on unapproved Tribal-related records, on any confidential record, and on coordinates co-occurring with cultural-site vocabulary. Tribally stewarded namespaces carry the contributor's licence, labels and withdrawal right and are excluded from bulk CC0 unless opted in. The release states on its face that Indigenous knowledge is a distinct body of expertise held and governed by Indigenous nations and is out of scope by design.
+Invariants: EMST MUST NOT (V1) define, describe, rank or credential Indigenous knowledge; (V2) hold confidential Tribal information, even under access control; (V3) publish characterizations of named Tribes without consent; (V4) ingest Tribal employers' documents or postings by default, including in LLM pipelines; (V5) create a Tribal profession family. Records touching Tribal governments, Indigenous knowledge or Tribal data carry `indigenousDataFlag = true`, `approvalStatus ∈ {pending-tribal-review, approved, withdrawn}`, `aiUsePermitted`, and `sensitivity = restricted-governed` until approved. **Until a Tribal Advisory Council exists and approves, nothing Tribal-related is published.** CI MUST fail release builds on unapproved Tribal-related records, on any confidential record, on coordinates co-occurring with cultural-site vocabulary, and on any held key or held candidate ID appearing in a released file, including mapping comments (ADR-0030 §3.3). Tribally stewarded namespaces carry the contributor's licence, labels and withdrawal right and are excluded from bulk CC0 unless opted in. The release states on its face that Indigenous knowledge is a distinct body of expertise held and governed by Indigenous nations and is out of scope by design.
 
 ### 16.2 Personal data (ADR-0012)
 
@@ -738,7 +743,7 @@ A conforming dataset MUST: validate against `schema/emst.schema.json` at its dec
 
 ### 18.2 Module conformance
 
-A module release MUST additionally: use the core schema, namespaced IDs and core vocabularies; reference core records only in the permitted direction; apply the three-module and home-module rules; run at least one review cycle per year on the core cadence; meet the core evidence standard; name an SME pool and contact; and carry no separate licence.
+A module release MUST additionally: use the core schema, namespaced IDs and core vocabularies; reference core records only in the permitted direction; apply the three-module and home-module rules (a core practice competency enacted in only one or two modules needs a third module enactment, its home module, or a row in `data/v2/governance/three_module_exceptions.yaml`; zero module enactments passes; CR-DB-001 #1); run at least one review cycle per year on the core cadence; meet the core evidence standard; name an SME pool and contact; and carry no separate licence.
 
 ### 18.3 Adopter claims
 

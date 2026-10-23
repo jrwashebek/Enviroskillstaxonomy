@@ -1,0 +1,541 @@
+{
+ "stamp": {
+  "ruleId": "state-class-view",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "note": "Every P1-P2 state and local variant with its mapped class records; an empty list means no class is mapped in the pilot jurisdictions (TX, WA and PA (state), Lewis County WA (county environmental health), Philadelphia Water Department (municipal utility)).",
+ "variants": {
+  "seed:R01-conservation-corps-member/local": [],
+  "seed:R01-conservation-corps-member/state": [
+   {
+    "classRecord": "seed:class/TX/2688",
+    "classTitle": "Fish and Wildlife Technician I",
+    "roleLevels": [
+     "entry"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/TX--2688.md"
+   }
+  ],
+  "seed:R02-field-resource-technician/local": [],
+  "seed:R02-field-resource-technician/state": [
+   {
+    "classRecord": "seed:class/TX/2688",
+    "classTitle": "Fish and Wildlife Technician I",
+    "roleLevels": [
+     "entry"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2688.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2689",
+    "classTitle": "Fish and Wildlife Technician II",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2689.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2690",
+    "classTitle": "Fish and Wildlife Technician III",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2690.md"
+   },
+   {
+    "classRecord": "seed:class/WA/523S",
+    "classTitle": "Natural Resource Specialist 1",
+    "roleLevels": [
+     "entry",
+     "journey"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/WA--523S.md"
+   }
+  ],
+  "seed:R03-monitoring-data-technician/local": [],
+  "seed:R03-monitoring-data-technician/state": [],
+  "seed:R04-geospatial-remote-sensing-analyst/local": [],
+  "seed:R04-geospatial-remote-sensing-analyst/state": [
+   {
+    "classRecord": "seed:class/WA/516L",
+    "classTitle": "Natural Resource Scientist 2",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/WA--516L.md"
+   }
+  ],
+  "seed:R05-ground-truth-validation-steward/state": [],
+  "seed:R06-wildland-fire-operations/local": [],
+  "seed:R06-wildland-fire-operations/state": [
+   {
+    "classRecord": "seed:class/WA/523A",
+    "classTitle": "Natural Resource Specialist 6",
+    "roleLevels": [
+     "lead"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/WA--523A.md"
+   }
+  ],
+  "seed:R07-fuels-prescribed-fire-specialist/local": [],
+  "seed:R07-fuels-prescribed-fire-specialist/state": [],
+  "seed:R08-fire-intelligence-analyst/state": [],
+  "seed:R09-restoration-project-lead/local": [],
+  "seed:R09-restoration-project-lead/state": [
+   {
+    "classRecord": "seed:class/TX/2684",
+    "classTitle": "Natural Resources Specialist III",
+    "roleLevels": [
+     "journey",
+     "senior"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2684.md"
+   }
+  ],
+  "seed:R10-environmental-review-specialist/local": [],
+  "seed:R10-environmental-review-specialist/state": [
+   {
+    "classRecord": "seed:class/TX/2652",
+    "classTitle": "Environmental Protection Specialist II",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2652.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2653",
+    "classTitle": "Environmental Protection Specialist III",
+    "roleLevels": [
+     "senior"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2653.md"
+   }
+  ],
+  "seed:R11-environmental-permit-writer/local": [],
+  "seed:R11-environmental-permit-writer/state": [
+   {
+    "classRecord": "seed:class/TX/2653",
+    "classTitle": "Environmental Protection Specialist III",
+    "roleLevels": [
+     "journey",
+     "senior"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2653.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2654",
+    "classTitle": "Environmental Protection Specialist IV",
+    "roleLevels": [
+     "lead"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/TX--2654.md"
+   }
+  ],
+  "seed:R12-environmental-compliance-inspector/local": [],
+  "seed:R12-environmental-compliance-inspector/state": [
+   {
+    "classRecord": "seed:class/TX/2651",
+    "classTitle": "Environmental Protection Specialist I",
+    "roleLevels": [
+     "entry"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2651.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2652",
+    "classTitle": "Environmental Protection Specialist II",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2652.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2653",
+    "classTitle": "Environmental Protection Specialist III",
+    "roleLevels": [
+     "senior"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2653.md"
+   }
+  ],
+  "seed:R13-resource-program-manager/local": [],
+  "seed:R13-resource-program-manager/state": [
+   {
+    "classRecord": "seed:class/TX/2655",
+    "classTitle": "Environmental Protection Specialist V",
+    "roleLevels": [
+     "senior",
+     "lead"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/TX--2655.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2686",
+    "classTitle": "Natural Resources Specialist V",
+    "roleLevels": [
+     "senior",
+     "lead"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/TX--2686.md"
+   },
+   {
+    "classRecord": "seed:class/WA/523A",
+    "classTitle": "Natural Resource Specialist 6",
+    "roleLevels": [
+     "lead"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/WA--523A.md"
+   },
+   {
+    "classRecord": "seed:class/WA/523W",
+    "classTitle": "Natural Resource Specialist 5",
+    "roleLevels": [
+     "senior"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/WA--523W.md"
+   }
+  ],
+  "seed:R14-forester/local": [],
+  "seed:R14-forester/state": [],
+  "seed:R15-wildlife-biologist/state": [
+   {
+    "classRecord": "seed:class/TX/2682",
+    "classTitle": "Natural Resources Specialist I",
+    "roleLevels": [
+     "entry"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2682.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2683",
+    "classTitle": "Natural Resources Specialist II",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2683.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2684",
+    "classTitle": "Natural Resources Specialist III",
+    "roleLevels": [
+     "senior"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2684.md"
+   }
+  ],
+  "seed:R16-fisheries-aquatic-biologist/state": [
+   {
+    "classRecord": "seed:class/TX/2682",
+    "classTitle": "Natural Resources Specialist I",
+    "roleLevels": [
+     "entry"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2682.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2683",
+    "classTitle": "Natural Resources Specialist II",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2683.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2684",
+    "classTitle": "Natural Resources Specialist III",
+    "roleLevels": [
+     "senior"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2684.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2685",
+    "classTitle": "Natural Resources Specialist IV",
+    "roleLevels": [
+     "lead"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2685.md"
+   }
+  ],
+  "seed:R17-hydrologist/local": [],
+  "seed:R17-hydrologist/state": [
+   {
+    "classRecord": "seed:class/TX/2456",
+    "classTitle": "Hydrologist I",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2456.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2460",
+    "classTitle": "Hydrologist II",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2460.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2464",
+    "classTitle": "Hydrologist III",
+    "roleLevels": [
+     "senior"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2464.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2465",
+    "classTitle": "Hydrologist IV",
+    "roleLevels": [
+     "senior",
+     "lead"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2465.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2466",
+    "classTitle": "Hydrologist V",
+    "roleLevels": [
+     "lead"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2466.md"
+   },
+   {
+    "classRecord": "seed:class/WA/516L",
+    "classTitle": "Natural Resource Scientist 2",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/WA--516L.md"
+   }
+  ],
+  "seed:R18-rangeland-management-specialist/state": [],
+  "seed:R19-soil-conservationist/local": [],
+  "seed:R19-soil-conservationist/state": [],
+  "seed:R20-ecologist/state": [
+   {
+    "classRecord": "seed:class/WA/516K",
+    "classTitle": "Natural Resource Scientist 1 - WPEA",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/WA--516K.md"
+   },
+   {
+    "classRecord": "seed:class/WA/516M",
+    "classTitle": "Natural Resource Scientist 3",
+    "roleLevels": [
+     "senior"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/WA--516M.md"
+   },
+   {
+    "classRecord": "seed:class/WA/516N",
+    "classTitle": "Natural Resource Scientist 4",
+    "roleLevels": [
+     "lead"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/WA--516N.md"
+   }
+  ],
+  "seed:R21-park-ranger-visitor-resource/local": [],
+  "seed:R21-park-ranger-visitor-resource/state": [
+   {
+    "classRecord": "seed:class/TX/2640",
+    "classTitle": "Park Ranger I",
+    "roleLevels": [
+     "entry"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2640.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2641",
+    "classTitle": "Park Ranger II",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2641.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2642",
+    "classTitle": "Park Ranger III",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2642.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2643",
+    "classTitle": "Park Ranger IV",
+    "roleLevels": [
+     "senior"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2643.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2644",
+    "classTitle": "Park Ranger V",
+    "roleLevels": [
+     "senior"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2644.md"
+   }
+  ],
+  "seed:R22-environmental-engineer/local": [],
+  "seed:R22-environmental-engineer/state": [],
+  "seed:R23-enforcement-case-manager/local": [],
+  "seed:R23-enforcement-case-manager/state": [],
+  "seed:R24-drinking-water-program-analyst/state": [],
+  "seed:R25-water-wastewater-operator/local": [
+   {
+    "classRecord": "seed:class/PA-PHL/7E45",
+    "classTitle": "Water Treatment Plant Operator",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/PA-PHL--7E45.md"
+   },
+   {
+    "classRecord": "seed:class/PA-PHL/7E49",
+    "classTitle": "Water Plant Operations Supervisor",
+    "roleLevels": [
+     "lead"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/PA-PHL--7E49.md"
+   }
+  ],
+  "seed:R25-water-wastewater-operator/state": [
+   {
+    "classRecord": "seed:class/TX/2682",
+    "classTitle": "Natural Resources Specialist I",
+    "roleLevels": [
+     "entry"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/TX--2682.md"
+   }
+  ],
+  "seed:R26-environmental-health-specialist/local": [
+   {
+    "classRecord": "seed:class/WA-LEWIS/SN313",
+    "classTitle": "Environmental Health Specialist II",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/WA-LEWIS--SN313.md"
+   }
+  ],
+  "seed:R26-environmental-health-specialist/state": [
+   {
+    "classRecord": "seed:class/TX/2583",
+    "classTitle": "Sanitarian I",
+    "roleLevels": [
+     "entry"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2583.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2584",
+    "classTitle": "Sanitarian II",
+    "roleLevels": [
+     "journey"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2584.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2585",
+    "classTitle": "Sanitarian III",
+    "roleLevels": [
+     "senior"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2585.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2586",
+    "classTitle": "Sanitarian IV",
+    "roleLevels": [
+     "lead"
+    ],
+    "matchType": "skos:closeMatch",
+    "view": "state-class/TX--2586.md"
+   }
+  ],
+  "seed:R27-remediation-project-manager/state": [],
+  "seed:R28-air-quality-specialist/local": [],
+  "seed:R28-air-quality-specialist/state": [
+   {
+    "classRecord": "seed:class/TX/2653",
+    "classTitle": "Environmental Protection Specialist III",
+    "roleLevels": [
+     "journey",
+     "senior"
+    ],
+    "matchType": "skos:relatedMatch",
+    "view": "state-class/TX--2653.md"
+   },
+   {
+    "classRecord": "seed:class/TX/2655",
+    "classTitle": "Environmental Protection Specialist V",
+    "roleLevels": [
+     "lead"
+    ],
+    "matchType": "skos:broadMatch",
+    "view": "state-class/TX--2655.md"
+   }
+  ],
+  "seed:R29-solid-waste-materials-specialist/local": [],
+  "seed:R29-solid-waste-materials-specialist/state": [],
+  "seed:R30-hazard-mitigation-floodplain-manager/local": [],
+  "seed:R30-hazard-mitigation-floodplain-manager/state": []
+ }
+}

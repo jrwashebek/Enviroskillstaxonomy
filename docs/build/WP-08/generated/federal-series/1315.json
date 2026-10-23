@@ -1,0 +1,968 @@
+{
+ "stamp": {
+  "ruleId": "federal-series-profile",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "series": {
+  "code": "1315",
+  "title": "Hydrology",
+  "seriesStatus": "active",
+  "statusStatement": "Active (EMST OPM series register, as of 2026-10-23).",
+  "successorSeriesProposed": null,
+  "group": "1300 Physical Sciences",
+  "qualificationStandardVersion": "Professional & Scientific Positions group std + series IOR",
+  "positiveEducationRequirement": true,
+  "educationNote": "FH judgment pending verification of the qualification standard",
+  "registerRecord": "seed:opm-series/1315",
+  "registerReviewBy": "2027-01-23",
+  "events": []
+ },
+ "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
+ "roles": [
+  {
+   "role": "seed:R17-hydrologist",
+   "roleTitle": "Hydrologist",
+   "tier": "P2",
+   "variant": "seed:R17-hydrologist/federal",
+   "functionStatement": "Quantify water quantity and movement and the uncertainty around them for supply, protection and hazard decisions.",
+   "authorityPosition": "advisor-researcher",
+   "x4": {
+    "record": "emst-x4:R17-hydrologist:1315",
+    "predicate": "skos:closeMatch",
+    "confidence": 0.85,
+    "appliesTo": "all",
+    "reviewStatus": "candidate",
+    "evidence": "J"
+   },
+   "credentialGates": [],
+   "signOffAuthority": null,
+   "instruments": [],
+   "bands": [
+    {
+     "group": "developmental and full performance",
+     "indicativeBand": "GS-9 to GS-11 (journey)",
+     "roleLevels": [
+      "journey"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:DB-C11",
+       "duty": "Characterize groundwater systems and protect drinking water sources",
+       "pctTime": 14,
+       "tasks": [
+        {
+         "task": "seed:DB-C11-T1",
+         "statement": "Run an aquifer test on a supply well or wellfield to estimate transmissivity and storage from drawdown and recovery data",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.1
+        },
+        {
+         "task": "seed:DB-C11-T2",
+         "statement": "Delineate a wellhead or source-water protection area from hydrogeologic data and time-of-travel criteria",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.1
+        },
+        {
+         "task": "seed:DB-C11-T3",
+         "statement": "Review a well construction or injection well application against construction and protection standards before approval",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C10",
+       "duty": "Plan water supply and allocation under hydrologic uncertainty",
+       "pctTime": 13,
+       "tasks": [
+        {
+         "task": "seed:DB-C10-T2",
+         "statement": "Prepare a drought contingency plan with triggers, stages and response actions tied to supply indicators",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.1
+        },
+        {
+         "task": "seed:DB-C10-T1",
+         "statement": "Forecast water demand and supply under drought and climate scenarios for a utility or basin plan, stating assumptions and uncertainty",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:DB-C10-T4",
+         "statement": "Compare conjunctive-use, reuse and storage options by yield, cost and reliability for an integrated resource plan",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.4.2",
+       "duty": "Build, calibrate and validate predictive and simulation models of environmental systems",
+       "pctTime": 13,
+       "tasks": [
+        {
+         "task": "seed:v1-2.4.2-T2",
+         "statement": "Simulate ecosystem response to alternative land-use and climate scenarios, documenting scenario assumptions and the sensitivity of results to each.",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.1
+        },
+        {
+         "task": "seed:v1-2.6.3-T1",
+         "statement": "Build a predictive model of fire risk, pest outbreak or water availability, validating it on years or areas withheld from fitting.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:v1-2.6.3-T2",
+         "statement": "Forecast resource management needs from a validated predictive model, stating the horizon and interval for each estimate.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C07",
+       "duty": "Assess stream channel form and function in the field",
+       "pctTime": 11,
+       "tasks": [
+        {
+         "task": "seed:FC-C07-T1",
+         "statement": "Survey channel cross-sections, longitudinal profile and substrate at a reach following the geomorphic assessment protocol",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:FC-C07-T2",
+         "statement": "Identify bankfull indicators and channel evolution stage at a reach from field evidence",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:FC-C07-T3",
+         "statement": "Classify habitat units and riparian condition along a reach to identify the processes driving channel change",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.1
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.2.2",
+       "duty": "Analyze environmental data statistically and interpret the results",
+       "pctTime": 11,
+       "tasks": [
+        {
+         "task": "seed:v1-2.2.2-T1",
+         "statement": "Estimate treatment effects on ecological response variables with a method suited to the design, reporting effect sizes and intervals.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:v1-2.2.2-T2",
+         "statement": "Analyze trends in a long-term monitoring dataset, accounting for changes in methods, effort and detection over the record.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:v1-2.2.2-T3",
+         "statement": "Prepare statistical graphics that show the main patterns and their uncertainty for a technical or decision audience.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.1
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.1.3",
+       "duty": "Measure water quality and survey aquatic communities in the field",
+       "pctTime": 8,
+       "tasks": [
+        {
+         "task": "seed:v1-1.2.4-T1",
+         "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:v1-1.2.4-T2",
+         "statement": "Screen field measurement results against applicable water-quality criteria before leaving the site, triggering resampling or notification when an exceedance appears",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C01",
+       "duty": "Deploy, maintain and verify field sensor networks",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-2.3.1-T1",
+         "statement": "Install soil moisture, temperature and weather sensors at remote field sites, recording location, height, orientation and installation conditions.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 3.1
+        },
+        {
+         "task": "seed:v1-2.3.1-T2",
+         "statement": "Troubleshoot sensor malfunctions in the field with side-by-side checks against a reference instrument, recording each fault and fix.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.1
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C08",
+       "duty": "Develop pollutant load allocations and watershed restoration plans for impaired waters",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:DB-C08-T1",
+         "statement": "Quantify pollutant loads from point and nonpoint sources to an impaired water using monitoring data and a watershed model",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.1
+        },
+        {
+         "task": "seed:DB-C08-T2",
+         "statement": "Allocate a waterbody's loading capacity among point and nonpoint sources with an explicit margin of safety",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.1
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.5.1",
+       "duty": "Analyze and interpret climate observations and projections for management decisions",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-1.5.1-T1",
+         "statement": "Process downscaled climate projections for a management unit, documenting the scenarios, models and downscaling method used and their known biases.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.1
+        },
+        {
+         "task": "seed:v1-1.5.1-T2",
+         "statement": "Analyze historical climate records for shifts in temperature, precipitation or extreme events, testing whether trends exceed natural variability.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.1
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-09",
+       "duty": "Evaluate model fitness-for-purpose and validate against independent evidence",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-2.6.5-T1",
+         "statement": "Identify which inputs drive a model's predictions with an interpretation method suited to the model, testing whether the drivers are ecologically plausible.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.1
+        },
+        {
+         "task": "seed:v1-2.6.5-T2",
+         "statement": "Explain a model's main drivers and failure conditions to managers with visuals that show what the model does and does not capture.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.1
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-11",
+       "duty": "Quantify and communicate uncertainty for environmental decisions",
+       "pctTime": 3,
+       "tasks": [
+        {
+         "task": "seed:dc-11-quantify-sources",
+         "statement": "Quantify the dominant sources of uncertainty in an analysis, such as measurement, sampling, model and scenario, stating which result would change the recommendation.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.1
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:DB-C10-T1",
+      "seed:DB-C10-T2",
+      "seed:DB-C10-T4",
+      "seed:DB-C11-T1",
+      "seed:DB-C11-T2",
+      "seed:DB-C11-T3",
+      "seed:v1-2.4.2-T2",
+      "seed:v1-2.6.3-T1",
+      "seed:v1-2.6.3-T2",
+      "seed:FC-C07-T1",
+      "seed:FC-C07-T2",
+      "seed:FC-C07-T3",
+      "seed:v1-1.2.4-T1",
+      "seed:v1-1.2.4-T2",
+      "seed:dc-11-quantify-sources",
+      "seed:v1-2.2.2-T1",
+      "seed:v1-2.2.2-T2",
+      "seed:v1-2.2.2-T3"
+     ],
+     "criticalTasks": [
+      "seed:DB-C10-T1",
+      "seed:DB-C10-T2",
+      "seed:DB-C11-T1",
+      "seed:DB-C11-T2",
+      "seed:v1-2.4.2-T2"
+     ],
+     "distinguishingCompetencies": [
+      "seed:DB-C10"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:DB-C10",
+       "statement": "Knowledge of and skill in: plan water supply and allocation under hydrologic uncertainty (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:DB-C11",
+       "statement": "Knowledge of and skill in: characterize groundwater systems and protect drinking water sources (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-2.4.2",
+       "statement": "Knowledge of and skill in: build, calibrate and validate predictive and simulation models of environmental systems (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DC-CAND-11",
+       "statement": "Knowledge of and skill in: quantify and communicate uncertainty for environmental decisions (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C07",
+       "statement": "Knowledge of and skill in: assess stream channel form and function in the field (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-2.2.2",
+       "statement": "Knowledge of and skill in: analyze environmental data statistically and interpret the results (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.1.3",
+       "statement": "Knowledge of and skill in: measure water quality and survey aquatic communities in the field (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    },
+    {
+     "group": "senior and lead",
+     "indicativeBand": "GS-12 to GS-13 (senior); GS-13 to GS-14 (lead)",
+     "roleLevels": [
+      "senior",
+      "lead"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:DB-C11",
+       "duty": "Characterize groundwater systems and protect drinking water sources",
+       "pctTime": 15,
+       "tasks": [
+        {
+         "task": "seed:DB-C11-T1",
+         "statement": "Run an aquifer test on a supply well or wellfield to estimate transmissivity and storage from drawdown and recovery data",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:DB-C11-T2",
+         "statement": "Delineate a wellhead or source-water protection area from hydrogeologic data and time-of-travel criteria",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:DB-C11-T3",
+         "statement": "Review a well construction or injection well application against construction and protection standards before approval",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:DB-C11-T4",
+         "statement": "Evaluate contaminant transport toward a supply well from monitoring data and a groundwater model, recommending protective actions",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.4.2",
+       "duty": "Build, calibrate and validate predictive and simulation models of environmental systems",
+       "pctTime": 15,
+       "tasks": [
+        {
+         "task": "seed:v1-2.4.2-T2",
+         "statement": "Simulate ecosystem response to alternative land-use and climate scenarios, documenting scenario assumptions and the sensitivity of results to each.",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:v1-2.4.2-T3",
+         "statement": "Present model outputs to stakeholders for an adaptive management decision, stating the conditions under which the projections should not be trusted.",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:v1-2.6.3-T1",
+         "statement": "Build a predictive model of fire risk, pest outbreak or water availability, validating it on years or areas withheld from fitting.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:v1-2.6.3-T2",
+         "statement": "Forecast resource management needs from a validated predictive model, stating the horizon and interval for each estimate.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C10",
+       "duty": "Plan water supply and allocation under hydrologic uncertainty",
+       "pctTime": 14,
+       "tasks": [
+        {
+         "task": "seed:DB-C10-T2",
+         "statement": "Prepare a drought contingency plan with triggers, stages and response actions tied to supply indicators",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.1
+        },
+        {
+         "task": "seed:DB-C10-T1",
+         "statement": "Forecast water demand and supply under drought and climate scenarios for a utility or basin plan, stating assumptions and uncertainty",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:DB-C10-T3",
+         "statement": "Evaluate a water-right or allocation application against water availability, priority and impairment of existing users",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:DB-C10-T4",
+         "statement": "Compare conjunctive-use, reuse and storage options by yield, cost and reliability for an integrated resource plan",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C07",
+       "duty": "Assess stream channel form and function in the field",
+       "pctTime": 9,
+       "tasks": [
+        {
+         "task": "seed:FC-C07-T1",
+         "statement": "Survey channel cross-sections, longitudinal profile and substrate at a reach following the geomorphic assessment protocol",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:FC-C07-T2",
+         "statement": "Identify bankfull indicators and channel evolution stage at a reach from field evidence",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:FC-C07-T3",
+         "statement": "Classify habitat units and riparian condition along a reach to identify the processes driving channel change",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.1.3",
+       "duty": "Measure water quality and survey aquatic communities in the field",
+       "pctTime": 9,
+       "tasks": [
+        {
+         "task": "seed:v1-1.2.4-T1",
+         "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:v1-1.2.4-T2",
+         "statement": "Screen field measurement results against applicable water-quality criteria before leaving the site, triggering resampling or notification when an exceedance appears",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:v1-1.2.4-T3",
+         "statement": "Recommend follow-up sampling locations for an impaired reach from field observations of likely sources, documenting the evidence for each location",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-11",
+       "duty": "Quantify and communicate uncertainty for environmental decisions",
+       "pctTime": 9,
+       "tasks": [
+        {
+         "task": "seed:dc-11-brief-official",
+         "statement": "Brief an authorizing official on the uncertainty of an analysis in decision terms, such as the risk of a wrong call and the value of more information.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:dc-11-conventions",
+         "statement": "Set organizational conventions for uncertainty language and visuals, testing whether decision-makers interpret them correctly.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:dc-11-quantify-sources",
+         "statement": "Quantify the dominant sources of uncertainty in an analysis, such as measurement, sampling, model and scenario, stating which result would change the recommendation.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.2.2",
+       "duty": "Analyze environmental data statistically and interpret the results",
+       "pctTime": 9,
+       "tasks": [
+        {
+         "task": "seed:v1-2.2.2-T1",
+         "statement": "Estimate treatment effects on ecological response variables with a method suited to the design, reporting effect sizes and intervals.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:v1-2.2.2-T2",
+         "statement": "Analyze trends in a long-term monitoring dataset, accounting for changes in methods, effort and detection over the record.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.3
+        },
+        {
+         "task": "seed:v1-2.2.2-T3",
+         "statement": "Prepare statistical graphics that show the main patterns and their uncertainty for a technical or decision audience.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C01",
+       "duty": "Deploy, maintain and verify field sensor networks",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:v1-2.3.1-T1",
+         "statement": "Install soil moisture, temperature and weather sensors at remote field sites, recording location, height, orientation and installation conditions.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.5
+        },
+        {
+         "task": "seed:v1-2.3.1-T2",
+         "statement": "Troubleshoot sensor malfunctions in the field with side-by-side checks against a reference instrument, recording each fault and fix.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C08",
+       "duty": "Develop pollutant load allocations and watershed restoration plans for impaired waters",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:DB-C08-T1",
+         "statement": "Quantify pollutant loads from point and nonpoint sources to an impaired water using monitoring data and a watershed model",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.5
+        },
+        {
+         "task": "seed:DB-C08-T2",
+         "statement": "Allocate a waterbody's loading capacity among point and nonpoint sources with an explicit margin of safety",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-1.5.1",
+       "duty": "Analyze and interpret climate observations and projections for management decisions",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:v1-1.5.1-T1",
+         "statement": "Process downscaled climate projections for a management unit, documenting the scenarios, models and downscaling method used and their known biases.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.5
+        },
+        {
+         "task": "seed:v1-1.5.1-T2",
+         "statement": "Analyze historical climate records for shifts in temperature, precipitation or extreme events, testing whether trends exceed natural variability.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-09",
+       "duty": "Evaluate model fitness-for-purpose and validate against independent evidence",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:v1-2.6.5-T1",
+         "statement": "Identify which inputs drive a model's predictions with an interpretation method suited to the model, testing whether the drivers are ecologically plausible.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.5
+        },
+        {
+         "task": "seed:v1-2.6.5-T2",
+         "statement": "Explain a model's main drivers and failure conditions to managers with visuals that show what the model does and does not capture.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.5
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:DB-C10-T1",
+      "seed:DB-C10-T2",
+      "seed:DB-C10-T4",
+      "seed:DB-C11-T1",
+      "seed:DB-C11-T2",
+      "seed:DB-C11-T3",
+      "seed:v1-2.4.2-T2",
+      "seed:v1-2.6.3-T1",
+      "seed:v1-2.6.3-T2",
+      "seed:FC-C07-T1",
+      "seed:FC-C07-T2",
+      "seed:FC-C07-T3",
+      "seed:v1-1.2.4-T1",
+      "seed:v1-1.2.4-T2",
+      "seed:dc-11-quantify-sources",
+      "seed:v1-2.2.2-T1",
+      "seed:v1-2.2.2-T2",
+      "seed:v1-2.2.2-T3"
+     ],
+     "criticalTasks": [
+      "seed:DB-C10-T1",
+      "seed:DB-C10-T2",
+      "seed:DB-C11-T1",
+      "seed:DB-C11-T2",
+      "seed:v1-2.4.2-T2",
+      "seed:v1-2.4.2-T3"
+     ],
+     "distinguishingCompetencies": [
+      "seed:DB-C10"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:DB-C10",
+       "statement": "Knowledge of and skill in: plan water supply and allocation under hydrologic uncertainty (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:DB-C11",
+       "statement": "Knowledge of and skill in: characterize groundwater systems and protect drinking water sources (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-2.4.2",
+       "statement": "Knowledge of and skill in: build, calibrate and validate predictive and simulation models of environmental systems (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DC-CAND-11",
+       "statement": "Knowledge of and skill in: quantify and communicate uncertainty for environmental decisions (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C07",
+       "statement": "Knowledge of and skill in: assess stream channel form and function in the field (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-2.2.2",
+       "statement": "Knowledge of and skill in: analyze environmental data statistically and interpret the results (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.1.3",
+       "statement": "Knowledge of and skill in: measure water quality and survey aquatic communities in the field (EMST target senior L2, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    }
+   ],
+   "changeView": null
+  }
+ ],
+ "rolesWithoutFederalVariant": [],
+ "feederOrDestinationRoles": []
+}

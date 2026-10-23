@@ -1,0 +1,1018 @@
+{
+ "stamp": {
+  "ruleId": "federal-series-profile",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "series": {
+  "code": "0025",
+  "title": "Park Ranger",
+  "seriesStatus": "active",
+  "statusStatement": "Active (EMST OPM series register, as of 2026-10-23).",
+  "successorSeriesProposed": null,
+  "group": "0000 Miscellaneous",
+  "qualificationStandardVersion": "Series IOR (experience or education)",
+  "positiveEducationRequirement": false,
+  "educationNote": "FH judgment pending verification of the qualification standard",
+  "registerRecord": "seed:opm-series/0025",
+  "registerReviewBy": "2027-01-23",
+  "events": []
+ },
+ "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
+ "roles": [
+  {
+   "role": "seed:R21-park-ranger-visitor-resource",
+   "roleTitle": "Park ranger (visitor and resource management)",
+   "tier": "P2",
+   "variant": "seed:R21-park-ranger-visitor-resource/federal",
+   "functionStatement": "Keep park visitors safe and informed while protecting the resources and experiences the park exists for.",
+   "authorityPosition": "resource-manager",
+   "x4": {
+    "record": "emst-x4:R21-park-ranger-visitor-resource:0025",
+    "predicate": "skos:closeMatch",
+    "confidence": 0.8,
+    "appliesTo": "all",
+    "reviewStatus": "candidate",
+    "evidence": "J"
+   },
+   "credentialGates": [
+    {
+     "credential": "seed:crd-wilderness-first-aid",
+     "label": "Wilderness First Aid / Wilderness First Responder",
+     "kind": "preferred"
+    },
+    {
+     "credential": "seed:crd-certified-interpretive-guide-planner-host",
+     "label": "Certified Interpretive Guide / Planner / Host (CIG/CIP/CIH)",
+     "kind": "preferred"
+    }
+   ],
+   "signOffAuthority": null,
+   "instruments": [],
+   "bands": [
+    {
+     "group": "developmental and full performance",
+     "indicativeBand": "GS-5 to GS-7 (entry); GS-9 to GS-11 (journey)",
+     "roleLevels": [
+      "entry",
+      "journey"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:v1-5.5.1",
+       "duty": "Provide visitor information, orientation and safety messaging in parks and protected areas",
+       "pctTime": 17,
+       "tasks": [
+        {
+         "task": "seed:v1-5.5.1-T1",
+         "statement": "Orient visitors at a contact station to routes, conditions, regulations and hazards matched to their plans and abilities",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.3
+        },
+        {
+         "task": "seed:v1-5.5.1-T2",
+         "statement": "Give safety information and trip recommendations tailored to current conditions and each visitor's stated plans",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:v1-5.5.1-T3",
+         "statement": "Log visitor questions, incidents and concerns to identify information gaps and revise visitor messaging",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:db-5.5.1-t4",
+         "statement": "Check visitor information from automated or online sources against current site conditions before it is posted or repeated to visitors",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:IA-CC-02",
+       "duty": "Plan and manage recreation opportunity and visitor use",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:IA-CC-02-T1",
+         "statement": "Assign recreation opportunity classes to a planning area from setting characteristics, access and existing use",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:IA-CC-02-T2",
+         "statement": "Estimate visitor use and capacity for a site from counts, permits and indicators of resource and social conditions",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:IA-CC-02-T3",
+         "statement": "Designate motorized and non-motorized routes in a travel plan that separate conflicting uses and protect resources",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.2",
+       "duty": "Provide first aid and emergency medical care in remote field settings",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:v1-4.4.2-T1",
+         "statement": "Assess an injured or ill person in a remote location with a structured patient assessment, giving first aid within the scope of training",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:v1-4.4.2-T2",
+         "statement": "Coordinate a medical evacuation from a remote site, passing patient condition, location and landing or access information to responders",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:v1-4.4.2-T3",
+         "statement": "Inspect crew first aid and trauma kits on schedule, replacing expired or missing items and recording the check",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.5",
+       "duty": "Communicate during field emergencies and report incidents",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:v1-2.3.5-T1",
+         "statement": "Test field radios and satellite devices for a work area before deployment, programming channels and confirming coverage at key locations",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:v1-2.3.5-T2",
+         "statement": "Set the communication plan for a field operation, including check-in times, frequencies, escalation steps and overdue-person procedures",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:v1-2.3.5-T3",
+         "statement": "Troubleshoot field communication failures, switching to backup methods or relocating to restore contact within the check-in window",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C29",
+       "duty": "Communicate environmental and health risks under uncertainty",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:lc-txe-answer-public-questions",
+         "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:lc-txe-draft-advisory",
+         "statement": "Draft a public advisory that states the hazard, the people affected, the uncertainty and the protective action in plain language",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:lc-txe-prepare-message-map",
+         "statement": "Prepare a shared message map with partner agencies for an emerging environmental or health incident",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.1-A",
+       "duty": "Manage risk in uncontrolled field environments",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:v1-4.4.1-T1",
+         "statement": "Conduct a job hazard analysis at the actual work site before field activity begins, naming each hazard present and its control",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:fc-risk-ai-jha-review",
+         "statement": "Review an AI-drafted or template job hazard analysis against actual site conditions, adding missed hazards and removing ones that do not apply",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C26",
+       "duty": "Assess tree risk and structural condition",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:fc-tree-remote-verify",
+         "statement": "Verify remote-sensed or analytics-flagged tree risk scores on the ground, recording each override with the field reason",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:fc-tree-visual",
+         "statement": "Conduct a ground-based visual tree risk assessment, recording defects, likelihood of failure, targets and consequences on the standard form",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:IA-CC-07",
+       "duty": "Monitor and steward wilderness character",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:IA-CC-07-T1",
+         "statement": "Establish a wilderness character baseline from indicator measures for each wilderness quality using available monitoring data",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        },
+        {
+         "task": "seed:IA-CC-07-T2",
+         "statement": "Monitor wilderness character indicators in the field to report trends against the baseline",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:IA-CC-03",
+       "duty": "Assess and design for scenic resources",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:IA-CC-03-T1",
+         "statement": "Rate a proposed project's visual contrast from key observation points against the area's scenic objectives",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        },
+        {
+         "task": "seed:IA-CC-03-T2",
+         "statement": "Run a viewshed analysis from key observation points, checking modelled visibility at field locations",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C21",
+       "duty": "Work alongside landowners, permittees, volunteers and communities on the land",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:fc-land-adapt-access",
+         "statement": "Adjust field plans on a landowner's property to their access conditions, livestock, crops or concerns raised on the day, recording the change",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        },
+        {
+         "task": "seed:fc-land-explain",
+         "statement": "Explain field findings and their limits face to face to landowners or community members on site, answering questions about methods and uncertainty",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.2.5",
+       "duty": "Construct and maintain trails to sustainable design standards",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-4.2.5-T1",
+         "statement": "Construct trail tread to the design grade, outslope and width from a flagged alignment, reading soils and drainage along the segment",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        },
+        {
+         "task": "seed:v1-4.2.5-T2",
+         "statement": "Maintain existing trails by clearing drainage structures, brushing corridors and repairing tread before damage spreads",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C18",
+       "duty": "Navigate and travel safely in remote terrain with and without digital aids",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-2.1.3-T1",
+         "statement": "Record field locations with a satellite positioning receiver to the protocol's accuracy, logging signal quality and averaging positions where required",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        },
+        {
+         "task": "seed:v1-2.1.3-T2",
+         "statement": "Check field location data against field notes and maps before transfer, correcting or flagging points with implausible positions",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:v1-5.5.1-T1",
+      "seed:v1-5.5.1-T2",
+      "seed:v1-5.5.1-T3",
+      "seed:db-5.5.1-t4",
+      "seed:IA-CC-02-T1",
+      "seed:IA-CC-02-T3",
+      "seed:v1-4.4.2-T2",
+      "seed:v1-4.4.2-T3",
+      "seed:v1-2.3.5-T1",
+      "seed:v1-2.3.5-T3",
+      "seed:fc-tree-remote-verify",
+      "seed:fc-tree-visual",
+      "seed:lc-txe-answer-public-questions",
+      "seed:v1-4.4.1-T1"
+     ],
+     "criticalTasks": [
+      "seed:v1-5.5.1-T1",
+      "seed:v1-5.5.1-T2"
+     ],
+     "distinguishingCompetencies": [
+      "seed:v1-5.5.1"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:v1-5.5.1",
+       "statement": "Knowledge of and skill in: provide visitor information, orientation and safety messaging in parks and protected areas (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:DB-C29",
+       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C26",
+       "statement": "Knowledge of and skill in: assess tree risk and structural condition (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:IA-CC-02",
+       "statement": "Knowledge of and skill in: plan and manage recreation opportunity and visitor use (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.1-A",
+       "statement": "Knowledge of and skill in: manage risk in uncontrolled field environments (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.2",
+       "statement": "Knowledge of and skill in: provide first aid and emergency medical care in remote field settings (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.5",
+       "statement": "Knowledge of and skill in: communicate during field emergencies and report incidents (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    },
+    {
+     "group": "senior and lead",
+     "indicativeBand": "GS-12 to GS-13 (senior)",
+     "roleLevels": [
+      "senior"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:v1-5.5.1",
+       "duty": "Provide visitor information, orientation and safety messaging in parks and protected areas",
+       "pctTime": 16,
+       "tasks": [
+        {
+         "task": "seed:v1-5.5.1-T1",
+         "statement": "Orient visitors at a contact station to routes, conditions, regulations and hazards matched to their plans and abilities",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.0
+        },
+        {
+         "task": "seed:v1-5.5.1-T2",
+         "statement": "Give safety information and trip recommendations tailored to current conditions and each visitor's stated plans",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.4
+        },
+        {
+         "task": "seed:v1-5.5.1-T3",
+         "statement": "Log visitor questions, incidents and concerns to identify information gaps and revise visitor messaging",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:db-5.5.1-t4",
+         "statement": "Check visitor information from automated or online sources against current site conditions before it is posted or repeated to visitors",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        }
+       ]
+      },
+      {
+       "competency": "seed:IA-CC-02",
+       "duty": "Plan and manage recreation opportunity and visitor use",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:IA-CC-02-T1",
+         "statement": "Assign recreation opportunity classes to a planning area from setting characteristics, access and existing use",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:IA-CC-02-T2",
+         "statement": "Estimate visitor use and capacity for a site from counts, permits and indicators of resource and social conditions",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:IA-CC-02-T3",
+         "statement": "Designate motorized and non-motorized routes in a travel plan that separate conflicting uses and protect resources",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.2",
+       "duty": "Provide first aid and emergency medical care in remote field settings",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:v1-4.4.2-T1",
+         "statement": "Assess an injured or ill person in a remote location with a structured patient assessment, giving first aid within the scope of training",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:v1-4.4.2-T2",
+         "statement": "Coordinate a medical evacuation from a remote site, passing patient condition, location and landing or access information to responders",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:v1-4.4.2-T3",
+         "statement": "Inspect crew first aid and trauma kits on schedule, replacing expired or missing items and recording the check",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.5",
+       "duty": "Communicate during field emergencies and report incidents",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:v1-2.3.5-T1",
+         "statement": "Test field radios and satellite devices for a work area before deployment, programming channels and confirming coverage at key locations",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:v1-2.3.5-T2",
+         "statement": "Set the communication plan for a field operation, including check-in times, frequencies, escalation steps and overdue-person procedures",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:v1-2.3.5-T3",
+         "statement": "Troubleshoot field communication failures, switching to backup methods or relocating to restore contact within the check-in window",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C26",
+       "duty": "Assess tree risk and structural condition",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:fc-tree-mitigate",
+         "statement": "Recommend mitigation for a high-risk tree, such as pruning, target relocation or removal, stating residual risk and timing",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:fc-tree-remote-verify",
+         "statement": "Verify remote-sensed or analytics-flagged tree risk scores on the ground, recording each override with the field reason",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:fc-tree-visual",
+         "statement": "Conduct a ground-based visual tree risk assessment, recording defects, likelihood of failure, targets and consequences on the standard form",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C29",
+       "duty": "Communicate environmental and health risks under uncertainty",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:lc-txe-answer-public-questions",
+         "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:lc-txe-draft-advisory",
+         "statement": "Draft a public advisory that states the hazard, the people affected, the uncertainty and the protective action in plain language",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:lc-txe-prepare-message-map",
+         "statement": "Prepare a shared message map with partner agencies for an emerging environmental or health incident",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.1-A",
+       "duty": "Manage risk in uncontrolled field environments",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:v1-4.4.1-T1",
+         "statement": "Conduct a job hazard analysis at the actual work site before field activity begins, naming each hazard present and its control",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:fc-risk-ai-jha-review",
+         "statement": "Review an AI-drafted or template job hazard analysis against actual site conditions, adding missed hazards and removing ones that do not apply",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.5
+        },
+        {
+         "task": "seed:fc-risk-briefing",
+         "statement": "Brief a field crew on the day's site hazards, escape routes, safety zones and communication plan before work begins",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:IA-CC-07",
+       "duty": "Monitor and steward wilderness character",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:IA-CC-07-T1",
+         "statement": "Establish a wilderness character baseline from indicator measures for each wilderness quality using available monitoring data",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        },
+        {
+         "task": "seed:IA-CC-07-T2",
+         "statement": "Monitor wilderness character indicators in the field to report trends against the baseline",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:IA-CC-03",
+       "duty": "Assess and design for scenic resources",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:IA-CC-03-T1",
+         "statement": "Rate a proposed project's visual contrast from key observation points against the area's scenic objectives",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        },
+        {
+         "task": "seed:IA-CC-03-T2",
+         "statement": "Run a viewshed analysis from key observation points, checking modelled visibility at field locations",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C21",
+       "duty": "Work alongside landowners, permittees, volunteers and communities on the land",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:fc-land-adapt-access",
+         "statement": "Adjust field plans on a landowner's property to their access conditions, livestock, crops or concerns raised on the day, recording the change",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        },
+        {
+         "task": "seed:fc-land-explain",
+         "statement": "Explain field findings and their limits face to face to landowners or community members on site, answering questions about methods and uncertainty",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.2.5",
+       "duty": "Construct and maintain trails to sustainable design standards",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:v1-4.2.5-T1",
+         "statement": "Construct trail tread to the design grade, outslope and width from a flagged alignment, reading soils and drainage along the segment",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        },
+        {
+         "task": "seed:v1-4.2.5-T2",
+         "statement": "Maintain existing trails by clearing drainage structures, brushing corridors and repairing tread before damage spreads",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C18",
+       "duty": "Navigate and travel safely in remote terrain with and without digital aids",
+       "pctTime": 5,
+       "tasks": [
+        {
+         "task": "seed:v1-2.1.3-T1",
+         "statement": "Record field locations with a satellite positioning receiver to the protocol's accuracy, logging signal quality and averaging positions where required",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        },
+        {
+         "task": "seed:v1-2.1.3-T2",
+         "statement": "Check field location data against field notes and maps before transfer, correcting or flagging points with implausible positions",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.6
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:v1-5.5.1-T1",
+      "seed:v1-5.5.1-T2",
+      "seed:v1-5.5.1-T3",
+      "seed:db-5.5.1-t4",
+      "seed:IA-CC-02-T1",
+      "seed:IA-CC-02-T3",
+      "seed:v1-4.4.2-T2",
+      "seed:v1-4.4.2-T3",
+      "seed:v1-2.3.5-T1",
+      "seed:v1-2.3.5-T3",
+      "seed:fc-tree-remote-verify",
+      "seed:fc-tree-visual",
+      "seed:lc-txe-answer-public-questions",
+      "seed:v1-4.4.1-T1"
+     ],
+     "criticalTasks": [
+      "seed:v1-5.5.1-T1",
+      "seed:v1-5.5.1-T2"
+     ],
+     "distinguishingCompetencies": [
+      "seed:v1-5.5.1"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:v1-5.5.1",
+       "statement": "Knowledge of and skill in: provide visitor information, orientation and safety messaging in parks and protected areas (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:DB-C29",
+       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C26",
+       "statement": "Knowledge of and skill in: assess tree risk and structural condition (EMST target senior L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:IA-CC-02",
+       "statement": "Knowledge of and skill in: plan and manage recreation opportunity and visitor use (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.1-A",
+       "statement": "Knowledge of and skill in: manage risk in uncontrolled field environments (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.2",
+       "statement": "Knowledge of and skill in: provide first aid and emergency medical care in remote field settings (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.5",
+       "statement": "Knowledge of and skill in: communicate during field emergencies and report incidents (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    }
+   ],
+   "changeView": null
+  }
+ ],
+ "rolesWithoutFederalVariant": [],
+ "feederOrDestinationRoles": []
+}

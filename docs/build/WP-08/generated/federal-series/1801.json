@@ -1,0 +1,1855 @@
+{
+ "stamp": {
+  "ruleId": "federal-series-profile",
+  "ruleVersion": "0.1.0",
+  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "asOf": "2026-10-23"
+ },
+ "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
+ "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "series": {
+  "code": "1801",
+  "title": "General Inspection, Investigation, Enforcement, and Compliance",
+  "seriesStatus": "active",
+  "statusStatement": "Active (EMST OPM series register, as of 2026-10-23).",
+  "successorSeriesProposed": null,
+  "group": "1800 Inspection, Investigation, Enforcement, and Compliance",
+  "qualificationStandardVersion": null,
+  "positiveEducationRequirement": null,
+  "educationNote": "FH judgment pending verification of the qualification standard",
+  "registerRecord": "seed:opm-series/1801",
+  "registerReviewBy": "2027-01-23",
+  "events": []
+ },
+ "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
+ "roles": [
+  {
+   "role": "seed:R12-environmental-compliance-inspector",
+   "roleTitle": "Environmental compliance inspector",
+   "tier": "P1",
+   "variant": "seed:R12-environmental-compliance-inspector/federal",
+   "functionStatement": "Establish, with defensible evidence, whether regulated facilities and sites meet their permits and rules, and start the response the enforcement policy requires.",
+   "authorityPosition": "regulator",
+   "x4": {
+    "record": "emst-x4:R12-environmental-compliance-inspector:1801",
+    "predicate": "skos:relatedMatch",
+    "confidence": 0.4,
+    "appliesTo": "general inspection positions",
+    "reviewStatus": "candidate",
+    "evidence": "J"
+   },
+   "credentialGates": [],
+   "signOffAuthority": null,
+   "instruments": [
+    {
+     "id": "seed:ins/federal-inspection-authorities",
+     "label": "Federal inspection and information-request authorities"
+    },
+    {
+     "id": "seed:ins/epa-penalty-policies",
+     "label": "EPA civil penalty and enforcement response policies"
+    }
+   ],
+   "bands": [
+    {
+     "group": "developmental and full performance",
+     "indicativeBand": "GS-5 to GS-7 (entry); GS-9 to GS-11 (journey)",
+     "roleLevels": [
+      "entry",
+      "journey"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:SL-C03",
+       "duty": "Conduct regulatory compliance inspections",
+       "pctTime": 52,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.2-T1",
+         "statement": "Inspect a permitted facility or site against its permit conditions and applicable rules, recording observations, measurements and samples as evidence",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 17.1
+        },
+        {
+         "task": "seed:sc-write-inspection-report",
+         "statement": "Write an inspection report stating findings of fact for each condition inspected, separating the inspector's observations from conclusions",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 13.2
+        },
+        {
+         "task": "seed:sc-plan-inspection",
+         "statement": "Plan a compliance inspection from the facility's permit, compliance history and monitoring reports, listing the conditions to verify and the evidence to collect",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 8.8
+        },
+        {
+         "task": "seed:sc-collect-inspection-evidence",
+         "statement": "Collect samples and photographs during an inspection under chain-of-custody procedures, so that the evidence is admissible in an enforcement proceeding",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 8.8
+        },
+        {
+         "task": "seed:sc-select-enforcement-response",
+         "statement": "Select the response the enforcement policy sets for each inspection finding, issuing a notice of violation, assistance letter or referral",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.4
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C04",
+       "duty": "Develop and resolve environmental enforcement cases",
+       "pctTime": 9,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.5-T1",
+         "statement": "Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.4
+        },
+        {
+         "task": "seed:v1-6.1.5-T2",
+         "statement": "Assemble the evidence file for an enforcement case, linking each alleged violation to the inspection findings, records and samples that prove it",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.4
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C25",
+       "duty": "Target inspections and verify compliance using monitoring data and analytics",
+       "pctTime": 9,
+       "tasks": [
+        {
+         "task": "seed:sc-review-anomaly-flags",
+         "statement": "Review automated anomaly flags in facility monitoring reports, confirming or dismissing each flag against the underlying data before referral",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.4
+        },
+        {
+         "task": "seed:sc-verify-reported-values",
+         "statement": "Verify a facility's self-reported emissions or discharge values against independent remote-sensing or ambient data, stating the discrepancy and its uncertainty",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.4
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C24",
+       "duty": "Manage field sample custody and field quality control",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:fc-coc-complete",
+         "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.4
+        },
+        {
+         "task": "seed:fc-qc-collect",
+         "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.1.3",
+       "duty": "Measure water quality and survey aquatic communities in the field",
+       "pctTime": 4,
+       "tasks": [
+        {
+         "task": "seed:v1-1.2.4-T1",
+         "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 4.4
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-13",
+       "duty": "Validate AI-generated work products before professional use",
+       "pctTime": 4,
+       "tasks": [
+        {
+         "task": "seed:v1-7.2.1-T2",
+         "statement": "Check an AI-assisted regulatory analysis or compliance summary against the applicable legal text and source records before it enters a decision document.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.2
+        },
+        {
+         "task": "seed:fc-txa-field-check",
+         "statement": "Verify an AI-generated field product, such as a condition map or drafted inspection note, against observations made at the site before it is relied on",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C10",
+       "duty": "Provide compliance and technical assistance to regulated entities and local governments",
+       "pctTime": 4,
+       "tasks": [
+        {
+         "task": "seed:sc-assistance-site-visit",
+         "statement": "Visit a small regulated facility on request to identify compliance gaps, recommending corrective steps without initiating enforcement where policy allows",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        },
+        {
+         "task": "seed:sc-answer-compliance-questions",
+         "statement": "Answer compliance questions from regulated entities through a help line or portal, recording each question and the guidance given for consistency review",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.4-A",
+       "duty": "Work safely on hazardous, industrial and energized field sites",
+       "pctTime": 3,
+       "tasks": [
+        {
+         "task": "seed:v1-4.4.4-T1",
+         "statement": "Identify signs of potential hazardous materials at a field site, such as drums, stained soil, odours or unusual debris, before disturbing them",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.3
+        },
+        {
+         "task": "seed:fc-haz-hasp",
+         "statement": "Follow a site health and safety plan at a contaminated or industrial site, observing zone boundaries, air-monitoring action levels and decontamination steps",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.3
+        },
+        {
+         "task": "seed:fc-haz-energized",
+         "statement": "Keep required clearances from energized lines, confined spaces and operating machinery during field work at utility and industrial sites, stopping when clearance cannot be held",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 0.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.2.3",
+       "duty": "Assure the quality of environmental data from collection to release",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:v1-2.2.3-T2",
+         "statement": "Audit an environmental dataset on a set schedule, identifying errors and anomalies and recording each correction with its basis.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:PS-C18",
+       "duty": "Maintain independence and manage conflicts of interest across the regulator-regulated boundary",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:sc-recuse-covered-matter",
+         "statement": "Recuse from a decision or review in which a former employer or client has an interest, documenting the recusal and the reassignment of the work",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 0.9
+        },
+        {
+         "task": "seed:sc-disclose-assignment-interests",
+         "statement": "Disclose financial, employment or relationship interests that could affect an assignment before work begins, using the organization's conflict form",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 0.9
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C02",
+       "duty": "Build and maintain a defensible administrative record",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:sc-index-record-documents",
+         "statement": "Index documents into the administrative record with dates, authors and provenance labels, marking which content was produced with AI assistance",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.1-B",
+       "duty": "Apply safety practices and stop-work authority across field, facility and incident settings",
+       "pctTime": 1,
+       "tasks": [
+        {
+         "task": "seed:lc-txc-exercise-stop-work",
+         "statement": "Exercise stop-work authority when field, facility or incident conditions exceed the stated safety limits of the assignment",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 0.9
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:sc-plan-inspection",
+      "seed:v1-6.1.2-T1",
+      "seed:sc-collect-inspection-evidence",
+      "seed:sc-write-inspection-report",
+      "seed:v1-1.2.4-T1",
+      "seed:fc-coc-complete",
+      "seed:fc-qc-collect",
+      "seed:v1-2.2.3-T2",
+      "seed:v1-4.4.4-T1",
+      "seed:fc-haz-hasp",
+      "seed:fc-haz-energized",
+      "seed:lc-txc-exercise-stop-work",
+      "seed:sc-disclose-assignment-interests",
+      "seed:sc-index-record-documents"
+     ],
+     "criticalTasks": [
+      "seed:sc-plan-inspection",
+      "seed:v1-6.1.2-T1",
+      "seed:sc-collect-inspection-evidence",
+      "seed:sc-write-inspection-report",
+      "seed:fc-coc-complete",
+      "seed:sc-review-anomaly-flags",
+      "seed:sc-verify-reported-values",
+      "seed:v1-4.4.4-T1",
+      "seed:fc-haz-hasp",
+      "seed:fc-haz-energized",
+      "seed:lc-txc-exercise-stop-work",
+      "seed:sc-recuse-covered-matter"
+     ],
+     "distinguishingCompetencies": [
+      "seed:SL-C03"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:SL-C03",
+       "statement": "Knowledge of and skill in: conduct regulatory compliance inspections (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:v1-4.4.4-A",
+       "statement": "Knowledge of and skill in: work safely on hazardous, industrial and energized field sites (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DB-C25",
+       "statement": "Knowledge of and skill in: target inspections and verify compliance using monitoring data and analytics (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DC-CAND-13",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C24",
+       "statement": "Knowledge of and skill in: manage field sample custody and field quality control (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:PS-C18",
+       "statement": "Knowledge of and skill in: maintain independence and manage conflicts of interest across the regulator-regulated boundary (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SC-C02",
+       "statement": "Knowledge of and skill in: build and maintain a defensible administrative record (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SL-C04",
+       "statement": "Knowledge of and skill in: develop and resolve environmental enforcement cases (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.1-B",
+       "statement": "Knowledge of and skill in: apply safety practices and stop-work authority across field, facility and incident settings (EMST target entry L1, journey L2).",
+       "knowledgeStatements": [
+        "A no-blame incident review separates system and condition causes from individual error and sanctions only reckless or wilful acts, so that people keep reporting near misses.",
+        "Stop-work authority lets any worker halt a task they judge unsafe; the task resumes only after the hazard is assessed and the plan revised, and the person who stopped it is not penalized."
+       ],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    },
+    {
+     "group": "senior and lead",
+     "indicativeBand": "GS-12 to GS-13 (senior)",
+     "roleLevels": [
+      "senior"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:SL-C03",
+       "duty": "Conduct regulatory compliance inspections",
+       "pctTime": 48,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.2-T1",
+         "statement": "Inspect a permitted facility or site against its permit conditions and applicable rules, recording observations, measurements and samples as evidence",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 15.6
+        },
+        {
+         "task": "seed:sc-write-inspection-report",
+         "statement": "Write an inspection report stating findings of fact for each condition inspected, separating the inspector's observations from conclusions",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 12.0
+        },
+        {
+         "task": "seed:sc-plan-inspection",
+         "statement": "Plan a compliance inspection from the facility's permit, compliance history and monitoring reports, listing the conditions to verify and the evidence to collect",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 8.0
+        },
+        {
+         "task": "seed:sc-collect-inspection-evidence",
+         "statement": "Collect samples and photographs during an inspection under chain-of-custody procedures, so that the evidence is admissible in an enforcement proceeding",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 8.0
+        },
+        {
+         "task": "seed:sc-select-enforcement-response",
+         "statement": "Select the response the enforcement policy sets for each inspection finding, issuing a notice of violation, assistance letter or referral",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.0
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C04",
+       "duty": "Develop and resolve environmental enforcement cases",
+       "pctTime": 11,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.5-T1",
+         "statement": "Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.0
+        },
+        {
+         "task": "seed:v1-6.1.5-T2",
+         "statement": "Assemble the evidence file for an enforcement case, linking each alleged violation to the inspection findings, records and samples that prove it",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.0
+        },
+        {
+         "task": "seed:sc-calculate-civil-penalty",
+         "statement": "Calculate a proposed civil penalty under the program's penalty policy, documenting the gravity, economic benefit and adjustment factors applied",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.0
+        },
+        {
+         "task": "seed:v1-6.1.5-T3",
+         "statement": "Testify as a fact or expert witness in an enforcement proceeding, explaining the evidence and methods behind each finding",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C25",
+       "duty": "Target inspections and verify compliance using monitoring data and analytics",
+       "pctTime": 11,
+       "tasks": [
+        {
+         "task": "seed:sc-review-anomaly-flags",
+         "statement": "Review automated anomaly flags in facility monitoring reports, confirming or dismissing each flag against the underlying data before referral",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.0
+        },
+        {
+         "task": "seed:sc-verify-reported-values",
+         "statement": "Verify a facility's self-reported emissions or discharge values against independent remote-sensing or ambient data, stating the discrepancy and its uncertainty",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.0
+        },
+        {
+         "task": "seed:sc-rank-facilities-inspection",
+         "statement": "Rank regulated facilities for inspection using compliance history and monitoring data, documenting the risk factors and weights in the targeting method",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.0
+        },
+        {
+         "task": "seed:sc-evaluate-targeting-method",
+         "statement": "Evaluate a targeting method after an inspection cycle, comparing predicted and found violations and recording the adjustments needed",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:FC-C24",
+       "duty": "Manage field sample custody and field quality control",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:fc-coc-complete",
+         "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.0
+        },
+        {
+         "task": "seed:fc-qc-collect",
+         "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.0
+        },
+        {
+         "task": "seed:fc-qc-defend",
+         "statement": "Defend field sampling and custody procedures in declarations or testimony when sample results are challenged in enforcement or litigation",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.2
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.1.3",
+       "duty": "Measure water quality and survey aquatic communities in the field",
+       "pctTime": 4,
+       "tasks": [
+        {
+         "task": "seed:v1-1.2.4-T1",
+         "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 4.0
+        }
+       ]
+      },
+      {
+       "competency": "seed:DC-CAND-13",
+       "duty": "Validate AI-generated work products before professional use",
+       "pctTime": 4,
+       "tasks": [
+        {
+         "task": "seed:v1-7.2.1-T2",
+         "statement": "Check an AI-assisted regulatory analysis or compliance summary against the applicable legal text and source records before it enters a decision document.",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.0
+        },
+        {
+         "task": "seed:fc-txa-field-check",
+         "statement": "Verify an AI-generated field product, such as a condition map or drafted inspection note, against observations made at the site before it is relied on",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.0
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C10",
+       "duty": "Provide compliance and technical assistance to regulated entities and local governments",
+       "pctTime": 4,
+       "tasks": [
+        {
+         "task": "seed:sc-assistance-site-visit",
+         "statement": "Visit a small regulated facility on request to identify compliance gaps, recommending corrective steps without initiating enforcement where policy allows",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.0
+        },
+        {
+         "task": "seed:sc-answer-compliance-questions",
+         "statement": "Answer compliance questions from regulated entities through a help line or portal, recording each question and the guidance given for consistency review",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.0
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.4-A",
+       "duty": "Work safely on hazardous, industrial and energized field sites",
+       "pctTime": 3,
+       "tasks": [
+        {
+         "task": "seed:v1-4.4.4-T1",
+         "statement": "Identify signs of potential hazardous materials at a field site, such as drums, stained soil, odours or unusual debris, before disturbing them",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.2
+        },
+        {
+         "task": "seed:fc-haz-hasp",
+         "statement": "Follow a site health and safety plan at a contaminated or industrial site, observing zone boundaries, air-monitoring action levels and decontamination steps",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.2
+        },
+        {
+         "task": "seed:fc-haz-energized",
+         "statement": "Keep required clearances from energized lines, confined spaces and operating machinery during field work at utility and industrial sites, stopping when clearance cannot be held",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 0.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-2.2.3",
+       "duty": "Assure the quality of environmental data from collection to release",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:v1-2.2.3-T2",
+         "statement": "Audit an environmental dataset on a set schedule, identifying errors and anomalies and recording each correction with its basis.",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 2.0
+        }
+       ]
+      },
+      {
+       "competency": "seed:PS-C18",
+       "duty": "Maintain independence and manage conflicts of interest across the regulator-regulated boundary",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:sc-recuse-covered-matter",
+         "statement": "Recuse from a decision or review in which a former employer or client has an interest, documenting the recusal and the reassignment of the work",
+         "importance": 4,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 0.8
+        },
+        {
+         "task": "seed:sc-disclose-assignment-interests",
+         "statement": "Disclose financial, employment or relationship interests that could affect an assignment before work begins, using the organization's conflict form",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 0.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C02",
+       "duty": "Build and maintain a defensible administrative record",
+       "pctTime": 2,
+       "tasks": [
+        {
+         "task": "seed:sc-index-record-documents",
+         "statement": "Index documents into the administrative record with dates, authors and provenance labels, marking which content was produced with AI assistance",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.0
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-4.4.1-B",
+       "duty": "Apply safety practices and stop-work authority across field, facility and incident settings",
+       "pctTime": 1,
+       "tasks": [
+        {
+         "task": "seed:lc-txc-exercise-stop-work",
+         "statement": "Exercise stop-work authority when field, facility or incident conditions exceed the stated safety limits of the assignment",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 0.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:IO-C01",
+       "duty": "Evaluate and certify others' task performance against position standards",
+       "pctTime": 1,
+       "tasks": [
+        {
+         "task": "seed:lc-txd-rate-performance",
+         "statement": "Rate a trainee's observed performance of position tasks on the entrustment-supervision scale in the evaluation context each task requires",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 1.2
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:sc-plan-inspection",
+      "seed:v1-6.1.2-T1",
+      "seed:sc-collect-inspection-evidence",
+      "seed:sc-write-inspection-report",
+      "seed:v1-1.2.4-T1",
+      "seed:fc-coc-complete",
+      "seed:fc-qc-collect",
+      "seed:v1-2.2.3-T2",
+      "seed:v1-4.4.4-T1",
+      "seed:fc-haz-hasp",
+      "seed:fc-haz-energized",
+      "seed:lc-txc-exercise-stop-work",
+      "seed:sc-disclose-assignment-interests",
+      "seed:sc-index-record-documents"
+     ],
+     "criticalTasks": [
+      "seed:sc-plan-inspection",
+      "seed:v1-6.1.2-T1",
+      "seed:sc-collect-inspection-evidence",
+      "seed:sc-write-inspection-report",
+      "seed:fc-coc-complete",
+      "seed:sc-review-anomaly-flags",
+      "seed:sc-verify-reported-values",
+      "seed:v1-4.4.4-T1",
+      "seed:fc-haz-hasp",
+      "seed:fc-haz-energized",
+      "seed:lc-txc-exercise-stop-work",
+      "seed:sc-recuse-covered-matter"
+     ],
+     "distinguishingCompetencies": [
+      "seed:SL-C03"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:SL-C03",
+       "statement": "Knowledge of and skill in: conduct regulatory compliance inspections (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:v1-4.4.4-A",
+       "statement": "Knowledge of and skill in: work safely on hazardous, industrial and energized field sites (EMST target senior L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DB-C25",
+       "statement": "Knowledge of and skill in: target inspections and verify compliance using monitoring data and analytics (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:DC-CAND-13",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:FC-C24",
+       "statement": "Knowledge of and skill in: manage field sample custody and field quality control (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:PS-C18",
+       "statement": "Knowledge of and skill in: maintain independence and manage conflicts of interest across the regulator-regulated boundary (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SC-C02",
+       "statement": "Knowledge of and skill in: build and maintain a defensible administrative record (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SL-C04",
+       "statement": "Knowledge of and skill in: develop and resolve environmental enforcement cases (EMST target senior L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-4.4.1-B",
+       "statement": "Knowledge of and skill in: apply safety practices and stop-work authority across field, facility and incident settings (EMST target senior L3).",
+       "knowledgeStatements": [
+        "A no-blame incident review separates system and condition causes from individual error and sanctions only reckless or wilful acts, so that people keep reporting near misses.",
+        "Stop-work authority lets any worker halt a task they judge unsafe; the task resumes only after the hazard is assessed and the plan revised, and the person who stopped it is not penalized."
+       ],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    }
+   ],
+   "changeView": "docs/build/WP-08/generated/change_view/R12-environmental-compliance-inspector.json"
+  },
+  {
+   "role": "seed:R23-enforcement-case-manager",
+   "roleTitle": "Enforcement case manager",
+   "tier": "P2",
+   "variant": "seed:R23-enforcement-case-manager/federal",
+   "functionStatement": "Bring regulated parties back into compliance through defensible, proportionate enforcement actions.",
+   "authorityPosition": "regulator",
+   "x4": {
+    "record": "emst-x4:R23-enforcement-case-manager:1801",
+    "predicate": "skos:relatedMatch",
+    "confidence": 0.35,
+    "appliesTo": "investigative positions",
+    "reviewStatus": "candidate",
+    "evidence": "J"
+   },
+   "credentialGates": [],
+   "signOffAuthority": null,
+   "instruments": [
+    {
+     "id": "seed:ins/epa-penalty-policies",
+     "label": "EPA civil penalty and enforcement response policies"
+    }
+   ],
+   "bands": [
+    {
+     "group": "developmental and full performance",
+     "indicativeBand": "GS-9 to GS-11 (journey)",
+     "roleLevels": [
+      "journey"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:SL-C04",
+       "duty": "Develop and resolve environmental enforcement cases",
+       "pctTime": 15,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.5-T2",
+         "statement": "Assemble the evidence file for an enforcement case, linking each alleged violation to the inspection findings, records and samples that prove it",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.8
+        },
+        {
+         "task": "seed:sc-calculate-civil-penalty",
+         "statement": "Calculate a proposed civil penalty under the program's penalty policy, documenting the gravity, economic benefit and adjustment factors applied",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:v1-6.1.5-T1",
+         "statement": "Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C02",
+       "duty": "Build and maintain a defensible administrative record",
+       "pctTime": 15,
+       "tasks": [
+        {
+         "task": "seed:v1-6.4.4-T3",
+         "statement": "Publish comment summaries and the agency's responses in the record, linking each response to the substantive comments it answers",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 5.8
+        },
+        {
+         "task": "seed:sc-index-record-documents",
+         "statement": "Index documents into the administrative record with dates, authors and provenance labels, marking which content was produced with AI assistance",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:sc-write-reasoned-explanation",
+         "statement": "Write the reasoned explanation that links the evidence in the record to each choice made in a decision",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C03",
+       "duty": "Conduct regulatory compliance inspections",
+       "pctTime": 13,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.2-T1",
+         "statement": "Inspect a permitted facility or site against its permit conditions and applicable rules, recording observations, measurements and samples as evidence",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:sc-collect-inspection-evidence",
+         "statement": "Collect samples and photographs during an inspection under chain-of-custody procedures, so that the evidence is admissible in an enforcement proceeding",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:sc-select-enforcement-response",
+         "statement": "Select the response the enforcement policy sets for each inspection finding, issuing a notice of violation, assistance letter or referral",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-7.1.3",
+       "duty": "Maintain the integrity of regulatory and scientific findings under institutional pressure",
+       "pctTime": 13,
+       "tasks": [
+        {
+         "task": "seed:v1-7.1.3-T1",
+         "statement": "Document any instruction or pressure to alter a regulatory or scientific finding, recording who made it, what was requested and the response given",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:v1-7.1.3-T2",
+         "statement": "Disclose conflicts of interest, uncertainty, dissenting views and AI assistance in a regulatory submission or public document, following the organization's integrity policy",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:v1-7.1.3-T3",
+         "statement": "Write quality-assurance and escalation procedures that protect the independence of regulatory findings, including peer-review steps and documentation of changes",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C17",
+       "duty": "Assess litigation exposure and design decisions for resilience on remand",
+       "pctTime": 9,
+       "tasks": [
+        {
+         "task": "seed:sc-identify-likely-claims",
+         "statement": "Identify the claims a proposed decision is likely to face, rating each claim's likelihood under current deference, standing and remedy doctrine",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:sc-pre-issuance-record-review",
+         "statement": "Review a decision record with counsel before issuance, listing the record gaps that weaken the reasoned explanation and the fix for each",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C07",
+       "duty": "Negotiate permit conditions, mitigation and agreements using interest-based methods",
+       "pctTime": 8,
+       "tasks": [
+        {
+         "task": "seed:sc-convert-agreement-terms",
+         "statement": "Convert a negotiated agreement into implementable terms, checking each term against a verification method before signature",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:sc-prepare-negotiation-brief",
+         "statement": "Prepare a negotiation brief stating own and counterpart interests, alternatives to agreement, the issue list and the limits of one's authority",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C25",
+       "duty": "Target inspections and verify compliance using monitoring data and analytics",
+       "pctTime": 8,
+       "tasks": [
+        {
+         "task": "seed:sc-rank-facilities-inspection",
+         "statement": "Rank regulated facilities for inspection using compliance history and monitoring data, documenting the risk factors and weights in the targeting method",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.7
+        },
+        {
+         "task": "seed:sc-review-anomaly-flags",
+         "statement": "Review automated anomaly flags in facility monitoring reports, confirming or dismissing each flag against the underlying data before referral",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C16",
+       "duty": "Draft enforceable, implementable binding instruments",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:v1-6.4.2-T1",
+         "statement": "Write policy or instrument language that states each obligation, obligated party, deadline and verification method so that compliance can be determined",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:v1-6.4.2-T2",
+         "statement": "Review a proposed policy or instrument for consistency with governing law, existing instruments and agency authority, listing each conflict found",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:PS-C18",
+       "duty": "Maintain independence and manage conflicts of interest across the regulator-regulated boundary",
+       "pctTime": 7,
+       "tasks": [
+        {
+         "task": "seed:sc-apply-post-employment-rules",
+         "statement": "Apply post-employment restrictions when moving between a regulator and a regulated party, obtaining written ethics advice before contact on covered matters",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        },
+        {
+         "task": "seed:sc-disclose-assignment-interests",
+         "statement": "Disclose financial, employment or relationship interests that could affect an assignment before work begins, using the organization's conflict form",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-5.2.4",
+       "duty": "Resolve conflicts and mediate disputes over environmental decisions",
+       "pctTime": 4,
+       "tasks": [
+        {
+         "task": "seed:v1-5.2.4-T2",
+         "statement": "Restate each party's concern during a tense exchange until the party confirms it was understood, so that the exchange can continue",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:v1-6.1.5-T1",
+      "seed:v1-6.1.5-T2",
+      "seed:sc-calculate-civil-penalty",
+      "seed:v1-6.4.4-T3",
+      "seed:sc-index-record-documents",
+      "seed:sc-write-reasoned-explanation",
+      "seed:sc-identify-likely-claims",
+      "seed:sc-pre-issuance-record-review",
+      "seed:sc-convert-agreement-terms",
+      "seed:sc-prepare-negotiation-brief",
+      "seed:v1-6.1.2-T1",
+      "seed:sc-collect-inspection-evidence",
+      "seed:sc-select-enforcement-response",
+      "seed:sc-rank-facilities-inspection",
+      "seed:sc-review-anomaly-flags",
+      "seed:v1-7.1.3-T1",
+      "seed:v1-7.1.3-T2",
+      "seed:v1-7.1.3-T3"
+     ],
+     "criticalTasks": [
+      "seed:v1-6.1.5-T1",
+      "seed:v1-6.1.5-T2",
+      "seed:v1-6.4.4-T3"
+     ],
+     "distinguishingCompetencies": [
+      "seed:SL-C04"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:SC-C02",
+       "statement": "Knowledge of and skill in: build and maintain a defensible administrative record (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SL-C04",
+       "statement": "Knowledge of and skill in: develop and resolve environmental enforcement cases (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:DB-C25",
+       "statement": "Knowledge of and skill in: target inspections and verify compliance using monitoring data and analytics (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SC-C07",
+       "statement": "Knowledge of and skill in: negotiate permit conditions, mitigation and agreements using interest-based methods (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SL-C03",
+       "statement": "Knowledge of and skill in: conduct regulatory compliance inspections (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-7.1.3",
+       "statement": "Knowledge of and skill in: maintain the integrity of regulatory and scientific findings under institutional pressure (EMST target journey L2).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    },
+    {
+     "group": "senior and lead",
+     "indicativeBand": "GS-12 to GS-13 (senior); GS-13 to GS-14 (lead)",
+     "roleLevels": [
+      "senior",
+      "lead"
+     ],
+     "majorDuties": [
+      {
+       "competency": "seed:SC-C02",
+       "duty": "Build and maintain a defensible administrative record",
+       "pctTime": 17,
+       "tasks": [
+        {
+         "task": "seed:v1-6.4.4-T3",
+         "statement": "Publish comment summaries and the agency's responses in the record, linking each response to the substantive comments it answers",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.6
+        },
+        {
+         "task": "seed:sc-certify-administrative-record",
+         "statement": "Certify an administrative record for litigation by its deadline, checking completeness against the decision documents and the record index",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.6
+        },
+        {
+         "task": "seed:sc-index-record-documents",
+         "statement": "Index documents into the administrative record with dates, authors and provenance labels, marking which content was produced with AI assistance",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:sc-write-reasoned-explanation",
+         "statement": "Write the reasoned explanation that links the evidence in the record to each choice made in a decision",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C04",
+       "duty": "Develop and resolve environmental enforcement cases",
+       "pctTime": 16,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.5-T2",
+         "statement": "Assemble the evidence file for an enforcement case, linking each alleged violation to the inspection findings, records and samples that prove it",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 4.6
+        },
+        {
+         "task": "seed:v1-6.1.5-T3",
+         "statement": "Testify as a fact or expert witness in an enforcement proceeding, explaining the evidence and methods behind each finding",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:sc-calculate-civil-penalty",
+         "statement": "Calculate a proposed civil penalty under the program's penalty policy, documenting the gravity, economic benefit and adjustment factors applied",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:v1-6.1.5-T1",
+         "statement": "Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response",
+         "importance": 5,
+         "critical": true,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.6
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C17",
+       "duty": "Assess litigation exposure and design decisions for resilience on remand",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:sc-identify-likely-claims",
+         "statement": "Identify the claims a proposed decision is likely to face, rating each claim's likelihood under current deference, standing and remedy doctrine",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:sc-pre-issuance-record-review",
+         "statement": "Review a decision record with counsel before issuance, listing the record gaps that weaken the reasoned explanation and the fix for each",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:sc-recommend-risk-reduction",
+         "statement": "Recommend targeted additional analysis or engagement for a decision, stating the litigation risk each recommendation reduces and its schedule cost",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C07",
+       "duty": "Negotiate permit conditions, mitigation and agreements using interest-based methods",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:sc-convert-agreement-terms",
+         "statement": "Convert a negotiated agreement into implementable terms, checking each term against a verification method before signature",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:sc-lead-multiparty-negotiation",
+         "statement": "Lead a multi-party negotiation over a settlement or partnership agreement, keeping each party's commitments within its authority",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:sc-prepare-negotiation-brief",
+         "statement": "Prepare a negotiation brief stating own and counterpart interests, alternatives to agreement, the issue list and the limits of one's authority",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:SL-C03",
+       "duty": "Conduct regulatory compliance inspections",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:v1-6.1.2-T1",
+         "statement": "Inspect a permitted facility or site against its permit conditions and applicable rules, recording observations, measurements and samples as evidence",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:sc-collect-inspection-evidence",
+         "statement": "Collect samples and photographs during an inspection under chain-of-custody procedures, so that the evidence is admissible in an enforcement proceeding",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:sc-select-enforcement-response",
+         "statement": "Select the response the enforcement policy sets for each inspection finding, issuing a notice of violation, assistance letter or referral",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:DB-C25",
+       "duty": "Target inspections and verify compliance using monitoring data and analytics",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:sc-evaluate-targeting-method",
+         "statement": "Evaluate a targeting method after an inspection cycle, comparing predicted and found violations and recording the adjustments needed",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:sc-rank-facilities-inspection",
+         "statement": "Rank regulated facilities for inspection using compliance history and monitoring data, documenting the risk factors and weights in the targeting method",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:sc-review-anomaly-flags",
+         "statement": "Review automated anomaly flags in facility monitoring reports, confirming or dismissing each flag against the underlying data before referral",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-7.1.3",
+       "duty": "Maintain the integrity of regulatory and scientific findings under institutional pressure",
+       "pctTime": 10,
+       "tasks": [
+        {
+         "task": "seed:v1-7.1.3-T1",
+         "statement": "Document any instruction or pressure to alter a regulatory or scientific finding, recording who made it, what was requested and the response given",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:v1-7.1.3-T2",
+         "statement": "Disclose conflicts of interest, uncertainty, dissenting views and AI assistance in a regulatory submission or public document, following the organization's integrity policy",
+         "importance": 4,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 3.7
+        },
+        {
+         "task": "seed:v1-7.1.3-T3",
+         "statement": "Write quality-assurance and escalation procedures that protect the independence of regulatory findings, including peer-review steps and documentation of changes",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": true,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:SC-C16",
+       "duty": "Draft enforceable, implementable binding instruments",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-6.4.2-T1",
+         "statement": "Write policy or instrument language that states each obligation, obligated party, deadline and verification method so that compliance can be determined",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        },
+        {
+         "task": "seed:v1-6.4.2-T2",
+         "statement": "Review a proposed policy or instrument for consistency with governing law, existing instruments and agency authority, listing each conflict found",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:PS-C18",
+       "duty": "Maintain independence and manage conflicts of interest across the regulator-regulated boundary",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:sc-apply-post-employment-rules",
+         "statement": "Apply post-employment restrictions when moving between a regulator and a regulated party, obtaining written ethics advice before contact on covered matters",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        },
+        {
+         "task": "seed:sc-disclose-assignment-interests",
+         "statement": "Disclose financial, employment or relationship interests that could affect an assignment before work begins, using the organization's conflict form",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      },
+      {
+       "competency": "seed:v1-5.2.4",
+       "duty": "Resolve conflicts and mediate disputes over environmental decisions",
+       "pctTime": 6,
+       "tasks": [
+        {
+         "task": "seed:v1-5.2.4-T1",
+         "statement": "Mediate a dispute between parties over land use or project effects as a neutral, recording the agreement or impasse reached",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        },
+        {
+         "task": "seed:v1-5.2.4-T2",
+         "statement": "Restate each party's concern during a tense exchange until the party confirms it was understood, so that the exchange can continue",
+         "importance": 3,
+         "critical": false,
+         "neededAtEntry": false,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": 2.8
+        }
+       ]
+      }
+     ],
+     "neededAtEntryTasks": [
+      "seed:v1-6.1.5-T1",
+      "seed:v1-6.1.5-T2",
+      "seed:sc-calculate-civil-penalty",
+      "seed:v1-6.4.4-T3",
+      "seed:sc-index-record-documents",
+      "seed:sc-write-reasoned-explanation",
+      "seed:sc-identify-likely-claims",
+      "seed:sc-pre-issuance-record-review",
+      "seed:sc-convert-agreement-terms",
+      "seed:sc-prepare-negotiation-brief",
+      "seed:v1-6.1.2-T1",
+      "seed:sc-collect-inspection-evidence",
+      "seed:sc-select-enforcement-response",
+      "seed:sc-rank-facilities-inspection",
+      "seed:sc-review-anomaly-flags",
+      "seed:v1-7.1.3-T1",
+      "seed:v1-7.1.3-T2",
+      "seed:v1-7.1.3-T3"
+     ],
+     "criticalTasks": [
+      "seed:v1-6.1.5-T1",
+      "seed:v1-6.1.5-T2",
+      "seed:v1-6.4.4-T3",
+      "seed:sc-certify-administrative-record"
+     ],
+     "distinguishingCompetencies": [
+      "seed:SL-C04"
+     ],
+     "factor1Knowledge": [
+      {
+       "competency": "seed:SC-C02",
+       "statement": "Knowledge of and skill in: build and maintain a defensible administrative record (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SL-C04",
+       "statement": "Knowledge of and skill in: develop and resolve environmental enforcement cases (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 5,
+       "distinguishing": true
+      },
+      {
+       "competency": "seed:DB-C25",
+       "statement": "Knowledge of and skill in: target inspections and verify compliance using monitoring data and analytics (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SC-C07",
+       "statement": "Knowledge of and skill in: negotiate permit conditions, mitigation and agreements using interest-based methods (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SC-C17",
+       "statement": "Knowledge of and skill in: assess litigation exposure and design decisions for resilience on remand (EMST target senior L3, lead L4).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:SL-C03",
+       "statement": "Knowledge of and skill in: conduct regulatory compliance inspections (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      },
+      {
+       "competency": "seed:v1-7.1.3",
+       "statement": "Knowledge of and skill in: maintain the integrity of regulatory and scientific findings under institutional pressure (EMST target senior L3, lead L3).",
+       "knowledgeStatements": [],
+       "importance": 4,
+       "distinguishing": false
+      }
+     ]
+    }
+   ],
+   "changeView": null
+  }
+ ],
+ "rolesWithoutFederalVariant": [],
+ "feederOrDestinationRoles": []
+}

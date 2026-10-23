@@ -119,3 +119,6 @@ details.emst-drawer { background: var(--emst-bg-soft); }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
 @media (forced-colors: active) { .emst-badge, .emst-tag, .emst-figure, details.emst-task { border: 1px solid CanvasText; } }
+
+/* Long identifiers (record IDs, build hashes) wrap instead of widening the page at 320 CSS px (WCAG 1.4.10) */
+code, .emst-dl dd, .emst-footer p, .emst-card, td { overflow-wrap: anywhere; }
