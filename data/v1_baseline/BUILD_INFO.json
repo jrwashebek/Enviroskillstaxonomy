@@ -1,0 +1,228 @@
+{
+ "extractor": "scripts/extract_v1.py",
+ "extractor_version": "1.0.0",
+ "generated_utc": "2026-10-23T03:57:44Z",
+ "python": "3.13.17",
+ "openpyxl": "3.1.5",
+ "inputs": [
+  {
+   "file": "legacy/v1/data/20260223_SkillsTaxonomy_Core_V3_reconciled__copyB_aaf34c8c.xlsx",
+   "role": "baseline",
+   "sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+   "bytes": 360264
+  },
+  {
+   "file": "legacy/v1/data/domain5_task13_exposure_table.xlsx",
+   "role": "auxiliary:d5",
+   "sha256": "e111e800d283231bbde96005fdcbae2e85878b62335916c92c2a6aba40ac9d0b",
+   "bytes": 18912
+  },
+  {
+   "file": "legacy/v1/data/domain6_task13_exposure_classification.xlsx",
+   "role": "auxiliary:d6",
+   "sha256": "b5fa607bc6cbd5aae355290ff4634ea183cbdae20a9b4b1da850f877ee613d65",
+   "bytes": 31318
+  },
+  {
+   "file": "legacy/v1/data/PreTask15A_D6_Ac_Reclassification.xlsx",
+   "role": "auxiliary:pre15a",
+   "sha256": "a943ce078fb3d9ef268a906d035c1eaa9c07ca518f48914b28b5029dc25693a1",
+   "bytes": 14271
+  },
+  {
+   "file": "legacy/v1/docs/20251202_SkillsTaxonomy_Core_V2 (1).txt",
+   "role": "source-text (cross-check)",
+   "sha256": "72b563afc5c02b140317bde2893ad7639db9985c75c975d7424a66003bdc7cb4",
+   "bytes": 849494
+  },
+  {
+   "file": "legacy/v1/data/skills_taxonomy_workforce_v1.xlsx",
+   "role": "compared-version (not extracted)",
+   "sha256": "d0c74764af01137d80690aef87f93c5cc14dbb69ab0b73aac1f82c286610c51a",
+   "bytes": 314981
+  },
+  {
+   "file": "legacy/v1/data/skills_taxonomy_workforce_v1_updated.xlsx",
+   "role": "compared-version (not extracted)",
+   "sha256": "515ceae8e9d2afbec6b2f8fe2de9c30506221bea16dff375b2b42d51ea1d11ba",
+   "bytes": 337807
+  },
+  {
+   "file": "legacy/v1/data/20260223_SkillsTaxonomy_Core_V3.xlsx",
+   "role": "compared-version (not extracted)",
+   "sha256": "27ddc6b576497fce2a67d5c9abee67a9c89ab0aef41f9a23f17e3950cbb40b84",
+   "bytes": 358020
+  },
+  {
+   "file": "legacy/v1/data/20260223_SkillsTaxonomy_Core_V3_reconciled__copyA_995a86e4.xlsx",
+   "role": "compared-version (not extracted)",
+   "sha256": "8409e8302950a9afc88ded1df3ca0530851fb9f22952e2293a99ff6d69008146",
+   "bytes": 358516
+  }
+ ],
+ "row_counts": {
+  "structure": 52,
+  "competencies": 222,
+  "tasks": 666,
+  "proficiency": 888,
+  "indicators": 4852,
+  "craft_stage_reform": 222,
+  "family_assignments": 1002,
+  "ethical_lenses": 20,
+  "exposure_summary": 222,
+  "exposure_sources": 786,
+  "sector_applications": 1110,
+  "labor_market_crosswalk": 15,
+  "workforce_signals": 102,
+  "data_dictionary": 69,
+  "vocabularies": 84,
+  "normalization_log": 457
+ },
+ "source_text_row_counts": {
+  "competencies": 215,
+  "tasks": 645,
+  "proficiency": 860,
+  "indicators": 6484,
+  "sector_applications": 1075,
+  "skill_areas": 43
+ },
+ "checks": {
+  "profession_family_view_mismatches_vs_dimension_tags": 0
+ },
+ "value_maps": {
+  "booleans": "TRUE/FALSE/True/False/Yes/No/Y/N -> true/false",
+  "vector": "em dash '\u2014' -> none",
+  "craft_secondary": "'DC-sec' -> 'DC' (suffix dropped; column name carries the role)",
+  "skill_area_code": "float 1.1 -> string '1.1' (derived from competency code, never from the float)",
+  "exposure_provenance": "label -> snake_case code (raw label kept in exposure_provenance_raw)",
+  "whitespace": "leading/trailing whitespace stripped; internal runs of spaces collapsed"
+ },
+ "outputs": [
+  {
+   "file": "competencies.csv",
+   "sha256": "1f0586e7a7f21909672361748a1f11bfedd8920ab7d37916b22c19bd184141d1",
+   "bytes": 67503
+  },
+  {
+   "file": "craft_stage_reform.csv",
+   "sha256": "7d2d6b8db161be92e726ef262acd3c7117fc5cfd945e5e7e9a43e5d65c749ff0",
+   "bytes": 26074
+  },
+  {
+   "file": "data_dictionary.csv",
+   "sha256": "c4f0474ced7b70cf1da37ad13e9c902ea09134107c6cb3b733dc93421f19fb91",
+   "bytes": 14695
+  },
+  {
+   "file": "ethical_lenses.csv",
+   "sha256": "87c73226c43aeca61e6ad5a190effcb218b08f481bb28a9dde1998cc4ba62256",
+   "bytes": 1289
+  },
+  {
+   "file": "exposure_sources.csv",
+   "sha256": "5ed51cacd4a4e6e5b90a205b3d51c2b92526f86a6e843c168d5959aee96e178b",
+   "bytes": 356097
+  },
+  {
+   "file": "exposure_summary.csv",
+   "sha256": "ad81b6cbc8b8bcf94cbd3e3c1ad28bfe69aae93193ac67918721fd0fc6016944",
+   "bytes": 25069
+  },
+  {
+   "file": "family_assignments.csv",
+   "sha256": "eb282ac89a46d25ff5023d7af68e2cc916bc725de3ed0ccb9563bdeed81a011e",
+   "bytes": 63992
+  },
+  {
+   "file": "indicators.csv",
+   "sha256": "b0b3a7e63eac8e19c749352d4f795634aa180c48517052dd119f2cef18a6ea6a",
+   "bytes": 632353
+  },
+  {
+   "file": "labor_market_crosswalk.csv",
+   "sha256": "8c0787e04ca84d03730a15ad7813be0b44486866850c442b28be4dd452a8f2fb",
+   "bytes": 2696
+  },
+  {
+   "file": "normalization_log.csv",
+   "sha256": "da71235b93fded7e42371c9f110331a4f3dccd18c3a9841b4e402c79e9da3123",
+   "bytes": 87076
+  },
+  {
+   "file": "proficiency.csv",
+   "sha256": "fb7b0c7b0e070b3318bd686c9e07f189bf66e0437d44a38791482ccc44f99257",
+   "bytes": 186917
+  },
+  {
+   "file": "sector_applications.csv",
+   "sha256": "8974971e29e1c20c797d34a748d0e7a7142008a3bf9d634631c168986ffc90ae",
+   "bytes": 144358
+  },
+  {
+   "file": "structure.csv",
+   "sha256": "98045febad7e08a0344a1612ded1a951aa80543e9dd843f9e688ac6531ae42c0",
+   "bytes": 8448
+  },
+  {
+   "file": "tasks.csv",
+   "sha256": "096cd22560bc6fd226d225010b430e1f957047ab5c0b6f2758449bc915c9c467",
+   "bytes": 111883
+  },
+  {
+   "file": "version_diffs.csv",
+   "sha256": "c4fc994a9b30ba3652ca5256ace1b8e9981efdd0899bebcca0975808935e2ad5",
+   "bytes": 116288
+  },
+  {
+   "file": "version_summary.csv",
+   "sha256": "90201eaf069f7144b4b8b3c9b38688893a3e93fc970cd464fee2bfd90074d33d",
+   "bytes": 5592
+  },
+  {
+   "file": "vocabularies.csv",
+   "sha256": "c45167804daf8e59020a49a198936406c4da7b0b71772f7c27509f82a6de3a68",
+   "bytes": 4143
+  },
+  {
+   "file": "workforce_signals.csv",
+   "sha256": "23bf9e84fff98d32eac57756b5f34c907257409ceaa803f68b5484ec2dfc0524",
+   "bytes": 16163
+  },
+  {
+   "file": "source_text/competencies.csv",
+   "sha256": "700c1f076c84873cd47d90ea2ff4953cd51729f71bc2dd7443205b33bd32d976",
+   "bytes": 87075
+  },
+  {
+   "file": "source_text/indicators.csv",
+   "sha256": "374ac1fc8ba1aa2bdb02330b7862158de405cec4f5081dccd2f78b7f0d0587ea",
+   "bytes": 894066
+  },
+  {
+   "file": "source_text/proficiency.csv",
+   "sha256": "d586c58b04b121797b0d53b80844536c13e3fb21e7c57756cc3de3c3f215957f",
+   "bytes": 222645
+  },
+  {
+   "file": "source_text/sector_applications.csv",
+   "sha256": "0991adf149968d6fbdbd2784e91b7a28aac72a51861f2ecef4febd175e5a7e5e",
+   "bytes": 182413
+  },
+  {
+   "file": "source_text/skill_areas.csv",
+   "sha256": "21fef31d5c7645474c5e284f2d53c9db448773fa48ff1a7a618497a2efd08e17",
+   "bytes": 2085
+  },
+  {
+   "file": "source_text/tasks.csv",
+   "sha256": "d195ee6933d53dfcf88d02b7f483cd38b77027bf50946bc68f6cb35979e57bda",
+   "bytes": 116192
+  },
+  {
+   "file": "v1_baseline.json",
+   "sha256": "7c8266ff28ffdc9920a86a795df14f807fa27a784396cd27151f1270a6d552d4",
+   "bytes": 1640793
+  }
+ ],
+ "note": "CSV/JSON outputs are deterministic for fixed inputs; only generated_utc varies between runs."
+}

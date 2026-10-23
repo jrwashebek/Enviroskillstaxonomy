@@ -1,0 +1,299 @@
+[
+ {
+  "id": "emst:c-0EXAMP",
+  "type": "competency",
+  "status": "draft",
+  "module": "core",
+  "version_introduced": "2.0.0-rc.1",
+  "label": "Project planning and scheduling",
+  "definition": "Breaking down complex conservation work into manageable tasks, creating timelines, and determining the resources needed.",
+  "kind": "core",
+  "task_ids": [
+   "emst:t-0EXAMP"
+  ],
+  "legacy_codes": [
+   "v1:3.1.1"
+  ],
+  "level_anchors": [
+   {
+    "level": "L2",
+    "indicators": [
+     {
+      "text": "Creates comprehensive project plans",
+      "derived_from": [
+       {
+        "v1_key": "v1:3.1.1:intermediate:I1",
+        "v1_table": "source_text/indicators",
+        "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+        "relation": "carried"
+       }
+      ]
+     },
+     {
+      "text": "Develops realistic schedules with critical paths",
+      "derived_from": [
+       {
+        "v1_key": "v1:3.1.1:intermediate:I2",
+        "v1_table": "source_text/indicators",
+        "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+        "relation": "carried"
+       }
+      ]
+     },
+     {
+      "text": "Identifies resource needs and constraints",
+      "derived_from": [
+       {
+        "v1_key": "v1:3.1.1:intermediate:I3",
+        "v1_table": "source_text/indicators",
+        "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+        "relation": "carried"
+       }
+      ]
+     },
+     {
+      "text": "Uses work breakdown structures (WBS)",
+      "derived_from": [
+       {
+        "v1_key": "v1:3.1.1:intermediate:I4",
+        "v1_table": "source_text/indicators",
+        "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+        "relation": "carried"
+       }
+      ]
+     },
+     {
+      "text": "Coordinates multiple workstreams",
+      "derived_from": [
+       {
+        "v1_key": "v1:3.1.1:intermediate:I5",
+        "v1_table": "source_text/indicators",
+        "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+        "relation": "carried"
+       }
+      ]
+     },
+     {
+      "text": "Manages schedule changes and impacts",
+      "derived_from": [
+       {
+        "v1_key": "v1:3.1.1:intermediate:I6",
+        "v1_table": "source_text/indicators",
+        "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+        "relation": "carried"
+       }
+      ]
+     },
+     {
+      "text": "Creates Gantt charts and network diagrams",
+      "derived_from": [
+       {
+        "v1_key": "v1:3.1.1:intermediate:I7",
+        "v1_table": "source_text/indicators",
+        "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+        "relation": "recovered",
+        "note": "dropped by the v1 import (6-indicator cap); recovered from the source text"
+       }
+      ]
+     },
+     {
+      "text": "Aligns projects with organizational priorities",
+      "derived_from": [
+       {
+        "v1_key": "v1:3.1.1:intermediate:I8",
+        "v1_table": "source_text/indicators",
+        "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+        "relation": "recovered",
+        "note": "dropped by the v1 import (6-indicator cap); recovered from the source text"
+       }
+      ]
+     },
+     {
+      "text": "Facilitates project kickoff meetings",
+      "derived_from": [
+       {
+        "v1_key": "v1:3.1.1:intermediate:I9",
+        "v1_table": "source_text/indicators",
+        "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+        "relation": "recovered",
+        "note": "dropped by the v1 import (6-indicator cap); recovered from the source text"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "provenance": {
+   "method": "v1_migration",
+   "created_at": "2026-10-23",
+   "created_by": "DE (example)",
+   "evidence_label": "E",
+   "source_ids": [
+    "DE-001"
+   ],
+   "review_status": "unreviewed",
+   "tool_version": "scripts/extract_v1.py 1.0.0"
+  },
+  "derived_from": [
+   {
+    "v1_key": "v1:3.1.1",
+    "v1_table": "competencies",
+    "v1_sheet": "Competencies",
+    "v1_row": 77,
+    "v1_fields": [
+     "Competency Title"
+    ],
+    "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+    "source_text_line": 5062,
+    "relation": "carried",
+    "note": "v1 title cell held title + description; split per competencies.suggested_*"
+   }
+  ]
+ },
+ {
+  "id": "emst:t-0EXAMP",
+  "type": "task",
+  "status": "draft",
+  "module": "core",
+  "statement": "Develop and maintain Gantt charts to track project timelines and dependencies",
+  "text_sha256": "3e6e4f0ee3c62260de3d0d65fc8212459fe943fecd1b58bf10e7977f387255df",
+  "work_functions": [
+   "planning",
+   "implementation"
+  ],
+  "legacy_codes": [
+   "v1:3.1.1:T2"
+  ],
+  "provenance": {
+   "method": "v1_migration",
+   "created_at": "2026-10-23",
+   "created_by": "DE (example)",
+   "evidence_label": "E",
+   "source_ids": [
+    "DE-001"
+   ],
+   "review_status": "unreviewed",
+   "tool_version": "scripts/extract_v1.py 1.0.0"
+  },
+  "derived_from": [
+   {
+    "v1_key": "v1:3.1.1:T2",
+    "v1_table": "tasks",
+    "v1_sheet": "Competencies",
+    "v1_row": 77,
+    "v1_fields": [
+     "Job Task 2"
+    ],
+    "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+    "relation": "carried"
+   }
+  ],
+  "tool_ids": [
+   "emst:tool-0EXAMP"
+  ]
+ },
+ {
+  "id": "emst:xa-0EXAMP",
+  "type": "exposure_assessment",
+  "status": "draft",
+  "task_id": "emst:t-0EXAMP",
+  "task_text_sha256": "3e6e4f0ee3c62260de3d0d65fc8212459fe943fecd1b58bf10e7977f387255df",
+  "instrument": {
+   "name": "EMST v1 Task 12/13 instrument",
+   "version": "1.0.0"
+  },
+  "rater": "v1-analyst-01",
+  "assessed_on": "2026-02-01",
+  "values": {
+   "automation_type": "Ac",
+   "tacit_density": "Lo",
+   "career_ladder": "P",
+   "vector": "AI",
+   "horizon": "1",
+   "cld_severity": "Moderate"
+  },
+  "rationale": "v1 Task 13 call (D3 record, source-confirmed row): AI PM tools auto-generate Gantt charts; carried as prior evidence only.",
+  "rater_confidence": "confirmed",
+  "provenance": {
+   "method": "v1_migration",
+   "created_at": "2026-10-23",
+   "created_by": "DE (example)",
+   "evidence_label": "J",
+   "confidence": 0.3,
+   "review_status": "unreviewed"
+  },
+  "derived_from": [
+   {
+    "v1_key": "v1:3.1.1:T2",
+    "v1_table": "tasks",
+    "v1_sheet": "Dimension Tags",
+    "v1_row": 77,
+    "v1_fields": [
+     "T13: T2 Auto Type",
+     "T13: T2 Tacit",
+     "T13: T2 Career",
+     "T13: T2 Vector",
+     "T13: T2 Horizon",
+     "T13: CLD Severity"
+    ],
+    "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+    "v1_exposure_provenance": "session_direct",
+    "relation": "prior_evidence"
+   }
+  ]
+ },
+ {
+  "id": "emst:m-0EXAMP",
+  "type": "mapping",
+  "status": "draft",
+  "subject_id": "v1:3.1.1",
+  "predicate_id": "emst:replacedBy",
+  "object_id": "emst:c-0EXAMP",
+  "object_source": "emst-v2",
+  "object_source_version": "2.0.0-rc.1",
+  "mapping_justification": "semapv:ManualMappingCuration",
+  "confidence": 1.0,
+  "author_id": "DE (example)",
+  "mapping_date": "2026-10-23",
+  "provenance": {
+   "method": "v1_migration",
+   "created_at": "2026-10-23",
+   "created_by": "DE (example)",
+   "evidence_label": "J"
+  },
+  "derived_from": [
+   {
+    "v1_key": "v1:3.1.1",
+    "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+    "relation": "reference_only"
+   }
+  ]
+ },
+ {
+  "id": "emst:chg-0EXAMP",
+  "type": "change_record",
+  "status": "draft",
+  "change_type": "add",
+  "targets": [
+   "emst:c-0EXAMP",
+   "emst:t-0EXAMP"
+  ],
+  "release": "2.0.0-rc.1",
+  "decision_ref": "DP-9",
+  "summary": "Migrate v1 3.1.1 as a seed competency: split title/description, recover 3 truncated indicators.",
+  "semver_impact": "minor",
+  "provenance": {
+   "method": "v1_migration",
+   "created_at": "2026-10-23",
+   "created_by": "DE (example)",
+   "evidence_label": "J"
+  },
+  "derived_from": [
+   {
+    "v1_key": "v1:3.1.1",
+    "v1_workbook_sha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+    "relation": "reference_only"
+   }
+  ]
+ }
+]

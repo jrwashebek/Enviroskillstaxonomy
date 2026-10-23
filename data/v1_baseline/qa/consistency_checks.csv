@@ -1,0 +1,19 @@
+check_id,description,n_checked,n_violations,examples,note
+C01,Reform Flag Count equals the number of TRUE reform flags,222,0,,
+C02,Core Family Count equals Core assignments,222,0,,
+C03,Supporting Family Count equals Supporting assignments,222,7,"7.1.1 (stored 10, actual 8)|7.1.2 (stored 7, actual 5)|7.1.3 (stored 10, actual 9)|7.1.4 (stored 11, actual 10)|7.2.1 (stored 10, actual 9)|7.2.2 (stored 11, actual 10)|7.2.3 (stored 11, actual 9)",
+C04,Zero Core flag equals (Core count == 0),222,0,,
+C05,Stability Tier follows the documented rule (Stable = no reform flag and no Ac/S task; Transition = 1+ reform flag or 1+ Ac/S task; Emergent exempt),222,0,,
+C06-auto_type,Stored modal auto_type equals the majority of T1-T3 (or one of them when no majority),222,63,"2.1.1 ['A', 'A', 'Ac']->Ac|2.1.2 ['A', 'Ac', 'A']->Ac|2.1.5 ['Ac', 'A', 'A']->Ac|2.2.2 ['A', 'A', 'Ac']->Ac|2.2.3 ['A', 'Ac', 'A']->Ac|2.2.5 ['Ac', 'Ac', 'V']->V|2.3.1 ['A', 'A', 'Ac']->Ac|2.3.3 ['A', 'A', 'Ac']->Ac",
+C06-tacit_density,Stored modal tacit_density equals the majority of T1-T3 (or one of them when no majority),222,3,"1.1.5 ['Hi', 'Med', 'Med']->Hi|1.2.1 ['Hi', 'Med', 'Med']->Hi|1.2.5 ['Hi', 'Med', 'Med']->Hi",
+C06-career_ladder,Stored modal career_ladder equals the majority of T1-T3 (or one of them when no majority),222,0,,
+C06-vector,Stored modal vector equals the majority of T1-T3 (or one of them when no majority),222,35,"2.1.3 ['AI', 'AI', 'none']->none|3.1.1 ['AI', 'AI', 'none']->none|3.1.4 ['AI', 'AI', 'none']->none|3.2.1 ['AI', 'AI', 'none']->none|3.2.3 ['AI', 'none', 'AI']->none|3.2.4 ['AI', 'AI', 'none']->none|3.2.5 ['AI', 'none', 'AI']->none|3.3.1 ['AI', 'none', 'AI']->none",
+C06-horizon,Stored modal horizon equals the majority of T1-T3 (or one of them when no majority),222,22,"2.1.3 ['1', '1', 'N']->N|3.1.1 ['1', '1', 'N']->N|3.1.4 ['1', '1', 'N']->N|3.2.3 ['1', 'N', '1']->N|3.3.1 ['1', 'N', '1']->N|3.6.2 ['1', '1', 'N']->N|3.6.4 ['1', '1', 'N']->N|4.1.2 ['1', 'N', '1']->N",
+C07,Modal Contested is TRUE exactly when T1-T3 automation types have no majority,222,3,"1.3.4 stored=true auto_types=['H', 'A', 'A']|1.4.4 stored=true auto_types=['H', 'A', 'A']|1.7.1 stored=true auto_types=['H', 'A', 'A']",v1 never defines 'Modal Contested'; this tests the most literal reading
+C08,CLD Flag is TRUE exactly when some task is P-position and Ac/S/V (Data Dictionary rule),222,11,2.1.1 stored=false rule=True [reconstructed_d2]|2.1.2 stored=false rule=True [reconstructed_d2]|2.1.3 stored=false rule=True [reconstructed_d2]|2.1.5 stored=false rule=True [reconstructed_d2]|2.2.3 stored=false rule=True [reconstructed_d2]|2.6.2 stored=false rule=True [reconstructed_d2]|2.6.4 stored=false rule=True [reconstructed_d2]|4.1.3 stored=false rule=True [session_direct],
+C09,CLD Flag (modal) equals CLD Flag,222,0,,
+C10a,CLD Severity is filled when CLD Flag is TRUE,62,0,,
+C10b,CLD Severity is blank when CLD Flag is FALSE,160,0,,
+C11,"Human-essential (H) tasks, and only they, have vector none and horizon N",666,3,v1:4.4.2:T2 H/AI/2|v1:4.6.1:T2 H/AI/2|v1:4.7.2:T3 H/AI/2,
+C12,S-Trajectory flag TRUE only where the competency has an Ac task,222,4,2.3.2|2.4.2|5.4.4|5.5.2,
+C13,"Dual Primary Exception: Data Dictionary documents 5 (1.5.5, 1.6.3, 2.1.1, 2.7.3, 4.3.2); database has TRUE for",5,5,1.5.5|1.6.3|2.1.1|2.7.3|4.3.2,"Stage Primary 2 is also blank for all 222 rows, so the second primary stage is lost"

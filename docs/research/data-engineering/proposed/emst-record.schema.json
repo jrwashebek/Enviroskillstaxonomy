@@ -1,0 +1,197 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://example.org/emst/schema/emst-record.schema.json",
+ "title": "EMST v2 record (DRAFT proposal by DE, 2026-10-23)",
+ "description": "One authored or assessed record in the EMST v2 source data. DRAFT: entity kinds follow the Chief Taxonomy Architect's provisional layers (L0-L6); field names, the ID pattern and enumerations are placeholders until DP-9 (IDs, IA) and the vocabulary decisions are made. Enumerations marked GENERATED are produced from vocab/*.yaml at build time; they are inlined here so the draft validates standalone. Computed views (modal exposure, CLD indicators, stability/change indicators, craft blends, counts) are deliberately NOT representable: additionalProperties is false everywhere.",
+ "type": "object",
+ "required": ["id", "type", "status", "provenance"],
+ "properties": {"type": {"enum": ["competency", "task", "exposure_assessment", "mapping", "change_record"]}},
+ "allOf": [
+  {"if": {"properties": {"type": {"const": "competency"}}}, "then": {"$ref": "#/$defs/Competency"}},
+  {"if": {"properties": {"type": {"const": "task"}}}, "then": {"$ref": "#/$defs/Task"}},
+  {"if": {"properties": {"type": {"const": "exposure_assessment"}}}, "then": {"$ref": "#/$defs/ExposureAssessment"}},
+  {"if": {"properties": {"type": {"const": "mapping"}}}, "then": {"$ref": "#/$defs/Mapping"}},
+  {"if": {"properties": {"type": {"const": "change_record"}}}, "then": {"$ref": "#/$defs/ChangeRecord"}}
+ ],
+ "$defs": {
+  "Id": {
+   "type": "string",
+   "description": "Opaque, type-prefixed, never reused, never re-meant. Crockford base32 body (no I, L, O, U). Optional module namespace. PLACEHOLDER pending DP-9.",
+   "pattern": "^emst:(?:[a-z][a-z0-9-]{1,30}/)?(c|t|k|r|tool|xa|sig|m|chg)-[0-9A-HJKMNP-TV-Z]{6}$"
+  },
+  "SemVer": {"type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z.-]+)?$"},
+  "Date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+  "Sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+  "SourceId": {"type": "string", "pattern": "^[A-Z]{2}-\\d{3}$", "description": "Resolves to a row in a sources.csv (team brief 5.1)."},
+  "Status": {"enum": ["draft", "candidate", "published", "deprecated", "superseded", "withdrawn"]},
+  "Provenance": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["method", "created_at", "created_by", "evidence_label"],
+   "properties": {
+    "method": {"enum": ["v1_migration", "source_text_recovery", "sme_authoring", "sme_panel", "delphi", "nlp_extraction", "llm_draft", "import"], "description": "GENERATED from vocab/provenance_methods.yaml"},
+    "created_at": {"$ref": "#/$defs/Date"},
+    "created_by": {"type": "string", "minLength": 2},
+    "evidence_label": {"enum": ["E", "J", "S"]},
+    "source_ids": {"type": "array", "items": {"$ref": "#/$defs/SourceId"}, "uniqueItems": true},
+    "reviewed_by": {"type": "array", "items": {"type": "string"}},
+    "review_status": {"enum": ["unreviewed", "in_review", "accepted", "rejected"]},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "tool_version": {"type": "string", "description": "Script or model version for machine-produced records."}
+   },
+   "allOf": [{"if": {"properties": {"evidence_label": {"const": "E"}}}, "then": {"required": ["source_ids"], "properties": {"source_ids": {"minItems": 1}}}}]
+  },
+  "DerivedFrom": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["v1_key", "relation", "v1_workbook_sha256"],
+   "description": "Link from a v2 record to the v1 baseline row(s) it came from. v1_key resolves to data/v1_baseline/*.csv.",
+   "properties": {
+    "v1_key": {"type": "string", "pattern": "^v1:[1-7](\\.\\d{1,2}){0,2}(:(T[1-3]|foundational|intermediate|advanced|expert|F\\d{1,2}|L[1-5]|sector:[a-z_]+))?(:I\\d{1,2})?$"},
+    "v1_table": {"type": "string", "description": "data/v1_baseline table name, e.g. tasks"},
+    "v1_sheet": {"type": "string"},
+    "v1_row": {"type": "integer", "minimum": 2},
+    "v1_fields": {"type": "array", "items": {"type": "string"}},
+    "v1_workbook_sha256": {"$ref": "#/$defs/Sha256"},
+    "v1_exposure_provenance": {"enum": ["session_direct", "reconstructed_d2", "reconstructed_d6", "d6_exposure_file_reconciled_2026_03", "pre_task_15a_d6_ac_retrospective"]},
+    "source_text_line": {"type": "integer", "minimum": 1, "description": "Line in legacy/v1/docs/20251202_SkillsTaxonomy_Core_V2 (1).txt when content was recovered from the source text."},
+    "relation": {"enum": ["carried", "rewritten", "split_from", "merged_from", "recovered", "prior_evidence", "reference_only"]},
+    "note": {"type": "string"}
+   }
+  },
+  "Common": {
+   "type": "object",
+   "properties": {
+    "id": {"$ref": "#/$defs/Id"},
+    "type": {"type": "string"},
+    "status": {"$ref": "#/$defs/Status"},
+    "module": {"type": "string", "pattern": "^(core|[a-z][a-z0-9-]{1,30})$", "default": "core"},
+    "version_introduced": {"$ref": "#/$defs/SemVer"},
+    "version_changed": {"$ref": "#/$defs/SemVer"},
+    "provenance": {"$ref": "#/$defs/Provenance"},
+    "derived_from": {"type": "array", "items": {"$ref": "#/$defs/DerivedFrom"}},
+    "legacy_codes": {"type": "array", "items": {"type": "string", "pattern": "^v1:[1-7]\\.\\d{1,2}\\.\\d{1,2}(:T[1-3])?$"}, "uniqueItems": true},
+    "superseded_by": {"type": "array", "items": {"$ref": "#/$defs/Id"}, "minItems": 1},
+    "supersedes": {"type": "array", "items": {"$ref": "#/$defs/Id"}}
+   },
+   "allOf": [
+    {"if": {"properties": {"status": {"const": "superseded"}}}, "then": {"required": ["superseded_by"]}},
+    {"if": {"properties": {"provenance": {"properties": {"method": {"const": "v1_migration"}}}}}, "then": {"required": ["derived_from"]}}
+   ]
+  },
+  "Competency": {
+   "allOf": [{"$ref": "#/$defs/Common"}],
+   "required": ["label", "definition"],
+   "properties": {
+    "id": true, "type": true, "status": true, "module": true, "version_introduced": true, "version_changed": true,
+    "provenance": true, "derived_from": true, "legacy_codes": true, "superseded_by": true, "supersedes": true,
+    "label": {"type": "string", "minLength": 3, "maxLength": 120},
+    "definition": {"type": "string", "minLength": 20},
+    "kind": {"enum": ["core", "transversal"], "description": "GENERATED; placeholder for CA typing."},
+    "task_ids": {"type": "array", "items": {"$ref": "#/$defs/Id"}, "uniqueItems": true},
+    "level_anchors": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "indicators"],
+      "properties": {
+       "level": {"enum": ["L1", "L2", "L3", "L4", "L5"], "description": "GENERATED from vocab/levels.yaml (scale pending IO)."},
+       "indicators": {"type": "array", "minItems": 1, "items": {
+        "type": "object", "additionalProperties": false, "required": ["text"],
+        "properties": {"text": {"type": "string", "minLength": 8}, "observable_product": {"type": "string"},
+                       "derived_from": {"type": "array", "items": {"$ref": "#/$defs/DerivedFrom"}}}}}
+      }
+     }
+    }
+   },
+   "additionalProperties": false
+  },
+  "Task": {
+   "allOf": [{"$ref": "#/$defs/Common"}],
+   "required": ["statement", "text_sha256"],
+   "properties": {
+    "id": true, "type": true, "status": true, "module": true, "version_introduced": true, "version_changed": true,
+    "provenance": true, "derived_from": true, "legacy_codes": true, "superseded_by": true, "supersedes": true,
+    "statement": {"type": "string", "minLength": 10},
+    "text_sha256": {"$ref": "#/$defs/Sha256", "description": "SHA-256 of the normalized statement. Build recomputes it; assessments cite it."},
+    "work_functions": {"type": "array", "items": {"type": "string"}, "description": "Multi-valued (fixes v1's lost dual-primary stage)."},
+    "craft_weights": {"type": "object", "additionalProperties": false,
+                      "properties": {"FC": {"type": "number", "minimum": 0, "maximum": 1}, "DC": {"type": "number", "minimum": 0, "maximum": 1}, "SC": {"type": "number", "minimum": 0, "maximum": 1}}},
+    "tool_ids": {"type": "array", "items": {"$ref": "#/$defs/Id"}}
+   },
+   "additionalProperties": false
+  },
+  "ExposureAssessment": {
+   "allOf": [{"$ref": "#/$defs/Common"}],
+   "required": ["task_id", "task_text_sha256", "instrument", "rater", "assessed_on", "values"],
+   "properties": {
+    "id": true, "type": true, "status": true, "module": true, "version_introduced": true, "version_changed": true,
+    "provenance": true, "derived_from": true, "legacy_codes": true, "superseded_by": true, "supersedes": true,
+    "task_id": {"$ref": "#/$defs/Id"},
+    "task_text_sha256": {"$ref": "#/$defs/Sha256", "description": "Hash of the exact task statement the rater saw. A mismatch with the task's current text_sha256 marks the assessment stale (the v1 D1/D3 failure)."},
+    "instrument": {"type": "object", "additionalProperties": false, "required": ["name", "version"],
+                   "properties": {"name": {"type": "string"}, "version": {"$ref": "#/$defs/SemVer"}}},
+    "rater": {"type": "string", "description": "Pseudonymous rater ID; identity mapping kept outside the public repo."},
+    "assessed_on": {"$ref": "#/$defs/Date"},
+    "values": {
+     "type": "object", "additionalProperties": false,
+     "required": ["automation_type", "tacit_density", "career_ladder", "vector", "horizon"],
+     "properties": {
+      "automation_type": {"enum": ["A", "Ac", "H", "S", "V"]},
+      "tacit_density": {"enum": ["Hi", "Med", "Lo"]},
+      "career_ladder": {"enum": ["P", "C", "X"]},
+      "vector": {"enum": ["AI", "Ro", "Cv", "none"]},
+      "horizon": {"enum": ["1", "2", "3", "N"]},
+      "s_trajectory": {"type": "boolean"},
+      "cld_severity": {"enum": ["High", "Moderate", "Low"]}
+     },
+     "allOf": [
+      {"if": {"properties": {"automation_type": {"const": "H"}}}, "then": {"properties": {"vector": {"const": "none"}, "horizon": {"const": "N"}}}},
+      {"if": {"properties": {"automation_type": {"enum": ["A", "Ac", "S", "V"]}}}, "then": {"properties": {"vector": {"enum": ["AI", "Ro", "Cv"]}, "horizon": {"enum": ["1", "2", "3"]}}}}
+     ]
+    },
+    "rationale": {"type": "string", "minLength": 20},
+    "rater_confidence": {"enum": ["confirmed", "reconstructed", "inferred"], "description": "Generalizes v1 D2's [C]/[R]/[I] codes."}
+   },
+   "additionalProperties": false
+  },
+  "Mapping": {
+   "allOf": [{"$ref": "#/$defs/Common"}],
+   "required": ["subject_id", "predicate_id", "object_id", "object_source", "object_source_version", "mapping_justification", "confidence"],
+   "description": "One SSSOM-style mapping row (crosswalk), including v1 -> v2.",
+   "properties": {
+    "id": true, "type": true, "status": true, "module": true, "version_introduced": true, "version_changed": true,
+    "provenance": true, "derived_from": true, "legacy_codes": true, "superseded_by": true, "supersedes": true,
+    "subject_id": {"type": "string"},
+    "predicate_id": {"enum": ["skos:exactMatch", "skos:closeMatch", "skos:broadMatch", "skos:narrowMatch", "skos:relatedMatch", "ceasn:exactAlignment", "ceasn:broadAlignment", "ceasn:narrowAlignment", "ceasn:majorAlignment", "ceasn:minorAlignment", "emst:replacedBy", "emst:retiredWithoutReplacement"]},
+    "object_id": {"type": "string"},
+    "object_source": {"type": "string", "description": "e.g. emst-v1, onet-soc, onet-task, esco, opm-series, soc-2018"},
+    "object_source_version": {"type": "string"},
+    "mapping_justification": {"type": "string", "pattern": "^semapv:[A-Za-z]+$"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "author_id": {"type": "string"},
+    "reviewer_id": {"type": "string"},
+    "mapping_date": {"$ref": "#/$defs/Date"},
+    "comment": {"type": "string"}
+   },
+   "additionalProperties": false
+  },
+  "ChangeRecord": {
+   "allOf": [{"$ref": "#/$defs/Common"}],
+   "required": ["change_type", "targets", "release", "decision_ref", "summary"],
+   "description": "Change log as data: release notes are generated from these.",
+   "properties": {
+    "id": true, "type": true, "status": true, "module": true, "version_introduced": true, "version_changed": true,
+    "provenance": true, "derived_from": true, "legacy_codes": true, "superseded_by": true, "supersedes": true,
+    "change_type": {"enum": ["add", "editorial", "definition_change", "deprecate", "supersede", "split", "merge", "withdraw", "vocabulary_change", "mapping_change", "assessment_batch"]},
+    "targets": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/Id"}},
+    "release": {"$ref": "#/$defs/SemVer"},
+    "decision_ref": {"type": "string", "pattern": "^(ADR|DP)-\\d{1,4}$"},
+    "summary": {"type": "string", "minLength": 10},
+    "semver_impact": {"enum": ["major", "minor", "patch"]}
+   },
+   "additionalProperties": false
+  }
+ }
+}

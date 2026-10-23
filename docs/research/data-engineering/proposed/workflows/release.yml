@@ -1,0 +1,35 @@
+# PROPOSED .github/workflows/release.yml (DE draft, 2026-10-23). Pattern from LMPs release.yml (build on tag,
+# upload assets with gh), extended with: semver tag check, release notes generated from change records (data),
+# SSSOM crosswalk bundle, and a Zenodo DOI via the GitHub-Zenodo integration (enabled in repo settings, no step needed).
+name: release
+on:
+  push:
+    tags: ['v*.*.*', 'v*.*.*-rc.*']
+permissions:
+  contents: write
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install -q -e ".[dev]"
+      - name: Validate everything (same gates as CI)
+        run: python scripts/validate_v2.py --all && python -m pytest -q
+      - name: Check tag matches data version and declared semver impact
+        run: python scripts/release_check.py --tag "${GITHUB_REF_NAME}"   # fails if change records imply a bigger bump
+      - name: Build release artifacts
+        run: |
+          python scripts/build_views.py --out dist/          # computed views: exposure summaries, CLD, blends, counts
+          python scripts/export.py --out dist/ --formats jsonld,csv,skos-ttl,sssom-tsv,case-json
+          python scripts/release_notes.py --from "$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo v0.0.0)" --to "${GITHUB_REF_NAME}" > dist/RELEASE_NOTES.md
+          (cd dist && sha256sum * > SHA256SUMS)
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pre=""; case "${GITHUB_REF_NAME}" in *-rc.*) pre="--prerelease";; esac
+          gh release create "${GITHUB_REF_NAME}" $pre --title "EMST ${GITHUB_REF_NAME}" --notes-file dist/RELEASE_NOTES.md
+          gh release upload "${GITHUB_REF_NAME}" dist/* --clobber

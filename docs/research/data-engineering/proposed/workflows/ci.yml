@@ -1,0 +1,41 @@
+# PROPOSED .github/workflows/ci.yml for the EMST repo (DE draft, 2026-10-23). Not active until moved by the orchestrator.
+# Pattern borrowed from LMPs .github/workflows/ci.yml (tests on push/PR), extended with data validation,
+# baseline reproducibility and generated-docs drift checks.
+name: ci
+on:
+  push:
+    paths: ['data/**', 'vocab/**', 'schema/**', 'scripts/**', 'tests/**', 'legacy/v1/data/**', 'pyproject.toml']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -q -e ".[dev]"          # openpyxl, jsonschema, scikit-learn, pytest (pinned in pyproject)
+      # 1. v1 baseline is reproducible from the frozen legacy workbooks (byte-identical)
+      - run: python scripts/extract_v1.py --check
+      # 2. generated enums are current with vocab/*.yaml (vocabulary drift cannot enter the schema silently)
+      - run: python scripts/build_schema_enums.py --check
+      # 3. every v2 record validates (JSON Schema) and every cross-record rule holds
+      #    (IDs registered and never reused, superseded_by targets exist, assessment task_text_sha256 current,
+      #     no computed field in source data, every E label resolves to a sources.csv row)
+      - run: python scripts/validate_v2.py --all
+      # 4. computed views and generated docs are current (README status block, data dictionary, counts)
+      - run: python scripts/build_views.py --check && python scripts/update_readme_status.py --check
+      - run: python -m pytest -q
+  gold:
+    # gold-set agreement for any machine- or LLM-assisted tagging (LMPs evaluation/ pattern)
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, '[eval]') || github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install -q -e ".[dev]"
+      - run: python scripts/evaluate.py --gold evaluation/gold --out evaluation/scores.json --fail-below evaluation/thresholds.yaml
