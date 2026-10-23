@@ -312,7 +312,7 @@ I searched all 58,544 components from 154 plan records (1987–2025) in the sist
 
 - **Monitoring** components number 3,843.
 - **Authoritative data** is cited by 2,453 components. The most frequent references are long-lived analytical products and systems: Recreation Opportunity Spectrum (614), natural range of variation analysis (224), hydrologic modelling (151), Forest Service corporate data such as NRIS/FACTS/INFRA (140), potential vegetation groups (133), the Watershed Condition Framework (70), FIA (25) and SSURGO (9).
-- **A cautionary note for IA.** A naive regular expression for "AI" matched 19 components. All of them were "MON-AI-01"-style codes for *American Indian Rights and Interests* monitoring questions.
+- **A cautionary note for IA.** A naive case-sensitive match for "AI" returns 16 components, and none is about artificial intelligence. Nine are "MON-AI-01"-style codes for *American Indian Rights and Interests* monitoring questions. The rest are management-area codes, an "A1" soil horizon and an OCR split of "Although" (`scripts/analysis_openlmp.py`).
 
 **Implications.**
 - **Plans lag technology by a decade and are written at the function level.** As a demand signal they argue *for* durable competencies (monitoring design, reproducible analyses of authoritative data, model use) and *against* tool competencies. They cannot tell us about AI adoption; postings and PDs must (LM, IA). [J]
@@ -686,6 +686,7 @@ A **four-level, scope-of-accountability scale** fits data craft and maps onto th
 | `tools_layer_proposal.csv` | Proposed L4 tools & technologies layer, 53 seed entries with half-life and replacement risk |
 | `datacraft_proficiency_anchors.csv` | 48 observable anchors (12 competencies × 4 levels) with evidence of performance and assessment method |
 | `ecosystem.csv` | 32 entities (datasets, standards, policies, programs, tools, platforms) and how EMST connects to each |
+| `scripts/` | Build scripts that regenerate every CSV (`sources.py`, `candidates.py`, `assessment.py`, `tools.py`, `anchors.py`, `signals_eco.py`; each takes output path(s) as arguments). Also `analysis_inventory.py` (reproduces §5.1–5.3 and §5.6 from cloned OMB inventories) and `analysis_openlmp.py` (reproduces §5.7 from the OpenLMP repo) |
 
 **Reproducibility.**
 - Inventory counts come from `Data/2025_individually_reported_AI_use_cases.csv` (OMB repo commit 06c7ebe) and `data/2024_consolidated_ai_inventory_raw_v2.csv` (2024 repo).
