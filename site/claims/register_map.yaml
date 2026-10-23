@@ -18,7 +18,7 @@ rows:
   REG-03: {instruments: [seed:ins/co-hb26-1205]}
   REG-04: {instruments: [seed:ins/fix-our-forests-act]}
   REG-05: {instruments: [seed:ins/ghgrp-reconsideration]}
-  REG-06: {instruments: [seed:ins/obbba-ira-rescissions]}
+  REG-06: {instruments: [seed:ins/obbba-ira-rescissions], signals: [seed:sig/foresight/ws-10-obbba-ira-rescissions]}
   REG-07: {instruments: [seed:ins/tx-hb-3923]}
   # Baseline event days dated by LM judgment (evidenceLabel J on the event): the date is suppressed.
   REG-08: {events_with_evidence_label: [J, S]}
@@ -26,3 +26,6 @@ rows:
   REG-09: {instruments_without_events: true}
   # Held: no record reaches the release; listed so the check knows the row is handled.
   TRB-01: {held: true}
+# Signals that cite a source shared with an unverified row but state a different, verified claim (checked by CP):
+exempt_signals:
+  seed:sig/deployment/permitting-ai-shared-services: "cites SC-009 for PermitAI availability (NEPA-08, verified-partial), not the DOT/EPA procedures claim (NEPA-09)"

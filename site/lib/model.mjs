@@ -128,7 +128,7 @@ export function buildModel({ root, releaseDir, meta }) {
   const gates = loadYaml(join(root, "validation", "display_gates.yaml"));
   // WP-15 claims register (docs/methods/claims_register.csv) and CP's map to records (site/claims/register_map.yaml):
   // records tied to unverified rows render as "Unverified — not for citation"; held rows never render.
-  const claims = { rows: new Map(), byInstrument: new Map(), suppressEventLabels: new Set(), noEventRow: null, signoff: null };
+  const claims = { rows: new Map(), byInstrument: new Map(), bySignal: new Map(), suppressEventLabels: new Set(), noEventRow: null, signoff: null };
   {
     const regPath = join(root, "docs", "methods", "claims_register.csv");
     const mapPath = join(root, "site", "claims", "register_map.yaml");
@@ -138,6 +138,7 @@ export function buildModel({ root, releaseDir, meta }) {
       const row = claims.rows.get(id);
       if (!row || !["unverified", "held"].includes(row.status)) continue;      // re-verified rows stop suppressing
       for (const i of m.instruments || []) { if (!claims.byInstrument.has(i)) claims.byInstrument.set(i, []); claims.byInstrument.get(i).push(id); }
+      for (const g of m.signals || []) { if (!claims.bySignal.has(g)) claims.bySignal.set(g, []); claims.bySignal.get(g).push(id); }
       for (const l of m.events_with_evidence_label || []) claims.suppressEventLabels.add(l);
       if (m.events_with_evidence_label) claims.eventRow = id;
       if (m.instruments_without_events) claims.noEventRow = id;
@@ -582,13 +583,15 @@ export function buildModel({ root, releaseDir, meta }) {
     const m = target.match(/^vocab:(work_functions|sector_actors|scenarios)#(.+)$/);
     if (m) targetLabel = m[1] === "work_functions" ? `Work function: ${labels.workFunction[m[2]] || m[2]}` : m[1] === "sector_actors" ? `Sector actor: ${labels.sectorActor[m[2]] || m[2]}` : `Signpost ${m[2]}`;
     else if (records.has(target)) targetLabel = en(records.get(target).prefLabel);
+    const unv = claims.bySignal.get(s.id) || [];
     return {
-      id: s.id, title: en(s.prefLabel), family: fam || "unknown", status: s.signalStatus || "watch", direction: s.direction || "", directionConfidence: s.directionConfidence || "",
+      id: s.id, title: en(s.prefLabel) + (unv.length ? ` (Unverified — not for citation; claims register ${unv.join(", ")})` : ""), family: fam || "unknown", status: s.signalStatus || "watch", direction: s.direction || "", directionConfidence: s.directionConfidence || "",
       drivers: s.drivers || [], reliability: s.reliability || "", reliabilityText: labels.reliability[s.reliability] || "",
       measure: s.measure || null, period: s.observedPeriod || null, sourceRelease: s.sourceRelease || "", source: s.source || "",
       sectorActor: s.sectorActor || "", geography: s.geography || "", method: s.method || "", reviewBy: s.reviewBy || "",
       target, targetLabel, signposts: sps, evidence: evidenceOf(s), steep: s.steepCategory || "",
       impact: s.impact ?? sigField(s, "impact"), independenceKey: s.independenceKey || sigField(s, "independenceKey") || "",
+      unverified: claims.bySignal.get(s.id) || [],
     };
   }
   const signalVMs = signals.map(signalVM).sort((a, b) => a.family.localeCompare(b.family) || a.title.localeCompare(b.title));

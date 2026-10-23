@@ -14,7 +14,7 @@ notation:
 layer: L2
 module: core
 homeModule: core
-status: draft
+status: superseded
 useTier: exploratory
 validationStatus: seed-v1
 v1Tier: T2
@@ -25,7 +25,7 @@ v1SkillArea:
   code: '3.4'
   label: Financial Management
 editorialNote:
-  en: 'v1 competency 3.4.4 is move-to-tools: reassign this task to one of [''seed:SC-C10'', ''seed:DB-C26'', ''seed:tool-financial-automation-tools''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
+  en: 'Superseded by DE per RULINGS_FOR_DE §18.3 (ADR-0030 §3): tool-bound task of a move-to-tools v1 competency; text unchanged. v1 competency 3.4.4 is move-to-tools: reassign this task to one of [''seed:SC-C10'', ''seed:DB-C26'', ''seed:tool-financial-automation-tools''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
@@ -48,3 +48,6 @@ provenance:
   adr:
   - ADR-0011
   - ADR-0013
+replacedBy:
+- seed:tool-financial-automation-tools
+- seed:DB-C26

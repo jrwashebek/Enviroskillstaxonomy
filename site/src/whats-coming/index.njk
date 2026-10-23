@@ -87,8 +87,8 @@ crumbs: [[null, "What's coming"]]
     <tbody>
     {% for s in grp.items %}
     <tr><td>{{ s.title }}</td><td>{{ s.targetLabel }}</td>
-    <td>{% if s.measure %}{% if s.measure.value != null %}{{ s.measure.value }} {{ s.measure.unit }}{% endif %}{% if s.measure.n != null %} (n = {{ s.measure.n }}){% endif %}{% if s.measure.n != null and s.measure.n < 10 %}; too few to say{% endif %}{% else %}not measured{% endif %}</td>
-    <td>{{ s.reliability }}</td><td>{{ s.sourceRelease or s.source }}</td><td>{{ s.reviewBy }}</td></tr>
+    {% if s.unverified.length %}<td colspan="4"><strong>Unverified — not for citation</strong> (claims register {{ s.unverified | join(", ") }})</td>{% else %}    <td>{% if s.measure %}{% if s.measure.value != null %}{{ s.measure.value }} {{ s.measure.unit }}{% endif %}{% if s.measure.n != null %} (n = {{ s.measure.n }}){% endif %}{% if s.measure.n != null and s.measure.n < 10 %}; too few to say{% endif %}{% else %}not measured{% endif %}</td>
+    <td>{{ s.reliability }}</td><td>{{ s.sourceRelease or s.source }}</td><td>{{ s.reviewBy }}</td>{% endif %}</tr>
     {% endfor %}
     </tbody>
   </table>

@@ -114,6 +114,7 @@
 <li class="emst-card">
   <h3>{{ s.title }}</h3>
   <p><span class="emst-tag emst-tag--emerging">Watch</span> Not counted as a change indicator: watch signals do not meet the two-family, human-reviewed evidence rule.</p>
+  {% if s.unverified.length %}<p><strong>Unverified — not for citation</strong> (claims register {{ s.unverified | join(", ") }}). Details are not shown until the verification pass re-checks them.</p>{% else %}
   <dl class="emst-dl">
     <dt>About</dt><dd>{{ s.targetLabel }}</dd>
     <dt>Signal family</dt><dd>{{ s.family }}</dd>
@@ -122,7 +123,7 @@
     <dt>Source release</dt><dd>{{ s.sourceRelease or s.source }}</dd>
     <dt>Reliability</dt><dd>{{ s.reliability }}{% if s.reliabilityText %}: {{ s.reliabilityText }}{% endif %}</dd>
     <dt>Review by</dt><dd>{{ s.reviewBy }}</dd>
-  </dl>
+  </dl>{% endif %}
   <p class="emst-meta">{{ tierBadge({"tier": "exploratory", "source": "watch signal"}) }} {{ evBadge(s.evidence) }}</p>
 </li>
 {%- endmacro %}

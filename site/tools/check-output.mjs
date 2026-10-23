@@ -130,6 +130,20 @@ for (const r of register) {
     mappedUnverified.push({ claim: r.claim_id, title: instrumentTitles.get(id) });
   }
   for (const lab of m.events_with_evidence_label || []) for (const e of bundle) if (e.type === "DriverEvent" && (e.evidenceLabel || "S") === lab) judgedEventStrings.push({ claim: r.claim_id, s: `${e.eventDate} ${e.eventType}` });
+  for (const g of m.signals || []) { const rec = bundle.find((x) => x.id === g); if (rec) mappedUnverified.push({ claim: r.claim_id, title: (rec.prefLabel || {}).en || "" }); }
+}
+// E1b: a signal citing a source of an unverified row must be mapped to that row or explicitly exempted.
+{
+  const mapDoc = yaml.load(readFileSync(join(SITE, "claims", "register_map.yaml"), "utf-8"));
+  const exempt = new Set(Object.keys(mapDoc.exempt_signals || {}));
+  const mappedSignals = new Set(Object.values(regMap).flatMap((m) => m.signals || []));
+  const srcRows = new Map();
+  for (const r of register) if (["unverified", "held"].includes(r.status)) for (const x of String(r.source_ids || "").split("|").filter(Boolean)) { if (!srcRows.has(x)) srcRows.set(x, []); srcRows.get(x).push(r.claim_id); }
+  for (const g of bundle.filter((x) => x.type === "ChangeSignal")) {
+    const cited = new Set([g.source, ...((g.provenance || {}).sources || []), ...(g.sources || [])].filter(Boolean));
+    const rows = [...cited].flatMap((x) => srcRows.get(x) || []);
+    if (rows.length && !mappedSignals.has(g.id) && !exempt.has(g.id)) problems.push({ file: "claims/register_map.yaml", rule: "E1", msg: `signal ${g.id} cites a source of unverified row(s) ${[...new Set(rows)].join(", ")}; map it or exempt it` });
+  }
 }
 
 const NEG = /\b(never|not|no|nor|nothing|none|without|until|unless|before|isn't|aren't|cannot|neither)\b/i;
