@@ -88,3 +88,22 @@ Final reply (≤200 words): counts by status, the most consequential corrections
 
 ### V4 — AI & labor-market indices, data and interoperability standards (run after LM/IA finish)
 - Assigned later.
+
+### V4 — AI & labor-market indices, data and interoperability standards (queue: `queue_v4.csv`)
+- V4-01 Anthropic Economic Index: list every public release through Oct 2026 (dates, titles), what the latest adds (task-level usage, automation vs augmentation, API/enterprise, geography), and the public dataset location/licence.
+- V4-02 Microsoft "Working with AI" occupational applicability (Tomlinson et al., 2025): status/date; any 2026 update.
+- V4-03 Brynjolfsson, Chandar & Chen "Canaries in the Coal Mine?" (2025) — finding on early-career employment in AI-exposed occupations; any 2026 follow-ups.
+- V4-04 ILO generative-AI exposure index — latest refinement (2025) and headline.
+- V4-05 WEF Future of Jobs 2025 (Jan 2025) — confirm; any 2026 edition.
+- V4-06 LinkedIn Global Green Skills Report — latest edition/date.
+- V4-07 BLS Employment Projections — current 10-year cycle (2024–34?) release date; BLS AI-impact case studies in the Monthly Labor Review.
+- V4-08 O*NET 31.0 (Aug 2026?) and next update; O*NET-SOC 2019 still current.
+- V4-09 ESCO current version (v1.2.1, Dec 2025?).
+- V4-10 1EdTech CASE 1.1 final (Apr 2025?); Credential Engine stewardship of RSD/OSMT since Feb 2025; CTDL-ASN updates (Jan 2025).
+- V4-11 IEEE 1484.20.3-2022 status and amendment PAR (2025).
+- V4-12 W3C Verifiable Credentials 2.0 Recommendation (May 2025); Open Badges 3.0 current.
+- V4-13 SSSOM 1.0 / 1.1 status.
+- V4-14 NIST AI RMF 1.0 and Generative AI Profile (NIST AI 600-1) — any 2025–26 revisions; OPM AI competency model (2024).
+- V4-15 OMB 2025 federal AI use-case inventory (published? where; counts for USDA, DOI, EPA, DOC/NOAA).
+- V4-16 Earth-observation foundation models in operational use (e.g., Prithvi, Clay, AlphaEarth Foundations) — confirm names/dates.
+- V4-17 Stanford AI Index 2026 published (date).
