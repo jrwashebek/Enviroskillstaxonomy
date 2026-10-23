@@ -121,18 +121,25 @@ def main() -> int:
     from sklearn.feature_extraction.text import TfidfVectorizer
     from sklearn.metrics.pairwise import cosine_similarity
     comps = [(rid, loc, rec) for rid, (loc, rec) in sorted(recs.items())
-             if rec.get("type") == "Competency" and rec.get("status") not in DEAD
-             and rec.get("validationStatus") != "seed-v1"]
-    titles = [label(r) for _, _, r in comps]
-    bodies = [label(r) + ". " + text(r, "statement") + " " + text(r, "definition") for _, _, r in comps]
-    stop = "english"
-    tv = TfidfVectorizer(stop_words=stop, ngram_range=(1, 2), sublinear_tf=True).fit(bodies)
+             if rec.get("type") == "Competency" and rec.get("status") not in DEAD and rid not in held_keys]
+
+    def stem(tok: str) -> str:
+        for suf in ("ations", "ation", "ments", "ment", "ings", "ing", "ies", "es", "s", "ed"):
+            if len(tok) > len(suf) + 3 and tok.endswith(suf):
+                return tok[: -len(suf)]
+        return tok
+
+    def norm(s: str) -> str:
+        return " ".join(stem(t) for t in re.findall(r"[a-z]+", s.lower()))
+    titles = [norm(label(r)) for _, _, r in comps]
+    bodies = [norm(label(r) + ". " + text(r, "statement") + " " + text(r, "definition")) for _, _, r in comps]
+    tv = TfidfVectorizer(stop_words="english", sublinear_tf=True).fit(bodies)
     st = cosine_similarity(tv.transform(titles))
     sb = cosine_similarity(tv.transform(bodies))
     pairs = []
     for i in range(len(comps)):
         for j in range(i + 1, len(comps)):
-            if st[i, j] >= 0.40 or sb[i, j] >= 0.45:
+            if st[i, j] >= 0.35 or sb[i, j] >= 0.30:
                 a, b = comps[i], comps[j]
                 pairs.append({"a": a[0], "a_title": titles[i], "a_module": a[2].get("module"), "a_lane": lane_of(a[2]),
                               "b": b[0], "b_title": titles[j], "b_module": b[2].get("module"), "b_lane": lane_of(b[2]),

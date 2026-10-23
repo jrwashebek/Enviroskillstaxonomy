@@ -28,31 +28,56 @@ def _records():
 RECS = _records()
 
 
-def seeds(typ):
-    return {rid: r for rid, (_, r) in RECS.items() if r.get("type") == typ and str(rid).startswith("seed:v1-")
-            and (r.get("provenance") or {}).get("method") == "v1-migration"}
+# What the migration GENERATES (tested independently of later authoring): seeds keyed by id.
+_PLAN, _COMPS, _TASKS, _BATCHES = migrate_v1.generate(migrate_v1.Inputs())
+GEN = {r["id"]: r for _, r in list(_COMPS.values()) + list(_TASKS.values())}
+GEN_RATINGS = [r for recs in _BATCHES.values() for r in recs]
+PROMOTED = {r["seed_key"]: r["id"] for r in L.read_csv(L.DATA_V2 / "ids" / "seed_map.csv")} \
+    if (L.DATA_V2 / "ids" / "seed_map.csv").exists() else {}
 
 
-def _v1_keyed(typ):
-    """Seed records keep their seed:v1-* id when authors rewrite them in place (AUTHORING_GUIDE §6); a promoted
-    record is found through data/v2/ids/seed_map.csv."""
-    promoted = {r["seed_key"] for r in L.read_csv(L.DATA_V2 / "ids" / "seed_map.csv")} if (L.DATA_V2 / "ids" / "seed_map.csv").exists() else set()
-    return {rid for rid, (_, r) in RECS.items() if r.get("type") == typ and str(rid).startswith("seed:v1-")} | promoted
+def lineage():
+    """Live tree: v1 key -> ids of non-rating records that cite it in provenance.derivedFrom. Authors rewrite seeds
+    in place (AUTHORING_GUIDE §6), so method and status may change; the v1 lineage may not."""
+    out = defaultdict(set)
+    for rid, (_, r) in RECS.items():
+        if r.get("type") in L.RATING_TYPES:
+            continue
+        for d in (r.get("provenance") or {}).get("derivedFrom") or []:
+            if d.get("v1Key"):
+                out[d["v1Key"]].add(rid)
+    return out
+
+
+def _live(seed_key):
+    return RECS.get(PROMOTED.get(seed_key, seed_key), (None, None))
 
 
 def test_222_competency_and_666_task_seeds():
-    comp = {rid for rid in _v1_keyed("Competency") if re.fullmatch(r"seed:v1-\d\.\d+\.\d+", rid)}
-    task = {rid for rid in _v1_keyed("Task") if re.fullmatch(r"seed:v1-\d\.\d+\.\d+-T[1-3]", rid)}
     assert len(V1_COMPS) == 222 and len(V1_TASKS) == 666
+    comp = {rid for rid in GEN if re.fullmatch(r"seed:v1-\d\.\d+\.\d+", rid)}
+    task = {rid for rid in GEN if re.fullmatch(r"seed:v1-\d\.\d+\.\d+-T[1-3]", rid)}
     assert comp == {f"seed:v1-{k[3:]}" for k in V1_COMPS}
     assert task == {f"seed:v1-{k[3:].replace(':', '-')}" for k in V1_TASKS}
+    for rid in comp | task:                                   # every seed still exists (in place, or promoted)
+        assert _live(rid)[1] is not None, rid
+
+
+def test_every_v1_key_keeps_its_lineage_in_the_live_tree():
+    lin = lineage()
+    missing = [k for k in V1_COMPS + V1_TASKS if not lin.get(k)]
+    assert not missing, missing[:10]
+    copyb = INFO["copyBWorkbookSha256"]
+    for rid, (_, r) in RECS.items():
+        for d in (r.get("provenance") or {}).get("derivedFrom") or []:
+            if d.get("workbookSha256"):
+                assert d["workbookSha256"] == copyb, rid
 
 
 def test_seed_records_validate_without_errors(real_report):
     def mine(issue):
-        rec = RECS.get(issue.rid, (None, {}))[1]
-        untouched = rec.get("validationStatus") == "seed-v1" and (rec.get("provenance") or {}).get("method") == "v1-migration"
-        return (("/seed-v1-" in issue.where) and untouched) or any(p in issue.where for p in DE_PATHS)
+        rec = RECS.get(issue.rid, (None, {}))[1] or {}
+        return rec.get("validationStatus") == "seed-v1" or any(p in issue.where for p in DE_PATHS)
     errs = [(i.code, i.where, i.message) for i in real_report.errors if mine(i)]
     assert errs == []
 
@@ -62,31 +87,35 @@ def test_v1_text_is_cc0_under_the_lead_dedication():
     assert lic["v1Dedication"] == "granted" and "PROJECT_LEAD_DECISIONS.md" in lic["v1DedicationRecord"]
     assert migrate_v1.V1_LICENSE == "CC0-1.0"
     assert INFO["licensing"]["license"] == "CC0-1.0"
-    for rid, (_, r) in RECS.items():
-        if (r.get("provenance") or {}).get("method") == "v1-migration":
-            assert r["license"] == "CC0-1.0" and "ADR-0013" in r["provenance"]["adr"], rid
+    for rid, r in GEN.items():
+        assert r["license"] == "CC0-1.0" and "ADR-0013" in r["provenance"]["adr"], rid
+    for k, ids in lineage().items():                          # live records derived from v1 text stay CC0
+        for rid in ids:
+            assert RECS[rid][1].get("license") == "CC0-1.0", (k, rid)
 
 
 def test_every_seed_has_provenance_and_legacy_facets():
-    for typ in ("Competency", "Task"):
-        for rid, r in seeds(typ).items():
-            d = r["provenance"]["derivedFrom"][0]
-            assert d["relation"] == "carried" and d["workbookSha256"] == INFO["copyBWorkbookSha256"], rid
-            assert r["validationStatus"] == "seed-v1" and r["license"] == migrate_v1.V1_LICENSE, rid
-            assert r["v1Domain"]["code"] and r["v1SkillArea"]["code"], rid
-            assert any(n["scheme"] == "EMSTv1" for n in r["notation"]), rid
+    for rid, r in GEN.items():
+        d = r["provenance"]["derivedFrom"][0]
+        assert d["relation"] == "carried" and d["workbookSha256"] == INFO["copyBWorkbookSha256"], rid
+        assert r["validationStatus"] == "seed-v1" and r["license"] == migrate_v1.V1_LICENSE, rid
+        assert r["v1Domain"]["code"] and r["v1SkillArea"]["code"], rid
+        assert any(n["scheme"] == "EMSTv1" for n in r["notation"]), rid
 
 
 def test_seed_status_follows_the_disposition():
     want = {"carry": "draft", "rewrite": "draft", "move-to-module": "draft", "merge": "superseded", "split": "superseded",
             "move-to-tools": "superseded", "hold-for-tribal-review": "superseded", "retire": "withdrawn"}
     for code, d in DISP.items():
-        r = RECS[f"seed:v1-{code}"][1]
-        assert r["status"] == want[d["decision"]], code
-        if r["status"] == "superseded":
-            assert r["replacedBy"], code
+        g = GEN[f"seed:v1-{code}"]
+        assert g["status"] == want[d["decision"]], code
+        if g["status"] == "superseded":
+            assert g["replacedBy"], code
+        loc, live = _live(f"seed:v1-{code}")
         if d["decision"] == "move-to-module":
-            assert r["module"] != "core" and RECS[f"seed:v1-{code}"][0].area == r["module"], code
+            assert g["module"] != "core" and live["module"] != "core" and loc.area == live["module"], code
+        if want[d["decision"]] in ("superseded", "withdrawn"):        # authors never revive a retired v1 item
+            assert live["status"] in ("superseded", "withdrawn"), code
 
 
 def test_restored_text_from_source():
@@ -94,9 +123,9 @@ def test_restored_text_from_source():
     assert c["restoredIndicators"] == 2104
     assert c["restoredKnowledgeApplicationLevels"] == 120
     assert c["titleDescriptionSplits"] == 19
-    d5 = RECS["seed:v1-5.1.1"][1]["v1Seed"]["levels"]
+    d5 = GEN["seed:v1-5.1.1"]["v1Seed"]["levels"]
     assert all(lv.get("knowledge") and lv.get("application") and lv.get("indicators") for lv in d5)
-    split = RECS["seed:v1-1.2.4"][1]
+    split = GEN["seed:v1-1.2.4"]
     assert split["prefLabel"]["en"] == "Water quality assessment" and split["v1Seed"]["titleDescriptionSplit"]
 
 
@@ -138,11 +167,9 @@ def test_counts_by_decision_are_generated_from_the_csv():
 def test_no_stored_summary_migrated():
     forbidden = set(L.load_yaml(L.LINT_DIR / "computed_fields.yaml")["fields"])
     snake = {re.sub(r"(?<!^)(?=[A-Z])", "_", f).lower() for f in forbidden}
-    for rid, (_, r) in RECS.items():
-        if (r.get("provenance") or {}).get("method") != "v1-migration":
-            continue
+    for r in list(GEN.values()) + GEN_RATINGS:
         for _, k, _ in L.walk(r):
-            assert k not in forbidden | snake, (rid, k)
+            assert k not in forbidden | snake, (r["id"], k)
 
 
 def test_v1_tags_are_prior_evidence_only():
@@ -167,9 +194,9 @@ def test_held_content_is_flagged():
     flags = {"indigenousDataFlag": True, "approvalStatus": "pending-tribal-review", "sensitivity": "restricted-governed"}
     for code in ("5.3.2", "6.5.1", "7.1.1"):
         for rid in [f"seed:v1-{code}"] + [f"seed:v1-{code}-T{n}" for n in (1, 2, 3)]:
-            r = RECS[rid][1]
-            assert {k: r.get(k) for k in flags} == flags, rid
-    assert RECS["seed:v1-5.3.3-T2"][1]["governedData"] == "tribal"
+            for r in (GEN[rid], _live(rid)[1]):                      # generated and as it stands now
+                assert {k: r.get(k) for k in flags} == flags, rid
+    assert GEN["seed:v1-5.3.3-T2"]["governedData"] == "tribal"
     for rid, (_, r) in RECS.items():
         if r.get("objectScheme") == "v1-ethical-lens" and r["object"].endswith("/L2"):
             assert r.get("indigenousDataFlag") is True, rid

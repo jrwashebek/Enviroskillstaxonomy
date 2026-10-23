@@ -1,0 +1,32 @@
+{
+  "name": "emst-explorer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "EMST Tier 1 static, local-first explorer (WP-12). Generated from an EMST release build; no server, no accounts, no cookies, no analytics, no runtime third-party requests.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "release": "node tools/prepare-release.mjs",
+    "vendor": "node tools/vendor.mjs",
+    "pages": "npx @11ty/eleventy --quiet",
+    "postbuild": "node tools/check-output.mjs",
+    "build": "node tools/prepare-release.mjs && node tools/vendor.mjs && npx @11ty/eleventy --quiet",
+    "check": "node tools/check-output.mjs",
+    "test": "node tools/check-output.mjs && node tools/browser-checks.mjs",
+    "a11y": "node tools/browser-checks.mjs",
+    "sbom": "npm sbom --sbom-format cyclonedx --omit dev > security/sbom-runtime.cdx.json && npm sbom --sbom-format cyclonedx > security/sbom-build.cdx.json",
+    "serve": "node tools/serve.mjs"
+  },
+  "dependencies": {
+    "@uswds/uswds": "3.14.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6",
+    "axe-core": "4.14.0",
+    "js-yaml": "4.1.1",
+    "playwright-core": "1.63.0"
+  }
+}
