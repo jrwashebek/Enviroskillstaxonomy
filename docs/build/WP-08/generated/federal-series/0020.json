@@ -7,7 +7,7 @@
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
- "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
  "series": {
   "code": "0020",
   "title": "Community Planning",
@@ -39,48 +39,51 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [],
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 0
+   },
    "signOffAuthority": null,
    "instruments": [
     {
      "id": "seed:ins/nepa-fra-2023",
      "label": "NEPA as amended by the Fiscal Responsibility Act of 2023",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/ceq-nepa-regs-removal",
      "label": "Removal of CEQ NEPA implementing regulations (40 CFR 1500-1508)",
-     "role": null
+     "role": "removed-requirement"
     },
     {
      "id": "seed:ins/seven-county",
      "label": "Seven County Infrastructure Coalition v. Eagle County",
-     "role": null
+     "role": "constrains"
     },
     {
      "id": "seed:ins/doi-nepa-procedures",
      "label": "Department of the Interior NEPA procedures and the DOI NEPA Handbook",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/usda-nepa-procedures",
      "label": "USDA NEPA procedures (7 CFR part 1b); Forest Service 36 CFR part 220 rescinded",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/epa-nepa-procedures",
      "label": "Environmental Protection Agency NEPA procedures",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/dot-nepa-procedures",
      "label": "Department of Transportation NEPA procedures",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/fast-41",
      "label": "FAST-41 (Title 41 of the FAST Act) and the Federal Permitting Improvement Steering Council",
-     "role": null
+     "role": "constrains"
     }
    ],
    "bands": [

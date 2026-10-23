@@ -52,8 +52,7 @@ def mapping_block(d, m):
             "competencyTargets": V.targets_at(d, role, levels),
             "topTasks": [{"task": i["task"], "statement": d.statement(i["task"]), "pctTime": round(100 * i["shareWithin"], 1),
                           "critical": i.get("critical", False), "neededAtEntry": i.get("neededAtEntry", False)} for i in tasks],
-            "credentialGates": [{"credential": g["credential"], "label": d.label(g["credential"]), "kind": g["kind"]}
-                                for g in variant.get("credentialGates") or []]}
+            "credentialGates": V.gate_view(d, variant.get("credentialGates"))}
 
 
 def render_md(v):
@@ -82,8 +81,8 @@ def render_md(v):
         for t in m["topTasks"]:
             flags = ", ".join(x for x, on in (("critical", t["critical"]), ("needed at entry", t["neededAtEntry"])) if on)
             out.append(f"- {t['statement']} — {t['pctTime']}%" + (f" *({flags})*" if flags else ""))
-        if m["credentialGates"]:
-            out += ["", "*Credential gates (draft):* " + "; ".join(f"{g['label']} ({g['kind']})" for g in m["credentialGates"])]
+        if m["credentialGates"]["shown"] or m["credentialGates"]["notShownUntilIssuerVerified"]:
+            out += ["", "*Credential gates (issuer verified):* " + V.gate_text(m["credentialGates"])]
         out.append("")
     out += ["---", v["disclaimer"] + " The class specification, not this view, governs classification and qualification.", ""]
     return "\n".join(out)

@@ -7,7 +7,7 @@
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
- "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
  "series": {
   "code": "0340",
   "title": "Program Management",
@@ -39,34 +39,31 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [
-    {
-     "credential": "seed:crd-contracting-officers-representative",
-     "label": "Federal contracting officer's representative certification (FAC-COR)",
-     "kind": "preferred"
-    }
-   ],
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 1
+   },
    "signOffAuthority": null,
    "instruments": [
     {
      "id": "seed:ins/appropriations-law",
      "label": "Federal appropriations law (purpose, time, amount)",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/fy2026-interior-approps",
      "label": "FY2026 Interior, Environment and Related Agencies appropriations (P.L. 119-74, Division C)",
-     "role": null
+     "role": "enables"
     },
     {
      "id": "seed:ins/obbba-ira-rescissions",
      "label": "Rescission of unobligated IRA conservation and staffing funds (P.L. 119-21)",
-     "role": null
+     "role": "constrains"
     },
     {
      "id": "seed:ins/good-neighbor-authority",
      "label": "Good Neighbor Authority incl. EXPLORE Act amendments",
-     "role": null
+     "role": "enables"
     }
    ],
    "bands": [

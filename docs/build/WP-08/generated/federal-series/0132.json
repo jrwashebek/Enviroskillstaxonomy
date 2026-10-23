@@ -7,7 +7,7 @@
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
- "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
  "series": {
   "code": "0132",
   "title": "Intelligence",
@@ -39,19 +39,27 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [
-    {
-     "credential": "seed:crd-wildland-fire-position-qualification",
-     "label": "Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
-     "kind": "preferred"
-    }
-   ],
+   "credentialGates": {
+    "shown": [
+     {
+      "credential": "seed:crd-wildland-fire-position-qualification",
+      "label": "Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
+      "kind": "preferred",
+      "issuerVerifiedSources": [
+       "V3-13",
+       "LC-103",
+       "LC-104"
+      ]
+     }
+    ],
+    "notShownUntilIssuerVerified": 0
+   },
    "signOffAuthority": null,
    "instruments": [
     {
      "id": "seed:ins/uswfs-so-3448",
      "label": "Secretarial Order 3448 establishing the U.S. Wildland Fire Service",
-     "role": null
+     "role": "enables"
     }
    ],
    "bands": [

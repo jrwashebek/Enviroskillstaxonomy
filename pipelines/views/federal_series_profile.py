@@ -86,8 +86,7 @@ def role_block(d, role, variant, row):
             "x4": {"record": row["record_id"], "predicate": row["predicate_id"], "confidence": float(row["confidence"] or 0),
                    "appliesTo": other.get("applies_to"), "reviewStatus": other.get("review_status"),
                    "evidence": other.get("evidence")},
-            "credentialGates": [{"credential": g["credential"], "label": d.label(g["credential"]), "kind": g["kind"]}
-                                for g in variant.get("credentialGates") or []],
+            "credentialGates": V.gate_view(d, variant.get("credentialGates")),
             "signOffAuthority": variant.get("signOffAuthority"),
             "instruments": V.link_items(d, variant.get("instruments")),
             "bands": blocks,
@@ -110,9 +109,8 @@ def render_md(p):
                 f"*Function:* {r['functionStatement']}", "",
                 f"*X4 match:* `{r['x4']['predicate']}` (confidence {r['x4']['confidence']}, applies to: {r['x4']['appliesTo']}; "
                 f"{r['x4']['reviewStatus']} agent draft, evidence {r['x4']['evidence']}). *Authority position (editorial):* {r['authorityPosition']}.", ""]
-        if r["credentialGates"]:
-            out.append("*Credential gates (draft, not shown as fact until sourced):* " +
-                       "; ".join(f"{g['label']} ({g['kind']})" for g in r["credentialGates"]))
+        if r["credentialGates"]["shown"] or r["credentialGates"]["notShownUntilIssuerVerified"]:
+            out.append("*Credential gates (issuer verified):* " + V.gate_text(r["credentialGates"]))
             out.append("")
         for b in r["bands"]:
             out += [f"### {b['group'].capitalize()} — indicative band {b['indicativeBand']} (not a classification criterion)", "",

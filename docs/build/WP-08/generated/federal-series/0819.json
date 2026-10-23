@@ -7,7 +7,7 @@
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
- "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
  "series": {
   "code": "0819",
   "title": "Environmental Engineering",
@@ -39,13 +39,10 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [
-    {
-     "credential": "seed:crd-professional-engineer",
-     "label": "Professional Engineer (PE), incl. Environmental and Civil (Water Resources) exams",
-     "kind": "preferred"
-    }
-   ],
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 1
+   },
    "signOffAuthority": {
     "kind": "licensure",
     "credentials": [
@@ -910,38 +907,41 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [],
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 0
+   },
    "signOffAuthority": null,
    "instruments": [
     {
      "id": "seed:ins/cwa-402-npdes",
      "label": "CWA section 402 discharge permit programme and state programme authorization",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/cwa-404",
      "label": "CWA section 404 dredge-and-fill permits and state assumption",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/caa-title-v",
      "label": "Clean Air Act Title V operating permit programme",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/caa-nsr-psd",
      "label": "Clean Air Act new source review and PSD preconstruction permitting",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/rcra-permits",
      "label": "RCRA hazardous waste permits and state authorization",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/state-program-approval-regs",
      "label": "Federal regulations for state programme approval and withdrawal",
-     "role": null
+     "role": "requires"
     }
    ],
    "bands": [
@@ -1712,13 +1712,10 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [
-    {
-     "credential": "seed:crd-hazwoper",
-     "label": "HAZWOPER training (40-hour, 24-hour, 8-hour supervisor; 8-hour annual refresher)",
-     "kind": "required"
-    }
-   ],
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 1
+   },
    "signOffAuthority": null,
    "instruments": [],
    "bands": [
@@ -2553,13 +2550,16 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [],
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 0
+   },
    "signOffAuthority": null,
    "instruments": [
     {
      "id": "seed:ins/state-program-approval-regs",
      "label": "Federal regulations for state programme approval and withdrawal",
-     "role": null
+     "role": "requires"
     }
    ],
    "bands": [
@@ -3357,18 +3357,21 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [],
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 0
+   },
    "signOffAuthority": null,
    "instruments": [
     {
      "id": "seed:ins/caa-title-v",
      "label": "Clean Air Act Title V operating permit programme",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/caa-nsr-psd",
      "label": "Clean Air Act new source review and PSD preconstruction permitting",
-     "role": null
+     "role": "requires"
     }
    ],
    "bands": [
@@ -4291,18 +4294,21 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [],
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 0
+   },
    "signOffAuthority": null,
    "instruments": [
     {
      "id": "seed:ins/federal-inspection-authorities",
      "label": "Federal inspection and information-request authorities",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/epa-penalty-policies",
      "label": "EPA civil penalty and enforcement response policies",
-     "role": null
+     "role": "constrains"
     }
    ],
    "bands": [

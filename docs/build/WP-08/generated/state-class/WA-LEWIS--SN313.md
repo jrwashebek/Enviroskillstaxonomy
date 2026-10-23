@@ -2,7 +2,7 @@
 
 > **Not a classification basis / not a job analysis / not for RIF or rating decisions.**
 >
-> All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.
+> Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).
 
 - **Agency / employer:** Lewis County (public health environmental health programme) (county)
 - **Series and level:** Environmental Health Specialist; level 2 (II); non-supervisory
@@ -20,7 +20,7 @@
 **Competency targets at this level (agent draft)**
 
 - Investigate outbreaks, complaints and emerging environmental health hazards to control exposure — journey L2
-- Conduct environmental public health inspections and plan reviews — journey L2 *(distinguishing)*
+- Review plans and evaluate sites for environmental health permits — journey L2 *(distinguishing)*
 - Communicate environmental and health risks under uncertainty — journey L2
 - Collect trace-level and genetic environmental samples without contamination — journey L2
 - Manage field sample custody and field quality control — journey L2
@@ -46,7 +46,7 @@
 - Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check — 4.8% *(needed at entry)*
 - Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them — 4.8% *(needed at entry)*
 
-*Credential gates (draft):* State registered sanitarian / environmental health specialist license (required); Registered Environmental Health Specialist / Registered Sanitarian (REHS/RS) (preferred); Certified Professional - Food Safety (CP-FS) (preferred)
+*Credential gates (issuer verified):* Registered Environmental Health Specialist / Registered Sanitarian (REHS/RS) (preferred); 2 not shown until the issuer is verified
 
 ---
 Not a classification basis / not a job analysis / not for RIF or rating decisions. The class specification, not this view, governs classification and qualification.

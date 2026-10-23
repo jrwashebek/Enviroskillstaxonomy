@@ -7,7 +7,7 @@
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
- "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
  "series": {
   "code": "0462",
   "title": "Forestry Technician",
@@ -39,18 +39,10 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [
-    {
-     "credential": "seed:crd-wilderness-first-aid",
-     "label": "Wilderness First Aid / Wilderness First Responder",
-     "kind": "preferred"
-    },
-    {
-     "credential": "seed:crd-remote-pilot-certificate",
-     "label": "FAA Remote Pilot Certificate (Part 107)",
-     "kind": "preferred"
-    }
-   ],
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 2
+   },
    "signOffAuthority": null,
    "instruments": [],
    "bands": [
@@ -700,13 +692,21 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [
-    {
-     "credential": "seed:crd-wildland-fire-position-qualification",
-     "label": "Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
-     "kind": "required"
-    }
-   ],
+   "credentialGates": {
+    "shown": [
+     {
+      "credential": "seed:crd-wildland-fire-position-qualification",
+      "label": "Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
+      "kind": "required",
+      "issuerVerifiedSources": [
+       "V3-13",
+       "LC-103",
+       "LC-104"
+      ]
+     }
+    ],
+    "notShownUntilIssuerVerified": 0
+   },
    "signOffAuthority": {
     "kind": "position-qualification",
     "credentials": [
@@ -717,12 +717,12 @@
     {
      "id": "seed:ins/uswfs-so-3448",
      "label": "Secretarial Order 3448 establishing the U.S. Wildland Fire Service",
-     "role": null
+     "role": "enables"
     },
     {
      "id": "seed:ins/wildland-fire-quals-alignment",
      "label": "USWFS-USFS aligned federal wildland fire qualification standards (IQCS 2026 Transition Plan)",
-     "role": null
+     "role": "requires"
     }
    ],
    "bands": [
@@ -1665,13 +1665,21 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [
-    {
-     "credential": "seed:crd-wildland-fire-position-qualification",
-     "label": "Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
-     "kind": "required"
-    }
-   ],
+   "credentialGates": {
+    "shown": [
+     {
+      "credential": "seed:crd-wildland-fire-position-qualification",
+      "label": "Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
+      "kind": "required",
+      "issuerVerifiedSources": [
+       "V3-13",
+       "LC-103",
+       "LC-104"
+      ]
+     }
+    ],
+    "notShownUntilIssuerVerified": 0
+   },
    "signOffAuthority": {
     "kind": "position-qualification",
     "credentials": [
@@ -1682,12 +1690,12 @@
     {
      "id": "seed:ins/wildland-fire-quals-alignment",
      "label": "USWFS-USFS aligned federal wildland fire qualification standards (IQCS 2026 Transition Plan)",
-     "role": null
+     "role": "requires"
     },
     {
      "id": "seed:ins/fix-our-forests-act",
      "label": "Fix Our Forests Act (H.R. 471 / S. 1462)",
-     "role": null
+     "role": "enables"
     }
    ],
    "bands": [
@@ -2557,19 +2565,27 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [
-    {
-     "credential": "seed:crd-wildland-fire-position-qualification",
-     "label": "Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
-     "kind": "preferred"
-    }
-   ],
+   "credentialGates": {
+    "shown": [
+     {
+      "credential": "seed:crd-wildland-fire-position-qualification",
+      "label": "Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
+      "kind": "preferred",
+      "issuerVerifiedSources": [
+       "V3-13",
+       "LC-103",
+       "LC-104"
+      ]
+     }
+    ],
+    "notShownUntilIssuerVerified": 0
+   },
    "signOffAuthority": null,
    "instruments": [
     {
      "id": "seed:ins/uswfs-so-3448",
      "label": "Secretarial Order 3448 establishing the U.S. Wildland Fire Service",
-     "role": null
+     "role": "enables"
     }
    ],
    "bands": [
@@ -3250,24 +3266,21 @@
     "reviewStatus": "candidate",
     "evidence": "J"
    },
-   "credentialGates": [
-    {
-     "credential": "seed:crd-contracting-officers-representative",
-     "label": "Federal contracting officer's representative certification (FAC-COR)",
-     "kind": "preferred"
-    }
-   ],
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 1
+   },
    "signOffAuthority": null,
    "instruments": [
     {
      "id": "seed:ins/stewardship-contracting",
      "label": "Stewardship contracting authority",
-     "role": null
+     "role": "enables"
     },
     {
      "id": "seed:ins/good-neighbor-authority",
      "label": "Good Neighbor Authority incl. EXPLORE Act amendments",
-     "role": null
+     "role": "enables"
     }
    ],
    "bands": [

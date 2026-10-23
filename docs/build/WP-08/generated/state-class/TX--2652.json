@@ -7,7 +7,7 @@
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
- "evidenceNotice": "All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.",
+ "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
  "classRecord": "seed:class/TX/2652",
  "class": {
   "jurisdiction": "Texas",
@@ -342,18 +342,10 @@
      "neededAtEntry": true
     }
    ],
-   "credentialGates": [
-    {
-     "credential": "seed:crd-state-inspector-credential",
-     "label": "State environmental inspector credential (programme-issued delegation to inspect)",
-     "kind": "required"
-    },
-    {
-     "credential": "seed:crd-epa-method-9-visible-emissions-observer-certific",
-     "label": "EPA Method 9 visible emissions observer certification",
-     "kind": "preferred"
-    }
-   ]
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 2
+   }
   },
   {
    "roleVariant": "seed:R10-environmental-review-specialist/state",
@@ -665,7 +657,10 @@
      "neededAtEntry": false
     }
    ],
-   "credentialGates": []
+   "credentialGates": {
+    "shown": [],
+    "notShownUntilIssuerVerified": 0
+   }
   }
  ]
 }

@@ -2,7 +2,7 @@
 
 > **Not a classification basis / not a job analysis / not for RIF or rating decisions.**
 >
-> All task importance, time share, critical, needed-at-entry and target-level values are agent drafts (raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source is attached.
+> Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).
 
 - **Agency / employer:** Philadelphia Water Department (City of Philadelphia civil-service class plan) (utility)
 - **Series and level:** Water treatment plant operations; level 2 (operator); non-supervisory
@@ -46,7 +46,7 @@
 - Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check — 4.2% *(needed at entry)*
 - Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them — 4.2% *(needed at entry)*
 
-*Credential gates (draft):* Drinking water treatment operator certification (Grades I-IV / Class A-D, state-specific) (required); Wastewater treatment operator certification (Grades I-IV) (required); Wastewater collection system operator certification (preferred); Water distribution system operator certification (preferred)
+*Credential gates (issuer verified):* Drinking water treatment operator certification (Grades I-IV / Class A-D, state-specific) (required); Wastewater treatment operator certification (Grades I-IV) (required); Wastewater collection system operator certification (preferred); Water distribution system operator certification (preferred)
 
 ---
 Not a classification basis / not a job analysis / not for RIF or rating decisions. The class specification, not this view, governs classification and qualification.

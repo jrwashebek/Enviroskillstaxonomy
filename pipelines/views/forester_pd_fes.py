@@ -149,8 +149,8 @@ def main():
               "## Other information (EMST)", "",
               "- **Needed at entry (draft flags):** " + "; ".join(short(d.statement(i["task"]), 80) for i in entry[:8]) + ".",
               "- **Critical tasks (draft flags):** " + "; ".join(short(d.statement(i["task"]), 80) for i in crit[:8]) + ".",
-              "- **Credential gates (draft; shown as fact only once sourced):** " +
-              ("; ".join(f"{d.label(g['credential'])} ({g['kind']})" for g in var.get("credentialGates") or []) or "none recorded for the federal variant") + ".",
+              "- **Credential gates (issuer verified only; CR-CP-001 C7):** " +
+              (V.gate_text(V.gate_view(d, var.get("credentialGates"))) or "none recorded for the federal variant") + ".",
               "- **Selective placement or quality-ranking factors:** none. EMST v2.0 content is never used for selection "
               "(use tiers describe and develop only).",
               "- **How the work is changing:** no v2 multi-rater assessment exists for these tasks yet (\"assessment pending\"). "

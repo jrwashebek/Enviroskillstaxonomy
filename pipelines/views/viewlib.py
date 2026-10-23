@@ -19,10 +19,32 @@ import emstlib as L  # noqa: E402
 OUT = ROOT / "docs" / "build" / "WP-08" / "generated"
 AS_OF = "2026-10-23"
 DISCLAIMER = "Not a classification basis / not a job analysis / not for RIF or rating decisions."
-EVIDENCE_NOTICE = ("All task importance, time share, critical, needed-at-entry and target-level values are agent drafts "
-                   "(raterType llm, validationStatus draft, evidence S). They are not job-analysis results and no human "
-                   "has reviewed them. Credential gates and sign-off are shown only as drafts until an E-labelled source "
-                   "is attached.")
+EVIDENCE_NOTICE = ("Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, "
+                   "validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis "
+                   "results and no human has reviewed them. Target levels are editorial design drafts. A credential gate "
+                   "is shown only when its issuer is verified with a cited source; the other gates are counted, not "
+                   "shown, until the issuer is verified (CR-CP-001 C7).")
+
+
+def gate_view(d, gates):
+    """Credential gates for display (CR-CP-001 C7; SPEC §10.5 rule 8): only gates whose Credential has
+    issuerVerified.verified = true with sources are listed; the rest are counted."""
+    shown, hidden = [], 0
+    for g in gates or []:
+        iv = ((d.get(g["credential"]) or {}).get("issuerVerified") or {})
+        if iv.get("verified") is True and iv.get("sources"):
+            shown.append({"credential": g["credential"], "label": d.label(g["credential"]), "kind": g["kind"],
+                          "issuerVerifiedSources": iv["sources"]})
+        else:
+            hidden += 1
+    return {"shown": shown, "notShownUntilIssuerVerified": hidden}
+
+
+def gate_text(gv):
+    parts = [f"{g['label']} ({g['kind']})" for g in gv["shown"]]
+    if gv["notShownUntilIssuerVerified"]:
+        parts.append(f"{gv['notShownUntilIssuerVerified']} not shown until the issuer is verified")
+    return "; ".join(parts)
 LEVEL_KEYS = ["entry", "journey", "senior", "lead", "strategic"]
 
 
