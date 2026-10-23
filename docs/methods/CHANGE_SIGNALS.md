@@ -18,7 +18,7 @@ Evidence labels follow the team standard. **[E]** means a cited source read, wit
 | `DriverEvent` | `data/v2/events/<yyyy>.jsonl` | Dated events behind each instrument; `currentStatus` is computed from them and never stored |
 | `ChangeSignal` | `data/v2/signals/2026/<source>.jsonl` | Standing demand signals (OpenLMP, OMB AI inventory, OPM-data headcount, a postings board), BLS 2025–35 projections, review-tooling deployment and capability, policy watch, FS weak signals that feed watch items, and scenario-signpost readings |
 | `WatchItem` | `data/v2/core/watch-items/seed-watch-<cand>.yaml` | DC-CAND-17, PS-C19 and FS-C16. TN-C13 stays held and is not authored (§9) |
-| `ExposureAssessment` (external index) | **staged:** `docs/methods/staging/assessments-external/` | Eloundou et al. and Microsoft "Working with AI" occupation aggregates, attached to MVP roles. Staged because the schema accepts only task-grain assessments (CR-LM-002) |
+| `ExposureAssessment` (external index) | `data/v2/assessments/external/<index>/occupation-aggregates-by-role.jsonl` | Eloundou et al. and Microsoft "Working with AI" occupation aggregates, attached to MVP roles. Occupation grain is allowed by the CR-LM-002 ruling (ADR-0029 §9); the release gate excludes the `LicenseRef-EMST-third-party-index-derived` records |
 | v1 exposure and tag values | `data/v2/assessments/emst-v1-*/` (DE, WP-02) | Referenced, not duplicated (§8) |
 | Evidence-rule CI test | `docs/methods/ci/` | Reference implementation, synthetic cases and a regression on the real seed (§4) |
 | Claims register | `docs/methods/claims_register.csv` | WP-15 seed: every date-sensitive fact the package is likely to use (§12) |
@@ -43,7 +43,7 @@ All SPEC §5.14 fields are filled. Choices worth knowing:
   - Roles are the planned MVP role keys, `mvp-role:R14-forester` (an ExternalRef to `docs/decisions/mvp_role_set.csv`). No reference dangles before WP-08 authors RoleProfile seeds; CR-LM-001 §10 covers the re-point.
   - Instruments are `seed:ins/…`. Signpost readings target `vocab:scenarios#SP-NN`, using the notations proposed in CR-LM-001 §8.
   - Agency headcount targets `vocab:sector_actors#federal`, with the agency named in the label, until an organization target exists (CR-LM-001 §4).
-- **Occupation-level series** (BLS projections, external indices) are attached to **each MVP role that lists the SOC code**, with a two-step `crosswalkPath`: native SOC, then role → SOC from `mvp_role_set.csv` until X3 exists. `crosswalkMinMatchType` is `skos:closeMatch` for single-SOC roles without a caveat and `skos:broadMatch` otherwise. Under ADR-0028 a broad match can raise a watch but never move an indicator. Occupations with index values but no MVP role are listed in `docs/methods/staging/assessments-external/unattached_occupations.txt`.
+- **Occupation-level series** (BLS projections, external indices) are attached to **each MVP role that lists the SOC code**, with a two-step `crosswalkPath`: native SOC, then role → SOC from `mvp_role_set.csv` until X3 exists. `crosswalkMinMatchType` is `skos:closeMatch` for single-SOC roles without a caveat and `skos:broadMatch` otherwise. Under ADR-0028 a broad match can raise a watch but never move an indicator. Occupations with index values but no MVP role are listed in `docs/methods/generated/unattached_occupations.txt`.
 - **Reliability A–D** (`vocab/change_types.yaml#signal_reliability`):
   - **A:** primary official data read directly, e.g. the OMB inventory, BLS, NIFC, the Federal Register.
   - **B:** credible secondary with a traceable primary basis, e.g. PPS or ICN analyses of OPM data, OpenLMP extractions, law-firm summaries of rules.
@@ -51,7 +51,7 @@ All SPEC §5.14 fields are filled. Choices worth knowing:
   - **D:** unverified.
 - **Driver tags.** Every signal declares at least one. Headcount, posting and appropriations signals are tagged `fiscal`, `policy-reform` and/or `workforce-capacity`, never `AI` unless a source attributes the change to AI. BLS projections carry `other`, because BLS does not attribute occupation projections to drivers in the sources read.
 - **Novelty, corroboration and impact** follow FS's coding (`horizon_scanning_protocol.md` §6). `priorityScore` is computed, never stored.
-- **Interim encodings.** Signal family, independence key, impact, registered deployment, signposts informed, baseline and component-weighted sensitivity are carried as `notation` entries with `EMST-` schemes. The schema does not type them yet (CR-LM-001).
+- **Typed evidence-rule fields** (CR-LM-001, ADR-0029 §8): `signalFamily`, `independenceKey`, `impact`, `registeredDeployment` (deployment family only), `scenarioSignposts`, `pointsToward`, `measure.baseline` and `measure.sensitivity`. The interim `EMST-` notation encodings used before the ruling have been migrated. Watch signals whose `independenceKey` is not yet in `vocab/change_types.yaml#independence_keys` raise `W-INDEPENDENCE-KEY-UNLISTED`; the keys to add are listed in §11.
 - **No personal data.** `personalData: false` on every signal. Only aggregates are stored: no posting text, names, contacts or person-level rows.
 - **Tribal quarantine.** Signals that characterize Tribal programmes carry `careFlag`, `tribalPrograms`, `indigenousDataFlag`, `approvalStatus: pending-tribal-review` and `sensitivity: restricted-governed`, and are excluded from release.
 
@@ -92,6 +92,39 @@ SC rows that were not re-verified in a V pass keep the SC source, say "not re-ve
 - **Reclassified:** PI-TECH-04 (PermitAI) is a set of tools, so it is L4 under T-7. It is recorded as a deployment signal and handed to DC.
 - **Not seeded:** PI-SEPA-02 is an unverified placeholder; SL/DB will supply per-state instruments.
 - **Held:** PI-TRIBE-01 and PI-TRIBE-02.
+
+### 2.5 WP-05 handoff: instruments SC needs (added 2026-10-23)
+
+SC's request (`docs/build/WP-05/instruments_to_register.csv`) is resolved row by row in `docs/methods/generated/wp05_instrument_resolution.csv`, using SC's proposed seed IDs so WP-05 links resolve unchanged.
+
+- **Verified this session, registered with dated events** [E: WP05-001…004]:
+  - EO 12898 (issued 1994-02-11; rescinded 2025-01-21 by EO 14173 §3(b));
+  - EO 14096 (2023-04-21; rescinded 2025-01-20 by EO 14148);
+  - EO 14008, Justice40 (2021-01-27; rescinded 2025-01-20);
+  - the New Jersey EJ Law and rules (rules effective 2023-04-17; Appellate Division affirmed 2026-01-05; signing day 2020-09-18 is J);
+  - New York ECL 70-0118 and the SEQR amendments (effective 2026-06-12; enactment date not verified);
+  - EO 14303 (2025-05-23).
+- **Revoking instruments also registered:** EO 14173 and EO 14148. They are the instruments to link with a *removed-requirement* role, never as a basis.
+- **Unverified rows** (base statutes, regulations and policies such as CWA 402, Title V, RCRA, APA, appropriations law and four state environmental policy acts) are registered **without events** and with provenance J. Enactments can link them, and their status stays `no-event`, so SC's venue rule reads them as neither an active nor an inactive basis until SC's quarterly refresh adds verified baseline events.
+- **Not registered:** placeholder families with no named statute (state open-meeting laws). For the state ESA and licensing families only the named examples are registered (California ESA; Wisconsin 2017 Act 111).
+- **Task sensitivity edges** (`docs/build/WP-05/generated/task_sensitivity_edges.csv`): every instrument ID in the `instruments_registered` column resolves in the registry. The `instruments_to_register` column holds instrument names, not IDs; map them with the resolution table.
+
+**Simulation** (SC's `venue_applicability.py` run on a scratch copy of `data/v2` with the new IDs linked; nothing in WP-05's lane was edited):
+
+| Case | Federal value for DB-C52 | State value for DB-C52 |
+|---|---|---|
+| EO 12898, 14096 and 14008 linked, as of 2026-10-23 | `no-current-basis` (basisLinked true) | `required-basis` (NJ and NY linked) |
+| Same links, as of 2024-06-01 | `required-basis` | — |
+| Revoking EOs 14173 and 14148 also linked | `required-basis`: the defect described in CR-SC-001 item 2 | — |
+
+**Link roles** (requires / enables / constrains / removed-requirement) **cannot be carried by the registry.** A role belongs to the link between an enactment, task or competency and an instrument, not to the instrument. The same rule can *require* one actor's work and *remove* another's. The registry supplies what the roles need:
+- one record per instrument, with the revoked and the revoking instrument kept separate;
+- dated events with a controlled `statusAfter`;
+- an event `direction` (expands / contracts / reshapes), which describes the instrument's effect on the work it governs and is not a link role.
+
+CR-SC-001 item 2 (typed `characteristicInstruments[] {instrument, role}`) is the right home, and the venue rule should count only `requires` links. The live WP-05 data already shows the defect for SL-C02 (federal): it computes `required-basis` from the linked GHG endangerment **rescission**.
+
+One registry-side addition would help: an optional `DriverEvent.actingInstrument` that names the instrument causing a rescission (EO 14173 for EO 12898). Today that is written in `editorialNote`.
 
 ## 3. Signal families and independence
 
@@ -266,7 +299,7 @@ Fetches of USAJOBS search (LM-152) and Washington State's NEOGOV board (LM-153) 
 
 **Grain.** Each record attaches an index's published occupation value to the MVP roles that list the code, never to a single EMST task (XR-06). The LM pilot found single external labels disagreed in 13 of 21 two-match cases [E: LM pilot]. Task-level joins wait for X2.
 
-**Ingested (staged):**
+**Ingested:**
 - **Eloundou et al.** Capability family: human and GPT-4 β, percentiles and the E0/E1/E2 distribution of the occupation's O*NET tasks.
 - **Microsoft "Working with AI" v6.** Observed-use family from one platform's usage: applicability and the non-physical variant [E: LM-008, LM-009, V4-02].
 
@@ -339,7 +372,8 @@ Readings target the proposed signpost notations SP-01…SP-12, assigned in the o
 ## 11. Limits
 
 - No posting baseline: USAJOBS and the state board were blocked (§5.5). No OPM FWD series pull. BLS AI-category XLSX not retrieved. AEI occupation files not ingested. Headcount relies on verified secondary analyses of OPM data.
-- External assessments are staged, not in the validated tree (CR-LM-002). Role targets are planned keys, not RoleProfile records (CR-LM-001 §10).
+- Role targets are planned keys (`mvp-role:<key>`, `W-MVP-ROLE-TARGET`, excluded from releases) until WP-08 authors RoleProfile seeds as `seed:<role_key>` (CR-IA-001 ruling). Re-key them then.
+- Unlisted independence keys (CA/LM to add to `vocab/change_types.yaml#independence_keys`): `bls-ep-2025-35`, `conservation-job-board`, `pnnl-permitai`, `trade-press-consulting`, `credential-launch`, `fs-data-discontinuity`, `fs-fiscal`, `earth-fire-alliance`, `nifc-imsr`, `agency-ai-strategy`, `mercor-listing`, `federal-register-pipeline`, `crs-appropriations`.
 - The plan-requirement series is USFS-western and cross-era. Mentions are not obligations.
 - Several SC registry rows are not re-verified (§2.4). FS weak signals were recoded only where watch items or signposts cite them; FS owns the full register.
 - Every signal, tag, direction, reliability grade and driver attribution is unreviewed agent output (`evidenceLabel: S`). No value here is SME agreement, Delphi retention or job-analysis confirmation.
@@ -365,7 +399,7 @@ Moving facts carry 2026-12-15 so they are re-checked before the rc.1 build. Sett
 python3 docs/methods/scripts/build_wp10.py          # regenerate all WP-10 records + generated counts
 python3 scripts/validate_v2.py                      # DE validator: WP-10 records report no issues
 python3 -m pytest -q docs/methods/ci/               # evidence-rule cases + seed regression
-python3 docs/methods/scripts/build_wp10.py --promote-external   # only after CR-LM-002 is accepted
+# CR-LM-002 is accepted: the builder now writes external assessments straight to data/v2/assessments/external/
 ```
 
 **Change requests:**

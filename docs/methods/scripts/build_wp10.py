@@ -4,8 +4,7 @@
 Run: python3 -I docs/methods/scripts/build_wp10.py   (from the repo root; -I is safe because imports are by path)
 Deterministic. Layout follows docs/standard/AUTHORING_GUIDE.md s2 (DE): ChangeSignal -> data/v2/signals/<yyyy>/;
 Instrument -> data/v2/instruments/; DriverEvent -> data/v2/events/<yyyy>.jsonl; WatchItem -> data/v2/core/watch-items/;
-external-index ExposureAssessments are STAGED in docs/methods/staging/ until CR-LM-002 lets the schema express their
-occupation/role grain. Counts are generated into docs/methods/generated/wp10_counts.json; no count is typed anywhere.
+external-index ExposureAssessments (occupation grain, CR-LM-002 accepted in ADR-0029 s9) -> data/v2/assessments/external/. Counts are generated into docs/methods/generated/wp10_counts.json; no count is typed anywhere.
 """
 import csv
 import json
@@ -103,7 +102,7 @@ def main():
                     continue
                 r = json.loads(line)
                 files[rel] = files.get(rel, 0) + 1
-                f_ = next((n["value"] for n in r.get("notation", []) if n["scheme"] == "EMST-signalFamily"), "unset")
+                f_ = r.get("signalFamily", "unset")
                 fam[f_] = fam.get(f_, 0) + 1
     with open(os.path.join(gen, "wp10_counts.json"), "w", encoding="utf-8") as f:
         json.dump({"generated_by": "docs/methods/scripts/build_wp10.py", "counts": dict(sorted(counts.items())),

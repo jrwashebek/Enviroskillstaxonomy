@@ -1,8 +1,8 @@
 """WP-10 external-index ExposureAssessment records at an aggregated, defensible grain.
 
 Grain: the index's native OCCUPATION value (O*NET-SOC / SOC), attached to each MVP role that lists the code (the
-provisional role -> SOC path until WP-09 delivers X3), never to a single EMST-task match (XR-06). STAGED in
-docs/methods/staging/ because schema/emst.schema.json requires task-grain ExposureAssessments (CR-LM-002).
+provisional role -> SOC path until WP-09 delivers X3), never to a single EMST-task match (XR-06). Occupation grain is
+allowed by CR-LM-002 (ADR-0029 s9); the release gate excludes LicenseRef-EMST-third-party-index-derived records.
 
 Ingested: Eloundou et al. (capability family; human and GPT-4 labels) and Microsoft 'Working with AI' applicability
 (observed-use family; Bing Copilot usage). NOT ingested here, with reasons recorded in CHANGE_SIGNALS.md:
@@ -19,7 +19,7 @@ from wp10_common import ROOT, base, provenance, write_jsonl
 SCORES = "docs/research/labor-market-ai-impact/env_occupation_exposure_scores.csv"
 ROLES = "docs/decisions/mvp_role_set.csv"
 LICENSE = "LicenseRef-EMST-third-party-index-derived"
-STAGE = "docs/methods/staging/assessments-external/"  # promoted to data/v2/assessments/external/ when CR-LM-002 is accepted
+STAGE = "data/v2/assessments/external/"  # CR-LM-002 accepted (ADR-0029 s9); was docs/methods/staging/ before the ruling
 
 
 def role_entries():
@@ -164,10 +164,10 @@ def build():
                 ms.append(rec)
     write_jsonl(STAGE + "eloundou-2024/occupation-aggregates-by-role.jsonl", elo)
     write_jsonl(STAGE + "ms-working-with-ai-v6/occupation-aggregates-by-role.jsonl", ms)
-    with open(os.path.join(ROOT, STAGE, "unattached_occupations.txt"), "w", encoding="utf-8") as f:
+    with open(os.path.join(ROOT, "docs/methods/generated/unattached_occupations.txt"), "w", encoding="utf-8") as f:
         f.write("# In-scope occupations with index values but no MVP role listing the code (generated)\n")
         for c in sorted(set(unattached)):
             f.write(c + "\n")
-    return {"ExposureAssessment_external_staged": len(elo) + len(ms),
-            "ExposureAssessment_external_staged_eloundou": len(elo), "ExposureAssessment_external_staged_ms": len(ms),
+    return {"ExposureAssessment_external": len(elo) + len(ms),
+            "ExposureAssessment_external_eloundou": len(elo), "ExposureAssessment_external_ms": len(ms),
             "occupations_unattached_no_mvp_role": len(set(unattached))}
