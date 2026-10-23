@@ -1,0 +1,28 @@
+# Wrong forms that must never appear in explorer output (WP15_SIGNOFF.md §2.3; claims_register.csv `do_not_say`).
+# tools/check-output.mjs reads this file AND every single-quoted phrase in the register's `do_not_say` column:
+#   - quoted phrases of 12+ characters are matched anywhere in visible text (case-insensitive);
+#   - shorter quoted phrases are matched only within 150 characters of two anchor words from the row's claim;
+#   - the patterns below cover wrong forms the register describes without quoting them.
+# A match fails the build. `unless_before` skips a match preceded (within 20 characters) by a negation.
+# Owner: CP (WP-12), from LM's register. Licence: CC0-1.0.
+version: 1
+patterns:
+  - {claim: AEI-02, rx: '\b77\s?%[^.]{0,80}\b(jobs?|tasks?|work)\b[^.]{0,40}automat'}
+  - {claim: AEI-02, rx: '\b77\s?%\s+directive'}
+  - {claim: NEPA-05, rx: 'SPEED Act[^.]{0,60}\b(enacted|signed into law|is (now )?law|became law)\b'}
+  - {claim: NEPA-10, rx: 'S\.\s?5653[^.]{0,60}\bSPEED Act\b|SPEED Act[^.]{0,30}\(S\.\s?5653\)'}
+  - {claim: NHPA-01, rx: '(Section 106|36 CFR part 800)[^.]{0,80}\bproposed rule (was |has been )?published\b'}
+  - {claim: UAS-01, rx: 'Part 108[^.]{0,60}\b(final rule (was |has been )?published|published (as )?a final rule)\b'}
+  - {claim: AIGOV-02, rx: 'Colorado (AI Act|SB\s?24-205)[^.]{0,40}\b(is in force|in effect|now applies|took effect)\b', unless_before: true}
+  - {claim: SEL-02, rx: 'UGESP[- ]complian(ce|t)'}
+  - {claim: BLS-03, rx: 'BLS[^.]{0,80}\b(will be automated|automation forecasts?|forecasts? automation)\b'}
+  - {claim: STD-02, rx: '\b27 languages\b'}
+  - {claim: PLAN-02, rx: 'coordination (has )?tripled'}
+  - {claim: NEPA-08, rx: '\b1\s?[–-]\s?5 hours\b|NEPATEC 3\.0'}
+  - {claim: OMB-01, rx: '\b223\s?/\s?223\b'}
+  - {claim: FOR-02, rx: '\b371,657\b'}
+  - {claim: DISC-01, rx: 'assurance (is )?not required for 2026'}
+  - {claim: WF-10, rx: 'NWCG is not a party|NWCG and USWFS'}
+  - {claim: FED-04, rx: '\b(was|were|has been|have been|is now) (realigned|consolidated)\b'}
+  - {claim: WF-05, rx: 'conservation labou?r market fell'}
+  - {claim: FED-03, rx: 'NRM fully implemented by FY2028'}
