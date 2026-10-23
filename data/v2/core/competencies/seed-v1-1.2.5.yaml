@@ -1,0 +1,211 @@
+id: seed:v1-1.2.5
+type: Competency
+prefLabel:
+  en: Erosion processes and control
+statement:
+  en: Understanding how soil gets carried away by wind or water, and techniques to prevent unwanted erosion.
+notation:
+- scheme: EMSTv1
+  value: 1.2.5
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-4.2.4
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.2'
+  label: Soil & Water Science
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:4.2.4. Rationale: v1 itself cross-references 4.2.4; merged, with stream geomorphic assessment FC-C07 added in MOD-02 as the missing diagnostic (FC verdict). Role verdicts considered: FC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.2.5
+    v1Code: 1.2.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 11
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:1.2.5
+    v1Code: 1.2.5
+    v1Table: source_text/competencies
+    sourceTextLine: 896
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Erosion processes and control
+  v1Description: Understanding how soil gets carried away by wind or water, and techniques to prevent unwanted erosion.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:1.2.5:foundational
+    knowledge: Understands erosion processes (sheet, rill, gully, streambank, wind)
+    application: Identifies erosion problems and installs basic controls
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.5:foundational:I1
+      n: 1
+      text: Recognizes different erosion types in the field
+      origin: database
+    - v1Key: v1:1.2.5:foundational:I2
+      n: 2
+      text: Identifies erosion-prone areas based on slope, soil type, vegetation
+      origin: database
+    - v1Key: v1:1.2.5:foundational:I3
+      n: 3
+      text: Installs erosion control BMPs (silt fences, straw wattles, mulch)
+      origin: database
+    - v1Key: v1:1.2.5:foundational:I4
+      n: 4
+      text: Understands factors affecting erosion (rainfall intensity, slope, soil erodibility)
+      origin: database
+    - v1Key: v1:1.2.5:foundational:I5
+      n: 5
+      text: Monitors erosion control effectiveness
+      origin: database
+    - v1Key: v1:1.2.5:foundational:I6
+      n: 6
+      text: Follows erosion control plans
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:1.2.5:intermediate
+    knowledge: Applies erosion science; understands sediment transport
+    application: Designs erosion control strategies for sites
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.5:intermediate:I1
+      n: 1
+      text: Assesses erosion rates using models (RUSLE, MUSLE, WEPP)
+      origin: database
+    - v1Key: v1:1.2.5:intermediate:I2
+      n: 2
+      text: Designs comprehensive erosion control plans
+      origin: database
+    - v1Key: v1:1.2.5:intermediate:I3
+      n: 3
+      text: Specifies appropriate erosion control techniques for site conditions
+      origin: database
+    - v1Key: v1:1.2.5:intermediate:I4
+      n: 4
+      text: Evaluates streambank erosion and designs stabilization
+      origin: database
+    - v1Key: v1:1.2.5:intermediate:I5
+      n: 5
+      text: Uses bioengineering approaches for erosion control
+      origin: database
+    - v1Key: v1:1.2.5:intermediate:I6
+      n: 6
+      text: Monitors and adapts erosion control measures
+      origin: database
+    - v1Key: v1:1.2.5:intermediate:I7
+      n: 7
+      text: Integrates erosion control with restoration and land management
+      origin: restored-from-source-text
+    - v1Key: v1:1.2.5:intermediate:I8
+      n: 8
+      text: Ensures erosion control meets regulatory requirements
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:1.2.5:advanced
+    knowledge: Expert in erosion and sediment science
+    application: Solves complex erosion problems at landscape scale
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.5:advanced:I1
+      n: 1
+      text: Designs complex erosion control for challenging sites (steep slopes, high rainfall, erodible soils)
+      origin: database
+    - v1Key: v1:1.2.5:advanced:I2
+      n: 2
+      text: Models watershed-scale sediment production and delivery
+      origin: database
+    - v1Key: v1:1.2.5:advanced:I3
+      n: 3
+      text: Evaluates geomorphic processes driving erosion
+      origin: database
+    - v1Key: v1:1.2.5:advanced:I4
+      n: 4
+      text: Designs stream channel restoration for erosion control
+      origin: database
+    - v1Key: v1:1.2.5:advanced:I5
+      n: 5
+      text: Integrates erosion control with ecosystem restoration
+      origin: database
+    - v1Key: v1:1.2.5:advanced:I6
+      n: 6
+      text: Evaluates long-term effectiveness of erosion control
+      origin: database
+    - v1Key: v1:1.2.5:advanced:I7
+      n: 7
+      text: Publishes on erosion processes and control
+      origin: restored-from-source-text
+    - v1Key: v1:1.2.5:advanced:I8
+      n: 8
+      text: Trains practitioners in erosion assessment and control
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:1.2.5:expert
+    knowledge: Shapes erosion science and management practice
+    application: Leads major erosion control or watershed sediment programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.5:expert:I1
+      n: 1
+      text: Develops innovative erosion control approaches
+      origin: database
+    - v1Key: v1:1.2.5:expert:I2
+      n: 2
+      text: Influences erosion control policy and standards
+      origin: database
+    - v1Key: v1:1.2.5:expert:I3
+      n: 3
+      text: Leads watershed-scale sediment reduction programs
+      origin: database
+    - v1Key: v1:1.2.5:expert:I4
+      n: 4
+      text: Publishes influential erosion science research
+      origin: database
+    - v1Key: v1:1.2.5:expert:I5
+      n: 5
+      text: Provides expert consultation on major erosion problems
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:1.2.5:sector:public_agencies
+    text: Road erosion control, mine reclamation, agricultural conservation programs
+  - sector: private_sector
+    v1Key: v1:1.2.5:sector:private_sector
+    text: Construction erosion control, mine reclamation, agricultural operations
+  - sector: ngos
+    v1Key: v1:1.2.5:sector:ngos
+    text: Stream restoration, erosion control education
+  - sector: consulting
+    v1Key: v1:1.2.5:sector:consulting
+    text: Erosion control design, SWPPP development, stream restoration
+  - sector: academia
+    v1Key: v1:1.2.5:sector:academia
+    text: Erosion research, geomorphology, sediment transport
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

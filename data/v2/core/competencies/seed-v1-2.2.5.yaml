@@ -1,0 +1,228 @@
+id: seed:v1-2.2.5
+type: Competency
+prefLabel:
+  en: Metadata standards and management
+statement:
+  en: Properly documenting information about the data (when, where, how it was collected) so others can understand and properly use it.
+notation:
+- scheme: EMSTv1
+  value: 2.2.5
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:DC-CAND-06
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.2'
+  label: Data Management & Analysis
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → DC-CAND-06. Rationale: Metadata documentation of fitness for use folds into data stewardship for reuse (DC-CAND-06); editors and templates to L4. Role verdicts considered: DC:change. Title and description were merged in the v1 database and are split here from the source text.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.2.5
+    v1Code: 2.2.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 51
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.2.5
+    v1Code: 2.2.5
+    v1Table: source_text/competencies
+    sourceTextLine: 3494
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Metadata standards and management Properly documenting information about the data (when, where, how it was collected) so others can understand and properly use it.
+  v1Description: ''
+  titleDescriptionSplit: true
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.2.5:foundational
+    knowledge: Understands importance of metadata
+    application: Documents data following templates
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.5:foundational:I1
+      n: 1
+      text: Completes metadata templates for datasets
+      origin: database
+    - v1Key: v1:2.2.5:foundational:I2
+      n: 2
+      text: Includes basic documentation with data files
+      origin: database
+    - v1Key: v1:2.2.5:foundational:I3
+      n: 3
+      text: Understands key metadata elements
+      origin: database
+    - v1Key: v1:2.2.5:foundational:I4
+      n: 4
+      text: Recognizes incomplete or missing metadata
+      origin: database
+    - v1Key: v1:2.2.5:foundational:I5
+      n: 5
+      text: Uses file naming conventions
+      origin: database
+    - v1Key: v1:2.2.5:foundational:I6
+      n: 6
+      text: Documents data collection methods
+      origin: database
+    - v1Key: v1:2.2.5:foundational:I7
+      n: 7
+      text: Records data lineage and processing steps
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.2.5:intermediate
+    knowledge: Applies metadata standards (ISO, FGDC, Dublin Core)
+    application: Creates comprehensive metadata
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.5:intermediate:I1
+      n: 1
+      text: Creates metadata following formal standards
+      origin: database
+    - v1Key: v1:2.2.5:intermediate:I2
+      n: 2
+      text: Uses metadata editing tools
+      origin: database
+    - v1Key: v1:2.2.5:intermediate:I3
+      n: 3
+      text: Develops metadata profiles for data types
+      origin: database
+    - v1Key: v1:2.2.5:intermediate:I4
+      n: 4
+      text: Documents complex datasets thoroughly
+      origin: database
+    - v1Key: v1:2.2.5:intermediate:I5
+      n: 5
+      text: Creates data dictionaries and codebooks
+      origin: database
+    - v1Key: v1:2.2.5:intermediate:I6
+      n: 6
+      text: Publishes metadata in catalogs
+      origin: database
+    - v1Key: v1:2.2.5:intermediate:I7
+      n: 7
+      text: Ensures metadata searchability
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.5:intermediate:I8
+      n: 8
+      text: Reviews others' metadata for completeness
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.5:intermediate:I9
+      n: 9
+      text: Links data to publications and projects
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.2.5:advanced
+    knowledge: Expert in metadata systems and information architecture
+    application: Designs metadata systems and standards
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.5:advanced:I1
+      n: 1
+      text: Develops organizational metadata standards
+      origin: database
+    - v1Key: v1:2.2.5:advanced:I2
+      n: 2
+      text: Designs metadata schemas for complex data
+      origin: database
+    - v1Key: v1:2.2.5:advanced:I3
+      n: 3
+      text: Implements metadata management systems
+      origin: database
+    - v1Key: v1:2.2.5:advanced:I4
+      n: 4
+      text: Develops automated metadata generation
+      origin: database
+    - v1Key: v1:2.2.5:advanced:I5
+      n: 5
+      text: Ensures metadata interoperability across systems
+      origin: database
+    - v1Key: v1:2.2.5:advanced:I6
+      n: 6
+      text: Integrates metadata with data catalogs and portals
+      origin: database
+    - v1Key: v1:2.2.5:advanced:I7
+      n: 7
+      text: Trains staff in metadata creation
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.5:advanced:I8
+      n: 8
+      text: Evaluates and implements metadata tools
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.5:advanced:I9
+      n: 9
+      text: Develops metadata quality metrics
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.2.5:expert
+    knowledge: Shapes metadata practices in environmental field
+    application: Provides leadership on metadata and data documentation
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.5:expert:I1
+      n: 1
+      text: Influences metadata standards development
+      origin: database
+    - v1Key: v1:2.2.5:expert:I2
+      n: 2
+      text: Leads enterprise metadata programs
+      origin: database
+    - v1Key: v1:2.2.5:expert:I3
+      n: 3
+      text: Provides expert consultation on metadata
+      origin: database
+    - v1Key: v1:2.2.5:expert:I4
+      n: 4
+      text: Publishes on metadata best practices
+      origin: database
+    - v1Key: v1:2.2.5:expert:I5
+      n: 5
+      text: Advances metadata practices in environmental sector
+      origin: database
+    - v1Key: v1:2.2.5:expert:I6
+      n: 6
+      text: Contributes to national/international metadata standards
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.2.5:sector:public_agencies
+    text: Federal metadata requirements, data catalog management
+  - sector: private_sector
+    v1Key: v1:2.2.5:sector:private_sector
+    text: Data documentation, compliance metadata
+  - sector: ngos
+    v1Key: v1:2.2.5:sector:ngos
+    text: Dataset documentation, data sharing metadata
+  - sector: consulting
+    v1Key: v1:2.2.5:sector:consulting
+    text: Project metadata, client data documentation
+  - sector: academia
+    v1Key: v1:2.2.5:sector:academia
+    text: Research data metadata, repository submissions
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

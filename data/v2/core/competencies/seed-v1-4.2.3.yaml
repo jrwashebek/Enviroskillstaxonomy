@@ -1,0 +1,239 @@
+id: seed:v1-4.2.3
+type: Competency
+prefLabel:
+  en: Prescribed burning and fire management
+statement:
+  en: Using fire as a management tool to achieve ecological objectives while ensuring safety.
+notation:
+- scheme: EMSTv1
+  value: 4.2.3
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-4.3.2
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.2'
+  label: Land Management Implementation
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:4.3.2. Rationale: Duplicates 4.3.2 at crew level (DE screen; IA gold set ranked the wrong prescribed-fire item first); one prescribed-fire competency from crew to burn boss with NWCG crosswalk (FC, IA verdicts); TN enactment notes held. Role verdicts considered: FC:change|IA:change|LC:change|TN:add.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.2.3
+    v1Code: 4.2.3
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 119
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:4.2.3
+    v1Code: 4.2.3
+    v1Table: source_text/competencies
+    sourceTextLine: 7776
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Prescribed burning and fire management
+  v1Description: Using fire as a management tool to achieve ecological objectives while ensuring safety.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.2.3:foundational
+    knowledge: Understands fire behavior basics and safety protocols
+    application: Functions as prescribed fire crew member
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.2.3:foundational:I1
+      n: 1
+      text: Completes required fire training (S-130, S-190, etc.)
+      origin: database
+    - v1Key: v1:4.2.3:foundational:I2
+      n: 2
+      text: Follows burn plan and crew boss directions
+      origin: database
+    - v1Key: v1:4.2.3:foundational:I3
+      n: 3
+      text: Uses firing devices (drip torches, fusees) safely and effectively
+      origin: database
+    - v1Key: v1:4.2.3:foundational:I4
+      n: 4
+      text: Maintains fireline during burns
+      origin: database
+    - v1Key: v1:4.2.3:foundational:I5
+      n: 5
+      text: Monitors fire behavior and communicates observations
+      origin: database
+    - v1Key: v1:4.2.3:foundational:I6
+      n: 6
+      text: Uses radio communications protocols
+      origin: database
+    - v1Key: v1:4.2.3:foundational:I7
+      n: 7
+      text: Maintains personal protective equipment and tools
+      origin: restored-from-source-text
+    - v1Key: v1:4.2.3:foundational:I8
+      n: 8
+      text: Understands role of fire in ecosystems
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.2.3:intermediate
+    knowledge: Applies fire behavior science; understands fire effects
+    application: Serves in prescribed fire leadership roles
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.2.3:intermediate:I1
+      n: 1
+      text: Holds single resource boss qualifications (RXB2, RXFT)
+      origin: database
+    - v1Key: v1:4.2.3:intermediate:I2
+      n: 2
+      text: Assists with burn plan development
+      origin: database
+    - v1Key: v1:4.2.3:intermediate:I3
+      n: 3
+      text: Predicts fire behavior under varying conditions
+      origin: database
+    - v1Key: v1:4.2.3:intermediate:I4
+      n: 4
+      text: Leads firing operations for portions of burns
+      origin: database
+    - v1Key: v1:4.2.3:intermediate:I5
+      n: 5
+      text: Monitors fuel moisture and weather for burn windows
+      origin: database
+    - v1Key: v1:4.2.3:intermediate:I6
+      n: 6
+      text: Uses hand tools and pumps for fire control
+      origin: database
+    - v1Key: v1:4.2.3:intermediate:I7
+      n: 7
+      text: Conducts test fires to assess fire behavior
+      origin: restored-from-source-text
+    - v1Key: v1:4.2.3:intermediate:I8
+      n: 8
+      text: Manages ignition patterns to achieve objectives
+      origin: restored-from-source-text
+    - v1Key: v1:4.2.3:intermediate:I9
+      n: 9
+      text: Coordinates with smoke management agencies
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.2.3:advanced
+    knowledge: Expert in prescribed fire; skilled in complex burning situations
+    application: Leads prescribed fire operations and programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.2.3:advanced:I1
+      n: 1
+      text: Holds burn boss (RXB1) and incident commander qualifications
+      origin: database
+    - v1Key: v1:4.2.3:advanced:I2
+      n: 2
+      text: Develops comprehensive burn plans
+      origin: database
+    - v1Key: v1:4.2.3:advanced:I3
+      n: 3
+      text: Conducts prescribed burns in varying conditions and complexities
+      origin: database
+    - v1Key: v1:4.2.3:advanced:I4
+      n: 4
+      text: Manages prescribed fire programs (planning, resources, compliance)
+      origin: database
+    - v1Key: v1:4.2.3:advanced:I5
+      n: 5
+      text: Uses fire modeling software for burn planning
+      origin: database
+    - v1Key: v1:4.2.3:advanced:I6
+      n: 6
+      text: Evaluates fire effects and burn success
+      origin: database
+    - v1Key: v1:4.2.3:advanced:I7
+      n: 7
+      text: Trains and mentors prescribed fire practitioners
+      origin: restored-from-source-text
+    - v1Key: v1:4.2.3:advanced:I8
+      n: 8
+      text: Conducts after-action reviews for learning
+      origin: restored-from-source-text
+    - v1Key: v1:4.2.3:advanced:I9
+      n: 9
+      text: Represents organization in prescribed fire councils or networks
+      origin: restored-from-source-text
+    - v1Key: v1:4.2.3:advanced:I10
+      n: 10
+      text: Integrates fire with other management objectives
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.2.3:expert
+    knowledge: Shapes prescribed fire practice at landscape scale
+    application: Leads transformative fire management initiatives
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.2.3:expert:I1
+      n: 1
+      text: Directs fire management programs across large landscapes
+      origin: database
+    - v1Key: v1:4.2.3:expert:I2
+      n: 2
+      text: Develops innovative prescribed fire approaches
+      origin: database
+    - v1Key: v1:4.2.3:expert:I3
+      n: 3
+      text: Influences fire policy and regulations
+      origin: database
+    - v1Key: v1:4.2.3:expert:I4
+      n: 4
+      text: Provides expert consultation on complex fire management issues
+      origin: database
+    - v1Key: v1:4.2.3:expert:I5
+      n: 5
+      text: Publishes fire ecology and management research
+      origin: database
+    - v1Key: v1:4.2.3:expert:I6
+      n: 6
+      text: Achieves recognition for fire management leadership
+      origin: database
+    - v1Key: v1:4.2.3:expert:I7
+      n: 7
+      text: Advances landscape-scale fire restoration
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.2.3:sector:public_agencies
+    text: Fire management on public lands, hazardous fuels reduction
+  - sector: private_sector
+    v1Key: v1:4.2.3:sector:private_sector
+    text: Private land burning, utility right-of-way management
+  - sector: ngos
+    v1Key: v1:4.2.3:sector:ngos
+    text: Preserve prescribed fire programs, fire advocacy
+  - sector: consulting
+    v1Key: v1:4.2.3:sector:consulting
+    text: Prescribed fire services for clients, burn planning
+  - sector: academia
+    v1Key: v1:4.2.3:sector:academia
+    text: Experimental fires, fire ecology research
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

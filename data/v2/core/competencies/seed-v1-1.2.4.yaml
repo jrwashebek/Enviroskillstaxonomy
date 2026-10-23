@@ -1,0 +1,212 @@
+id: seed:v1-1.2.4
+type: Competency
+prefLabel:
+  en: Water quality assessment
+statement:
+  en: Testing and evaluating water conditions to determine if it is suitable for wildlife, recreation, or human use.
+notation:
+- scheme: EMSTv1
+  value: 1.2.4
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-4.1.3
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.2'
+  label: Soil & Water Science
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:4.1.3. Rationale: Duplicates 4.1.3 for sampling (DE near-duplicate pair); title/description defect fixed in migration; field sampling content to FC-C16/FC-C24 tasks (FC, DB verdicts). TN requested Tribal enactment notes: drafted only under the ADR-0007 hold. Role verdicts considered: DB:carry|FC:change|IA:change|TN:add. Title and description were merged in the v1 database and are split here from the source text.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.2.4
+    v1Code: 1.2.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 10
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:1.2.4
+    v1Code: 1.2.4
+    v1Table: source_text/competencies
+    sourceTextLine: 854
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Water quality assessment Testing and evaluating water conditions to determine if it is suitable for wildlife, recreation, or human use.
+  v1Description: ''
+  titleDescriptionSplit: true
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:1.2.4:foundational
+    knowledge: Understands basic water quality parameters and standards
+    application: Collects water samples and conducts field measurements
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.4:foundational:I1
+      n: 1
+      text: Collects water samples following proper protocols
+      origin: database
+    - v1Key: v1:1.2.4:foundational:I2
+      n: 2
+      text: Measures field parameters (temperature, pH, dissolved oxygen, conductivity)
+      origin: database
+    - v1Key: v1:1.2.4:foundational:I3
+      n: 3
+      text: Maintains chain of custody for samples
+      origin: database
+    - v1Key: v1:1.2.4:foundational:I4
+      n: 4
+      text: Uses water quality testing equipment properly
+      origin: database
+    - v1Key: v1:1.2.4:foundational:I5
+      n: 5
+      text: Interprets basic water quality standards
+      origin: database
+    - v1Key: v1:1.2.4:foundational:I6
+      n: 6
+      text: Recognizes obvious pollution sources
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:1.2.4:intermediate
+    knowledge: Applies water quality science; understands pollutant fate and transport
+    application: Designs monitoring programs and interprets complex results
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.4:intermediate:I1
+      n: 1
+      text: Designs water quality monitoring programs
+      origin: database
+    - v1Key: v1:1.2.4:intermediate:I2
+      n: 2
+      text: Conducts comprehensive water quality assessments
+      origin: database
+    - v1Key: v1:1.2.4:intermediate:I3
+      n: 3
+      text: Analyzes trends in water quality data
+      origin: database
+    - v1Key: v1:1.2.4:intermediate:I4
+      n: 4
+      text: Identifies pollution sources using multiple lines of evidence
+      origin: database
+    - v1Key: v1:1.2.4:intermediate:I5
+      n: 5
+      text: Interprets water quality standards and criteria
+      origin: database
+    - v1Key: v1:1.2.4:intermediate:I6
+      n: 6
+      text: Evaluates biological indicators of water quality
+      origin: database
+    - v1Key: v1:1.2.4:intermediate:I7
+      n: 7
+      text: Develops water quality improvement recommendations
+      origin: restored-from-source-text
+    - v1Key: v1:1.2.4:intermediate:I8
+      n: 8
+      text: Prepares water quality reports for regulatory compliance
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:1.2.4:advanced
+    knowledge: Expert in water quality science; understands aquatic ecosystems
+    application: Leads water quality programs and develops solutions
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.4:advanced:I1
+      n: 1
+      text: Develops watershed-scale water quality programs
+      origin: database
+    - v1Key: v1:1.2.4:advanced:I2
+      n: 2
+      text: Models pollutant loading and transport
+      origin: database
+    - v1Key: v1:1.2.4:advanced:I3
+      n: 3
+      text: Evaluates emerging contaminants (pharmaceuticals, PFAS, microplastics)
+      origin: database
+    - v1Key: v1:1.2.4:advanced:I4
+      n: 4
+      text: Designs and evaluates water quality improvement projects
+      origin: database
+    - v1Key: v1:1.2.4:advanced:I5
+      n: 5
+      text: Develops TMDLs (Total Maximum Daily Loads)
+      origin: database
+    - v1Key: v1:1.2.4:advanced:I6
+      n: 6
+      text: Integrates water quality with ecological and human health risk assessment
+      origin: database
+    - v1Key: v1:1.2.4:advanced:I7
+      n: 7
+      text: Publishes water quality research
+      origin: restored-from-source-text
+    - v1Key: v1:1.2.4:advanced:I8
+      n: 8
+      text: Provides expert technical guidance on complex water quality issues
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:1.2.4:expert
+    knowledge: Shapes water quality science and policy
+    application: Leads transformative water quality initiatives
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.4:expert:I1
+      n: 1
+      text: Influences water quality standards and policy
+      origin: database
+    - v1Key: v1:1.2.4:expert:I2
+      n: 2
+      text: Develops innovative water quality assessment methods
+      origin: database
+    - v1Key: v1:1.2.4:expert:I3
+      n: 3
+      text: Leads major water quality research or management programs
+      origin: database
+    - v1Key: v1:1.2.4:expert:I4
+      n: 4
+      text: Publishes influential water quality research
+      origin: database
+    - v1Key: v1:1.2.4:expert:I5
+      n: 5
+      text: Provides expert testimony on water quality issues
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:1.2.4:sector:public_agencies
+    text: Water quality monitoring, NPDES permitting, impaired waters programs
+  - sector: private_sector
+    v1Key: v1:1.2.4:sector:private_sector
+    text: Industrial discharge monitoring, water treatment, compliance
+  - sector: ngos
+    v1Key: v1:1.2.4:sector:ngos
+    text: Water quality advocacy, stream monitoring programs
+  - sector: consulting
+    v1Key: v1:1.2.4:sector:consulting
+    text: Water quality assessments, NPDES compliance, remediation design
+  - sector: academia
+    v1Key: v1:1.2.4:sector:academia
+    text: Water quality research, aquatic chemistry, limnology
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

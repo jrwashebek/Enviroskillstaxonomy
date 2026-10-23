@@ -1,0 +1,234 @@
+id: seed:v1-2.2.2
+type: Competency
+prefLabel:
+  en: Statistical analysis and interpretation
+statement:
+  en: Using mathematical techniques to find patterns, test relationships, and draw conclusions from collected data.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 2.2.2
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.2'
+  label: Data Management & Analysis
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-ASSESS (DC). Rationale: Durable share high; absorbs 2.4.5 time-series analysis as a specialization (DC disposition). Role verdicts considered: DC:carry.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.2.2
+    v1Code: 2.2.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 48
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.2.2
+    v1Code: 2.2.2
+    v1Table: source_text/competencies
+    sourceTextLine: 3350
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:2.4.5
+    v1Code: 2.4.5
+    relation: merged-from
+    note: v1 2.4.5 (merge) → seed:v1-2.2.2 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Statistical analysis and interpretation
+  v1Description: Using mathematical techniques to find patterns, test relationships, and draw conclusions from collected data.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.2.2:foundational
+    knowledge: Understands basic statistics (mean, variance, correlation, hypothesis testing)
+    application: Conducts basic statistical analyses
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.2:foundational:I1
+      n: 1
+      text: Calculates descriptive statistics
+      origin: database
+    - v1Key: v1:2.2.2:foundational:I2
+      n: 2
+      text: Creates appropriate graphs and charts
+      origin: database
+    - v1Key: v1:2.2.2:foundational:I3
+      n: 3
+      text: Conducts t-tests and simple ANOVA
+      origin: database
+    - v1Key: v1:2.2.2:foundational:I4
+      n: 4
+      text: Understands p-values and confidence intervals
+      origin: database
+    - v1Key: v1:2.2.2:foundational:I5
+      n: 5
+      text: Uses statistical software (Excel, basic R or SPSS)
+      origin: database
+    - v1Key: v1:2.2.2:foundational:I6
+      n: 6
+      text: Recognizes when statistical help is needed
+      origin: database
+    - v1Key: v1:2.2.2:foundational:I7
+      n: 7
+      text: Interprets statistical outputs appropriately
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.2.2:intermediate
+    knowledge: Applies diverse statistical methods appropriately
+    application: Designs and conducts statistical analyses
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.2:intermediate:I1
+      n: 1
+      text: Uses regression analysis (linear, multiple, logistic)
+      origin: database
+    - v1Key: v1:2.2.2:intermediate:I2
+      n: 2
+      text: Conducts multivariate analyses (PCA, cluster analysis)
+      origin: database
+    - v1Key: v1:2.2.2:intermediate:I3
+      n: 3
+      text: Applies appropriate statistical tests for data types
+      origin: database
+    - v1Key: v1:2.2.2:intermediate:I4
+      n: 4
+      text: Checks statistical assumptions and uses transformations
+      origin: database
+    - v1Key: v1:2.2.2:intermediate:I5
+      n: 5
+      text: Analyzes time series and spatial data
+      origin: database
+    - v1Key: v1:2.2.2:intermediate:I6
+      n: 6
+      text: Uses R or Python for statistical analysis
+      origin: database
+    - v1Key: v1:2.2.2:intermediate:I7
+      n: 7
+      text: Creates publication-quality visualizations
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.2:intermediate:I8
+      n: 8
+      text: Interprets results and communicates uncertainty
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.2:intermediate:I9
+      n: 9
+      text: Designs statistically valid sampling schemes
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.2.2:advanced
+    knowledge: Expert in advanced statistical methods and modeling
+    application: Leads complex statistical analyses and modeling projects
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.2:advanced:I1
+      n: 1
+      text: Uses generalized linear models (GLM, GLMM)
+      origin: database
+    - v1Key: v1:2.2.2:advanced:I2
+      n: 2
+      text: Conducts Bayesian statistical analyses
+      origin: database
+    - v1Key: v1:2.2.2:advanced:I3
+      n: 3
+      text: Applies machine learning algorithms
+      origin: database
+    - v1Key: v1:2.2.2:advanced:I4
+      n: 4
+      text: Develops custom statistical models
+      origin: database
+    - v1Key: v1:2.2.2:advanced:I5
+      n: 5
+      text: Uses hierarchical and mixed effects models
+      origin: database
+    - v1Key: v1:2.2.2:advanced:I6
+      n: 6
+      text: Conducts power analysis and sample size determination
+      origin: database
+    - v1Key: v1:2.2.2:advanced:I7
+      n: 7
+      text: Performs meta-analysis
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.2:advanced:I8
+      n: 8
+      text: Publishes statistical methods research
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.2:advanced:I9
+      n: 9
+      text: Trains practitioners in statistical methods
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.2:advanced:I10
+      n: 10
+      text: Provides statistical consulting
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.2.2:expert
+    knowledge: Shapes statistical practice in environmental field
+    application: Provides statistical leadership and innovation
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.2:expert:I1
+      n: 1
+      text: Develops innovative statistical approaches
+      origin: database
+    - v1Key: v1:2.2.2:expert:I2
+      n: 2
+      text: Influences statistical standards and methods
+      origin: database
+    - v1Key: v1:2.2.2:expert:I3
+      n: 3
+      text: Leads major statistical programs
+      origin: database
+    - v1Key: v1:2.2.2:expert:I4
+      n: 4
+      text: Publishes influential statistical research
+      origin: database
+    - v1Key: v1:2.2.2:expert:I5
+      n: 5
+      text: Provides expert statistical consultation
+      origin: database
+    - v1Key: v1:2.2.2:expert:I6
+      n: 6
+      text: Advances statistical practice in environmental science
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.2.2:sector:public_agencies
+    text: Monitoring program analysis, population assessments, effectiveness evaluation
+  - sector: private_sector
+    v1Key: v1:2.2.2:sector:private_sector
+    text: Quality assurance, impact assessment, research analysis
+  - sector: ngos
+    v1Key: v1:2.2.2:sector:ngos
+    text: Program evaluation, research analysis, conservation effectiveness
+  - sector: consulting
+    v1Key: v1:2.2.2:sector:consulting
+    text: Statistical analysis services, study design
+  - sector: academia
+    v1Key: v1:2.2.2:sector:academia
+    text: Research statistics, experimental design, biostatistics
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

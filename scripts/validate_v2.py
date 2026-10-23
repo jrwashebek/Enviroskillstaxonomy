@@ -432,7 +432,7 @@ class Validator:
     def check_personal(self, loc, rec):
         rid = rec.get("id")
         for path, k, _v in L.walk(rec):
-            if k in self.pd_keys and not (path and path[-1] in ("v1Values",)):
+            if k in self.pd_keys and not (path and path[-1] in ("measure", "hypothesizedEntity")):
                 self.r.add("E-PERSONAL-DATA", loc, f"person-level field {'/'.join(map(str, path + (k,)))} (ADR-0012 I-1)", rid)
         for path, s in L.iter_strings(rec):
             self._personal_text(loc, s, rid, "/".join(map(str, path)))

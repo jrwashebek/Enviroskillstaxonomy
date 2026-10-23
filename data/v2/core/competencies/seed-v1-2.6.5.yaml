@@ -1,0 +1,231 @@
+id: seed:v1-2.6.5
+type: Competency
+prefLabel:
+  en: AI model interpretation and explainability
+statement:
+  en: Understanding and communicating how AI models make decisions, ensuring transparency and trust in AI-assisted environmental management.
+notation:
+- scheme: EMSTv1
+  value: 2.6.5
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:DC-CAND-09
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.6'
+  label: Ai-Enhanced Environmental Monitoring
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → DC-CAND-09. Rationale: Interpretability methods and limits fold into model fitness-for-purpose (DC-CAND-09), with model-risk content in DC-CAND-19 (DC disposition). Role verdicts considered: DC:change|DC:needs-evidence.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.6.5
+    v1Code: 2.6.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 71
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.6.5
+    v1Code: 2.6.5
+    v1Table: source_text/competencies
+    sourceTextLine: 4455
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: AI model interpretation and explainability
+  v1Description: Understanding and communicating how AI models make decisions, ensuring transparency and trust in AI-assisted environmental management.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.6.5:foundational
+    knowledge: Understands importance of model interpretability
+    application: Interprets simple model outputs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.5:foundational:I1
+      n: 1
+      text: Explains what a model predicts
+      origin: database
+    - v1Key: v1:2.6.5:foundational:I2
+      n: 2
+      text: Identifies key input variables
+      origin: database
+    - v1Key: v1:2.6.5:foundational:I3
+      n: 3
+      text: Understands model limitations
+      origin: database
+    - v1Key: v1:2.6.5:foundational:I4
+      n: 4
+      text: Recognizes when models are "black boxes"
+      origin: database
+    - v1Key: v1:2.6.5:foundational:I5
+      n: 5
+      text: Communicates model outputs clearly
+      origin: database
+    - v1Key: v1:2.6.5:foundational:I6
+      n: 6
+      text: Questions unexpected predictions
+      origin: database
+    - v1Key: v1:2.6.5:foundational:I7
+      n: 7
+      text: Documents model assumptions
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.6.5:intermediate
+    knowledge: Applies interpretability methods
+    application: Analyzes and explains model behavior
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.5:intermediate:I1
+      n: 1
+      text: Uses feature importance methods
+      origin: database
+    - v1Key: v1:2.6.5:intermediate:I2
+      n: 2
+      text: Creates partial dependence plots
+      origin: database
+    - v1Key: v1:2.6.5:intermediate:I3
+      n: 3
+      text: Implements SHAP values for interpretation
+      origin: database
+    - v1Key: v1:2.6.5:intermediate:I4
+      n: 4
+      text: Uses LIME for local explanations
+      origin: database
+    - v1Key: v1:2.6.5:intermediate:I5
+      n: 5
+      text: Visualizes model decisions
+      origin: database
+    - v1Key: v1:2.6.5:intermediate:I6
+      n: 6
+      text: Identifies when models use spurious correlations
+      origin: database
+    - v1Key: v1:2.6.5:intermediate:I7
+      n: 7
+      text: Communicates model reasoning to non-technical audiences
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.5:intermediate:I8
+      n: 8
+      text: Documents model interpretability
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.5:intermediate:I9
+      n: 9
+      text: Evaluates trade-offs between accuracy and interpretability
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.6.5:advanced
+    knowledge: Expert in explainable AI and model transparency
+    application: Ensures AI transparency in systems
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.5:advanced:I1
+      n: 1
+      text: Implements comprehensive model interpretation frameworks
+      origin: database
+    - v1Key: v1:2.6.5:advanced:I2
+      n: 2
+      text: Uses attention mechanisms and saliency maps
+      origin: database
+    - v1Key: v1:2.6.5:advanced:I3
+      n: 3
+      text: Develops model cards documenting AI systems
+      origin: database
+    - v1Key: v1:2.6.5:advanced:I4
+      n: 4
+      text: Ensures AI fairness and bias detection
+      origin: database
+    - v1Key: v1:2.6.5:advanced:I5
+      n: 5
+      text: Uses counterfactual explanations
+      origin: database
+    - v1Key: v1:2.6.5:advanced:I6
+      n: 6
+      text: Balances model performance with interpretability
+      origin: database
+    - v1Key: v1:2.6.5:advanced:I7
+      n: 7
+      text: Develops interpretability tools and visualizations
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.5:advanced:I8
+      n: 8
+      text: Publishes on explainable AI
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.5:advanced:I9
+      n: 9
+      text: Trains practitioners in model interpretation
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.5:advanced:I10
+      n: 10
+      text: Addresses ethical implications of AI decisions
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.6.5:expert
+    knowledge: Shapes explainable AI practice
+    application: Provides leadership on AI transparency
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.5:expert:I1
+      n: 1
+      text: Develops innovative interpretability approaches
+      origin: database
+    - v1Key: v1:2.6.5:expert:I2
+      n: 2
+      text: Influences AI transparency standards
+      origin: database
+    - v1Key: v1:2.6.5:expert:I3
+      n: 3
+      text: Leads responsible AI initiatives
+      origin: database
+    - v1Key: v1:2.6.5:expert:I4
+      n: 4
+      text: Publishes influential explainable AI research
+      origin: database
+    - v1Key: v1:2.6.5:expert:I5
+      n: 5
+      text: Provides expert consultation on AI ethics
+      origin: database
+    - v1Key: v1:2.6.5:expert:I6
+      n: 6
+      text: Advances responsible AI in environmental applications
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.6.5:sector:public_agencies
+    text: Transparent AI for regulatory decisions, accountable automation
+  - sector: private_sector
+    v1Key: v1:2.6.5:sector:private_sector
+    text: Explainable AI for business decisions, audit trails
+  - sector: ngos
+    v1Key: v1:2.6.5:sector:ngos
+    text: Transparent AI for conservation prioritization
+  - sector: consulting
+    v1Key: v1:2.6.5:sector:consulting
+    text: Interpretable models for clients, explanation services
+  - sector: academia
+    v1Key: v1:2.6.5:sector:academia
+    text: Explainable AI research, AI ethics
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

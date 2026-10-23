@@ -1,0 +1,230 @@
+id: seed:v1-6.3.1
+type: Competency
+prefLabel:
+  en: Natural resource valuation
+statement:
+  en: Determining the economic value of natural resources, including both market values (like timber) and non-market values (like scenic beauty or clean air).
+competencyType: knowledge-area
+notation:
+- scheme: EMSTv1
+  value: 6.3.1
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.3'
+  label: Resource Economics
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | knowledge-area (Environmental and natural resource economics). Rationale: Valuation becomes a knowledge area underpinning 6.3.2, 6.3.4 and 6.4.3. Role verdicts considered: none recorded.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:6.3.1
+    v1Code: 6.3.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 187
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:6.3.1
+    v1Code: 6.3.1
+    v1Table: source_text/competencies
+    sourceTextLine: 13338
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Natural resource valuation
+  v1Description: Determining the economic value of natural resources, including both market values (like timber) and non-market values (like scenic beauty or clean air).
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:6.3.1:foundational
+    knowledge: Understands economic valuation concepts and why resources have value beyond markets
+    application: Assists with data collection for valuation studies
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.3.1:foundational:I1
+      n: 1
+      text: Explains difference between market and non-market values
+      origin: database
+    - v1Key: v1:6.3.1:foundational:I2
+      n: 2
+      text: Describes valuation methods (travel cost, hedonic pricing, contingent valuation)
+      origin: database
+    - v1Key: v1:6.3.1:foundational:I3
+      n: 3
+      text: Collects data for valuation studies (visitor surveys, market prices)
+      origin: database
+    - v1Key: v1:6.3.1:foundational:I4
+      n: 4
+      text: Understands concept of total economic value (use and non-use values)
+      origin: database
+    - v1Key: v1:6.3.1:foundational:I5
+      n: 5
+      text: Compiles economic data from secondary sources
+      origin: database
+    - v1Key: v1:6.3.1:foundational:I6
+      n: 6
+      text: Assists with survey administration
+      origin: database
+    - v1Key: v1:6.3.1:foundational:I7
+      n: 7
+      text: Recognizes importance of valuation for decision-making
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:6.3.1:intermediate
+    knowledge: Applies economic valuation methods appropriately
+    application: Conducts valuation studies independently
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.3.1:intermediate:I1
+      n: 1
+      text: Conducts stated preference studies (contingent valuation, choice experiments)
+      origin: database
+    - v1Key: v1:6.3.1:intermediate:I2
+      n: 2
+      text: Applies revealed preference methods (travel cost, hedonic pricing)
+      origin: database
+    - v1Key: v1:6.3.1:intermediate:I3
+      n: 3
+      text: Uses benefit transfer to estimate values for unstudied sites
+      origin: database
+    - v1Key: v1:6.3.1:intermediate:I4
+      n: 4
+      text: Designs and implements valuation surveys
+      origin: database
+    - v1Key: v1:6.3.1:intermediate:I5
+      n: 5
+      text: Analyzes valuation data using statistical software
+      origin: database
+    - v1Key: v1:6.3.1:intermediate:I6
+      n: 6
+      text: Interprets valuation results and limitations
+      origin: database
+    - v1Key: v1:6.3.1:intermediate:I7
+      n: 7
+      text: Presents valuation findings to non-economists
+      origin: restored-from-source-text
+    - v1Key: v1:6.3.1:intermediate:I8
+      n: 8
+      text: Applies valuation to cost-benefit analysis
+      origin: restored-from-source-text
+    - v1Key: v1:6.3.1:intermediate:I9
+      n: 9
+      text: Addresses equity considerations in valuation
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:6.3.1:advanced
+    knowledge: Expert in valuation theory and advanced methods
+    application: Leads complex valuation projects and develops methodology
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.3.1:advanced:I1
+      n: 1
+      text: Conducts sophisticated valuation studies using advanced methods
+      origin: database
+    - v1Key: v1:6.3.1:advanced:I2
+      n: 2
+      text: Develops site-specific valuation functions
+      origin: database
+    - v1Key: v1:6.3.1:advanced:I3
+      n: 3
+      text: Addresses methodological challenges (strategic bias, embedding effects)
+      origin: database
+    - v1Key: v1:6.3.1:advanced:I4
+      n: 4
+      text: Evaluates quality and transferability of existing valuation studies
+      origin: database
+    - v1Key: v1:6.3.1:advanced:I5
+      n: 5
+      text: Integrates multiple valuation methods for robustness
+      origin: database
+    - v1Key: v1:6.3.1:advanced:I6
+      n: 6
+      text: Publishes valuation research in peer-reviewed journals
+      origin: database
+    - v1Key: v1:6.3.1:advanced:I7
+      n: 7
+      text: Provides expert testimony on economic values
+      origin: restored-from-source-text
+    - v1Key: v1:6.3.1:advanced:I8
+      n: 8
+      text: Trains practitioners in valuation methods
+      origin: restored-from-source-text
+    - v1Key: v1:6.3.1:advanced:I9
+      n: 9
+      text: Develops valuation guidance and protocols
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:6.3.1:expert
+    knowledge: Shapes valuation science and policy applications
+    application: Influences how valuation informs policy and decisions
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.3.1:expert:I1
+      n: 1
+      text: Develops innovative valuation approaches
+      origin: database
+    - v1Key: v1:6.3.1:expert:I2
+      n: 2
+      text: Influences valuation policy and guidance (e.g., EPA, OMB)
+      origin: database
+    - v1Key: v1:6.3.1:expert:I3
+      n: 3
+      text: Publishes influential valuation research
+      origin: database
+    - v1Key: v1:6.3.1:expert:I4
+      n: 4
+      text: Provides expert consultation on major valuation questions
+      origin: database
+    - v1Key: v1:6.3.1:expert:I5
+      n: 5
+      text: Recognized authority in natural resource valuation
+      origin: database
+    - v1Key: v1:6.3.1:expert:I6
+      n: 6
+      text: Advances valuation methodology
+      origin: database
+    - v1Key: v1:6.3.1:expert:I7
+      n: 7
+      text: Leads major valuation research programs
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:6.3.1:sector:public_agencies
+    text: Cost-benefit analysis, damage assessment, resource pricing
+  - sector: private_sector
+    v1Key: v1:6.3.1:sector:private_sector
+    text: Natural capital accounting, resource asset valuation
+  - sector: ngos
+    v1Key: v1:6.3.1:sector:ngos
+    text: Conservation prioritization, advocacy based on values
+  - sector: consulting
+    v1Key: v1:6.3.1:sector:consulting
+    text: Valuation studies, economic analysis, litigation support
+  - sector: academia
+    v1Key: v1:6.3.1:sector:academia
+    text: Valuation research, methodology development, teaching
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

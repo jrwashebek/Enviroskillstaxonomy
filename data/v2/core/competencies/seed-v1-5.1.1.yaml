@@ -1,0 +1,178 @@
+id: seed:v1-5.1.1
+type: Competency
+prefLabel:
+  en: Written communication for diverse audiences
+statement:
+  en: Creating clear written materials that effectively reach different groups, from technical reports for professionals to simple explanations for general audiences.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 5.1.1
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '5'
+  label: Communication & Engagement Skills
+v1SkillArea:
+  code: '5.1'
+  label: Public Communication
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | MODE-ENGAGE. Rationale: Rewritten as communicating technical environmental information in writing and speech to specialist and public audiences; absorbs 5.1.2 and 5.1.5; D5 indicators restored from source text (misparsed in the database, LC verdict); crosswalk to OPM Writing and Oral Communication instead of parallel definitions (FH verdict; X9). Role verdicts considered: FH:change|LC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:5.1.1
+    v1Code: 5.1.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 147
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:5.1.1
+    v1Code: 5.1.1
+    v1Table: source_text/competencies
+    sourceTextLine: 9983
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:5.1.2
+    v1Code: 5.1.2
+    relation: merged-from
+    note: v1 5.1.2 (merge) → seed:v1-5.1.1 per v1_disposition.csv
+  - v1Key: v1:5.1.5
+    v1Code: 5.1.5
+    relation: merged-from
+    note: v1 5.1.5 (merge) → seed:v1-5.1.1 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Written communication for diverse audiences
+  v1Description: Creating clear written materials that effectively reach different groups, from technical reports for professionals to simple explanations for general audiences.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:5.1.1:foundational
+    knowledge: Understands basic principles of plain language and audience awareness
+    application: Creates simple documents with supervision; identifies target audience
+    knowledgeApplicationOrigin: restored-from-source-text
+    indicators:
+    - v1Key: v1:5.1.1:foundational:I1
+      n: 1
+      text: Writes clear sentences with appropriate reading level for general audiences
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:foundational:I2
+      n: 2
+      text: Uses templates effectively with guidance
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:foundational:I3
+      n: 3
+      text: Incorporates feedback to revise drafts
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:foundational:I4
+      n: 4
+      text: Identifies when technical jargon needs explanation
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:5.1.1:intermediate
+    knowledge: Applies audience analysis frameworks; understands literacy levels and accessibility standards
+    application: Independently creates diverse written products; adapts tone and format
+    knowledgeApplicationOrigin: restored-from-source-text
+    indicators:
+    - v1Key: v1:5.1.1:intermediate:I1
+      n: 1
+      text: Produces publication-ready content with minimal revision
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:intermediate:I2
+      n: 2
+      text: Adapts complex technical information for multiple audiences without losing accuracy
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:intermediate:I3
+      n: 3
+      text: Designs documents following accessibility guidelines (readability, visual hierarchy)
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:intermediate:I4
+      n: 4
+      text: Conducts basic audience analysis to inform writing approach
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:5.1.1:advanced
+    knowledge: Expert in strategic communication; understands cultural and linguistic nuances
+    application: Leads writing projects; mentors others; ensures organizational consistency
+    knowledgeApplicationOrigin: restored-from-source-text
+    indicators:
+    - v1Key: v1:5.1.1:advanced:I1
+      n: 1
+      text: Translates highly complex or controversial topics for diverse stakeholders
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:advanced:I2
+      n: 2
+      text: Develops style guides and writing standards for teams
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:advanced:I3
+      n: 3
+      text: Crafts narratives that connect emotionally while maintaining scientific credibility
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:advanced:I4
+      n: 4
+      text: Evaluates and improves others' written products
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:advanced:I5
+      n: 5
+      text: Navigates sensitive topics with appropriate framing
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:5.1.1:expert
+    knowledge: Shapes organizational voice; influences field-wide communication practices
+    application: Sets communication strategy; represents organization in high-stakes situations
+    knowledgeApplicationOrigin: restored-from-source-text
+    indicators:
+    - v1Key: v1:5.1.1:expert:I1
+      n: 1
+      text: Develops innovative communication approaches that become models for the field
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:expert:I2
+      n: 2
+      text: Writes for national audiences, congressional testimony, or major media
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:expert:I3
+      n: 3
+      text: Advises leadership on communication strategy during crises or controversies
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.1:expert:I4
+      n: 4
+      text: Publishes on communication best practices
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:5.1.1:sector:public_agencies
+    text: NEPA documents, resource management plans, visitor guides, public notices
+  - sector: private_sector
+    v1Key: v1:5.1.1:sector:private_sector
+    text: Sustainability reports, ESG disclosures, community newsletters, impact assessments
+  - sector: ngos
+    v1Key: v1:5.1.1:sector:ngos
+    text: Annual reports, donor communications, advocacy materials, campaign messaging
+  - sector: consulting
+    v1Key: v1:5.1.1:sector:consulting
+    text: Technical memoranda, permit applications, public involvement summaries
+  - sector: academia
+    v1Key: v1:5.1.1:sector:academia
+    text: Extension publications, policy briefs, research summaries for public audiences
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

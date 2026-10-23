@@ -1,0 +1,49 @@
+id: seed:v1-3.3.4-T3
+type: Task
+prefLabel:
+  en: Work with finance and contracting staff to ensure compliance with procurement policies
+statement:
+  en: Work with finance and contracting staff to ensure compliance with procurement policies
+textSha256: 52aa0581244df6605c5d00cf369636c992e5b471ef0141fecfae1abaed294303
+supports:
+- competency: seed:v1-3.1.4
+  strength: primary
+notation:
+- scheme: EMSTv1
+  value: 3.3.4:T3
+layer: L2
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Tier: T3
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.3'
+  label: Resource Administration
+editorialNote:
+  en: Supports re-pointed from v1 competency 3.3.4 to seed:v1-3.1.4 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:3.3.4:T3
+    v1Code: 3.3.4
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 90
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011

@@ -1,0 +1,210 @@
+id: seed:v1-1.5.2
+type: Competency
+prefLabel:
+  en: Climate vulnerability assessment
+statement:
+  en: Systematically evaluating how climate change threatens species, ecosystems, infrastructure, and communities to prioritize adaptation actions.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 1.5.2
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.5'
+  label: Climate Science
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-ASSESS. Rationale: Vulnerability assessment recurs across water, forest, wildlife, hazards and infrastructure (G-4). Role verdicts considered: none recorded.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.5.2
+    v1Code: 1.5.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 23
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:1.5.2
+    v1Code: 1.5.2
+    v1Table: source_text/competencies
+    sourceTextLine: 1455
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Climate vulnerability assessment
+  v1Description: Systematically evaluating how climate change threatens species, ecosystems, infrastructure, and communities to prioritize adaptation actions.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:1.5.2:foundational
+    knowledge: Understands vulnerability framework concepts (exposure, sensitivity, adaptive capacity)
+    application: Assists with vulnerability assessments using established protocols
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.5.2:foundational:I1
+      n: 1
+      text: Explains the three components of vulnerability
+      origin: database
+    - v1Key: v1:1.5.2:foundational:I2
+      n: 2
+      text: Gathers information on species or ecosystem climate sensitivities
+      origin: database
+    - v1Key: v1:1.5.2:foundational:I3
+      n: 3
+      text: Assists with expert elicitation or scoring exercises
+      origin: database
+    - v1Key: v1:1.5.2:foundational:I4
+      n: 4
+      text: Documents vulnerability assessment findings
+      origin: database
+    - v1Key: v1:1.5.2:foundational:I5
+      n: 5
+      text: Understands how vulnerability informs adaptation planning
+      origin: database
+    - v1Key: v1:1.5.2:foundational:I6
+      n: 6
+      text: Recognizes different vulnerability assessment approaches
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:1.5.2:intermediate
+    knowledge: Applies vulnerability assessment frameworks; understands ecological climate sensitivities
+    application: Conducts vulnerability assessments for species, ecosystems, or areas
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.5.2:intermediate:I1
+      n: 1
+      text: Leads vulnerability assessments using standard frameworks (e.g., NatureServe CCVI, System for Assessing Vulnerability of Species)
+      origin: database
+    - v1Key: v1:1.5.2:intermediate:I2
+      n: 2
+      text: Identifies appropriate spatial and temporal scales for assessment
+      origin: database
+    - v1Key: v1:1.5.2:intermediate:I3
+      n: 3
+      text: Synthesizes literature on climate sensitivities
+      origin: database
+    - v1Key: v1:1.5.2:intermediate:I4
+      n: 4
+      text: Facilitates expert input on sensitivity and adaptive capacity
+      origin: database
+    - v1Key: v1:1.5.2:intermediate:I5
+      n: 5
+      text: Integrates exposure projections with sensitivity analysis
+      origin: database
+    - v1Key: v1:1.5.2:intermediate:I6
+      n: 6
+      text: Prioritizes species or areas by vulnerability
+      origin: database
+    - v1Key: v1:1.5.2:intermediate:I7
+      n: 7
+      text: Communicates vulnerability findings to managers
+      origin: restored-from-source-text
+    - v1Key: v1:1.5.2:intermediate:I8
+      n: 8
+      text: Connects vulnerability to management options
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:1.5.2:advanced
+    knowledge: Expert in vulnerability science; understands multiple frameworks and their applications
+    application: Designs and leads comprehensive vulnerability assessments
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.5.2:advanced:I1
+      n: 1
+      text: Designs vulnerability assessments for complex multi-resource situations
+      origin: database
+    - v1Key: v1:1.5.2:advanced:I2
+      n: 2
+      text: Adapts frameworks to specific contexts and management needs
+      origin: database
+    - v1Key: v1:1.5.2:advanced:I3
+      n: 3
+      text: Conducts landscape-scale vulnerability assessments
+      origin: database
+    - v1Key: v1:1.5.2:advanced:I4
+      n: 4
+      text: Integrates socioeconomic and ecological vulnerability
+      origin: database
+    - v1Key: v1:1.5.2:advanced:I5
+      n: 5
+      text: Addresses uncertainty in vulnerability ratings
+      origin: database
+    - v1Key: v1:1.5.2:advanced:I6
+      n: 6
+      text: Develops agency vulnerability assessment protocols
+      origin: database
+    - v1Key: v1:1.5.2:advanced:I7
+      n: 7
+      text: Trains staff in vulnerability assessment methods
+      origin: restored-from-source-text
+    - v1Key: v1:1.5.2:advanced:I8
+      n: 8
+      text: Publishes vulnerability assessment research
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:1.5.2:expert
+    knowledge: Advances vulnerability assessment science and application
+    application: Shapes how vulnerability assessment informs conservation and management
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.5.2:expert:I1
+      n: 1
+      text: Develops new vulnerability assessment frameworks or methods
+      origin: database
+    - v1Key: v1:1.5.2:expert:I2
+      n: 2
+      text: Influences national or international vulnerability assessment standards
+      origin: database
+    - v1Key: v1:1.5.2:expert:I3
+      n: 3
+      text: Leads multi-agency vulnerability initiatives
+      origin: database
+    - v1Key: v1:1.5.2:expert:I4
+      n: 4
+      text: Publishes influential vulnerability research
+      origin: database
+    - v1Key: v1:1.5.2:expert:I5
+      n: 5
+      text: Advises senior leadership on vulnerability priorities
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:1.5.2:sector:public_agencies
+    text: National forest vulnerability assessments, wildlife action plan climate chapters, infrastructure risk assessment
+  - sector: private_sector
+    v1Key: v1:1.5.2:sector:private_sector
+    text: Asset vulnerability assessment, supply chain climate risk, natural capital risk
+  - sector: ngos
+    v1Key: v1:1.5.2:sector:ngos
+    text: Conservation priority vulnerability ranking, climate-smart conservation planning
+  - sector: consulting
+    v1Key: v1:1.5.2:sector:consulting
+    text: Vulnerability assessments for NEPA, climate risk disclosure
+  - sector: academia
+    v1Key: v1:1.5.2:sector:academia
+    text: Vulnerability framework development, comparative vulnerability research
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

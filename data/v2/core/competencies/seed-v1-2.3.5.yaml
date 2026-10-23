@@ -1,0 +1,223 @@
+id: seed:v1-2.3.5
+type: Competency
+prefLabel:
+  en: Remote communication systems
+statement:
+  en: Using radios, satellite phones, or other technology to stay in contact while working in areas without regular cell phone coverage.
+notation:
+- scheme: EMSTv1
+  value: 2.3.5
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-4.4.5
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.3'
+  label: Field Technology
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:4.4.5. Rationale: Durable core is field safety communication; merged into emergency communication with satellite messengers and lone-work check-in (DC, FC verdicts). Role verdicts considered: DC:retire|FC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.3.5
+    v1Code: 2.3.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 56
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.3.5
+    v1Code: 2.3.5
+    v1Table: source_text/competencies
+    sourceTextLine: 3735
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Remote communication systems
+  v1Description: Using radios, satellite phones, or other technology to stay in contact while working in areas without regular cell phone coverage.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.3.5:foundational
+    knowledge: Understands remote communication basics
+    application: Uses communication equipment
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.3.5:foundational:I1
+      n: 1
+      text: Operates two-way radios properly
+      origin: database
+    - v1Key: v1:2.3.5:foundational:I2
+      n: 2
+      text: Understands radio etiquette and protocols
+      origin: database
+    - v1Key: v1:2.3.5:foundational:I3
+      n: 3
+      text: Uses satellite phones or satellite messengers
+      origin: database
+    - v1Key: v1:2.3.5:foundational:I4
+      n: 4
+      text: Performs check-ins as required
+      origin: database
+    - v1Key: v1:2.3.5:foundational:I5
+      n: 5
+      text: Charges and maintains communication devices
+      origin: database
+    - v1Key: v1:2.3.5:foundational:I6
+      n: 6
+      text: Recognizes communication equipment problems
+      origin: database
+    - v1Key: v1:2.3.5:foundational:I7
+      n: 7
+      text: Follows emergency communication protocols
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.3.5:intermediate
+    knowledge: Applies communication systems and protocols
+    application: Manages field communications
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.3.5:intermediate:I1
+      n: 1
+      text: Programs and manages radio systems
+      origin: database
+    - v1Key: v1:2.3.5:intermediate:I2
+      n: 2
+      text: Develops communication plans for projects
+      origin: database
+    - v1Key: v1:2.3.5:intermediate:I3
+      n: 3
+      text: Uses multiple communication technologies appropriately
+      origin: database
+    - v1Key: v1:2.3.5:intermediate:I4
+      n: 4
+      text: Troubleshoots communication equipment
+      origin: database
+    - v1Key: v1:2.3.5:intermediate:I5
+      n: 5
+      text: Implements check-in systems for field safety
+      origin: database
+    - v1Key: v1:2.3.5:intermediate:I6
+      n: 6
+      text: Manages communication equipment inventory
+      origin: database
+    - v1Key: v1:2.3.5:intermediate:I7
+      n: 7
+      text: Trains field crews on communication systems
+      origin: restored-from-source-text
+    - v1Key: v1:2.3.5:intermediate:I8
+      n: 8
+      text: Ensures FCC or equivalent compliance
+      origin: restored-from-source-text
+    - v1Key: v1:2.3.5:intermediate:I9
+      n: 9
+      text: Coordinates emergency communications
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.3.5:advanced
+    knowledge: Expert in communication systems and protocols
+    application: Designs communication infrastructure
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.3.5:advanced:I1
+      n: 1
+      text: Designs communication systems for programs
+      origin: database
+    - v1Key: v1:2.3.5:advanced:I2
+      n: 2
+      text: Implements radio networks with repeaters
+      origin: database
+    - v1Key: v1:2.3.5:advanced:I3
+      n: 3
+      text: Integrates satellite, cellular, and radio systems
+      origin: database
+    - v1Key: v1:2.3.5:advanced:I4
+      n: 4
+      text: Develops emergency communication protocols
+      origin: database
+    - v1Key: v1:2.3.5:advanced:I5
+      n: 5
+      text: Evaluates and acquires communication technology
+      origin: database
+    - v1Key: v1:2.3.5:advanced:I6
+      n: 6
+      text: Manages communication system budgets
+      origin: database
+    - v1Key: v1:2.3.5:advanced:I7
+      n: 7
+      text: Ensures interoperability with partner agencies
+      origin: restored-from-source-text
+    - v1Key: v1:2.3.5:advanced:I8
+      n: 8
+      text: Provides communication system consulting
+      origin: restored-from-source-text
+    - v1Key: v1:2.3.5:advanced:I9
+      n: 9
+      text: Trains practitioners in communication systems
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.3.5:expert
+    knowledge: Shapes communication technology in environmental field
+    application: Provides strategic leadership on communication
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.3.5:expert:I1
+      n: 1
+      text: Develops innovative communication approaches
+      origin: database
+    - v1Key: v1:2.3.5:expert:I2
+      n: 2
+      text: Influences communication standards and protocols
+      origin: database
+    - v1Key: v1:2.3.5:expert:I3
+      n: 3
+      text: Leads major communication infrastructure projects
+      origin: database
+    - v1Key: v1:2.3.5:expert:I4
+      n: 4
+      text: Provides expert consultation on remote communications
+      origin: database
+    - v1Key: v1:2.3.5:expert:I5
+      n: 5
+      text: Advances communication technology in environmental operations
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.3.5:sector:public_agencies
+    text: Field crew safety, emergency response, remote operations
+  - sector: private_sector
+    v1Key: v1:2.3.5:sector:private_sector
+    text: Remote site operations, crew coordination
+  - sector: ngos
+    v1Key: v1:2.3.5:sector:ngos
+    text: Expedition communications, remote conservation sites
+  - sector: consulting
+    v1Key: v1:2.3.5:sector:consulting
+    text: Project communications, safety protocols
+  - sector: academia
+    v1Key: v1:2.3.5:sector:academia
+    text: Research expedition communications, field station networks
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

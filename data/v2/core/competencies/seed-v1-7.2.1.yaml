@@ -1,0 +1,161 @@
+id: seed:v1-7.2.1
+type: Competency
+prefLabel:
+  en: Validating AI outputs against ecological and regulatory ground truth
+statement:
+  en: Evaluating AI-generated information products against independent ecological knowledge, field observation, and regulatory standards to ensure outputs are accurate, appropriately scoped, and professionally defensible before use in management or regulatory contexts.
+notation:
+- scheme: EMSTv1
+  value: 7.2.1
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:DC-CAND-13
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.2'
+  label: Human-Ai Professional Practice
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → DC-CAND-13. Rationale: Best-written v1 content; becomes the TX-A validation floor with FC, DC and SC enactments (DC, FC, FS, LC, PS, CA verdicts); used as the writing model for v2 outcomes (LC). Role verdicts considered: DC:change|DB:carry|FC:change|LC:carry|PS:carry|FS:change|CA:carry.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:7.2.1
+    v1Code: 7.2.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 221
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Validating AI outputs against ecological and regulatory ground truth
+  v1Description: Evaluating AI-generated information products against independent ecological knowledge, field observation, and regulatory standards to ensure outputs are accurate, appropriately scoped, and professionally defensible before use in management or regulatory contexts.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:7.2.1:foundational
+    knowledge: Understands that AI outputs require independent verification before professional use; recognizes the difference between nominal review and substantive validation; knows the categories of error common in AI environmental applications (false positives, out-of-distribution inputs, scope violations, hallucinated regulatory citations)
+    application: Performs structured checklist-based validation of AI outputs with guidance; flags outputs for expert review when uncertainty exceeds comfort level
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:7.2.1:foundational:I1
+      n: 1
+      text: Explains why AI model confidence scores are not equivalent to ecological or regulatory accuracy
+      origin: database
+    - v1Key: v1:7.2.1:foundational:I2
+      n: 2
+      text: Identifies common failure modes in AI environmental applications relevant to their domain context
+      origin: database
+    - v1Key: v1:7.2.1:foundational:I3
+      n: 3
+      text: Applies a structured validation protocol to evaluate AI outputs against known ground truth or reference data
+      origin: database
+    - v1Key: v1:7.2.1:foundational:I4
+      n: 4
+      text: Distinguishes between errors warranting rejection of an AI output and limitations warranting qualified use with documented caveats
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:7.2.1:intermediate
+    knowledge: Applies domain-specific ecological and regulatory knowledge as independent validation evidence; understands model assumptions and how violations of those assumptions produce characteristic errors; evaluates completeness as well as accuracy
+    application: Conducts independent validation across the range of AI output types encountered in their professional context; documents validation reasoning in formats appropriate for regulatory or professional use
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:7.2.1:intermediate:I1
+      n: 1
+      text: Uses field-derived ecological knowledge to identify outputs where model training data or assumptions do not match site-specific conditions
+      origin: database
+    - v1Key: v1:7.2.1:intermediate:I2
+      n: 2
+      text: Evaluates AI-assisted regulatory analyses for completeness — identifying gaps, missing authorities, or misapplied regulatory standards
+      origin: database
+    - v1Key: v1:7.2.1:intermediate:I3
+      n: 3
+      text: Develops domain-specific validation heuristics based on accumulated experience with specific AI tools and their characteristic failure modes
+      origin: database
+    - v1Key: v1:7.2.1:intermediate:I4
+      n: 4
+      text: Documents validation findings with sufficient specificity that a reviewer can understand the basis of acceptance, qualification, or rejection
+      origin: database
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:7.2.1:advanced
+    knowledge: Expert in the ecological and regulatory domains relevant to their professional practice; deep understanding of AI model architecture and its implications for validation strategy; experienced in advising teams on validation protocols and failure mode patterns
+    application: Designs organizational validation protocols for AI-assisted workflows; leads validation of high-stakes or novel AI applications; advises decision-makers on the reliability and appropriate scope of AI-generated products
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:7.2.1:advanced:I1
+      n: 1
+      text: Designs validation protocols calibrated to the specific failure modes, training data characteristics, and intended use contexts of AI tools deployed in their organization
+      origin: database
+    - v1Key: v1:7.2.1:advanced:I2
+      n: 2
+      text: Leads validation of AI outputs in high-consequence contexts — regulatory submissions, major management decisions, novel application domains
+      origin: database
+    - v1Key: v1:7.2.1:advanced:I3
+      n: 3
+      text: Advises decision-makers on the reliability profile of AI-generated products and the conditions under which validation findings should constrain use
+      origin: database
+    - v1Key: v1:7.2.1:advanced:I4
+      n: 4
+      text: Identifies systemic validation failures — patterns of error indicating model drift, training data degradation, or scope creep — and escalates for organizational response
+      origin: database
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:7.2.1:expert
+    knowledge: Shapes field-wide standards for AI output validation in environmental management; recognized authority on validation methodology and the ecological and regulatory knowledge domains that anchor it
+    application: Advances professional standards for AI validation practice; contributes to regulatory guidance on acceptable AI-assisted environmental analysis
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:7.2.1:expert:I1
+      n: 1
+      text: Contributes to development of professional or regulatory standards for validation requirements in AI-assisted environmental review and monitoring
+      origin: database
+    - v1Key: v1:7.2.1:expert:I2
+      n: 2
+      text: Publishes or presents on validation methodology and the ecological and regulatory knowledge foundations that make validation substantive rather than nominal
+      origin: database
+    - v1Key: v1:7.2.1:expert:I3
+      n: 3
+      text: Advises agencies and organizations on validation program design for AI-assisted regulatory and management applications
+      origin: database
+    - v1Key: v1:7.2.1:expert:I4
+      n: 4
+      text: Recognized as a leading practitioner in AI output validation in environmental management contexts
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:7.2.1:sector:public_agencies
+    text: Validation of AI-assisted NEPA analysis, regulatory AI output review, monitoring data validation
+  - sector: private_sector
+    v1Key: v1:7.2.1:sector:private_sector
+    text: AI output QA for environmental compliance products, ESG data validation
+  - sector: ngos
+    v1Key: v1:7.2.1:sector:ngos
+    text: Validation of AI-assisted monitoring and reporting products
+  - sector: consulting
+    v1Key: v1:7.2.1:sector:consulting
+    text: AI output validation advisory, regulatory defensibility review
+  - sector: academia
+    v1Key: v1:7.2.1:sector:academia
+    text: AI validation methodology research, ground truth pedagogy
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

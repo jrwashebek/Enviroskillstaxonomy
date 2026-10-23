@@ -527,6 +527,11 @@
    "type": "string",
    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:\\d{2})$"
   },
+  "PartialDate": {
+   "type": "string",
+   "description": "YYYY, YYYY-MM or YYYY-MM-DD.",
+   "pattern": "^\\d{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12]\\d|3[01]))?)?$"
+  },
   "Period": {
    "type": "object",
    "additionalProperties": false,
@@ -536,10 +541,13 @@
    ],
    "properties": {
     "start": {
-     "$ref": "#/$defs/Date"
+     "$ref": "#/$defs/PartialDate"
     },
     "end": {
-     "$ref": "#/$defs/Date"
+     "$ref": "#/$defs/PartialDate"
+    },
+    "note": {
+     "type": "string"
     }
    }
   },
@@ -704,7 +712,7 @@
    "properties": {
     "v1Key": {
      "type": "string",
-     "pattern": "^v1:[1-7](\\.\\d{1,2}){0,2}(:[A-Za-z0-9_.:-]+)?$",
+     "pattern": "^v1:[1-7](\\.\\d{1,2}){0,2}(:[A-Za-z0-9_.:#-]+)?$",
      "description": "Key resolving to a row of data/v1_baseline/."
     },
     "v1Code": {
@@ -3966,15 +3974,22 @@
        "type": "string"
       },
       "ci95": {
-       "type": "array",
+       "type": [
+        "array",
+        "null"
+       ],
        "minItems": 2,
        "maxItems": 2,
        "items": {
         "type": "number"
-       }
+       },
+       "description": "null when not estimable"
       },
       "n": {
-       "type": "integer",
+       "type": [
+        "integer",
+        "null"
+       ],
        "minimum": 0
       },
       "denominator": {
@@ -4013,7 +4028,15 @@
        "type": "string"
       },
       "sha256": {
-       "$ref": "#/$defs/Sha256"
+       "anyOf": [
+        {
+         "$ref": "#/$defs/Sha256"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "null only when no corpus snapshot exists (single published document)"
       },
       "license": {
        "type": "string"
@@ -4084,11 +4107,18 @@
      "$ref": "#/$defs/v_steepCategory"
     },
     "novelty": {
-     "enum": [
-      "new",
-      "recurring",
-      "continuing"
-     ]
+     "anyOf": [
+      {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 5
+      },
+      {
+       "type": "string",
+       "minLength": 1
+      }
+     ],
+     "description": "No L0 vocabulary yet; FS/LM score or label."
     },
     "reliability": {
      "$ref": "#/$defs/v_signalReliability"

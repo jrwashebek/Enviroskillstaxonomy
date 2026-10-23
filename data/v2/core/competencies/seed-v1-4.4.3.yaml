@@ -1,0 +1,239 @@
+id: seed:v1-4.4.3
+type: Competency
+prefLabel:
+  en: Search and rescue operations
+statement:
+  en: Locating and assisting lost, injured, or stranded people in wildland areas.
+notation:
+- scheme: EMSTv1
+  value: 4.4.3
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:FC-C18
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.4'
+  label: Safety & Emergency Response
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → FC-C18. Rationale: SAR is a specialized function for most roles; core recast as field navigation and emergency response, SAR as an optional specialization (FC verdict). Role verdicts considered: FC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.4.3
+    v1Code: 4.4.3
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 129
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:4.4.3
+    v1Code: 4.4.3
+    v1Table: source_text/competencies
+    sourceTextLine: 8269
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Search and rescue operations
+  v1Description: Locating and assisting lost, injured, or stranded people in wildland areas.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.4.3:foundational
+    knowledge: Understands basic search and rescue concepts and lost person behavior
+    application: Functions as searcher on search operations
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.3:foundational:I1
+      n: 1
+      text: Completes basic SAR training
+      origin: database
+    - v1Key: v1:4.4.3:foundational:I2
+      n: 2
+      text: Executes search assignments following instructions
+      origin: database
+    - v1Key: v1:4.4.3:foundational:I3
+      n: 3
+      text: Uses map, compass, and GPS for navigation
+      origin: database
+    - v1Key: v1:4.4.3:foundational:I4
+      n: 4
+      text: Recognizes clues and evidence
+      origin: database
+    - v1Key: v1:4.4.3:foundational:I5
+      n: 5
+      text: Maintains proper spacing in line searches
+      origin: database
+    - v1Key: v1:4.4.3:foundational:I6
+      n: 6
+      text: Communicates findings via radio
+      origin: database
+    - v1Key: v1:4.4.3:foundational:I7
+      n: 7
+      text: Provides basic care to subjects when found
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.3:foundational:I8
+      n: 8
+      text: Maintains fitness for demanding searches
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.4.3:intermediate
+    knowledge: Applies search theory and tactics; skilled in wilderness navigation
+    application: Serves as team leader on search operations
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.3:intermediate:I1
+      n: 1
+      text: Leads search teams in field operations
+      origin: database
+    - v1Key: v1:4.4.3:intermediate:I2
+      n: 2
+      text: Uses probability of area calculations to prioritize search segments
+      origin: database
+    - v1Key: v1:4.4.3:intermediate:I3
+      n: 3
+      text: Conducts hasty searches and confinement operations
+      origin: database
+    - v1Key: v1:4.4.3:intermediate:I4
+      n: 4
+      text: Tracks and interprets sign
+      origin: database
+    - v1Key: v1:4.4.3:intermediate:I5
+      n: 5
+      text: Uses technical rescue skills (rope rescue basics, swiftwater awareness)
+      origin: database
+    - v1Key: v1:4.4.3:intermediate:I6
+      n: 6
+      text: Coordinates with search dogs and air resources
+      origin: database
+    - v1Key: v1:4.4.3:intermediate:I7
+      n: 7
+      text: Navigates efficiently in varied terrain and conditions
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.3:intermediate:I8
+      n: 8
+      text: Completes SAR Management training
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.3:intermediate:I9
+      n: 9
+      text: Participates in evidence recovery when appropriate
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.4.3:advanced
+    knowledge: Expert in search management and lost person behavior
+    application: Plans and manages search operations
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.3:advanced:I1
+      n: 1
+      text: Serves as search manager or operations section chief
+      origin: database
+    - v1Key: v1:4.4.3:advanced:I2
+      n: 2
+      text: Develops search strategies using behavioral profiles
+      origin: database
+    - v1Key: v1:4.4.3:advanced:I3
+      n: 3
+      text: Manages multi-team search operations
+      origin: database
+    - v1Key: v1:4.4.3:advanced:I4
+      n: 4
+      text: Uses search management software (SARTopo, CalTopo)
+      origin: database
+    - v1Key: v1:4.4.3:advanced:I5
+      n: 5
+      text: Coordinates air and ground resources
+      origin: database
+    - v1Key: v1:4.4.3:advanced:I6
+      n: 6
+      text: Holds technical rescue certifications (rope rescue, swiftwater, etc.)
+      origin: database
+    - v1Key: v1:4.4.3:advanced:I7
+      n: 7
+      text: Trains SAR personnel
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.3:advanced:I8
+      n: 8
+      text: Conducts searches in challenging environments
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.3:advanced:I9
+      n: 9
+      text: Manages search missions using Incident Command System
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.3:advanced:I10
+      n: 10
+      text: Evaluates search effectiveness and adapts strategies
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.4.3:expert
+    knowledge: Shapes search and rescue practices regionally or nationally
+    application: Provides SAR strategic leadership
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.3:expert:I1
+      n: 1
+      text: Directs SAR programs for regions or organizations
+      origin: database
+    - v1Key: v1:4.4.3:expert:I2
+      n: 2
+      text: Develops innovative SAR techniques and technologies
+      origin: database
+    - v1Key: v1:4.4.3:expert:I3
+      n: 3
+      text: Influences SAR policy and standards
+      origin: database
+    - v1Key: v1:4.4.3:expert:I4
+      n: 4
+      text: Provides expert consultation on complex SAR operations
+      origin: database
+    - v1Key: v1:4.4.3:expert:I5
+      n: 5
+      text: Publishes SAR research or guidance
+      origin: database
+    - v1Key: v1:4.4.3:expert:I6
+      n: 6
+      text: Achieves national SAR recognition
+      origin: database
+    - v1Key: v1:4.4.3:expert:I7
+      n: 7
+      text: Mentors SAR professionals across organizations
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.4.3:sector:public_agencies
+    text: Park SAR operations, wilderness rescue, backcountry emergencies
+  - sector: private_sector
+    v1Key: v1:4.4.3:sector:private_sector
+    text: Mountain rescue, adventure tourism support
+  - sector: ngos
+    v1Key: v1:4.4.3:sector:ngos
+    text: Volunteer SAR teams, search dog organizations
+  - sector: consulting
+    v1Key: v1:4.4.3:sector:consulting
+    text: SAR training and planning services
+  - sector: academia
+    v1Key: v1:4.4.3:sector:academia
+    text: SAR research, outdoor recreation program safety
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

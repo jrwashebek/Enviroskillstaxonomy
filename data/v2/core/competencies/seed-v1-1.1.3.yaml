@@ -1,0 +1,187 @@
+id: seed:v1-1.1.3
+type: Competency
+prefLabel:
+  en: Ecological succession principles
+statement:
+  en: Understanding how plant and animal communities naturally change over time, such as how a field becomes a forest or how an area recovers after a fire.
+notation:
+- scheme: EMSTv1
+  value: 1.1.3
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-1.1.1
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.1'
+  label: Ecosystem Science
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:1.1.1. Rationale: Succession principles are knowledge statements within ecosystem dynamics; no separate assessable capability (G-1). Role verdicts considered: none recorded.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.1.3
+    v1Code: 1.1.3
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 4
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:1.1.3
+    v1Code: 1.1.3
+    v1Table: source_text/competencies
+    sourceTextLine: 622
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Ecological succession principles
+  v1Description: Understanding how plant and animal communities naturally change over time, such as how a field becomes a forest or how an area recovers after a fire.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:1.1.3:foundational
+    knowledge: Understands basic succession concepts (primary, secondary succession; pioneer vs climax species)
+    application: Recognizes successional stages in the field
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.1.3:foundational:I1
+      n: 1
+      text: Identifies early, mid, and late successional species
+      origin: database
+    - v1Key: v1:1.1.3:foundational:I2
+      n: 2
+      text: Explains difference between primary and secondary succession
+      origin: database
+    - v1Key: v1:1.1.3:foundational:I3
+      n: 3
+      text: Recognizes how disturbance resets succession
+      origin: database
+    - v1Key: v1:1.1.3:foundational:I4
+      n: 4
+      text: Understands concept of climax communities
+      origin: database
+    - v1Key: v1:1.1.3:foundational:I5
+      n: 5
+      text: Documents successional trajectories with supervision
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:1.1.3:intermediate
+    knowledge: Applies successional theory to predict vegetation change
+    application: Uses succession concepts in management and restoration
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.1.3:intermediate:I1
+      n: 1
+      text: Predicts successional trajectories for different site conditions
+      origin: database
+    - v1Key: v1:1.1.3:intermediate:I2
+      n: 2
+      text: Uses succession to inform restoration planting strategies
+      origin: database
+    - v1Key: v1:1.1.3:intermediate:I3
+      n: 3
+      text: Identifies factors that facilitate or inhibit succession
+      origin: database
+    - v1Key: v1:1.1.3:intermediate:I4
+      n: 4
+      text: Recognizes when systems are arrested in early successional stages
+      origin: database
+    - v1Key: v1:1.1.3:intermediate:I5
+      n: 5
+      text: Applies successional concepts to habitat management
+      origin: database
+    - v1Key: v1:1.1.3:intermediate:I6
+      n: 6
+      text: Maps successional stages across landscapes
+      origin: database
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:1.1.3:advanced
+    knowledge: Expert in succession theory; understands alternative stable states
+    application: Designs management strategies leveraging or manipulating succession
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.1.3:advanced:I1
+      n: 1
+      text: Predicts multiple alternative successional pathways
+      origin: database
+    - v1Key: v1:1.1.3:advanced:I2
+      n: 2
+      text: Designs restoration approaches for arrested succession
+      origin: database
+    - v1Key: v1:1.1.3:advanced:I3
+      n: 3
+      text: Understands succession under novel conditions (climate change, invasives)
+      origin: database
+    - v1Key: v1:1.1.3:advanced:I4
+      n: 4
+      text: Models successional trajectories quantitatively
+      origin: database
+    - v1Key: v1:1.1.3:advanced:I5
+      n: 5
+      text: Recognizes threshold conditions preventing succession
+      origin: database
+    - v1Key: v1:1.1.3:advanced:I6
+      n: 6
+      text: Publishes on successional dynamics and management
+      origin: database
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:1.1.3:expert
+    knowledge: Advances successional ecology theory and application
+    application: Shapes how succession informs landscape management
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.1.3:expert:I1
+      n: 1
+      text: Develops new frameworks for understanding succession
+      origin: database
+    - v1Key: v1:1.1.3:expert:I2
+      n: 2
+      text: Leads research on succession under global change
+      origin: database
+    - v1Key: v1:1.1.3:expert:I3
+      n: 3
+      text: Influences how successional science informs restoration practice
+      origin: database
+    - v1Key: v1:1.1.3:expert:I4
+      n: 4
+      text: Publishes influential papers on successional ecology
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:1.1.3:sector:public_agencies
+    text: Post-fire management, vegetation management planning
+  - sector: private_sector
+    v1Key: v1:1.1.3:sector:private_sector
+    text: Reclamation of disturbed lands, habitat succession management
+  - sector: ngos
+    v1Key: v1:1.1.3:sector:ngos
+    text: Restoration ecology, old-growth forest conservation
+  - sector: consulting
+    v1Key: v1:1.1.3:sector:consulting
+    text: Restoration planning, vegetation trajectory prediction
+  - sector: academia
+    v1Key: v1:1.1.3:sector:academia
+    text: Succession research, community ecology
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

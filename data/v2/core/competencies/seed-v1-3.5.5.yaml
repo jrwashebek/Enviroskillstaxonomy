@@ -1,0 +1,263 @@
+id: seed:v1-3.5.5
+type: Competency
+prefLabel:
+  en: Ethical leadership in the age of AI and algorithmic decision-making
+statement:
+  en: Leading with integrity as AI, algorithms, and automation increasingly influence environmental decisions and potentially replicate or amplify biases.
+notation:
+- scheme: EMSTv1
+  value: 3.5.5
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:DC-CAND-21
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.5'
+  label: Leadership
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → DC-CAND-21. Rationale: Ethical AI leadership folds into data and AI portfolio governance and TX-B; TN retired the framing that treats Indigenous knowledge as AI input, replaced by an indicator preventing ingestion without consent (TN-C03, held). Role verdicts considered: TN:retire.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:3.5.5
+    v1Code: 3.5.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 101
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:3.5.5
+    v1Code: 3.5.5
+    v1Table: source_text/competencies
+    sourceTextLine: 6238
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Ethical leadership in the age of AI and algorithmic decision-making
+  v1Description: Leading with integrity as AI, algorithms, and automation increasingly influence environmental decisions and potentially replicate or amplify biases.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:3.5.5:foundational
+    knowledge: Awareness that AI and algorithms raise ethical issues
+    application: Questions AI recommendations and maintains ethical awareness
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.5.5:foundational:I1
+      n: 1
+      text: Understands AI tools are trained on data that may contain biases
+      origin: database
+    - v1Key: v1:3.5.5:foundational:I2
+      n: 2
+      text: Questions AI recommendations that seem problematic
+      origin: database
+    - v1Key: v1:3.5.5:foundational:I3
+      n: 3
+      text: Recognizes limits of algorithmic knowledge vs. human judgment
+      origin: database
+    - v1Key: v1:3.5.5:foundational:I4
+      n: 4
+      text: Considers whether AI applications respect privacy and consent
+      origin: database
+    - v1Key: v1:3.5.5:foundational:I5
+      n: 5
+      text: Asks who benefits and who might be harmed by AI applications
+      origin: database
+    - v1Key: v1:3.5.5:foundational:I6
+      n: 6
+      text: Values local and traditional knowledge alongside AI-generated insights
+      origin: database
+    - v1Key: v1:3.5.5:foundational:I7
+      n: 7
+      text: Recognizes when algorithms should inform not determine decisions
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:3.5.5:intermediate
+    knowledge: Applies AI ethics frameworks to environmental work
+    application: Implements AI ethically in programs and decisions
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.5.5:intermediate:I1
+      n: 1
+      text: Evaluates AI tools for bias, fairness, and transparency before adoption
+      origin: database
+    - v1Key: v1:3.5.5:intermediate:I2
+      n: 2
+      text: Ensures community consent for AI applications affecting them
+      origin: database
+    - v1Key: v1:3.5.5:intermediate:I3
+      n: 3
+      text: Maintains human oversight of AI-driven recommendations
+      origin: database
+    - v1Key: v1:3.5.5:intermediate:I4
+      n: 4
+      text: Documents how AI is used in decision-making for accountability
+      origin: database
+    - v1Key: v1:3.5.5:intermediate:I5
+      n: 5
+      text: Tests AI outputs for accuracy and bias using diverse scenarios
+      origin: database
+    - v1Key: v1:3.5.5:intermediate:I6
+      n: 6
+      text: Integrates AI insights with traditional ecological knowledge appropriately
+      origin: database
+    - v1Key: v1:3.5.5:intermediate:I7
+      n: 7
+      text: Addresses data privacy and security in AI applications
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:intermediate:I8
+      n: 8
+      text: Ensures AI doesn't perpetuate environmental injustice
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:intermediate:I9
+      n: 9
+      text: Creates explainable AI systems where decisions can be understood
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:intermediate:I10
+      n: 10
+      text: Involves affected communities in decisions about AI use
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:intermediate:I11
+      n: 11
+      text: Provides human override capability for AI systems
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:3.5.5:advanced
+    knowledge: Expert in AI ethics and responsible technology governance
+    application: Develops organizational AI ethics frameworks and oversight
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.5.5:advanced:I1
+      n: 1
+      text: Establishes comprehensive AI ethics policies and review processes
+      origin: database
+    - v1Key: v1:3.5.5:advanced:I2
+      n: 2
+      text: Creates AI governance structures ensuring accountability
+      origin: database
+    - v1Key: v1:3.5.5:advanced:I3
+      n: 3
+      text: Conducts algorithmic audits for bias and fairness
+      origin: database
+    - v1Key: v1:3.5.5:advanced:I4
+      n: 4
+      text: Ensures AI transparency (what data, what model, what assumptions)
+      origin: database
+    - v1Key: v1:3.5.5:advanced:I5
+      n: 5
+      text: Addresses unintended consequences of AI applications proactively
+      origin: database
+    - v1Key: v1:3.5.5:advanced:I6
+      n: 6
+      text: Balances AI efficiency with jobs, equity, and human dignity
+      origin: database
+    - v1Key: v1:3.5.5:advanced:I7
+      n: 7
+      text: Ensures AI serves community and conservation goals not vice versa
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:advanced:I8
+      n: 8
+      text: Develops frameworks for integrating AI with Indigenous knowledge respectfully
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:advanced:I9
+      n: 9
+      text: Addresses surveillance and privacy implications of conservation technology
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:advanced:I10
+      n: 10
+      text: Trains staff in ethical AI use and algorithmic literacy
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:advanced:I11
+      n: 11
+      text: Evaluates long-term societal impacts of AI adoption
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:advanced:I12
+      n: 12
+      text: Publishes on AI ethics in environmental work
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:3.5.5:expert
+    knowledge: Shapes ethical technology governance in environmental sector
+    application: Leads sector toward responsible AI and algorithmic accountability
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.5.5:expert:I1
+      n: 1
+      text: Influences sector standards and policy on AI ethics
+      origin: database
+    - v1Key: v1:3.5.5:expert:I2
+      n: 2
+      text: Develops frameworks for responsible conservation technology adopted widely
+      origin: database
+    - v1Key: v1:3.5.5:expert:I3
+      n: 3
+      text: Ensures technology advances environmental justice not just conservation
+      origin: database
+    - v1Key: v1:3.5.5:expert:I4
+      n: 4
+      text: Addresses power imbalances created or amplified by technology
+      origin: database
+    - v1Key: v1:3.5.5:expert:I5
+      n: 5
+      text: Publishes influential work on technology ethics in conservation
+      origin: database
+    - v1Key: v1:3.5.5:expert:I6
+      n: 6
+      text: Advises governments and international bodies on AI governance
+      origin: database
+    - v1Key: v1:3.5.5:expert:I7
+      n: 7
+      text: Achieves recognition for ethical technology leadership
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:expert:I8
+      n: 8
+      text: Demonstrates that ethical AI is more effective conservation
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:expert:I9
+      n: 9
+      text: Mentors leaders in navigating ethical technology challenges
+      origin: restored-from-source-text
+    - v1Key: v1:3.5.5:expert:I10
+      n: 10
+      text: Centers affected communities in technology governance
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:3.5.5:sector:public_agencies
+    text: Algorithmic permitting, AI-driven enforcement, predictive conservation planning
+  - sector: private_sector
+    v1Key: v1:3.5.5:sector:private_sector
+    text: AI supply chain monitoring, algorithmic sustainability ratings
+  - sector: ngos
+    v1Key: v1:3.5.5:sector:ngos
+    text: AI for conservation prioritization, predictive threat modeling
+  - sector: consulting
+    v1Key: v1:3.5.5:sector:consulting
+    text: AI-powered analysis, algorithmic recommendations to clients
+  - sector: academia
+    v1Key: v1:3.5.5:sector:academia
+    text: AI research ethics, algorithmic bias in conservation science
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

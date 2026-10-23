@@ -1,0 +1,237 @@
+id: seed:v1-6.2.1
+type: Competency
+prefLabel:
+  en: Comprehensive land use planning
+statement:
+  en: Creating overarching plans that address all aspects of how an area will be managed, including recreation, conservation, resource use, and development.
+notation:
+- scheme: EMSTv1
+  value: 6.2.1
+layer: L1
+module: built
+homeModule: built
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.2'
+  label: Land Use Planning
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-17 built. Rationale: Comprehensive land-use planning is U01-specific; absorbs 6.2.2 and 6.2.4. Role verdicts considered: none recorded.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:6.2.1
+    v1Code: 6.2.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 182
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:6.2.1
+    v1Code: 6.2.1
+    v1Table: source_text/competencies
+    sourceTextLine: 13015
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:6.2.2
+    v1Code: 6.2.2
+    relation: merged-from
+    note: v1 6.2.2 (merge) → seed:v1-6.2.1 per v1_disposition.csv
+  - v1Key: v1:6.2.4
+    v1Code: 6.2.4
+    relation: merged-from
+    note: v1 6.2.4 (merge) → seed:v1-6.2.1 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Comprehensive land use planning
+  v1Description: Creating overarching plans that address all aspects of how an area will be managed, including recreation, conservation, resource use, and development.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:6.2.1:foundational
+    knowledge: Understands land use planning concepts and processes
+    application: Supports planning efforts with data and analysis
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.2.1:foundational:I1
+      n: 1
+      text: Explains comprehensive planning concepts and elements
+      origin: database
+    - v1Key: v1:6.2.1:foundational:I2
+      n: 2
+      text: Collects and organizes data for planning (land use, demographics, environmental conditions)
+      origin: database
+    - v1Key: v1:6.2.1:foundational:I3
+      n: 3
+      text: Assists with stakeholder engagement activities
+      origin: database
+    - v1Key: v1:6.2.1:foundational:I4
+      n: 4
+      text: Prepares maps and graphics for planning documents
+      origin: database
+    - v1Key: v1:6.2.1:foundational:I5
+      n: 5
+      text: Reviews existing plans to understand approach
+      origin: database
+    - v1Key: v1:6.2.1:foundational:I6
+      n: 6
+      text: Understands relationship between plans and zoning/regulations
+      origin: database
+    - v1Key: v1:6.2.1:foundational:I7
+      n: 7
+      text: Documents public input from meetings and surveys
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:6.2.1:intermediate
+    knowledge: Applies planning principles and methods
+    application: Develops sections of comprehensive plans independently
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.2.1:intermediate:I1
+      n: 1
+      text: Conducts existing conditions analysis
+      origin: database
+    - v1Key: v1:6.2.1:intermediate:I2
+      n: 2
+      text: Facilitates stakeholder engagement processes
+      origin: database
+    - v1Key: v1:6.2.1:intermediate:I3
+      n: 3
+      text: Develops land use alternatives for evaluation
+      origin: database
+    - v1Key: v1:6.2.1:intermediate:I4
+      n: 4
+      text: Writes sections of comprehensive plans
+      origin: database
+    - v1Key: v1:6.2.1:intermediate:I5
+      n: 5
+      text: Uses GIS for spatial planning and analysis
+      origin: database
+    - v1Key: v1:6.2.1:intermediate:I6
+      n: 6
+      text: Integrates multiple objectives (environment, economy, equity)
+      origin: database
+    - v1Key: v1:6.2.1:intermediate:I7
+      n: 7
+      text: Evaluates consistency between plans and implementation tools
+      origin: restored-from-source-text
+    - v1Key: v1:6.2.1:intermediate:I8
+      n: 8
+      text: Presents planning concepts to public and decision-makers
+      origin: restored-from-source-text
+    - v1Key: v1:6.2.1:intermediate:I9
+      n: 9
+      text: Coordinates with subject matter experts across disciplines
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:6.2.1:advanced
+    knowledge: Expert in comprehensive planning across contexts
+    application: Leads comprehensive planning efforts
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.2.1:advanced:I1
+      n: 1
+      text: Designs and manages comprehensive planning processes
+      origin: database
+    - v1Key: v1:6.2.1:advanced:I2
+      n: 2
+      text: Leads interdisciplinary planning teams
+      origin: database
+    - v1Key: v1:6.2.1:advanced:I3
+      n: 3
+      text: Facilitates complex multi-stakeholder negotiations
+      origin: database
+    - v1Key: v1:6.2.1:advanced:I4
+      n: 4
+      text: Integrates climate adaptation and resilience into plans
+      origin: database
+    - v1Key: v1:6.2.1:advanced:I5
+      n: 5
+      text: Develops innovative planning approaches for novel challenges
+      origin: database
+    - v1Key: v1:6.2.1:advanced:I6
+      n: 6
+      text: Ensures plan implementation through regulations and programs
+      origin: database
+    - v1Key: v1:6.2.1:advanced:I7
+      n: 7
+      text: Evaluates and updates existing plans
+      origin: restored-from-source-text
+    - v1Key: v1:6.2.1:advanced:I8
+      n: 8
+      text: Provides planning training and capacity building
+      origin: restored-from-source-text
+    - v1Key: v1:6.2.1:advanced:I9
+      n: 9
+      text: Publishes planning case studies
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:6.2.1:expert
+    knowledge: Shapes planning practice and policy
+    application: Influences planning at regional or national level
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.2.1:expert:I1
+      n: 1
+      text: Develops innovative planning frameworks adopted widely
+      origin: database
+    - v1Key: v1:6.2.1:expert:I2
+      n: 2
+      text: Influences planning policy and standards
+      origin: database
+    - v1Key: v1:6.2.1:expert:I3
+      n: 3
+      text: Leads major regional or landscape-scale planning initiatives
+      origin: database
+    - v1Key: v1:6.2.1:expert:I4
+      n: 4
+      text: Provides expert consultation on complex planning challenges
+      origin: database
+    - v1Key: v1:6.2.1:expert:I5
+      n: 5
+      text: Publishes influential planning research
+      origin: database
+    - v1Key: v1:6.2.1:expert:I6
+      n: 6
+      text: Recognized thought leader in comprehensive planning
+      origin: database
+    - v1Key: v1:6.2.1:expert:I7
+      n: 7
+      text: Advises on planning reform and modernization
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:6.2.1:sector:public_agencies
+    text: General plans, resource management plans, public land planning
+  - sector: private_sector
+    v1Key: v1:6.2.1:sector:private_sector
+    text: Master planning for large properties, corporate land use strategy
+  - sector: ngos
+    v1Key: v1:6.2.1:sector:ngos
+    text: Conservation planning, community vision development
+  - sector: consulting
+    v1Key: v1:6.2.1:sector:consulting
+    text: Comprehensive plan preparation, technical analysis, facilitation
+  - sector: academia
+    v1Key: v1:6.2.1:sector:academia
+    text: Planning research, teaching, plan evaluation
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

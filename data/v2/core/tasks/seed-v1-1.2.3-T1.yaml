@@ -1,0 +1,49 @@
+id: seed:v1-1.2.3-T1
+type: Task
+prefLabel:
+  en: Measure streamflow, precipitation, and groundwater levels to model watershed behavior
+statement:
+  en: Measure streamflow, precipitation, and groundwater levels to model watershed behavior
+textSha256: e2c137dda17cfbc0470b6d5c677d2dde8583c3e40a1ed758061aceec28bdede8
+supports:
+- competency: seed:v1-1.2.3
+  strength: primary
+notation:
+- scheme: EMSTv1
+  value: 1.2.3:T1
+layer: L2
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Tier: T1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.2'
+  label: Soil & Water Science
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.2.3:T1
+    v1Code: 1.2.3
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 9
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011

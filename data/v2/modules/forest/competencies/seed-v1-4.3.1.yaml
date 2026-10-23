@@ -1,0 +1,242 @@
+id: seed:v1-4.3.1
+type: Competency
+prefLabel:
+  en: Wildland firefighting
+statement:
+  en: Suppressing unwanted fires on wildlands using appropriate tactics and ensuring firefighter safety.
+notation:
+- scheme: EMSTv1
+  value: 4.3.1
+layer: L1
+module: forest
+homeModule: forest
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.3'
+  label: Fire Management
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: Fire-specific (L07); proficiency is qualification-anchored, so NWCG positions become Credential gates with PMS 310-1 crosswalk; ICS participation goes to core DB-C42; title defect fixed; TN enactment notes held (FC verdict). Role verdicts considered: FC:change|FC:carry|TN:add. Title and description were merged in the v1 database and are split here from the source text.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.1
+    v1Code: 4.3.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 122
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:4.3.1
+    v1Code: 4.3.1
+    v1Table: source_text/competencies
+    sourceTextLine: 7925
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Wildland firefighting Suppressing unwanted fires on wildlands using appropriate tactics and ensuring firefighter safety.
+  v1Description: ''
+  titleDescriptionSplit: true
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.3.1:foundational
+    knowledge: Understands fire behavior basics, safety protocols, and firefighting fundamentals
+    application: Functions effectively as wildland firefighter on crews
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.1:foundational:I1
+      n: 1
+      text: Completes required training (S-130, S-190, work capacity test)
+      origin: database
+    - v1Key: v1:4.3.1:foundational:I2
+      n: 2
+      text: Constructs handline using appropriate tools
+      origin: database
+    - v1Key: v1:4.3.1:foundational:I3
+      n: 3
+      text: Follows crew boss directions and tactical plans
+      origin: database
+    - v1Key: v1:4.3.1:foundational:I4
+      n: 4
+      text: Recognizes hazardous fire conditions and communicates observations
+      origin: database
+    - v1Key: v1:4.3.1:foundational:I5
+      n: 5
+      text: Uses water and foam effectively for suppression
+      origin: database
+    - v1Key: v1:4.3.1:foundational:I6
+      n: 6
+      text: Maintains situational awareness and safety zones
+      origin: database
+    - v1Key: v1:4.3.1:foundational:I7
+      n: 7
+      text: Uses radio communications protocols
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.1:foundational:I8
+      n: 8
+      text: Maintains physical fitness for arduous fire duty
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.1:foundational:I9
+      n: 9
+      text: Cares for equipment and personal protective equipment
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.3.1:intermediate
+    knowledge: Applies fire behavior science; understands tactical decision-making
+    application: Serves in tactical leadership roles on fires
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.1:intermediate:I1
+      n: 1
+      text: Holds crew boss, engine boss, or squad boss qualifications (FFT1, ENGB, SQAD)
+      origin: database
+    - v1Key: v1:4.3.1:intermediate:I2
+      n: 2
+      text: Sizes up fire situations and develops tactical plans
+      origin: database
+    - v1Key: v1:4.3.1:intermediate:I3
+      n: 3
+      text: Leads crews or resources in fire suppression operations
+      origin: database
+    - v1Key: v1:4.3.1:intermediate:I4
+      n: 4
+      text: Uses firing operations to achieve containment
+      origin: database
+    - v1Key: v1:4.3.1:intermediate:I5
+      n: 5
+      text: Operates fire engines or heavy equipment for suppression
+      origin: database
+    - v1Key: v1:4.3.1:intermediate:I6
+      n: 6
+      text: Conducts risk assessments and implements LCES (lookouts, communications, escape routes, safety zones)
+      origin: database
+    - v1Key: v1:4.3.1:intermediate:I7
+      n: 7
+      text: Mentors less experienced firefighters
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.1:intermediate:I8
+      n: 8
+      text: Completes incident documentation and reports
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.1:intermediate:I9
+      n: 9
+      text: Maintains proficiency across multiple firefighting tactics
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.3.1:advanced
+    knowledge: Expert in fire operations; skilled in complex incident management
+    application: Serves in incident management positions
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.1:advanced:I1
+      n: 1
+      text: Holds division supervisor, operations section chief, or incident commander qualifications
+      origin: database
+    - v1Key: v1:4.3.1:advanced:I2
+      n: 2
+      text: Manages multiple resources and complex fire operations
+      origin: database
+    - v1Key: v1:4.3.1:advanced:I3
+      n: 3
+      text: Develops strategic incident objectives and tactical plans
+      origin: database
+    - v1Key: v1:4.3.1:advanced:I4
+      n: 4
+      text: Makes decisions balancing suppression effectiveness with firefighter safety
+      origin: database
+    - v1Key: v1:4.3.1:advanced:I5
+      n: 5
+      text: Manages large fire crews and resources (50+ personnel)
+      origin: database
+    - v1Key: v1:4.3.1:advanced:I6
+      n: 6
+      text: Represents agency in interagency coordination
+      origin: database
+    - v1Key: v1:4.3.1:advanced:I7
+      n: 7
+      text: Conducts after-action reviews for organizational learning
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.1:advanced:I8
+      n: 8
+      text: Mentors developing incident managers
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.1:advanced:I9
+      n: 9
+      text: Applies incident command system effectively
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.1:advanced:I10
+      n: 10
+      text: Manages extended attack and large fire incidents
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.3.1:expert
+    knowledge: Shapes fire operations practices at national level
+    application: Provides strategic fire management leadership
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.1:expert:I1
+      n: 1
+      text: Serves on Type 1 or Type 2 incident management teams
+      origin: database
+    - v1Key: v1:4.3.1:expert:I2
+      n: 2
+      text: Manages major wildfire incidents affecting multiple jurisdictions
+      origin: database
+    - v1Key: v1:4.3.1:expert:I3
+      n: 3
+      text: Develops fire management policy and doctrine
+      origin: database
+    - v1Key: v1:4.3.1:expert:I4
+      n: 4
+      text: Provides expert consultation on complex fire management issues
+      origin: database
+    - v1Key: v1:4.3.1:expert:I5
+      n: 5
+      text: Trains incident management personnel
+      origin: database
+    - v1Key: v1:4.3.1:expert:I6
+      n: 6
+      text: Achieves recognition for fire management excellence
+      origin: database
+    - v1Key: v1:4.3.1:expert:I7
+      n: 7
+      text: Advances firefighter safety culture nationally
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.3.1:sector:public_agencies
+    text: Federal/state wildland fire response, incident management
+  - sector: private_sector
+    v1Key: v1:4.3.1:sector:private_sector
+    text: Contract firefighting crews, wildfire response services
+  - sector: ngos
+    v1Key: v1:4.3.1:sector:ngos
+    text: Fire management for preserves, community fire response
+  - sector: consulting
+    v1Key: v1:4.3.1:sector:consulting
+    text: Fire management planning, expert testimony
+  - sector: academia
+    v1Key: v1:4.3.1:sector:academia
+    text: Fire research support, fire training programs
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

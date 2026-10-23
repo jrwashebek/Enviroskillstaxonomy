@@ -1,0 +1,243 @@
+id: seed:v1-3.3.1
+type: Competency
+prefLabel:
+  en: Personnel management and supervision
+statement:
+  en: Directing, supporting, and evaluating staff members who carry out land management activities.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 3.3.1
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.3'
+  label: Resource Administration
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-MANAGE. Rationale: Supervision with formation-of-others link (TX-D) and labour-agreement indicators (SL verdict); crosswalk to OPM general competencies and the current five-ECQ framework (Oct 2025) rather than parallel definitions (FH verdict; X9); absorbs 3.5.2; title defect fixed. Role verdicts considered: FH:change|SL:carry. Title and description were merged in the v1 database and are split here from the source text.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:3.3.1
+    v1Code: 3.3.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 87
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:3.3.1
+    v1Code: 3.3.1
+    v1Table: source_text/competencies
+    sourceTextLine: 5532
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
+  - v1Key: v1:3.5.2
+    v1Code: 3.5.2
+    relation: merged-from
+    note: v1 3.5.2 (merge) → seed:v1-3.3.1 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Personnel management and supervision Directing, supporting, and evaluating staff members who carry out land management activities.
+  v1Description: ''
+  titleDescriptionSplit: true
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:3.3.1:foundational
+    knowledge: Understands basic supervision and HR concepts
+    application: May supervise temporary or seasonal staff
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.3.1:foundational:I1
+      n: 1
+      text: Provides clear task direction
+      origin: database
+    - v1Key: v1:3.3.1:foundational:I2
+      n: 2
+      text: Gives constructive feedback
+      origin: database
+    - v1Key: v1:3.3.1:foundational:I3
+      n: 3
+      text: Documents work assignments
+      origin: database
+    - v1Key: v1:3.3.1:foundational:I4
+      n: 4
+      text: Follows HR policies and procedures
+      origin: database
+    - v1Key: v1:3.3.1:foundational:I5
+      n: 5
+      text: Treats staff respectfully and fairly
+      origin: database
+    - v1Key: v1:3.3.1:foundational:I6
+      n: 6
+      text: Recognizes performance issues
+      origin: database
+    - v1Key: v1:3.3.1:foundational:I7
+      n: 7
+      text: Escalates HR issues appropriately
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:3.3.1:intermediate
+    knowledge: Applies personnel management principles and practices
+    application: Supervises permanent staff effectively
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.3.1:intermediate:I1
+      n: 1
+      text: Develops staff work plans and goals
+      origin: database
+    - v1Key: v1:3.3.1:intermediate:I2
+      n: 2
+      text: Conducts performance evaluations
+      origin: database
+    - v1Key: v1:3.3.1:intermediate:I3
+      n: 3
+      text: Provides regular coaching and feedback
+      origin: database
+    - v1Key: v1:3.3.1:intermediate:I4
+      n: 4
+      text: Addresses performance issues appropriately
+      origin: database
+    - v1Key: v1:3.3.1:intermediate:I5
+      n: 5
+      text: Participates in hiring and selection
+      origin: database
+    - v1Key: v1:3.3.1:intermediate:I6
+      n: 6
+      text: Onboards new staff effectively
+      origin: database
+    - v1Key: v1:3.3.1:intermediate:I7
+      n: 7
+      text: Identifies training and development needs
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.1:intermediate:I8
+      n: 8
+      text: Delegates appropriately
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.1:intermediate:I9
+      n: 9
+      text: Manages diverse staff
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.1:intermediate:I10
+      n: 10
+      text: Handles minor personnel issues
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:3.3.1:advanced
+    knowledge: Expert in human resource management and leadership
+    application: Manages teams and develops staff
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.3.1:advanced:I1
+      n: 1
+      text: Builds high-performing teams
+      origin: database
+    - v1Key: v1:3.3.1:advanced:I2
+      n: 2
+      text: Develops staff professionally
+      origin: database
+    - v1Key: v1:3.3.1:advanced:I3
+      n: 3
+      text: Manages complex personnel situations
+      origin: database
+    - v1Key: v1:3.3.1:advanced:I4
+      n: 4
+      text: Handles disciplinary actions and terminations
+      origin: database
+    - v1Key: v1:3.3.1:advanced:I5
+      n: 5
+      text: Leads hiring processes
+      origin: database
+    - v1Key: v1:3.3.1:advanced:I6
+      n: 6
+      text: Creates inclusive, equitable workplaces
+      origin: database
+    - v1Key: v1:3.3.1:advanced:I7
+      n: 7
+      text: Manages performance improvement plans
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.1:advanced:I8
+      n: 8
+      text: Develops succession plans
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.1:advanced:I9
+      n: 9
+      text: Trains supervisors in personnel management
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.1:advanced:I10
+      n: 10
+      text: Uses HR analytics for decision-making
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.1:advanced:I11
+      n: 11
+      text: Ensures legal compliance (EEO, ADA, FMLA)
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:3.3.1:expert
+    knowledge: Shapes HR practice in environmental organizations
+    application: Provides HR strategic leadership
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.3.1:expert:I1
+      n: 1
+      text: Develops organizational HR strategies
+      origin: database
+    - v1Key: v1:3.3.1:expert:I2
+      n: 2
+      text: Influences HR policies and practices
+      origin: database
+    - v1Key: v1:3.3.1:expert:I3
+      n: 3
+      text: Builds organizational capacity and culture
+      origin: database
+    - v1Key: v1:3.3.1:expert:I4
+      n: 4
+      text: Provides expert HR consultation
+      origin: database
+    - v1Key: v1:3.3.1:expert:I5
+      n: 5
+      text: Advances HR in environmental sector
+      origin: database
+    - v1Key: v1:3.3.1:expert:I6
+      n: 6
+      text: Leads workforce planning and development
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:3.3.1:sector:public_agencies
+    text: Civil service management, union relations, federal/state HR
+  - sector: private_sector
+    v1Key: v1:3.3.1:sector:private_sector
+    text: Employee management, talent development, HR compliance
+  - sector: ngos
+    v1Key: v1:3.3.1:sector:ngos
+    text: Nonprofit staff management, volunteer integration
+  - sector: consulting
+    v1Key: v1:3.3.1:sector:consulting
+    text: Staff management, professional development
+  - sector: academia
+    v1Key: v1:3.3.1:sector:academia
+    text: Faculty/staff supervision, academic HR
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

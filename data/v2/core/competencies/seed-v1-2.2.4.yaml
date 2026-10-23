@@ -1,0 +1,243 @@
+id: seed:v1-2.2.4
+type: Competency
+prefLabel:
+  en: Programming and scripting
+statement:
+  en: Writing computer code to automate repetitive tasks or create custom tools for analyzing environmental data.
+notation:
+- scheme: EMSTv1
+  value: 2.2.4
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:DC-CAND-08
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.2'
+  label: Data Management & Analysis
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → DC-CAND-08. Rationale: Rewritten to its durable core (reproducibility, testing, review of AI-generated code) as DC-CAND-08; languages to L4 (DC disposition). Role verdicts considered: DC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.2.4
+    v1Code: 2.2.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 50
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.2.4
+    v1Code: 2.2.4
+    v1Table: source_text/competencies
+    sourceTextLine: 3444
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Programming and scripting
+  v1Description: Writing computer code to automate repetitive tasks or create custom tools for analyzing environmental data.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.2.4:foundational
+    knowledge: Understands programming basics (variables, loops, functions)
+    application: Writes simple scripts
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.4:foundational:I1
+      n: 1
+      text: Modifies existing scripts for new purposes
+      origin: database
+    - v1Key: v1:2.2.4:foundational:I2
+      n: 2
+      text: Writes basic scripts to automate tasks
+      origin: database
+    - v1Key: v1:2.2.4:foundational:I3
+      n: 3
+      text: Understands fundamental programming concepts
+      origin: database
+    - v1Key: v1:2.2.4:foundational:I4
+      n: 4
+      text: Uses one scripting language (Python, R, or JavaScript)
+      origin: database
+    - v1Key: v1:2.2.4:foundational:I5
+      n: 5
+      text: Reads and interprets code written by others
+      origin: database
+    - v1Key: v1:2.2.4:foundational:I6
+      n: 6
+      text: Uses version control basics (Git)
+      origin: database
+    - v1Key: v1:2.2.4:foundational:I7
+      n: 7
+      text: Debugs simple code errors
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.4:foundational:I8
+      n: 8
+      text: Follows coding best practices
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.2.4:intermediate
+    knowledge: Applies programming principles across multiple languages
+    application: Develops functional programs and tools
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.4:intermediate:I1
+      n: 1
+      text: Writes well-structured, documented code
+      origin: database
+    - v1Key: v1:2.2.4:intermediate:I2
+      n: 2
+      text: Uses multiple programming languages appropriately
+      origin: database
+    - v1Key: v1:2.2.4:intermediate:I3
+      n: 3
+      text: Develops data processing pipelines
+      origin: database
+    - v1Key: v1:2.2.4:intermediate:I4
+      n: 4
+      text: Creates custom analytical tools
+      origin: database
+    - v1Key: v1:2.2.4:intermediate:I5
+      n: 5
+      text: Uses APIs to access and integrate data
+      origin: database
+    - v1Key: v1:2.2.4:intermediate:I6
+      n: 6
+      text: Implements error handling and logging
+      origin: database
+    - v1Key: v1:2.2.4:intermediate:I7
+      n: 7
+      text: Writes automated tests for code
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.4:intermediate:I8
+      n: 8
+      text: Uses version control collaboratively
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.4:intermediate:I9
+      n: 9
+      text: Optimizes code for performance
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.4:intermediate:I10
+      n: 10
+      text: Develops simple web applications or dashboards
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.2.4:advanced
+    knowledge: Expert in software development and architecture
+    application: Develops complex applications and systems
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.4:advanced:I1
+      n: 1
+      text: Designs software architecture for environmental applications
+      origin: database
+    - v1Key: v1:2.2.4:advanced:I2
+      n: 2
+      text: Develops full-featured applications
+      origin: database
+    - v1Key: v1:2.2.4:advanced:I3
+      n: 3
+      text: Uses object-oriented and functional programming paradigms
+      origin: database
+    - v1Key: v1:2.2.4:advanced:I4
+      n: 4
+      text: Implements databases and data pipelines
+      origin: database
+    - v1Key: v1:2.2.4:advanced:I5
+      n: 5
+      text: Develops RESTful APIs and web services
+      origin: database
+    - v1Key: v1:2.2.4:advanced:I6
+      n: 6
+      text: Uses cloud computing platforms programmatically
+      origin: database
+    - v1Key: v1:2.2.4:advanced:I7
+      n: 7
+      text: Implements CI/CD workflows
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.4:advanced:I8
+      n: 8
+      text: Applies software design patterns
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.4:advanced:I9
+      n: 9
+      text: Leads development projects
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.4:advanced:I10
+      n: 10
+      text: Trains others in programming
+      origin: restored-from-source-text
+    - v1Key: v1:2.2.4:advanced:I11
+      n: 11
+      text: Contributes to open source projects
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.2.4:expert
+    knowledge: Shapes software development in environmental field
+    application: Provides technical leadership and innovation
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.2.4:expert:I1
+      n: 1
+      text: Develops widely-used environmental software tools
+      origin: database
+    - v1Key: v1:2.2.4:expert:I2
+      n: 2
+      text: Influences software development standards
+      origin: database
+    - v1Key: v1:2.2.4:expert:I3
+      n: 3
+      text: Leads major software development initiatives
+      origin: database
+    - v1Key: v1:2.2.4:expert:I4
+      n: 4
+      text: Publishes on environmental computing methods
+      origin: database
+    - v1Key: v1:2.2.4:expert:I5
+      n: 5
+      text: Provides expert consultation on software architecture
+      origin: database
+    - v1Key: v1:2.2.4:expert:I6
+      n: 6
+      text: Advances computational methods in environmental science
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.2.4:sector:public_agencies
+    text: Data processing automation, custom analytical tools
+  - sector: private_sector
+    v1Key: v1:2.2.4:sector:private_sector
+    text: Software development, automation, data integration
+  - sector: ngos
+    v1Key: v1:2.2.4:sector:ngos
+    text: Custom tools for conservation analysis, data visualization
+  - sector: consulting
+    v1Key: v1:2.2.4:sector:consulting
+    text: Custom analysis tools, automated reporting
+  - sector: academia
+    v1Key: v1:2.2.4:sector:academia
+    text: Research software, analytical methods development
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

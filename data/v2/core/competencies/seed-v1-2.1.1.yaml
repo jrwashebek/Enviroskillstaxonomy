@@ -1,0 +1,228 @@
+id: seed:v1-2.1.1
+type: Competency
+prefLabel:
+  en: Geographic Information Systems (GIS) operation
+statement:
+  en: Using specialized mapping software to create, analyze, and display maps and geographic information.
+notation:
+- scheme: EMSTv1
+  value: 2.1.1
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-2.1.4
+- seed:tool-gis-platforms
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.1'
+  label: Geospatial Technologies
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-tools → L4 GIS platforms|v1:2.1.4 (spatial data models, CRS, topology, spatial query logic). Rationale: Durable share medium; operating a GIS product is L4 fluency (T-2), its durable core joins spatial analysis (DC disposition). Role verdicts considered: DC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.1.1
+    v1Code: 2.1.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 42
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.1.1
+    v1Code: 2.1.1
+    v1Table: source_text/competencies
+    sourceTextLine: 3079
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Geographic Information Systems (GIS) operation
+  v1Description: Using specialized mapping software to create, analyze, and display maps and geographic information.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.1.1:foundational
+    knowledge: Understands GIS concepts (layers, attributes, projections, spatial relationships)
+    application: Performs basic GIS operations
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.1:foundational:I1
+      n: 1
+      text: Creates simple maps using existing data layers
+      origin: database
+    - v1Key: v1:2.1.1:foundational:I2
+      n: 2
+      text: Edits features and attributes in spatial databases
+      origin: database
+    - v1Key: v1:2.1.1:foundational:I3
+      n: 3
+      text: Understands coordinate systems and projections
+      origin: database
+    - v1Key: v1:2.1.1:foundational:I4
+      n: 4
+      text: Performs basic queries and selections
+      origin: database
+    - v1Key: v1:2.1.1:foundational:I5
+      n: 5
+      text: Symbolizes features appropriately for map communication
+      origin: database
+    - v1Key: v1:2.1.1:foundational:I6
+      n: 6
+      text: Exports maps and data in various formats
+      origin: database
+    - v1Key: v1:2.1.1:foundational:I7
+      n: 7
+      text: Uses online mapping platforms (ArcGIS Online, Google Earth)
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.1.1:intermediate
+    knowledge: Applies spatial analysis principles; understands data structures
+    application: Conducts spatial analysis and manages GIS data
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.1:intermediate:I1
+      n: 1
+      text: Designs and builds geodatabases
+      origin: database
+    - v1Key: v1:2.1.1:intermediate:I2
+      n: 2
+      text: Performs multi-step spatial analyses (buffer, overlay, proximity)
+      origin: database
+    - v1Key: v1:2.1.1:intermediate:I3
+      n: 3
+      text: Creates custom symbology and layout templates
+      origin: database
+    - v1Key: v1:2.1.1:intermediate:I4
+      n: 4
+      text: Uses geoprocessing tools and model builder
+      origin: database
+    - v1Key: v1:2.1.1:intermediate:I5
+      n: 5
+      text: Integrates GPS data with GIS
+      origin: database
+    - v1Key: v1:2.1.1:intermediate:I6
+      n: 6
+      text: Manages coordinate system transformations
+      origin: database
+    - v1Key: v1:2.1.1:intermediate:I7
+      n: 7
+      text: Creates web maps and story maps
+      origin: restored-from-source-text
+    - v1Key: v1:2.1.1:intermediate:I8
+      n: 8
+      text: Troubleshoots common GIS problems
+      origin: restored-from-source-text
+    - v1Key: v1:2.1.1:intermediate:I9
+      n: 9
+      text: Maintains data quality and accuracy
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.1.1:advanced
+    knowledge: Expert in GIS architecture, spatial analysis, and automation
+    application: Develops custom GIS solutions and enterprise systems
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.1:advanced:I1
+      n: 1
+      text: Designs enterprise GIS architectures
+      origin: database
+    - v1Key: v1:2.1.1:advanced:I2
+      n: 2
+      text: Writes Python scripts to automate workflows
+      origin: database
+    - v1Key: v1:2.1.1:advanced:I3
+      n: 3
+      text: Performs advanced spatial statistics and modeling
+      origin: database
+    - v1Key: v1:2.1.1:advanced:I4
+      n: 4
+      text: Develops custom GIS tools and extensions
+      origin: database
+    - v1Key: v1:2.1.1:advanced:I5
+      n: 5
+      text: Integrates GIS with databases and other systems
+      origin: database
+    - v1Key: v1:2.1.1:advanced:I6
+      n: 6
+      text: Manages large spatial datasets efficiently
+      origin: database
+    - v1Key: v1:2.1.1:advanced:I7
+      n: 7
+      text: Implements GIS standards and best practices
+      origin: restored-from-source-text
+    - v1Key: v1:2.1.1:advanced:I8
+      n: 8
+      text: Trains and mentors GIS staff
+      origin: restored-from-source-text
+    - v1Key: v1:2.1.1:advanced:I9
+      n: 9
+      text: Evaluates and implements new GIS technologies
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.1.1:expert
+    knowledge: Shapes GIS strategy and standards
+    application: Provides GIS leadership at organizational level
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.1:expert:I1
+      n: 1
+      text: Develops organizational GIS strategy
+      origin: database
+    - v1Key: v1:2.1.1:expert:I2
+      n: 2
+      text: Leads enterprise GIS implementation
+      origin: database
+    - v1Key: v1:2.1.1:expert:I3
+      n: 3
+      text: Influences GIS standards and best practices
+      origin: database
+    - v1Key: v1:2.1.1:expert:I4
+      n: 4
+      text: Provides expert consultation on complex spatial problems
+      origin: database
+    - v1Key: v1:2.1.1:expert:I5
+      n: 5
+      text: Publishes on GIS methods and applications
+      origin: database
+    - v1Key: v1:2.1.1:expert:I6
+      n: 6
+      text: Represents organization in GIS community leadership
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.1.1:sector:public_agencies
+    text: Land management planning, resource mapping, permit tracking
+  - sector: private_sector
+    v1Key: v1:2.1.1:sector:private_sector
+    text: Site analysis, environmental compliance, supply chain visualization
+  - sector: ngos
+    v1Key: v1:2.1.1:sector:ngos
+    text: Conservation prioritization, land acquisition planning, advocacy mapping
+  - sector: consulting
+    v1Key: v1:2.1.1:sector:consulting
+    text: Spatial analysis for clients, environmental impact mapping
+  - sector: academia
+    v1Key: v1:2.1.1:sector:academia
+    text: Research GIS, spatial analysis methods, teaching
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

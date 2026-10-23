@@ -1,0 +1,231 @@
+id: seed:v1-2.6.3
+type: Competency
+prefLabel:
+  en: Predictive analytics for resource management
+statement:
+  en: Using machine learning to forecast environmental conditions, resource needs, or ecological changes to enable proactive management.
+notation:
+- scheme: EMSTv1
+  value: 2.6.3
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-2.4.2
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.6'
+  label: Ai-Enhanced Environmental Monitoring
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:2.4.2. Rationale: Duplicates predictive modelling; forecasting and early-warning design shared with DC-CAND-12 (DC disposition). Role verdicts considered: DC:change|DC:needs-evidence.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.6.3
+    v1Code: 2.6.3
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 69
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.6.3
+    v1Code: 2.6.3
+    v1Table: source_text/competencies
+    sourceTextLine: 4361
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Predictive analytics for resource management
+  v1Description: Using machine learning to forecast environmental conditions, resource needs, or ecological changes to enable proactive management.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.6.3:foundational
+    knowledge: Understands predictive analytics concepts
+    application: Uses predictive models
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.3:foundational:I1
+      n: 1
+      text: Explains predictive modeling approaches
+      origin: database
+    - v1Key: v1:2.6.3:foundational:I2
+      n: 2
+      text: Uses existing predictive models
+      origin: database
+    - v1Key: v1:2.6.3:foundational:I3
+      n: 3
+      text: Prepares data for predictive modeling
+      origin: database
+    - v1Key: v1:2.6.3:foundational:I4
+      n: 4
+      text: Understands model inputs and outputs
+      origin: database
+    - v1Key: v1:2.6.3:foundational:I5
+      n: 5
+      text: Interprets predictions and uncertainty
+      origin: database
+    - v1Key: v1:2.6.3:foundational:I6
+      n: 6
+      text: Recognizes when predictions need updating
+      origin: database
+    - v1Key: v1:2.6.3:foundational:I7
+      n: 7
+      text: Documents model predictions
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.6.3:intermediate
+    knowledge: Applies predictive modeling methods
+    application: Develops predictive models
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.3:intermediate:I1
+      n: 1
+      text: Builds time series forecasting models
+      origin: database
+    - v1Key: v1:2.6.3:intermediate:I2
+      n: 2
+      text: Uses regression and classification for prediction
+      origin: database
+    - v1Key: v1:2.6.3:intermediate:I3
+      n: 3
+      text: Implements ensemble methods for predictions
+      origin: database
+    - v1Key: v1:2.6.3:intermediate:I4
+      n: 4
+      text: Develops risk prediction models
+      origin: database
+    - v1Key: v1:2.6.3:intermediate:I5
+      n: 5
+      text: Evaluates forecast accuracy over time
+      origin: database
+    - v1Key: v1:2.6.3:intermediate:I6
+      n: 6
+      text: Uses ML for spatial prediction
+      origin: database
+    - v1Key: v1:2.6.3:intermediate:I7
+      n: 7
+      text: Incorporates multiple data sources into predictions
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.3:intermediate:I8
+      n: 8
+      text: Communicates predictions to decision-makers
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.3:intermediate:I9
+      n: 9
+      text: Updates models with new data
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.6.3:advanced
+    knowledge: Expert in predictive analytics and forecasting
+    application: Develops sophisticated prediction systems
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.3:advanced:I1
+      n: 1
+      text: Develops real-time prediction systems
+      origin: database
+    - v1Key: v1:2.6.3:advanced:I2
+      n: 2
+      text: Uses deep learning for sequence prediction
+      origin: database
+    - v1Key: v1:2.6.3:advanced:I3
+      n: 3
+      text: Implements probabilistic forecasting
+      origin: database
+    - v1Key: v1:2.6.3:advanced:I4
+      n: 4
+      text: Develops early warning systems
+      origin: database
+    - v1Key: v1:2.6.3:advanced:I5
+      n: 5
+      text: Integrates predictions with decision support
+      origin: database
+    - v1Key: v1:2.6.3:advanced:I6
+      n: 6
+      text: Addresses concept drift and model updating
+      origin: database
+    - v1Key: v1:2.6.3:advanced:I7
+      n: 7
+      text: Uses online learning for continuous improvement
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.3:advanced:I8
+      n: 8
+      text: Publishes predictive analytics research
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.3:advanced:I9
+      n: 9
+      text: Trains practitioners in predictive methods
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.3:advanced:I10
+      n: 10
+      text: Evaluates economic value of predictions
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.6.3:expert
+    knowledge: Shapes predictive analytics in environmental management
+    application: Provides leadership on predictive analytics
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.3:expert:I1
+      n: 1
+      text: Develops innovative predictive approaches
+      origin: database
+    - v1Key: v1:2.6.3:expert:I2
+      n: 2
+      text: Influences predictive analytics standards
+      origin: database
+    - v1Key: v1:2.6.3:expert:I3
+      n: 3
+      text: Leads major forecasting initiatives
+      origin: database
+    - v1Key: v1:2.6.3:expert:I4
+      n: 4
+      text: Publishes influential predictive analytics research
+      origin: database
+    - v1Key: v1:2.6.3:expert:I5
+      n: 5
+      text: Provides expert forecasting consultation
+      origin: database
+    - v1Key: v1:2.6.3:expert:I6
+      n: 6
+      text: Advances operational forecasting in environmental management
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.6.3:sector:public_agencies
+    text: Fire risk forecasting, water supply prediction, pest outbreak warning
+  - sector: private_sector
+    v1Key: v1:2.6.3:sector:private_sector
+    text: Yield prediction, demand forecasting, risk management
+  - sector: ngos
+    v1Key: v1:2.6.3:sector:ngos
+    text: Threat forecasting, impact prediction
+  - sector: consulting
+    v1Key: v1:2.6.3:sector:consulting
+    text: Predictive modeling services, risk assessment
+  - sector: academia
+    v1Key: v1:2.6.3:sector:academia
+    text: Forecasting research, early warning systems
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

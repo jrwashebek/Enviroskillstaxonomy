@@ -1,0 +1,49 @@
+id: seed:v1-4.5.3-T2
+type: Task
+prefLabel:
+  en: Drive four-wheel drive vehicles in off-road conditions
+statement:
+  en: Drive four-wheel drive vehicles in off-road conditions
+textSha256: 6209a9aa8775ff1651a1d684b77604fa9530560b1f1e1398a77e90b286e376ff
+supports:
+- competency: seed:v1-4.5.3
+  strength: primary
+notation:
+- scheme: EMSTv1
+  value: 4.5.3:T2
+layer: L2
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Tier: T2
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.5'
+  label: Equipment Operation
+editorialNote:
+  en: 'v1 competency 4.5.3 is split: reassign this task to one of [''seed:v1-4.5.3-A'', ''seed:v1-4.5.3-B''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.5.3:T2
+    v1Code: 4.5.3
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 134
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011

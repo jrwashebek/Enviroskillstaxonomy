@@ -1,0 +1,238 @@
+id: seed:v1-4.1.3
+type: Competency
+prefLabel:
+  en: Water quality testing and aquatic surveys
+statement:
+  en: Measuring physical, chemical, and biological characteristics of water bodies and streams.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 4.1.3
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.1'
+  label: Field Assessment & Monitoring
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (FC). Rationale: Survivor for water-quality field work; absorbs 1.2.4; rewritten around calibration, field QC samples, clean sampling and custody (FC-C16, FC-C24) with compliance-sampling links to MOD-18 (FC, DB verdicts); FS stress test suggests protect. Role verdicts considered: DB:carry|FC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.1.3
+    v1Code: 4.1.3
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 114
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:4.1.3
+    v1Code: 4.1.3
+    v1Table: source_text/competencies
+    sourceTextLine: 7530
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:1.2.4
+    v1Code: 1.2.4
+    relation: merged-from
+    note: v1 1.2.4 (merge) → seed:v1-4.1.3 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Water quality testing and aquatic surveys
+  v1Description: Measuring physical, chemical, and biological characteristics of water bodies and streams.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.1.3:foundational
+    knowledge: Understands basic water quality parameters and sampling procedures
+    application: Collects water samples and conducts field measurements
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.3:foundational:I1
+      n: 1
+      text: Measures field parameters accurately using calibrated equipment
+      origin: database
+    - v1Key: v1:4.1.3:foundational:I2
+      n: 2
+      text: Collects water samples following proper protocols
+      origin: database
+    - v1Key: v1:4.1.3:foundational:I3
+      n: 3
+      text: Maintains chain of custody for laboratory samples
+      origin: database
+    - v1Key: v1:4.1.3:foundational:I4
+      n: 4
+      text: Records data accurately with appropriate metadata
+      origin: database
+    - v1Key: v1:4.1.3:foundational:I5
+      n: 5
+      text: Recognizes obvious water quality problems (algae blooms, pollution)
+      origin: database
+    - v1Key: v1:4.1.3:foundational:I6
+      n: 6
+      text: Maintains and calibrates field equipment
+      origin: database
+    - v1Key: v1:4.1.3:foundational:I7
+      n: 7
+      text: Follows safety protocols for water work
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.1.3:intermediate
+    knowledge: Applies water quality assessment methods; understands aquatic ecology
+    application: Designs and implements water quality monitoring programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.3:intermediate:I1
+      n: 1
+      text: Designs sampling strategies appropriate to objectives and water bodies
+      origin: database
+    - v1Key: v1:4.1.3:intermediate:I2
+      n: 2
+      text: Conducts biological assessments (macroinvertebrate, fish surveys)
+      origin: database
+    - v1Key: v1:4.1.3:intermediate:I3
+      n: 3
+      text: Uses water quality data to assess stream health and impairment
+      origin: database
+    - v1Key: v1:4.1.3:intermediate:I4
+      n: 4
+      text: Deploys and manages water quality sensors and data loggers
+      origin: database
+    - v1Key: v1:4.1.3:intermediate:I5
+      n: 5
+      text: Analyzes water quality trends over time
+      origin: database
+    - v1Key: v1:4.1.3:intermediate:I6
+      n: 6
+      text: Identifies pollution sources using multiple lines of evidence
+      origin: database
+    - v1Key: v1:4.1.3:intermediate:I7
+      n: 7
+      text: Coordinates with laboratories for sample analysis
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.3:intermediate:I8
+      n: 8
+      text: Uses water quality data to inform management actions
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.3:intermediate:I9
+      n: 9
+      text: Integrates eDNA sampling for aquatic species detection
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.1.3:advanced
+    knowledge: Expert in aquatic monitoring and water quality science
+    application: Leads comprehensive aquatic assessment programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.3:advanced:I1
+      n: 1
+      text: Develops watershed-scale water quality monitoring programs
+      origin: database
+    - v1Key: v1:4.1.3:advanced:I2
+      n: 2
+      text: Uses multiple assessment methods (chemical, physical, biological)
+      origin: database
+    - v1Key: v1:4.1.3:advanced:I3
+      n: 3
+      text: Conducts load calculations and pollutant source tracking
+      origin: database
+    - v1Key: v1:4.1.3:advanced:I4
+      n: 4
+      text: Evaluates water quality against standards and criteria
+      origin: database
+    - v1Key: v1:4.1.3:advanced:I5
+      n: 5
+      text: Uses real-time sensor networks for continuous monitoring
+      origin: database
+    - v1Key: v1:4.1.3:advanced:I6
+      n: 6
+      text: Implements automated data validation and quality control
+      origin: database
+    - v1Key: v1:4.1.3:advanced:I7
+      n: 7
+      text: Analyzes complex water quality datasets
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.3:advanced:I8
+      n: 8
+      text: Develops water quality improvement recommendations
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.3:advanced:I9
+      n: 9
+      text: Publishes water quality assessment results
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.3:advanced:I10
+      n: 10
+      text: Trains practitioners in aquatic monitoring methods
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.1.3:expert
+    knowledge: Shapes water quality monitoring practices
+    application: Directs major water quality assessment initiatives
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.3:expert:I1
+      n: 1
+      text: Leads regional water quality monitoring networks
+      origin: database
+    - v1Key: v1:4.1.3:expert:I2
+      n: 2
+      text: Develops innovative aquatic assessment approaches
+      origin: database
+    - v1Key: v1:4.1.3:expert:I3
+      n: 3
+      text: Influences water quality monitoring standards and methods
+      origin: database
+    - v1Key: v1:4.1.3:expert:I4
+      n: 4
+      text: Provides expert consultation on water quality issues
+      origin: database
+    - v1Key: v1:4.1.3:expert:I5
+      n: 5
+      text: Publishes influential water quality research
+      origin: database
+    - v1Key: v1:4.1.3:expert:I6
+      n: 6
+      text: Achieves recognition for aquatic monitoring excellence
+      origin: database
+    - v1Key: v1:4.1.3:expert:I7
+      n: 7
+      text: Advances integration of technology in water quality assessment
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.1.3:sector:public_agencies
+    text: Stream monitoring, lake assessments, drinking water protection
+  - sector: private_sector
+    v1Key: v1:4.1.3:sector:private_sector
+    text: Compliance monitoring, stormwater quality, industrial discharge
+  - sector: ngos
+    v1Key: v1:4.1.3:sector:ngos
+    text: Watershed monitoring, stream restoration assessment, volunteer monitoring
+  - sector: consulting
+    v1Key: v1:4.1.3:sector:consulting
+    text: Water quality surveys, TMDL studies, mitigation monitoring
+  - sector: academia
+    v1Key: v1:4.1.3:sector:academia
+    text: Research monitoring, experimental treatments, water quality methods
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

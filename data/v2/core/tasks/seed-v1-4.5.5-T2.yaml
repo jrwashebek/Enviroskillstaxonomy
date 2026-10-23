@@ -1,0 +1,49 @@
+id: seed:v1-4.5.5-T2
+type: Task
+prefLabel:
+  en: Diagnose equipment problems and make repairs
+statement:
+  en: Diagnose equipment problems and make repairs
+textSha256: c67408781ed3112f71c07332f41f075e31e7443ac2180a295eb6f6d170d0b883
+supports:
+- competency: seed:v1-4.5.5
+  strength: primary
+notation:
+- scheme: EMSTv1
+  value: 4.5.5:T2
+layer: L2
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Tier: T2
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.5'
+  label: Equipment Operation
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.5.5:T2
+    v1Code: 4.5.5
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 136
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011

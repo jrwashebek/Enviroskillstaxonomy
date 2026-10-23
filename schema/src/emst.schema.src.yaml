@@ -61,13 +61,18 @@ $defs:
   DateTime:
     type: string
     pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})$'
+  PartialDate:
+    type: string
+    description: YYYY, YYYY-MM or YYYY-MM-DD.
+    pattern: '^\d{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?)?$'
   Period:
     type: object
     additionalProperties: false
     required: [start, end]
     properties:
-      start: {$ref: '#/$defs/Date'}
-      end: {$ref: '#/$defs/Date'}
+      start: {$ref: '#/$defs/PartialDate'}
+      end: {$ref: '#/$defs/PartialDate'}
+      note: {type: string}
   Sha256:
     type: string
     pattern: '^[0-9a-f]{64}$'
@@ -141,7 +146,7 @@ $defs:
     additionalProperties: false
     required: [v1Key, relation]
     properties:
-      v1Key: {type: string, pattern: '^v1:[1-7](\.\d{1,2}){0,2}(:[A-Za-z0-9_.:-]+)?$', description: Key resolving to a row of data/v1_baseline/.}
+      v1Key: {type: string, pattern: '^v1:[1-7](\.\d{1,2}){0,2}(:[A-Za-z0-9_.:#-]+)?$', description: Key resolving to a row of data/v1_baseline/.}
       v1Code: {type: string}
       v1Table: {type: string}
       v1Sheet: {type: string}
@@ -1008,8 +1013,8 @@ $defs:
           name: {type: string}
           value: {type: number}
           unit: {type: string}
-          ci95: {type: array, minItems: 2, maxItems: 2, items: {type: number}}
-          n: {type: integer, minimum: 0}
+          ci95: {type: [array, 'null'], minItems: 2, maxItems: 2, items: {type: number}, description: null when not estimable}
+          n: {type: [integer, 'null'], minimum: 0}
           denominator: {type: string}
       observedPeriod: {$ref: '#/$defs/Period'}
       comparisonPeriod: {$ref: '#/$defs/Period'}
@@ -1023,7 +1028,7 @@ $defs:
         required: [version, sha256, license]
         properties:
           version: {type: string}
-          sha256: {$ref: '#/$defs/Sha256'}
+          sha256: {anyOf: [{$ref: '#/$defs/Sha256'}, {type: 'null'}], description: null only when no corpus snapshot exists (single published document)}
           license: {type: string}
       method: {type: string}
       toolVersion: {type: string}
@@ -1042,7 +1047,7 @@ $defs:
       directionConfidence: {$ref: '#/$defs/v_directionConfidence'}
       drivers: {type: array, minItems: 1, uniqueItems: true, items: {$ref: '#/$defs/v_driverTag'}}
       steepCategory: {$ref: '#/$defs/v_steepCategory'}
-      novelty: {enum: [new, recurring, continuing]}
+      novelty: {anyOf: [{type: integer, minimum: 0, maximum: 5}, {type: string, minLength: 1}], description: No L0 vocabulary yet; FS/LM score or label.}
       reliability: {$ref: '#/$defs/v_signalReliability'}
       corroboration: {type: integer, minimum: 0, description: Number of independent corroborating signal families.}
       careFlag: {type: boolean}

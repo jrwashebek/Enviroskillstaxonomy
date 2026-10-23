@@ -1,0 +1,222 @@
+id: seed:v1-1.5.4
+type: Competency
+prefLabel:
+  en: Carbon cycle science
+statement:
+  en: Understanding how carbon moves through ecosystems and how land management affects carbon storage and emissions.
+competencyType: knowledge-area
+notation:
+- scheme: EMSTv1
+  value: 1.5.4
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.5'
+  label: Climate Science
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | knowledge-area (Climate system, carbon cycle and climate-biosphere interactions). Rationale: Broadened knowledge area; absorbs 1.5.5 phenology. Role verdicts considered: none recorded.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.5.4
+    v1Code: 1.5.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 25
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:1.5.4
+    v1Code: 1.5.4
+    v1Table: source_text/competencies
+    sourceTextLine: 1590
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:1.5.5
+    v1Code: 1.5.5
+    relation: merged-from
+    note: v1 1.5.5 (merge) → seed:v1-1.5.4 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Carbon cycle science
+  v1Description: Understanding how carbon moves through ecosystems and how land management affects carbon storage and emissions.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:1.5.4:foundational
+    knowledge: Understands basic carbon cycle concepts (pools, fluxes, sequestration)
+    application: Collects carbon-related field data; uses basic carbon tools
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.5.4:foundational:I1
+      n: 1
+      text: Explains major carbon pools in ecosystems (biomass, soil, dead wood)
+      origin: database
+    - v1Key: v1:1.5.4:foundational:I2
+      n: 2
+      text: Understands photosynthesis and respiration as carbon fluxes
+      origin: database
+    - v1Key: v1:1.5.4:foundational:I3
+      n: 3
+      text: Collects field data for carbon estimation (tree measurements, soil samples)
+      origin: database
+    - v1Key: v1:1.5.4:foundational:I4
+      n: 4
+      text: Uses basic carbon calculators or lookup tables
+      origin: database
+    - v1Key: v1:1.5.4:foundational:I5
+      n: 5
+      text: Understands relationship between carbon and climate
+      origin: database
+    - v1Key: v1:1.5.4:foundational:I6
+      n: 6
+      text: Recognizes how disturbance affects carbon
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:1.5.4:intermediate
+    knowledge: Applies carbon accounting methods; understands carbon dynamics in managed systems
+    application: Estimates carbon stocks and evaluates management effects on carbon
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.5.4:intermediate:I1
+      n: 1
+      text: Uses allometric equations and models to estimate biomass carbon
+      origin: database
+    - v1Key: v1:1.5.4:intermediate:I2
+      n: 2
+      text: Conducts forest carbon inventories using standard protocols
+      origin: database
+    - v1Key: v1:1.5.4:intermediate:I3
+      n: 3
+      text: Estimates soil carbon using appropriate methods
+      origin: database
+    - v1Key: v1:1.5.4:intermediate:I4
+      n: 4
+      text: Models carbon dynamics under different management scenarios
+      origin: database
+    - v1Key: v1:1.5.4:intermediate:I5
+      n: 5
+      text: Understands carbon accounting frameworks (IPCC guidelines, forest inventory)
+      origin: database
+    - v1Key: v1:1.5.4:intermediate:I6
+      n: 6
+      text: Evaluates tradeoffs between carbon and other objectives
+      origin: database
+    - v1Key: v1:1.5.4:intermediate:I7
+      n: 7
+      text: Communicates carbon information to managers
+      origin: restored-from-source-text
+    - v1Key: v1:1.5.4:intermediate:I8
+      n: 8
+      text: Supports carbon-related planning and reporting
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:1.5.4:advanced
+    knowledge: Expert in carbon science; understands carbon across ecosystems and management contexts
+    application: Leads carbon assessment programs and integrates carbon into planning
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.5.4:advanced:I1
+      n: 1
+      text: Designs carbon monitoring programs
+      origin: database
+    - v1Key: v1:1.5.4:advanced:I2
+      n: 2
+      text: Uses process-based models for carbon dynamics
+      origin: database
+    - v1Key: v1:1.5.4:advanced:I3
+      n: 3
+      text: Integrates carbon with forest planning and NEPA
+      origin: database
+    - v1Key: v1:1.5.4:advanced:I4
+      n: 4
+      text: Evaluates carbon market project eligibility and additionality
+      origin: database
+    - v1Key: v1:1.5.4:advanced:I5
+      n: 5
+      text: Addresses uncertainty in carbon estimates
+      origin: database
+    - v1Key: v1:1.5.4:advanced:I6
+      n: 6
+      text: Develops agency carbon assessment protocols
+      origin: database
+    - v1Key: v1:1.5.4:advanced:I7
+      n: 7
+      text: Analyzes landscape carbon dynamics and legacy effects
+      origin: restored-from-source-text
+    - v1Key: v1:1.5.4:advanced:I8
+      n: 8
+      text: Publishes carbon science research
+      origin: restored-from-source-text
+    - v1Key: v1:1.5.4:advanced:I9
+      n: 9
+      text: Trains staff in carbon methods
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:1.5.4:expert
+    knowledge: Shapes carbon science and its application to land management
+    application: Provides carbon science leadership at regional or national scales
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.5.4:expert:I1
+      n: 1
+      text: Develops carbon accounting standards or methods
+      origin: database
+    - v1Key: v1:1.5.4:expert:I2
+      n: 2
+      text: Influences carbon policy and reporting requirements
+      origin: database
+    - v1Key: v1:1.5.4:expert:I3
+      n: 3
+      text: Leads major carbon assessment or monitoring initiatives
+      origin: database
+    - v1Key: v1:1.5.4:expert:I4
+      n: 4
+      text: Publishes influential carbon research
+      origin: database
+    - v1Key: v1:1.5.4:expert:I5
+      n: 5
+      text: Advises leadership on carbon management strategy
+      origin: database
+    - v1Key: v1:1.5.4:expert:I6
+      n: 6
+      text: Advances integration of carbon into multi-objective management
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:1.5.4:sector:public_agencies
+    text: National forest carbon assessments, agency carbon reporting, carbon-informed planning
+  - sector: private_sector
+    v1Key: v1:1.5.4:sector:private_sector
+    text: Forest carbon project development, corporate carbon footprint, carbon offset verification
+  - sector: ngos
+    v1Key: v1:1.5.4:sector:ngos
+    text: Nature-based solutions advocacy, carbon project development
+  - sector: consulting
+    v1Key: v1:1.5.4:sector:consulting
+    text: Carbon inventory services, carbon market support, lifecycle assessment
+  - sector: academia
+    v1Key: v1:1.5.4:sector:academia
+    text: Carbon cycle research, carbon modeling, methodology development
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

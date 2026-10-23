@@ -1,0 +1,49 @@
+id: seed:v1-6.2.2-T3
+type: Task
+prefLabel:
+  en: Maintain geospatial data showing zoning boundaries and constraints
+statement:
+  en: Maintain geospatial data showing zoning boundaries and constraints
+textSha256: 903d0538c338a3a519209c1a0100182c941b2cccba93af531dec2f5276c3e17b
+supports:
+- competency: seed:v1-6.2.1
+  strength: primary
+notation:
+- scheme: EMSTv1
+  value: 6.2.2:T3
+layer: L2
+module: built
+homeModule: built
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Tier: T3
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.2'
+  label: Land Use Planning
+editorialNote:
+  en: Supports re-pointed from v1 competency 6.2.2 to seed:v1-6.2.1 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:6.2.2:T3
+    v1Code: 6.2.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 183
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011

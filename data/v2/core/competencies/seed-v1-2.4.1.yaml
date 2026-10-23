@@ -1,0 +1,238 @@
+id: seed:v1-2.4.1
+type: Competency
+prefLabel:
+  en: Machine learning for environmental applications
+statement:
+  en: Using artificial intelligence approaches that allow computers to find patterns in environmental data and improve their analysis over time.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 2.4.1
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.4'
+  label: Advanced Analytics
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (DC). Rationale: Durable share medium; method-neutral title per G-5; absorbs computer vision (2.6.1) and acoustic AI (2.6.2) with ground-truth validation anchors (DC disposition). Role verdicts considered: DC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.4.1
+    v1Code: 2.4.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 57
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.4.1
+    v1Code: 2.4.1
+    v1Table: source_text/competencies
+    sourceTextLine: 3786
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:2.6.1
+    v1Code: 2.6.1
+    relation: merged-from
+    note: v1 2.6.1 (merge) → seed:v1-2.4.1 per v1_disposition.csv
+  - v1Key: v1:2.6.2
+    v1Code: 2.6.2
+    relation: merged-from
+    note: v1 2.6.2 (merge) → seed:v1-2.4.1 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Machine learning for environmental applications
+  v1Description: Using artificial intelligence approaches that allow computers to find patterns in environmental data and improve their analysis over time.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.4.1:foundational
+    knowledge: Understands machine learning concepts and applications
+    application: Uses pre-trained models and ML tools
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.4.1:foundational:I1
+      n: 1
+      text: Explains supervised vs. unsupervised learning
+      origin: database
+    - v1Key: v1:2.4.1:foundational:I2
+      n: 2
+      text: Uses existing ML models for classification or prediction
+      origin: database
+    - v1Key: v1:2.4.1:foundational:I3
+      n: 3
+      text: Prepares training data for ML models
+      origin: database
+    - v1Key: v1:2.4.1:foundational:I4
+      n: 4
+      text: Understands overfitting and validation concepts
+      origin: database
+    - v1Key: v1:2.4.1:foundational:I5
+      n: 5
+      text: Uses ML tools with graphical interfaces
+      origin: database
+    - v1Key: v1:2.4.1:foundational:I6
+      n: 6
+      text: Interprets ML model outputs and accuracy metrics
+      origin: database
+    - v1Key: v1:2.4.1:foundational:I7
+      n: 7
+      text: Recognizes when ML is appropriate vs. traditional methods
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.4.1:intermediate
+    knowledge: Applies ML algorithms and workflows
+    application: Trains and evaluates ML models
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.4.1:intermediate:I1
+      n: 1
+      text: Selects appropriate algorithms for problems
+      origin: database
+    - v1Key: v1:2.4.1:intermediate:I2
+      n: 2
+      text: Trains classification and regression models
+      origin: database
+    - v1Key: v1:2.4.1:intermediate:I3
+      n: 3
+      text: Performs feature engineering and selection
+      origin: database
+    - v1Key: v1:2.4.1:intermediate:I4
+      n: 4
+      text: Uses cross-validation and hyperparameter tuning
+      origin: database
+    - v1Key: v1:2.4.1:intermediate:I5
+      n: 5
+      text: Evaluates model performance with appropriate metrics
+      origin: database
+    - v1Key: v1:2.4.1:intermediate:I6
+      n: 6
+      text: Uses scikit-learn, TensorFlow, or PyTorch
+      origin: database
+    - v1Key: v1:2.4.1:intermediate:I7
+      n: 7
+      text: Implements random forests, neural networks, SVMs
+      origin: restored-from-source-text
+    - v1Key: v1:2.4.1:intermediate:I8
+      n: 8
+      text: Addresses class imbalance and bias in models
+      origin: restored-from-source-text
+    - v1Key: v1:2.4.1:intermediate:I9
+      n: 9
+      text: Documents model development and validation
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.4.1:advanced
+    knowledge: Expert in ML methods and deep learning
+    application: Develops sophisticated ML applications
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.4.1:advanced:I1
+      n: 1
+      text: Develops deep learning models (CNNs, RNNs, transformers)
+      origin: database
+    - v1Key: v1:2.4.1:advanced:I2
+      n: 2
+      text: Implements computer vision for species identification
+      origin: database
+    - v1Key: v1:2.4.1:advanced:I3
+      n: 3
+      text: Uses transfer learning and fine-tuning
+      origin: database
+    - v1Key: v1:2.4.1:advanced:I4
+      n: 4
+      text: Develops ML pipelines and production systems
+      origin: database
+    - v1Key: v1:2.4.1:advanced:I5
+      n: 5
+      text: Addresses model interpretability and explainability
+      origin: database
+    - v1Key: v1:2.4.1:advanced:I6
+      n: 6
+      text: Uses ensemble methods and model stacking
+      origin: database
+    - v1Key: v1:2.4.1:advanced:I7
+      n: 7
+      text: Implements active learning and few-shot learning
+      origin: restored-from-source-text
+    - v1Key: v1:2.4.1:advanced:I8
+      n: 8
+      text: Publishes ML methodology research
+      origin: restored-from-source-text
+    - v1Key: v1:2.4.1:advanced:I9
+      n: 9
+      text: Trains practitioners in ML methods
+      origin: restored-from-source-text
+    - v1Key: v1:2.4.1:advanced:I10
+      n: 10
+      text: Evaluates ethical implications of ML applications
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.4.1:expert
+    knowledge: Shapes ML applications in environmental science
+    application: Provides ML leadership and innovation
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.4.1:expert:I1
+      n: 1
+      text: Develops novel ML architectures for environmental problems
+      origin: database
+    - v1Key: v1:2.4.1:expert:I2
+      n: 2
+      text: Influences ML standards and best practices
+      origin: database
+    - v1Key: v1:2.4.1:expert:I3
+      n: 3
+      text: Leads major ML initiatives
+      origin: database
+    - v1Key: v1:2.4.1:expert:I4
+      n: 4
+      text: Publishes influential ML research
+      origin: database
+    - v1Key: v1:2.4.1:expert:I5
+      n: 5
+      text: Provides expert ML consultation
+      origin: database
+    - v1Key: v1:2.4.1:expert:I6
+      n: 6
+      text: Advances responsible AI in environmental applications
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.4.1:sector:public_agencies
+    text: Automated species detection, fire prediction, resource monitoring
+  - sector: private_sector
+    v1Key: v1:2.4.1:sector:private_sector
+    text: Crop monitoring, quality control, predictive maintenance
+  - sector: ngos
+    v1Key: v1:2.4.1:sector:ngos
+    text: Conservation monitoring, threat detection, species identification
+  - sector: consulting
+    v1Key: v1:2.4.1:sector:consulting
+    text: ML analysis services, model development
+  - sector: academia
+    v1Key: v1:2.4.1:sector:academia
+    text: ML research, environmental AI, method development
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

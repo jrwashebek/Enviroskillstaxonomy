@@ -1,0 +1,211 @@
+id: seed:v1-1.6.5
+type: Competency
+prefLabel:
+  en: Genetic tools for species management
+statement:
+  en: Applying genetic and genomic information directly to management decisions including translocations, captive breeding, and genetic rescue.
+notation:
+- scheme: EMSTv1
+  value: 1.6.5
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-1.6.1
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.6'
+  label: Biotechnology & Genetics
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:1.6.1. Rationale: Genetic tools for species management become MOD-12 application tasks linked to the merged knowledge area. Role verdicts considered: none recorded.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.6.5
+    v1Code: 1.6.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 31
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:1.6.5
+    v1Code: 1.6.5
+    v1Table: source_text/competencies
+    sourceTextLine: 2002
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Genetic tools for species management
+  v1Description: Applying genetic and genomic information directly to management decisions including translocations, captive breeding, and genetic rescue.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:1.6.5:foundational
+    knowledge: Understands that genetics informs hands-on species management
+    application: Recognizes genetic considerations in species management
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.6.5:foundational:I1
+      n: 1
+      text: Explains why source population genetics matter for translocations
+      origin: database
+    - v1Key: v1:1.6.5:foundational:I2
+      n: 2
+      text: Understands genetic goals in captive breeding (avoid inbreeding, maintain diversity)
+      origin: database
+    - v1Key: v1:1.6.5:foundational:I3
+      n: 3
+      text: Recognizes genetic rescue as a conservation tool
+      origin: database
+    - v1Key: v1:1.6.5:foundational:I4
+      n: 4
+      text: Identifies situations where genetic management applies
+      origin: database
+    - v1Key: v1:1.6.5:foundational:I5
+      n: 5
+      text: Understands controversy around genetic interventions
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:1.6.5:intermediate
+    knowledge: Applies genetic management principles; interprets guidance documents
+    application: Integrates genetic considerations into species management
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.6.5:intermediate:I1
+      n: 1
+      text: Applies genetic guidelines to translocation planning
+      origin: database
+    - v1Key: v1:1.6.5:intermediate:I2
+      n: 2
+      text: Evaluates source population options based on genetic data
+      origin: database
+    - v1Key: v1:1.6.5:intermediate:I3
+      n: 3
+      text: Understands pedigree management in captive breeding
+      origin: database
+    - v1Key: v1:1.6.5:intermediate:I4
+      n: 4
+      text: Assesses when genetic rescue might benefit a population
+      origin: database
+    - v1Key: v1:1.6.5:intermediate:I5
+      n: 5
+      text: Communicates genetic management recommendations
+      origin: database
+    - v1Key: v1:1.6.5:intermediate:I6
+      n: 6
+      text: Monitors genetic outcomes of management actions
+      origin: database
+    - v1Key: v1:1.6.5:intermediate:I7
+      n: 7
+      text: Balances genetic considerations with other factors (behavior, disease, logistics)
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:1.6.5:advanced
+    knowledge: Expert in genetic management; understands tradeoffs and controversies
+    application: Leads genetic management programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.6.5:advanced:I1
+      n: 1
+      text: Develops genetic management plans for species or populations
+      origin: database
+    - v1Key: v1:1.6.5:advanced:I2
+      n: 2
+      text: Designs genetic monitoring for translocation programs
+      origin: database
+    - v1Key: v1:1.6.5:advanced:I3
+      n: 3
+      text: Implements genetic rescue programs
+      origin: database
+    - v1Key: v1:1.6.5:advanced:I4
+      n: 4
+      text: Addresses genetic considerations in assisted migration
+      origin: database
+    - v1Key: v1:1.6.5:advanced:I5
+      n: 5
+      text: Evaluates novel genetic tools (e.g., biobanking, reproductive technologies)
+      origin: database
+    - v1Key: v1:1.6.5:advanced:I6
+      n: 6
+      text: Navigates policy and stakeholder concerns about genetic intervention
+      origin: database
+    - v1Key: v1:1.6.5:advanced:I7
+      n: 7
+      text: Publishes genetic management research
+      origin: restored-from-source-text
+    - v1Key: v1:1.6.5:advanced:I8
+      n: 8
+      text: Trains staff in genetic management
+      origin: restored-from-source-text
+    - v1Key: v1:1.6.5:advanced:I9
+      n: 9
+      text: Develops agency genetic management protocols
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:1.6.5:expert
+    knowledge: Shapes genetic management practice and policy
+    application: Provides genetic management leadership
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.6.5:expert:I1
+      n: 1
+      text: Develops national genetic management guidelines
+      origin: database
+    - v1Key: v1:1.6.5:expert:I2
+      n: 2
+      text: Influences policy on genetic intervention in conservation
+      origin: database
+    - v1Key: v1:1.6.5:expert:I3
+      n: 3
+      text: Leads major genetic management initiatives
+      origin: database
+    - v1Key: v1:1.6.5:expert:I4
+      n: 4
+      text: Publishes influential research
+      origin: database
+    - v1Key: v1:1.6.5:expert:I5
+      n: 5
+      text: Advises leadership on genetic management strategies
+      origin: database
+    - v1Key: v1:1.6.5:expert:I6
+      n: 6
+      text: Addresses emerging genetic technologies (gene editing, synthetic biology)
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:1.6.5:sector:public_agencies
+    text: ESA genetic management, translocation genetics, genetic rescue implementation
+  - sector: private_sector
+    v1Key: v1:1.6.5:sector:private_sector
+    text: Captive breeding genetics, conservation breeding programs
+  - sector: ngos
+    v1Key: v1:1.6.5:sector:ngos
+    text: Genetic rescue advocacy, Species Survival Plans
+  - sector: consulting
+    v1Key: v1:1.6.5:sector:consulting
+    text: Genetic management recommendations, translocation support
+  - sector: academia
+    v1Key: v1:1.6.5:sector:academia
+    text: Conservation breeding research, genetic management science
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

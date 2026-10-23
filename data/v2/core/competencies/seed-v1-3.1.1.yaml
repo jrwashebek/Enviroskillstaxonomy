@@ -1,0 +1,228 @@
+id: seed:v1-3.1.1
+type: Competency
+prefLabel:
+  en: Project planning and scheduling
+statement:
+  en: Breaking down complex conservation work into manageable tasks, creating timelines, and determining the resources needed.
+notation:
+- scheme: EMSTv1
+  value: 3.1.1
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:PS-C03
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.1'
+  label: Project Management
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → PS-C03. Rationale: Generic project planning; merged into the TX-F project-delivery competency with billable-delivery and public enactments (PS verdict; G-8). Role verdicts considered: PS:change|SC:change. Title and description were merged in the v1 database and are split here from the source text.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:3.1.1
+    v1Code: 3.1.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 77
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:3.1.1
+    v1Code: 3.1.1
+    v1Table: source_text/competencies
+    sourceTextLine: 5062
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Project planning and scheduling Breaking down complex conservation work into manageable tasks, creating timelines, and determining the resources needed.
+  v1Description: ''
+  titleDescriptionSplit: true
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:3.1.1:foundational
+    knowledge: Understands project management basics and terminology
+    application: Assists with project planning activities
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.1.1:foundational:I1
+      n: 1
+      text: Contributes to project task lists
+      origin: database
+    - v1Key: v1:3.1.1:foundational:I2
+      n: 2
+      text: Updates project schedules with status
+      origin: database
+    - v1Key: v1:3.1.1:foundational:I3
+      n: 3
+      text: Understands project phases and milestones
+      origin: database
+    - v1Key: v1:3.1.1:foundational:I4
+      n: 4
+      text: Uses project management software (MS Project, Asana, Smartsheet)
+      origin: database
+    - v1Key: v1:3.1.1:foundational:I5
+      n: 5
+      text: Identifies task dependencies
+      origin: database
+    - v1Key: v1:3.1.1:foundational:I6
+      n: 6
+      text: Recognizes schedule conflicts
+      origin: database
+    - v1Key: v1:3.1.1:foundational:I7
+      n: 7
+      text: Participates in project planning meetings
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:3.1.1:intermediate
+    knowledge: Applies project management methods systematically
+    application: Develops project plans independently
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.1.1:intermediate:I1
+      n: 1
+      text: Creates comprehensive project plans
+      origin: database
+    - v1Key: v1:3.1.1:intermediate:I2
+      n: 2
+      text: Develops realistic schedules with critical paths
+      origin: database
+    - v1Key: v1:3.1.1:intermediate:I3
+      n: 3
+      text: Identifies resource needs and constraints
+      origin: database
+    - v1Key: v1:3.1.1:intermediate:I4
+      n: 4
+      text: Uses work breakdown structures (WBS)
+      origin: database
+    - v1Key: v1:3.1.1:intermediate:I5
+      n: 5
+      text: Coordinates multiple workstreams
+      origin: database
+    - v1Key: v1:3.1.1:intermediate:I6
+      n: 6
+      text: Manages schedule changes and impacts
+      origin: database
+    - v1Key: v1:3.1.1:intermediate:I7
+      n: 7
+      text: Creates Gantt charts and network diagrams
+      origin: restored-from-source-text
+    - v1Key: v1:3.1.1:intermediate:I8
+      n: 8
+      text: Aligns projects with organizational priorities
+      origin: restored-from-source-text
+    - v1Key: v1:3.1.1:intermediate:I9
+      n: 9
+      text: Facilitates project kickoff meetings
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:3.1.1:advanced
+    knowledge: Expert in project planning methodologies (Waterfall, Agile, Hybrid)
+    application: Manages complex, multi-year projects
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.1.1:advanced:I1
+      n: 1
+      text: Plans programs with multiple interrelated projects
+      origin: database
+    - v1Key: v1:3.1.1:advanced:I2
+      n: 2
+      text: Optimizes schedules across portfolio
+      origin: database
+    - v1Key: v1:3.1.1:advanced:I3
+      n: 3
+      text: Uses advanced PM techniques (earned value, critical chain)
+      origin: database
+    - v1Key: v1:3.1.1:advanced:I4
+      n: 4
+      text: Develops program-level roadmaps
+      origin: database
+    - v1Key: v1:3.1.1:advanced:I5
+      n: 5
+      text: Manages dependencies across projects
+      origin: database
+    - v1Key: v1:3.1.1:advanced:I6
+      n: 6
+      text: Plans for uncertainty and incorporates buffers
+      origin: database
+    - v1Key: v1:3.1.1:advanced:I7
+      n: 7
+      text: Mentors project managers in planning
+      origin: restored-from-source-text
+    - v1Key: v1:3.1.1:advanced:I8
+      n: 8
+      text: Develops organizational PM standards
+      origin: restored-from-source-text
+    - v1Key: v1:3.1.1:advanced:I9
+      n: 9
+      text: Selects appropriate PM methodologies for contexts
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:3.1.1:expert
+    knowledge: Shapes project management practice in environmental field
+    application: Provides strategic PM leadership
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.1.1:expert:I1
+      n: 1
+      text: Develops innovative PM approaches for environmental work
+      origin: database
+    - v1Key: v1:3.1.1:expert:I2
+      n: 2
+      text: Influences PM standards and best practices
+      origin: database
+    - v1Key: v1:3.1.1:expert:I3
+      n: 3
+      text: Leads enterprise project management offices
+      origin: database
+    - v1Key: v1:3.1.1:expert:I4
+      n: 4
+      text: Provides expert PM consultation
+      origin: database
+    - v1Key: v1:3.1.1:expert:I5
+      n: 5
+      text: Publishes on environmental project management
+      origin: database
+    - v1Key: v1:3.1.1:expert:I6
+      n: 6
+      text: Advances PM in environmental sector
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:3.1.1:sector:public_agencies
+    text: Restoration project planning, land acquisition phasing
+  - sector: private_sector
+    v1Key: v1:3.1.1:sector:private_sector
+    text: Environmental compliance projects, sustainability initiatives
+  - sector: ngos
+    v1Key: v1:3.1.1:sector:ngos
+    text: Conservation project planning, campaign scheduling
+  - sector: consulting
+    v1Key: v1:3.1.1:sector:consulting
+    text: Client project planning, proposal development
+  - sector: academia
+    v1Key: v1:3.1.1:sector:academia
+    text: Research project planning, grant project management
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

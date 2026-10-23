@@ -9,6 +9,7 @@ Licence: Apache-2.0 (code).
 from __future__ import annotations
 
 import csv
+import functools
 import hashlib
 import io
 import json
@@ -45,7 +46,7 @@ IRI_BASE = "https://w3id.org/emst/"
 # ---------------------------------------------------------------------------------------------------------------
 
 
-class _Dumper(yaml.SafeDumper):
+class _Dumper(getattr(yaml, "CSafeDumper", yaml.SafeDumper)):
     pass
 
 
@@ -57,7 +58,10 @@ def _str_representer(dumper, data):
 _Dumper.add_representer(str, _str_representer)
 
 
-class _Loader(yaml.SafeLoader):
+_BaseLoader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)   # libyaml when available (much faster)
+
+
+class _Loader(_BaseLoader):
     """SafeLoader with YAML 1.2 booleans: only true/false are booleans, so vocabulary codes such as
     `yes`, `no`, `on`, `off`, `y`, `n` (e.g. crafts.yaml formation_dependency [yes, partial, no]) stay strings."""
 
@@ -157,10 +161,12 @@ SEED_RE = re.compile(r"^seed:[A-Za-z0-9][A-Za-z0-9._/-]{0,119}$")
 SEED_PATTERN = SEED_RE.pattern
 
 
+@functools.lru_cache(maxsize=None)
 def _vocab_identifiers() -> dict:
     return load_yaml(VOCAB / "identifiers.yaml")
 
 
+@functools.lru_cache(maxsize=None)
 def id_regex() -> re.Pattern:
     return re.compile(_vocab_identifiers()["form"]["regex"])
 
@@ -275,8 +281,9 @@ JSONL_FAMILIES = {"tools": {"Tool"}, "assessments": {"ExposureAssessment", "Craf
 RATING_TYPES = {"ExposureAssessment", "CraftRating", "FunctionRating", "RelevanceRating"}
 
 
-def registered_namespaces() -> set[str]:
-    return {n["namespace"] for n in _vocab_identifiers()["namespaces"]["registered"]}
+@functools.lru_cache(maxsize=None)
+def registered_namespaces() -> frozenset[str]:
+    return frozenset({n["namespace"] for n in _vocab_identifiers()["namespaces"]["registered"]})
 
 
 def namespace_ok(ns: str) -> bool:

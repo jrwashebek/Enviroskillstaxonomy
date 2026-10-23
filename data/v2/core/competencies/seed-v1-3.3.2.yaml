@@ -1,0 +1,232 @@
+id: seed:v1-3.3.2
+type: Competency
+prefLabel:
+  en: Equipment and asset management
+statement:
+  en: Tracking, maintaining, and allocating vehicles, tools, and other physical resources needed for land management.
+notation:
+- scheme: EMSTv1
+  value: 3.3.2
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:DB-C05
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.3'
+  label: Resource Administration
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → DB-C05. Rationale: Internal asset tracking is part of risk-based asset management (SC verdict: not Statecraft). Role verdicts considered: SC:change. Title and description were merged in the v1 database and are split here from the source text.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:3.3.2
+    v1Code: 3.3.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 88
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:3.3.2
+    v1Code: 3.3.2
+    v1Table: source_text/competencies
+    sourceTextLine: 5581
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Equipment and asset management Tracking, maintaining, and allocating vehicles, tools, and other physical resources needed for land management.
+  v1Description: ''
+  titleDescriptionSplit: true
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:3.3.2:foundational
+    knowledge: Understands equipment management basics
+    application: Uses and maintains equipment
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.3.2:foundational:I1
+      n: 1
+      text: Operates equipment safely and properly
+      origin: database
+    - v1Key: v1:3.3.2:foundational:I2
+      n: 2
+      text: Performs routine maintenance
+      origin: database
+    - v1Key: v1:3.3.2:foundational:I3
+      n: 3
+      text: Reports equipment problems
+      origin: database
+    - v1Key: v1:3.3.2:foundational:I4
+      n: 4
+      text: Follows equipment checkout procedures
+      origin: database
+    - v1Key: v1:3.3.2:foundational:I5
+      n: 5
+      text: Documents equipment use
+      origin: database
+    - v1Key: v1:3.3.2:foundational:I6
+      n: 6
+      text: Cleans and stores equipment properly
+      origin: database
+    - v1Key: v1:3.3.2:foundational:I7
+      n: 7
+      text: Understands equipment capabilities
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:3.3.2:intermediate
+    knowledge: Applies asset management principles
+    application: Manages equipment and tools
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.3.2:intermediate:I1
+      n: 1
+      text: Maintains equipment inventories
+      origin: database
+    - v1Key: v1:3.3.2:intermediate:I2
+      n: 2
+      text: Schedules preventive maintenance
+      origin: database
+    - v1Key: v1:3.3.2:intermediate:I3
+      n: 3
+      text: Tracks equipment condition and costs
+      origin: database
+    - v1Key: v1:3.3.2:intermediate:I4
+      n: 4
+      text: Allocates equipment across users
+      origin: database
+    - v1Key: v1:3.3.2:intermediate:I5
+      n: 5
+      text: Coordinates equipment repairs
+      origin: database
+    - v1Key: v1:3.3.2:intermediate:I6
+      n: 6
+      text: Develops equipment use procedures
+      origin: database
+    - v1Key: v1:3.3.2:intermediate:I7
+      n: 7
+      text: Ensures proper storage and security
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.2:intermediate:I8
+      n: 8
+      text: Manages equipment budgets
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.2:intermediate:I9
+      n: 9
+      text: Trains staff in equipment use
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.2:intermediate:I10
+      n: 10
+      text: Evaluates equipment needs
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:3.3.2:advanced
+    knowledge: Expert in asset management and fleet operations
+    application: Manages complex asset portfolios
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.3.2:advanced:I1
+      n: 1
+      text: Develops asset management strategies
+      origin: database
+    - v1Key: v1:3.3.2:advanced:I2
+      n: 2
+      text: Uses asset management software systems
+      origin: database
+    - v1Key: v1:3.3.2:advanced:I3
+      n: 3
+      text: Optimizes fleet composition and utilization
+      origin: database
+    - v1Key: v1:3.3.2:advanced:I4
+      n: 4
+      text: Conducts lifecycle cost analyses
+      origin: database
+    - v1Key: v1:3.3.2:advanced:I5
+      n: 5
+      text: Develops replacement schedules
+      origin: database
+    - v1Key: v1:3.3.2:advanced:I6
+      n: 6
+      text: Manages major equipment procurements
+      origin: database
+    - v1Key: v1:3.3.2:advanced:I7
+      n: 7
+      text: Ensures regulatory compliance (DOT, safety)
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.2:advanced:I8
+      n: 8
+      text: Implements telematics and tracking systems
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.2:advanced:I9
+      n: 9
+      text: Develops asset management policies
+      origin: restored-from-source-text
+    - v1Key: v1:3.3.2:advanced:I10
+      n: 10
+      text: Trains asset managers
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:3.3.2:expert
+    knowledge: Shapes asset management practice
+    application: Provides asset management leadership
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:3.3.2:expert:I1
+      n: 1
+      text: Develops innovative asset management approaches
+      origin: database
+    - v1Key: v1:3.3.2:expert:I2
+      n: 2
+      text: Influences asset management standards
+      origin: database
+    - v1Key: v1:3.3.2:expert:I3
+      n: 3
+      text: Leads enterprise asset management
+      origin: database
+    - v1Key: v1:3.3.2:expert:I4
+      n: 4
+      text: Provides expert asset management consultation
+      origin: database
+    - v1Key: v1:3.3.2:expert:I5
+      n: 5
+      text: Advances asset management in environmental sector
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:3.3.2:sector:public_agencies
+    text: Fleet management, heavy equipment, field gear
+  - sector: private_sector
+    v1Key: v1:3.3.2:sector:private_sector
+    text: Asset management, maintenance programs
+  - sector: ngos
+    v1Key: v1:3.3.2:sector:ngos
+    text: Equipment for field programs, vehicle fleets
+  - sector: consulting
+    v1Key: v1:3.3.2:sector:consulting
+    text: Equipment and vehicle management
+  - sector: academia
+    v1Key: v1:3.3.2:sector:academia
+    text: Research equipment, campus fleet
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

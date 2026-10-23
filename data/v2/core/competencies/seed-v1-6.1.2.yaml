@@ -1,0 +1,232 @@
+id: seed:v1-6.1.2
+type: Competency
+prefLabel:
+  en: Regulatory compliance assessment
+statement:
+  en: Evaluating whether environmental management activities meet the requirements of applicable environmental laws and regulations.
+notation:
+- scheme: EMSTv1
+  value: 6.1.2
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:SL-C03
+- seed:DB-C26
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.1'
+  label: Environmental Law & Regulation
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): split → SL-C03 (inspection by the authority)|DB-C26 (compliance management inside a regulated entity). Rationale: Task bundles and authority differ between regulator and regulated party; 6.1.2 is the most-mapped v1 item in state classes (29) yet written from the regulated side (SL, PS verdicts). Role verdicts considered: DC:needs-evidence|PS:change|SL:change|SC:add.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:6.1.2
+    v1Code: 6.1.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 178
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:6.1.2
+    v1Code: 6.1.2
+    v1Table: source_text/competencies
+    sourceTextLine: 12753
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Regulatory compliance assessment
+  v1Description: Evaluating whether environmental management activities meet the requirements of applicable environmental laws and regulations.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:6.1.2:foundational
+    knowledge: Understands basic compliance concepts and requirements
+    application: Conducts routine compliance inspections with guidance
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.1.2:foundational:I1
+      n: 1
+      text: Uses compliance checklists accurately
+      origin: database
+    - v1Key: v1:6.1.2:foundational:I2
+      n: 2
+      text: Documents compliance status and deficiencies
+      origin: database
+    - v1Key: v1:6.1.2:foundational:I3
+      n: 3
+      text: Identifies obvious violations or non-compliance
+      origin: database
+    - v1Key: v1:6.1.2:foundational:I4
+      n: 4
+      text: Follows inspection protocols and safety procedures
+      origin: database
+    - v1Key: v1:6.1.2:foundational:I5
+      n: 5
+      text: Maintains accurate records for regulatory reporting
+      origin: database
+    - v1Key: v1:6.1.2:foundational:I6
+      n: 6
+      text: Understands consequences of non-compliance
+      origin: database
+    - v1Key: v1:6.1.2:foundational:I7
+      n: 7
+      text: Communicates findings clearly in reports
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:6.1.2:intermediate
+    knowledge: Applies compliance frameworks across multiple regulations
+    application: Conducts comprehensive compliance assessments independently
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.1.2:intermediate:I1
+      n: 1
+      text: Develops compliance protocols and checklists
+      origin: database
+    - v1Key: v1:6.1.2:intermediate:I2
+      n: 2
+      text: Conducts thorough compliance audits
+      origin: database
+    - v1Key: v1:6.1.2:intermediate:I3
+      n: 3
+      text: Identifies subtle or emerging compliance issues
+      origin: database
+    - v1Key: v1:6.1.2:intermediate:I4
+      n: 4
+      text: Interprets regulatory requirements in context
+      origin: database
+    - v1Key: v1:6.1.2:intermediate:I5
+      n: 5
+      text: Develops corrective action plans
+      origin: database
+    - v1Key: v1:6.1.2:intermediate:I6
+      n: 6
+      text: Coordinates with regulatory agencies professionally
+      origin: database
+    - v1Key: v1:6.1.2:intermediate:I7
+      n: 7
+      text: Trains staff on compliance procedures
+      origin: restored-from-source-text
+    - v1Key: v1:6.1.2:intermediate:I8
+      n: 8
+      text: Manages compliance monitoring programs
+      origin: restored-from-source-text
+    - v1Key: v1:6.1.2:intermediate:I9
+      n: 9
+      text: Prepares for and responds to regulatory inspections
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:6.1.2:advanced
+    knowledge: Expert in regulatory compliance across complex operations
+    application: Leads organizational compliance programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.1.2:advanced:I1
+      n: 1
+      text: Designs comprehensive compliance management systems
+      origin: database
+    - v1Key: v1:6.1.2:advanced:I2
+      n: 2
+      text: Evaluates compliance risks and prioritizes mitigation
+      origin: database
+    - v1Key: v1:6.1.2:advanced:I3
+      n: 3
+      text: Manages relationships with multiple regulatory agencies
+      origin: database
+    - v1Key: v1:6.1.2:advanced:I4
+      n: 4
+      text: Leads response to enforcement actions
+      origin: database
+    - v1Key: v1:6.1.2:advanced:I5
+      n: 5
+      text: Develops compliance culture within organizations
+      origin: database
+    - v1Key: v1:6.1.2:advanced:I6
+      n: 6
+      text: Integrates compliance with environmental management systems
+      origin: database
+    - v1Key: v1:6.1.2:advanced:I7
+      n: 7
+      text: Provides compliance training and capacity building
+      origin: restored-from-source-text
+    - v1Key: v1:6.1.2:advanced:I8
+      n: 8
+      text: Anticipates regulatory changes and adjusts compliance programs
+      origin: restored-from-source-text
+    - v1Key: v1:6.1.2:advanced:I9
+      n: 9
+      text: Serves as expert witness in compliance matters
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:6.1.2:expert
+    knowledge: Shapes compliance standards and best practices
+    application: Leads industry or sector-wide compliance initiatives
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.1.2:expert:I1
+      n: 1
+      text: Influences development of compliance protocols and standards
+      origin: database
+    - v1Key: v1:6.1.2:expert:I2
+      n: 2
+      text: Provides expert consultation on complex compliance matters
+      origin: database
+    - v1Key: v1:6.1.2:expert:I3
+      n: 3
+      text: Develops innovative compliance approaches
+      origin: database
+    - v1Key: v1:6.1.2:expert:I4
+      n: 4
+      text: Advises on regulatory enforcement policy
+      origin: database
+    - v1Key: v1:6.1.2:expert:I5
+      n: 5
+      text: Publishes on compliance management
+      origin: database
+    - v1Key: v1:6.1.2:expert:I6
+      n: 6
+      text: Recognized expert in regulatory compliance
+      origin: database
+    - v1Key: v1:6.1.2:expert:I7
+      n: 7
+      text: Leads professional compliance associations
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:6.1.2:sector:public_agencies
+    text: Compliance inspections, enforcement, oversight programs
+  - sector: private_sector
+    v1Key: v1:6.1.2:sector:private_sector
+    text: Corporate compliance programs, audit management, risk mitigation
+  - sector: ngos
+    v1Key: v1:6.1.2:sector:ngos
+    text: Compliance monitoring, citizen enforcement, watchdog activities
+  - sector: consulting
+    v1Key: v1:6.1.2:sector:consulting
+    text: Compliance audits, management systems development, training
+  - sector: academia
+    v1Key: v1:6.1.2:sector:academia
+    text: Compliance research, teaching, program evaluation
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

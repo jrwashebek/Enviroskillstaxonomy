@@ -1,0 +1,49 @@
+id: seed:v1-1.2.1-T1
+type: Task
+prefLabel:
+  en: Conduct field surveys to classify soil horizons and types using USDA standards
+statement:
+  en: Conduct field surveys to classify soil horizons and types using USDA standards
+textSha256: cf3b6bc81999353480a168b9e02c6dcda1b5d5cd35c4fa6382446105ee115ebe
+supports:
+- competency: seed:v1-1.2.1
+  strength: primary
+notation:
+- scheme: EMSTv1
+  value: 1.2.1:T1
+layer: L2
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Tier: T1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.2'
+  label: Soil & Water Science
+editorialNote:
+  en: 'v1 competency 1.2.1 is split: reassign this task to one of [''seed:v1-4.1.4'', ''seed:v1-1.2.2''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.2.1:T1
+    v1Code: 1.2.1
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 7
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011

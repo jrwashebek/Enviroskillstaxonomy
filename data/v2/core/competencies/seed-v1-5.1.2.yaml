@@ -1,0 +1,179 @@
+id: seed:v1-5.1.2
+type: Competency
+prefLabel:
+  en: Public speaking and presentation
+statement:
+  en: Delivering effective talks and presentations about land management to groups of various sizes, from small community meetings to large conferences.
+notation:
+- scheme: EMSTv1
+  value: 5.1.2
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-5.1.1
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '5'
+  label: Communication & Engagement Skills
+v1SkillArea:
+  code: '5.1'
+  label: Public Communication
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:5.1.1. Rationale: Oral communication is crosswalked to OPM and merged into one communication competency (FH verdict). Role verdicts considered: FH:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:5.1.2
+    v1Code: 5.1.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 148
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:5.1.2
+    v1Code: 5.1.2
+    v1Table: source_text/competencies
+    sourceTextLine: 10050
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Public speaking and presentation
+  v1Description: Delivering effective talks and presentations about land management to groups of various sizes, from small community meetings to large conferences.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:5.1.2:foundational
+    knowledge: Understands presentation basics (structure, visual aids, timing)
+    application: Delivers short presentations to supportive audiences with preparation
+    knowledgeApplicationOrigin: restored-from-source-text
+    indicators:
+    - v1Key: v1:5.1.2:foundational:I1
+      n: 1
+      text: Presents clearly to small, familiar groups (10-30 people)
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:foundational:I2
+      n: 2
+      text: Uses slides or visual aids appropriately with guidance
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:foundational:I3
+      n: 3
+      text: Responds to basic questions accurately
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:foundational:I4
+      n: 4
+      text: Demonstrates appropriate body language and voice projection
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:5.1.2:intermediate
+    knowledge: Applies principles of persuasive communication; adapts to audience dynamics
+    application: Presents confidently to diverse audiences; handles most Q&A effectively
+    knowledgeApplicationOrigin: restored-from-source-text
+    indicators:
+    - v1Key: v1:5.1.2:intermediate:I1
+      n: 1
+      text: Engages audiences of various sizes (50-100+) and types
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:intermediate:I2
+      n: 2
+      text: Adjusts presentation on the fly based on audience response
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:intermediate:I3
+      n: 3
+      text: Handles challenging or critical questions professionally
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:intermediate:I4
+      n: 4
+      text: Creates compelling visual presentations
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:intermediate:I5
+      n: 5
+      text: Uses storytelling techniques to maintain interest
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:5.1.2:advanced
+    knowledge: Expert in audience engagement; skilled in managing group dynamics
+    application: Presents in high-stakes or contentious settings; mentors speakers
+    knowledgeApplicationOrigin: restored-from-source-text
+    indicators:
+    - v1Key: v1:5.1.2:advanced:I1
+      n: 1
+      text: Effectively presents in heated public hearings or contentious meetings
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:advanced:I2
+      n: 2
+      text: Facilitates interactive presentations that engage participants
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:advanced:I3
+      n: 3
+      text: Coaches others on presentation skills
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:advanced:I4
+      n: 4
+      text: Represents organization at major conferences or media interviews
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:advanced:I5
+      n: 5
+      text: Uses advanced techniques (panel moderation, keynote delivery)
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:5.1.2:expert
+    knowledge: Recognized thought leader; shapes how topics are communicated in field
+    application: Keynote speaker; handles highest-stakes communication situations
+    knowledgeApplicationOrigin: restored-from-source-text
+    indicators:
+    - v1Key: v1:5.1.2:expert:I1
+      n: 1
+      text: Delivers compelling keynotes to audiences of 500+
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:expert:I2
+      n: 2
+      text: Manages hostile or crisis communication situations effectively
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:expert:I3
+      n: 3
+      text: Provides expert testimony in legal or legislative settings
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:expert:I4
+      n: 4
+      text: Mentors senior staff on executive communication
+      origin: restored-from-source-text
+    - v1Key: v1:5.1.2:expert:I5
+      n: 5
+      text: Develops organizational spokesperson programs
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:5.1.2:sector:public_agencies
+    text: Town halls, scoping meetings, board presentations, congressional testimony
+  - sector: private_sector
+    v1Key: v1:5.1.2:sector:private_sector
+    text: Investor presentations, community forums for projects, industry conferences
+  - sector: ngos
+    v1Key: v1:5.1.2:sector:ngos
+    text: Fundraising events, advocacy rallies, board meetings, coalition gatherings
+  - sector: consulting
+    v1Key: v1:5.1.2:sector:consulting
+    text: Client presentations, public hearing representation, expert testimony
+  - sector: academia
+    v1Key: v1:5.1.2:sector:academia
+    text: Conference presentations, extension workshops, webinars, classroom teaching
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

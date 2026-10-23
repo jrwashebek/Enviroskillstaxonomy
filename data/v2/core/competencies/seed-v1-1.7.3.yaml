@@ -1,0 +1,207 @@
+id: seed:v1-1.7.3
+type: Competency
+prefLabel:
+  en: Climate refugia identification
+statement:
+  en: Locating areas where species may persist as surrounding habitats become unsuitable, and prioritizing these areas for protection.
+notation:
+- scheme: EMSTv1
+  value: 1.7.3
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-1.7.4
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.7'
+  label: Novel Ecosystems & Adaptation
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:1.7.4. Rationale: Refugia identification is an analysis task within transformation planning (resist-accept-direct). Role verdicts considered: none recorded.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.7.3
+    v1Code: 1.7.3
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 34
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:1.7.3
+    v1Code: 1.7.3
+    v1Table: source_text/competencies
+    sourceTextLine: 2212
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Climate refugia identification
+  v1Description: Locating areas where species may persist as surrounding habitats become unsuitable, and prioritizing these areas for protection.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:1.7.3:foundational
+    knowledge: Understands refugia concepts and why they matter for conservation
+    application: Recognizes potential refugia features
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.7.3:foundational:I1
+      n: 1
+      text: Explains what climate refugia are and how they function
+      origin: database
+    - v1Key: v1:1.7.3:foundational:I2
+      n: 2
+      text: Understands different refugia types (topographic, hydrologic, edaphic)
+      origin: database
+    - v1Key: v1:1.7.3:foundational:I3
+      n: 3
+      text: Recognizes landscape features that create microclimatic buffering
+      origin: database
+    - v1Key: v1:1.7.3:foundational:I4
+      n: 4
+      text: Understands why refugia are conservation priorities
+      origin: database
+    - v1Key: v1:1.7.3:foundational:I5
+      n: 5
+      text: Identifies potential refugia in local landscapes
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:1.7.3:intermediate
+    knowledge: Applies refugia identification methods; understands modeling approaches
+    application: Maps and evaluates potential refugia
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.7.3:intermediate:I1
+      n: 1
+      text: Uses GIS to model topographic and hydrologic refugia
+      origin: database
+    - v1Key: v1:1.7.3:intermediate:I2
+      n: 2
+      text: Applies climate velocity and exposure mapping
+      origin: database
+    - v1Key: v1:1.7.3:intermediate:I3
+      n: 3
+      text: Identifies cold-air pooling, north-facing slopes, groundwater-dependent features
+      origin: database
+    - v1Key: v1:1.7.3:intermediate:I4
+      n: 4
+      text: Evaluates refugia size, connectivity, and habitat quality
+      origin: database
+    - v1Key: v1:1.7.3:intermediate:I5
+      n: 5
+      text: Integrates refugia into conservation prioritization
+      origin: database
+    - v1Key: v1:1.7.3:intermediate:I6
+      n: 6
+      text: Assesses species-specific refugia requirements
+      origin: database
+    - v1Key: v1:1.7.3:intermediate:I7
+      n: 7
+      text: Communicates refugia concepts to managers
+      origin: restored-from-source-text
+    - v1Key: v1:1.7.3:intermediate:I8
+      n: 8
+      text: Documents refugia characteristics and conservation value
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:1.7.3:advanced
+    knowledge: Expert in refugia science; understands temporal dynamics and management
+    application: Leads refugia identification and conservation programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.7.3:advanced:I1
+      n: 1
+      text: Develops regional refugia identification frameworks
+      origin: database
+    - v1Key: v1:1.7.3:advanced:I2
+      n: 2
+      text: Models refugia persistence under different climate scenarios
+      origin: database
+    - v1Key: v1:1.7.3:advanced:I3
+      n: 3
+      text: Integrates refugia into land acquisition and protection priorities
+      origin: database
+    - v1Key: v1:1.7.3:advanced:I4
+      n: 4
+      text: Addresses management of refugia (reducing non-climate stressors)
+      origin: database
+    - v1Key: v1:1.7.3:advanced:I5
+      n: 5
+      text: Evaluates refugia connectivity and stepping stones
+      origin: database
+    - v1Key: v1:1.7.3:advanced:I6
+      n: 6
+      text: Publishes refugia research
+      origin: database
+    - v1Key: v1:1.7.3:advanced:I7
+      n: 7
+      text: Trains staff in refugia concepts
+      origin: restored-from-source-text
+    - v1Key: v1:1.7.3:advanced:I8
+      n: 8
+      text: Develops refugia conservation strategies
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:1.7.3:expert
+    knowledge: Shapes refugia science and conservation application
+    application: Provides refugia leadership regionally or nationally
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.7.3:expert:I1
+      n: 1
+      text: Develops novel refugia identification approaches
+      origin: database
+    - v1Key: v1:1.7.3:expert:I2
+      n: 2
+      text: Influences refugia conservation policy and priorities
+      origin: database
+    - v1Key: v1:1.7.3:expert:I3
+      n: 3
+      text: Leads major refugia conservation initiatives
+      origin: database
+    - v1Key: v1:1.7.3:expert:I4
+      n: 4
+      text: Publishes influential research
+      origin: database
+    - v1Key: v1:1.7.3:expert:I5
+      n: 5
+      text: Advises on refugia in conservation strategy
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:1.7.3:sector:public_agencies
+    text: Land acquisition prioritization, protected area management, climate adaptation planning
+  - sector: private_sector
+    v1Key: v1:1.7.3:sector:private_sector
+    text: Conservation development, mitigation site selection
+  - sector: ngos
+    v1Key: v1:1.7.3:sector:ngos
+    text: Land protection priorities, conservation easement targeting
+  - sector: consulting
+    v1Key: v1:1.7.3:sector:consulting
+    text: Refugia analysis for conservation planning
+  - sector: academia
+    v1Key: v1:1.7.3:sector:academia
+    text: Refugia research, modeling approaches
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

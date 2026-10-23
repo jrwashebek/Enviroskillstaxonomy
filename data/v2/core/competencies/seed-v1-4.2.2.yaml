@@ -1,0 +1,234 @@
+id: seed:v1-4.2.2
+type: Competency
+prefLabel:
+  en: Invasive species control
+statement:
+  en: Removing or controlling non-native plants, animals, or pathogens that threaten ecosystem health.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 4.2.2
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.2'
+  label: Land Management Implementation
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-BUILD (FC). Rationale: Adds early detection and rapid response (FC-C10), field biosecurity links (FC-C11), verification of AI/drone detections; applicator licence as Credential (FC verdict). Role verdicts considered: FC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.2.2
+    v1Code: 4.2.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 118
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:4.2.2
+    v1Code: 4.2.2
+    v1Table: source_text/competencies
+    sourceTextLine: 7728
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Invasive species control
+  v1Description: Removing or controlling non-native plants, animals, or pathogens that threaten ecosystem health.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.2.2:foundational
+    knowledge: Identifies common invasive species; understands control methods
+    application: Implements invasive control treatments following protocols
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.2.2:foundational:I1
+      n: 1
+      text: Identifies priority invasive species accurately
+      origin: database
+    - v1Key: v1:4.2.2:foundational:I2
+      n: 2
+      text: Uses mechanical removal methods (hand-pulling, cutting, grubbing)
+      origin: database
+    - v1Key: v1:4.2.2:foundational:I3
+      n: 3
+      text: Applies herbicides following label instructions and safety protocols
+      origin: database
+    - v1Key: v1:4.2.2:foundational:I4
+      n: 4
+      text: Disposes of invasive plant material appropriately
+      origin: database
+    - v1Key: v1:4.2.2:foundational:I5
+      n: 5
+      text: Uses personal protective equipment correctly
+      origin: database
+    - v1Key: v1:4.2.2:foundational:I6
+      n: 6
+      text: Documents treatments (locations, methods, timing)
+      origin: database
+    - v1Key: v1:4.2.2:foundational:I7
+      n: 7
+      text: Understands principles of early detection and rapid response
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.2.2:intermediate
+    knowledge: Applies integrated pest management; understands invasion ecology
+    application: Designs and implements invasive species strategies
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.2.2:intermediate:I1
+      n: 1
+      text: Develops site-specific invasive control strategies
+      origin: database
+    - v1Key: v1:4.2.2:intermediate:I2
+      n: 2
+      text: Selects appropriate control methods based on species, site, and season
+      origin: database
+    - v1Key: v1:4.2.2:intermediate:I3
+      n: 3
+      text: Uses specialized equipment (weed wrenches, basal bark applicators)
+      origin: database
+    - v1Key: v1:4.2.2:intermediate:I4
+      n: 4
+      text: Implements biocontrol when appropriate
+      origin: database
+    - v1Key: v1:4.2.2:intermediate:I5
+      n: 5
+      text: Schedules treatments for optimal effectiveness
+      origin: database
+    - v1Key: v1:4.2.2:intermediate:I6
+      n: 6
+      text: Integrates control with revegetation
+      origin: database
+    - v1Key: v1:4.2.2:intermediate:I7
+      n: 7
+      text: Holds pesticide applicator certification
+      origin: restored-from-source-text
+    - v1Key: v1:4.2.2:intermediate:I8
+      n: 8
+      text: Monitors treatment effectiveness and adapts approaches
+      origin: restored-from-source-text
+    - v1Key: v1:4.2.2:intermediate:I9
+      n: 9
+      text: Supervises invasive control crews or contractors
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.2.2:advanced
+    knowledge: Expert in invasive species management; skilled in restoration integration
+    application: Leads comprehensive invasive species programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.2.2:advanced:I1
+      n: 1
+      text: Develops landscape-scale invasive management strategies
+      origin: database
+    - v1Key: v1:4.2.2:advanced:I2
+      n: 2
+      text: Integrates invasive control with broader restoration goals
+      origin: database
+    - v1Key: v1:4.2.2:advanced:I3
+      n: 3
+      text: Uses adaptive management for persistent invasive problems
+      origin: database
+    - v1Key: v1:4.2.2:advanced:I4
+      n: 4
+      text: Manages invasive species programs (crews, contractors, budgets)
+      origin: database
+    - v1Key: v1:4.2.2:advanced:I5
+      n: 5
+      text: Evaluates new control methods and technologies
+      origin: database
+    - v1Key: v1:4.2.2:advanced:I6
+      n: 6
+      text: Uses predictive modeling to prioritize control efforts
+      origin: database
+    - v1Key: v1:4.2.2:advanced:I7
+      n: 7
+      text: Develops invasive species management plans
+      origin: restored-from-source-text
+    - v1Key: v1:4.2.2:advanced:I8
+      n: 8
+      text: Trains practitioners in invasive control
+      origin: restored-from-source-text
+    - v1Key: v1:4.2.2:advanced:I9
+      n: 9
+      text: Publishes or presents invasive species management results
+      origin: restored-from-source-text
+    - v1Key: v1:4.2.2:advanced:I10
+      n: 10
+      text: Engages volunteers in early detection and control
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.2.2:expert
+    knowledge: Shapes invasive species management at regional scale
+    application: Leads transformative invasive species initiatives
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.2.2:expert:I1
+      n: 1
+      text: Directs regional invasive species programs
+      origin: database
+    - v1Key: v1:4.2.2:expert:I2
+      n: 2
+      text: Develops innovative control approaches adopted widely
+      origin: database
+    - v1Key: v1:4.2.2:expert:I3
+      n: 3
+      text: Influences invasive species policy and regulations
+      origin: database
+    - v1Key: v1:4.2.2:expert:I4
+      n: 4
+      text: Coordinates multi-organization invasive species efforts
+      origin: database
+    - v1Key: v1:4.2.2:expert:I5
+      n: 5
+      text: Provides expert consultation on invasive species challenges
+      origin: database
+    - v1Key: v1:4.2.2:expert:I6
+      n: 6
+      text: Publishes influential invasive species research
+      origin: database
+    - v1Key: v1:4.2.2:expert:I7
+      n: 7
+      text: Achieves recognition for invasive species management excellence
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.2.2:sector:public_agencies
+    text: Invasive species programs on public lands, aquatic invasive management
+  - sector: private_sector
+    v1Key: v1:4.2.2:sector:private_sector
+    text: Vegetation management, right-of-way control, agricultural weed management
+  - sector: ngos
+    v1Key: v1:4.2.2:sector:ngos
+    text: Preserve invasive control, volunteer weed pulls, advocacy
+  - sector: consulting
+    v1Key: v1:4.2.2:sector:consulting
+    text: Invasive management for clients, treatment planning
+  - sector: academia
+    v1Key: v1:4.2.2:sector:academia
+    text: Invasive species research, biocontrol testing
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

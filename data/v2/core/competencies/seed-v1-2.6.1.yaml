@@ -1,0 +1,231 @@
+id: seed:v1-2.6.1
+type: Competency
+prefLabel:
+  en: Computer vision for environmental applications
+statement:
+  en: Using AI to automatically identify and classify objects in images and video, such as species identification from camera traps or vegetation mapping from drone imagery.
+notation:
+- scheme: EMSTv1
+  value: 2.6.1
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-2.4.1
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.6'
+  label: Ai-Enhanced Environmental Monitoring
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:2.4.1. Rationale: Duplicates learned-model content with a tool label; durable core is validation with ground truth (DC disposition). Role verdicts considered: DC:change|DC:needs-evidence.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.6.1
+    v1Code: 2.6.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 67
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.6.1
+    v1Code: 2.6.1
+    v1Table: source_text/competencies
+    sourceTextLine: 4267
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Computer vision for environmental applications
+  v1Description: Using AI to automatically identify and classify objects in images and video, such as species identification from camera traps or vegetation mapping from drone imagery.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.6.1:foundational
+    knowledge: Understands computer vision concepts and applications
+    application: Uses pre-trained computer vision models
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.1:foundational:I1
+      n: 1
+      text: Explains how computer vision works (CNNs, object detection)
+      origin: database
+    - v1Key: v1:2.6.1:foundational:I2
+      n: 2
+      text: Uses existing CV models for classification
+      origin: database
+    - v1Key: v1:2.6.1:foundational:I3
+      n: 3
+      text: Prepares image datasets for training
+      origin: database
+    - v1Key: v1:2.6.1:foundational:I4
+      n: 4
+      text: Understands concepts like training/validation/test splits
+      origin: database
+    - v1Key: v1:2.6.1:foundational:I5
+      n: 5
+      text: Labels images for supervised learning
+      origin: database
+    - v1Key: v1:2.6.1:foundational:I6
+      n: 6
+      text: Uses image augmentation techniques
+      origin: database
+    - v1Key: v1:2.6.1:foundational:I7
+      n: 7
+      text: Recognizes when CV is appropriate for problems
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.6.1:intermediate
+    knowledge: Applies computer vision methods and architectures
+    application: Trains and deploys CV models
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.1:intermediate:I1
+      n: 1
+      text: Trains image classification models
+      origin: database
+    - v1Key: v1:2.6.1:intermediate:I2
+      n: 2
+      text: Uses object detection (YOLO, Faster R-CNN)
+      origin: database
+    - v1Key: v1:2.6.1:intermediate:I3
+      n: 3
+      text: Implements semantic segmentation for habitat mapping
+      origin: database
+    - v1Key: v1:2.6.1:intermediate:I4
+      n: 4
+      text: Uses transfer learning with pre-trained models
+      origin: database
+    - v1Key: v1:2.6.1:intermediate:I5
+      n: 5
+      text: Fine-tunes models for specific species or features
+      origin: database
+    - v1Key: v1:2.6.1:intermediate:I6
+      n: 6
+      text: Evaluates model performance (precision, recall, mAP)
+      origin: database
+    - v1Key: v1:2.6.1:intermediate:I7
+      n: 7
+      text: Deploys models for batch processing of images
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.1:intermediate:I8
+      n: 8
+      text: Uses PyTorch or TensorFlow for CV
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.1:intermediate:I9
+      n: 9
+      text: Processes camera trap, satellite, or drone imagery with AI
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.6.1:advanced
+    knowledge: Expert in computer vision architectures and optimization
+    application: Develops sophisticated CV systems
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.1:advanced:I1
+      n: 1
+      text: Develops custom CV architectures
+      origin: database
+    - v1Key: v1:2.6.1:advanced:I2
+      n: 2
+      text: Implements instance segmentation and tracking
+      origin: database
+    - v1Key: v1:2.6.1:advanced:I3
+      n: 3
+      text: Uses attention mechanisms and transformers for vision
+      origin: database
+    - v1Key: v1:2.6.1:advanced:I4
+      n: 4
+      text: Deploys models to edge devices (cameras, drones)
+      origin: database
+    - v1Key: v1:2.6.1:advanced:I5
+      n: 5
+      text: Implements active learning to improve models efficiently
+      origin: database
+    - v1Key: v1:2.6.1:advanced:I6
+      n: 6
+      text: Addresses class imbalance and rare species detection
+      origin: database
+    - v1Key: v1:2.6.1:advanced:I7
+      n: 7
+      text: Develops real-time CV applications
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.1:advanced:I8
+      n: 8
+      text: Publishes CV methodology research
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.1:advanced:I9
+      n: 9
+      text: Trains practitioners in computer vision
+      origin: restored-from-source-text
+    - v1Key: v1:2.6.1:advanced:I10
+      n: 10
+      text: Ensures ethical and responsible AI use
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.6.1:expert
+    knowledge: Shapes computer vision applications in environmental science
+    application: Provides CV leadership and innovation
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.6.1:expert:I1
+      n: 1
+      text: Develops novel CV approaches for environmental problems
+      origin: database
+    - v1Key: v1:2.6.1:expert:I2
+      n: 2
+      text: Influences CV standards and best practices
+      origin: database
+    - v1Key: v1:2.6.1:expert:I3
+      n: 3
+      text: Leads major CV initiatives
+      origin: database
+    - v1Key: v1:2.6.1:expert:I4
+      n: 4
+      text: Publishes influential CV research
+      origin: database
+    - v1Key: v1:2.6.1:expert:I5
+      n: 5
+      text: Provides expert CV consultation
+      origin: database
+    - v1Key: v1:2.6.1:expert:I6
+      n: 6
+      text: Advances responsible CV in environmental monitoring
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.6.1:sector:public_agencies
+    text: Automated species monitoring, vegetation mapping, infrastructure inspection
+  - sector: private_sector
+    v1Key: v1:2.6.1:sector:private_sector
+    text: Crop monitoring, quality control, automated inspections
+  - sector: ngos
+    v1Key: v1:2.6.1:sector:ngos
+    text: Wildlife monitoring, deforestation detection, conservation automation
+  - sector: consulting
+    v1Key: v1:2.6.1:sector:consulting
+    text: CV analysis services, model development
+  - sector: academia
+    v1Key: v1:2.6.1:sector:academia
+    text: CV research, biodiversity monitoring, method development
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

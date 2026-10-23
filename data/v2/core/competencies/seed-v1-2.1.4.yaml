@@ -1,0 +1,226 @@
+id: seed:v1-2.1.4
+type: Competency
+prefLabel:
+  en: Spatial analysis and modeling
+statement:
+  en: Using specialized techniques to analyze patterns across landscapes and predict how they might change.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 2.1.4
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.1'
+  label: Geospatial Technologies
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (DC). Rationale: Durable share high; absorbs the durable core of 2.1.1 and 3D terrain modelling (2.7.5); tool names to L4 (DC disposition). Role verdicts considered: DC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.1.4
+    v1Code: 2.1.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 45
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.1.4
+    v1Code: 2.1.4
+    v1Table: source_text/competencies
+    sourceTextLine: 3212
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:2.1.1
+    v1Code: 2.1.1
+    relation: merged-from
+    note: v1 2.1.1 (move-to-tools) → seed:v1-2.1.4 per v1_disposition.csv
+  - v1Key: v1:2.7.5
+    v1Code: 2.7.5
+    relation: merged-from
+    note: v1 2.7.5 (merge) → seed:v1-2.1.4 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Spatial analysis and modeling
+  v1Description: Using specialized techniques to analyze patterns across landscapes and predict how they might change.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.1.4:foundational
+    knowledge: Understands basic spatial analysis concepts
+    application: Performs simple spatial analyses
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.4:foundational:I1
+      n: 1
+      text: Uses buffer and overlay analysis
+      origin: database
+    - v1Key: v1:2.1.4:foundational:I2
+      n: 2
+      text: Performs distance and proximity calculations
+      origin: database
+    - v1Key: v1:2.1.4:foundational:I3
+      n: 3
+      text: Conducts basic terrain analysis (slope, aspect)
+      origin: database
+    - v1Key: v1:2.1.4:foundational:I4
+      n: 4
+      text: Creates viewsheds and line-of-sight analyses
+      origin: database
+    - v1Key: v1:2.1.4:foundational:I5
+      n: 5
+      text: Understands spatial relationships and queries
+      origin: database
+    - v1Key: v1:2.1.4:foundational:I6
+      n: 6
+      text: Interprets spatial analysis results
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.1.4:intermediate
+    knowledge: Applies spatial analysis methods and statistics
+    application: Conducts complex spatial analyses
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.4:intermediate:I1
+      n: 1
+      text: Performs cost-distance and least-cost path analysis
+      origin: database
+    - v1Key: v1:2.1.4:intermediate:I2
+      n: 2
+      text: Conducts spatial statistics (hot spot, clustering)
+      origin: database
+    - v1Key: v1:2.1.4:intermediate:I3
+      n: 3
+      text: Uses raster analysis and map algebra
+      origin: database
+    - v1Key: v1:2.1.4:intermediate:I4
+      n: 4
+      text: Develops habitat suitability models
+      origin: database
+    - v1Key: v1:2.1.4:intermediate:I5
+      n: 5
+      text: Analyzes landscape connectivity
+      origin: database
+    - v1Key: v1:2.1.4:intermediate:I6
+      n: 6
+      text: Performs watershed delineation and flow analysis
+      origin: database
+    - v1Key: v1:2.1.4:intermediate:I7
+      n: 7
+      text: Uses spatial interpolation methods
+      origin: restored-from-source-text
+    - v1Key: v1:2.1.4:intermediate:I8
+      n: 8
+      text: Conducts multi-criteria evaluation
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.1.4:advanced
+    knowledge: Expert in spatial modeling and advanced spatial statistics
+    application: Develops sophisticated spatial models
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.4:advanced:I1
+      n: 1
+      text: Builds species distribution models
+      origin: database
+    - v1Key: v1:2.1.4:advanced:I2
+      n: 2
+      text: Performs landscape pattern analysis
+      origin: database
+    - v1Key: v1:2.1.4:advanced:I3
+      n: 3
+      text: Uses spatial optimization for conservation planning (Marxan, Zonation)
+      origin: database
+    - v1Key: v1:2.1.4:advanced:I4
+      n: 4
+      text: Conducts network analysis (corridors, connectivity)
+      origin: database
+    - v1Key: v1:2.1.4:advanced:I5
+      n: 5
+      text: Applies machine learning to spatial prediction
+      origin: database
+    - v1Key: v1:2.1.4:advanced:I6
+      n: 6
+      text: Models spatial processes and dynamics
+      origin: database
+    - v1Key: v1:2.1.4:advanced:I7
+      n: 7
+      text: Validates spatial models rigorously
+      origin: restored-from-source-text
+    - v1Key: v1:2.1.4:advanced:I8
+      n: 8
+      text: Publishes spatial analysis research
+      origin: restored-from-source-text
+    - v1Key: v1:2.1.4:advanced:I9
+      n: 9
+      text: Develops custom spatial analysis tools
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.1.4:expert
+    knowledge: Shapes spatial analysis science and applications
+    application: Leads major spatial modeling initiatives
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.4:expert:I1
+      n: 1
+      text: Develops innovative spatial modeling approaches
+      origin: database
+    - v1Key: v1:2.1.4:expert:I2
+      n: 2
+      text: Influences spatial analysis standards and methods
+      origin: database
+    - v1Key: v1:2.1.4:expert:I3
+      n: 3
+      text: Leads landscape-scale spatial planning programs
+      origin: database
+    - v1Key: v1:2.1.4:expert:I4
+      n: 4
+      text: Publishes influential spatial analysis research
+      origin: database
+    - v1Key: v1:2.1.4:expert:I5
+      n: 5
+      text: Provides expert consultation on complex spatial problems
+      origin: database
+    - v1Key: v1:2.1.4:expert:I6
+      n: 6
+      text: Advances integration of spatial analysis with decision-making
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.1.4:sector:public_agencies
+    text: Conservation planning, site selection, impact analysis
+  - sector: private_sector
+    v1Key: v1:2.1.4:sector:private_sector
+    text: Site suitability, risk modeling, optimization
+  - sector: ngos
+    v1Key: v1:2.1.4:sector:ngos
+    text: Conservation prioritization, corridor design, threat assessment
+  - sector: consulting
+    v1Key: v1:2.1.4:sector:consulting
+    text: Spatial modeling services, impact assessment
+  - sector: academia
+    v1Key: v1:2.1.4:sector:academia
+    text: Spatial ecology research, landscape ecology
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

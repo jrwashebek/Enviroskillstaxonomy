@@ -1,0 +1,218 @@
+id: seed:v1-2.1.2
+type: Competency
+prefLabel:
+  en: Remote sensing data analysis
+statement:
+  en: Interpreting information collected from satellites or aircraft to monitor land conditions without physically visiting every location.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 2.1.2
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.1'
+  label: Geospatial Technologies
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (DC). Rationale: Durable share high; absorbs DC-CAND-10 (EO foundation models at L4 indicators); accuracy assessment with independent reference data as anchor (DC disposition). Role verdicts considered: DC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.1.2
+    v1Code: 2.1.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 43
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.1.2
+    v1Code: 2.1.2
+    v1Table: source_text/competencies
+    sourceTextLine: 3125
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Remote sensing data analysis
+  v1Description: Interpreting information collected from satellites or aircraft to monitor land conditions without physically visiting every location.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.1.2:foundational
+    knowledge: Understands remote sensing basics (spectral bands, resolution, platforms)
+    application: Views and interprets imagery
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.2:foundational:I1
+      n: 1
+      text: Identifies features in aerial photos and satellite imagery
+      origin: database
+    - v1Key: v1:2.1.2:foundational:I2
+      n: 2
+      text: Understands different remote sensing platforms and sensors
+      origin: database
+    - v1Key: v1:2.1.2:foundational:I3
+      n: 3
+      text: Distinguishes true color, false color, and other band combinations
+      origin: database
+    - v1Key: v1:2.1.2:foundational:I4
+      n: 4
+      text: Downloads and displays imagery from public sources
+      origin: database
+    - v1Key: v1:2.1.2:foundational:I5
+      n: 5
+      text: Recognizes spectral signatures of common land covers
+      origin: database
+    - v1Key: v1:2.1.2:foundational:I6
+      n: 6
+      text: Understands image resolution (spatial, spectral, temporal, radiometric)
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.1.2:intermediate
+    knowledge: Applies image processing and classification techniques
+    application: Processes imagery and extracts information
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.2:intermediate:I1
+      n: 1
+      text: Performs atmospheric and geometric corrections
+      origin: database
+    - v1Key: v1:2.1.2:intermediate:I2
+      n: 2
+      text: Creates image mosaics and composites
+      origin: database
+    - v1Key: v1:2.1.2:intermediate:I3
+      n: 3
+      text: Conducts supervised and unsupervised classification
+      origin: database
+    - v1Key: v1:2.1.2:intermediate:I4
+      n: 4
+      text: Calculates vegetation indices (NDVI, EVI, etc.)
+      origin: database
+    - v1Key: v1:2.1.2:intermediate:I5
+      n: 5
+      text: Detects changes using multi-temporal imagery
+      origin: database
+    - v1Key: v1:2.1.2:intermediate:I6
+      n: 6
+      text: Validates classifications with accuracy assessment
+      origin: database
+    - v1Key: v1:2.1.2:intermediate:I7
+      n: 7
+      text: Uses multiple sensors (Landsat, Sentinel, MODIS, aerial)
+      origin: restored-from-source-text
+    - v1Key: v1:2.1.2:intermediate:I8
+      n: 8
+      text: Integrates imagery with GIS data
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.1.2:advanced
+    knowledge: Expert in advanced remote sensing methods and applications
+    application: Develops remote sensing-based monitoring programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.2:advanced:I1
+      n: 1
+      text: Uses advanced classification methods (object-based, machine learning)
+      origin: database
+    - v1Key: v1:2.1.2:advanced:I2
+      n: 2
+      text: Analyzes hyperspectral and LiDAR data
+      origin: database
+    - v1Key: v1:2.1.2:advanced:I3
+      n: 3
+      text: Develops custom spectral indices for specific applications
+      origin: database
+    - v1Key: v1:2.1.2:advanced:I4
+      n: 4
+      text: Models biophysical variables from imagery
+      origin: database
+    - v1Key: v1:2.1.2:advanced:I5
+      n: 5
+      text: Implements change detection and time series analysis
+      origin: database
+    - v1Key: v1:2.1.2:advanced:I6
+      n: 6
+      text: Processes SAR and thermal imagery
+      origin: database
+    - v1Key: v1:2.1.2:advanced:I7
+      n: 7
+      text: Uses cloud computing platforms (Google Earth Engine)
+      origin: restored-from-source-text
+    - v1Key: v1:2.1.2:advanced:I8
+      n: 8
+      text: Publishes remote sensing research
+      origin: restored-from-source-text
+    - v1Key: v1:2.1.2:advanced:I9
+      n: 9
+      text: Trains practitioners in remote sensing methods
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.1.2:expert
+    knowledge: Shapes remote sensing science and applications
+    application: Leads major remote sensing initiatives
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.1.2:expert:I1
+      n: 1
+      text: Develops innovative remote sensing approaches
+      origin: database
+    - v1Key: v1:2.1.2:expert:I2
+      n: 2
+      text: Influences remote sensing standards and methods
+      origin: database
+    - v1Key: v1:2.1.2:expert:I3
+      n: 3
+      text: Leads large-scale monitoring programs using remote sensing
+      origin: database
+    - v1Key: v1:2.1.2:expert:I4
+      n: 4
+      text: Publishes influential remote sensing research
+      origin: database
+    - v1Key: v1:2.1.2:expert:I5
+      n: 5
+      text: Provides expert consultation on remote sensing
+      origin: database
+    - v1Key: v1:2.1.2:expert:I6
+      n: 6
+      text: Advances operational use of remote sensing
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.1.2:sector:public_agencies
+    text: Land cover mapping, vegetation monitoring, disaster assessment
+  - sector: private_sector
+    v1Key: v1:2.1.2:sector:private_sector
+    text: Crop monitoring, forest inventory, infrastructure monitoring
+  - sector: ngos
+    v1Key: v1:2.1.2:sector:ngos
+    text: Deforestation monitoring, habitat mapping, conservation effectiveness
+  - sector: consulting
+    v1Key: v1:2.1.2:sector:consulting
+    text: Remote sensing analysis for projects, change detection
+  - sector: academia
+    v1Key: v1:2.1.2:sector:academia
+    text: Remote sensing research, algorithm development
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

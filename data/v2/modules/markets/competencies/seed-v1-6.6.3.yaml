@@ -1,0 +1,237 @@
+id: seed:v1-6.6.3
+type: Competency
+prefLabel:
+  en: Environmental market transactions
+statement:
+  en: Facilitating the buying, selling, and trading of environmental credits or allowances in voluntary or compliance markets.
+notation:
+- scheme: EMSTv1
+  value: 6.6.3
+layer: L1
+module: markets
+homeModule: markets
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.6'
+  label: Environmental Markets
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-10 markets. Rationale: Survivor for credit transactions in compliance and voluntary markets; absorbs 6.8.3 and the transaction part of 6.3.5 (PS, DB verdicts). Role verdicts considered: DB:change|PS:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:6.6.3
+    v1Code: 6.6.3
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 204
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:6.6.3
+    v1Code: 6.6.3
+    v1Table: source_text/competencies
+    sourceTextLine: 14445
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:6.3.5
+    v1Code: 6.3.5
+    relation: split-from
+    note: v1 6.3.5 (split) → seed:v1-6.6.3 per v1_disposition.csv
+  - v1Key: v1:6.8.3
+    v1Code: 6.8.3
+    relation: merged-from
+    note: v1 6.8.3 (merge) → seed:v1-6.6.3 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Environmental market transactions
+  v1Description: Facilitating the buying, selling, and trading of environmental credits or allowances in voluntary or compliance markets.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:6.6.3:foundational
+    knowledge: Understands environmental market structure and operation
+    application: Supports market transactions
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.6.3:foundational:I1
+      n: 1
+      text: Explains how environmental markets function
+      origin: database
+    - v1Key: v1:6.6.3:foundational:I2
+      n: 2
+      text: Understands difference between compliance and voluntary markets
+      origin: database
+    - v1Key: v1:6.6.3:foundational:I3
+      n: 3
+      text: Tracks environmental credit prices and market trends
+      origin: database
+    - v1Key: v1:6.6.3:foundational:I4
+      n: 4
+      text: Assists with credit registration and trading
+      origin: database
+    - v1Key: v1:6.6.3:foundational:I5
+      n: 5
+      text: Maintains transaction records
+      origin: database
+    - v1Key: v1:6.6.3:foundational:I6
+      n: 6
+      text: Understands registries and exchanges
+      origin: database
+    - v1Key: v1:6.6.3:foundational:I7
+      n: 7
+      text: Identifies buyers and sellers for credits
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:6.6.3:intermediate
+    knowledge: Applies market analysis and transaction facilitation
+    application: Facilitates environmental market transactions
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.6.3:intermediate:I1
+      n: 1
+      text: Evaluates environmental credit quality and pricing
+      origin: database
+    - v1Key: v1:6.6.3:intermediate:I2
+      n: 2
+      text: Facilitates negotiations between buyers and sellers
+      origin: database
+    - v1Key: v1:6.6.3:intermediate:I3
+      n: 3
+      text: Navigates credit registries and trading platforms
+      origin: database
+    - v1Key: v1:6.6.3:intermediate:I4
+      n: 4
+      text: Conducts market analysis and price forecasting
+      origin: database
+    - v1Key: v1:6.6.3:intermediate:I5
+      n: 5
+      text: Structures credit purchase agreements
+      origin: database
+    - v1Key: v1:6.6.3:intermediate:I6
+      n: 6
+      text: Addresses transaction risks and due diligence
+      origin: database
+    - v1Key: v1:6.6.3:intermediate:I7
+      n: 7
+      text: Builds relationships with market participants
+      origin: restored-from-source-text
+    - v1Key: v1:6.6.3:intermediate:I8
+      n: 8
+      text: Understands regulatory requirements for transactions
+      origin: restored-from-source-text
+    - v1Key: v1:6.6.3:intermediate:I9
+      n: 9
+      text: Tracks market developments and regulatory changes
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:6.6.3:advanced
+    knowledge: Expert in environmental market dynamics and strategy
+    application: Leads market development and complex transactions
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.6.3:advanced:I1
+      n: 1
+      text: Develops environmental market strategies for clients
+      origin: database
+    - v1Key: v1:6.6.3:advanced:I2
+      n: 2
+      text: Structures complex multi-credit transactions
+      origin: database
+    - v1Key: v1:6.6.3:advanced:I3
+      n: 3
+      text: Evaluates market opportunities and risks
+      origin: database
+    - v1Key: v1:6.6.3:advanced:I4
+      n: 4
+      text: Provides market intelligence and analysis
+      origin: database
+    - v1Key: v1:6.6.3:advanced:I5
+      n: 5
+      text: Develops new market mechanisms or platforms
+      origin: database
+    - v1Key: v1:6.6.3:advanced:I6
+      n: 6
+      text: Addresses market barriers and liquidity challenges
+      origin: database
+    - v1Key: v1:6.6.3:advanced:I7
+      n: 7
+      text: Provides market training and capacity building
+      origin: restored-from-source-text
+    - v1Key: v1:6.6.3:advanced:I8
+      n: 8
+      text: Publishes market analysis and forecasts
+      origin: restored-from-source-text
+    - v1Key: v1:6.6.3:advanced:I9
+      n: 9
+      text: Influences market development and policy
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:6.6.3:expert
+    knowledge: Shapes environmental market development
+    application: Influences market policy and infrastructure
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.6.3:expert:I1
+      n: 1
+      text: Develops influential market frameworks or platforms
+      origin: database
+    - v1Key: v1:6.6.3:expert:I2
+      n: 2
+      text: Influences environmental market policy and regulation
+      origin: database
+    - v1Key: v1:6.6.3:expert:I3
+      n: 3
+      text: Leads major market development initiatives
+      origin: database
+    - v1Key: v1:6.6.3:expert:I4
+      n: 4
+      text: Recognized expert in environmental markets
+      origin: database
+    - v1Key: v1:6.6.3:expert:I5
+      n: 5
+      text: Publishes influential market research
+      origin: database
+    - v1Key: v1:6.6.3:expert:I6
+      n: 6
+      text: Advances market integrity and efficiency
+      origin: database
+    - v1Key: v1:6.6.3:expert:I7
+      n: 7
+      text: Provides expert consultation on market design
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:6.6.3:sector:public_agencies
+    text: Market oversight, trading program administration
+  - sector: private_sector
+    v1Key: v1:6.6.3:sector:private_sector
+    text: Credit brokerage, corporate purchasing, market making
+  - sector: ngos
+    v1Key: v1:6.6.3:sector:ngos
+    text: Market development, standards setting, market monitoring
+  - sector: consulting
+    v1Key: v1:6.6.3:sector:consulting
+    text: Market advisory, transaction facilitation, market analysis
+  - sector: academia
+    v1Key: v1:6.6.3:sector:academia
+    text: Market research, policy analysis
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

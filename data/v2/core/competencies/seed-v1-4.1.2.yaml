@@ -1,0 +1,238 @@
+id: seed:v1-4.1.2
+type: Competency
+prefLabel:
+  en: Wildlife observation and sign interpretation
+statement:
+  en: Detecting and recording wildlife presence, abundance, and behavior through direct observation and indirect evidence.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 4.1.2
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.1'
+  label: Field Assessment & Monitoring
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (FC). Rationale: Survivor for wildlife survey and sign interpretation; absorbs 1.4.2; tool-bound app task removed (FC, IO verdicts). Role verdicts considered: FC:change|FC:carry|IO:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.1.2
+    v1Code: 4.1.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 113
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:4.1.2
+    v1Code: 4.1.2
+    v1Table: source_text/competencies
+    sourceTextLine: 7465
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:1.4.2
+    v1Code: 1.4.2
+    relation: merged-from
+    note: v1 1.4.2 (merge) → seed:v1-4.1.2 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Wildlife observation and sign interpretation
+  v1Description: Detecting and recording wildlife presence, abundance, and behavior through direct observation and indirect evidence.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.1.2:foundational
+    knowledge: Familiar with common regional wildlife and basic survey methods
+    application: Conducts wildlife surveys following protocols
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.2:foundational:I1
+      n: 1
+      text: Identifies common wildlife species by sight and sound
+      origin: database
+    - v1Key: v1:4.1.2:foundational:I2
+      n: 2
+      text: Recognizes obvious wildlife sign (tracks, scat, nests)
+      origin: database
+    - v1Key: v1:4.1.2:foundational:I3
+      n: 3
+      text: Follows survey protocols accurately and consistently
+      origin: database
+    - v1Key: v1:4.1.2:foundational:I4
+      n: 4
+      text: Records observations using standardized datasheets or apps
+      origin: database
+    - v1Key: v1:4.1.2:foundational:I5
+      n: 5
+      text: Uses binoculars, spotting scopes, and field guides effectively
+      origin: database
+    - v1Key: v1:4.1.2:foundational:I6
+      n: 6
+      text: Deploys and checks camera traps following protocols
+      origin: database
+    - v1Key: v1:4.1.2:foundational:I7
+      n: 7
+      text: Understands observer bias and detection probability concepts
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.1.2:intermediate
+    knowledge: Proficient in wildlife identification; understands survey design
+    application: Designs and implements wildlife monitoring programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.2:intermediate:I1
+      n: 1
+      text: Selects appropriate survey methods for species and objectives
+      origin: database
+    - v1Key: v1:4.1.2:intermediate:I2
+      n: 2
+      text: Identifies wildlife to species from subtle sign or brief observations
+      origin: database
+    - v1Key: v1:4.1.2:intermediate:I3
+      n: 3
+      text: Interprets behavior and habitat use from observations and sign
+      origin: database
+    - v1Key: v1:4.1.2:intermediate:I4
+      n: 4
+      text: Uses distance sampling and occupancy modeling concepts
+      origin: database
+    - v1Key: v1:4.1.2:intermediate:I5
+      n: 5
+      text: Manages camera trap data and uses AI identification tools
+      origin: database
+    - v1Key: v1:4.1.2:intermediate:I6
+      n: 6
+      text: Trains field crews in wildlife survey techniques
+      origin: database
+    - v1Key: v1:4.1.2:intermediate:I7
+      n: 7
+      text: Analyzes survey data to estimate abundance or trends
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.2:intermediate:I8
+      n: 8
+      text: Integrates wildlife observations with habitat data
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.2:intermediate:I9
+      n: 9
+      text: Uses drones or thermal imaging for wildlife surveys when appropriate
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.1.2:advanced
+    knowledge: Expert in wildlife survey methodology and population ecology
+    application: Leads comprehensive wildlife monitoring programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.2:advanced:I1
+      n: 1
+      text: Designs statistically rigorous survey programs
+      origin: database
+    - v1Key: v1:4.1.2:advanced:I2
+      n: 2
+      text: Uses advanced techniques (mark-recapture, telemetry, eDNA)
+      origin: database
+    - v1Key: v1:4.1.2:advanced:I3
+      n: 3
+      text: Analyzes population trends and habitat relationships
+      origin: database
+    - v1Key: v1:4.1.2:advanced:I4
+      n: 4
+      text: Implements multi-species monitoring efficiently
+      origin: database
+    - v1Key: v1:4.1.2:advanced:I5
+      n: 5
+      text: Uses occupancy modeling and N-mixture models
+      origin: database
+    - v1Key: v1:4.1.2:advanced:I6
+      n: 6
+      text: Evaluates survey effectiveness and optimizes methods
+      origin: database
+    - v1Key: v1:4.1.2:advanced:I7
+      n: 7
+      text: Publishes wildlife monitoring results
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.2:advanced:I8
+      n: 8
+      text: Develops wildlife monitoring protocols and standards
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.2:advanced:I9
+      n: 9
+      text: Integrates citizen science with professional surveys
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.2:advanced:I10
+      n: 10
+      text: Uses wildlife data to inform adaptive management
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.1.2:expert
+    knowledge: Shapes wildlife monitoring practices at landscape scale
+    application: Directs major wildlife assessment initiatives
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.2:expert:I1
+      n: 1
+      text: Leads regional or national wildlife monitoring programs
+      origin: database
+    - v1Key: v1:4.1.2:expert:I2
+      n: 2
+      text: Develops innovative monitoring approaches adopted widely
+      origin: database
+    - v1Key: v1:4.1.2:expert:I3
+      n: 3
+      text: Influences wildlife monitoring policy and standards
+      origin: database
+    - v1Key: v1:4.1.2:expert:I4
+      n: 4
+      text: Provides expert consultation on complex wildlife issues
+      origin: database
+    - v1Key: v1:4.1.2:expert:I5
+      n: 5
+      text: Publishes influential wildlife monitoring research
+      origin: database
+    - v1Key: v1:4.1.2:expert:I6
+      n: 6
+      text: Achieves recognition for wildlife assessment excellence
+      origin: database
+    - v1Key: v1:4.1.2:expert:I7
+      n: 7
+      text: Mentors wildlife monitoring professionals
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.1.2:sector:public_agencies
+    text: Species inventory, population monitoring, endangered species surveys
+  - sector: private_sector
+    v1Key: v1:4.1.2:sector:private_sector
+    text: Wildlife surveys for development projects, mine reclamation monitoring
+  - sector: ngos
+    v1Key: v1:4.1.2:sector:ngos
+    text: Conservation monitoring, rare species tracking, wildlife corridor assessment
+  - sector: consulting
+    v1Key: v1:4.1.2:sector:consulting
+    text: Baseline wildlife surveys, impact monitoring, mitigation effectiveness
+  - sector: academia
+    v1Key: v1:4.1.2:sector:academia
+    text: Research surveys, population studies, wildlife ecology
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

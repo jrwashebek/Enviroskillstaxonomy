@@ -1,0 +1,241 @@
+id: seed:v1-6.3.5
+type: Competency
+prefLabel:
+  en: Carbon credit and offset programs
+statement:
+  en: Working with systems that assign economic value to carbon sequestration and allow landowners to earn credits for practices that reduce greenhouse gases.
+notation:
+- scheme: EMSTv1
+  value: 6.3.5
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:PS-C06
+- seed:v1-6.6.3
+- seed:PS-C08
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.3'
+  label: Resource Economics
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): split → PS-C06 (measurement and dMRV, with FC-C29 anchors)|v1:6.6.3 (credit transactions)|PS-C08 (credit integrity). Rationale: Remote-sensing MRV is compressing plot work while field verification remains high-tacit; measurement, transactions and integrity are different private jobs (FC, PS, IA verdicts). Role verdicts considered: FC:needs-evidence|IA:change|PS:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:6.3.5
+    v1Code: 6.3.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 191
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:6.3.5
+    v1Code: 6.3.5
+    v1Table: source_text/competencies
+    sourceTextLine: 13597
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Carbon credit and offset programs
+  v1Description: Working with systems that assign economic value to carbon sequestration and allow landowners to earn credits for practices that reduce greenhouse gases.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:6.3.5:foundational
+    knowledge: Understands carbon markets and offset concepts
+    application: Supports carbon project development
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.3.5:foundational:I1
+      n: 1
+      text: Explains voluntary and compliance carbon markets
+      origin: database
+    - v1Key: v1:6.3.5:foundational:I2
+      n: 2
+      text: Describes carbon offset standards (VCS, CAR, Gold Standard)
+      origin: database
+    - v1Key: v1:6.3.5:foundational:I3
+      n: 3
+      text: Collects field data for carbon accounting
+      origin: database
+    - v1Key: v1:6.3.5:foundational:I4
+      n: 4
+      text: Assists with carbon project documentation
+      origin: database
+    - v1Key: v1:6.3.5:foundational:I5
+      n: 5
+      text: Understands additionality, permanence, and leakage
+      origin: database
+    - v1Key: v1:6.3.5:foundational:I6
+      n: 6
+      text: Monitors carbon project activities
+      origin: database
+    - v1Key: v1:6.3.5:foundational:I7
+      n: 7
+      text: Tracks carbon market prices and trends
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:6.3.5:intermediate
+    knowledge: Applies carbon accounting and project development methods
+    application: Develops carbon offset projects
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.3.5:intermediate:I1
+      n: 1
+      text: Quantifies carbon sequestration using approved methodologies
+      origin: database
+    - v1Key: v1:6.3.5:intermediate:I2
+      n: 2
+      text: Prepares project design documents for carbon standards
+      origin: database
+    - v1Key: v1:6.3.5:intermediate:I3
+      n: 3
+      text: Ensures project additionality and permanence
+      origin: database
+    - v1Key: v1:6.3.5:intermediate:I4
+      n: 4
+      text: Navigates carbon offset verification processes
+      origin: database
+    - v1Key: v1:6.3.5:intermediate:I5
+      n: 5
+      text: Develops monitoring plans for carbon projects
+      origin: database
+    - v1Key: v1:6.3.5:intermediate:I6
+      n: 6
+      text: Evaluates carbon project financial viability
+      origin: database
+    - v1Key: v1:6.3.5:intermediate:I7
+      n: 7
+      text: Coordinates with verifiers and registries
+      origin: restored-from-source-text
+    - v1Key: v1:6.3.5:intermediate:I8
+      n: 8
+      text: Markets carbon credits to buyers
+      origin: restored-from-source-text
+    - v1Key: v1:6.3.5:intermediate:I9
+      n: 9
+      text: Addresses leakage and reversal risks
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:6.3.5:advanced
+    knowledge: Expert in carbon markets and project development
+    application: Leads carbon offset programs at scale
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.3.5:advanced:I1
+      n: 1
+      text: Develops complex or novel carbon offset projects
+      origin: database
+    - v1Key: v1:6.3.5:advanced:I2
+      n: 2
+      text: Designs aggregated or landscape-scale carbon programs
+      origin: database
+    - v1Key: v1:6.3.5:advanced:I3
+      n: 3
+      text: Evaluates co-benefits of carbon projects (biodiversity, water, community)
+      origin: database
+    - v1Key: v1:6.3.5:advanced:I4
+      n: 4
+      text: Navigates evolving carbon market regulations
+      origin: database
+    - v1Key: v1:6.3.5:advanced:I5
+      n: 5
+      text: Develops new carbon methodologies
+      origin: database
+    - v1Key: v1:6.3.5:advanced:I6
+      n: 6
+      text: Manages carbon project portfolios
+      origin: database
+    - v1Key: v1:6.3.5:advanced:I7
+      n: 7
+      text: Publishes on carbon markets and offsets
+      origin: restored-from-source-text
+    - v1Key: v1:6.3.5:advanced:I8
+      n: 8
+      text: Trains practitioners in carbon project development
+      origin: restored-from-source-text
+    - v1Key: v1:6.3.5:advanced:I9
+      n: 9
+      text: Influences carbon market standards and policy
+      origin: restored-from-source-text
+    - v1Key: v1:6.3.5:advanced:I10
+      n: 10
+      text: Builds partnerships for carbon finance
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:6.3.5:expert
+    knowledge: Shapes carbon market policy and practice
+    application: Influences carbon markets at systemic level
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:6.3.5:expert:I1
+      n: 1
+      text: Develops influential carbon offset methodologies
+      origin: database
+    - v1Key: v1:6.3.5:expert:I2
+      n: 2
+      text: Influences carbon market standards and regulations
+      origin: database
+    - v1Key: v1:6.3.5:expert:I3
+      n: 3
+      text: Leads major carbon market initiatives
+      origin: database
+    - v1Key: v1:6.3.5:expert:I4
+      n: 4
+      text: Publishes influential carbon market research
+      origin: database
+    - v1Key: v1:6.3.5:expert:I5
+      n: 5
+      text: Serves on carbon standard boards or committees
+      origin: database
+    - v1Key: v1:6.3.5:expert:I6
+      n: 6
+      text: Recognized expert in carbon markets
+      origin: database
+    - v1Key: v1:6.3.5:expert:I7
+      n: 7
+      text: Advises governments on carbon market design
+      origin: restored-from-source-text
+    - v1Key: v1:6.3.5:expert:I8
+      n: 8
+      text: Advances carbon market integrity and effectiveness
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:6.3.5:sector:public_agencies
+    text: Carbon programs on public lands, carbon market oversight
+  - sector: private_sector
+    v1Key: v1:6.3.5:sector:private_sector
+    text: Corporate carbon offsetting, carbon project development, forest carbon
+  - sector: ngos
+    v1Key: v1:6.3.5:sector:ngos
+    text: Community carbon projects, carbon market advocacy, co-benefit standards
+  - sector: consulting
+    v1Key: v1:6.3.5:sector:consulting
+    text: Carbon project development, verification services, carbon strategy
+  - sector: academia
+    v1Key: v1:6.3.5:sector:academia
+    text: Carbon market research, offset effectiveness evaluation
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

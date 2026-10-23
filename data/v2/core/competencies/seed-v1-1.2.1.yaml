@@ -1,0 +1,196 @@
+id: seed:v1-1.2.1
+type: Competency
+prefLabel:
+  en: Soil classification and mapping
+statement:
+  en: Identifying different soil types and creating maps that show where they occur across a landscape.
+notation:
+- scheme: EMSTv1
+  value: 1.2.1
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-4.1.4
+- seed:v1-1.2.2
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.2'
+  label: Soil & Water Science
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): split → v1:4.1.4 (field soil characterization practice)|v1:1.2.2 (soil science knowledge area; digital soil mapping as DC tasks). Rationale: Science and field versions of the same capacity were split by domain in v1; field work consolidates into 4.1.4, classification knowledge into the soil science knowledge area (FC verdict; DE near-duplicate screen). Role verdicts considered: FC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.2.1
+    v1Code: 1.2.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 7
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:1.2.1
+    v1Code: 1.2.1
+    v1Table: source_text/competencies
+    sourceTextLine: 735
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Soil classification and mapping
+  v1Description: Identifying different soil types and creating maps that show where they occur across a landscape.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:1.2.1:foundational
+    knowledge: Understands soil formation factors and basic taxonomy
+    application: Describes soil profiles using standard terminology
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.1:foundational:I1
+      n: 1
+      text: Identifies soil horizons in profile pits
+      origin: database
+    - v1Key: v1:1.2.1:foundational:I2
+      n: 2
+      text: Describes soil texture by feel method
+      origin: database
+    - v1Key: v1:1.2.1:foundational:I3
+      n: 3
+      text: Records soil observations using standard forms
+      origin: database
+    - v1Key: v1:1.2.1:foundational:I4
+      n: 4
+      text: Uses USDA soil taxonomy at order/suborder level
+      origin: database
+    - v1Key: v1:1.2.1:foundational:I5
+      n: 5
+      text: Understands how parent material, climate, and topography affect soils
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:1.2.1:intermediate
+    knowledge: Applies soil taxonomy to great group/subgroup; understands soil-landscape relationships
+    application: Conducts soil surveys and creates soil maps
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.1:intermediate:I1
+      n: 1
+      text: Classifies soils to subgroup level using Soil Taxonomy
+      origin: database
+    - v1Key: v1:1.2.1:intermediate:I2
+      n: 2
+      text: Conducts transect surveys identifying soil series
+      origin: database
+    - v1Key: v1:1.2.1:intermediate:I3
+      n: 3
+      text: Creates digital soil maps using GIS and field observations
+      origin: database
+    - v1Key: v1:1.2.1:intermediate:I4
+      n: 4
+      text: Interprets aerial photos and LiDAR for soil mapping
+      origin: database
+    - v1Key: v1:1.2.1:intermediate:I5
+      n: 5
+      text: Uses soil survey data for planning and management
+      origin: database
+    - v1Key: v1:1.2.1:intermediate:I6
+      n: 6
+      text: Understands soil-vegetation relationships
+      origin: database
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:1.2.1:advanced
+    knowledge: Expert in soil classification and geomorphology
+    application: Leads complex soil survey projects
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.1:advanced:I1
+      n: 1
+      text: Leads soil survey projects for diverse landscapes
+      origin: database
+    - v1Key: v1:1.2.1:advanced:I2
+      n: 2
+      text: Develops soil map unit descriptions and interpretations
+      origin: database
+    - v1Key: v1:1.2.1:advanced:I3
+      n: 3
+      text: Correlates soils across geographic areas
+      origin: database
+    - v1Key: v1:1.2.1:advanced:I4
+      n: 4
+      text: Updates official soil surveys and contributes to NRCS databases
+      origin: database
+    - v1Key: v1:1.2.1:advanced:I5
+      n: 5
+      text: Trains junior soil scientists in classification and mapping
+      origin: database
+    - v1Key: v1:1.2.1:advanced:I6
+      n: 6
+      text: Integrates soil data with ecological and hydrological models
+      origin: database
+    - v1Key: v1:1.2.1:advanced:I7
+      n: 7
+      text: Publishes soil survey reports and technical papers
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:1.2.1:expert
+    knowledge: Shapes soil classification and survey standards
+    application: Provides national/international leadership in soil science
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.2.1:expert:I1
+      n: 1
+      text: Contributes to development of soil taxonomy
+      origin: database
+    - v1Key: v1:1.2.1:expert:I2
+      n: 2
+      text: Leads major soil survey programs
+      origin: database
+    - v1Key: v1:1.2.1:expert:I3
+      n: 3
+      text: Influences soil survey standards and methods
+      origin: database
+    - v1Key: v1:1.2.1:expert:I4
+      n: 4
+      text: Recognized expert in regional soil geomorphology
+      origin: database
+    - v1Key: v1:1.2.1:expert:I5
+      n: 5
+      text: Publishes influential soil science research
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:1.2.1:sector:public_agencies
+    text: NRCS soil surveys, land management planning, wetland delineation
+  - sector: private_sector
+    v1Key: v1:1.2.1:sector:private_sector
+    text: Site assessments, agricultural planning, development suitability
+  - sector: ngos
+    v1Key: v1:1.2.1:sector:ngos
+    text: Conservation planning, restoration site assessment
+  - sector: consulting
+    v1Key: v1:1.2.1:sector:consulting
+    text: Soil surveys for projects, wetland delineation, environmental site assessments
+  - sector: academia
+    v1Key: v1:1.2.1:sector:academia
+    text: Soil genesis research, pedology, soil geography
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

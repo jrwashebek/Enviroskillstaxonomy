@@ -1,0 +1,210 @@
+id: seed:v1-1.8.1
+type: Competency
+prefLabel:
+  en: Agroecology principles
+statement:
+  en: Understanding the ecological principles that govern agricultural systems and how to apply them for sustainable production.
+competencyType: knowledge-area
+notation:
+- scheme: EMSTv1
+  value: 1.8.1
+layer: L1
+module: worklands
+homeModule: worklands
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.8'
+  label: Sustainable Agriculture Science
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-14 worklands (knowledge area). Rationale: Agroecology is L06-specific; absorbs 1.8.4 and the food-systems content of 1.8.5. Role verdicts considered: none recorded.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.8.1
+    v1Code: 1.8.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 37
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:1.8.1
+    v1Code: 1.8.1
+    v1Table: source_text/competencies
+    sourceTextLine: 2417
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:1.8.4
+    v1Code: 1.8.4
+    relation: merged-from
+    note: v1 1.8.4 (merge) → seed:v1-1.8.1 per v1_disposition.csv
+  - v1Key: v1:1.8.5
+    v1Code: 1.8.5
+    relation: split-from
+    note: v1 1.8.5 (split) → seed:v1-1.8.1 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Agroecology principles
+  v1Description: Understanding the ecological principles that govern agricultural systems and how to apply them for sustainable production.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:1.8.1:foundational
+    knowledge: Understands that agriculture is embedded in ecological systems
+    application: Recognizes agroecological principles in practice
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.8.1:foundational:I1
+      n: 1
+      text: Explains how ecological concepts apply to agriculture
+      origin: database
+    - v1Key: v1:1.8.1:foundational:I2
+      n: 2
+      text: Understands nutrient cycling in agricultural systems
+      origin: database
+    - v1Key: v1:1.8.1:foundational:I3
+      n: 3
+      text: Recognizes beneficial species interactions (pollinators, natural enemies, soil organisms)
+      origin: database
+    - v1Key: v1:1.8.1:foundational:I4
+      n: 4
+      text: Identifies ecological impacts of conventional practices
+      origin: database
+    - v1Key: v1:1.8.1:foundational:I5
+      n: 5
+      text: Understands concept of ecosystem services from agriculture
+      origin: database
+    - v1Key: v1:1.8.1:foundational:I6
+      n: 6
+      text: Recognizes examples of agroecological practices
+      origin: database
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:1.8.1:intermediate
+    knowledge: Applies agroecological principles to analyze and improve agricultural systems
+    application: Evaluates and recommends agroecological approaches
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.8.1:intermediate:I1
+      n: 1
+      text: Analyzes energy and nutrient flows in farming systems
+      origin: database
+    - v1Key: v1:1.8.1:intermediate:I2
+      n: 2
+      text: Evaluates biodiversity in agricultural landscapes (field to landscape scale)
+      origin: database
+    - v1Key: v1:1.8.1:intermediate:I3
+      n: 3
+      text: Assesses ecological functions on farms (pollination, pest regulation, water regulation)
+      origin: database
+    - v1Key: v1:1.8.1:intermediate:I4
+      n: 4
+      text: Recommends practices that enhance ecological function
+      origin: database
+    - v1Key: v1:1.8.1:intermediate:I5
+      n: 5
+      text: Evaluates tradeoffs between production and ecosystem services
+      origin: database
+    - v1Key: v1:1.8.1:intermediate:I6
+      n: 6
+      text: Communicates agroecological principles to farmers and managers
+      origin: database
+    - v1Key: v1:1.8.1:intermediate:I7
+      n: 7
+      text: Integrates agroecology into conservation planning on working lands
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:1.8.1:advanced
+    knowledge: Expert in agroecological science; understands system design and transition
+    application: Leads agroecological assessment and transition programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.8.1:advanced:I1
+      n: 1
+      text: Designs agroecological systems for specific contexts
+      origin: database
+    - v1Key: v1:1.8.1:advanced:I2
+      n: 2
+      text: Evaluates agroecological transitions at farm and landscape scales
+      origin: database
+    - v1Key: v1:1.8.1:advanced:I3
+      n: 3
+      text: Assesses ecosystem service provision from agricultural landscapes
+      origin: database
+    - v1Key: v1:1.8.1:advanced:I4
+      n: 4
+      text: Develops agroecological assessment frameworks
+      origin: database
+    - v1Key: v1:1.8.1:advanced:I5
+      n: 5
+      text: Publishes agroecology research
+      origin: database
+    - v1Key: v1:1.8.1:advanced:I6
+      n: 6
+      text: Trains staff and producers in agroecological concepts
+      origin: database
+    - v1Key: v1:1.8.1:advanced:I7
+      n: 7
+      text: Integrates agroecology into policy and program design
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:1.8.1:expert
+    knowledge: Shapes agroecological science and application
+    application: Provides agroecology leadership
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:1.8.1:expert:I1
+      n: 1
+      text: Develops innovative agroecological frameworks
+      origin: database
+    - v1Key: v1:1.8.1:expert:I2
+      n: 2
+      text: Influences agricultural policy toward agroecological approaches
+      origin: database
+    - v1Key: v1:1.8.1:expert:I3
+      n: 3
+      text: Leads major agroecology initiatives
+      origin: database
+    - v1Key: v1:1.8.1:expert:I4
+      n: 4
+      text: Publishes influential research
+      origin: database
+    - v1Key: v1:1.8.1:expert:I5
+      n: 5
+      text: Advises on agroecological transformation
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:1.8.1:sector:public_agencies
+    text: NRCS conservation planning, USFS grazing management, working lands programs
+  - sector: private_sector
+    v1Key: v1:1.8.1:sector:private_sector
+    text: Sustainable sourcing, agricultural consulting, certification
+  - sector: ngos
+    v1Key: v1:1.8.1:sector:ngos
+    text: Sustainable agriculture advocacy, farmer technical assistance
+  - sector: consulting
+    v1Key: v1:1.8.1:sector:consulting
+    text: Agroecological assessment, farm planning
+  - sector: academia
+    v1Key: v1:1.8.1:sector:academia
+    text: Agroecology research, farming systems analysis
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

@@ -1,0 +1,226 @@
+id: seed:v1-4.5.2
+type: Competency
+prefLabel:
+  en: Power equipment operation
+statement:
+  en: Safely operating motorized equipment including chainsaws, brush cutters, and pumps.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 4.5.2
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.5'
+  label: Equipment Operation
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-BUILD (FC). Rationale: Good observable indicators; sawyer certification levels become Credentials (FC verdict). Role verdicts considered: FC:change|FC:carry.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.5.2
+    v1Code: 4.5.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 133
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:4.5.2
+    v1Code: 4.5.2
+    v1Table: source_text/competencies
+    sourceTextLine: 8513
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Power equipment operation
+  v1Description: Safely operating motorized equipment including chainsaws, brush cutters, and pumps.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.5.2:foundational
+    knowledge: Completes required power equipment training and safety certification
+    application: Operates basic power equipment under supervision
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.5.2:foundational:I1
+      n: 1
+      text: Completes chainsaw safety training (e.g., S-212)
+      origin: database
+    - v1Key: v1:4.5.2:foundational:I2
+      n: 2
+      text: Uses chainsaws safely for basic cutting operations
+      origin: database
+    - v1Key: v1:4.5.2:foundational:I3
+      n: 3
+      text: Operates string trimmers and brush cutters properly
+      origin: database
+    - v1Key: v1:4.5.2:foundational:I4
+      n: 4
+      text: Performs pre-operational checks
+      origin: database
+    - v1Key: v1:4.5.2:foundational:I5
+      n: 5
+      text: Mixes two-stroke fuel correctly
+      origin: database
+    - v1Key: v1:4.5.2:foundational:I6
+      n: 6
+      text: Uses appropriate PPE (chaps, helmet, hearing protection)
+      origin: database
+    - v1Key: v1:4.5.2:foundational:I7
+      n: 7
+      text: Recognizes equipment problems and stops for maintenance
+      origin: restored-from-source-text
+    - v1Key: v1:4.5.2:foundational:I8
+      n: 8
+      text: Follows lockout/tagout procedures
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.5.2:intermediate
+    knowledge: Holds advanced power equipment certifications
+    application: Operates power equipment independently for complex tasks
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.5.2:intermediate:I1
+      n: 1
+      text: Falls trees safely using proper techniques
+      origin: database
+    - v1Key: v1:4.5.2:intermediate:I2
+      n: 2
+      text: Completes advanced chainsaw training (tree felling, hazard trees)
+      origin: database
+    - v1Key: v1:4.5.2:intermediate:I3
+      n: 3
+      text: Operates multiple types of power equipment (saws, cutters, mowers, pumps)
+      origin: database
+    - v1Key: v1:4.5.2:intermediate:I4
+      n: 4
+      text: Performs routine maintenance (air filters, spark plugs, chains)
+      origin: database
+    - v1Key: v1:4.5.2:intermediate:I5
+      n: 5
+      text: Sharpens chainsaw chains properly
+      origin: database
+    - v1Key: v1:4.5.2:intermediate:I6
+      n: 6
+      text: Diagnoses and repairs minor equipment problems
+      origin: database
+    - v1Key: v1:4.5.2:intermediate:I7
+      n: 7
+      text: Works safely around other equipment operators
+      origin: restored-from-source-text
+    - v1Key: v1:4.5.2:intermediate:I8
+      n: 8
+      text: Trains others in equipment operation
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.5.2:advanced
+    knowledge: Expert in power equipment operation and maintenance
+    application: Manages equipment programs and specializes in complex operations
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.5.2:advanced:I1
+      n: 1
+      text: Certified sawyer or equipment specialist
+      origin: database
+    - v1Key: v1:4.5.2:advanced:I2
+      n: 2
+      text: Operates equipment in hazardous situations (storm cleanup, fire operations)
+      origin: database
+    - v1Key: v1:4.5.2:advanced:I3
+      n: 3
+      text: Performs advanced maintenance and repairs
+      origin: database
+    - v1Key: v1:4.5.2:advanced:I4
+      n: 4
+      text: Manages equipment fleets and maintenance programs
+      origin: database
+    - v1Key: v1:4.5.2:advanced:I5
+      n: 5
+      text: Procures equipment appropriate to needs
+      origin: database
+    - v1Key: v1:4.5.2:advanced:I6
+      n: 6
+      text: Develops equipment operation standards and training
+      origin: database
+    - v1Key: v1:4.5.2:advanced:I7
+      n: 7
+      text: Evaluates new equipment and technology
+      origin: restored-from-source-text
+    - v1Key: v1:4.5.2:advanced:I8
+      n: 8
+      text: Ensures equipment safety and compliance
+      origin: restored-from-source-text
+    - v1Key: v1:4.5.2:advanced:I9
+      n: 9
+      text: Trains equipment operators and instructors
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.5.2:expert
+    knowledge: Shapes power equipment practices
+    application: Provides strategic equipment program leadership
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.5.2:expert:I1
+      n: 1
+      text: Directs organizational equipment programs
+      origin: database
+    - v1Key: v1:4.5.2:expert:I2
+      n: 2
+      text: Develops innovative equipment applications
+      origin: database
+    - v1Key: v1:4.5.2:expert:I3
+      n: 3
+      text: Influences equipment standards and procurement
+      origin: database
+    - v1Key: v1:4.5.2:expert:I4
+      n: 4
+      text: Achieves recognition for equipment expertise
+      origin: database
+    - v1Key: v1:4.5.2:expert:I5
+      n: 5
+      text: Mentors equipment specialists
+      origin: database
+    - v1Key: v1:4.5.2:expert:I6
+      n: 6
+      text: Advances equipment safety practices
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.5.2:sector:public_agencies
+    text: Chainsaw programs, equipment maintenance shops
+  - sector: private_sector
+    v1Key: v1:4.5.2:sector:private_sector
+    text: Commercial vegetation management, equipment operations
+  - sector: ngos
+    v1Key: v1:4.5.2:sector:ngos
+    text: Preserve maintenance equipment, volunteer equipment programs
+  - sector: consulting
+    v1Key: v1:4.5.2:sector:consulting
+    text: Equipment services for projects
+  - sector: academia
+    v1Key: v1:4.5.2:sector:academia
+    text: Research equipment, campus grounds equipment
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

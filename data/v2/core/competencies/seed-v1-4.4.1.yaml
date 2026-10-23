@@ -1,0 +1,240 @@
+id: seed:v1-4.4.1
+type: Competency
+prefLabel:
+  en: Occupational safety and risk management
+statement:
+  en: Identifying and mitigating hazards to prevent injuries and ensure safe field operations.
+notation:
+- scheme: EMSTv1
+  value: 4.4.1
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-4.4.1-A
+- seed:v1-4.4.1-B
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.4'
+  label: Safety & Emergency Response
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): split → core practice: Manage field risk (FC; absorbs FC-C19 and FC-C27)|TX-C safety culture (transversal). Rationale: Advanced levels drifted into safety programme administration; field risk management (FC) is separated from safety culture (transversal) and programme administration (generic, referenced from O*NET/ESCO) (FC verdict; ADR-0025). Role verdicts considered: FC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.4.1
+    v1Code: 4.4.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 127
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:4.4.1
+    v1Code: 4.4.1
+    v1Table: source_text/competencies
+    sourceTextLine: 8173
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Occupational safety and risk management
+  v1Description: Identifying and mitigating hazards to prevent injuries and ensure safe field operations.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.4.1:foundational
+    knowledge: Understands common field hazards and basic safety protocols
+    application: Works safely and identifies obvious hazards
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.1:foundational:I1
+      n: 1
+      text: Uses personal protective equipment correctly
+      origin: database
+    - v1Key: v1:4.4.1:foundational:I2
+      n: 2
+      text: Identifies hazards in work areas
+      origin: database
+    - v1Key: v1:4.4.1:foundational:I3
+      n: 3
+      text: Follows safety protocols and standard operating procedures
+      origin: database
+    - v1Key: v1:4.4.1:foundational:I4
+      n: 4
+      text: Participates in safety briefings
+      origin: database
+    - v1Key: v1:4.4.1:foundational:I5
+      n: 5
+      text: Reports unsafe conditions and incidents
+      origin: database
+    - v1Key: v1:4.4.1:foundational:I6
+      n: 6
+      text: Uses equipment safely following training
+      origin: database
+    - v1Key: v1:4.4.1:foundational:I7
+      n: 7
+      text: Maintains situational awareness during field work
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.1:foundational:I8
+      n: 8
+      text: Stops work when conditions become unsafe
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.4.1:intermediate
+    knowledge: Applies risk management principles; understands safety regulations
+    application: Conducts safety assessments and leads safe operations
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.1:intermediate:I1
+      n: 1
+      text: Conducts job hazard analyses for field activities
+      origin: database
+    - v1Key: v1:4.4.1:intermediate:I2
+      n: 2
+      text: Leads safety briefings for crews
+      origin: database
+    - v1Key: v1:4.4.1:intermediate:I3
+      n: 3
+      text: Ensures PPE availability and proper use
+      origin: database
+    - v1Key: v1:4.4.1:intermediate:I4
+      n: 4
+      text: Identifies and mitigates hazards proactively
+      origin: database
+    - v1Key: v1:4.4.1:intermediate:I5
+      n: 5
+      text: Maintains safety equipment and first aid supplies
+      origin: database
+    - v1Key: v1:4.4.1:intermediate:I6
+      n: 6
+      text: Investigates incidents and near-misses
+      origin: database
+    - v1Key: v1:4.4.1:intermediate:I7
+      n: 7
+      text: Implements corrective actions after incidents
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.1:intermediate:I8
+      n: 8
+      text: Ensures crew compliance with safety requirements
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.1:intermediate:I9
+      n: 9
+      text: Uses safety management systems (SMIS, RMS)
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.4.1:advanced
+    knowledge: Expert in safety management; understands safety culture
+    application: Develops and manages comprehensive safety programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.1:advanced:I1
+      n: 1
+      text: Develops organizational safety programs and policies
+      origin: database
+    - v1Key: v1:4.4.1:advanced:I2
+      n: 2
+      text: Conducts safety audits and compliance reviews
+      origin: database
+    - v1Key: v1:4.4.1:advanced:I3
+      n: 3
+      text: Analyzes injury and incident trends
+      origin: database
+    - v1Key: v1:4.4.1:advanced:I4
+      n: 4
+      text: Provides safety training to staff
+      origin: database
+    - v1Key: v1:4.4.1:advanced:I5
+      n: 5
+      text: Ensures OSHA and regulatory compliance
+      origin: database
+    - v1Key: v1:4.4.1:advanced:I6
+      n: 6
+      text: Manages workers' compensation and return-to-work programs
+      origin: database
+    - v1Key: v1:4.4.1:advanced:I7
+      n: 7
+      text: Develops safety performance metrics
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.1:advanced:I8
+      n: 8
+      text: Builds safety culture in organization
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.1:advanced:I9
+      n: 9
+      text: Serves as organizational safety officer
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.1:advanced:I10
+      n: 10
+      text: Coordinates with insurance and regulatory agencies
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.4.1:expert
+    knowledge: Shapes safety practices in environmental field operations
+    application: Provides strategic safety leadership
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.1:expert:I1
+      n: 1
+      text: Directs enterprise-wide safety programs
+      origin: database
+    - v1Key: v1:4.4.1:expert:I2
+      n: 2
+      text: Develops innovative safety approaches adopted widely
+      origin: database
+    - v1Key: v1:4.4.1:expert:I3
+      n: 3
+      text: Influences safety policy and standards
+      origin: database
+    - v1Key: v1:4.4.1:expert:I4
+      n: 4
+      text: Achieves recognition for safety program excellence
+      origin: database
+    - v1Key: v1:4.4.1:expert:I5
+      n: 5
+      text: Reduces injury rates significantly through safety leadership
+      origin: database
+    - v1Key: v1:4.4.1:expert:I6
+      n: 6
+      text: Mentors safety professionals
+      origin: database
+    - v1Key: v1:4.4.1:expert:I7
+      n: 7
+      text: Publishes on safety management practices
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.4.1:sector:public_agencies
+    text: Agency safety programs, contractor safety oversight
+  - sector: private_sector
+    v1Key: v1:4.4.1:sector:private_sector
+    text: Corporate safety management, contractor safety
+  - sector: ngos
+    v1Key: v1:4.4.1:sector:ngos
+    text: Volunteer safety programs, preserve operations safety
+  - sector: consulting
+    v1Key: v1:4.4.1:sector:consulting
+    text: Safety program development, safety audits
+  - sector: academia
+    v1Key: v1:4.4.1:sector:academia
+    text: Campus safety, research safety, field safety training
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

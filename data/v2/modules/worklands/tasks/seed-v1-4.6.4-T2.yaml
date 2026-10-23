@@ -1,0 +1,49 @@
+id: seed:v1-4.6.4-T2
+type: Task
+prefLabel:
+  en: Operate and maintain irrigation systems (drip, sprinkler, flood)
+statement:
+  en: Operate and maintain irrigation systems (drip, sprinkler, flood)
+textSha256: 11b3be762ab092a63ac523cb65b2c08e6628bb02fbf7b679d495787852e23cbe
+supports:
+- competency: seed:v1-4.6.4
+  strength: primary
+notation:
+- scheme: EMSTv1
+  value: 4.6.4:T2
+layer: L2
+module: worklands
+homeModule: worklands
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Tier: T2
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.6'
+  label: Sustainable Agriculture Implementation
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.6.4:T2
+    v1Code: 4.6.4
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 140
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011

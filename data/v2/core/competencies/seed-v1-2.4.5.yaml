@@ -1,0 +1,231 @@
+id: seed:v1-2.4.5
+type: Competency
+prefLabel:
+  en: Time series analysis
+statement:
+  en: Analyzing data collected over time to identify trends, cycles, or changes that might not be obvious from single snapshots.
+notation:
+- scheme: EMSTv1
+  value: 2.4.5
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:v1-2.2.2
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.4'
+  label: Advanced Analytics
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:2.2.2. Rationale: Time-series methods become a specialization of statistical analysis (DC disposition). Role verdicts considered: DC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.4.5
+    v1Code: 2.4.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 61
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:2.4.5
+    v1Code: 2.4.5
+    v1Table: source_text/competencies
+    sourceTextLine: 3977
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Time series analysis
+  v1Description: Analyzing data collected over time to identify trends, cycles, or changes that might not be obvious from single snapshots.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:2.4.5:foundational
+    knowledge: Understands time series concepts (trend, seasonality, autocorrelation)
+    application: Visualizes and describes time series
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.4.5:foundational:I1
+      n: 1
+      text: Plots time series data appropriately
+      origin: database
+    - v1Key: v1:2.4.5:foundational:I2
+      n: 2
+      text: Calculates moving averages and smoothing
+      origin: database
+    - v1Key: v1:2.4.5:foundational:I3
+      n: 3
+      text: Identifies obvious trends and patterns
+      origin: database
+    - v1Key: v1:2.4.5:foundational:I4
+      n: 4
+      text: Understands temporal autocorrelation
+      origin: database
+    - v1Key: v1:2.4.5:foundational:I5
+      n: 5
+      text: Recognizes seasonal patterns
+      origin: database
+    - v1Key: v1:2.4.5:foundational:I6
+      n: 6
+      text: Compares time series visually
+      origin: database
+    - v1Key: v1:2.4.5:foundational:I7
+      n: 7
+      text: Documents temporal data characteristics
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:2.4.5:intermediate
+    knowledge: Applies time series analysis methods
+    application: Conducts time series analyses
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.4.5:intermediate:I1
+      n: 1
+      text: Decomposes time series (trend, seasonal, residual)
+      origin: database
+    - v1Key: v1:2.4.5:intermediate:I2
+      n: 2
+      text: Tests for trends (Mann-Kendall, linear regression)
+      origin: database
+    - v1Key: v1:2.4.5:intermediate:I3
+      n: 3
+      text: Analyzes autocorrelation and partial autocorrelation
+      origin: database
+    - v1Key: v1:2.4.5:intermediate:I4
+      n: 4
+      text: Identifies changepoints and breakpoints
+      origin: database
+    - v1Key: v1:2.4.5:intermediate:I5
+      n: 5
+      text: Uses time series software (R forecast package, Python statsmodels)
+      origin: database
+    - v1Key: v1:2.4.5:intermediate:I6
+      n: 6
+      text: Detects anomalies in time series
+      origin: database
+    - v1Key: v1:2.4.5:intermediate:I7
+      n: 7
+      text: Accounts for missing data in time series
+      origin: restored-from-source-text
+    - v1Key: v1:2.4.5:intermediate:I8
+      n: 8
+      text: Compares multiple time series
+      origin: restored-from-source-text
+    - v1Key: v1:2.4.5:intermediate:I9
+      n: 9
+      text: Interprets time series results for management
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:2.4.5:advanced
+    knowledge: Expert in time series methods and forecasting
+    application: Develops sophisticated time series models
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.4.5:advanced:I1
+      n: 1
+      text: Fits ARIMA and state-space models
+      origin: database
+    - v1Key: v1:2.4.5:advanced:I2
+      n: 2
+      text: Implements multivariate time series analysis
+      origin: database
+    - v1Key: v1:2.4.5:advanced:I3
+      n: 3
+      text: Uses dynamic linear models and Kalman filtering
+      origin: database
+    - v1Key: v1:2.4.5:advanced:I4
+      n: 4
+      text: Develops forecasting models
+      origin: database
+    - v1Key: v1:2.4.5:advanced:I5
+      n: 5
+      text: Analyzes non-stationary and irregular time series
+      origin: database
+    - v1Key: v1:2.4.5:advanced:I6
+      n: 6
+      text: Uses spectral analysis for periodicities
+      origin: database
+    - v1Key: v1:2.4.5:advanced:I7
+      n: 7
+      text: Implements intervention analysis
+      origin: restored-from-source-text
+    - v1Key: v1:2.4.5:advanced:I8
+      n: 8
+      text: Publishes time series research
+      origin: restored-from-source-text
+    - v1Key: v1:2.4.5:advanced:I9
+      n: 9
+      text: Trains practitioners in time series methods
+      origin: restored-from-source-text
+    - v1Key: v1:2.4.5:advanced:I10
+      n: 10
+      text: Develops early warning systems based on time series
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:2.4.5:expert
+    knowledge: Shapes time series analysis practice
+    application: Provides leadership on temporal analysis
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:2.4.5:expert:I1
+      n: 1
+      text: Develops innovative time series approaches
+      origin: database
+    - v1Key: v1:2.4.5:expert:I2
+      n: 2
+      text: Influences time series standards and methods
+      origin: database
+    - v1Key: v1:2.4.5:expert:I3
+      n: 3
+      text: Leads major time series initiatives
+      origin: database
+    - v1Key: v1:2.4.5:expert:I4
+      n: 4
+      text: Publishes influential time series research
+      origin: database
+    - v1Key: v1:2.4.5:expert:I5
+      n: 5
+      text: Provides expert time series consultation
+      origin: database
+    - v1Key: v1:2.4.5:expert:I6
+      n: 6
+      text: Advances temporal analysis in environmental science
+      origin: database
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:2.4.5:sector:public_agencies
+    text: Trend monitoring, climate analysis, population dynamics
+  - sector: private_sector
+    v1Key: v1:2.4.5:sector:private_sector
+    text: Demand forecasting, quality control, operations monitoring
+  - sector: ngos
+    v1Key: v1:2.4.5:sector:ngos
+    text: Long-term monitoring, impact evaluation, trend detection
+  - sector: consulting
+    v1Key: v1:2.4.5:sector:consulting
+    text: Time series analysis services, forecasting
+  - sector: academia
+    v1Key: v1:2.4.5:sector:academia
+    text: Time series research, climate science, population ecology
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

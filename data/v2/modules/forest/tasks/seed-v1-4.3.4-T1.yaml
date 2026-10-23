@@ -1,0 +1,49 @@
+id: seed:v1-4.3.4-T1
+type: Task
+prefLabel:
+  en: Monitor fire weather and calculate fire danger indices
+statement:
+  en: Monitor fire weather and calculate fire danger indices
+textSha256: 21a9392d4e331edf70c6add7a026885a7eb0884ef1b27c1d725b05458f3ba2e6
+supports:
+- competency: seed:v1-4.3.4
+  strength: primary
+notation:
+- scheme: EMSTv1
+  value: 4.3.4:T1
+layer: L2
+module: forest
+homeModule: forest
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Tier: T1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.3'
+  label: Fire Management
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.4:T1
+    v1Code: 4.3.4
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 125
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011

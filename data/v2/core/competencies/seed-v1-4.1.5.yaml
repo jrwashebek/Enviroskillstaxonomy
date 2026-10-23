@@ -1,0 +1,235 @@
+id: seed:v1-4.1.5
+type: Competency
+prefLabel:
+  en: Digital data collection and management
+statement:
+  en: Using mobile devices, apps, and systems to collect, manage, and share field data efficiently and accurately.
+notation:
+- scheme: EMSTv1
+  value: 4.1.5
+layer: L1
+module: core
+homeModule: core
+status: superseded
+replacedBy:
+- seed:FC-C23
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.1'
+  label: Field Assessment & Monitoring
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → FC-C23. Rationale: Tool-bound; rewritten as durable field recording with protocol fidelity (FC verdict). Role verdicts considered: DC:change|FC:retire|FC:change.'
+license: LicenseRef-EMSTv1-PendingDedication
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.1.5
+    v1Code: 4.1.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 116
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:4.1.5
+    v1Code: 4.1.5
+    v1Table: source_text/competencies
+    sourceTextLine: 7626
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+v1Seed:
+  v1Title: Digital data collection and management
+  v1Description: Using mobile devices, apps, and systems to collect, manage, and share field data efficiently and accurately.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.1.5:foundational
+    knowledge: Familiar with mobile devices and basic data collection apps
+    application: Collects data using established digital forms and protocols
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.5:foundational:I1
+      n: 1
+      text: Uses smartphones or tablets for field data collection
+      origin: database
+    - v1Key: v1:4.1.5:foundational:I2
+      n: 2
+      text: Follows digital data collection protocols accurately
+      origin: database
+    - v1Key: v1:4.1.5:foundational:I3
+      n: 3
+      text: Takes geotagged photos to document observations
+      origin: database
+    - v1Key: v1:4.1.5:foundational:I4
+      n: 4
+      text: Syncs data from field devices when connectivity available
+      origin: database
+    - v1Key: v1:4.1.5:foundational:I5
+      n: 5
+      text: Recognizes data quality issues (GPS accuracy, missing data)
+      origin: database
+    - v1Key: v1:4.1.5:foundational:I6
+      n: 6
+      text: Maintains charged devices and backup power
+      origin: database
+    - v1Key: v1:4.1.5:foundational:I7
+      n: 7
+      text: Works effectively with offline data collection when needed
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.1.5:intermediate
+    knowledge: Understands data management principles and mobile GIS
+    application: Designs digital data collection systems and manages field data
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.5:intermediate:I1
+      n: 1
+      text: Designs custom forms in Survey123, Fulcrum, or similar platforms
+      origin: database
+    - v1Key: v1:4.1.5:intermediate:I2
+      n: 2
+      text: Implements data validation rules and logic in forms
+      origin: database
+    - v1Key: v1:4.1.5:intermediate:I3
+      n: 3
+      text: Uses mobile GIS for field mapping and navigation
+      origin: database
+    - v1Key: v1:4.1.5:intermediate:I4
+      n: 4
+      text: Manages data workflows from collection through analysis
+      origin: database
+    - v1Key: v1:4.1.5:intermediate:I5
+      n: 5
+      text: Ensures data security and backup procedures
+      origin: database
+    - v1Key: v1:4.1.5:intermediate:I6
+      n: 6
+      text: Trains field crews on digital data collection
+      origin: database
+    - v1Key: v1:4.1.5:intermediate:I7
+      n: 7
+      text: Troubleshoots common device and app issues in field
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.5:intermediate:I8
+      n: 8
+      text: Integrates field data with GIS and databases
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.5:intermediate:I9
+      n: 9
+      text: Uses offline mapping and data collection capabilities
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.1.5:advanced
+    knowledge: Expert in field data systems and digital workflows
+    application: Develops comprehensive field data management systems
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.5:advanced:I1
+      n: 1
+      text: Develops integrated field data collection and management systems
+      origin: database
+    - v1Key: v1:4.1.5:advanced:I2
+      n: 2
+      text: Implements automated data validation and quality control
+      origin: database
+    - v1Key: v1:4.1.5:advanced:I3
+      n: 3
+      text: Creates real-time dashboards displaying field data
+      origin: database
+    - v1Key: v1:4.1.5:advanced:I4
+      n: 4
+      text: Uses APIs to integrate multiple data systems
+      origin: database
+    - v1Key: v1:4.1.5:advanced:I5
+      n: 5
+      text: Implements cloud-based collaborative data platforms
+      origin: database
+    - v1Key: v1:4.1.5:advanced:I6
+      n: 6
+      text: Develops mobile apps for specific field needs
+      origin: database
+    - v1Key: v1:4.1.5:advanced:I7
+      n: 7
+      text: Ensures data meets metadata and archival standards
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.5:advanced:I8
+      n: 8
+      text: Evaluates and adopts emerging field technology
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.5:advanced:I9
+      n: 9
+      text: Trains practitioners in field data management
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.5:advanced:I10
+      n: 10
+      text: Develops organizational field data standards
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.1.5:expert
+    knowledge: Shapes field data practices in environmental sector
+    application: Leads digital transformation of field operations
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.5:expert:I1
+      n: 1
+      text: Directs enterprise field data strategies
+      origin: database
+    - v1Key: v1:4.1.5:expert:I2
+      n: 2
+      text: Develops innovative field data approaches adopted widely
+      origin: database
+    - v1Key: v1:4.1.5:expert:I3
+      n: 3
+      text: Influences field data standards and best practices
+      origin: database
+    - v1Key: v1:4.1.5:expert:I4
+      n: 4
+      text: Integrates AI and automation into field data systems
+      origin: database
+    - v1Key: v1:4.1.5:expert:I5
+      n: 5
+      text: Provides expert consultation on field informatics
+      origin: database
+    - v1Key: v1:4.1.5:expert:I6
+      n: 6
+      text: Publishes on field data management practices
+      origin: database
+    - v1Key: v1:4.1.5:expert:I7
+      n: 7
+      text: Advances technology adoption in field operations
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.1.5:sector:public_agencies
+    text: Standardized monitoring protocols, compliance tracking, resource inventory
+  - sector: private_sector
+    v1Key: v1:4.1.5:sector:private_sector
+    text: Quality control, environmental compliance, asset management
+  - sector: ngos
+    v1Key: v1:4.1.5:sector:ngos
+    text: Volunteer data collection, preserve monitoring, citizen science platforms
+  - sector: consulting
+    v1Key: v1:4.1.5:sector:consulting
+    text: Project-specific data collection, client reporting systems
+  - sector: academia
+    v1Key: v1:4.1.5:sector:academia
+    text: Research data collection, experimental protocols, student training
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
