@@ -1,22 +1,30 @@
 id: seed:v1-1.2.1-T3
 type: Task
 prefLabel:
-  en: Interpret soil maps to guide land use planning and conservation practices
+  en: Interpret soil maps to guide land-use planning and conservation practice, accounting for map-unit inclusions and scale limits.
 statement:
-  en: Interpret soil maps to guide land use planning and conservation practices
-textSha256: a576f562f1c471f37add15456c3e13c2e0cc9a19592f0b92d7bb5e4f109225fd
-supports:
-- competency: seed:v1-1.2.2
-  strength: primary
+  en: Interpret soil maps to guide land-use planning and conservation practice, accounting for map-unit inclusions and scale limits.
+textSha256: 30ced476cfe9190b7a139b808ecdf9987d30446bc73d5da2542f79aa9e50f764
+editorialNote:
+  en: 'v1 competency 1.2.1 is split: reassign this task to one of [''seed:v1-4.1.4'', ''seed:v1-1.2.2''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
 notation:
 - scheme: EMSTv1
   value: 1.2.1:T3
+supports:
+- competency: seed:v1-1.2.2
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T3
 v1Domain:
   code: '1'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '1.2'
   label: Soil & Water Science
-editorialNote:
-  en: 'Supports re-pointed by WP-03 (FC) from superseded v1 1.2.1 to its split successor seed:v1-1.2.2; text left to the 1.2.2 owner. v1 competency 1.2.1 is split: reassign this task to one of [''seed:v1-4.1.4'', ''seed:v1-1.2.2''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.2.1:T3
     v1Code: 1.2.1
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

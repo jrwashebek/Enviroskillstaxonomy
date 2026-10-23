@@ -1,22 +1,30 @@
 id: seed:v1-6.3.1-T3
 type: Task
 prefLabel:
-  en: Present valuation results to inform budget planning or policy proposals
+  en: Present valuation results for budget planning or policy proposals, showing how conclusions change with key assumptions.
 statement:
-  en: Present valuation results to inform budget planning or policy proposals
-textSha256: 68c8c3d7729d40eb62cd1524beb9000c67659a23895c186fe39c1396b548979a
-supports:
-- competency: seed:v1-6.3.1
-  strength: primary
+  en: Present valuation results for budget planning or policy proposals, showing how conclusions change with key assumptions.
+textSha256: a24f36105176dbe4627055dd0e77819c51b6485c96a5e289169ef2e3770f20ba
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 6.3.1:T3
+supports:
+- competency: seed:v1-6.3.1
+  strength: primary
+workFunction: WF-RESOURCE
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T3
 v1Domain:
   code: '6'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '6.3'
   label: Resource Economics
-editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:6.3.1:T3
     v1Code: 6.3.1
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

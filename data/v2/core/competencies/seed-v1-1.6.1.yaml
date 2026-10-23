@@ -1,34 +1,39 @@
 id: seed:v1-1.6.1
 type: Competency
 prefLabel:
-  en: Conservation genetics principles
+  en: Conservation genetics and genomics
+definition:
+  en: The body of knowledge on genetic diversity, gene flow, population structure, inbreeding, adaptive variation and evolutionary potential, and on genetic, genomic, molecular-ecology and environmental-DNA evidence, as used in conservation and management decisions.
 statement:
-  en: Understanding how genetic diversity, gene flow, and evolutionary processes affect population viability and conservation outcomes.
-competencyType: knowledge-area
+  en: Knowledge of genetic diversity, gene flow, population structure, effective population size, inbreeding and genetic load, adaptive variation and evolutionary potential, and of how genetic, genomic, molecular-ecology and environmental-DNA evidence is produced and interpreted for translocation, recovery, captive breeding and management-unit decisions.
+editorialNote:
+  en: 'Rewritten by WP-04 as a knowledge area (no craft-primary tag; ADR-0003 consequences, P-DC-12). One knowledge area replaces v1 1.6.1, 1.6.3, 1.6.4 and 1.6.5 and takes the assay-interpretation knowledge of 1.6.2 (v1_disposition). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | knowledge-area (Conservation genetics and genomics). Rationale: One knowledge area replaces four overlapping genetics items (1.6.1, 1.6.3, 1.6.4, 1.6.5); management application tasks enacted in MOD-12 and MOD-11 (seed zones). Role verdicts considered: none recorded.'
 notation:
 - scheme: EMSTv1
   value: 1.6.1
+competencyType: knowledge-area
+levelSpan:
+  min: A
+  max: L4
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '1'
-  label: Ecological & Scientific Knowledge
-v1SkillArea:
-  code: '1.6'
-  label: Biotechnology & Genetics
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | knowledge-area (Conservation genetics and genomics). Rationale: One knowledge area replaces four overlapping genetics items (1.6.1, 1.6.3, 1.6.4, 1.6.5); management application tasks enacted in MOD-12 and MOD-11 (seed zones). Role verdicts considered: none recorded.'
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.6.1
     v1Code: 1.6.1
@@ -39,12 +44,12 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:1.6.1
     v1Code: 1.6.1
     v1Table: source_text/competencies
     sourceTextLine: 1735
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   - v1Key: v1:1.6.2
     v1Code: 1.6.2
@@ -62,174 +67,18 @@ provenance:
     v1Code: 1.6.5
     relation: merged-from
     note: v1 1.6.5 (merge) → seed:v1-1.6.1 per v1_disposition.csv
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Conservation genetics principles
-  v1Description: Understanding how genetic diversity, gene flow, and evolutionary processes affect population viability and conservation outcomes.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:1.6.1:foundational
-    knowledge: Understands basic genetic concepts (alleles, genetic diversity, gene flow, genetic drift)
-    application: Recognizes when genetic considerations are relevant to management
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.6.1:foundational:I1
-      n: 1
-      text: Explains why genetic diversity matters for population viability
-      origin: database
-    - v1Key: v1:1.6.1:foundational:I2
-      n: 2
-      text: Understands concepts of inbreeding and inbreeding depression
-      origin: database
-    - v1Key: v1:1.6.1:foundational:I3
-      n: 3
-      text: Recognizes factors that reduce genetic diversity (small population size, isolation)
-      origin: database
-    - v1Key: v1:1.6.1:foundational:I4
-      n: 4
-      text: Identifies situations where genetic analysis might inform management
-      origin: database
-    - v1Key: v1:1.6.1:foundational:I5
-      n: 5
-      text: Reads and summarizes genetic study findings
-      origin: database
-    - v1Key: v1:1.6.1:foundational:I6
-      n: 6
-      text: Understands difference between genetics and genomics
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:1.6.1:intermediate
-    knowledge: Applies conservation genetics concepts; interprets genetic data and study designs
-    application: Integrates genetic information into management recommendations
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.6.1:intermediate:I1
-      n: 1
-      text: Interprets population genetic metrics (heterozygosity, FST, effective population size)
-      origin: database
-    - v1Key: v1:1.6.1:intermediate:I2
-      n: 2
-      text: Understands genetic management unit delineation
-      origin: database
-    - v1Key: v1:1.6.1:intermediate:I3
-      n: 3
-      text: Evaluates genetic study designs for management applications
-      origin: database
-    - v1Key: v1:1.6.1:intermediate:I4
-      n: 4
-      text: Applies genetic guidelines to translocation and reintroduction planning
-      origin: database
-    - v1Key: v1:1.6.1:intermediate:I5
-      n: 5
-      text: Recognizes genetic rescue as a management tool
-      origin: database
-    - v1Key: v1:1.6.1:intermediate:I6
-      n: 6
-      text: Assesses connectivity from a genetic perspective
-      origin: database
-    - v1Key: v1:1.6.1:intermediate:I7
-      n: 7
-      text: Communicates genetic findings to managers
-      origin: restored-from-source-text
-    - v1Key: v1:1.6.1:intermediate:I8
-      n: 8
-      text: Identifies when specialist genetic consultation is needed
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:1.6.1:advanced
-    knowledge: Expert in conservation genetics; understands landscape genetics and evolutionary potential
-    application: Leads integration of genetics into conservation programs
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.6.1:advanced:I1
-      n: 1
-      text: Designs genetic monitoring programs
-      origin: database
-    - v1Key: v1:1.6.1:advanced:I2
-      n: 2
-      text: Applies landscape genetics to connectivity planning
-      origin: database
-    - v1Key: v1:1.6.1:advanced:I3
-      n: 3
-      text: Evaluates adaptive genetic variation and evolutionary potential
-      origin: database
-    - v1Key: v1:1.6.1:advanced:I4
-      n: 4
-      text: Develops genetic management guidelines for species or programs
-      origin: database
-    - v1Key: v1:1.6.1:advanced:I5
-      n: 5
-      text: Integrates genetics into recovery plans and habitat conservation plans
-      origin: database
-    - v1Key: v1:1.6.1:advanced:I6
-      n: 6
-      text: Addresses genetic considerations in assisted migration decisions
-      origin: database
-    - v1Key: v1:1.6.1:advanced:I7
-      n: 7
-      text: Collaborates with geneticists on applied research
-      origin: restored-from-source-text
-    - v1Key: v1:1.6.1:advanced:I8
-      n: 8
-      text: Publishes conservation genetics applications
-      origin: restored-from-source-text
-    - v1Key: v1:1.6.1:advanced:I9
-      n: 9
-      text: Trains staff in genetic concepts
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:1.6.1:expert
-    knowledge: Shapes conservation genetics practice and policy
-    application: Provides genetics leadership nationally or internationally
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.6.1:expert:I1
-      n: 1
-      text: Develops conservation genetics guidelines or policies
-      origin: database
-    - v1Key: v1:1.6.1:expert:I2
-      n: 2
-      text: Influences how genetics is integrated into endangered species management
-      origin: database
-    - v1Key: v1:1.6.1:expert:I3
-      n: 3
-      text: Leads major conservation genetics initiatives
-      origin: database
-    - v1Key: v1:1.6.1:expert:I4
-      n: 4
-      text: Publishes influential conservation genetics research
-      origin: database
-    - v1Key: v1:1.6.1:expert:I5
-      n: 5
-      text: Advises leadership on genetic management strategies
-      origin: database
-    - v1Key: v1:1.6.1:expert:I6
-      n: 6
-      text: Advances integration of genetics into routine conservation practice
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:1.6.1:sector:public_agencies
-    text: ESA recovery planning genetics, genetic management of small populations, genetic monitoring
-  - sector: private_sector
-    v1Key: v1:1.6.1:sector:private_sector
-    text: Genetic assessment for mitigation, conservation breeding programs
-  - sector: ngos
-    v1Key: v1:1.6.1:sector:ngos
-    text: Genetic considerations in conservation prioritization, genetic rescue advocacy
-  - sector: consulting
-    v1Key: v1:1.6.1:sector:consulting
-    text: Genetic surveys and analysis, genetic management recommendations
-  - sector: academia
-    v1Key: v1:1.6.1:sector:academia
-    text: Conservation genetics research, method development
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.6'
+  label: Biotechnology & Genetics
+knowledge:
+- seed:ks-v1-1.6.1-01
+- seed:ks-v1-1.6.1-02
+- seed:ks-v1-1.6.1-03
+- seed:ks-v1-1.6.1-04
+- seed:ks-v1-1.6.1-05

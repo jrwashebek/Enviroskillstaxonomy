@@ -2,33 +2,38 @@ id: seed:v1-1.1.4
 type: Competency
 prefLabel:
   en: Disturbance ecology
+definition:
+  en: The body of knowledge on how fires, floods, storms, droughts, insects and disease affect ecosystems, on disturbance regimes and their history, and on how systems resist, recover from or reorganize after disturbance.
 statement:
-  en: Understanding how events like fires, floods, or storms affect ecosystems and how natural systems recover from these disruptions.
-competencyType: knowledge-area
+  en: Knowledge of disturbance agents and regimes (frequency, severity, extent and seasonality), their history at a site, interactions among disturbances, and the resistance, recovery and reorganization of ecosystems after disturbance, as used by fire, restoration, hazards and monitoring work.
+editorialNote:
+  en: 'Rewritten by WP-04 as a knowledge area (no craft-primary tag; ADR-0003 consequences, P-DC-12). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | knowledge-area. Rationale: Disturbance ecology is a distinct body of knowledge used by fire, restoration and hazards roles. Role verdicts considered: none recorded.'
 notation:
 - scheme: EMSTv1
   value: 1.1.4
+competencyType: knowledge-area
+levelSpan:
+  min: A
+  max: L4
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '1'
-  label: Ecological & Scientific Knowledge
-v1SkillArea:
-  code: '1.1'
-  label: Ecosystem Science
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | knowledge-area. Rationale: Disturbance ecology is a distinct body of knowledge used by fire, restoration and hazards roles. Role verdicts considered: none recorded.'
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.1.4
     v1Code: 1.1.4
@@ -39,153 +44,24 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:1.1.4
     v1Code: 1.1.4
     v1Table: source_text/competencies
     sourceTextLine: 658
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Disturbance ecology
-  v1Description: Understanding how events like fires, floods, or storms affect ecosystems and how natural systems recover from these disruptions.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:1.1.4:foundational
-    knowledge: Understands basic disturbance types and their ecological effects
-    application: Recognizes disturbance impacts in the field
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.4:foundational:I1
-      n: 1
-      text: Identifies major disturbance types (fire, flood, windthrow, insects, disease)
-      origin: database
-    - v1Key: v1:1.1.4:foundational:I2
-      n: 2
-      text: Explains how disturbances create habitat heterogeneity
-      origin: database
-    - v1Key: v1:1.1.4:foundational:I3
-      n: 3
-      text: Recognizes immediate disturbance effects on vegetation and wildlife
-      origin: database
-    - v1Key: v1:1.1.4:foundational:I4
-      n: 4
-      text: Understands natural disturbance regimes for ecosystems
-      origin: database
-    - v1Key: v1:1.1.4:foundational:I5
-      n: 5
-      text: Assists with post-disturbance assessments
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:1.1.4:intermediate
-    knowledge: Applies disturbance ecology theory; understands disturbance regimes
-    application: Assesses disturbance impacts and predicts recovery
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.4:intermediate:I1
-      n: 1
-      text: Reconstructs historical disturbance regimes
-      origin: database
-    - v1Key: v1:1.1.4:intermediate:I2
-      n: 2
-      text: Assesses severity and extent of disturbances
-      origin: database
-    - v1Key: v1:1.1.4:intermediate:I3
-      n: 3
-      text: Predicts recovery trajectories based on disturbance characteristics
-      origin: database
-    - v1Key: v1:1.1.4:intermediate:I4
-      n: 4
-      text: Evaluates how disturbance regimes have been altered by management
-      origin: database
-    - v1Key: v1:1.1.4:intermediate:I5
-      n: 5
-      text: Identifies species and ecosystems dependent on disturbance
-      origin: database
-    - v1Key: v1:1.1.4:intermediate:I6
-      n: 6
-      text: Uses disturbance ecology in habitat management planning
-      origin: database
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:1.1.4:advanced
-    knowledge: Expert in disturbance ecology; understands multiple interacting disturbances
-    application: Designs management incorporating or mimicking disturbance regimes
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.4:advanced:I1
-      n: 1
-      text: Analyzes compound disturbances and interactions
-      origin: database
-    - v1Key: v1:1.1.4:advanced:I2
-      n: 2
-      text: Models disturbance regimes and their effects on landscapes
-      origin: database
-    - v1Key: v1:1.1.4:advanced:I3
-      n: 3
-      text: Designs management that restores natural disturbance regimes
-      origin: database
-    - v1Key: v1:1.1.4:advanced:I4
-      n: 4
-      text: Predicts ecosystem responses to altered disturbance regimes under climate change
-      origin: database
-    - v1Key: v1:1.1.4:advanced:I5
-      n: 5
-      text: Identifies resilience and transformation thresholds
-      origin: database
-    - v1Key: v1:1.1.4:advanced:I6
-      n: 6
-      text: Publishes disturbance ecology research
-      origin: database
-    - v1Key: v1:1.1.4:advanced:I7
-      n: 7
-      text: Integrates disturbance ecology into landscape planning
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:1.1.4:expert
-    knowledge: Shapes understanding of disturbance ecology and application
-    application: Leads transformative research or management of disturbance-dependent systems
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.4:expert:I1
-      n: 1
-      text: Advances disturbance ecology theory
-      origin: database
-    - v1Key: v1:1.1.4:expert:I2
-      n: 2
-      text: Influences policy on managing disturbance regimes
-      origin: database
-    - v1Key: v1:1.1.4:expert:I3
-      n: 3
-      text: Leads landscape-scale disturbance management programs
-      origin: database
-    - v1Key: v1:1.1.4:expert:I4
-      n: 4
-      text: Publishes influential research on disturbance ecology
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:1.1.4:sector:public_agencies
-    text: Fire management, post-disaster recovery, disturbance-based habitat management
-  - sector: private_sector
-    v1Key: v1:1.1.4:sector:private_sector
-    text: Natural disturbance risk assessment, post-disturbance salvage planning
-  - sector: ngos
-    v1Key: v1:1.1.4:sector:ngos
-    text: Advocacy for natural disturbance regimes, fire ecology education
-  - sector: consulting
-    v1Key: v1:1.1.4:sector:consulting
-    text: Disturbance impact assessments, restoration after disturbance
-  - sector: academia
-    v1Key: v1:1.1.4:sector:academia
-    text: Disturbance ecology research, fire ecology
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.1'
+  label: Ecosystem Science
+knowledge:
+- seed:ks-v1-1.1.4-01
+- seed:ks-v1-1.1.4-02
+- seed:ks-v1-1.1.4-03
+- seed:ks-v1-1.1.4-04

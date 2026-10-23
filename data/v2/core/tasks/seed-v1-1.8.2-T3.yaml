@@ -1,22 +1,30 @@
 id: seed:v1-1.8.2-T3
 type: Task
 prefLabel:
-  en: Support soil carbon programs including carbon markets and climate-smart agriculture
+  en: Prepare the soil-carbon evidence that a carbon programme or market requires, documenting methods, uncertainty and verification steps.
 statement:
-  en: Support soil carbon programs including carbon markets and climate-smart agriculture
-textSha256: f149cb32c9813a280d1a6c6d7aca71467feb2d04d05fdcd4985edf6620952328
-supports:
-- competency: seed:v1-1.2.2
-  strength: primary
+  en: Prepare the soil-carbon evidence that a carbon programme or market requires, documenting methods, uncertainty and verification steps.
+textSha256: db77ed5cfbf5ee0aa1a00fce09dfd2bc21ed4b4b2d361a13edb6887e6fa6fa70
+editorialNote:
+  en: Supports re-pointed from v1 competency 1.8.2 to seed:v1-1.2.2 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 1.8.2:T3
+supports:
+- competency: seed:v1-1.2.2
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T3
 v1Domain:
   code: '1'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '1.8'
   label: Sustainable Agriculture Science
-editorialNote:
-  en: Supports re-pointed from v1 competency 1.8.2 to seed:v1-1.2.2 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.8.2:T3
     v1Code: 1.8.2
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

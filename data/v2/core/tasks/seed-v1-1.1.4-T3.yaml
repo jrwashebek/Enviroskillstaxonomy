@@ -1,22 +1,32 @@
 id: seed:v1-1.1.4-T3
 type: Task
 prefLabel:
-  en: Design post-disturbance recovery plans incorporating ecological thresholds
+  en: Design a post-disturbance recovery plan that sets treatment priorities from ecological thresholds and observed site conditions.
 statement:
-  en: Design post-disturbance recovery plans incorporating ecological thresholds
-textSha256: fdf12d406061f92b8a1e2534afe8c415bf8a1c60936355f3c434811a8be62abf
-supports:
-- competency: seed:v1-1.1.4
-  strength: primary
+  en: Design a post-disturbance recovery plan that sets treatment priorities from ecological thresholds and observed site conditions.
+textSha256: c2a68dbd194da11d2573d7e1df1c442cccaaabe6a413c4566ce2b1343aee6d77
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 1.1.4:T3
+supports:
+- competency: seed:v1-1.1.4
+  strength: primary
+- competency: seed:v1-4.2.1
+  strength: contributing
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T3
 v1Domain:
   code: '1'
@@ -24,15 +34,15 @@ v1Domain:
 v1SkillArea:
   code: '1.1'
   label: Ecosystem Science
-editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.1.4:T3
     v1Code: 1.1.4
@@ -42,9 +52,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

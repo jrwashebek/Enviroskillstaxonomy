@@ -2,33 +2,38 @@ id: seed:v1-1.2.3
 type: Competency
 prefLabel:
   en: Watershed hydrology
+definition:
+  en: The body of knowledge on how water moves through landscapes, from precipitation through infiltration, runoff, streamflow and groundwater, and how land cover, soils, topography and management change those pathways.
 statement:
-  en: Understanding how water moves through a landscape, from rainfall to rivers and underground systems.
-competencyType: knowledge-area
+  en: Knowledge of the water balance, precipitation, infiltration, runoff generation, streamflow, groundwater and surface-water interaction, and the effects of land cover, soils, topography, climate and management on hydrologic response, as used in water, forest, hazards and restoration work.
+editorialNote:
+  en: 'Rewritten by WP-04 as a knowledge area (no craft-primary tag; ADR-0003 consequences, P-DC-12). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | knowledge-area. Rationale: Hydrology is a knowledge base for water, forest, hazards and restoration roles. Role verdicts considered: none recorded.'
 notation:
 - scheme: EMSTv1
   value: 1.2.3
+competencyType: knowledge-area
+levelSpan:
+  min: A
+  max: L4
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '1'
-  label: Ecological & Scientific Knowledge
-v1SkillArea:
-  code: '1.2'
-  label: Soil & Water Science
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | knowledge-area. Rationale: Hydrology is a knowledge base for water, forest, hazards and restoration roles. Role verdicts considered: none recorded.'
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.2.3
     v1Code: 1.2.3
@@ -39,173 +44,24 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:1.2.3
     v1Code: 1.2.3
     v1Table: source_text/competencies
     sourceTextLine: 812
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Watershed hydrology
-  v1Description: Understanding how water moves through a landscape, from rainfall to rivers and underground systems.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:1.2.3:foundational
-    knowledge: Understands water cycle, watershed concepts, basic hydrology
-    application: Collects hydrologic data and assists with analysis
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.2.3:foundational:I1
-      n: 1
-      text: Delineates watersheds using topographic maps or GIS
-      origin: database
-    - v1Key: v1:1.2.3:foundational:I2
-      n: 2
-      text: Measures streamflow using standard methods
-      origin: database
-    - v1Key: v1:1.2.3:foundational:I3
-      n: 3
-      text: Installs and maintains precipitation gauges and stream gauges
-      origin: database
-    - v1Key: v1:1.2.3:foundational:I4
-      n: 4
-      text: Records water level observations
-      origin: database
-    - v1Key: v1:1.2.3:foundational:I5
-      n: 5
-      text: Understands surface and groundwater interactions
-      origin: database
-    - v1Key: v1:1.2.3:foundational:I6
-      n: 6
-      text: Calculates basic watershed characteristics (area, slope, stream order)
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:1.2.3:intermediate
-    knowledge: Applies hydrologic principles; understands watershed processes
-    application: Analyzes watershed hydrology and develops management recommendations
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.2.3:intermediate:I1
-      n: 1
-      text: Conducts water budget analyses
-      origin: database
-    - v1Key: v1:1.2.3:intermediate:I2
-      n: 2
-      text: Analyzes streamflow data for trends and peak flows
-      origin: database
-    - v1Key: v1:1.2.3:intermediate:I3
-      n: 3
-      text: Uses hydrologic models (HEC-HMS, SWAT, etc.)
-      origin: database
-    - v1Key: v1:1.2.3:intermediate:I4
-      n: 4
-      text: Evaluates effects of land use on watershed hydrology
-      origin: database
-    - v1Key: v1:1.2.3:intermediate:I5
-      n: 5
-      text: Designs stream gauging networks
-      origin: database
-    - v1Key: v1:1.2.3:intermediate:I6
-      n: 6
-      text: Calculates flood frequencies and recurrence intervals
-      origin: database
-    - v1Key: v1:1.2.3:intermediate:I7
-      n: 7
-      text: Assesses groundwater recharge and discharge areas
-      origin: restored-from-source-text
-    - v1Key: v1:1.2.3:intermediate:I8
-      n: 8
-      text: Integrates hydrology into watershed management planning
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:1.2.3:advanced
-    knowledge: Expert in watershed science; understands complex hydrologic systems
-    application: Leads watershed studies and management programs
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.2.3:advanced:I1
-      n: 1
-      text: Designs and implements comprehensive watershed studies
-      origin: database
-    - v1Key: v1:1.2.3:advanced:I2
-      n: 2
-      text: Models complex watersheds with multiple land uses
-      origin: database
-    - v1Key: v1:1.2.3:advanced:I3
-      n: 3
-      text: Predicts hydrologic changes under climate scenarios
-      origin: database
-    - v1Key: v1:1.2.3:advanced:I4
-      n: 4
-      text: Evaluates watershed restoration effectiveness
-      origin: database
-    - v1Key: v1:1.2.3:advanced:I5
-      n: 5
-      text: Designs low-impact development and green infrastructure
-      origin: database
-    - v1Key: v1:1.2.3:advanced:I6
-      n: 6
-      text: Integrates water quantity and quality modeling
-      origin: database
-    - v1Key: v1:1.2.3:advanced:I7
-      n: 7
-      text: Publishes watershed hydrology research
-      origin: restored-from-source-text
-    - v1Key: v1:1.2.3:advanced:I8
-      n: 8
-      text: Leads watershed planning initiatives
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:1.2.3:expert
-    knowledge: Shapes watershed science and management practice
-    application: Provides leadership on major watershed initiatives
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.2.3:expert:I1
-      n: 1
-      text: Develops innovative hydrologic modeling approaches
-      origin: database
-    - v1Key: v1:1.2.3:expert:I2
-      n: 2
-      text: Influences watershed management policy
-      origin: database
-    - v1Key: v1:1.2.3:expert:I3
-      n: 3
-      text: Leads large-scale watershed programs
-      origin: database
-    - v1Key: v1:1.2.3:expert:I4
-      n: 4
-      text: Publishes influential hydrology research
-      origin: database
-    - v1Key: v1:1.2.3:expert:I5
-      n: 5
-      text: Provides expert testimony on water resources
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:1.2.3:sector:public_agencies
-    text: Watershed management, flood risk assessment, water supply planning
-  - sector: private_sector
-    v1Key: v1:1.2.3:sector:private_sector
-    text: Water resource development, hydropower, stormwater management
-  - sector: ngos
-    v1Key: v1:1.2.3:sector:ngos
-    text: Watershed protection, river restoration
-  - sector: consulting
-    v1Key: v1:1.2.3:sector:consulting
-    text: Hydrologic studies, water resource engineering, stormwater design
-  - sector: academia
-    v1Key: v1:1.2.3:sector:academia
-    text: Hydrology research, watershed modeling
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.2'
+  label: Soil & Water Science
+knowledge:
+- seed:ks-v1-1.2.3-01
+- seed:ks-v1-1.2.3-02
+- seed:ks-v1-1.2.3-03
+- seed:ks-v1-1.2.3-04

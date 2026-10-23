@@ -1,22 +1,32 @@
 id: seed:v1-1.2.1-T2
 type: Task
 prefLabel:
-  en: Create digital soil maps using GIS and field data
+  en: Create digital soil maps from field observations and environmental covariates, reporting map accuracy against held-out field sites.
 statement:
-  en: Create digital soil maps using GIS and field data
-textSha256: cbe26ea203b9ea4d974b4c18ff1edd0e2c9ecdd748e440d23b56b2e3ebabf5f4
-supports:
-- competency: seed:v1-1.2.2
-  strength: primary
+  en: Create digital soil maps from field observations and environmental covariates, reporting map accuracy against held-out field sites.
+textSha256: 30b6abcb86935c0549cfb4a2bb6c448fdcddc7571d001b394adc65c3b546f468
+editorialNote:
+  en: 'Split from v1 1.2.1: digital soil mapping as DC tasks within the soil science knowledge area (v1_disposition 1.2.1). v1 competency 1.2.1 is split: reassign this task to one of [''seed:v1-4.1.4'', ''seed:v1-1.2.2''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
 notation:
 - scheme: EMSTv1
   value: 1.2.1:T2
+supports:
+- competency: seed:v1-1.2.2
+  strength: primary
+- competency: seed:v1-2.1.4
+  strength: contributing
+workFunction: WF-ASSESS
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T2
 v1Domain:
   code: '1'
@@ -24,15 +34,15 @@ v1Domain:
 v1SkillArea:
   code: '1.2'
   label: Soil & Water Science
-editorialNote:
-  en: 'Supports re-pointed by WP-03 (FC) from superseded v1 1.2.1 to its split successor seed:v1-1.2.2 (soil science knowledge area; digital soil mapping as DC tasks); text left to the 1.2.2 owner. v1 competency 1.2.1 is split: reassign this task to one of [''seed:v1-4.1.4'', ''seed:v1-1.2.2''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.2.1:T2
     v1Code: 1.2.1
@@ -42,9 +52,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

@@ -2,33 +2,38 @@ id: seed:v1-6.7.4
 type: Competency
 prefLabel:
   en: Toxicology and exposure pathways
+definition:
+  en: The body of knowledge on how toxic substances affect human and ecological health and the routes by which people and organisms are exposed to environmental contaminants in air, water, soil and food.
 statement:
-  en: Understanding how toxic substances affect human health and the routes by which people are exposed to environmental contaminants.
-competencyType: knowledge-area
+  en: Knowledge of toxicological principles (dose-response, thresholds, mixtures, bioaccumulation), exposure routes and pathways through air, water, soil and food, susceptible life stages and populations, and the evidence base behind toxicity values, as used by environmental health, remediation and chemicals work.
+editorialNote:
+  en: 'Rewritten by WP-04 as a knowledge area (no craft-primary tag; ADR-0003 consequences, P-DC-12). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | knowledge-area. Rationale: Toxicology and exposure pathways are a knowledge area for health, remediation and chemicals roles. Role verdicts considered: none recorded.'
 notation:
 - scheme: EMSTv1
   value: 6.7.4
+competencyType: knowledge-area
+levelSpan:
+  min: A
+  max: L4
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '6'
-  label: Policy & Regulatory Skills
-v1SkillArea:
-  code: '6.7'
-  label: Environmental Health & Justice
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | knowledge-area. Rationale: Toxicology and exposure pathways are a knowledge area for health, remediation and chemicals roles. Role verdicts considered: none recorded.'
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:6.7.4
     v1Code: 6.7.4
@@ -39,193 +44,24 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:6.7.4
     v1Code: 6.7.4
     v1Table: source_text/competencies
     sourceTextLine: 14836
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Toxicology and exposure pathways
-  v1Description: Understanding how toxic substances affect human health and the routes by which people are exposed to environmental contaminants.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:6.7.4:foundational
-    knowledge: Understands basic toxicology and exposure concepts
-    application: Supports exposure assessments
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.7.4:foundational:I1
-      n: 1
-      text: Explains dose-response relationships and toxicity concepts
-      origin: database
-    - v1Key: v1:6.7.4:foundational:I2
-      n: 2
-      text: Identifies exposure pathways (inhalation, ingestion, dermal)
-      origin: database
-    - v1Key: v1:6.7.4:foundational:I3
-      n: 3
-      text: Understands toxicity endpoints (acute, chronic, carcinogenic)
-      origin: database
-    - v1Key: v1:6.7.4:foundational:I4
-      n: 4
-      text: Recognizes vulnerable populations
-      origin: database
-    - v1Key: v1:6.7.4:foundational:I5
-      n: 5
-      text: Collects exposure data
-      origin: database
-    - v1Key: v1:6.7.4:foundational:I6
-      n: 6
-      text: Uses toxicity databases (IRIS, ATSDR)
-      origin: database
-    - v1Key: v1:6.7.4:foundational:I7
-      n: 7
-      text: Understands environmental fate and transport
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:6.7.4:intermediate
-    knowledge: Applies toxicology principles and exposure assessment methods
-    application: Conducts exposure assessments and evaluates toxicity
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.7.4:intermediate:I1
-      n: 1
-      text: Evaluates toxicity of environmental contaminants
-      origin: database
-    - v1Key: v1:6.7.4:intermediate:I2
-      n: 2
-      text: Conducts exposure pathway analyses
-      origin: database
-    - v1Key: v1:6.7.4:intermediate:I3
-      n: 3
-      text: Estimates exposure doses for different scenarios
-      origin: database
-    - v1Key: v1:6.7.4:intermediate:I4
-      n: 4
-      text: Assesses exposures for vulnerable populations
-      origin: database
-    - v1Key: v1:6.7.4:intermediate:I5
-      n: 5
-      text: Uses exposure models (CalTOX, SHEDS)
-      origin: database
-    - v1Key: v1:6.7.4:intermediate:I6
-      n: 6
-      text: Evaluates bioavailability and uptake
-      origin: database
-    - v1Key: v1:6.7.4:intermediate:I7
-      n: 7
-      text: Addresses uncertainty in exposure estimates
-      origin: restored-from-source-text
-    - v1Key: v1:6.7.4:intermediate:I8
-      n: 8
-      text: Integrates toxicity and exposure for risk assessment
-      origin: restored-from-source-text
-    - v1Key: v1:6.7.4:intermediate:I9
-      n: 9
-      text: Communicates exposure findings to communities
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:6.7.4:advanced
-    knowledge: Expert in toxicology and exposure science
-    application: Leads complex toxicological and exposure assessments
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.7.4:advanced:I1
-      n: 1
-      text: Evaluates complex mixtures and cumulative exposures
-      origin: database
-    - v1Key: v1:6.7.4:advanced:I2
-      n: 2
-      text: Assesses emerging contaminants and novel exposures
-      origin: database
-    - v1Key: v1:6.7.4:advanced:I3
-      n: 3
-      text: Conducts biomonitoring studies
-      origin: database
-    - v1Key: v1:6.7.4:advanced:I4
-      n: 4
-      text: Develops exposure models for specific scenarios
-      origin: database
-    - v1Key: v1:6.7.4:advanced:I5
-      n: 5
-      text: Evaluates toxicity of understudied chemicals
-      origin: database
-    - v1Key: v1:6.7.4:advanced:I6
-      n: 6
-      text: Provides expert consultation on exposures and health effects
-      origin: database
-    - v1Key: v1:6.7.4:advanced:I7
-      n: 7
-      text: Publishes toxicology or exposure research
-      origin: restored-from-source-text
-    - v1Key: v1:6.7.4:advanced:I8
-      n: 8
-      text: Trains practitioners in exposure assessment
-      origin: restored-from-source-text
-    - v1Key: v1:6.7.4:advanced:I9
-      n: 9
-      text: Influences exposure assessment guidance
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:6.7.4:expert
-    knowledge: Shapes toxicology and exposure science
-    application: Influences exposure science at systemic level
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.7.4:expert:I1
-      n: 1
-      text: Develops innovative exposure assessment approaches
-      origin: database
-    - v1Key: v1:6.7.4:expert:I2
-      n: 2
-      text: Influences toxicology and exposure guidance
-      origin: database
-    - v1Key: v1:6.7.4:expert:I3
-      n: 3
-      text: Publishes influential toxicology research
-      origin: database
-    - v1Key: v1:6.7.4:expert:I4
-      n: 4
-      text: Recognized authority in environmental toxicology
-      origin: database
-    - v1Key: v1:6.7.4:expert:I5
-      n: 5
-      text: Provides expert testimony on toxic exposures
-      origin: database
-    - v1Key: v1:6.7.4:expert:I6
-      n: 6
-      text: Advances exposure science methodology
-      origin: database
-    - v1Key: v1:6.7.4:expert:I7
-      n: 7
-      text: Influences environmental health policy
-      origin: restored-from-source-text
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:6.7.4:sector:public_agencies
-    text: Toxicity assessment, exposure evaluation, standard-setting
-  - sector: private_sector
-    v1Key: v1:6.7.4:sector:private_sector
-    text: Product safety assessment, occupational exposure, liability
-  - sector: ngos
-    v1Key: v1:6.7.4:sector:ngos
-    text: Community exposure studies, health advocacy
-  - sector: consulting
-    v1Key: v1:6.7.4:sector:consulting
-    text: Exposure assessment, toxicology services, expert testimony
-  - sector: academia
-    v1Key: v1:6.7.4:sector:academia
-    text: Toxicology research, exposure science, environmental health
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.7'
+  label: Environmental Health & Justice
+knowledge:
+- seed:ks-v1-6.7.4-01
+- seed:ks-v1-6.7.4-02
+- seed:ks-v1-6.7.4-03
+- seed:ks-v1-6.7.4-04

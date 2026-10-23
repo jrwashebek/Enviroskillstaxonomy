@@ -1,34 +1,39 @@
 id: seed:v1-1.2.2
 type: Competency
 prefLabel:
-  en: Soil chemistry and biology
+  en: 'Soil science: physics, chemistry, biology and classification'
+definition:
+  en: The body of knowledge on soil physical, chemical and biological properties, soil classification and mapping, and soil carbon dynamics, as used to interpret soil condition, plan land use and conservation, and estimate carbon stocks and change.
 statement:
-  en: Understanding the chemical composition of soils and the living organisms within them that contribute to soil health.
-competencyType: knowledge-area
+  en: Knowledge of soil physical, chemical and biological properties, soil formation, classification and mapping, nutrient and carbon dynamics, and contamination, as used to interpret soil condition, guide land use and conservation practice, and estimate soil carbon stocks and their change under management.
+editorialNote:
+  en: 'Rewritten by WP-04 as a knowledge area (no craft-primary tag; ADR-0003 consequences, P-DC-12). Broadened per v1_disposition 1.2.2; absorbs v1 1.2.1 (classification; split with v1 4.1.4) and v1 1.8.2 (soil carbon). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | knowledge-area (Soil science: physics, chemistry, biology, classification). Rationale: Broadened to a soil science knowledge area; absorbs 1.2.1 classification and 1.8.2 soil carbon dynamics. Role verdicts considered: none recorded.'
 notation:
 - scheme: EMSTv1
   value: 1.2.2
+competencyType: knowledge-area
+levelSpan:
+  min: A
+  max: L4
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '1'
-  label: Ecological & Scientific Knowledge
-v1SkillArea:
-  code: '1.2'
-  label: Soil & Water Science
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | knowledge-area (Soil science: physics, chemistry, biology, classification). Rationale: Broadened to a soil science knowledge area; absorbs 1.2.1 classification and 1.8.2 soil carbon dynamics. Role verdicts considered: none recorded.'
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.2.2
     v1Code: 1.2.2
@@ -39,12 +44,12 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:1.2.2
     v1Code: 1.2.2
     v1Table: source_text/competencies
     sourceTextLine: 773
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   - v1Key: v1:1.2.1
     v1Code: 1.2.1
@@ -54,154 +59,17 @@ provenance:
     v1Code: 1.8.2
     relation: merged-from
     note: v1 1.8.2 (merge) → seed:v1-1.2.2 per v1_disposition.csv
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Soil chemistry and biology
-  v1Description: Understanding the chemical composition of soils and the living organisms within them that contribute to soil health.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:1.2.2:foundational
-    knowledge: Understands basic soil chemistry (pH, nutrients, CEC) and soil organisms
-    application: Collects soil samples and interprets basic tests
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.2.2:foundational:I1
-      n: 1
-      text: Collects representative soil samples following protocols
-      origin: database
-    - v1Key: v1:1.2.2:foundational:I2
-      n: 2
-      text: Interprets soil test results for pH, N-P-K, organic matter
-      origin: database
-    - v1Key: v1:1.2.2:foundational:I3
-      n: 3
-      text: Understands role of soil organisms in nutrient cycling
-      origin: database
-    - v1Key: v1:1.2.2:foundational:I4
-      n: 4
-      text: Recognizes symptoms of nutrient deficiency or toxicity
-      origin: database
-    - v1Key: v1:1.2.2:foundational:I5
-      n: 5
-      text: Follows laboratory safety protocols
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:1.2.2:intermediate
-    knowledge: Applies soil chemistry and microbiology principles; understands biogeochemical cycles
-    application: Diagnoses soil problems and recommends management
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.2.2:intermediate:I1
-      n: 1
-      text: Conducts comprehensive soil chemical analyses
-      origin: database
-    - v1Key: v1:1.2.2:intermediate:I2
-      n: 2
-      text: Interprets complex soil test results (micronutrients, contaminants)
-      origin: database
-    - v1Key: v1:1.2.2:intermediate:I3
-      n: 3
-      text: Assesses soil biological activity (respiration, enzyme assays)
-      origin: database
-    - v1Key: v1:1.2.2:intermediate:I4
-      n: 4
-      text: Recommends appropriate amendments for soil improvement
-      origin: database
-    - v1Key: v1:1.2.2:intermediate:I5
-      n: 5
-      text: Understands soil-plant nutrient relationships
-      origin: database
-    - v1Key: v1:1.2.2:intermediate:I6
-      n: 6
-      text: Evaluates contamination risks and remediation needs
-      origin: database
-    - v1Key: v1:1.2.2:intermediate:I7
-      n: 7
-      text: Uses soil health assessment frameworks
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:1.2.2:advanced
-    knowledge: Expert in soil chemistry and biology; understands soil food webs and biogeochemistry
-    application: Solves complex soil problems; leads soil health initiatives
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.2.2:advanced:I1
-      n: 1
-      text: Diagnoses complex soil chemistry problems (salinity, sodicity, contamination)
-      origin: database
-    - v1Key: v1:1.2.2:advanced:I2
-      n: 2
-      text: Designs soil health improvement programs
-      origin: database
-    - v1Key: v1:1.2.2:advanced:I3
-      n: 3
-      text: Models soil carbon dynamics and nutrient cycling
-      origin: database
-    - v1Key: v1:1.2.2:advanced:I4
-      n: 4
-      text: Evaluates emerging contaminants (PFAS, microplastics) in soils
-      origin: database
-    - v1Key: v1:1.2.2:advanced:I5
-      n: 5
-      text: Applies advanced soil biological assessments (DNA sequencing, metabolomics)
-      origin: database
-    - v1Key: v1:1.2.2:advanced:I6
-      n: 6
-      text: Publishes soil chemistry/biology research
-      origin: database
-    - v1Key: v1:1.2.2:advanced:I7
-      n: 7
-      text: Trains practitioners in soil health assessment
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:1.2.2:expert
-    knowledge: Shapes soil chemistry and biology science and practice
-    application: Leads transformative soil health initiatives
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.2.2:expert:I1
-      n: 1
-      text: Develops innovative soil health assessment methods
-      origin: database
-    - v1Key: v1:1.2.2:expert:I2
-      n: 2
-      text: Influences soil health policy and programs
-      origin: database
-    - v1Key: v1:1.2.2:expert:I3
-      n: 3
-      text: Leads major research programs on soil biogeochemistry
-      origin: database
-    - v1Key: v1:1.2.2:expert:I4
-      n: 4
-      text: Publishes influential soil science research
-      origin: database
-    - v1Key: v1:1.2.2:expert:I5
-      n: 5
-      text: Recognized authority in soil chemistry or soil biology
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:1.2.2:sector:public_agencies
-    text: Soil health programs, contaminated site assessment
-  - sector: private_sector
-    v1Key: v1:1.2.2:sector:private_sector
-    text: Agricultural soil management, soil carbon programs, brownfield remediation
-  - sector: ngos
-    v1Key: v1:1.2.2:sector:ngos
-    text: Soil health advocacy, regenerative agriculture promotion
-  - sector: consulting
-    v1Key: v1:1.2.2:sector:consulting
-    text: Contaminated site assessment, agricultural consulting
-  - sector: academia
-    v1Key: v1:1.2.2:sector:academia
-    text: Soil chemistry/biology research, biogeochemistry
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.2'
+  label: Soil & Water Science
+knowledge:
+- seed:ks-v1-1.2.2-01
+- seed:ks-v1-1.2.2-02
+- seed:ks-v1-1.2.2-03
+- seed:ks-v1-1.2.2-04
