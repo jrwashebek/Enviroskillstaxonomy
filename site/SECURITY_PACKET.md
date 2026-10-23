@@ -1,6 +1,7 @@
 # EMST Explorer: security packet (Tier 1)
 
 - **Prepared by:** CP (Security, Privacy & Government Compliance Lead), WP-12. Phase 4 draft, 2026-10-23.
+- **Authorship:** prepared by an AI agent (Anthropic's Claude) in the role "CP", working to a charter set by the EMST project lead. No independent human accessibility or security reviewer has checked this document yet.
 - **Release covered:** whatever release the explorer was built from. The current build uses `2.0.0-dev` with the internal preview profile. The release ID is stamped on every page.
 - **Status:** draft for the security reviews of pilot states and federal units. CP signs during Phase 4; the Steward signs thereafter (ADR-0027 §4).
 - **Evidence labels:** [E] means a source I read, with IDs from `docs/research/compliance-product/sources.csv`. [J] means my judgment. [S] means speculation.

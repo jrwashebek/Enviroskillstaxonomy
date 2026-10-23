@@ -4,6 +4,7 @@
 - **Version evaluated:** explorer 0.1.0, built from EMST release `2.0.0-dev`, preview profile. The release ID is stamped on every page.
 - **Date:** 2026-10-23
 - **Prepared by:** CP (Security, Privacy & Compliance Lead and Product & UX Lead), WP-12. ADR-0027 §4 assigns ACR sign-off to CP in Phase 4 and to the Steward thereafter.
+- **Authorship:** prepared by an AI agent (Anthropic's Claude) in the role "CP", working to a charter set by the EMST project lead. No independent human accessibility or security reviewer has checked this document yet.
 - **Standard:** WCAG 2.2, Levels A and AA (W3C Recommendation; ISO/IEC 40500:2025). WCAG 2.2 AA is a superset of WCAG 2.0 AA, which Section 508 incorporates, and of WCAG 2.1 AA, which the ADA Title II rule requires. The Title II compliance dates are now 26 April 2027 and 26 April 2028. [E: CP-025, CP-012, CP-013]
 - **Format:** the layout follows the ITI VPAT 2.5 WCAG table. Terms used: *Supports*, *Partially supports*, *Does not support*, *Not applicable*.
 
