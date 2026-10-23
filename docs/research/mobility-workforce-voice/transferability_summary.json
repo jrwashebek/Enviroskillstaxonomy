@@ -1,0 +1,667 @@
+{
+  "source": "legacy/v1/data/20260223_SkillsTaxonomy_Core_V3_reconciled__copyB_aaf34c8c.xlsx",
+  "n_competencies": 222,
+  "n_families": 15,
+  "competencies_untagged_any_family": 0,
+  "competencies_single_family": 10,
+  "median_families_per_competency": 4.0,
+  "mean_pairwise_wjaccard": 0.17,
+  "range_pairwise_wjaccard": [
+    0.0,
+    0.618
+  ],
+  "pairs_above_null_z2": 33,
+  "pairs_below_null_zminus2": 28,
+  "spearman_primary_vs": {
+    "cosine": 0.984,
+    "specificity_weighted": 0.96,
+    "sup0.25": 0.99,
+    "sup0.75": 0.997,
+    "core_only": 0.511
+  },
+  "communities_louvain": [
+    [
+      "F1 Forestry",
+      "F2 Wildlife & Fisheries",
+      "F3 Ecological Restoration",
+      "F4 Water Resources",
+      "F5 Conservation Science",
+      "F6 Climate Science",
+      "F7 Environmental Data Science",
+      "F10 Sustainable Agriculture",
+      "F12 Fire Management"
+    ],
+    [
+      "F8 Environmental Policy",
+      "F9 Land Use Planning",
+      "F11 Environmental Education",
+      "F13 Environmental Health & Justice",
+      "F14 Corporate Sustainability",
+      "F15 Conservation Finance"
+    ]
+  ],
+  "modularity": 0.159,
+  "hierarchical_labels_same_k": {
+    "F1": 1,
+    "F2": 1,
+    "F3": 1,
+    "F4": 1,
+    "F5": 1,
+    "F6": 1,
+    "F7": 1,
+    "F8": 1,
+    "F9": 1,
+    "F10": 1,
+    "F11": 1,
+    "F12": 1,
+    "F13": 1,
+    "F14": 1,
+    "F15": 2
+  },
+  "top_pairs_wjaccard": [
+    [
+      "F1",
+      "F3",
+      0.618,
+      14.12
+    ],
+    [
+      "F3",
+      "F4",
+      0.529,
+      11.03
+    ],
+    [
+      "F2",
+      "F4",
+      0.525,
+      11.3
+    ],
+    [
+      "F1",
+      "F2",
+      0.484,
+      10.25
+    ],
+    [
+      "F1",
+      "F4",
+      0.477,
+      9.81
+    ],
+    [
+      "F2",
+      "F3",
+      0.471,
+      9.32
+    ],
+    [
+      "F8",
+      "F9",
+      0.466,
+      11.07
+    ],
+    [
+      "F1",
+      "F12",
+      0.453,
+      12.42
+    ]
+  ],
+  "bottom_pairs_wjaccard": [
+    [
+      "F2",
+      "F15",
+      0.0,
+      -3.8
+    ],
+    [
+      "F4",
+      "F15",
+      0.0,
+      -3.9
+    ],
+    [
+      "F12",
+      "F15",
+      0.0,
+      -2.56
+    ],
+    [
+      "F7",
+      "F15",
+      0.008,
+      -2.3
+    ],
+    [
+      "F1",
+      "F15",
+      0.014,
+      -3.46
+    ],
+    [
+      "F10",
+      "F15",
+      0.02,
+      -1.84
+    ],
+    [
+      "F13",
+      "F15",
+      0.031,
+      -1.32
+    ],
+    [
+      "F1",
+      "F11",
+      0.035,
+      -3.32
+    ]
+  ],
+  "top_pairs_beyond_chance": [
+    [
+      "F1",
+      "F3",
+      0.618,
+      14.12
+    ],
+    [
+      "F1",
+      "F12",
+      0.453,
+      12.42
+    ],
+    [
+      "F2",
+      "F4",
+      0.525,
+      11.3
+    ],
+    [
+      "F8",
+      "F9",
+      0.466,
+      11.07
+    ],
+    [
+      "F3",
+      "F4",
+      0.529,
+      11.03
+    ],
+    [
+      "F1",
+      "F2",
+      0.484,
+      10.25
+    ],
+    [
+      "F1",
+      "F4",
+      0.477,
+      9.81
+    ],
+    [
+      "F2",
+      "F3",
+      0.471,
+      9.32
+    ]
+  ],
+  "most_asymmetric_ordered_pairs": [
+    [
+      "F1",
+      "F6",
+      0.364,
+      0.0,
+      0.364
+    ],
+    [
+      "F2",
+      "F6",
+      0.364,
+      0.045,
+      0.318
+    ],
+    [
+      "F5",
+      "F13",
+      0.5,
+      0.183,
+      0.317
+    ],
+    [
+      "F5",
+      "F6",
+      0.682,
+      0.367,
+      0.315
+    ],
+    [
+      "F4",
+      "F7",
+      0.3,
+      0.0,
+      0.3
+    ],
+    [
+      "F5",
+      "F7",
+      0.462,
+      0.183,
+      0.279
+    ],
+    [
+      "F5",
+      "F15",
+      0.281,
+      0.033,
+      0.248
+    ],
+    [
+      "F1",
+      "F8",
+      0.233,
+      0.0,
+      0.233
+    ]
+  ],
+  "bridge_type_counts": {
+    "within-community": 119,
+    "cross-community supporting link": 76,
+    "cross-community core bridge": 13,
+    "single-family specialist": 10,
+    "broad foundation (mostly Supporting)": 4
+  },
+  "backbone_z_gt_2": {
+    "edges": [
+      [
+        "F1",
+        "F3",
+        0.618
+      ],
+      [
+        "F3",
+        "F4",
+        0.529
+      ],
+      [
+        "F2",
+        "F4",
+        0.525
+      ],
+      [
+        "F1",
+        "F2",
+        0.484
+      ],
+      [
+        "F1",
+        "F4",
+        0.477
+      ],
+      [
+        "F2",
+        "F3",
+        0.471
+      ],
+      [
+        "F8",
+        "F9",
+        0.466
+      ],
+      [
+        "F1",
+        "F12",
+        0.453
+      ],
+      [
+        "F2",
+        "F5",
+        0.379
+      ],
+      [
+        "F3",
+        "F5",
+        0.359
+      ],
+      [
+        "F3",
+        "F12",
+        0.349
+      ],
+      [
+        "F5",
+        "F6",
+        0.343
+      ],
+      [
+        "F4",
+        "F5",
+        0.339
+      ],
+      [
+        "F8",
+        "F14",
+        0.329
+      ],
+      [
+        "F8",
+        "F13",
+        0.315
+      ],
+      [
+        "F4",
+        "F10",
+        0.308
+      ],
+      [
+        "F3",
+        "F10",
+        0.301
+      ],
+      [
+        "F11",
+        "F13",
+        0.3
+      ],
+      [
+        "F2",
+        "F12",
+        0.295
+      ],
+      [
+        "F4",
+        "F12",
+        0.282
+      ],
+      [
+        "F1",
+        "F10",
+        0.266
+      ],
+      [
+        "F10",
+        "F12",
+        0.25
+      ],
+      [
+        "F2",
+        "F6",
+        0.248
+      ],
+      [
+        "F4",
+        "F6",
+        0.248
+      ],
+      [
+        "F9",
+        "F13",
+        0.243
+      ],
+      [
+        "F1",
+        "F6",
+        0.241
+      ],
+      [
+        "F13",
+        "F14",
+        0.226
+      ],
+      [
+        "F9",
+        "F14",
+        0.225
+      ],
+      [
+        "F9",
+        "F11",
+        0.211
+      ],
+      [
+        "F5",
+        "F7",
+        0.203
+      ],
+      [
+        "F14",
+        "F15",
+        0.202
+      ],
+      [
+        "F2",
+        "F10",
+        0.194
+      ],
+      [
+        "F4",
+        "F7",
+        0.169
+      ]
+    ],
+    "components": [
+      [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F10",
+        "F12"
+      ],
+      [
+        "F8",
+        "F9",
+        "F11",
+        "F13",
+        "F14",
+        "F15"
+      ]
+    ],
+    "betweenness": {
+      "F4": 0.066,
+      "F14": 0.044,
+      "F3": 0.033,
+      "F1": 0.022,
+      "F13": 0.022,
+      "F5": 0.011,
+      "F9": 0.011,
+      "F2": 0.0,
+      "F6": 0.0,
+      "F7": 0.0,
+      "F8": 0.0,
+      "F10": 0.0,
+      "F11": 0.0,
+      "F12": 0.0,
+      "F15": 0.0
+    },
+    "cross_cluster_paths": {
+      "F12->F8": "no path above chance",
+      "F7->F8": "no path above chance",
+      "F11->F1": "no path above chance",
+      "F15->F2": "no path above chance",
+      "F5->F8": "no path above chance"
+    },
+    "degree": {
+      "F1": 6,
+      "F2": 7,
+      "F3": 6,
+      "F4": 8,
+      "F5": 5,
+      "F6": 4,
+      "F7": 2,
+      "F8": 3,
+      "F9": 4,
+      "F10": 5,
+      "F11": 2,
+      "F12": 5,
+      "F13": 4,
+      "F14": 4,
+      "F15": 1
+    }
+  },
+  "partition_stability": {
+    "min_within_community_coassignment": 0.67,
+    "max_between_community_coassignment": 0.0,
+    "finer_partition_res1.3": [
+      [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F10",
+        "F12"
+      ],
+      [
+        "F5",
+        "F6",
+        "F7"
+      ],
+      [
+        "F8",
+        "F9",
+        "F11",
+        "F13",
+        "F14",
+        "F15"
+      ]
+    ]
+  },
+  "cluster_directional_coverage": {
+    "community0->community0": 0.275,
+    "community0->community1": 0.143,
+    "community1->community0": 0.061,
+    "community1->community1": 0.237
+  },
+  "fc_dominant_families_core_FC_ge_0.6": [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F10",
+    "F12"
+  ],
+  "mean_coverage_into_fc_dominant_from_others": 0.076,
+  "mean_coverage_out_of_fc_dominant_to_others": 0.159,
+  "top_bridges": [
+    [
+      "7.1.3",
+      "Regulatory professional integrity",
+      "cross-community core bridge",
+      0.4722
+    ],
+    [
+      "7.1.4",
+      "AI governance in environmental decision-support",
+      "cross-community core bridge",
+      0.4444
+    ],
+    [
+      "7.2.2",
+      "Designing workflows for tacit knowledge formation in AI-augmented practice",
+      "cross-community core bridge",
+      0.4444
+    ],
+    [
+      "7.1.1",
+      "Indigenous data sovereignty and governance",
+      "cross-community core bridge",
+      0.3889
+    ],
+    [
+      "7.2.3",
+      "Calibrating professional judgment in human-AI collaboration",
+      "cross-community core bridge",
+      0.3704
+    ],
+    [
+      "7.1.2",
+      "Intervention authorization and ecological precaution",
+      "cross-community core bridge",
+      0.2685
+    ],
+    [
+      "7.2.1",
+      "Validating AI outputs against ecological and regulatory ground truth",
+      "cross-community core bridge",
+      0.2685
+    ],
+    [
+      "3.1.1",
+      "Project planning and scheduling Breaking down complex conservation work into manageable tasks, creating timelines, and determining the resources needed.",
+      "broad foundation (mostly Supporting)",
+      0.1944
+    ],
+    [
+      "3.1.2",
+      "Budget development and management",
+      "broad foundation (mostly Supporting)",
+      0.1944
+    ],
+    [
+      "3.1.3",
+      "Risk assessment and mitigation",
+      "broad foundation (mostly Supporting)",
+      0.1944
+    ],
+    [
+      "3.2.3",
+      "Goal setting and objective definition Establishing specific, measurable targets that will guide land management activities over time.",
+      "cross-community supporting link",
+      0.1667
+    ],
+    [
+      "5.3.2",
+      "Indigenous knowledge integration",
+      "cross-community core bridge",
+      0.1481
+    ]
+  ],
+  "craft_blend_similarity_check": {
+    "pairwise_cosine_min_median_max": [
+      0.449,
+      0.796,
+      1.0
+    ],
+    "share_of_pairs_cosine_ge_0.95": 0.314,
+    "spearman_vs_wjaccard": 0.739,
+    "note": "high cosine for most pairs = blends alone cannot separate destinations; use task overlap for similarity"
+  },
+  "cld_share_overall": 0.279,
+  "cld_share_top25_bridges": 0.36,
+  "cld_share_by_bridge_type": {
+    "broad foundation (mostly Supporting)": 0.5,
+    "cross-community core bridge": 0.154,
+    "cross-community supporting link": 0.303,
+    "single-family specialist": 0.5,
+    "within-community": 0.252
+  },
+  "cld_share_by_craft_primary": {
+    "DC": 0.215,
+    "FC": 0.204,
+    "SC": 0.372
+  },
+  "baseline_crosscheck": {
+    "assignments_xlsx": 1002,
+    "assignments_baseline": 1002,
+    "matched": 1002,
+    "value_mismatches": 0,
+    "only_in_one_source": 0
+  },
+  "domain7_share_of_core_bridges": 0.538,
+  "taxonomy_craft_baseline": {
+    "FC": 0.221,
+    "DC": 0.356,
+    "SC": 0.423
+  },
+  "cld_flag_value_vocab_seen": [
+    "False",
+    "No",
+    "True",
+    "Yes"
+  ]
+}
