@@ -46,12 +46,17 @@ def test_synthetic_case(case):
         assert case["reason"] in res["reasons"], res
 
 
-def test_reason_codes_are_declared_or_documented():
+def test_every_reason_code_the_port_can_emit_is_in_the_rule_file():
+    """ADR-0030 §1.2 (CR-DE-004): the rule file lists every reason code, including ER-0-NOT-ACTIVE and
+    ER-0-ORGANIZATION-TARGET."""
+    import re
     rule = L.load_yaml(ROOT / "vocab" / "rules" / "change-indicator@1.0.0.yaml")
-    declared = set(rule["reason_codes"]) | {"ER-0-NOT-ACTIVE", "ER-0-ORGANIZATION-TARGET"}   # DE additions, CR-DE-004
+    src = (ROOT / "scripts" / "rules" / "change_indicator.py").read_text(encoding="utf-8")
+    emitted = set(re.findall(r'"(ER-\d-[A-Z0-9-]+)"', src))
+    assert emitted and emitted <= set(rule["reason_codes"]), sorted(emitted - set(rule["reason_codes"]))
     for case in _doc()["cases"]:
         if case.get("reason"):
-            assert case["reason"] in declared, case["id"]
+            assert case["reason"] in rule["reason_codes"], case["id"]
 
 
 def _seeded():

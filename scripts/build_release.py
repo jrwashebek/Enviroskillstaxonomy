@@ -309,8 +309,9 @@ class Builder:
                     continue
                 inds = [i for i in lv.get("indicators") or [] if i in released]
                 levels_of.setdefault(rid, {})[lv["level"]] = inds
-                nodes.append({"id": f"{rid}/levels/{lv['level']}", "type": "CompetencyLevelOutcome", "competency": rid,
-                              "level": lv["level"], "indicators": inds})
+                cid = f"{rid}/levels/{lv['level']}"
+                nodes.append({"id": cid, "type": "CompetencyLevelOutcome", "competency": rid, "level": lv["level"],
+                              "indicators": inds, "caseUuid": case_uuid(cid)})        # SPEC §12.3 derived UUIDv5
         for rid, e in released.items():
             if e.get("type") != "Enactment" or not e.get("indicatorVariants"):
                 continue
@@ -320,8 +321,9 @@ class Builder:
                 vids = sorted(v["id"] for v in variants if v.get("level") == lv)
                 if not vids:
                     continue
-                nodes.append({"id": f"{rid}/levels/{lv}", "type": "CompetencyLevelOutcome", "competency": e.get("competency"),
-                              "enactment": rid, "level": lv, "indicators": generic.get(lv, []) + vids})
+                cid = f"{rid}/levels/{lv}"
+                nodes.append({"id": cid, "type": "CompetencyLevelOutcome", "competency": e.get("competency"),
+                              "enactment": rid, "level": lv, "indicators": generic.get(lv, []) + vids, "caseUuid": case_uuid(cid)})
         return sorted(nodes, key=lambda n: n["id"])
 
     # ---------------------------------------------------------------- CSV + datapackage

@@ -253,7 +253,7 @@ Schema `2.0.0-draft.2` is generated from the amended `vocab/`. Most S0 records s
 | 1 | **Competencies never list enactments; tasks never list tools.** `Competency.enactments[]` and `Task.tools[]` are computed inverses (`vocab/rules/inverse-links@1.1.0.yaml`): the build derives them from `Enactment.competency` and `Tool.servesTasks` and puts them in bundles and `views/inverse_links.json`. | **Adapt:** delete `enactments:` from competency files (drafts: `W-COMPUTED-FIELD-DEPRECATED`, ignored by the build; candidates: `E-COMPUTED-FIELD` and `E-SCHEMA`). `Task.tools` is `E-COMPUTED-FIELD` at once. Keep the link on the Enactment (`competency`) and the Tool (`servesTasks`). |
 | 2 | **Quote `'yes'` and `'no'`** (and `on`/`off`) wherever they are values. The repository loader reads YAML 1.2, but other tools read YAML 1.1 and turn bare `yes` into `true`. | Write `answer: 'yes'`, not `answer: yes`. |
 | 3 | **Renamed status fields (ratified):** `ChangeSignal.signalStatus` (watch \| active \| retired), `SeriesRecord.seriesStatus`, `Source.sourceStatus`; titles in `prefLabel`. `status` is always the editorial status. | Nothing if you already followed section 4. |
-| 4 | **Seed-v1 records cannot become candidates.** `validationStatus: seed-v1` with `status` candidate, published or deprecated (or a minted ID that is superseded or withdrawn) is `E-SEED-CANDIDATE`; `mint_id.py promote` refuses it. | Rewrite the seed to v2 rules and set `validationStatus: draft` before asking for promotion. Seed-keyed superseded/withdrawn v1 stubs written by the migration are unaffected (CR-DE-004). |
+| 4 | **Seed-v1 records cannot become candidates.** `validationStatus: seed-v1` with `status` candidate, published or deprecated (or a minted ID that is superseded or withdrawn) is `E-SEED-CANDIDATE`; `mint_id.py promote` refuses it. | Rewrite the seed to v2 rules and set `validationStatus: draft` before asking for promotion. Seed-keyed superseded/withdrawn v1 stubs written by the migration are unaffected (ADR-0030 §1.1). |
 | 5 | **Code lists moved into `vocab/`.** `toolType`, `instrumentType` (adds `agency-order`), `eventType` (adds `submitted-for-review`), DriverEvent `direction`, **`statusAfter` (now an enum of 13 instrument statuses, incl. `under-review`)**, `credentialType`, `closureType`, `pathwayType`, `resourceType`, FrictionRecord `direction`/`severity`/`basis`, `signalStatus`, Indicator `useClass` and RelevanceRating `objectScheme` are generated from vocab; `seriesStatus`/`sourceStatus` patterns too; `StateClassRecord.appointmentRoute` is an array of the listed routes. | Use the vocab notation exactly. A `submitted-for-review` event sets `statusAfter: under-review`, never an in-force status (`E-REVIEW-EVENT-STATUS`). |
 | 6 | **New ID prefixes:** WatchItem `WCH`, SeriesRecord `SER`, StateClassRecord `SCR`. | Nothing; keep `seed:` keys until integration mints them. |
 | 7 | **ChangeSignal typed fields** replace the interim `EMST-*` notation schemes: `signalFamily` (vocab `change_types.yaml#signal_families`), `independenceKey` (pattern `^[a-z0-9][a-z0-9-]{1,60}$`; active signals must use a key listed in `#independence_keys`), `registeredDeployment` (only with family `deployment`), `impact` (1–3), `scenarioSignposts` (`vocab:scenarios#SP-01` … `SP-12`), `pointsToward` (`SC1`… or `AX-n:<pole>`), `measure.baseline {value, ci95, n, note}` and `measure.sensitivity {weighting, value, baselineValue}`. `signalStatus: active` requires `signalFamily` and `independenceKey`. | **Adapt:** move each `notation: [{scheme: EMST-signalFamily …}]` value into its typed field and drop the notation (`W-NOTATION-INTERIM` on drafts, `E-NOTATION-INTERIM` at candidate). An unlisted key is `W-INDEPENDENCE-KEY-UNLISTED` on watch signals and `E-…` on active ones: ask LM/CA to list it. |
@@ -267,4 +267,51 @@ Schema `2.0.0-draft.2` is generated from the amended `vocab/`. Most S0 records s
 | 15 | **Role keys:** see section 3 (`W-ROLE-KEY`). | Key new RoleProfile/RoleVariant drafts that way. |
 | 16 | **SSSOM:** `semapv:LLMBasedMatching` (SSSOM 1.1-only) is accepted as a declared extension and counted per set (`I-SSSOM-1_1-EXTENSION`). A reviewed agent-drafted row becomes `semapv:MappingReview` with `reviewer_id` and keeps `original_justification=semapv:LLMBasedMatching` in `other` (`W-SSSOM-REVIEW-PROVENANCE`). A row marked for selection use (`use=selection` in `other`) may never carry `LLMBasedMatching` (`E-SSSOM-SELECTION-1_1`). The build also writes a generated `sssom/strict-1.0/` rendering. | |
 | 17 | **Computed views** are stamped from `vocab/rules/<ruleId>@<version>.yaml` (active version): counts, inverse links, effective use tier (caps: lifecycle, evidence, level rule, indicator lint, pathway), assessment staleness (task and competency hashes), change indicators, display gate (via IO's `decide()`), agreement results. | Never type their outputs into records. |
+
+## 13. Changes in S2 (ADR-0030, CA rulings batch 2; SPEC 2.0.0-draft.3)
+
+**S1 builder freeze (ADR-0030 §5).** The S1 builders (FC, DC, SC, DB, LC) are finished. In S2, records change only under a work order in `docs/decisions/integration/s2_work_orders.csv`. DE makes the mechanical changes (merges, task moves, link conversion) and nothing else.
+
+**Typed instrument links.** `Enactment.characteristicInstruments[]` and `RoleVariant.instruments[]` are lists of `{instrument, role, note?}`, one item per instrument (`E-INSTRUMENT-LINK-DUPLICATE`). The role comes from `vocab/driver_mechanisms.yaml#instrument_link_roles`. It is never defaulted: a link without a role is `W-INSTRUMENT-ROLE-MISSING` on drafts and an error from `candidate` on, and it decides nothing. All string links were converted on 2026-10-23 with no role (`python scripts/convert_instrument_links.py --check` must report 0). One example per role:
+
+```yaml
+characteristicInstruments:
+  - {instrument: 'seed:ins/cwa-402-npdes', role: requires}            # while in force, the work is required
+  - {instrument: 'seed:ins/stewardship-contracting', role: enables}    # authorizes or funds it, does not require it
+  - {instrument: 'seed:ins/esa-section-7-timelines', role: constrains} # limits scope, method or timing
+  - {instrument: 'seed:ins/eo-14154', role: removed-requirement}       # rescinded an earlier requirement; never a basis
+```
+
+Only `requires` links decide `venueApplicability` (`vocab/rules/venue-applicability@1.0.0.yaml`; `views/venue_applicability.json`). The instrument's dated DriverEvents supply time, so never store applicability. `DriverEvent.actingInstrument` names the instrument whose issuance produced the event, such as a revoking order. It is never the event's own instrument (`E-ACTING-SELF`).
+
+**Task edges only when task-specific.** `Task.instrumentSensitivity[]` uses the same shape as the competency edge. A task edge whose mechanism its primary competency already carries, with no extra sources, is `W-EDGE-REDUNDANT`; views inherit those edges. From `candidate` on, an edge labelled `J` or `S` needs `reviewBy` (`E-EDGE-REVIEWBY`), and a past `reviewBy` is `W-EDGE-REVIEW-OVERDUE`.
+
+**Mirrors on the authority side.** `Competency.mirrors[]` is `{target, relation}`, with relation from `vocab/authority_positions.yaml#mirror_relations` and target a Competency or an Enactment. Store a mirror once, on the regulator, overseer or decider side. `mirroredBy` is computed (`inverse-links@1.2.0`). Storing both directions is `E-MIRROR-TWICE`; pointing at yourself or your own enactment is `E-MIRROR-SELF`.
+
+**Enactments.**
+- `subsectors[]`: from `candidate` on, every module enactment must list its subsector codes (`W-/E-MODULE-SUBSECTOR`).
+- `delegatedConstraints`: a language map for constraints that a delegating principal places on the work.
+
+**Pathways (learning layer).**
+- `emstRelease` is required from `candidate` on.
+- `cloOutcomes[] {competency, level}` may appear on the pathway and on each `sequence[]` step. The level must be one of the competency's `levels[]`.
+- `sequence[].formationProvisions[]` items are `{task, responses[], quota?, releaseCriterion, mentorRequired}`. `responses` come from `vocab/friction_types.yaml#formation_responses`. `by-hand-quota` and `supervised-repetitions` need a `quota {count, unit}`. The task must be one of the step's `tasks` (`E-PROVISION-TASK`).
+
+**CLO rule.** The build emits `<competency>/levels/<Lx>` CompetencyLevelOutcome nodes with that level's generic indicators. It also emits `<enactment>/levels/<Lx>` nodes, with the generic indicators plus the enactment's `indicatorVariants`. An enactment's indicator variants never appear in the competency's `levels[]` (`E-CLO-ENACTMENT-INDICATOR`). CLOs are computed and never written as records.
+
+**Planned role references.** Not-yet-authored references stay `W-REF-PENDING`, and are errors under `--strict`, when they are:
+- `seed:<role_key>` or `seed:<role_key>/<sector_actor>[/<slice>]`, with `role_key` from `docs/decisions/mvp_role_set.csv`;
+- `seed:<cand_id>` for candidates decided `core-v2.0` or `module-v2.0`;
+- v1 disposition targets.
+
+A planned reference to a held key, or to a `/tribal` (or Tribal-subtype) variant, makes the referring record Tribal-related: flag it held, or it is `E-TRIBAL-INHERIT`.
+
+**Three-module rule.** A live core practice competency whose module enactments name only one or two modules is `W-THREE-MODULE` on drafts and an error from `candidate` on. Zero module enactments passes. To clear it, add a third module enactment, move the competency to its home module, or obtain an exception. Exceptions live in `data/v2/governance/three_module_exceptions.yaml`, and **only the CA adds rows**. Each row needs `competency`, `modules`, `rationale`, `decidedBy`, `decidedOn`, `reviewBy` and `decidedIn`. Recurrence is reported as `I-THREE-MODULE-RECURRENCE`.
+
+**Other S2 changes.**
+- Product names in `productExamples` match case-sensitively (CR-DC-001), so "Slack" is flagged and "slack water" is not.
+- The ADR-0030 merges have been applied: 5.6.1 → 5.6.4, 5.5.4 → 5.1.1, 5.4.3 → 3.3.1, 3.1.5 → 3.2.5 and 3.3.5 → SC-C02, with their task seeds re-pointed. Author the survivors with the absorbed content.
+- `StateClassRecord.emstMapping.competencyTargets` is computed (`E-COMPUTED-FIELD`).
+- `ExposureAssessment.contentChangeType` and `RoleVariant.indicativeGradeOrBand.byRoleLevel` are available.
+- Held tasks whose successors are all held report `I-SUPERSEDED-TARGET-HELD` instead of `W-SUPERSEDED-TARGET`.
 

@@ -44,7 +44,7 @@ def status_statement(rec):
 
 
 def bands_for(variant, role):
-    parsed = V.parse_band((variant.get("indicativeGradeOrBand") or {}).get("band"))
+    parsed = V.band_pairs(variant.get("indicativeGradeOrBand"))
     levels = [r["key"] for r in role["roleLevels"]]
     if parsed and all(lv for _, lv in parsed):
         groups = []
@@ -57,8 +57,7 @@ def bands_for(variant, role):
                                "roleLevels": [x for b, lv in sel for x in lv]})
         return groups
     # no parseable band (e.g. wage-grade scheme): one group over all levels
-    return [{"group": "all levels", "indicativeBand": (variant.get("indicativeGradeOrBand") or {}).get("band",
-                                                                                                   "not recorded"),
+    return [{"group": "all levels", "indicativeBand": V.band_text(variant.get("indicativeGradeOrBand")),
              "roleLevels": levels}]
 
 
@@ -90,7 +89,7 @@ def role_block(d, role, variant, row):
             "credentialGates": [{"credential": g["credential"], "label": d.label(g["credential"]), "kind": g["kind"]}
                                 for g in variant.get("credentialGates") or []],
             "signOffAuthority": variant.get("signOffAuthority"),
-            "instruments": [{"id": i, "label": d.label(i)} for i in variant.get("instruments") or []],
+            "instruments": V.link_items(d, variant.get("instruments")),
             "bands": blocks,
             "changeView": f"docs/build/WP-08/generated/change_view/{role['id'].split(':', 1)[1]}.json" if d.tier(role) == "P1" else None}
 
@@ -211,7 +210,7 @@ def main():
         role = d.get(v["variantOf"])
         lines = [f"# Federal Series Profile (variant index): {d.label(vid)}", "", f"> **{V.DISCLAIMER}**", "",
                  f"- **Role:** {d.label(role['id'])} (`{role['id']}`, {d.tier(role)}); authority position (editorial): {v.get('authorityPosition')}",
-                 f"- **Indicative band:** {(v.get('indicativeGradeOrBand') or {}).get('band', 'not recorded')} (not a classification criterion)",
+                 f"- **Indicative band:** {V.band_text(v.get('indicativeGradeOrBand'))} (not a classification criterion)",
                  f"- **Generated:** {GEN}, rule federal-series-profile@0.1.0 (proposed), as of {V.AS_OF}", "", "## Series", ""]
         if series:
             for x in series:

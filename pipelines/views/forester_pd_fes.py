@@ -41,7 +41,7 @@ def main():
     var = d.get("seed:R14-forester/federal")
     ser = d.series["0460"]
     pv = V.L.load_yaml(V.ROOT / "vocab" / "proficiency_levels.yaml")
-    band = dict((lv[0], b) for b, lv in V.parse_band(var["indicativeGradeOrBand"]["band"]) if lv).get(LEVEL)
+    band = dict((x, b) for b, lv in V.band_pairs(var["indicativeGradeOrBand"]) for x in lv).get(LEVEL)
     items = V.at_levels(V.effective_bundle(role, var), [LEVEL])
     duties = V.duties(d, role, items)
     major = [x for x in duties if x["pctTime"] >= MERGE_BELOW]
@@ -112,7 +112,7 @@ def main():
             lines.append(f"  - {ks}")
     lines += ["- Knowledge of the agency's environmental review procedures, stewardship contracting and partner-agreement "
               "authorities as they apply to forest management projects (instruments linked on the variant: " +
-              ", ".join(d.label(i) for i in var.get("instruments") or []) + ").", "",
+              ", ".join(d.label(i) for i in V.link_ids(var.get("instruments"))) + ").", "",
               "## Factor 2 — Supervisory controls", "", "*Level: [classifier].*", "",
               f"{attr(pv, typical, 'ATT-AUT')} At the upper end of the band: {attr(pv, upper, 'ATT-AUT').lower()} "
               "The supervisor sets objectives, priorities and deadlines; completed prescriptions, cruises and sale packages "

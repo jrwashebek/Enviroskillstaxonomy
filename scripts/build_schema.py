@@ -476,6 +476,8 @@ def build_context(schema: dict) -> dict:
     ctx["enactments"] = {"@id": "emstv:enactments", "@type": "@id", "@container": "@set"}
     ctx["mirroredBy"] = {"@id": "emstv:mirroredBy", "@type": "@id", "@container": "@set"}      # inverse-links@1.2.0
     ctx["CompetencyLevelOutcome"] = "emstv:CompetencyLevelOutcome"     # computed CLO nodes (CR-LC-001 #3; ADR-0030)
+    ctx["caseUuid"] = {"@id": "emstv:caseUuid"}
+    ctx["enactment"] = {"@id": "emstv:enactment", "@type": "@id"}
     return {"@context": ctx}
 
 

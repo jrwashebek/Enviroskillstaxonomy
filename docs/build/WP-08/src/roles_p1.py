@@ -576,8 +576,8 @@ ROLES += [
         ],
         change=[
             X("role", "transforming-role", ["policy-reform", "workforce-capacity"],
-              "Federal wildland fire is being consolidated in the U.S. Wildland Fire Service, and aligned USWFS-USFS "
-              "qualification standards take effect in January 2027 (NWCG is not a party).",
+              "Federal wildland fire is being consolidated in the U.S. Wildland Fire Service, and the January 2027 "
+              "standards align USWFS and USFS federal qualifications.",
               instruments=["uswfs-so-3448", "wildland-fire-quals-alignment"]),
             X("role", "skill-shift", ["climate"],
               "Workload grows with fire activity: the 2026 season ran well above the ten-year average.",

@@ -140,9 +140,11 @@ def test_new_driver_values_are_accepted():
 
 
 def test_seed_v1_never_reaches_candidate():
+    """ADR-0029 §1.3 as kept by ADR-0030 §1.1: candidate/published/deprecated always; superseded/withdrawn only with a
+    minted ID (seed-keyed v1 lineage stubs stay valid)."""
     bad(valid("Competency", id="emst:core/CMP-AB12CDN", status="candidate", validationStatus="seed-v1"))
     bad(valid("Competency", id="emst:core/CMP-AB12CDN", status="superseded", validationStatus="seed-v1", replacedBy=["seed:x"]))
-    ok(valid("Competency", id="seed:v1-9.9.9", status="superseded", validationStatus="seed-v1", replacedBy=["seed:x"]))   # CR-DE-004
+    ok(valid("Competency", id="seed:v1-9.9.9", status="superseded", validationStatus="seed-v1", replacedBy=["seed:x"]))   # ADR-0030 §1.1
 
 
 def test_enactments_rejected_from_candidate():

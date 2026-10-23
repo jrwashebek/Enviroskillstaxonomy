@@ -562,7 +562,7 @@ class Validator:
     def check_semantics(self, loc, rec):
         """Record-level rules from the ADR-0029 rulings that JSON Schema cannot express cleanly."""
         rid, typ, status = rec.get("id"), rec.get("type"), rec.get("status")
-        # §1.3 no seed-v1 at candidate. Seed-keyed superseded/withdrawn v1 stubs (never minted) are exempt: CR-DE-004.
+        # §1.3 no seed-v1 at candidate. Seed-keyed superseded/withdrawn v1 stubs (never minted) are exempt (CR-DE-004, kept by ADR-0030 §1.1).
         if rec.get("validationStatus") == "seed-v1" and status in SEED_V1_FORBIDDEN \
                 and (status in AT_OR_AFTER_CANDIDATE or (isinstance(rid, str) and rid.startswith("emst:"))):
             self.r.add("E-SEED-CANDIDATE", loc, f"seed-v1 content cannot be {status}: rewrite it as a draft and review it first (ADR-0029 §1.3; ADR-0030 §1.1)", rid)

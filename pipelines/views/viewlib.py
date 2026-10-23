@@ -157,6 +157,45 @@ def duties(data, role, items):
     return out
 
 
+def link_ids(links):
+    """Instrument IDs from typed links {instrument, role, note?} (CR-SC-001 #2; ADR-0030) or legacy plain strings."""
+    return [x["instrument"] if isinstance(x, dict) else x for x in links or []]
+
+
+def link_items(d, links):
+    """[{id, label, role}] for a typed link list; role None when the link is untyped."""
+    return [{"id": i, "label": d.label(i), "role": (x.get("role") if isinstance(x, dict) else None)}
+            for x, i in zip(links or [], link_ids(links))]
+
+
+LEVEL_ORDER = ["entry", "journey", "senior", "lead", "strategic"]
+
+
+def band_pairs(igb):
+    """Bands per role level: from indicativeGradeOrBand.byRoleLevel (CR-FH-001 #6; ADR-0030) when present, otherwise
+    from the retired micro-format in `band`. Returns [(band, [roleLevel, ...]), ...]; adjacent levels sharing a band
+    are grouped."""
+    igb = igb or {}
+    by = igb.get("byRoleLevel")
+    if by:
+        out = []
+        for lv in sorted(by, key=lambda k: LEVEL_ORDER.index(k) if k in LEVEL_ORDER else 99):
+            if out and out[-1][0] == by[lv]:
+                out[-1][1].append(lv)
+            else:
+                out.append((by[lv], [lv]))
+        return out
+    return parse_band(igb.get("band"))
+
+
+def band_text(igb):
+    """Human-readable band string for views (same form as the retired micro-format)."""
+    igb = igb or {}
+    if igb.get("byRoleLevel"):
+        return "; ".join(f"{b} [{'|'.join(lv)}]" for b, lv in band_pairs(igb))
+    return igb.get("band", "not recorded")
+
+
 def parse_band(band):
     """'GS-5 to GS-7 [entry]; GS-9 to GS-11 [journey]' -> [('GS-5 to GS-7', ['entry']), ...]"""
     out = []
