@@ -45,3 +45,4 @@ python3 scripts/validate_v2.py
 - Indicative grade bands are FH judgment from the Phase 2 proficiency proposal; OPM proficiency-scale names were not re-verified (FH-044).
 - Change-view atoms live in `change_view_inputs.yaml` until CR-FH-001 item 2 is ruled.
 - 18:45 Release dry run (`scripts/build_release.py --profile preview --no-validate`, output in scratch only): 37 RoleProfiles, 17 JobFamilies and the non-held RoleVariants pass the release gate; the 18 Tribal stubs are excluded as held (counted, not listed).
+- 18:55 Repo `pytest tests`: only `test_schema_build.py` (2 tests) fails — the pending schema regeneration (RULINGS_FOR_DE), not WP-08. X11 set re-validated: profile ok, SSSOM 1.0+1.1 values ok (strict 1.0 fails only on the accepted 1.1 justification, CR-IA-002).
