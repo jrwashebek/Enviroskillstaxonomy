@@ -1,0 +1,29 @@
+field,definition,type_or_format,requirement,controlled_vocab_or_example,why_needed,observed_in_sample,source_ids
+jurisdiction_id,Government unit that owns the class,Census government ID or state FIPS + local ID,MUST,state FIPS '48' (TX); local: county/city/special-district ID,"Join to Census ASPEP and EEO-4; disambiguate 90,000+ local governments [J]",All rows (as name only),
+employer_type,Kind of public employer,enum,MUST,state-agency|county|municipal|special-district|utility|regional-council|tribal|federal,Local and utility roles differ in authority and funding,Implicit only; no state publishes it,SL-086|SL-060
+agency,Agency or department,text,MUST,EGLE; MPCA; TPWD,"Agencies overlay their own MQs (TX, WI, MN)",All rows,SL-056
+class_code,Native class identifier,string (verbatim),MUST,TX 2651; WA 523S; CA 0762/00100762; MN 001350; WI 26961; MI position code EQALTEC56R; San Jose 8201,Stable join key; formats vary widely,"Exposed for TX, WA, CA, MN, WI, San Jose; not exposed in NY career pages or PA postings",SL-050|SL-044|SL-032|SL-067|SL-085|SL-071|SL-086
+class_title,Native class title,text,MUST,Environmental Quality Analyst 9-P11,Display and NLP input,All rows,
+series_id,Native series or family,text,MUST,Natural Resource Specialist 1-6,Groups levels into ladders,All rows,
+level_index,Ordinal level in series plus native label,int + text,MUST,1-6 (WA); I-V (TX); 9/10/P11/12 (MI); Trainee 1/Trainee 2/1 (NY); Range A/B/C (CA),Crosswalk to the EMST level-of-responsibility scale,All series,
+supervisory_status,"Non-supervisory, lead, supervisor, manager, executive",enum,MUST,TX: supervision normally at IV-V; NY M-grades,Most reliable signal for level mapping across systems,"Stated in TX, WA, CA, MN specs",SL-050|SL-046|SL-034|SL-067
+spec_effective_date,Date the spec text took effect,ISO date,MUST,WA 2025-07-01; MN 1976/1998,Stale specs (MN) mislead NLP; crosswalks must be dated,"WA, TX, MN, WI, San Jose",SL-044|SL-066|SL-085
+work_description_text,"Definition, distinguishing characteristics, examples of work",text (verbatim),MUST,TX 'Examples of Work Performed',Primary NLP input for competency and task mapping,All specs; thin in NY career pages,
+mq_text,"Minimum or desirable qualifications, verbatim",text,MUST,PA 'any equivalent combination of experience and training',Legal basis of screening,"Specs (CA, WA, TX guidelines) or postings (MN, PA, MI)",
+mq_location,Where binding qualifications live,enum,MUST,spec|exam-bulletin|posting|agency-policy|set-at-recruitment,"MN, WI and TX agencies set MQs outside the spec",Varies by state,SL-066|SL-085|SL-050
+degree_rule,Degree requirement regime,enum,MUST,required|substitutable|not-required|agency-set|per-recruitment,Skills-based hiring status,All rows (see sample),
+substitution_rule,Machine-readable experience/education equivalences,"structured (from, to, ratio)",SHOULD,"FL: 2 yrs=AA, 4 yrs=BA; WA: experience=education year-for-year; graduate degree=2 yrs",Lets EMST proficiency evidence slot into existing rules,"WA, FL, PA, CA, TX, San Jose",SL-016|SL-040|SL-077
+experience_years_min,Minimum years by level,number,SHOULD,TPWD 0/2/6/10,Level mapping; CLD entry-path analysis,Most rows,
+licenses_required,Licenses or registrations with issuer and timing,"list of (credential, issuer, at-hire|within-N-months|for-some-positions)",MUST,CA REHS (H&S Code 514-534) for some DHS positions; FDACS pest control license within 1 yr; WA LG/LEG/LHG desired,Licensure sets scope of practice and blocks substitution,"CA, WA, TX, FL, MI",SL-035|SL-060|SL-047|SL-049
+pay_basis,Pay unit,enum,MUST,annual|monthly|hourly,"CA monthly, MI/MN hourly, TX annual: comparison needs normalization",All rows,
+pay_min_max,Range minimum and maximum,numbers,MUST,"TX B16 $40,918-$61,130",Pay-band signal and friction (pay ratio),Most rows,
+pay_grade_label,Native grade or range label,text,SHOULD,TX B16; WA Range 44; NY SG-18 / M-4,Native reference,Most rows,
+pay_effective_date,Date of pay figures,ISO date,MUST,2026-07-01,Pay tables change annually,Most rows,
+bargaining_unit,Representation unit and shadow-class flag,text + boolean,SHOULD,WA WPEA shadow class; MN BU 216 (MMA); NY PEF PS&T,Reclassification constraints; transfer frictions,"WA, MN, NY",SL-042|SL-069|SL-061
+appointment_route,How people enter the class,enum list,SHOULD,open-competitive-exam|continuous-T&E|application-as-exam|non-competitive (NY HELPS)|provisional|transfer-list|performance-based (LEAP),Competency evidence enters at different points,"CA, NY, PA",SL-032|SL-033|SL-061|SL-080
+related_titles,"Native lateral, transfer and promotion links",list of class refs,SHOULD,NY 70.1 list; MN equivalents; next class in series,State-validated adjacency (gold set),"NY, MN, PA",SL-062|SL-069|SL-080
+soc_code,SOC 2018 occupation code assigned by the employer,string,SHOULD,19-2041,"Join to OEWS, O*NET and EEO-4 reporting [J]",Not exposed in any sampled spec,
+federal_equivalent,Equivalent OPM series and grade band,string,MAY,PA Careers for Federal Employees list,Federal-state mobility,PA only,SL-029
+military_equivalent,Equivalent military occupation codes,list,MAY,TX military crosswalk,Veteran pathways; crosswalk precedent,TX,SL-052
+provenance,"Source URL, retrieval date, hash, extractor and version",record,MUST,as in OpenLMP,Reproducibility (DE); dated crosswalks,n/a,SL-091
+emst_mapping,"Target role variant, competencies with level, match type, confidence, reviewer, review date",record,MUST,role_variant_id; match_type exact|close|broad|narrow|related; confidence 0-1,Human-reviewed crosswalk artifact (IA),n/a,
