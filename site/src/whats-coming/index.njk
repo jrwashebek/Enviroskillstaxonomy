@@ -1,0 +1,137 @@
+---
+layout: layouts/base.njk
+title: What's coming
+crumbs: [[null, "What's coming"]]
+---
+{% import "macros.njk" as m %}
+{% set reasonText = {
+  "ER-0-NOT-ACTIVE": "no signal is active yet (agent-seeded signals stay at watch until a named human reviewer activates them)",
+  "ER-1-ONE-FAMILY": "evidence comes from one signal family only; two independent families must point the same way",
+  "ER-2-NO-PERSISTENCE": "no second observation period yet",
+  "ER-3-MATCH-TYPE": "crosswalk match too broad",
+  "ER-5-NO-NAMED-REVIEW": "no named human review"
+} %}
+<h1>What's coming</h1>
+<p class="emst-lede">Things that may be forming in environmental work: watch items, emerging competencies and roles, the signals behind them, policy instruments with dated events, and the signposts that would tell us which future is arriving.</p>
+<div class="emst-callout emst-callout--warn" role="note">
+  <p><strong>Exploratory content.</strong> Everything on this page is for foresight and curriculum exploration. None of it is a basis for decisions about jobs or people. Each watch item names what would show it is <em>not</em> forming, and lapses if no new evidence appears by its review date.</p>
+</div>
+
+<div class="emst-stats">
+  {{ m.statFigure(emst.watchItems.length, "Watch items", emst.figures.watchItems) }}
+  {{ m.statFigure(emst.emergingCompetencies.length, "Emerging or proposed competencies", emst.figures.emergingCompetencies) }}
+  {{ m.statFigure(emst.signals.length, "Change signals (all at watch)", emst.figures.signals) }}
+  {{ m.statFigure(emst.instruments.length, "Policy instruments tracked", emst.figures.instruments) }}
+</div>
+
+<h2>Watch items</h2>
+{% for w in emst.watchItems %}
+<section class="emst-card" id="{{ w.slug }}" aria-labelledby="h-{{ w.slug }}">
+  <h3 id="h-{{ w.slug }}">{{ w.title }} {{ m.lifecycleTag(w.lifecycleState) }}</h3>
+  {% if w.hypothesized %}<p><strong>Hypothesized {{ w.hypothesized.type | lower }}:</strong> {{ w.hypothesized.statement }}</p>{% endif %}
+  <p><strong>What would show it is not forming:</strong> {{ w.counterSignal }}</p>
+  <p>Review by {{ w.reviewBy }} (lapses without new evidence). Outcome so far: {{ w.outcome }}.</p>
+  {% if w.signals.length %}<p>Signals: {% for s in w.signals %}{{ s.title }} ({{ s.family }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
+  {{ m.meta(w.tier, w.evidence) }}
+</section>
+{% else %}<p>No watch items in this build.</p>{% endfor %}
+
+<h2>Emerging and proposed roles</h2>
+{% if emst.emergingRoles.length %}
+<ul class="emst-cards">
+{% for r in emst.emergingRoles %}
+  <li class="emst-card"><h3><a href="{{ r.url | url }}">{{ r.title }}</a> {{ m.lifecycleTag(r.lifecycleState) }}</h3>
+  <p>{{ r.functionStatement | truncate(200) }}</p>
+  {% if r.horizon %}<p>Horizon: {{ r.horizon }}. Review by {{ r.reviewBy or "not set" }}.</p>{% endif %}
+  {% if r.counterSignal %}<p><strong>What would show it is not forming:</strong> {{ r.counterSignal }}</p>{% endif %}
+  {{ m.meta(r.tier, r.evidence) }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<div class="emst-callout emst-callout--empty" role="status"><p>No emerging or proposed role profiles in this build yet. They appear here when the role-profile work package adds them.</p></div>
+{% endif %}
+
+<h2>Emerging and proposed competencies</h2>
+{% if emst.emergingCompetencies.length %}
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Emerging competencies">
+<table class="usa-table usa-table--compact usa-table--striped">
+  <caption>Competencies whose lifecycle state is emerging or proposed. Emerging content may be used for training (develop), never for selection.</caption>
+  <thead><tr><th scope="col">Competency</th><th scope="col">State</th><th scope="col">Review by</th><th scope="col">Use tier</th><th scope="col">Evidence</th></tr></thead>
+  <tbody>
+  {% for c in emst.emergingCompetencies %}
+  <tr><td><a href="{{ c.url | url }}">{{ c.title }}</a> {{ m.moduleTag(c) }}</td><td>{{ c.lifecycleState }}</td><td>{{ c.reviewBy or "not set" }}</td><td>{{ c.tier.tier }}</td><td>{{ c.evidence.label }}{% if c.evidence.isAgentDraft %}, agent draft{% endif %}, {{ c.evidence.reviewStatus }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}<p>None in this build.</p>{% endif %}
+
+<h2>Change signals</h2>
+<p>Every signal below is at <strong>watch</strong>: it is recorded and dated, but it moves no change indicator. A change indicator moves only when two independent signal families point the same way, over two periods, through close crosswalk matches, with a named human reviewer.</p>
+{% for grp in emst.signals | groupBy("family") %}
+<details class="emst-disclosure">
+  <summary>{{ grp.key | titlecase }} signals ({{ grp.items.length }})</summary>
+  <div>
+  <div class="emst-table-wrap" tabindex="0" role="region" aria-label="{{ grp.key }} signals">
+  <table class="usa-table usa-table--compact" data-figure data-use-tier="exploratory" data-evidence="{{ (grp.items | fig).ev.label }}">
+    <caption>{{ grp.key | titlecase }} signals. <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> {{ m.evBadge((grp.items | fig).ev) }}</caption>
+    <thead><tr><th scope="col">Signal</th><th scope="col">About</th><th scope="col">Direction</th><th scope="col">Measure</th><th scope="col">Reliability</th><th scope="col">Source release</th><th scope="col">Review by</th></tr></thead>
+    <tbody>
+    {% for s in grp.items %}
+    <tr><td>{{ s.title }}</td><td>{{ s.targetLabel }}</td><td>{{ s.direction or "not stated" }}{% if s.directionConfidence %} ({{ s.directionConfidence }} confidence){% endif %}</td>
+    <td>{% if s.measure %}{% if s.measure.value != null %}{{ s.measure.value }} {{ s.measure.unit }}{% endif %}{% if s.measure.n != null %} (n = {{ s.measure.n }}){% endif %}{% if s.measure.n != null and s.measure.n < 10 %}; too few to say{% endif %}{% else %}not measured{% endif %}</td>
+    <td>{{ s.reliability }}</td><td>{{ s.sourceRelease or s.source }}</td><td>{{ s.reviewBy }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  </div>
+</details>
+{% endfor %}
+
+<h2>Change indicators</h2>
+{% set moving = emst.changeIndicators | whereNot("decision", "watch") %}
+<p>The build evaluated {{ emst.changeIndicators.length }} possible change indicators with rule {{ emst.release.changeRule }}. {{ moving.length }} moved. Every one stays at watch because {{ reasonText["ER-0-NOT-ACTIVE"] }}, and because {{ reasonText["ER-1-ONE-FAMILY"] }}.</p>
+
+<h2>Policy instruments and dated events</h2>
+<p>Instruments that change what environmental work requires, with their status as of the release date ({{ emst.release.date }}). Statuses are recorded from events with sources; dates after the release date are scheduled, not yet in effect.</p>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Policy instruments">
+<table class="usa-table usa-table--compact usa-table--striped" data-figure data-use-tier="describe" data-evidence="{{ emst.figures.instruments.ev.label }}">
+  <caption>Instrument registry ({{ emst.instruments.length }}). {{ m.tierBadge(emst.figures.instruments.tier) }} {{ m.evBadge(emst.figures.instruments.ev) }}</caption>
+  <thead><tr><th scope="col">Instrument</th><th scope="col">Type</th><th scope="col">Jurisdiction</th><th scope="col">Status as of {{ emst.release.date }}</th><th scope="col">Dated events</th><th scope="col">Next review</th></tr></thead>
+  <tbody>
+  {% for i in emst.instruments %}
+  <tr><td>{{ i.title }}{% if i.citation %} <span class="emst-muted">({{ i.citation }})</span>{% endif %}</td><td>{{ i.type }}</td><td>{{ i.jurisdiction }}</td>
+  <td>{{ i.status | replace("-", " ") }}</td>
+  <td>{% for e in i.events %}{{ e.date }} {{ e.type }}{% if e.statusAfter %} → {{ e.statusAfter }}{% endif %}{% if e.future %} (scheduled){% endif %}{% if not loop.last %}; {% endif %}{% else %}none recorded{% endfor %}</td>
+  <td>{{ i.nextReview or "not set" }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<h2>Signposts</h2>
+<p>Observable markers, checked on a schedule, that would show which future the sector is moving toward.</p>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Signposts">
+<table class="usa-table usa-table--compact">
+  <caption>Scenario signposts and the signals that read them</caption>
+  <thead><tr><th scope="col">Signpost</th><th scope="col">Source and cadence</th><th scope="col">Points toward</th><th scope="col">Signals recorded</th></tr></thead>
+  <tbody>
+  {% for s in emst.scenarios.signposts %}
+  <tr><td>{{ s.code }}: {{ s.text }}</td><td>{{ s.source }} ({{ s.cadence }})</td><td>{{ s.pointsToward }}</td><td>{% for x in s.signals %}{{ x.title }}{% if not loop.last %}; {% endif %}{% else %}none yet{% endfor %}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<h2>Four scenarios, 2026 to 2035</h2>
+<p>Two uncertainties frame them: {% for a in emst.scenarios.axes %}{{ a.label | lower }}{% if not loop.last %}, and {% endif %}{% endfor %}. Scenarios are tools for testing plans, not forecasts.</p>
+<ul class="emst-cards">
+{% for t in emst.scenarios.terms %}<li class="emst-card"><h3>{{ t.code }} {{ t.label }}</h3>{% if t.summary %}<p>{{ t.summary }}</p>{% endif %}{% if t.keyRisk %}<p><strong>Key risk:</strong> {{ t.keyRisk }}</p>{% endif %}</li>{% endfor %}
+</ul>
+
+<h2>No-regret moves, 2026 to 2029</h2>
+<p>Moves the foresight lead judges worthwhile in every scenario (expert judgment, exploratory):</p>
+<ol class="usa-list">{% for n in emst.scenarios.noRegret %}<li>{{ n.text }} <span class="emst-muted">({{ n.code }})</span></li>{% endfor %}</ol>
+<h3>Wildcards to watch</h3>
+<ul class="usa-list">{% for w in emst.scenarios.wildcards %}<li>{{ w.text }}: {{ w.effect }}</li>{% endfor %}</ul>

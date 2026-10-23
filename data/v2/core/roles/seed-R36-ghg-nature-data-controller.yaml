@@ -1,0 +1,376 @@
+id: seed:R36-ghg-nature-data-controller
+type: RoleProfile
+prefLabel:
+  en: GHG and nature data controller
+definition:
+  en: Emerging role that builds greenhouse gas and nature inventories, maps them to divergent disclosure regimes, keeps the evidence trail and controls behind reported figures and prepares them for independent assurance.
+functionStatement:
+  en: Make an organization's environmental disclosures accurate, traceable and ready for assurance.
+primaryWorkFunction: WF-MONITOR
+roleLevels:
+- key: journey
+  levelBand:
+  - L2
+  - L3
+- key: senior
+  levelBand:
+  - L3
+  - L4
+- key: lead
+  levelBand:
+  - L4
+  - L4
+taskBundle:
+- task: seed:v1-6.6.1-T1
+  importance: 5
+  timeShare: 0.052
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-ps09-audit-trail
+  importance: 5
+  timeShare: 0.058
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-ps09-boundaries
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:dc-ps09-regime-mapping
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-3.6.2-T1
+  importance: 5
+  timeShare: 0.058
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-3.6.2-T2
+  importance: 5
+  timeShare: 0.058
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-3.6.2-T3
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-determine-disclosure-applicability
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-6.6.1-T3
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-ps07-independence
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-ps07-misstatements
+  importance: 3
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:dc-05-correction-notice
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-05-design-capture
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:dc-05-lineage-record
+  importance: 3
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.2.4-T1
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: true
+  formationTask: true
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.2.4-T2
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.2.4-T3
+  importance: 3
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.2.3-T1
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.2.3-T2
+  importance: 4
+  timeShare: 0.047
+  critical: false
+  neededAtEntry: true
+  formationTask: true
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.2.3-T3
+  importance: 3
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:dc-11-brief-official
+  importance: 3
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:dc-11-conventions
+  importance: 3
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+competencyTargets:
+- competency: seed:PS-C09
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 5
+  distinguishing: true
+  criticalForSelection: false
+- competency: seed:SC-C15
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 5
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:PS-C07
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-05
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-08
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-2.2.3
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-11
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-6.3.2
+  targetLevels:
+    senior: L2
+    lead: L3
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-01
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-02
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-13
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+homeModule: core
+layer: L3
+module: core
+status: draft
+lifecycleState: emerging
+useTier: exploratory
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'Tier P3 (what is coming). Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results. LLM-coder gate G0: the critical and needed-at-entry flags are pre-fills for human verification and never reach G2 (protocol_llm_coder_gate.md section 2). criticalForSelection is false everywhere: v2.0 is never used for selection. Time shares are relative shares across the whole role (all levels); views renormalize within a role level. Formation flags follow WP-07 provisions and WP-03 suggestions where FH agreed. Mirror and mobility links: entryFrom/progressesTo here; mirror pairs in X11. Starter-kit bundle selected by the WP-08 auto rule (primary tasks of the targeted competencies, level and flag heuristics in the prompt file); FH did not review each task individually. Air quality specialists (R28, air module) are a further feeder; the link is recorded on R28''s side.'
+notation:
+- scheme: MVProleSet
+  value: R36
+entryFrom:
+- seed:R37-facility-environmental-compliance-specialist/private
+evidenceSignals:
+- seed:sig/bls-ep-2025-35/13-2011/R36-ghg-nature-data-controller
+- seed:sig/bls-ep-2025-35/19-2041/R36-ghg-nature-data-controller
+feederRoles:
+- role: seed:R37-facility-environmental-compliance-specialist
+  competencyDeltas:
+  - competency: seed:PS-C09
+    fromLevel: L3
+    toLevel: L4
+  - competency: seed:SC-C15
+    fromLevel: L3
+    toLevel: L4
+horizon: now
+scenarioSensitivity:
+  SC1: up
+  SC2: flat
+  SC3: up
+  SC4: down
+counterSignal: Disclosure scope cuts (the EU omnibus amendments; a federal climate disclosure rule that never took effect) reduce demand.
+reviewBy: '2027-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0017
+  - ADR-0024
+  - ADR-0025
+  - ADR-0029

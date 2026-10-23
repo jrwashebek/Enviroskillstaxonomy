@@ -1,0 +1,27 @@
+# EMST computed-view rule (SPEC §14.3; ADR-0021; CR-DE-003). Normative definition; code in `implementation`.
+ruleId: inverse-links
+version: 1.2.0
+status: draft
+replaces: inverse-links@1.1.0
+steward: DE (implementation) · CA (definition)
+decidedIn: [ADR-0001, ADR-0003, ADR-0021, ADR-0029, ADR-0030, CR-DE-001, CR-DE-003, CR-SC-001]
+computes: >
+  Every inverse convenience link. Source records store each link once, on the many side or on the side the decision
+  names; these inverses appear only in bundles and views and MUST NOT appear in source records
+  (schema/lint/computed_fields.yaml#inverse_fields_by_type).
+inputs: [released Task, Tool, Enactment and Competency records]
+definition:
+  competency_tasks: "As 1.1.0."
+  task_tools: "As 1.1.0."
+  competency_enactments: "As 1.1.0."
+  mirrored_by: "For each released competency or enactment X: every released competency M with M.mirrors[] ∋ {target: X, relation}, as X.mirroredBy[] {competency: M, relation}, sorted by ID (CR-SC-001 #3). The stored link is on the authority or overseer side only."
+  held: "An inverse never lists a record the release gate excluded (held Tribal-related, pending licence, draft)."
+outputs:
+  view: views/inverse_links.json
+  bundle_fields: [Competency.enactments, Task.tools, Competency.mirroredBy, Enactment.mirroredBy]
+  fields: "competency, tasks[{task, strength}], enactments[{enactment, enactmentKind, module}], mirroredBy[{competency, relation}], ruleId, ruleVersion, buildCommit"
+parameters: {}
+implementation: scripts/build_release.py#Builder.views (to be extended by DE; RULINGS_FOR_DE.md §16.3)
+activation: "DE sets status: active here and status: superseded on inverse-links@1.1.0 in the change that lands the implementation and its test (the only vocab/ edit Batch 2 authorizes DE to make)."
+changeNote:
+  - {date: '2026-10-23', note: "Adds mirrored_by for Competency.mirrors (CR-SC-001 #3; ADR-0030). Draft until implemented; 1.1.0 stays active meanwhile."}

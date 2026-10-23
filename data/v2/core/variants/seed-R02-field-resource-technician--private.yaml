@@ -1,0 +1,58 @@
+id: seed:R02-field-resource-technician/private
+type: RoleVariant
+prefLabel:
+  en: Field resource technician (private)
+variantOf: seed:R02-field-resource-technician
+sectorActor: private
+authorityPosition: service-provider
+layer: L3
+module: core
+status: draft
+validationStatus: draft
+license: CC0-1.0
+definition:
+  en: 'Field resource technician in a private-sector setting: delivers the work for another party under contract or agreement. Consulting field technicians; site safety plans and billing to agreements are added.'
+lifecycleState: established
+useTier: develop
+sensitivity: public
+sectorActorSubtype: firm
+industry: consulting-engineering
+ownership: private-closely-held
+deliveryModel: contracted
+taskAdds:
+- task: seed:fc-haz-hasp
+  importance: 4
+  timeShare: 0.03
+  critical: true
+  neededAtEntry: true
+  roleLevels:
+  - entry
+  - journey
+- task: seed:lc-txf-invoice-against-agreement
+  importance: 2
+  timeShare: 0.01
+  critical: false
+  neededAtEntry: false
+  roleLevels:
+  - journey
+credentialGates:
+- credential: seed:crd-wilderness-first-aid
+  kind: preferred
+- credential: seed:crd-hazwoper
+  kind: preferred
+editorialNote:
+  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0007
+  - ADR-0017
+  - ADR-0022

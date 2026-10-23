@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: emst.moduleList
+  size: 1
+  alias: md
+permalink: "/modules/{{ md.ns }}/"
+eleventyComputed:
+  title: "{{ md.label }} editorial section"
+---
+{% import "macros.njk" as m %}
+<h1>{{ md.label }} <span class="emst-muted">editorial section</span></h1>
+<p>{{ md.code }}{% if md.wave %} · wave {{ md.wave }}{% endif %}{% if md.wave and md.wave > 1 %} · early draft named in the dispositions{% endif %}. Not a stewarded module; kept out of default HR views.</p>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Module competencies">
+<table class="usa-table usa-table--compact usa-table--striped">
+  <caption>Competency records in this section</caption>
+  <thead><tr><th scope="col">Competency</th><th scope="col">Lifecycle</th><th scope="col">Use tier</th><th scope="col">Evidence</th></tr></thead>
+  <tbody>{% for c in md.competencies %}<tr><td><a href="{{ c.url | url }}">{{ c.title }}</a></td><td>{{ c.lifecycleState }}</td><td>{{ c.tier.tier }}</td><td>{{ c.evidence.label }}, {{ c.evidence.reviewStatus }}</td></tr>{% endfor %}</tbody>
+</table>
+</div>

@@ -4,7 +4,7 @@ title: EMST identifier scheme
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0010, ADR-0029]
+decidedIn: [ADR-0010, ADR-0029, ADR-0030]
 steward: TSC (DE, IA)
 license: CC0-1.0
 
@@ -17,6 +17,7 @@ form:
   draft_keys: "seed:<free text> before candidate"
   derived_ids: "CASE identifier, CTID (ce-<uuid>) and RSD UUID = UUIDv5(namespace=UUIDv5(URL, 'https://w3id.org/emst/'), name=EMST IRI)"
   v1_aliases: "notation: [{scheme: EMSTv1, value: 'D.SA.N'}] — never an ID"
+  clo_iri: "<competency IRI>/levels/<Lx> (e.g. https://w3id.org/emst/core/CMP-XXXXXXX/levels/L2; compact emst:core/CMP-XXXXXXX/levels/L2); an enactment's CLO is <enactment IRI>/levels/<Lx>. Derived, never minted or registered; resolves in the release bundle to {competency, level, indicators[]}; target of badge alignment and of X10 objects (CR-LC-001 #3; ADR-0030)"
 
 types:
   - {prefix: VOC, entity: VocabularyTerm}

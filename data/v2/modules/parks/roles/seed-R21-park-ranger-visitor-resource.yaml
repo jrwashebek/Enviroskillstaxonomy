@@ -1,0 +1,491 @@
+id: seed:R21-park-ranger-visitor-resource
+type: RoleProfile
+prefLabel:
+  en: Park ranger (visitor and resource management)
+definition:
+  en: Role that provides visitor information and safety messaging, manages recreation and visitor use, monitors wilderness character and scenic resources, responds to field emergencies and keeps visitors and resources safe. Sworn law-enforcement rangers are a credential-gated variant.
+functionStatement:
+  en: Keep park visitors safe and informed while protecting the resources and experiences the park exists for.
+primaryWorkFunction: WF-OPERATE
+roleLevels:
+- key: entry
+  levelBand:
+  - L1
+  - L2
+- key: journey
+  levelBand:
+  - L2
+  - L3
+- key: senior
+  levelBand:
+  - L3
+  - L4
+taskBundle:
+- task: seed:v1-5.5.1-T1
+  importance: 5
+  timeShare: 0.05
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:v1-5.5.1-T2
+  importance: 5
+  timeShare: 0.044
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:v1-5.5.1-T3
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:db-5.5.1-t4
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:IA-CC-02-T1
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:IA-CC-02-T2
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:IA-CC-02-T3
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:v1-4.4.2-T1
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:v1-4.4.2-T2
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:v1-4.4.2-T3
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:v1-2.3.5-T1
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:v1-2.3.5-T2
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:v1-2.3.5-T3
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:fc-tree-mitigate
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+- task: seed:fc-tree-remote-verify
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:fc-tree-visual
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:lc-txe-answer-public-questions
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:lc-txe-draft-advisory
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:lc-txe-prepare-message-map
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:v1-4.4.1-T1
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:fc-risk-ai-jha-review
+  importance: 4
+  timeShare: 0.035
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fc-risk-briefing
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+- task: seed:IA-CC-07-T1
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:IA-CC-07-T2
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:IA-CC-03-T1
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:IA-CC-03-T2
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fc-land-adapt-access
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:fc-land-explain
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:v1-4.2.5-T1
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:v1-4.2.5-T2
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:v1-2.1.3-T1
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+- task: seed:v1-2.1.3-T2
+  importance: 3
+  timeShare: 0.026
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - entry
+  - journey
+  - senior
+competencyTargets:
+- competency: seed:v1-5.5.1
+  targetLevels:
+    entry: L1
+    journey: L2
+    senior: L3
+  importance: 5
+  distinguishing: true
+  criticalForSelection: false
+- competency: seed:IA-CC-02
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-4.4.2
+  targetLevels:
+    entry: L1
+    journey: L2
+    senior: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-4.4.5
+  targetLevels:
+    entry: L1
+    journey: L2
+    senior: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C26
+  targetLevels:
+    entry: L1
+    journey: L2
+    senior: L2
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DB-C29
+  targetLevels:
+    entry: L1
+    journey: L2
+    senior: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-4.4.1-A
+  targetLevels:
+    entry: L1
+    journey: L2
+    senior: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:IA-CC-07
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:IA-CC-03
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C21
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-4.2.5
+  targetLevels:
+    entry: L1
+    journey: L2
+    senior: L2
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C18
+  targetLevels:
+    entry: L1
+    journey: L2
+    senior: L2
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-01
+  targetLevels:
+    entry: L1
+    journey: L1
+    senior: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-02
+  targetLevels:
+    entry: L1
+    journey: L1
+    senior: L1
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-13
+  targetLevels:
+    entry: L1
+    journey: L1
+    senior: L1
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-05
+  targetLevels:
+    entry: L1
+    journey: L1
+    senior: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+homeModule: parks
+layer: L3
+module: parks
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'Tier P2 (starter-kit depth). Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results. LLM-coder gate G0: the critical and needed-at-entry flags are pre-fills for human verification and never reach G2 (protocol_llm_coder_gate.md section 2). criticalForSelection is false everywhere: v2.0 is never used for selection. Time shares are relative shares across the whole role (all levels); views renormalize within a role level. Formation flags follow WP-07 provisions and WP-03 suggestions where FH agreed. Mirror and mobility links: entryFrom/progressesTo here; mirror pairs in X11. Starter-kit bundle selected by the WP-08 auto rule (primary tasks of the targeted competencies, level and flag heuristics in the prompt file); FH did not review each task individually.'
+notation:
+- scheme: MVProleSet
+  value: R21
+altLabel:
+  en:
+  - park ranger
+  - visitor use specialist
+  - interpretive ranger
+entryFrom:
+- seed:R01-conservation-corps-member
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0017
+  - ADR-0024
+  - ADR-0025
+  - ADR-0029

@@ -12,11 +12,11 @@
 <div class="emst-js-only">
   <div class="emst-toolbar" role="group" aria-label="Save, open or clear your answers">
     <button type="button" class="usa-button" data-action="save">Save to file</button>
-    <label class="usa-button usa-button--outline" for="emst-open-file">Open a saved file</label>
-    <input type="file" id="emst-open-file" class="usa-sr-only" accept=".json,application/json" data-action="open">
-    <button type="button" class="usa-button usa-button--secondary" data-action="clear">Clear everything</button>
     <button type="button" class="usa-button usa-button--outline" data-action="summary">See summary</button>
+    <button type="button" class="usa-button usa-button--secondary" data-action="clear">Clear everything</button>
   </div>
+  <label class="usa-label" for="emst-open-file">Open a saved gap-check file</label>
+  <input type="file" id="emst-open-file" class="emst-file" accept=".json,application/json">
   <p class="emst-status" role="status" aria-live="polite" data-status></p>
   <p class="emst-muted">Files are saved as <code>{{ fileHint }}</code> in your downloads folder. They contain the release ID, the role variant (if any), the level and your ratings and notes; nothing else.</p>
 </div>

@@ -1,0 +1,40 @@
+---
+layout: layouts/base.njk
+title: Where roles can lead
+crumbs: [[null, "Pathways"]]
+---
+{% import "macros.njk" as m %}
+<h1>Where roles can lead</h1>
+<p class="emst-lede">Exploratory moves between roles and across federal, state, local, nonprofit and private employers: what the roles share, what you would need to build, and the frictions people meet.</p>
+<div class="emst-callout emst-callout--warn" role="note">
+  <p><strong>Exploratory, never a recommendation.</strong> Pathways are computed from draft role profiles and draft crosswalks. None has been checked against real career moves; observed moves will appear only as counts of at least 5 people from partner data. No pathway is labelled recommended until it passes the project's validation gate (ADR-0023).</p>
+</div>
+
+<h2>From a role variant</h2>
+{% if emst.variants.length %}
+<ul class="usa-list">
+{% for r in emst.roles %}{% if r.variants.length %}<li>{{ r.title }}: {% for v in r.variants %}<a href="{{ v.pathwaysUrl | url }}">{{ v.actorLabel }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</li>{% endif %}{% endfor %}
+</ul>
+{% else %}
+<div class="emst-callout emst-callout--empty" role="status">
+  <p><strong>No role profiles in this build yet,</strong> so role-to-role pathways cannot be computed. Each role variant gets a pathways page automatically once role profiles exist. Exploratory learning pathways for the first three corridors appear then too.</p>
+</div>
+{% endif %}
+
+<h2>Cross-sector translations (seed)</h2>
+<p>Draft translation rows between public and private versions of the same work, seeded by the private-sector advisor. They describe how the posture of the work changes and which credentials employers value. Each row is an agent draft that the private-sector and mobility leads still have to confirm.</p>
+{% if emst.translations.length %}
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Cross-sector translations">
+<table class="usa-table usa-table--compact usa-table--striped" data-figure data-use-tier="exploratory" data-evidence="S">
+  <caption>Public-to-private translation seed ({{ emst.translations.length }} rows). <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>S speculation; agent draft, unreviewed</span></caption>
+  <thead><tr><th scope="col">From</th><th scope="col">To</th><th scope="col">How the work's posture changes</th><th scope="col">Credentials valued</th><th scope="col">Pay direction</th><th scope="col">Note</th></tr></thead>
+  <tbody>
+  {% for t in emst.translations %}
+  <tr><td>{% if t.subjectVariant %}<a href="{{ t.subjectVariant.url | url }}">{{ t.subjectLabel }}</a>{% else %}{{ t.subjectLabel }}{% endif %}</td>
+  <td>{% if t.objectVariant %}<a href="{{ t.objectVariant.url | url }}">{{ t.objectKeyLabel }}</a>{% else %}{{ t.objectKeyLabel }}{% if t.noTerm %} <span class="emst-muted">(role variant not yet in this build)</span>{% endif %}{% endif %}</td>
+  <td>{{ t.frictionChange or "not stated" }}</td><td>{{ t.licensureGap or "not stated" }}</td><td>{{ t.payDirection or "not stated" }}</td><td>{{ t.comment | replace("; successor not in this release", "") | truncate(200) }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}<p>No translation rows in this build.</p>{% endif %}

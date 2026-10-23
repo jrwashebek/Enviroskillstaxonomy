@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+title: State and local class views
+crumbs: [[null, "State and local classes"]]
+---
+{% import "macros.njk" as m %}
+<h1>State and local class views</h1>
+<p class="emst-lede">For state and local HR and classification analysts: civil-service classes from the pilot jurisdictions, with their minimum qualifications, licences and the EMST role variants drafted against them.</p>
+{{ m.hrDisclaimer() }}
+<p>Class specifications are linked, not copied: their reuse terms are unverified, so EMST stores the address, the retrieval date and a short paraphrase of the minimum qualifications. Only established core competencies appear in these HR views.</p>
+{{ m.statFigure(emst.stateClasses.length, "Classes in the register", emst.figures.stateClasses) }}
+{% for grp in emst.stateClasses | groupBy("jurisdiction") %}
+<h2>{{ grp.key }}</h2>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="{{ grp.key }} classes">
+<table class="usa-table usa-table--compact usa-table--striped">
+  <caption>{{ grp.key }} classes ({{ grp.items.length }})</caption>
+  <thead><tr><th scope="col">Class</th><th scope="col">Code</th><th scope="col">Agency or employer</th><th scope="col">Spec effective</th><th scope="col">Draft EMST mappings</th></tr></thead>
+  <tbody>
+  {% for c in grp.items %}
+  <tr><td><a href="{{ c.url | url }}">{{ c.title }}</a></td><td>{{ c.code }}</td><td>{{ c.agency }}</td><td>{{ c.specEffective or "not recorded" }}</td><td>{{ c.rows.length + c.pending.length }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endfor %}

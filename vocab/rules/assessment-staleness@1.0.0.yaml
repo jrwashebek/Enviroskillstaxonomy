@@ -18,6 +18,6 @@ outputs:
   view: views/assessment_staleness.json
   fields: "assessment, task, stale, ruleId, ruleVersion, buildCommit"
 parameters: {}
-implementation: scripts/build_release.py#Release.views
+implementation: scripts/build_release.py#Builder.views
 changeNote:
   - {date: '2026-10-23', note: "Registered from the implementation (CR-DE-003); competency-level case specified for DE."}

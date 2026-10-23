@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+title: Download and cite
+crumbs: [[null, "Download and cite"]]
+---
+<h1>Download and cite</h1>
+<p class="emst-lede">The explorer is generated from release {{ emst.release.id }}{% if emst.release.isPreview %} (internal preview profile: drafts included, not for distribution as a release){% endif %}. The files below are the version-pinned data it was built from.</p>
+<h2>Release files</h2>
+<ul class="usa-list">
+  <li><a href="{{ '/download/release/RELEASE_NOTES.md' | url }}">Release notes</a> (generated counts; held items reported only as a count)</li>
+  <li><a href="{{ '/download/release/csv/competencies.csv' | url }}">Competencies (CSV)</a>, <a href="{{ '/download/release/csv/tasks.csv' | url }}">tasks</a>, <a href="{{ '/download/release/csv/indicators.csv' | url }}">indicators</a>, <a href="{{ '/download/release/csv/task_competency_links.csv' | url }}">task links</a>, <a href="{{ '/download/release/csv/mappings.csv' | url }}">mappings</a></li>
+  <li><a href="{{ '/download/release/csv/hcm_skills_library.csv' | url }}">Skills-library import file for HR and learning systems (CSV)</a></li>
+  <li><a href="{{ '/download/release/csv/datapackage.json' | url }}">Frictionless data package descriptor</a> and <a href="{{ '/download/release/SHA256SUMS' | url }}">release checksums</a></li>
+</ul>
+<p>The JSON-LD bundle and SKOS files are in the repository's release build. Data and standard text: CC0 1.0.</p>
+<h2>Security and accessibility</h2>
+<ul class="usa-list">
+  <li><a href="{{ '/download/security/sbom-runtime.cdx.json' | url }}">SBOM, runtime dependencies (CycloneDX 1.5)</a></li>
+  <li><a href="{{ '/download/security/sbom-build.cdx.json' | url }}">SBOM, build and test tooling (CycloneDX 1.5)</a></li>
+  <li><a href="{{ '/download/security/SITE_SHA256SUMS' | url }}">Checksums of every file in this site</a></li>
+  <li>Accessibility conformance report: <code>site/ACR.md</code> in the repository. Security packet: <code>site/SECURITY_PACKET.md</code>.</li>
+</ul>
+<h2>Cite</h2>
+<p>Environmental Management Skills Taxonomy (EMST), release {{ emst.release.id }}, {{ emst.release.date }}. {% if emst.release.isPreview %}Internal preview; cite a tagged release once one is issued.{% endif %}</p>
+<p>{{ emst.release.notice }}</p>

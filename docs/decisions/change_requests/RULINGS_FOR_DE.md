@@ -183,3 +183,167 @@
 3. **Optional, after rc.1 essentials:** `build_release.py` may write `sssom/strict-1.0/<set>.sssom.tsv`, with `semapv:UnspecifiedMatching` plus `other: original_justification=semapv:LLMBasedMatching`. It is a generated export only.
 
 Checklist additions: role seed-key warning and AUTHORING_GUIDE (§11) · SSSOM 1.1-extension reporting, `other` column, review-provenance and selection checks (§12).
+
+## Batch 2 (S1 close)
+
+- **From:** CA · **To:** DE (A1), with IA as co-owner of the data model · **Date:** 2026-10-23
+- **Decision record:** ADR-0030. The full rulings are under "CA ruling" in CR-DB-001, CR-DC-001, CR-DE-004, CR-FC-001, CR-FC-002, CR-LC-001 and CR-SC-001. SPEC is now **2.0.0-draft.3**.
+- **Already done by the CA, so do not redo it:**
+  - `vocab/authority_positions.yaml`: `closure_types` gains `employer-mandated`, `voluntary` is narrowed, and the new key `mirror_relations` is added.
+  - `vocab/driver_mechanisms.yaml`: new key `instrument_link_roles`.
+  - `vocab/friction_types.yaml`: new key `formation_responses`.
+  - `vocab/identifiers.yaml#form.clo_iri`.
+  - `vocab/rules/venue-applicability@1.0.0.yaml` (new, `active`), `vocab/rules/inverse-links@1.2.0.yaml` (new, `draft`), the reason codes and implementation pointer in `change-indicator@1.0.0.yaml`, and `#Release.views` → `#Builder.views` in six rule files.
+  - `data/v2/governance/three_module_exceptions.yaml` (empty register).
+  - `tests/test_rules.py` passes on these files.
+- **Lanes: as in Batch 1, with four exceptions that DE may make:**
+  1. the mechanical record changes in §16.2 (link shape), §18.3 (task moves) and §18.4 (ADR-0030 merges);
+  2. the eight `docs/decisions/v1_disposition.csv` rows listed in `docs/decisions/integration/disposition_amendments.csv` (§18.4), and no other row;
+  3. the `status` flips on `inverse-links@1.2.0` and `@1.1.0` when §16.3 lands;
+  4. nothing else in `vocab/`, ADRs or SPEC.
+- **Do first:** run `python3 scripts/build_schema.py`. `--check` now reports `v_closureType` STALE, from the new `employer-mandated` value. Then wire the three new keys (§16.2, §16.3, §17.2).
+- **Priority, because WP-08 and WP-12 need it in S2:** §16.2 and §16.4 (typed links and the venue view), §17.1–§17.3 (planned role references, Pathway fields), §15, §14, §18, §13.
+- **When done:**
+  - bump `SCHEMA_VERSION` to `2.0.0-draft.3`;
+  - regenerate the schema and context;
+  - re-run `python3 -m pytest`, `validate_v2.py --strict` and `build_release.py --profile preview`;
+  - point every "pending CA" note in `schema/src` at ADR-0030.
+
+## 13. CR-DE-004: seed-v1 stubs, reason codes, pointers
+
+1. **Keep `E-SEED-CANDIDATE` as built:** it applies to candidate, published and deprecated always, and to superseded and withdrawn only with a minted `emst:` ID. Point its message and `tests/test_schema_rulings.py::test_seed_v1_never_reaches_candidate` at ADR-0030 §1.1. If the schema condition in `RecordBase` still lists superseded and withdrawn unconditionally, narrow it to match the validator.
+2. **Reason codes:** `ER-0-NOT-ACTIVE` and `ER-0-ORGANIZATION-TARGET` are now in `change-indicator@1.0.0.yaml#reason_codes`. Remove any "documented extra" special-casing from `tests/test_evidence_rule.py`, and add a test that every reason code `scripts/rules/change_indicator.py` can emit is in the rule file.
+3. **Pointers:** keep `Release = Builder` until rc.1 is tagged. The rule files now name `#Builder.views`.
+
+## 14. CR-DC-001: case-sensitive product matching
+
+1. In `Validator`, compile each `productExamples` entry with `_term_rx({"term": ex, "cs": True})`.
+2. In `schema/lint/typing_lexicon.yaml`: `Field Maps` gets `cs: true`. Review every multi-word term and set `cs: true` where the lower-case phrase is ordinary English, listing the changes in your worklog. A case-insensitive product term belongs only in this file, without `cs`; do **not** add a Tool field.
+3. **New test:** `validate_v2.py` and `validation/lint_indicators.py` flag and pass the same fixture strings for product names, e.g. "InVEST" flagged, "invest", "slack water" and "maple" not flagged, "Field Maps" flagged, "field maps" not.
+4. Tell DC (A4) when it lands; DC then moves names in `data/v2/tools/tools.jsonl` (data-only).
+
+## 15. CR-DB-001: three-module rule, Enactment subsectors
+
+1. **`W-THREE-MODULE` / `E-THREE-MODULE`.**
+   - **Scope:** every live Competency with `module = core` and `competencyType = practice`.
+   - **Count:** M = the distinct `enactedInModule` values of its live Enactments with `enactmentKind = module`.
+   - **Fires when** |M| ∈ {1, 2} and there is no row for it in `data/v2/governance/three_module_exceptions.yaml` (`exceptions[]`, matched on `competency`). Warning on drafts; error when `status ∈ {candidate, published, deprecated}`.
+   - |M| = 0 passes.
+   - **Register checks:**
+     - each row needs `competency`, `modules[]`, `rationale`, `decidedBy` (`^pid:` or `CA`), `decidedOn`, `reviewBy` and `decidedIn`, otherwise `E-THREE-MODULE-EXCEPTION-FORMAT`;
+     - `W-THREE-MODULE-EXCEPTION-EXPIRED` when `reviewBy` is past;
+     - `E-REF-DANGLING` when the competency does not resolve.
+2. **`I-THREE-MODULE-RECURRENCE`** for each such competency: the sorted distinct modules among M, the `homeModule` of live tasks supporting it, and, once role records exist, the `homeModule` of RoleProfiles whose `competencyTargets` name it.
+   - In `build_release.py` release notes, add the count of core practice competencies with recurrence below 3. It is not a gate.
+3. **`Enactment.subsectors`:** optional, `{type: array, uniqueItems: true, minItems: 1, items: {$ref: v_subsector}}`.
+   - Extend `E-MODULE-SUBSECTOR`: an Enactment with `enactmentKind = module` and status ≥ candidate without `subsectors` is an error; on drafts it is `W-MODULE-SUBSECTOR`.
+   - Indicators get no field; their subsectors are inherited from the competency in views.
+
+## 16. CR-SC-001: task edges, typed instrument links, mirrors, venue view, delegated constraints
+
+1. **Task edges.**
+   - `Task.instrumentSensitivity`: `{type: array, items: {$ref: SensitivityEdge}}`. `SensitivityEdge` gains optional `reviewBy: {$ref: Date}`.
+   - **Validator:**
+     - `W-EDGE-REDUNDANT`: a Task edge whose `mechanism` is already on a competency the task supports as `primary`, with no `sources` beyond that competency's edge.
+     - `E-EDGE-REVIEWBY`, from `candidate` on: an edge, on a Task or a Competency, with `evidenceLabel ∈ {J, S}` and no `reviewBy`.
+     - `W-EDGE-REVIEW-OVERDUE`: `reviewBy` earlier than the validation date.
+   - The sensitivity view (when built) gives each task the union of its own edges and its primary competencies' edges, with the inherited ones marked `inherited: true`.
+2. **Typed instrument links.**
+   - **Schema.** New `$def` `InstrumentLink = {type: object, additionalProperties: false, required: [instrument], properties: {instrument: RecordRef, role: {$ref: v_instrumentLinkRole}, note: Text}}`.
+     - Generate `v_instrumentLinkRole` from `vocab/driver_mechanisms.yaml#instrument_link_roles`.
+     - `Enactment.characteristicInstruments` and `RoleVariant.instruments` become `{type: array, items: {$ref: InstrumentLink}}`, unique by `instrument`. The validator checks uniqueness: two items with the same `instrument` are `E-INSTRUMENT-LINK-DUPLICATE`.
+   - **Conversion, in the same change.** Rewrite every existing string item `seed:ins/x` as `{instrument: seed:ins/x}`, with no role. On 2026-10-23 that is 119 links on 49 enactments: 38 SC, 11 DB. Do not default the role. Keep YAML key order and quoting as `emstlib.write_yaml` does.
+   - **Validator:**
+     - add `("Enactment", "characteristicInstruments.instrument")` and `("RoleVariant", "instruments.instrument")` → `{"Instrument"}` to `TYPED_LINKS`;
+     - `W-INSTRUMENT-ROLE-MISSING` on drafts, `E-INSTRUMENT-ROLE-MISSING` from `candidate` on.
+   - **`DriverEvent.actingInstrument`:** optional `RecordRef`, typed `Instrument` in `TYPED_LINKS`; `E-ACTING-SELF` when it equals `instrument`.
+   - Tell SC (A5), DB (A6) and LM (A9) when it lands; they set the roles (CR-SC-001 ruling, item 2).
+3. **Mirrors.**
+   - **Schema.** `Competency.mirrors`: `{type: array, items: {type: object, additionalProperties: false, required: [target, relation], properties: {target: RecordRef, relation: {$ref: v_mirrorRelation}}}}`. Generate `v_mirrorRelation` from `vocab/authority_positions.yaml#mirror_relations`.
+   - **Validator:**
+     - `target` must be a Competency or an Enactment (`TYPED_LINKS`);
+     - `E-MIRROR-TWICE` when A lists B and B lists A, or when an Enactment's competency lists a mirror back to a competency that lists that Enactment;
+     - `E-MIRROR-SELF` when `target` is the record itself or one of its own enactments.
+   - **Computed field:** add `mirroredBy` to `schema/lint/computed_fields.yaml#inverse_fields_by_type` for Competency and Enactment.
+   - **Implement `inverse-links@1.2.0#mirrored_by`.** Then set `status: active` on 1.2.0 and `status: superseded` (add `supersededBy: inverse-links@1.2.0`) on 1.1.0, and update `tests/test_rules.py::test_one_active_or_interim_version_per_rule`.
+4. **Venue view** (`vocab/rules/venue-applicability@1.0.0.yaml`, already `active`):
+   - Implement it in `scripts/rules/venue_applicability.py`, called from `Builder.views`, and write `views/venue_applicability.json`, stamped. Follow the rule file exactly: only `requires` links decide the value, plus the `basisLinked`, `basisVerified` and `untypedLinks` flags, `deciding[]` and `context[]`.
+   - Map subtypes to families from `vocab/sector_actors.yaml`. Skip Tribal and held enactments. `asOf` is `SOURCE_DATE_EPOCH`, or the `--date` value.
+   - **Tests:**
+     - Move `docs/build/WP-05/ci/fixtures/` to `tests/fixtures/venue/` and `test_venue_applicability.py` to `tests/`.
+     - Add the typed-role cases named in the rule file's `tests`. The fixtures must validate with `validate_v2.py --data-root`.
+     - Leave WP-05's prototype where it is. CI never runs it.
+   - Add `venueApplicability` and `federalApplicability` to `computed_fields.yaml` if they are not already listed.
+5. **`Enactment.delegatedConstraints`:** optional `Text`.
+
+## 17. CR-LC-001: planned references, Pathway fields, CLOs
+
+1. **Planned targets** (extend `_load_planned_targets`):
+   - every `target_key` of `v1_targets.csv` (as now);
+   - `seed:<cand_id>` for each `docs/decisions/candidate_disposition.csv` row with `decision ∈ {core-v2.0, module-v2.0}`;
+   - every role reference matching `^seed:(R\d{2}-[a-z0-9-]+)(/([a-z-]+)(/[a-z0-9-]+)?)?$` whose group 1 is a `role_key` in `docs/decisions/mvp_role_set.csv` and whose group 3, if present, is a `vocab/sector_actors.yaml` notation (family or subtype).
+   - Planned references stay `W-REF-PENDING`, and are errors under `--strict` (as now).
+   - **Hold:** a planned reference whose key is in `tribal_hold.yaml#heldSeedKeys`, or whose sector-actor segment is `tribal` or a Tribal subtype, is held: the referencing record must be held, otherwise `E-TRIBAL-INHERIT`.
+   - Keep `W-ROLE-KEY` (§11) for role keys that are not in the set.
+2. **Pathway schema:**
+   - `emstRelease: {$ref: SemVer}`, required when `status ∈ {candidate, published, deprecated}`.
+   - `cloOutcomes` (on Pathway and on each `sequence[]` item): `{type: array, items: {type: object, additionalProperties: false, required: [competency, level], properties: {competency: RecordRef, level: {$ref: v_level}}}}`, typed Competency.
+   - `sequence[].formationProvisions`: `{type: array, items: {type: object, additionalProperties: false, required: [task, responses, releaseCriterion, mentorRequired], properties: {task: RecordRef, responses: {type: array, minItems: 1, uniqueItems: true, items: {$ref: v_formationResponse}}, quota: {type: object, additionalProperties: false, required: [count, unit], properties: {count: {type: integer, minimum: 1}, unit: Text}}, releaseCriterion: Text, mentorRequired: {type: boolean}}, if: {properties: {responses: {contains: {enum: [by-hand-quota, supervised-repetitions]}}}}, then: {required: [quota]}}}`.
+   - Generate `v_formationResponse` from `vocab/friction_types.yaml#formation_responses`.
+   - **Validator:** `E-PROVISION-TASK` when a provision's `task` is not in that step's `tasks`; `E-REF-TYPE` when a `cloOutcomes` competency has no published-or-draft level equal to `level` in its `levels[]`.
+3. **CLO nodes in the build:**
+   - For each released competency and each level in its `levels[]`, emit a node `{"@id": "<competency IRI>/levels/<Lx>", "type": "CompetencyLevelOutcome", competency, level, indicators[]}`, where `indicators[]` is that level's `levels[].indicators` only.
+   - For each released enactment with `indicatorVariants`, emit `<enactment IRI>/levels/<Lx>` with the generic indicators plus that enactment's variants at the level.
+   - Seed-keyed drafts in the preview profile use `seed:<key>/levels/<Lx>`.
+   - Add `CompetencyLevelOutcome` to the context. It is a computed node, never a source record.
+   - Derived UUIDv5 IDs for CLOs follow SPEC §12.3.
+4. **`E-CLO-ENACTMENT-INDICATOR`:** an Indicator ID listed in any `Enactment.indicatorVariants` and also in its competency's `levels[].indicators`.
+5. **Closure type:** regenerate `v_closureType`. Nothing else is needed.
+
+## 18. S1 integration-review items (ADR-0030 §3)
+
+1. **Hold hardening in release outputs.**
+   - The preview build on 2026-10-23 carried the description of a held successor (`TN-C11 …`) in the X1 `comment` of `EMSTv1:5.3.3`, which is copied from `v1_disposition.csv#target`.
+   - In `build_release.py`, for every X1 row whose v1 key's disposition target names a held key, replace the comment with `decision=<decision>; ADR-0011; one or more successors held (ADR-0007 §D)`.
+   - Add to the self-check: no released file contains any `tribal_hold.yaml#heldSeedKeys` value, or the bare candidate ID of one (e.g. `TN-C11`, `SC-C13`).
+   - This is the only hold finding of the S1 review (ADR-0030 §3.3).
+2. **Held tasks with held successors:** report `W-SUPERSEDED-TARGET` as `I-SUPERSEDED-TARGET-HELD` when both the task and every successor are held (v1 5.3.2, 6.5.1, 7.1.1: 9 tasks). They cannot be re-pointed before a Tribal Advisory Council exists.
+3. **Mechanical task moves and re-points** (S2; text unchanged; `provenance.derivedFrom` kept; then `migrate_v1.py --x1-only`):
+
+   | Task seeds | Action |
+   |---|---|
+   | `seed:v1-4.6.2-T2`, `-T3` | move to `modules/worklands/tasks/`; `supports: [{competency: seed:v1-4.6.1, strength: primary}]` (CR-FC-002 #4) |
+   | `seed:v1-4.5.3-T1` | move to `modules/worklands/tasks/`; supports planned `seed:v1-4.5.3-B` (CR-FC-002 #4) |
+   | `seed:v1-1.8.5-T1`…`-T3` | move to `modules/worklands/tasks/`; supports `seed:v1-1.8.1` (WP-07 handoff) |
+   | `seed:v1-6.3.5-T1`…`-T3`, `seed:v1-6.6.1-T2` | move to `modules/markets/tasks/`; supports the markets successor that X1 maps each to (wave 3; they stay drafts) |
+   | `seed:v1-3.4.1-T1`…`-T3`, `seed:v1-3.4.4-T1`…`-T3`, `seed:v1-3.4.5-T1`…`-T3` | tool-bound tasks of move-to-tools parents: set `status: superseded` with `replacedBy` = the parent's L4 tool and L1 successor (`seed:SC-C10`; `seed:DB-C26` for 3.4.4; `seed:v1-3.2.5` for 3.4.5 after item 4), as X1 records |
+   | `seed:v1-5.3.3-T*`, `seed:v1-5.3.4-T*` | leave for the S2 authors of DB-C50 and v1 5.3.4-A/B (`docs/decisions/integration/s2_work_orders.csv`) |
+
+4. **ADR-0030 core merges** (apply together, in one change, before the survivors are authored):
+   - edit exactly the eight `v1_disposition.csv` rows in `docs/decisions/integration/disposition_amendments.csv` (`decision`, `target`, `rationale`);
+   - set `status: superseded` and `replacedBy: [<survivor>]` on `seed:v1-5.6.1`, `seed:v1-5.5.4`, `seed:v1-5.4.3`, `seed:v1-3.1.5` and `seed:v1-3.3.5`;
+   - re-point their task seeds to the survivor as `primary`, text unchanged;
+   - run `python3 scripts/migrate_v1.py --x1-only`, then `validate_v2.py`.
+   - Expect 0 new errors. `docs/decisions/integration/s1_integration_review.py` then reports 175 core competencies (164 releasable plus 11 held).
+5. **`counts@1.0.0#coreCompetencies`:** add the G-9 range check to the release self-check for `--profile release` builds whose `--version` is `2.0.0-rc.1` or later, not `-dev` or the `rc.0` test fixtures. Fail when `coreCompetencies` plus held core is above 180 or below 120. Report the held part only as a count. For other builds, print the value with the range as `I-CORE-SIZE`.
+
+Checklist additions:
+- schema rebuilt, `v_closureType` current;
+- `v_instrumentLinkRole`, `v_mirrorRelation` and `v_formationResponse` generated;
+- InstrumentLink shape and the 119-link conversion (§16.2);
+- `actingInstrument`;
+- venue view and moved tests (§16.4);
+- mirrors and `inverse-links@1.2.0` (§16.3);
+- Task edges and edge checks (§16.1);
+- planned targets and hold (§17.1);
+- Pathway fields (§17.2);
+- CLO nodes and `E-CLO-ENACTMENT-INDICATOR` (§17.3–§17.4);
+- three-module checks and Enactment subsectors (§15);
+- case-sensitive products (§14);
+- seed-v1 wording (§13);
+- X1 comment redaction and self-check (§18.1);
+- held superseded-target downgrade (§18.2);
+- task moves (§18.3);
+- merges (§18.4);
+- G-9 release check (§18.5);
+- `SCHEMA_VERSION` set to 2.0.0-draft.3.

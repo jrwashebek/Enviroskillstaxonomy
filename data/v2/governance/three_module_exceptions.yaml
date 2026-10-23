@@ -1,0 +1,12 @@
+# Three-module rule exception register (ADR-0003 G-4; ADR-0018 §6; CR-DB-001 #1; ADR-0030 §1.3).
+# Read by scripts/validate_v2.py (W-THREE-MODULE on drafts, E-THREE-MODULE from candidate on): a live core practice
+# competency whose live module Enactments name only one or two distinct modules must have a row here, or gain a third
+# module enactment, or move to its home module. Zero module enactments passes (the performance is the same everywhere;
+# recurrence is reported as I-THREE-MODULE-RECURRENCE). Transversal practice and knowledge areas are exempt.
+# Rows are added only by the CA (later the Editorial Board). Row fields:
+#   competency (seed key or emst ID), modules [namespaces enacted], rationale, decidedBy (pid:… or CA),
+#   decidedOn (YYYY-MM-DD), reviewBy (YYYY-MM-DD), decidedIn (ADR or DECISION_LOG id)
+# On 2026-10-23 no core competency has one or two module enactments (docs/build/WP-06/three_module_coverage.csv), so
+# the register starts empty. Licence: CC0-1.0. Not released.
+decidedIn: [ADR-0030, CR-DB-001]
+exceptions: []

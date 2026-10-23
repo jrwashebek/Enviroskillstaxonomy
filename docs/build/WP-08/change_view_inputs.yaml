@@ -1,0 +1,702 @@
+# WP-08 change-view inputs: authored atoms (agent drafts, raterType llm, validationStatus draft, evidence S).
+# Joined with signals, external context and v1 prior evidence by pipelines/views/change_view.py.
+# kind: vocab/change_types.yaml content_change_types (tasks) or role_signal_types (role). Licence: CC0-1.0.
+generatedBy: docs/build/WP-08/build_wp08.py
+raterType: llm
+model: claude-opus-5-5
+prompt: docs/build/WP-08/prompts/wp08-role-profile.md@1
+validationStatus: draft
+evidenceLabel: S
+atoms:
+- role: seed:R01-conservation-corps-member
+  target: role
+  kind: entry-path-at-risk
+  drivers:
+  - fiscal
+  - policy-reform
+  note: 'Corps capacity depends on grant funding: the 2025 terminations were largely reinstated in plaintiff jurisdictions and the 2026 settlement covers FY2026 only; one job board saw corps postings fall.'
+  instruments:
+  - seed:ins/americorps-grant-terminations
+  signals:
+  - seed:sig/postings/conservation-job-board-americorps-2025
+  - seed:sig/bls-ep-2025-35/45-4011/R01-conservation-corps-member
+- role: seed:R01-conservation-corps-member
+  target: seed:fc-edrr-survey
+  kind: transforming
+  drivers:
+  - sensing-tech
+  - AI
+  note: Imagery and environmental DNA detections increasingly nominate survey locations; field confirmation and treatment stay with the crew.
+  instruments: []
+  signals: []
+- role: seed:R01-conservation-corps-member
+  target: seed:v1-4.4.1-T1
+  kind: transforming
+  drivers:
+  - AI
+  note: Template and AI-drafted hazard analyses are becoming common; the crew task shifts to checking them against the actual site before work.
+  instruments: []
+  signals: []
+- role: seed:R01-conservation-corps-member
+  target: seed:v1-4.1.5-T1
+  kind: transforming
+  drivers:
+  - sensing-tech
+  note: Mobile forms replace paper records; completeness rules move into the form, judgment about what to record stays with the observer.
+  instruments: []
+  signals: []
+- role: seed:R01-conservation-corps-member
+  target: seed:v1-4.2.5-T1
+  kind: stable
+  drivers:
+  - fiscal
+  note: Hand-built trail work is not compressed by current tools; demand follows maintenance funding.
+  instruments: []
+  signals: []
+- role: seed:R02-field-resource-technician
+  target: role
+  kind: entry-path-at-risk
+  drivers:
+  - fiscal
+  - workforce-capacity
+  note: Seasonal and internship entry routes contracted in 2025; formation tasks done by seasonal crews are the ones automation also compresses.
+  instruments: []
+  signals:
+  - seed:sig/headcount/usfs-seasonal-hiring-2025-2026
+  - seed:sig/postings/conservation-job-board-internships-2025
+- role: seed:R02-field-resource-technician
+  target: seed:v1-1.4.2-T1
+  kind: transforming
+  drivers:
+  - sensing-tech
+  - AI
+  note: Camera traps and acoustic recorders with automated classifiers shift effort from detection in the field to deployment, servicing and review of detections.
+  instruments: []
+  signals:
+  - seed:sig/omb-ai-inventory-2025/species-detection
+- role: seed:R02-field-resource-technician
+  target: seed:v1-4.1.2-T1
+  kind: transforming
+  drivers:
+  - sensing-tech
+  - AI
+  note: Passive acoustic and image surveys augment observer counts; observer surveys remain where detection depends on trained observers.
+  instruments: []
+  signals: []
+- role: seed:R02-field-resource-technician
+  target: seed:fc-id-adjudicate-ai
+  kind: new
+  drivers:
+  - AI
+  note: Accepting or rejecting AI-suggested identifications is new work that only an observer with formed identification skill can do.
+  instruments: []
+  signals: []
+- role: seed:R02-field-resource-technician
+  target: seed:fc-txa-field-check
+  kind: new
+  drivers:
+  - AI
+  note: Field checks of AI-generated condition maps and notes are new.
+  instruments: []
+  signals: []
+- role: seed:R02-field-resource-technician
+  target: seed:v1-1.4.3-T1
+  kind: stable
+  drivers:
+  - AI
+  note: Identification aids grow, but unaided identification is kept as a formation task with a by-hand quota (WP-07 provisions).
+  instruments: []
+  signals: []
+- role: seed:R02-field-resource-technician
+  target: seed:fc-gt-collect-blind
+  kind: emerging
+  drivers:
+  - sensing-tech
+  - AI
+  note: Blind reference collection for remote products is growing with satellite and drone products.
+  instruments: []
+  signals: []
+- role: seed:R03-monitoring-data-technician
+  target: seed:fc-sensor-service
+  kind: transforming
+  drivers:
+  - sensing-tech
+  note: Networked sensors multiply; field time moves from manual collection to servicing and verifying deployed instruments.
+  instruments: []
+  signals:
+  - seed:sig/omb-ai-inventory-2025/water-hydrology
+- role: seed:R03-monitoring-data-technician
+  target: seed:dc-223-review-flags
+  kind: transforming
+  drivers:
+  - AI
+  - automation-robotics
+  note: Automated QC applies first-pass flags; the technician adjudicates them against field and instrument records.
+  instruments: []
+  signals: []
+- role: seed:R03-monitoring-data-technician
+  target: seed:v1-2.6.4-T2
+  kind: emerging
+  drivers:
+  - AI
+  note: Measuring false-flag and missed-error rates of automated checks is growing work.
+  instruments: []
+  signals: []
+- role: seed:R03-monitoring-data-technician
+  target: seed:dc-221-data-entry
+  kind: declining
+  drivers:
+  - sensing-tech
+  - automation-robotics
+  note: Telemetry and mobile capture reduce manual data entry.
+  instruments: []
+  signals: []
+- role: seed:R03-monitoring-data-technician
+  target: seed:dc-04-stream-qc
+  kind: emerging
+  drivers:
+  - sensing-tech
+  note: Streaming QC configuration moves to senior technicians.
+  instruments: []
+  signals: []
+- role: seed:R03-monitoring-data-technician
+  target: seed:v1-1.2.4-T1
+  kind: stable
+  drivers: []
+  note: Grab sampling under custody is not compressed; it is a formation task.
+  instruments: []
+  signals: []
+- role: seed:R04-geospatial-remote-sensing-analyst
+  target: seed:v1-2.1.2-T2
+  kind: transforming
+  drivers:
+  - AI
+  note: Pretrained Earth-observation models and embeddings compress classification production; the analyst's time moves to training data, transfer tests and accuracy assessment.
+  instruments: []
+  signals:
+  - seed:sig/omb-ai-inventory-2025/remote-sensing
+- role: seed:R04-geospatial-remote-sensing-analyst
+  target: seed:dc-212-transfer-test
+  kind: new
+  drivers:
+  - AI
+  note: Testing pretrained models on local ecosystems before use is new work.
+  instruments: []
+  signals: []
+- role: seed:R04-geospatial-remote-sensing-analyst
+  target: seed:dc-212-circularity-check
+  kind: new
+  drivers:
+  - AI
+  note: Checking that a product's training data and its validation reference are independent is new work.
+  instruments: []
+  signals: []
+- role: seed:R04-geospatial-remote-sensing-analyst
+  target: seed:v1-2.1.2-T3
+  kind: transforming
+  drivers:
+  - AI
+  - sensing-tech
+  note: Accuracy assessment grows as products multiply.
+  instruments: []
+  signals: []
+- role: seed:R04-geospatial-remote-sensing-analyst
+  target: seed:v1-2.1.5-T1
+  kind: transforming
+  drivers:
+  - AI
+  note: Generative tools draft maps and graphics; design for the decision stays.
+  instruments: []
+  signals: []
+- role: seed:R04-geospatial-remote-sensing-analyst
+  target: seed:dc-08-review-ai-code
+  kind: new
+  drivers:
+  - AI
+  note: Line-by-line review of AI-generated analysis code is new.
+  instruments: []
+  signals: []
+- role: seed:R05-ground-truth-validation-steward
+  target: role
+  kind: new-role
+  drivers:
+  - AI
+  - sensing-tech
+  note: Validation of remote and AI products is forming as a distinct responsibility; no dedicated federal series exists (X4 NoTermFound).
+  instruments: []
+  signals:
+  - seed:sig/bls-ep-2025-35/19-4042/R05-ground-truth-validation-steward
+- role: seed:R05-ground-truth-validation-steward
+  target: seed:fc-gt-collect-blind
+  kind: emerging
+  drivers:
+  - AI
+  - sensing-tech
+  note: Blind reference collection grows with product use.
+  instruments: []
+  signals: []
+- role: seed:R05-ground-truth-validation-steward
+  target: seed:fs-c04-plan-reference
+  kind: new
+  drivers:
+  - AI
+  note: Regional reference networks for Earth-observation models are new.
+  instruments: []
+  signals: []
+- role: seed:R05-ground-truth-validation-steward
+  target: seed:fc-det-review
+  kind: transforming
+  drivers:
+  - AI
+  note: Review queues for classifier detections replace manual screening.
+  instruments: []
+  signals: []
+- role: seed:R05-ground-truth-validation-steward
+  target: seed:dc-15-label-reference
+  kind: new
+  drivers:
+  - AI
+  note: Labelling reference sets blind to tool outputs is new work.
+  instruments: []
+  signals: []
+- role: seed:R09-restoration-project-lead
+  target: role
+  kind: transforming-role
+  drivers:
+  - fiscal
+  - policy-reform
+  note: Rescission of unobligated conservation funds and federal capacity reductions shift restoration delivery toward partners and contracts.
+  instruments:
+  - seed:ins/obbba-ira-rescissions
+  signals:
+  - seed:sig/foresight/ws-10-obbba-ira-rescissions
+- role: seed:R09-restoration-project-lead
+  target: seed:fc-resto-read-response
+  kind: transforming
+  drivers:
+  - sensing-tech
+  note: Drone and satellite imagery add response evidence between site visits; reading the site stays human.
+  instruments: []
+  signals: []
+- role: seed:R09-restoration-project-lead
+  target: seed:lc-txf-write-approach
+  kind: transforming
+  drivers:
+  - AI
+  note: Proposal sections are increasingly AI-drafted; review against the solicitation and the organization's real capacity grows.
+  instruments: []
+  signals: []
+- role: seed:R09-restoration-project-lead
+  target: seed:v1-1.7.1-T3
+  kind: emerging
+  drivers:
+  - climate
+  note: Deciding whether restoration to historical conditions is feasible becomes routine as sites shift state.
+  instruments: []
+  signals: []
+- role: seed:R09-restoration-project-lead
+  target: seed:v1-4.2.1-T3
+  kind: stable
+  drivers: []
+  note: Adapting treatments from site response is not compressed by current tools.
+  instruments: []
+  signals: []
+- role: seed:R10-environmental-review-specialist
+  target: role
+  kind: transforming-role
+  drivers:
+  - policy-reform
+  note: Review now runs under each agency's own procedures after CEQ's regulations were removed (effective Jan 8 2026) and after Seven County; the SPEED Act passed the House and is pending in the Senate.
+  instruments:
+  - seed:ins/ceq-nepa-regs-removal
+  - seed:ins/seven-county
+  - seed:ins/speed-act
+  - seed:ins/nepa-fra-2023
+  signals: []
+- role: seed:R10-environmental-review-specialist
+  target: seed:v1-6.1.4-T1
+  kind: transforming
+  drivers:
+  - AI
+  - policy-reform
+  note: AI drafting compresses production of analysis sections; page and time limits tighten scope.
+  instruments: []
+  signals:
+  - seed:sig/omb-ai-inventory-2025/nepa-permitting
+  - seed:sig/capability/draftnepabench-coding-agents
+  - seed:sig/deployment/permitting-ai-shared-services
+- role: seed:R10-environmental-review-specialist
+  target: seed:sc-review-ai-drafted-sections
+  kind: new
+  drivers:
+  - AI
+  note: Verifying AI-drafted sections against the project record is new and grows with drafting tools.
+  instruments: []
+  signals: []
+- role: seed:R10-environmental-review-specialist
+  target: seed:v1-6.4.4-T2
+  kind: transforming
+  drivers:
+  - AI
+  note: Machine-assisted comment coding is deployed; tracing to source stays.
+  instruments: []
+  signals:
+  - seed:sig/omb-ai-inventory-2025/public-comment
+- role: seed:R10-environmental-review-specialist
+  target: seed:sc-review-automated-screening
+  kind: new
+  drivers:
+  - AI
+  note: Batch review of automated exclusion screening is new.
+  instruments: []
+  signals: []
+- role: seed:R10-environmental-review-specialist
+  target: seed:sc-update-permitting-dashboard
+  kind: new
+  drivers:
+  - policy-reform
+  note: Public milestone dashboards and the permitting data standard add reporting work.
+  instruments:
+  - seed:ins/ceq-permitting-data-standard
+  - seed:ins/fast-41
+  signals: []
+- role: seed:R10-environmental-review-specialist
+  target: seed:sc-determine-review-level
+  kind: transforming
+  drivers:
+  - policy-reform
+  note: Agency procedures and exclusion adoption change how review level is set.
+  instruments: []
+  signals: []
+- role: seed:R11-environmental-permit-writer
+  target: seed:sc-draft-permit-fact-sheet
+  kind: transforming
+  drivers:
+  - AI
+  note: Permit-drafting software and AI first drafts compress production; the writer's time moves to specifying and checking conditions.
+  instruments: []
+  signals:
+  - seed:sig/omb-ai-inventory-2025/genai-drafting
+  - seed:sig/omb-ai-inventory-2025/cots-genai-drafting-scale
+- role: seed:R11-environmental-permit-writer
+  target: seed:sc-review-ai-drafted-permit
+  kind: new
+  drivers:
+  - AI
+  note: Reviewing AI-drafted permits against the record is new.
+  instruments: []
+  signals: []
+- role: seed:R11-environmental-permit-writer
+  target: seed:sc-review-automated-permit-checks
+  kind: new
+  drivers:
+  - AI
+  - policy-reform
+  note: Electronic permitting adds automated completeness checks that writers confirm or override.
+  instruments:
+  - seed:ins/permitting-tech-pm-2025
+  - seed:ins/epermit-act
+  signals: []
+- role: seed:R11-environmental-permit-writer
+  target: seed:sc-check-permit-completeness
+  kind: transforming
+  drivers:
+  - AI
+  - policy-reform
+  note: Completeness review is partly automated in electronic permitting systems.
+  instruments: []
+  signals: []
+- role: seed:R11-environmental-permit-writer
+  target: seed:sc-derive-permit-limits
+  kind: stable
+  drivers: []
+  note: Deriving limits from standards and the record stays with the writer.
+  instruments: []
+  signals: []
+- role: seed:R12-environmental-compliance-inspector
+  target: seed:sc-review-anomaly-flags
+  kind: new
+  drivers:
+  - AI
+  - sensing-tech
+  note: Automated anomaly flags in facility monitoring reports are reviewed before inspection.
+  instruments: []
+  signals:
+  - seed:sig/omb-ai-inventory-2025/inspection-compliance
+- role: seed:R12-environmental-compliance-inspector
+  target: seed:sc-rank-facilities-inspection
+  kind: transforming
+  drivers:
+  - AI
+  note: Data-driven targeting changes inspection selection.
+  instruments: []
+  signals: []
+- role: seed:R12-environmental-compliance-inspector
+  target: seed:sc-write-inspection-report
+  kind: transforming
+  drivers:
+  - AI
+  note: Drafted inspection notes compress report production; findings of fact stay the inspector's.
+  instruments: []
+  signals: []
+- role: seed:R12-environmental-compliance-inspector
+  target: seed:sc-verify-reported-values
+  kind: transforming
+  drivers:
+  - sensing-tech
+  - policy-reform
+  note: Electronic reporting and continuous monitoring make independent checks of reported values routine.
+  instruments:
+  - seed:ins/npdes-ereporting-rule
+  signals: []
+- role: seed:R12-environmental-compliance-inspector
+  target: seed:v1-6.1.2-T1
+  kind: stable
+  drivers: []
+  note: On-site inspection is not compressed by current tools.
+  instruments: []
+  signals: []
+- role: seed:R12-environmental-compliance-inspector
+  target: role
+  kind: transforming-role
+  drivers:
+  - workforce-capacity
+  - fiscal
+  note: Federal environmental staffing fell sharply in 2025-26; more inspection work rests on state and local programmes.
+  instruments: []
+  signals:
+  - seed:sig/headcount/epa-12849-jan-2026
+- role: seed:R13-resource-program-manager
+  target: role
+  kind: transforming-role
+  drivers:
+  - fiscal
+  - workforce-capacity
+  - demographic
+  note: The federal civilian workforce fell about 12% (Sep 2024 - Jan 2026); EPA's roughly 2,000 year-end-2025 departures had a 30.3-year median service, so knowledge continuity becomes programme work.
+  instruments: []
+  signals:
+  - seed:sig/headcount/federal-civilian-minus-12pct
+  - seed:sig/headcount/epa-12849-jan-2026
+- role: seed:R13-resource-program-manager
+  target: seed:lc-txd-identify-single-incumbent
+  kind: new
+  drivers:
+  - demographic
+  - workforce-capacity
+  note: Identifying single-incumbent knowledge before departures is new routine work.
+  instruments: []
+  signals: []
+- role: seed:R13-resource-program-manager
+  target: seed:sc-plan-funding-lapse
+  kind: transforming
+  drivers:
+  - fiscal
+  note: Funding-lapse and rescission planning becomes recurrent.
+  instruments: []
+  signals: []
+- role: seed:R13-resource-program-manager
+  target: seed:v1-3.5.5-T3
+  kind: new
+  drivers:
+  - AI
+  - policy-reform
+  note: Programme managers set rules that keep consequential AI-assisted decisions with accountable people.
+  instruments:
+  - seed:ins/omb-m-25-21
+  signals: []
+- role: seed:R13-resource-program-manager
+  target: seed:sc-assess-reversal-risk
+  kind: emerging
+  drivers:
+  - policy-reform
+  note: Instrument reversal risk is assessed routinely.
+  instruments: []
+  signals: []
+- role: seed:R13-resource-program-manager
+  target: seed:sc-write-decision-memo
+  kind: transforming
+  drivers:
+  - AI
+  note: Drafting tools compress memo production; accountability stays.
+  instruments: []
+  signals: []
+- role: seed:R06-wildland-fire-operations
+  target: role
+  kind: transforming-role
+  drivers:
+  - policy-reform
+  - workforce-capacity
+  note: Federal wildland fire is being consolidated in the U.S. Wildland Fire Service, and aligned USWFS-USFS qualification standards take effect in January 2027 (NWCG is not a party).
+  instruments:
+  - seed:ins/uswfs-so-3448
+  - seed:ins/wildland-fire-quals-alignment
+  signals: []
+- role: seed:R06-wildland-fire-operations
+  target: role
+  kind: skill-shift
+  drivers:
+  - climate
+  note: 'Workload grows with fire activity: the 2026 season ran well above the ten-year average.'
+  instruments: []
+  signals:
+  - seed:sig/foresight/ws-36-fire-season-2026
+- role: seed:R06-wildland-fire-operations
+  target: seed:db-4.3.1-t4
+  kind: transforming
+  drivers:
+  - sensing-tech
+  - AI
+  note: Satellite and camera detection reaches the size-up earlier; ground size-up of fuels and values stays.
+  instruments: []
+  signals:
+  - seed:sig/omb-ai-inventory-2025/fire-smoke
+- role: seed:R06-wildland-fire-operations
+  target: seed:lc-txc-review-generated-briefing
+  kind: new
+  drivers:
+  - AI
+  note: Generated hazard briefings are checked on site before delivery.
+  instruments: []
+  signals: []
+- role: seed:R06-wildland-fire-operations
+  target: seed:v1-4.3.4-T1
+  kind: transforming
+  drivers:
+  - sensing-tech
+  note: Automated stations supply indices; hand calculation is kept as a formation task (WP-07 by-hand quota).
+  instruments: []
+  signals: []
+- role: seed:R06-wildland-fire-operations
+  target: seed:v1-4.3.1-T1
+  kind: stable
+  drivers: []
+  note: Fireline construction is not compressed by current tools.
+  instruments: []
+  signals: []
+- role: seed:R07-fuels-prescribed-fire-specialist
+  target: seed:db-4.3.3-t4
+  kind: new
+  drivers:
+  - sensing-tech
+  - AI
+  note: Remotely sensed fuel maps replace much plot sampling; field verification of fuel-model assignments is new routine work.
+  instruments: []
+  signals:
+  - seed:sig/openlmp/term-remote-sensing-lidar-drone-2012-vs-1982
+- role: seed:R07-fuels-prescribed-fire-specialist
+  target: seed:v1-4.3.3-T1
+  kind: transforming
+  drivers:
+  - sensing-tech
+  note: Fuels assessment shifts from plots to verifying mapped fuels.
+  instruments: []
+  signals: []
+- role: seed:R07-fuels-prescribed-fire-specialist
+  target: seed:db-4.3.2-t4
+  kind: emerging
+  drivers:
+  - automation-robotics
+  - policy-reform
+  note: Aerial ignition by uncrewed aircraft is spreading; beyond-visual-line-of-sight rules are pending (watch).
+  instruments:
+  - seed:ins/faa-part-108
+  signals:
+  - seed:sig/policy/faa-part-108-final-at-oira
+- role: seed:R07-fuels-prescribed-fire-specialist
+  target: seed:v1-4.3.2-T1
+  kind: transforming
+  drivers:
+  - AI
+  note: Burn plan sections are increasingly drafted from templates or AI; prescription judgment stays.
+  instruments: []
+  signals: []
+- role: seed:R07-fuels-prescribed-fire-specialist
+  target: seed:DB-C15-T2
+  kind: transforming
+  drivers:
+  - sensing-tech
+  - AI
+  note: Smoke dispersion forecasts improve; receptor judgment stays.
+  instruments: []
+  signals: []
+- role: seed:R07-fuels-prescribed-fire-specialist
+  target: role
+  kind: skill-shift
+  drivers:
+  - climate
+  - workforce-capacity
+  note: Fuels and prescribed fire workload grows with fire activity while federal capacity has fallen.
+  instruments: []
+  signals:
+  - seed:sig/foresight/ws-36-fire-season-2026
+  - seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01
+- role: seed:R08-fire-intelligence-analyst
+  target: role
+  kind: new-role
+  drivers:
+  - sensing-tech
+  - AI
+  - policy-reform
+  note: Year-round fire intelligence is forming as satellite constellations and detection networks come online and federal fire is consolidated.
+  instruments:
+  - seed:ins/uswfs-so-3448
+  signals:
+  - seed:sig/foresight/ws-31-firesat-operational
+- role: seed:R08-fire-intelligence-analyst
+  target: seed:FS-C05-T1
+  kind: new
+  drivers:
+  - AI
+  - sensing-tech
+  note: Continuous multi-source fusion is new work.
+  instruments: []
+  signals: []
+- role: seed:R08-fire-intelligence-analyst
+  target: seed:FS-C05-T2
+  kind: new
+  drivers:
+  - AI
+  - sensing-tech
+  note: Adjudicating automated detections before ordering is new.
+  instruments: []
+  signals:
+  - seed:sig/omb-ai-inventory-2025/fire-smoke
+- role: seed:R08-fire-intelligence-analyst
+  target: seed:v1-4.3.4-T2
+  kind: transforming
+  drivers:
+  - AI
+  note: Spread models run continuously; hand-worked predictions are kept as a formation check (WP-07).
+  instruments: []
+  signals: []
+- role: seed:R08-fire-intelligence-analyst
+  target: seed:dc-12-skill-tracking
+  kind: new
+  drivers:
+  - AI
+  note: Tracking forecast skill against observed outcomes is new.
+  instruments: []
+  signals: []
+- role: seed:R37-facility-environmental-compliance-specialist
+  target: seed:sc-prepare-compliance-report
+  kind: transforming
+  drivers:
+  - AI
+  - policy-reform
+  note: Automated compilation of monitoring reports compresses production; certification review stays.
+  instruments:
+  - seed:ins/report-certification-rules
+  - seed:ins/npdes-ereporting-rule
+  signals: []
+- role: seed:R37-facility-environmental-compliance-specialist
+  target: seed:sc-determine-disclosure-applicability
+  kind: transforming
+  drivers:
+  - policy-reform
+  - market
+  note: Disclosure regimes diverge across jurisdictions and change through litigation.
+  instruments:
+  - seed:ins/ca-sb-253
+  - seed:ins/eu-omnibus-i
+  signals: []

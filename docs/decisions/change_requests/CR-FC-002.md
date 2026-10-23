@@ -35,3 +35,15 @@ These tasks still support superseded v1 seeds. Their successors live in `worklan
 ## Request
 
 WP-06 decides on items 1–2 and schedules item 4 with the worklands early drafts. No CA ruling needed.
+
+## CA ruling
+
+- **Ruling:** **accept 1–2 for S2 (DB, inside WP-08); 3 deferred to wave 3; 4 mechanical moves by DE in S2** · **Date:** 2026-10-23 · **Decider:** CA · **Recorded in:** ADR-0030 §4, `RULINGS_FOR_DE.md` §18.3, DECISION_LOG `CR-FC-002`
+- **Why the CA rules:** WP-06 finished S1. DB (A6) remains active in S2 as WP-08 contributor for the module roles R24–R30.
+
+1. **FC-C05 → DB-C19 (R27, P2): accepted.** DB (A6) adds the stop-and-upgrade adaptation task, the soil-gas sampling task and the L2 halt indicator in S2, writing in the records (the S1 builders are frozen, ADR-0030 §5; if DB re-runs `build_wp06.py` it must first port these edits into `docs/build/WP-06/src/`). It also adds the `contributing` links to core `seed:v1-4.4.4-A` and `seed:FC-C24`, which run module → core, the permitted direction. FC (A3) reviews.
+2. **FC-C17 → DB-C13 (R28, P2): accepted.** DB adds both tasks. The community-sensor task supports core `seed:FC-C21` as `contributing` and states what low-cost sensor data can and cannot show. It names no product.
+3. **FC-C29 → PS-C06: deferred to wave 3** with MOD-10. When PS-C06 is authored, its field-calibration anchors reuse `seed:FC-C31` and `seed:FS-C04`, not restated text. This is recorded in `docs/decisions/integration/disposition_amendments.csv`.
+4. **Task moves: DE in S2, mechanically.** No text changes; FC and DB review the result. They are listed with the other S1 residue moves in `RULINGS_FOR_DE.md` §18.3:
+   - `seed:v1-4.6.2-T2` and `-T3` move to `modules/worklands/tasks/` and support `seed:v1-4.6.1`, which exists;
+   - `seed:v1-4.5.3-T1` moves there and supports the planned `seed:v1-4.5.3-B`, so `W-REF-PENDING` is expected until MOD-14 is authored (wave 2).

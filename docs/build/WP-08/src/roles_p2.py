@@ -1,0 +1,195 @@
+"""P2 federal/state design-partner roles R14-R30 at starter-kit depth (auto bundles; see prompts/wp08-role-profile.md)."""
+from wp08lib import C, Role
+
+E, J, S, LD = "entry", "journey", "senior", "lead"
+
+ROLES = [
+    Role(key="R14-forester", skip=['sc-write-review-decision', 'fc-tree-advanced', 'sc-resolve-plan-objections'], tier="P2", area="forest", wf="WF-PLAN", levels=[E, J, S, LD], life="established",
+         title="Forester", auto=True, alt=["silviculturist", "forest management forester", "timber management forester"],
+         definition=("Professional role that inventories forests, diagnoses forest health, prescribes and implements "
+                     "silvicultural treatments, plans harvests and management, and prepares and administers timber sale, "
+                     "stewardship and partner agreements on public or private forest land."),
+         function="Manage forest stands and landscapes toward stated objectives through measured, prescribed and administered treatments.",
+         comps=[C("v1-1.3.1", 5, "L1 L2 L3 L4", dist=True), C("v1-1.3.2", 5, "L1 L2 L3 L3"), C("v1-1.3.4", 4, "L1 L2 L3 L3"),
+                C("v1-1.3.5", 4, "L1 L2 L3 L4"), C("FH-C02", 4, "- L2 L3 L4"), C("v1-1.3.3", 4, "- L2 L3 L3"),
+                C("v1-1.4.3", 4, "L1 L2 L2 L2"), C("FC-C02", 3, "L1 L2 L3 L3"), C("v1-4.3.3", 3, "L1 L2 L2 L3"),
+                C("SL-C08", 3, "- L2 L3 L3"), C("FH-C01", 3, "- L2 L2 L3"), C("v1-6.2.3", 3, "- L2 L3 L3"),
+                C("FC-C26", 3, "L1 L2 L2 L2"), C("SC-C08", 2, "- - L2 L3"), C("PS-C23", 2, "- L2 L2 L3")],
+         entry_from=["R02-field-resource-technician"], progresses_to=["R13-resource-program-manager"],
+         note=("Source of the regenerated Forester PD in FES format (docs/package/forester_pd_fes_draft.md). PS-C23 "
+               "(certification-scheme forestry) is targeted for the private variant, which adds its tasks.")),
+    Role(key="R15-wildlife-biologist", tier="P2", area="wildlife", wf="WF-ASSESS", levels=[E, J, S, LD], life="established",
+         title="Wildlife biologist", auto=True, alt=["wildlife ecologist", "wildlife management biologist"],
+         definition=("Professional role that surveys, captures and monitors wildlife, assesses habitat condition, designs "
+                     "monitoring, analyzes population data and assesses effects of actions on protected species."),
+         function="Establish the status and needs of wildlife populations and habitats and advise decisions that affect them.",
+         comps=[C("FC-C15", 5, "L1 L2 L3 L3"), C("v1-4.1.2", 5, "L1 L2 L3 L3"), C("v1-1.1.5", 5, "L1 L2 L3 L4", dist=True),
+                C("v1-1.4.3", 4, "L1 L2 L3 L3"), C("FH-C01", 4, "L1 L2 L3 L4"), C("DC-CAND-03", 4, "- L2 L3 L4"),
+                C("FC-C03", 4, "- L2 L3 L3"), C("v1-2.2.2", 3, "L1 L2 L3 L3"), C("v1-1.1.2", 3, "L1 L2 L3 L3"),
+                C("FC-C18", 3, "L1 L2 L2 L2"), C("v1-6.5.5", 2, "- - L2 L3")],
+         entry_from=["R02-field-resource-technician"]),
+    Role(key="R16-fisheries-aquatic-biologist", tier="P2", area="wildlife", wf="WF-ASSESS", levels=[E, J, S, LD],
+         life="established", title="Fisheries and aquatic biologist", auto=True,
+         alt=["fisheries biologist", "aquatic biologist", "fish biologist"],
+         definition=("Professional role that samples fish and aquatic communities, manages fish populations and habitats, "
+                     "runs stock assessments and hatchery programmes, and works safely on water."),
+         function="Sustain fish populations and aquatic habitats to stated conservation and harvest objectives.",
+         comps=[C("v1-1.4.5", 5, "L1 L2 L3 L4", dist=True), C("DB-C49", 4, "- L2 L3 L4"), C("FC-C15", 4, "L1 L2 L3 L3"),
+                C("FC-C12", 4, "L1 L2 L2 L3"), C("v1-4.1.3", 4, "L1 L2 L3 L3"), C("FC-C11", 4, "L1 L2 L2 L2"),
+                C("FH-C10", 3, "L1 L2 L2 L3"), C("FC-C16", 3, "L1 L2 L2 L3"), C("DC-CAND-03", 3, "- L2 L3 L3"),
+                C("v1-2.2.2", 3, "L1 L2 L3 L3")],
+         entry_from=["R02-field-resource-technician"]),
+    Role(key="R17-hydrologist", skip=['v1-2.4.2-T1', 'dc-11-incident-confidence-briefing'], tier="P2", area="waterq", wf="WF-ASSESS", levels=[J, S, LD], life="established",
+         title="Hydrologist", auto=True, alt=["water resources scientist", "groundwater hydrologist"],
+         definition=("Professional role that measures and models surface and groundwater, plans water supply under "
+                     "hydrologic uncertainty, characterizes aquifers, protects source waters and assesses stream form."),
+         function="Quantify water quantity and movement and the uncertainty around them for supply, protection and hazard decisions.",
+         comps=[C("DB-C10", 5, "L2 L3 L4", dist=True), C("DB-C11", 5, "L2 L3 L4"), C("FC-C07", 4, "L2 L3 L3"),
+                C("v1-4.1.3", 4, "L2 L2 L3"), C("v1-2.4.2", 5, "L2 L3 L4"), C("DC-CAND-11", 4, "L2 L3 L3"),
+                C("v1-2.2.2", 4, "L2 L3 L3"), C("FC-C01", 3, "L2 L2 L3"), C("DB-C08", 3, "L2 L3 L3"),
+                C("v1-1.5.1", 3, "L2 L3 L3"), C("DC-CAND-09", 3, "L2 L3 L3")],
+         entry_from=["R03-monitoring-data-technician"]),
+    Role(key="R18-rangeland-management-specialist", tier="P2", area="forest", wf="WF-AUTHORIZE", levels=[E, J, S],
+         life="established", title="Rangeland management specialist", auto=True,
+         alt=["range conservationist", "rangeland management specialist"],
+         definition=("Resource-manager role that monitors rangeland condition with calibrated indicators, plans, "
+                     "authorizes and monitors livestock grazing, and works with permittees on shared rangelands."),
+         function="Keep shared rangelands productive and resilient through monitored, authorized and adapted grazing use.",
+         comps=[C("IA-CC-01", 5, "L1 L2 L3", dist=True), C("FC-C08", 5, "L1 L2 L3"), C("v1-4.1.1", 4, "L1 L2 L3"),
+                C("v1-4.1.4", 4, "L1 L2 L3"), C("SL-C02", 4, "L1 L2 L3"), C("FC-C21", 4, "- L2 L3"),
+                C("v1-4.2.2", 3, "L1 L2 L2"), C("SL-C08", 3, "- L2 L3"), C("v1-6.2.3", 3, "- L2 L3"),
+                C("v1-1.4.3", 3, "L1 L2 L2")],
+         entry_from=["R02-field-resource-technician"]),
+    Role(key="R19-soil-conservationist", tier="P2", area="worklands", wf="WF-PLAN", levels=[E, J, S], life="established",
+         title="Soil conservationist", auto=True, alt=["conservation planner", "district conservationist"],
+         definition=("Role that develops conservation plans with private landowners, assesses soils and erosion in the "
+                     "field, designs conservation practices and delivers voluntary assistance programmes."),
+         function="Help land managers adopt conservation practices that protect soil, water and habitat on working lands.",
+         comps=[C("FH-C03", 5, "L1 L2 L3", dist=True), C("v1-4.1.4", 5, "L1 L2 L3"), C("v1-4.2.4", 4, "L1 L2 L3"),
+                C("FC-C21", 4, "- L2 L3"), C("v1-4.1.1", 4, "L1 L2 L3"), C("v1-1.1.5", 4, "L1 L2 L3"),
+                C("DC-CAND-03", 3, "- L2 L3"), C("v1-4.2.2", 3, "L1 L2 L2"), C("SL-C12", 3, "- L2 L3"),
+                C("v1-2.1.4", 3, "L1 L2 L2")],
+         entry_from=["R02-field-resource-technician"],
+         note="FH-C03 is an early draft homed in worklands (wave 2) per the dispositions."),
+    Role(key="R20-ecologist", skip=['v1-2.4.2-T1'], tier="P2", area="core", wf="WF-ASSESS", levels=[J, S, LD], life="established",
+         title="Ecologist", auto=True, alt=["research ecologist", "landscape ecologist", "conservation scientist"],
+         definition=("Scientist role that assesses biodiversity and habitat, designs monitoring for valid inference, "
+                     "models ecological change, recognizes novel ecosystem states and plans for ecological "
+                     "transformation."),
+         function="Explain how ecosystems are changing and what management can achieve, with stated evidence and uncertainty.",
+         comps=[C("v1-1.1.2", 5, "L2 L3 L4", dist=True), C("v1-1.1.5", 4, "L2 L3 L4"), C("v1-1.7.1", 4, "L2 L3 L4"),
+                C("v1-1.7.4", 4, "L2 L3 L4"), C("DC-CAND-03", 4, "L2 L3 L4"), C("v1-2.2.2", 4, "L2 L3 L4"),
+                C("v1-1.5.2", 3, "L2 L3 L4"), C("v1-2.4.2", 3, "L2 L3 L3"), C("v1-6.3.2", 3, "L2 L3 L3"),
+                C("FC-C22", 3, "L2 L3 L3"), C("v1-1.4.3", 3, "L2 L3 L3"), C("v1-1.7.5", 2, "- L3 L4"),
+                C("v1-1.7.2", 2, "- L3 L4")],
+         entry_from=["R02-field-resource-technician", "R04-geospatial-remote-sensing-analyst"]),
+    Role(key="R21-park-ranger-visitor-resource", skip=['fc-tree-advanced', 'fc-risk-automation'], tier="P2", area="parks", wf="WF-OPERATE", levels=[E, J, S],
+         life="established", title="Park ranger (visitor and resource management)", auto=True,
+         alt=["park ranger", "visitor use specialist", "interpretive ranger"],
+         definition=("Role that provides visitor information and safety messaging, manages recreation and visitor use, "
+                     "monitors wilderness character and scenic resources, responds to field emergencies and keeps "
+                     "visitors and resources safe. Sworn law-enforcement rangers are a credential-gated variant."),
+         function="Keep park visitors safe and informed while protecting the resources and experiences the park exists for.",
+         comps=[C("v1-5.5.1", 5, "L1 L2 L3", dist=True), C("IA-CC-02", 4, "- L2 L3"), C("v1-4.4.2", 4, "L1 L2 L3"),
+                C("v1-4.4.5", 4, "L1 L2 L3"), C("FC-C26", 4, "L1 L2 L2"), C("DB-C29", 4, "L1 L2 L3"),
+                C("v1-4.4.1-A", 4, "L1 L2 L3"), C("IA-CC-07", 3, "- L2 L3"), C("IA-CC-03", 3, "- L2 L3"),
+                C("FC-C21", 3, "- L2 L3"), C("v1-4.2.5", 3, "L1 L2 L2"), C("FC-C18", 3, "L1 L2 L2")],
+         entry_from=["R01-conservation-corps-member"]),
+    Role(key="R22-environmental-engineer", skip=['v1-2.4.2-T1', 'dc-11-incident-confidence-briefing', 'lc-txf-invoice-against-agreement'], tier="P2", area="core", wf="WF-PLAN", levels=[E, J, S, LD], life="established",
+         title="Environmental engineer", auto=True, alt=["environmental engineering specialist", "professional engineer (environmental)"],
+         definition=("Licensed-scope role that designs and reviews environmental treatment, control and remediation "
+                     "systems, models environmental processes, drafts and reviews permit conditions and seals work "
+                     "within licensure. A separate role because licensure changes which tasks may be performed."),
+         function="Design and certify engineered environmental systems and analyses within the scope of professional licensure.",
+         comps=[C("SL-C16", 5, "L1 L2 L3 L4", dist=True), C("SL-C02", 4, "L1 L2 L3 L4"), C("SC-C16", 4, "L1 L2 L3 L4"),
+                C("v1-2.4.2", 4, "- L2 L3 L4"), C("DB-C03", 4, "- L2 L3 L4"), C("DB-C21", 4, "- L2 L3 L4"),
+                C("DB-C06", 3, "L1 L2 L3 L3"), C("v1-6.7.1", 3, "- L2 L3 L3"), C("DC-CAND-09", 3, "L1 L2 L3 L3"),
+                C("PS-C03", 3, "L1 L2 L3 L4"), C("SC-C04", 3, "- L2 L3 L3"), C("DC-CAND-11", 3, "L1 L2 L3 L3")],
+         note="Title-neutral function (some states restrict 'engineer' in classified titles; seed:ins/state-licensing-acts-wi)."),
+    Role(key="R23-enforcement-case-manager", skip=['sc-confirm-comment-responses', 'sc-negotiate-permit-conditions', 'sc-plan-inspection'], tier="P2", area="core", wf="WF-ENFORCE", levels=[J, S, LD], life="established",
+         title="Enforcement case manager", auto=True, alt=["enforcement specialist", "enforcement analyst"],
+         definition=("Regulatory role that develops enforcement cases from referral to settlement or litigation: "
+                     "investigating violations, assembling evidence files, calculating penalties, negotiating consent "
+                     "orders and testifying, while protecting the integrity of findings."),
+         function="Bring regulated parties back into compliance through defensible, proportionate enforcement actions.",
+         comps=[C("SL-C04", 5, "L2 L3 L4", dist=True), C("SC-C02", 5, "L2 L3 L4"), C("SC-C17", 4, "- L3 L4"),
+                C("SC-C07", 4, "L2 L3 L4"), C("SL-C03", 4, "L2 L3 L3"), C("DB-C25", 4, "L2 L3 L4"),
+                C("v1-7.1.3", 4, "L2 L3 L3"), C("SC-C16", 3, "L2 L3 L3"), C("PS-C18", 3, "L2 L3 L3"),
+                C("v1-5.2.4", 3, "L2 L3 L3")],
+         entry_from=["R12-environmental-compliance-inspector"]),
+    Role(key="R24-drinking-water-program-analyst", tier="P2", area="water", wf="WF-AUTHORIZE", levels=[J, S],
+         life="established", title="Drinking water programme analyst", auto=True,
+         alt=["drinking water compliance analyst", "public water system specialist"],
+         definition=("Regulatory role in a primacy programme that assures public water system compliance, oversees "
+                     "delegated delivery, provides technical assistance, administers financial assistance and "
+                     "communicates health risks."),
+         function="Assure that public water systems deliver water meeting drinking water requirements, and act when they do not.",
+         comps=[C("SL-C06", 5, "L2 L3", dist=True), C("SC-C14", 4, "L2 L3"), C("SL-C03", 4, "L2 L3"),
+                C("SL-C10", 4, "L2 L3"), C("SC-C12", 4, "L2 L3"), C("DB-C29", 4, "L2 L3"), C("SL-C12", 3, "L2 L3"),
+                C("SC-C02", 3, "L2 L3"), C("DB-C21", 3, "L2 L3"), C("FC-C16", 3, "L1 L2")]),
+    Role(key="R25-water-wastewater-operator", skip=['sc-keep-sealed-work-records', 'sc-seal-deliverable', 'fc-qc-defend', 'fc-haz-decon-exit', 'fc-haz-hasp'], tier="P2", area="water", wf="WF-OPERATE", levels=[E, J, S, LD],
+         life="established", title="Water and wastewater treatment operator", auto=True,
+         alt=["treatment plant operator", "water operator", "wastewater operator"],
+         definition=("Credential-scoped role that operates drinking water and wastewater treatment processes to water "
+                     "quality targets and permit limits, supervises automated process control, keeps samples and "
+                     "records, and works safely in plants. A separate role because certification in responsible charge "
+                     "defines legal scope."),
+         function="Operate treatment processes in responsible charge so that delivered water and discharged effluent meet their limits.",
+         comps=[C("DB-C01", 5, "L1 L2 L3 L4", dist=True), C("DB-C02", 5, "L1 L2 L3 L4"), C("DB-C03", 4, "- L2 L3 L4"),
+                C("SL-C16", 5, "L1 L2 L3 L4"), C("FC-C24", 4, "L1 L2 L3 L3"), C("v1-4.4.4-A", 4, "L1 L2 L2 L2"),
+                C("DB-C06", 4, "L1 L2 L3 L3"), C("v1-4.4.1-B", 4, "L1 L2 L3 L4"), C("v1-4.7.3", 3, "L1 L2 L3 L3"),
+                C("DC-CAND-04", 2, "- - L2 L3")]),
+    Role(key="R26-environmental-health-specialist", tier="P2", area="envhealth", wf="WF-ENFORCE", levels=[E, J, S, LD],
+         life="established", title="Environmental health specialist", auto=True,
+         alt=["sanitarian", "environmental health inspector", "registered environmental health specialist"],
+         definition=("Registration-scoped public health role that inspects food, water, wastewater, housing and other "
+                     "facilities, reviews plans, investigates outbreaks and complaints, runs heat and hazard programmes "
+                     "and communicates health risks."),
+         function="Prevent illness and injury from environmental hazards through inspection, investigation and risk communication.",
+         comps=[C("SL-C07", 5, "L1 L2 L3 L4", dist=True), C("LC-C-07", 5, "L1 L2 L3 L4"), C("SL-C04", 4, "- L2 L3 L4"),
+                C("FC-C16", 4, "L1 L2 L3 L3"), C("FC-C24", 4, "L1 L2 L3 L3"), C("DB-C29", 4, "L1 L2 L3 L4"),
+                C("DB-C39", 3, "- L2 L3 L3"), C("v1-6.7.1", 3, "- L2 L3 L3"), C("SL-C10", 3, "L1 L2 L3 L3"),
+                C("FC-C31", 2, "- - L2 L3"), C("v1-1.4.3", 2, "L1 L1 L2 L2")]),
+    Role(key="R27-remediation-project-manager", tier="P2", area="waste", wf="WF-BUILD", levels=[J, S, LD], life="established",
+         title="Remediation project manager", auto=True, alt=["remedial project manager", "cleanup project manager"],
+         definition=("Role that characterizes contaminated sites, selects remedies, oversees cleanup through long-term "
+                     "stewardship, assesses health risks and directs contractor-prepared documents, for a regulator, a "
+                     "responsible party or a consultant."),
+         function="Bring contaminated sites to protective, documented end states through characterization, remedy selection and oversight.",
+         comps=[C("DB-C20", 5, "L2 L3 L4", dist=True), C("DB-C19", 5, "L2 L3 L4"), C("v1-6.7.1", 4, "L2 L3 L4"),
+                C("FC-C24", 4, "L2 L3 L3"), C("PS-C03", 4, "L2 L3 L4"), C("SC-C04", 4, "L2 L3 L3"),
+                C("DB-C18", 3, "L2 L3 L3"), C("DB-C21", 3, "L2 L3 L3"), C("SL-C04", 3, "L2 L3 L3"),
+                C("DB-C29", 3, "L2 L3 L3")]),
+    Role(key="R28-air-quality-specialist", skip=['v1-2.4.2-T1'], tier="P2", area="air", wf="WF-AUTHORIZE", levels=[J, S, LD], life="established",
+         title="Air quality specialist", auto=True, alt=["air quality engineer", "air permit engineer", "air quality planner"],
+         definition=("Role in an air quality programme that operates monitoring networks, builds emissions inventories "
+                     "and models for attainment planning, permits sources, inspects, plans smoke management and "
+                     "communicates air quality risks."),
+         function="Bring and keep air quality within standards through monitoring, planning, permitting and inspection.",
+         comps=[C("DB-C14", 5, "L2 L3 L4", dist=True), C("DB-C13", 4, "L2 L3 L4"), C("SL-C02", 5, "L2 L3 L4"),
+                C("SL-C03", 4, "L2 L3 L3"), C("SC-C14", 4, "L2 L3 L4"), C("DB-C29", 4, "L2 L3 L3"),
+                C("DB-C15", 3, "L2 L3 L3"), C("SL-C04", 3, "L2 L3 L3"), C("PS-C09", 3, "L2 L3 L3"),
+                C("DB-C52", 3, "L2 L3 L3"), C("DC-CAND-12", 3, "L2 L3 L3")],
+         progresses_to=["R36-ghg-nature-data-controller"]),
+    Role(key="R29-solid-waste-materials-specialist", tier="P2", area="waste", wf="WF-AUTHORIZE", levels=[J, S, LD],
+         life="established", title="Solid waste and materials management specialist", auto=True,
+         alt=["solid waste specialist", "recycling coordinator", "materials management specialist"],
+         definition=("Role that regulates or operates solid waste facilities, administers producer responsibility and "
+                     "materials programmes, develops materials-management and waste-reduction strategies and analyzes "
+                     "material flows."),
+         function="Reduce and safely manage waste and materials through regulated facilities, programmes and strategies.",
+         comps=[C("DB-C16", 5, "L2 L3 L4", dist=True), C("SL-C14", 5, "L2 L3 L4"), C("DB-C17", 4, "L2 L3 L4"),
+                C("v1-3.7.1", 4, "L2 L3 L3"), C("v1-3.7.2", 4, "L2 L3 L3"), C("SL-C03", 4, "L2 L3 L3"),
+                C("v1-3.7.5", 3, "L2 L3 L3"), C("SL-C10", 3, "L2 L3 L3"), C("PS-C09", 3, "L2 L3 L3"),
+                C("v1-3.7.3", 3, "L2 L3 L4")]),
+    Role(key="R30-hazard-mitigation-floodplain-manager", tier="P2", area="hazards", wf="WF-PLAN", levels=[J, S, LD],
+         life="established", title="Hazard mitigation and floodplain manager", auto=True,
+         alt=["floodplain administrator", "hazard mitigation planner", "floodplain manager"],
+         definition=("Role that develops hazard mitigation plans and fundable projects, administers local floodplain "
+                     "regulations, reviews recovery projects for environmental and historic effects, assesses climate "
+                     "vulnerability and runs rapid post-disaster field assessments."),
+         function="Reduce disaster losses through mitigation planning, floodplain regulation and environmentally sound recovery.",
+         comps=[C("DB-C40", 5, "L2 L3 L4", dist=True), C("DB-C43", 5, "L2 L3 L4"), C("DB-C41", 4, "L2 L3 L4"),
+                C("FC-C25", 4, "L2 L3 L3"), C("v1-1.5.2", 4, "L2 L3 L4"), C("v1-1.5.3", 4, "L2 L3 L4"),
+                C("DB-C29", 4, "L2 L3 L3"), C("SL-C08", 3, "L2 L3 L3"), C("DB-C50", 3, "L2 L3 L3")]),
+]

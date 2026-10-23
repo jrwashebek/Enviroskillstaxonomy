@@ -1,0 +1,45 @@
+id: seed:R31-ai-assisted-review-lead/federal
+type: RoleVariant
+prefLabel:
+  en: AI-assisted environmental review lead (federal)
+variantOf: seed:R31-ai-assisted-review-lead
+sectorActor: federal
+authorityPosition: resource-manager
+layer: L3
+module: core
+status: draft
+validationStatus: draft
+license: CC0-1.0
+definition:
+  en: 'AI-assisted environmental review lead in a federal setting: acts as resource manager for lands, waters or programmes the employer holds.'
+lifecycleState: emerging
+useTier: exploratory
+sensitivity: public
+reviewBy: '2027-10-23'
+sectorActorSubtype: federal-land-manager
+industry: public-administration
+ownership: public
+deliveryModel: in-house
+indicativeGradeOrBand:
+  scheme: GS
+  band: GS-12 to GS-13 [senior]; GS-13 to GS-14 [lead]
+  label: not a classification criterion
+disclaimers:
+- Not a classification basis / not a job analysis / not for RIF or rating decisions.
+- 'Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results.'
+editorialNote:
+  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8). indicativeGradeOrBand is FH judgment from the FH Phase 2 proficiency proposal (report section 6.2), never a classification criterion; the bracketed role levels say which band each level is read against.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0007
+  - ADR-0017
+  - ADR-0022

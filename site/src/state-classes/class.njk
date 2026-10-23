@@ -1,0 +1,53 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: emst.stateClasses
+  size: 1
+  alias: s
+permalink: "{{ s.url }}"
+eleventyComputed:
+  title: "State Class View: {{ s.title }} ({{ s.jurisdiction }} {{ s.code }})"
+---
+{% import "macros.njk" as m %}
+<h1>State Class View: {{ s.title }}</h1>
+<p>{{ s.jurisdiction }} · class {{ s.code }}{% if s.seriesName %} · class series {{ s.seriesName }}{% endif %}</p>
+{{ m.hrDisclaimer() }}
+<h2>Class record</h2>
+<dl class="emst-dl">
+  <dt>Agency or employer</dt><dd>{{ s.agency }}{% if s.employerType %} ({{ s.employerType }}){% endif %}</dd>
+  {% if s.level %}<dt>Level in series</dt><dd>{{ s.level }}</dd>{% endif %}
+  {% if s.supervisory %}<dt>Supervisory status</dt><dd>{{ s.supervisory }}</dd>{% endif %}
+  <dt>Specification</dt><dd>{% if s.specUrl %}<a href="{{ s.specUrl }}" rel="noreferrer">Official class specification</a> (external site; retrieved {{ s.specRetrieved }}){% else %}not linked{% endif %}{% if s.specEffective %}; effective {{ s.specEffective }}{% endif %}</dd>
+  {% if s.mq %}<dt>Minimum qualifications (paraphrase)</dt><dd>{{ s.mq }}</dd>{% endif %}
+  {% if s.degreeRule %}<dt>Degree rule</dt><dd>{{ s.degreeRule | replace("-", " ") }}</dd>{% endif %}
+  {% if s.licenses.length %}<dt>Licences and certifications</dt><dd><ul class="usa-list">{% for l in s.licenses %}<li>{{ l.credential }}{% if l.issuer %} ({{ l.issuer }}){% endif %}{% if l.timing %}: {{ l.timing }}{% endif %}</li>{% endfor %}</ul></dd>{% endif %}
+  {% if s.pay %}<dt>Pay</dt><dd>{{ s.pay }}{% if s.payEffective %} (effective {{ s.payEffective }}){% endif %}</dd>{% endif %}
+  {% if s.appointmentRoute.length %}<dt>Appointment route</dt><dd>{{ s.appointmentRoute | join(", ") }}</dd>{% endif %}
+  <dt>Review by</dt><dd>{{ s.reviewBy }}</dd>
+</dl>
+{{ m.meta(s.tier, s.evidence) }}
+
+<h2>EMST role variants drafted against this class</h2>
+{% set all = s.rows %}
+{% if s.rows.length or s.pending.length %}
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Role variant mappings">
+<table class="usa-table usa-table--compact" data-figure data-use-tier="exploratory" data-evidence="S">
+  <caption>Draft class-to-variant mappings (X5). <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>agent-drafted mapping, unreviewed</span></caption>
+  <thead><tr><th scope="col">EMST role variant</th><th scope="col">Role level</th><th scope="col">Match</th><th scope="col">Status</th></tr></thead>
+  <tbody>
+  {% for r in s.rows %}<tr><td>{% if r.variant %}<a href="{{ r.variant.url | url }}">{{ r.subjectLabel }}</a>{% else %}{{ r.subjectLabel }}{% endif %}</td><td>{{ r.other.role_level or "not set" }}</td><td>{{ r.predicate | replace("skos:", "") }}, confidence {{ r.confidence }}</td><td>{{ r.reviewStatus }}{% if not r.variant %}; role variant not yet in this build{% endif %}</td></tr>{% endfor %}
+  {% if not s.rows.length %}{% for p in s.pending %}<tr><td>{% if p.variant %}<a href="{{ p.variant.url | url }}">{{ p.variant.title }}</a>{% else %}{{ p.key }}{% endif %}</td><td>{{ p.level }}</td><td>{{ p.match | replace("skos:", "") }}, confidence {{ p.confidence }}</td><td>{% if p.variant %}linked{% else %}role variant not yet in this build{% endif %}</td></tr>{% endfor %}{% endif %}
+  </tbody>
+</table>
+</div>
+{% else %}<p>No EMST role variant is mapped to this class in this build.</p>{% endif %}
+
+{% set vs = [] %}
+{% for r in s.rows %}{% if r.variant %}
+<section class="emst-card" aria-labelledby="sv-{{ loop.index }}">
+  <h3 id="sv-{{ loop.index }}"><a href="{{ r.variant.url | url }}">{{ r.variant.role.title }} ({{ r.variant.actorLabel }})</a></h3>
+  <p>Major duties (draft; % time): {% for b in r.variant.bundle | take(12) %}{% if not b.task.isModule %}{{ b.task.statement }} ({{ b.timeShare | pct }}){% if not loop.last %}; {% endif %}{% endif %}{% endfor %}</p>
+  <p>Established core competencies: {% for t in r.variant.hrTargets %}<a href="{{ t.competency.url | url }}">{{ t.competency.title }}</a>{% if not loop.last %}; {% endif %}{% else %}none yet{% endfor %}</p>
+  {{ m.meta(r.variant.tier, r.variant.evidence) }}
+</section>
+{% endif %}{% endfor %}

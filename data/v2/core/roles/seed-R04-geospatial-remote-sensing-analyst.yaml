@@ -1,0 +1,503 @@
+id: seed:R04-geospatial-remote-sensing-analyst
+type: RoleProfile
+prefLabel:
+  en: Geospatial and remote sensing analyst
+definition:
+  en: Analyst role that maps and monitors environmental conditions from imagery and spatial data, builds and validates detection and spatial models, designs maps for decisions, and states accuracy and uncertainty. Pretrained Earth-observation models change the method layer; validation, transfer testing and fitness-for-purpose judgments grow.
+functionStatement:
+  en: Turn spatial and remotely sensed data into validated map and model products whose accuracy and limits are stated for the decision they serve.
+primaryWorkFunction: WF-ASSESS
+roleLevels:
+- key: journey
+  levelBand:
+  - L2
+  - L3
+- key: senior
+  levelBand:
+  - L3
+  - L4
+- key: lead
+  levelBand:
+  - L4
+  - L4
+taskBundle:
+- task: seed:dc-212-preprocess
+  importance: 4
+  timeShare: 0.055
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:v1-2.1.2-T1
+  importance: 5
+  timeShare: 0.083
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.1.2-T2
+  importance: 5
+  timeShare: 0.082
+  critical: true
+  neededAtEntry: true
+  formationTask: true
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.1.2-T3
+  importance: 5
+  timeShare: 0.055
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-212-reference-design
+  importance: 4
+  timeShare: 0.027
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:dc-212-circularity-check
+  importance: 4
+  timeShare: 0.027
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:dc-212-transfer-test
+  importance: 4
+  timeShare: 0.027
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:dc-212-specify-product
+  importance: 4
+  timeShare: 0.027
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:v1-2.1.1-T2
+  importance: 4
+  timeShare: 0.055
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.1.4-T1
+  importance: 4
+  timeShare: 0.055
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.1.4-T2
+  importance: 4
+  timeShare: 0.055
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.1.4-T3
+  importance: 4
+  timeShare: 0.027
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:v1-2.1.1-T1
+  importance: 3
+  timeShare: 0.027
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.1.5-T1
+  importance: 4
+  timeShare: 0.055
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-215-uncertainty-depiction
+  importance: 4
+  timeShare: 0.027
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.1.1-T3
+  importance: 3
+  timeShare: 0.027
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.4.1-T1
+  importance: 4
+  timeShare: 0.027
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:dc-241-diagnose-failure
+  importance: 4
+  timeShare: 0.027
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:v1-2.6.1-T3
+  importance: 5
+  timeShare: 0.027
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-09-independent-validation
+  importance: 5
+  timeShare: 0.027
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:dc-09-envelope-check
+  importance: 4
+  timeShare: 0.014
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:dc-08-record-environment
+  importance: 4
+  timeShare: 0.014
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.2.4-T1
+  importance: 3
+  timeShare: 0.027
+  critical: false
+  neededAtEntry: true
+  formationTask: true
+  roleLevels:
+  - journey
+- task: seed:dc-08-review-ai-code
+  importance: 4
+  timeShare: 0.014
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:dc-11-retain-uncertainty
+  importance: 4
+  timeShare: 0.014
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-2.2.5-T1
+  importance: 3
+  timeShare: 0.014
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-07-generalize-copy
+  importance: 4
+  timeShare: 0.014
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:fc-gt-design-sample
+  importance: 4
+  timeShare: 0.014
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:v1-2.3.2-T3
+  importance: 3
+  timeShare: 0.014
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-214-spatial-standards
+  importance: 3
+  timeShare: 0.014
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - lead
+- task: seed:dc-22-decision-map
+  importance: 3
+  timeShare: 0.014
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - lead
+- task: seed:dc-13-sample-validate
+  importance: 4
+  timeShare: 0.014
+  critical: false
+  neededAtEntry: false
+  formationTask: true
+  roleLevels:
+  - journey
+competencyTargets:
+- competency: seed:v1-2.1.2
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 5
+  distinguishing: true
+  criticalForSelection: false
+- competency: seed:v1-2.1.4
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 5
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-2.1.5
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-2.4.1
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-09
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 4
+  distinguishing: true
+  criticalForSelection: false
+- competency: seed:DC-CAND-08
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-11
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C02
+  targetLevels:
+    journey: L1
+    senior: L2
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-07
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-13
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-06
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FS-C04
+  targetLevels:
+    senior: L2
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-22
+  targetLevels:
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-2.2.1
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C14
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-01
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-02
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-05
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+homeModule: core
+layer: L3
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'Tier P1 (full depth). Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results. LLM-coder gate G0: the critical and needed-at-entry flags are pre-fills for human verification and never reach G2 (protocol_llm_coder_gate.md section 2). criticalForSelection is false everywhere: v2.0 is never used for selection. Time shares are relative shares across the whole role (all levels); views renormalize within a role level. Formation flags follow WP-07 provisions and WP-03 suggestions where FH agreed. Mirror and mobility links: entryFrom/progressesTo here; mirror pairs in X11.'
+notation:
+- scheme: MVProleSet
+  value: R04
+altLabel:
+  en:
+  - GIS analyst
+  - remote sensing analyst
+  - geospatial specialist
+entryFrom:
+- seed:R02-field-resource-technician
+progressesTo:
+- seed:R05-ground-truth-validation-steward
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0017
+  - ADR-0024
+  - ADR-0025
+  - ADR-0029

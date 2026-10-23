@@ -16,6 +16,6 @@ outputs:
   view: views/effective_use_tier.json
   fields: "id, effectiveUseTier, declaredCeiling, lifecycleState, note, ruleId, ruleVersion, buildCommit"
 parameters: {}
-implementation: scripts/build_release.py#Release.views
+implementation: scripts/build_release.py#Builder.views
 changeNote:
   - {date: '2026-10-23', note: "Registered from the implementation as interim (CR-DE-003); replaced by 1.0.0."}

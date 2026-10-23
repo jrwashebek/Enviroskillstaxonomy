@@ -4,7 +4,7 @@ version: 1.0.0
 status: active
 steward: LM (method) · DE (implementation) · CA (definition)
 decidedIn: [ADR-0008, ADR-0028, ADR-0029, CR-LM-001]
-reference_implementation: docs/methods/ci/evidence_rule.py (LM, 2026-10-23); DE ports it and LM then retires the copy
+reference_implementation: docs/methods/ci/evidence_rule.py (LM, 2026-10-23); ported by DE to scripts/rules/change_indicator.py, after which LM retires the copy (CR-DE-004)
 computes: >
   Whether a set of signals and external-index assessments moves a computed change indicator {targetId, direction,
   driver, kind ∈ vocab/change_types.yaml#change_indicator_kinds}. Decision ∈ {moves, watch, invalid}, with reason codes
@@ -40,9 +40,10 @@ external_index_instruments:
 outputs:
   view: views/change_indicators.json
   fields: "targetId, kind, direction, driver, decision, reasons[], counted[], ruleId, ruleVersion, buildCommit"
-reason_codes: [ER-0-PERSONAL-DATA, ER-0-QUARANTINED, ER-0-V1-PRIOR-EVIDENCE, ER-0-DIRECTION, ER-1-NONCOUNTING-FAMILY, ER-1-POLICY-NOT-FOR-SKILL-CHANGE, ER-1-ONE-FAMILY, ER-1-SAME-VENDOR, ER-2-NO-PERSISTENCE, ER-3-MATCH-TYPE, ER-4-DRIVER, ER-5-NO-NAMED-REVIEW]
+reason_codes: [ER-0-PERSONAL-DATA, ER-0-QUARANTINED, ER-0-NOT-ACTIVE, ER-0-ORGANIZATION-TARGET, ER-0-V1-PRIOR-EVIDENCE, ER-0-DIRECTION, ER-1-NONCOUNTING-FAMILY, ER-1-POLICY-NOT-FOR-SKILL-CHANGE, ER-1-ONE-FAMILY, ER-1-SAME-VENDOR, ER-2-NO-PERSISTENCE, ER-3-MATCH-TYPE, ER-4-DRIVER, ER-5-NO-NAMED-REVIEW]
 tests: "tests/test_evidence_rule.py with tests/fixtures/evidence_rule_cases.yaml (moved from docs/methods/ci/), incl. the regression that no seeded agent signal moves an indicator."
 parameters: {}
-implementation: scripts/rules/change_indicator.py (to be ported by DE; see RULINGS_FOR_DE.md §8)
+implementation: scripts/rules/change_indicator.py
 changeNote:
   - {date: '2026-10-23', note: "Registered from LM's reference implementation; adds the active-only and SP-12 conditions (CR-LM-001; ADR-0029)."}
+  - {date: '2026-10-23', note: "Clarification, no output change: reason codes ER-0-NOT-ACTIVE (active_signals clause) and ER-0-ORGANIZATION-TARGET (organization_targets clause) listed; implementation pointer updated to the DE port (CR-DE-004; ADR-0030)."}

@@ -1,0 +1,424 @@
+id: seed:R05-ground-truth-validation-steward
+type: RoleProfile
+prefLabel:
+  en: Ground-truth and validation steward
+definition:
+  en: Emerging role that designs and stewards field reference data and validation samples for remote, modelled and AI-generated products, codes the field causes of mismatch, calibrates observers and states whether a product is fit for a stated use.
+functionStatement:
+  en: Establish whether remote, modelled and automated products can be relied on, by collecting and stewarding independent field reference evidence.
+primaryWorkFunction: WF-MONITOR
+roleLevels:
+- key: journey
+  levelBand:
+  - L2
+  - L3
+- key: senior
+  levelBand:
+  - L3
+  - L4
+taskBundle:
+- task: seed:fc-gt-design-sample
+  importance: 5
+  timeShare: 0.068
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fc-gt-collect-blind
+  importance: 5
+  timeShare: 0.099
+  critical: true
+  neededAtEntry: true
+  formationTask: true
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fc-gt-mismatch
+  importance: 5
+  timeShare: 0.068
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fc-gt-fitness
+  importance: 5
+  timeShare: 0.034
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+- task: seed:fc-gt-calibration-plots
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+- task: seed:fc-gt-feedback
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fs-c04-plan-reference
+  importance: 5
+  timeShare: 0.068
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+- task: seed:fs-c04-collect-labels
+  importance: 5
+  timeShare: 0.068
+  critical: true
+  neededAtEntry: true
+  formationTask: true
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fs-c04-relabel
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fs-c04-maintain
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fs-c04-generalize-sensitive
+  importance: 4
+  timeShare: 0.017
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fs-c04-regional-validation
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+- task: seed:fc-qa-blind-check
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: true
+  formationTask: true
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fc-qa-calibration-session
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+- task: seed:fc-qa-agreement
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fc-det-review
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fc-det-error-rates
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fc-det-implausible
+  importance: 4
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:dc-13-sample-validate
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: false
+  formationTask: true
+  roleLevels:
+  - journey
+  - senior
+- task: seed:dc-09-independent-validation
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+- task: seed:dc-15-label-reference
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:dc-15-build-set
+  importance: 4
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+- task: seed:dc-03-sample-design
+  importance: 4
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+- task: seed:v1-1.4.3-T2
+  importance: 3
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:v1-4.1.1-T1
+  importance: 3
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:fc-veg-validate-remote
+  importance: 4
+  timeShare: 0.034
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+competencyTargets:
+- competency: seed:FS-C04
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 5
+  distinguishing: true
+  criticalForSelection: false
+- competency: seed:FC-C02
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 5
+  distinguishing: true
+  criticalForSelection: false
+- competency: seed:FC-C31
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-13
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C03
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-09
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-15
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-03
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-1.4.3
+  targetLevels:
+    journey: L2
+    senior: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-4.1.1
+  targetLevels:
+    journey: L2
+    senior: L2
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C23
+  targetLevels:
+    journey: L2
+    senior: L2
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-07
+  targetLevels:
+    journey: L2
+    senior: L2
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-01
+  targetLevels:
+    journey: L1
+    senior: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-02
+  targetLevels:
+    journey: L1
+    senior: L1
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-05
+  targetLevels:
+    journey: L1
+    senior: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+homeModule: core
+layer: L3
+module: core
+status: draft
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'Tier P1 (full depth). Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results. LLM-coder gate G0: the critical and needed-at-entry flags are pre-fills for human verification and never reach G2 (protocol_llm_coder_gate.md section 2). criticalForSelection is false everywhere: v2.0 is never used for selection. Time shares are relative shares across the whole role (all levels); views renormalize within a role level. Formation flags follow WP-07 provisions and WP-03 suggestions where FH agreed. Mirror and mobility links: entryFrom/progressesTo here; mirror pairs in X11.'
+notation:
+- scheme: MVProleSet
+  value: R05
+altLabel:
+  en:
+  - validation lead
+  - reference data steward
+  - field validation specialist
+entryFrom:
+- seed:R02-field-resource-technician
+- seed:R03-monitoring-data-technician
+- seed:R04-geospatial-remote-sensing-analyst
+evidenceSignals:
+- seed:sig/bls-ep-2025-35/15-1299/R05-ground-truth-validation-steward
+- seed:sig/bls-ep-2025-35/19-4042/R05-ground-truth-validation-steward
+feederRoles:
+- role: seed:R02-field-resource-technician
+  competencyDeltas:
+  - competency: seed:FC-C02
+    fromLevel: L2
+    toLevel: L3
+  - competency: seed:FS-C04
+    toLevel: L2
+  - competency: seed:DC-CAND-13
+    fromLevel: L2
+    toLevel: L3
+- role: seed:R03-monitoring-data-technician
+  competencyDeltas:
+  - competency: seed:FC-C02
+    fromLevel: L2
+    toLevel: L3
+  - competency: seed:DC-CAND-15
+    toLevel: L2
+- role: seed:R04-geospatial-remote-sensing-analyst
+  competencyDeltas:
+  - competency: seed:FC-C31
+    toLevel: L2
+  - competency: seed:FC-C03
+    toLevel: L2
+horizon: 1-3y
+scenarioSensitivity:
+  SC1: up
+  SC2: up
+  SC3: external
+  SC4: down
+counterSignal: Validation is absorbed into vendor services with no agency field calibration, so the role does not form inside public employers.
+reviewBy: '2027-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0017
+  - ADR-0024
+  - ADR-0025
+  - ADR-0029

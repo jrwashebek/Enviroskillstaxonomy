@@ -44,3 +44,38 @@ EO 14303, also verified [E: WP05-004], supports the integrity enactment. Until t
 ## Consequences if not accepted
 
 The task-level edges stay in a CSV outside the validated tree, and the mirror links stay in prose and a CSV. The venue view over-reads enabling and removal instruments as a required basis. ADR-0016's federal default view can then show a wrong applicability value with a confident label.
+
+## CA ruling
+
+- **Ruling:** **accept 1–5, with changes to 1–3** · **Date:** 2026-10-23 · **Decider:** CA · **Recorded in:** ADR-0030 §1.4, ADR-0016 and ADR-0028 (amendments), SPEC §5.2, §5.4, §5.5, §5.8, §5.16, §11.6 (draft.3), `vocab/driver_mechanisms.yaml#instrument_link_roles`, `vocab/authority_positions.yaml#mirror_relations`, `vocab/rules/venue-applicability@1.0.0.yaml`, `vocab/rules/inverse-links@1.2.0.yaml`, DECISION_LOG `CR-SC-001`
+- **Inputs:** LM's registry (98 instruments, 89 dated events; revoked and revoking orders kept as separate records) and simulation (`docs/methods/CHANGE_SIGNALS.md` §2.5; `docs/methods/generated/wp05_instrument_resolution.csv`).
+- **Implementation:** DE per `RULINGS_FOR_DE.md` §16; link edits in S2 by SC, DB and LM as in item 2.
+
+1. **Task sensitivity edges: accepted, with a change.** `Task.instrumentSensitivity[]` uses the existing `SensitivityEdge`. `SensitivityEdge` gains optional `reviewBy`; P-SC-14 applies to edges on tasks and competencies alike.
+   - **Change: inherited edges are computed, not stored.** The sensitivity view treats a task as carrying its primary competencies' edges. A stored task edge must add something: a mechanism its competency lacks, or task-specific evidence. A stored edge identical to an inherited one is `W-EDGE-REDUNDANT`. So `task_sensitivity_edges.csv` is **not** converted wholesale.
+   - **Who:** SC (A5) converts reviewed task-specific rows in S2 for tasks in the P1 COR-3 bundles (R10–R13). The rest waits for rc.2; inheritance covers them meanwhile.
+2. **Typed instrument links: accepted, as objects.** `Enactment.characteristicInstruments[]` items, and `RoleVariant.instruments[]` items (WP-08 authors them typed from the start), become `{instrument, role, note?}`. `role` is one of `requires | enables | constrains | removed-requirement` (`vocab/driver_mechanisms.yaml#instrument_link_roles`).
+   - The role belongs to the link, not to the instrument (LM): one rule can require one actor's work and remove another's. `role` is optional on drafts (`W-INSTRUMENT-ROLE-MISSING`) and required from `candidate` on.
+   - DE converts today's 119 plain links on 49 enactments to `{instrument}` without a role, in the same change as the schema. This is a shape change only. Defaulting to `requires` would bring the defect back.
+   - `DriverEvent.actingInstrument` (optional; references an Instrument) names the instrument that caused the event, e.g. EO 14173 for the rescission of EO 12898. It replaces the `editorialNote` convention.
+   - **Link edits in S2, and who makes them:**
+     - **SC (A5)** sets roles on its 38 enactments.
+     - **DB (A6)** sets roles on its 11 module enactments.
+     - **LM (A9)** adds the links to newly registered instruments, following its resolution table, in SC's records with SC's agreement: EO 12898, EO 14096 and EO 14008 as `requires` on `seed:ena-db-c52-federal`; EO 14173 and EO 14148 as `removed-requirement` there; the New Jersey and New York instruments as `requires` on `seed:ena-db-c52-state`.
+     - **The SL-C02 defect is fixed this way.** On `seed:ena-sl-c02-federal-regulator`, `seed:ins/ghg-endangerment-rescission` becomes `removed-requirement` and `seed:ins/wotus-definition` becomes `constrains`. SC adds the permit-programme base instruments the enactment actually rests on (`seed:ins/cwa-402-npdes`, `seed:ins/caa-title-v`, `seed:ins/caa-nsr-psd` and, where the federal regulator issues them, `seed:ins/rcra-permits` and `seed:ins/cwa-404`) as `requires`. Under the rule in item 4 the federal value then reads `permitted` with `basisLinked = true` and `basisVerified = false`, until SC's quarterly refresh adds verified baseline events. It no longer reads `required-basis` from a rescission.
+     - The same pass applies to `seed:ena-sl-c08-federal`: `seed:ins/ceq-nepa-regs-removal` becomes `removed-requirement`.
+   - **CA spot-check before WP-12 renders any federal value:** DB-C52, SL-C02, SL-C08, SC-C03, FH-C01, and v1 5.3.4-A once it is authored.
+3. **Competency mirror links: accepted as a stored field, with changes.** `Competency.mirrors[] {target, relation}` is stored on the authority or overseer side only. The inverse `mirroredBy[]` is computed under `inverse-links@1.2.0`, registered as `draft` and made active when DE implements it.
+   - **Change 1:** `target` may be a Competency or an Enactment, because one side is often an actor enactment (SC-C04 ↔ `seed:ena-sl-c08-consultant`).
+   - **Change 2:** `relation` (`vocab/authority_positions.yaml#mirror_relations`) names the target's position relative to the authority. The values are `regulated-party-mirror`, `applicant-mirror`, `preparer-mirror` and `delegate-mirror`. `delegate-mirror` replaces the proposed `overseer-mirror`, so every link is stored on the overseer's record.
+   - The SSSOM `emst-mirror` alternative is rejected: SSSOM sets are for external crosswalks. Links inside EMST are stored once, on a record. `emst:mirrorRole` between role variants is unchanged.
+   - **Who:** SC (A5) migrates `docs/build/WP-05/mirror_links.csv` into records in S2. WP-08 needs them for the R11/R12 ↔ R37 acceptance criterion.
+4. **Venue rule: accepted.** The CA has registered `vocab/rules/venue-applicability@1.0.0.yaml`. Per competency and non-Tribal sector-actor family, from that family's actor enactments, with the status as of `asOf`:
+   - `required-basis` if a `requires` link is active (`in-force`, `in-force-litigated`, `interim-in-force`, `issued`);
+   - `no-current-basis` if there is at least one `requires` link and every one is inactive (`enjoined`, `stayed`, `vacated`, `rescinded`, `repealed`);
+   - `permitted` otherwise.
+   - `enables`, `constrains` and `removed-requirement` links never decide the value; the view lists them for the evidence drawer. Linking a revoking order therefore cannot flip a value back (LM's simulation case 3), and a rescission alone cannot create a basis.
+   - The view also reports `basisLinked` (at least one `requires` link), `basisVerified` (at least one `requires` instrument with a dated event) and `untypedLinks` (a count).
+   - Tribal enactments are never read. Q4 default: the value is shown with a note and nothing is excluded.
+   - DE implements it in `scripts/` and moves WP-05's fixtures and tests into `tests/`, adding typed-role cases. WP-05's prototype stays SC's authoring tool, and its outputs in `docs/build/WP-05/generated/` are not normative.
+5. **`Enactment.delegatedConstraints` (Text, optional): accepted.** It is better than a labelled paragraph inside `authorityBasis`, because friction computation needs it as data. SC (A5) moves the "Delegated constraints:" text in the same S2 pass as item 2.

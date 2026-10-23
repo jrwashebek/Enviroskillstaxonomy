@@ -148,7 +148,7 @@ ROLES = [
             T("dc-221-data-entry", 3, 1, "E"), T("v1-2.2.1-T2", 3, 1, "", "js"), T("fc-gt-collect-blind", 3, 0.5, "", "j"),
             T("fs-c04-collect-labels", 3, 0.5, "", "js"), T("fc-qa-hot-check", 3, 0.5, "", "s"),
             T("fc-boat-operate", 3, 0.5, "C", "js"), T("v1-4.4.1-T1", 5, 0.3, "CE"), T("fc-haz-hasp", 4, 0.3, "CE"),
-            T("dc-05-provenance-record", 3, 0.5, "E"),
+            T("dc-05-provenance-record", 3, 0.5, "E"), T("v1-4.1.5-T2", 4, 0.5, "E"),
         ],
         change=[
             X("fc-sensor-service", "transforming", ["sensing-tech"],
@@ -460,6 +460,7 @@ ROLES = [
             T("fc-haz-energized", 5, 0.2, "CE"), T("lc-txc-exercise-stop-work", 5, 0.2, "CE"),
             T("sc-recuse-covered-matter", 4, 0.2, "C"), T("sc-disclose-assignment-interests", 4, 0.2, "E"),
             T("lc-txd-rate-performance", 3, 0.3, "", "s"), T("fc-txa-field-check", 4, 0.5, "F"),
+            T("sc-index-record-documents", 4, 0.5, "E"),
         ],
         change=[
             X("sc-review-anomaly-flags", "new", ["AI", "sensing-tech"],
@@ -492,7 +493,7 @@ ROLES = [
         function=("Keep an environmental or natural resource programme funded, lawful, staffed and able to deliver "
                   "its decisions over budget and policy cycles."),
         comps=[
-            C("SC-C10", 5, "L3 L4 L5", dist=True), C("v1-6.2.3", 4, "L3 L4 L4"), C("SC-C18", 5, "L3 L4 L5"),
+            C("SC-C10", 5, "L3 L4 L4", dist=True), C("v1-6.2.3", 4, "L3 L4 L4"), C("SC-C18", 5, "L3 L4 L4"),
             C("v1-7.2.2", 4, "L3 L4 L4"), C("FH-C07", 4, "L3 L3 L4"), C("SC-C08", 4, "L3 L4 L4"),
             C("v1-3.1.4", 4, "L3 L4 L4"), C("SC-C11", 4, "L3 L4 L5"), C("PS-C03", 4, "L3 L3 L4"),
             C("DC-CAND-21", 4, "- L4 L5"),
@@ -533,5 +534,167 @@ ROLES = [
         ],
         entry_from=["R09-restoration-project-lead", "R10-environmental-review-specialist", "R11-environmental-permit-writer"],
         progresses_to=["R35-knowledge-continuity-lead"],
+    ),
+]
+
+# ---------------------------------------------------------------------- COR-2 (forest module: fire competencies are
+# module records, so these profiles live in data/v2/modules/forest/roles/; core roles never link to them)
+ROLES += [
+    Role(
+        key="R06-wildland-fire-operations", tier="P1", area="forest", wf="WF-RESPOND", levels=[E, J, S, LD],
+        life="established", title="Wildland fire operations (crew to supervisor)", use_tier="develop",
+        alt=["wildland firefighter", "fire crew member", "engine or hand crew supervisor"],
+        definition=("Operational fire role from crew member to crew supervisor: constructing and holding fireline, "
+                    "firing and mop-up, saw and hand-tool work, fire weather and behaviour observation, crew safety "
+                    "and emergency response, and, at senior levels, size-up, tactical direction and crew development. "
+                    "Position qualifications are credential gates, not levels."),
+        function=("Contain and control wildland fire safely with ground tactics, keeping crews within the safety "
+                  "margins of observed fire behaviour."),
+        comps=[
+            C("v1-4.3.1", 5, "L1 L2 L3 L4", dist=True), C("v1-4.4.1-A", 5, "L1 L2 L3 L4"), C("v1-4.5.2", 5, "L1 L2 L3 L3"),
+            C("v1-4.5.1", 4, "L1 L2 L2 L2"), C("FC-C18", 4, "L1 L2 L3 L3"), C("v1-4.3.4", 4, "L1 L2 L3 L3"),
+            C("FC-C20", 4, "- L2 L3 L4"), C("v1-4.4.5", 4, "L1 L2 L3 L3"), C("v1-4.4.2", 4, "L1 L2 L2 L3"),
+            C("v1-4.4.1-B", 4, "L1 L2 L3 L4"),
+            C("v1-4.3.2", 3, "L1 L2 L2 L3"), C("FC-C26", 3, "L1 L1 L2 L2"), C("v1-4.5.3-A", 3, "L1 L2 L2 L2"),
+            C("v1-4.5.5", 2, "L1 L1 L1 L1"), C("IO-C01", 3, "- - L3 L3"), C("v1-4.3.5", 2, "- L1 - -"),
+            C("DB-C29", 2, "- - L2 L2"),
+        ],
+        tasks=[
+            T("v1-4.3.1-T1", 5, 4, "CEF", "ej"), T("v1-4.3.1-T3", 4, 3, "EF", "ej"), T("v1-4.3.1-T2", 5, 1, "C", "jsl"),
+            T("db-4.3.1-t4", 5, 1, "C", "sl"), T("db-4.3.1-t5", 5, 1, "C", "sl"), T("v1-4.3.4-T1", 4, 1, "EF", "ej"),
+            T("v1-4.3.4-T3", 4, 0.5, "", "sl"), T("db-4.3.4-t4", 4, 0.5, "", "sl"), T("v1-4.2.3-T1", 4, 1, "F", "ej"),
+            T("v1-4.2.3-T3", 4, 0.5, "", "js"), T("v1-4.5.2-T1", 5, 2, "CF", "ejs"), T("fc-saw-preuse", 5, 0.5, "CE"),
+            T("fc-saw-decline", 5, 0.3, "C"), T("fc-saw-evaluate", 4, 0.3, "", "sl"), T("v1-4.5.1-T1", 5, 2, "CEF", "ej"),
+            T("v1-4.5.1-T2", 3, 0.5, "E", "ej"), T("fc-risk-briefing", 5, 0.5, "C", "sl"), T("fc-risk-stopwork", 5, 0.3, "CE"),
+            T("fc-risk-heat-recognize", 5, 0.3, "CE"), T("fc-risk-heat-smoke", 4, 0.3, "", "sl"),
+            T("lc-txc-review-generated-briefing", 4, 0.2, "", "sl"), T("v1-4.4.5-T1", 5, 0.3, "CE"),
+            T("v1-2.3.5-T1", 4, 0.3, "E"), T("v1-4.4.2-T1", 5, 0.3, "CE"), T("v1-4.4.2-T2", 5, 0.2, "C", "sl"),
+            T("fc-nav-device-failure", 4, 0.3, "E"), T("v1-4.5.3-T2", 4, 0.5, "CE"), T("fc-tree-worksite", 5, 0.5, "CE"),
+            T("fc-lead-field-day", 4, 1, "", "sl"), T("fc-lead-readiness", 4, 0.5, "", "l"), T("fc-lead-aar", 4, 0.5, "", "sl"),
+            T("v1-4.5.5-T1", 3, 0.5, "E"), T("v1-4.3.5-T2", 3, 0.5, "", "j"), T("lc-txd-rate-performance", 4, 0.3, "", "sl"),
+            T("lc-txe-answer-public-questions", 3, 0.2, "", "sl"),
+        ],
+        change=[
+            X("role", "transforming-role", ["policy-reform", "workforce-capacity"],
+              "Federal wildland fire is being consolidated in the U.S. Wildland Fire Service, and aligned USWFS-USFS "
+              "qualification standards take effect in January 2027 (NWCG is not a party).",
+              instruments=["uswfs-so-3448", "wildland-fire-quals-alignment"]),
+            X("role", "skill-shift", ["climate"],
+              "Workload grows with fire activity: the 2026 season ran well above the ten-year average.",
+              signals=["sig/foresight/ws-36-fire-season-2026"]),
+            X("db-4.3.1-t4", "transforming", ["sensing-tech", "AI"],
+              "Satellite and camera detection reaches the size-up earlier; ground size-up of fuels and values stays.",
+              signals=["sig/omb-ai-inventory-2025/fire-smoke"]),
+            X("lc-txc-review-generated-briefing", "new", ["AI"],
+              "Generated hazard briefings are checked on site before delivery."),
+            X("v1-4.3.4-T1", "transforming", ["sensing-tech"],
+              "Automated stations supply indices; hand calculation is kept as a formation task (WP-07 by-hand quota)."),
+            X("v1-4.3.1-T1", "stable", [], "Fireline construction is not compressed by current tools."),
+        ],
+        entry_from=["R01-conservation-corps-member", "R02-field-resource-technician"],
+        progresses_to=["R07-fuels-prescribed-fire-specialist", "R08-fire-intelligence-analyst"],
+    ),
+    Role(
+        key="R07-fuels-prescribed-fire-specialist", tier="P1", area="forest", wf="WF-BUILD", levels=[J, S, LD],
+        life="established", title="Fuels and prescribed fire specialist", use_tier="develop",
+        alt=["fuels specialist", "prescribed fire specialist", "burn boss"],
+        definition=("Role that assesses fuels, designs and supervises fuels treatments, writes and executes burn plans, "
+                    "makes go/no-go decisions, plans smoke management with air regulators, evaluates fire effects and "
+                    "treatment effectiveness, and works with landowners and partners across ownerships."),
+        function=("Reduce wildfire hazard and restore fire-adapted conditions through fuels treatments and prescribed "
+                  "fire executed within prescription and air-quality limits."),
+        comps=[
+            C("v1-4.3.2", 5, "L2 L3 L4", dist=True), C("v1-4.3.3", 5, "L2 L3 L4", dist=True), C("v1-4.3.4", 4, "L2 L3 L3"),
+            C("DB-C15", 4, "L2 L3 L3"), C("v1-4.4.1-A", 5, "L2 L3 L4"), C("FC-C20", 4, "L2 L3 L4"),
+            C("DB-C29", 4, "L2 L2 L3"), C("v1-4.4.1-B", 4, "L2 L3 L4"),
+            C("FC-C28", 3, "L2 L3 L3"), C("FC-C02", 3, "L2 L2 L3"), C("v1-4.1.1", 3, "L2 L2 L2"), C("FC-C22", 3, "L2 L3 L3"),
+            C("FC-C21", 3, "L2 L3 L3"), C("FC-C14", 3, "L1 L2 L2"), C("v1-4.5.2", 3, "L2 L2 L2"), C("PS-C03", 2, "- L2 L3"),
+            C("IO-C01", 3, "- L3 L3"),
+        ],
+        tasks=[
+            T("v1-4.3.2-T1", 5, 3, "C"), T("v1-4.3.2-T2", 5, 1, "CF", "sl"), T("v1-4.2.3-T1", 4, 1, "E", "j"),
+            T("v1-4.2.3-T2", 5, 2, "CE"), T("v1-4.2.3-T3", 5, 1, "C"), T("db-4.3.2-t4", 4, 0.5, "C", "sl"),
+            T("fc-uas-ignition", 4, 0.5, "", "js"), T("v1-4.3.2-T3", 4, 1), T("v1-4.3.3-T1", 5, 2, "CE"),
+            T("db-4.3.3-t4", 4, 1, "EF", "j"), T("v1-4.3.3-T2", 4, 2), T("v1-4.3.3-T3", 4, 1), T("v1-4.3.4-T2", 4, 1, "E"),
+            T("DB-C15-T2", 5, 1, "C"), T("DB-C15-T5", 3, 0.5), T("v1-4.1.1-T1", 3, 1, "", "j"), T("fc-sitehist-read", 3, 0.5),
+            T("fc-camp-schedule", 4, 0.5), T("fc-camp-access", 3, 0.5), T("fc-land-joint-visit", 3, 0.5, "", "sl"),
+            T("lc-txe-answer-public-questions", 3, 0.5, "", "sl"), T("lc-txe-draft-advisory", 3, 0.3, "", "sl"),
+            T("fc-risk-briefing", 5, 0.5, "C"), T("fc-lead-field-day", 4, 0.5), T("v1-4.5.2-T1", 4, 0.5, "C", "j"),
+            T("v1-3.1.1-T3", 3, 0.5, "", "sl"), T("lc-txd-rate-performance", 3, 0.3, "", "l"), T("fc-gt-mismatch", 3, 0.3),
+            T("lc-txc-exercise-stop-work", 5, 0.2, "C"),
+        ],
+        change=[
+            X("db-4.3.3-t4", "new", ["sensing-tech", "AI"],
+              "Remotely sensed fuel maps replace much plot sampling; field verification of fuel-model assignments is "
+              "new routine work.", signals=["sig/openlmp/term-remote-sensing-lidar-drone-2012-vs-1982"]),
+            X("v1-4.3.3-T1", "transforming", ["sensing-tech"], "Fuels assessment shifts from plots to verifying mapped fuels."),
+            X("db-4.3.2-t4", "emerging", ["automation-robotics", "policy-reform"],
+              "Aerial ignition by uncrewed aircraft is spreading; beyond-visual-line-of-sight rules are pending (watch).",
+              instruments=["faa-part-108"], signals=["sig/policy/faa-part-108-final-at-oira"]),
+            X("v1-4.3.2-T1", "transforming", ["AI"],
+              "Burn plan sections are increasingly drafted from templates or AI; prescription judgment stays."),
+            X("DB-C15-T2", "transforming", ["sensing-tech", "AI"], "Smoke dispersion forecasts improve; receptor judgment stays."),
+            X("role", "skill-shift", ["climate", "workforce-capacity"],
+              "Fuels and prescribed fire workload grows with fire activity while federal capacity has fallen.",
+              signals=["sig/foresight/ws-36-fire-season-2026", "sig/headcount/usfs-gt25pct-2024-09-to-2026-01"]),
+        ],
+        entry_from=["R06-wildland-fire-operations", "R09-restoration-project-lead"],
+    ),
+    Role(
+        key="R08-fire-intelligence-analyst", tier="P1", area="forest", wf="WF-ASSESS", levels=[J, S, LD],
+        life="emerging", title="Fire intelligence analyst (continuous operations)", use_tier="develop",
+        alt=["fire behaviour analyst", "predictive services analyst", "fire intelligence specialist"],
+        definition=("Emerging year-round role that fuses satellite, camera, sensor, weather and resource data into "
+                    "operational fire intelligence, adjudicates automated detections, predicts spread with stated "
+                    "confidence, tracks forecast skill and briefs duty officers and incident leaders."),
+        function=("Give fire managers timely, validated intelligence on fire activity and expected behaviour, with "
+                  "its confidence stated, so that resources are ordered on evidence."),
+        comps=[
+            C("FS-C05", 5, "L2 L3 L4", dist=True), C("v1-4.3.4", 5, "L2 L3 L4"), C("DC-CAND-12", 4, "L2 L3 L4"),
+            C("DC-CAND-11", 4, "L2 L3 L4"), C("DB-C29", 4, "L2 L3 L3"), C("FC-C02", 4, "L2 L2 L3"),
+            C("v1-2.1.2", 4, "L2 L3 L3"), C("DC-CAND-13", 4, "L2 L3 L3"),
+            C("DC-CAND-22", 3, "L2 L3 L3"), C("DC-CAND-09", 3, "L2 L3 L3"), C("v1-2.1.4", 3, "L2 L2 L3"),
+            C("DB-C15", 2, "- L2 L2"),
+        ],
+        tasks=[
+            T("FS-C05-T1", 5, 4, "CE"), T("FS-C05-T2", 5, 2, "CEF"), T("FS-C05-T3", 5, 2, "C"), T("FS-C05-T4", 4, 1),
+            T("v1-4.3.4-T2", 5, 2, "CEF"), T("db-4.3.4-t4", 4, 1), T("v1-4.3.4-T3", 4, 1, "", "sl"),
+            T("dc-12-skill-tracking", 4, 1, "", "sl"), T("dc-12-fitness-requirements", 4, 0.5, "", "l"),
+            T("dc-12-restrict-retire", 4, 0.5, "", "l"), T("v1-2.7.3-T3", 3, 1), T("dc-11-incident-confidence-briefing", 5, 1, "C"),
+            T("dc-11-quantify-sources", 4, 0.5), T("fc-txa-field-check", 4, 0.5, "F", "j"), T("fc-gt-fitness", 3, 0.5, "", "sl"),
+            T("v1-2.1.2-T1", 4, 1, "E"), T("v1-2.1.4-T1", 3, 0.5), T("dc-22-decision-map", 3, 0.5, "", "l"),
+            T("lc-txe-prepare-message-map", 3, 0.5, "", "sl"), T("DB-C15-T4", 3, 0.5, "", "sl"), T("dc-09-envelope-check", 3, 0.5),
+            T("fc-txa-escalate", 4, 0.3, "C"),
+        ],
+        change=[
+            X("role", "new-role", ["sensing-tech", "AI", "policy-reform"],
+              "Year-round fire intelligence is forming as satellite constellations and detection networks come "
+              "online and federal fire is consolidated.",
+              instruments=["uswfs-so-3448"], signals=["sig/foresight/ws-31-firesat-operational"]),
+            X("FS-C05-T1", "new", ["AI", "sensing-tech"], "Continuous multi-source fusion is new work."),
+            X("FS-C05-T2", "new", ["AI", "sensing-tech"], "Adjudicating automated detections before ordering is new.",
+              signals=["sig/omb-ai-inventory-2025/fire-smoke"]),
+            X("v1-4.3.4-T2", "transforming", ["AI"],
+              "Spread models run continuously; hand-worked predictions are kept as a formation check (WP-07)."),
+            X("dc-12-skill-tracking", "new", ["AI"], "Tracking forecast skill against observed outcomes is new."),
+        ],
+        emerging={
+            "signals": ["seed:sig/bls-ep-2025-35/15-1299/R08-fire-intelligence-analyst",
+                        "seed:sig/foresight/ws-31-firesat-operational"],
+            "feeders": [
+                {"role": "seed:R06-wildland-fire-operations", "competencyDeltas": [
+                    {"competency": "seed:v1-4.3.4", "fromLevel": "L3", "toLevel": "L3"},
+                    {"competency": "seed:FS-C05", "toLevel": "L2"},
+                    {"competency": "seed:DC-CAND-11", "fromLevel": "L1", "toLevel": "L2"}]},
+                {"role": "seed:R04-geospatial-remote-sensing-analyst", "competencyDeltas": [
+                    {"competency": "seed:v1-4.3.4", "toLevel": "L2"},
+                    {"competency": "seed:FS-C05", "toLevel": "L2"}]}],
+            "horizon": "1-3y",
+            "scenarios": {"SC1": "up", "SC2": "up", "SC3": "reshape", "SC4": "flat"},
+            "counter": ("The function stays inside incident fire-behaviour and long-term analyst positions with no "
+                        "year-round staffing."),
+        },
+        entry_from=["R06-wildland-fire-operations", "R04-geospatial-remote-sensing-analyst"],
+        note="Resolves the WFIC-1 gate (ADR-0020): no separate profession family, no WFIC-2/3.",
     ),
 ]

@@ -4,7 +4,7 @@ title: Transfer frictions, jurisdictional context and assessment methods
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0023, ADR-0007, ADR-0004, ADR-0017, ADR-0026, ADR-0029]
+decidedIn: [ADR-0023, ADR-0007, ADR-0004, ADR-0017, ADR-0026, ADR-0029, ADR-0030]
 steward: CM (frictions) with FH, SL, PS, DB; CA (jurisdictional context); IO (assessment methods)
 license: CC0-1.0
 
@@ -93,6 +93,14 @@ pathway_types:
     - {notation: reskill, definition: "Move to a different role family."}
     - {notation: cross-sector, definition: "Move between sector actors (e.g. federal to state, public to private)."}
     - {notation: baseline, definition: "Reference pathway used for comparison."}
+
+formation_responses:
+  description: Pathway.sequence[].formationProvisions[].responses (SPEC §5.10; ADR-0026 R7; CR-LC-001 #2, ADR-0030). A provision may combine responses.
+  values:
+    - {notation: observed-wbl, definition: "Observed work-based learning: the learner performs the formation task on real work under an evaluator's observation before credit."}
+    - {notation: supervised-repetitions, definition: "A stated number of supervised repetitions of the task before unsupervised performance."}
+    - {notation: validation-drill, definition: "An assessed drill in which the learner validates an augmented or AI-assisted product against independent evidence, including seeded errors."}
+    - {notation: by-hand-quota, definition: "A stated quota of unaided products completed before review-and-certify credit for a compressed, supervised or substituted formation task."}
 
 learning_resource_types:
   description: LearningResource.resourceType (SPEC §5.22; ADR-0026).

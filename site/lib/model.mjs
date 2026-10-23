@@ -211,6 +211,13 @@ export function buildModel({ root, releaseDir, meta }) {
     };
   }
 
+  // "R10-environmental-review-specialist/private" -> "Environmental review specialist (private)"
+  function keyLabel(k) {
+    const [role, actor] = String(k || "").split("/");
+    const t = role.replace(/^R\d+-/, "").replace(/-/g, " ");
+    return t ? t.charAt(0).toUpperCase() + t.slice(1) + (actor ? ` (${labels.sectorActor[actor] || actor})` : "") : "";
+  }
+
   // ---------------------------------------------------------------- tools, credentials, instruments
   const tools = byType("Tool");
   const toolsByCompetency = new Map(), toolsByTask = new Map();
@@ -287,6 +294,10 @@ export function buildModel({ root, releaseDir, meta }) {
     return vm;
   }
 
+  const ksBy = new Map();
+  for (const k of byType("KnowledgeStatement")) {
+    for (const c of k.supports || []) { if (!ksBy.has(c)) ksBy.set(c, []); ksBy.get(c).push({ id: k.id, statement: en(k.statement), lowestLevel: k.lowestLevel || "", tier: tierOf(k), evidence: evidenceOf(k) }); }
+  }
   const LIVE = new Set(["draft", "candidate", "published", "deprecated"]);
   const compRecs = byType("Competency").filter((c) => LIVE.has(c.status));
   const competencies = [];
@@ -313,7 +324,7 @@ export function buildModel({ root, releaseDir, meta }) {
       status: c.status, tier: tierOf(c), evidence: evidenceOf(c), protect: c.protect || null,
       v1Codes: (c.notation || []).filter((n) => n.scheme === "EMSTv1").map((n) => n.value),
       derivedFrom: ((c.provenance || {}).derivedFrom || []).map((d) => ({ key: d.v1Key, relation: d.relation })),
-      crosswalks: cw, tools: (toolsByCompetency.get(c.id) || []).map(toolVM),
+      crosswalks: cw, tools: (toolsByCompetency.get(c.id) || []).map(toolVM), knowledge: ksBy.get(c.id) || [],
       venue: (venueBy.get(c.id) || []).sort((a, b) => a.actor.localeCompare(b.actor)),
       federal: (venueBy.get(c.id) || []).find((v) => v.actor === "federal") || null,
       gateType: gateFor(c.id, "Competency.competencyType"),
@@ -377,6 +388,7 @@ export function buildModel({ root, releaseDir, meta }) {
       lifecycleState: v.lifecycleState || role.lifecycleState, status: v.status, tier: tierOf(v), evidence: evidenceOf(v),
       crosswalks: (mappingsBySubject.get(v.id) || []).map(crosswalkRow),
     };
+    vm.hrTargets = role.competencyTargets.filter((t) => !t.competency.isModule && t.competency.lifecycleState === "established");
     vm.url = `/roles/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
     vm.gapUrl = `/gap-check/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
     vm.pathwaysUrl = `/pathways/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
@@ -450,6 +462,8 @@ export function buildModel({ root, releaseDir, meta }) {
       ...c, subject: m.subject_id, subjectLabel: m.subject_label || m.subject_id, subjectVariant: variantById.get(m.subject_id) || null,
       objectVariant: objectId ? variantById.get(objectId) || null : null, objectKey: (m.record_id || "").split(":").slice(-1)[0],
       translationId: c.other.translation_id || "", frictionChange: c.other.friction_posture_change || "",
+      licensureGap: c.other.friction_licensure_gap || "", payDirection: c.other.friction_pay_direction || "",
+      objectKeyLabel: keyLabel((m.record_id || "").split(":").slice(-1)[0]),
     };
   });
 

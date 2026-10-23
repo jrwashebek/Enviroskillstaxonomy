@@ -1,0 +1,19 @@
+---
+layout: layouts/base.njk
+title: Search
+crumbs: [[null, "Search"]]
+scripts: ["/assets/js/search.js"]
+---
+<h1>Search</h1>
+<p>Search roles, competencies, tasks, federal series, state and local classes and watch items. The whole index is part of this page, so your search runs in your browser and is never sent anywhere.</p>
+<div class="emst-js-only">
+  <form role="search" data-search-form novalidate>
+    <label class="usa-label" for="emst-q">Search terms</label>
+    <input class="usa-input" id="emst-q" type="search" autocomplete="off" spellcheck="false" aria-describedby="emst-q-hint">
+    <span class="usa-hint" id="emst-q-hint">Type at least two letters. Results update as you type.</span>
+  </form>
+  <p class="emst-status" role="status" aria-live="polite" data-status></p>
+  <ol class="usa-list" data-results></ol>
+</div>
+<p class="emst-nojs-note">Search needs JavaScript. Without it, use the <a href="{{ '/competencies/' | url }}">competency list</a>, <a href="{{ '/roles/' | url }}">roles</a>, <a href="{{ '/federal-series/' | url }}">federal series</a> and <a href="{{ '/state-classes/' | url }}">classes</a>.</p>
+<script type="application/json" id="emst-search-index">{{ emst.search | json | safe }}</script>

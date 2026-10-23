@@ -23,3 +23,14 @@
 
 - No change to how L5 instrument names are matched.
 - No change to the T-4 rule. A tool class (GIS, UAS, lidar) may still be named in L1/L2 text when it changes the work condition.
+
+## CA ruling
+
+- **Ruling:** **accept 1–3, with one change to 1** · **Date:** 2026-10-23 · **Decider:** CA · **Recorded in:** ADR-0030 §1.2, DECISION_LOG `CR-DC-001`
+- **Implementation:** DE per `RULINGS_FOR_DE.md` §14; then DC (A4) moves the names in S2.
+
+1. **Case-sensitive by default: accepted.** `validate_v2.py` compiles every `productExamples` entry with `cs: True`, as IO's linter does. A test asserts that the two linters flag and pass the same fixture strings.
+2. **Change: no new Tool field.** `productExamplesCaseInsensitive` is not added. The one place for a case-insensitive product term is `schema/lint/typing_lexicon.yaml` (an entry without `cs`), added by DE on DC's request, for names that are never ordinary words. One fact stays in one place.
+3. **Lexicon review: accepted.** `Field Maps` gets `cs: true`. DE reviews every multi-word lexicon term and sets `cs: true` where the lower-case phrase is ordinary environmental English, listing the changes in the DE worklog.
+4. **Which names move (DC, S2, data-only).** Case-sensitive matching still flags a product name that is also a capitalized ordinary word at the start of a field or sentence ("Watershed hydrology", "Clay soils"). DC therefore moves a name from `scopeNote` into `productExamples` only when a dry run of the lint over the current L1/L2 corpus gives no false positive for it; the rest stay in `scopeNote`. DC records the dry-run result in its worklog.
+5. Not changed: L5 instrument matching and T-4 (a tool class may be named where it changes the work condition).

@@ -1,0 +1,500 @@
+id: seed:R07-fuels-prescribed-fire-specialist
+type: RoleProfile
+prefLabel:
+  en: Fuels and prescribed fire specialist
+definition:
+  en: Role that assesses fuels, designs and supervises fuels treatments, writes and executes burn plans, makes go/no-go decisions, plans smoke management with air regulators, evaluates fire effects and treatment effectiveness, and works with landowners and partners across ownerships.
+functionStatement:
+  en: Reduce wildfire hazard and restore fire-adapted conditions through fuels treatments and prescribed fire executed within prescription and air-quality limits.
+primaryWorkFunction: WF-BUILD
+roleLevels:
+- key: journey
+  levelBand:
+  - L2
+  - L3
+- key: senior
+  levelBand:
+  - L3
+  - L4
+- key: lead
+  levelBand:
+  - L4
+  - L4
+taskBundle:
+- task: seed:v1-4.3.2-T1
+  importance: 5
+  timeShare: 0.116
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-4.3.2-T2
+  importance: 5
+  timeShare: 0.04
+  critical: true
+  neededAtEntry: false
+  formationTask: true
+  roleLevels:
+  - senior
+  - lead
+- task: seed:v1-4.2.3-T1
+  importance: 4
+  timeShare: 0.04
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+- task: seed:v1-4.2.3-T2
+  importance: 5
+  timeShare: 0.08
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-4.2.3-T3
+  importance: 5
+  timeShare: 0.04
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:db-4.3.2-t4
+  importance: 4
+  timeShare: 0.02
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:fc-uas-ignition
+  importance: 4
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+- task: seed:v1-4.3.2-T3
+  importance: 4
+  timeShare: 0.04
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-4.3.3-T1
+  importance: 5
+  timeShare: 0.08
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:db-4.3.3-t4
+  importance: 4
+  timeShare: 0.04
+  critical: false
+  neededAtEntry: true
+  formationTask: true
+  roleLevels:
+  - journey
+- task: seed:v1-4.3.3-T2
+  importance: 4
+  timeShare: 0.08
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-4.3.3-T3
+  importance: 4
+  timeShare: 0.04
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-4.3.4-T2
+  importance: 4
+  timeShare: 0.04
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:DB-C15-T2
+  importance: 5
+  timeShare: 0.04
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:DB-C15-T5
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-4.1.1-T1
+  importance: 3
+  timeShare: 0.04
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+- task: seed:fc-sitehist-read
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:fc-camp-schedule
+  importance: 4
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:fc-camp-access
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:fc-land-joint-visit
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:lc-txe-answer-public-questions
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:lc-txe-draft-advisory
+  importance: 3
+  timeShare: 0.012
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:fc-risk-briefing
+  importance: 5
+  timeShare: 0.02
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:fc-lead-field-day
+  importance: 4
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-4.5.2-T1
+  importance: 4
+  timeShare: 0.02
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+- task: seed:v1-3.1.1-T3
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:lc-txd-rate-performance
+  importance: 3
+  timeShare: 0.012
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - lead
+- task: seed:fc-gt-mismatch
+  importance: 3
+  timeShare: 0.012
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:lc-txc-exercise-stop-work
+  importance: 5
+  timeShare: 0.008
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+competencyTargets:
+- competency: seed:v1-4.3.2
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 5
+  distinguishing: true
+  criticalForSelection: false
+- competency: seed:v1-4.3.3
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 5
+  distinguishing: true
+  criticalForSelection: false
+- competency: seed:v1-4.3.4
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DB-C15
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-4.4.1-A
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 5
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C20
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DB-C29
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-4.4.1-B
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C28
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C02
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-4.1.1
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L2
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C22
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C21
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FC-C14
+  targetLevels:
+    journey: L1
+    senior: L2
+    lead: L2
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-4.5.2
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L2
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:PS-C03
+  targetLevels:
+    senior: L2
+    lead: L3
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:IO-C01
+  targetLevels:
+    senior: L3
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-01
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-02
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-13
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-05
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+homeModule: forest
+layer: L3
+module: forest
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'Tier P1 (full depth). Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results. LLM-coder gate G0: the critical and needed-at-entry flags are pre-fills for human verification and never reach G2 (protocol_llm_coder_gate.md section 2). criticalForSelection is false everywhere: v2.0 is never used for selection. Time shares are relative shares across the whole role (all levels); views renormalize within a role level. Formation flags follow WP-07 provisions and WP-03 suggestions where FH agreed. Mirror and mobility links: entryFrom/progressesTo here; mirror pairs in X11.'
+notation:
+- scheme: MVProleSet
+  value: R07
+altLabel:
+  en:
+  - fuels specialist
+  - prescribed fire specialist
+  - burn boss
+entryFrom:
+- seed:R06-wildland-fire-operations
+- seed:R09-restoration-project-lead
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0017
+  - ADR-0024
+  - ADR-0025
+  - ADR-0029

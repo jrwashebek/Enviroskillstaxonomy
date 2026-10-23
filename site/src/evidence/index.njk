@@ -1,0 +1,50 @@
+---
+layout: layouts/base.njk
+title: How to read the evidence
+crumbs: [[null, "Evidence"]]
+---
+{% import "macros.njk" as m %}
+<h1>How to read the evidence</h1>
+<p class="emst-lede">Every statement in the explorer says how far you can rely on it. This page explains the labels.</p>
+
+<h2>Use tier: what you may use it for</h2>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Use tiers">
+<table class="usa-table usa-table--compact">
+  <caption>Use tiers (lowest to highest)</caption>
+  <thead><tr><th scope="col">Use tier</th><th scope="col">Permitted uses</th></tr></thead>
+  <tbody>{% for k, d in emst.labels.useTier %}<tr><td>{{ k }}</td><td>{{ d }}</td></tr>{% endfor %}</tbody>
+</table>
+</div>
+<p>The explorer shows each record's <em>effective</em> use tier, computed by the build ({{ emst.release.eutRule }}) as the lowest of its lifecycle cap, the validation evidence met and the reliability gate. Nothing in this release is at <code>select</code>. Emerging content can be used for training, never for selection.</p>
+
+<h2>Evidence label: what it rests on</h2>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Evidence labels">
+<table class="usa-table usa-table--compact">
+  <caption>Evidence labels</caption>
+  <thead><tr><th scope="col">Label</th><th scope="col">Meaning</th></tr></thead>
+  <tbody>{% for k, d in emst.labels.evidenceDef %}<tr><td>{{ k }} {{ emst.labels.evidence[k] }}</td><td>{{ d }}</td></tr>{% endfor %}</tbody>
+</table>
+</div>
+<p>Badges also say who made a record and whether a person has reviewed it. "AI-agent draft, unreviewed" means an AI agent on the project team wrote it and no named person has checked it. Agent output is draft evidence, never validation.</p>
+
+<h2>The display gate: why most values say "assessment pending"</h2>
+<p>Ratings such as how a task is changing, its craft profile or its work function are shown only when people rating independently agree well enough. The gate ({{ emst.release.displayGateRule }}, rules in <code>validation/display_gates.yaml</code>) requires a pre-registered study with human raters, at least 120 units, and a Krippendorff's alpha whose lower 95% bound is at least 0.667 (shown as tentative) or 0.80. AI-agent ratings and v1 analyst codes never count. In this build {{ emst.release.agreementStudies.length }} agreement studies have reported, so {{ emst.stats.gatedRendering }} rated values render. The labels you will see:</p>
+<ul class="usa-list">{% for k, t in emst.gateLabels %}<li><code>{{ k }}</code>: {{ t }}</li>{% endfor %}</ul>
+<p>Editorial classifications (for example a competency's type, or a role's primary work function) are definitions, not ratings, and are labelled as such.</p>
+
+<h2>The v1 evidence drawer</h2>
+<p>EMST v1 coded every task for AI and robotics exposure. One analyst did that with an AI assistant, without a second rater. Those codes are kept as <strong>prior evidence</strong> in a drawer under each task, labelled "{{ emst.gateLabels.v1_prior }}". They are never shown as a value, never counted or averaged and never used in a headline. Where v1 sources disagree, or v1 itself flagged a problem, the drawer marks the task <span class="emst-tag emst-tag--contested">Contested</span>. If comprehension testing shows that people misread the drawer, it will be removed.</p>
+
+<h2>Signals and change indicators</h2>
+<p>Change signals (postings, deployments, plans, policy events) are recorded with their source release, period and reliability (A to D). A signal is at <em>watch</em> until a named person reviews it. A change indicator moves only when two independent families of active signals point the same way over two periods ({{ emst.release.changeRule }}). Counts below 30 are shown as counts, not percentages; below 10 the explorer says "too few to say".</p>
+
+<h2>Where a competency has a legal basis</h2>
+<p>For work that depends on contested policy instruments, the explorer shows a <em>computed</em> applicability per sector actor (required basis, permitted, no current basis) from the status of linked instruments on the release date, with the note "basis not yet linked" where no instrument is linked yet. Nothing is excluded from federal views on that basis (project lead default, Q4).{% if emst.venue.source == "wp05-prototype" %} In this build the computation is the statecraft work package's prototype, pending change request CR-SC-001.{% endif %}</p>
+
+<h2>What this release does not claim</h2>
+<ul class="usa-list">
+  <li>No competency, indicator or pathway has been validated by practitioners or a Delphi panel yet.</li>
+  <li>No alignment with O*NET, ESCO, OPM or any state classification system is claimed: crosswalks are drafts until a human-reviewed mapping set exists.</li>
+  <li>No v1 single-analyst statistic is used except as methodology history.</li>
+  <li>No pathway is recommended.</li>
+</ul>

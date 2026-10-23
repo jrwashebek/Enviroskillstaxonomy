@@ -177,12 +177,19 @@ class Role:
     emerging: dict | None = None    # evidenceSignals, feederRoles, horizon, scenarioSensitivity, counterSignal
     note: str = ""
     tx_floor: dict = field(default_factory=dict)  # comp -> targets string override for the TX floor
+    skip: list = field(default_factory=list)      # auto rule: task keys FH excluded after review
 
 
 STRATEGIC_VERBS = ("Set ", "Establish ", "Charter ", "Govern ", "Run a model risk", "Report data and AI")
 SENIOR_VERBS = ("Design ", "Plan ", "Lead ", "Train ", "Teach ", "Evaluate ", "Review another", "Decide whether",
                 "Direct ", "Supervise ", "Negotiate ", "Recommend ", "Advise ", "Certify ", "Resolve ", "Testify ",
-                "Defend ", "Audit a local", "Brief ", "Prepare a contingency", "Specify ")
+                "Defend ", "Audit a local", "Brief ", "Prepare a contingency", "Specify ", "Exercise responsible",
+                "Mediate ", "Present ", "Represent ")
+JOURNEY_VERBS = ("Write ", "Prepare ", "Prescribe ", "Develop ", "Fit ", "Forecast ", "Compare ", "Estimate ",
+                 "Calculate ", "Determine ", "Issue ", "Draft ", "Assess ", "Review ", "Model ", "Simulate ", "Run a ",
+                 "Analyze ", "Quantify ", "Select ", "Schedule ", "Derive ", "Delineate ", "Characterize ",
+                 "Appraise ", "Translate ", "Inspect contract", "Adjust a ", "Conduct a vulnerability", "Rank ",
+                 "Verify that", "Close out", "Integrate ", "Synthesize ", "Rate ", "Apply a data-limited")
 
 
 def heuristic_levels(text, levels):
@@ -193,6 +200,8 @@ def heuristic_levels(text, levels):
         if "senior" in levels:
             return levels[levels.index("senior"):]
         return levels[1:] if len(levels) > 1 else levels
+    if text.startswith(JOURNEY_VERBS) and levels[0] == "entry" and len(levels) > 1:
+        return levels[1:]
     return list(levels)
 
 

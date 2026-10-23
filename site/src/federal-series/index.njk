@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+title: Federal series profiles
+crumbs: [[null, "Federal series"]]
+---
+{% import "macros.njk" as m %}
+<h1>Federal series profiles</h1>
+<p class="emst-lede">For federal HR specialists, classifiers and training officers: each OPM occupational series with the EMST role variants crosswalked to it, the major duties and competencies of those variants, and the series' current status.</p>
+{{ m.hrDisclaimer() }}
+<p>Series status comes from the EMST OPM series register. Series that OPM has <strong>proposed for realignment</strong> are shown as proposed, never as realigned: the proposal is not final. Only established core competencies appear in these HR views; module editorial sections and emerging content are left out and counted.</p>
+{{ m.statFigure(emst.series.length, "Series in the register", emst.figures.series) }}
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="OPM series">
+<table class="usa-table usa-table--compact usa-table--striped">
+  <caption>OPM occupational series in the EMST register</caption>
+  <thead><tr><th scope="col">Series</th><th scope="col">Title</th><th scope="col">Status</th><th scope="col" class="emst-num">Draft role crosswalk rows</th><th scope="col" class="emst-num">Federal variants in this build</th></tr></thead>
+  <tbody>
+  {% for s in emst.series %}
+  <tr><td><a href="{{ s.url | url }}">{{ s.code }}</a></td><td>{{ s.title }}</td><td>{{ "Proposed for realignment (not final)" if s.realignment else (s.seriesStatus | titlecase) }}</td><td class="emst-num">{{ s.roleRows.length }}</td><td class="emst-num">{{ s.fedVariants.length }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>

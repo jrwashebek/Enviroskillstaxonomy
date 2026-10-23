@@ -22,3 +22,16 @@
 ## Consequences if not accepted
 
 For item 1, 118 records fail validation, or the migration output must change. For items 2 and 3, tests accept the two extra codes as documented additions, and the stale rule-file wording remains.
+
+## CA ruling
+
+- **Ruling:** **accept 1–3** · **Date:** 2026-10-23 · **Decider:** CA · **Recorded in:** ADR-0030 §1.1 (amends ADR-0029 §1 item 3), SPEC §4 (draft.3), `vocab/rules/*.yaml`, DECISION_LOG `CR-DE-004`
+- **Implementation:** DE per `RULINGS_FOR_DE.md` §13; LM and IO as below.
+
+1. **Seed-v1 stubs: interim confirmed.** `E-SEED-CANDIDATE` applies to `candidate`, `published` and `deprecated` in every case, and to `superseded` and `withdrawn` only when the record carries a minted `emst:` ID. A seed-keyed v1 stub that is `superseded` or `withdrawn` keeps `validationStatus: seed-v1`. That value is accurate: the content was never validated, and the stub never reaches a release (the release profile ships minted IDs only). No new vocabulary value; migration output unchanged. `mint_id.py promote` keeps refusing every seed-v1 record. ADR-0029 §1 item 3 is amended to this wording.
+2. **Reason codes: accepted.** The CA has added `ER-0-NOT-ACTIVE` (watch signal; `active_signals` clause) and `ER-0-ORGANIZATION-TARGET` (`organization_targets` clause) to `change-indicator@1.0.0.yaml#reason_codes`. Both name exclusions the definition already makes, so outputs do not change and the version stays 1.0.0 (recorded in its `changeNote`; no release has been built under it). Tests treat them as ordinary codes, not documented extras.
+3. **Pointers.**
+   - The CA has dropped "(to be ported by DE …)" from `change-indicator@1.0.0.yaml#implementation`.
+   - The CA has changed every `scripts/build_release.py#Release.views` pointer to the real name, `#Builder.views`. DE keeps the `Release = Builder` alias until rc.1 is tagged, then may remove it.
+   - **LM** deletes `docs/methods/ci/` now: the port passes in `tests/test_evidence_rule.py`.
+   - **IO** sets `validation/display_gates.yaml#agreement_result_schema.ruleVersion` to `1.0.0`. DE's emitter keeps overwriting the stamp as a guard.

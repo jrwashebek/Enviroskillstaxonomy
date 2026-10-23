@@ -30,6 +30,6 @@ outputs:
   fields: "id, effectiveUseTier, declaredCeiling, caps{lifecycle, evidence, levelRule, indicatorLint}, bindingCap, ruleId, ruleVersion, buildCommit"
 parameters:
   tier_requirements: {path: validation/indicator_lint_rules.yaml, key: publication_rules.tier_requirements, pin: "sha256 of the file at build, recorded in the view header"}
-implementation: scripts/build_release.py#Release.views (to be extended by DE; see RULINGS_FOR_DE.md §4)
+implementation: scripts/build_release.py#Builder.views (to be extended by DE; see RULINGS_FOR_DE.md §4)
 changeNote:
   - {date: '2026-10-23', note: "Adds the evidence, level-rule and indicator-lint caps; states how the reliability gate applies (ADR-0029)."}

@@ -1,0 +1,46 @@
+id: seed:R28-air-quality-specialist/state
+type: RoleVariant
+prefLabel:
+  en: Air quality specialist (state)
+variantOf: seed:R28-air-quality-specialist
+sectorActor: state
+authorityPosition: regulator
+layer: L3
+module: air
+status: draft
+validationStatus: draft
+license: CC0-1.0
+definition:
+  en: 'Air quality specialist in a state setting: acts as regulator, deciding on or enforcing obligations of others.'
+lifecycleState: established
+useTier: describe
+sensitivity: public
+sectorActorSubtype: state-agency
+industry: public-administration
+ownership: public
+deliveryModel: in-house
+instruments:
+- seed:ins/caa-title-v
+- seed:ins/caa-nsr-psd
+credentialGates:
+- credential: seed:crd-epa-method-9-visible-emissions-observer-certific
+  kind: preferred
+disclaimers:
+- Not a classification basis / not a job analysis / not for RIF or rating decisions.
+- 'Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results.'
+editorialNote:
+  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0007
+  - ADR-0017
+  - ADR-0022

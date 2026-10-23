@@ -1,0 +1,521 @@
+id: seed:R10-environmental-review-specialist
+type: RoleProfile
+prefLabel:
+  en: Environmental review specialist
+definition:
+  en: Role that determines the level of environmental review for proposed actions, prepares or directs effects analyses, coordinates cooperating agencies and consultations, builds the administrative record and writes decision documents under the governing agency procedures. AI drafting compresses production; verification, record integrity and litigation resilience grow.
+functionStatement:
+  en: Establish, document and defend what a proposed action's effects are and which review it requires, so that the deciding official acts on a defensible record.
+primaryWorkFunction: WF-REVIEW
+roleLevels:
+- key: journey
+  levelBand:
+  - L2
+  - L3
+- key: senior
+  levelBand:
+  - L3
+  - L4
+- key: lead
+  levelBand:
+  - L4
+  - L4
+taskBundle:
+- task: seed:v1-6.1.4-T1
+  importance: 5
+  timeShare: 0.125
+  critical: true
+  neededAtEntry: true
+  formationTask: true
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-6.1.4-T2
+  importance: 5
+  timeShare: 0.066
+  critical: true
+  neededAtEntry: false
+  formationTask: true
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-6.1.4-T3
+  importance: 5
+  timeShare: 0.066
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:sc-review-ai-drafted-sections
+  importance: 5
+  timeShare: 0.066
+  critical: true
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-write-review-decision
+  importance: 5
+  timeShare: 0.033
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:sc-joint-review-document
+  importance: 4
+  timeShare: 0.033
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:sc-determine-review-level
+  importance: 5
+  timeShare: 0.033
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-screen-categorical-exclusion
+  importance: 4
+  timeShare: 0.066
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-review-automated-screening
+  importance: 4
+  timeShare: 0.033
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-adopt-other-agency-exclusion
+  importance: 3
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:sc-evaluate-sponsor-document
+  importance: 5
+  timeShare: 0.033
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:sc-document-independent-evaluation
+  importance: 4
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:sc-issue-preparer-standards
+  importance: 4
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:v1-6.5.2-T1
+  importance: 4
+  timeShare: 0.033
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-update-permitting-dashboard
+  importance: 3
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-index-record-documents
+  importance: 4
+  timeShare: 0.033
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-write-reasoned-explanation
+  importance: 5
+  timeShare: 0.033
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:sc-confirm-comment-responses
+  importance: 4
+  timeShare: 0.033
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-6.4.4-T2
+  importance: 4
+  timeShare: 0.033
+  critical: false
+  neededAtEntry: false
+  formationTask: true
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-13-check-comment-grouping
+  importance: 4
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-identify-likely-claims
+  importance: 4
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:sc-pre-issuance-record-review
+  importance: 4
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - lead
+- task: seed:sc-define-area-potential-effects
+  importance: 4
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-assess-historic-effects
+  importance: 4
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-prepare-biological-assessment
+  importance: 4
+  timeShare: 0.033
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-review-ai-effects-determination
+  importance: 4
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-compile-species-occurrence
+  importance: 3
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: true
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:v1-6.7.2-T1
+  importance: 3
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-write-engagement-plan
+  importance: 3
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:dc-16-extract-table
+  importance: 3
+  timeShare: 0.017
+  critical: false
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-screen-preparer-conflicts
+  importance: 4
+  timeShare: 0.01
+  critical: true
+  neededAtEntry: false
+  formationTask: false
+  roleLevels:
+  - senior
+  - lead
+competencyTargets:
+- competency: seed:SL-C08
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 5
+  distinguishing: true
+  criticalForSelection: false
+- competency: seed:SC-C03
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 5
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:SC-C02
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 5
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:SC-C04
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:SC-C09
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L4
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:FH-C01
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DB-C50
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:SC-C17
+  targetLevels:
+    senior: L3
+    lead: L4
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-16
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-13
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 4
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DB-C52
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:SC-C06
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-5.2.1
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-11
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DB-C29
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L2
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:PS-C18
+  targetLevels:
+    journey: L2
+    senior: L2
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:v1-7.1.3
+  targetLevels:
+    journey: L2
+    senior: L3
+    lead: L3
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-01
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-02
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 3
+  distinguishing: false
+  criticalForSelection: false
+- competency: seed:DC-CAND-05
+  targetLevels:
+    journey: L1
+    senior: L1
+    lead: L1
+  importance: 2
+  distinguishing: false
+  criticalForSelection: false
+homeModule: core
+layer: L3
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'Tier P1 (full depth). Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results. LLM-coder gate G0: the critical and needed-at-entry flags are pre-fills for human verification and never reach G2 (protocol_llm_coder_gate.md section 2). criticalForSelection is false everywhere: v2.0 is never used for selection. Time shares are relative shares across the whole role (all levels); views renormalize within a role level. Formation flags follow WP-07 provisions and WP-03 suggestions where FH agreed. Mirror and mobility links: entryFrom/progressesTo here; mirror pairs in X11.'
+notation:
+- scheme: MVProleSet
+  value: R10
+altLabel:
+  en:
+  - NEPA specialist
+  - environmental planner
+  - environmental review coordinator
+entryFrom:
+- seed:R09-restoration-project-lead
+- seed:R12-environmental-compliance-inspector
+progressesTo:
+- seed:R13-resource-program-manager
+- seed:R31-ai-assisted-review-lead
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0017
+  - ADR-0024
+  - ADR-0025
+  - ADR-0029

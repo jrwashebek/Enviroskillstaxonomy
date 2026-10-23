@@ -23,3 +23,23 @@
 ## Consequences if not accepted
 
 Items 1–2: the WP-06 acceptance criteria can only be checked by the WP-06 generated table, not by CI. Item 3: compliance-sampling roles (R24, R26) keep an unresolved dependency. Item 6: module enactments stay unlinked to the instruments that drive change in their subsectors.
+
+## CA ruling
+
+- **Ruling:** **accept 1, 2 and 4; decide 3 and 5; route 6 and 7** · **Date:** 2026-10-23 · **Decider:** CA · **Recorded in:** ADR-0030 §1.3 and §4, ADR-0018 (amendment to §2), SPEC §5.4 and §18.2 (draft.3), `data/v2/governance/three_module_exceptions.yaml` (created), DECISION_LOG `CR-DB-001`
+- **Implementation:** DE per `RULINGS_FOR_DE.md` §15; DB (A6) content in S2 as listed.
+
+1. **Three-module rule in CI: accepted, with the zero-enactment case decided.**
+   - `W-THREE-MODULE` on drafts and `E-THREE-MODULE` from `candidate` on: a live core competency with `competencyType = practice` whose live module Enactments name only one or two distinct `enactedInModule` values, with no row in the exception register.
+   - **Zero module enactments passes.** Enactments are written only where the module changes the performance (ADR-0007 §B.4), so having none means the work is the same everywhere, not that it is module-specific. Transversal practice and knowledge areas are exempt: the rule applies to their task cores (ADR-0025).
+   - **Recurrence is reported, not stored.** The validator reports `I-THREE-MODULE-RECURRENCE` per core practice competency: the distinct modules among its module enactments, the home modules of the tasks that support it and, once WP-08 lands, the modules of role profiles that target it. Release notes count core practice competencies with computed recurrence below three, for the Editorial Board. It is not a release gate at rc.1, because only wave-1 modules exist.
+   - **Register:** the CA has created `data/v2/governance/three_module_exceptions.yaml` (`exceptions: []`). Each row: `competency`, `modules[]`, `rationale`, `decidedBy` (`pid:` or `CA`), `decidedOn`, `reviewBy`, `decidedIn`. Only the CA (later the Editorial Board) adds rows. On 2026-10-23 no core competency has one or two module enactments, so the register starts empty (`docs/build/WP-06/three_module_coverage.csv`).
+2. **`Enactment.subsectors`: accepted.** Optional array of `v_subsector`. `E-MODULE-SUBSECTOR` extends to module Enactments: error from `candidate` on, warning on drafts. Indicators inherit their competency's subsectors as a computed value; no Indicator field. **DB (A6)** moves the values out of `editorialNote` in S2.
+3. **DB-C53: home stays MOD-18 `lab` (wave 2); it is not core.** ADR-0018 §2 is amended.
+   - The laboratory's task core (method execution, method validation, laboratory QA/QC, accreditation) is performed by one job family under one accreditation regime, whatever module the data serves. It fails the three-module test.
+   - The part that recurs across modules is the data user's: field custody and field QC (core `seed:FC-C24`, already in place) and review of laboratory data for use in a decision. The second goes into core `seed:v1-2.2.3` (quality of environmental data from collection to release) as a task ("Review laboratory data packages, qualifiers and holding times to decide whether results can support a compliance decision") and one L2 indicator.
+   - **Who:** DB (A6) writes them in S2 as part of WP-08 roles R24 and R26; DC (A4) reviews. Core size does not change.
+4. **Cross-module support: confirmed** as the pattern for early drafts named in the dispositions. Module-to-module references are allowed in both directions; only core → module is forbidden (SPEC §3.2). IA-CC-05 stays homed in `extract` with its tasks and public-lands enactment in `forest`. It ships in rc.1 as a named early draft (build plan §5.4).
+5. **Wildlife harvest management: add a module candidate, not a core one.** `DB-C56` "Set harvest regulations and manage game populations from survey and harvest data", MOD-12 `wildlife`, wave 1. It is net growth in a module, so G-9 is unaffected. DB (A6) authors it in S2 for R15 at P2 starter-kit depth; FC (A3) reviews the field-survey anchors. The CA adds the disposition row at WP-16 with the other amendments (`docs/decisions/integration/disposition_amendments.csv`).
+6. **Routed to WP-10 (LM):** accepted as listed. Each regime needs a dated status (ADR-0028) before WP-14 cites it. Module enactments link instruments with typed roles (CR-SC-001 ruling, item 2).
+7. **Routed to WP-07 credential register:** LC (A8) adds register records for the module gates in item 7 that are not yet there in S2. DB then links tasks to them through `credentialGates`.

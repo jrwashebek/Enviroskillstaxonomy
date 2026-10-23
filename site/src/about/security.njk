@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+title: Security
+permalink: /about/security/
+crumbs: [[null, "Security"]]
+---
+<h1>Security</h1>
+<p class="emst-lede">A static, local-first site with no server code, no accounts and no data collection. It is an information provider: it does not collect, process or store federal information on behalf of any agency.</p>
+<ul class="usa-list">
+  <li>Content Security Policy on every page: resources from this site only; no network connections from scripts; no forms submitted anywhere; no framing of other sites.</li>
+  <li>About 15 KB of first-party JavaScript, used only on the gap-check and search pages. No framework and no third-party script at runtime.</li>
+  <li>Software bill of materials (CycloneDX) for the runtime and build dependency trees, and checksums of every published file, in the <a href="{{ '/download/' | url }}">downloads</a>.</li>
+  <li>The security packet (applicability statement, data flow, SBOM, Secure Software Development Framework mapping) is in the repository at <code>site/SECURITY_PACKET.md</code>.</li>
+</ul>
+<p>Report a vulnerability privately to the EMST steward through the route in the repository's security policy, not through a public issue.</p>

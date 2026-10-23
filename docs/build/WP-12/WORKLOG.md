@@ -27,3 +27,15 @@ AUTHORING_GUIDE, `scripts/build_release.py`, the "For WP-12" notes in WP-03, WP-
   as a prototype; never from records. CR-CP-001 asks DE to port it.
 
 ## Log
+- 15:10 Scaffolded `site/` (Eleventy 3.1.6, USWDS 3.14.0, axe-core 4.14.0, playwright-core 1.63.0, js-yaml 4.1.1; exact pins,
+  `npm install --ignore-scripts`; versions chosen at least 14 days old except where noted in the security packet).
+  `tools/prepare-release.mjs` (preview build into `.cache/release`, WP-05 venue prototype into `.cache/venue`),
+  `tools/vendor.mjs` (USWDS stylesheet + the 50 files it references; refuses external URLs), `tools/sbom.mjs`
+  (`npm sbom` CycloneDX 1.5, runtime and build trees), `tools/serve.mjs` (127.0.0.1 only, no logging, security headers).
+- 15:40 `lib/model.mjs`: view model from bundle + computed views; display gate fail-closed; v1 values only as task
+  drawer rows; module records flagged; federal applicability only from the computed venue view.
+- 16:10 Pages: home, roles (index, role, variant = View 1), gap check (index, chosen-competency mode, per-variant,
+  team grid = View 2), pathways (index with X11 translation seed, per-variant = View 3), what's coming (View 4),
+  federal series (index + 79 profiles), state and local classes (index + 38 views), competencies (index + 232 pages),
+  module sections, evidence, challenge, privacy, accessibility, security, download, search, 404. First build: 382 pages
+  in about 3 s. WP-08 roles not yet present: empty states render.

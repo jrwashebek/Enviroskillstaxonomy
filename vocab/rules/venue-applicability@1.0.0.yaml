@@ -1,0 +1,36 @@
+# EMST computed-view rule (SPEC §11.6, §14.3; ADR-0016 §3-4; CR-SC-001 #2, #4). Normative definition; code in `implementation`.
+ruleId: venue-applicability
+version: 1.0.0
+status: active
+steward: SC (method; instrument roles) · LM (registry and events) · DE (implementation) · CA (definition)
+decidedIn: [ADR-0016, ADR-0028, ADR-0030, CR-SC-001]
+reference_implementation: docs/build/WP-05/ci/venue_applicability.py (SC prototype, untyped links; not normative and never run by CI)
+computes: >
+  venueApplicability per competency and non-Tribal sector-actor family, and federalApplicability (the federal value),
+  each ∈ {required-basis, permitted, no-current-basis} with asOf. These are computed fields, never stored in source
+  records (schema/lint/computed_fields.yaml).
+inputs: [released Competency, Enactment (enactmentKind = actor), Instrument and DriverEvent records]
+definition:
+  scope: "For each released competency C and each sector-actor family F (vocab/sector_actors.yaml top-level notation, the actor subtype mapped to its family) that has at least one released actor Enactment of C: L = the typed links Enactment.characteristicInstruments[] {instrument, role} of those enactments."
+  status: "An instrument's status as of asOf is DriverEvent.statusAfter of its latest released event with eventDate <= asOf; `no-event` if it has none. A submitted-for-review event never yields an active status."
+  active_statuses: [in-force, in-force-litigated, interim-in-force, issued]
+  inactive_statuses: [enjoined, stayed, vacated, rescinded, repealed]
+  requires: "R = links in L with role = requires."
+  value: >
+    required-basis if any r in R is active; no-current-basis if R is non-empty and every r in R is inactive;
+    permitted otherwise (no requires link, or only requires links whose status is pending, proposed, under-review,
+    final-not-yet-effective, pending-legislation or no-event).
+  non_deciding_roles: "Links with role enables, constrains or removed-requirement never decide the value. The view lists them (instrument, role, status) for the evidence drawer and the what's-coming view, so a revoking order or a rescission rule can neither create a basis nor flip a value back."
+  untyped: "A link without a role counts as nothing and is reported in untypedLinks."
+  flags: "basisLinked = R non-empty; basisVerified = some r in R has at least one dated event; untypedLinks = count of links without a role."
+  tribal: "Enactments whose actor is Tribal or held are never read (ADR-0007 §D); F = tribal is never computed."
+  federal_default_view: "Q4 default (PROJECT_LEAD_DECISIONS): the federal value is shown with an explanatory note and nothing is excluded; when basisLinked is false the view says 'basis not yet linked', and when basisVerified is false 'basis linked, status not yet verified'."
+outputs:
+  view: views/venue_applicability.json
+  fields: "competency, sectorActor, venueApplicability, asOf, basisLinked, basisVerified, untypedLinks, deciding[{instrument, status}], context[{instrument, role, status}], enactments[], ruleId, ruleVersion, buildCommit"
+parameters:
+  asOf: "build date (SOURCE_DATE_EPOCH) unless --as-of is given"
+tests: "tests/test_venue_applicability.py with tests/fixtures/venue/ (moved from docs/build/WP-05/ci/ and extended with typed-role cases: rescinded requires -> no-current-basis; active removed-requirement alone -> permitted; revoking order linked -> no flip; enables/constrains never decide; no-event requires -> permitted, basisLinked true, basisVerified false; untyped link reported; Tribal never read; asOf before a rescission -> required-basis)."
+implementation: scripts/build_release.py#Builder.views (to be extended by DE with scripts/rules/venue_applicability.py; RULINGS_FOR_DE.md §16.4)
+changeNote:
+  - {date: '2026-10-23', note: "Registered (CR-SC-001 #4; ADR-0030): typed link roles; only requires links decide the value. Fixes the over-reading of enabling and removal instruments as a required basis (SL-C02 federal; LM simulation case 3)."}

@@ -12,7 +12,7 @@ eleventyComputed:
 <h1>{{ c.title }}</h1>
 <p>{{ c.typeLabel }}{% if c.transversalCluster %} · transversal cluster {{ c.transversalCluster }}{% endif %} · {{ m.lifecycleTag(c.lifecycleState) }}{% if c.reviewBy %} · review by {{ c.reviewBy }}{% endif %} {{ m.moduleTag(c) }}</p>
 {% if c.altLabels.length %}<p class="emst-muted">Also searched as: {{ c.altLabels | join("; ") }}</p>{% endif %}
-{{ m.meta(c.tier, c.evidence, ("binding cap: " + c.tier.bindingCap) if c.tier.bindingCap else "") }}
+{{ m.meta(c.tier, c.evidence, c.tier.bindingCap | capText) }}
 {% if c.evidence.isV1Seed %}<div class="emst-callout emst-callout--warn" role="note"><p>This record still carries v1 text that has not yet been rewritten to the v2 rules (observable, function-based wording). Treat it as a placeholder.</p></div>{% endif %}
 
 {% if c.statement %}<p class="emst-lede">{{ c.statement }}</p>{% endif %}
@@ -36,6 +36,11 @@ eleventyComputed:
 <p class="emst-muted">Indicator placement at a level is a draft until a pre-registered Delphi panel places it (70% modal, IQR at most 1). No indicator here is approved for selection use.</p>
 {% else %}
 <p>{% if c.type == "knowledge-area" %}Knowledge areas have no proficiency levels; they are assessed through knowledge statements.{% else %}No levels defined yet.{% endif %}</p>
+{% endif %}
+
+{% if c.knowledge.length %}
+<h2>Knowledge statements ({{ c.knowledge.length }})</h2>
+<ul class="usa-list">{% for k in c.knowledge %}<li>{{ k.statement }} <span class="emst-muted">(lowest level {{ k.lowestLevel or "not set" }}; evidence {{ k.evidence.label }}, {{ k.evidence.reviewStatus }})</span></li>{% endfor %}</ul>
 {% endif %}
 
 <h2>Tasks this competency serves ({{ c.tasks.length }})</h2>

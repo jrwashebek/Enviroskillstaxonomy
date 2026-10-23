@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: emst.variants
+  size: 1
+  alias: v
+permalink: "{{ v.pathwaysUrl }}"
+eleventyComputed:
+  title: "Where it can lead: {{ v.role.title }} ({{ v.actorLabel }})"
+---
+{% import "macros.njk" as m %}
+<h1>Where {{ v.role.title }} <span class="emst-muted">({{ v.actorLabel }})</span> can lead</h1>
+<nav aria-label="Views for this role variant"><p><a href="{{ v.url | url }}">How it is changing</a> · <a href="{{ v.gapUrl | url }}">Gap check</a> · <strong>Where it can lead</strong></p></nav>
+<div class="emst-callout emst-callout--warn" role="note">
+  <p><strong>Exploratory, never a recommendation.</strong> Destinations are computed from draft role profiles: roles named as next steps in this role's profile, roles with a drafted learning pathway, and other roles that share at least half of their target competencies with this one. Not yet observed in real career moves.</p>
+</div>
+{% if v.pathways.length %}
+{% for e in v.pathways %}
+<section class="emst-card" aria-labelledby="dest-{{ loop.index }}">
+  <h2 id="dest-{{ loop.index }}"><a href="{{ e.to.url | url }}">{{ e.to.role.title }}</a> <span class="emst-muted">· {{ e.to.actorLabel }}</span></h2>
+  <p>{% if e.named %}Named as a next step in this role's profile. {% endif %}{% if e.learning.length %}Exploratory learning pathway drafted ({% for l in e.learning %}{{ l.type }}, {{ l.steps }} steps{% if not loop.last %}; {% endif %}{% endfor %}). {% endif %}Basis: computed from draft role profiles, not observed.</p>
+  <figure class="emst-figure" data-figure data-use-tier="exploratory" data-evidence="{{ e.to.role.evidence.label }}">
+    <figcaption>{{ e | sharedText }}</figcaption>
+    {% if e.gapCount %}<p>To build ({{ e.gapCount }}{% if e.gapCount > e.gaps.length %}, first {{ e.gaps.length }} shown{% endif %}): {% for g in e.gaps %}<a href="{{ g.competency.url | url }}">{{ g.competency.title }}</a> to {{ g.level }}{% if g.partial %} (raise from current target){% endif %}{% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
+    <p class="emst-meta"><span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> {{ m.evBadge(e.to.role.evidence) }}</p>
+  </figure>
+  {% if e.frictions.length %}<h3>Known frictions</h3><ul class="usa-list">{% for f in e.frictions %}<li>{{ f.type }} ({{ f.severity }}, {{ f.direction }}; as of {{ f.asOf }}; evidence {{ f.evidence }}){% if f.mitigation %}: {{ f.mitigation }}{% endif %}</li>{% endfor %}</ul>
+  {% else %}<p>No friction records for this move in this build. That does not mean there are none.</p>{% endif %}
+  {% if e.crosswalks.length %}{{ m.crosswalkTable(e.crosswalks, "Dated draft crosswalks for the destination", true) }}{% endif %}
+  <p><a href="{{ e.to.gapUrl | url }}">Check my gaps for this destination</a></p>
+</section>
+{% endfor %}
+{% else %}
+<div class="emst-callout emst-callout--empty" role="status"><p>No destination meets the display rule for this variant in this build.</p></div>
+{% endif %}

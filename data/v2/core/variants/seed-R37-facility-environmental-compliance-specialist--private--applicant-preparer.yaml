@@ -1,0 +1,87 @@
+id: seed:R37-facility-environmental-compliance-specialist/private/applicant-preparer
+type: RoleVariant
+prefLabel:
+  en: Facility environmental compliance specialist (private, applicant-side permit preparer)
+variantOf: seed:R37-facility-environmental-compliance-specialist
+sectorActor: private
+authorityPosition: service-provider
+layer: L3
+module: core
+status: draft
+validationStatus: draft
+license: CC0-1.0
+definition:
+  en: 'Facility environmental compliance specialist in a private-sector setting: delivers the work for another party under contract or agreement. Applicant-side preparer: consultants who prepare permit applications and compliance submissions for facilities; the applicant variant in the permit-writer mirror triad (ADR-0017 section 4).'
+lifecycleState: established
+useTier: describe
+sensitivity: public
+sectorActorSubtype: firm
+industry: consulting-engineering
+ownership: private-closely-held
+deliveryModel: contracted
+taskAdds:
+- task: seed:v1-6.1.3-T1
+  importance: 5
+  timeShare: 0.05
+  critical: true
+  neededAtEntry: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: seed:sc-prepare-authority-map
+  importance: 4
+  timeShare: 0.03
+  critical: false
+  neededAtEntry: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:sc-prepare-negotiation-brief
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:lc-txf-draft-scope
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  roleLevels:
+  - senior
+  - lead
+- task: seed:sc-screen-assignment-conflicts
+  importance: 4
+  timeShare: 0.01
+  critical: true
+  neededAtEntry: false
+  roleLevels:
+  - senior
+  - lead
+taskDrops:
+- seed:v1-6.1.2-T3
+- seed:sc-apply-post-employment-rules
+credentialGates:
+- credential: seed:crd-professional-engineer
+  kind: preferred
+- credential: seed:crd-qualified-environmental-professional
+  kind: preferred
+editorialNote:
+  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0007
+  - ADR-0017
+  - ADR-0022

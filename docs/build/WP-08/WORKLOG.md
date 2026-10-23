@@ -7,3 +7,4 @@
 ## Log
 
 - 2026-10-23 16:30 Read S1 brief, build plan §1 and WP-08, AUTHORING_GUIDE (incl. §12 changes since S0), SPEC §5.7–5.9, §5.20–5.21, §10, ADR-0006, -0016, -0017, -0027, -0029 (ADR-0030 not present), `mvp_role_set.csv`, FH/SL/PS/CM Phase 2 files, WP-03…WP-07 and WP-09 worklogs and handoffs, X3/X4/X5/X11 sets, WP-07 staged pathways and formation provisions, LM signals and external-index records. Baseline validator: 0 errors.
+- 17:00 Builder written (`build_wp08.py`, `src/wp08lib.py`, specs `src/roles_p1.py`, `roles_p2.py`, `roles_p3p4.py`, `variants.py`, `families.py`; method `prompts/wp08-role-profile.md@1`). First full build: 37 RoleProfiles, RoleVariants for every listed actor (Tribal variants as held stubs), 17 JobFamilies, change-view atoms for P1. Builder checks (depth ranges, critical-target coverage, clamping, dependency direction) report 0 problems. `validate_v2.py`: 0 errors, 0 warnings on WP-08 records (repo total unchanged at 0 errors).

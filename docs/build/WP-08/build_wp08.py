@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -104,36 +105,43 @@ def targets(idx, spec):
     return out
 
 
+BASE_TASK = re.compile(r"^seed:(v1-|[A-Z]{2}-C\d+-T\d|[A-Z]{2}-CC-\d+-T\d|FS-C\d+-T\d|LC-C-\d+-T)")
+CAP = {5: 4, 4: 3, 3: 2}
+
+
 def auto_tasks(idx, spec, target_items):
     """P2-P4 starter-kit bundles: primary tasks of the targeted competencies (draft rule in the prompt file)."""
     chosen, seen = [], set()
-    allowed_areas = {"core"} if spec.area == "core" else None
+    allowed = {"core"} | ({spec.area} if spec.area != "core" else set())
+    skip = {W.sk(x) for x in spec.skip}
     ranked = sorted(spec.comps, key=lambda c: -c.imp)
     for c in ranked:
+        if c.imp < 3:
+            continue
         cid = W.sk(c.comp)
-        cand = sorted(idx.by_comp.get(cid, []), key=lambda x: (x[0] != "primary", x[1]))
+        cand = sorted(idx.by_comp.get(cid, []), key=lambda x: (x[0] != "primary", not BASE_TASK.match(x[1]), x[1]))
         n = 0
-        cap = spec.per + (1 if c.imp >= 5 else 0)
         for strength, tid in cand:
-            if strength != "primary" or tid in seen:
+            if strength != "primary" or tid in seen or tid in skip:
                 continue
-            if allowed_areas and idx.area.get(tid) not in allowed_areas:
+            if idx.area.get(tid) not in allowed:
                 continue
             seen.add(tid)
-            chosen.append((c, tid))
+            chosen.append((c, tid, n))
             n += 1
-            if n >= cap:
+            if n >= CAP[min(c.imp, 5)]:
                 break
     if len(chosen) > 40:
         chosen = chosen[:40]
     items = []
     lowest = spec.levels[0]
-    for c, tid in chosen:
+    for c, tid, rank in chosen:
         text = idx.text(tid)
         lv = W.heuristic_levels(text, spec.levels)
-        crit = c.imp >= 5 and lv == list(spec.levels)
+        crit = c.imp >= 5 and rank < 2
         entry = (lowest in lv) and c.imp >= 4
-        items.append(W.T(tid.replace("seed:", ""), c.imp, float(c.imp), ("C" if crit else "") + ("E" if entry else ""),
+        imp = c.imp if rank < 2 else max(2, c.imp - 1)
+        items.append(W.T(tid.replace("seed:", ""), imp, float(imp), ("C" if crit else "") + ("E" if entry else ""),
                          "".join(k[0] if k != "strategic" else "x" for k in lv)))
     return items
 
@@ -292,7 +300,7 @@ def variant_record(idx, spec, v, role_tasks):
             if tid in role_tasks:
                 problem(f"{vid}: taskAdds {tid} already in the role bundle")
                 continue
-            adds.append({"task": tid, "importance": t.imp, "timeShare": round(t.w / 100, 3),
+            adds.append({"task": tid, "importance": t.imp, "timeShare": round(t.w, 3),
                          "critical": "C" in t.flags, "neededAtEntry": "E" in t.flags,
                          "roleLevels": W.lv_from(t.lv, spec.levels)})
         if adds:

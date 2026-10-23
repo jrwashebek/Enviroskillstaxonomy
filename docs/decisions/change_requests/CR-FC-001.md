@@ -26,3 +26,20 @@ Suggested cross-links (task `supports` with strength `contributing`; core to cor
 ## Request
 
 WP-05 decides whether to add these to SL-C03. If accepted, WP-03 asks to be listed as a contributor in the record's provenance agents; nothing else changes in WP-03's lane. No CA ruling is needed unless WP-05 disagrees with the merge itself.
+
+## CA ruling
+
+- **Ruling:** **accept; added in Sprint S2 inside WP-08 by FC (A3), reviewed by SC (A5)** · **Date:** 2026-10-23 · **Decider:** CA · **Recorded in:** ADR-0030 §4, DECISION_LOG `CR-FC-001`
+- **Why the CA rules:** WP-05 finished S1 without acting on it. The merge itself (FC-C04 → SL-C03) stands.
+
+1. **When and who.** SL-C03 serves R12 (P1, COR-3), which needs full depth in S2, so the content cannot wait for rc.2.
+   - FC (A3) adds it as contributor to WP-08 task bundles (build plan §2), writing directly in the records. The S1 builders are frozen (ADR-0030 §5), so FC does **not** edit `docs/build/WP-05/` sources.
+   - SC (A5) reviews the statecraft side (evidentiary standard, enforcement response) before WP-08 sets R12's critical tasks.
+   - Provenance `agent[]` gains `emstagent:fc-agent@wp-03`, and `derivedFrom` cites FC-C04 `merged-from`.
+2. **What is added (all three items, plus the optional one).**
+   - The adaptation-in-place task (WF-ENFORCE; `on-site-required`; `formationDependency: 'yes'`; mentorship H). G-2 requires it alongside the checklist task.
+   - The L2 beyond-checklist indicator, with `distinguishingAttribute: ATT-CPX` and an evidence plan if obs4 < 3.
+   - The L1 field-measurement integrity indicator. Its standard is the program's calibration record, not a named meter.
+   - The L2 assisted indicator on checking remote imagery against site conditions. It is accepted, because the inspection-targeting change (DM-14) is the main way AI reaches this role.
+3. **Cross-links: accepted as `contributing`:** the sampling task to `seed:FC-C24` and `seed:FC-C16`; the site-entry task to `seed:v1-4.4.4-A`. These are core-to-core links, so they raise no dependency-direction issue.
+4. **Lint:** all text passes the typing and indicator lint before WP-08 cites it. No instrument or meter is named.

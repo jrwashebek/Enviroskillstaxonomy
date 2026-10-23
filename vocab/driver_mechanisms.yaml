@@ -9,6 +9,7 @@ decidedIn:
 - ADR-0021
 - ADR-0016
 - ADR-0029
+- ADR-0030
 steward: SC (quarterly instrument-registry refresh)
 license: CC0-1.0
 description: 'L0 mechanisms through which dated L5 Instruments act. Tasks and competencies link to mechanisms through
@@ -190,6 +191,18 @@ event_directions:
     - {notation: expands, definition: "Expands the scope or force of the work the instrument requires."}
     - {notation: contracts, definition: "Contracts it."}
     - {notation: reshapes, definition: "Changes how the work is done without a net expansion or contraction."}
+
+instrument_link_roles:
+  description: >
+    Role of an instrument link, carried on the link and not on the instrument (CR-SC-001 #2; ADR-0030):
+    Enactment.characteristicInstruments[].role and RoleVariant.instruments[].role (SPEC §5.4, §5.8). The same instrument
+    can require one actor's work and remove another's. Only `requires` links decide venue applicability
+    (vocab/rules/venue-applicability@1.0.0.yaml); the role is time-invariant, and the instrument's dated status supplies time.
+  values:
+    - {notation: requires, definition: "While in force, the instrument requires the work, or requires the actor to perform it."}
+    - {notation: enables, definition: "The instrument authorizes, funds or makes the work possible without requiring it."}
+    - {notation: constrains, definition: "The instrument limits the scope, method or timing of the work (e.g. a jurisdictional definition or a procedural deadline)."}
+    - {notation: removed-requirement, definition: "The instrument removed or rescinded an earlier requirement for the work (e.g. a revoking order or a rescission rule); never a basis."}
 
 instrument_statuses:
   description: DriverEvent.statusAfter, the instrument's status after the event (SPEC §5.16; CR-LM-001 #5). Instrument.currentStatus is computed from the latest event.

@@ -1,0 +1,74 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: emst.series
+  size: 1
+  alias: s
+permalink: "{{ s.url }}"
+eleventyComputed:
+  title: "Federal Series Profile: {{ s.code }} {{ s.title }}"
+---
+{% import "macros.njk" as m %}
+<h1>Federal Series Profile: {{ s.code }} {{ s.title }}</h1>
+{{ m.hrDisclaimer() }}
+<h2>Series register entry</h2>
+<dl class="emst-dl">
+  <dt>Status</dt><dd>{% if s.realignment %}<strong>Proposed for realignment</strong>{% if s.raw.successorSeries %} to series {{ s.raw.successorSeries }}{% endif %} in OPM's proposal; not final as of {{ emst.release.date }}. This profile keeps the work and will re-point the series code only when OPM finalizes the change.{% else %}{{ s.seriesStatus | titlecase }}{% endif %}</dd>
+  <dt>Occupational group</dt><dd>{{ s.group | replace("Occupational group: ", "") }}</dd>
+  <dt>Qualification standard</dt><dd>{{ s.qualStd or "not recorded" }}{% if "verify" in s.qualStd %} <span class="emst-muted">(the register marks this for verification)</span>{% endif %}</dd>
+  {% if s.raw.positiveEducationRequirement != null %}<dt>Positive education requirement</dt><dd>{{ "yes" if s.raw.positiveEducationRequirement else "no" }} <span class="emst-muted">(advisor judgment pending verification against the qualification standard)</span></dd>{% endif %}
+  <dt>Review by</dt><dd>{{ s.reviewBy }}</dd>
+</dl>
+{{ m.meta(s.tier, s.evidence) }}
+
+<h2>Role variants crosswalked to this series</h2>
+{% if s.roleRows.length %}
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Role crosswalk">
+<table class="usa-table usa-table--compact" data-figure data-use-tier="exploratory" data-evidence="S">
+  <caption>Draft role-to-series crosswalk (X4). <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>agent-drafted mapping, {{ (s.roleRows | first).reviewStatus }}</span></caption>
+  <thead><tr><th scope="col">EMST role</th><th scope="col">Match</th><th scope="col">Applies to</th><th scope="col">Note</th></tr></thead>
+  <tbody>
+  {% for r in s.roleRows %}
+  <tr><td>{% if r.variant %}<a href="{{ r.variant.url | url }}">{{ r.subjectLabel }}</a>{% elif r.role %}<a href="{{ r.role.url | url }}">{{ r.subjectLabel }}</a>{% else %}{{ r.subjectLabel }} <span class="emst-muted">(role profile not yet in this build)</span>{% endif %}</td>
+  <td>{{ r.predicate | replace("skos:", "") }}, confidence {{ r.confidence }}</td><td>{{ r.other.applies_to or "all levels" }}</td><td>{{ r.comment | truncate(200) }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+<p class="emst-muted">A crosswalk row says the role's work is found in positions of this series. It is not a classification determination and claims no alignment with OPM standards.</p>
+{% else %}<p>No EMST role is crosswalked to this series in this build.</p>{% endif %}
+
+<h2>Major duties and competencies by federal variant</h2>
+{% if s.fedVariants.length %}
+{% for v in s.fedVariants %}
+<section class="emst-card" aria-labelledby="fv-{{ loop.index }}">
+  <h3 id="fv-{{ loop.index }}"><a href="{{ v.url | url }}">{{ v.role.title }} (federal)</a>{% if v.grade %} · indicative {{ v.grade.scheme }} {{ v.grade.band }} <span class="emst-muted">({{ v.grade.label }})</span>{% endif %}</h3>
+  {{ m.meta(v.tier, v.evidence) }}
+  <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Major duties">
+  <table class="usa-table usa-table--compact" data-figure data-use-tier="{{ v.tier.tier }}" data-evidence="{{ v.evidence.label }}">
+    <caption>Major duties with share of time (draft estimates). {{ m.tierBadge(v.tier) }} {{ m.evBadge(v.evidence) }}</caption>
+    <thead><tr><th scope="col">Duty (task)</th><th scope="col" class="emst-num">% time</th><th scope="col">Needed at entry</th><th scope="col">Critical</th></tr></thead>
+    <tbody>{% for b in v.bundle %}{% if not b.task.isModule %}<tr><td>{{ b.task.statement }}</td><td class="emst-num">{{ b.timeShare | pct }}</td><td>{{ "yes" if b.neededAtEntry else "no" }}</td><td>{{ "yes" if b.critical else "no" }}</td></tr>{% endif %}{% endfor %}</tbody>
+  </table>
+  </div>
+  {% set hr = v.hrTargets %}
+  <h4>Competencies (established core only)</h4>
+  <ul class="usa-list">{% for t in hr %}<li><a href="{{ t.competency.url | url }}">{{ t.competency.title }}</a>: {% for k, l in t.targetLevels %}{{ k }} {{ l }}{% if not loop.last %}, {% endif %}{% endfor %}{% if t.distinguishing %} · distinguishing{% endif %}
+    {% if t.competency.federal %} · federal applicability: {{ t.competency.federal.value | replace("-", " ") }}{% if not t.competency.federal.basisLinked %} (basis not yet linked){% endif %}{% endif %}
+    {% if t.competency.knowledge.length %}<br><span class="emst-muted">Knowledge (Factor 1): {% for k in t.competency.knowledge | take(3) %}{{ k.statement }}{% if not loop.last %} · {% endif %}{% endfor %}</span>{% endif %}</li>{% endfor %}</ul>
+  <p class="emst-muted">{{ v.role.competencyTargets.length - hr.length }} module or non-established competencies left out of this HR view.</p>
+</section>
+{% endfor %}
+{% else %}
+<div class="emst-callout emst-callout--empty" role="status">
+  <p><strong>No federal role variant for this series is in this build yet.</strong> The duties, % time, needed-at-entry flags and competency targets fill in automatically when the role-profile work package (WP-08) adds federal variants crosswalked to this series.</p>
+</div>
+{% endif %}
+
+<h2>Competencies the federal HR advisor associated with this series</h2>
+{% if s.coreComps.length %}
+<p>Navigation aid carried from the federal advisor's Phase 2 judgment and re-pointed to v2 records (draft mapping, not reviewed). Established core competencies only.</p>
+<ul class="usa-list">{% for r in s.coreComps %}<li><a href="{{ r.competency.url | url }}">{{ r.competency.title }}</a> <span class="emst-muted">({{ r.other.fh_relationship or r.predicate | replace("skos:", "") }}; {{ r.reviewStatus }})</span>{% if r.competency.federal %} · federal applicability: {{ r.competency.federal.value | replace("-", " ") }}{% if not r.competency.federal.basisLinked %} (basis not yet linked){% endif %}{% endif %}</li>{% endfor %}</ul>
+{% else %}<p>No established core competency is associated with this series in this build.</p>{% endif %}
+{% if s.omittedModule or s.omittedNotEstablished %}<p class="emst-muted">Left out of this HR view: {{ s.omittedModule }} module editorial records and {{ s.omittedNotEstablished }} competencies that are not yet established.</p>{% endif %}
+<p class="emst-muted">Federal applicability is read from the computed view ({{ "prototype computation, CR-SC-001 pending" if emst.venue.source == "wp05-prototype" else emst.venue.source }}) and shown with no exclusions (project lead default, Q4).</p>

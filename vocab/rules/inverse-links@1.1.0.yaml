@@ -19,6 +19,6 @@ outputs:
   bundle_fields: [Competency.enactments, Task.tools]
   fields: "competency, tasks[{task, strength}], enactments[{enactment, enactmentKind, module}], ruleId, ruleVersion, buildCommit"
 parameters: {}
-implementation: scripts/build_release.py#Release.views
+implementation: scripts/build_release.py#Builder.views
 changeNote:
   - {date: '2026-10-23', note: "Adds task_tools and competency_enactments (CR-DE-001 #8-#9; ADR-0029)."}

@@ -4,7 +4,7 @@ title: Authority position
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0017, ADR-0029]
+decidedIn: [ADR-0017, ADR-0029, ADR-0030]
 steward: CA with SL, DB, PS
 license: CC0-1.0
 description: >
@@ -73,4 +73,16 @@ closure_types:
   values:
     - {notation: legal-licensure, definition: "Law restricts the practice to holders."}
     - {notation: regulation-mandated-training, definition: "A regulation requires the training for the act."}
-    - {notation: voluntary, definition: "Not legally required; employer or market preference."}
+    - {notation: employer-mandated, definition: "Required for the assignment by employer, agency or interagency policy, but not by statute or regulation (e.g. wildland-fire position qualifications, contracting-officer's-representative certification); added by CR-LC-001 #5 (ADR-0030)."}
+    - {notation: voluntary, definition: "Required neither by law nor by employer or agency policy; a market or employer preference (narrowed by CR-LC-001 #5, ADR-0030)."}
+
+# --- Competency mirror links (CR-SC-001 #3; ADR-0030). Stored on the authority or overseer side only, in
+# Competency.mirrors[].relation; the inverse (mirroredBy) is computed under inverse-links@1.2.0. Each value names the
+# TARGET's position relative to the record that stores the link.
+mirror_relations:
+  description: Competency.mirrors[].relation (SPEC §5.2).
+  values:
+    - {notation: regulated-party-mirror, definition: "The target is the regulated party's side of the same obligation (e.g. compliance inspection and facility compliance management)."}
+    - {notation: applicant-mirror, definition: "The target is the applicant's or proponent's side of an authorization the source decides."}
+    - {notation: preparer-mirror, definition: "The target is the side that prepares documents or analyses whose preparation the source directs and evaluates."}
+    - {notation: delegate-mirror, definition: "The target is the delegated or assumed programme operated under the source's oversight."}
