@@ -10,7 +10,7 @@ eleventyComputed:
 ---
 {% import "macros.njk" as m %}
 <h1>{{ v.role.title }} <span class="emst-muted">· {{ v.actorLabel }}</span></h1>
-<p>Authority position: {{ v.authorityPositionLabel or "not set" }}{% if v.subtype %} · {{ v.subtype }}{% endif %}{% if v.industry %} · industry {{ v.industry }}{% endif %}. Other variants:
+<p>Authority position: {{ v.authorityPositionLabel or "not set" }}{% if v.subtypeLabel %} · {{ v.subtypeLabel }}{% endif %}{% if v.industry %} · industry: {{ v.industry | replace("-", " ") }}{% endif %} <span class="emst-muted">(editorial classification)</span>. Other variants:
 {% for o in v.role.variants %}{% if o.id != v.id %}<a href="{{ o.url | url }}">{{ o.actorLabel }}</a>{% if not loop.last %}, {% endif %}{% endif %}{% else %}none{% endfor %}.</p>
 <nav aria-label="Views for this role variant"><p><strong>How it is changing</strong> · <a href="{{ v.gapUrl | url }}">Gap check</a> · <a href="{{ v.pathwaysUrl | url }}">Where it can lead</a></p></nav>
 
@@ -44,16 +44,16 @@ eleventyComputed:
 </figure>
 
 <h2>Tasks in this role</h2>
-<p>Open a task to see what is known about it and the evidence drawer. Time share, importance and flags are draft estimates in the role profile.</p>
+<p>Open a task to see what is known about it and the evidence drawer. Time share, importance and flags are draft estimates in the role profile (agent drafts awaiting job-analysis data); time shares are shown within each role level. "–" means the task is not part of that level.</p>
 <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Task bundle">
 <table class="usa-table usa-table--compact usa-table--striped" data-figure data-use-tier="{{ v.tier.tier }}" data-evidence="{{ v.evidence.label }}">
   <caption>Task bundle for this variant ({{ v.bundle.length }} tasks). {{ m.tierBadge(v.tier) }} {{ m.evBadge(v.evidence) }}</caption>
-  <thead><tr><th scope="col">Task</th><th scope="col" class="emst-num">Time share</th><th scope="col" class="emst-num">Importance (1–5)</th><th scope="col">Critical</th><th scope="col">Needed at entry</th><th scope="col">Formation task</th><th scope="col">How it is changing</th></tr></thead>
+  <thead><tr><th scope="col">Task</th>{% for ls in v.levelShares %}<th scope="col" class="emst-num">Share of time, {{ ls.key }}</th>{% endfor %}<th scope="col" class="emst-num">Importance (1–5)</th><th scope="col">Critical</th><th scope="col">Needed at entry</th><th scope="col">Formation task</th><th scope="col">How it is changing</th></tr></thead>
   <tbody>
   {% for b in v.bundle %}
-  <tr><td><a href="#{{ b.task.anchor }}">{{ b.task.statement }}</a></td><td class="emst-num">{{ b.timeShare | pct }}</td><td class="emst-num">{{ b.importance or "not set" }}</td>
+  <tr><td><a href="#{{ b.task.anchor }}">{{ b.task.statement }}</a></td>{% for ls in v.levelShares %}<td class="emst-num">{% if ls.share[b.task.id] != null %}{{ ls.share[b.task.id] | pct }}{% else %}–{% endif %}</td>{% endfor %}<td class="emst-num">{{ b.importance or "not set" }}</td>
   <td>{{ "yes" if b.critical else "no" }}</td><td>{{ "yes" if b.neededAtEntry else "no" }}</td><td>{{ "yes" if b.formationTask else "no" }}</td>
-  <td>{{ m.gateText(b.task.exposure) }}</td></tr>
+  <td>{% if b.task.exposure.renders %}{{ m.gateText(b.task.exposure) }}{% else %}<span class="emst-pending">Assessment pending</span>{% endif %}</td></tr>
   {% endfor %}
   </tbody>
 </table>
@@ -97,8 +97,9 @@ eleventyComputed:
 {% if v.actor == "federal" %}<p class="emst-muted">Federal applicability is read only from the computed view ({{ "prototype computation, CR-SC-001 pending" if emst.venue.source == "wp05-prototype" else emst.venue.source }}; as of {{ emst.venue.asOf }}). Nothing is excluded from this view (project lead default, Q4).</p>{% endif %}
 
 <h2>Crosswalks and credentials</h2>
-{% if v.credentialGates.length %}<p>Credential gates: {% for g in v.credentialGates %}{{ g.title }} ({{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
-{% if v.grade %}<p>Indicative {{ v.grade.scheme }} band: {{ v.grade.band }} ({{ v.grade.label }}).</p>{% endif %}
+{% if v.credentialGates.length %}<p>Credential gates (issuer verified): {% for g in v.credentialGates %}{{ g.title }} ({{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
+{% if v.credentialGatesPending %}<p class="emst-muted">{{ v.credentialGatesPending }} further credential gate{{ "s" if v.credentialGatesPending != 1 }} not shown until the issuer is verified (verified facts need a source; SPEC §10.5 rule 8).</p>{% endif %}
+{% if v.grade %}<p>Indicative {{ v.grade.scheme }} band: {{ v.grade.band }} ({{ v.grade.label }}; advisor judgment).</p>{% endif %}
 {{ m.crosswalkTable(v.crosswalks, "Draft crosswalks for this variant", true) }}
 {% if not v.crosswalks.length %}<p>No variant-level crosswalk rows in this build.</p>{% endif %}
 

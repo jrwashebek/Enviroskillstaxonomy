@@ -222,7 +222,7 @@ def role_record(idx, spec, form_role, form_prov):
         "layer": "L3", "module": spec.area, "status": "draft", "lifecycleState": spec.life,
         "useTier": spec.use_tier, "validationStatus": "draft", "license": "CC0-1.0", "sensitivity": "public",
         "editorialNote": {"en": note},
-        "notation": [{"scheme": "MVProleSet", "value": spec.key[:3]}],
+        "notation": [{"scheme": "MVProleSet", "value": spec.key[:3]}, {"scheme": "MVPtier", "value": spec.tier}],
     }
     if spec.alt:
         rec["altLabel"] = {"en": spec.alt}

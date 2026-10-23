@@ -98,8 +98,8 @@
       <dt>Work function</dt><dd>{{ gateText(t.workFunction) }}</dd>
       <dt>Craft profile</dt><dd>{{ gateText(t.craft) }}</dd>
       {% if t.fieldDependency or t.formationDependency %}<dt>Field and formation</dt><dd>{% if t.fieldDependency %}Field dependency: {{ t.fieldDependency | replace("-", " ") }}. {% endif %}{% if t.formationDependency %}Formation task: {{ t.formationDependency }}. {% endif %}<span class="emst-muted">(Editorial draft attribute set by the author, not a rated value.)</span></dd>{% endif %}
-      {% if t.credentialGates.length %}<dt>Credential gates</dt><dd>{% for g in t.credentialGates %}{{ g.title }} ({{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
-      {% if t.signOff %}<dt>Sign-off authority</dt><dd>{{ t.signOff }}</dd>{% endif %}
+      {% if t.credentialGates.length or t.credentialGatesPending %}<dt>Credential gates</dt><dd>{% for g in t.credentialGates %}{{ g.title }} ({{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}{% if t.credentialGatesPending %}{% if t.credentialGates.length %}; {% endif %}{{ t.credentialGatesPending }} not shown until the issuer is verified{% endif %}</dd>{% endif %}
+      {% if t.signOff %}<dt>Sign-off authority</dt><dd>{{ t.signOff }}</dd>{% elif t.signOffPending %}<dt>Sign-off authority</dt><dd>Not shown until a verified credential or legal basis is attached.</dd>{% endif %}
       {% if t.tools.length %}<dt>Tools layer (dated)</dt><dd>{% for x in t.tools %}{{ x.title }} ({{ x.lifecycleState }}){% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
       {% if t.supports.length %}<dt>Supports</dt><dd>{% for s in t.supports %}{% if s.url %}<a href="{{ s.url | url }}">{{ s.title }}</a>{% else %}{{ s.competency }}{% endif %} ({{ s.strength }}){% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
       <dt>Task ID</dt><dd><code>{{ t.id }}</code></dd>

@@ -15,7 +15,7 @@
     "vendor": "node tools/vendor.mjs",
     "pages": "npx @11ty/eleventy --quiet",
     "check": "node tools/check-output.mjs",
-    "test": "node tools/check-output.mjs && node tools/browser-checks.mjs",
+    "test": "node tools/test-checks.mjs && node tools/check-output.mjs && node tools/browser-checks.mjs",
     "a11y": "node tools/browser-checks.mjs",
     "sbom": "node tools/sbom.mjs",
     "serve": "node tools/serve.mjs"

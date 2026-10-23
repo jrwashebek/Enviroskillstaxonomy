@@ -82,10 +82,9 @@ class Data:
         return [self.recs[i] for i in sorted(self.by_type["RoleProfile"])]
 
     def tier(self, role):
-        note = (role.get("editorialNote") or {}).get("en", "")
-        for t in ("P1", "P2", "P3", "P4"):
-            if note.startswith(f"Tier {t}"):
-                return t
+        for n in role.get("notation") or []:
+            if n.get("scheme") == "MVPtier":
+                return n["value"]
         return "?"
 
     def label(self, rid):

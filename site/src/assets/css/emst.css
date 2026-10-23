@@ -121,4 +121,8 @@ details.emst-drawer { background: var(--emst-bg-soft); }
 @media (forced-colors: active) { .emst-badge, .emst-tag, .emst-figure, details.emst-task { border: 1px solid CanvasText; } }
 
 /* Long identifiers (record IDs, build hashes) wrap instead of widening the page at 320 CSS px (WCAG 1.4.10) */
-code, .emst-dl dd, .emst-footer p, .emst-card, td { overflow-wrap: anywhere; }
+code { overflow-wrap: anywhere; }
+.emst-dl dd, .emst-footer p, .emst-card, td { overflow-wrap: break-word; }
+.emst-gap textarea.usa-textarea { height: 4.5rem; }
+.emst-gap fieldset.emst-subfieldset { border: 0; padding: 0; margin: 0.5rem 0; }
+.emst-gap fieldset.emst-subfieldset legend { font-weight: 700; font-size: 1rem; margin-top: 0.25rem; }

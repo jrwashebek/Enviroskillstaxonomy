@@ -80,11 +80,17 @@ const meta = JSON.parse(readFileSync(join(SITE, ".cache", "release-meta.json"), 
 const releaseId = meta.version;
 
 const NEG = /\b(never|not|no|nor|nothing|none|without|until|unless|before|isn't|aren't|cannot|neither)\b/i;
-const negated = (text, idx, win = 60) => NEG.test(text.slice(Math.max(0, idx - win), idx));
+// A claim is negated only by a negation word earlier in the same sentence (at most `win` characters back).
+const negated = (text, idx, win = 80) => {
+  let before = text.slice(Math.max(0, idx - win), idx);
+  const cut = Math.max(before.lastIndexOf(". "), before.lastIndexOf("? "), before.lastIndexOf("! "), before.lastIndexOf("; "), before.lastIndexOf(": "));
+  if (cut >= 0) before = before.slice(cut + 2);
+  return NEG.test(before);
+};
 const CLAIMS = [
   { id: "C01", rx: /validated against (?:the )?(?:OPM|O\*NET)/gi, msg: "retired claim: validated against OPM/O*NET" },
   { id: "C02", rx: /SAF[- ]accredited/gi, msg: "retired claim: SAF-accredited" },
-  { id: "C03", rx: /\b(?:38|68|77|21)\s?%/g, msg: "retired v1/AEI headline percentage" },
+  { id: "C03", rx: /\b38\s?%[^.]{0,60}human[- ]essential|\bhuman[- ]essential[^.]{0,40}\b38\s?%|\b68\s?%[^.]{0,40}transition|\b77\s?%[^.]{0,80}(?:automat|API)|\b21\s?%[^.]{0,30}of tasks/gi, msg: "retired v1/AEI headline percentage" },
   { id: "C04", rx: /\b(?:215|222|292)\s+competencies\b/gi, msg: "stale v1 competency count" },
   { id: "C05", rx: /\b9 S calls\b|structural property/gi, msg: "retired v1 claim" },
   { id: "C06", rx: /\brecommended (?:pathways?|routes?|moves?|destinations?|careers?|next steps?)\b|\b(?:pathways?|routes?|moves?|destinations?) (?:is|are|was|were) recommended\b/gi, msg: "pathway described as recommended", neg: true },

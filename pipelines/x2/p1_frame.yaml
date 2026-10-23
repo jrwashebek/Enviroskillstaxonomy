@@ -1,49 +1,1015 @@
-# Provisional P1-corridor task frame for X2 (WP-09). Licence: CC0-1.0.
-# Until WP-08 authors the 13 P1 role profiles (task bundles), a task is in the P1 frame when it supports a
-# competency named for a P1 role (R01-R13, corridors COR-1/2/3) in docs/decisions/mvp_role_set.csv or in the WP
-# sections that build those roles. The O*NET candidate pool of each task is the union of the O*NET-SOC codes that
-# X3 (data/v2/crosswalks/onet-soc/2019) maps to those roles with a positive, non-negated predicate (ADR-0022 X2:
-# candidates restricted to the role family's O*NET-SOC pool). Replace this file with the WP-08 task bundles when
-# they exist; the frame then becomes exactly the bundled tasks of the P1 roles. Judgment basis: [J] IA.
-frameVersion: 0.1.0-provisional
+# P1-corridor task frame for X2 (WP-09), regenerated from WP-08's P1 task bundles by
+# pipelines/views/x2_frame_from_bundles.py (do not hand-edit). Licence: CC0-1.0.
+# taskToP1Roles is the exact frame: every task bundled in a P1 RoleProfile (seed:<role_key>), keyed by task, with the
+# short role codes that bundle it. competencyToP1Roles is kept for build_candidates.py@current, which selects every
+# live task supporting a listed competency: it is a superset of the exact frame until IA switches the builder to
+# taskToP1Roles (WP-08 handoff). Role->O*NET-SOC pools still come from X3. Judgment basis: [S] WP-08 agent drafts.
+frameVersion: 0.2.0-wp08-bundles
+source: data/v2/**/roles/ (P1 RoleProfiles, WP-08, 2026-10-23)
 competencyToP1Roles:
-  FC-C01: [R03]
-  FC-C24: [R03]
-  DC-CAND-04: [R03]
-  FC-C16: [R03]
-  DC-CAND-03: [R03]
-  DC-CAND-01: [R03, R04]
-  FC-C14: [R03, R04]
-  FS-C04: [R05]
-  FC-C02: [R05, R02]
-  FC-C31: [R05]
-  DC-CAND-13: [R05, R10, R11]
-  FC-C23: [R02, R03]
-  FC-C18: [R01, R02]
-  FC-C20: [R02, R06]
-  FC-C28: [R02]
-  FC-C11: [R02]
-  v1-4.3.2: [R07]
-  DB-C15: [R07]
-  FS-C05: [R08]
-  v1-4.3.4: [R08]
-  DC-CAND-12: [R08]
-  v1-4.2.1: [R09]
-  SC-C08: [R09]
-  v1-3.1.4: [R09]
-  SL-C08: [R10]
-  SC-C03: [R10]
-  SC-C04: [R10]
-  SC-C09: [R10]
-  SC-C02: [R10]
-  SC-C01: [R10, R11]
-  SL-C02: [R11]
-  SC-C16: [R11]
-  SL-C03: [R12]
-  SL-C04: [R12]
-  DB-C25: [R12]
-  SL-C10: [R12]
-  SC-C10: [R13]
-  FH-C14: [R13]
-  FH-C07: [R13]
-  v1-7.2.2: [R13]
+  DB-C15:
+  - R07
+  - R08
+  DB-C25:
+  - R12
+  DB-C29:
+  - R06
+  - R07
+  - R08
+  DB-C50:
+  - R10
+  DB-C52:
+  - R10
+  DC-CAND-01:
+  - R01
+  DC-CAND-03:
+  - R05
+  - R09
+  DC-CAND-04:
+  - R03
+  DC-CAND-05:
+  - R03
+  DC-CAND-06:
+  - R04
+  DC-CAND-07:
+  - R04
+  DC-CAND-08:
+  - R04
+  DC-CAND-09:
+  - R04
+  - R05
+  - R08
+  DC-CAND-11:
+  - R04
+  - R08
+  DC-CAND-12:
+  - R08
+  DC-CAND-13:
+  - R01
+  - R02
+  - R04
+  - R05
+  - R08
+  - R10
+  - R11
+  - R12
+  DC-CAND-15:
+  - R05
+  DC-CAND-16:
+  - R10
+  DC-CAND-20:
+  - R13
+  DC-CAND-21:
+  - R13
+  DC-CAND-22:
+  - R04
+  - R08
+  FC-C01:
+  - R02
+  - R03
+  FC-C02:
+  - R02
+  - R03
+  - R04
+  - R05
+  - R07
+  - R08
+  FC-C03:
+  - R05
+  FC-C11:
+  - R01
+  - R02
+  FC-C12:
+  - R02
+  - R03
+  FC-C14:
+  - R02
+  - R04
+  - R07
+  FC-C16:
+  - R02
+  - R03
+  FC-C18:
+  - R01
+  - R02
+  - R06
+  FC-C20:
+  - R02
+  - R06
+  - R07
+  - R09
+  FC-C21:
+  - R07
+  - R09
+  FC-C22:
+  - R02
+  - R07
+  - R09
+  FC-C23:
+  - R01
+  - R02
+  - R03
+  FC-C24:
+  - R02
+  - R03
+  - R12
+  FC-C26:
+  - R06
+  FC-C28:
+  - R07
+  - R09
+  FC-C31:
+  - R03
+  - R05
+  FH-C01:
+  - R10
+  FH-C07:
+  - R13
+  FS-C04:
+  - R03
+  - R05
+  FS-C05:
+  - R08
+  IO-C01:
+  - R06
+  - R07
+  - R12
+  - R13
+  PS-C01:
+  - R09
+  PS-C02:
+  - R09
+  - R13
+  PS-C03:
+  - R07
+  - R09
+  - R13
+  PS-C18:
+  - R11
+  - R12
+  SC-C01:
+  - R09
+  - R11
+  SC-C02:
+  - R10
+  - R11
+  - R12
+  SC-C03:
+  - R10
+  SC-C04:
+  - R10
+  SC-C06:
+  - R10
+  SC-C07:
+  - R11
+  SC-C08:
+  - R13
+  SC-C09:
+  - R10
+  SC-C10:
+  - R13
+  SC-C11:
+  - R13
+  SC-C12:
+  - R11
+  - R13
+  SC-C14:
+  - R11
+  SC-C16:
+  - R11
+  SC-C17:
+  - R10
+  SC-C18:
+  - R13
+  SL-C02:
+  - R11
+  SL-C03:
+  - R12
+  SL-C04:
+  - R12
+  SL-C08:
+  - R10
+  SL-C10:
+  - R11
+  - R12
+  v1-1.1.1:
+  - R09
+  v1-1.1.5:
+  - R09
+  v1-1.4.3:
+  - R02
+  - R05
+  v1-1.7.1:
+  - R09
+  v1-1.8.5-A:
+  - R09
+  - R13
+  v1-2.1.2:
+  - R04
+  - R08
+  v1-2.1.4:
+  - R04
+  - R08
+  v1-2.1.5:
+  - R04
+  v1-2.2.1:
+  - R03
+  v1-2.2.3:
+  - R03
+  - R12
+  v1-2.4.1:
+  - R04
+  v1-3.1.4:
+  - R09
+  - R13
+  v1-4.1.1:
+  - R02
+  - R05
+  - R07
+  v1-4.1.2:
+  - R02
+  v1-4.1.3:
+  - R02
+  - R03
+  - R12
+  v1-4.1.4:
+  - R02
+  v1-4.2.1:
+  - R01
+  - R09
+  v1-4.2.2:
+  - R01
+  - R09
+  v1-4.2.4:
+  - R01
+  - R09
+  v1-4.2.5:
+  - R01
+  v1-4.3.1:
+  - R06
+  v1-4.3.2:
+  - R06
+  - R07
+  v1-4.3.3:
+  - R07
+  v1-4.3.4:
+  - R06
+  - R07
+  - R08
+  v1-4.3.5:
+  - R06
+  v1-4.4.1-A:
+  - R01
+  - R02
+  - R03
+  - R06
+  - R07
+  - R09
+  v1-4.4.1-B:
+  - R01
+  - R06
+  - R07
+  - R12
+  - R13
+  v1-4.4.2:
+  - R01
+  - R02
+  - R06
+  v1-4.4.4-A:
+  - R03
+  - R12
+  v1-4.4.5:
+  - R01
+  - R06
+  v1-4.5.1:
+  - R01
+  - R06
+  v1-4.5.2:
+  - R01
+  - R06
+  - R07
+  v1-4.5.3-A:
+  - R01
+  - R02
+  - R06
+  v1-4.5.5:
+  - R06
+  v1-5.2.5:
+  - R09
+  v1-5.5.2:
+  - R11
+  v1-6.2.3:
+  - R13
+  v1-6.4.5:
+  - R13
+  v1-7.2.2:
+  - R13
+taskToP1Roles:
+  seed:DB-C15-T2:
+  - R07
+  seed:DB-C15-T4:
+  - R08
+  seed:DB-C15-T5:
+  - R07
+  seed:FS-C05-T1:
+  - R08
+  seed:FS-C05-T2:
+  - R08
+  seed:FS-C05-T3:
+  - R08
+  seed:FS-C05-T4:
+  - R08
+  seed:db-4.3.1-t4:
+  - R06
+  seed:db-4.3.1-t5:
+  - R06
+  seed:db-4.3.2-t4:
+  - R07
+  seed:db-4.3.3-t4:
+  - R07
+  seed:db-4.3.4-t4:
+  - R06
+  - R08
+  seed:dc-01-interpret-product:
+  - R01
+  seed:dc-03-questions:
+  - R09
+  seed:dc-03-review-design:
+  - R09
+  seed:dc-03-sample-design:
+  - R05
+  - R09
+  seed:dc-04-stream-qc:
+  - R03
+  seed:dc-04-versioning:
+  - R03
+  seed:dc-05-provenance-record:
+  - R03
+  seed:dc-07-generalize-copy:
+  - R04
+  seed:dc-08-record-environment:
+  - R04
+  seed:dc-08-review-ai-code:
+  - R04
+  seed:dc-09-envelope-check:
+  - R04
+  - R08
+  seed:dc-09-independent-validation:
+  - R04
+  - R05
+  seed:dc-11-incident-confidence-briefing:
+  - R08
+  seed:dc-11-quantify-sources:
+  - R08
+  seed:dc-11-retain-uncertainty:
+  - R04
+  seed:dc-12-fitness-requirements:
+  - R08
+  seed:dc-12-restrict-retire:
+  - R08
+  seed:dc-12-skill-tracking:
+  - R08
+  seed:dc-13-check-comment-grouping:
+  - R10
+  seed:dc-13-sample-validate:
+  - R04
+  - R05
+  seed:dc-15-build-set:
+  - R05
+  seed:dc-15-label-reference:
+  - R05
+  seed:dc-16-extract-table:
+  - R10
+  seed:dc-20-requirements:
+  - R13
+  seed:dc-21-measures:
+  - R13
+  seed:dc-212-circularity-check:
+  - R04
+  seed:dc-212-preprocess:
+  - R04
+  seed:dc-212-reference-design:
+  - R04
+  seed:dc-212-specify-product:
+  - R04
+  seed:dc-212-transfer-test:
+  - R04
+  seed:dc-214-spatial-standards:
+  - R04
+  seed:dc-215-uncertainty-depiction:
+  - R04
+  seed:dc-22-decision-map:
+  - R04
+  - R08
+  seed:dc-221-data-entry:
+  - R03
+  seed:dc-223-apply-checks:
+  - R03
+  seed:dc-223-review-flags:
+  - R03
+  seed:dc-241-diagnose-failure:
+  - R04
+  seed:fc-bio-decon:
+  - R01
+  - R02
+  seed:fc-boat-operate:
+  - R03
+  seed:fc-boat-wading:
+  - R02
+  seed:fc-camp-access:
+  - R07
+  - R09
+  seed:fc-camp-schedule:
+  - R07
+  - R09
+  seed:fc-clean-collect:
+  - R02
+  - R03
+  seed:fc-coc-complete:
+  - R02
+  - R03
+  - R12
+  seed:fc-crosscut:
+  - R01
+  seed:fc-det-error-rates:
+  - R05
+  seed:fc-det-implausible:
+  - R05
+  seed:fc-det-review:
+  - R05
+  seed:fc-edrr-survey:
+  - R01
+  seed:fc-gt-calibration-plots:
+  - R05
+  seed:fc-gt-collect-blind:
+  - R02
+  - R03
+  - R05
+  seed:fc-gt-design-sample:
+  - R04
+  - R05
+  seed:fc-gt-feedback:
+  - R05
+  seed:fc-gt-fitness:
+  - R05
+  - R08
+  seed:fc-gt-mismatch:
+  - R02
+  - R05
+  - R07
+  seed:fc-haz-energized:
+  - R12
+  seed:fc-haz-hasp:
+  - R03
+  - R12
+  seed:fc-id-adjudicate-ai:
+  - R02
+  seed:fc-land-joint-visit:
+  - R07
+  - R09
+  seed:fc-land-volunteers:
+  - R09
+  seed:fc-lead-aar:
+  - R06
+  seed:fc-lead-cue-explain:
+  - R02
+  seed:fc-lead-field-day:
+  - R02
+  - R06
+  - R07
+  - R09
+  seed:fc-lead-readiness:
+  - R06
+  seed:fc-nav-device-failure:
+  - R06
+  seed:fc-nav-route-plan:
+  - R02
+  seed:fc-qa-agreement:
+  - R05
+  seed:fc-qa-blind-check:
+  - R05
+  seed:fc-qa-calibration-session:
+  - R05
+  seed:fc-qa-hot-check:
+  - R03
+  seed:fc-qc-collect:
+  - R02
+  - R03
+  - R12
+  seed:fc-qc-defend:
+  - R12
+  seed:fc-qc-invalid:
+  - R03
+  seed:fc-qc-investigate:
+  - R03
+  seed:fc-resto-lowtech:
+  - R01
+  - R09
+  seed:fc-resto-read-response:
+  - R09
+  seed:fc-risk-briefing:
+  - R06
+  - R07
+  - R09
+  seed:fc-risk-heat-recognize:
+  - R01
+  - R06
+  seed:fc-risk-heat-smoke:
+  - R06
+  seed:fc-risk-stopwork:
+  - R01
+  - R02
+  - R06
+  seed:fc-saw-buck-limb:
+  - R01
+  seed:fc-saw-decline:
+  - R06
+  seed:fc-saw-evaluate:
+  - R06
+  seed:fc-saw-preuse:
+  - R01
+  - R06
+  seed:fc-sensor-manual-visit:
+  - R03
+  seed:fc-sensor-network-design:
+  - R03
+  seed:fc-sensor-service:
+  - R02
+  - R03
+  seed:fc-sensor-sidebyside:
+  - R03
+  seed:fc-sensor-siting-bias:
+  - R03
+  seed:fc-sitehist-predict:
+  - R09
+  seed:fc-sitehist-read:
+  - R02
+  - R07
+  - R09
+  seed:fc-sitehist-reconcile:
+  - R09
+  seed:fc-tree-worksite:
+  - R06
+  seed:fc-txa-escalate:
+  - R08
+  seed:fc-txa-field-check:
+  - R01
+  - R02
+  - R08
+  - R12
+  seed:fc-uas-ignition:
+  - R07
+  seed:fc-veg-adapt-protocol:
+  - R02
+  seed:fc-veg-validate-remote:
+  - R05
+  seed:fs-c04-collect-labels:
+  - R03
+  - R05
+  seed:fs-c04-generalize-sensitive:
+  - R05
+  seed:fs-c04-maintain:
+  - R05
+  seed:fs-c04-plan-reference:
+  - R05
+  seed:fs-c04-regional-validation:
+  - R05
+  seed:fs-c04-relabel:
+  - R05
+  seed:lc-txc-design-learning-process:
+  - R13
+  seed:lc-txc-exercise-stop-work:
+  - R07
+  - R12
+  seed:lc-txc-report-near-miss:
+  - R01
+  seed:lc-txc-review-generated-briefing:
+  - R06
+  seed:lc-txd-advise-ai-adoption:
+  - R13
+  seed:lc-txd-certify-qualification:
+  - R13
+  seed:lc-txd-identify-single-incumbent:
+  - R13
+  seed:lc-txd-plan-field-rotations:
+  - R13
+  seed:lc-txd-prepare-handover:
+  - R13
+  seed:lc-txd-rate-performance:
+  - R06
+  - R07
+  - R12
+  seed:lc-txe-answer-public-questions:
+  - R06
+  - R07
+  seed:lc-txe-compare-interventions:
+  - R13
+  seed:lc-txe-draft-advisory:
+  - R07
+  seed:lc-txe-map-system:
+  - R09
+  seed:lc-txe-prepare-message-map:
+  - R08
+  seed:lc-txf-decide-pursuit:
+  - R13
+  seed:lc-txf-draft-scope:
+  - R09
+  seed:lc-txf-write-approach:
+  - R09
+  seed:sc-adopt-other-agency-exclusion:
+  - R10
+  seed:sc-advise-instrument-choice:
+  - R13
+  seed:sc-answer-compliance-questions:
+  - R11
+  - R12
+  seed:sc-answer-oversight-objection:
+  - R11
+  seed:sc-assess-historic-effects:
+  - R10
+  seed:sc-assess-reversal-risk:
+  - R13
+  seed:sc-assistance-site-visit:
+  - R12
+  seed:sc-brief-appropriators:
+  - R13
+  seed:sc-brief-decision-maker:
+  - R13
+  seed:sc-calculate-civil-penalty:
+  - R12
+  seed:sc-check-permit-completeness:
+  - R11
+  seed:sc-classify-program-instruments:
+  - R13
+  seed:sc-collect-inspection-evidence:
+  - R12
+  seed:sc-compile-species-occurrence:
+  - R10
+  seed:sc-confirm-comment-responses:
+  - R10
+  seed:sc-define-area-potential-effects:
+  - R10
+  seed:sc-derive-permit-limits:
+  - R11
+  seed:sc-design-fee-schedule:
+  - R13
+  seed:sc-determine-review-level:
+  - R10
+  seed:sc-disclose-assignment-interests:
+  - R12
+  seed:sc-document-independent-evaluation:
+  - R10
+  seed:sc-draft-permit-fact-sheet:
+  - R11
+  seed:sc-evaluate-sponsor-document:
+  - R10
+  seed:sc-evaluate-targeting-method:
+  - R12
+  seed:sc-identify-likely-claims:
+  - R10
+  seed:sc-index-record-documents:
+  - R10
+  - R11
+  - R12
+  seed:sc-issue-preparer-standards:
+  - R10
+  seed:sc-joint-review-document:
+  - R10
+  seed:sc-negotiate-permit-conditions:
+  - R11
+  seed:sc-plan-funding-lapse:
+  - R13
+  seed:sc-plan-inspection:
+  - R12
+  seed:sc-pre-issuance-record-review:
+  - R10
+  seed:sc-prepare-authority-map:
+  - R09
+  - R11
+  seed:sc-prepare-biological-assessment:
+  - R10
+  seed:sc-prepare-budget-justification:
+  - R13
+  seed:sc-prepare-delegated-workplan:
+  - R11
+  seed:sc-prepare-negotiation-brief:
+  - R11
+  seed:sc-prepare-staff-report:
+  - R13
+  seed:sc-rank-facilities-inspection:
+  - R12
+  seed:sc-reconcile-appropriations:
+  - R13
+  seed:sc-record-frank-advice:
+  - R13
+  seed:sc-recuse-covered-matter:
+  - R11
+  - R12
+  seed:sc-respond-permit-comments:
+  - R11
+  seed:sc-review-ai-drafted-permit:
+  - R11
+  seed:sc-review-ai-drafted-sections:
+  - R10
+  seed:sc-review-ai-effects-determination:
+  - R10
+  seed:sc-review-anomaly-flags:
+  - R12
+  seed:sc-review-automated-permit-checks:
+  - R11
+  seed:sc-review-automated-screening:
+  - R10
+  seed:sc-screen-categorical-exclusion:
+  - R10
+  seed:sc-screen-preparer-conflicts:
+  - R10
+  seed:sc-screen-regulatory-alerts:
+  - R11
+  seed:sc-select-enforcement-response:
+  - R12
+  seed:sc-test-terms-scenarios:
+  - R11
+  seed:sc-train-on-regulatory-change:
+  - R13
+  seed:sc-update-permitting-dashboard:
+  - R10
+  seed:sc-update-procedure-version:
+  - R11
+  seed:sc-verify-ai-draft-instrument:
+  - R11
+  seed:sc-verify-reported-values:
+  - R12
+  seed:sc-write-change-notice:
+  - R13
+  seed:sc-write-decision-memo:
+  - R13
+  seed:sc-write-engagement-plan:
+  - R10
+  seed:sc-write-inspection-report:
+  - R12
+  seed:sc-write-plan-components:
+  - R13
+  seed:sc-write-reasoned-explanation:
+  - R10
+  - R11
+  seed:sc-write-review-decision:
+  - R10
+  seed:v1-1.1.1-T3:
+  - R09
+  seed:v1-1.1.5-T1:
+  - R09
+  seed:v1-1.1.5-T3:
+  - R09
+  seed:v1-1.2.4-T1:
+  - R02
+  - R03
+  - R12
+  seed:v1-1.4.2-T1:
+  - R02
+  seed:v1-1.4.3-T1:
+  - R02
+  seed:v1-1.4.3-T2:
+  - R05
+  seed:v1-1.7.1-T1:
+  - R09
+  seed:v1-1.7.1-T3:
+  - R09
+  seed:v1-2.1.1-T1:
+  - R04
+  seed:v1-2.1.1-T2:
+  - R04
+  seed:v1-2.1.1-T3:
+  - R04
+  seed:v1-2.1.2-T1:
+  - R04
+  - R08
+  seed:v1-2.1.2-T2:
+  - R04
+  seed:v1-2.1.2-T3:
+  - R04
+  seed:v1-2.1.4-T1:
+  - R04
+  - R08
+  seed:v1-2.1.4-T2:
+  - R04
+  seed:v1-2.1.4-T3:
+  - R04
+  seed:v1-2.1.5-T1:
+  - R04
+  seed:v1-2.2.1-T2:
+  - R03
+  seed:v1-2.2.3-T2:
+  - R03
+  - R12
+  seed:v1-2.2.4-T1:
+  - R04
+  seed:v1-2.2.5-T1:
+  - R04
+  seed:v1-2.3.1-T1:
+  - R03
+  seed:v1-2.3.1-T2:
+  - R03
+  seed:v1-2.3.1-T3:
+  - R03
+  seed:v1-2.3.2-T2:
+  - R02
+  seed:v1-2.3.2-T3:
+  - R04
+  seed:v1-2.3.5-T1:
+  - R06
+  seed:v1-2.4.1-T1:
+  - R04
+  seed:v1-2.6.1-T3:
+  - R04
+  seed:v1-2.6.4-T2:
+  - R03
+  seed:v1-2.7.3-T3:
+  - R08
+  seed:v1-3.1.1-T1:
+  - R09
+  seed:v1-3.1.1-T3:
+  - R07
+  - R09
+  seed:v1-3.1.3-T1:
+  - R09
+  seed:v1-3.1.3-T3:
+  - R13
+  seed:v1-3.1.4-T1:
+  - R09
+  seed:v1-3.1.4-T2:
+  - R09
+  seed:v1-3.1.4-T3:
+  - R13
+  seed:v1-3.5.5-T3:
+  - R13
+  seed:v1-4.1.1-T1:
+  - R02
+  - R05
+  - R07
+  seed:v1-4.1.1-T3:
+  - R02
+  seed:v1-4.1.2-T1:
+  - R02
+  seed:v1-4.1.2-T2:
+  - R02
+  seed:v1-4.1.3-T1:
+  - R02
+  - R03
+  seed:v1-4.1.3-T2:
+  - R02
+  seed:v1-4.1.3-T3:
+  - R03
+  seed:v1-4.1.4-T1:
+  - R02
+  seed:v1-4.1.4-T2:
+  - R02
+  seed:v1-4.1.5-T1:
+  - R01
+  - R02
+  seed:v1-4.1.5-T2:
+  - R02
+  - R03
+  seed:v1-4.1.5-T3:
+  - R02
+  seed:v1-4.2.1-T1:
+  - R01
+  seed:v1-4.2.1-T2:
+  - R01
+  seed:v1-4.2.1-T3:
+  - R09
+  seed:v1-4.2.2-T1:
+  - R01
+  seed:v1-4.2.2-T2:
+  - R09
+  seed:v1-4.2.3-T1:
+  - R06
+  - R07
+  seed:v1-4.2.3-T2:
+  - R07
+  seed:v1-4.2.3-T3:
+  - R06
+  - R07
+  seed:v1-4.2.4-T1:
+  - R01
+  seed:v1-4.2.4-T2:
+  - R09
+  seed:v1-4.2.4-T3:
+  - R01
+  seed:v1-4.2.5-T1:
+  - R01
+  seed:v1-4.2.5-T2:
+  - R01
+  seed:v1-4.2.5-T3:
+  - R01
+  seed:v1-4.3.1-T1:
+  - R06
+  seed:v1-4.3.1-T2:
+  - R06
+  seed:v1-4.3.1-T3:
+  - R06
+  seed:v1-4.3.2-T1:
+  - R07
+  seed:v1-4.3.2-T2:
+  - R07
+  seed:v1-4.3.2-T3:
+  - R07
+  seed:v1-4.3.3-T1:
+  - R07
+  seed:v1-4.3.3-T2:
+  - R07
+  seed:v1-4.3.3-T3:
+  - R07
+  seed:v1-4.3.4-T1:
+  - R06
+  seed:v1-4.3.4-T2:
+  - R07
+  - R08
+  seed:v1-4.3.4-T3:
+  - R06
+  - R08
+  seed:v1-4.3.5-T2:
+  - R06
+  seed:v1-4.4.1-T1:
+  - R01
+  - R02
+  - R03
+  seed:v1-4.4.2-T1:
+  - R01
+  - R02
+  - R06
+  seed:v1-4.4.2-T2:
+  - R06
+  seed:v1-4.4.3-T2:
+  - R01
+  - R02
+  seed:v1-4.4.4-T1:
+  - R12
+  seed:v1-4.4.5-T1:
+  - R01
+  - R06
+  seed:v1-4.5.1-T1:
+  - R01
+  - R06
+  seed:v1-4.5.1-T2:
+  - R01
+  - R06
+  seed:v1-4.5.2-T1:
+  - R01
+  - R06
+  - R07
+  seed:v1-4.5.3-T2:
+  - R02
+  - R06
+  seed:v1-4.5.3-T3:
+  - R01
+  seed:v1-4.5.5-T1:
+  - R06
+  seed:v1-4.7.4-T2:
+  - R01
+  seed:v1-5.2.5-T1:
+  - R09
+  seed:v1-5.5.2-T2:
+  - R11
+  seed:v1-5.5.2-T3:
+  - R11
+  seed:v1-6.1.2-T1:
+  - R12
+  seed:v1-6.1.3-T2:
+  - R11
+  seed:v1-6.1.3-T3:
+  - R09
+  seed:v1-6.1.4-T1:
+  - R10
+  seed:v1-6.1.4-T2:
+  - R10
+  seed:v1-6.1.4-T3:
+  - R10
+  seed:v1-6.1.5-T1:
+  - R12
+  seed:v1-6.1.5-T2:
+  - R12
+  seed:v1-6.1.5-T3:
+  - R12
+  seed:v1-6.2.3-T1:
+  - R13
+  seed:v1-6.4.2-T1:
+  - R11
+  seed:v1-6.4.4-T2:
+  - R10
+  seed:v1-6.4.5-T1:
+  - R13
+  seed:v1-6.4.5-T2:
+  - R13
+  seed:v1-6.5.2-T1:
+  - R10
+  seed:v1-6.5.3-T1:
+  - R13
+  seed:v1-6.5.3-T3:
+  - R13
+  seed:v1-6.7.2-T1:
+  - R10
+  seed:v1-7.2.1-T2:
+  - R11
+  - R12
+  seed:v1-7.2.2-T1:
+  - R13

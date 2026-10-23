@@ -38,12 +38,12 @@
     <p class="emst-muted">Indicators are drafts (use tier {{ c.tier.tier }}; evidence {{ c.evidence.label }}, {{ c.evidence.reviewStatus }}).</p>
     </div>
   </details>
-  <div class="usa-radio-group" data-role="self">
-    <p><strong>Where are you now?</strong></p>
+  <fieldset class="usa-fieldset emst-subfieldset" data-role="self">
+    <legend class="usa-legend">Where are you now?</legend>
     <div class="usa-radio"><input class="usa-radio__input" type="radio" id="s-{{ idx }}-none" name="self-{{ idx }}" value="none"><label class="usa-radio__label" for="s-{{ idx }}-none">Not yet at {{ c.levels[0].level }}</label></div>
     {% for l in c.levels %}<div class="usa-radio"><input class="usa-radio__input" type="radio" id="s-{{ idx }}-{{ l.level }}" name="self-{{ idx }}" value="{{ l.level }}"><label class="usa-radio__label" for="s-{{ idx }}-{{ l.level }}">{{ l.level }} {{ l.label }}</label></div>{% endfor %}
     <div class="usa-radio"><input class="usa-radio__input" type="radio" id="s-{{ idx }}-unsure" name="self-{{ idx }}" value="unsure"><label class="usa-radio__label" for="s-{{ idx }}-unsure">Not sure</label></div>
-  </div>
+  </fieldset>
   {% if mode == "competencies" %}
   <label class="usa-label" for="aim-{{ idx }}">Level you are aiming for</label>
   <select class="usa-select" id="aim-{{ idx }}" name="aim-{{ idx }}" data-role="aim">
@@ -53,11 +53,11 @@
   {% endif %}
   <details class="emst-disclosure">
     <summary>Add a supervisor's view (optional)</summary>
-    <div class="usa-radio-group" data-role="supervisor">
+    <fieldset class="usa-fieldset emst-subfieldset" data-role="supervisor"><legend class="usa-legend">Supervisor's view</legend>
       <div class="usa-radio"><input class="usa-radio__input" type="radio" id="v-{{ idx }}-none" name="sup-{{ idx }}" value="none"><label class="usa-radio__label" for="v-{{ idx }}-none">Not yet at {{ c.levels[0].level }}</label></div>
       {% for l in c.levels %}<div class="usa-radio"><input class="usa-radio__input" type="radio" id="v-{{ idx }}-{{ l.level }}" name="sup-{{ idx }}" value="{{ l.level }}"><label class="usa-radio__label" for="v-{{ idx }}-{{ l.level }}">{{ l.level }} {{ l.label }}</label></div>{% endfor %}
       <div class="usa-radio"><input class="usa-radio__input" type="radio" id="v-{{ idx }}-unsure" name="sup-{{ idx }}" value="unsure"><label class="usa-radio__label" for="v-{{ idx }}-unsure">Not sure</label></div>
-    </div>
+    </fieldset>
   </details>
   <label class="usa-label" for="note-{{ idx }}">Note (optional)</label>
   <span class="usa-hint" id="note-{{ idx }}-hint">Evidence or examples for your development plan. Do not type names or other personal details.</span>

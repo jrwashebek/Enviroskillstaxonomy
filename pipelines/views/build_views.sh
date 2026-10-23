@@ -9,4 +9,5 @@ python3 pipelines/views/change_view.py
 python3 pipelines/views/mirror_links.py
 python3 pipelines/views/forester_pd_fes.py
 python3 pipelines/views/x2_frame_from_bundles.py
+python3 pipelines/views/view_counts.py
 python3 -m pytest -q pipelines/views/tests

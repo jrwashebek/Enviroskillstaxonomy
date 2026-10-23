@@ -96,6 +96,7 @@ export function buildModel({ root, releaseDir, meta }) {
     workFunction: Object.fromEntries([...wf.terms, ...(wf.modes?.terms || [])].map((t) => [t.notation, t.prefLabel])),
     workFunctionDef: Object.fromEntries(wf.terms.map((t) => [t.notation, t.definition])),
     sectorActor: Object.fromEntries(sa.terms.filter((t) => t.notation !== "tribal").map((t) => [t.notation, t.prefLabel])),
+    sectorActorSubtype: Object.fromEntries(sa.terms.filter((t) => t.notation !== "tribal").flatMap((t) => (t.subtypes || []).map((x) => [x.notation, x.prefLabel]))),
     authorityPosition: Object.fromEntries(ap.terms.map((t) => [t.notation, t.prefLabel])),
     module: Object.fromEntries([[mods.core.namespace, mods.core.prefLabel], ...mods.terms.map((t) => [t.namespace, t.prefLabel])]),
     moduleWave: Object.fromEntries(mods.terms.map((t) => [t.namespace, t.wave])),
@@ -227,6 +228,18 @@ export function buildModel({ root, releaseDir, meta }) {
   }
   const toolVM = (t) => ({ id: t.id, title: en(t.prefLabel), lifecycleState: t.lifecycleState, category: t.category || t.toolType || "", reviewBy: t.reviewBy || "", halfLife: t.expectedHalfLifeYears ?? null });
   const credTitle = (id) => en(records.get(id)?.prefLabel) || id;
+  // SPEC §10.5 rule 8: credential gates and sign-off authority are verified facts; without a verified source they are not shown.
+  const credVerified = (id) => records.get(id)?.issuerVerified?.verified === true;
+  const gatesOf = (gs) => {
+    const all = (gs || []).filter((g) => g && g.credential);
+    const shown = all.filter((g) => credVerified(g.credential)).map((g) => ({ kind: g.kind, title: credTitle(g.credential) }));
+    return { shown, pending: all.length - shown.length };
+  };
+  const signOffOf = (so) => {
+    if (!so || !so.kind) return { shown: null, pending: false };
+    const creds = so.credentials || [];
+    return creds.length && creds.every(credVerified) ? { shown: so.kind, pending: false } : { shown: null, pending: true };
+  };
 
   // ---------------------------------------------------------------- v1 prior evidence (drawer only)
   const V1_AUTO = { A: "Augmentation", Ac: "Compressive augmentation", H: "Human-essential", S: "Substitution", V: "Supervision" };
@@ -278,8 +291,9 @@ export function buildModel({ root, releaseDir, meta }) {
         ? { renders: true } : { renders: false, text: gateLabels.assessment_pending },
       exposure: { renders: false, text: gateLabels.assessment_pending },          // no v2 multi-rater exposure study yet
       fieldDependency: t.fieldDependency || "", formationDependency: t.formationDependency || "",
-      credentialGates: (t.credentialGates || []).map((g) => ({ kind: g.kind, title: credTitle(g.credential) })),
-      signOff: t.signOffAuthority?.kind || "", lifecycleState: t.lifecycleState || "", status: t.status,
+      credentialGates: gatesOf(t.credentialGates).shown, credentialGatesPending: gatesOf(t.credentialGates).pending,
+      signOff: signOffOf(t.signOffAuthority).shown || "", signOffPending: signOffOf(t.signOffAuthority).pending,
+      lifecycleState: t.lifecycleState || "", status: t.status,
       tier: tierOf(t), evidence: evidenceOf(t), module: t.module, isModule: t.module !== "core",
       tools: (toolsByTask.get(id) || []).map(toolVM),
       v1Prior: v1, v1Contested: autoTypes.size > 1 || contestedFlags.size > 0,
@@ -379,10 +393,11 @@ export function buildModel({ root, releaseDir, meta }) {
     const actor = v.sectorActor;
     const vm = {
       id: v.id, slug: `${role.slug}--${slugOf(v.id.split("/").slice(1).join("-") || actor)}`, role, actor, actorLabel: labels.sectorActor[actor] || actor,
-      subtype: v.sectorActorSubtype || "", authorityPosition: v.authorityPosition || "", authorityPositionLabel: labels.authorityPosition[v.authorityPosition] || v.authorityPosition || "",
+      subtype: v.sectorActorSubtype || "", subtypeLabel: labels.sectorActorSubtype[v.sectorActorSubtype] || v.sectorActorSubtype || "", authorityPosition: v.authorityPosition || "", authorityPositionLabel: labels.authorityPosition[v.authorityPosition] || v.authorityPosition || "",
       industry: v.industry || "", ownership: v.ownership || "", deliveryModel: v.deliveryModel || "", definition: en(v.definition), title: en(v.prefLabel) || `${role.title} (${labels.sectorActor[actor] || actor})`,
       bundle, instruments: (v.instruments || []).map((i) => ({ id: i, title: en(records.get(i)?.prefLabel) || i })),
-      credentialGates: (v.credentialGates || []).map((g) => ({ kind: g.kind, title: credTitle(g.credential) })), signOff: v.signOffAuthority?.kind || "",
+      credentialGates: gatesOf(v.credentialGates).shown, credentialGatesPending: gatesOf(v.credentialGates).pending,
+      signOff: signOffOf(v.signOffAuthority).shown || "", signOffPending: signOffOf(v.signOffAuthority).pending,
       tools: (v.toolsCommonlyRequired || []).map((t) => records.get(t)).filter(Boolean).map(toolVM),
       grade: v.indicativeGradeOrBand || null, jurisdictionalContext: v.jurisdictionalContext || [], disclaimers: v.disclaimers || [],
       lifecycleState: v.lifecycleState || role.lifecycleState, status: v.status, tier: tierOf(v), evidence: evidenceOf(v),
@@ -401,6 +416,12 @@ export function buildModel({ root, releaseDir, meta }) {
 
   // Role change summary per variant (computed at build time from release records; ADR-0027 §1 View 1)
   for (const v of variants) {
+    // WP-08: time shares are relative across the whole role; views renormalize within a role level.
+    v.levelShares = v.role.roleLevels.map((l) => {
+      const at = v.bundle.filter((b) => !b.roleLevels.length || b.roleLevels.includes(l.key));
+      const tot = at.reduce((s, b) => s + (b.timeShare || 0), 0);
+      return { key: l.key, total: tot, n: at.length, share: Object.fromEntries(at.map((b) => [b.task.id, tot > 0 ? (b.timeShare || 0) / tot : null])) };
+    });
     const totalShare = v.bundle.reduce((s, b) => s + (b.timeShare || 0), 0);
     const assessed = v.bundle.filter((b) => b.task.exposure.renders);
     v.change = {
@@ -449,8 +470,22 @@ export function buildModel({ root, releaseDir, meta }) {
         basis: "computed",
       });
     }
-    edges.sort((a, b) => (b.named - a.named) || (b.learning.length - a.learning.length) || (b.shared / b.destCount - a.shared / a.destCount) || a.to.title.localeCompare(b.to.title));
-    pathwaysFrom.set(v.id, edges.slice(0, 8));
+    // One entry per destination role; its variants are listed, the same-actor variant first (cross-sector moves visible).
+    const byRole = new Map();
+    for (const e of edges) {
+      if (!byRole.has(e.to.role.id)) byRole.set(e.to.role.id, { ...e, toRole: e.to.role, variants: [] });
+      const g = byRole.get(e.to.role.id);
+      g.variants.push({ v: e.to, frictions: e.frictions, crosswalks: e.crosswalks, sameActor: e.to.actor === v.actor });
+      g.named = g.named || e.named;
+      if (e.learning.length && !g.learning.length) g.learning = e.learning;
+    }
+    const grouped = [...byRole.values()].map((g) => {
+      g.variants.sort((a, b) => (b.sameActor - a.sameActor) || a.v.actor.localeCompare(b.v.actor));
+      g.to = g.variants[0].v;
+      return g;
+    });
+    grouped.sort((a, b) => (b.named - a.named) || (b.learning.length - a.learning.length) || (b.shared / b.destCount - a.shared / a.destCount) || a.toRole.title.localeCompare(b.toRole.title));
+    pathwaysFrom.set(v.id, grouped.slice(0, 6));
     v.pathways = pathwaysFrom.get(v.id);
   }
 
