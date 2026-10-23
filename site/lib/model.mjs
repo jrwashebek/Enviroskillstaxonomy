@@ -148,7 +148,12 @@ export function buildModel({ root, releaseDir, meta }) {
     const v = loadJson(meta.venue.path, []);
     venue.rows = Array.isArray(v) ? v : (v.rows || []);
   } else if (venue.source === "wp05-prototype" && existsSync(meta.venue.path)) {
-    venue.rows = parseCsv(readFileSync(meta.venue.path, "utf-8")).map((r) => ({ ...r, basisLinked: r.basisLinked === "True" || r.basisLinked === "true" }));
+    // CR-CP-001 ruling A1: the prototype over-reads rescissions, so it may not show "required-basis"; it shows
+    // "basis not yet linked" instead until venue-applicability@1.0.0 ships in the release.
+    venue.rows = parseCsv(readFileSync(meta.venue.path, "utf-8")).map((r) => {
+      const linked = r.basisLinked === "True" || r.basisLinked === "true";
+      return r.venueApplicability === "required-basis" ? { ...r, venueApplicability: "basis-not-yet-linked", basisLinked: false, withheld: true } : { ...r, basisLinked: linked };
+    });
   }
   const venueBy = new Map();
   for (const r of venue.rows) {
@@ -229,7 +234,7 @@ export function buildModel({ root, releaseDir, meta }) {
   const toolVM = (t) => ({ id: t.id, title: en(t.prefLabel), lifecycleState: t.lifecycleState, category: t.category || t.toolType || "", reviewBy: t.reviewBy || "", halfLife: t.expectedHalfLifeYears ?? null });
   const credTitle = (id) => en(records.get(id)?.prefLabel) || id;
   // SPEC §10.5 rule 8: credential gates and sign-off authority are verified facts; without a verified source they are not shown.
-  const credVerified = (id) => records.get(id)?.issuerVerified?.verified === true;
+  const credVerified = (id) => { const iv = records.get(id)?.issuerVerified; return iv?.verified === true && Array.isArray(iv.sources) && iv.sources.length > 0; };
   const gatesOf = (gs) => {
     const all = (gs || []).filter((g) => g && g.credential);
     // Even when the issuer is verified, the link between this work and the credential is an agent draft: shown as a
@@ -359,20 +364,42 @@ export function buildModel({ root, releaseDir, meta }) {
   const signals = byType("ChangeSignal");
   const sigField = (s, f) => s[f] ?? (s.notation || []).find((n) => n.scheme === `EMST-${f}`)?.value ?? null;
 
+  // display-gate@1.1.0 (CR-CP-001 B4): importance, timeShare, critical and neededAtEntry (bundle) and importance,
+  // distinguishing, criticalForSelection (targets) are job-analysis values. They render only from validationStatus
+  // >= reviewed with a pid: reviewer; in the Federal Series Profile and State Class View, timeShare and importance only
+  // from job-analysis-confirmed. Bundle membership, role levels, formationTask and target levels are editorial design
+  // values: shown, labelled "editorial draft (agent-drafted, unreviewed)".
+  const VS_ORDER = ["seed-v1", "draft", "reviewed", "panel-retained", "job-analysis-confirmed", "criterion-supported"];
+  function jaGate(rec) {
+    const vs = rec?.validationStatus || "draft";
+    const reviewer = rec?.provenance?.reviewer || rec?.provenance?.reviewedBy || rec?.reviewer || "";
+    const human = /^pid:/.test(String(Array.isArray(reviewer) ? reviewer[0] : reviewer));
+    const i = VS_ORDER.indexOf(vs);
+    return { renders: human && i >= VS_ORDER.indexOf("reviewed"), hrRenders: human && i >= VS_ORDER.indexOf("job-analysis-confirmed"), status: vs,
+      text: "Assessment pending (job analysis)" };
+  }
+  let currentJa = { renders: false, hrRenders: false, status: "draft", text: "Assessment pending (job analysis)" };
   function bundleItem(b) {
     const t = taskVM(b.task);
-    return t ? { task: t, importance: b.importance ?? null, timeShare: b.timeShare ?? null, critical: !!b.critical, neededAtEntry: !!b.neededAtEntry, formationTask: !!b.formationTask, roleLevels: b.roleLevels || [] } : null;
+    if (!t) return null;
+    const ja = currentJa;
+    return { task: t, formationTask: !!b.formationTask, roleLevels: b.roleLevels || [], ja,
+      importance: ja.renders ? b.importance ?? null : null, timeShare: ja.renders ? b.timeShare ?? null : null,
+      critical: ja.renders ? !!b.critical : null, neededAtEntry: ja.renders ? !!b.neededAtEntry : null };
   }
   const roles = [];
   const roleById = new Map();
   for (const r of roleRecs) {
+    currentJa = jaGate(r);
     const vm = {
       id: r.id, slug: slugOf(r.id), url: `/roles/${slugOf(r.id)}/`, title: en(r.prefLabel), altLabels: enList(r.altLabel),
       functionStatement: en(r.functionStatement), definition: en(r.definition),
       primaryWorkFunction: r.primaryWorkFunction || "", primaryWorkFunctionLabel: labels.workFunction[r.primaryWorkFunction] || r.primaryWorkFunction || "",
       roleLevels: (r.roleLevels || []).map((l) => ({ key: l.key, band: l.levelBand })),
       taskBundle: (r.taskBundle || []).map(bundleItem).filter(Boolean),
-      competencyTargets: (r.competencyTargets || []).map((t) => ({ competency: compById.get(t.competency) || null, id: t.competency, targetLevels: t.targetLevels || {}, importance: t.importance ?? null, distinguishing: !!t.distinguishing })).filter((t) => t.competency),
+      competencyTargets: (r.competencyTargets || []).map((t) => ({ competency: compById.get(t.competency) || null, id: t.competency, targetLevels: t.targetLevels || {},
+        importance: currentJa.renders ? t.importance ?? null : null, distinguishing: currentJa.renders ? !!t.distinguishing : null })).filter((t) => t.competency),
+      ja: currentJa,
       lifecycleState: r.lifecycleState || "", reviewBy: r.reviewBy || "", counterSignal: en(r.counterSignal), horizon: r.horizon || "",
       scenarioSensitivity: r.scenarioSensitivity || null, evidenceSignals: r.evidenceSignals || [], feederRoles: (r.feederRoles || []).map((f) => f.role),
       entryFrom: r.entryFrom || [], progressesTo: r.progressesTo || [], homeModule: r.homeModule || "core", isModule: (r.homeModule || "core") !== "core",
@@ -392,6 +419,7 @@ export function buildModel({ root, releaseDir, meta }) {
     const role = roleById.get(v.variantOf);
     if (!role) continue;
     if (role.whatsComingOnly) { role.variants.push({ id: v.id, actor: v.sectorActor, actorLabel: labels.sectorActor[v.sectorActor] || v.sectorActor, whatsComingOnly: true }); continue; }
+    currentJa = jaGate(v);
     const drops = new Set(v.taskDrops || []);
     const overrides = new Map((v.taskOverrides || []).map((b) => [b.task, b]));
     const bundle = [
@@ -412,7 +440,7 @@ export function buildModel({ root, releaseDir, meta }) {
       lifecycleState: v.lifecycleState || role.lifecycleState, status: v.status, tier: tierOf(v), evidence: evidenceOf(v),
       crosswalks: (mappingsBySubject.get(v.id) || []).map(crosswalkRow),
     };
-    vm.hrTargets = role.competencyTargets.filter((t) => !t.competency.isModule && t.competency.lifecycleState === "established");
+    vm.hrTargets = role.competencyTargets.filter((t) => t.competency.lifecycleState === "established" && (!t.competency.isModule || t.competency.module === role.homeModule));
     vm.url = `/roles/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
     vm.gapUrl = `/gap-check/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
     vm.pathwaysUrl = `/pathways/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
@@ -429,11 +457,12 @@ export function buildModel({ root, releaseDir, meta }) {
 
   // Role change summary per variant (computed at build time from release records; ADR-0027 §1 View 1)
   for (const v of variants) {
-    // WP-08: time shares are relative across the whole role; views renormalize within a role level.
-    v.levelShares = v.role.roleLevels.map((l) => {
+    // role-change@0.1.0 summary: per role level, bundle tasks by assessment status (N of M). No time shares
+    // (display-gate@1.1.0 job_analysis_rule; CR-CP-001 B4).
+    v.levelCounts = v.role.roleLevels.map((l) => {
       const at = v.bundle.filter((b) => !b.roleLevels.length || b.roleLevels.includes(l.key));
-      const tot = at.reduce((s, b) => s + (b.timeShare || 0), 0);
-      return { key: l.key, total: tot, n: at.length, share: Object.fromEntries(at.map((b) => [b.task.id, tot > 0 ? (b.timeShare || 0) / tot : null])) };
+      const assessed = at.filter((b) => b.task.exposure.renders).length;
+      return { key: l.key, band: l.band, total: at.length, assessed, pending: at.length - assessed };
     });
     const totalShare = v.bundle.reduce((s, b) => s + (b.timeShare || 0), 0);
     const assessed = v.bundle.filter((b) => b.task.exposure.renders);
@@ -452,9 +481,12 @@ export function buildModel({ root, releaseDir, meta }) {
   }
 
   // Pathway edges between variants (computed; exploratory; ADR-0023 — never "recommended")
+  // pathway-edges@0.1.0: compare the origin's targets at its highest role level with the destination's targets at its
+  // first role level (where a person moving across would enter). Target levels are editorial design values.
   function targetMap(role) { return new Map(role.competencyTargets.map((t) => [t.id, t])); }
   const levelOrd = (l) => ({ A: 0, L1: 1, L2: 2, L3: 3, L4: 4, L5: 5 })[l] ?? 0;
-  function maxTarget(t) { return Object.values(t.targetLevels || {}).reduce((m, l) => Math.max(m, levelOrd(l)), 0); }
+  const ROLE_LEVEL_ORDER = ["entry", "journey", "senior", "lead", "strategic"];
+  const levelsOf = (role) => role.roleLevels.map((l) => l.key).sort((a, b) => ROLE_LEVEL_ORDER.indexOf(a) - ROLE_LEVEL_ORDER.indexOf(b));
   const pathwaysFrom = new Map();
   for (const v of variants) {
     const o = targetMap(v.role);
@@ -463,19 +495,21 @@ export function buildModel({ root, releaseDir, meta }) {
     for (const w of variants) {
       if (w.role.id === v.role.id && w.actor === v.actor) continue;
       if (w.role.id === v.role.id) continue;                  // same role, other actor: shown as a variant switch, not a pathway
-      const d = targetMap(w.role);
+      const fromLevel = levelsOf(v.role).slice(-1)[0], toLevel = levelsOf(w.role)[0];
+      const d = new Map([...targetMap(w.role)].filter(([, t]) => t.targetLevels[toLevel]));
       if (!d.size) continue;
       let shared = 0; const gaps = [];
       for (const [cid, t] of d) {
         const s = o.get(cid);
-        if (s && maxTarget(s) >= maxTarget(t)) shared++;
-        else gaps.push({ competency: t.competency, level: Object.values(t.targetLevels).sort().pop() || "", partial: !!s });
+        const have = s ? s.targetLevels[fromLevel] || "" : "";
+        if (have && levelOrd(have) >= levelOrd(t.targetLevels[toLevel])) shared++;
+        else gaps.push({ competency: t.competency, level: t.targetLevels[toLevel], fromLevel: have, partial: !!have });
       }
       const isNamed = named.has(w.role.id) || named.has(w.id);
       const lp = pathwayRecs.filter((p) => (p.fromVariant === v.id || p.fromVariant === v.role.id) && (p.toVariant === w.id || p.toVariant === w.role.id));
       if (!isNamed && !lp.length && shared * 2 < d.size) continue;
       edges.push({
-        to: w, shared, destCount: d.size, gaps: gaps.slice(0, 12), gapCount: gaps.length, named: isNamed,
+        to: w, shared, destCount: d.size, gaps: gaps.slice(0, 12), gapCount: gaps.length, named: isNamed, fromLevel, toLevel,
         learning: lp.map((p) => ({ id: p.id, type: p.pathwayType || "", steps: (p.sequence || []).length, recommended: p.recommended === true })),
         frictions: frictionRecs.filter((f) => (f.fromVariant === v.id && f.toVariant === w.id) || (!f.fromVariant && f.fromActor === v.actor && f.toActor === w.actor))
           .map((f) => ({ type: f.frictionType, severity: f.severity, direction: f.direction, asOf: f.asOf, basis: f.basis, mitigation: en(f.mitigation), evidence: f.evidenceLabel })),
@@ -622,32 +656,45 @@ export function buildModel({ root, releaseDir, meta }) {
   const readHr = (rel) => { const p = hrSrc.dir ? join(hrSrc.dir, rel) : null; return p && existsSync(p) ? loadJson(p) : null; };
   const inRelease = (id) => { const ok = !!id && records.has(id); if (id && !ok) hr.dropped++; return ok; };
   const instrumentById = new Map(instrumentVMs.map((i) => [i.id, i]));
+  // CR-CP-001 B5: in role-scoped HR views the role's home module renders in the main section; other modules and
+  // non-established items go to the collapsed section. B4: job-analysis values only from job-analysis-confirmed (hr).
+  const inDefault = (c, home) => c.lifecycleState === "established" && (!c.isModule || c.module === home);
+  let hrJa = { hrRenders: false }, hrHome = "core";
   function hrTarget(t) {
     const c = compById.get(t.competency);
     if (!c) { hr.dropped++; return null; }
-    return { competency: c, targetLevels: t.targetLevels || {}, importance: t.importance ?? null, distinguishing: !!t.distinguishing, statement: t.statement || "",
-      isDefault: !c.isModule && c.lifecycleState === "established" };
+    return { competency: c, targetLevels: t.targetLevels || {}, statement: t.statement || "",
+      importance: hrJa.hrRenders ? t.importance ?? null : null, distinguishing: hrJa.hrRenders ? !!t.distinguishing : null,
+      isDefault: inDefault(c, hrHome) };
   }
-  function hrTask(t) { const tv = taskVMs.get(t.task) || (records.has(t.task) ? taskVM(t.task) : null); if (!tv) { hr.dropped++; return null; } return { task: tv, pctTime: t.pctTime ?? null, importance: t.importance ?? null, critical: !!t.critical, neededAtEntry: !!t.neededAtEntry, formationTask: !!t.formationTask }; }
+  function hrTask(t) {
+    const tv = taskVMs.get(t.task) || (records.has(t.task) ? taskVM(t.task) : null);
+    if (!tv) { hr.dropped++; return null; }
+    const ok = hrJa.hrRenders;
+    return { task: tv, pctTime: ok ? t.pctTime ?? null : null, importance: ok ? t.importance ?? null : null, critical: ok ? !!t.critical : null, neededAtEntry: ok ? !!t.neededAtEntry : null, formationTask: !!t.formationTask };
+  }
+  const setHrContext = (roleId) => { const r = records.get(roleId); hrJa = jaGate(r); hrHome = r?.homeModule || "core"; return hrJa; };
   const hrGates = (gs) => gatesOf((gs || []).map((g) => ({ credential: g.credential, kind: g.kind })));
   function fedProfile(code) {
     const d = readHr(`federal-series/${code}.json`);
     if (!d) return null;
     hr.stamp = hr.stamp || d.stamp;
-    const roles = (d.roles || []).filter((r) => inRelease(r.role) && (!r.variant || inRelease(r.variant))).map((r) => ({
+    const roles = (d.roles || []).filter((r) => inRelease(r.role) && (!r.variant || inRelease(r.variant)) && !roleById.get(r.role)?.whatsComingOnly).map((r) => (setHrContext(r.role), {
       role: roleById.get(r.role) || null, variant: variantById.get(r.variant) || null, depth: r.tier || "", functionStatement: r.functionStatement || "",
       x4: r.x4 || null, credentialGates: hrGates(r.credentialGates),
       instruments: (r.instruments || []).filter((i) => instrumentById.has(i.id)).map((i) => instrumentById.get(i.id)),
+      ja: hrJa, homeModule: hrHome, homeModuleLabel: labels.module[hrHome] || hrHome,
       bands: (r.bands || []).map((b) => {
         const duties = (b.majorDuties || []).map((m) => {
           const c = compById.get(m.competency);
           if (!c) { hr.dropped++; return null; }
-          return { competency: c, duty: m.duty, pctTime: m.pctTime ?? null, tasks: (m.tasks || []).map(hrTask).filter(Boolean), isDefault: !c.isModule && c.lifecycleState === "established" };
+          return { competency: c, duty: m.duty, pctTime: hrJa.hrRenders ? m.pctTime ?? null : null, tasks: (m.tasks || []).map(hrTask).filter(Boolean), isDefault: inDefault(c, hrHome) };
         }).filter(Boolean);
-        const k1 = (b.factor1Knowledge || []).map((f) => { const c = compById.get(f.competency); if (!c) { hr.dropped++; return null; } return { competency: c, statement: f.statement, knowledge: (f.knowledgeStatements || []).map(en), importance: f.importance ?? null, distinguishing: !!f.distinguishing, isDefault: !c.isModule && c.lifecycleState === "established" }; }).filter(Boolean);
+        const k1 = (b.factor1Knowledge || []).map((f) => { const c = compById.get(f.competency); if (!c) { hr.dropped++; return null; } return { competency: c, statement: f.statement, knowledge: (f.knowledgeStatements || []).map(en), importance: hrJa.hrRenders ? f.importance ?? null : null, distinguishing: hrJa.hrRenders ? !!f.distinguishing : null, isDefault: inDefault(c, hrHome) }; }).filter(Boolean);
         return { group: b.group || "", band: b.indicativeBand || "", roleLevels: b.roleLevels || [], duties, factor1: k1,
-          neededAtEntry: (b.neededAtEntryTasks || []).map((t) => taskVMs.get(t)).filter(Boolean), critical: (b.criticalTasks || []).map((t) => taskVMs.get(t)).filter(Boolean),
-          distinguishing: (b.distinguishingCompetencies || []).map((c) => compById.get(c)).filter(Boolean) };
+          neededAtEntry: hrJa.hrRenders ? (b.neededAtEntryTasks || []).map((t) => taskVMs.get(t)).filter(Boolean) : [],
+          critical: hrJa.hrRenders ? (b.criticalTasks || []).map((t) => taskVMs.get(t)).filter(Boolean) : [],
+          distinguishing: hrJa.hrRenders ? (b.distinguishingCompetencies || []).map((c) => compById.get(c)).filter(Boolean) : [] };
       }),
     }));
     const withoutFed = (d.rolesWithoutFederalVariant || []).filter(inRelease).map((id) => roleById.get(id)).filter(Boolean);
@@ -661,10 +708,11 @@ export function buildModel({ root, releaseDir, meta }) {
     hr.stamp = hr.stamp || d.stamp;
     return {
       stamp: d.stamp, evidenceNotice: d.evidenceNotice || "",
-      mappings: (d.mappings || []).filter((m) => inRelease(m.roleVariant)).map((m) => ({
+      mappings: (d.mappings || []).filter((m) => inRelease(m.roleVariant) && !roleById.get(m.role)?.whatsComingOnly).map((m) => (setHrContext(m.role), {
         variant: variantById.get(m.roleVariant) || null, roleTitle: m.roleTitle || "", depth: m.tier || "", roleLevels: m.roleLevels || [],
         matchType: m.matchType || "", confidence: m.confidence ?? "", review: m.review || "", authorityPosition: labels.authorityPosition[m.authorityPosition] || m.authorityPosition || "",
         targets: (m.competencyTargets || []).map(hrTarget).filter(Boolean), tasks: (m.topTasks || []).map(hrTask).filter(Boolean), credentialGates: hrGates(m.credentialGates),
+        ja: hrJa, homeModuleLabel: labels.module[hrHome] || hrHome,
       })),
     };
   }
