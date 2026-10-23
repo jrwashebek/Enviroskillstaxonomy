@@ -14,6 +14,7 @@ eleventyComputed:
 <div class="emst-callout emst-callout--warn" role="note">
   <p><strong>Exploratory, never a recommendation.</strong> Destinations are computed from draft role profiles: roles named as next steps in this role's profile, roles with a drafted learning pathway, and other roles that share at least half of their target competencies with this one. Not yet observed in real career moves.</p>
 </div>
+{% if v.emergingNext.length %}<p>Also named as next steps in this role's profile, and shown only in <a href="{{ '/whats-coming/' | url }}">What's coming</a> because they are still forming: {% for r in v.emergingNext %}<a href="{{ r.url | url }}">{{ r.title }}</a> ({{ r.lifecycleState }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
 {% if v.pathways.length %}
 {% for e in v.pathways %}
 <section class="emst-card" aria-labelledby="dest-{{ loop.index }}">

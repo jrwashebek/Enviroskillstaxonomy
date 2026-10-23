@@ -11,7 +11,7 @@ crumbs: [[null, "Gap check"]]
 <h2>Start from a role</h2>
 {% if emst.variants.length %}
 <ul class="usa-list">
-{% for r in emst.roles %}{% if r.variants.length %}
+{% for r in emst.rolesMain %}{% if r.variants.length %}
   <li>{{ r.title }}: {% for v in r.variants %}<a href="{{ v.gapUrl | url }}">{{ v.actorLabel }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</li>
 {% endif %}{% endfor %}
 </ul>

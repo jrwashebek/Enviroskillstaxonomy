@@ -97,8 +97,8 @@ eleventyComputed:
 {% if v.actor == "federal" %}<p class="emst-muted">Federal applicability is read only from the computed view ({{ "prototype computation, CR-SC-001 pending" if emst.venue.source == "wp05-prototype" else emst.venue.source }}; as of {{ emst.venue.asOf }}). Nothing is excluded from this view (project lead default, Q4).</p>{% endif %}
 
 <h2>Crosswalks and credentials</h2>
-{% if v.credentialGates.length %}<p>Credential gates (issuer verified): {% for g in v.credentialGates %}{{ g.title }} ({{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
-{% if v.credentialGatesPending %}<p class="emst-muted">{{ v.credentialGatesPending }} further credential gate{{ "s" if v.credentialGatesPending != 1 }} not shown until the issuer is verified (verified facts need a source; SPEC §10.5 rule 8).</p>{% endif %}
+{% if v.credentialGates.length %}<p>Credentials that may be involved (agent-drafted link, not a verified requirement; credential issuer verified): {% for g in v.credentialGates %}{{ g.title }} (drafted as {{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
+{% if v.credentialGatesPending %}<p class="emst-muted">{{ v.credentialGatesPending }} further credential link{{ "s" if v.credentialGatesPending != 1 }} not shown until verified against a source (SPEC §10.5 rule 8).</p>{% endif %}
 {% if v.grade %}<p>Indicative {{ v.grade.scheme }} band: {{ v.grade.band }} ({{ v.grade.label }}; advisor judgment).</p>{% endif %}
 {{ m.crosswalkTable(v.crosswalks, "Draft crosswalks for this variant", true) }}
 {% if not v.crosswalks.length %}<p>No variant-level crosswalk rows in this build.</p>{% endif %}

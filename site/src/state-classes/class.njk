@@ -60,8 +60,8 @@ eleventyComputed:
   </div>
   {% if other.length %}<details class="emst-disclosure"><summary>{{ other.length }} more target{{ "s" if other.length != 1 }} from module editorial sections or not yet established (not part of the default HR view)</summary><div><ul class="usa-list">{% for t in other %}<li><a href="{{ t.competency.url | url }}">{{ t.competency.title }}</a> ({{ t.competency.moduleLabel if t.competency.isModule else t.competency.lifecycleState }})</li>{% endfor %}</ul></div></details>{% endif %}
   {% if mp.tasks.length %}<p><strong>Main tasks (% of time at this level):</strong></p><ul class="usa-list">{% for t in mp.tasks %}<li>{{ t.task.statement }} ({{ t.pctTime }}%{% if t.neededAtEntry %} · needed at entry{% endif %}{% if t.critical %} · critical{% endif %})</li>{% endfor %}</ul>{% endif %}
-  {% if mp.credentialGates.shown.length %}<p>Credential gates (issuer verified): {% for g in mp.credentialGates.shown %}{{ g.title }} ({{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
-  {% if mp.credentialGates.pending %}<p class="emst-muted">{{ mp.credentialGates.pending }} credential gate{{ "s" if mp.credentialGates.pending != 1 }} not shown until the issuer is verified.</p>{% endif %}
+  {% if mp.credentialGates.shown.length %}<p>Credentials that may be involved (agent-drafted link, not a verified requirement; credential issuer verified): {% for g in mp.credentialGates.shown %}{{ g.title }} (drafted as {{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
+  {% if mp.credentialGates.pending %}<p class="emst-muted">{{ mp.credentialGates.pending }} further credential link{{ "s" if mp.credentialGates.pending != 1 }} not shown until verified against a source.</p>{% endif %}
 </section>
 {% endfor %}
 {% endif %}

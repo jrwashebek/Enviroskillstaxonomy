@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """X2 step 1 — build the P1 task frame, its O*NET candidate pools and machine candidates (ADR-0022 X2).
 
-Units: live, non-held v2 tasks in the P1 frame (p1_frame.yaml), pinned by textSha256. Pool per unit: O*NET tasks
+Units: live, non-held v2 tasks in p1_frame.yaml#taskToP1Roles (WP-08 P1 bundles), pinned by textSha256. Pool per unit: O*NET tasks
 of the O*NET-SOC codes X3 maps to the unit's P1 roles. Candidates: emst_linker hybrid index over the pool, top-K.
 Outputs (IDs and scores only; O*NET text never enters the repo):
   pipelines/x2/work/x2_units.csv                      unit_id, competency, roles, textSha256, pool size
@@ -46,23 +46,29 @@ def role_pools():
 
 
 def p1_units(frame):
+    """Units = exactly the tasks in p1_frame.yaml#taskToP1Roles (WP-08 P1 bundles; frame >= 0.2.0).
+
+    Roles come from the frame entry for the task, not from its competency. Held, superseded or withdrawn tasks are
+    dropped and reported. `competency` is the task's first `supports` competency (for reporting only).
+    """
     held = corpus.held_keys()
-    units = []
+    units, seen = [], set()
     for p in sorted(list(L.DATA_V2.glob("core/tasks/*.yaml")) + list(L.DATA_V2.glob("modules/*/tasks/*.yaml"))):
         try:
             r = L.load_yaml(p)
         except Exception:  # noqa: BLE001
             continue
-        if not isinstance(r, dict) or r.get("status") in ("superseded", "withdrawn") or corpus.is_held(r, held):
+        if not isinstance(r, dict) or r.get("id") not in frame:
             continue
-        for s in r.get("supports") or []:
-            c = (s.get("competency") or "").replace("seed:", "")
-            if c in frame:
-                units.append({"unit_id": r["id"], "competency": f"seed:{c}", "roles": frame[c],
-                              "text": (r.get("statement") or {}).get("en", ""), "textSha256": r.get("textSha256", ""),
-                              "module": r.get("module")})
-                break
-    return units
+        seen.add(r["id"])
+        if r.get("status") in ("superseded", "withdrawn") or corpus.is_held(r, held):
+            continue
+        sup = [(s.get("competency") or "") for s in (r.get("supports") or [])]
+        units.append({"unit_id": r["id"], "competency": sup[0] if sup else "", "roles": sorted(frame[r["id"]]),
+                      "text": (r.get("statement") or {}).get("en", ""), "textSha256": r.get("textSha256", ""),
+                      "module": r.get("module")})
+    missing = sorted(set(frame) - seen)
+    return units, missing
 
 
 def main():
@@ -72,13 +78,17 @@ def main():
     ap.add_argument("--sheet")
     ap.add_argument("--seed", type=int, default=20261023)
     a = ap.parse_args()
-    frame = L.load_yaml(HERE / "p1_frame.yaml")["competencyToP1Roles"]
+    fdoc = L.load_yaml(HERE / "p1_frame.yaml")
+    if "taskToP1Roles" not in fdoc:
+        raise SystemExit("p1_frame.yaml has no taskToP1Roles (frame < 0.2.0); regenerate it from the WP-08 bundles")
+    frame = fdoc["taskToP1Roles"]
+    frame_sha = L.sha256_file(HERE / "p1_frame.yaml")
     onet = fetch_onet.load_tasks(a.release)
     by_soc = defaultdict(list)
     for t in onet:
         by_soc[t["onetsoc"]].append(t)
     pools = role_pools()
-    units = p1_units(frame)
+    units, missing = p1_units(frame)
     WORK.mkdir(exist_ok=True)
     cand_rows, sheet_rows = [], []
     rng = random.Random(a.seed)
@@ -113,7 +123,11 @@ def main():
             w = csv.DictWriter(fh, fieldnames=list(sheet_rows[0]))
             w.writeheader()
             w.writerows(sheet_rows)
-    print(json.dumps({"units": len(units), "units_with_pool": sum(1 for u in units if u.get("pool_size")),
+    (WORK / "x2_frame.json").write_text(json.dumps({"frameVersion": fdoc.get("frameVersion"), "frame_sha256": frame_sha,
+        "frame_tasks": len(frame), "units": len(units), "missing_or_dropped": missing, "release": a.release,
+        "k": a.k, "seed": a.seed}, indent=1) + "\n")
+    print(json.dumps({"frameVersion": fdoc.get("frameVersion"), "frame_tasks": len(frame), "missing": len(missing),
+                      "units": len(units), "units_with_pool": sum(1 for u in units if u.get("pool_size")),
                       "candidate_rows": len(cand_rows), "release": a.release,
                       "pool_size_median": sorted(u.get("pool_size", 0) for u in units)[len(units) // 2] if units else 0}, indent=1))
 

@@ -13,7 +13,7 @@ crumbs: [[null, "Pathways"]]
 <h2>From a role variant</h2>
 {% if emst.variants.length %}
 <ul class="usa-list">
-{% for r in emst.roles %}{% if r.variants.length %}<li>{{ r.title }}: {% for v in r.variants %}<a href="{{ v.pathwaysUrl | url }}">{{ v.actorLabel }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</li>{% endif %}{% endfor %}
+{% for r in emst.rolesMain %}{% if r.variants.length %}<li>{{ r.title }}: {% for v in r.variants %}<a href="{{ v.pathwaysUrl | url }}">{{ v.actorLabel }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</li>{% endif %}{% endfor %}
 </ul>
 {% else %}
 <div class="emst-callout emst-callout--empty" role="status">

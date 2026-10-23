@@ -38,17 +38,25 @@ crumbs: [[null, "What's coming"]]
 
 <h2>Emerging and proposed roles</h2>
 {% if emst.emergingRoles.length %}
-<ul class="emst-cards">
+<p>Roles that may be forming. Each names what would show it is <em>not</em> forming and a date by which it is reviewed. Roles still at the foresight stage appear only here, with no role-change page or gap check.</p>
 {% for r in emst.emergingRoles %}
-  <li class="emst-card"><h3><a href="{{ r.url | url }}">{{ r.title }}</a> {{ m.lifecycleTag(r.lifecycleState) }}</h3>
-  <p>{{ r.functionStatement | truncate(200) }}</p>
-  {% if r.horizon %}<p>Horizon: {{ r.horizon }}. Review by {{ r.reviewBy or "not set" }}.</p>{% endif %}
-  {% if r.counterSignal %}<p><strong>What would show it is not forming:</strong> {{ r.counterSignal }}</p>{% endif %}
-  {{ m.meta(r.tier, r.evidence) }}</li>
+<section class="emst-card" id="{{ r.slug }}" aria-labelledby="h-{{ r.slug }}">
+  <h3 id="h-{{ r.slug }}">{% if r.whatsComingOnly %}{{ r.title }}{% else %}<a href="{{ r.url | url }}">{{ r.title }}</a>{% endif %} {{ m.lifecycleTag(r.lifecycleState) }}</h3>
+  <p>{{ r.functionStatement }}</p>
+  <dl class="emst-dl">
+    {% if r.horizon %}<dt>Horizon</dt><dd>{{ r.horizon }}</dd>{% endif %}
+    <dt>Review by</dt><dd>{{ r.reviewBy or "not set" }}</dd>
+    {% if r.counterSignal %}<dt>What would show it is not forming</dt><dd>{{ r.counterSignal }}</dd>{% endif %}
+    {% if r.variants.length %}<dt>Sectors drafted</dt><dd>{% for v in r.variants %}{% if v.whatsComingOnly %}{{ v.actorLabel }}{% else %}<a href="{{ v.url | url }}">{{ v.actorLabel }}</a>{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</dd>{% endif %}
+    {% if r.feeders and r.feeders.length %}<dt>Roles it could grow from</dt><dd>{% for f in r.feeders %}<a href="{{ f.url | url }}">{{ f.title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>{% endif %}
+    {% if r.scenarioSensitivityList.length %}<dt>Demand by scenario (foresight judgment)</dt><dd>{% for x in r.scenarioSensitivityList %}{{ x.scenario }}: {{ x.direction }}{% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
+    {% if r.evidenceSignalIds.length %}<dt>Signals behind it</dt><dd>{{ r.evidenceSignalIds.length }} signal record{{ "s" if r.evidenceSignalIds.length != 1 }} at watch (none counts as a change indicator yet)</dd>{% endif %}
+  </dl>
+  {{ m.meta(r.tier, r.evidence, "agent draft; exploratory") }}
+</section>
 {% endfor %}
-</ul>
 {% else %}
-<div class="emst-callout emst-callout--empty" role="status"><p>No emerging or proposed role profiles in this build yet. They appear here when the role-profile work package adds them.</p></div>
+<div class="emst-callout emst-callout--empty" role="status"><p>No emerging or proposed role profiles in this build yet.</p></div>
 {% endif %}
 
 <h2>Emerging and proposed competencies</h2>

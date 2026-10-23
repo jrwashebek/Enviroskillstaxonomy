@@ -13,7 +13,7 @@ eleventyComputed:
 {{ m.hrDisclaimer() }}
 <h2>Series register entry</h2>
 <dl class="emst-dl">
-  <dt>Status</dt><dd>{% if s.realignment %}<strong>Proposed for realignment</strong>{% if s.raw.successorSeries %} to series {{ s.raw.successorSeries }}{% endif %} in OPM's proposal; not final as of {{ emst.release.date }}. This profile keeps the work and will re-point the series code only when OPM finalizes the change.{% else %}{{ s.seriesStatus | titlecase }}{% endif %}</dd>
+  <dt>Status</dt><dd>{% if s.realignment %}<strong>Realignment proposed, not final.</strong> OPM's proposal would move this series{% if s.raw.successorSeries %} to {{ s.raw.successorSeries }}{% endif %}; as of {{ emst.release.date }} the series is still {{ s.code }}. This profile keeps the work and will re-point the series code only when OPM finalizes the change.{% else %}{{ s.seriesStatus | titlecase }}{% endif %}</dd>
   <dt>Occupational group</dt><dd>{{ s.group | replace("Occupational group: ", "") }}</dd>
   <dt>Qualification standard</dt><dd>{{ s.qualStd or "not recorded" }}{% if "verify" in s.qualStd %} <span class="emst-muted">(the register marks this for verification)</span>{% endif %}</dd>
   {% if s.raw.positiveEducationRequirement != null %}<dt>Positive education requirement</dt><dd>{{ "yes" if s.raw.positiveEducationRequirement else "no" }} <span class="emst-muted">(advisor judgment pending verification against the qualification standard)</span></dd>{% endif %}
@@ -47,8 +47,8 @@ eleventyComputed:
   <h3 id="fr-{{ loop.index }}">{% if r.variant %}<a href="{{ r.variant.url | url }}">{{ r.role.title }} (federal)</a>{% else %}{{ r.role.title }}{% endif %}</h3>
   <p>{{ r.functionStatement }}</p>
   <p>Crosswalk to this series: {{ r.x4.predicate | replace("skos:", "") }}, confidence {{ r.x4.confidence }}{% if r.x4.appliesTo %}, applies to {{ r.x4.appliesTo }}{% endif %} ({{ r.x4.reviewStatus }}, agent draft). Profile depth: {{ r.depth }}.</p>
-  {% if r.credentialGates.shown.length %}<p>Credential gates (issuer verified): {% for g in r.credentialGates.shown %}{{ g.title }} ({{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
-  {% if r.credentialGates.pending %}<p class="emst-muted">{{ r.credentialGates.pending }} credential gate{{ "s" if r.credentialGates.pending != 1 }} not shown until the issuer is verified.</p>{% endif %}
+  {% if r.credentialGates.shown.length %}<p>Credentials that may be involved (agent-drafted link, not a verified requirement; credential issuer verified): {% for g in r.credentialGates.shown %}{{ g.title }} (drafted as {{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
+  {% if r.credentialGates.pending %}<p class="emst-muted">{{ r.credentialGates.pending }} further credential link{{ "s" if r.credentialGates.pending != 1 }} not shown until verified against a source.</p>{% endif %}
   {% if r.instruments.length %}<p>Policy instruments that shape this work (status as of {{ emst.release.date }}): {% for i in r.instruments %}{{ i.title }} ({{ i.status | replace("-", " ") }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
   {% for b in r.bands %}
   <h4>{{ b.group | sentence }}{% if b.band %}: indicative {{ b.band }}{% endif %} <span class="emst-muted">(not a classification criterion)</span></h4>

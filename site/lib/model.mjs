@@ -415,6 +415,7 @@ export function buildModel({ root, releaseDir, meta }) {
     vm.url = `/roles/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
     vm.gapUrl = `/gap-check/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
     vm.pathwaysUrl = `/pathways/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
+    vm.emergingNext = [...(role.progressesTo || [])].map((id) => roleById.get(id)).filter((r) => r && r.whatsComingOnly);
     role.variants.push(vm);
     variants.push(vm);
   }
