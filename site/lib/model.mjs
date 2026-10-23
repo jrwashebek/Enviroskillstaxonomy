@@ -592,6 +592,25 @@ export function buildModel({ root, releaseDir, meta }) {
       nextReview: evs.map((e) => e.reviewBy).filter(Boolean).sort()[0] || "", evidence: evidenceOf(i),
     };
   }).filter((i) => releasable(i.title + i.citation)).sort((a, b) => a.title.localeCompare(b.title));
+  // role-change@0.1.0 instruments: the variant's typed links, plus instruments reached through the sensitivity edges
+  // (mechanisms) of the role's target competencies. Each with its dated status as of the release date.
+  {
+    const instById = new Map(instrumentVMs.map((i) => [i.id, i]));
+    const byMech = new Map();
+    for (const i of instrumentVMs) for (const m of i.mechanisms) { if (!byMech.has(m.code)) byMech.set(m.code, []); byMech.get(m.code).push(i); }
+    for (const v of variants) {
+      const typed = v.instruments.map((x) => instById.get(x.id)).filter(Boolean).map((i) => ({ i, via: "typed link on this variant" }));
+      const seen = new Set(typed.map((x) => x.i.id));
+      const mechs = new Map();
+      for (const t of v.role.competencyTargets) for (const e of records.get(t.id)?.instrumentSensitivity || []) if (e.mechanism) mechs.set(e.mechanism, (mechs.get(e.mechanism) || 0) + 1);
+      const viaMech = [];
+      for (const [m] of [...mechs].sort((a, b) => b[1] - a[1])) for (const i of byMech.get(m) || []) {
+        if (seen.has(i.id) || (i.jurisdiction && v.actor === "federal" && !/^US/.test(i.jurisdiction))) continue;
+        seen.add(i.id); viaMech.push({ i, via: `sensitivity to ${labels.mechanism[m] ? m + " (" + labels.mechanism[m].toLowerCase() + ")" : m}` });
+      }
+      v.instrumentLinks = { typed, viaMech: viaMech.slice(0, 12), viaMechTotal: viaMech.length };
+    }
+  }
   const changeIndicators = civ.rows.map((r) => ({
     ...r, targetLabel: (() => { const m = String(r.targetId).match(/^vocab:(work_functions|sector_actors|scenarios)#(.+)$/); if (m) return m[1] === "work_functions" ? `Work function: ${labels.workFunction[m[2]] || m[2]}` : m[1] === "sector_actors" ? `Sector actor: ${labels.sectorActor[m[2]] || m[2]}` : `Signpost ${m[2]}`; return en(records.get(r.targetId)?.prefLabel) || r.targetId; })(),
   })).filter((r) => !String(r.targetId).endsWith("SP-12"));
