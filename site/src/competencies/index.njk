@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+title: Core competencies
+crumbs: [[null, "Competencies"]]
+---
+{% import "macros.njk" as m %}
+<h1>Core competencies</h1>
+<p class="emst-lede">The capabilities environmental work draws on across sectors, each defined by the work performed, with levels, observable indicators and the tasks it serves. Module editorial sections (water, air, waste and others) are listed <a href="{{ '/modules/' | url }}">separately</a> and are kept out of this default view.</p>
+{{ m.statFigure(emst.coreCompetencies.length, "Live core competency records in this build", emst.figures.coreCompetencies, "Counted by the explorer build. Superseded and withdrawn v1 seeds are not listed.") }}
+
+{% for grp in emst.coreCompetencies | groupBy("typeLabel") %}
+<h2>{{ grp.key }}s ({{ grp.items.length }})</h2>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="{{ grp.key }} list">
+<table class="usa-table usa-table--compact usa-table--borderless">
+  <caption>{{ grp.key }}s, A to Z</caption>
+  <thead><tr><th scope="col">Competency</th><th scope="col">Levels</th><th scope="col">Lifecycle</th><th scope="col">Use tier</th><th scope="col">Evidence</th></tr></thead>
+  <tbody>
+  {% for c in grp.items %}
+  <tr><td><a href="{{ c.url | url }}">{{ c.title }}</a>{% if c.v1Codes.length %} <span class="emst-muted">(v1 {{ c.v1Codes | join(", ") }})</span>{% endif %}</td>
+  <td>{% if c.levelSpan %}{{ c.levelSpan.min }}–{{ c.levelSpan.max }}{% else %}not set{% endif %}</td>
+  <td>{{ c.lifecycleState or "not set" }}</td><td>{{ c.tier.tier }}</td>
+  <td>{{ c.evidence.label }}{% if c.evidence.isV1Seed %}, v1 seed{% elif c.evidence.isAgentDraft %}, agent draft{% endif %}, {{ c.evidence.reviewStatus }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endfor %}

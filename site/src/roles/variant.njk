@@ -1,0 +1,111 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: emst.variants
+  size: 1
+  alias: v
+permalink: "{{ v.url }}"
+eleventyComputed:
+  title: "How this role is changing: {{ v.role.title }} ({{ v.actorLabel }})"
+  crumbs: [["/roles/", "Roles"], ["{{ v.role.url }}", "{{ v.role.title }}"], [null, "{{ v.actorLabel }}"]]
+---
+{% import "macros.njk" as m %}
+<h1>{{ v.role.title }} <span class="emst-muted">· {{ v.actorLabel }}</span></h1>
+<p>Authority position: {{ v.authorityPositionLabel or "not set" }}{% if v.subtype %} · {{ v.subtype }}{% endif %}{% if v.industry %} · industry {{ v.industry }}{% endif %}. Other variants:
+{% for o in v.role.variants %}{% if o.id != v.id %}<a href="{{ o.url | url }}">{{ o.actorLabel }}</a>{% if not loop.last %}, {% endif %}{% endif %}{% else %}none{% endfor %}.</p>
+<nav aria-label="Views for this role variant"><p><strong>How it is changing</strong> · <a href="{{ v.gapUrl | url }}">Gap check</a> · <a href="{{ v.pathwaysUrl | url }}">Where it can lead</a></p></nav>
+
+<h2>In short</h2>
+<p class="emst-lede">{{ v.definition or v.role.functionStatement }}</p>
+{{ m.meta(v.tier, v.evidence, "lifecycle: " + (v.lifecycleState or "not set")) }}
+{% if v.actor == "federal" or v.actor == "state" %}{{ m.hrDisclaimer() }}{% endif %}
+
+<h2>How the work is shifting</h2>
+{% set c = v.change %}
+<figure class="emst-figure" data-figure data-use-tier="{{ v.tier.tier }}" data-evidence="{{ v.evidence.label }}">
+  <figcaption>No task in this role has a v2 multi-rater change assessment yet{% if c.nAssessed %}: {{ c.nAssessed }} of {{ c.nTasks }} tasks are assessed{% endif %}</figcaption>
+  <svg viewBox="0 0 640 64" role="img" aria-hidden="true" focusable="false" width="640" height="64">
+    <defs><pattern id="pend-{{ v.slug }}" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#ffffff"/><circle cx="4" cy="4" r="1.6" fill="#565c65"/></pattern></defs>
+    {% set w1 = c.shareByAssessment[0].share | barWidth(c.totalShare, 600) %}{% set w2 = c.shareByAssessment[1].share | barWidth(c.totalShare, 600) %}
+    <rect x="0" y="8" width="{{ w1 }}" height="28" fill="url(#pend-{{ v.slug }})" stroke="#1b1b1b"/>
+    {% if w2 > 0 %}<rect x="{{ w1 }}" y="8" width="{{ w2 }}" height="28" fill="#1a4480" stroke="#1b1b1b"/>{% endif %}
+    <text x="0" y="56" font-size="13" fill="#1b1b1b">Dotted: assessment pending ({{ c.shareByAssessment[0].share | pct }} of listed time)</text>
+  </svg>
+  <p>Time share of this role's listed tasks by assessment status. The time shares are draft estimates in the role profile and add up to {{ c.totalShare | pct }}.</p>
+  <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Time share by assessment status">
+  <table class="usa-table usa-table--compact">
+    <caption>Time share by assessment status (table of the chart)</caption>
+    <thead><tr><th scope="col">Assessment status</th><th scope="col" class="emst-num">Tasks</th><th scope="col" class="emst-num">Share of listed time</th></tr></thead>
+    <tbody>{% for r in c.shareByAssessment %}<tr><td>{{ r.label }}</td><td class="emst-num">{{ r.n }}</td><td class="emst-num">{{ r.share | pct }}</td></tr>{% endfor %}</tbody>
+  </table>
+  </div>
+  <p><strong>Evidence mix:</strong> {{ c.nAssessed }} of {{ c.nTasks }} tasks have a v2 assessment. v1 single-analyst codes exist for some tasks; they appear only in each task's evidence drawer and are not counted here.</p>
+  <p><strong>External context:</strong> not in this build. Occupation-level external exposure indices are third-party licensed and excluded from release files (ADR-0029 §9.6); task-level external values need a human-reviewed O*NET task crosswalk first. Values are never averaged across indices.</p>
+  {{ m.meta(v.tier, v.evidence, "computed at build from release records") }}
+</figure>
+
+<h2>Tasks in this role</h2>
+<p>Open a task to see what is known about it and the evidence drawer. Time share, importance and flags are draft estimates in the role profile.</p>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Task bundle">
+<table class="usa-table usa-table--compact usa-table--striped" data-figure data-use-tier="{{ v.tier.tier }}" data-evidence="{{ v.evidence.label }}">
+  <caption>Task bundle for this variant ({{ v.bundle.length }} tasks). {{ m.tierBadge(v.tier) }} {{ m.evBadge(v.evidence) }}</caption>
+  <thead><tr><th scope="col">Task</th><th scope="col" class="emst-num">Time share</th><th scope="col" class="emst-num">Importance (1–5)</th><th scope="col">Critical</th><th scope="col">Needed at entry</th><th scope="col">Formation task</th><th scope="col">How it is changing</th></tr></thead>
+  <tbody>
+  {% for b in v.bundle %}
+  <tr><td><a href="#{{ b.task.anchor }}">{{ b.task.statement }}</a></td><td class="emst-num">{{ b.timeShare | pct }}</td><td class="emst-num">{{ b.importance or "not set" }}</td>
+  <td>{{ "yes" if b.critical else "no" }}</td><td>{{ "yes" if b.neededAtEntry else "no" }}</td><td>{{ "yes" if b.formationTask else "no" }}</td>
+  <td>{{ m.gateText(b.task.exposure) }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% for b in v.bundle %}{{ m.taskBlock(b.task, emst.gateLabels, (b.timeShare | pct) + " of time") }}{% endfor %}
+
+<h2>Drivers and signals</h2>
+{% if c.drivers.length %}
+<p>Signals recorded about this role's primary work function ({{ v.role.primaryWorkFunctionLabel }}) or its sector actor. All are <strong>watch</strong> signals: none yet meets the evidence rule for a change indicator (two independent signal families, human-reviewed).</p>
+<ul class="emst-cards">{% for s in c.drivers %}{{ m.signalItem(s) }}{% endfor %}</ul>
+{% else %}
+<p>No change signal in this build targets this role, its primary work function or its sector actor. "No signal yet" is a finding, not a reassurance.</p>
+{% endif %}
+
+<h2>Emerging in this role</h2>
+{% if c.emerging.length %}
+<ul class="usa-list">{% for e in c.emerging %}<li><a href="{{ e.url | url }}">{{ e.title }}</a> {{ m.lifecycleTag(e.lifecycleState) }}{% if e.reviewBy %} review by {{ e.reviewBy }}{% endif %}</li>{% endfor %}</ul>
+{% else %}<p>No competency this role targets is marked emerging or proposed.</p>{% endif %}
+
+<h2>What stays human</h2>
+<p><span class="emst-pending">{{ emst.gateLabels.assessment_pending }}</span> A descriptive "stays human" rationale is shown only when it comes from a v2 assessment that passes the display gate.</p>
+{% if c.formation.length %}
+<p>Formation tasks in this variant (the work through which judgment is learned; editorial draft flags): {{ c.formation.length }}.</p>
+{% endif %}
+
+<h2>Competencies this role targets</h2>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Competency targets">
+<table class="usa-table usa-table--compact" data-figure data-use-tier="{{ v.role.tier.tier }}" data-evidence="{{ v.role.evidence.label }}">
+  <caption>Competency targets by role level (draft). {{ m.tierBadge(v.role.tier) }} {{ m.evBadge(v.role.evidence) }}</caption>
+  <thead><tr><th scope="col">Competency</th>{% for l in v.role.roleLevels %}<th scope="col">{{ l.key | titlecase }}</th>{% endfor %}<th scope="col">Importance</th>{% if v.actor == "federal" %}<th scope="col">Federal applicability (computed)</th>{% endif %}</tr></thead>
+  <tbody>
+  {% for t in v.role.competencyTargets %}
+  <tr><td><a href="{{ t.competency.url | url }}">{{ t.competency.title }}</a> {{ m.moduleTag(t.competency) }} {{ m.lifecycleTag(t.competency.lifecycleState) if t.competency.lifecycleState != "established" }}</td>
+  {% for l in v.role.roleLevels %}<td>{{ t.targetLevels[l.key] or "–" }}</td>{% endfor %}
+  <td>{{ t.importance or "not set" }}</td>
+  {% if v.actor == "federal" %}<td>{% if t.competency.federal %}{{ t.competency.federal.value | replace("-", " ") }}{% if not t.competency.federal.basisLinked %}, basis not yet linked{% endif %}{% else %}not computed (no federal enactment linked){% endif %}</td>{% endif %}</tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% if v.actor == "federal" %}<p class="emst-muted">Federal applicability is read only from the computed view ({{ "prototype computation, CR-SC-001 pending" if emst.venue.source == "wp05-prototype" else emst.venue.source }}; as of {{ emst.venue.asOf }}). Nothing is excluded from this view (project lead default, Q4).</p>{% endif %}
+
+<h2>Crosswalks and credentials</h2>
+{% if v.credentialGates.length %}<p>Credential gates: {% for g in v.credentialGates %}{{ g.title }} ({{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
+{% if v.grade %}<p>Indicative {{ v.grade.scheme }} band: {{ v.grade.band }} ({{ v.grade.label }}).</p>{% endif %}
+{{ m.crosswalkTable(v.crosswalks, "Draft crosswalks for this variant", true) }}
+{% if not v.crosswalks.length %}<p>No variant-level crosswalk rows in this build.</p>{% endif %}
+
+<h2>Next steps</h2>
+<ul class="usa-list">
+  <li><a href="{{ v.gapUrl | url }}">Check development gaps for this role</a> (runs only in your browser)</li>
+  <li><a href="{{ v.pathwaysUrl | url }}">See where this role can lead</a> (exploratory)</li>
+  <li>Print this page for a role-change brief. Every printed claim carries its use tier and evidence label.</li>
+</ul>

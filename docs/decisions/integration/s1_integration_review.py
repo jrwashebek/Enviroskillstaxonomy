@@ -31,14 +31,11 @@ LANE = {"wp-03": "FC/WP-03", "wp-04": "DC/WP-04", "wp-05": "SC/WP-05", "wp-06": 
 # ADR-0030 §3.1 merges (absorbed -> survivor). Applied by authors in S2 (WP-08 brief) or WP-16; listed here so the
 # projection after merges is generated, not typed.
 MERGES = {
-    "seed:v1-3.3.5": "seed:v1-3.3.4",
-    "seed:v1-5.4.3": "seed:v1-5.4.2",
-    "seed:v1-5.6.4": "seed:v1-5.6.3",
-    "seed:v1-5.6.1": "seed:v1-5.6.3",
-    "seed:v1-5.5.4": "seed:v1-5.1.2",
-    "seed:v1-3.2.5": "seed:v1-3.2.1",
-    "seed:v1-6.2.5": "seed:v1-6.2.4",
-    "seed:FS-C09": "seed:DC-CAND-11",
+    "seed:v1-5.6.1": "seed:v1-5.6.4",   # behaviour-change theory KA -> knowledge statements of behaviour-change programmes
+    "seed:v1-5.5.4": "seed:v1-5.1.1",   # public relations -> communicating technical information (public-information tasks)
+    "seed:v1-5.4.3": "seed:v1-3.3.1",   # volunteer programme management -> supervision (volunteer workforce context)
+    "seed:v1-3.1.5": "seed:v1-3.2.5",   # performance monitoring and evaluation -> adaptive management cycle
+    "seed:v1-3.3.5": "seed:SC-C02",     # records management -> defensible administrative record (retention, disclosure)
 }
 
 
