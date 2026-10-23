@@ -1,6 +1,6 @@
 # How this role is changing: Wildland fire operations (crew to supervisor)
 
-*EMST v2 role-change brief · `seed:R06-wildland-fire-operations` (forest module) · corridor COR-2 · as of 2026-10-23 · CC BY 4.0 · draft awaiting WP-15 sign-off*
+*EMST v2 role-change brief · `seed:R06-wildland-fire-operations` (forest module) · corridor COR-2 · as of 2026-10-23 · CC BY 4.0 · WP-15 first pass (2026-10-23): cleared for internal and NGO-pilot preview use; external release awaits AS co-signature and the rc.1 re-check of moving facts*
 
 > **Read this first.** The task list, time shares, flags, target levels and change claims below are **agent drafts** (evidence S). No job analysis or SME panel has reviewed them. No task has a multi-rater v2 change assessment, so every change below is **assessment pending**. No change indicator has moved: every linked signal is at *watch*. Use this brief to describe and develop the role. It is not a classification basis or a job analysis, and it is not for selection, RIF or rating decisions. [How to read these briefs](README.md).
 
@@ -83,3 +83,4 @@ None of these has been tested against observed moves (ADR-0023 §5). COR-2 pathw
 - [V3-13; WF-10] IQCS 2026 Transition Plan, 2026-01-28, https://iqcsweb.nwcg.gov/sites/default/files/documents/2026_Transition_Plan.pdf; NWCG PMS 310-1 update, 2026-01-23, https://www.nwcg.gov/announcement/publications/2026-updates-to-the-nwcg-standards-for-wildland-fire-position-qualifications-pms-310-1
 - [V4-15; OMB-01] OMB 2025 Federal Agency AI Use Case Inventory, https://github.com/ombegov/2025-Federal-Agency-AI-Use-Case-Inventory
 - [BLS-02] BLS OOH, Firefighters (2025–35), https://www.bls.gov/ooh/protective-service/firefighters.htm
+- [FIRE-01] NIFC, Incident Management Situation Report, 2026-10-11, https://www.nifc.gov/sites/default/files/NICC/1-Incident%20Information/IMSR/2026/October/IMSR_CY26_10112026.pdf

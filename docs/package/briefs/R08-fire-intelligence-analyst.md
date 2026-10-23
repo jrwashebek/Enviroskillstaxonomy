@@ -1,6 +1,6 @@
 # How this role is changing: Fire intelligence analyst (continuous operations, emerging role)
 
-*EMST v2 role-change brief · `seed:R08-fire-intelligence-analyst` (forest module) · corridor COR-2 · lifecycle **emerging**, review by 2027-10-23 · as of 2026-10-23 · CC BY 4.0 · draft awaiting WP-15 sign-off*
+*EMST v2 role-change brief · `seed:R08-fire-intelligence-analyst` (forest module) · corridor COR-2 · lifecycle **emerging**, review by 2027-10-23 · as of 2026-10-23 · CC BY 4.0 · WP-15 first pass (2026-10-23): cleared for internal and NGO-pilot preview use; external release awaits AS co-signature and the rc.1 re-check of moving facts*
 
 > **Read this first.** The task list, time shares, flags, target levels and change claims below are **agent drafts** (evidence S). No job analysis or SME panel has reviewed them. No task has a multi-rater v2 change assessment, so every change below is **assessment pending**. No change indicator has moved: every linked signal is at *watch*. Use this brief to describe and develop the role. It is not a classification basis or a job analysis, and it is not for selection, RIF or rating decisions. [How to read these briefs](README.md).
 
@@ -30,7 +30,7 @@ This is an **emerging year-round role**. Fire intelligence analysts fuse satelli
 
 | Work | Change (agent draft) | Driver | Evidence status |
 |---|---|---|---|
-| **The role itself** | **New role forming:** year-round fire intelligence is taking shape as detection networks come online and federal fire is reorganized under the U.S. Wildland Fire Service (Secretarial Order 3448, January 12, 2026) [V1-06; WF-07] | sensing tech, AI, policy | A satellite-deployment signal is linked but not yet verified, so it is not quoted here (FIRE-02, awaiting WP-15) |
+| **The role itself** | **New role forming:** year-round fire intelligence is taking shape as detection networks come online and federal fire is reorganized under the U.S. Wildland Fire Service (Secretarial Order 3448, January 12, 2026) [V1-06; WF-07] | sensing tech, AI, policy | Watch (deployment): Earth Fire Alliance launched three operational FireSat satellites in July 2026. Several secondary reports corroborate this (verified-partial), and dates for early-adopter access are **not** confirmed [FIRE-02] |
 | **Continuous multi-source fusion for dispatch** | **New** | AI, sensing tech | Assessment pending |
 | **Adjudicate automated detections before ordering** | **New** | AI, sensing tech | Assessment pending. Watch: federal environmental bureaus' registered AI fire and smoke use cases, 2025 inventory (reliability A) [V4-15; OMB-01] |
 | **Track forecast skill against observed outcomes** (senior, lead) | **New** | AI | Assessment pending |
@@ -80,3 +80,4 @@ None of these has been tested against observed moves (ADR-0023 §5).
 - [V1-02; WF-02] Partnership for Public Service (data to Jan 2026), https://ourpublicservice.org/?p=47956
 - [V1-06; WF-07] U.S. Department of the Interior, SO 3448, 2026-01-12, https://www.doi.gov/document-library/secretary-order/so-3448-establishment-us-wildland-fire-service
 - [V4-15; OMB-01] OMB 2025 Federal Agency AI Use Case Inventory, https://github.com/ombegov/2025-Federal-Agency-AI-Use-Case-Inventory
+- [FIRE-02] Earth Fire Alliance FireSat launch, July 2026, reported by secondary sources (verified-partial; early-adopter dates not confirmed), `docs/research/strategic-foresight/sources.csv` FS-011; re-check by 2026-12-15

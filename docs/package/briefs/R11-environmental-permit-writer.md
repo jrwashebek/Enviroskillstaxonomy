@@ -1,6 +1,6 @@
 # How this role is changing: Environmental permit writer
 
-*EMST v2 role-change brief · `seed:R11-environmental-permit-writer` · corridor COR-3 · as of 2026-10-23 · CC BY 4.0 · draft awaiting WP-15 sign-off*
+*EMST v2 role-change brief · `seed:R11-environmental-permit-writer` · corridor COR-3 · as of 2026-10-23 · CC BY 4.0 · WP-15 first pass (2026-10-23): cleared for internal and NGO-pilot preview use; external release awaits AS co-signature and the rc.1 re-check of moving facts*
 
 > **Read this first.** The task list, time shares, flags, target levels and change claims below are **agent drafts** (evidence S). No job analysis or SME panel has reviewed them. No task has a multi-rater v2 change assessment, so every change below is **assessment pending**. No change indicator has moved: every linked signal is at *watch*. Use this brief to describe and develop the role. It is not a classification basis or a job analysis, and it is not for selection, RIF or rating decisions. [How to read these briefs](README.md).
 
@@ -31,7 +31,7 @@ Permit writers review applications for completeness and derive limits and condit
 
 | Work | Change (agent draft) | Driver | Evidence status |
 |---|---|---|---|
-| Draft permits and fact sheets | Transforming, compressing drafting: permit-drafting software and AI first drafts compress production, and the writer's time moves to specifying and checking conditions | AI | Assessment pending. Watch: bureau-built generative AI drafting use cases in the 2025 inventory (reliability A) [V4-15; OMB-01]. LM's reading: generic drafting tools are available at tool-access level across the main environmental departments, but licences are not use (`CHANGE_SIGNALS.md` §5.2 [E/J]). |
+| Draft permits and fact sheets | Transforming, compressing drafting: permit-drafting software and AI first drafts compress production, and the writer's time moves to specifying and checking conditions | AI | Assessment pending. Watch: bureau-built generative AI drafting use cases in the 2025 inventory (reliability A) [V4-15; OMB-01]. A registered use case shows that a tool is available, not that it is in use. |
 | **Review AI-drafted permits against the record** | **New** | AI | Assessment pending |
 | Completeness review | Transforming: partly automated in electronic permitting systems | AI, policy | Assessment pending |
 | **Confirm or override automated eligibility and completeness checks** | **New:** electronic permitting adds automated checks | AI, policy | Assessment pending |

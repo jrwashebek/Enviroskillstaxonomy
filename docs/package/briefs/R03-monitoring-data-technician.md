@@ -1,6 +1,6 @@
 # How this role is changing: Monitoring and data technician
 
-*EMST v2 role-change brief · `seed:R03-monitoring-data-technician` · corridor COR-1 · as of 2026-10-23 · CC BY 4.0 · draft awaiting WP-15 sign-off*
+*EMST v2 role-change brief · `seed:R03-monitoring-data-technician` · corridor COR-1 · as of 2026-10-23 · CC BY 4.0 · WP-15 first pass (2026-10-23): cleared for internal and NGO-pilot preview use; external release awaits AS co-signature and the rc.1 re-check of moving facts*
 
 > **Read this first.** The task list, time shares, flags, target levels and change claims below are **agent drafts** (evidence S). No job analysis or SME panel has reviewed them. No task has a multi-rater v2 change assessment, so every change below is **assessment pending**. No change indicator has moved: every linked signal is at *watch*. Use this brief to describe and develop the role. It is not a classification basis or a job analysis, and it is not for selection, RIF or rating decisions. [How to read these briefs](README.md).
 

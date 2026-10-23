@@ -1,6 +1,6 @@
 # How this role is changing: Fuels and prescribed fire specialist
 
-*EMST v2 role-change brief · `seed:R07-fuels-prescribed-fire-specialist` (forest module) · corridor COR-2 · as of 2026-10-23 · CC BY 4.0 · draft awaiting WP-15 sign-off*
+*EMST v2 role-change brief · `seed:R07-fuels-prescribed-fire-specialist` (forest module) · corridor COR-2 · as of 2026-10-23 · CC BY 4.0 · WP-15 first pass (2026-10-23): cleared for internal and NGO-pilot preview use; external release awaits AS co-signature and the rc.1 re-check of moving facts*
 
 > **Read this first.** The task list, time shares, flags, target levels and change claims below are **agent drafts** (evidence S). No job analysis or SME panel has reviewed them. No task has a multi-rater v2 change assessment, so every change below is **assessment pending**. No change indicator has moved: every linked signal is at *watch*. Use this brief to describe and develop the role. It is not a classification basis or a job analysis, and it is not for selection, RIF or rating decisions. [How to read these briefs](README.md).
 
@@ -82,3 +82,4 @@ None of these has been tested against observed moves (ADR-0023 §5).
 - [V2-17; UAS-01] PickDrones, *FAA Part 108 Delay*, 2026-09-08, https://pickdrones.com/faa-part-108-bvlos-rule-delayed-oira-2026/; DroneXL, 2026-10-21 (re-check federalregister.gov before use)
 - [V3-13; WF-10] IQCS 2026 Transition Plan, https://iqcsweb.nwcg.gov/sites/default/files/documents/2026_Transition_Plan.pdf
 - [PLAN-01] EMST LM, OpenLMP plan-component aggregates (2026-10-23), `docs/methods/CHANGE_SIGNALS.md` §5.1
+- [FIRE-01] NIFC, Incident Management Situation Report, 2026-10-11, https://www.nifc.gov/sites/default/files/NICC/1-Incident%20Information/IMSR/2026/October/IMSR_CY26_10112026.pdf
