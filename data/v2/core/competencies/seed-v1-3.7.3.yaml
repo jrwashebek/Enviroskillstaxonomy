@@ -1,34 +1,55 @@
 id: seed:v1-3.7.3
 type: Competency
 prefLabel:
-  en: Product lifecycle assessment and design
+  en: Assess environmental impacts across product life cycles to guide circular design
+altLabel:
+  en:
+  - Product lifecycle assessment and design
+definition:
+  en: The capability to conduct life-cycle assessment of products, materials and services to an accepted method, with stated system boundaries, functional units, inventory data quality and impact methods, and to use the results to guide design for durability, repair, disassembly and material recovery. LCA software and inventory databases are L4.
 statement:
-  en: Analyzing environmental impacts across product lifecycles and designing products for circularity, longevity, and end-of-life recovery using digital tools.
-competencyType: practice
+  en: Conducts life-cycle assessments of products, materials and services with stated goal, scope, system boundaries and functional unit; documents inventory data quality and impact methods; tests sensitivity of conclusions; and uses results to guide design for durability, repair, disassembly and material recovery, including traceability of materials across the chain.
+editorialNote:
+  en: 'Rewritten by WP-04 (DC lane: v1 craft primary DC, used only to route the seed; v1 tags are prior evidence, not v2 values). Carried (wording rewritten): v1 tasks named cloud LCA software, AI-powered design tools and blockchain passports; those are L4 (seed:tool-lca-software, seed:tool-distributed-ledger-tools). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-ASSESS. Rationale: Life-cycle assessment recurs in corporate sustainability, materials, energy and built environment (G-4); kept as capability (DB verdict). Role verdicts considered: none recorded.'
 notation:
 - scheme: EMSTv1
   value: 3.7.3
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:ind-v1-3.7.3-l2-a
+  - seed:ind-v1-3.7.3-l2-b
+- level: L3
+  indicators:
+  - seed:ind-v1-3.7.3-l3-a
+  - seed:ind-v1-3.7.3-l3-b
+- level: L4
+  indicators:
+  - seed:ind-v1-3.7.3-l4-a
+  - seed:ind-v1-3.7.3-l4-b
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '3'
-  label: Management & Administrative Skills
-v1SkillArea:
-  code: '3.7'
-  label: Circular Economy & Waste Systems
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-ASSESS. Rationale: Life-cycle assessment recurs in corporate sustainability, materials, energy and built environment (G-4); kept as capability (DB verdict). Role verdicts considered: none recorded.'
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:3.7.3
     v1Code: 3.7.3
@@ -39,213 +60,19 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:3.7.3
     v1Code: 3.7.3
     v1Table: source_text/competencies
     sourceTextLine: 6665
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Product lifecycle assessment and design
-  v1Description: Analyzing environmental impacts across product lifecycles and designing products for circularity, longevity, and end-of-life recovery using digital tools.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:3.7.3:foundational
-    knowledge: Understands lifecycle thinking and product environmental impacts
-    application: Supports lifecycle assessments and circular design
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:3.7.3:foundational:I1
-      n: 1
-      text: Explains product lifecycle stages (extraction, production, use, end-of-life)
-      origin: database
-    - v1Key: v1:3.7.3:foundational:I2
-      n: 2
-      text: Collects lifecycle inventory data for LCA studies
-      origin: database
-    - v1Key: v1:3.7.3:foundational:I3
-      n: 3
-      text: Uses LCA software with guidance (SimaPro, GaBi, openLCA)
-      origin: database
-    - v1Key: v1:3.7.3:foundational:I4
-      n: 4
-      text: Understands circular design principles (design for disassembly, durability, recyclability)
-      origin: database
-    - v1Key: v1:3.7.3:foundational:I5
-      n: 5
-      text: Identifies environmental hotspots in product lifecycles
-      origin: database
-    - v1Key: v1:3.7.3:foundational:I6
-      n: 6
-      text: Recognizes design decisions affecting circularity
-      origin: database
-    - v1Key: v1:3.7.3:foundational:I7
-      n: 7
-      text: Documents product materials and components for circularity assessment
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:3.7.3:intermediate
-    knowledge: Applies LCA methodology and circular design principles
-    application: Conducts lifecycle assessments and supports circular product design
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:3.7.3:intermediate:I1
-      n: 1
-      text: Conducts complete cradle-to-grave lifecycle assessments independently
-      origin: database
-    - v1Key: v1:3.7.3:intermediate:I2
-      n: 2
-      text: Uses LCA databases and impact assessment methods appropriately
-      origin: database
-    - v1Key: v1:3.7.3:intermediate:I3
-      n: 3
-      text: Interprets LCA results identifying improvement opportunities
-      origin: database
-    - v1Key: v1:3.7.3:intermediate:I4
-      n: 4
-      text: Applies circular design strategies (modularity, standardization, material selection)
-      origin: database
-    - v1Key: v1:3.7.3:intermediate:I5
-      n: 5
-      text: Designs products for disassembly, repair, refurbishment, and recycling
-      origin: database
-    - v1Key: v1:3.7.3:intermediate:I6
-      n: 6
-      text: Uses digital tools modeling environmental performance of design alternatives
-      origin: database
-    - v1Key: v1:3.7.3:intermediate:I7
-      n: 7
-      text: Conducts design for environment (DfE) assessments
-      origin: restored-from-source-text
-    - v1Key: v1:3.7.3:intermediate:I8
-      n: 8
-      text: Collaborates with designers and engineers on circular product development
-      origin: restored-from-source-text
-    - v1Key: v1:3.7.3:intermediate:I9
-      n: 9
-      text: Ensures material choices support circularity (mono-materials, recyclable, renewable)
-      origin: restored-from-source-text
-    - v1Key: v1:3.7.3:intermediate:I10
-      n: 10
-      text: Addresses tradeoffs between durability, recyclability, and other goals
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:3.7.3:advanced
-    knowledge: Expert in LCA and circular product design
-    application: Leads circular design strategies and complex LCA studies
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:3.7.3:advanced:I1
-      n: 1
-      text: Conducts sophisticated LCA studies informing major product decisions
-      origin: database
-    - v1Key: v1:3.7.3:advanced:I2
-      n: 2
-      text: Uses AI and machine learning to analyze lifecycle data and optimize designs
-      origin: database
-    - v1Key: v1:3.7.3:advanced:I3
-      n: 3
-      text: Implements digital product passports providing lifecycle transparency
-      origin: database
-    - v1Key: v1:3.7.3:advanced:I4
-      n: 4
-      text: Designs products-as-services with IoT monitoring enabling optimization
-      origin: database
-    - v1Key: v1:3.7.3:advanced:I5
-      n: 5
-      text: Develops eco-design guidelines and tools for organizations
-      origin: database
-    - v1Key: v1:3.7.3:advanced:I6
-      n: 6
-      text: Conducts social LCA and lifecycle costing alongside environmental LCA
-      origin: database
-    - v1Key: v1:3.7.3:advanced:I7
-      n: 7
-      text: Uses LCA in procurement and supplier evaluation
-      origin: restored-from-source-text
-    - v1Key: v1:3.7.3:advanced:I8
-      n: 8
-      text: Implements design for X strategies (design for recycling, remanufacturing, composting)
-      origin: restored-from-source-text
-    - v1Key: v1:3.7.3:advanced:I9
-      n: 9
-      text: Trains designers and engineers in circular design
-      origin: restored-from-source-text
-    - v1Key: v1:3.7.3:advanced:I10
-      n: 10
-      text: Evaluates emerging materials and technologies for lifecycle performance
-      origin: restored-from-source-text
-    - v1Key: v1:3.7.3:advanced:I11
-      n: 11
-      text: Publishes LCA results supporting circular economy transitions
-      origin: restored-from-source-text
-    - v1Key: v1:3.7.3:advanced:I12
-      n: 12
-      text: Ensures circular design addresses equity and accessibility
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:3.7.3:expert
-    knowledge: Shapes LCA and circular design practices
-    application: Influences product design standards and policy
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:3.7.3:expert:I1
-      n: 1
-      text: Develops innovative circular design approaches adopted sector-wide
-      origin: database
-    - v1Key: v1:3.7.3:expert:I2
-      n: 2
-      text: Influences eco-design policy and standards
-      origin: database
-    - v1Key: v1:3.7.3:expert:I3
-      n: 3
-      text: Achieves recognition as circular design thought leader
-      origin: database
-    - v1Key: v1:3.7.3:expert:I4
-      n: 4
-      text: Publishes influential LCA and circular design research
-      origin: database
-    - v1Key: v1:3.7.3:expert:I5
-      n: 5
-      text: Advances LCA methodology and tools
-      origin: database
-    - v1Key: v1:3.7.3:expert:I6
-      n: 6
-      text: Demonstrates significant environmental benefits through circular design
-      origin: database
-    - v1Key: v1:3.7.3:expert:I7
-      n: 7
-      text: Advises organizations on product sustainability strategy
-      origin: restored-from-source-text
-    - v1Key: v1:3.7.3:expert:I8
-      n: 8
-      text: Ensures circular design is regenerative and socially beneficial
-      origin: restored-from-source-text
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:3.7.3:sector:public_agencies
-    text: Green procurement, eco-design requirements, product standards
-  - sector: private_sector
-    v1Key: v1:3.7.3:sector:private_sector
-    text: Product development, sustainable design, material innovation
-  - sector: ngos
-    v1Key: v1:3.7.3:sector:ngos
-    text: Product stewardship advocacy, eco-design campaigns
-  - sector: consulting
-    v1Key: v1:3.7.3:sector:consulting
-    text: LCA services, circular design advisory, eco-design training
-  - sector: academia
-    v1Key: v1:3.7.3:sector:academia
-    text: LCA research, circular design education, methodology development
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.7'
+  label: Circular Economy & Waste Systems

@@ -1,34 +1,56 @@
 id: seed:v1-1.7.4
 type: Competency
 prefLabel:
-  en: Ecological transformation management
+  en: Plan for ecological transformation with resist, accept or direct strategies
+altLabel:
+  en:
+  - Ecological transformation management
+  - Climate refugia identification
+definition:
+  en: The capability to plan management of ecosystems undergoing fundamental change by choosing, with evidence, whether to resist, accept or direct transformation; identifying climate refugia; and setting goals for function and value where historical conditions cannot be restored.
 statement:
-  en: Managing ecosystems undergoing fundamental change toward new states, balancing intervention with acceptance of transformation.
-competencyType: practice
+  en: 'Plans management of ecosystems undergoing fundamental change: identifies trajectories and climate refugia; chooses, with stated evidence, whether to resist, accept or direct transformation at each site; sets goals for ecological function and value where historical conditions cannot be restored; and monitors whether the chosen strategy is working.'
+editorialNote:
+  en: 'Rewritten by WP-04 (DC lane: v1 craft primary DC, used only to route the seed; v1 tags are prior evidence, not v2 values). Absorbs v1 1.7.3 refugia identification (its tasks point here). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-PLAN. Rationale: Rewritten as planning for ecological transformation (resist-accept-direct), absorbing refugia identification (1.7.3). Role verdicts considered: none recorded.'
 notation:
 - scheme: EMSTv1
   value: 1.7.4
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:ind-v1-1.7.4-l2-a
+  - seed:ind-v1-1.7.4-l2-b
+- level: L3
+  indicators:
+  - seed:ind-v1-1.7.4-l3-a
+  - seed:ind-v1-1.7.4-l3-b
+- level: L4
+  indicators:
+  - seed:ind-v1-1.7.4-l4-a
+  - seed:ind-v1-1.7.4-l4-b
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '1'
-  label: Ecological & Scientific Knowledge
-v1SkillArea:
-  code: '1.7'
-  label: Novel Ecosystems & Adaptation
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-PLAN. Rationale: Rewritten as planning for ecological transformation (resist-accept-direct), absorbing refugia identification (1.7.3). Role verdicts considered: none recorded.'
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.7.4
     v1Code: 1.7.4
@@ -39,173 +61,23 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:1.7.4
     v1Code: 1.7.4
     v1Table: source_text/competencies
     sourceTextLine: 2278
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   - v1Key: v1:1.7.3
     v1Code: 1.7.3
     relation: merged-from
     note: v1 1.7.3 (merge) → seed:v1-1.7.4 per v1_disposition.csv
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Ecological transformation management
-  v1Description: Managing ecosystems undergoing fundamental change toward new states, balancing intervention with acceptance of transformation.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:1.7.4:foundational
-    knowledge: Understands that some ecosystem change is irreversible and management must adapt
-    application: Recognizes transformation and its management implications
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.7.4:foundational:I1
-      n: 1
-      text: Explains why some ecosystems cannot be restored to historical conditions
-      origin: database
-    - v1Key: v1:1.7.4:foundational:I2
-      n: 2
-      text: Understands concepts of ecological thresholds and tipping points
-      origin: database
-    - v1Key: v1:1.7.4:foundational:I3
-      n: 3
-      text: Recognizes when management goals may need adjustment
-      origin: database
-    - v1Key: v1:1.7.4:foundational:I4
-      n: 4
-      text: Identifies ongoing transformation in local ecosystems
-      origin: database
-    - v1Key: v1:1.7.4:foundational:I5
-      n: 5
-      text: Understands emotional and institutional challenges of accepting change
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:1.7.4:intermediate
-    knowledge: Applies transformation concepts; understands adaptive goal-setting
-    application: Develops management approaches for transforming systems
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.7.4:intermediate:I1
-      n: 1
-      text: Assesses trajectory of transforming ecosystems
-      origin: database
-    - v1Key: v1:1.7.4:intermediate:I2
-      n: 2
-      text: Develops management goals focused on function rather than composition
-      origin: database
-    - v1Key: v1:1.7.4:intermediate:I3
-      n: 3
-      text: Identifies management actions that support beneficial transformation
-      origin: database
-    - v1Key: v1:1.7.4:intermediate:I4
-      n: 4
-      text: Recognizes when intervention is futile versus productive
-      origin: database
-    - v1Key: v1:1.7.4:intermediate:I5
-      n: 5
-      text: Communicates transformation concepts to stakeholders
-      origin: database
-    - v1Key: v1:1.7.4:intermediate:I6
-      n: 6
-      text: Documents rationale for adaptive goal-setting
-      origin: database
-    - v1Key: v1:1.7.4:intermediate:I7
-      n: 7
-      text: Monitors transformation outcomes
-      origin: restored-from-source-text
-    - v1Key: v1:1.7.4:intermediate:I8
-      n: 8
-      text: Integrates transformation into planning frameworks
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:1.7.4:advanced
-    knowledge: Expert in transformation ecology and management
-    application: Leads management of transforming landscapes
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.7.4:advanced:I1
-      n: 1
-      text: Develops transformation management frameworks
-      origin: database
-    - v1Key: v1:1.7.4:advanced:I2
-      n: 2
-      text: Sets landscape-scale priorities during transformation
-      origin: database
-    - v1Key: v1:1.7.4:advanced:I3
-      n: 3
-      text: Addresses policy constraints on adaptive management
-      origin: database
-    - v1Key: v1:1.7.4:advanced:I4
-      n: 4
-      text: Integrates transformation into planning documents (forest plans, wildlife plans)
-      origin: database
-    - v1Key: v1:1.7.4:advanced:I5
-      n: 5
-      text: Navigates institutional and legal barriers to accepting transformation
-      origin: database
-    - v1Key: v1:1.7.4:advanced:I6
-      n: 6
-      text: Publishes transformation management research
-      origin: database
-    - v1Key: v1:1.7.4:advanced:I7
-      n: 7
-      text: Trains staff in transformation concepts
-      origin: restored-from-source-text
-    - v1Key: v1:1.7.4:advanced:I8
-      n: 8
-      text: Develops stakeholder engagement approaches for transformation
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:1.7.4:expert
-    knowledge: Shapes transformation management practice and policy
-    application: Provides transformation leadership
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.7.4:expert:I1
-      n: 1
-      text: Develops policies accommodating ecological transformation
-      origin: database
-    - v1Key: v1:1.7.4:expert:I2
-      n: 2
-      text: Influences legal and regulatory frameworks to enable adaptive management
-      origin: database
-    - v1Key: v1:1.7.4:expert:I3
-      n: 3
-      text: Leads transformative initiatives addressing ecosystem change
-      origin: database
-    - v1Key: v1:1.7.4:expert:I4
-      n: 4
-      text: Publishes influential research
-      origin: database
-    - v1Key: v1:1.7.4:expert:I5
-      n: 5
-      text: Advises leadership on transformation management
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:1.7.4:sector:public_agencies
-    text: Forest plan adaptation, wildlife management in changing systems, fire management adaptation
-  - sector: private_sector
-    v1Key: v1:1.7.4:sector:private_sector
-    text: Adaptive asset management, transformation risk assessment
-  - sector: ngos
-    v1Key: v1:1.7.4:sector:ngos
-    text: Conservation strategy under transformation, stakeholder communication
-  - sector: consulting
-    v1Key: v1:1.7.4:sector:consulting
-    text: Transformation assessment, adaptive planning support
-  - sector: academia
-    v1Key: v1:1.7.4:sector:academia
-    text: Transformation ecology research, policy analysis
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.7'
+  label: Novel Ecosystems & Adaptation

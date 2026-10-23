@@ -43,7 +43,7 @@ jobs:
         run: python scripts/validate_v2.py --registry-base "$RUNNER_TEMP/registry.base.csv" --json "$RUNNER_TEMP/validation.json"
       - name: IO indicator lint report (WP-11; the gate is validate_v2, which runs the same linter with v1 seeds as warnings)
         continue-on-error: true
-        run: python validation/lint_indicators.py data/v2 --tools-lexicon data/v2/tools/tools.jsonl
+        run: python validation/lint_indicators.py data/v2 --tools-lexicon data/v2/tools/tools.jsonl --waivers data/v2/governance/lint_waivers.csv
       - name: v1 migration is deterministic and X1 is current
         run: python scripts/migrate_v1.py --check
       - name: Tests (seeded-violation fixtures, minting, migration, reproducible build)

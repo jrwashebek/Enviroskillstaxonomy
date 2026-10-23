@@ -1,22 +1,31 @@
 id: seed:v1-1.7.2-T3
 type: Task
 prefLabel:
-  en: Develop protocols for assisted migration implementation and monitoring
+  en: Design implementation and monitoring protocols for an assisted migration trial so that survival and effects at the receiving site can be measured.
 statement:
-  en: Develop protocols for assisted migration implementation and monitoring
-textSha256: ab300756b3b69b5c6381d894ea9b34008dfc6296e4b48abb29cacfbca70af61f
-supports:
-- competency: seed:v1-1.7.2
-  strength: primary
+  en: Design implementation and monitoring protocols for an assisted migration trial so that survival and effects at the receiving site can be measured.
+textSha256: 23c79a69286e019556985563272bc03aef454f7c8a8750b14a4b904eb4193a96
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 1.7.2:T3
+supports:
+- competency: seed:v1-1.7.2
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
 v1Tier: T3
 v1Domain:
   code: '1'
@@ -24,15 +33,15 @@ v1Domain:
 v1SkillArea:
   code: '1.7'
   label: Novel Ecosystems & Adaptation
-editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.7.2:T3
     v1Code: 1.7.2
@@ -42,9 +51,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

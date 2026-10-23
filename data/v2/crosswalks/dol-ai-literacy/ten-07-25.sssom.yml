@@ -1,0 +1,31 @@
+mapping_set_id: https://w3id.org/emst/crosswalks/dol-ai-literacy/ten-07-25
+mapping_set_version: 0.1.0-draft
+mapping_set_title: 'X12: EMST TX-A floor and data-craft responsible-AI practice to the DOL Artificial Intelligence Literacy Framework (ETA TEN 07-25)'
+mapping_set_description: 'Agent-drafted candidate mappings (WP-04, DC; LC co-owner reviews), grain competency x level (level in `other`). Subjects are EMST v2 competencies and craft enactments; objects are the five foundational content areas, their example elements and the seven delivery principles of ''The Department of Labor''s Artificial Intelligence Literacy Framework'', Attachment I to Training and Employment Notice 07-25 (February 13, 2026). DOL publishes no identifiers, so object IDs are EMST slugs of the official names, verified against the primary attachment on 2026-10-23: content-area/understand-ai-principles = ''Understand AI Principles'' (examples: pattern-recognition-and-probabilistic-outputs = ''Pattern recognition and probabilistic outputs'', capabilities-and-modalities = ''Capabilities and modalities'', training-and-inference = ''Training and inference'', hallucinations-and-accuracy-limits = ''Hallucinations and accuracy limits'', human-design-and-oversight = ''Human design and oversight''); content-area/explore-ai-uses = ''Explore AI Uses'' (examples: productivity-tools = ''Productivity tools'', information-support = ''Information support'', creative-assistance = ''Creative assistance'', task-specific-applications = ''Task-specific applications'', decision-support-systems = ''Decision-support systems''); content-area/direct-ai-effectively = ''Direct AI Effectively'' (examples: contextual-framing = ''Contextual framing'', prompting-techniques = ''Prompting techniques'', supplying-relevant-input-data = ''Supplying relevant input data'', iterating-on-outputs = ''Iterating on outputs'', avoiding-vague-or-misleading-prompts = ''Avoiding vague or misleading prompts''); content-area/evaluate-ai-outputs = ''Evaluate AI Outputs'' (examples: verifying-factual-accuracy = ''Verifying factual accuracy'', assessing-completeness-and-clarity = ''Assessing completeness and clarity'', spotting-gaps-or-logical-errors = ''Spotting gaps or logical errors'', aligning-with-strategic-intent = ''Aligning with strategic intent'', applying-human-judgment = ''Applying human judgment''); content-area/use-ai-responsibly = ''Use AI Responsibly'' (examples: protecting-sensitive-information = ''Protecting sensitive information'', following-workplace-policies-and-rules = ''Following workplace policies and rules'', avoiding-misuse-or-harm = ''Avoiding misuse or harm'', managing-context-specific-risks = ''Managing context-specific risks'', maintaining-accountability = ''Maintaining accountability''); delivery-principle/enable-experiential-learning = ''Enable Experiential Learning''; delivery-principle/embed-learning-in-context = ''Embed Learning in Context''; delivery-principle/build-complementary-human-skills = ''Build Complementary Human Skills''; delivery-principle/address-prerequisites-to-ai-literacy = ''Address Prerequisites to AI Literacy''; delivery-principle/create-pathways-for-continued-learning = ''Create Pathways for Continued Learning''; delivery-principle/prepare-enabling-roles = ''Prepare Enabling Roles''; delivery-principle/design-for-agility = ''Design for Agility''. sssom:NoTermFound (with skos:closeMatch, the predicate sought) is recorded where DOL lacks environmental validation content (field ground truth, sampling at volume, legal sufficiency, provenance, evaluation sets, model risk, procurement). Navigation and analytics grade only (ADR-0022 §4): no public claim of DOL alignment until a reviewed set exists. Re-run on each DOL revision.'
+subject_source: emstsrc:emst-v2-competencies
+subject_source_version: 2.0.0-draft
+object_source: emstsrc:dol-ai-literacy-framework
+object_source_version: ETA TEN 07-25 Attachment I (2026-02-13); names verified 2026-10-23
+see_also:
+- https://www.dol.gov/agencies/eta/advisories/ten-07-25
+- https://www.dol.gov/sites/dolgov/files/ETA/advisories/TEN/2025/TEN%2007-25/TEN%2007-25%20%28complete%20document%29.pdf
+- https://w3id.org/emst/seed/ins/dol-ai-literacy-framework
+mapping_tool: docs/build/WP-04/scripts/build_x12.py@0.1.0
+license: https://creativecommons.org/publicdomain/zero/1.0/
+creator_id:
+- emstagent:A4-DC@wp-04
+mapping_date: '2026-10-23'
+curie_map:
+  emst: https://w3id.org/emst/
+  seed: https://w3id.org/emst/seed/
+  emstagent: https://w3id.org/emst/agent/
+  emstsrc: https://w3id.org/emst/sources/
+  sssom: https://w3id.org/sssom/
+  semapv: https://w3id.org/semapv/vocab/
+  skos: http://www.w3.org/2004/02/skos/core#
+  DOLAIL: https://w3id.org/emst/ext/dol-ai-literacy/ten-07-25/
+extension_definitions:
+- slot_name: record_id
+  property: https://w3id.org/sssom/record_id
+  type_hint: xsd:string
+comment: 'EMST crosswalk set X12 (vocab/mapping_predicates.yaml#mapping_sets; ADR-0022, ADR-0025). The framework itself is registered as the L5 instrument seed:ins/dol-ai-literacy-framework. Object names are a U.S. Government work (17 U.S.C. 105). Sources: DC-015, DC-016 (corrected in docs/research/_verification/CORRECTIONS_REGISTER.csv, V4).'

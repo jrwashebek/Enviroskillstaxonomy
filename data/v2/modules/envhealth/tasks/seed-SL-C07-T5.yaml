@@ -15,6 +15,11 @@ workflowProfiles:
 - WP-COMPLIANCE
 fieldDependency: on-site-required
 formationDependency: 'yes'
+credentialGates:
+- credential: seed:crd-lead-based-paint-certifications
+  kind: preferred
+- credential: seed:crd-rehs-rs
+  kind: preferred
 homeModule: envhealth
 subsectors:
 - H01

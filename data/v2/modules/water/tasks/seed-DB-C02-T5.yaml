@@ -14,6 +14,9 @@ workflowProfiles:
 - WP-COMPLIANCE
 fieldDependency: remote-capable
 formationDependency: partial
+credentialGates:
+- credential: seed:crd-wastewater-treatment-operator
+  kind: required
 signOffAuthority:
   kind: licensure
 homeModule: water

@@ -77,7 +77,7 @@ def aggregate(top1: list[str], confusion: dict | None, quality: dict | None, n_b
     labels = sorted({c for row in confusion.values() for c in row} | set(preds))
     gold_rows = {p: [t for t, n in cnt.items() for _ in range(n)] for p, cnt in confusion.items()}
 
-    def corrected(sample):
+    def corrected(sample, resample_gold):
         cnt = Counter(sample)
         tot = sum(cnt.values()) or 1
         est = Counter()
@@ -86,13 +86,13 @@ def aggregate(top1: list[str], confusion: dict | None, quality: dict | None, n_b
             if not rows:              # predicted class never seen in gold: its share is unidentified
                 est["unidentified"] += n / tot
                 continue
-            rs = rng.choice(rows, size=len(rows), replace=True)
+            rs = list(rng.choice(rows, size=len(rows), replace=True)) if resample_gold else rows
             for t, m in Counter(rs).items():
                 est[t] += (n / tot) * (m / len(rs))
         return est
 
-    point = corrected(preds)
-    boots = [corrected(list(rng.choice(preds, size=len(preds), replace=True))) for _ in range(n_boot)]
+    point = corrected(preds, False)
+    boots = [corrected(list(rng.choice(preds, size=len(preds), replace=True)), True) for _ in range(n_boot)]
     res = {}
     for c in sorted(set(point) | {"unidentified"}):
         v = np.array([b.get(c, 0.0) for b in boots])

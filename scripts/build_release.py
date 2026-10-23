@@ -7,14 +7,20 @@ Outputs in --out (default dist/<version>/):
                               HCM skills-library import file, mappings (flattened), release delta feed
   emst.skos.ttl               SKOS: every vocab/ concept scheme + released competencies/tasks + SKOS mappings
   sssom/<set>.sssom.tsv (+.yml)  mapping sets as released (held rows redacted; unreleased successors -> NoTermFound)
-  views/*.json                computed views, each row stamped ruleId/ruleVersion/buildCommit (ADR-0021)
+  sssom/strict-1.0/<set>.sssom.tsv  generated SSSOM 1.0-strict rendering (1.1-only justifications -> UnspecifiedMatching)
+  views/*.json                computed views, each row stamped ruleId/ruleVersion/buildCommit from the active rule file
+                              in vocab/rules/ (ADR-0021; ADR-0029 §4): counts, inverse_links, effective_use_tier,
+                              assessment_staleness, change_indicators, display_gate; views/agreement/<study>.json
   RELEASE_NOTES.md            generated counts; held items reported only as a count
   delta.json                  added/changed/superseded/withdrawn IDs vs --previous bundle
   SHA256SUMS                  checksums of every file
 
-Release gate (always on): held Tribal-related records are excluded (ADR-0007 §D); records carrying
-LicenseRef-EMSTv1-PendingDedication are excluded from the CC0 files while the lead's Q2 dedication is pending
-(ADR-0013); v1Seed and editorialNote are stripped; drafts are excluded (profile `release`). The build refuses to
+Release gate (always on): held Tribal-related records, and records attached to a held target, are excluded
+(ADR-0007 §D); records carrying LicenseRef-EMSTv1-PendingDedication are excluded from the CC0 files while the lead's
+Q2 dedication is pending (ADR-0013); records licensed LicenseRef-EMST-third-party-index-derived are excluded from every
+output and counted (ADR-0029 §9.6); quarantined signals (careFlag, SP-12), placeholder `mvp-role:` targets and
+organization measures with n < 5 are excluded (ADR-0029 §8.2); v1Seed, editorialNote and stored inverse links are
+stripped (inverses are recomputed by inverse-links@1.1.0); drafts are excluded (profile `release`). The build refuses to
 run if scripts/validate_v2.py --strict reports errors (skip only with --no-validate, e.g. in tests), and it
 re-checks its own output for leaks before writing SHA256SUMS.
 
@@ -40,6 +46,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import emstlib as L  # noqa: E402
+from rules import (agreement, assessment_staleness, change_indicator, effective_use_tier, gated_values,  # noqa: E402
+                   inverse_links, io_bridge, registry)
 
 V1_LICENSE = "LicenseRef-EMSTv1-PendingDedication"
 CC0_IRI = "https://creativecommons.org/publicdomain/zero/1.0/"
@@ -54,15 +62,11 @@ INDIGENOUS_STATEMENT = ("Indigenous knowledge is a distinct body of environmenta
 TEXT_FIELDS_TO_LANG = {"rationale", "assessmentContext", "authorityBasis", "principal", "accountabilityVenue", "counterSignal",
                        "evidencePlan", "shouldRemainHumanReason", "mitigation", "scopeOfPractice", "assessmentPlan", "note",
                        "description", "costNote"}
-RULES = {
-    "counts": "1.0.0",
-    "inverse-links": "1.0.0",
-    "effective-use-tier": "0.1.0",
-    "assessment-staleness": "1.0.0",
-}
-LIFECYCLE_CAP = {"watch": "exploratory", "proposed": "exploratory", "emerging": "develop", "established": "select",
-                 "declining": "select", "withdrawn": None, "lapsed": None, "merged": None}
-TIER_ORDER = ["exploratory", "describe", "develop", "select"]
+THIRD_PARTY_LICENSE = "LicenseRef-EMST-third-party-index-derived"
+EXCLUDE_THIRD_PARTY = "third-party index-derived licence (ADR-0013; ADR-0029 §9.6)"
+EXCLUDE_HELD = "held (Tribal content hold, ADR-0007 §D)"
+DEPENDENT_FIELDS = ("task", "competency", "subject", "targetId", "variantOf")
+WAIVER_COLUMNS = ["record_id", "rule_id", "text_sha256", "waiver_class", "reviewer", "second_reviewer", "decided_on", "rationale"]
 
 
 def git_commit(root: Path) -> str:
@@ -102,9 +106,28 @@ class Builder:
                 self.records.setdefault(rec["id"], rec)
         self.excluded = Counter()
         self.date = date or self._default_date()
+        self.rules = registry.active_rules()
+        self.stamped: set = set()
+        cf = L.load_yaml(L.LINT_DIR / "computed_fields.yaml")
+        self.inverse_fields = {t: set(v) for t, v in (cf.get("inverse_fields_by_type") or {}).items()}
+        self.waivers = self._load_waivers()
         gc = L.load_yaml(L.LINT_DIR / "governed_content.yaml")
         self.triggers = [re.compile(p["pattern"], 0 if p.get("cs") else re.I) if isinstance(p, dict) else re.compile(p, re.I)
                          for p in gc["tribal_hold"]["triggers"]]
+
+    def _load_waivers(self):
+        """data/v2/governance/lint_waivers.csv rows signed by pseudonymous humans only (validate_v2 reports the rest)."""
+        p = self.data / "governance" / "lint_waivers.csv"
+        if not p.exists():
+            return []
+        out = []
+        for w in L.read_csv(p):
+            if list(w) != WAIVER_COLUMNS:
+                return []
+            signers = [w["reviewer"]] + ([w["second_reviewer"]] if w["second_reviewer"] else [])
+            if all(x.startswith("pid:") for x in signers) and w["reviewer"] != w["second_reviewer"]:
+                out.append(dict(w))
+        return out
 
     def _default_date(self):
         sde = os.environ.get("SOURCE_DATE_EPOCH")
@@ -125,11 +148,38 @@ class Builder:
                 return True
         return False
 
+    def depends_on_held(self, rec):
+        """Records attached to a held target inherit the hold (ADR-0007 §D; ADR-0029 §9.6)."""
+        refs = [rec.get(f) for f in DEPENDENT_FIELDS]
+        refs += [s.get("competency") for s in rec.get("supports") or [] if isinstance(s, dict)]
+        return any(self._held_ref(x) for x in refs if isinstance(x, str))
+
+    @staticmethod
+    def quarantined(rec):
+        if rec.get("type") != "ChangeSignal":
+            return False
+        sps = set(rec.get("scenarioSignposts") or []) | {n.get("value") for n in rec.get("notation") or []
+                                                         if isinstance(n, dict) and n.get("scheme") == "EMST-signpost"}
+        return bool(rec.get("careFlag")) or bool(sps & {"vocab:scenarios#SP-12", "SP-12"})
+
     def include(self, rid, rec):
         if rec.get("type") == "VocabularyTerm":
             return False
-        if self.is_held(rid, rec):
-            self.excluded["held (Tribal content hold, ADR-0007 §D)"] += 1
+        if self.is_held(rid, rec) or self.depends_on_held(rec):
+            self.excluded[EXCLUDE_HELD] += 1
+            return False
+        if rec.get("license") == THIRD_PARTY_LICENSE:
+            self.excluded[EXCLUDE_THIRD_PARTY] += 1
+            return False
+        if self.quarantined(rec):
+            self.excluded["quarantined signal: careFlag or signpost SP-12 (ADR-0028 ER-0; ADR-0029 §8.2)"] += 1
+            return False
+        if str(rec.get("targetId", "")).startswith("mvp-role:"):
+            self.excluded["placeholder mvp-role: target, not yet re-keyed (ADR-0029 §8.2)"] += 1
+            return False
+        if rec.get("type") == "ChangeSignal" and rec.get("targetType") == "organization" \
+                and isinstance((rec.get("measure") or {}).get("n"), int) and rec["measure"]["n"] < 5:
+            self.excluded["organization measure with n < 5, suppressed (ADR-0012)"] += 1
             return False
         if rec.get("license") == V1_LICENSE and self.licensing.get("v1Dedication") != "granted" and not self.include_pending:
             self.excluded["v1-derived text pending CC0 dedication (ADR-0013, Q2)"] += 1
@@ -146,8 +196,9 @@ class Builder:
 
     def clean(self, rec):
         out = {}
+        inverse = self.inverse_fields.get(rec.get("type"), set())
         for k, v in rec.items():
-            if k in STRIP_FIELDS:
+            if k in STRIP_FIELDS or k in inverse:
                 continue
             v = self._redact(v)
             if v is _DROP:
@@ -195,6 +246,7 @@ class Builder:
         out = Path(out)
         released = {rid: self.clean(rec) for rid, rec in sorted(self.records.items()) if self.include(rid, rec)}
         self.released = released
+        self.inverse = inverse_links.compute(released)
         files: dict[str, bytes] = {}
         files["emst.bundle.jsonld"] = self.bundle(released).encode("utf-8")
         files.update(self.csvs(released))
@@ -218,7 +270,10 @@ class Builder:
 
     def bundle(self, released):
         ctx = json.loads(L.CONTEXT_OUT.read_text(encoding="utf-8"))["@context"]
-        graph = list(released.values())
+        extra = inverse_links.bundle_fields(self.inverse)            # inverse-links@1.1.0 bundle_fields
+        if extra:
+            self.stamped.add(("inverse-links", str(self.rules["inverse-links"]["version"])))
+        graph = [dict(r, **extra.get(rid, {})) for rid, r in released.items()]
         mappings = self._mapping_rows(released)
         for set_name, rows in sorted(mappings.items()):
             for r in rows:
@@ -449,14 +504,44 @@ class Builder:
                 m = L.load_yaml(meta)
                 m["mapping_set_version"] = f"{m.get('mapping_set_version', '0')}+emst.{self.version}"
                 files[f"sssom/{name}.sssom.yml"] = L.dump_yaml(m).encode()
+            strict = self._strict_rows(rows)
+            if strict is not None:                      # CR-IA-002 #4: generated SSSOM 1.0-strict rendering, never a source
+                hdr = header + ([] if "other" in header else ["other"])
+                files[f"sssom/strict-1.0/{name}.sssom.tsv"] = L.csv_text(hdr, [{k: r.get(k, "") for k in hdr} for r in strict], delimiter="\t").encode()
         return files
 
-    # ---------------------------------------------------------------- computed views (ADR-0021)
+    def _strict_rows(self, rows):
+        only = set(L.load_yaml(L.VOCAB / "mapping_predicates.yaml").get("justifications_sssom_1_1_only") or [])
+        if not any(r.get("mapping_justification") in only for r in rows):
+            return None
+        out = []
+        for r in rows:
+            r = dict(r)
+            j = r.get("mapping_justification")
+            if j in only:
+                r["mapping_justification"] = "semapv:UnspecifiedMatching"
+                other = r.get("other") or ""
+                if "original_justification=" not in other:
+                    r["other"] = ";".join(x for x in (other, f"original_justification={j}") if x)
+            out.append(r)
+        return out
+
+    # ---------------------------------------------------------------- computed views (ADR-0021; ADR-0029 §4)
     def _stamp(self, rule):
-        return {"ruleId": rule, "ruleVersion": RULES[rule], "buildCommit": self.commit}
+        st = registry.stamp(self.rules, rule, self.commit)
+        self.stamped.add((rule, st["ruleVersion"]))
+        return st
+
+    def _tool_names(self, released):
+        names = []
+        for r in released.values():
+            if r.get("type") == "Tool" and r.get("toolType") in ("software-product", "platform", "model", "dataset-product", "instrument-model"):
+                names += [v for v in (r.get("prefLabel") or {}).values() if isinstance(v, str)] + list(r.get("productExamples") or [])
+        return names
 
     def views(self, released):
         st = self._stamp
+        files = {}
         counts = {**st("counts"), "release": self.version,
                   "byType": dict(sorted(Counter(r["type"] for r in released.values()).items())),
                   "competenciesByKind": dict(sorted(Counter(r.get("competencyType", "unset") for r in released.values() if r["type"] == "Competency").items())),
@@ -464,32 +549,38 @@ class Builder:
                   "byLifecycle": dict(sorted(Counter(r.get("lifecycleState", "unset") for r in released.values() if r["type"] in ("Competency", "Task", "RoleProfile")).items())),
                   "coreCompetencies": sum(1 for r in released.values() if r["type"] == "Competency" and r.get("module") == "core" and r.get("status") not in ("superseded", "withdrawn")),
                   "excluded": dict(sorted(self.excluded.items()))}
-        inv = defaultdict(list)
-        for rid, r in released.items():
-            if r["type"] == "Task":
-                for s in r.get("supports", []):
-                    inv[s["competency"]].append({"task": rid, "strength": s["strength"]})
-        inverse = [{"competency": c, "tasks": sorted(v, key=lambda x: x["task"]), **st("inverse-links")} for c, v in sorted(inv.items()) if c in released]
-        eut = []
-        for rid, r in released.items():
-            if r["type"] in ("Competency", "Task", "Indicator", "RoleProfile", "RoleVariant", "KnowledgeStatement", "Enactment"):
-                caps = [r.get("useTier") or "exploratory"]
-                cap = LIFECYCLE_CAP.get(r.get("lifecycleState") or "proposed", "exploratory")
-                if cap:
-                    caps.append(cap)
-                if r.get("validationStatus") in (None, "seed-v1", "draft", "reviewed", "panel-retained"):
-                    caps.append("develop")   # select requires job-analysis confirmation (ADR-0024); evidence gate pending IO rules
-                tier = min(caps, key=TIER_ORDER.index) if cap else None
-                eut.append({"id": rid, "effectiveUseTier": tier, "declaredCeiling": r.get("useTier"),
-                            "lifecycleState": r.get("lifecycleState"), **st("effective-use-tier"),
-                            "note": "reliability-gate and IO evidence inputs not yet wired (ADR-0024; WP-11)"})
-        stale = []
-        for rid, r in released.items():
-            if r["type"] in L.RATING_TYPES and r.get("task") in released:
-                cur = released[r["task"]].get("textSha256")
-                stale.append({"assessment": rid, "task": r["task"], "stale": bool(cur and cur != r.get("taskTextSha256")), **st("assessment-staleness")})
-        return {"views/counts.json": L.dump_json(counts).encode(), "views/inverse_links.json": L.dump_json(inverse).encode(),
-                "views/effective_use_tier.json": L.dump_json(eut).encode(), "views/assessment_staleness.json": L.dump_json(stale).encode()}
+        files["views/counts.json"] = counts
+        files["views/inverse_links.json"] = inverse_links.view_rows(self.inverse, st("inverse-links"))
+        # effective-use-tier@1.0.0: header pins IO's tier requirements; lint caps from IO's linter with our waivers
+        req_file = "validation/indicator_lint_rules.yaml"
+        req_doc = L.load_yaml(L.ROOT / req_file) if (L.ROOT / req_file).exists() else {}
+        tier_req = ((req_doc.get("publication_rules") or {}).get("tier_requirements")) or {}
+        lint, self.waived = io_bridge.lint(released, self.waivers, self._tool_names(released))
+        eut_stamp = st("effective-use-tier")
+        files["views/effective_use_tier.json"] = {
+            "header": {**eut_stamp, "tierRequirements": f"{req_file}#publication_rules.tier_requirements",
+                       "tierRequirementsSha256": io_bridge.file_sha256(req_file),
+                       "lintEngine": "validation/lint_indicators.py" if lint is not None else "unavailable (every Indicator capped at develop)",
+                       "waivers": len(self.waivers)},
+            "rows": effective_use_tier.compute(released, tier_req, lint, eut_stamp)}
+        files["views/assessment_staleness.json"] = assessment_staleness.compute(released, st("assessment-staleness"))
+        # change-indicator@1.0.0 over released signals and external-index assessments
+        ci_stamp = st("change-indicator")
+        inputs = [r for r in released.values() if r["type"] == "ChangeSignal"
+                  or (r["type"] == "ExposureAssessment" and r.get("raterType") == "external-index")]
+        files["views/change_indicators.json"] = {
+            "header": {**ci_stamp, "inputs": len(inputs), "note": "Only signalStatus active counts; watch signals feed the 'what's coming' view (ifWatchCounted)."},
+            "rows": change_indicator.view_rows(inputs, stamp=ci_stamp)}
+        # display-gate@1.0.0 with agreement results emitted from declared studies (none before the S2 studies)
+        dg_stamp = st("display-gate")
+        ratings = [r for r in released.values() if r["type"] in L.RATING_TYPES]
+        results = agreement.emit(ratings, agreement.load_studies(self.data), dg_stamp)
+        for sid, res in results.items():
+            files[f"views/agreement/{sid}.json"] = res
+        files["views/agreement/index.json"] = {**dg_stamp, "schema": "validation/display_gates.yaml#agreement_result_schema",
+                                               "studies": sorted(results)}
+        files["views/display_gate.json"] = gated_values.compute(released, self.rules["display-gate"], results, dg_stamp)
+        return {k: L.dump_json(v).encode() for k, v in files.items()}
 
     # ---------------------------------------------------------------- delta, notes, self-check
     def delta(self, released):
@@ -517,6 +608,11 @@ class Builder:
         lines += [f"| {t} | {n} |" for t, n in sorted(c.items())] or ["| (none) | 0 |"]
         lines += ["", "## Excluded by the release gate", "", "| Reason | Records |", "|---|---|"]
         lines += [f"| {k} | {v} |" for k, v in sorted(self.excluded.items())] or ["| (none) | 0 |"]
+        waived = Counter(h.rule_id for h in getattr(self, "waived", []))
+        lines += ["", "## Lint waivers applied (data/v2/governance/lint_waivers.csv)", "", "| Rule | Waived hits |", "|---|---|"]
+        lines += [f"| {k} | {v} |" for k, v in sorted(waived.items())] or ["| (none) | 0 |"]
+        lines += ["", "## Computed-view rules", "", "| Rule | Version |", "|---|---|"]
+        lines += [f"| {r} | {v} |" for r, v in sorted(self.stamped)]
         lines += ["", "Held Tribal-related items are reported only as a count (ADR-0007 §D); nothing Tribal-related is published "
                   "before a Tribal Advisory Council approves.", "", "## Delta", "",
                   f"added {len(delta['added'])} · changed {len(delta['changed'])} · superseded {len(delta['superseded'])} · withdrawn {len(delta['withdrawn'])}", ""]
@@ -535,6 +631,12 @@ class Builder:
                 problems.append(f"held key {k} present in release output")
         if any('"v1Seed"' in json.dumps(r) for r in doc["@graph"]):
             problems.append("v1Seed present in bundle")
+        if THIRD_PARTY_LICENSE in graph_text or THIRD_PARTY_LICENSE in others:
+            problems.append(f"{THIRD_PARTY_LICENSE} record present in release output (ADR-0029 §9.6)")
+        for r in doc["@graph"]:
+            for f in self.inverse_fields.get(r.get("type"), set()) - {"tools", "enactments", "tasks"}:
+                if f in r:
+                    problems.append(f"stored inverse {f} on {r.get('id')}")
         if self.licensing.get("v1Dedication") != "granted" and not self.include_pending and V1_LICENSE in graph_text:
             problems.append("v1-derived (pending dedication) record present in CC0 bundle")
         for r in doc["@graph"]:
@@ -548,6 +650,9 @@ class Builder:
                     break
         if problems:
             raise SystemExit("release gate failed:\n  " + "\n  ".join(problems[:20]))
+
+
+Release = Builder      # name used by vocab/rules/*.yaml#implementation ("scripts/build_release.py#Release.views")
 
 
 def main(argv=None) -> int:

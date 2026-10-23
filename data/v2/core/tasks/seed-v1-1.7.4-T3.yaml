@@ -1,22 +1,30 @@
 id: seed:v1-1.7.4-T3
 type: Task
 prefLabel:
-  en: Manage to sustain ecological function and value during transformation
+  en: Monitor whether a transformation strategy sustains the targeted ecological functions, revising the strategy when indicators fall below thresholds.
 statement:
-  en: Manage to sustain ecological function and value during transformation
-textSha256: 682dd167d72170bb308aa60c8d745d9a1a414996feec1e07bdf989173fd6c31f
-supports:
-- competency: seed:v1-1.7.4
-  strength: primary
+  en: Monitor whether a transformation strategy sustains the targeted ecological functions, revising the strategy when indicators fall below thresholds.
+textSha256: c212128313d45193f36637308988c9dad34623aca8f899dc13bd8e3c5333dda7
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 1.7.4:T3
+supports:
+- competency: seed:v1-1.7.4
+  strength: primary
+workFunction: WF-LEARN
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T3
 v1Domain:
   code: '1'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '1.7'
   label: Novel Ecosystems & Adaptation
-editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.7.4:T3
     v1Code: 1.7.4
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

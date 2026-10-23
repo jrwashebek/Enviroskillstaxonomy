@@ -102,7 +102,7 @@ def mint(entity_type: str, namespace: str, by: str, count: int = 1, registry: Pa
         raise MintError(f"unknown entity type {entity_type!r}")
     prefix = L.ENTITY[entity_type]["prefix"]
     if prefix is None:
-        raise MintError(f"{entity_type} has no TYPE prefix in vocab/identifiers.yaml; it keeps a seed: key (CR-DE-002)")
+        raise MintError(f"{entity_type} has no TYPE prefix in vocab/identifiers.yaml (every type has one since ADR-0029 §2; file a CR)")
     if not L.namespace_ok(namespace):
         raise MintError(f"namespace {namespace!r} is not registered in vocab/identifiers.yaml")
     if not AGENT_RE.match(by or ""):

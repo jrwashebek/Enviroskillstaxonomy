@@ -1,34 +1,55 @@
 id: seed:v1-6.3.2
 type: Competency
 prefLabel:
-  en: Ecosystem services assessment
+  en: Assess ecosystem services with production-function models validated against observations
+altLabel:
+  en:
+  - Ecosystem services assessment
+definition:
+  en: The capability to identify, quantify and map ecosystem services such as flood mitigation, water purification, carbon storage, pollination and recreation with production-function models, validate the models against observations, and communicate service benefits with their uncertainty. Named ecosystem-service model products are L4.
 statement:
-  en: Identifying and measuring the benefits that ecosystems provide to people, such as clean water, flood control, pollination, or recreation opportunities.
-competencyType: practice
+  en: Identifies, quantifies and maps ecosystem services such as flood mitigation, water purification, carbon storage, pollination and recreation with production-function models; validates model estimates against observations; states uncertainty and the beneficiaries assumed; and communicates service benefits in planning and outreach without overstating precision.
+editorialNote:
+  en: 'Rewritten by WP-04 (DC lane: v1 craft primary DC, used only to route the seed; v1 tags are prior evidence, not v2 values). Tool names (InVEST, ARIES) moved to L4 (seed:tool-ecosystem-service-models); durable method is production-function modelling and validation (DC verdict). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (DC). Rationale: Tool names to L4; durable method is ecosystem-service production-function modelling and validation (DC verdict). Role verdicts considered: DC:change.'
 notation:
 - scheme: EMSTv1
   value: 6.3.2
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:ind-v1-6.3.2-l2-a
+  - seed:ind-v1-6.3.2-l2-b
+- level: L3
+  indicators:
+  - seed:ind-v1-6.3.2-l3-a
+  - seed:ind-v1-6.3.2-l3-b
+- level: L4
+  indicators:
+  - seed:ind-v1-6.3.2-l4-a
+  - seed:ind-v1-6.3.2-l4-b
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '6'
-  label: Policy & Regulatory Skills
-v1SkillArea:
-  code: '6.3'
-  label: Resource Economics
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (DC). Rationale: Tool names to L4; durable method is ecosystem-service production-function modelling and validation (DC verdict). Role verdicts considered: DC:change.'
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:6.3.2
     v1Code: 6.3.2
@@ -39,197 +60,19 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:6.3.2
     v1Code: 6.3.2
     v1Table: source_text/competencies
     sourceTextLine: 13402
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Ecosystem services assessment
-  v1Description: Identifying and measuring the benefits that ecosystems provide to people, such as clean water, flood control, pollination, or recreation opportunities.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:6.3.2:foundational
-    knowledge: Understands ecosystem services framework and major service categories
-    application: Supports ecosystem service assessments with data collection
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.3.2:foundational:I1
-      n: 1
-      text: Explains concept of ecosystem services
-      origin: database
-    - v1Key: v1:6.3.2:foundational:I2
-      n: 2
-      text: Identifies provisioning, regulating, cultural, and supporting services
-      origin: database
-    - v1Key: v1:6.3.2:foundational:I3
-      n: 3
-      text: Recognizes ecosystem services provided by different ecosystems
-      origin: database
-    - v1Key: v1:6.3.2:foundational:I4
-      n: 4
-      text: Collects data for ecosystem service assessments
-      origin: database
-    - v1Key: v1:6.3.2:foundational:I5
-      n: 5
-      text: Uses basic ecosystem service assessment tools
-      origin: database
-    - v1Key: v1:6.3.2:foundational:I6
-      n: 6
-      text: Understands beneficiaries of ecosystem services
-      origin: database
-    - v1Key: v1:6.3.2:foundational:I7
-      n: 7
-      text: Maps ecosystem service supply areas
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:6.3.2:intermediate
-    knowledge: Applies ecosystem services science and assessment methods
-    application: Conducts ecosystem service assessments independently
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.3.2:intermediate:I1
-      n: 1
-      text: Quantifies ecosystem services using biophysical models
-      origin: database
-    - v1Key: v1:6.3.2:intermediate:I2
-      n: 2
-      text: Uses ecosystem service modeling tools (InVEST, ARIES, i-Tree)
-      origin: database
-    - v1Key: v1:6.3.2:intermediate:I3
-      n: 3
-      text: Maps ecosystem service provision and beneficiaries
-      origin: database
-    - v1Key: v1:6.3.2:intermediate:I4
-      n: 4
-      text: Conducts ecosystem service trade-off analysis
-      origin: database
-    - v1Key: v1:6.3.2:intermediate:I5
-      n: 5
-      text: Values ecosystem services economically when appropriate
-      origin: database
-    - v1Key: v1:6.3.2:intermediate:I6
-      n: 6
-      text: Integrates ecosystem services into planning and decision-making
-      origin: database
-    - v1Key: v1:6.3.2:intermediate:I7
-      n: 7
-      text: Communicates ecosystem service concepts to non-specialists
-      origin: restored-from-source-text
-    - v1Key: v1:6.3.2:intermediate:I8
-      n: 8
-      text: Evaluates management impacts on ecosystem services
-      origin: restored-from-source-text
-    - v1Key: v1:6.3.2:intermediate:I9
-      n: 9
-      text: Addresses equity in ecosystem service distribution
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:6.3.2:advanced
-    knowledge: Expert in ecosystem services science and applications
-    application: Leads comprehensive ecosystem service programs
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.3.2:advanced:I1
-      n: 1
-      text: Designs sophisticated ecosystem service assessments
-      origin: database
-    - v1Key: v1:6.3.2:advanced:I2
-      n: 2
-      text: Models complex service interactions and trade-offs
-      origin: database
-    - v1Key: v1:6.3.2:advanced:I3
-      n: 3
-      text: Integrates ecosystem services with natural capital accounting
-      origin: database
-    - v1Key: v1:6.3.2:advanced:I4
-      n: 4
-      text: Develops ecosystem service indicators for monitoring
-      origin: database
-    - v1Key: v1:6.3.2:advanced:I5
-      n: 5
-      text: Evaluates effectiveness of interventions on services
-      origin: database
-    - v1Key: v1:6.3.2:advanced:I6
-      n: 6
-      text: Addresses uncertainty in ecosystem service assessments
-      origin: database
-    - v1Key: v1:6.3.2:advanced:I7
-      n: 7
-      text: Publishes ecosystem services research
-      origin: restored-from-source-text
-    - v1Key: v1:6.3.2:advanced:I8
-      n: 8
-      text: Trains practitioners in ecosystem service assessment
-      origin: restored-from-source-text
-    - v1Key: v1:6.3.2:advanced:I9
-      n: 9
-      text: Influences integration of ecosystem services into policy
-      origin: restored-from-source-text
-    - v1Key: v1:6.3.2:advanced:I10
-      n: 10
-      text: Develops decision-support tools for ecosystem services
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:6.3.2:expert
-    knowledge: Shapes ecosystem services science and policy
-    application: Influences ecosystem services at national/international level
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.3.2:expert:I1
-      n: 1
-      text: Develops innovative ecosystem service frameworks or methods
-      origin: database
-    - v1Key: v1:6.3.2:expert:I2
-      n: 2
-      text: Influences ecosystem service policy (e.g., IPBES, national assessments)
-      origin: database
-    - v1Key: v1:6.3.2:expert:I3
-      n: 3
-      text: Leads major ecosystem service research programs
-      origin: database
-    - v1Key: v1:6.3.2:expert:I4
-      n: 4
-      text: Publishes influential ecosystem services research
-      origin: database
-    - v1Key: v1:6.3.2:expert:I5
-      n: 5
-      text: Contributes to international ecosystem service standards
-      origin: database
-    - v1Key: v1:6.3.2:expert:I6
-      n: 6
-      text: Recognized authority in ecosystem services
-      origin: database
-    - v1Key: v1:6.3.2:expert:I7
-      n: 7
-      text: Advances mainstreaming of ecosystem services
-      origin: restored-from-source-text
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:6.3.2:sector:public_agencies
-    text: Ecosystem service assessments for decisions, natural capital accounting
-  - sector: private_sector
-    v1Key: v1:6.3.2:sector:private_sector
-    text: Natural capital protocols, ecosystem service dependencies and impacts
-  - sector: ngos
-    v1Key: v1:6.3.2:sector:ngos
-    text: Ecosystem service-based conservation, communication, advocacy
-  - sector: consulting
-    v1Key: v1:6.3.2:sector:consulting
-    text: Ecosystem service assessments, modeling services, corporate advisory
-  - sector: academia
-    v1Key: v1:6.3.2:sector:academia
-    text: Ecosystem services research, methodology development, teaching
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.3'
+  label: Resource Economics

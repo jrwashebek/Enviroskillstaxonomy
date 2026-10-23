@@ -1,0 +1,32 @@
+mapping_set_id: https://w3id.org/emst/crosswalks/esco/1.2.0
+mapping_set_version: 0.1.0-draft
+mapping_set_title: X7 EMST v2 competencies to ESCO skills (reviewed subset; ESCO v1.2.0 pinned, v1.2.1 gap)
+mapping_set_description: 'Re-run of the Phase 2 EMST v1 -> ESCO v1.2.0 prototype on EMST v2 competency records (live, not held). Candidates from the emst_linker hybrid index; decisions by an LLM reviewer (review_status=llm-reviewed-candidate; no human reviewer yet). Rejected candidates are kept with predicate_modifier Not so they do not resurface; skos:closeMatch sssom:NoTermFound rows record ESCO gaps (reason in comment). VERSION GAP: ESCO v1.2.1 (Dec 2025) is current; its files were not reachable, so objects are pinned to the v1.2.0 skill URIs in esco-skill-extractor 0.1.18 (wheel sha256 ec6e5daa7d3247634a7950faf33ad9d1ca47fa2d7a09b95677f25a6f91f77af0); re-pin via the upstream diff. Navigation-grade at most until human review (ADR-0022 §4); no claim of ESCO alignment.'
+subject_source: emstsrc:emst-v2-competencies
+subject_source_version: 2.0.0-draft (corpus sha256 515d9e9fab6d9d25)
+object_source: emstsrc:esco
+object_source_version: ESCO v1.2.0 (inferred from bundle; target v1.2.1)
+mapping_tool: pipelines/crosswalks/x7_esco.py@0.1.0
+see_also:
+- https://esco.ec.europa.eu/en/about-esco/escopedia/escopedia/esco-versions
+- docs/research/interop-skills-intelligence/crosswalk_method.md
+license: https://creativecommons.org/publicdomain/zero/1.0/
+creator_id:
+- emstagent:ia-wp09@phase4
+mapping_date: '2026-10-23'
+curie_map:
+  emst: https://w3id.org/emst/
+  seed: https://w3id.org/emst/seed/
+  emstagent: https://w3id.org/emst/agent/
+  sssom: https://w3id.org/sssom/
+  semapv: https://w3id.org/semapv/vocab/
+  skos: http://www.w3.org/2004/02/skos/core#
+  ESCO: http://data.europa.eu/esco/skill/
+  emstsrc: https://w3id.org/emst/sources/
+extension_definitions:
+- slot_name: record_id
+  property: https://w3id.org/sssom/record_id
+  type_hint: xsd:string
+- slot_name: reviewer_agreement
+  property: https://w3id.org/sssom/reviewer_agreement
+  type_hint: xsd:double

@@ -1,0 +1,64 @@
+# MOD-12 Fish, wildlife and aquatic resources — module brief (`wildlife`)
+
+**Status:** editorial section authored centrally for wave 1 (ADR-0018; ADR-0009). It is not a stewarded module: no Module Stewardship Agreement exists and no partner is committed. Every record here is an agent draft (`validationStatus: draft`, `reviewStatus: unreviewed`; content evidence label J, ratings S). Nothing here is SME agreement, Delphi retention or job-analysis confirmation.
+
+## Scope
+
+**Subsectors:** L02 Wildlife management & species conservation; L03 Fisheries & aquatic resources.
+
+**In scope:** Inland fisheries management, fisheries stock assessment, hatchery and aquatic propagation, humane capture and handling, and international wildlife and fisheries agreements.
+
+**Out of scope:** Wildlife survey, habitat assessment and population dynamics as such (core v1 4.1.2, 1.1.5, 1.4.1); marine and coastal management (MOD-13, wave 3); listed-species consultation as such (core FH-C01, enacted here).
+
+**Module competencies (home here):**
+
+- `seed:DB-C49` Conduct fisheries stock assessments and develop management advice (L03, L04)
+- `seed:FC-C15` Capture, handle and mark wildlife and fish humanely and safely (L02, L03)
+- `seed:FH-C10` Operate fish hatchery and aquatic propagation programmes (L03)
+- `seed:v1-1.4.5` Manage fish populations and habitats to stated conservation and harvest objectives (L03)
+- `seed:v1-6.5.5` Implement international wildlife and fisheries conservation agreements (L02, L03)
+
+**Competencies enacted here:**
+
+- `seed:v1-1.4.3` Identify organisms from field characters, specimens, images and recordings [core] — enactment `seed:ena-1.4.3-wildlife`
+- `seed:v1-4.2.2` Detect, treat and monitor invasive species in the field [core] — enactment `seed:ena-4.2.2-wildlife`
+- `seed:v1-5.1.3` Environmental interpretation [core] — enactment `seed:ena-5.1.3-wildlife`
+- `seed:v1-6.2.3` Prepare and revise management plans for publicly held lands [core] — enactment `seed:ena-6.2.3-wildlife`
+- `seed:DC-CAND-03` Design monitoring and sampling for valid environmental inference [core] — enactment `seed:ena-dc-cand-03-wildlife`
+- `seed:FC-C03` Adjudicate automated species detections using field-formed identification expertise [core] — enactment `seed:ena-fc-c03-wildlife`
+- `seed:FC-C11` Apply field biosecurity and decontamination protocols [core] — enactment `seed:ena-fc-c11-wildlife`
+- `seed:FC-C12` Operate small boats and work safely on water in aquatic, coastal and marine field settings [core] — enactment `seed:ena-fc-c12-wildlife`
+- `seed:FC-C14` Operate and supervise uncrewed and automated field systems [core] — enactment `seed:ena-fc-c14-wildlife`
+- `seed:FC-C21` Work alongside landowners, permittees, volunteers and communities on the land [core] — enactment `seed:ena-fc-c21-wildlife`
+- `seed:FC-C31` Calibrate field observers and run field measurement quality assurance [core] — enactment `seed:ena-fc-c31-wildlife`
+- `seed:FH-C01` Assess effects on protected species and conduct interagency consultation on proposed actions [core] — enactment `seed:ena-fh-c01-wildlife`
+- `seed:SC-C08` Design and administer cross-jurisdictional stewardship agreements [core] — enactment `seed:ena-sc-c08-wildlife`
+
+**Roles served (`docs/decisions/mvp_role_set.csv`):** R15 Wildlife biologist; R16 Fisheries and aquatic biologist; R02 Field resource technician.
+
+## Licensure and credential gates
+
+Gates are Credential records on tasks and role variants, never proficiency levels (ADR-0003 T-8). Register records are WP-07's (`data/v2/registers/credentials/`).
+
+| Gate | Issuer | Verification |
+|---|---|---|
+| Certified / Associate Wildlife Biologist | The Wildlife Society | verified [E: V3-08] |
+| Certified / Associate Fisheries Professional | American Fisheries Society | unverified [J: DB-CR-074] |
+| Scientific collection permits, animal-care protocol approval, controlled-drug authorization for immobilization | Agencies and institutions | [J] |
+
+## Candidate advisory partners (*candidate*, not committed)
+
+Partners below are **candidates** from DB and AS research (`vocab/modules.yaml`; `docs/research/domain-bench/module_steward_candidates.csv`). None is committed; the commitment register (`data/v2/registers/commitments.csv`) is the only source of committed status. Readiness is DB's [J] rating.
+
+*Candidate:* TWS and AFS (verified active [E: V3-07]); AFWA (state fish and wildlife agencies); USFWS and NOAA Fisheries (federal partners). Readiness: Strong [J].
+
+## Demand corpus to build (ADR-0018 §8; P-DB-17)
+
+State fish and wildlife agency class specifications; stock assessment reports and review panel records; hatchery management plans.
+
+## Open issues
+
+- No module competency covers wildlife population and harvest management; role R15 relies on core competencies. Flagged for the CA: stay with core or add a candidate (scope expansion; not authored).
+- Actor enactment notes requested by TN for fisheries content are held (ADR-0007).
+
+*Generated by `docs/build/WP-06/build_briefs.py` from the records; record lists are computed, not typed. Licence: CC BY 4.0 (narrative, ADR-0013).*

@@ -1,0 +1,31 @@
+mapping_set_id: https://w3id.org/emst/crosswalks/opm-ecq/2025-10-01
+mapping_set_version: 0.1.0-draft
+mapping_set_title: X9 (ECQ part) EMST competencies to OPM Executive Core Qualifications (five-ECQ framework, 2025-10-01)
+mapping_set_description: 'Agent-drafted candidate mappings to the 15 competencies of the current five ECQs (names verified on OPM''s page 2026-10-23). Object IDs OPMECQ:ECQn-Cm are EMST keys (OPM assigns none); legend in pipelines/crosswalks/reference/opm_ecq_2025-10-01.csv; ecq_parent in `other`. broadMatch = the EMST competency is a domain or practitioner-level enactment of the ECQ competency; relatedMatch = partial overlap. Retired ECQ names (e.g. Partnering, Influencing/Negotiating, Political Savvy) are never targets: such cases are NoTermFound with the reason. Technical Skill (ECQ3-C1) is intentionally not enumerated. Not for SES qualification or rating decisions.'
+subject_source: emstsrc:emst-v2-competencies
+subject_source_version: 2.0.0-draft (corpus sha256 0ece91f575fd9e26)
+object_source: emstsrc:opm-ecq
+object_source_version: chart updated 2025-10-01
+mapping_tool: pipelines/crosswalks/x9_ecq.py@0.1.0
+see_also:
+- https://www.opm.gov/policy-data-oversight/senior-executive-service/executive-core-qualifications/
+license: https://creativecommons.org/publicdomain/zero/1.0/
+creator_id:
+- emstagent:ia-wp09@phase4
+mapping_date: '2026-10-23'
+curie_map:
+  emst: https://w3id.org/emst/
+  seed: https://w3id.org/emst/seed/
+  emstagent: https://w3id.org/emst/agent/
+  sssom: https://w3id.org/sssom/
+  semapv: https://w3id.org/semapv/vocab/
+  skos: http://www.w3.org/2004/02/skos/core#
+  OPMECQ: https://w3id.org/emst/ext/opm-ecq/2025-10-01/
+  emstsrc: https://w3id.org/emst/sources/
+extension_definitions:
+- slot_name: record_id
+  property: https://w3id.org/sssom/record_id
+  type_hint: xsd:string
+- slot_name: reviewer_agreement
+  property: https://w3id.org/sssom/reviewer_agreement
+  type_hint: xsd:double

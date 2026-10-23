@@ -1,34 +1,59 @@
 id: seed:v1-5.4.4
 type: Competency
 prefLabel:
-  en: Citizen science coordination
+  en: Coordinate community-science data collection to programme data-quality standards
+altLabel:
+  en:
+  - Citizen science coordination
+definition:
+  en: The capability to design and run programmes in which members of the public collect environmental data, with protocols, training, verification and data-quality controls that make the contributions usable for monitoring and management, while protecting participants and sensitive information.
 statement:
-  en: Organizing programs where members of the public help collect scientific data that contributes to land management.
-competencyType: practice
+  en: 'Designs and runs programmes in which members of the public collect environmental data: sets questions, protocols and training; verifies submissions and controls data quality; protects participants'' personal data and sensitive species locations; compiles and analyzes contributions with their known biases; and reports results back to participants.'
+editorialNote:
+  en: 'Rewritten by WP-04 (DC lane: v1 craft primary DC, used only to route the seed; v1 tags are prior evidence, not v2 values). Carried (wording rewritten); community-science platforms are L4 (seed:tool-inaturalist). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-ASSESS (X05). Rationale: Citizen science coordination with data-quality design. Role verdicts considered: none recorded.'
 notation:
 - scheme: EMSTv1
   value: 5.4.4
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-v1-5.4.4-l1-a
+  - seed:ind-v1-5.4.4-l1-b
+- level: L2
+  indicators:
+  - seed:ind-v1-5.4.4-l2-a
+  - seed:ind-v1-5.4.4-l2-b
+- level: L3
+  indicators:
+  - seed:ind-v1-5.4.4-l3-a
+  - seed:ind-v1-5.4.4-l3-b
+- level: L4
+  indicators:
+  - seed:ind-v1-5.4.4-l4-a
+  - seed:ind-v1-5.4.4-l4-b
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '5'
-  label: Communication & Engagement Skills
-v1SkillArea:
-  code: '5.4'
-  label: Education & Outreach
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-ASSESS (X05). Rationale: Citizen science coordination with data-quality design. Role verdicts considered: none recorded.'
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:5.4.4
     v1Code: 5.4.4
@@ -39,173 +64,19 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:5.4.4
     v1Code: 5.4.4
     v1Table: source_text/competencies
     sourceTextLine: 11321
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Citizen science coordination
-  v1Description: Organizing programs where members of the public help collect scientific data that contributes to land management.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:5.4.4:foundational
-    knowledge: Understands citizen science concepts; familiar with data quality issues
-    application: Supports citizen science projects; trains participants
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.4.4:foundational:I1
-      n: 1
-      text: Trains volunteers in data collection protocols
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:foundational:I2
-      n: 2
-      text: Supervises citizen science events or activities
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:foundational:I3
-      n: 3
-      text: Enters and manages citizen science data
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:foundational:I4
-      n: 4
-      text: Communicates results back to participants
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:foundational:I5
-      n: 5
-      text: Uses established citizen science platforms (iNaturalist, eBird, etc.)
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:5.4.4:intermediate
-    knowledge: Applies citizen science design principles; understands data validation methods
-    application: Develops and manages citizen science projects
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.4.4:intermediate:I1
-      n: 1
-      text: Designs citizen science projects aligned with research or monitoring needs
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:intermediate:I2
-      n: 2
-      text: Develops clear, scientifically sound protocols accessible to public
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:intermediate:I3
-      n: 3
-      text: Implements data quality control procedures
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:intermediate:I4
-      n: 4
-      text: Uses technology platforms effectively (mobile apps, online portals)
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:intermediate:I5
-      n: 5
-      text: Engages diverse participants
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:intermediate:I6
-      n: 6
-      text: Analyzes citizen science data for management applications
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:intermediate:I7
-      n: 7
-      text: Publishes or presents citizen science results
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:5.4.4:advanced
-    knowledge: Expert in citizen science methodology; skilled in co-design approaches
-    application: Leads major citizen science programs
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.4.4:advanced:I1
-      n: 1
-      text: Develops comprehensive citizen science programs with multiple projects
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:advanced:I2
-      n: 2
-      text: Co-designs projects with community partners
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:advanced:I3
-      n: 3
-      text: Ensures data quality meets scientific standards
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:advanced:I4
-      n: 4
-      text: Publishes peer-reviewed papers using citizen science data
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:advanced:I5
-      n: 5
-      text: Secures funding for citizen science initiatives
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:advanced:I6
-      n: 6
-      text: Builds networks of citizen scientists across regions
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:advanced:I7
-      n: 7
-      text: Evaluates social and scientific outcomes of projects
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:advanced:I8
-      n: 8
-      text: Mentors other citizen science coordinators
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:5.4.4:expert
-    knowledge: Shapes citizen science field practices and policy
-    application: Leads transformative citizen science initiatives at scale
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.4.4:expert:I1
-      n: 1
-      text: Directs citizen science at organizational or national level
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:expert:I2
-      n: 2
-      text: Influences citizen science policy and standards
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:expert:I3
-      n: 3
-      text: Develops innovative citizen science approaches that others adopt
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:expert:I4
-      n: 4
-      text: Achieves recognition for citizen science leadership
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:expert:I5
-      n: 5
-      text: Publishes extensively on citizen science practice and impacts
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:expert:I6
-      n: 6
-      text: Demonstrates significant conservation outcomes from citizen science
-      origin: restored-from-source-text
-    - v1Key: v1:5.4.4:expert:I7
-      n: 7
-      text: Integrates citizen science into formal decision-making processes
-      origin: restored-from-source-text
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:5.4.4:sector:public_agencies
-    text: Monitoring programs, species inventories, phenology networks
-  - sector: private_sector
-    v1Key: v1:5.4.4:sector:private_sector
-    text: Environmental monitoring for sustainability, community science partnerships
-  - sector: ngos
-    v1Key: v1:5.4.4:sector:ngos
-    text: Community-based monitoring, conservation campaigns
-  - sector: consulting
-    v1Key: v1:5.4.4:sector:consulting
-    text: Citizen science program design, data analysis services
-  - sector: academia
-    v1Key: v1:5.4.4:sector:academia
-    text: Research projects, student engagement, data democratization
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '5'
+  label: Communication & Engagement Skills
+v1SkillArea:
+  code: '5.4'
+  label: Education & Outreach

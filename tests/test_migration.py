@@ -169,3 +169,34 @@ def test_held_content_is_flagged():
 
 def test_migration_is_deterministic_and_current():
     assert migrate_v1.main(["--check"]) == 0
+
+
+# ---------------------------------------------------------------- ADR-0029 §3: stability tier and CLD
+def test_no_record_carries_the_v1_stability_tier():
+    bad = []
+    for loc, rec in L.iter_records(L.DATA_V2):
+        if not isinstance(rec, dict):
+            continue
+        for path, k, _v in L.walk(rec):
+            if k in ("stabilityTier", "stability_tier"):
+                bad.append((rec.get("id"), "/".join(map(str, path + (k,)))))
+        v1v = rec.get("v1Values") or {}
+        for k in ("stability_tier", "tier"):
+            if k in v1v:
+                bad.append((rec.get("id"), f"v1Values/{k}"))
+    assert not bad, bad[:10]
+
+
+def test_cld_prior_evidence_is_v1_analyst_only_and_never_computed_input():
+    import rules  # noqa: F401  - the computed-view rule implementations
+    from rules import change_indicator, effective_use_tier
+    cld = [rec for _loc, rec in L.iter_records(L.DATA_V2 / "assessments" / "emst-v1-cld") if isinstance(rec, dict)]
+    assert len(cld) == 222
+    for rec in cld:
+        assert rec["raterType"] == "v1-analyst" and rec["confidence"] == "low" and rec["objectScheme"] == "v1-cld"
+        assert {d["relation"] for d in rec["provenance"]["derivedFrom"]} == {"prior-evidence"}
+    # the change-indicator rule drops v1-analyst records before counting (ER-0) ...
+    ind = {"targetId": cld[0]["subject"], "direction": "decline", "driver": "AI", "kind": "role-change"}
+    assert change_indicator.evaluate(ind, cld)["counted"] == []
+    # ... and the effective-use-tier evidence cap reads validationStatus only, never v1 prior evidence
+    assert "v1-cld" not in json.dumps(effective_use_tier.INPUT_FIELDS)

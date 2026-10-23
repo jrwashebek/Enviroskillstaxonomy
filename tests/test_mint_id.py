@@ -12,11 +12,17 @@ import mint_id
 import validate_v2
 
 
+NEW_PREFIX_TYPES = {"WatchItem": "WCH", "SeriesRecord": "SER", "StateClassRecord": "SCR"}   # ADR-0029 §2.1
+
+
 def test_10000_minted_ids_match_pattern_pass_check_and_never_collide(tmp_path):
     reg = tmp_path / "registry.csv"
-    ids = mint_id.mint("Competency", "core", "emstagent:test@1", count=10_000, registry=reg, today="2026-10-23")
+    ids = mint_id.mint("Competency", "core", "emstagent:test@1", count=9_700, registry=reg, today="2026-10-23")
+    for etype in NEW_PREFIX_TYPES:                                   # the three ADR-0029 prefixes share the space
+        ids += mint_id.mint(etype, "core", "emstagent:test@1", count=100, registry=reg, today="2026-10-23")
     rx = re.compile(L.load_yaml(L.VOCAB / "identifiers.yaml")["form"]["regex"])
     assert len(ids) == 10_000 and len(set(ids)) == 10_000
+    assert len({L.id_parts(i)[2] for i in ids}) == 10_000             # bodies never collide across types either
     for i in ids:
         assert rx.match(i), i
         assert L.luhn32_valid(i.rsplit("-", 1)[1]), i
@@ -24,6 +30,28 @@ def test_10000_minted_ids_match_pattern_pass_check_and_never_collide(tmp_path):
     rows = list(csv.DictReader(reg.open()))
     assert [r["id"] for r in rows] == ids
     assert {r["status"] for r in rows} == {"candidate"}
+    assert {r["type"] for r in rows} == {"Competency", *NEW_PREFIX_TYPES}
+
+
+@pytest.mark.parametrize("etype,prefix", sorted(NEW_PREFIX_TYPES.items()))
+def test_new_prefix_types_are_minted_and_validate(tmp_path, etype, prefix):
+    data = overlay_tree(tmp_path)
+    reg = data / "ids" / "registry.csv"
+    (new_id,) = mint_id.mint(etype, "core", "emstagent:test@1", registry=reg, today="2026-10-23")
+    assert L.id_parts(new_id)[1] == prefix and L.ENTITY[etype]["prefix"] == prefix
+    rec = L.load_yaml(FIXTURES / "records" / "valid" / f"{etype}.yaml")
+    rec.update(id=new_id, status="candidate")
+    kind, where = L.ENTITY[etype]["store"]
+    d = data / ("core" if kind == "yaml" else "registers") / where
+    d.mkdir(parents=True, exist_ok=True)
+    L.write_yaml(d / f"{L.id_to_stem(new_id)}.yaml", rec)
+    rep = validate_v2.Validator(data, use_git_base=False, check_x1=False).run()
+    assert not [i for i in rep.issues if i.code in ("E-ID-PREFIX", "E-ID-CHECK", "E-REGISTRY-MISSING", "E-LOCATION")], \
+        [(i.code, i.message) for i in rep.issues]
+    wrong = new_id.replace(f"/{prefix}-", "/CMP-")
+    rec["id"] = wrong
+    L.write_yaml(d / f"{L.id_to_stem(new_id)}.yaml", rec)
+    assert "E-ID-PREFIX" in validate_v2.Validator(data, use_git_base=False, check_x1=False).run().codes()
 
 
 def test_check_symbol_catches_substitutions_and_transpositions():
@@ -56,7 +84,6 @@ def test_collision_is_redrawn(monkeypatch, tmp_path):
 
 
 @pytest.mark.parametrize("etype,ns,by,msg", [
-    ("WatchItem", "core", "emstagent:x@1", "no TYPE prefix"),
     ("Competency", "nowhere", "emstagent:x@1", "not registered"),
     ("Competency", "core", "Jane Doe", "pseudonymous"),
 ])

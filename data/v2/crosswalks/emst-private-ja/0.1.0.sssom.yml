@@ -1,0 +1,30 @@
+mapping_set_id: https://w3id.org/emst/crosswalks/emst-private-ja/0.1.0
+mapping_set_version: 0.1.0-draft
+mapping_set_title: 'X8 seed: EMST private role variants to the PS reference job architecture'
+mapping_set_description: Agent-drafted candidate mappings from MVP private role variants to PS's Phase 2 reference job architecture (industry x job family x career stream x level; 88 rows). Objects are EMST research rows (EMSTpja). industry and pj_level in `other`; role_level names the EMST level. GSA labor-category data is a candidate public seed still to investigate (P-PS-08). Not a compensation or classification benchmark.
+subject_source: emstsrc:emst-v2-role-variants
+subject_source_version: 2.0.0-draft (MVP role set 2026-10-23)
+object_source: emstsrc:emst-ps-reference-job-architecture
+object_source_version: 0.1.0 (PS Phase 2)
+mapping_tool: pipelines/crosswalks/x8_x11_private.py@0.1.0
+license: https://creativecommons.org/publicdomain/zero/1.0/
+creator_id:
+- emstagent:ia-wp09@phase4
+mapping_date: '2026-10-23'
+curie_map:
+  emst: https://w3id.org/emst/
+  seed: https://w3id.org/emst/seed/
+  emstagent: https://w3id.org/emst/agent/
+  sssom: https://w3id.org/sssom/
+  semapv: https://w3id.org/semapv/vocab/
+  skos: http://www.w3.org/2004/02/skos/core#
+  EMSTpja: https://w3id.org/emst/research/private-sector/job-architecture/
+  EMSTtr: https://w3id.org/emst/research/private-sector/translation/
+  emstsrc: https://w3id.org/emst/sources/
+extension_definitions:
+- slot_name: record_id
+  property: https://w3id.org/sssom/record_id
+  type_hint: xsd:string
+- slot_name: reviewer_agreement
+  property: https://w3id.org/sssom/reviewer_agreement
+  type_hint: xsd:double

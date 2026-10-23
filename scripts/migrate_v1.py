@@ -16,7 +16,8 @@ Outputs (all deterministic):
 Rules: content comes from the source text where the database lost it (D5 Knowledge/Application, 2,104 truncated
 indicators, 19 title/description splits); v1 tags migrate as prior evidence only (rater v1-analyst-01, low
 confidence, misalignment flags); stored summaries (modal fields, counts, Zero-Core, FPP, stability tier, reform
-count) are not migrated; held Tribal content is flagged (ADR-0007 §D); v1-derived text carries
+count) are not migrated (ADR-0011 rule 5, amended; ADR-0029 §3: a v1 value fully determined by its documented rule is a
+summary, one that departs from its rule carries judgment and migrates as prior evidence); held Tribal content is flagged (ADR-0007 §D); v1-derived text carries
 CC0-1.0: the project lead dedicated the v1 text to the public domain (PROJECT_LEAD_DECISIONS.md Q2, 2026-10-23;
 ADR-0013). Without that dedication (licensing.yaml v1Dedication: pending) the fallback LicenseRef applies.
 
@@ -606,7 +607,8 @@ def tag_records(inp: Inputs, plan: Plan):
         rec["v1Values"] = vals
         rec["provenance"] = _prov(derived)
         out["emst-v1-workflow-stage"].append(rec)
-        # reform flags (the count and the stability tier are stored summaries: not migrated, ADR-0011 rule 5)
+        # reform flags (the count and the stability tier are stored summaries: not migrated; ADR-0011 rule 5, amended;
+        # ADR-0029 §3 ratified this; the tier is recomputed from migrated inputs, never stored)
         rec = _rating_base(f"seed:v1reform/{code}", "RelevanceRating", f"v1 reform-sensitivity flags for {k}", held)
         rec.update({"subject": f"seed:v1-{code}", "subjectTextSha256": h, "object": "EMSTv1:reform-flags", "objectScheme": "v1-reform-flags"})
         rec.update(_rater("v1 Dimension Tags reform flags", "emst-v1-reform", "v1 (six reform flags)"))
@@ -617,7 +619,8 @@ def tag_records(inp: Inputs, plan: Plan):
         rec["provenance"] = _prov([{"v1Key": k, "v1Code": code, "v1Table": "craft_stage_reform", "v1Sheet": "Dimension Tags",
                                     "v1Row": row, "v1Fields": names, "workbookSha256": inp.copyb, "relation": "prior-evidence"}])
         out["emst-v1-reform"].append(rec)
-        # CLD flag, severity (R9 overlay prior) and S-trajectory
+        # CLD flag, severity (R9 overlay prior) and S-trajectory: prior evidence only (ADR-0029 §3; the v1 flag departs
+        # from its own rule in 11 of 222 competencies, so it carries analyst judgment). Never an input to a computed CLD.
         e = inp.expsum[code]
         rec = _rating_base(f"seed:v1cld/{code}", "RelevanceRating", f"v1 career-ladder (CLD) tags for {k}", held)
         rec.update({"subject": f"seed:v1-{code}", "subjectTextSha256": h, "object": "EMSTv1:cld", "objectScheme": "v1-cld"})

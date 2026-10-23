@@ -1,10 +1,10 @@
 id: seed:DB-C01-T1
 type: Task
 prefLabel:
-  en: Run jar tests and adjust coagulant dosing when raw-water turbidity, temperature or organic content changes
+  en: Adjust coagulant dosing from jar test results when raw-water turbidity, temperature or organic content changes
 statement:
-  en: Run jar tests and adjust coagulant dosing when raw-water turbidity, temperature or organic content changes
-textSha256: c1cb6a14a3e711374681712139dfca30e5d9768244b870a3c77a8bc9ec80226e
+  en: Adjust coagulant dosing from jar test results when raw-water turbidity, temperature or organic content changes
+textSha256: d9a01058f88cdb897bb20203d9836e8cb62124777fee4d873677ee72475e083f
 supports:
 - competency: seed:DB-C01
   strength: primary
@@ -19,6 +19,9 @@ reproductionRegime:
   placeBoundness: system-specific
   currencyDecay: M
   credentialGate: licence
+credentialGates:
+- credential: seed:crd-drinking-water-treatment-operator
+  kind: required
 signOffAuthority:
   kind: licensure
 accountabilityConstraint:

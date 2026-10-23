@@ -1,22 +1,28 @@
 id: seed:v1-6.4.1-T1
 type: Task
 prefLabel:
-  en: Review policy literature and case studies to inform management strategies
+  en: Review policy literature and case studies to inform a management strategy, stating the quality of the evidence behind each finding
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Review policy literature and case studies to inform management strategies
-textSha256: d4bdb3ed813620bcb575f9eaef5b485899c54eb223b7d1f887b1c059d3541456
+  en: Review policy literature and case studies to inform a management strategy, stating the quality of the evidence behind each finding
+textSha256: 1726a700ee3eea88fd542a8e9b7df53ceb823fd73d2ce99e21a683fa081da73e
 supports:
 - competency: seed:v1-6.1.1
   strength: primary
+workFunction: WF-RULE
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 6.4.1:T1
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T1
 v1Domain:
   code: '6'
@@ -25,14 +31,16 @@ v1SkillArea:
   code: '6.4'
   label: Policy Development
 editorialNote:
-  en: Supports re-pointed from v1 competency 6.4.1 to seed:v1-6.1.1 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'Rewritten from the v1 task text: "Review policy literature and case studies to inform management strategies" (WP-05).'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:6.4.1:T1
     v1Code: 6.4.1
@@ -42,9 +50,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

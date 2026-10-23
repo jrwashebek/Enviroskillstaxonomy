@@ -1,0 +1,44 @@
+id: seed:sc-resolve-plan-objections
+type: Task
+prefLabel:
+  en: Resolve objections to a draft plan decision within the objection window, documenting each issue, the response and any change made to the plan
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Resolve objections to a draft plan decision within the objection window, documenting each issue, the response and any change made to the plan
+textSha256: 40a8fba30daea82c04c1eb1092d7789a7ad65ac37c34df1e1d088d6ff83ea92f
+supports:
+- competency: seed:v1-6.2.3
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+modes:
+- MODE-RESOLVE
+relationshipTypes:
+- public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

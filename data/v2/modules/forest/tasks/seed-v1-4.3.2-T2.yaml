@@ -19,6 +19,11 @@ reproductionRegime:
   placeBoundness: ecosystem-type
   currencyDecay: H
   credentialGate: internal-qualification
+credentialGates:
+- credential: seed:crd-wildland-fire-position-qualification
+  kind: required
+- credential: seed:crd-state-prescribed-burn-manager
+  kind: preferred
 signOffAuthority:
   kind: position-qualification
 accountabilityConstraint:

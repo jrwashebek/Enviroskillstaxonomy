@@ -1,0 +1,49 @@
+# Provisional P1-corridor task frame for X2 (WP-09). Licence: CC0-1.0.
+# Until WP-08 authors the 13 P1 role profiles (task bundles), a task is in the P1 frame when it supports a
+# competency named for a P1 role (R01-R13, corridors COR-1/2/3) in docs/decisions/mvp_role_set.csv or in the WP
+# sections that build those roles. The O*NET candidate pool of each task is the union of the O*NET-SOC codes that
+# X3 (data/v2/crosswalks/onet-soc/2019) maps to those roles with a positive, non-negated predicate (ADR-0022 X2:
+# candidates restricted to the role family's O*NET-SOC pool). Replace this file with the WP-08 task bundles when
+# they exist; the frame then becomes exactly the bundled tasks of the P1 roles. Judgment basis: [J] IA.
+frameVersion: 0.1.0-provisional
+competencyToP1Roles:
+  FC-C01: [R03]
+  FC-C24: [R03]
+  DC-CAND-04: [R03]
+  FC-C16: [R03]
+  DC-CAND-03: [R03]
+  DC-CAND-01: [R03, R04]
+  FC-C14: [R03, R04]
+  FS-C04: [R05]
+  FC-C02: [R05, R02]
+  FC-C31: [R05]
+  DC-CAND-13: [R05, R10, R11]
+  FC-C23: [R02, R03]
+  FC-C18: [R01, R02]
+  FC-C20: [R02, R06]
+  FC-C28: [R02]
+  FC-C11: [R02]
+  v1-4.3.2: [R07]
+  DB-C15: [R07]
+  FS-C05: [R08]
+  v1-4.3.4: [R08]
+  DC-CAND-12: [R08]
+  v1-4.2.1: [R09]
+  SC-C08: [R09]
+  v1-3.1.4: [R09]
+  SL-C08: [R10]
+  SC-C03: [R10]
+  SC-C04: [R10]
+  SC-C09: [R10]
+  SC-C02: [R10]
+  SC-C01: [R10, R11]
+  SL-C02: [R11]
+  SC-C16: [R11]
+  SL-C03: [R12]
+  SL-C04: [R12]
+  DB-C25: [R12]
+  SL-C10: [R12]
+  SC-C10: [R13]
+  FH-C14: [R13]
+  FH-C07: [R13]
+  v1-7.2.2: [R13]

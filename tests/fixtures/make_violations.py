@@ -133,6 +133,49 @@ case("sssom-format", "a mapping set without its metadata file and with a predica
      ["E-SSSOM-FORMAT", "E-SSSOM-VALUE"],
      {"crosswalks/esco/1.2.1.sssom.tsv": "subject_id\tpredicate_id\tobject_id\tmapping_justification\n" + f"{CMP['id']}\towl:sameAs\tESCO:abc\tsemapv:ManualMappingCuration\n"})
 
+# ---- ADR-0029 rulings (2026-10-23)
+seedc_id = mid("core", "CMP", "SC33SC")
+case("seed-candidate", "v1 seed content promoted to candidate without rewriting (ADR-0029 §1.3)", ["E-SEED-CANDIDATE"],
+     {f"core/competencies/{L.id_to_stem(seedc_id)}.yaml": rec("Competency", id=seedc_id, status="candidate", validationStatus="seed-v1"),
+      "ids/registry.csv": base_reg + f"{seedc_id},Competency,core,2026-10-23,emstagent:fixture@1,candidate,,\n"})
+nota_id = mid("core", "TSK", "NN44NN")
+case("notation-interim", "a candidate task still carrying an interim EMST-* notation scheme (ADR-0029 §8.2)", ["E-NOTATION-INTERIM"],
+     {f"core/tasks/{L.id_to_stem(nota_id)}.yaml": task(nota_id, "Record calibration results for each field meter in the shared log weekly",
+                                                       status="candidate", supports=[{"competency": CMP["id"], "strength": "primary"}],
+                                                       notation=[{"scheme": "EMST-impact", "value": "2"}]),
+      "ids/registry.csv": base_reg + f"{nota_id},Task,core,2026-10-23,emstagent:fixture@1,candidate,,\n"})
+sig = rec("ChangeSignal", id="seed:fx-sig-active", targetId=TSK["id"], signalStatus="active", signalFamily="postings-pds",
+          independenceKey="not-a-listed-key")
+case("independence-key-unlisted", "an active signal whose independence key is not in vocab/change_types.yaml", ["E-INDEPENDENCE-KEY-UNLISTED"],
+     {"signals/fixture/batch.jsonl": L.jsonl_line(sig) + "\n"})
+org = rec("ChangeSignal", id="seed:fx-sig-org", targetType="organization", targetId="opm-agency:IN00", tribalPrograms=True,
+          indigenousDataFlag=True, approvalStatus="pending-tribal-review", sensitivity="restricted-governed")
+case("org-target-tribal", "an organization-target signal about Tribal programmes (ADR-0007 V3)", ["E-ORG-TARGET-TRIBAL"],
+     {"signals/fixture/org.jsonl": L.jsonl_line(org) + "\n"})
+ld = rec("ExposureAssessment", id="seed:fx-asm-dist", task=TSK["id"], taskTextSha256=TSK["textSha256"],
+         technicalExposure=[{"vector": VALID["ExposureAssessment"]["technicalExposure"][0]["vector"],
+                             "levelDistribution": {"E0": 0.5, "E1": 0.2, "E2": 0.1}, "basis": "synthetic"}])
+case("level-distribution", "an exposure level distribution that sums to 0.8 (ADR-0029 §9.2)", ["E-LEVEL-DISTRIBUTION"],
+     {"assessments/fixture/dist.jsonl": L.jsonl_line(ld) + "\n"})
+ev = rec("DriverEvent", id="seed:fx-evt-review", eventType="submitted-for-review", statusAfter="in-force")
+case("review-event-status", "a submitted-for-review event that claims the instrument is in force", ["E-REVIEW-EVENT-STATUS"],
+     {"events/fixture.jsonl": L.jsonl_line(ev) + "\n"})
+pr2_id = mid("core", "IND", "PR22PR")
+pr2 = L.load_yaml(next((BASE / "core" / "indicators").glob("IND-*.yaml")))
+pr2.update(id=pr2_id, level="L2")
+pr2.pop("distinguishingAttribute", None)
+case("pr2-attribute", "a candidate indicator above the lowest indicated level without a distinguishing attribute", ["E-PR2-ATTRIBUTE"],
+     {f"core/indicators/{L.id_to_stem(pr2_id)}.yaml": pr2,
+      "ids/registry.csv": base_reg + f"{pr2_id},Indicator,core,2026-10-23,emstagent:fixture@1,candidate,,\n"})
+case("waiver-signer", "a lint waiver signed by a software agent (ADR-0029 §5.5)", ["E-WAIVER-SIGNER"],
+     {"governance/lint_waivers.csv": "record_id,rule_id,text_sha256,waiver_class,reviewer,second_reviewer,decided_on,rationale\n"
+                                     f"{CMP['id']},B09,{'a' * 64},accepted-warning,emstagent:fixture@1,,2026-10-23,synthetic\n"})
+sel_head = "record_id\tsubject_id\tpredicate_id\tobject_id\tmapping_justification\tauthor_id\tother\n"
+case("sssom-selection-llm", "a selection-use crosswalk row still justified by LLM-based matching (CR-IA-002)", ["E-SSSOM-SELECTION-1_1"],
+     {"crosswalks/opm-fixture/2026.sssom.tsv": sel_head + f"x:1\t{TSK['id']}\tskos:closeMatch\tOPMseries:0401\tsemapv:LLMBasedMatching\temstagent:fx@1\tuse=selection;review_status=candidate\n",
+      "crosswalks/opm-fixture/2026.sssom.yml": L.dump_yaml({"mapping_set_id": "https://w3id.org/emst/crosswalks/opm-fixture/2026", "mapping_set_version": "0.0.1",
+                                                           "license": "https://creativecommons.org/publicdomain/zero/1.0/", "curie_map": {"OPMseries": "https://w3id.org/emst/ext/opm/"}})})
+
 
 def main():
     import shutil

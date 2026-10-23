@@ -36,7 +36,7 @@ GEN = "2026-10-23T14:30:00Z"
 CORE = L.DATA_V2 / "core"
 ASM_DIR = L.DATA_V2 / "assessments" / "emst-craft@0.1"
 CONTENT_MODULES = ["content_review", "content_authorize", "content_enforce", "content_rules", "content_agreements",
-                   "content_txb", "content_extra"]
+                   "content_txb", "content_extra", "content_extra2"]
 ADR_BASE = ["ADR-0003", "ADR-0004", "ADR-0007", "ADR-0016", "ADR-0017", "ADR-0025", "ADR-0028", "WP-05"]
 LEVELS = ["L1", "L2", "L3", "L4", "L5"]
 

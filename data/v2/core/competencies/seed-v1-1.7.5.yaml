@@ -1,34 +1,51 @@
 id: seed:v1-1.7.5
 type: Competency
 prefLabel:
-  en: Non-analog futures planning
+  en: Plan for non-analog ecological futures
+altLabel:
+  en:
+  - Non-analog futures planning
+definition:
+  en: The capability to recognize when future conditions are likely to lack historical precedent, such as novel climates or species combinations, and to design plans that remain robust and adaptable across such futures rather than optimized for one expected state.
 statement:
-  en: Planning for ecological conditions with no historical precedent, where past patterns provide limited guidance for management.
-competencyType: practice
+  en: Recognizes when future ecological conditions are likely to be non-analog, such as novel climates or species combinations; designs plans that perform acceptably across divergent futures rather than one expected state; builds flexibility, monitoring triggers and adaptive capacity into long-term plans; and documents the assumptions that would invalidate them.
+editorialNote:
+  en: 'Rewritten by WP-04 (DC lane: v1 craft primary DC, used only to route the seed; v1 tags are prior evidence, not v2 values). Carried (wording rewritten); linked to FS-C15 horizon scanning and to validation under nonstationarity (DC-CAND-12). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-PLAN. Rationale: Durable ecological-futures competency robust across scenarios; linked to FS-C15 and to twin validation under nonstationarity (FS verdict). Role verdicts considered: FS:carry.'
 notation:
 - scheme: EMSTv1
   value: 1.7.5
+competencyType: practice
+levelSpan:
+  min: L3
+  max: L4
+levels:
+- level: L3
+  indicators:
+  - seed:ind-v1-1.7.5-l3-a
+  - seed:ind-v1-1.7.5-l3-b
+- level: L4
+  indicators:
+  - seed:ind-v1-1.7.5-l4-a
+  - seed:ind-v1-1.7.5-l4-b
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '1'
-  label: Ecological & Scientific Knowledge
-v1SkillArea:
-  code: '1.7'
-  label: Novel Ecosystems & Adaptation
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-PLAN. Rationale: Durable ecological-futures competency robust across scenarios; linked to FS-C15 and to twin validation under nonstationarity (FS verdict). Role verdicts considered: FS:carry.'
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:1.7.5
     v1Code: 1.7.5
@@ -39,161 +56,19 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:1.7.5
     v1Code: 1.7.5
     v1Table: source_text/competencies
     sourceTextLine: 2344
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Non-analog futures planning
-  v1Description: Planning for ecological conditions with no historical precedent, where past patterns provide limited guidance for management.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:1.7.5:foundational
-    knowledge: Understands that future conditions may have no historical precedent
-    application: Recognizes non-analog concepts
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.7.5:foundational:I1
-      n: 1
-      text: Explains what non-analog climates and ecosystems mean
-      origin: database
-    - v1Key: v1:1.7.5:foundational:I2
-      n: 2
-      text: Understands why historical reference conditions have limitations
-      origin: database
-    - v1Key: v1:1.7.5:foundational:I3
-      n: 3
-      text: Recognizes that species may form new combinations
-      origin: database
-    - v1Key: v1:1.7.5:foundational:I4
-      n: 4
-      text: Identifies where non-analog conditions are projected locally
-      origin: database
-    - v1Key: v1:1.7.5:foundational:I5
-      n: 5
-      text: Understands implications for management planning
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:1.7.5:intermediate
-    knowledge: Applies non-analog concepts to planning; understands scenario approaches
-    application: Integrates non-analog thinking into planning
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.7.5:intermediate:I1
-      n: 1
-      text: Identifies where non-analog conditions are likely
-      origin: database
-    - v1Key: v1:1.7.5:intermediate:I2
-      n: 2
-      text: Uses scenario planning to address uncertainty
-      origin: database
-    - v1Key: v1:1.7.5:intermediate:I3
-      n: 3
-      text: Develops robust strategies across multiple futures
-      origin: database
-    - v1Key: v1:1.7.5:intermediate:I4
-      n: 4
-      text: Builds flexibility into management plans
-      origin: database
-    - v1Key: v1:1.7.5:intermediate:I5
-      n: 5
-      text: Communicates non-analog concepts to stakeholders
-      origin: database
-    - v1Key: v1:1.7.5:intermediate:I6
-      n: 6
-      text: Avoids over-reliance on historical patterns
-      origin: database
-    - v1Key: v1:1.7.5:intermediate:I7
-      n: 7
-      text: Documents rationale for non-analog planning approaches
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:1.7.5:advanced
-    knowledge: Expert in planning under deep uncertainty
-    application: Leads planning for non-analog futures
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.7.5:advanced:I1
-      n: 1
-      text: Develops planning frameworks for non-analog conditions
-      origin: database
-    - v1Key: v1:1.7.5:advanced:I2
-      n: 2
-      text: Uses structured decision-making under uncertainty
-      origin: database
-    - v1Key: v1:1.7.5:advanced:I3
-      n: 3
-      text: Builds adaptive capacity into plans and institutions
-      origin: database
-    - v1Key: v1:1.7.5:advanced:I4
-      n: 4
-      text: Addresses policy frameworks tied to historical baselines
-      origin: database
-    - v1Key: v1:1.7.5:advanced:I5
-      n: 5
-      text: Publishes non-analog planning research
-      origin: database
-    - v1Key: v1:1.7.5:advanced:I6
-      n: 6
-      text: Trains staff in uncertainty planning
-      origin: database
-    - v1Key: v1:1.7.5:advanced:I7
-      n: 7
-      text: Develops decision triggers and monitoring for adaptation
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:1.7.5:expert
-    knowledge: Shapes planning practice for unprecedented futures
-    application: Provides leadership on planning under uncertainty
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.7.5:expert:I1
-      n: 1
-      text: Develops novel planning approaches for non-analog futures
-      origin: database
-    - v1Key: v1:1.7.5:expert:I2
-      n: 2
-      text: Influences policy to accommodate uncertainty
-      origin: database
-    - v1Key: v1:1.7.5:expert:I3
-      n: 3
-      text: Leads initiatives addressing unprecedented change
-      origin: database
-    - v1Key: v1:1.7.5:expert:I4
-      n: 4
-      text: Publishes influential research
-      origin: database
-    - v1Key: v1:1.7.5:expert:I5
-      n: 5
-      text: Advises leadership on planning under deep uncertainty
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:1.7.5:sector:public_agencies
-    text: Long-term planning (forest plans, resource management plans), infrastructure planning
-  - sector: private_sector
-    v1Key: v1:1.7.5:sector:private_sector
-    text: Long-term asset planning, scenario analysis
-  - sector: ngos
-    v1Key: v1:1.7.5:sector:ngos
-    text: Conservation strategy under uncertainty, climate communication
-  - sector: consulting
-    v1Key: v1:1.7.5:sector:consulting
-    text: Scenario planning services, uncertainty analysis
-  - sector: academia
-    v1Key: v1:1.7.5:sector:academia
-    text: Decision science research, planning methodology
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.7'
+  label: Novel Ecosystems & Adaptation

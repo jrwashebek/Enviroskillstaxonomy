@@ -1,0 +1,40 @@
+id: seed:sc-close-out-award
+type: Task
+prefLabel:
+  en: Close out a financial assistance award, reconciling final costs, outcomes and compliance records against the award terms
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Close out a financial assistance award, reconciling final costs, outcomes and compliance records against the award terms
+textSha256: 673e7315444745353021c150122ccc5c0c361744a0103a1600c9ed8e4b60740b
+supports:
+- competency: seed:SL-C12
+  strength: primary
+workFunction: WF-RESOURCE
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

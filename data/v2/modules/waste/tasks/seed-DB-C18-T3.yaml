@@ -13,6 +13,9 @@ workflowProfiles:
 - WP-COMPLIANCE
 fieldDependency: remote-capable
 formationDependency: partial
+credentialGates:
+- credential: seed:crd-dot-hazmat-employee-training
+  kind: required
 signOffAuthority:
   kind: legal-signatory
 accountabilityConstraint:

@@ -1,0 +1,464 @@
+You are rater 2 in a blind craft-rating study. Apply the codebook below exactly. Rate each task
+statement on its own, using only its text. Do not use tools. Do not try to find the source of the tasks.
+
+For each task give FC, DC and SC on the 0/1/2 scale (codebook sections 1-4 and 6), and a confidence from 1 (guess) to
+5 (certain). If you cannot code a task (codebook section 7), set "cannot" to one of: not a task, compound, missing
+information, held content, two readings; otherwise set "cannot" to null. Add a note of at most 12 words only when
+useful.
+
+Answer with JSON Lines only: one object per task, in the order given, with exactly these keys:
+{"k": "<key>", "FC": 0|1|2, "DC": 0|1|2, "SC": 0|1|2, "conf": 1-5, "cannot": null|"<reason>", "note": "<text>"}
+No prose before or after the JSON Lines.
+
+=== CODEBOOK ===
+# Codebook: craft ratings and craft-related task attributes
+
+**WP-11 output 2a** · Codebook ID `emst-craft-codebook@1.0.0-draft` · Owner: IO (A8), with definitions owned by the FC, DC and SC leads · Status: draft. Not yet calibrated with human raters; **the 0/1/2 scale is provisional until `protocol_craft_scale_pilot.md` reports** (ADR-0005) · Date: 2026-10-23
+**Decision basis:** ADR-0005; ADR-0003 G-7; SPEC §7; `vocab/crafts.yaml` (definitions and tests are quoted from there in substance; that file governs if they differ).
+**Used by:** `protocol_reliability_study.md` block A, `protocol_craft_scale_pilot.md`, `spec_gold_sets.md`, and any production rating of `CraftRating` records.
+**Labels:** [E] evidence, [J] expert judgment, [S] speculation. Every anchored example below is a **synthetic task written for calibration**. Its key is a provisional IO key [J], to be ratified by the three-person key panel before use (`protocol_reliability_study.md` §5).
+
+---
+
+## 1. What you are rating
+
+You rate **one task statement at a time**. For each of the three crafts you say how much a competent performer of *this task* must bring of that craft:
+
+| Value | Label | Meaning |
+|---|---|---|
+| **0** | none | The craft contributes nothing a competent performer must bring to this task. |
+| **1** | supporting | The craft catches errors or improves quality, but someone without it can still perform the task to an intermediate standard. |
+| **2** | defining | Remove the craft's contribution and the task collapses: it fails the craft's defining test (§3). |
+
+Rate the three crafts **independently**. They do not need to sum to anything. Several crafts may be 2. A task may have **no** craft at 2: that is "general professional practice" and is a legitimate answer (ADR-0003 G-7).
+
+You also record (§5): `fieldDependency`, `formationDependency` and the reproduction-regime attributes. Record a confidence for each rating (1 = guess … 5 = certain). Use "cannot code" (§7) when the text does not let you decide.
+
+## 2. Blind-coding rules (XR-01; ADR-0005 §6)
+
+1. You see only the task statement and, where present, its stated condition or purpose. You do **not** see its competency, domain, module, v1 code, v1 craft label, any other rater's rating or any machine suggestion. If you recognize a task's v1 origin, rate the text in front of you, not what you remember.
+2. Rate the **task as written**, in the work condition it names. If a tool class is named ("validate AI detections", "supervise an automated aircraft"), rate the human contribution in that condition.
+3. Do not rate the person, the job title or the organization. "Forester" or "data scientist" tells you nothing; the deliverable does.
+4. Do not reason from the expected distribution. v1 told raters to expect FC 25–30% / DC 35–40% / SC 30–35% [E: `legacy/v1/docs/craft_assignment_criteria.md`]. That instruction is withdrawn because it is circular.
+
+## 3. The three defining tests
+
+Start by naming the task's **deliverable**: what exists when the task is done well (a sample, a decision on the ground, a dataset, a validated model, a permit, an agreement, a budget that holds). Then apply each test.
+
+### 3.1 Field craft (FC)
+
+*Definition (vocab/crafts.yaml):* perceiving, measuring, acting and staying safe in a specific place: reading land, water, air, living systems and the engineered systems that hold, treat or move them, and producing ground truth and physical interventions other work depends on.
+
+**FC = 2 if PRESENCE and at least one of PHYSICAL CONSEQUENCE or GROUND-TRUTH AUTHORITY:**
+- **Presence:** competent performance needs the performer's senses or body in the place, at the time. "Place" includes an engineered system: a plant floor, a sewer line, a sampling station or a laboratory bench where the sample is measured.
+- **Physical consequence:** the performer manages consequences in the physical world in real time (safety, irreversible intervention, go/no-go).
+- **Ground-truth authority:** the output is the reference against which other data are judged (a field plot, a delineation, a calibrated measurement, an inspection finding of fact).
+
+**FC = 1** when field-formed knowledge catches errors or improves quality, but an intermediate performer could do the task without it (fitting a growth model; reviewing imagery of a familiar ecosystem; drafting a burn plan's fire-behaviour section).
+**FC = 0** when neither presence nor field-formed knowledge matters (reconciling a budget; drafting a public notice).
+
+### 3.2 Data craft (DC)
+
+*Definition:* turning observations into **warranted** evidence, models and decision support, including specifying, validating, supervising and answering for AI-generated analysis.
+
+**DC = 2 if all three hold:**
+1. the deliverable is an **evidence product** (dataset, analysis, model, validation, risk determination, evidence-bearing design);
+2. its quality is judged by its **warrant** (provenance, method, uncertainty, fitness for a stated decision);
+3. doing it well needs **choosing or checking methods**, not just operating a tool.
+
+**DC = 1** when data skill improves the product but the deliverable is something else (a field form; a permit that cites an analysis; an inspection report with a table).
+**DC = 0** when there is no evidence product (felling a tree; facilitating a meeting).
+**Not DC-defining:** an observation made in place (FC); an authorization or institutional commitment (SC); disciplinary knowledge every craft draws on (a knowledge area, not a task property).
+
+### 3.3 Statecraft (SC)
+
+*Definition:* turning knowledge and public purpose into decisions that are **authorized, legitimate, resourced and durable**. The defining deliverable is a **commitment that holds**.
+
+**SC = 2 if** the deliverable is a commitment that needs authority, legitimacy or agreement from **another institution or the public**, and must hold over time. Remove the procedural, relational or fiscal work and you are left with a technically sound product that is unauthorized, illegitimate, unfunded or reversible.
+**SC = 1** when institutional awareness improves the work but the deliverable is not itself a commitment (briefing a landowner on findings; preparing the technical section of a permit application someone else negotiates).
+**SC = 0** otherwise.
+**Not statecraft:**
+- general management (scheduling, facilities, supervision);
+- general communication;
+- internal coordination that produces no authorization or legitimacy (ADR-0003 G-7; ADR-0017 `WF-MANAGE`).
+
+## 4. Decision procedure (use it in this order)
+
+1. **Name the deliverable** in five words or fewer. If you cannot, the task may be compound or vague: see §7.
+2. **FC test.** Presence? If no → FC is 0 or 1. If yes → physical consequence or ground-truth authority? If yes → FC = 2; if no → FC = 1.
+3. **DC test.** Evidence product judged by warrant, needing method choice or checking? All three → DC = 2. Data skill helps but the deliverable is something else → 1. Otherwise 0.
+4. **SC test.** A commitment needing another institution's or the public's authority, legitimacy or agreement, and lasting? → SC = 2. Institutional awareness helps → 1. Otherwise 0.
+5. **Check the common errors (§6)** before you submit.
+6. **No 2 anywhere?** That is allowed. Do not raise a 1 to a 2 to avoid it.
+
+## 5. Task attributes recorded with the craft rating
+
+These are **not** craft weights (ADR-0005 §Representation 2–3). Rate them separately.
+
+| Attribute | Values (vocab/crafts.yaml) | Decision rule | Anchor |
+|---|---|---|---|
+| `fieldDependency` (ordinal) | `on-site-required` · `on-site-preferred` · `remote-capable` · `remote` | Where must the work happen? Required: physical action, sampling, in-person inspection or real-time field decision. Preferred: usually on site but parts can be done remotely with tools. Remote-capable: fully off site, though visits sometimes improve it. Remote: no field component | required: collect a water sample; preferred: service a sensor station with telemetry pre-checks; remote-capable: review flagged camera-trap images; remote: prepare a budget justification |
+| `formationDependency` (ordinal) | `yes` · `partial` · `no` | Must the performer's expertise have been formed through supervised field or institutional exposure, even if this task is done on a screen? Yes: competent performance relies on judgment only field or institutional formation builds. Partial: formation helps with hard cases; routine cases can be learned at a desk or in simulation. No: study, desk practice or simulation suffice | yes: adjudicate AI species identifications; partial: classify land cover from imagery in a familiar ecosystem; no: write a metadata record |
+| `mentorshipDependence` (ordinal) | `L` · `M` · `H` | Supervised in-place repetitions needed to reach independent performance: L = few or none beyond instruction; M = a season's supervised practice; H = repeated supervised practice across conditions | H: fell hazard trees; M: point-count surveys; L: run a standard meter |
+| `cycleDependence` (ordinal) | `none` · `seasonal` · `multi-year-or-rare-event` | How many natural or operating cycles must a learner see? Rare-event skills need simulation | rare-event: respond to an escaped prescribed fire; seasonal: phenology-dependent plant identification |
+| `placeBoundness` (nominal) | `general` · `ecosystem-type` · `site-specific` · `system-specific` | How portable is the knowledge? General: across regions and actors; ecosystem-type: relearned across regions; site-specific: lost when people leave the site; system-specific: bound to one engineered system's configuration | system-specific: operate one plant's process-control loops; site-specific: know where a creek floods first |
+| `currencyDecay` (ordinal) | `L` · `M` · `H` | How fast does unpractised skill decay? | H: aerial ignition; L: soil description |
+| `credentialGate` | `none` · `internal-qualification` · `external-certificate` · `licence` | **Not rated.** It is a verified fact recorded from the Credential register with a source (display_gates.yaml#not_alpha_gated). If you believe a gate applies, write it in the note | — |
+
+## 6. Common errors and edge cases (decision rules)
+
+| # | Situation | Rule |
+|---|---|---|
+| E1 | **Operating a tool vs. producing warrant.** Running a model, entering data, operating a GIS interface | Operating is not DC 2 (T-2: evidence only by operating an interface is L4 fluency). DC 2 only if the task requires choosing or checking methods and the product is judged by warrant |
+| E2 | **Same tool, different task.** Flying a drone near crews vs. processing the imagery | Rate the task, not the tool. Flying near crews: FC 2 (presence + physical consequence), DC 1, SC 1 (airspace or crew coordination). Processing: DC 2, FC 1, remote-capable, formation yes [J; FC worked example, FC report §4] |
+| E3 | **Remote review that needs field formation.** Checking AI species identifications against recordings or images | FC is 1 (no presence) unless the task requires going to the site. Record `formationDependency = yes`. Do **not** raise FC to 2 because field formation matters: formation is an attribute, not a weight (ADR-0005). If the task says "against field observations made by the performer", presence holds and FC can be 2 |
+| E4 | **Inspection** | Typically FC 2 (presence + ground-truth authority for findings of fact) **and** SC 2 (the finding supports an enforceable determination that must withstand challenge). Both may be 2 (ADR-0005 Consequences) |
+| E5 | **General management, supervision, scheduling** | SC 0 unless the task produces authorization, legitimacy, resourcing or a durable cross-institution commitment. Supervising a crew: SC 0, FC per presence |
+| E6 | **Budgets and money** | Internal tracking: SC 0–1. Securing appropriations, writing a grant agreement's terms or setting a fee schedule that must survive review: SC 2 |
+| E7 | **Communication** | Writing or presenting is not a craft by itself. A public meeting is SC 2 only when it confers legitimacy on a pending decision (a hearing, a consultation step). An outreach talk is SC 0–1 |
+| E8 | **Design of monitoring or sampling** | DC 2 (a design for inference). FC 1 if done at a desk; FC 2 only if the design is made in place (siting plots on the ground). Formation usually yes. DC and FC may both be high (ADR-0005 dissent) |
+| E9 | **Engineered systems and laboratories** | The DB broadening counts presence at a plant, network or lab bench. Operating a treatment process in real time: FC 2 (presence + physical consequence), `placeBoundness = system-specific`. Bench analysis whose result is the reference value: FC 2 (presence + ground-truth authority). Record confidence; FC may contest this boundary (ADR-0005 dissent) |
+| E10 | **Permits, rules, agreements** | Drafting conditions that bind another party: SC 2. The technical basis (an effluent-limit calculation) may be DC 2 in a separate task. If the task bundles both, rate both and flag "possible compound" in the note |
+| E11 | **Tasks naming AI or automation** | Rate the human contribution in that condition. "Supervise an automated sorting line": FC 2 if in place with physical consequence; DC per whether the performer checks system outputs against warrant |
+| E12 | **Knowledge-only statements** ("Know the hydrologic cycle") | Not a task. Choose "cannot code: not a task" |
+| E13 | **Compound tasks** ("Develop and maintain…") | Choose "cannot code: compound". The author must split it (ADR-0003 G-2) |
+| E14 | **Tribal-related tasks** (government-to-government relations, Tribal data or Indigenous knowledge) | Held. They are not in any rating frame. If one appears, choose "cannot code: held content" and do not rate it (ADR-0007) |
+| E15 | **Complexity-dependent cases** (simple vs. complex riparian buffers; v1 integration point 9) | Rate the task as written. If the text does not say which case, rate the modal case it describes and lower your confidence. Do not average two imagined tasks |
+
+## 7. Cannot code
+
+Choose "cannot code" with a reason in any of these cases:
+- `not a task`;
+- `compound`;
+- `missing information` (the text does not say what is produced);
+- `held content`;
+- `two readings` (the text supports two different deliverables).
+
+These answers are data. A dimension with > 10% cannot-code is a codebook or text defect (`protocol_reliability_study.md` §7.3).
+
+## 8. Anchored calibration examples (synthetic; provisional keys [J])
+
+The calibration set uses FC's four worked examples [J: FC report §4, from FC-029]. It also uses tasks written to represent nine of v1's ten craft integration points [E: `legacy/v1/docs/craft_assignment_criteria.md` "Ten Integration Points"]. **Integration point 2 (Traditional Ecological Knowledge integration) is excluded** under the Tribal hold (ADR-0007): Indigenous knowledge is out of scope by design. The tasks are re-written as v2 task statements, because v1 rated competencies.
+
+| # | Task statement (synthetic) | FC | DC | SC | fieldDep. | formation | Why (rule) |
+|---|---|---|---|---|---|---|---|
+| C1 | Plan and fly a UAS survey mission near active crews, holding the flight when crew positions conflict with the flight path | 2 | 1 | 1 | on-site-required | yes | presence + physical consequence; airspace and crew coordination is supporting (E2) |
+| C2 | Process survey imagery into an orthomosaic and report its positional accuracy against ground control points | 1 | 2 | 0 | remote-capable | yes | evidence product judged by warrant; ground-control judgment is field-formed (E2) |
+| C3 | Conduct a field inspection of a permitted facility and document findings of fact against permit conditions | 2 | 0 | 2 | on-site-required | yes | ground-truth authority + enforceable finding (E4) |
+| C4 | Evaluate AI-generated species identifications against recordings, accepting, correcting or rejecting each | 1 | 1 | 0 | remote-capable | yes | no presence → FC 1; formation is the attribute (E3). DC 1: checking outputs, not designing the validation |
+| C5 | Interpret satellite imagery to map landscape-scale vegetation change for a forest plan | 1 | 2 | 0 | remote-capable | partial | v1 point 1: DC defining, field grounding supporting |
+| C6 | Write the prescription and contingency section of a prescribed-burn plan for a unit | 1 | 1 | 1 | remote-capable | yes | v1 point 3 as a planning task; no presence; the commitment (approval) is a separate task |
+| C7 | Make the go/no-go decision on a prescribed burn from on-site weather and fuel observations | 2 | 0 | 1 | on-site-required | yes | presence + physical consequence; authorization was made earlier |
+| C8 | Map stakeholder interests and influence for a contested water allocation decision, using network analysis of meeting records | 0 | 1 | 2 | remote | partial | v1 point 4: the deliverable serves a durable decision; DC is the method |
+| C9 | Synthesize population and threat evidence into a species status assessment for a listing decision | 0 | 2 | 1 | remote | partial | v1 point 5: warrant of the synthesis is defining; regulatory framing supporting |
+| C10 | Design decision triggers and response protocols for an adaptive management agreement among three agencies | 0 | 1 | 2 | remote | partial | v1 point 6: institutional learning architecture binds partners |
+| C11 | Recommend source populations and exchange rates for a genetic rescue, stating uncertainty in viability gains | 0 | 2 | 0 | remote | partial | v1 point 7: analytical judgment is the deliverable |
+| C12 | Screen a proposed project's area for cumulative environmental burdens and document the screening basis for the record | 0 | 2 | 2 | remote | partial | v1 point 8: co-equal; both 2 is allowed |
+| C13 | Lay out riparian buffer widths on the ground for a harvest unit, adjusting for observed channel and slope conditions | 2 | 0 | 0 | on-site-required | yes | v1 point 9 (simple case): presence + irreversible intervention |
+| C14 | Calculate mitigation credits for a wetland bank under the applicable crediting requirements | 0 | 1 | 2 | remote | partial | v1 point 10: value set by the regulatory system |
+| C15 | Reconcile monthly programme expenditures against the approved budget | 0 | 0 | 0 | remote | no | general professional practice (G-7); no craft at 2 |
+| C16 | Run a jar test and adjust coagulant dose on a treatment train during a turbidity spike | 2 | 1 | 0 | on-site-required | yes | engineered system: presence + physical consequence (E9); system-specific |
+
+Keys C5–C14 are IO's reading of v1's integration-point rationales applied to task text. **Expect disagreement on C6, C9, C12 and C14** (v1 itself flagged them as contested). Disagreement on them is information for the key panel, not rater error.
+
+## 9. Alternative scales (pilot only; ADR-0005 §4, §7)
+
+- **F1 constant-sum:** distribute 100 points across FC, DC and SC by how much each is irreducible to doing the task. A task with no defining craft may give its points to "general practice" (the fourth bucket). Raters see the same definitions (§3).
+- **F2 ordinal:** this codebook's 0/1/2.
+- **Nominal-defining (derived):** the set of crafts at 2 (F2), or at ≥ 40 points (F1). Empty set = general practice.
+
+## 10. One-page rater checklist
+
+1. Read the task. Name the deliverable.
+2. FC: presence? then consequence or ground truth? → 2 / 1 / 0.
+3. DC: evidence product + warrant + method choice? → 2 / 1 / 0.
+4. SC: a commitment from another institution or the public that must hold? → 2 / 1 / 0.
+5. No craft at 2 is allowed.
+6. Field dependency, formation dependency, reproduction attributes. Do not let them change the craft ratings.
+7. Confidence 1–5. Cannot code if needed, with a reason.
+8. Never look up the task's competency or v1 code.
+
+## 11. Version control
+
+- Changes to definitions, tests, decision rules or the value set are a MINOR codebook version. They invalidate agreement results for gating (`display_gates.yaml#admissibility.invalidated_by`).
+- Wording clarifications that leave decisions unchanged are a PATCH, attested by the key panel.
+- The definitions belong to `vocab/crafts.yaml`. A conflict between this codebook and that file is resolved in the vocabulary by CA.
+
+=== END CODEBOOK ===
+
+=== TASKS (274) ===
+R2-001: Designate motorized and non-motorized routes in a travel plan that separate conflicting uses and protect resources
+R2-002: Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits
+R2-003: Appraise timber value for a sale or stewardship contract from cruise volume, product mix, logging costs and market data
+R2-004: Verify a remotely modelled wetland map against field indicators before it is used in a jurisdictional or permit decision
+R2-005: Design a source-separation campaign for a community or institution, testing messages with a pilot group before full rollout
+R2-006: Design a take-back or product-as-a-service model for a product line, specifying collection, refurbishment and end-of-life routes
+R2-007: Inspect satellite and central accumulation areas for container condition, labelling, dating and segregation, correcting deficiencies before shipment
+R2-008: Resolve a permittee's non-compliance with grazing terms through notice, negotiation or formal action
+R2-009: Project stand development under alternative treatments with a growth model, reporting each projection's assumptions and uncertainty
+R2-010: Decide from performance monitoring data whether to optimize, continue or transition an operating remedy, recording the evidence for the decision
+R2-011: Match waste generators with material users in an industrial symbiosis network, recording each exchange's material, quantity and regulatory status
+R2-012: Inspect a public swimming pool's water chemistry, circulation and safety equipment, closing the pool when an imminent health hazard exists
+R2-013: Write a burn plan with objectives, prescription parameters, holding and contingency actions for a prescribed fire unit
+R2-014: Check visitor information from automated or online sources against current site conditions before it is posted or repeated to visitors
+R2-015: Establish a wilderness character baseline from indicator measures for each wilderness quality using available monitoring data
+R2-016: Brief duty officers and incident commanders on fire activity, predicted growth and resource needs at each operational period
+R2-017: Prepare a national or programme implementation report under an international conservation agreement from monitoring and management records
+R2-018: Review a plan of operations for a mineral project on public land, requiring changes that prevent unnecessary or undue degradation
+R2-019: Conduct a hazard and risk assessment for a jurisdiction from hazard histories, exposure inventories and climate projections, documenting data limitations
+R2-020: Release marked hatchery fish to the release plan's size, timing and location so that returns can be evaluated
+R2-021: Compile a point, area, mobile and natural source emissions inventory for a planning year with documented methods and activity data
+R2-022: Prepare the community's rating-programme documentation for floodplain activities that reduce flood insurance premiums
+R2-023: Mop up heat along the control line until the perimeter meets the incident's containment standard
+R2-024: Inspect a retail food establishment for foodborne illness risk factors, ranking violations by public-health risk and recording required corrections
+R2-025: Log soil cores and choose sample intervals in the field from lithology, staining, odor and field-screening readings
+R2-026: Prepare a forest management plan that schedules harvests and treatments to meet ecological, economic and regeneration objectives
+R2-027: Recommend design changes that reduce a project's visual contrast to meet scenic objectives
+R2-028: Apply the floodplain and wetland decision process to a recovery project, documenting the alternatives considered and minimization measures
+R2-029: Estimate stand attributes by combining field plots with airborne lidar, deciding where additional plots are needed to meet precision targets
+R2-030: Inspect landfill gas wells and leachate collection after storms, adjusting wellfield vacuum and pumping to stay within monitoring limits
+R2-031: Survey channel cross-sections, longitudinal profile and substrate at a reach following the geomorphic assessment protocol
+R2-032: Calculate fuel moisture and fire danger indices from on-site fire weather observations for an operational period
+R2-033: Verify a remotely sensed fuels map in the field, correcting fuel-model assignments that misrepresent observed conditions
+R2-034: Audit a regulatory air monitor's flow and gas calibration against transfer standards following the quality assurance project plan
+R2-035: Complete wetland determination data forms at paired upland and wetland sample points along the boundary
+R2-036: Delineate a wetland boundary from vegetation, hydric soil and hydrology indicators using the applicable regional supplement
+R2-037: Derive water-quality-based effluent limits for a discharge from receiving-water data, standards and the waterbody's allocation
+R2-038: Evaluate a stocking programme's contribution to a fishery from marked-fish returns and survey catch data
+R2-039: Determine which findings are recognized environmental conditions and state the basis for each determination in the assessment report
+R2-040: Mark trees for a thinning or regeneration harvest to the prescription's residual density, species and structure targets
+R2-041: Update the conceptual site model with new data, identifying the data gaps that still prevent a remedy decision
+R2-042: Review a cleanup fund reimbursement claim against the approved work plan and eligible costs before approving payment
+R2-043: Locate a resource road or trail alignment through field reconnaissance that minimizes erosion, stream crossings and resource effects
+R2-044: Build a mass-balanced material flow account for a facility or region, reconciling inputs, stocks, outputs and losses with stated uncertainty
+R2-045: Model material-flow scenarios that compare the effect of proposed circularity interventions on virgin-material demand and disposal
+R2-046: Prepare annual operating instructions with permittees, recording agreed pasture rotations and monitoring responsibilities
+R2-047: Construct a green roof system to specification, verifying drainage layers, growing-media depth and plant establishment before handover
+R2-048: Survey larval and adult mosquito populations at fixed and complaint sites following the vector programme's trapping protocol
+R2-049: Evaluate a burn request against forecast dispersion, current air quality and sensitive receptors before issuing a burn-day decision
+R2-050: Design a forest inventory or timber cruise with the sampling intensity needed to meet a stated precision for volume and composition
+R2-051: Ignite a prescribed fire unit with hand-held devices following the firing pattern and the firing boss's direction
+R2-052: Prepare a drought contingency plan with triggers, stages and response actions tied to supply indicators
+R2-053: Identify bankfull indicators and channel evolution stage at a reach from field evidence
+R2-054: Evaluate fire effects on monitoring plots against burn objectives, recording outcomes that inform the next burn plan
+R2-055: Inspect a rental dwelling for lead hazards, mold, pests and sanitation violations in response to a tenant complaint
+R2-056: Verify disinfection contact time against required inactivation values at each operating flow and correct shortfalls before water enters distribution
+R2-057: Execute a firing operation that removes fuel between the control line and the fire under the firing boss's direction
+R2-058: Estimate population exposure and health effects of air pollution to set priorities among candidate control measures
+R2-059: Map delineated boundaries with survey-grade positioning, reconciling them with prior delineations and imagery
+R2-060: Integrate satellite detections, camera feeds, weather and resource status into a continuously updated situation summary for dispatch
+R2-061: Review an application to import or export a listed species against the trade agreement's non-detriment and legal-acquisition findings
+R2-062: Specify a tracking system that records returned products and recovered materials from collection to final destination
+R2-063: Compile a producer's packaging and product material data for the filing required in each jurisdiction with a producer responsibility requirement
+R2-064: Prepare a hazardous waste manifest and land disposal restriction notice for a shipment, reconciling quantities and waste codes with the receiving facility
+R2-065: Review an AI-drafted environmental review record for a recovery project against the project file before it is signed
+R2-066: Supervise mechanical or hand fuels treatments to the prescription's residual fuel and canopy specifications
+R2-067: Train facility personnel in hazardous waste handling and emergency procedures for their duties, keeping training records current
+R2-068: Adjust a grazing permit's terms and conditions from monitoring results, documenting the basis for each change
+R2-069: Complete a qualitative rangeland health assessment against the ecological site's reference sheet
+R2-070: Audit a marked stand against its prescription by sampling residual basal area, spacing and leave-tree selection
+R2-071: Oversee a remediation contractor's field work against the approved design and health and safety plan, documenting deviations and corrective actions
+R2-072: Calculate a reclamation bond from the reclamation plan's earthwork, revegetation and monitoring costs
+R2-073: Verify installed practices against design and practice standards before certifying them for programme payment
+R2-074: Conduct an internal audit of forest operations against the certification standard, recording nonconformities and corrective actions
+R2-075: Apply a data-limited assessment method to a stock with sparse catch and survey data, stating the uncertainty in reference points
+R2-076: Conduct a site reconnaissance of a property and adjoining uses, documenting observed conditions that indicate a release
+R2-077: Track the accuracy of detections and spread predictions against observed outcomes, reporting systematic errors to programme managers
+R2-078: Adjust coagulant dosing from jar test results when raw-water turbidity, temperature or organic content changes
+R2-079: Verify aerial, drone or AI-detected damage polygons on the ground, recording agent and severity where detections are wrong
+R2-080: Mark captured animals with tags or other marks while recording biological data within protocol handling-time and stress limits
+R2-081: Verify a bank's credit release request against monitoring reports and a site inspection before credits are released
+R2-082: Site a new ambient monitoring station against criteria for probe height, obstructions, spacing and spatial scale of representativeness
+R2-083: Collect a first-draw lead and copper sample at a sampling-pool residence following the stagnation and container protocol, documenting any deviation
+R2-084: Measure tree diameter, height, defect and age on inventory plots following the cruise or inventory protocol
+R2-085: Inspect a transfer station or composting facility for permit compliance, documenting violations with photographs and measurements
+R2-086: Check an elevation certificate against the permit, survey and flood map before accepting it into community records
+R2-087: Identify immediate post-disaster hazards such as debris-flow paths, hazard trees and spills, marking exclusion areas for responders and the public
+R2-088: Assess soil burn severity and erosion risk in a burned watershed, verifying the satellite severity map at field plots
+R2-089: Review relative-accuracy and calibration results for a continuous emissions monitoring system before its data are accepted for compliance
+R2-090: Write a discharge permit fact sheet that explains the basis for every limit and monitoring requirement in the draft permit
+R2-091: Schedule harvests across a forest ownership to sustain yield and habitat objectives over the planning horizon
+R2-092: Design a permit or reservation system for a congested site from use data, capacity estimates and equitable access
+R2-093: Apply a credit-debit method to calculate the compensatory mitigation required for permitted impacts to aquatic resources or habitat
+R2-094: Trace an illicit discharge from a dry-weather outfall flow to its source using field screening and system maps
+R2-095: Validate a quarter's ambient monitoring data against quality-assurance criteria, flagging or invalidating values before data certification
+R2-096: Prepare the smoke management section of a burn plan, identifying sensitive receptors, dispersion limits and contingency actions
+R2-097: Prepare forest management records and procedures that evidence conformance with each requirement of the certification standard
+R2-098: Determine whether a proposed modification at a stationary source triggers major new source review from emissions increases and netting
+R2-099: Design a sampling and analysis plan that tests the conceptual site model's exposure pathways against stated data quality objectives
+R2-100: Review species and length data from automated electronic monitoring against observer subsamples before the data enter an assessment
+R2-101: Measure line-point intercept, canopy gap and soil stability on rangeland monitoring plots following the core-indicator protocol
+R2-102: Write project conditions that carry environmental and historic preservation commitments into a recovery or mitigation funding award
+R2-103: Supervise automated process-control loops, overriding setpoints when analyzer readings conflict with bench tests or visual plant checks
+R2-104: Spawn broodstock following the genetic management plan's mating scheme, recording parentage for each lot
+R2-105: Review an inspection report drafted from dictated notes or a digital checklist against field observations before issuing it to the operator
+R2-106: Select mosquito control measures from surveillance counts and arbovirus test results against the programme's action thresholds
+R2-107: Review a permit applicant's dispersion modelling analysis against the agreed protocol and guidance before accepting its conclusions
+R2-108: Specify a material-tracking data system for a supply chain, defining data sources, verification checks and reporting outputs
+R2-109: Supervise automated optical and robotic sorting at a materials recovery facility, changing settings when bale audits show misclassified material
+R2-110: Verify compliance determinations generated by an automated data system against laboratory reports before recording a violation
+R2-111: Review a watershed model's calibration and load estimates produced with automated tools against monitoring data before they support allocations
+R2-112: Immobilize an animal chemically where authorized, monitoring vital signs until recovery and recording drug doses
+R2-113: Prescribe regeneration method, species and stocking for a harvested or disturbed stand under projected climate conditions
+R2-114: Estimate visitor use and capacity for a site from counts, permits and indicators of resource and social conditions
+R2-115: Verify a database report and an AI-drafted records summary against source records before relying on them in the assessment
+R2-116: Verify fiber sourcing records for a mill or procurement programme against the chain-of-custody standard
+R2-117: Determine the monitoring schedule, contaminant limits and treatment-technique requirements that apply to a public water system from its source, size and treatment
+R2-118: Review a control technology determination submitted with an air permit application against comparable sources and cost criteria
+R2-119: Calculate design values from validated ambient monitoring data to determine whether an area meets air quality standards
+R2-120: Calculate the financial assurance a facility must hold from its closure and post-closure cost estimates, checking the instrument provided against it
+R2-121: Prepare a utility's annual consumer water quality report from compliance monitoring data, checking every reported value against laboratory records
+R2-122: Estimate age, growth and mortality of a fish population from scale or otolith readings and catch-curve data
+R2-123: Compile the stormwater programme's annual report from inspection, monitoring and activity records, checking each figure against its source record
+R2-124: Direct daily landfill cell operations, setting working-face size, compaction and cover to permit conditions and forecast weather
+R2-125: Apply zoonotic disease and personal safety precautions when handling wildlife, including protective equipment and decontamination
+R2-126: Audit a materials recovery facility's inbound loads and finished bales for contamination, setting corrective actions with haulers and line supervisors
+R2-127: Reconcile mitigation credit debits and releases in the programme ledger with permit and bank records each reporting period
+R2-128: Route peak wet-weather flows through the plant to protect biological treatment, recording any bypass or overflow for required reporting
+R2-129: Inventory resource concerns on a farm or ranch with the landowner, recording soil, water, plant and animal conditions in the planning record
+R2-130: Inspect a reclaimed mine or well site against release standards before recommending bond release
+R2-131: Implement emergency stabilization treatments such as mulching, seeding and drainage on burned slopes to the treatment prescription
+R2-132: Sample fish populations by electrofishing, netting or hydroacoustics following the survey protocol to estimate abundance and size structure
+R2-133: Review food establishment construction plans against code provisions for equipment, layout and plumbing before approving construction
+R2-134: Run a viewshed analysis from key observation points, checking modelled visibility at field locations
+R2-135: Capture animals with traps, nets or electrofishing following the approved animal-care protocol and permit conditions
+R2-136: Review an automatically compiled monthly operating report against bench sheets and shift logs before certifying it for submission
+R2-137: Check emissions estimates generated automatically from activity or sensor data against source tests and inventory methods before inclusion
+R2-138: Install bioretention cells, swales and permeable pavement to design grades, media depths and planting plans
+R2-139: Oversee monitoring well installation and development, verifying screen placement against field lithology before the well is completed
+R2-140: Conduct a periodic review of a closed site's remedy and institutional controls, recording whether the remedy remains protective
+R2-141: Write a conservation plan that schedules the practices, quantities and timing the landowner has agreed to install
+R2-142: Collect food, water and environmental samples during an outbreak investigation following chain-of-custody and laboratory submission requirements
+R2-143: Activate the heat response plan when forecast thresholds are met, coordinating cooling centers, alerts and outreach to high-risk residents
+R2-144: Forecast return volumes for a take-back programme from sales and product-life data to size refurbishment and recycling capacity
+R2-145: Evaluate an onsite wastewater site's soils, separation distances and proposed design before issuing a construction permit
+R2-146: Set restoration design targets and post-project monitoring metrics from geomorphic assessment results
+R2-147: Verify recycling and recovery rates reported from an automated material-tracking system against weighbridge and processor records
+R2-148: Operate anaerobic digestion and solids handling to meet biosolids pathogen-reduction and stability requirements while recovering digester gas
+R2-149: Supervise uncrewed-aircraft ignition over a burn unit, halting ignition when the firing pattern or fire behaviour departs from the plan
+R2-150: Verify a project's completed work against its environmental and historic preservation conditions before closeout and final payment
+R2-151: Identify contributing factors of a foodborne outbreak from interviews with an implicated establishment's staff and review of its records
+R2-152: Decide whether to proceed with ignition from a test fire, observed weather and fuel moisture against the burn plan's prescription
+R2-153: Run a photochemical model for an attainment demonstration under an approved modelling protocol, documenting model performance against monitored data
+R2-154: Lay out harvest unit boundaries, leave areas and skid trails on the ground to the plan's specifications and best management practices
+R2-155: Direct a crew's tactical assignment, adjusting tactics when observed fire behaviour or weather departs from the briefing
+R2-156: Prioritize stabilization treatments for values at risk from field findings and hazard modelling, documenting the basis for each priority
+R2-157: Assign recreation opportunity classes to a planning area from setting characteristics, access and existing use
+R2-158: Present assessment results and catch advice to a scientific review panel, answering its requested analyses with documented runs
+R2-159: Observe a stack emissions test against the approved protocol, recording deviations that affect whether the results are acceptable
+R2-160: Review automatically compiled discharge monitoring data against laboratory records and shift logs before the monthly discharge report is signed
+R2-161: Evaluate a proposed habitat or biodiversity credit methodology for additionality, permanence and measurement before programme acceptance
+R2-162: Classify habitat units and riparian condition along a reach to identify the processes driving channel change
+R2-163: Prescribe storage or decommissioning of an unneeded road, including recontouring and drainage restoration
+R2-164: Allocate a waterbody's loading capacity among point and nonpoint sources with an explicit margin of safety
+R2-165: Diagnose the cause of tree decline from field symptoms, signs and site history, sending samples for laboratory confirmation
+R2-166: Fit a stock assessment model to catch, survey and biological data, documenting model diagnostics and retrospective patterns
+R2-167: Monitor wilderness character indicators in the field to report trends against the baseline
+R2-168: Facilitate a mitigation planning committee to agree goals, actions and responsible agencies for a plan update
+R2-169: Identify circularity opportunities across a value chain from material flow data, ranking them by avoided material and cost
+R2-170: Write a silvicultural prescription for a stand from inventory data, site conditions and stated management objectives
+R2-171: Compile an exceptional-event demonstration for a smoke-affected monitoring day, linking the monitored values to the fire with supporting evidence
+R2-172: Translate a silvicultural or restoration prescription into a sale layout and contract specifications that a purchaser can bid on
+R2-173: Check an automated complaint-cluster or syndromic alert against case reports and field observations before opening an environmental investigation
+R2-174: Draft operating permit conditions for a major stationary air source with monitoring sufficient to show compliance with each applicable requirement
+R2-175: Rate a proposed project's visual contrast from key observation points against the area's scenic objectives
+R2-176: Recommend harvest regulations, stocking or habitat actions for a fishery from population assessment results and angler objectives
+R2-177: Determine whether a waste stream is hazardous from process knowledge and laboratory data, documenting the listing and characteristic evaluation
+R2-178: Scope a mitigation project's alternatives, costs and environmental constraints to the level a funding application requires
+R2-179: Compare a smoke dispersion forecast with monitor and observer data during a burn, recommending holding or stopping ignition when the forecast fails
+R2-180: Adjust feeding, density and water flow in rearing units to meet growth targets and water-quality limits
+R2-181: Compare remote-sensing cover estimates with plot data, flagging areas where the product misrepresents observed conditions
+R2-182: Respond to an external audit nonconformity with a corrective action plan and the evidence that closes it
+R2-183: Monitor stabilization treatments after storms and adapt follow-up restoration from the observed effectiveness
+R2-184: Monitor utilization, stubble height and streambank alteration on key areas against allotment objectives during the grazing season
+R2-185: Review automated data-validation qualifiers and analytical results for usability before the results enter the site database
+R2-186: Draft permit conditions for a hazardous waste storage or treatment facility that make closure, corrective action and financial assurance requirements enforceable
+R2-187: Size up a new fire's fuels, weather, topography and values at risk to recommend initial attack tactics
+R2-188: Respond to a treatment upset by isolating the affected process unit, bringing backup treatment online and notifying the primacy agency
+R2-189: Evaluate remedial alternatives for a contaminated site against threshold and balancing criteria, documenting the comparison in a feasibility study
+R2-190: Inspect a hazardous waste generator's accumulation areas, manifests and training records against applicable requirements, documenting each violation
+R2-191: Delineate a wellhead or source-water protection area from hydrogeologic data and time-of-travel criteria
+R2-192: Evaluate fuels treatment effectiveness by re-measuring fuels and modelling fire behaviour after treatment
+R2-193: Collocate low-cost sensors with a regulatory monitor to derive correction factors, documenting sensor performance before the data are published
+R2-194: Brief incident personnel on expected fire behaviour and weather trends, highlighting watch-out situations for each division
+R2-195: Check-cruise a crew's inventory plots by blind re-measurement, recording differences outside the protocol tolerance
+R2-196: Review a producer responsibility organization's programme plan against performance targets, convenience standards and needs-assessment findings before approval
+R2-197: Review a waste code assigned by profiling software or a disposal vendor against the generator's process knowledge before signing the waste profile
+R2-198: Verify that a permanent stormwater control measure infiltrates, detains or treats runoff as designed using field tests and visual indicators
+R2-199: Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it
+R2-200: Evaluate a heat season's response using health surveillance and activation records, recommending plan changes in an after-action report
+R2-201: Recommend silvicultural interventions from growth projections that meet stated timber or habitat-structure targets
+R2-202: Prepare a watershed implementation plan with stakeholders that assigns load reductions, practices and monitoring to responsible parties
+R2-203: Give safety information and trip recommendations tailored to current conditions and each visitor's stated plans
+R2-204: Direct an owner to correct a failing stormwater control measure and confirm the repair through a follow-up inspection
+R2-205: Conduct a waste characterization audit by sorting and weighing samples from a facility's waste stream following a statistical sampling protocol
+R2-206: Adjudicate automatically coded pipe defects from a sewer inspection video before the condition scores enter the renewal model
+R2-207: Test infiltration and drawdown of a newly installed measure, recording as-built conditions that differ from the design
+R2-208: Orient visitors at a contact station to routes, conditions, regulations and hazards matched to their plans and abilities
+R2-209: Quantify pollutant loads from point and nonpoint sources to an impaired water using monitoring data and a watershed model
+R2-210: Design a reverse supply chain for returned products, specifying collection points, transport routes and processing destinations
+R2-211: Plan collection routes and service levels from tonnage, set-out and contamination data within crew safety and workload limits
+R2-212: Specify drainage, surfacing and stream-crossing practices for a road maintenance or reconstruction project
+R2-213: Read visible emissions from a stationary source following the certified opacity-observation method, recording each reading and observation condition
+R2-214: Log visitor questions, incidents and concerns to identify information gaps and revise visitor messaging
+R2-215: Construct fireline with hand tools or equipment to the specified width and depth while keeping escape routes and safety zones current
+R2-216: Compare conjunctive-use, reuse and storage options by yield, cost and reliability for an integrated resource plan
+R2-217: Design an allotment management plan that sets stocking rate, season, duration and range improvements to meet resource objectives
+R2-218: Assess water quality and habitat conditions limiting a fish population, identifying the factors management can change
+R2-219: Verify a remotely sensed damage or burn-severity map at field plots, recording where the map misclassifies conditions
+R2-220: Issue a recreational-water advisory for a harmful algal bloom when sampled toxin concentrations exceed the programme's thresholds
+R2-221: Issue public smoke advisories with health partners when monitored or forecast smoke exceeds advisory thresholds
+R2-222: Review historical records, aerial photographs and regulatory databases to identify past property uses that could have released hazardous substances
+R2-223: Conduct a compliance sampling inspection at a permitted outfall, auditing the discharger's self-monitoring records against the permit
+R2-224: Make substantial-damage determinations for flood-damaged structures after an event from damage inspections and cost estimates
+R2-225: Calibrate cover and gap measurements with other observers until results agree within the protocol's tolerance
+R2-226: Check deficiencies flagged from remote imagery or sensor data against a field visit before recording a stormwater violation
+R2-227: Conduct a sanitary survey of a public water system's source, treatment, storage, distribution and operations, documenting significant deficiencies
+R2-228: Run an aquifer test on a supply well or wellfield to estimate transmissivity and storage from drawdown and recovery data
+R2-229: Calibrate a growth model for local conditions by comparing its predictions with remeasured permanent plots
+R2-230: Conduct a rapid damage assessment of structures and infrastructure on a standard form, submitting geolocated findings to incident command
+R2-231: Evaluate contaminant transport toward a supply well from monitoring data and a groundwater model, recommending protective actions
+R2-232: Forecast water demand and supply under drought and climate scenarios for a utility or basin plan, stating assumptions and uncertainty
+R2-233: Check effluent limits proposed by permit-drafting software against the standards and allocation calculations before public notice
+R2-234: Review a permitted landfill's groundwater and gas monitoring reports, requiring assessment monitoring when results exceed background
+R2-235: Determine the level of environmental review a disaster recovery project needs from its scope, location and available exclusions
+R2-236: Scope a follow-up investigation that tests each recognized environmental condition with targeted sampling
+R2-237: Inspect contract operations against specifications, enforcing contract remedies when the purchaser does not comply
+R2-238: Review a landfill permit application's design, operating, closure and post-closure plans against applicable requirements, issuing deficiency notices
+R2-239: Predict fire spread, intensity and spotting for an operational period from fuels, weather and topography, stating assumptions
+R2-240: Complete a minimum-requirements analysis for a proposed administrative action, documenting alternatives and effects on wilderness character
+R2-241: Check holding resources, equipment and crew briefing completion against the burn plan before ignition begins
+R2-242: Select visitor-use management actions for a site when monitored resource or social indicators exceed their thresholds
+R2-243: Evaluate treated stands on monitoring plots against the prescription's targets, recommending changes to future prescriptions
+R2-244: Survey stands for insect, disease and abiotic damage, recording agent, severity and extent on survey plots
+R2-245: Recommend management responses to a pest or disease outbreak, such as sanitation harvest or biological control, stating expected effects
+R2-246: Track waste generation and diversion by stream, checking hauler and scale data for gaps before reporting progress
+R2-247: Inspect catch basins, pipes and outfalls on a scheduled route, recording each structure that restricts flow for cleaning
+R2-248: Prepare a benefit-cost analysis for a mitigation project following the funder's methodology, documenting every input and its source
+R2-249: Review a utility's service-line inventory and lead sampling plan against applicable requirements and return deficiencies for correction
+R2-250: Monitor fire behaviour, weather and smoke during a burn against the prescription, reporting values outside it to the burn boss
+R2-251: Check permit conditions drafted from a template or AI tool against the source's applicable requirements before public notice
+R2-252: Issue a violation notice with a public-notification directive when monitoring results exceed a contaminant limit or required monitoring is missed
+R2-253: Compare modelled fire behaviour with observed behaviour during an incident, adjusting predictions and recording each discrepancy
+R2-254: Monitor fish health in rearing units, recognizing disease signs and starting treatment under veterinary direction
+R2-255: Review a development permit application in a mapped flood hazard area against the floodplain ordinance's elevation and construction standards
+R2-256: Inspect a completed floodplain structure for compliance with permitted elevation, venting and utility requirements before occupancy is approved
+R2-257: Review a mitigation bank or in-lieu fee instrument's performance standards, financial assurances and long-term management plan
+R2-258: Inspect a construction site's erosion and sediment controls after a qualifying rain event, documenting deficiencies with photographs and required corrections
+R2-259: Develop a control strategy for a nonattainment area that selects emission reductions sufficient to demonstrate attainment by the deadline
+R2-260: Evaluate a water-right or allocation application against water availability, priority and impairment of existing users
+R2-261: Evaluate conservation practice alternatives against practice standards and the landowner's objectives, recording the landowner's decisions
+R2-262: Adjudicate an automated fire detection against cameras, public reports and other sensors before resources are ordered
+R2-263: Review a well construction or injection well application against construction and protection standards before approval
+R2-264: Schedule maintenance of vegetated stormwater control measures from inspection findings and condition records across the system
+R2-265: Inspect active harvest operations for compliance with best management practices for water quality and soil protection
+R2-266: Audit a producer's annual report on material tonnage, recycling rates and fee calculations against its supporting records
+R2-267: Check an AI-drafted remedial alternatives analysis against site data and cleanup criteria before it is submitted to the regulator
+R2-268: Assess fuels in a planning area with standard fuel models and field sampling to set treatment priorities
+R2-269: Complete a travel analysis that ranks roads by benefit, risk and maintenance cost to recommend the minimum road system
+R2-270: Map heat vulnerability across a jurisdiction from temperature, health, housing and population data to target cooling resources and outreach
+R2-271: Review a benefit-cost analysis or plan section drafted with automated tools against source data and funder requirements before submission
+R2-272: Draft a partner implementation agreement that assigns responsibilities, funding, standards and reporting for a stewardship project
+R2-273: Classify a stand's development stage from field structure data to anticipate its response to treatment
+R2-274: Coordinate transboundary habitat or population management actions with counterpart agencies under a bilateral conservation agreement
+=== END TASKS ===

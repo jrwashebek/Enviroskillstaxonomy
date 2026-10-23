@@ -13,6 +13,9 @@ workflowProfiles:
 - WP-INCIDENT
 fieldDependency: on-site-required
 formationDependency: 'yes'
+credentialGates:
+- credential: seed:crd-wildland-fire-position-qualification
+  kind: required
 homeModule: forest
 subsectors:
 - L07

@@ -1,22 +1,28 @@
 id: seed:v1-6.2.3-T3
 type: Task
 prefLabel:
-  en: Incorporate climate, wildfire, and equity considerations into plan revisions
+  en: Incorporate climate, wildfire and community-effect considerations into a plan revision, stating the evidence behind each affected plan component
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Incorporate climate, wildfire, and equity considerations into plan revisions
-textSha256: 30d0e34fe0643c86536f4eff9bd62aaf2de15e04bca461c8c5d7f8b897639572
+  en: Incorporate climate, wildfire and community-effect considerations into a plan revision, stating the evidence behind each affected plan component
+textSha256: 3eab11b345fbad4d4de08c153cad6b8e6907ac06c0dd155ba1d84d2fa6995d55
 supports:
 - competency: seed:v1-6.2.3
   strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 6.2.3:T3
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T3
 v1Domain:
   code: '6'
@@ -25,14 +31,16 @@ v1SkillArea:
   code: '6.2'
   label: Land Use Planning
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'Rewritten from the v1 task text: "Incorporate climate, wildfire, and equity considerations into plan revisions" (WP-05).'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:6.2.3:T3
     v1Code: 6.2.3
@@ -42,9 +50,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

@@ -31,6 +31,7 @@ REVIEW_BY = "2027-10-23"
 ADR = ["ADR-0018", "ADR-0003", "ADR-0004"]
 JV_RX = re.compile(r"\bapplicable\b[^.;]{0,60}\b(requirements|rules|law|laws|regulations|standards)\b|\bjurisdiction'?s requirements\b", re.I)
 MANIFEST = HERE / "manifest.csv"
+GATES = L.load_yaml(HERE / "credential_gates.yaml") if (HERE / "credential_gates.yaml").exists() else {}
 
 
 def seed(k: str) -> str:
@@ -120,8 +121,9 @@ class Builder:
             if t.get("cg"):
                 rr["credentialGate"] = t["cg"]
             rec["reproductionRegime"] = rr
-        if t.get("cgs"):
-            rec["credentialGates"] = [{"credential": seed(g["credential"]), "kind": g.get("kind", "required")} for g in t["cgs"]]
+        gates = list(t.get("cgs") or []) + [g for g in GATES.get(t["id"], []) if g["credential"] not in {x["credential"] for x in (t.get("cgs") or [])}]
+        if gates:
+            rec["credentialGates"] = [{"credential": seed(g["credential"]), "kind": g.get("kind", "required")} for g in gates]
         if t.get("so"):
             rec["signOffAuthority"] = {"kind": t["so"]}
         if t.get("acc"):

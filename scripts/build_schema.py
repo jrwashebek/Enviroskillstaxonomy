@@ -467,6 +467,9 @@ def build_context(schema: dict) -> dict:
     ctx["indigenousKnowledgeStatement"] = {"@id": "emstv:indigenousKnowledgeStatement"}
     ctx["buildCommit"] = {"@id": "emstv:buildCommit"}
     ctx["license"] = {"@id": "dct:license", "@type": "@id"}
+    # computed inverse links emitted only in bundles (vocab/rules/inverse-links@1.1.0.yaml#outputs.bundle_fields)
+    ctx["tools"] = {"@id": "emstv:tools", "@type": "@id", "@container": "@set"}
+    ctx["enactments"] = {"@id": "emstv:enactments", "@type": "@id", "@container": "@set"}
     return {"@context": ctx}
 
 

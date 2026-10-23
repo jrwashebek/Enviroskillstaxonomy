@@ -15,6 +15,11 @@ workflowProfiles:
 - WP-PROJECT
 fieldDependency: remote-capable
 formationDependency: partial
+credentialGates:
+- credential: seed:crd-saf-certified-forester
+  kind: preferred
+- credential: seed:crd-state-registered-or-licensed-forester
+  kind: preferred
 homeModule: forest
 subsectors:
 - L01

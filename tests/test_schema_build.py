@@ -127,3 +127,66 @@ def test_context_has_a_term_for_every_property():
         for p in props:
             if p not in ("id", "type"):
                 assert p in ctx, f"{t}.{p} has no JSON-LD term"
+
+
+def _enums(node, out):
+    if isinstance(node, dict):
+        for k, v in node.items():
+            if k == "enum":
+                out.extend(v)
+            else:
+                _enums(v, out)
+    elif isinstance(node, list):
+        for v in node:
+            _enums(v, out)
+    return out
+
+
+def test_yaml11_and_yaml12_loaders_generate_identical_enumerations(monkeypatch):
+    """ADR-0029 §2.5: no code list may depend on YAML 1.1 boolean resolution (`yes`, `no`, `on`...)."""
+    import yaml
+    from pathlib import Path
+    files = sorted(L.VOCAB.glob("*.yaml"))
+    assert len(files) == 19
+    yaml12 = build_schema.generate_enums()
+    sc12 = build_schema.state_class_fields()
+    monkeypatch.setattr(L, "load_yaml", lambda p: yaml.safe_load(Path(p).read_text(encoding="utf-8")))
+    assert build_schema.generate_enums() == yaml12
+    assert build_schema.state_class_fields() == sc12
+    values = _enums(yaml12, [])
+    assert values and not [v for v in values if isinstance(v, bool)]
+
+
+def test_ruled_enumerations_are_generated():
+    """ADR-0029 §1.4, §2.4, §8.1: formerly schema-local code lists now come from vocab/."""
+    defs = SCHEMA["$defs"]
+    for name in ("v_toolType", "v_instrumentType", "v_eventType", "v_eventDirection", "v_instrumentStatus", "v_credentialType",
+                 "v_closureType", "v_pathwayType", "v_learningResourceType", "v_frictionDirection", "v_frictionSeverity",
+                 "v_frictionBasis", "v_signalStatus", "v_indicatorUseClass", "v_ratingObjectScheme", "v_signalFamily",
+                 "v_changeIndicatorKind", "v_signpost", "v_scenarioPole"):
+        assert defs[name]["enum"] and "GENERATED" in defs[name]["$comment"], name
+    assert "agency-order" in defs["v_instrumentType"]["enum"]
+    assert "submitted-for-review" in defs["v_eventType"]["enum"]
+    assert len(defs["v_instrumentStatus"]["enum"]) == 13 and "under-review" in defs["v_instrumentStatus"]["enum"]
+    assert defs["v_signpost"]["enum"][-1] == "SP-12"
+    assert "X12" in defs["v_mappingSetId"]["enum"]
+    for name in ("SeriesStatus", "SourceStatus"):
+        assert defs[name]["pattern"].startswith("^(") and defs[name]["pattern"].endswith(")$")
+    ar = defs["StateClassFields"]["properties"]["appointmentRoute"]
+    assert ar["type"] == "array" and ar["uniqueItems"] is True and "continuous-t-and-e" in ar["items"]["enum"]
+    assert "enum" in defs["StateClassFields"]["properties"]["supervisoryStatus"]
+
+
+def test_every_seed_value_is_in_the_generated_lists():
+    """ADR-0029 §1.4: every value now in data/v2 is in the generated lists (checked on the live tree)."""
+    want = {("DriverEvent", "statusAfter"): "v_instrumentStatus", ("DriverEvent", "eventType"): "v_eventType",
+            ("DriverEvent", "direction"): "v_eventDirection", ("Instrument", "instrumentType"): "v_instrumentType",
+            ("Tool", "toolType"): "v_toolType", ("ChangeSignal", "signalStatus"): "v_signalStatus"}
+    missing = []
+    for _loc, rec in L.iter_records(L.DATA_V2):
+        if not isinstance(rec, dict):
+            continue
+        for (t, f), d in want.items():
+            if rec.get("type") == t and f in rec and rec[f] not in SCHEMA["$defs"][d]["enum"]:
+                missing.append((rec.get("id"), f, rec[f]))
+    assert not missing, missing[:10]
