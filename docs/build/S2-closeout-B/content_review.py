@@ -28,7 +28,7 @@ def review():
                  spec, "core", ROW)
     S.put(S.indicator("seed:DB-C06", "seed:db-c06-l2-c", "L2",
                       "Checks an automated anomaly or intrusion alert against process data and field observation, closing or escalating it with the evidence recorded.",
-                      "assisted", ["seed-error-work-sample".replace("seed-error", "seeded-error"), "record-audit"], "core", ["DC"],
+                      "assisted", ["seeded-error-work-sample", "record-audit"], "core", ["DC"],
                       ["seed:dc-db06-triage-alerts"], att="ATT-AUG"), "core", ROW)
 
     def add_l2(r):
