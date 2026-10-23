@@ -9,16 +9,17 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "node tools/prepare-release.mjs && node tools/vendor.mjs && npm run --silent sbom && npx @11ty/eleventy --quiet && node tools/check-output.mjs",
+    "build": "node tools/prepare-release.mjs && node tools/vendor.mjs && node tools/sbom.mjs && node tools/clean.mjs && npx @11ty/eleventy --quiet && node tools/check-output.mjs",
     "build:portable": "EMST_PORTABLE=1 npm run build",
     "release": "node tools/prepare-release.mjs",
     "vendor": "node tools/vendor.mjs",
-    "pages": "npx @11ty/eleventy --quiet",
+    "pages": "node tools/clean.mjs && npx @11ty/eleventy --quiet",
     "check": "node tools/check-output.mjs",
     "test": "node tools/test-checks.mjs && node tools/check-output.mjs && node tools/browser-checks.mjs",
     "a11y": "node tools/browser-checks.mjs",
     "sbom": "node tools/sbom.mjs",
-    "serve": "node tools/serve.mjs"
+    "serve": "node tools/serve.mjs",
+    "clean": "node tools/clean.mjs"
   },
   "dependencies": {
     "@uswds/uswds": "3.14.0"
