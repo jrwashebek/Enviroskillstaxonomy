@@ -7,7 +7,7 @@ no person-level rows. Tribal-related signals are quarantined (careFlag = true, h
 """
 import os
 
-from wp10_common import (ROOT, base, provenance, write_jsonl, sha256_file, extras, RECHECK_PENDING,
+from wp10_common import (ROOT, base, provenance, write_jsonl, sha256_file, RECHECK_PENDING,
                          WATCH_REVIEW_BY, AS_OF, TOOL_VERSION, PROMPT_VERSION)
 
 LMR = "docs/research/labor-market-ai-impact"
@@ -43,21 +43,23 @@ def sig(key, label, *, targetId, measure, observed, comparison=None, geography="
         source, release, corpus, method, crosswalkPath, matchType, direction, dconf, drivers, steep, novelty,
         reliability, corroboration, family, indep, impact, sources, signposts=None, registered=False,
         held=False, note=None, definition=None, baseline=None, sensitivity=None, points=None, targetType=None):
-    mb, ms = measure.get("baseline"), measure.get("sensitivity")
-    if mb and baseline is None:
-        baseline = "value=%s; ci95=%s; n=%s%s" % (mb.get("value"), mb.get("ci95"), mb.get("n"),
-                                                 ("; " + mb["note"]) if mb.get("note") else "")
-    if ms and sensitivity is None:
-        sensitivity = "weighting=%s; value=%s; baselineValue=%s" % (ms.get("weighting"), ms.get("value"), ms.get("baselineValue"))
     if measure.get("value") is None:
         raise ValueError("measure.value must be a number: " + key)
-    nota = extras(family=family, indep=indep, impact=impact, registered=registered if family == "deployment" else None,
-                  signpost=signposts, points=points, baseline=baseline, sensitivity=sensitivity)
+    nota = None
     r = base("seed:sig/" + key, "ChangeSignal", label, definition=definition, editorial_note=note, held=held, notation=nota)
     m = {"name": measure["name"], "value": measure["value"], "unit": measure["unit"],
          "ci95": measure.get("ci95"), "n": measure.get("n"), "denominator": measure.get("denominator") or "not applicable"}
     if isinstance(m["n"], float):
         m["n"] = int(m["n"])
+    mb = measure.get("baseline")
+    if mb:
+        b = {k: mb[k] for k in ("ci95", "n", "note") if mb.get(k) is not None}
+        if mb.get("value") is not None:
+            b["value"] = mb["value"]
+        m["baseline"] = b
+    ms_ = measure.get("sensitivity")
+    if ms_:
+        m["sensitivity"] = {k: ms_[k] for k in ("weighting", "value", "baselineValue") if ms_.get(k) is not None}
     r.update({
         "targetType": targetType or ttype(targetId),
         "targetId": targetId,
@@ -86,8 +88,17 @@ def sig(key, label, *, targetId, measure, observed, comparison=None, geography="
         "reviewStatus": "unreviewed",
         "reviewBy": WATCH_REVIEW_BY if not held else RECHECK_PENDING,
         "signalStatus": "watch",
+        "signalFamily": family,
+        "independenceKey": indep,
+        "impact": impact,
         "provenance": provenance(sources, "E"),
     })
+    if family == "deployment":
+        r["registeredDeployment"] = bool(registered)
+    if signposts:
+        r["scenarioSignposts"] = signposts
+    if points:
+        r["pointsToward"] = points
     if comparison:
         r["comparisonPeriod"] = comparison
     if sectorActor:
@@ -530,7 +541,7 @@ def signpost_signals():
                   {"start": "2025-01-01", "end": "2025-12-22"}, "federal", "LM-138", "OMB 2025 inventory README (2026-04-13)",
                   "Department totals from the README (V4-15). Environmental review/permitting: 0 of 5 bureau use cases deployed (LM extract).",
                   "stable", ["AI"], "A", "deployment", "ombegov-ai-inventory", 3, ["LM-138"],
-                  ["AX-2:undetermined"], "AI is not yet in high-stakes environmental decisions; consistent with an early trusted path or a contested one. Next reading: 2026 inventory."))
+                  None, "AI is not yet in high-stakes environmental decisions; consistent with an early trusted path or a contested one. Next reading: 2026 inventory."))
     out.append(sp("sp-08-firesat-access", "Signpost SP-08 (SC1/SC3): three operational FireSat satellites; early-adopter data from Q4 2026; global access 2028", "SP-08",
                   {"name": "operational_satellites", "value": 3, "unit": "satellites", "ci95": None, "n": None, "denominator": "planned 50+"},
                   {"start": "2026-07-07", "end": "2026-07-09"}, "ngo", "FS-011", "Earth Fire Alliance 2026-07-09",
@@ -540,11 +551,11 @@ def signpost_signals():
                   {"name": "final_rule_published", "value": 0, "unit": "boolean", "ci95": None, "n": None, "denominator": None},
                   {"start": "2026-07-10", "end": "2026-10-21"}, "federal", "LM-116", "trade press 2026-10-21", "V2-17 (trade press).",
                   "stable", ["policy-reform", "sensing-tech"], "C", "policy", "federal-register-pipeline", 2, ["LM-116"],
-                  ["timing:delayed"], "FS CM-2 (BVLOS programme leads) waits on publication."))
+                  None, "FS CM-2 (BVLOS programme leads) waits on publication."))
     out.append(sp("sp-10-fire-season-2026", "Signpost SP-10 (predetermined pressure): 2026 acres burned at 145% of the 10-year average YTD (2026-10-11)", "SP-10",
                   {"name": "acres_share_of_10yr_avg", "value": 1.45, "unit": "ratio", "ci95": None, "n": None, "denominator": "10-year average YTD acres"},
                   {"start": "2026-01-01", "end": "2026-10-11"}, "federal", "FS-034", "NIFC IMSR 2026-10-11", "NIFC situation report (FS-034).",
-                  "grow", ["climate"], "A", "workload", "nifc-imsr", 3, ["FS-034"], ["predetermined", "SC4"],
+                  "grow", ["climate"], "A", "workload", "nifc-imsr", 3, ["FS-034"], ["SC4"],
                   "Predetermined in all scenarios; SC4 risk of burnout and ladder breaks."))
     out.append(sp("sp-11-discontinued-datasets", "Signpost SP-11 (SC3/SC4): a federal disaster-cost dataset discontinued and revived outside government (2025)", "SP-11",
                   {"name": "datasets_discontinued_identified", "value": 1, "unit": "datasets", "ci95": None, "n": None, "denominator": "not a census"},

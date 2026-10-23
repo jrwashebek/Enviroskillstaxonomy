@@ -45,7 +45,6 @@ def bls_signals():
     """One record per (SOC, MVP role listing the SOC): the occupation-level projection attached to its role
     crosswalk target (provisional path until X3)."""
     from wp10_external import role_map
-    from wp10_common import extras
     rm = role_map()
     out, unattached = [], []
     for soc, title, e25, e35, chg, pct, opn, src in BLS:
@@ -61,14 +60,13 @@ def bls_signals():
                      editorial_note=("Projection, not observation; %s the all-occupation average (+3.5%%). Numeric change %s thousand%s. "
                                      "Projection drivers are not attributed per occupation in the sources read; BLS cites AI as a driver for some "
                                      "industries and for office and administrative support (V4-07). Supersedes LM Phase 2's 2022-32 figures."
-                                     % (rel, chg, ("; about %s thousand openings a year" % opn) if opn is not None else "")),
-                     notation=extras(family="projection", indep="bls-ep-2025-35", impact=2,
-                                     baseline="value=3.5; unit=percent; all occupations 2025-35"))
+                                     % (rel, chg, ("; about %s thousand openings a year" % opn) if opn is not None else "")))
             r.update({
                 "targetType": "RoleProfile",
                 "targetId": "mvp-role:" + role_key,
                 "measure": {"name": "projected_employment_change_percent_2025_35", "value": pct, "unit": "percent", "ci95": None, "n": None,
-                            "denominator": "employment 2025 = %s thousand (2035 projected %s thousand)" % (e25, e35)},
+                            "denominator": "employment 2025 = %s thousand (2035 projected %s thousand)" % (e25, e35),
+                            "baseline": {"value": ALL_OCC_PCT, "note": "all occupations, 2025-35 (percent)"}},
                 "observedPeriod": {"start": "2025", "end": "2035", "note": "projection period"},
                 "geography": "US",
                 "source": src,
@@ -95,6 +93,9 @@ def bls_signals():
                 "reviewStatus": "unreviewed",
                 "reviewBy": WATCH_REVIEW_BY,
                 "signalStatus": "watch",
+                "signalFamily": "projection",
+                "independenceKey": "bls-ep-2025-35",
+                "impact": 2,
                 "provenance": provenance([src, "LM-132"], "E", method="import"),
             })
             out.append(r)

@@ -58,6 +58,32 @@ def main():
         w.writerow(["sc_instrument_id", "wp10_record", "disposition", "label_or_reason"])
         for row in sorted(disposition, key=lambda r: (r[0] == "", r[0], r[1])):
             w.writerow(row)
+    # WP-05 handoff: resolve SC's requested instruments (by proposed seed ID and by name) to registered IDs.
+    req = os.path.join(ROOT, "docs/build/WP-05/instruments_to_register.csv")
+    if os.path.exists(req):
+        reg = {r["id"] for r in instruments}
+        expand = {"seed:ins/state-sepa-<state>": ["seed:ins/state-sepa-ca", "seed:ins/state-sepa-wa", "seed:ins/state-sepa-mn", "seed:ins/state-sepa-ny"],
+                  "seed:ins/state-esa-<state>": ["seed:ins/state-esa-ca"],
+                  "seed:ins/state-licensing-acts-<state>": ["seed:ins/state-licensing-acts-wi"]}
+        rows_out = []
+        for r in csv.DictReader(open(req, newline="", encoding="utf-8")):
+            ids = expand.get(r["proposed_seed_id"], [r["proposed_seed_id"]])
+            hit = [i for i in ids if i in reg]
+            if not hit:
+                status = "not-registered: placeholder family with no named statute" if "<state>" in r["proposed_seed_id"] else "not-registered"
+            elif any(e["instrument"] in hit for e in events):
+                status = "registered-with-dated-events"
+            else:
+                status = "registered-without-events (unverified; status unknown until SC refresh)"
+            if "<state>" in r["proposed_seed_id"] and hit:
+                status += "; only the named example state(s) registered"
+            rows_out.append([r["competency"], r["instrument_name"], r["proposed_seed_id"], "|".join(hit), status, r["verification_status"]])
+        with open(os.path.join(gen, "wp05_instrument_resolution.csv"), "w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            w.writerow(["competency", "instrument_name", "proposed_seed_id", "registered_ids", "registry_status", "sc_verification_status"])
+            w.writerows(rows_out)
+        counts["WP05_requested_rows"] = len(rows_out)
+        counts["WP05_requested_rows_registered"] = sum(1 for r in rows_out if r[3])
     for modname in OPTIONAL:
         try:
             mod = __import__(modname)

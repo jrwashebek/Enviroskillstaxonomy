@@ -20,9 +20,10 @@ STATUS_AFTER = ["pending-legislation", "proposed", "interim-in-force", "final-no
 I = []
 
 
-def add(key, sc, label, citation, itype, juris, mech, src, events, note=None, held=False):
+def add(key, sc, label, citation, itype, juris, mech, src, events, note=None, held=False, label_ev="E",
+        scheme="SC-policy-landscape-2026"):
     I.append(dict(key=key, sc=sc, label=label, citation=citation, itype=itype, juris=juris, mech=mech,
-                  src=src, events=events, note=note, held=held))
+                  src=src, events=events, note=note, held=held, label_ev=label_ev, scheme=scheme))
 
 
 P, S, H = RECHECK_PENDING, RECHECK_SETTLED, RECHECK_HISTORIC
@@ -298,19 +299,110 @@ add("dol-tegl-07-25", None, "DOL TEGL 07-25 WIOA state plan modifications PY2026
     [("final", "2026-01-26", "reshapes", "issued", ["SL-009"], "E", S, "Modifications due 2026-03-03 (extension to 2026-04-30) (SL-L13).")])
 
 
+# ---------------------------------------------------------------- WP-05 handoff (docs/build/WP-05/instruments_to_register.csv)
+# Seed IDs are SC's proposed IDs so WP-05 enactment links resolve unchanged. Rows SC verified this session get dated
+# events [E: WP05-001..004]. Rows SC marked unverified are registered WITHOUT events (provenance J): enactments can link
+# them, and their computed status stays unknown until SC's quarterly refresh adds verified baseline events, so the
+# venue rule never reads an unverified instrument as an active basis. Placeholder families ('<state>' rows with no named
+# statute, state open-meeting laws) are not registered; see docs/methods/generated/wp05_instrument_resolution.csv.
+W5 = "WP05-requested-by"
+add("eo-12898", "DB-C52", "Executive Order 12898 Federal Actions to Address Environmental Justice (revoked)",
+    "EO 12898 (1994-02-11)", "executive-order", "US", ["DM-01"], ["WP05-001"],
+    [("final", "1994-02-11", "expands", "issued", ["WP05-001"], "E", H, "Signed 1994-02-11 (WP05-001)."),
+     ("rescinded", "2025-01-21", "contracts", "rescinded", ["WP05-001", "IO-028"], "E", S,
+      "Revoked by EO 14173 sec. 3(b) (seed:ins/eo-14173). Revocation does not change EPA's statutory responsibilities (WP05-001).")],
+    note="Link with role 'requires' (CR-SC-001 item 2): the instrument that required the work, now rescinded, so the federal family computes no-current-basis.",
+    scheme=W5)
+add("eo-14096", "DB-C52", "Executive Order 14096 Revitalizing Our Nation's Commitment to Environmental Justice for All (revoked)",
+    "EO 14096 (2023-04-21)", "executive-order", "US", ["DM-01"], ["WP05-001"],
+    [("final", "2023-04-21", "expands", "issued", ["WP05-001"], "E", H, "Signed 2023-04-21 (WP05-001)."),
+     ("rescinded", "2025-01-20", "contracts", "rescinded", ["WP05-001"], "E", S, "Revoked by EO 14148 (seed:ins/eo-14148) (WP05-001).")],
+    scheme=W5)
+add("eo-14008", "DB-C52", "Executive Order 14008 Tackling the Climate Crisis at Home and Abroad (Justice40 provisions; revoked)",
+    "EO 14008 (2021-01-27)", "executive-order", "US", ["DM-19"], ["WP05-001"],
+    [("final", "2021-01-27", "expands", "issued", ["WP05-001"], "E", H, "Signed 2021-01-27 (WP05-001)."),
+     ("rescinded", "2025-01-20", "contracts", "rescinded", ["WP05-001"], "E", S, "Revoked by EO 14148 (seed:ins/eo-14148) (WP05-001).")],
+    note="Funding-programme mechanism (Justice40); SC marks the link optional.", scheme=W5)
+add("eo-14173", "DB-C52", "Executive Order 14173 Ending Illegal Discrimination and Restoring Merit-Based Opportunity",
+    "EO 14173 (signed 2025-01-21; FR Doc 2025-02097, 2025-01-31)", "executive-order", "US", ["DM-01", "DM-16"], ["IO-028", "WP05-001"],
+    [("final", "2025-01-21", "contracts", "issued", ["IO-028", "WP05-001"], "E", S,
+      "Revoked EO 11246 (contractor affirmative action) and, in sec. 3(b), EO 12898 (IO-028; WP05-001).")],
+    note="The revoking instrument. Link it with role 'removed-requirement', never 'requires' (CR-SC-001 item 2).", scheme=W5)
+add("eo-14148", "DB-C52", "Executive Order 14148 Initial Rescissions of Harmful Executive Orders and Actions",
+    "EO 14148 (2025-01-20)", "executive-order", "US", ["DM-01", "DM-19"], ["WP05-001"],
+    [("final", "2025-01-20", "contracts", "issued", ["WP05-001"], "E", S, "Revoked EO 14096 and EO 14008 among others (WP05-001).")],
+    note="The revoking instrument. Link it with role 'removed-requirement' (CR-SC-001 item 2).", scheme=W5)
+add("nj-ej-law", "DB-C52", "New Jersey Environmental Justice Law and implementing rules",
+    "N.J.S.A. 13:1D-157 et seq. (2020); N.J.A.C. 7:1C", "statute", "US-NJ", ["DM-10"], ["WP05-003", "DB-060"],
+    [("enacted", "2020-09-18", "expands", "final-not-yet-effective", ["DB-060"], "J", H,
+      "Day of signing is J (LM general knowledge; DB-060 and WP05-003 give 2020). Statute required implementing rules before taking effect."),
+     ("effective", "2023-04-17", "expands", "in-force", ["WP05-003"], "E", S, "Rules N.J.A.C. 7:1C effective (WP05-003)."),
+     ("decided", "2026-01-05", "expands", "in-force", ["WP05-003"], "E", P,
+      "Appellate Division affirmed NJDEP's EJ rules (law-firm source; decision text not read). NJ Supreme Court review possible: moving fact for WP-15.")],
+    note="Permit denial or site-specific conditions for covered facilities in overburdened communities (WP05-003).", scheme=W5)
+add("ny-ecl-70-0118", "DB-C52", "New York Environmental Justice Siting Law (ECL 70-0118) and SEQR amendments",
+    "ECL 70-0118; 6 NYCRR part 617 amendments", "statute", "US-NY", ["DM-10"], ["WP05-002"],
+    [("effective", "2026-06-12", "expands", "in-force", ["WP05-002"], "E", P,
+      "SEQR (6 NYCRR 617) amendments effective 2026-06-12; Uniform Procedures Act amendments and existing-burden-report scope still in progress (WP05-002).")],
+    note="Statute enactment date not verified this session; SC's quarterly refresh adds it. The UPA rule is a moving fact.", scheme=W5)
+add("eo-14303", "v1-7.1.3", "Executive Order 14303 Restoring Gold Standard Science", "EO 14303; 90 FR 22601", "executive-order", "US",
+    ["DM-16"], ["WP05-004"],
+    [("final", "2025-05-23", "reshapes", "issued", ["WP05-004"], "E", P,
+      "Signed 2025-05-23; published 2025-05-29. Agencies update scientific-integrity policies after OSTP guidance; interim reliance on policies in effect 2021-01-19 (WP05-004). OSTP guidance and agency updates not checked.")],
+    note="SC maps it to DM-16; LM notes DM-10 (substantive standard for agency science) may fit better. SC to confirm.", scheme=W5)
+
+UNVERIFIED = [  # key, requested-by, label, citation, type, jurisdiction, mechanisms, sources
+    ("nepa-assignment-23usc327", "SL-C08", "NEPA assignment to state transportation agencies", "23 U.S.C. 327", "statute", "US", ["DM-05"], []),
+    ("esa-s7-regs-current", "FH-C01", "ESA section 7 interagency consultation regulations (current)", "50 CFR part 402", "regulation", "US", ["DM-06"], []),
+    ("cwa-402-npdes", "SL-C02", "CWA section 402 discharge permit programme and state programme authorization", "CWA 402; 40 CFR parts 122-124; 40 CFR part 123", "permit-programme", "US", ["DM-11", "DM-10"], ["SL-079"]),
+    ("caa-title-v", "SL-C02", "Clean Air Act Title V operating permit programme", "CAA Title V; 40 CFR parts 70 and 71", "permit-programme", "US", ["DM-11", "DM-10"], []),
+    ("caa-nsr-psd", "SL-C02", "Clean Air Act new source review and PSD preconstruction permitting", "CAA NSR/PSD; 40 CFR 51.165-51.166 and 52.21", "permit-programme", "US", ["DM-10"], []),
+    ("rcra-permits", "SL-C02", "RCRA hazardous waste permits and state authorization", "RCRA 3005 and 3006; 40 CFR parts 270-271", "permit-programme", "US", ["DM-11", "DM-10"], []),
+    ("cwa-404", "SL-C02", "CWA section 404 dredge-and-fill permits and state assumption", "CWA 404; 33 CFR parts 320-332; 40 CFR part 233", "permit-programme", "US", ["DM-09", "DM-11"], ["SC-021"]),
+    ("federal-land-use-authorizations", "SL-C02", "Federal land special-use and grazing authorizations", "36 CFR part 251 subpart B; 43 CFR part 4100", "regulation", "US", ["DM-10"], []),
+    ("state-program-approval-regs", "SC-C14", "Federal regulations for state programme approval and withdrawal", "40 CFR parts 123, 142, 233, 271; 40 CFR part 70 programme approval", "regulation", "US", ["DM-11"], ["SC-021"]),
+    ("categorical-program-grants", "SC-C14", "Categorical programme grants to state agencies", "CWA 106; CAA 105", "statute", "US", ["DM-19"], []),
+    ("federal-inspection-authorities", "SL-C03", "Federal inspection and information-request authorities", "CWA 308; CAA 114; RCRA 3007", "statute", "US", ["DM-10"], []),
+    ("epa-penalty-policies", "SL-C04", "EPA civil penalty and enforcement response policies", "EPA programme penalty policies", "guidance", "US", ["DM-10"], []),
+    ("caa-507-sbeap", "SL-C10", "Small business environmental assistance programmes", "CAA 507", "statute", "US", ["DM-19"], []),
+    ("npdes-ereporting-rule", "DB-C25", "NPDES electronic reporting rule", "40 CFR part 127", "regulation", "US", ["DM-14"], []),
+    ("report-certification-rules", "DB-C26", "Signatory and certification requirements for permit reports", "40 CFR 122.22; Title V compliance certification", "regulation", "US", ["DM-13"], []),
+    ("appropriations-law", "SC-C10", "Federal appropriations law (purpose, time, amount)", "31 U.S.C. 1301, 1341, 1502; OMB Circular A-11", "statute", "US", ["DM-15", "DM-19"], []),
+    ("apa-rulemaking", "SC-C16", "Administrative Procedure Act rulemaking (federal)", "5 U.S.C. 553", "statute", "US", ["DM-04", "DM-08"], []),
+    ("apa-judicial-review", "SC-C17|SC-C02", "Judicial review of agency action and limitations periods", "5 U.S.C. 706; 28 U.S.C. 2401", "statute", "US", ["DM-08"], []),
+    ("cra-and-deregulation-orders", "SC-C11", "Congressional Review Act", "5 U.S.C. 801-808", "statute", "US", ["DM-10", "DM-08"], []),
+    ("eo-12866-circular-a4", "v1-6.3.4", "Regulatory planning and review order and OMB regulatory analysis guidance", "EO 12866; OMB Circular A-4 (current version to verify)", "executive-order", "US", ["DM-10"], []),
+    ("anti-lobbying-1913", "v1-6.4.5", "Anti-lobbying restriction on appropriated funds", "18 U.S.C. 1913 and appropriations riders", "statute", "US", ["DM-16"], []),
+    ("stewardship-contracting", "SC-C08", "Stewardship contracting authority", "16 U.S.C. 6591c", "agreement-authority", "US", ["DM-12"], []),
+    ("federal-acquisition-assistance", "v1-3.1.4", "Federal acquisition and financial-assistance rules (incl. IPA assignments)", "FAR (48 CFR); 2 CFR part 200; 31 U.S.C. 6301-6308; 5 U.S.C. 3371-3376", "regulation", "US", ["DM-15", "DM-16"], []),
+    ("federal-ethics-rules", "PS-C18", "Federal conflict-of-interest and post-employment rules", "18 U.S.C. 207 and 208; 5 CFR part 2635", "statute", "US", ["DM-16"], []),
+    ("state-sepa-ca", "SL-C08", "California Environmental Quality Act (base statute)", "Cal. Pub. Res. Code 21000 et seq.", "statute", "US-CA", ["DM-01", "DM-02", "DM-03"], ["SL-038"]),
+    ("state-sepa-wa", "SL-C08", "Washington State Environmental Policy Act (base statute)", "RCW 43.21C", "statute", "US-WA", ["DM-01", "DM-02", "DM-03"], []),
+    ("state-sepa-mn", "SL-C08", "Minnesota Environmental Policy Act (base statute)", "Minn. Stat. ch. 116D", "statute", "US-MN", ["DM-01", "DM-02", "DM-03"], ["SL-070"]),
+    ("state-sepa-ny", "SL-C08", "New York State Environmental Quality Review Act (base statute)", "N.Y. ECL article 8", "statute", "US-NY", ["DM-01", "DM-02", "DM-03"], []),
+    ("state-esa-ca", "FH-C01", "California Endangered Species Act", "Cal. Fish & Game Code 2050 et seq.", "statute", "US-CA", ["DM-06", "DM-10"], []),
+    ("state-licensing-acts-wi", "SL-C16", "Wisconsin 2017 Act 111 (use of 'engineer' in classified titles)", "Wisconsin 2017 Act 111", "statute", "US-WI", ["DM-17"], ["SL-085"]),
+]
+for key, req, label, cit, itype, juris, mech, src in UNVERIFIED:
+    add(key, req.replace("seed:", ""), label, cit, itype, juris, mech, src, [], label_ev="J", scheme=W5,
+        note=("Registered from SC's WP-05 request without verification: no events, so its computed status stays unknown and the "
+              "venue rule cannot read it as an active basis. SC's quarterly refresh (P-SC-14) adds verified baseline events. "
+              "Citation as supplied by SC."))
+
+
 def build():
     instruments, events = [], []
     disposition = []
     for x in I:
         iid = "seed:ins/" + x["key"]
         rec = base(iid, "Instrument", x["label"], editorial_note=x["note"],
-                   notation=([{"scheme": "SC-policy-landscape-2026", "value": x["sc"]}] if x["sc"] else None), held=x["held"])
+                   notation=([{"scheme": x["scheme"], "value": v} for v in x["sc"].split("|")] if x["sc"] else None), held=x["held"])
         rec.update({
             "citation": x["citation"],
             "instrumentType": x["itype"],
             "jurisdiction": x["juris"],
             "mechanisms": x["mech"],
-            "provenance": provenance(x["src"], "E"),
+            "provenance": provenance(x["src"], x["label_ev"]),
         })
         instruments.append(rec)
         for (etype, date, direction, status_after, src, label, review_by, note) in x["events"]:
@@ -330,7 +422,8 @@ def build():
                 "provenance": provenance(src, label),
             })
             events.append(ev)
-        disposition.append((x["sc"] or "", iid, "held-tribal" if x["held"] else "seeded", x["label"]))
+        if x["scheme"] == "SC-policy-landscape-2026":
+            disposition.append((x["sc"] or "", iid, "held-tribal" if x["held"] else "seeded", x["label"]))
     # SC rows not seeded as instruments, with reasons
     disposition.append(("PI-TECH-04", "seed:sig/deployment/permitting-ai-shared-services", "reclassified-to-signal",
                         "PNNL PermitAI shared services are tools (L4, DC lane) not legal instruments (ADR-0003 T-7); recorded as a deployment-family ChangeSignal"))

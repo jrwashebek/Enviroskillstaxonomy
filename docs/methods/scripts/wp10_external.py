@@ -113,14 +113,12 @@ def build():
                                "as published in occ_level.csv; percentile over all occupations computed by LM Phase 2 "
                                "(docs/research/labor-market-ai-impact/scripts/env_occupation_exposure.py)."),
                     "confidence": "med",
-                    "technicalExposure": [{"vector": "llm-cognitive", "levelDistribution": dist,
-                                           "basis": "human labels; share of O*NET tasks" if dist else "task shares not published for detail code"}],
                     "externalSource": {
                         "index": "Eloundou, Manning, Mishkin, Rock - GPTs are GPTs",
                         "release": "Science 2024 replication data (GitHub snapshot read 2026-10-23); O*NET 27.x tasks",
-                        "unit": "O*NET-SOC occupation " + onet,
+                        "unit": "occupation",
                         "matchedOnetTasks": [],
-                        "aggregation": "occupation-level beta and percentile; no EMST task match involved",
+                        "aggregation": "occupation-level beta and percentile for O*NET-SOC %s; no EMST task match involved" % onet,
                         "dispersion": {"nTasks": fnum(r["n_tasks"]), "shareE0": fnum(r["share_E0_human"]),
                                        "sharePhysicalTasks": fnum(r["share_physical_tasks"])},
                         "values": {"betaHuman": hb, "betaHumanPercentile": hp, "betaGpt4": gb, "betaGpt4Percentile": gp},
@@ -129,13 +127,16 @@ def build():
                     "sources": ["LM-008"],
                     "provenance": provenance(["LM-008"], "E", method="import", adr="ADR-0008"),
                 })
+                if dist:
+                    rec["technicalExposure"] = [{"vector": "llm-cognitive", "levelDistribution": dist,
+                                                 "basis": "human labels; share of the occupation's O*NET tasks"}]
                 elo.append(rec)
         for role_key, mt in targets_six:
             if ma is not None:
                 rec = base("seed:asm/external/ms-working-with-ai-v6/%s/%s" % (code, role_key), "ExposureAssessment",
                            "Microsoft 'Working with AI' applicability (occupation aggregate %s %s) attached to %s" % (code, title, role_key),
                            editorial_note=("Observed-use measure from one platform (Bing Copilot conversations) mapped O*NET task -> DWA -> IWA -> SOC; "
-                                           "applicability is not automation and not employment impact. Cite the v6 title. STAGED pending CR-LM-002."))
+                                           "applicability is not automation and not employment impact. Cite the v6 title. Occupation grain per CR-LM-002 (ADR-0029 s9)."))
                 _common(rec, code, code, role_key, mt)
                 rec.update({
                     "instrument": "ms-working-with-ai-applicability",
@@ -148,9 +149,9 @@ def build():
                     "externalSource": {
                         "index": "Tomlinson, Jaffe, Wang, Counts, Suri - Working with AI: Measuring the Applicability of Generative AI to Occupations",
                         "release": "arXiv:2507.07935 v6 (2025-12-22); results files v1.1",
-                        "unit": "SOC occupation " + code + " (via IWA)",
+                        "unit": "occupation",
                         "matchedOnetTasks": [],
-                        "aggregation": "occupation-level applicability; no EMST task match involved",
+                        "aggregation": "occupation-level applicability for SOC %s (via O*NET task -> DWA -> IWA); no EMST task match involved" % code,
                         "dispersion": {"sharePhysicalTasks": fnum(r["share_physical_tasks"]), "coverageUser": fnum(r["ms_coverage_user"])},
                         "values": {"aiApplicability": ma, "aiApplicabilityPercentile": fnum(r["ms_ai_applicability_pct"]),
                                    "nonphysicalApplicability": fnum(r["ms_nonphysical_applicability"]),

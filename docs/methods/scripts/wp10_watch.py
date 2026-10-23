@@ -50,7 +50,7 @@ def build():
     for it in ITEMS:
         r = base("seed:watch-" + it["cand"], "WatchItem", it["label"], editorial_note=it["note"],
                  scope_note="Counter-signal (what would show it is not forming): " + it["counter"],
-                 notation=[{"scheme": "EMST-candidate", "value": it["cand"]}])
+                 notation=[{"scheme": "candidateDisposition", "value": it["cand"]}])
         r.update({
             "lifecycleState": "watch",
             "reviewBy": WATCH_REVIEW_BY,
