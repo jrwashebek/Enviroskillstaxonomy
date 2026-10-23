@@ -33,18 +33,27 @@ def seeds(typ):
             and (r.get("provenance") or {}).get("method") == "v1-migration"}
 
 
+def _v1_keyed(typ):
+    """Seed records keep their seed:v1-* id when authors rewrite them in place (AUTHORING_GUIDE §6); a promoted
+    record is found through data/v2/ids/seed_map.csv."""
+    promoted = {r["seed_key"] for r in L.read_csv(L.DATA_V2 / "ids" / "seed_map.csv")} if (L.DATA_V2 / "ids" / "seed_map.csv").exists() else set()
+    return {rid for rid, (_, r) in RECS.items() if r.get("type") == typ and str(rid).startswith("seed:v1-")} | promoted
+
+
 def test_222_competency_and_666_task_seeds():
-    comp = {rid for rid in seeds("Competency") if re.fullmatch(r"seed:v1-\d\.\d+\.\d+", rid)}
-    task = {rid for rid in seeds("Task") if re.fullmatch(r"seed:v1-\d\.\d+\.\d+-T[1-3]", rid)}
+    comp = {rid for rid in _v1_keyed("Competency") if re.fullmatch(r"seed:v1-\d\.\d+\.\d+", rid)}
+    task = {rid for rid in _v1_keyed("Task") if re.fullmatch(r"seed:v1-\d\.\d+\.\d+-T[1-3]", rid)}
     assert len(V1_COMPS) == 222 and len(V1_TASKS) == 666
     assert comp == {f"seed:v1-{k[3:]}" for k in V1_COMPS}
     assert task == {f"seed:v1-{k[3:].replace(':', '-')}" for k in V1_TASKS}
 
 
 def test_seed_records_validate_without_errors(real_report):
-    def mine(where):
-        return "/seed-v1-" in where or any(p in where for p in DE_PATHS)
-    errs = [(i.code, i.where, i.message) for i in real_report.errors if mine(i.where)]
+    def mine(issue):
+        rec = RECS.get(issue.rid, (None, {}))[1]
+        untouched = rec.get("validationStatus") == "seed-v1" and (rec.get("provenance") or {}).get("method") == "v1-migration"
+        return (("/seed-v1-" in issue.where) and untouched) or any(p in issue.where for p in DE_PATHS)
+    errs = [(i.code, i.where, i.message) for i in real_report.errors if mine(i)]
     assert errs == []
 
 
@@ -189,7 +198,7 @@ def test_no_record_carries_the_v1_stability_tier():
 def test_cld_prior_evidence_is_v1_analyst_only_and_never_computed_input():
     import rules  # noqa: F401  - the computed-view rule implementations
     from rules import change_indicator, effective_use_tier
-    cld = [rec for _loc, rec in L.iter_records(L.DATA_V2 / "assessments" / "emst-v1-cld") if isinstance(rec, dict)]
+    cld = [rec for loc, rec in L.iter_records(L.DATA_V2) if isinstance(rec, dict) and "emst-v1-cld" in str(loc.path)]
     assert len(cld) == 222
     for rec in cld:
         assert rec["raterType"] == "v1-analyst" and rec["confidence"] == "low" and rec["objectScheme"] == "v1-cld"

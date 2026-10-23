@@ -21,20 +21,23 @@
 
 **Competencies enacted here:**
 
-- `seed:v1-1.5.2` Climate vulnerability assessment [core] — enactment `seed:ena-1.5.2-water`
+- `seed:v1-1.5.2` Assess climate vulnerability of species, ecosystems, infrastructure and communities [core] — enactment `seed:ena-1.5.2-water`
 - `seed:v1-4.1.3` Measure water quality and survey aquatic communities in the field [core] — enactment `seed:ena-4.1.3-water`
 - `seed:DB-C03` Supervise automated and AI-assisted process control in environmental operations [core] — enactment `seed:ena-db-c03-water`
 - `seed:DB-C05` (planned; not yet authored) [core] — enactment `seed:ena-db-c05-water`
+- `seed:DB-C06` Protect operational technology at environmental utilities and facilities [core] — enactment `seed:ena-db-c06-water`
+- `seed:DB-C21` Investigate and manage emerging contaminants across media [core] — enactment `seed:ena-db-c21-water`
 - `seed:DB-C26` Manage a regulated facility's environmental compliance system and obligations calendar [core] — enactment `seed:ena-db-c26-water`
 - `seed:DB-C29` Communicate environmental and health risks under uncertainty [core] — enactment `seed:ena-db-c29-water`
 - `seed:DC-CAND-04` Engineer environmental sensor-network and streaming data pipelines [core] — enactment `seed:ena-dc-cand-04-water`
 - `seed:FC-C16` Collect trace-level and genetic environmental samples without contamination [core] — enactment `seed:ena-fc-c16-water`
 - `seed:FC-C24` Manage field sample custody and field quality control [core] — enactment `seed:ena-fc-c24-water`
-- `seed:PS-C09` (planned; not yet authored) [core] — enactment `seed:ena-ps-c09-water`
+- `seed:PS-C09` Build organizational and jurisdictional greenhouse gas inventories for disclosure and reporting [core] — enactment `seed:ena-ps-c09-water`
 - `seed:SC-C12` Track regulatory change and translate it into operating guidance [core] — enactment `seed:ena-sc-c12-water`
 - `seed:SC-C14` Operate within, or oversee, delegated and assumed regulatory programs [core] — enactment `seed:ena-sc-c14-water`
 - `seed:SL-C03` Conduct regulatory compliance inspections [core] — enactment `seed:ena-sl-c03-water`
 - `seed:SL-C10` Provide compliance and technical assistance to regulated entities and local governments [core] — enactment `seed:ena-sl-c10-water`
+- `seed:SL-C12` Administer environmental financial assistance to local governments [core] — enactment `seed:ena-sl-c12-water`
 
 **Roles served (`docs/decisions/mvp_role_set.csv`):** R24 Drinking water programme analyst; R25 Water and wastewater treatment operator; R22 Environmental engineer; R37 Facility environmental compliance specialist; R03 Monitoring and data technician.
 

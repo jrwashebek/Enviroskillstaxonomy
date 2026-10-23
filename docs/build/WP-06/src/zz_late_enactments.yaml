@@ -424,3 +424,96 @@ enactments:
     note: >-
       Hazardous waste, emerging-contaminant cleanup and state producer-responsibility requirements change on staggered
       schedules; programmes keep authorization, guidance and facility requirements current.
+  # ---- added after DB-C06, SL-C12 and DB-C21 appeared in data/v2/core/
+  - id: ena-db-c06-water
+    module: water
+    comp: DB-C06
+    label: Water utility enactment of operational-technology security
+    sub: [W01, W02]
+    ap: service-provider
+    note: >-
+      Treatment plants and distribution and collection systems run on supervisory control networks whose compromise
+      can change chemical dosing or stop treatment; utilities segment networks, control remote access and keep manual
+      operating capability, with operators trained to run the plant by hand.
+  - id: ena-db-c06-air
+    module: air
+    comp: DB-C06
+    label: Monitoring network enactment of operational-technology security
+    sub: [P01]
+    ap: regulator
+    note: >-
+      Ambient monitoring stations and continuous emissions monitors are networked devices whose data feed public
+      reporting and compliance; securing telemetry and data loggers protects data integrity as well as availability.
+  - id: ena-db-c06-waste
+    module: waste
+    comp: DB-C06
+    label: Waste facility enactment of operational-technology security
+    sub: [P02]
+    ap: service-provider
+    note: >-
+      Landfill gas, leachate and materials recovery control systems are increasingly networked; operators secure remote
+      access and keep manual control of safety-critical gas and leachate systems.
+  - id: ena-sl-c12-water
+    module: water
+    comp: SL-C12
+    label: Revolving fund enactment of financial assistance to local governments
+    sub: [W01, W02, W03]
+    ap: funder
+    note: >-
+      State drinking water and clean water revolving funds and related grants finance utility capital projects; staff
+      rank projects, review eligibility and disadvantaged-community provisions, and track disbursements and conditions.
+  - id: ena-sl-c12-waste
+    module: waste
+    comp: SL-C12
+    label: Cleanup and materials grant enactment of financial assistance to local governments
+    sub: [P02, P04]
+    ap: funder
+    note: >-
+      State and federal brownfield, cleanup and recycling-infrastructure grants and loans to local governments carry
+      eligibility, cost-share and reporting conditions that programme staff administer.
+  - id: ena-sl-c12-hazards
+    module: hazards
+    comp: SL-C12
+    label: Mitigation and recovery grant enactment of financial assistance to local governments
+    sub: [C03]
+    ap: funder
+    note: >-
+      State emergency management agencies pass through mitigation and recovery funding to local governments as
+      recipients, reviewing applications, monitoring sub-awards and closing out projects; programme availability
+      changed in 2025-26 and is tracked in L5.
+  - id: ena-db-c21-water
+    module: water
+    comp: DB-C21
+    label: Drinking water and wastewater enactment of emerging-contaminant investigation and management
+    sub: [W01, W02]
+    ap: service-provider
+    note: >-
+      Utilities sample for PFAS and other emerging contaminants, evaluate treatment options and sources, and plan
+      capital responses on compliance schedules that are subject to change (L5).
+  - id: ena-db-c21-waste
+    module: waste
+    comp: DB-C21
+    label: Contaminated-site enactment of emerging-contaminant investigation and management
+    sub: [P04, P02]
+    ap: regulator
+    note: >-
+      Cleanup programmes investigate emerging contaminants at sites, landfills and biosolids-application areas, where
+      screening levels, analytical methods and liability rules are still changing.
+  - id: ena-db-c21-envhealth
+    module: envhealth
+    comp: DB-C21
+    label: Private well and exposure enactment of emerging-contaminant investigation and management
+    sub: [H01, H02]
+    ap: regulator
+    note: >-
+      Health departments respond to emerging-contaminant findings in private wells and community water with sampling,
+      exposure advice and coordination with water and cleanup programmes.
+  - id: ena-db-c21-air
+    module: air
+    comp: DB-C21
+    label: Air emissions enactment of emerging-contaminant investigation and management
+    sub: [P01]
+    ap: regulator
+    note: >-
+      Air programmes characterize emissions of emerging contaminants from manufacturing, incineration and treatment
+      facilities, where test methods and deposition pathways to soil and water are still developing.
