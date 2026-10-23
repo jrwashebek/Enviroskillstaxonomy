@@ -22,24 +22,36 @@ LICENSE = "LicenseRef-EMST-third-party-index-derived"
 STAGE = "docs/methods/staging/assessments-external/"  # promoted to data/v2/assessments/external/ when CR-LM-002 is accepted
 
 
-def role_map():
-    """SOC (6-digit) or O*NET-SOC detail code -> [(role_key, provisional match type)] from mvp_role_set.csv.
-    A role that names an O*NET detail code is attached at the detail code only. Single-SOC roles without a
-    '(no exact SOC)' caveat are skos:closeMatch; multi-SOC or caveated roles are skos:broadMatch (the SOC is
-    broader than, or only partly covers, the function-defined role)."""
-    m = {}
+def role_entries():
+    """[(role_key, soc6, onet_detail_or_None, single_uncaveated)] from mvp_role_set.csv soc_2018."""
+    out = []
     for r in csv.DictReader(open(os.path.join(ROOT, ROLES), newline="", encoding="utf-8")):
         field = r["soc_2018"]
         no_exact = "no exact SOC" in field
-        codes = []
+        parts = []
         for p in [p.strip() for p in field.split("|") if p.strip()]:
             c6 = re.match(r"(\d{2}-\d{4})", p)
             det = re.search(r"O\*NET (\d{2}-\d{4}\.\d{2})", p)
             if c6:
-                codes.append(det.group(1) if det else c6.group(1))
-        mt = "close" if (len(codes) == 1 and not no_exact) else "broad"
-        for c in codes:
-            m.setdefault(c, []).append((r["role_key"], mt))
+                parts.append((c6.group(1), det.group(1) if det else None))
+        single = len(parts) == 1 and not no_exact
+        for c6, det in parts:
+            out.append((r["role_key"], c6, det, single))
+    return out
+
+
+def role_map(available=None):
+    """code -> [(role_key, match)] for attaching occupation values to MVP roles.
+    Six-digit sources (available=None: BLS, Microsoft): every role whose listed code has that SOC prefix; close only
+    for single, uncaveated, 6-digit listings, else broad (the SOC is broader than the role).
+    Detail-capable sources (available = set of codes with values: Eloundou): a role listing an O*NET detail code
+    attaches at the detail code when a value exists, otherwise at its parent SOC (broad)."""
+    m = {}
+    for role_key, c6, det, single in role_entries():
+        if available is not None and det and det in available:
+            m.setdefault(det, []).append((role_key, "close" if single else "broad"))
+            continue
+        m.setdefault(c6, []).append((role_key, "close" if (single and not det) else "broad"))
     return m
 
 
@@ -63,16 +75,18 @@ def _common(rec, code, onet, role_key, mt):
 
 
 def build():
-    rm = role_map()
     rows = list(csv.DictReader(open(os.path.join(ROOT, SCORES), newline="", encoding="utf-8")))
+    rm_elo = role_map(available={r["soc_code"].strip() for r in rows if fnum(r["eloundou_human_rating_beta"]) is not None})
+    rm_six = role_map()
     elo, ms, unattached = [], [], []
     for r in rows:
         code = r["soc_code"].strip()
         is_detail = "." in code
         onet = code if is_detail else code + ".00"
         title = r["title"].replace(" (O*NET-SOC detail)", "")
-        targets = rm.get(code, [])
-        if not targets:
+        targets_elo = rm_elo.get(code, [])
+        targets_six = rm_six.get(code, []) if not is_detail else []
+        if not targets_elo and not targets_six:
             unattached.append(code)
             continue
         hb, hp = fnum(r["eloundou_human_rating_beta"]), fnum(r["eloundou_human_rating_beta_pct"])
@@ -81,7 +95,7 @@ def build():
         if fnum(r["share_E0_human"]) is not None:
             dist = {"E0": fnum(r["share_E0_human"]), "E1": fnum(r["share_E1_human"]), "E2": fnum(r["share_E2_human"])}
         ma = fnum(r["ms_ai_applicability"])
-        for role_key, mt in targets:
+        for role_key, mt in targets_elo:
             if hb is not None:
                 rec = base("seed:asm/external/eloundou-2024/%s/%s" % (code, role_key), "ExposureAssessment",
                            "Eloundou et al. LLM exposure (occupation aggregate %s %s) attached to %s" % (onet, title, role_key),
@@ -116,7 +130,8 @@ def build():
                     "provenance": provenance(["LM-008"], "E", method="import", adr="ADR-0008"),
                 })
                 elo.append(rec)
-            if ma is not None and not is_detail:
+        for role_key, mt in targets_six:
+            if ma is not None:
                 rec = base("seed:asm/external/ms-working-with-ai-v6/%s/%s" % (code, role_key), "ExposureAssessment",
                            "Microsoft 'Working with AI' applicability (occupation aggregate %s %s) attached to %s" % (code, title, role_key),
                            editorial_note=("Observed-use measure from one platform (Bing Copilot conversations) mapped O*NET task -> DWA -> IWA -> SOC; "

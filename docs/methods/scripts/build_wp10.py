@@ -65,8 +65,24 @@ def main():
             continue
         for k, v in mod.build().items():
             counts[k] = counts.get(k, 0) + v
+    fam, files = {}, {}
+    sig_root = os.path.join(ROOT, "data/v2/signals")
+    for dirpath, _, fns in os.walk(sig_root):
+        for fn in sorted(fns):
+            if not fn.endswith(".jsonl"):
+                continue
+            rel = os.path.relpath(os.path.join(dirpath, fn), ROOT)
+            for line in open(os.path.join(dirpath, fn), encoding="utf-8"):
+                if not line.strip():
+                    continue
+                r = json.loads(line)
+                files[rel] = files.get(rel, 0) + 1
+                f_ = next((n["value"] for n in r.get("notation", []) if n["scheme"] == "EMST-signalFamily"), "unset")
+                fam[f_] = fam.get(f_, 0) + 1
     with open(os.path.join(gen, "wp10_counts.json"), "w", encoding="utf-8") as f:
-        json.dump({"generated_by": "docs/methods/scripts/build_wp10.py", "counts": dict(sorted(counts.items()))}, f, indent=1, sort_keys=True)
+        json.dump({"generated_by": "docs/methods/scripts/build_wp10.py", "counts": dict(sorted(counts.items())),
+                   "ChangeSignal_by_family": dict(sorted(fam.items())), "ChangeSignal_by_file": dict(sorted(files.items()))},
+                  f, indent=1, sort_keys=True)
         f.write("\n")
     print(json.dumps(counts, indent=1, sort_keys=True))
 

@@ -27,9 +27,12 @@ def test_two_consecutive_builds_are_byte_identical(tmp_path):
 
 
 def test_repository_preview_build_is_deterministic(tmp_path):
+    import shutil
+    snap = tmp_path / "snap"            # other agents write data/v2 concurrently: build from one snapshot
+    shutil.copytree(L.DATA_V2, snap)
     kw = dict(profile="preview", version="2.0.0-dev", include_pending_license=True)
-    b1, a = build(L.DATA_V2, tmp_path / "a", **kw)
-    _, b = build(L.DATA_V2, tmp_path / "b", **kw)
+    b1, a = build(snap, tmp_path / "a", **kw)
+    _, b = build(snap, tmp_path / "b", **kw)
     assert a == b
     bundle = json.loads(a["emst.bundle.jsonld"])
     ids = {r.get("id") for r in bundle["@graph"]}
@@ -42,7 +45,7 @@ def test_repository_preview_build_is_deterministic(tmp_path):
 def test_release_profile_excludes_drafts_held_and_pending_licence(tmp_path):
     b, files = build(L.DATA_V2, tmp_path / "r", version="2.0.0-rc.0")
     graph = json.loads(files["emst.bundle.jsonld"])["@graph"]
-    assert not [r for r in graph if r.get("type") != "Mapping"]           # nothing is a candidate yet
+    assert not [r for r in graph if r.get("type") not in ("Mapping", "Release")]   # nothing is a candidate yet
     assert set(b.excluded) >= {"held (Tribal content hold, ADR-0007 §D)", "v1-derived text pending CC0 dedication (ADR-0013, Q2)"}
     x1 = [r for r in graph if r.get("type") == "Mapping" and r["mapping_set_id"].endswith("emst-v1_to_v2")]
     subjects = {r["subject_id"] for r in x1}
@@ -57,7 +60,7 @@ def test_base_tree_release_contents_and_exports_parse(tmp_path):
     data = overlay_tree(tmp_path / "src")
     b, files = build(data, tmp_path / "out", version="2.0.0-rc.0")
     graph = json.loads(files["emst.bundle.jsonld"])["@graph"]
-    assert {r["type"] for r in graph} == {"Competency", "Task", "Indicator"}
+    assert {r["type"] for r in graph} == {"Release", "Competency", "Task", "Indicator"}
     g = rdflib.Graph()
     g.parse(data=files["emst.skos.ttl"].decode(), format="turtle")
     assert len(g) > 100

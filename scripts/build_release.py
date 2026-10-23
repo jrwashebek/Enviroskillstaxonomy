@@ -227,11 +227,12 @@ class Builder:
                 if "author_id" in m:
                     m["author_id"] = [m["author_id"]]
                 graph.append(m)
-        doc = {"@context": ctx, "id": f"https://w3id.org/emst/release/{self.version}", "type": "Bundle",
-               "emstRelease": self.version, "schemaVersion": L.SCHEMA_VERSION, "released": self.date,
-               "license": CC0_IRI, "notice": NOTICE, "indigenousKnowledgeStatement": INDIGENOUS_STATEMENT,
-               "buildCommit": self.commit, "@graph": graph}
-        return L.dump_json(doc)
+        manifest = {"id": f"https://w3id.org/emst/release/{self.version}", "type": "Release",
+                    "emstRelease": self.version, "schemaVersion": L.SCHEMA_VERSION, "released": self.date,
+                    "license": CC0_IRI, "notice": NOTICE, "indigenousKnowledgeStatement": INDIGENOUS_STATEMENT,
+                    "buildCommit": self.commit}
+        # everything in the default graph: release manifest first, then records sorted by id, then mappings
+        return L.dump_json({"@context": ctx, "@graph": [manifest] + graph})
 
     # ---------------------------------------------------------------- CSV + datapackage
     TABLES = {
@@ -495,7 +496,7 @@ class Builder:
         prev = {}
         if self.previous and Path(self.previous).exists():
             doc = json.loads(Path(self.previous).read_text(encoding="utf-8"))
-            prev = {r["id"]: r for r in doc.get("@graph", []) if isinstance(r, dict) and r.get("id") and r.get("type") != "Mapping"}
+            prev = {r["id"]: r for r in doc.get("@graph", []) if isinstance(r, dict) and r.get("id") and r.get("type") not in ("Mapping", "Release")}
         cur = {rid: r for rid, r in released.items()}
         out = {"from": str(self.previous or ""), "to": self.version, "added": [], "changed": [], "superseded": [], "withdrawn": []}
         for rid, r in cur.items():
@@ -537,7 +538,7 @@ class Builder:
         if self.licensing.get("v1Dedication") != "granted" and not self.include_pending and V1_LICENSE in graph_text:
             problems.append("v1-derived (pending dedication) record present in CC0 bundle")
         for r in doc["@graph"]:
-            if r.get("type") == "Mapping":
+            if r.get("type") in ("Mapping", "Release"):
                 continue
             for path, s in L.iter_strings(r):
                 if path and path[0] in ("provenance", "id"):

@@ -415,6 +415,7 @@ def build_context(schema: dict) -> dict:
     ctx["emstRelease"] = {"@id": "owl:versionInfo"}
     ctx["schemaVersion"] = {"@id": "dct:conformsTo"}
     ctx["released"] = {"@id": "dct:issued", "@type": "xsd:date"}
+    ctx["Release"] = "emstv:Release"
     ctx["notice"] = {"@id": "emstv:notice"}
     ctx["indigenousKnowledgeStatement"] = {"@id": "emstv:indigenousKnowledgeStatement"}
     ctx["buildCommit"] = {"@id": "emstv:buildCommit"}

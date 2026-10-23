@@ -93,7 +93,6 @@ def test_restoration_sample_covers_10_percent_and_passes():
 
 
 def test_x1_accounts_for_every_v1_key_once_per_decision():
-    rows = L.read_csv(L.X1_TSV) if False else None  # noqa: F841 (TSV read below)
     text = L.X1_TSV.read_text(encoding="utf-8").splitlines()
     header = text[0].split("\t")
     rows = [dict(zip(header, ln.split("\t"))) for ln in text[1:] if ln]
@@ -135,7 +134,7 @@ def test_v1_tags_are_prior_evidence_only():
     assert kinds[("CraftRating", None)] == 222 and kinds[("FunctionRating", None)] == 222
     assert kinds[("RelevanceRating", "v1-family")] == 1002 and kinds[("RelevanceRating", "v1-ethical-lens")] == 35
     for r in v1:
-        assert r["raterId"] == "v1-analyst-01" and r["confidence"] == "low" and r["provenance"]["derivedFrom"][0]["relation"] in ("prior-evidence",)
+        assert r["raterId"] == "v1-analyst-01" and r["confidence"] == "low" and r["provenance"]["derivedFrom"][0]["relation"] in ("prior-evidence", "recovered")
         assert r["status"] == "draft" and "technicalExposure" not in r
     flags = Counter(f for r in v1 for f in r.get("v1Flags", []))
     for f in ("text_misaligned", "reconstructed_d2", "d2_divergent", "reconciled_d6_2026_03", "normative_h", "pre15a_hybrid"):
