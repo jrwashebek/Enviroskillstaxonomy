@@ -26,6 +26,9 @@ const seeds = {
   "D3-C12": (h) => h.replace("</main>", "<p>These competencies are validated by practitioners.</p></main>"),
   D4: (h) => h.replace("</main>", "<p>Tribal consultation tasks are listed here.</p></main>"),
   "D6-P01": (h) => h.replace("</main>", "<p>Contact jane.doe@example.org</p></main>"),
+  E2: (h) => h.replace("</main>", "<p>Fix Our Forests Act (H.R. 471 / S. 1462): in force since 2026.</p></main>"),
+  E3: (h) => h.replace("</main>", "<p>FAST-41: 2015-12-04 enacted.</p></main>"),
+  E4: (h) => h.replace("</main>", "<p>The aligned standards take effect in 2027; NWCG is not a party.</p><p>AEI shows 77% of tasks are automated.</p></main>"),
 };
 let failed = 0;
 for (const [rule, f] of Object.entries(seeds)) {

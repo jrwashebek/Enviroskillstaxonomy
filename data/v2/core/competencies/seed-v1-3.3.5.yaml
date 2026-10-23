@@ -4,14 +4,15 @@ prefLabel:
   en: Records management and documentation
 statement:
   en: Creating and maintaining organized systems for important documents, data, and information.
-competencyType: practice
 notation:
 - scheme: EMSTv1
   value: 3.3.5
 layer: L1
 module: core
 homeModule: core
-status: draft
+status: superseded
+replacedBy:
+- seed:SC-C02
 useTier: exploratory
 validationStatus: seed-v1
 v1Domain:
@@ -21,7 +22,7 @@ v1SkillArea:
   code: '3.3'
   label: Resource Administration
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-MANAGE. Rationale: Records integrity, retention and disclosure (FOIA) linked to the administrative record (SC-C02); absorbs 2.5.2. Role verdicts considered: none recorded.'
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → SC-C02. Rationale: Records integrity, retention and disclosure join the defensible administrative record; generic filing-system design is referenced from O*NET/ESCO (G-8); tool training goes to L4. Role verdicts considered: none recorded.'
 license: CC0-1.0
 sensitivity: public
 provenance:
@@ -46,10 +47,6 @@ provenance:
     sourceTextLine: 5720
     relation: recovered
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  - v1Key: v1:2.5.2
-    v1Code: 2.5.2
-    relation: merged-from
-    note: v1 2.5.2 (merge) → seed:v1-3.3.5 per v1_disposition.csv
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:

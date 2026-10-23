@@ -22,7 +22,9 @@ CC0-1.0: the project lead dedicated the v1 text to the public domain (PROJECT_LE
 ADR-0013). Without that dedication (licensing.yaml v1Dedication: pending) the fallback LicenseRef applies.
 
 Authoring safety: an existing seed file is NEVER overwritten once it has left validationStatus seed-v1, moved, or
-been edited by an author (any difference from the generated text);
+been edited by an author. data/v2/migration/seed_ledger.csv records the SHA-256 of each seed file as the migration last
+wrote it; a seed whose file still has that hash is untouched and is regenerated (e.g. after a disposition amendment),
+any other difference is an authored change and is left alone;
 use --force only on a clean checkout. Assessment batches, X1, and migration/ files are regenerated.
 
 Usage:
@@ -883,6 +885,14 @@ def generate(inp: Inputs):
     return plan, comps, tasks, batches
 
 
+LEDGER = L.DATA_V2 / "migration" / "seed_ledger.csv"
+
+
+def read_ledger() -> dict[str, str]:
+    """{seed id: sha256 of the file as the migration last wrote it}."""
+    return {r["id"]: r["sha256"] for r in L.read_csv(LEDGER)} if LEDGER.exists() else {}
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--check", action="store_true")
@@ -895,6 +905,8 @@ def main(argv=None) -> int:
     hold_keys = set(hold.get("heldSeedKeys") or [])
     outputs: dict[Path, str] = {}
     skipped, drift = [], []
+    ledger = read_ledger()
+    new_ledger = dict(ledger)
     existing = {}
     if not args.x1_only:
         for loc, rec in L.iter_records(L.DATA_V2):
@@ -902,20 +914,27 @@ def main(argv=None) -> int:
                 existing[rec["id"]] = (loc.path, rec)
         for path, rec in list(comps.values()) + list(tasks.values()):
             have = existing.get(rec["id"])
+            text = L.dump_yaml(rec)
             if have is None or args.force:
-                outputs[path] = L.dump_yaml(rec)
+                outputs[path] = text
+                new_ledger[rec["id"]] = L.sha256_bytes(text.encode("utf-8"))
             elif have[0] != path or have[1].get("validationStatus") != "seed-v1":
                 skipped.append(rec["id"])            # authored or moved: never overwritten
-            elif L.dump_yaml(have[1]) != L.dump_yaml(rec):
+            elif have[0].read_text(encoding="utf-8") == text:
+                outputs[path] = text
+                new_ledger[rec["id"]] = L.sha256_bytes(text.encode("utf-8"))
+            elif ledger.get(rec["id"]) == L.sha256_file(have[0]):
+                outputs[path] = text                 # untouched since the migration wrote it: regenerate
+                new_ledger[rec["id"]] = L.sha256_bytes(text.encode("utf-8"))
+            else:
                 # still seed-v1 but edited by an author (e.g. superseded, supports re-pointed): an authored change,
                 # never overwritten without --force, and not a --check failure
                 drift.append(str(path.relative_to(L.ROOT)))
                 skipped.append(rec["id"])
-            else:
-                outputs[path] = L.dump_yaml(rec)
         for path, recs in batches.items():
             outputs[path] = "".join(L.jsonl_line(r) + "\n" for r in recs)
         outputs[L.DATA_V2 / "migration" / "restoration_sample.csv"] = L.csv_text(SAMPLE_COLUMNS, restoration_sample(inp))
+        outputs[LEDGER] = L.csv_text(["id", "sha256"], [{"id": k, "sha256": v} for k, v in sorted(new_ledger.items())])
     outputs[L.DATA_V2 / "migration" / "v1_targets.csv"] = L.csv_text(TARGET_COLUMNS, targets_rows(inp, plan, hold_keys))
     # X1 is computed against the records as they will be after this run
     recs = current_records(L.DATA_V2)

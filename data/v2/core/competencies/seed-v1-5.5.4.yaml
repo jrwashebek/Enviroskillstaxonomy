@@ -4,14 +4,15 @@ prefLabel:
   en: Public relations management
 statement:
   en: Maintaining a positive public image for land management organizations, especially during challenging situations.
-competencyType: practice
 notation:
 - scheme: EMSTv1
   value: 5.5.4
 layer: L1
 module: core
 homeModule: core
-status: draft
+status: superseded
+replacedBy:
+- seed:v1-5.1.1
 useTier: exploratory
 validationStatus: seed-v1
 v1Domain:
@@ -21,7 +22,7 @@ v1SkillArea:
   code: '5.5'
   label: Customer Service
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | MODE-ENGAGE. Rationale: Public information and media relations; absorbs 5.1.4. Role verdicts considered: none recorded.'
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:5.1.1. Rationale: Public information and media relations are a communication context of communicating technical environmental information; risk and crisis messaging is TX-E (DB-C29); generic public relations referenced from O*NET/ESCO (G-8). Role verdicts considered: none recorded.'
 license: CC0-1.0
 sensitivity: public
 provenance:
@@ -46,10 +47,6 @@ provenance:
     sourceTextLine: 11709
     relation: recovered
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  - v1Key: v1:5.1.4
-    v1Code: 5.1.4
-    relation: merged-from
-    note: v1 5.1.4 (merge) → seed:v1-5.5.4 per v1_disposition.csv
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:

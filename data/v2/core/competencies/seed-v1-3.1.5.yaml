@@ -4,14 +4,15 @@ prefLabel:
   en: Performance monitoring and evaluation
 statement:
   en: Tracking progress during projects and assessing results afterward to determine success and identify lessons learned.
-competencyType: practice
 notation:
 - scheme: EMSTv1
   value: 3.1.5
 layer: L1
 module: core
 homeModule: core
-status: draft
+status: superseded
+replacedBy:
+- seed:v1-3.2.5
 useTier: exploratory
 validationStatus: seed-v1
 v1Domain:
@@ -21,7 +22,7 @@ v1SkillArea:
   code: '3.1'
   label: Project Management
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-LEARN. Rationale: Programme performance monitoring and evaluation; absorbs the durable remainder of 3.4.5; private delivery metrics via PS-C03 (PS verdict). Role verdicts considered: PS:change.'
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): merge → v1:3.2.5. Rationale: Programme performance monitoring and evaluation folds into the adaptive management cycle (plan, monitor, evaluate, adjust), as in the Conservation Standards; generic programme evaluation remainder referenced from O*NET/ESCO (G-8); private delivery metrics stay with PS-C03. Role verdicts considered: PS:change.'
 license: CC0-1.0
 sensitivity: public
 provenance:
@@ -46,10 +47,6 @@ provenance:
     sourceTextLine: 5244
     relation: recovered
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  - v1Key: v1:3.4.5
-    v1Code: 3.4.5
-    relation: merged-from
-    note: v1 3.4.5 (move-to-tools) → seed:v1-3.1.5 per v1_disposition.csv
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:

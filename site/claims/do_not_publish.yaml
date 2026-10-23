@@ -23,6 +23,16 @@ patterns:
   - {claim: FOR-02, rx: '\b371,657\b'}
   - {claim: DISC-01, rx: 'assurance (is )?not required for 2026'}
   - {claim: WF-10, rx: 'NWCG is not a party|NWCG and USWFS'}
-  - {claim: FED-04, rx: '\b(was|were|has been|have been|is now) (realigned|consolidated)\b'}
+  - {claim: FED-04, rx: '\b(realigned|consolidated)\b', unless_before: true}
+  - {claim: ESA-03, rx: 'section 4 and (section )?7 regulations[^.]{0,80}\bfinal\b', unless_before: true}
+  - {claim: REG-05, rx: 'Greenhouse Gas Reporting Program[^.]{0,60}\bfinal\b', unless_before: true}
+  - {claim: REG-04, rx: 'Fix Our Forests Act[^.]{0,60}\benacted\b', unless_before: true}
+  - {claim: NEPA-05, rx: 'SPEED Act[^.]{0,60}\benacted\b|NEPA reform law', unless_before: true}
+  - {claim: IDX-02, rx: '\b13\s?%[^.]{0,80}\b(22|25|young|early[- ]career|AI-exposed)'}
+  - {claim: NEPA-04, rx: 'Seven County[^.]{0,80}\b5-3\b|\b5-3\b[^.]{0,60}Seven County'}
+  - {claim: NHPA-01, rx: 'ACHP[^.]{0,80}\b16-5\b|\b16-5\b[^.]{0,80}ACHP'}
+  - {claim: NEPA-02, rx: '\b516 DM 1\b'}
+  - {claim: NEPA-07, rx: 'CEQ[^.]{0,80}\bv1\.2\.0\b|\bv1\.2\.0\b[^.]{0,40}(CEQ|permitting data)'}
+  - {claim: AIGOV-01, rx: 'M-26-04[^.]{0,30}January 2026'}
   - {claim: WF-05, rx: 'conservation labou?r market fell'}
   - {claim: FED-03, rx: 'NRM fully implemented by FY2028'}

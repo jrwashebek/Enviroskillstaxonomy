@@ -11,6 +11,10 @@
 //     v1 codes only inside the v1 evidence drawer; HR disclaimers on series, class and federal/state variant pages;
 //     "assessment pending" on role-change pages; pathways never "recommended"; no Tribal variant pages; Tribal-hold
 //     trigger terms only inside marked policy statements; no held seed key; no e-mail address or phone number.
+//  E. WP-15 claims register (docs/methods/claims_register.csv, docs/methods/WP15_SIGNOFF.md): every unverified or held
+//     row the explorer uses is mapped in claims/register_map.yaml; mapped instrument titles are always followed by
+//     "Unverified — not for citation"; judgment-dated event days never appear; no `do_not_say` wrong form appears
+//     (quoted phrases from the register plus claims/do_not_publish.yaml).
 // Writes reports/check-output.json and, when everything passes, _site/download/security/SITE_SHA256SUMS.
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync, existsSync } from "node:fs";
@@ -78,6 +82,55 @@ const heldKeys = existsSync(holdFile) ? (yaml.load(readFileSync(holdFile, "utf-8
 const heldRx = heldKeys.length ? new RegExp(`(?<![A-Za-z0-9._/:-])(?:${heldKeys.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})(?![A-Za-z0-9._/-])`) : null;
 const meta = JSON.parse(readFileSync(join(SITE, ".cache", "release-meta.json"), "utf-8"));
 const releaseId = meta.version;
+
+// ---------------------------------------------------------------- E. claims register inputs
+function parseCsv(text) {
+  const rows = []; let row = []; let cur = ""; let q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += c; continue; }
+    if (c === '"') q = true; else if (c === ",") { row.push(cur); cur = ""; } else if (c === "\n") { row.push(cur); rows.push(row); row = []; cur = ""; } else if (c !== "\r") cur += c;
+  }
+  if (cur || row.length) { row.push(cur); rows.push(row); }
+  const [h, ...rest] = rows;
+  return rest.filter((r) => r.length > 1).map((r) => Object.fromEntries(h.map((k, i) => [k, r[i] ?? ""])));
+}
+const REG_PATH = join(ROOT, "docs", "methods", "claims_register.csv");
+const register = existsSync(REG_PATH) ? parseCsv(readFileSync(REG_PATH, "utf-8")) : [];
+const regMap = (yaml.load(readFileSync(join(SITE, "claims", "register_map.yaml"), "utf-8")).rows) || {};
+const dnp = (yaml.load(readFileSync(join(SITE, "claims", "do_not_publish.yaml"), "utf-8")).patterns) || [];
+const STOP = new Set("about above after again against before being below between could would should their there these those which while where whose with within without other under through during first since still often among into from that this were have been than then them they what when your more most such only also each both many much very same some over make made".split(" "));
+const anchorsOf = (claim) => [...new Set((claim.match(/[A-Za-z][A-Za-z0-9.()-]{4,}/g) || []).map((w) => w.toLowerCase().replace(/[().]+$/, "")).filter((w) => !STOP.has(w)))];
+const wrongForms = [];
+for (const r of register) {
+  // Quoted wrong forms only: an opening quote after a space, bracket or start, a closing quote before a boundary
+  // (so possessives such as "LM's" are not read as quotes).
+  for (const m of String(r.do_not_say || "").matchAll(/(?:^|[\s(;])'([^']{2,}?)'(?=[\s,;.)]|$)/g)) {
+    const phrase = m[1].trim();
+    // Safe forms the register recommends ("write '...'") are not wrong forms. Short quoted words ('final', 'deployed')
+    // are too common to match on their own; the curated patterns in claims/do_not_publish.yaml cover them in context.
+    if (/\bwrite\s*$/i.test(String(r.do_not_say).slice(0, m.index + m[0].indexOf("'")))) continue;
+    if (phrase.length < 12) continue;
+    wrongForms.push({ claim: r.claim_id, phrase, strict: true, anchors: anchorsOf(r.claim) });
+  }
+}
+for (const d of dnp) wrongForms.push({ claim: d.claim, rx: new RegExp(d.rx, "i"), unlessBefore: !!d.unless_before });
+const bundle = JSON.parse(readFileSync(join(meta.releaseDir, "emst.bundle.jsonld"), "utf-8"))["@graph"];
+const instrumentTitles = new Map(bundle.filter((r) => r.type === "Instrument").map((r) => [r.id, (r.prefLabel || {}).en || ""]));
+const mappedUnverified = [];      // [{claim, title}]
+const judgedEventStrings = [];    // rendered "<date> <eventType>" strings that must not appear
+for (const r of register) {
+  if (!["unverified", "held"].includes(r.status)) continue;
+  const m = regMap[r.claim_id];
+  const usedHere = /WP-12|explorer|instrument registry|venue view/i.test(r.used_in || "");
+  if (!m && usedHere) problems.push({ file: "claims/register_map.yaml", rule: "E1", msg: `register row ${r.claim_id} (${r.status}) is used by the explorer but not mapped` });
+  if (!m) continue;
+  for (const id of m.instruments || []) {
+    if (!instrumentTitles.has(id)) { problems.push({ file: "claims/register_map.yaml", rule: "E1", msg: `${r.claim_id} maps to ${id}, which is not in the release` }); continue; }
+    mappedUnverified.push({ claim: r.claim_id, title: instrumentTitles.get(id) });
+  }
+  for (const lab of m.events_with_evidence_label || []) for (const e of bundle) if (e.type === "DriverEvent" && (e.evidenceLabel || "S") === lab) judgedEventStrings.push({ claim: r.claim_id, s: `${e.eventDate} ${e.eventType}` });
+}
 
 const NEG = /\b(never|not|no|nor|nothing|none|without|until|unless|before|isn't|aren't|cannot|neither)\b/i;
 // A claim is negated only by a negation word earlier in the same sentence (at most `win` characters back).
@@ -171,6 +224,38 @@ for (const f of files) {
     for (const rx of tribal) { const m = policyFree.match(rx); if (m) fail(f, "D4", `Tribal-hold trigger outside a policy statement: "…${policyFree.slice(Math.max(0, m.index - 60), m.index + 60)}…"`); }
     if (heldRx && heldRx.test(html)) fail(f, "D5", "held seed key present");
     for (const p of PERSONAL) for (const m of visible.matchAll(p.rx)) fail(f, `D6-${p.id}`, `${p.msg}: ${m[0]}`);
+    // E. claims register
+    const low = visible.toLowerCase();
+    for (const u of mappedUnverified) {
+      let i = visible.indexOf(u.title);
+      while (i >= 0) {
+        if (!visible.slice(i, i + u.title.length + 400).includes("Unverified — not for citation")) { fail(f, "E2", `${u.claim}: "${u.title.slice(0, 60)}" rendered without "Unverified — not for citation"`); break; }
+        i = visible.indexOf(u.title, i + u.title.length);
+      }
+    }
+    for (const j of judgedEventStrings) if (visible.includes(j.s)) fail(f, "E3", `${j.claim}: judgment-dated event "${j.s}" rendered as a sourced date`);
+    for (const w of wrongForms) {
+      if (w.rx) {
+        for (const m of visible.matchAll(new RegExp(w.rx.source, "gi"))) {
+          if (w.unlessBefore && NEG.test(visible.slice(Math.max(0, m.index - 20), m.index))) continue;
+          fail(f, "E4", `${w.claim} wrong form: "…${visible.slice(Math.max(0, m.index - 50), m.index + 70)}…"`);
+        }
+        continue;
+      }
+      const ph = w.phrase.toLowerCase();
+      let i = low.indexOf(ph);
+      while (i >= 0) {
+        const before = low.charAt(i - 1), after = low.charAt(i + ph.length);
+        const bounded = !/[a-z0-9]/.test(before) && !/[a-z0-9]/.test(after);
+        if (bounded) {
+          if (w.strict) { fail(f, "E4", `${w.claim} wrong form '${w.phrase}': "…${visible.slice(Math.max(0, i - 50), i + ph.length + 50)}…"`); break; }
+          const win = low.slice(Math.max(0, i - 150), i + ph.length + 150);
+          const hits = w.anchors.filter((a) => win.includes(a)).length;
+          if (hits >= 2 && !NEG.test(visible.slice(Math.max(0, i - 20), i))) { fail(f, "E4", `${w.claim} wrong form '${w.phrase}' near its topic: "…${visible.slice(Math.max(0, i - 60), i + ph.length + 60)}…"`); break; }
+        }
+        i = low.indexOf(ph, i + ph.length);
+      }
+    }
     const isVariant = /^\/roles\/[^/]+\/[^/]+\/$/.test(url);
     if (isVariant && !/assessment pending/i.test(visible)) fail(f, "D7", "role-change page without 'assessment pending'");
     const hr = /^\/(federal-series|state-classes)\/[^/]+\/$/.test(url) || (isVariant && /· (Federal government|State government)<\/span><\/h1>/.test(html));
@@ -195,6 +280,7 @@ for (const f of files) {
 }
 
 // Search index and gap data are JSON inside pages; they were covered by the HTML text and fetch checks above.
+stats.registerRows = register.length; stats.wrongForms = wrongForms.length; stats.unverifiedInstruments = mappedUnverified.length;
 const report = { ok: problems.length === 0, release: releaseId, outDir: relative(SITE, OUT), stats, problems };
 mkdirSync(join(SITE, "reports"), { recursive: true });
 writeFileSync(join(SITE, "reports", "check-output.json"), JSON.stringify(report, null, 1));

@@ -144,6 +144,7 @@ export function buildModel({ root, releaseDir, meta }) {
     }
     claims.signoff = existsSync(join(root, "docs", "methods", "WP15_SIGNOFF.md")) ? "docs/methods/WP15_SIGNOFF.md" : null;
   }
+  const dnsPhrases = [...claims.rows.values()].flatMap((r) => [...String(r.do_not_say || "").matchAll(/(?:^|[\s(;])'([^']{12,}?)'(?=[\s,;.)]|$)/g)].map((m) => m[1].toLowerCase()));
   const gateLabels = gates.labels;
 
   // ---------------------------------------------------------------- computed views
@@ -651,7 +652,8 @@ export function buildModel({ root, releaseDir, meta }) {
       signals: signalVMs.filter((x) => x.signposts.includes(s.notation) || x.target === `vocab:scenarios#${s.notation}`),
     })),
     noRegret: sc.no_regret_moves_2026_2029.filter((m) => releasable(m.move)).map((m) => ({ code: m.id, text: m.move })),
-    wildcards: sc.wildcards.filter((w) => releasable(w.wildcard + w.effect)).map((w) => ({ code: w.id, text: w.wildcard, effect: w.effect })),
+    // Wildcards whose wording matches a register wrong form (e.g. WF-07) are left out (WP-15 sign-off §2.3).
+    wildcards: sc.wildcards.filter((w) => releasable(w.wildcard + w.effect) && !dnsPhrases.some((p) => (w.wildcard + " " + w.effect).toLowerCase().includes(p))).map((w) => ({ code: w.id, text: w.wildcard, effect: w.effect })),
   };
 
   // ---------------------------------------------------------------- HR registers: OPM series and state classes
