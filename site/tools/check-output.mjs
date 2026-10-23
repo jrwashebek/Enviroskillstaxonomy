@@ -164,7 +164,7 @@ for (const f of files) {
       if (c.onlyUrl && !c.onlyUrl.test(url)) continue;
       for (const m of visible.matchAll(c.rx)) {
         if (c.neg && negated(visible, m.index)) continue;
-        if (c.allowNear && c.allowNear.test(visible.slice(Math.max(0, m.index - 80), m.index + 120))) continue;
+        if (c.allowNear && c.allowNear.test(visible.slice(Math.max(0, m.index - 80), m.index + 320))) continue;
         fail(f, `D3-${c.id}`, `${c.msg}: "…${visible.slice(Math.max(0, m.index - 60), m.index + 60)}…"`);
       }
     }

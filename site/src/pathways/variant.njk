@@ -22,7 +22,8 @@ eleventyComputed:
   <p>{% if e.named %}Named as a next step in this role's profile. {% endif %}{% if e.learning.length %}Exploratory learning pathway drafted ({% for l in e.learning %}{{ l.type }}, {{ l.steps }} steps{% if not loop.last %}; {% endif %}{% endfor %}). {% endif %}Basis: computed from draft role profiles, not observed in career moves.</p>
   <figure class="emst-figure" data-figure data-use-tier="exploratory" data-evidence="{{ e.toRole.evidence.label }}">
     <figcaption>{{ e | sharedText }}</figcaption>
-    {% if e.gapCount %}<p>To build ({{ e.gapCount }}{% if e.gapCount > e.gaps.length %}, first {{ e.gaps.length }} shown{% endif %}): {% for g in e.gaps %}<a href="{{ g.competency.url | url }}">{{ g.competency.title }}</a> to {{ g.level }}{% if g.partial %} (raise from this role's target){% endif %}{% if not loop.last %}; {% endif %}{% endfor %}.</p>{% else %}<p>No competency gap at the destination's target levels.</p>{% endif %}
+    <p class="emst-muted">Compares this role's targets at its {{ e.fromLevel }} level with the destination's targets at its {{ e.toLevel }} level. Target levels are editorial drafts (agent-drafted, unreviewed). Rule pathway-edges@0.1.0 (interim).</p>
+    {% if e.gapCount %}<p>To build ({{ e.gapCount }}{% if e.gapCount > e.gaps.length %}, first {{ e.gaps.length }} shown{% endif %}): {% for g in e.gaps %}<a href="{{ g.competency.url | url }}">{{ g.competency.title }}</a> to {{ g.level }}{% if g.partial %} (from {{ g.fromLevel }}){% endif %}{% if not loop.last %}; {% endif %}{% endfor %}.</p>{% else %}<p>No competency gap at the destination's target levels.</p>{% endif %}
     <p class="emst-meta"><span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> {{ m.evBadge(e.toRole.evidence) }}</p>
   </figure>
   <h3>Where this role exists</h3>

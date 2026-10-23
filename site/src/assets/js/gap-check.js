@@ -45,7 +45,7 @@
     rows().forEach(function (fs) {
       var p = fs.querySelector("[data-target-text]");
       var t = targetFor(fs);
-      if (p) p.textContent = t ? "Target for the " + roleLevel() + " level of this role: " + t : "No target for the " + roleLevel() + " level of this role.";
+      if (p) p.textContent = t ? "Target for the " + roleLevel() + " level of this role (editorial draft): " + t : "No target for the " + roleLevel() + " level of this role.";
     });
   }
 
@@ -125,12 +125,12 @@
       if (!self && !sup) return;
       items.push({
         id: fs.getAttribute("data-competency"), title: fs.getAttribute("data-title"), url: fs.getAttribute("data-url"),
-        importance: Number(fs.getAttribute("data-importance")) || 0, self: self, sup: sup, target: target,
+        self: self, sup: sup, target: target,
         gap: (target && self && self !== "unsure") ? (ORD[target] - ORD[self]) : null,
       });
     });
     var gaps = items.filter(function (i) { return i.gap != null && i.gap > 0; })
-      .sort(function (a, b) { return (b.gap - a.gap) || (b.importance - a.importance) || a.title.localeCompare(b.title); });
+      .sort(function (a, b) { return (b.gap - a.gap) || a.title.localeCompare(b.title); });  // no importance weighting (CR-CP-001 B4)
     return {
       items: items, start: gaps.slice(0, 3), more: gaps.slice(3),
       strengths: items.filter(function (i) { return i.gap != null && i.gap <= 0; }),

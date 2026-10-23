@@ -25,9 +25,9 @@
 {% macro ratingFieldset(c, target, idx, mode) -%}
 <fieldset class="emst-rate" data-competency="{{ c.id }}" data-title="{{ c.title }}" data-url="{{ c.url | url }}"
   data-span="{% for l in c.levels %}{{ l.level }}{% if not loop.last %} {% endif %}{% endfor %}"
-  data-targets="{% if target %}{{ target.targetLevels | json }}{% endif %}" data-importance="{{ target.importance if target else '' }}">
+  data-targets="{% if target %}{{ target.targetLevels | json }}{% endif %}">
   <legend>{{ c.title }}</legend>
-  {% if target %}<p class="emst-target" data-target-text>Target for this role: {% for k, l in target.targetLevels %}{{ k }} {{ l }}{% if not loop.last %}; {% endif %}{% endfor %}</p>{% endif %}
+  {% if target %}<p class="emst-target" data-target-text>Target for this role (editorial draft): {% for k, l in target.targetLevels %}{{ k }} {{ l }}{% if not loop.last %}; {% endif %}{% endfor %}</p>{% endif %}
   <details class="emst-disclosure emst-levels">
     <summary>What each level looks like (observable indicators)</summary>
     <div>
@@ -68,7 +68,7 @@
 {% macro summaryRegion() -%}
 <section class="emst-js-only" aria-labelledby="emst-summary-h" data-summary hidden>
   <h2 id="emst-summary-h" tabindex="-1">Your development priorities</h2>
-  <p>Ordered by the size of the gap to the target, then by the competency's importance to the role. This ranks competencies, not you, and is not a score.</p>
+  <p>Ordered by the size of the gap to the target level. Importance to the role is not used: it is a job-analysis value that is not yet confirmed. This ranks competencies, not you, and is not a score.</p>
   <div data-summary-body></div>
   <div class="emst-toolbar">
     <button type="button" class="usa-button" data-action="csv">Download priorities as CSV</button>

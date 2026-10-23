@@ -116,6 +116,7 @@ export function buildModel({ root, releaseDir, meta }) {
     reliability: Object.fromEntries(ct.signal_reliability.values.map((t) => [t.notation, t.definition])),
     instrumentStatus: Object.fromEntries(dm.instrument_statuses.values.map((t) => [t.notation, t.definition])),
     mechanism: Object.fromEntries(dm.terms.map((t) => [t.notation, t.definition])),
+    mechanismName: Object.fromEntries(dm.terms.map((t) => [t.notation, String(t.prefLabel || t.notation).replace(/-/g, " ")])),
     subsector: Object.fromEntries(flattenSubsectors(subs).map((t) => [t.notation, t.prefLabel])),
   };
   function flattenSubsectors(d) {
@@ -610,7 +611,7 @@ export function buildModel({ root, releaseDir, meta }) {
     const noEvents = evs.length === 0;
     return {
       id: i.id, title: en(i.prefLabel), type: i.instrumentType || "", jurisdiction: i.jurisdiction || "", citation: i.citation || "",
-      mechanisms: (i.mechanisms || []).map((m) => ({ code: m, label: labels.mechanism[m] || m })), status, statusText: labels.instrumentStatus[status] || "",
+      mechanisms: (i.mechanisms || []).map((m) => ({ code: m, label: releasable(labels.mechanism[m]) ? labels.mechanism[m] || m : labels.mechanismName[m] || m })), status, statusText: labels.instrumentStatus[status] || "",
       unverified, noEvents, noEventRow: noEvents ? claims.noEventRow : null,
       events: unverified.length ? [] : evs.map((e) => {
         const judged = claims.suppressEventLabels.has(e.evidenceLabel || "S");
@@ -632,10 +633,10 @@ export function buildModel({ root, releaseDir, meta }) {
       for (const t of v.role.competencyTargets) for (const e of records.get(t.id)?.instrumentSensitivity || []) if (e.mechanism) mechs.set(e.mechanism, (mechs.get(e.mechanism) || 0) + 1);
       const viaMech = [];
       for (const [m] of [...mechs].sort((a, b) => b[1] - a[1])) for (const i of byMech.get(m) || []) {
-        if (seen.has(i.id) || (i.jurisdiction && v.actor === "federal" && !/^US/.test(i.jurisdiction))) continue;
-        seen.add(i.id); viaMech.push({ i, via: `sensitivity to ${labels.mechanism[m] ? m + " (" + labels.mechanism[m].toLowerCase() + ")" : m}` });
+        if (seen.has(i.id) || i.jurisdiction !== "US") continue;        // state instruments only through typed links
+        seen.add(i.id); viaMech.push({ i, via: `sensitivity to ${m} (${labels.mechanismName[m] || m})` });
       }
-      v.instrumentLinks = { typed, viaMech: viaMech.slice(0, 12), viaMechTotal: viaMech.length };
+      v.instrumentLinks = { typed, viaMech: viaMech.slice(0, 8), viaMechTotal: viaMech.length };
     }
   }
   const changeIndicators = civ.rows.map((r) => ({
