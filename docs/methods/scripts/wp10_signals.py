@@ -6,6 +6,7 @@ can satisfy the ADR-0028 evidence rule yet). Only derived aggregates are stored:
 no person-level rows. Tribal-related signals are quarantined (careFlag = true, held = True).
 """
 import os
+import re
 
 from wp10_common import (ROOT, base, provenance, write_jsonl, sha256_file, RECHECK_PENDING,
                          WATCH_REVIEW_BY, AS_OF, TOOL_VERSION, PROMPT_VERSION)
@@ -16,9 +17,8 @@ PRED = {"exact": "skos:exactMatch", "close": "skos:closeMatch", "related": "skos
 
 
 def role(k):
-    """Role targets are the planned MVP role keys (docs/decisions/mvp_role_set.csv) until WP-08 authors RoleProfile
-    seeds; an ExternalRef so nothing dangles. CR-LM-001 asks for the mechanical re-point."""
-    return "mvp-role:" + k
+    """RoleProfile seed key (CR-IA-001 ruling: seed:<role_key>); WP-08 authored all 37 MVP role profiles."""
+    return "seed:" + k
 
 
 def wf(k):
@@ -30,7 +30,7 @@ def actor(k):
 
 
 def ttype(target):
-    if target.startswith("mvp-role:"):
+    if re.match(r"^seed:R\d{2}-", target):
         return "RoleProfile"
     if target.startswith("seed:ins/"):
         return "Instrument"

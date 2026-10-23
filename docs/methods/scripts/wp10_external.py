@@ -68,7 +68,7 @@ def fnum(x):
 def _common(rec, code, onet, role_key, mt):
     rec["license"] = LICENSE
     rec["targetType"] = "RoleProfile"
-    rec["targetId"] = "mvp-role:" + role_key
+    rec["targetId"] = "seed:" + role_key
     rec["crosswalkPath"] = ["native %s (index unit)" % onet,
                             "X3 role -> SOC (pending WP-09); provisional: docs/decisions/mvp_role_set.csv soc_2018 lists %s for %s" % (code, role_key)]
     rec["crosswalkMinMatchType"] = PRED[mt]

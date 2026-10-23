@@ -63,7 +63,7 @@ def bls_signals():
                                      % (rel, chg, ("; about %s thousand openings a year" % opn) if opn is not None else "")))
             r.update({
                 "targetType": "RoleProfile",
-                "targetId": "mvp-role:" + role_key,
+                "targetId": "seed:" + role_key,
                 "measure": {"name": "projected_employment_change_percent_2025_35", "value": pct, "unit": "percent", "ci95": None, "n": None,
                             "denominator": "employment 2025 = %s thousand (2035 projected %s thousand)" % (e25, e35),
                             "baseline": {"value": ALL_OCC_PCT, "note": "all occupations, 2025-35 (percent)"}},
