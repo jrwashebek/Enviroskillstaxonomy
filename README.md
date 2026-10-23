@@ -4,6 +4,10 @@ EMST is an open, versioned, machine-readable taxonomy of the work, capabilities 
 
 > **Status: Phase 4 build, pre-release.** Nothing here is validated by subject-matter panels yet. Records drafted by agents are draft evidence (`validationStatus: draft`, evidence label S for ratings). EMST describes work; it is not a selection instrument, not a classification basis, not a job analysis and not for RIF, adverse action or performance-rating decisions. Indigenous knowledge is a distinct body of expertise held and governed by Indigenous nations and is out of scope by design; nothing Tribal-related is published before a Tribal Advisory Council approves (ADR-0007).
 
+> **Who made this.** A team of AI agents (Anthropic's Claude) researched and drafted the contents of this repository, each agent working in a specialist role to a charter set by the EMST project lead. Role names used in these files, such as "Chief Taxonomy Architect", are AI agent roles, not people. AI agents checked facts against sources in October 2026, but no independent human expert has reviewed the work yet.
+
+**Comments, corrections and pilot enquiries:** [open an issue](https://github.com/jrwashebek/Enviroskillstaxonomy/issues).
+
 ## Where things are
 
 | Path | What |
