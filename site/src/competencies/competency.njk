@@ -1,0 +1,78 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: emst.competencies
+  size: 1
+  alias: c
+permalink: "{{ c.url }}"
+eleventyComputed:
+  title: "{{ c.title }}"
+---
+{% import "macros.njk" as m %}
+<h1>{{ c.title }}</h1>
+<p>{{ c.typeLabel }}{% if c.transversalCluster %} · transversal cluster {{ c.transversalCluster }}{% endif %} · {{ m.lifecycleTag(c.lifecycleState) }}{% if c.reviewBy %} · review by {{ c.reviewBy }}{% endif %} {{ m.moduleTag(c) }}</p>
+{% if c.altLabels.length %}<p class="emst-muted">Also searched as: {{ c.altLabels | join("; ") }}</p>{% endif %}
+{{ m.meta(c.tier, c.evidence, ("binding cap: " + c.tier.bindingCap) if c.tier.bindingCap else "") }}
+{% if c.evidence.isV1Seed %}<div class="emst-callout emst-callout--warn" role="note"><p>This record still carries v1 text that has not yet been rewritten to the v2 rules (observable, function-based wording). Treat it as a placeholder.</p></div>{% endif %}
+
+{% if c.statement %}<p class="emst-lede">{{ c.statement }}</p>{% endif %}
+{% if c.definition %}<h2>Definition</h2><p class="emst-prose">{{ c.definition }}</p>{% endif %}
+{% if c.subsectors.length %}<p>Subsectors: {% for s in c.subsectors %}{{ s.label }} ({{ s.code }}){% if not loop.last %}; {% endif %}{% endfor %}</p>{% endif %}
+
+{{ m.venueBlock(c, emst.venue) }}
+
+<h2>Levels and observable indicators</h2>
+{% if c.levels.length %}
+{% for l in c.levels %}
+<h3>{{ l.level }} {{ l.label }}</h3>
+{% if l.indicators.length %}
+<ul class="usa-list">
+{% for i in l.indicators %}
+  <li>{{ i.statement }} <span class="emst-muted">({{ i.augmentationMode or "mode not set" }}{% if i.distinguishingAttribute %}; distinguished by {{ i.distinguishingAttribute | lower }}{% endif %}; use class {{ i.useClass or "not set" }}; effective use tier {{ i.tier.tier }}; evidence {{ i.evidence.label }}, {{ i.evidence.reviewStatus }})</span></li>
+{% endfor %}
+</ul>
+{% else %}<p class="emst-muted">No indicators at this level yet.</p>{% endif %}
+{% endfor %}
+<p class="emst-muted">Indicator placement at a level is a draft until a pre-registered Delphi panel places it (70% modal, IQR at most 1). No indicator here is approved for selection use.</p>
+{% else %}
+<p>{% if c.type == "knowledge-area" %}Knowledge areas have no proficiency levels; they are assessed through knowledge statements.{% else %}No levels defined yet.{% endif %}</p>
+{% endif %}
+
+<h2>Tasks this competency serves ({{ c.tasks.length }})</h2>
+{% for t in c.tasks %}{{ m.taskBlock(t, emst.gateLabels) }}{% else %}<p>No task links in this build.</p>{% endfor %}
+
+{% if c.enactments.length %}
+<h2>How the work differs by sector, module or craft</h2>
+{% for e in c.enactments %}
+<details class="emst-disclosure">
+  <summary>{{ e.title }} <span class="emst-muted">({{ e.kind }}{% if e.actorType %}: {{ e.actorType }}{% endif %}{% if e.kind == "module" %}: {{ e.module }}{% endif %}{% if e.craft %}: {{ e.craft }}{% endif %})</span></summary>
+  <div>
+    <p>{{ e.note }}</p>
+    {% if e.authorityBasis %}<p><strong>Authority basis:</strong> {{ e.authorityBasis }}</p>{% endif %}
+    {% if e.principal %}<p><strong>Principal:</strong> {{ e.principal }}</p>{% endif %}
+    {{ m.meta(e.tier, e.evidence) }}
+  </div>
+</details>
+{% endfor %}
+{% endif %}
+
+{% if c.tools.length %}
+<h2>Tools layer (changes faster than the competency)</h2>
+<ul class="usa-list">{% for t in c.tools %}<li>{{ t.title }} ({{ t.lifecycleState }}{% if t.halfLife %}; expected half-life about {{ t.halfLife }} years{% endif %})</li>{% endfor %}</ul>
+{% endif %}
+
+<h2>Crosswalks</h2>
+{{ m.crosswalkTable(c.crosswalks, "Draft crosswalks for this competency", true) }}
+{% if not c.crosswalks.length %}<p>No crosswalk rows for this competency in this build.</p>{% endif %}
+
+<h2>Evidence and lineage</h2>
+<dl class="emst-dl">
+  <dt>Record ID</dt><dd><code>{{ c.id }}</code></dd>
+  <dt>Editorial status</dt><dd>{{ c.status }}; validation status {{ c.evidence.validationStatus }}</dd>
+  <dt>How it was made</dt><dd>{{ c.evidence.method }}{% if c.evidence.agents %} by {{ c.evidence.agents }}{% endif %}{% if c.evidence.generatedAt %}, {{ c.evidence.generatedAt }}{% endif %}</dd>
+  <dt>Review</dt><dd>{{ c.evidence.reviewStatus }}</dd>
+  {% if c.evidence.sources.length %}<dt>Sources</dt><dd>{{ c.evidence.sources | join(", ") }} <span class="emst-muted">(source IDs resolve to the repository's sources registers)</span></dd>{% endif %}
+  {% if c.derivedFrom.length %}<dt>v1 lineage</dt><dd>{% for d in c.derivedFrom %}{{ d.key }} ({{ d.relation }}){% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
+  <dt>Competency type</dt><dd>{{ c.gateType.text }}</dd>
+</dl>
+<p><a href="{{ '/challenge/' | url }}">Challenge this record</a> (quote <code>{{ c.id }}</code>).</p>

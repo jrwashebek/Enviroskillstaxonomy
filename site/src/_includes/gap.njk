@@ -1,0 +1,78 @@
+{#- Gap-check building blocks (View 2). Ratings never leave the page except as a file the user saves. -#}
+
+{% macro privacyNotice() -%}
+<div class="emst-callout" role="note">
+  <p><strong>Your answers stay on this device.</strong> The gap check runs in your browser. Nothing you choose or type is sent anywhere, stored by this site, or put in the address bar. When you leave or reload the page your answers are gone unless you save them to a file.</p>
+  <p>This is for development planning. It ranks competencies to work on, never people, and gives no score.</p>
+</div>
+<p class="emst-nojs-note emst-callout emst-callout--warn">The rating controls below work without JavaScript, but saving, opening a saved file and the summary need JavaScript. Nothing is sent anywhere either way.</p>
+{%- endmacro %}
+
+{% macro toolbar(fileHint) -%}
+<div class="emst-js-only">
+  <div class="emst-toolbar" role="group" aria-label="Save, open or clear your answers">
+    <button type="button" class="usa-button" data-action="save">Save to file</button>
+    <label class="usa-button usa-button--outline" for="emst-open-file">Open a saved file</label>
+    <input type="file" id="emst-open-file" class="usa-sr-only" accept=".json,application/json" data-action="open">
+    <button type="button" class="usa-button usa-button--secondary" data-action="clear">Clear everything</button>
+    <button type="button" class="usa-button usa-button--outline" data-action="summary">See summary</button>
+  </div>
+  <p class="emst-status" role="status" aria-live="polite" data-status></p>
+  <p class="emst-muted">Files are saved as <code>{{ fileHint }}</code> in your downloads folder. They contain the release ID, the role variant (if any), the level and your ratings and notes; nothing else.</p>
+</div>
+{%- endmacro %}
+
+{% macro ratingFieldset(c, target, idx, mode) -%}
+<fieldset class="emst-rate" data-competency="{{ c.id }}" data-title="{{ c.title }}" data-url="{{ c.url | url }}"
+  data-span="{% for l in c.levels %}{{ l.level }}{% if not loop.last %} {% endif %}{% endfor %}"
+  data-targets="{% if target %}{{ target.targetLevels | json }}{% endif %}" data-importance="{{ target.importance if target else '' }}">
+  <legend>{{ c.title }}</legend>
+  {% if target %}<p class="emst-target" data-target-text>Target for this role: {% for k, l in target.targetLevels %}{{ k }} {{ l }}{% if not loop.last %}; {% endif %}{% endfor %}</p>{% endif %}
+  <details class="emst-disclosure emst-levels">
+    <summary>What each level looks like (observable indicators)</summary>
+    <div>
+    {% for l in c.levels %}
+      <p><strong>{{ l.level }} {{ l.label }}</strong></p>
+      {% if l.indicators.length %}<ul class="usa-list">{% for i in l.indicators %}<li>{{ i.statement }}</li>{% endfor %}</ul>{% else %}<p class="emst-muted">No indicators at this level yet.</p>{% endif %}
+    {% endfor %}
+    <p class="emst-muted">Indicators are drafts (use tier {{ c.tier.tier }}; evidence {{ c.evidence.label }}, {{ c.evidence.reviewStatus }}).</p>
+    </div>
+  </details>
+  <div class="usa-radio-group" data-role="self">
+    <p><strong>Where are you now?</strong></p>
+    <div class="usa-radio"><input class="usa-radio__input" type="radio" id="s-{{ idx }}-none" name="self-{{ idx }}" value="none"><label class="usa-radio__label" for="s-{{ idx }}-none">Not yet at {{ c.levels[0].level }}</label></div>
+    {% for l in c.levels %}<div class="usa-radio"><input class="usa-radio__input" type="radio" id="s-{{ idx }}-{{ l.level }}" name="self-{{ idx }}" value="{{ l.level }}"><label class="usa-radio__label" for="s-{{ idx }}-{{ l.level }}">{{ l.level }} {{ l.label }}</label></div>{% endfor %}
+    <div class="usa-radio"><input class="usa-radio__input" type="radio" id="s-{{ idx }}-unsure" name="self-{{ idx }}" value="unsure"><label class="usa-radio__label" for="s-{{ idx }}-unsure">Not sure</label></div>
+  </div>
+  {% if mode == "competencies" %}
+  <label class="usa-label" for="aim-{{ idx }}">Level you are aiming for</label>
+  <select class="usa-select" id="aim-{{ idx }}" name="aim-{{ idx }}" data-role="aim">
+    <option value="">Not set</option>
+    {% for l in c.levels %}<option value="{{ l.level }}">{{ l.level }} {{ l.label }}</option>{% endfor %}
+  </select>
+  {% endif %}
+  <details class="emst-disclosure">
+    <summary>Add a supervisor's view (optional)</summary>
+    <div class="usa-radio-group" data-role="supervisor">
+      <div class="usa-radio"><input class="usa-radio__input" type="radio" id="v-{{ idx }}-none" name="sup-{{ idx }}" value="none"><label class="usa-radio__label" for="v-{{ idx }}-none">Not yet at {{ c.levels[0].level }}</label></div>
+      {% for l in c.levels %}<div class="usa-radio"><input class="usa-radio__input" type="radio" id="v-{{ idx }}-{{ l.level }}" name="sup-{{ idx }}" value="{{ l.level }}"><label class="usa-radio__label" for="v-{{ idx }}-{{ l.level }}">{{ l.level }} {{ l.label }}</label></div>{% endfor %}
+      <div class="usa-radio"><input class="usa-radio__input" type="radio" id="v-{{ idx }}-unsure" name="sup-{{ idx }}" value="unsure"><label class="usa-radio__label" for="v-{{ idx }}-unsure">Not sure</label></div>
+    </div>
+  </details>
+  <label class="usa-label" for="note-{{ idx }}">Note (optional)</label>
+  <span class="usa-hint" id="note-{{ idx }}-hint">Evidence or examples for your development plan. Do not type names or other personal details.</span>
+  <textarea class="usa-textarea" id="note-{{ idx }}" name="note-{{ idx }}" rows="2" maxlength="500" aria-describedby="note-{{ idx }}-hint" data-role="note"></textarea>
+</fieldset>
+{%- endmacro %}
+
+{% macro summaryRegion() -%}
+<section class="emst-js-only" aria-labelledby="emst-summary-h" data-summary hidden>
+  <h2 id="emst-summary-h" tabindex="-1">Your development priorities</h2>
+  <p>Ordered by the size of the gap to the target, then by the competency's importance to the role. This ranks competencies, not you, and is not a score.</p>
+  <div data-summary-body></div>
+  <div class="emst-toolbar">
+    <button type="button" class="usa-button" data-action="csv">Download priorities as CSV</button>
+    <button type="button" class="usa-button usa-button--outline" data-action="print">Print or save as PDF</button>
+  </div>
+</section>
+{%- endmacro %}

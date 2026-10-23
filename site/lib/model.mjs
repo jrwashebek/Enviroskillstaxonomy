@@ -584,6 +584,7 @@ export function buildModel({ root, releaseDir, meta }) {
     stateClasses: figureOf(stateClasses), signals: { ...figureOf(signalVMs), tier: { tier: "exploratory", source: "watch signals" } },
     watchItems: { ...figureOf(watchItems), tier: { tier: "exploratory", source: "lifecycle cap (watch)" } }, instruments: figureOf(instrumentVMs),
     emergingCompetencies: figureOf(emergingCompetencies),
+    gate: { tier: { tier: "exploratory", source: "display gate" }, ev: { label: "S", labelText: "Speculation", isAgentDraft: true, isV1Seed: false, reviewStatus: "unreviewed" } },
   };
 
   return {

@@ -9,15 +9,15 @@
     "node": ">=22"
   },
   "scripts": {
+    "build": "node tools/prepare-release.mjs && node tools/vendor.mjs && npm run --silent sbom && npx @11ty/eleventy --quiet && node tools/check-output.mjs",
+    "build:portable": "EMST_PORTABLE=1 npm run build",
     "release": "node tools/prepare-release.mjs",
     "vendor": "node tools/vendor.mjs",
     "pages": "npx @11ty/eleventy --quiet",
-    "postbuild": "node tools/check-output.mjs",
-    "build": "node tools/prepare-release.mjs && node tools/vendor.mjs && npx @11ty/eleventy --quiet",
     "check": "node tools/check-output.mjs",
     "test": "node tools/check-output.mjs && node tools/browser-checks.mjs",
     "a11y": "node tools/browser-checks.mjs",
-    "sbom": "npm sbom --sbom-format cyclonedx --omit dev > security/sbom-runtime.cdx.json && npm sbom --sbom-format cyclonedx > security/sbom-build.cdx.json",
+    "sbom": "node tools/sbom.mjs",
     "serve": "node tools/serve.mjs"
   },
   "dependencies": {

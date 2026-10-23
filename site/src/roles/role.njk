@@ -7,7 +7,6 @@ pagination:
 permalink: "/roles/{{ role.slug }}/"
 eleventyComputed:
   title: "{{ role.title }}"
-  crumbs: [["/roles/", "Roles"], [null, "{{ role.title }}"]]
 ---
 {% import "macros.njk" as m %}
 <h1>{{ role.title }}</h1>

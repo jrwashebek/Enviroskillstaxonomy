@@ -22,7 +22,7 @@ title: Home
   {{ m.statFigure(emst.roles.length, "Role profiles", emst.figures.roles, "Being authored by the role-profile work package; pages appear as records are added." if emst.roles.length == 0 else emst.variants.length + " sector-actor variants") }}
   {{ m.statFigure(emst.coreCompetencies.length, "Core competencies (live records)", emst.figures.coreCompetencies) }}
   {{ m.statFigure(emst.moduleList.length, "Module editorial sections", emst.figures.moduleCompetencies, ((emst.competencies | length) - (emst.coreCompetencies | length)) + " module competency records, kept out of default HR views") }}
-  {{ m.statFigure(emst.stats.gatedRendering, "Rated values that pass the display gate", {tier: {tier: "exploratory", source: "display gate"}, ev: {label: "S", labelText: "Speculation", isAgentDraft: true, reviewStatus: "unreviewed"}}, "Out of " + emst.stats.gatedRows + " gated or editorial value slots. Values render only after a human agreement study passes (alpha lower bound at least 0.667).") }}
+  {{ m.statFigure(emst.stats.gatedRendering, "Rated values that pass the display gate", emst.figures.gate, "Out of " + emst.stats.gatedRows + " gated or editorial value slots. Values render only after a human agreement study passes (alpha lower bound at least 0.667).") }}
 </div>
 
 <h2>Also here</h2>

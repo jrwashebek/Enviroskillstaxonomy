@@ -7,7 +7,6 @@ pagination:
 permalink: "{{ v.url }}"
 eleventyComputed:
   title: "How this role is changing: {{ v.role.title }} ({{ v.actorLabel }})"
-  crumbs: [["/roles/", "Roles"], ["{{ v.role.url }}", "{{ v.role.title }}"], [null, "{{ v.actorLabel }}"]]
 ---
 {% import "macros.njk" as m %}
 <h1>{{ v.role.title }} <span class="emst-muted">· {{ v.actorLabel }}</span></h1>

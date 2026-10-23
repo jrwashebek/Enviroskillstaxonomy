@@ -125,7 +125,7 @@
     <dt>Reliability</dt><dd>{{ s.reliability }}{% if s.reliabilityText %}: {{ s.reliabilityText }}{% endif %}</dd>
     <dt>Review by</dt><dd>{{ s.reviewBy }}</dd>
   </dl>
-  <p class="emst-meta">{{ tierBadge({tier: "exploratory", source: "watch signal"}) }} {{ evBadge(s.evidence) }}</p>
+  <p class="emst-meta">{{ tierBadge({"tier": "exploratory", "source": "watch signal"}) }} {{ evBadge(s.evidence) }}</p>
 </li>
 {%- endmacro %}
 

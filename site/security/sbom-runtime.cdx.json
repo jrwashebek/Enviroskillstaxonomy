@@ -1,0 +1,422 @@
+{
+ "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+ "bomFormat": "CycloneDX",
+ "specVersion": "1.5",
+ "serialNumber": "urn:uuid:0883ab66-032f-4088-991c-e7f0f12dff31",
+ "version": 1,
+ "metadata": {
+  "timestamp": "2026-10-23T15:28:41.291Z",
+  "lifecycles": [
+   {
+    "phase": "build"
+   }
+  ],
+  "tools": [
+   {
+    "vendor": "npm",
+    "name": "cli",
+    "version": "10.9.4"
+   }
+  ],
+  "component": {
+   "bom-ref": "emst-explorer@0.1.0",
+   "type": "library",
+   "name": "site",
+   "version": "0.1.0",
+   "scope": "required",
+   "description": "EMST Tier 1 static, local-first explorer (WP-12). Generated from an EMST release build; no server, no accounts, no cookies, no analytics, no runtime third-party requests.",
+   "purl": "pkg:npm/emst-explorer@0.1.0",
+   "properties": [
+    {
+     "name": "cdx:npm:package:path",
+     "value": ""
+    },
+    {
+     "name": "cdx:npm:package:private",
+     "value": "true"
+    }
+   ],
+   "externalReferences": [],
+   "licenses": [
+    {
+     "license": {
+      "id": "Apache-2.0"
+     }
+    }
+   ]
+  }
+ },
+ "components": [
+  {
+   "bom-ref": "@lit-labs/ssr-dom-shim@1.6.0",
+   "type": "library",
+   "name": "@lit-labs/ssr-dom-shim",
+   "version": "1.6.0",
+   "scope": "required",
+   "author": "Google LLC",
+   "description": "DOM shim for Lit Server Side Rendering (SSR)",
+   "purl": "pkg:npm/%40lit-labs/ssr-dom-shim@1.6.0",
+   "properties": [
+    {
+     "name": "cdx:npm:package:path",
+     "value": "node_modules/@lit-labs/ssr-dom-shim"
+    }
+   ],
+   "externalReferences": [
+    {
+     "type": "distribution",
+     "url": "https://registry.npmjs.org/@lit-labs/ssr-dom-shim/-/ssr-dom-shim-1.6.0.tgz"
+    },
+    {
+     "type": "vcs",
+     "url": "git+https://github.com/lit/lit.git"
+    },
+    {
+     "type": "website",
+     "url": "https://github.com/lit/lit/tree/main/packages/labs/ssr-dom-shim"
+    },
+    {
+     "type": "issue-tracker",
+     "url": "https://github.com/lit/lit/issues"
+    }
+   ],
+   "hashes": [
+    {
+     "alg": "SHA-512",
+     "content": "5476f400b3cc4e580a8cceb2231c6840d9e92b250a2c3d3857379076c89790caa4bd89401f1abd82518b9a06dbf3cf7fd46b288523808ef418a22069a5716aad"
+    }
+   ],
+   "licenses": [
+    {
+     "license": {
+      "id": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "bom-ref": "@lit/reactive-element@2.1.2",
+   "type": "library",
+   "name": "@lit/reactive-element",
+   "version": "2.1.2",
+   "scope": "required",
+   "author": "Google LLC",
+   "description": "A simple low level base class for creating fast, lightweight web components",
+   "purl": "pkg:npm/%40lit/reactive-element@2.1.2",
+   "properties": [
+    {
+     "name": "cdx:npm:package:path",
+     "value": "node_modules/@lit/reactive-element"
+    }
+   ],
+   "externalReferences": [
+    {
+     "type": "distribution",
+     "url": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz"
+    },
+    {
+     "type": "vcs",
+     "url": "git+https://github.com/lit/lit.git"
+    },
+    {
+     "type": "website",
+     "url": "https://lit.dev/"
+    },
+    {
+     "type": "issue-tracker",
+     "url": "https://github.com/lit/lit/issues"
+    }
+   ],
+   "hashes": [
+    {
+     "alg": "SHA-512",
+     "content": "a5b0838953279ded6561421a60d379c2bc105c3b47698b60ed81053de5be870b3a538ed6785bc84865167a43c629638fd7282bb3479fd28d5524c9357b1a2ce4"
+    }
+   ],
+   "licenses": [
+    {
+     "license": {
+      "id": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "bom-ref": "@types/trusted-types@2.0.7",
+   "type": "library",
+   "name": "@types/trusted-types",
+   "version": "2.0.7",
+   "scope": "required",
+   "description": "TypeScript definitions for trusted-types",
+   "purl": "pkg:npm/%40types/trusted-types@2.0.7",
+   "properties": [
+    {
+     "name": "cdx:npm:package:path",
+     "value": "node_modules/@types/trusted-types"
+    }
+   ],
+   "externalReferences": [
+    {
+     "type": "distribution",
+     "url": "https://registry.npmjs.org/@types/trusted-types/-/trusted-types-2.0.7.tgz"
+    },
+    {
+     "type": "vcs",
+     "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    {
+     "type": "website",
+     "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/trusted-types"
+    },
+    {
+     "type": "issue-tracker",
+     "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+    }
+   ],
+   "hashes": [
+    {
+     "alg": "SHA-512",
+     "content": "49c68f767d5d41cce06e5d101537933a65471542eddfde17260390368c95859eabdaf2e730b25f04f779dd2079d93ff71b7e95235fe0d8c65a5f47300ee5ec7f"
+    }
+   ],
+   "licenses": [
+    {
+     "license": {
+      "id": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "bom-ref": "@uswds/uswds@3.14.0",
+   "type": "library",
+   "name": "@uswds/uswds",
+   "version": "3.14.0",
+   "scope": "required",
+   "author": "18F",
+   "description": "Open source UI components and visual style guide for U.S. government websites",
+   "purl": "pkg:npm/%40uswds/uswds@3.14.0",
+   "properties": [
+    {
+     "name": "cdx:npm:package:path",
+     "value": "node_modules/@uswds/uswds"
+    }
+   ],
+   "externalReferences": [
+    {
+     "type": "distribution",
+     "url": "https://registry.npmjs.org/@uswds/uswds/-/uswds-3.14.0.tgz"
+    },
+    {
+     "type": "vcs",
+     "url": "git+https://github.com/uswds/uswds.git"
+    },
+    {
+     "type": "website",
+     "url": "https://github.com/uswds/uswds#readme"
+    },
+    {
+     "type": "issue-tracker",
+     "url": "https://github.com/uswds/uswds/issues"
+    }
+   ],
+   "hashes": [
+    {
+     "alg": "SHA-512",
+     "content": "930679d13a86b33c63dfe310866f9cf38848d32f2b20aa1ced92ca6ee1e0fbcad39058aca7d95738c443db0725cb2b9865a869003c4cbda3e89e0edbc0bedc7b"
+    }
+   ]
+  },
+  {
+   "bom-ref": "lit@3.3.3",
+   "type": "library",
+   "name": "lit",
+   "version": "3.3.3",
+   "scope": "required",
+   "author": "Google LLC",
+   "description": "A library for building fast, lightweight web components",
+   "purl": "pkg:npm/lit@3.3.3",
+   "properties": [
+    {
+     "name": "cdx:npm:package:path",
+     "value": "node_modules/lit"
+    }
+   ],
+   "externalReferences": [
+    {
+     "type": "distribution",
+     "url": "https://registry.npmjs.org/lit/-/lit-3.3.3.tgz"
+    },
+    {
+     "type": "vcs",
+     "url": "git+https://github.com/lit/lit.git"
+    },
+    {
+     "type": "website",
+     "url": "https://lit.dev/"
+    },
+    {
+     "type": "issue-tracker",
+     "url": "https://github.com/lit/lit/issues"
+    }
+   ],
+   "hashes": [
+    {
+     "alg": "SHA-512",
+     "content": "7f272ebd983f864a68ccbd34966d691091f99cdfe5afd65777a9892361d2378f81cdcf8b0cd74402927a1c56cf91d14d1cbbcea65208b89bf1912e17531aa2af"
+    }
+   ],
+   "licenses": [
+    {
+     "license": {
+      "id": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "bom-ref": "lit-element@4.2.2",
+   "type": "library",
+   "name": "lit-element",
+   "version": "4.2.2",
+   "scope": "required",
+   "author": "Google LLC",
+   "description": "A simple base class for creating fast, lightweight web components",
+   "purl": "pkg:npm/lit-element@4.2.2",
+   "properties": [
+    {
+     "name": "cdx:npm:package:path",
+     "value": "node_modules/lit-element"
+    }
+   ],
+   "externalReferences": [
+    {
+     "type": "distribution",
+     "url": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz"
+    },
+    {
+     "type": "vcs",
+     "url": "git+https://github.com/lit/lit.git"
+    },
+    {
+     "type": "website",
+     "url": "https://lit.dev/"
+    },
+    {
+     "type": "issue-tracker",
+     "url": "https://github.com/lit/lit/issues"
+    }
+   ],
+   "hashes": [
+    {
+     "alg": "SHA-512",
+     "content": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
+    }
+   ],
+   "licenses": [
+    {
+     "license": {
+      "id": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "bom-ref": "lit-html@3.3.3",
+   "type": "library",
+   "name": "lit-html",
+   "version": "3.3.3",
+   "scope": "required",
+   "author": "Google LLC",
+   "description": "HTML templates literals in JavaScript",
+   "purl": "pkg:npm/lit-html@3.3.3",
+   "properties": [
+    {
+     "name": "cdx:npm:package:path",
+     "value": "node_modules/lit-html"
+    }
+   ],
+   "externalReferences": [
+    {
+     "type": "distribution",
+     "url": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz"
+    },
+    {
+     "type": "vcs",
+     "url": "git+https://github.com/lit/lit.git"
+    },
+    {
+     "type": "website",
+     "url": "https://lit.dev/"
+    },
+    {
+     "type": "issue-tracker",
+     "url": "https://github.com/lit/lit/issues"
+    }
+   ],
+   "hashes": [
+    {
+     "alg": "SHA-512",
+     "content": "7a5f0cea32b6a37457067ad21d7dd92abb0df33115eb7a521314ced70609cfb427746619f37e777b66b93cf5fea877b66866b27e7721426900a2369601110e20"
+    }
+   ],
+   "licenses": [
+    {
+     "license": {
+      "id": "BSD-3-Clause"
+     }
+    }
+   ]
+  }
+ ],
+ "dependencies": [
+  {
+   "ref": "emst-explorer@0.1.0",
+   "dependsOn": [
+    "@uswds/uswds@3.14.0"
+   ]
+  },
+  {
+   "ref": "@lit-labs/ssr-dom-shim@1.6.0",
+   "dependsOn": []
+  },
+  {
+   "ref": "@lit/reactive-element@2.1.2",
+   "dependsOn": [
+    "@lit-labs/ssr-dom-shim@1.6.0"
+   ]
+  },
+  {
+   "ref": "@types/trusted-types@2.0.7",
+   "dependsOn": []
+  },
+  {
+   "ref": "@uswds/uswds@3.14.0",
+   "dependsOn": [
+    "lit@3.3.3"
+   ]
+  },
+  {
+   "ref": "lit@3.3.3",
+   "dependsOn": [
+    "@lit/reactive-element@2.1.2",
+    "lit-element@4.2.2",
+    "lit-html@3.3.3"
+   ]
+  },
+  {
+   "ref": "lit-element@4.2.2",
+   "dependsOn": [
+    "@lit-labs/ssr-dom-shim@1.6.0",
+    "@lit/reactive-element@2.1.2",
+    "lit-html@3.3.3"
+   ]
+  },
+  {
+   "ref": "lit-html@3.3.3",
+   "dependsOn": [
+    "@types/trusted-types@2.0.7"
+   ]
+  }
+ ]
+}
