@@ -1,0 +1,28 @@
+# EMST computed-view rule (SPEC §5.20, §14.2-§14.3; ADR-0006 §4, ADR-0017, ADR-0027; CR-FH-001 #1). Normative definition; code in `implementation`.
+ruleId: federal-series-profile
+version: 0.1.0
+status: interim
+steward: FH (definition proposal, WP-08) · DE (implementation) · CA (definition)
+decidedIn: [ADR-0006, ADR-0017, ADR-0027, ADR-0030, CR-FH-001, CR-CP-001]
+reference_implementation: pipelines/views/federal_series_profile.py (FH, WP-08; authoring tool, never run by CI)
+computes: >
+  One Federal Series Profile per OPM series that X4 maps, with a positive non-negated predicate, to a released P1, P2 or
+  P4 role. It is assembled from the role's federal variant. P3 roles are excluded; they appear only in the what's-coming view.
+inputs: [released RoleProfile, RoleVariant, Competency, Task, KnowledgeStatement, Credential and SeriesRecord records; X4 mapping set]
+definition:
+  series_status: "From the dated SeriesRecord and its events. A series proposed for realignment is shown as proposed, never as realigned (ADR-0027 corrected facts; CR-IA-001)."
+  bands: "From RoleVariant.indicativeGradeOrBand (byRoleLevel when present), labelled 'not a classification criterion'."
+  duties: "Major duties = the variant's bundle tasks at each role level (editorial design values). % time is NOT shown unless timeShare is job-analysis-confirmed; otherwise '% time: set by the supervisor; EMST supplies none before job analysis' (display-gate@1.1.0 job_analysis_rule)."
+  knowledge: "Factor 1 knowledge from competency targets and their knowledge statements; target levels labelled 'editorial draft'."
+  flags: "neededAtEntry and distinguishing are shown only at the display-gate thresholds; otherwise 'assessment pending'."
+  gates: "Credential gates only where the Credential is issuerVerified with sources (SPEC §10.5 rule 8)."
+  module_rule: "Content of the role's or variant's home module renders in the main section with its module label; other modules' content and non-established items go to a collapsed section (CR-CP-001 B5)."
+  disclaimer: "Every profile carries: not a classification basis / not a job analysis / not for RIF or rating decisions."
+  held: "Tribal variants and held records are never read."
+outputs:
+  view: "views/federal_series_profiles/<series code>.json"
+  fields: "seriesCode, seriesStatus{value, asOf, events[]}, role, variant, bands[], duties[], knowledge[], gates[], collapsed[], disclaimers[], ruleId, ruleVersion, buildCommit"
+parameters: {}
+implementation: scripts/build_release.py#Builder.views (to be ported by DE from the reference implementation; RULINGS_FOR_DE.md §19)
+changeNote:
+  - {date: '2026-10-23', note: "Registered from WP-08's proposed generator, with display constraints from CR-CP-001 B4-B5 (ADR-0030)."}

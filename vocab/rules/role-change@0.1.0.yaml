@@ -1,0 +1,25 @@
+# EMST computed-view rule (SPEC §14.2-§14.3; ADR-0027 §1-2, ADR-0028; CR-FH-001 #1-#2, CR-CP-001 A3, B6). Normative definition; code in `implementation`.
+ruleId: role-change
+version: 0.1.0
+status: interim
+steward: FH (definition proposal, WP-08) · CP (summary, WP-12) · LM (signals) · DE (implementation) · CA (definition)
+decidedIn: [ADR-0008, ADR-0027, ADR-0028, ADR-0030, CR-FH-001, CR-CP-001]
+reference_implementation: "pipelines/views/change_view.py (FH, WP-08) and site/lib/model.mjs role-change summary (CP, WP-12); authoring tools, never run by CI"
+computes: >
+  View 1 "How is this role changing?" for each released P1 role and variant. It uses released records only: per-task
+  assessment status, role-level change signals, and instruments linked through sensitivity edges and typed links. It adds a
+  summary of tasks by assessment status per role level.
+inputs: [released RoleProfile, RoleVariant, Task, ExposureAssessment, ChangeSignal, Instrument, DriverEvent and Competency records; views/change_indicators.json; views/display_gate.json; views/venue_applicability.json]
+definition:
+  task_status: "Per bundle task: 'assessed' only where the display gate renders a v2 assessment (display-gate rule in force); otherwise 'assessment pending'. Agent change judgments (raterType llm) never render (CR-CP-001 B6)."
+  signals: "Role-level ChangeSignals targeting the role, its variants or its editorial primary work function, with status (watch/active), family, drivers and reliability. Indicators move only under change-indicator@1.0.0, never here."
+  instruments: "Instruments reached through the tasks' and competencies' sensitivity edges (inherited edges computed) and the variants' typed links, each with its dated status and link role."
+  summary: "Per role level: count of bundle tasks by task_status (N of M). Time shares are not used unless job-analysis-confirmed (display-gate@1.1.0 job_analysis_rule)."
+  excluded: "External occupation-level context (licence LicenseRef-EMST-third-party-index-derived; ADR-0029 §9.6); v1 values (evidence drawer only, never in this view); docs/build/WP-08/change_view_inputs.yaml (authoring input, not a record); held records and Tribal-flagged signals."
+outputs:
+  view: "views/role_change/<role_key>.json; views/role_change/summary.json"
+  fields: "role, variant, roleLevels[{level, tasks[{task, status}], counts{assessed, pending}}], signals[], instruments[{instrument, role, status, asOf}], ruleId, ruleVersion, buildCommit"
+parameters: {}
+implementation: scripts/build_release.py#Builder.views (to be ported by DE from the reference implementations; RULINGS_FOR_DE.md §19)
+changeNote:
+  - {date: '2026-10-23', note: "Registered; merges FH's role-change-inputs and CP's role-change-summary into one rule for one view; counts, not time shares (CR-FH-001; CR-CP-001; ADR-0030)."}

@@ -15,6 +15,8 @@ python3 pipelines/crosswalks/x8_x11_private.py
 python3 pipelines/crosswalks/x9_ecq.py
 if [[ -n "${EMST_ONET_CACHE:-}" ]]; then
   python3 pipelines/x2/build_candidates.py --release "${ONET_RELEASE:-27.2}" --k 6
+  # Coder B is a separate blind LLM pass, run by hand (needs the claude CLI; see CODING_PROTOCOL.md §4):
+  #   python3 pipelines/x2/run_coder_b.py run|write --release 27.2 --workdir <scratch dir outside the repo>
   python3 pipelines/x2/merge_x2.py --release "${ONET_RELEASE:-27.2}"
   python3 pipelines/x2/kappa.py pipelines/x2/coding/coder-a.csv pipelines/x2/coding/coder-b.csv --out pipelines/x2/work/x2_kappa.json
 fi

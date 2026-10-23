@@ -1,0 +1,26 @@
+# EMST computed-view rule (SPEC §5.21, §14.2-§14.3; ADR-0006 §4; CR-FH-001 #1, #5). Normative definition; code in `implementation`.
+ruleId: state-class-view
+version: 0.1.0
+status: interim
+steward: FH with SL (definition proposal, WP-08) · DE (implementation) · CA (definition)
+decidedIn: [ADR-0006, ADR-0017, ADR-0027, ADR-0030, CR-FH-001, CR-CP-001]
+reference_implementation: pipelines/views/state_class_view.py (FH with SL, WP-08; authoring tool, never run by CI)
+computes: >
+  One State Class View per dated StateClassRecord whose emstMapping names a released role variant. It renders the class
+  facts beside the variant at the mapped role level(s). It also gives an index of every P1-P2 state and local variant,
+  with its mapped classes or the statement that no class is mapped in the pilot jurisdictions.
+inputs: [released StateClassRecord, RoleProfile, RoleVariant, Competency, Task and Credential records; X5 mapping sets]
+definition:
+  targets: "Competency targets at the mapped role level are computed from the role (editorial design values), never copied into the register (CR-FH-001 #5)."
+  tasks: "The variant's bundle tasks at those levels. timeShare is shown only from job-analysis-confirmed (display-gate@1.1.0 job_analysis_rule)."
+  gates: "Credential gates only where the Credential is issuerVerified with sources."
+  module_rule: "As federal-series-profile@0.1.0#module_rule."
+  disclaimer: "Not a classification basis / not a job analysis / not for RIF or rating decisions."
+  held: "Held records, Tribal variants and Tribal-employer class records are never read."
+outputs:
+  view: "views/state_class_views/<jurisdiction>--<class code>.json; views/state_class_views/index.json"
+  fields: "jurisdiction, classCode, classFacts{...}, variant, roleLevels[], targets[], tasks[], gates[], collapsed[], disclaimers[], ruleId, ruleVersion, buildCommit"
+parameters: {}
+implementation: scripts/build_release.py#Builder.views (to be ported by DE from the reference implementation; RULINGS_FOR_DE.md §19)
+changeNote:
+  - {date: '2026-10-23', note: "Registered from WP-08's proposed generator, with computed competency targets and display constraints (CR-FH-001 #5; CR-CP-001 B4-B5; ADR-0030)."}

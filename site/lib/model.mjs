@@ -399,8 +399,9 @@ export function buildModel({ root, releaseDir, meta }) {
       ...(v.taskAdds || []).map(bundleItem).filter(Boolean),
     ];
     const actor = v.sectorActor;
+    const slice = v.id.split("/").slice(2).join("/");          // e.g. seed:R37-.../private/applicant-preparer
     const vm = {
-      id: v.id, slug: `${role.slug}--${slugOf(v.id.split("/").slice(1).join("-") || actor)}`, role, actor, actorLabel: labels.sectorActor[actor] || actor,
+      id: v.id, slug: `${role.slug}--${slugOf(v.id.split("/").slice(1).join("-") || actor)}`, role, actor, actorLabel: (labels.sectorActor[actor] || actor) + (slice ? ` (${slice.replace(/[-/]/g, " ")})` : ""),
       subtype: v.sectorActorSubtype || "", subtypeLabel: labels.sectorActorSubtype[v.sectorActorSubtype] || v.sectorActorSubtype || "", authorityPosition: v.authorityPosition || "", authorityPositionLabel: labels.authorityPosition[v.authorityPosition] || v.authorityPosition || "",
       industry: v.industry || "", ownership: v.ownership || "", deliveryModel: v.deliveryModel || "", definition: en(v.definition), title: en(v.prefLabel) || `${role.title} (${labels.sectorActor[actor] || actor})`,
       bundle, instruments: (v.instruments || []).map((i) => ({ id: i, title: en(records.get(i)?.prefLabel) || i })),

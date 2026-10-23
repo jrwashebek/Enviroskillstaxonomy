@@ -187,22 +187,24 @@ Checklist additions: role seed-key warning and AUTHORING_GUIDE (§11) · SSSOM 1
 ## Batch 2 (S1 close)
 
 - **From:** CA · **To:** DE (A1), with IA as co-owner of the data model · **Date:** 2026-10-23
-- **Decision record:** ADR-0030. The full rulings are under "CA ruling" in CR-DB-001, CR-DC-001, CR-DE-004, CR-FC-001, CR-FC-002, CR-LC-001 and CR-SC-001. SPEC is now **2.0.0-draft.3**.
+- **Decision record:** ADR-0030. The full rulings are under "CA ruling" in CR-DB-001, CR-DC-001, CR-DE-004, CR-FC-001, CR-FC-002, CR-LC-001 and CR-SC-001, and in CR-CP-001 and CR-FH-001, which arrived mid-session (§19). SPEC is now **2.0.0-draft.3**.
 - **Already done by the CA, so do not redo it:**
   - `vocab/authority_positions.yaml`: `closure_types` gains `employer-mandated`, `voluntary` is narrowed, and the new key `mirror_relations` is added.
   - `vocab/driver_mechanisms.yaml`: new key `instrument_link_roles`.
   - `vocab/friction_types.yaml`: new key `formation_responses`.
   - `vocab/identifiers.yaml#form.clo_iri`.
   - `vocab/rules/venue-applicability@1.0.0.yaml` (new, `active`), `vocab/rules/inverse-links@1.2.0.yaml` (new, `draft`), the reason codes and implementation pointer in `change-indicator@1.0.0.yaml`, and `#Release.views` → `#Builder.views` in six rule files.
+  - `vocab/rules/display-gate@1.1.0.yaml` (new, `draft`; IO implements), and six interim view rules: `federal-series-profile`, `state-class-view`, `job-family-membership`, `role-change`, `mirror-links` and `pathway-edges`, all `@0.1.0`.
+  - `vocab/state_class_fields.yaml#emst_mapping`: competency targets are computed.
   - `data/v2/governance/three_module_exceptions.yaml` (empty register).
   - `tests/test_rules.py` passes on these files.
 - **Lanes: as in Batch 1, with four exceptions that DE may make:**
-  1. the mechanical record changes in §16.2 (link shape), §18.3 (task moves) and §18.4 (ADR-0030 merges);
+  1. the mechanical record changes in §16.2 (link shape), §18.3 (task moves), §18.4 (ADR-0030 merges) and §19.4 (empty `competencyTargets`);
   2. the eight `docs/decisions/v1_disposition.csv` rows listed in `docs/decisions/integration/disposition_amendments.csv` (§18.4), and no other row;
-  3. the `status` flips on `inverse-links@1.2.0` and `@1.1.0` when §16.3 lands;
+  3. the `status` flips on `inverse-links@1.2.0` and `@1.1.0` when §16.3 lands, and on the six view rules when §19.1 lands;
   4. nothing else in `vocab/`, ADRs or SPEC.
-- **Do first:** run `python3 scripts/build_schema.py`. `--check` now reports `v_closureType` STALE, from the new `employer-mandated` value. Then wire the three new keys (§16.2, §16.3, §17.2).
-- **Priority, because WP-08 and WP-12 need it in S2:** §16.2 and §16.4 (typed links and the venue view), §17.1–§17.3 (planned role references, Pathway fields), §15, §14, §18, §13.
+- **Do first:** run `python3 scripts/build_schema.py`. `--check` now reports two STALE definitions: `v_closureType`, from the new `employer-mandated` value, and `StateClassFields`, from the amended `emst_mapping` definition. Then wire the three new keys (§16.2, §16.3, §17.2).
+- **Priority, because WP-08 and WP-12 need it in S2:** §16.2 and §16.4 (typed links and the venue view), §19.1 (HR and role-change views), §17.1–§17.3 (planned role references, Pathway fields), §15, §14, §18, §13.
 - **When done:**
   - bump `SCHEMA_VERSION` to `2.0.0-draft.3`;
   - regenerate the schema and context;
@@ -359,3 +361,35 @@ Checklist additions:
 - G-9 release check (§18.5);
 - AUTHORING_GUIDE (§18.6);
 - `SCHEMA_VERSION` set to 2.0.0-draft.3.
+
+## 19. CR-FH-001 and CR-CP-001: WP-08 and WP-12 views (arrived mid-session; ruled)
+
+1. **Port six views into the release.** The CA has registered the rules as `interim`, with `implementation: scripts/build_release.py#Builder.views`:
+
+   | Rule | Port from | View |
+   |---|---|---|
+   | `federal-series-profile@0.1.0` | `pipelines/views/federal_series_profile.py` | `views/federal_series_profiles/<code>.json` |
+   | `state-class-view@0.1.0` | `pipelines/views/state_class_view.py` | `views/state_class_views/<jur>--<code>.json` and `index.json` |
+   | `job-family-membership@0.1.0` | `pipelines/views/job_families.py` | `views/job_families.json` |
+   | `role-change@0.1.0` | `pipelines/views/change_view.py` and CP's `site/lib/model.mjs` summary | `views/role_change/<role_key>.json` and `summary.json` |
+   | `mirror-links@0.1.0` | `pipelines/views/mirror_links.py` | `views/mirror_links.json` |
+   | `pathway-edges@0.1.0` | CP's `site/lib/model.mjs` edge functions | `views/pathway_edges.json` |
+
+   - Ported code goes in `scripts/rules/<rule>.py` and reads **released records only**, after the release gate. It never reads `data/v2/` directly and never reads `docs/build/WP-08/change_view_inputs.yaml`.
+   - Move `pipelines/views/tests/test_views.py` into `tests/`. The WP-08 acceptance-pair checks (R11 ↔ R37, R12 ↔ R37, R11 ↔ `…/private/applicant-preparer`) become tests, not view content.
+   - **Display constraints** (`display-gate@1.1.0`, below) apply in the ported code:
+     - no `timeShare` or `importance` in the FSP or SCV before `job-analysis-confirmed`;
+     - no `critical` or `neededAtEntry` before `validationStatus ≥ reviewed` with a `pid:` reviewer;
+     - job-family weights are 1 unless importance is job-analysis-confirmed;
+     - role-change summaries count tasks, not time.
+   - When a view is ported with tests, you may set its rule file's `status: active` (authorized flip).
+2. **Display gate 1.1.0 (IO's lane; DE only wires it).** IO implements `editorial_design_values` and `job_analysis_values` in `validation/display_gates.yaml` and `display_gate.py#decide`, then flips `display-gate@1.1.0` active and `@1.0.0` superseded. `views/display_gate.json` then carries decisions for role-profile fields too.
+3. **Schema:**
+   - `ExposureAssessment.contentChangeType`: optional, `$ref v_contentChangeType`. Generate it from `vocab/change_types.yaml#content_change_types` if it is not generated yet. No `drivers` field.
+   - `RoleVariant.indicativeGradeOrBand.byRoleLevel`: optional, `{type: object, propertyNames: {$ref: v_roleLevelKey}, additionalProperties: {type: string, minLength: 1}}`. Make `band` required only when `byRoleLevel` is absent.
+4. **State class mapping:** `vocab/state_class_fields.yaml#emst_mapping` is amended, so regenerating makes `StateClassFields` current.
+   - Add `emstMapping.competencyTargets` to `schema/lint/computed_fields.yaml` (`E-COMPUTED-FIELD`).
+   - Remove the empty `competencyTargets: []` keys from `data/v2/registers/state_classes/`, a mechanical change you are authorized to make.
+5. **Release gate for the HR views:** held records, Tribal variants and LicenseRef-EMST-third-party-index-derived records never enter these views. The §18.1 self-check covers their outputs.
+
+Checklist additions (§19): six views ported and stamped; WP-08 view tests moved; `contentChangeType`; `byRoleLevel`; `StateClassFields` regenerated; `emstMapping.competencyTargets` computed-field lint and cleanup.

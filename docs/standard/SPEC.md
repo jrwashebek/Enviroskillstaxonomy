@@ -4,7 +4,7 @@
 
 - **Specification version:** 2.0.0-draft.3 · **Date:** 2026-10-23 · **Status:** Draft for Phase 4 implementation
 - **Editor:** Chief Taxonomy Architect (CA) · **Decision basis:** ADR-0001 … ADR-0030 in `docs/decisions/`
-- **draft.3 changes:** the CA rulings at S1 close on CR-DB-001, CR-DC-001, CR-DE-004, CR-FC-001, CR-FC-002, CR-LC-001 and CR-SC-001 (ADR-0030). The changed sections are §4, §5.2–§5.5, §5.8, §5.10, §5.16, §5.19, §11.6, §12.3, §14.2, §16.1 and §18.2.
+- **draft.3 changes:** the CA rulings at S1 close on CR-DB-001, CR-DC-001, CR-DE-004, CR-FC-001, CR-FC-002, CR-LC-001 and CR-SC-001 (ADR-0030). Also CR-CP-001 and CR-FH-001, which arrived during the session. The changed sections are §4, §5.2–§5.5, §5.8, §5.10, §5.12, §5.16, §5.19, §5.21, §10.5, §11.6, §12.3, §14.2, §16.1 and §18.2.
 - **draft.2 changes:** the CA rulings on change requests CR-DE-001…003, CR-IO-001…003, CR-LM-001…003 and CR-IA-001…002 (ADR-0029). The changed sections are §4, §5.1–§5.5, §5.12–§5.17, §5.19–§5.20, §5.24, §8.2, §10.5, §11.3–§11.4, §12.1–§12.2, §14.3, §15 and §17.1.
 - **Licence:** CC0 1.0 (ADR-0013)
 - **Implementers:** Data Engineer & Repository Steward (DE) and Interoperability Architect / Skills Intelligence (IA) build to this document; every other role authors content to it.
@@ -265,7 +265,7 @@ Production tasks SHOULD be split from specification, review and defence tasks, a
 | `instruments[]` | O | typed instrument links `{instrument, role, note}`, as on Enactment (§5.4; CR-SC-001 #2) |
 | `credentialGates[]`, `signOffAuthority` | O | |
 | `toolsCommonlyRequired[]` | O | L4 IDs (private screens on named tools, ADR-0003) |
-| `indicativeGradeOrBand` | O | `{scheme (GS, FWS, state range), band, label: "not a classification criterion"}` |
+| `indicativeGradeOrBand` | O | `{scheme (GS, FWS, state range), band, byRoleLevel {<roleLevel key>: band} (O; when present `band` is optional), label: "not a classification criterion"}` (CR-FH-001 #6) |
 | `jurisdictionalContext[]` | O | §6.7 |
 | `approvalStatus` | M for Tribal variants | `pending-tribal-review` until approved |
 | `disclaimers[]` | M for federal and state variants | "not a classification basis / not a job analysis / not for RIF or rating decisions" |
@@ -302,6 +302,7 @@ Typing rules T-1…T-7 (ADR-0003) decide L1/L2 vs L4: substitution invariance; j
 | `sWatch` | O | XR-04: true when a supervises-system or system-executes claim lacks deployment evidence and is coded compressive |
 | `tacitExperienceRequirement` | O | `Hi`, `Med` or `Lo` (codebook supporting attribute) |
 | `deploymentMode` | S (construct b) | `human-executes | assisted | compressive | supervises-system | system-executes`; `deploymentStage ∈ {none, pilot, deployed-limited, deployed-scaled}`; `deploymentEvidence[]` (M if mode is `supervises-system` or `system-executes`) |
+| `contentChangeType` | O (construct b) | how the task is changing, from `vocab/change_types.yaml#content_change_types`; the driver is given by `technicalExposure[].vector`, so there is no separate drivers field (CR-FH-001 #2) |
 | `strategy` | O | `substitution | augmentation | augmentation-for-formation` |
 | `noDeployedToolPerformsCore` | O | descriptive boolean |
 | `shouldRemainHumanReason` | O | normative field, kept separate |
@@ -369,7 +370,7 @@ Stored as `ExposureAssessment` construct (c) fields with `scenario` set to an L0
 
 ### 5.21 `StateClassRecord` (L6)
 
-SL's minimal common fields (`vocab/state_class_fields.yaml`): MUST — jurisdiction and employer type; agency; class code, title and series; level index and supervisory status; spec effective date; work-description text (or a hash and URL where reuse is restricted); MQ text and MQ location; degree rule; licences with issuer and timing; pay basis, range and effective date; provenance; and the EMST mapping record (role variant, competency targets with level, match type, confidence, reviewer, review date). SHOULD — SOC code, EEO-4 category, bargaining unit, appointment route, substitution formula, residency, exam type, broad-class flag, position overrides, native crosswalk references. Records are dated and re-run each 1 July or on state-plan revision.
+SL's minimal common fields (`vocab/state_class_fields.yaml`): MUST — jurisdiction and employer type; agency; class code, title and series; level index and supervisory status; spec effective date; work-description text (or a hash and URL where reuse is restricted); MQ text and MQ location; degree rule; licences with issuer and timing; pay basis, range and effective date; provenance; and the EMST mapping record (role variant, mapped role level(s), match type, confidence, reviewer, review date; competency targets are computed by the State Class View and never stored, CR-FH-001 #5). SHOULD — SOC code, EEO-4 category, bargaining unit, appointment route, substitution formula, residency, exam type, broad-class flag, position overrides, native crosswalk references. Records are dated and re-run each 1 July or on state-plan revision.
 
 ### 5.22 `LearningResource` (learning)
 
@@ -547,7 +548,12 @@ A stored governance decision on L1–L3 records (and L2 where useful), made when
 5. **Production and tentative.** Production values need a consensus of ≥ 3 human raters. Tentative values need ≥ 2 agreeing human codes or an adjudication. Select views admit production values only.
 6. **Editorial fields** are labelled "editorial" and not α-gated: RoleProfile.primaryWorkFunction, RoleVariant.sectorActor, RoleVariant.sectorActorSubtype, RoleVariant.authorityPosition, Enactment.actorType, Competency.homeModule, Competency.competencyType, Competency.transversalCluster and Task.supports.
 7. **Gated values:** every task-level rating, **including Task.workFunction**, and the assignment of external units (postings, PDs, state classes) to authority positions. Until a study reports, views navigate by the editorial RoleProfile.primaryWorkFunction. Gated values stay in the source records and the release bundle with their `validationStatus`.
-8. **Verified facts** (credential gates, sign-off authority, accountability constraint) need E-labelled sources, not α. Without a source they are not shown.
+8. **Verified facts** (credential gates, sign-off authority, accountability constraint) need E-labelled sources, not α. Without a source they are not shown; a credential gate renders only when its Credential is `issuerVerified` with sources (CR-CP-001 C7).
+9. **Role-profile bundle values** (`display-gate@1.1.0`, draft until IO implements; CR-CP-001 B4):
+   - **Editorial design values**, labelled "editorial draft" and shown at describe tier only, never in `select`: bundle membership, `roleLevels`, `formationTask` and `competencyTargets[].targetLevel`.
+   - **Job-analysis values**, which stay "Assessment pending (job analysis)" until `validationStatus ≥ reviewed` with a `pid:` reviewer: `taskBundle[].importance`, `timeShare`, `critical` and `neededAtEntry`, and `competencyTargets[].importance`, `distinguishing` and `criticalForSelection`. In the Federal Series Profile and the State Class View, `timeShare` and `importance` render only from `job-analysis-confirmed`.
+   - Computed views that aggregate job-analysis values use them only at the same thresholds.
+10. **Module content in HR views** (CR-CP-001 B5): cross-role default navigation shows core content only. A role-scoped view shows the role's home-module content in its main section, labelled with the module; other modules' content and non-established items are collapsed.
 
 ---
 
@@ -657,7 +663,7 @@ Authored text; per-rater atomic ratings with instrument version, date, rationale
 
 ### 14.2 Computed (build only; never in source)
 
-Per-task consensus values; competency and role exposure distributions; craft blends and dominant craft; competency roll-ups of work function and subsector; reusability suggestions; family relevance, breadth and job-family membership; CLD (task, role, pathway) with driver attribution; entry-path health; robustness class and scenario sensitivity; instrument sensitivity and venue/federal applicability; Federal Series Profiles and State Class Views; pathway edges, directional coverage, pathway scores and formation coverage (from typed `formationProvisions`); bundle contents and currency; CLO nodes; effective use tier; agreement statistics; priority scores; inverse links (incl. `mirroredBy`); tasks' inherited sensitivity edges and subsectors; three-module recurrence; all dashboard, README, release-note and documentation counts; the data dictionary.
+Per-task consensus values; competency and role exposure distributions; craft blends and dominant craft; competency roll-ups of work function and subsector; reusability suggestions; family relevance, breadth and job-family membership; CLD (task, role, pathway) with driver attribution; entry-path health; robustness class and scenario sensitivity; instrument sensitivity and venue/federal applicability; Federal Series Profiles and State Class Views; pathway edges, directional coverage, pathway scores and formation coverage (from typed `formationProvisions`); bundle contents and currency; CLO nodes; role-change views and mirror links (rules for these views and for the Federal Series Profiles, State Class Views, job-family membership and pathway edges are registered as `federal-series-profile`, `state-class-view`, `job-family-membership`, `role-change`, `mirror-links` and `pathway-edges`; CR-FH-001, CR-CP-001); effective use tier; agreement statistics; priority scores; inverse links (incl. `mirroredBy`); tasks' inherited sensitivity edges and subsectors; three-module recurrence; all dashboard, README, release-note and documentation counts; the data dictionary.
 
 ### 14.3 Rules
 

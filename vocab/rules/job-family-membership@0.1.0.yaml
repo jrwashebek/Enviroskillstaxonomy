@@ -1,0 +1,80 @@
+# EMST computed-view rule (SPEC §5.9, §14.2-§14.3; ADR-0006 §5, ADR-0021; CR-FH-001 #1). Normative definition; code in `implementation`.
+# Registered by the CA from FH's proposed file pipelines/views/rules/job-family-membership@0.1.0.yaml (parameters copied
+# verbatim); this file is now the normative copy and FH's file is a working copy only.
+ruleId: job-family-membership
+version: 0.1.0
+status: interim
+steward: FH (definition proposal and parameters, WP-08) · DE (implementation) · CA (definition)
+decidedIn: [ADR-0006, ADR-0016, ADR-0020, ADR-0021, ADR-0030, CR-FH-001, CR-CP-001]
+reference_implementation: pipelines/views/job_families.py (FH, WP-08; authoring tool, never run by CI)
+computes: Navigation-only membership of RoleProfiles in JobFamilies. Membership is never stored on any record.
+inputs: [released RoleProfile, JobFamily and Competency records]
+definition: >
+  For each role, weight each competency target by its importance, but only where that target's importance is
+  job-analysis-confirmed (display-gate@1.1.0 job_analysis_rule); otherwise every target weighs 1. Targets of the TX-A
+  floor are excluded. A role is a member of a family when (a) the weighted share of its targets that fall on the
+  family's anchor competencies is at least `minShare`, or (b) the role's homeModule is one of the family's modules and
+  that share is at least `minShareInModule`. A role may belong to several families. Roles with lifecycle proposed or
+  emerging are members but flagged `whatsComing`. Held records are never read.
+outputs:
+  view: views/job_families.json
+  fields: "family, members[{role, basis, share, whatsComing}], ruleId, ruleVersion, buildCommit"
+implementation: scripts/build_release.py#Builder.views (to be ported by DE from the reference implementation; RULINGS_FOR_DE.md §19)
+changeNote:
+  - {date: '2026-10-23', note: "Registered from FH's proposal; importance weights only when job-analysis-confirmed (CR-CP-001 B4; ADR-0030)."}
+parameters:
+  minShare: 0.20
+  minShareInModule: 0.10
+  excludeTargets: [seed:DC-CAND-01, seed:DC-CAND-02, seed:DC-CAND-13, seed:DC-CAND-05]
+  families:
+    seed:fh-family-f01-forest-management:
+      modules: [forest]
+      anchors: [seed:v1-1.3.1, seed:v1-1.3.2, seed:v1-1.3.3, seed:v1-1.3.4, seed:v1-1.3.5, seed:FH-C02, seed:PS-C23, seed:FC-C26]
+    seed:fh-family-f02-fish-wildlife-management:
+      modules: [wildlife]
+      anchors: [seed:FC-C15, seed:v1-1.4.5, seed:DB-C49, seed:FH-C10, seed:v1-4.1.2, seed:v1-6.5.5, seed:FH-C01]
+    seed:fh-family-f03-ecological-restoration:
+      modules: []
+      anchors: [seed:v1-4.2.1, seed:v1-4.2.2, seed:v1-4.2.4, seed:v1-4.2.5, seed:v1-1.7.1, seed:v1-1.7.4, seed:FC-C22, seed:v1-4.3.5]
+    seed:fh-family-f04a-watershed-water-resources:
+      modules: [waterq]
+      anchors: [seed:DB-C10, seed:DB-C11, seed:FC-C07, seed:v1-4.1.3, seed:DB-C08, seed:DB-C47, seed:FC-C06]
+    seed:fh-family-f04b-water-utility-operations:
+      modules: [water]
+      anchors: [seed:DB-C01, seed:DB-C02, seed:DB-C03, seed:SL-C06, seed:v1-4.7.3, seed:DB-C06, seed:DB-C09]
+    seed:fh-family-f05-conservation-science-ecology:
+      modules: []
+      anchors: [seed:v1-1.1.2, seed:v1-1.1.5, seed:v1-1.4.3, seed:DC-CAND-03, seed:v1-1.7.4, seed:v1-1.7.5, seed:v1-6.3.2, seed:FC-C03, seed:v1-4.1.1, seed:v1-4.1.2, seed:v1-4.1.3, seed:FC-C23]
+    seed:fh-family-f06-climate-adaptation:
+      modules: []
+      anchors: [seed:v1-1.5.1, seed:v1-1.5.2, seed:v1-1.5.3, seed:v1-1.7.2]
+    seed:fh-family-f07-environmental-data-geospatial:
+      modules: []
+      anchors: [seed:v1-2.1.2, seed:v1-2.1.4, seed:v1-2.1.5, seed:v1-2.2.1, seed:v1-2.2.2, seed:v1-2.2.3, seed:v1-2.4.1, seed:v1-2.4.2, seed:DC-CAND-04, seed:DC-CAND-06, seed:DC-CAND-08, seed:DC-CAND-09, seed:DC-CAND-11, seed:DC-CAND-12, seed:FS-C04, seed:FC-C01, seed:FC-C02, seed:DC-CAND-15, seed:DC-CAND-16, seed:DC-CAND-19, seed:DC-CAND-20, seed:DC-CAND-22, seed:DC-CAND-14]
+    seed:fh-family-f08-regulation-review-authorization:
+      modules: []
+      anchors: [seed:SL-C02, seed:SL-C03, seed:SL-C04, seed:SL-C08, seed:SL-C10, seed:SC-C01, seed:SC-C02, seed:SC-C03, seed:SC-C04, seed:SC-C09, seed:SC-C14, seed:SC-C16, seed:SC-C17, seed:DB-C25, seed:v1-5.5.2, seed:SL-C14, seed:SL-C07, seed:DB-C50, seed:SC-C10, seed:SC-C11, seed:SC-C12, seed:SC-C18, seed:v1-6.4.5, seed:DB-C19, seed:DB-C20]
+    seed:fh-family-f09-land-use-resource-planning:
+      modules: [hazards, parks]
+      anchors: [seed:v1-6.2.3, seed:IA-CC-02, seed:DB-C40, seed:DB-C43, seed:IA-CC-01, seed:IA-CC-04]
+    seed:fh-family-f10-working-lands:
+      modules: [worklands]
+      anchors: [seed:FH-C03, seed:FC-C08, seed:IA-CC-01, seed:v1-4.1.4]
+    seed:fh-family-f11-interpretation-communication:
+      modules: [parks]
+      anchors: [seed:v1-5.5.1, seed:DB-C29, seed:v1-5.2.1, seed:v1-5.2.2, seed:v1-5.2.3, seed:v1-5.2.4, seed:SC-C06, seed:SC-C18]
+    seed:fh-family-f12-fire-management:
+      modules: [forest]
+      anchors: [seed:v1-4.3.1, seed:v1-4.3.2, seed:v1-4.3.3, seed:v1-4.3.4, seed:FS-C05, seed:DB-C15]
+    seed:fh-family-f13a-environmental-public-health:
+      modules: [envhealth]
+      anchors: [seed:SL-C07, seed:LC-C-07, seed:DB-C39, seed:v1-6.7.1, seed:DB-C21]
+    seed:fh-family-f13b-cumulative-burden-analysis:
+      modules: []
+      anchors: [seed:DB-C52]
+    seed:fh-family-f14-corporate-compliance-disclosure:
+      modules: []
+      anchors: [seed:DB-C26, seed:SC-C15, seed:PS-C09, seed:PS-C07, seed:DB-C18, seed:PS-C13, seed:DB-C19, seed:DB-C20]
+    seed:fh-family-f15-environmental-finance-markets:
+      modules: [markets]
+      anchors: [seed:SL-C12, seed:SC-C10, seed:PS-C07, seed:v1-3.1.4]

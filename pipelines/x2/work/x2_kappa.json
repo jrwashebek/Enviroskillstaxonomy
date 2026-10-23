@@ -1,12 +1,57 @@
 {
- "units_coder_a": 273,
+ "units_coder_a": 316,
  "coder_a_distribution": {
-  "none": 153,
-  "related": 99,
-  "close": 6,
-  "broad": 12,
-  "narrow": 3
+  "none": 114,
+  "broad": 47,
+  "related": 128,
+  "close": 23,
+  "narrow": 4
  },
- "kappa_match_type": null,
- "status": "not computable: one coder only; a second blind coder pass is required (CODING_PROTOCOL.md \u00a74)"
+ "units_both": 316,
+ "coder_types": [
+  "agent"
+ ],
+ "agreement_label": "LLM-vs-LLM agreement between two agent coders; NOT human inter-coder reliability",
+ "coder_ids": [
+  "emstagent:claude-opus-5-5-x2-coder-b@wp09-x2-coder@2",
+  "emstagent:ia-wp09-x2-coder-a@phase4"
+ ],
+ "confusion_match_type": {
+  "broad|broad": 37,
+  "broad|close": 4,
+  "broad|none": 1,
+  "broad|related": 5,
+  "close|broad": 6,
+  "close|close": 16,
+  "close|narrow": 1,
+  "narrow|close": 2,
+  "narrow|narrow": 2,
+  "none|broad": 5,
+  "none|close": 1,
+  "none|none": 45,
+  "none|related": 63,
+  "related|broad": 17,
+  "related|close": 3,
+  "related|none": 8,
+  "related|related": 100
+ },
+ "kappa_match_type": 0.465,
+ "kappa_match_type_ci95": [
+  0.388,
+  0.541
+ ],
+ "kappa_any_vs_none": 0.396,
+ "kappa_any_vs_none_ci95": [
+  0.296,
+  0.499
+ ],
+ "exact_object_agreement_when_both_matched": 0.793,
+ "coder_b_distribution": {
+  "related": 168,
+  "none": 54,
+  "narrow": 3,
+  "broad": 65,
+  "close": 26
+ },
+ "target_kappa": 0.6
 }

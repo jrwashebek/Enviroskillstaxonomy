@@ -1,0 +1,23 @@
+# EMST computed-view rule (SPEC §5.10, §14.2-§14.3; ADR-0023, ADR-0026 §4; CR-CP-001 A3). Normative definition; code in `implementation`.
+ruleId: pathway-edges
+version: 0.1.0
+status: interim
+steward: CP (definition proposal, WP-12) · CM (mobility method) · DE (implementation) · CA (definition)
+decidedIn: [ADR-0023, ADR-0026, ADR-0027, ADR-0030, CR-CP-001]
+reference_implementation: site/lib/model.mjs pathway-edge functions (CP, WP-12; authoring tool, never run by CI)
+computes: Exploratory mobility edges between released role variants, for View 3. No edge or pathway is ever labelled recommended (ADR-0023, ADR-0027).
+inputs: [released RoleProfile, RoleVariant, Competency, Pathway and FrictionRecord records; views/mirror_links.json]
+definition:
+  overlap: "For an ordered pair (from, to) of released variants: M = the destination's competency targets at the destination role level; N = those the origin targets at or above the destination's target level. Report 'shares N of M destination competencies at the destination's target level'. Target levels are editorial design values (display-gate@1.1.0), so the edge carries the label 'editorial draft'."
+  gap: "The other M - N competencies, with origin level (or none) and destination level."
+  next_steps: "Released Pathway records whose fromVariant/toVariant match, with their cloOutcomes and formation provisions; otherwise 'no learning pathway recorded'."
+  frictions: "FrictionRecords on the actor or variant pair, with severity and basis."
+  weights: "No importance or time-share weighting unless job-analysis-confirmed (display-gate@1.1.0 job_analysis_rule)."
+  held: "Tribal variants and held records are never read."
+outputs:
+  view: views/pathway_edges.json
+  fields: "from, to, shared{N, M}, gap[{competency, fromLevel, toLevel}], pathways[], frictions[], label, ruleId, ruleVersion, buildCommit"
+parameters: {}
+implementation: scripts/build_release.py#Builder.views (to be ported by DE from the reference implementation; RULINGS_FOR_DE.md §19)
+changeNote:
+  - {date: '2026-10-23', note: "Registered from CP's explorer computation (CR-CP-001 A3; ADR-0030)."}

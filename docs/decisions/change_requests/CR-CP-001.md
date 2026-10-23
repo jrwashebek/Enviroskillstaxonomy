@@ -40,3 +40,44 @@ The explorer (`site/`) is generated from a release build only: `emst.bundle.json
 - The explorer keeps working from the stop-gap sources and labels them as such.
 - The federal applicability and HR pages depend on scripts outside the release gate. The explorer's ID re-check is the only guard.
 - Items 4 and 5 stay at the explorer's current reading until ruled.
+
+## CA ruling
+
+- **Ruling:** **accept A1–A3; decide B4–B6; confirm C7–C8** · **Date:** 2026-10-23 · **Decider:** CA · **Recorded in:** ADR-0030 §1.8 and §6, SPEC §10.5 (draft.3), `vocab/rules/role-change@0.1.0.yaml`, `vocab/rules/pathway-edges@0.1.0.yaml`, `vocab/rules/display-gate@1.1.0.yaml` (draft), DECISION_LOG `CR-CP-001`
+- **Note:** this CR arrived during the CA's S1-close session and is ruled with the batch.
+- **Implementation:** DE per `RULINGS_FOR_DE.md` §19; IO for the display-gate parameters.
+
+**A. Views from the release**
+1. **`views/venue_applicability.json`: accepted.** `venue-applicability@1.0.0` is registered (CR-SC-001 ruling, item 4). Until DE ships it, the explorer may keep the labelled prototype stop-gap but MUST NOT show a `required-basis` value. The prototype over-reads rescissions, which is the defect CR-SC-001 fixes. Show "basis not yet linked" instead.
+2. **Federal Series Profile and State Class View in the release: accepted** (CR-FH-001 ruling, item 1). The release applies its own gate; the explorer's ID re-check stays as a second guard.
+3. **Rules registered** (`interim`, ported by DE):
+   - `pathway-edges@0.1.0` as proposed.
+   - CP's `role-change-summary` is folded into FH's change-view rule as **`role-change@0.1.0`**, because one view should have one rule. Following B4, its summary counts tasks by assessment status per role level. It does **not** use time shares.
+
+**B. Rulings**
+
+4. **Role-profile bundle values: split into editorial design values and gated job-analysis values.**
+   - **Editorial design values**, shown labelled "editorial draft (agent-drafted, unreviewed)" at describe tier and never in a `select` context:
+     - which tasks and competencies a role bundles, and its `roleLevels`;
+     - `taskBundle[].formationTask` (protective, derived from `formationDependency`);
+     - `competencyTargets[].targetLevel`.
+     The gap check (View 2) and pathway edges (View 3) need target levels. A target level is a role-design statement that the Delphi validates later. It is not a measured rating.
+   - **Gated job-analysis values**, which render as "Assessment pending (job analysis)" until a named human review:
+     - `taskBundle[].importance`, `timeShare`, `critical` and `neededAtEntry`;
+     - `competencyTargets[].importance`, `distinguishing` and `criticalForSelection`.
+     These are what a job analysis measures, and WP-03's rule already forbids an LLM as sole coder of `critical` and `neededAtEntry`. They render from `validationStatus ≥ reviewed` with a `pid:` reviewer, labelled with that status. In the Federal Series Profile and State Class View, `timeShare` and `importance` render only from `job-analysis-confirmed`: percentage of time is a classification factor, and those views say "not a classification basis".
+   - **Consequences:**
+     - The FSP lists major duties without percentages ("% time: set by the supervisor; EMST supplies none before job analysis").
+     - View 1 uses task counts, not shares.
+     - `job-family-membership@0.1.0` weights targets by `importance` only once they are job-analysis-confirmed, and otherwise weights them equally.
+     - The values stay in the records and the bundle with their `validationStatus` (data download ungated).
+   - The CA has registered `display-gate@1.1.0` as `draft` with these lists. IO adds them to `validation/display_gates.yaml` and `decide()`, then sets 1.1.0 active and 1.0.0 superseded.
+5. **Module rule in HR views: CP's reading confirmed, with one precision.** "Modules stay out of default HR views" (ADR-0018 consequences) governs cross-role default navigation: catalogue browse, job-family lists, and competency lists not scoped to a role. Those show core content only.
+   - In a role-scoped view (FSP, SCV, role page), the competencies of the role's or variant's **home module**, and the module enactments of core competencies in that module, render in the main section. Each carries its module label and the Q8 note "editorial section, not a stewarded module".
+   - Content from other modules, and items that are not `established`, go to the collapsed "not part of the default HR view" section.
+   - Module-homed roles stay in the default HR views (R14 Forester's 0460 profile is not emptied).
+6. **Task-level reshaping claims: confirmed not rendered.** Agent change judgments render as "assessment pending". At role level the view shows release records only: linked instruments with dated status, through typed links and sensitivity edges, and watch signals. They become records under CR-FH-001 item 2 and stay gated there. `externalContext` is never shown (licence; ADR-0029 §9.6).
+
+**C. Confirmations**
+7. **Credential gates: confirmed.** A gate renders only when its Credential has `issuerVerified.verified = true` with sources (SPEC §10.5 rule 8), with "n not shown until the issuer is verified" for the rest. FH rewords WP-08's `evidenceNotice` to match. LM (WP-15) and LC prioritize issuer verification for gates on P1 tasks.
+8. **v1 Task 13 codes:** confirmed never read or shown.

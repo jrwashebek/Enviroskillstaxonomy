@@ -69,14 +69,28 @@ a reviewed or selection-grade mapping (ADR-0022 §4). **No public alignment clai
   `crosswalks/onet-task/27.2`. Kappa: not computable (one coder); `coder_prompt.md` ready for a blind coder B in a
   fresh context. Coder A NoTermFound share 56% (ADR-0022 expected ≈30%): v2 P1 tasks are dominated by
   specification, review and AI-output validation work with no O*NET task counterpart — a finding, not a defect.
+- X2 re-run on WP-08's P1 frame (frame `0.2.0-wp08-bundles`, 316 tasks): `build_candidates.py` now reads
+  `taskToP1Roles` only (roles per task; refuses older frames); `--k 6` as in v0.1.0. O*NET 31.0 re-tried
+  2026-10-23: onetcenter.org still refused by the egress proxy (403), no mirror found, so the set stays on 27.2
+  (version gap recorded in the set) and DWAs remain pending. Coder A: 92 v0.1.0 decisions carried (text, pool and
+  candidate list unchanged; carry rule in CODING_PROTOCOL.md v0.2.0 §1), 224 coded afresh. Coder B: four fresh
+  `claude -p` sessions (`run_coder_b.py`, model claude-opus-5-5, tools off, no MCP, no session persistence, empty
+  scratch dir, env stripped of session/project links after a probe showed the claude.ai project context leaking in);
+  each saw only `coder_prompt.md` (v2, self-contained) and the shuffled sheet under pass keys, plus the pool. Prompts
+  and raw answers stay in scratch (O*NET text). Agreement (`work/x2_kappa.json`, generated) is **LLM-vs-LLM
+  agreement, not human inter-coder reliability**; it is below the 0.6 target. Main split: coder A NoTermFound vs
+  coder B relatedMatch on review/validation/AI-oversight tasks (B reads rule 3 more leniently). `merge_x2.py`
+  keeps coder A's object on disagreements, marks them `needs-adjudication`, and records the weaker of both codes.
 - Tooling: `report_counts.py` (counts → `crosswalk_counts.json`), `build_all.sh`, `tests/test_sssomlib.py`.
 
 ## Open items (end of session 2026-10-23)
 
-1. X2 coder B (blind, fresh context, `pipelines/x2/coder_prompt.md`), then `kappa.py` and `merge_x2.py`; κ ≥ 0.6
-   gate before any exposure join. Agent–agent κ is to be labelled agent agreement, not human reliability.
+1. X2: adjudicate the `needs-adjudication` rows (human third coder for any selection or published use) and decide
+   with IO whether rule 3 (AI-validation / formation tasks → NoTermFound) needs sharper wording before a re-code;
+   LLM-vs-LLM κ is below 0.6 and does not open the DP-18a(a) gate.
 2. Re-pins: O*NET 31.0 (X2, X3 O*NET-SOC check), ESCO v1.2.1 (X7) via the upstream-diff pipeline; DWAs for X2.
-3. P1 frame (`p1_frame.yaml`) is provisional until WP-08 authors task bundles; re-run X2 candidates then.
+3. P1 frame: re-run `build_candidates.py` and both coders on changed units whenever WP-08 regenerates
+   `p1_frame.yaml` (carry rule applies).
 4. WP-08: once variants exist, re-run `x5_state_classes.py` (links `roleVariant`) and `rekey.py` if keys differ.
 5. FH: verify the 6 added OPM series titles/groups; SL: items above; PA class codes (OA job specs).
 6. X9 FWCI / USA Hire parts; X10 is LC/IO's (fails the WP-09 profile — not mine, not changed).

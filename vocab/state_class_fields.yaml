@@ -8,6 +8,7 @@ decidedIn:
 - ADR-0022
 - ADR-0006
 - ADR-0029
+- ADR-0030
 steward: SL with IA and DE
 license: CC0-1.0
 description: 'SL''s Minimal Common Fields v0.1 (P-SL-07): 16 MUST, 10 SHOULD, 2 MAY. Records are dated crosswalk
@@ -211,8 +212,8 @@ fields:
   observed_in_sample: n/a
 - field: emst_mapping
   requirement: MUST
-  definition: Target role variant, competencies with level, match type, confidence, reviewer, review date
+  definition: Target role variant, mapped role level(s), match type, confidence, reviewer, review date; competency targets with level are computed by the State Class View from the role and are never stored here (CR-FH-001 #5; ADR-0030)
   format: record
-  vocab_or_example: role_variant_id; match_type exact|close|broad|narrow|related; confidence 0-1
+  vocab_or_example: role_variant_id; role_levels entry|journey|senior|lead|strategic; match_type exact|close|broad|narrow|related; confidence 0-1
   why_needed: Human-reviewed crosswalk artifact (IA)
   observed_in_sample: n/a

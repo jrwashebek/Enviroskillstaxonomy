@@ -36,7 +36,12 @@ def main():
             reg[d]["by_status"] = dict(Counter(r["seriesStatus"] for r in recs))
         else:
             reg[d]["by_jurisdiction"] = dict(Counter(r["id"].split("/")[1] for r in recs))
-    out = {"generated_by": "pipelines/crosswalks/report_counts.py", "sets": sets, "registers": reg,
+    kfile = S.ROOT / "pipelines" / "x2" / "work" / "x2_kappa.json"
+    x2 = json.loads(kfile.read_text()) if kfile.exists() else {}
+    x2 = {k: x2.get(k) for k in ("agreement_label", "units_both", "kappa_match_type", "kappa_match_type_ci95",
+                                 "kappa_any_vs_none", "kappa_any_vs_none_ci95",
+                                 "exact_object_agreement_when_both_matched", "status") if k in x2}
+    out = {"generated_by": "pipelines/crosswalks/report_counts.py", "sets": sets, "registers": reg, "x2_agreement": x2,
            "totals": {"sets": len(sets), "rows": sum(v["rows"] for v in sets.values())}}
     OUT.write_text(json.dumps(out, indent=1) + "\n")
     print(json.dumps(out, indent=1))

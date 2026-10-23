@@ -190,8 +190,9 @@ add("fix-our-forests-act", "PI-FOR-01", "Fix Our Forests Act (H.R. 471 / S. 1462
       "Passed House; cleared Senate committee Oct 2025; enactment not confirmed as of the last reachable source (2025-11-10).")])
 add("usfs-objection-rule", "PI-FOR-02", "Forest Service project-level objection rule", "36 CFR part 218", "regulation", "US",
     ["DM-02", "DM-04"], ["SC-009"],
-    [("final", "2026-10-13", "contracts", "final-not-yet-effective", ["SC-009"], "E", P, "SC row (sister-repo research); not re-verified in V2."),
-     ("effective", "2026-11-12", "contracts", "in-force", ["SC-009"], "E", P, "Scheduled effective date; confirm on or after the date.")],
+    [("proposed", "2026-02-06", "contracts", "proposed", ["LM-156"], "E", S, "Proposed rule (cited in the final rule; WP-15 re-check)."),
+     ("final", "2026-10-13", "contracts", "final-not-yet-effective", ["LM-156", "SC-009"], "E", P, "Final rule FR Doc 2026-20890 published 2026-10-13 (WP-15 re-check of the public-inspection document)."),
+     ("effective", "2026-11-12", "contracts", "in-force", ["LM-156"], "E", "2026-11-13", "Effective 30 days after publication; scheduled, confirm on or after the date.")],
     note="Split from SC's PI-FOR-02 (objection rule and Roadless proposal have different status).")
 add("roadless-rule-rescission", "PI-FOR-02", "Roadless Area Conservation Rule rescission (proposed)", "36 CFR part 294 subpart B (proposed rescission)",
     "regulation", "US", ["DM-10", "DM-04"], ["SC-009"],
@@ -388,6 +389,20 @@ for key, req, label, cit, itype, juris, mech, src in UNVERIFIED:
         note=("Registered from SC's WP-05 request without verification: no events, so its computed status stays unknown and the "
               "venue rule cannot read it as an active basis. SC's quarterly refresh (P-SC-14) adds verified baseline events. "
               "Citation as supplied by SC."))
+
+
+# ---------------------------------------------------------------- WP-15 re-verification additions (2026-10-23)
+add("baaja-s5653", None, "Bipartisan American Affordability and Jobs Act of 2026 (S. 5653; Senate permitting reform)", "S. 5653, 119th Congress",
+    "statute", "US", ["DM-01", "DM-02", "DM-03", "DM-08", "DM-05"], ["LM-154"],
+    [("introduced", "2026-09-30", "reshapes", "pending-legislation", ["LM-154"], "E", P,
+      "Unveiled by the EPW and ENR chairs and ranking members; NEPA, CWA, ESA, judicial review and project certainty in EPW's part; no markup or floor vote reported; floor consideration expected November 2026 (LM-154). The House-passed SPEED Act (H.R. 4776) still has no Senate action.")],
+    note="Introduction day taken from the 'unveiled' date in a law-firm alert; confirm on Congress.gov. Mechanism mapping is LM's [J] pending bill text.",
+    scheme="WP15-recheck")
+add("co-ag-admt-rules", None, "Colorado Attorney General rules implementing SB 26-189 (interim draft, 4 CCR 904-6)", "4 CCR 904-6 (interim draft)",
+    "regulation", "US-CO", ["DM-13", "DM-14"], ["LM-155"],
+    [("proposed", "2026-10-06", "reshapes", "proposed", ["LM-155"], "E", "2026-10-27",
+      "Interim draft rules released 2026-10-06; written comments and public hearing 2026-10-26; SB 26-189 main provisions apply from 2027-01-01 (LM-155).")],
+    scheme="WP15-recheck")
 
 
 def build():

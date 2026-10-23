@@ -19,20 +19,20 @@
    "llm_justification_rows": 58
   },
   "data/v2/crosswalks/emst-public-private/0.1.0.sssom.tsv": {
-   "rows": 32,
+   "rows": 34,
    "subjects": 24,
    "subjects_with_positive_mapping": 24,
    "no_term_found_rows": 0,
    "negated_rows": 0,
    "predicate_mix": {
-    "emst:mirrorRole": 5,
+    "emst:mirrorRole": 7,
     "skos:closeMatch": 5,
     "skos:relatedMatch": 22
    },
    "review_status": {
-    "candidate": 32
+    "candidate": 34
    },
-   "llm_justification_rows": 32
+   "llm_justification_rows": 34
   },
   "data/v2/crosswalks/esco/1.2.0.sssom.tsv": {
    "rows": 338,
@@ -97,21 +97,22 @@
    "llm_justification_rows": 89
   },
   "data/v2/crosswalks/onet-task/27.2.sssom.tsv": {
-   "rows": 273,
-   "subjects": 273,
-   "subjects_with_positive_mapping": 120,
-   "no_term_found_rows": 153,
+   "rows": 316,
+   "subjects": 316,
+   "subjects_with_positive_mapping": 202,
+   "no_term_found_rows": 114,
    "negated_rows": 0,
    "predicate_mix": {
-    "skos:broadMatch": 12,
-    "skos:closeMatch": 6,
-    "skos:narrowMatch": 3,
-    "skos:relatedMatch": 99
+    "skos:broadMatch": 48,
+    "skos:closeMatch": 16,
+    "skos:narrowMatch": 5,
+    "skos:relatedMatch": 133
    },
    "review_status": {
-    "single-coder-candidate": 273
+    "needs-adjudication": 118,
+    "two-coder-agreed-target": 198
    },
-   "llm_justification_rows": 273
+   "llm_justification_rows": 316
   },
   "data/v2/crosswalks/opm-ecq/2025-10-01.sssom.tsv": {
    "rows": 43,
@@ -242,8 +243,23 @@
    }
   }
  },
+ "x2_agreement": {
+  "agreement_label": "LLM-vs-LLM agreement between two agent coders; NOT human inter-coder reliability",
+  "units_both": 316,
+  "kappa_match_type": 0.465,
+  "kappa_match_type_ci95": [
+   0.388,
+   0.541
+  ],
+  "kappa_any_vs_none": 0.396,
+  "kappa_any_vs_none_ci95": [
+   0.296,
+   0.499
+  ],
+  "exact_object_agreement_when_both_matched": 0.793
+ },
  "totals": {
   "sets": 14,
-  "rows": 1342
+  "rows": 1387
  }
 }

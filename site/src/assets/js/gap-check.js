@@ -204,7 +204,9 @@
       download(meta.file || "emst-gap-check.emst.json", JSON.stringify(p, null, 1), "application/json");
       dirty = false;
       say("Saved " + p.ratings.length + " ratings to " + (meta.file || "a file") + " in your downloads. Nothing was sent anywhere.");
-    } else if (act === "clear") { clearAll(false); }
+    } else if (act === "clear") {
+      if (!dirty || window.confirm("Clear every answer on this page? Anything you have not saved to a file will be lost.")) clearAll(false);
+    }
     else if (act === "summary") { renderSummary(); }
     else if (act === "csv") { exportCsv(); }
     else if (act === "print") { window.print(); }

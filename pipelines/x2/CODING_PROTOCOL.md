@@ -1,4 +1,4 @@
-# X2 coding protocol — EMST task → O*NET task (and DWA) · v0.1.0
+# X2 coding protocol — EMST task → O*NET task (and DWA) · v0.2.0
 
 **Owner:** IA (WP-09) with LM (exposure joins) and IO (gold-set rules, `validation/spec_gold_sets.md` §6 GS-X2)
 **Decision basis:** ADR-0022 X2 (two coders, κ ≥ 0.6 on match type; candidates restricted to the role family's
@@ -9,15 +9,18 @@ O*NET-SOC pool; expect ~30% none and mostly partial); ADR-0019 §2 DP-18a(a); AD
 
 - **Unit:** one live, non-held EMST v2 task in the P1 frame (`p1_frame.yaml`), pinned by `textSha256`. A unit
   whose text changes after coding is re-coded, never carried.
-- **Frame now (provisional):** tasks supporting competencies named for the 13 P1 roles (R01–R13). When WP-08
-  authors the P1 task bundles, the frame becomes exactly those bundles (re-run `build_candidates.py`).
+- **Frame (v0.2.0, 2026-10-23):** exactly the tasks in `p1_frame.yaml#taskToP1Roles` (frame ≥ 0.2.0), which WP-08
+  generates from the P1 RoleProfile task bundles; each unit's roles come from that entry. v0.1.0 used the
+  provisional competency superset (`competencyToP1Roles`), which the builder no longer reads.
+- **Carry rule:** a coder's v0.1.0 decision is carried to v0.2.0 only when the unit's `textSha256`, O*NET-SOC pool
+  and candidate list are all unchanged; every other unit is coded afresh.
 - **Exclusions:** held Tribal content; government-to-government tasks (ADR-0007 §D).
 
 ## 2. Candidate pool
 
 - O*NET-SOC codes mapped to the unit's P1 roles in X3 (`data/v2/crosswalks/onet-soc/2019`, positive rows).
 - All O*NET task statements (core and supplemental) of those occupations, from the pinned release.
-- Coders see up to 8 machine candidates **in random order, without scores**, and may search the whole pool
+- Coders see six machine candidates (`build_candidates.py --k 6`) **in random order, without scores**, and may search the whole pool
   (record `found_by = pool search`). Searching outside the pool is not allowed in v0.1; a coder who believes the
   best target lies outside the pool records `NoTermFound` and notes "outside pool" (this measures X3's recall).
 - **Release:** the target is O*NET 31.0 (Aug 2026). Until 31.0 is downloadable (`pipelines/onet/fetch_onet.py`),
@@ -47,10 +50,16 @@ task. AI-validation and formation tasks usually have no O*NET counterpart: code 
 
 1. Two coders per unit, **blind to each other and to the ranker's order and scores**, using this protocol and the
    prompt in `coder_prompt.md` (LLM passes) or the same sheet (human coders). A coder never codes units they
-   authored.
+   authored. LLM coder B runs through `run_coder_b.py`: each batch is a fresh `claude -p` session with tools off,
+   no MCP servers, no session persistence and an environment stripped of project and session links, in an empty
+   scratch directory; it sees only `coder_prompt.md` and the shuffled sheet (pass-specific keys and order, no EMST
+   IDs, competencies, roles or coder A answers), plus the POOL of the batch's occupations so that it can search the
+   pool as coder A can.
 2. Agreement (`kappa.py`): Cohen's κ on the 5-category match type {close, broad, narrow, related, none}, with
    bootstrap 95% CI; also exact agreement on `object_id`, and κ on the binary "any match vs none". Target
-   κ ≥ 0.6 (ADR-0022). LLM–LLM agreement is reported as **agent agreement**, never as human reliability.
+   κ ≥ 0.6 (ADR-0022). When both coders are LLMs, κ is reported as **LLM-vs-LLM agreement**, never as human
+   inter-coder reliability; like agent craft ratings (CR-IO-002) it is draft evidence that does not by itself open
+   the DP-18a(a) gate (IO/CA to rule otherwise).
 3. Disagreements are adjudicated by a third coder (human for any selection or published-analytics use); the final
    row keeps both codes in `other` (`coder_a=…;coder_b=…`), `mapping_justification` = `semapv:MappingReview`
    after human adjudication (else `semapv:LLMBasedMatching`), and the **weakest** of the two match types as

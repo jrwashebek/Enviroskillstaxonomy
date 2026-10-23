@@ -5,7 +5,8 @@ Usage: python pipelines/x2/kappa.py coding/coder-a.csv coding/coder-b.csv [--out
 Reports Cohen's kappa on the 5-category match type {close, broad, narrow, related, none} and on the binary
 any-match vs none, with bootstrap 95% CIs, plus exact agreement on the chosen O*NET task. If only one coder file
 exists, it reports that kappa is not computable (it never substitutes a ranker or a second look by the same coder).
-Coder types are read from coder_id: `emstagent:` IDs are agents (reported as agent agreement), `pid:` are humans.
+Coder types are read from coder_id: `emstagent:` IDs are agents (two agents = LLM-vs-LLM agreement, never
+human reliability), `pid:` are humans.
 Licence: Apache-2.0.
 """
 from __future__ import annotations
@@ -72,7 +73,11 @@ def main():
         res.update({
             "units_both": len(units),
             "coder_types": sorted(types),
-            "agreement_label": "agent agreement (not human reliability)" if types == {"agent"} else "inter-coder agreement",
+            "agreement_label": ("LLM-vs-LLM agreement between two agent coders; NOT human inter-coder reliability"
+                                if types == {"agent"} else
+                                "agent-vs-human agreement" if "agent" in types else "human inter-coder agreement"),
+            "coder_ids": sorted({next(iter(A.values()))["coder_id"], next(iter(B.values()))["coder_id"]}),
+            "confusion_match_type": {f"{x}|{y}": n for (x, y), n in sorted(Counter(zip(a5, b5)).items())},
             "kappa_match_type": round(cohen(a5, b5), 3), "kappa_match_type_ci95": boot(a5, b5, cohen),
             "kappa_any_vs_none": round(cohen(a2, b2), 3), "kappa_any_vs_none_ci95": boot(a2, b2, cohen),
             "exact_object_agreement_when_both_matched": round(sum(A[u]["object_id"] == B[u]["object_id"] for u in both) / len(both), 3) if both else None,

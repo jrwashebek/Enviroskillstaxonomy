@@ -29,6 +29,7 @@ def main():
     ap.add_argument("--coder-b", default=str(HERE / "coding" / "coder-b.csv"))
     a = ap.parse_args()
     units = {r["unit_id"]: r for r in csv.DictReader(open(HERE / "work" / "x2_units.csv", encoding="utf-8"))}
+    frame = json.loads((HERE / "work" / "x2_frame.json").read_text())
     A = {r["unit_id"]: r for r in csv.DictReader(open(a.coder_a, encoding="utf-8"))}
     B = {r["unit_id"]: r for r in csv.DictReader(open(a.coder_b, encoding="utf-8"))} if Path(a.coder_b).exists() else {}
     rows = []
@@ -41,38 +42,47 @@ def main():
         extra = {"coder_a": f"{ra['object_id']}|{ra['predicate']}"}
         if rb:
             extra["coder_b"] = f"{rb['object_id']}|{rb['predicate']}"
+            extra["coder_b_id"] = rb["coder_id"]
             if rb["object_id"] == ra["object_id"]:
                 status = "two-coder-agreed-target"
                 pred = S.weakest(ra["predicate"], rb["predicate"]) if obj != "NoTermFound" else "skos:closeMatch"
                 conf = str(round(min(float(ra["confidence"]), float(rb["confidence"])), 2))
             else:
                 status = "needs-adjudication"
+                pa = S.NO_TERM if ra["object_id"] == "NoTermFound" else ra["predicate"]
+                pb = S.NO_TERM if rb["object_id"] == "NoTermFound" else rb["predicate"]
+                extra["weakest_of_both"] = S.NO_TERM if S.NO_TERM in (pa, pb) else S.weakest(pa, pb)
         objid = S.NO_TERM if obj == "NoTermFound" else obj
         wk = S.NO_TERM if objid == S.NO_TERM else pred
+        if status == "needs-adjudication":
+            wk = extra["weakest_of_both"]
         uu = units[u]
         rows.append(dict(
             record_id=f"emst-x2:{u.split(':', 1)[1]}", subject_id=u, subject_source="emstsrc:emst-v2-tasks",
             predicate_id=pred, object_id=objid, object_source="emstsrc:onet-tasks",
             object_source_version=f"O*NET {a.release} task statements" + (" (Eloundou base; 31.0 re-pin pending)" if a.release.startswith("27") else ""),
             mapping_justification="semapv:LLMBasedMatching", confidence=conf, author_id=ra["coder_id"],
-            reviewer_id=(rb["coder_id"] if rb else ""), mapping_date=S.TODAY, mapping_tool=TOOL,
+            mapping_date=S.TODAY, mapping_tool=TOOL,
             other=S.other_field(weakest_match_type=wk, review_status=status, evidence="S", rater_type="llm",
                                 text_sha256=uu["textSha256"], competency=uu["competency"], p1_roles=uu["roles"],
                                 pool=uu["pool_socs"], found_by=ra["found_by"], **extra),
-            comment=("no-term reason: no O*NET task in the role family's occupations describes this work (coder A). "
-                     if objid == S.NO_TERM else "") + "Agent-coded candidate; second blind coder "
-                     + ("present." if rb else "pending.") + " Not for exposure joins until two coders agree (CODING_PROTOCOL.md §4)."))
+            comment=("no-term reason: no O*NET task in the role family's occupations describes this work ("
+                     + ("coders A and B" if status == "two-coder-agreed-target" else "coder A") + "). "
+                     if objid == S.NO_TERM else "") + "Agent-coded candidate; second blind LLM coder "
+                     + ("present (LLM-vs-LLM)." if rb else "pending.") + " Not for exposure joins until adjudicated (CODING_PROTOCOL.md §4)."))
     S.write_set("onet-task", a.release, {
-        "mapping_set_version": "0.1.0-draft",
+        "mapping_set_version": "0.2.0-draft",
         "mapping_set_title": f"X2 EMST P1-corridor tasks to O*NET {a.release} task statements",
         "mapping_set_description": (
-            "EMST v2 tasks in the provisional P1 frame (pipelines/x2/p1_frame.yaml) coded against O*NET task "
+            "EMST v2 tasks in the P1 frame (pipelines/x2/p1_frame.yaml#taskToP1Roles, from WP-08's P1 bundles) coded against O*NET task "
             "statements of the role family's O*NET-SOC pool (from X3), per pipelines/x2/CODING_PROTOCOL.md. "
             f"Release {a.release}: the Eloundou-labelled task set ADR-0022 requires; O*NET 31.0 (target) was not "
             "downloadable on 2026-10-23 and will be produced by the upstream diff. DWAs pending (Tasks-to-DWAs file "
             "not available offline). review_status: single-coder-candidate | two-coder-agreed-target | "
-            "needs-adjudication. Inter-coder kappa in pipelines/x2/work/x2_kappa.json (generated)."),
-        "subject_source": "emstsrc:emst-v2-tasks", "subject_source_version": "2.0.0-draft (frame 0.1.0-provisional)",
+            "needs-adjudication (row keeps coder A's object; weakest_match_type is the weaker of both codes). "
+            "Coder agreement in pipelines/x2/work/x2_kappa.json (generated); with two LLM coders it is LLM-vs-LLM "
+            "agreement, not human inter-coder reliability."),
+        "subject_source": "emstsrc:emst-v2-tasks", "subject_source_version": f"2.0.0-draft (frame {frame['frameVersion']}, sha256 {frame['frame_sha256'][:12]})",
         "object_source": "emstsrc:onet-tasks", "object_source_version": f"O*NET {a.release}",
         "mapping_tool": TOOL,
         "see_also": ["https://www.onetcenter.org/dictionary/31.0/csv/task_statements.html",

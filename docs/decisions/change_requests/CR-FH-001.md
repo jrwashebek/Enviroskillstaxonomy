@@ -28,3 +28,36 @@
 
 ## What WP-08 did meanwhile
 Nothing in the schema, `scripts/` or `vocab/` was changed. All five views are generated, tested (`python -m pytest -q pipelines/views/tests`) and rebuilt by `pipelines/views/build_views.sh`.
+
+## CA ruling
+
+- **Ruling:** **accept 1, 4, 5, 6 and 7; accept 2 with a narrower field; decide 3 (keep under R37)** · **Date:** 2026-10-23 · **Decider:** CA · **Recorded in:** ADR-0030 §1.9, SPEC §5.8, §5.12, §5.21, §14.2 (draft.3), `vocab/state_class_fields.yaml#emst_mapping`, `vocab/rules/` (five rules), build plan WP-08 acceptance, DECISION_LOG `CR-FH-001`
+- **Note:** this CR arrived during the CA's S1-close session and is ruled with the batch.
+- **Implementation:** DE per `RULINGS_FOR_DE.md` §19; LM for items 2 and 7; FH for item 6.
+
+1. **Rules: registered, with display constraints.** The CA has registered five rule files as `interim`, each with its WP-08 generator as `reference_implementation`:
+   - `federal-series-profile@0.1.0`
+   - `state-class-view@0.1.0`
+   - `job-family-membership@0.1.0` (FH's file, with the importance rule from CR-CP-001 B4)
+   - `role-change@0.1.0`, which merges FH's `role-change-inputs` with CP's summary
+   - `mirror-links@0.1.0`
+
+   DE ports the generators into `scripts/rules/` and `Builder.views`, and moves `pipelines/views/tests/test_views.py` into `tests/`. The view paths are `views/federal_series_profiles/<code>.json`, `views/state_class_views/<jur>--<code>.json`, `views/job_families.json`, `views/role_change/<role_key>.json` and `views/mirror_links.json`. The release then serves them, and CP stops reading `docs/build/WP-08/generated/`.
+   - **Display constraints the ported views follow (CR-CP-001 B4):** no `timeShare` or `importance` in the FSP or SCV before `job-analysis-confirmed`; no `critical` or `neededAtEntry` before a named human review; target levels as editorial drafts. The series status still comes from the dated register and is never shown as realigned while only proposed.
+2. **Change-view atoms: accepted with a narrower field.**
+   - `ExposureAssessment` gains optional `contentChangeType` (`vocab/change_types.yaml#content_change_types`) in construct (b).
+   - **No `drivers[]` on ExposureAssessment.** For technology drivers the driver is already given by `technicalExposure[].vector` (llm-cognitive → AI, sensing → sensing-tech, robotics → automation-robotics, convergent → AI with others). A second field would store the fact twice.
+   - **Non-technology claims are not task assessments.**
+     - Policy-reform reshaping is computed from task and competency sensitivity edges and instrument events. A task-specific policy claim becomes a task edge, reviewed by SC (CR-SC-001 ruling, item 1).
+     - Fiscal, demographic, workforce-capacity, climate and market claims are role- or organization-level ChangeSignals (LM).
+   - **Migration is not mechanical:** an ExposureAssessment needs codebook E-levels that the atoms lack. For rc.1, `change_view_inputs.yaml` stays WP-08's authoring input, and View 1 shows "assessment pending" (CR-CP-001 B6). Converting technology atoms into `raterType: llm` ExposureAssessment rows requires a coding pass under `emst-exposure@2.0`: three passes, recorded like craft ratings, by FH's raters into a WP-10-lane file written by LM. That pass is scheduled for S3, or rc.2 if S3 is full.
+   - `RoleProfile.changeClaims[]` is rejected. Judgments are L5 records, not L3 fields (SPEC §5.5).
+3. **Applicant variant: keep `seed:R37-facility-environmental-compliance-specialist/private/applicant-preparer`. No erratum.**
+   - A variant shares its role's function and core task bundle (SPEC §5.8). The applicant-side preparer prepares and defends applications for the regulated party; it does not decide them. Its authority position is R37's, not R11's (ADR-0017).
+   - The X11 `emst:mirrorRole` rows from R11/state and R11/federal satisfy the acceptance criterion. The build plan's WP-08 acceptance now names this key.
+4. **Variant mirrors: X11 ratified as the single source.** `mirror_links.json` is the computed view (`mirror-links@0.1.0`), with no stored inverse. It also lists competency-level mirrors from `Competency.mirrors[]` (CR-SC-001 ruling, item 3), labelled by level.
+5. **State class mapping: accepted.**
+   - `StateClassRecord.emstMapping` stores role variant, role level(s), match type, confidence, reviewer and review date. Competency targets are computed by the State Class View and are never stored.
+   - The CA has amended `vocab/state_class_fields.yaml#emst_mapping` and SPEC §5.21. DE adds `emstMapping.competencyTargets` to the computed-field lint. The empty `competencyTargets: []` arrays are removed in the same change.
+6. **Per-level bands: optional `indicativeGradeOrBand.byRoleLevel` accepted** (`{<roleLevel key>: band}`). `band` becomes optional when `byRoleLevel` is present, and the label is unchanged ("not a classification criterion"). FH writes `byRoleLevel` and drops the micro-format; `viewlib.parse_band` is retired once the port lands.
+7. **Placeholders: confirmed for LM.** LM re-keys the 159 `mvp-role:<role_key>` targets to `seed:<role_key>` and `seed:<role_key>/<sector_actor>` in WP-10's builder in S2, before WP-12 reads signals. Records that stay unkeyed remain excluded from releases.

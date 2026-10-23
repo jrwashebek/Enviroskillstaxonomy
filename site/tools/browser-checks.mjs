@@ -42,6 +42,12 @@ function sample() {
   const classes = firstDir("state-classes"); s.push(...classes.slice(0, 2).map((x) => `/state-classes/${x}/`));
   const comps = firstDir("competencies"); s.push(...["db-c09", "v1-3-2-5", "dc-cand-13", "sc-c02"].filter((x) => comps.includes(x)).map((x) => `/competencies/${x}/`));
   const mods = firstDir("modules"); if (mods[0]) s.push(`/modules/${mods[0]}/`);
+  // Heavier pages: a P1 review role, a module-homed P2 role, a local utility variant, the longest gap check.
+  for (const [r, v] of [["r10-environmental-review-specialist", "federal"], ["r10-environmental-review-specialist", "state"], ["r14-forester", "federal"], ["r25-water-wastewater-operator", "local"], ["r13-resource-program-manager", "state"]]) {
+    if (firstDir(`roles/${r}`).includes(v)) { s.push(`/roles/${r}/${v}/`); s.push(`/gap-check/${r}/${v}/`); s.push(`/pathways/${r}/${v}/`); }
+  }
+  for (const x of ["0028", "0819", "1315"]) if (series.includes(x)) s.push(`/federal-series/${x}/`);
+  for (const x of ["tx-2651", "wa-516k", "wa-lewis-sn313"]) if (classes.includes(x)) s.push(`/state-classes/${x}/`);
   return [...new Set(s)];
 }
 
@@ -75,9 +81,32 @@ try {
     const a2 = await axe(page);
     const merge = (k) => { const m = new Map(); for (const v of [...a1[k], ...a2[k]]) if (!m.has(v.id) || m.get(v.id).nodes < v.nodes) m.set(v.id, v); return [...m.values()]; };
     entry.violations = merge("violations"); entry.incomplete = merge("incomplete").map((v) => v.id); entry.bestPractice = merge("bestPractice").map((v) => v.id);
+    // Target size (WCAG 2.5.8): visible controls under 24x24 CSS px, excluding links inside running text (exception).
+    entry.smallTargets = await page.evaluate(() => {
+      const out = [];
+      for (const e of document.querySelectorAll("a, button, summary, input:not(.usa-radio__input), select, textarea, label.usa-radio__label")) {
+        const r = e.getBoundingClientRect(); if (!r.width || !r.height) continue;
+        const host = e.closest("p, li, td, dd");
+        const inline = e.tagName === "A" && host && host.textContent.trim().length > e.textContent.trim().length + 3;
+        if ((r.width < 24 || r.height < 24) && !inline) out.push(`${e.tagName.toLowerCase()}:${(e.textContent || "").trim().slice(0, 30)} ${Math.round(r.width)}x${Math.round(r.height)}`);
+      }
+      return out;
+    });
     await page.setViewportSize({ width: 320, height: 800 });
     await page.evaluate(() => document.querySelectorAll("details").forEach((d) => { d.open = false; }));
     entry.reflow = await page.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, clientWidth: document.documentElement.clientWidth }));
+    // Text spacing (WCAG 1.4.12) at 320 px: no horizontal scroll with the SC's spacing overrides applied.
+    // The page CSP blocks injected <style> elements (as it should), so the overrides go in through CSSOM.
+    entry.textSpacing = await page.evaluate(() => {
+      const css = "* { line-height: 1.5 !important; letter-spacing: 0.12em !important; word-spacing: 0.16em !important; } p { margin-bottom: 2em !important; }";
+      try { const sh = new CSSStyleSheet(); sh.replaceSync(css); document.adoptedStyleSheets = [...document.adoptedStyleSheets, sh]; }
+      catch (e) { for (const el of document.querySelectorAll("*")) { el.style.setProperty("line-height", "1.5", "important"); el.style.setProperty("letter-spacing", "0.12em", "important"); el.style.setProperty("word-spacing", "0.16em", "important"); } }
+      const applied = getComputedStyle(document.body).letterSpacing;
+      return { scrollWidth: document.documentElement.scrollWidth, applied };
+    });
+    if (!/px/.test(entry.textSpacing.applied) || entry.textSpacing.applied === "normal") fail(url, "text-spacing overrides could not be applied");
+    entry.textSpacing = entry.textSpacing.scrollWidth;
+    await page.reload({ waitUntil: "load" });
     await page.setViewportSize({ width: 1280, height: 900 });
     entry.focus = [];
     await page.keyboard.press("Tab");
@@ -96,6 +125,8 @@ try {
     if (csp.length) fail(url, `CSP violations: ${csp.join(" | ")}`);
     if (entry.violations.length) fail(url, `axe violations: ${entry.violations.map((v) => `${v.id} (${v.nodes})`).join(", ")}`);
     if (entry.reflow.scrollWidth > entry.reflow.clientWidth + 1) fail(url, `horizontal scroll at 320 px (${entry.reflow.scrollWidth}px)`);
+    if (entry.textSpacing > entry.reflow.clientWidth + 1) fail(url, `text-spacing overrides cause horizontal scroll (${entry.textSpacing}px)`);
+    if (entry.smallTargets.length) fail(url, `targets under 24x24: ${entry.smallTargets.slice(0, 5).join("; ")}`);
     const nofocus = entry.focus.filter((f) => !f.outline && !f.shadow);
     if (nofocus.length) fail(url, `focus not visible on ${nofocus.map((f) => f.tag + ":" + f.text).join("; ")}`);
     report.pages.push(entry);
@@ -133,6 +164,7 @@ try {
     const savedPath = join(SCRATCH, "saved.emst.json");
     await d.saveAs(savedPath);
     const saved = JSON.parse(readFileSync(savedPath, "utf-8"));
+    page.once("dialog", (dlg) => dlg.accept());                    // "Clear everything" asks before discarding unsaved work
     await page.click('[data-action="clear"]');
     const clearedChecked = await page.locator('input[type=radio][name^="self-"]:checked').count();
     await page.setInputFiles("#emst-open-file", savedPath);
@@ -210,6 +242,9 @@ const summary = {
   bestPracticeIds: [...new Set(report.pages.flatMap((p) => p.bestPractice))],
   externalRequests: report.pages.reduce((s, p) => s + p.external.length, 0),
   reflowFailures: report.pages.filter((p) => p.reflow.scrollWidth > p.reflow.clientWidth + 1).map((p) => p.url),
+  textSpacingFailures: report.pages.filter((p) => p.textSpacing > p.reflow.clientWidth + 1).map((p) => p.url),
+  smallTargetPages: report.pages.filter((p) => p.smallTargets.length).map((p) => p.url),
+  focusChecked: report.pages.reduce((s, p) => s + p.focus.length, 0),
   failures: report.failures.length,
 };
 report.summary = summary;

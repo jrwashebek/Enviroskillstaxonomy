@@ -1,0 +1,20 @@
+# EMST computed-view rule (SPEC §14.2-§14.3; ADR-0017 §4, ADR-0022 X11; CR-FH-001 #4, CR-SC-001 #3). Normative definition; code in `implementation`.
+ruleId: mirror-links
+version: 0.1.0
+status: interim
+steward: FH (definition proposal, WP-08) · IA (X11) · DE (implementation) · CA (definition)
+decidedIn: [ADR-0017, ADR-0022, ADR-0030, CR-FH-001, CR-SC-001]
+reference_implementation: pipelines/views/mirror_links.py (FH, WP-08; authoring tool, never run by CI)
+computes: Mirror pairs across the regulator-regulated (and overseer-delegate, authority-preparer) boundary, for navigation and mobility views.
+inputs: [X11 mapping set (emst:mirrorRole rows), released RoleVariant, Competency and Enactment records]
+definition:
+  variant_level: "Pairs of role variants from X11 emst:mirrorRole rows. X11 is the single source and no RoleVariant field stores a mirror. Each pair carries both variants' editorial authorityPosition, positionsInverted, confidence and review status from the row."
+  competency_level: "Pairs from Competency.mirrors[] {target, relation}, stored on the authority side; labelled 'competency level'. The inverse is the same pair and is not listed twice."
+  held: "Rows or records involving held variants or Tribal actors are never read."
+outputs:
+  view: views/mirror_links.json
+  fields: "pairs[{level ∈ variant|competency, subject, object, relation, subjectPosition, objectPosition, positionsInverted, confidence, reviewStatus}], ruleId, ruleVersion, buildCommit"
+parameters: {}
+implementation: scripts/build_release.py#Builder.views (to be ported by DE from the reference implementation; RULINGS_FOR_DE.md §19)
+changeNote:
+  - {date: '2026-10-23', note: "Registered (CR-FH-001 #4; CR-SC-001 #3; ADR-0030). WP-08's acceptance-pair assertions move to tests/, not to the view."}
