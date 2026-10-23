@@ -8,7 +8,7 @@
 
 ## Context
 
-The heavy compliance regimes turn on two triggers: a service that collects or maintains Federal information on behalf of an agency (FedRAMP, FISMA ATO), and records about individuals retrieved by an identifier (Privacy Act SORN, PIA, state public-employee data law) [E: CP-015, CP-016; J: CP-040, CP-077]. FedRAMP's Consolidated Rules for 2026 replace "authorization" with "certification" (Classes A–D), available from 4 July 2026 and mandatory 1 January 2027 [E: V2-10]. Competency ratings retrieved by employee name are likely a Privacy Act system of records (FH issue). In a RIF and accountability-reform environment, skills data can be turned against workers (CM issue).
+The heavy compliance regimes turn on two triggers: a service that collects or maintains Federal information on behalf of an agency (FedRAMP, FISMA ATO), and records about individuals retrieved by an identifier (Privacy Act SORN, PIA, state public-employee data law) [E: CP-015, CP-016; J: CP-040, CP-077]. FedRAMP's Consolidated Rules for 2026 replace "authorization" with "certification" (Classes A–D), available from 4 July 2026 as optional early adoption and mandatory from 1 January 2027 [E: V2-10]. Competency ratings retrieved by employee name are likely a Privacy Act system of records (FH issue). In a RIF and accountability-reform environment, skills data can be turned against workers (CM issue).
 
 ## Decision
 

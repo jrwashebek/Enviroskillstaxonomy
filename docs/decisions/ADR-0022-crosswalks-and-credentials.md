@@ -28,7 +28,7 @@ SSSOM 1.0 mapping sets (1.1 slots `record_id`, `reviewer_agreement` as declared 
 | X6 | Competency/CLO → **CIP 2020** via learning resources, and → accreditation criteria (SAF, ABET EAC/ETAC, EHAC, NAAEE 2025) | competency × level | versioned; I/R/E scale; paraphrase-and-cite, never copy (P-LC-08, P-LC-09) | WP-07 · LC |
 | X7 | Competency → **ESCO v1.2.1** | competency | re-run the v1.2.0 prototype on v1.2.1; `NoTermFound` where ESCO lacks Tribal consultation, wildland fire or AI-validation concepts (IA §4) | WP-05 · IA |
 | X8 | Role variant → **private reference job architecture** (industry × job family × career stream × level) | private variant | PS's 88-row seed; GSA labor-category data investigated as a public seed (P-PS-08) | WP-05 · PS |
-| X9 | Competency → OPM FWCI general and technical competencies; USA Hire coverage | competency | as OPM publishes (P-FH-03) | WP-05 · FH |
+| X9 | Competency → OPM FWCI general and technical competencies; USA Hire coverage; ECQs only in the current five-ECQ framework (Oct 1 2025; Political Savvy, Partnering and Influencing/Negotiating removed — mappings to those names are not made) [E: V2 SC-058] | competency | as OPM publishes (P-FH-03) | WP-05 · FH |
 | X10 | Credential ↔ CLO **evidence-equivalence register** (RPL) | credential × CLO | NWCG quals, FAA Part 107, operator grades, HAZWOPER, CWB, PWS, GISP, REHS; IO validates (P-LC-07) | WP-07 · LC + IO |
 | X11 | Public ↔ private translation (TR-01…TR-38) | competency/role pair | with friction fields (licensure gap, pay direction, posture change) (P-PS-07) | WP-08 · PS + CM |
 
