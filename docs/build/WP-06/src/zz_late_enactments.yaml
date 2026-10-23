@@ -1,0 +1,426 @@
+# WP-06 authoring source — module enactments of core competencies authored concurrently by FC, DC, SC and WP-07
+# (present in data/v2/core/ when this file was written), and extra enactments that bring every core competency WP-06
+# enacts to three or more wave-1 modules (ADR-0003 G-4 three-module rule). Each entry names its module.
+module: water
+enactments:
+  # ---- completing three-module coverage for competencies enacted elsewhere in WP-06 sources
+  - id: ena-fc-c26-forest
+    module: forest
+    comp: FC-C26
+    label: Forest recreation and fire-area enactment of tree risk assessment
+    sub: [L01, L07]
+    ap: resource-manager
+    note: >-
+      Forest staff assess hazard trees at developed sites, along roads and in burned areas before crews and the public
+      return, where fire-damaged and diseased trees fail unpredictably.
+  - id: ena-fc-c26-hazards
+    module: hazards
+    comp: FC-C26
+    label: Post-storm enactment of tree risk assessment
+    sub: [C03]
+    ap: service-provider
+    note: >-
+      After storms, ice and fire, assessment teams triage hazard trees threatening roads, utilities, structures and
+      responders, prioritizing removal under time pressure.
+  - id: ena-db-c25-air
+    module: air
+    comp: DB-C25
+    label: Air compliance enactment of data-driven compliance targeting
+    sub: [P01]
+    ap: regulator
+    note: >-
+      Continuous emissions monitoring data, deviation reports, optical gas imaging and satellite or aircraft methane
+      detections let air programmes target inspections; remote detections are verified at the source before enforcement.
+  - id: ena-db-c25-waste
+    module: waste
+    comp: DB-C25
+    label: Waste compliance enactment of data-driven compliance targeting
+    sub: [P03, P02]
+    ap: regulator
+    note: >-
+      Electronic manifest, biennial report and facility monitoring data let waste programmes target generators and
+      facilities with likely violations; targeting results are checked against inspection findings.
+  - id: ena-fc-c03-forest
+    module: forest
+    comp: FC-C03
+    label: Forest survey enactment of automated species detection adjudication
+    sub: [L01]
+    ap: resource-manager
+    note: >-
+      Acoustic monitoring for birds and bats, automated pest trap counts and image-classified plant surveys in forests
+      produce detections that staff adjudicate with field-formed identification expertise before they inform projects.
+  - id: ena-fc-c03-envhealth
+    module: envhealth
+    comp: FC-C03
+    label: Vector surveillance enactment of automated species detection adjudication
+    sub: [H01]
+    ap: regulator
+    note: >-
+      Automated mosquito traps and image classifiers report vector species counts; vector staff adjudicate a sample of
+      identifications against keyed specimens before counts drive control decisions.
+  - id: ena-1.5.2-water
+    module: water
+    comp: v1-1.5.2
+    label: Utility resilience enactment of climate vulnerability assessment
+    sub: [W01, W02, W03]
+    ap: service-provider
+    note: >-
+      Water, wastewater and stormwater utilities assess the vulnerability of sources, treatment plants and collection
+      systems to drought, flooding, sea-level rise and extreme heat, feeding capital and emergency response plans.
+  - id: ena-5.1.3-forest
+    module: forest
+    comp: v1-5.1.3
+    label: Forest and fire-prevention enactment of environmental interpretation
+    sub: [L01, L07]
+    ap: resource-manager
+    note: >-
+      Forest staff interpret forest management, fire ecology and fire prevention for visitors, schools and communities,
+      including the reasons for prescribed fire and harvests.
+  - id: ena-dc-cand-03-air
+    module: air
+    comp: DC-CAND-03
+    label: Air monitoring network enactment of monitoring and sampling design
+    sub: [P01]
+    ap: regulator
+    note: >-
+      Air agencies design and periodically reassess monitoring networks (site number, location, spatial scale and
+      pollutant coverage) and sensor deployments so that design values and community exposure can be estimated.
+  - id: ena-fh-c01-forest
+    module: forest
+    comp: FH-C01
+    label: Forest and range project enactment of listed-species consultation
+    sub: [L01, L05, L07]
+    ap: resource-manager
+    note: >-
+      Timber, fuels, grazing and road projects on federal land need effects determinations and biological assessments
+      for listed species; consultation outcomes become project design features and monitoring.
+  - id: ena-fc-c12-hazards
+    module: hazards
+    comp: FC-C12
+    label: Flood response enactment of small-boat field work
+    sub: [C03]
+    ap: service-provider
+    note: >-
+      Flood assessment and response teams work from small boats in debris-laden, fast and contaminated water, where boat
+      handling and personal safety precautions decide whether field assessment can proceed.
+  - id: ena-4.1.3-water
+    module: water
+    comp: v1-4.1.3
+    label: Source and distribution enactment of water quality testing
+    sub: [W01, W02]
+    ap: service-provider
+    note: >-
+      Utility staff sample source waters, distribution systems and receiving waters for operational and compliance
+      purposes, where sampling location, flushing and holding time decide whether results represent the system.
+  - id: ena-fc-c11-forest
+    module: forest
+    comp: FC-C11
+    label: Forest operations enactment of field biosecurity and decontamination
+    sub: [L01, L07]
+    ap: resource-manager
+    note: >-
+      Forest and fire crews clean vehicles, equipment and footwear to stop the spread of forest pathogens and invasive
+      plant seed between sites and incidents, following unit protocols.
+  - id: ena-sc-c08-parks
+    module: parks
+    comp: SC-C08
+    label: Park partnership enactment of cross-jurisdictional stewardship agreements
+    sub: [L10]
+    ap: resource-manager
+    note: >-
+      Park systems manage parks jointly with other governments and partners through cooperative management agreements,
+      friends-group and philanthropic partner agreements and concession arrangements; agreement types covered by the
+      ADR-0007 hold are not authored here.
+  # ---- core competencies authored concurrently by FC, DC, SC and WP-07 (enactments wired once present)
+  - id: ena-db-c03-water
+    module: water
+    comp: DB-C03
+    label: Treatment plant enactment of supervising automated process control
+    sub: [W01, W02]
+    ap: service-provider
+    note: >-
+      Operators supervise automated dosing, aeration and filtration control loops, deciding when to override setpoints
+      that conflict with bench tests or plant observation; licensure keeps a certified operator in responsible charge,
+      so automation takes the form of supervision rather than substitution (DB report s.3.8).
+  - id: ena-db-c03-waste
+    module: waste
+    comp: DB-C03
+    label: Materials recovery and landfill enactment of supervising automated process control
+    sub: [P02]
+    ap: service-provider
+    note: >-
+      Materials recovery facilities run optical and robotic sorting lines and landfills run automated gas-collection
+      controls; staff set acceptance criteria and intervene when audits show misclassification or control drift (DB-C16).
+  - id: ena-db-c03-air
+    module: air
+    comp: DB-C03
+    label: Emissions control and monitoring enactment of supervising automated process control
+    sub: [P01]
+    ap: regulated-party
+    note: >-
+      Facilities run automated pollution-control and continuous emissions monitoring systems whose data determine
+      compliance; operators supervise control setpoints, calibration drift and data substitution, and air programmes
+      audit them (DB-C13).
+  - id: ena-db-c26-water
+    module: water
+    comp: DB-C26
+    label: Utility permittee enactment of facility compliance management
+    sub: [W01, W02, W03]
+    ap: regulated-party
+    note: >-
+      Utilities are regulated parties under drinking water, discharge and stormwater permits; the utility compliance
+      lead keeps the permit-condition calendar, monitoring schedules and reports, and is the counterpart of the regulator
+      roles in SL-C06 and the SL-C02 waterq enactment (mobility test R24 to utility).
+  - id: ena-db-c26-waste
+    module: waste
+    comp: DB-C26
+    label: Waste generator and facility enactment of facility compliance management
+    sub: [P03, P02]
+    ap: regulated-party
+    note: >-
+      Generators and waste facilities keep compliance calendars for accumulation limits, inspections, training,
+      manifests and reports (DB-C18), mirroring the regulator inspection enactment.
+  - id: ena-db-c26-air
+    module: air
+    comp: DB-C26
+    label: Air permittee enactment of facility compliance management
+    sub: [P01]
+    ap: regulated-party
+    note: >-
+      Facilities with air permits track monitoring, recordkeeping, deviation and certification deadlines across permit
+      conditions, the regulated-party mirror of the SL-C02 and SL-C03 air enactments.
+  - id: ena-db-c29-envhealth
+    module: envhealth
+    comp: DB-C29
+    label: Public health advisory enactment of risk communication under uncertainty
+    sub: [H01, H02]
+    ap: regulator
+    note: >-
+      Health departments communicate risks from outbreaks, harmful algal blooms, heat, smoke and contaminated wells,
+      often before evidence is complete, with advisories that must state what is known, unknown and what people should do.
+  - id: ena-db-c29-water
+    module: water
+    comp: DB-C29
+    label: Drinking water notice enactment of risk communication under uncertainty
+    sub: [W01]
+    ap: service-provider
+    note: >-
+      Utilities and primacy agencies issue public notices, boil-water advisories, lead and emerging-contaminant
+      communications and annual consumer reports, where wording and timing are partly prescribed and trust is fragile.
+  - id: ena-db-c29-waste
+    module: waste
+    comp: DB-C29
+    label: Cleanup community enactment of risk communication under uncertainty
+    sub: [P04]
+    ap: regulator
+    note: >-
+      Cleanup programmes explain site risks, sampling results and remedy choices to neighbours and local governments
+      during investigations whose findings change over time.
+  - id: ena-db-c29-hazards
+    module: hazards
+    comp: DB-C29
+    label: Hazard warning enactment of risk communication under uncertainty
+    sub: [C03]
+    ap: regulator
+    note: >-
+      Emergency managers and floodplain administrators communicate flood, fire and storm risks, evacuation decisions and
+      map changes, balancing warning lead time against false alarms.
+  - id: ena-sl-c10-water
+    module: water
+    comp: SL-C10
+    label: Small-system enactment of compliance and technical assistance
+    sub: [W01, W02]
+    ap: regulator
+    note: >-
+      Primacy agencies and technical assistance providers help small water and wastewater systems with operations,
+      monitoring, capacity development and funding applications so that compliance problems are fixed before enforcement.
+  - id: ena-sl-c10-waste
+    module: waste
+    comp: SL-C10
+    label: Generator enactment of compliance and technical assistance
+    sub: [P03, P02]
+    ap: regulator
+    note: >-
+      Waste programmes run small-generator assistance, workshops and site visits explaining determinations and
+      accumulation requirements, kept separate from inspection under programme confidentiality rules.
+  - id: ena-sl-c10-air
+    module: air
+    comp: SL-C10
+    label: Small business enactment of compliance and technical assistance
+    sub: [P01]
+    ap: regulator
+    note: >-
+      State small business environmental assistance programmes help small sources determine applicability, prepare
+      permit applications and meet recordkeeping requirements.
+  - id: ena-dc-cand-12-forest
+    module: forest
+    comp: DC-CAND-12
+    label: Fire spread and danger forecasting enactment of forecast systems and digital twins
+    sub: [L07]
+    ap: resource-manager
+    note: >-
+      Fire danger, spread and smoke forecast systems used by fire intelligence analysts (FS-C05, role R08) are validated
+      against observed fire behaviour each season; forecast skill decides how much operational weight they carry.
+  - id: ena-dc-cand-12-hazards
+    module: hazards
+    comp: DC-CAND-12
+    label: Flood forecasting enactment of forecast systems and digital twins
+    sub: [C03, W04]
+    ap: service-provider
+    note: >-
+      Local and regional flood forecast and inundation-mapping systems combine gauge, radar and model data; their
+      validation against past events decides warning thresholds.
+  - id: ena-dc-cand-12-air
+    module: air
+    comp: DC-CAND-12
+    label: Air quality forecasting enactment of forecast systems and digital twins
+    sub: [P01]
+    ap: regulator
+    note: >-
+      Air quality forecasts drive public alerts and burn-day decisions (DB-C15); forecasters verify them daily against
+      monitored values and track skill by pollutant and season.
+  - id: ena-fc-c02-forest
+    module: forest
+    comp: FC-C02
+    label: Forest and fire enactment of ground-truthing remote and AI outputs
+    sub: [L01, L07]
+    ap: resource-manager
+    note: >-
+      Burn-severity, fuels, canopy and lidar-derived inventory products are ground-truthed at field plots before they
+      drive treatment and planning decisions (v1 1.3.2, 1.3.4, 4.3.3, 4.3.5).
+  - id: ena-fc-c02-hazards
+    module: hazards
+    comp: FC-C02
+    label: Damage-map enactment of ground-truthing remote and AI outputs
+    sub: [C03]
+    ap: service-provider
+    note: >-
+      Remotely sensed and AI-generated damage and flood-extent maps are checked at field locations (FC-C25) before they
+      drive assistance and recovery decisions.
+  - id: ena-fc-c02-waterq
+    module: waterq
+    comp: FC-C02
+    label: Wetland and water map enactment of ground-truthing remote and AI outputs
+    sub: [W06]
+    ap: regulator
+    note: >-
+      Modelled wetland, stream and water-quality maps are verified with field indicators (FC-C06) before use in
+      jurisdictional, permit or assessment decisions.
+  - id: ena-fc-c24-water
+    module: water
+    comp: FC-C24
+    label: Compliance sample enactment of field sample custody and quality control
+    sub: [W01, W02]
+    ap: service-provider
+    note: >-
+      Drinking water and discharge compliance samples go to certified laboratories under chain of custody, with field
+      blanks, holding times and preservation that decide whether results count for compliance.
+  - id: ena-fc-c24-waste
+    module: waste
+    comp: FC-C24
+    label: Site investigation enactment of field sample custody and quality control
+    sub: [P04, P03]
+    ap: service-provider
+    note: >-
+      Contaminated-site and waste characterization samples carry chain of custody and field quality-control samples
+      (duplicates, equipment and trip blanks) that data validation later tests (DB-C19).
+  - id: ena-fc-c24-air
+    module: air
+    comp: FC-C24
+    label: Air sample enactment of field sample custody and quality control
+    sub: [P01]
+    ap: regulator
+    note: >-
+      Filter-based and canister air samples and stack test samples require custody, handling and field blanks that
+      the receiving laboratory and quality assurance plan specify (DB-C13).
+  - id: ena-fc-c24-envhealth
+    module: envhealth
+    comp: FC-C24
+    label: Outbreak sample enactment of field sample custody and quality control
+    sub: [H01]
+    ap: regulator
+    note: >-
+      Outbreak and complaint samples go to public health laboratories under chain of custody that may support legal
+      action, with temperature and holding-time controls (LC-C-07).
+  - id: ena-fc-c31-forest
+    module: forest
+    comp: FC-C31
+    label: Inventory and monitoring enactment of observer calibration and field measurement QA
+    sub: [L01, L05]
+    ap: resource-manager
+    note: >-
+      Forest inventory check-cruises and rangeland monitoring calibrations measure observer agreement and drive
+      retraining (v1 1.3.2, FC-C08).
+  - id: ena-fc-c31-wildlife
+    module: wildlife
+    comp: FC-C31
+    label: Wildlife survey enactment of observer calibration and field measurement QA
+    sub: [L02, L03]
+    ap: resource-manager
+    note: >-
+      Aerial, point-count and fish survey programmes calibrate observers for detection and identification so that
+      trends are not artefacts of observer change.
+  - id: ena-fc-c31-envhealth
+    module: envhealth
+    comp: FC-C31
+    label: Inspector standardization enactment of observer calibration and field measurement QA
+    sub: [H01]
+    ap: regulator
+    note: >-
+      Food and environmental health programmes standardize inspectors through joint inspections scored against a
+      standard, the inspection counterpart of observer calibration (SL-C07).
+  - id: ena-fc-c21-forest
+    module: forest
+    comp: FC-C21
+    label: Permittee and purchaser enactment of working alongside people on the land
+    sub: [L01, L05]
+    ap: resource-manager
+    note: >-
+      Forest and range staff work on the ground with grazing permittees, timber purchasers, contractors and volunteers,
+      where field relationships decide whether terms and conditions are met (IA-CC-01, FH-C02).
+  - id: ena-fc-c21-wildlife
+    module: wildlife
+    comp: FC-C21
+    label: Landowner habitat enactment of working alongside people on the land
+    sub: [L02]
+    ap: resource-manager
+    note: >-
+      Wildlife biologists work with private landowners, hunters and anglers on habitat projects, access programmes and
+      damage complaints, often on private land by permission.
+  - id: ena-fc-c21-parks
+    module: parks
+    comp: FC-C21
+    label: Park volunteer enactment of working alongside people on the land
+    sub: [L10]
+    ap: resource-manager
+    note: >-
+      Park staff lead volunteers, corps crews and partner groups on trail, restoration and visitor-service work in
+      front of the public.
+  - id: ena-sc-c12-water
+    module: water
+    comp: SC-C12
+    label: Drinking water and discharge rule enactment of regulatory change tracking
+    sub: [W01, W02]
+    ap: regulator
+    note: >-
+      Drinking water and discharge rules change on compliance timelines measured in years (lead service lines, PFAS,
+      nutrient limits); staff translate final, delayed and reconsidered rules into operating guidance and primacy
+      revisions.
+  - id: ena-sc-c12-air
+    module: air
+    comp: SC-C12
+    label: Air rule enactment of regulatory change tracking
+    sub: [P01]
+    ap: regulator
+    note: >-
+      Air standards, reconsiderations and reporting rules change frequently and are litigated; programmes translate each
+      change into permit, monitoring and planning guidance with effective dates tracked in L5.
+  - id: ena-sc-c12-waste
+    module: waste
+    comp: SC-C12
+    label: Waste and cleanup rule enactment of regulatory change tracking
+    sub: [P02, P03, P04]
+    ap: regulator
+    note: >-
+      Hazardous waste, emerging-contaminant cleanup and state producer-responsibility requirements change on staggered
+      schedules; programmes keep authorization, guidance and facility requirements current.

@@ -1,0 +1,82 @@
+# WP-06 authoring source — early draft in MOD-14 Working lands, restoration and land conservation (namespace:
+# worklands; wave 2). Only FH-C03 is drafted in wave 1 (candidate_disposition: drafted early for role R19).
+# Other worklands content (v1 seeds 1.8.1, 4.6.1, 4.6.3, 4.6.4 and splits) is wave 2 and not authored here. Content [J].
+module: worklands
+competencies:
+
+  - id: FH-C03
+    label: Develop conservation plans with private landowners and deliver voluntary conservation programmes
+    alt: [Conservation planning with producers, Farm Bill conservation programme delivery]
+    def: >-
+      Working with farmers, ranchers and forest landowners to inventory resource concerns, evaluate conservation practice
+      alternatives against practice standards and the owner's objectives, write conservation plans and contracts, and
+      verify installed practices before programme payment. Excludes regulatory permitting and practice engineering design.
+    stmt: >-
+      Inventories resource concerns with the landowner, evaluates practice alternatives against practice standards and
+      the owner's objectives, writes the conservation plan and programme contract the owner agrees to, and verifies
+      installed practices before certifying payment, documenting each decision in the planning record.
+    span: [L1, L3]
+    sub: [L06]
+    att: ATT-AUT
+    src: [FH-041]
+    note: >-
+      Early draft named in candidate_disposition: MOD-14 is wave 2, but FH-C03 is drafted in wave 1 because the soil
+      conservationist role profile (R19) needs it. Programme names are L5 instruments and appear only as altLabel. The
+      technical service provider certification is a Credential gate. Basis [J].
+    tasks:
+      - id: FH-C03-T1
+        text: Inventory resource concerns on a farm or ranch with the landowner, recording soil, water, plant and animal conditions in the planning record
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-AGREEMENT, WP-PROJECT]
+        modes: [MODE-ENGAGE]
+        rel: [client]
+      - id: FH-C03-T2
+        text: Evaluate conservation practice alternatives against practice standards and the landowner's objectives, recording the landowner's decisions
+        wf: WF-PLAN
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-AGREEMENT]
+        modes: [MODE-ENGAGE]
+        rel: [client]
+      - id: FH-C03-T3
+        text: Write a conservation plan that schedules the practices, quantities and timing the landowner has agreed to install
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-AGREEMENT]
+        rel: [client]
+      - id: FH-C03-T4
+        text: Verify installed practices against design and practice standards before certifying them for programme payment
+        wf: WF-ENFORCE.assure
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-AGREEMENT]
+        acc: Practice certification for payment is signed by staff or technical service providers with the required job approval authority.
+    ind:
+      L1:
+        - t: Records resource conditions on a field visit with a planner, completing the inventory sheet so that it matches the planner's observations.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+        - t: Measures installed practice dimensions and quantities against the design under supervision, recording values the planner confirms.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T4]
+      L2:
+        - t: Writes a conservation plan for a routine operation that the landowner signs and that lists every practice, quantity and schedule agreed.
+          modes: [MODE-ENGAGE]
+          a: [work-sample, record-audit]
+          st: [T3]
+        - t: Accepts or rejects an installed practice for payment certification after checking it against the design and practice standard, recording the measurements used.
+          a: [task-book-observation, record-audit]
+          st: [T4]
+      L3:
+        - t: Evaluates practice alternatives with a landowner whose objectives conflict with resource needs, documenting the options offered and the decision reached.
+          modes: [MODE-ENGAGE]
+          a: [simulation-role-play, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+        - t: Reviews junior planners' plans and practice checks against programme standards, documenting corrections and approval decisions.
+          a: [record-audit, counterpart-360]
+          st: [T3, T4]
+          att: ATT-FOR

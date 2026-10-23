@@ -1,0 +1,92 @@
+id: seed:class/WA/516L
+type: StateClassRecord
+prefLabel:
+  en: Natural Resource Scientist 2
+notation:
+- scheme: class-WA
+  value: 516L
+jurisdictionId:
+  stateFips: '53'
+  label: Washington
+employerType: state-agency
+agency: Statewide classified service (Office of Financial Management State HR)
+classCode: 516L
+classTitle: Natural Resource Scientist 2
+seriesId: Natural Resource Scientist 1-4
+levelIndex:
+  ordinal: 2
+  label: '2'
+supervisoryStatus: non-supervisory
+specEffectiveDate: '2025-07-01'
+workDescriptionText:
+  storage: hash-and-url
+  url: https://ofm.wa.gov/state-human-resources/compensation-job-classes/ClassifiedJobListing/Specifications/235
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+mqText:
+  storage: hash-and-url
+  url: https://ofm.wa.gov/state-human-resources/compensation-job-classes/ClassifiedJobListing/Specifications/235
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+  paraphrase: 'Desirable: bachelor''s in natural science plus 3 years research; master''s = 2 years; Ph.D. = all.'
+mqLocation: spec
+degreeRule: substitutable
+licensesRequired:
+- credential: Washington geologist / engineering geologist / hydrogeologist licence
+  issuer: Washington Geologist Licensing Board
+  timing: for-some-positions
+payBasis: monthly
+payMinMax:
+  min: null
+  max: null
+  currency: USD
+  rangeLabel: Range 58
+  note: amounts not retrieved
+payGradeLabel: Range 58
+payEffectiveDate: '2025-07-01'
+emstMapping:
+- roleVariantKey: R04-geospatial-remote-sensing-analyst/state
+  pending: role variant not yet authored by WP-08; re-run this script to link it (CR-IA-001 key)
+  roleLevel: journey
+  matchType: skos:relatedMatch
+  confidence: 0.35
+  reviewer: null
+  reviewDate: null
+  competencyTargets: []
+  crosswalkRecord: emst-x5-wa:R04-geospatial-remote-sensing-analyst/state:516L
+  note: competency targets with level are added when WP-08 authors the role profile
+- roleVariantKey: R17-hydrologist/state
+  pending: role variant not yet authored by WP-08; re-run this script to link it (CR-IA-001 key)
+  roleLevel: journey
+  matchType: skos:relatedMatch
+  confidence: 0.35
+  reviewer: null
+  reviewDate: null
+  competencyTargets: []
+  crosswalkRecord: emst-x5-wa:R17-hydrologist/state:516L
+  note: competency targets with level are added when WP-08 authors the role profile
+editorialNote:
+  en: Dated record as of 2026-10-23; re-run each 1 July or on plan revision (ADR-0022 X5).
+layer: L6
+module: core
+status: draft
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2027-07-01'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:ia-wp09@phase4
+  generatedAt: '2026-10-23T19:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp09-crosswalk@1
+  evidenceLabel: E
+  sources:
+  - SL-047
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0022
+  - ADR-0006

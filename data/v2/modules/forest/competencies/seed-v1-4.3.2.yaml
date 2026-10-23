@@ -1,18 +1,54 @@
 id: seed:v1-4.3.2
 type: Competency
 prefLabel:
-  en: Prescribed fire planning and execution
+  en: Conduct prescribed fire from burn planning through ignition, holding and evaluation
+altLabel:
+  en:
+  - Prescribed fire planning and execution
+  - Prescribed burning
+  - Burn boss practice
+definition:
+  en: 'Planning and conducting prescribed fire to meet ecological or fuels objectives: writing burn plans, test-firing and go/no-go decisions, ignition (hand and aerial, including supervising uncrewed-aircraft ignition), holding, monitoring against the prescription and evaluating effects, from crew member to burn boss. Excludes smoke management decisions by air regulators (air module DB-C15).'
 statement:
-  en: Developing burn plans and safely conducting prescribed fires to achieve ecological objectives.
+  en: Writes burn plans with objectives, prescription and contingencies; checks conditions and decides go or no-go from a test fire; ignites by hand or supervises aerial ignition to the firing plan; monitors fire behaviour, weather and smoke against the prescription; and evaluates effects so that later burns improve.
 notation:
 - scheme: EMSTv1
   value: 4.3.2
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-4.3.2-l1-a
+  - seed:ind-4.3.2-l1-b
+- level: L2
+  indicators:
+  - seed:ind-4.3.2-l2-a
+  - seed:ind-4.3.2-l2-b
+- level: L3
+  indicators:
+  - seed:ind-4.3.2-l3-a
+  - seed:ind-4.3.2-l3-b
+- level: L4
+  indicators:
+  - seed:ind-4.3.2-l4-a
+  - seed:ind-4.3.2-l4-b
+homeModule: forest
+subsectors:
+- L07
+- L01
+- L05
+reusability: subsector-specific
 layer: L1
 module: forest
-homeModule: forest
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Domain:
   code: '4'
   label: Field Operations Skills
@@ -20,14 +56,12 @@ v1SkillArea:
   code: '4.3'
   label: Fire Management
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: Survivor for prescribed fire; absorbs 4.2.3; separates planning from execution tasks and adds supervising UAS ignition (FC verdict); FS stress test suggests protect; relates to TN-C06 (held). Role verdicts considered: FC:change|IA:change.'
-license: CC0-1.0
-sensitivity: public
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: Survivor for prescribed fire; absorbs 4.2.3; separates planning from execution tasks and adds supervising UAS ignition (FC verdict); FS stress test suggests protect; relates to TN-C06 (held). Role verdicts considered: FC:change|IA:change. WP-06: Survivor for prescribed fire; absorbs v1 4.2.3 (crew-level prescribed burning) to give one prescribed-fire competency from crew member to burn boss; separates planning from execution and adds supervising uncrewed-aircraft ignition (FC verdict). Burn boss and other positions are Credential gates; state certified burn manager licences likewise. FS stress test suggests protect: listed for the Editorial Board, not set. Relates to TN-C06, which is held (ADR-0007) and not authored here. Smoke management is enacted from DB-C15. Basis [J].'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:4.3.2
     v1Code: 4.3.2
@@ -38,7 +72,8 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
   - v1Key: v1:4.3.2
     v1Code: 4.3.2
     v1Table: source_text/competencies
@@ -51,10 +86,12 @@ provenance:
     note: v1 4.2.3 (merge) → seed:v1-4.3.2 per v1_disposition.csv
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
 v1Seed:
   v1Title: Prescribed fire planning and execution
   v1Description: Developing burn plans and safely conducting prescribed fires to achieve ecological objectives.

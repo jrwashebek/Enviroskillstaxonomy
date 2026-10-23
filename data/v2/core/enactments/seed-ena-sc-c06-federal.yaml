@@ -1,0 +1,49 @@
+id: seed:ena-sc-c06-federal
+type: Enactment
+prefLabel:
+  en: Federal discretionary public involvement
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SC-C06
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: Department environmental-review procedures that make public involvement discretionary for lower levels of review and require comment solicitation for impact statements; objection rules.
+principal:
+  en: The responsible official.
+accountabilityVenue:
+  en: Federal courts; objection reviewers; Congress.
+characteristicInstruments:
+- seed:ins/doi-nepa-procedures
+- seed:ins/usda-nepa-procedures
+- seed:ins/ceq-nepa-regs-removal
+- seed:ins/usfs-objection-rule
+note:
+  en: 'Federal engagement moved from a compliance step to a reasoned choice in 2026 [E: SC-038].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SC-038
+  - V2-01
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

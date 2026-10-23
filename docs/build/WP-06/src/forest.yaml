@@ -1,0 +1,1538 @@
+# WP-06 authoring source — MOD-11 Forests, rangelands, fire and public-lands multiple use
+# (namespace: forest; subsectors L01 L05 L07). v1-seeded section.
+# Rows: v1_disposition 1.3.1–1.3.5, 4.3.1–4.3.5 (move-to-module), 4.2.3 (merge into 4.3.2);
+#       candidate_disposition FH-C02, FC-C08, IA-CC-01 (absorbs FH-C04, DB-C55), IA-CC-04, PS-C23, FS-C05;
+#       IA-CC-05 early draft (home extract, wave 2; public-lands enactment drafted here per ADR-0018 s.4).
+# Not authored: TN-C06 (held; TN drafts only, ADR-0007 §D). Content [J]; agent-drafted.
+module: forest
+competencies:
+
+  - id: v1-1.3.1
+    label: Prescribe and implement silvicultural treatments for stand objectives
+    alt: [Silviculture, Silvicultural prescription, Timber marking]
+    def: >-
+      Reading stands and sites, writing silvicultural prescriptions for timber, habitat, fuels, carbon or restoration
+      objectives, marking and implementing treatments (thinning, regeneration harvests, planting) and judging outcomes
+      against the prescription. Excludes harvest scheduling across an ownership (v1 1.3.5) and growth-model projection
+      (v1 1.3.3).
+    stmt: >-
+      Reads stand structure, species and site conditions, writes prescriptions that state objectives and residual
+      targets, marks or directs treatments to those targets, audits marking and evaluates outcomes on monitoring plots,
+      adapting later prescriptions to what the stand did and to projected climate and disturbance.
+    span: [L1, L4]
+    sub: [L01]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-11 (forest-specific under G-4). Title fixed from v1's merged title; marking-audit anchors added
+      (FC verdict). Field-craft primary. SAF Certified Forester and state forester licences are Credentials, not
+      levels. Basis [J].
+    tasks:
+      - id: v1-1.3.1-T1
+        text: Write a silvicultural prescription for a stand from inventory data, site conditions and stated management objectives
+        wf: WF-PLAN
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: v1-1.3.1-T2
+        text: Mark trees for a thinning or regeneration harvest to the prescription's residual density, species and structure targets
+        wf: WF-BUILD
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: ecosystem-type, currencyDecay: M}
+      - id: v1-1.3.1-T3
+        text: Evaluate treated stands on monitoring plots against the prescription's targets, recommending changes to future prescriptions
+        wf: WF-LEARN
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: db-1.3.1-t4
+        text: Audit a marked stand against its prescription by sampling residual basal area, spacing and leave-tree selection
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: db-1.3.1-t5
+        text: Prescribe regeneration method, species and stocking for a harvested or disturbed stand under projected climate conditions
+        wf: WF-PLAN
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-PROJECT]
+    ind:
+      L1:
+        - t: Marks leave trees in a thinning unit under a forester's direction, so that a check plot meets the prescription's residual basal area within tolerance.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T2]
+          v1: ['v1:1.3.1:foundational:I3']
+        - t: Records survival and growth on regeneration plots following the monitoring protocol, so that values match a crew lead's re-measurement.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T3]
+          v1: ['v1:1.3.1:foundational:I6']
+      L2:
+        - t: Writes a prescription for a routine stand that states objectives, residual targets and marking guides a crew can apply without further direction.
+          a: [work-sample, portfolio-review]
+          st: [T1]
+          v1: ['v1:1.3.1:intermediate:I1']
+        - t: Audits a marked unit by sampling residual basal area and leave-tree selection, accepting or rejecting the marking against the prescription.
+          a: [blind-re-measurement, record-audit]
+          st: [t4]
+      L3:
+        - t: Prescribes treatments for a stand under novel conditions, such as a new pest or drought mortality, documenting the evidence and the uncertainty in expected response.
+          a: [work-sample, structured-interview-bars]
+          st: [T1, t5]
+          att: ATT-CPX
+          v1: ['v1:1.3.1:advanced:I3']
+        - t: Evaluates foresters' marking and prescriptions in the field against the unit's objectives, documenting corrections and sign-off decisions.
+          a: [task-book-observation, counterpart-360]
+          st: [T2, t4]
+          att: ATT-FOR
+          v1: ['v1:1.3.1:advanced:I7']
+      L4:
+        - t: Sets silvicultural guidelines for a forest or programme where none fit current conditions, documenting the evidence and the monitoring that will test them.
+          a: [portfolio-review]
+          st: [T1, T3]
+          att: ATT-GUI
+        - t: Defends a contested prescription to reviewers and the public with stand data and monitoring results, recording the changes accepted.
+          a: [moot-defense, portfolio-review]
+          st: [T1]
+          att: ATT-SCO
+
+  - id: v1-1.3.2
+    label: Inventory forest resources to stated precision with field plots and remote sensing
+    alt: [Forest mensuration and inventory, Timber cruising]
+    def: >-
+      Measuring trees and stands and designing and running forest inventories and timber cruises that estimate volume,
+      structure, composition, carbon or habitat attributes to a stated precision, integrating field plots with remote
+      sensing and judging where plots remain necessary. Excludes growth projection (v1 1.3.3).
+    stmt: >-
+      Measures trees to protocol, designs inventories and cruises with sampling intensity matched to the precision
+      required, integrates field plots with airborne lidar and other imagery, and checks crews' measurements, reporting
+      estimates with their sampling error so that decisions rest on known precision.
+    span: [L1, L4]
+    sub: [L01]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-11. The data-entry task is replaced by integrating plots and lidar and judging where plots remain
+      necessary (FC verdict). FS stress test suggests the protect overlay: listed for an Editorial Board decision, not
+      set here (ADR-0015). Basis [J].
+    tasks:
+      - id: v1-1.3.2-T1
+        text: Measure tree diameter, height, defect and age on inventory plots following the cruise or inventory protocol
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT, WP-RESEARCH]
+        rr: {mentorshipDependence: M, cycleDependence: none, placeBoundness: ecosystem-type, currencyDecay: L}
+      - id: v1-1.3.2-T2
+        text: Design a forest inventory or timber cruise with the sampling intensity needed to meet a stated precision for volume and composition
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-PROJECT]
+      - id: v1-1.3.2-T3
+        text: Estimate stand attributes by combining field plots with airborne lidar, deciding where additional plots are needed to meet precision targets
+        wf: WF-ASSESS
+        fd: remote-capable
+        form: partial
+        prof: [WP-PROJECT]
+      - id: db-1.3.2-t4
+        text: Check-cruise a crew's inventory plots by blind re-measurement, recording differences outside the protocol tolerance
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+    ind:
+      L1:
+        - t: Measures diameter and height on inventory plots following the protocol, so that values fall within the check-cruise tolerance on blind re-measurement.
+          a: [blind-re-measurement]
+          st: [T1]
+          v1: ['v1:1.3.2:foundational:I1', 'v1:1.3.2:foundational:I2']
+        - t: Establishes plot centres and boundaries following the protocol, recording plot data that pass the crew lead's completeness check.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+          v1: ['v1:1.3.2:foundational:I5', 'v1:1.3.2:foundational:I3']
+      L2:
+        - t: Designs a timber cruise for a sale area with sampling intensity matched to the stated precision, reporting estimates with their sampling error.
+          a: [work-sample]
+          st: [T2]
+          v1: ['v1:1.3.2:intermediate:I1', 'v1:1.3.2:intermediate:I7']
+        - t: Check-cruises a crew's plots by blind re-measurement, recording each difference outside tolerance and the retraining or rework required.
+          a: [blind-re-measurement, record-audit]
+          st: [t4]
+          att: ATT-SCO
+      L3:
+        - t: Combines field plots with lidar-derived metrics to estimate stand attributes, rejecting areas where model error exceeds the target and adding plots there.
+          m: assisted
+          a: [work-sample, structured-interview-bars]
+          st: [T3]
+          att: ATT-AUG
+          v1: ['v1:1.3.2:advanced:I3']
+        - t: Designs an inventory serving several objectives, such as timber, carbon and habitat, documenting the precision each estimate will reach and the cost.
+          a: [work-sample, portfolio-review]
+          st: [T2]
+          att: ATT-CPX
+          v1: ['v1:1.3.2:advanced:I1']
+      L4:
+        - t: Sets the programme's inventory and check-cruise standards, including when remote-sensing estimates may replace field plots and how that is verified.
+          m: supervisory
+          a: [portfolio-review]
+          st: [T2, T3, t4]
+          att: ATT-GUI
+        - t: Certifies inventory crew members against the programme's measurement standards, using blind re-measurement results to decide each certification.
+          a: [blind-re-measurement, record-audit]
+          st: [T1, t4]
+          att: ATT-FOR
+
+  - id: v1-1.3.3
+    label: Project stand development under alternative treatments with calibrated growth models
+    alt: [Stand dynamics and growth modelling, Growth and yield projection]
+    def: >-
+      Applying knowledge of stand development to project growth, yield and structure under alternative treatments and
+      disturbance with growth models calibrated and checked against local remeasurement data, and stating the
+      uncertainty of projections. Excludes writing the prescription itself (v1 1.3.1).
+    stmt: >-
+      Classifies stand development stage from field data, projects growth, yield and structure under alternative
+      treatments with growth models calibrated to local remeasurement plots, and reports projections with their
+      assumptions and uncertainty so that prescriptions and harvest schedules rest on tested expectations.
+    span: [L2, L4]
+    sub: [L01]
+    att: ATT-CPX
+    note: >-
+      Moved to MOD-11; stand dynamics knowledge with DC growth-modelling tasks; title/description defect fixed.
+      Simulator products move to L4 (ADR-0003 T-1). Basis [J].
+    tasks:
+      - id: v1-1.3.3-T1
+        text: Project stand development under alternative treatments with a growth model, reporting each projection's assumptions and uncertainty
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-PROJECT]
+      - id: v1-1.3.3-T2
+        text: Classify a stand's development stage from field structure data to anticipate its response to treatment
+        wf: WF-ASSESS
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: v1-1.3.3-T3
+        text: Recommend silvicultural interventions from growth projections that meet stated timber or habitat-structure targets
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-PROJECT]
+        also: [v1-1.3.1]
+      - id: db-1.3.3-t4
+        text: Calibrate a growth model for local conditions by comparing its predictions with remeasured permanent plots
+        wf: WF-MONITOR
+        fd: remote
+        form: partial
+        prof: [WP-PROJECT, WP-RESEARCH]
+    ind:
+      L2:
+        - t: Projects a routine stand under two or more treatments with a growth model, checking outputs against plot data for plausibility and reporting assumptions and ranges.
+          m: assisted
+          a: [work-sample]
+          st: [T1]
+          v1: ['v1:1.3.3:intermediate:I2']
+        - t: Classifies stand development stage from plot data, citing the structural evidence that places the stand in that stage.
+          a: [work-sample, knowledge-test]
+          st: [T2]
+          v1: ['v1:1.3.3:foundational:I2']
+      L3:
+        - t: Calibrates a growth model against remeasured plots, accepting or rejecting the calibration from documented error statistics before use in planning.
+          m: assisted
+          a: [work-sample]
+          st: [t4]
+          att: ATT-AUG
+          v1: ['v1:1.3.3:intermediate:I4', 'v1:1.3.3:intermediate:I7']
+        - t: Projects a mixed-species or uneven-aged stand where model assumptions are weak, documenting a sensitivity analysis of the key inputs.
+          a: [work-sample, structured-interview-bars]
+          st: [T1]
+          att: ATT-CPX
+          v1: ['v1:1.3.3:advanced:I2', 'v1:1.3.3:advanced:I4']
+      L4:
+        - t: Sets the programme's standards for when growth projections may support decisions, including required calibration evidence and uncertainty reporting.
+          a: [portfolio-review]
+          st: [T1, t4]
+          att: ATT-GUI
+        - t: Reviews other analysts' growth projections for fitness for the decision, returning each projection whose calibration or assumptions do not support it.
+          a: [record-audit, counterpart-360]
+          st: [T1]
+          att: ATT-FOR
+
+  - id: v1-1.3.4
+    label: Assess forest health and diagnose biotic and abiotic stressors
+    alt: [Forest health assessment, Forest pest and disease diagnosis]
+    def: >-
+      Surveying forests for insect, disease and abiotic damage, diagnosing causes from symptoms, signs and site
+      history, verifying remote and automated damage detections on the ground, and recommending management responses.
+      Excludes pesticide application (worklands module) and invasive plant control (core v1 4.2.2).
+    stmt: >-
+      Surveys stands for damage, diagnoses insect, disease and abiotic causes from field symptoms, signs and history with
+      laboratory confirmation where needed, verifies aerial, drone and AI-detected damage polygons on the ground, and
+      recommends responses with their expected effects, documenting the evidence for each diagnosis.
+    span: [L1, L4]
+    sub: [L01]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-11; durable field diagnosis; adds verifying aerial, drone and AI-detected damage polygons on the
+      ground (FC verdict). Basis [J].
+    tasks:
+      - id: v1-1.3.4-T1
+        text: Survey stands for insect, disease and abiotic damage, recording agent, severity and extent on survey plots
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT, WP-REGPROGRAM]
+      - id: v1-1.3.4-T2
+        text: Diagnose the cause of tree decline from field symptoms, signs and site history, sending samples for laboratory confirmation
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+        rr: {mentorshipDependence: H, cycleDependence: multi-year-or-rare-event, placeBoundness: ecosystem-type, currencyDecay: M}
+      - id: v1-1.3.4-T3
+        text: Recommend management responses to a pest or disease outbreak, such as sanitation harvest or biological control, stating expected effects
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-PROJECT]
+      - id: db-1.3.4-t4
+        text: Verify aerial, drone or AI-detected damage polygons on the ground, recording agent and severity where detections are wrong
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT, WP-REGPROGRAM]
+    ind:
+      L1:
+        - t: Records presence, symptoms and severity of forest pests on survey plots using the programme damage codes, so that records pass quality review.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+          v1: ['v1:1.3.4:foundational:I3']
+        - t: Collects and labels damaged foliage, bark or insects for laboratory identification following the submission protocol, with every sample accepted.
+          a: [task-book-observation]
+          st: [T2]
+          v1: ['v1:1.3.4:foundational:I2']
+      L2:
+        - t: Diagnoses common insect, disease and abiotic damage in the field, so that diagnoses agree with laboratory confirmation on the programme's check sample.
+          a: [blind-re-measurement, prediction-test]
+          st: [T2]
+          v1: ['v1:1.3.4:intermediate:I1']
+        - t: Accepts, corrects or rejects aerial and AI-detected damage polygons after ground visits, recording agent and severity for each polygon checked.
+          m: assisted
+          a: [blind-re-measurement, record-audit]
+          st: [t4]
+          att: ATT-AUG
+      L3:
+        - t: Diagnoses a non-routine decline with several interacting causes, documenting the field and laboratory evidence that separates the contributing agents.
+          a: [work-sample, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+          v1: ['v1:1.3.4:advanced:I1']
+        - t: Recommends an outbreak response with expected effects on spread and stand condition, citing the survey data and literature behind each expectation.
+          a: [work-sample]
+          st: [T3]
+          att: ATT-AUT
+          v1: ['v1:1.3.4:intermediate:I5']
+      L4:
+        - t: Designs a forest health monitoring system for a region, defining survey methods, detection products and the ground-verification rate each product requires.
+          m: supervisory
+          a: [portfolio-review]
+          st: [T1, t4]
+          att: ATT-GUI
+          v1: ['v1:1.3.4:advanced:I2']
+        - t: Sets the response strategy for a novel pest across ownerships, recording the agreed detection, containment and monitoring commitments.
+          a: [portfolio-review, counterpart-360]
+          st: [T3]
+          att: ATT-SCO
+          v1: ['v1:1.3.4:advanced:I5']
+
+  - id: v1-1.3.5
+    label: Plan forest management and timber harvests to meet ecological and economic objectives
+    alt: [Timber management planning, Forest management planning, Harvest scheduling]
+    def: >-
+      Preparing forest management plans and harvest schedules that sustain timber, habitat, water and other values,
+      laying out harvest units on the ground and monitoring operations against best management practices. Excludes
+      sale contract administration (FH-C02) and public land-use plans (core v1 6.2.3).
+    stmt: >-
+      Prepares forest management plans and harvest schedules that balance timber yield with habitat, water,
+      recreation and carbon objectives, lays out units and leave areas on the ground, and monitors operations against
+      best management practices, so that plans can be executed and checked on the ground.
+    span: [L1, L4]
+    sub: [L01]
+    att: ATT-SCO
+    note: >-
+      Moved to MOD-11; required by forestry and forest-technology accreditation standards (LC verdict, paraphrased;
+      SAF handbook not copied). Actor enactment notes requested by TN are drafted only under the ADR-0007 hold and are
+      not authored here. Certification-scheme names go to L4 (PS-C23 carries scheme conformance). Basis [J].
+    tasks:
+      - id: v1-1.3.5-T1
+        text: Prepare a forest management plan that schedules harvests and treatments to meet ecological, economic and regeneration objectives
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-PROJECT]
+        rel: [client]
+      - id: v1-1.3.5-T2
+        text: Lay out harvest unit boundaries, leave areas and skid trails on the ground to the plan's specifications and best management practices
+        wf: WF-PLAN
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: v1-1.3.5-T3
+        text: Inspect active harvest operations for compliance with best management practices for water quality and soil protection
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT, WP-COMPLIANCE]
+      - id: db-1.3.5-t4
+        text: Schedule harvests across a forest ownership to sustain yield and habitat objectives over the planning horizon
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-PROJECT]
+    ind:
+      L1:
+        - t: Flags harvest unit boundaries and leave areas on the ground from the layout map, so that a check traverse confirms the flagged lines.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T2]
+          v1: ['v1:1.3.5:foundational:I2']
+        - t: Records best-management-practice conditions at harvest landings, crossings and skid trails on the inspection form, citing each deficiency's location.
+          a: [task-book-observation, record-audit]
+          st: [T3]
+          v1: ['v1:1.3.5:foundational:I6']
+      L2:
+        - t: Lays out a harvest unit to plan specifications, placing skid trails, landings and buffers so that the layout passes a best-management-practice review.
+          a: [work-sample, task-book-observation]
+          st: [T2]
+          v1: ['v1:1.3.5:intermediate:I1', 'v1:1.3.5:intermediate:I5']
+        - t: Prepares a management plan for a routine ownership that states objectives, a harvest schedule and the inventory data behind it.
+          a: [work-sample, portfolio-review]
+          st: [T1]
+      L3:
+        - t: Schedules harvests across an ownership with competing timber, habitat and water objectives, documenting the trade-offs among alternative schedules.
+          a: [work-sample, portfolio-review]
+          st: [t4]
+          att: ATT-CPX
+          v1: ['v1:1.3.5:advanced:I2', 'v1:1.3.5:advanced:I3']
+        - t: Adjusts a management plan after a disturbance such as fire or windthrow, documenting revised objectives, salvage decisions and their basis.
+          a: [work-sample, structured-interview-bars]
+          st: [T1]
+          att: ATT-GUI
+      L4:
+        - t: Sets long-term management direction for a large ownership with its owners or governing body, recording the objectives, constraints and monitoring adopted.
+          a: [portfolio-review, counterpart-360]
+          st: [T1, t4]
+          att: ATT-SCO
+          v1: ['v1:1.3.5:advanced:I1']
+        - t: Evaluates foresters' plans and layouts against the programme's standards, documenting corrections and sign-off for each plan reviewed.
+          a: [record-audit, counterpart-360]
+          st: [T1, T2]
+          att: ATT-FOR
+          v1: ['v1:1.3.5:advanced:I7']
+
+  - id: v1-4.3.1
+    label: Suppress wildland fire safely with ground tactics and resources
+    alt: [Wildland firefighting, Wildland fire suppression]
+    def: >-
+      Ground suppression of unwanted wildland fire: sizing up fires, constructing and holding control lines, firing
+      operations, mop-up and patrol, and leading crews and resources while maintaining lookouts, communications, escape
+      routes and safety zones. Excludes incident command system functions (core DB-C42) and prescribed fire (v1 4.3.2).
+    stmt: >-
+      Sizes up fires and selects tactics, constructs and holds control lines with hand tools, water and equipment,
+      conducts firing operations and mop-up, and leads crews or resources while keeping lookouts, communications,
+      escape routes and safety zones in place, so that the fire is contained without harm to people.
+    span: [L1, L4]
+    sub: [L07]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-11 (L07). Proficiency is qualification-anchored, so wildland fire position qualifications are
+      Credential gates with a position-qualification crosswalk, not levels (ADR-0003 T-8); the USWFS-USFS aligned
+      federal qualification standards take effect January 2027 (V3-13; L5 instrument
+      seed:ins/wildland-fire-quals-alignment). ICS participation goes to core DB-C42. Actor enactment notes requested
+      by TN are held under ADR-0007 and not authored here. Basis [J]; dates [E: V3-13].
+    tasks:
+      - id: v1-4.3.1-T1
+        text: Construct fireline with hand tools or equipment to the specified width and depth while keeping escape routes and safety zones current
+        wf: WF-RESPOND
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-INCIDENT]
+        so: position-qualification
+        cg: internal-qualification
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: ecosystem-type, currencyDecay: H}
+      - id: v1-4.3.1-T2
+        text: Execute a firing operation that removes fuel between the control line and the fire under the firing boss's direction
+        wf: WF-RESPOND
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-INCIDENT]
+        so: position-qualification
+        cg: internal-qualification
+      - id: v1-4.3.1-T3
+        text: Mop up heat along the control line until the perimeter meets the incident's containment standard
+        wf: WF-RESPOND
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-INCIDENT]
+      - id: db-4.3.1-t4
+        text: Size up a new fire's fuels, weather, topography and values at risk to recommend initial attack tactics
+        wf: WF-RESPOND
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-INCIDENT]
+        so: position-qualification
+        cg: internal-qualification
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: ecosystem-type, currencyDecay: H}
+      - id: db-4.3.1-t5
+        text: Direct a crew's tactical assignment, adjusting tactics when observed fire behaviour or weather departs from the briefing
+        wf: WF-RESPOND
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-INCIDENT]
+        so: position-qualification
+        cg: internal-qualification
+    ind:
+      L1:
+        - t: Constructs handline to the width and depth the squad boss specifies, keeping pace with the crew and stopping when the lookout calls a hazard.
+          a: [task-book-observation]
+          st: [T1]
+          sc: true
+          v1: ['v1:4.3.1:foundational:I2']
+        - t: Reports changes in fire behaviour, weather or spot fires to the squad boss by radio using the crew's communication protocol.
+          a: [task-book-observation, simulation-role-play]
+          st: [T1, T3]
+          sc: true
+          v1: ['v1:4.3.1:foundational:I4', 'v1:4.3.1:foundational:I7']
+      L2:
+        - t: Leads a squad on an assigned line segment, identifying escape routes and safety zones before work begins and re-checking them as conditions change.
+          a: [task-book-observation]
+          st: [T1, t5]
+          sc: true
+          v1: ['v1:4.3.1:intermediate:I6']
+        - t: Recommends initial attack tactics for a new small fire after size-up, citing fuels, weather, topography and values at risk, in a form the incident commander accepts.
+          a: [task-book-observation, simulation-role-play]
+          st: [t4]
+          att: ATT-KNO
+          v1: ['v1:4.3.1:intermediate:I2']
+      L3:
+        - t: Directs crews and equipment on a division during an extended attack, adjusting tactics when fire behaviour departs from the briefing and recording the changes.
+          a: [task-book-observation, simulation-role-play]
+          st: [t5]
+          att: ATT-CPX
+          sc: true
+          v1: ['v1:4.3.1:advanced:I2']
+        - t: Evaluates trainees' performance on position task-book tasks during an assignment, documenting each task signed off and the coaching given.
+          a: [task-book-observation]
+          att: ATT-FOR
+      L4:
+        - t: Sets tactical objectives for a high-consequence fire near communities that trade suppression effectiveness against firefighter exposure, documenting the risk decision.
+          a: [simulation-role-play, structured-interview-bars]
+          st: [t4, t5]
+          att: ATT-SCO
+          sc: true
+          v1: ['v1:4.3.1:advanced:I4']
+        - t: Facilitates an after-action review of a fire assignment, recording the lessons and the changes assigned to named roles.
+          a: [counterpart-360, portfolio-review]
+          st: [t5]
+          att: ATT-FOR
+          v1: ['v1:4.3.1:advanced:I7']
+
+  - id: v1-4.3.2
+    label: Conduct prescribed fire from burn planning through ignition, holding and evaluation
+    alt: [Prescribed fire planning and execution, Prescribed burning, Burn boss practice]
+    def: >-
+      Planning and conducting prescribed fire to meet ecological or fuels objectives: writing burn plans, test-firing
+      and go/no-go decisions, ignition (hand and aerial, including supervising uncrewed-aircraft ignition), holding,
+      monitoring against the prescription and evaluating effects, from crew member to burn boss. Excludes smoke
+      management decisions by air regulators (air module DB-C15).
+    stmt: >-
+      Writes burn plans with objectives, prescription and contingencies; checks conditions and decides go or no-go from
+      a test fire; ignites by hand or supervises aerial ignition to the firing plan; monitors fire behaviour, weather and
+      smoke against the prescription; and evaluates effects so that later burns improve.
+    span: [L1, L4]
+    sub: [L07, L01, L05]
+    att: ATT-AUT
+    note: >-
+      Survivor for prescribed fire; absorbs v1 4.2.3 (crew-level prescribed burning) to give one prescribed-fire
+      competency from crew member to burn boss; separates planning from execution and adds supervising
+      uncrewed-aircraft ignition (FC verdict). Burn boss and other positions are Credential gates; state certified burn
+      manager licences likewise. FS stress test suggests protect: listed for the Editorial Board, not set. Relates to
+      TN-C06, which is held (ADR-0007) and not authored here. Smoke management is enacted from DB-C15. Basis [J].
+    tasks:
+      - id: v1-4.3.2-T1
+        text: Write a burn plan with objectives, prescription parameters, holding and contingency actions for a prescribed fire unit
+        wf: WF-PLAN
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: v1-4.3.2-T2
+        text: Decide whether to proceed with ignition from a test fire, observed weather and fuel moisture against the burn plan's prescription
+        wf: WF-BUILD
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+        so: position-qualification
+        cg: internal-qualification
+        acc: The go/no-go decision is made by the qualified burn boss named in the approved burn plan.
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: ecosystem-type, currencyDecay: H}
+      - id: v1-4.3.2-T3
+        text: Evaluate fire effects on monitoring plots against burn objectives, recording outcomes that inform the next burn plan
+        wf: WF-LEARN
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: v1-4.2.3-T1
+        text: Ignite a prescribed fire unit with hand-held devices following the firing pattern and the firing boss's direction
+        wf: WF-BUILD
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+        cg: internal-qualification
+      - id: v1-4.2.3-T2
+        text: Monitor fire behaviour, weather and smoke during a burn against the prescription, reporting values outside it to the burn boss
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: v1-4.2.3-T3
+        text: Check holding resources, equipment and crew briefing completion against the burn plan before ignition begins
+        wf: WF-BUILD
+        fd: on-site-required
+        form: partial
+        prof: [WP-PROJECT]
+      - id: db-4.3.2-t4
+        text: Supervise uncrewed-aircraft ignition over a burn unit, halting ignition when the firing pattern or fire behaviour departs from the plan
+        wf: WF-BUILD
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+        so: position-qualification
+        cg: internal-qualification
+    ind:
+      L1:
+        - t: Ignites an assigned strip to the firing pattern under the firing boss's direction, adjusting spacing only when instructed.
+          a: [task-book-observation]
+          st: [v1-4.2.3-T1]
+          sc: true
+          v1: ['v1:4.3.2:foundational:I2']
+        - t: Records weather and fire behaviour observations at the required interval during a burn, reporting any value outside prescription immediately.
+          a: [task-book-observation, record-audit]
+          st: [v1-4.2.3-T2]
+          sc: true
+          v1: ['v1:4.3.2:foundational:I3', 'v1:4.3.2:foundational:I7']
+      L2:
+        - t: Writes a burn plan for a unit of moderate complexity that states objectives, prescription, holding and contingency actions an agency reviewer approves.
+          a: [work-sample, record-audit]
+          st: [T1]
+          v1: ['v1:4.3.2:intermediate:I1']
+        - t: Leads ignition operations on a unit, adjusting the firing pattern to site and seasonal conditions so that observed effects stay within the prescription.
+          a: [task-book-observation]
+          st: [v1-4.2.3-T1, T2]
+          sc: true
+          v1: ['v1:4.3.2:intermediate:I4', 'v1:4.3.2:intermediate:I9']
+      L3:
+        - t: Decides go or no-go from a test fire and observed conditions against the prescription, documenting the observations behind the decision.
+          a: [task-book-observation, simulation-role-play]
+          st: [T2]
+          att: ATT-AUT
+          sc: true
+        - t: Halts uncrewed-aircraft ignition when the firing pattern or fire behaviour departs from the plan, and records the departure and the action taken.
+          m: supervisory
+          a: [task-book-observation, simulation-role-play]
+          st: [t4]
+          att: ATT-AUG
+          sc: true
+      L4:
+        - t: Writes burn plans for high-consequence units with multiple objectives and smoke-sensitive receptors, documenting how each objective and constraint is met.
+          a: [work-sample, portfolio-review]
+          st: [T1]
+          att: ATT-CPX
+          v1: ['v1:4.3.2:advanced:I1', 'v1:4.3.2:advanced:I3']
+        - t: Evaluates trainees on prescribed fire position tasks during burns, certifying each task met and recording protected unaided practice before aerial ignition is used.
+          a: [task-book-observation]
+          att: ATT-FOR
+          v1: ['v1:4.3.2:advanced:I6']
+
+  - id: v1-4.3.3
+    label: Design fuels treatments that reduce wildfire hazard and verify their effects in the field
+    alt: [Fuels management, Hazardous fuels reduction]
+    def: >-
+      Assessing fuels, designing mechanical, prescribed fire, grazing and other fuels treatments, supervising their
+      implementation to residual specifications and verifying effects on fuels and expected fire behaviour, including
+      field verification of mapped fuels. Excludes prescribed fire execution (v1 4.3.2) and community wildfire plans as
+      a whole.
+    stmt: >-
+      Assesses fuels with field sampling and verified fuel maps, designs treatments that change expected fire behaviour
+      where it matters, supervises implementation to residual fuel and canopy specifications and re-measures fuels after
+      treatment, so that effectiveness and maintenance needs are known.
+    span: [L1, L4]
+    sub: [L07, L01]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-11; durable. Mechanized and remote treatment equipment are robotics-pending (L4); lidar fuels
+      mapping is a DC input; field verification of fuels maps added (FC verdict); title defect fixed. Basis [J].
+    tasks:
+      - id: v1-4.3.3-T1
+        text: Assess fuels in a planning area with standard fuel models and field sampling to set treatment priorities
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: v1-4.3.3-T2
+        text: Supervise mechanical or hand fuels treatments to the prescription's residual fuel and canopy specifications
+        wf: WF-BUILD
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+        rel: [client]
+      - id: v1-4.3.3-T3
+        text: Evaluate fuels treatment effectiveness by re-measuring fuels and modelling fire behaviour after treatment
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: db-4.3.3-t4
+        text: Verify a remotely sensed fuels map in the field, correcting fuel-model assignments that misrepresent observed conditions
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+    ind:
+      L1:
+        - t: Samples surface and ladder fuels on plots following the fuels protocol, so that values match a crew lead's re-measurement within tolerance.
+          a: [blind-re-measurement]
+          st: [T1, T3]
+        - t: Piles or chips slash to the treatment specification under a crew lead, recording completed acres and conditions on the daily log.
+          a: [task-book-observation, record-audit]
+          st: [T2]
+          v1: ['v1:4.3.3:foundational:I3', 'v1:4.3.3:foundational:I6']
+      L2:
+        - t: Assigns fuel models to field plots and checks a fuels map against them, correcting each map assignment the field evidence contradicts.
+          m: assisted
+          a: [blind-re-measurement, record-audit]
+          st: [t4]
+          v1: ['v1:4.3.3:intermediate:I1']
+        - t: Supervises a contractor's treatment to residual specifications, accepting or rejecting completed units after a compliance check.
+          a: [task-book-observation, record-audit]
+          st: [T2]
+          v1: ['v1:4.3.3:intermediate:I4']
+      L3:
+        - t: Designs a treatment prescription for a unit with competing habitat and fuels objectives, documenting expected fire behaviour change and trade-offs.
+          a: [work-sample, structured-interview-bars]
+          st: [T1]
+          att: ATT-CPX
+          v1: ['v1:4.3.3:intermediate:I2']
+        - t: Evaluates treatment effectiveness from re-measured fuels and fire behaviour modelling, recommending maintenance intervals with stated evidence.
+          a: [work-sample]
+          st: [T3]
+          att: ATT-KNO
+          v1: ['v1:4.3.3:advanced:I5']
+      L4:
+        - t: Sets landscape treatment priorities across ownerships from fire behaviour, values at risk and operational access, recording the agreed priorities and their basis.
+          a: [portfolio-review, counterpart-360]
+          st: [T1]
+          att: ATT-SCO
+          v1: ['v1:4.3.3:advanced:I1']
+        - t: Defines the programme's field-verification requirements for fuels maps before they are used for treatment priorities, and audits compliance each year.
+          m: supervisory
+          a: [portfolio-review, record-audit]
+          st: [t4]
+          att: ATT-GUI
+
+  - id: v1-4.3.4
+    label: Predict fire behaviour from fuels, weather and topography for operations and planning
+    alt: [Fire weather and behaviour analysis, Fire behaviour analyst practice]
+    def: >-
+      Observing fire weather and fuels, calculating fuel moisture and fire danger, predicting spread, intensity and
+      spotting with models and field judgment, comparing predictions with observed behaviour and briefing operations.
+      Excludes multi-source intelligence fusion for dispatch (FS-C05).
+    stmt: >-
+      Takes fire weather observations and calculates fuel moisture and danger indices, predicts spread, intensity and
+      spotting from fuels, weather and topography, compares predictions with observed fire behaviour and adjusts them,
+      and briefs crews and incident managers on expected behaviour and watch-out situations.
+    span: [L1, L4]
+    sub: [L07]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-11; FC-primary blend (models DC; observed-versus-predicted reading and briefing FC/SC); fire
+      behaviour analyst positions are Credential gates; feeds roles R08 and R06 (FC verdict, ADR-0020). Model products
+      move to L4. Basis [J].
+    tasks:
+      - id: v1-4.3.4-T1
+        text: Calculate fuel moisture and fire danger indices from on-site fire weather observations for an operational period
+        wf: WF-MONITOR
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-INCIDENT, WP-OPERATIONS]
+      - id: v1-4.3.4-T2
+        text: Predict fire spread, intensity and spotting for an operational period from fuels, weather and topography, stating assumptions
+        wf: WF-ASSESS
+        fd: remote-capable
+        form: 'yes'
+        prof: [WP-INCIDENT]
+        so: position-qualification
+      - id: v1-4.3.4-T3
+        text: Brief incident personnel on expected fire behaviour and weather trends, highlighting watch-out situations for each division
+        wf: WF-RESPOND
+        fd: on-site-preferred
+        form: partial
+        prof: [WP-INCIDENT]
+      - id: db-4.3.4-t4
+        text: Compare modelled fire behaviour with observed behaviour during an incident, adjusting predictions and recording each discrepancy
+        wf: WF-MONITOR
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-INCIDENT]
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: ecosystem-type, currencyDecay: H}
+    ind:
+      L1:
+        - t: Takes and records fire weather observations with belt instruments at the required interval, so that values match a check reading within tolerance.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T1]
+          v1: ['v1:4.3.4:foundational:I1']
+        - t: Records observed flame length, rate of spread and spotting on an incident at assigned times, citing location and time for each observation.
+          a: [task-book-observation, record-audit]
+          st: [t4]
+          v1: ['v1:4.3.4:foundational:I5']
+      L2:
+        - t: Calculates flame length, rate of spread and intensity for a fuel model and conditions, with results within the tolerance of the reference calculation.
+          a: [knowledge-test, work-sample]
+          st: [T2]
+          v1: ['v1:4.3.4:intermediate:I2']
+        - t: Briefs a crew on expected fire behaviour from the spot forecast, naming the watch-out situations that apply to the assignment.
+          a: [task-book-observation, simulation-role-play]
+          st: [T3]
+          v1: ['v1:4.3.4:intermediate:I5', 'v1:4.3.4:intermediate:I3']
+      L3:
+        - t: Adjusts a modelled fire spread prediction after comparing it with observed behaviour, and records the discrepancy and its likely cause.
+          m: assisted
+          a: [prediction-log-calibration, work-sample]
+          st: [t4]
+          att: ATT-AUG
+        - t: Predicts fire behaviour for a non-routine incident's operational period, such as plume-dominated fire, identifying weather windows for burnout or suppression with stated confidence.
+          a: [prediction-log-calibration, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+          v1: ['v1:4.3.4:advanced:I5']
+      L4:
+        - t: Briefs an incident management team on long-term fire behaviour outlooks, documenting assumptions and the triggers that would change the outlook.
+          a: [simulation-role-play, prediction-log-calibration]
+          st: [T2, T3]
+          att: ATT-SCO
+          v1: ['v1:4.3.4:advanced:I3', 'v1:4.3.4:advanced:I7']
+        - t: Reviews trainee analysts' predictions against observed outcomes, using prediction logs to decide position task-book sign-off.
+          a: [prediction-log-calibration, task-book-observation]
+          st: [t4]
+          att: ATT-FOR
+
+  - id: v1-4.3.5
+    label: Stabilize burned areas after wildfire from field assessment of burn severity and values at risk
+    alt: [Post-fire rehabilitation, Burned area emergency response]
+    def: >-
+      Post-fire emergency assessment and stabilization: field verification of soil burn severity, erosion and debris-flow
+      risk to values, prescription and implementation of stabilization treatments and monitoring of their effectiveness
+      after storms. Excludes long-term restoration (core v1 4.2.1) and rapid multi-hazard assessment (hazards module
+      FC-C25).
+    stmt: >-
+      Verifies satellite burn-severity maps at field plots, assesses soil burn severity, erosion and debris-flow risk to
+      values, prescribes and implements stabilization treatments such as mulch, seeding and drainage, and monitors
+      treatment effectiveness after storms, adapting follow-up work to what is observed.
+    span: [L1, L3]
+    sub: [L07, L01]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-11; model ground-truth competency (field verification of satellite burn severity); pattern generalized
+      into FC-C25 in MOD-09 (FC verdict). Actor enactment notes requested by TN are held (ADR-0007), not authored here.
+      Basis [J].
+    tasks:
+      - id: v1-4.3.5-T1
+        text: Assess soil burn severity and erosion risk in a burned watershed, verifying the satellite severity map at field plots
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-INCIDENT, WP-PROJECT]
+        rr: {mentorshipDependence: H, cycleDependence: multi-year-or-rare-event, placeBoundness: ecosystem-type, currencyDecay: M}
+      - id: v1-4.3.5-T2
+        text: Implement emergency stabilization treatments such as mulching, seeding and drainage on burned slopes to the treatment prescription
+        wf: WF-BUILD
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: v1-4.3.5-T3
+        text: Monitor stabilization treatments after storms and adapt follow-up restoration from the observed effectiveness
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+    ind:
+      L1:
+        - t: Applies mulch, seed or barriers to the treatment prescription under a crew lead, recording treated area and coverage that the lead confirms.
+          a: [task-book-observation, record-audit]
+          st: [T2]
+          v1: ['v1:4.3.5:foundational:I2', 'v1:4.3.5:foundational:I6']
+        - t: Records ground cover, water repellency and ash depth at assessment plots following the field protocol, so that values match a check plot.
+          a: [blind-re-measurement]
+          st: [T1]
+          v1: ['v1:4.3.5:foundational:I1']
+      L2:
+        - t: Classifies soil burn severity at field plots and corrects the satellite severity map where field evidence differs, documenting each change.
+          m: assisted
+          a: [blind-re-measurement, record-audit]
+          st: [T1]
+          att: ATT-AUG
+          v1: ['v1:4.3.5:intermediate:I2']
+        - t: Prescribes stabilization treatments for a burned watershed, linking each treatment to the value at risk and the expected erosion or flow change.
+          a: [work-sample]
+          st: [T2]
+          att: ATT-AUT
+          v1: ['v1:4.3.5:intermediate:I3', 'v1:4.3.5:intermediate:I4']
+      L3:
+        - t: Leads the soil and watershed assessment for a large fire on a short deadline, documenting severity, risk to values and treatment recommendations for decision-makers.
+          a: [portfolio-review, task-book-observation]
+          st: [T1]
+          att: ATT-SCO
+          v1: ['v1:4.3.5:advanced:I1']
+        - t: Evaluates treatment effectiveness after the first storms, recommending follow-up or long-term restoration with the monitoring evidence behind each recommendation.
+          a: [work-sample]
+          st: [T3]
+          att: ATT-CPX
+          v1: ['v1:4.3.5:intermediate:I7', 'v1:4.3.5:advanced:I6']
+
+  - id: FH-C02
+    label: Prepare and administer timber sale, stewardship and partner implementation agreements
+    alt: [Timber sale administration, Stewardship contracting, Partner implementation agreements]
+    def: >-
+      Translating silvicultural or restoration prescriptions into sale layouts, appraisals, contract and agreement
+      specifications, and administering them through inspection and enforcement for the contract term, including
+      stewardship contracts and partner implementation agreements. Excludes agreement design between governments as a
+      whole (core SC-C08).
+    stmt: >-
+      Turns prescriptions into sale layouts, appraisals and contract or agreement specifications, prepares partner
+      implementation agreements, inspects operations against specifications and enforces contract remedies through the
+      term, so that work on the ground matches the prescription and the agreement holds.
+    span: [L2, L4]
+    sub: [L01, L08]
+    att: ATT-CPX
+    src: [FH-037, FH-018]
+    note: >-
+      Timber sale, stewardship and partner implementation agreements (L01); links core SC-C08 for agreement design.
+      Contracting officer warrants and sale administrator certifications are Credential gates. Instruments such as
+      good neighbor authority are L5 (seed:ins/good-neighbor-authority). Part of roles R14 and R34. Basis [J].
+    tasks:
+      - id: FH-C02-T1
+        text: Translate a silvicultural or restoration prescription into a sale layout and contract specifications that a purchaser can bid on
+        wf: WF-RESOURCE
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-AGREEMENT, WP-PROJECT]
+      - id: FH-C02-T2
+        text: Appraise timber value for a sale or stewardship contract from cruise volume, product mix, logging costs and market data
+        wf: WF-RESOURCE
+        fd: remote
+        form: partial
+        prof: [WP-AGREEMENT]
+      - id: FH-C02-T3
+        text: Inspect contract operations against specifications, enforcing contract remedies when the purchaser does not comply
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-AGREEMENT]
+        rel: [client]
+        so: position-qualification
+      - id: FH-C02-T4
+        text: Draft a partner implementation agreement that assigns responsibilities, funding, standards and reporting for a stewardship project
+        wf: WF-RESOURCE
+        fd: remote
+        form: partial
+        prof: [WP-AGREEMENT]
+        rel: [intergovernmental, stakeholder]
+        also: [SC-C08]
+    ind:
+      L2:
+        - t: Prepares contract specifications from a prescription for a routine sale, so that a reviewer finds every prescription element enforceable in the contract.
+          a: [work-sample, record-audit]
+          st: [T1]
+        - t: Inspects a purchaser's operations against contract specifications, documenting each non-compliance with location, evidence and the clause breached.
+          a: [task-book-observation, record-audit]
+          st: [T3]
+      L3:
+        - t: Appraises a sale with mixed products and uncertain markets, documenting volume, cost and price assumptions so the appraisal withstands review.
+          a: [work-sample]
+          st: [T2]
+          att: ATT-CPX
+        - t: Drafts a partner implementation agreement that states each party's responsibilities, standards and reporting so that performance can be checked.
+          a: [work-sample, portfolio-review]
+          st: [T4]
+          att: ATT-SCO
+      L4:
+        - t: Resolves a contested contract default with a purchaser or partner, recording the agreed remedy or the documented basis for termination.
+          a: [moot-defense, portfolio-review]
+          st: [T3]
+          att: ATT-SCO
+        - t: Designs the unit's sale and agreement templates for a new authority or programme, documenting how each clause carries a prescription requirement.
+          a: [portfolio-review]
+          st: [T1, T4]
+          att: ATT-GUI
+
+  - id: FC-C08
+    label: Monitor rangeland condition with calibrated field indicators
+    alt: [Rangeland monitoring, Rangeland health assessment, Core indicator monitoring]
+    def: >-
+      Measuring standardized quantitative indicators (cover, canopy gap, soil stability, height) and qualitative
+      rangeland health attributes against ecological site references, calibrating with other observers and integrating
+      remote-sensing cover products and permittee knowledge. Excludes grazing authorization decisions (IA-CC-01).
+    stmt: >-
+      Measures standardized cover, canopy-gap and soil-stability indicators on monitoring plots, completes qualitative
+      rangeland health assessments against ecological site references, calibrates with other observers until results
+      agree, and checks remote-sensing cover products against plot data, so that monitoring results support grazing and
+      restoration decisions.
+    span: [L1, L3]
+    sub: [L05]
+    att: ATT-AUT
+    src: [FC-041, FC-061]
+    note: >-
+      Rangeland condition monitoring with calibrated indicators (L05); FC primary, DC secondary. Feeds role R18
+      rangeland management specialist with IA-CC-01. Basis [J].
+    tasks:
+      - id: FC-C08-T1
+        text: Measure line-point intercept, canopy gap and soil stability on rangeland monitoring plots following the core-indicator protocol
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM, WP-RESEARCH]
+        rr: {mentorshipDependence: M, cycleDependence: seasonal, placeBoundness: ecosystem-type, currencyDecay: M}
+      - id: FC-C08-T2
+        text: Complete a qualitative rangeland health assessment against the ecological site's reference sheet
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: FC-C08-T3
+        text: Calibrate cover and gap measurements with other observers until results agree within the protocol's tolerance
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: FC-C08-T4
+        text: Compare remote-sensing cover estimates with plot data, flagging areas where the product misrepresents observed conditions
+        wf: WF-MONITOR
+        fd: remote-capable
+        form: partial
+        prof: [WP-REGPROGRAM]
+    ind:
+      L1:
+        - t: Records line-point intercept and canopy gap on a plot following the protocol, with results within calibration tolerance of a trained observer.
+          a: [blind-re-measurement]
+          st: [T1, T3]
+        - t: Performs soil stability tests at plot sample points following the protocol, recording ratings that match the crew lead's check samples.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T1]
+      L2:
+        - t: Completes a qualitative rangeland health assessment against the ecological site reference, rating each attribute with the evidence observed.
+          a: [work-sample, blind-re-measurement]
+          st: [T2]
+        - t: Flags areas where a remote-sensing cover product departs from plot data beyond the stated tolerance, recording the comparison for each area.
+          m: assisted
+          a: [work-sample, record-audit]
+          st: [T4]
+          att: ATT-AUG
+      L3:
+        - t: Leads observer calibration for a monitoring crew, documenting agreement statistics and retraining each observer outside tolerance.
+          a: [record-audit, task-book-observation]
+          st: [T3]
+          att: ATT-FOR
+        - t: Interprets monitoring trends with permittee observations for an allotment, documenting where the evidence supports or contradicts a change in management.
+          modes: [MODE-ENGAGE]
+          a: [work-sample, structured-interview-bars]
+          st: [T2, T4]
+          att: ATT-CPX
+
+  - id: IA-CC-01
+    label: Plan, authorize and monitor livestock grazing on shared rangelands
+    alt: [Grazing permit administration, Allotment management planning, Range management]
+    def: >-
+      Designing allotment management (stocking rate, season, duration, rotation and range improvements), authorizing
+      and adjusting grazing permits from monitoring, and resolving non-compliance with permittees on public and shared
+      rangelands. Excludes the indicator measurement itself (FC-C08).
+    stmt: >-
+      Designs allotment management with permittees, sets utilization and riparian objectives, monitors them during the
+      season, adjusts permit terms and annual instructions from monitoring results and resolves non-compliance, so that
+      grazing meets resource objectives and each decision rests on documented evidence.
+    span: [L1, L4]
+    sub: [L05]
+    att: ATT-AUT
+    src: [IA-033, IA-034, DB-011, FH-041]
+    note: >-
+      Survivor for grazing on shared rangelands; absorbs FH-C04 and DB-C55 and the grazing part of C-LM-03 (ADR-0018
+      s.4). One of IA's public-lands gap functions with strong plan demand (range/livestock 641 low-similarity plan
+      components, IA §5.7 [E]). Home of role R18 (resource-manager authority position). Basis [E] for demand; [J]
+      content.
+    tasks:
+      - id: IA-CC-01-T1
+        text: Design an allotment management plan that sets stocking rate, season, duration and range improvements to meet resource objectives
+        wf: WF-PLAN
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        rel: [stakeholder]
+      - id: IA-CC-01-T2
+        text: Monitor utilization, stubble height and streambank alteration on key areas against allotment objectives during the grazing season
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: IA-CC-01-T3
+        text: Adjust a grazing permit's terms and conditions from monitoring results, documenting the basis for each change
+        wf: WF-AUTHORIZE
+        fd: remote-capable
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [stakeholder]
+        acc: Permit terms are issued or modified by the authorized officer under the agency's grazing authority.
+      - id: IA-CC-01-T4
+        text: Resolve a permittee's non-compliance with grazing terms through notice, negotiation or formal action
+        wf: WF-ENFORCE
+        fd: on-site-preferred
+        form: partial
+        prof: [WP-REGPROGRAM]
+        modes: [MODE-RESOLVE]
+        rel: [stakeholder]
+      - id: IA-CC-01-T5
+        text: Prepare annual operating instructions with permittees, recording agreed pasture rotations and monitoring responsibilities
+        wf: WF-AUTHORIZE
+        fd: remote-capable
+        form: partial
+        prof: [WP-REGPROGRAM]
+        modes: [MODE-ENGAGE]
+        rel: [stakeholder]
+    ind:
+      L1:
+        - t: Measures stubble height and utilization on key areas following the monitoring protocol, recording values that match a specialist's check readings.
+          a: [blind-re-measurement, task-book-observation]
+          st: [T2]
+        - t: Records range improvement condition and livestock distribution on allotment inspections, citing each observation's location on the allotment map.
+          a: [task-book-observation, record-audit]
+          st: [T2]
+      L2:
+        - t: Prepares annual operating instructions with a permittee, recording the agreed rotation, numbers and monitoring roles in the instructions issued.
+          modes: [MODE-ENGAGE]
+          a: [work-sample, simulation-role-play]
+          st: [T5]
+        - t: Compares season monitoring results with allotment objectives, stating for each key area whether objectives were met and the evidence used.
+          a: [work-sample]
+          st: [T2]
+      L3:
+        - t: Designs an allotment management plan for an allotment with riparian and wildlife conflicts, documenting how stocking, timing and rotation meet each objective.
+          a: [work-sample, portfolio-review]
+          st: [T1]
+          att: ATT-CPX
+        - t: Modifies permit terms from multi-year monitoring evidence, writing a decision record that withstands the permittee's appeal.
+          a: [moot-defense, record-audit]
+          st: [T3]
+          att: ATT-AUT
+      L4:
+        - t: Resolves a contested non-compliance or permit change with a permittee and their representatives, recording the agreed terms or the formal action taken.
+          modes: [MODE-RESOLVE]
+          a: [moot-defense, counterpart-360]
+          st: [T4]
+          att: ATT-SCO
+        - t: Sets the office's grazing monitoring strategy across allotments, defining key areas, indicators and the evidence threshold for changing permits.
+          a: [portfolio-review]
+          st: [T2, T3]
+          att: ATT-GUI
+
+  - id: IA-CC-04
+    label: Plan, maintain and decommission resource road and trail transportation systems
+    alt: [Forest road management, Travel analysis, Road decommissioning]
+    def: >-
+      Planning the resource road and trail system (travel analysis, minimum system), locating and specifying roads and
+      trails to minimize resource effects, specifying drainage and crossing practices for maintenance and
+      reconstruction, and prescribing storage or decommissioning of unneeded roads. Excludes trail construction itself
+      (core v1 4.2.5) and road engineering design sealed by a licensed engineer.
+    stmt: >-
+      Analyzes the road and trail system to recommend a minimum system, locates alignments in the field to avoid erosion
+      and stream crossings, specifies drainage, surfacing and crossing practices for maintenance and reconstruction, and
+      prescribes storage or decommissioning of unneeded roads, documenting resource effects and costs.
+    span: [L2, L4]
+    sub: [L01, U02]
+    att: ATT-CPX
+    src: [IA-033, IA-034]
+    note: >-
+      Resource road and trail transportation systems: public-lands gap function (roads 419 low-similarity plan
+      components, IA §5.7 [E]); trail construction itself stays core (v1 4.2.5). Road-rule instruments are L5. Basis
+      [J] for content.
+    tasks:
+      - id: IA-CC-04-T1
+        text: Locate a resource road or trail alignment through field reconnaissance that minimizes erosion, stream crossings and resource effects
+        wf: WF-PLAN
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-CAPITAL, WP-PROJECT]
+      - id: IA-CC-04-T2
+        text: Specify drainage, surfacing and stream-crossing practices for a road maintenance or reconstruction project
+        wf: WF-PLAN
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-CAPITAL]
+      - id: IA-CC-04-T3
+        text: Prescribe storage or decommissioning of an unneeded road, including recontouring and drainage restoration
+        wf: WF-PLAN
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: IA-CC-04-T4
+        text: Complete a travel analysis that ranks roads by benefit, risk and maintenance cost to recommend the minimum road system
+        wf: WF-ASSESS
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [public]
+    ind:
+      L2:
+        - t: Specifies drainage and crossing practices for a road maintenance project, so that an engineer's review finds each specification fits the site conditions observed.
+          a: [work-sample, record-audit]
+          st: [T2]
+        - t: Prescribes decommissioning treatments for an unneeded road segment, documenting drainage restoration and expected sediment reduction.
+          a: [work-sample]
+          st: [T3]
+      L3:
+        - t: Locates a new alignment in the field that avoids unstable slopes and minimizes crossings, documenting the alternatives rejected and why.
+          a: [task-book-observation, work-sample]
+          st: [T1]
+          att: ATT-CPX
+        - t: Ranks roads in a travel analysis by access benefit, resource risk and maintenance cost, documenting data sources and how ties were resolved.
+          a: [work-sample]
+          st: [T4]
+          att: ATT-KNO
+      L4:
+        - t: Recommends a minimum road system to a decision-maker, presenting effects on access, resources and budget and recording the public input considered.
+          modes: [MODE-ENGAGE]
+          a: [portfolio-review, simulation-role-play]
+          st: [T4]
+          att: ATT-SCO
+        - t: Sets the unit's road maintenance and decommissioning priorities within its budget, documenting the risk criteria and the deferred work they leave.
+          a: [portfolio-review]
+          st: [T2, T3]
+          att: ATT-GUI
+
+  - id: PS-C23
+    label: Manage forests to certification-scheme standards
+    alt: [Forest certification conformance, Chain-of-custody and fiber sourcing]
+    def: >-
+      Implementing and evidencing conformance of forest management and fiber sourcing with voluntary forest
+      certification standards, preparing for and responding to audits, and verifying chain-of-custody records. Scheme
+      names are L4 standards. Excludes the forest management planning itself (v1 1.3.5).
+    stmt: >-
+      Builds the records and procedures that evidence conformance with each requirement of a forest certification
+      standard, audits operations internally, answers external audit nonconformities with corrective action and
+      evidence, and verifies fiber-sourcing records for chain of custody.
+    span: [L2, L3]
+    sub: [L01]
+    att: ATT-SCO
+    note: >-
+      Forest management to certification-scheme standards (L01); scheme names (e.g. the three main forest schemes)
+      move to L4 (ADR-0003 T-7). Private-led with state and local forest variants. Basis [J]: PS Phase 2.
+    tasks:
+      - id: PS-C23-T1
+        text: Prepare forest management records and procedures that evidence conformance with each requirement of the certification standard
+        wf: WF-MONITOR.attest
+        fd: remote-capable
+        form: partial
+        prof: [WP-COMPLIANCE]
+        rel: [client]
+      - id: PS-C23-T2
+        text: Conduct an internal audit of forest operations against the certification standard, recording nonconformities and corrective actions
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: partial
+        prof: [WP-COMPLIANCE]
+      - id: PS-C23-T3
+        text: Respond to an external audit nonconformity with a corrective action plan and the evidence that closes it
+        wf: WF-MONITOR.attest
+        fd: remote-capable
+        form: 'no'
+        prof: [WP-COMPLIANCE]
+      - id: PS-C23-T4
+        text: Verify fiber sourcing records for a mill or procurement programme against the chain-of-custody standard
+        wf: WF-MONITOR
+        fd: remote
+        form: 'no'
+        prof: [WP-COMPLIANCE]
+    ind:
+      L2:
+        - t: Conducts an internal audit of harvest operations against the standard, recording each nonconformity with the requirement and evidence that shows it.
+          a: [record-audit, task-book-observation]
+          st: [T2]
+        - t: Checks fiber-sourcing records against the chain-of-custody standard, listing every record that fails and the correction required.
+          a: [seeded-error-work-sample]
+          st: [T4]
+      L3:
+        - t: Closes an external audit nonconformity with a corrective action plan and evidence that the certification body accepts at follow-up.
+          a: [record-audit, portfolio-review]
+          st: [T3]
+          att: ATT-SCO
+        - t: Designs the conformance evidence system for an ownership, mapping each requirement of the standard to the record that demonstrates it.
+          a: [portfolio-review]
+          st: [T1]
+          att: ATT-GUI
+
+  - id: FS-C05
+    label: Fuse multi-source fire intelligence into operational decision support
+    alt: [Fire intelligence analysis, Continuous fire situational awareness]
+    def: >-
+      Continuous integration of satellite detections, camera feeds, sensor and public reports, weather, fuels and
+      resource status into situational awareness and briefings for initial attack, resource ordering and public
+      warning, including adjudication of automated detections and tracking of prediction accuracy. Excludes fire
+      behaviour prediction for a single incident (v1 4.3.4).
+    stmt: >-
+      Integrates detections, camera feeds, weather, fuels and resource status into a continuously updated picture,
+      adjudicates automated fire detections before resources are ordered, briefs duty officers and incident commanders,
+      and tracks the accuracy of detections and predictions against outcomes, reporting systematic errors.
+    span: [L2, L4]
+    sub: [L07]
+    life: emerging
+    att: ATT-CPX
+    src: [FS-011, FS-053, FS-034]
+    note: >-
+      Multi-source fire intelligence fusion is the core of emerging role R08 fire intelligence analyst (ADR-0020; WFIC-1
+      gate), composed with v1 4.3.4 and DC-CAND-12. Change type new; lifecycle emerging (reviewBy set); counter-signal:
+      the function stays inside incident positions with no year-round staffing. Product and platform names are L4.
+      Basis [E] for detection and fusion programmes (FS sources); [J] for content.
+    ev: J
+    tasks:
+      - id: FS-C05-T1
+        text: Integrate satellite detections, camera feeds, weather and resource status into a continuously updated situation summary for dispatch
+        wf: WF-ASSESS
+        fd: remote
+        form: partial
+        prof: [WP-INCIDENT, WP-OPERATIONS]
+      - id: FS-C05-T2
+        text: Adjudicate an automated fire detection against cameras, public reports and other sensors before resources are ordered
+        wf: WF-MONITOR
+        fd: remote
+        form: 'yes'
+        prof: [WP-INCIDENT]
+      - id: FS-C05-T3
+        text: Brief duty officers and incident commanders on fire activity, predicted growth and resource needs at each operational period
+        wf: WF-RESPOND
+        fd: remote-capable
+        form: partial
+        prof: [WP-INCIDENT]
+      - id: FS-C05-T4
+        text: Track the accuracy of detections and spread predictions against observed outcomes, reporting systematic errors to programme managers
+        wf: WF-LEARN
+        fd: remote
+        form: partial
+        prof: [WP-INCIDENT, WP-OPERATIONS]
+    ind:
+      L2:
+        - t: Accepts or rejects automated fire detections after checking cameras, reports and other sensors, logging the evidence for each decision within the dispatch time standard.
+          m: assisted
+          a: [simulation-role-play, record-audit]
+          st: [T2]
+        - t: Maintains a situation summary for a dispatch area, checking each detection against a second source, with every entry time-stamped and sourced.
+          m: assisted
+          a: [simulation-role-play, record-audit]
+          st: [T1]
+      L3:
+        - t: Briefs a duty officer on multiple new starts, ranking them by predicted growth and values at risk and stating confidence in each prediction.
+          a: [simulation-role-play, prediction-log-calibration]
+          st: [T3]
+          att: ATT-CPX
+        - t: Reports systematic errors in a detection or spread product from a season's tracked outcomes, documenting the evidence and the operating change recommended.
+          a: [work-sample, prediction-log-calibration]
+          st: [T4]
+          att: ATT-AUG
+      L4:
+        - t: Sets acceptance and escalation rules for automated detections in a dispatch area, defining when a human must confirm before resources move, and audits them each season.
+          m: supervisory
+          a: [portfolio-review, record-audit]
+          st: [T2, T4]
+          att: ATT-GUI
+        - t: Designs the training sequence for new fire intelligence analysts, including protected unaided detection and prediction exercises before decision aids are introduced.
+          a: [portfolio-review]
+          st: [T2, T3]
+          att: ATT-FOR
+
+  # ---- early draft named in the dispositions: home MOD-07a extract (wave 2); tasks drafted here for the MOD-11 enactment
+  - id: IA-CC-05
+    module: extract
+    label: Administer mineral and energy authorizations and reclamation
+    alt: [Minerals and energy authorization, Reclamation bonding, Plans of operation review]
+    def: >-
+      Evaluating and conditioning locatable, leasable and saleable mineral and energy operations, applying lease
+      stipulations, reviewing plans of operations and reclamation plans, setting reclamation bonds and inspecting
+      reclamation to release standards. Early draft: the home module (extractives) is wave 2; only the public-lands
+      enactment is drafted in wave 1.
+    stmt: >-
+      Reviews plans of operations and reclamation plans for mineral and energy operations, conditions approvals and
+      applies lease stipulations, calculates reclamation bonds from plan costs, and inspects reclaimed sites against
+      release standards before bonds are released.
+    span: [L2, L3]
+    sub: [E04, E03]
+    att: ATT-CPX
+    src: [IA-033, IA-034, DB-011]
+    note: >-
+      Early draft (ADR-0018 s.4; candidate_disposition IA-CC-05): home MOD-07a extract, wave 2; the public-lands
+      enactment is drafted in wave 1 within MOD-11 (seed:ena-ia-cc-05-forest), which carries the tasks below. OpenLMP
+      plan components cite minerals or reclamation 1,377 times (DB-011 [E]); minerals 391 low-similarity components (IA
+      §5.7 [E]). Content [J]. Further MOD-07a content is out of wave-1 scope.
+    tasks:
+      - id: IA-CC-05-T1
+        module: forest
+        sub: [E04, L01, L05]
+        text: Review a plan of operations for a mineral project on public land, requiring changes that prevent unnecessary or undue degradation
+        wf: WF-AUTHORIZE
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        rel: [stakeholder]
+      - id: IA-CC-05-T2
+        module: forest
+        sub: [E04, E03]
+        text: Calculate a reclamation bond from the reclamation plan's earthwork, revegetation and monitoring costs
+        wf: WF-RESOURCE
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+      - id: IA-CC-05-T3
+        module: forest
+        sub: [E04, E03, L05]
+        text: Inspect a reclaimed mine or well site against release standards before recommending bond release
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM, WP-COMPLIANCE]
+    ind:
+      L2:
+        - t: Calculates a reclamation bond from a plan's quantities and unit costs, so that a reviewer can reproduce the amount from the documented inputs.
+          a: [work-sample]
+          st: [IA-CC-05-T2]
+        - t: Inspects a reclaimed site against release standards, recording each criterion met or unmet with the evidence observed.
+          a: [task-book-observation, record-audit]
+          st: [IA-CC-05-T3]
+      L3:
+        - t: Reviews a plan of operations for a project with sensitive resources, requiring conditions that prevent undue degradation and documenting the basis for each.
+          a: [work-sample, record-audit]
+          st: [IA-CC-05-T1]
+          att: ATT-CPX
+        - t: Recommends bond release or retention for a contested site, documenting the monitoring evidence and the standard applied.
+          a: [moot-defense, record-audit]
+          st: [IA-CC-05-T3]
+          att: ATT-SCO
+
+enactments:
+  - id: ena-ia-cc-05-forest
+    comp: IA-CC-05
+    label: Public-lands enactment of mineral and energy authorizations and reclamation
+    sub: [E04, E03, L01, L05]
+    ap: resource-manager
+    note: >-
+      On national forests and public lands, minerals and energy authorizations are administered by the land manager
+      alongside surface resource protection: plans of operations for locatable minerals, surface-use conditions for
+      leasable minerals and saleable mineral material sales, with reclamation bonding and release. The three tasks
+      carried by IA-CC-05 are drafted here for wave 1 (ADR-0018 s.4).
+    basis: 'Basis: ADR-0018 s.4; IA public-lands gap function IA-CC-05 [E: IA-033, IA-034]; content [J].'
+  - id: ena-db-c15-forest
+    comp: DB-C15
+    label: Burn planning enactment of smoke management
+    sub: [L07, P01]
+    ap: resource-manager
+    note: >-
+      Land managers prepare the smoke management section of each burn plan, request burn-day approval from the air
+      programme, monitor smoke during burns and supply records for exceptional-event demonstrations; the air module
+      competency DB-C15 is the home because the air regime governs the legal sufficiency of the smoke decision.
+  - id: ena-sl-c02-forest
+    comp: SL-C02
+    label: Resource-use authorization enactment of environmental permit writing (resource-manager variant)
+    sub: [L01, L05]
+    ap: resource-manager
+    note: >-
+      Absorbs the resource-use authorization part of C-LM-03. Land managers issue special-use authorizations, grazing
+      permits (IA-CC-01) and mineral authorizations (IA-CC-05) as the landowner and resource manager rather than as a
+      pollution regulator; terms and conditions protect surface resources and are administered for the permit term.
+  - id: ena-1.4.3-forest
+    comp: v1-1.4.3
+    label: Tree and plant identification enactment of species identification
+    sub: [L01, L05]
+    ap: resource-manager
+    note: >-
+      Foresters and range staff identify trees, shrubs, grasses and forbs with regional keys in all seasons (LC-C-03
+      merged into v1 1.4.3; accreditation requirement paraphrased from LC), and adjudicate app and AI-suggested
+      identifications against keyed evidence during inventory and monitoring.
+  - id: ena-6.2.3-forest
+    comp: v1-6.2.3
+    label: National forest and public land planning enactment of public land management planning
+    sub: [L01, L05, L07]
+    ap: resource-manager
+    instr: ['seed:ins/usfs-objection-rule', 'seed:ins/usda-nepa-procedures']
+    note: >-
+      Land management plans for national forests and grasslands set desired conditions, objectives, standards,
+      guidelines and monitoring; amendments and revisions follow current agency planning and environmental review
+      procedures, with project-level objection processes. The OpenLMP corpus records these plan components as workforce
+      demand.
+  - id: ena-sc-c08-forest
+    comp: SC-C08
+    label: Shared-stewardship enactment of cross-jurisdictional stewardship agreements
+    sub: [L01, L07]
+    ap: resource-manager
+    instr: ['seed:ins/good-neighbor-authority', 'seed:ins/co-hb26-1205', 'seed:ins/long-term-gna-act']
+    note: >-
+      Federal-state and federal-county agreements let partners plan and carry out restoration and fuels work on
+      national forest land, with programme income and implementation agreements (FH-C02). Agreement types covered by
+      the ADR-0007 hold route through held competencies and are not authored here.
+  - id: ena-db-c50-forest
+    comp: DB-C50
+    label: Vegetation and fuels project enactment of historic preservation review
+    sub: [L01, L07, L11]
+    ap: resource-manager
+    instr: ['seed:ins/nhpa-s106-regs']
+    note: >-
+      Timber sales, fuels treatments, prescribed fire and road work are undertakings that need historic preservation
+      review, often under programmatic agreements that define survey, avoidance and monitoring standards for routine
+      project types. Consultation content held under ADR-0007 §D is not authored here.
+  - id: ena-sl-c08-forest
+    comp: SL-C08
+    label: Vegetation management project enactment of environmental review
+    sub: [L01, L05, L07]
+    ap: resource-manager
+    instr: ['seed:ins/usda-nepa-procedures', 'seed:ins/usfs-objection-rule', 'seed:ins/seven-county']
+    note: >-
+      Forest and range projects (vegetation management, fuels, grazing permit renewals, roads) are reviewed under the
+      agency's current environmental review procedures, with categorical exclusions, environmental assessments and
+      objection processes; scope and depth follow the post-2025 procedures and case law recorded as L5 instruments.
+  - id: ena-fc-c14-forest
+    comp: FC-C14
+    label: Aerial ignition and survey enactment of uncrewed and automated field systems
+    sub: [L07, L01]
+    ap: resource-manager
+    instr: ['seed:ins/faa-part-108']
+    note: >-
+      Uncrewed aircraft are used for prescribed-fire and burnout ignition (v1 4.3.2 task db-4.3.2-t4), fire mapping and
+      forest health and inventory imagery; flying near crews and active fire makes this a durable field practice, with
+      the aircraft and software in L4.
+  - id: ena-db-c05-forest
+    comp: DB-C05
+    label: Road and facility enactment of risk-based asset management
+    sub: [L01]
+    ap: resource-manager
+    note: >-
+      Forest road systems, bridges, culverts, recreation sites and administrative facilities are managed as assets
+      with condition surveys, deferred-maintenance backlogs and risk-based investment priorities; IA-CC-04 carries the
+      road-system planning tasks.
+  - id: ena-4.2.2-forest
+    comp: v1-4.2.2
+    label: Forest and rangeland enactment of invasive species control
+    sub: [L01, L05]
+    ap: resource-manager
+    note: >-
+      Forest and range programmes detect and control invasive plants, insects and pathogens along roads, burned areas,
+      harvest units and allotments, integrating treatment with grazing, fuels and post-fire work.
+  - id: ena-1.5.2-forest
+    comp: v1-1.5.2
+    label: Forest vulnerability enactment of climate vulnerability assessment
+    sub: [L01, L07]
+    ap: resource-manager
+    note: >-
+      Forest vulnerability assessment combines species and stand sensitivity, disturbance regimes (fire, insects,
+      drought) and adaptive capacity to inform prescriptions, seed transfer and plan revision.

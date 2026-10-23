@@ -1,0 +1,87 @@
+id: seed:SC-C15
+type: Competency
+prefLabel:
+  en: Manage regulated-entity disclosure and compliance across divergent regimes
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability of a regulated organization to determine which mandatory disclosure and reporting regimes apply to it, to produce controlled, assurance-ready data and narrative, and to manage regulator, assurance-provider and investor relationships as regimes start, change or are enjoined. Reporting frameworks are L4 tools; regimes are L5 instruments.
+statement:
+  en: Determines which mandatory disclosure and reporting regimes apply to an organization across jurisdictions, builds controlled processes that produce assurance-ready data, prepares for external assurance, and manages regulator, assurance-provider and investor relationships as rules start, change or are enjoined.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - sustainability reporting and disclosure
+  - climate disclosure
+  - GHG disclosure
+  - assurance-ready disclosure
+  - regulatory reporting across jurisdictions
+instrumentSensitivity:
+- mechanism: DM-13
+  rationale:
+    en: Mandatory disclosure regimes are starting, narrowing or enjoined by jurisdiction.
+  evidenceLabel: E
+  sources:
+  - V2-15
+- mechanism: DM-10
+  rationale:
+    en: Federal greenhouse-gas reporting and standards are being reconsidered.
+  evidenceLabel: E
+  sources:
+  - V2-06
+editorialNote:
+  en: 'WP-05 (A5 SC). Survivor for disclosure across divergent regimes: absorbs DB-C44, FS-C18, PS-C05 and v1 3.6.2 (merged). Actor-specific competency authorized by ADR-0007 B.5(4). California''s first Scope 1 and 2 reports are due 2026-11-10, its climate-risk report is enjoined and the EU scope narrowed [E: V2-15]. v1 3.6.2 tasks named sensors, AI tools and ledgers; tools move to L4. Indicators adapted in part from IO exemplar rewrites for v1 3.6.2. Seed note kept: WP-05 (A5 SC). Survivor for disclosure across divergent regimes: absorbs DB-C44, FS-C18, PS-C05 and v1 3.6.2 (merged). Actor-specific competency authorized by ADR-0007 B.5(4). California''s first Scope 1 and 2 reports are due 2026-11-10, its climate-risk report is enjoined and the EU scope narrowed [E: V2-15]. v1 3.6.2 tasks named sensors, AI tools and ledgers; tools move to L4. Indicators adapted in part from IO exemplar rewrites for v1 3.6.2.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-027
+  - SC-028
+  - SC-029
+  - V2-15
+  derivedFrom:
+  - v1Key: v1:3.6.2
+    relation: merged-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - seed:sc-c15-l1-a
+  - seed:sc-c15-l1-b
+- level: L2
+  indicators:
+  - seed:sc-c15-l2-a
+  - seed:sc-c15-l2-b
+- level: L3
+  indicators:
+  - seed:sc-c15-l3-a
+  - seed:sc-c15-l3-b
+- level: L4
+  indicators:
+  - seed:sc-c15-l4-a
+  - seed:sc-c15-l4-b

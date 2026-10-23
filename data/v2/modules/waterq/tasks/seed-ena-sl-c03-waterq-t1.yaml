@@ -1,0 +1,39 @@
+id: seed:ena-sl-c03-waterq-t1
+type: Task
+prefLabel:
+  en: Collect a compliance sample at a permitted outfall and audit the discharger's self-monitoring records against the permit
+statement:
+  en: Collect a compliance sample at a permitted outfall and audit the discharger's self-monitoring records against the permit
+textSha256: 7fb9f0639a4591a5dfdd9f8484fa45401bde3ec75a36e5963a97e113b758db81
+supports:
+- competency: seed:SL-C03
+  strength: primary
+workFunction: WF-ENFORCE
+workflowProfiles:
+- WP-COMPLIANCE
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: waterq
+subsectors:
+- W06
+layer: L2
+module: waterq
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

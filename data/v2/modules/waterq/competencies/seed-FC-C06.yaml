@@ -1,0 +1,60 @@
+id: seed:FC-C06
+type: Competency
+prefLabel:
+  en: Delineate wetlands and other aquatic resources in the field
+altLabel:
+  en:
+  - Wetland delineation
+  - Aquatic resource delineation
+  - Jurisdictional determination support
+definition:
+  en: Determining wetland and other aquatic resource boundaries from vegetation, hydric soil and hydrology indicators under the federal manual and regional supplements, completing data forms, mapping boundaries and supporting jurisdictional determinations and permit applications. Excludes the jurisdictional determination itself, which depends on the current definition of regulated waters (L5).
+statement:
+  en: Identifies vegetation, hydric soil and hydrology indicators at paired sample points, completes data forms, places and maps boundaries with survey-grade positioning, and checks modelled wetland maps against field evidence, so that delineations support jurisdictional and permit decisions and pass field verification.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - seed:ind-fc-c06-l1-a
+  - seed:ind-fc-c06-l1-b
+- level: L2
+  indicators:
+  - seed:ind-fc-c06-l2-a
+  - seed:ind-fc-c06-l2-b
+- level: L3
+  indicators:
+  - seed:ind-fc-c06-l3-a
+  - seed:ind-fc-c06-l3-b
+homeModule: waterq
+subsectors:
+- W06
+reusability: subsector-specific
+layer: L1
+module: waterq
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Wetland and aquatic resource delineation (W06); FC primary, SC secondary. Jurisdiction-sensitive: the definition of regulated waters is still proposed (L5 seed:ins/wotus-definition; V2). Professional Wetland Scientist (SWS PCP, V3-08) is a Credential, not a level. Basis [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - FC-046
+  - FC-065
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -61,7 +61,10 @@ def main():
     ap.add_argument("--sssom-bin", default=os.environ.get("SSSOM_BIN") or shutil.which("sssom") or "")
     ap.add_argument("--profile-only", action="store_true")
     a = ap.parse_args()
-    files = [Path(t).resolve() for t in a.tsv] or sorted(p for p in S.XW.rglob("*.sssom.tsv") if p.parent.name != "emst-v1")
+    def wp09(p):   # sets written by WP-09 builders (other lanes' sets follow their own profiles)
+        y = p.with_name(p.name[: -len(".sssom.tsv")] + ".sssom.yml")
+        return y.exists() and S.AUTHOR in (S.L.load_yaml(y) or {}).get("creator_id", [])
+    files = [Path(t).resolve() for t in a.tsv] or sorted(p for p in S.XW.rglob("*.sssom.tsv") if wp09(p))
     preds, justs = S.vocab_terms()
     failed = False
     for tsv in files:

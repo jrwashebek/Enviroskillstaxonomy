@@ -38,7 +38,7 @@ X1_YML = X1_DIR / "emst-v1_to_v2.sssom.yml"
 DISPOSITION = ROOT / "docs" / "decisions" / "v1_disposition.csv"
 CANDIDATES = ROOT / "docs" / "decisions" / "candidate_disposition.csv"
 
-SCHEMA_VERSION = "2.0.0-draft.1"
+SCHEMA_VERSION = "2.0.0-draft.2"
 IRI_BASE = "https://w3id.org/emst/"
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -260,13 +260,13 @@ ENTITY = {
     "FunctionRating": {"prefix": "ASM", "layers": ["L5"], "store": ("jsonl", "assessments")},
     "RelevanceRating": {"prefix": "ASM", "layers": ["L5"], "store": ("jsonl", "assessments")},
     "ChangeSignal": {"prefix": "SIG", "layers": ["L5"], "store": ("jsonl", "signals")},
-    "WatchItem": {"prefix": None, "layers": ["L5"], "store": ("yaml", "watch-items")},
+    "WatchItem": {"prefix": "WCH", "layers": ["L5"], "store": ("yaml", "watch-items")},
     "Instrument": {"prefix": "INS", "layers": ["L5"], "store": ("jsonl", "instruments")},
     "DriverEvent": {"prefix": "EVT", "layers": ["L5"], "store": ("jsonl", "events")},
     "FrictionRecord": {"prefix": "FRC", "layers": ["L5"], "store": ("yaml", "frictions")},
     "Credential": {"prefix": "CRD", "layers": ["L6"], "store": ("yaml-register", "credentials")},
-    "SeriesRecord": {"prefix": None, "layers": ["L6"], "store": ("yaml-register", "opm_series")},
-    "StateClassRecord": {"prefix": None, "layers": ["L6"], "store": ("yaml-register", "state_classes")},
+    "SeriesRecord": {"prefix": "SER", "layers": ["L6"], "store": ("yaml-register", "opm_series")},
+    "StateClassRecord": {"prefix": "SCR", "layers": ["L6"], "store": ("yaml-register", "state_classes")},
     "Mapping": {"prefix": "MAP", "layers": ["L6"], "store": ("sssom", "crosswalks")},
     "LearningResource": {"prefix": "LRN", "layers": ["learning"], "store": ("yaml", "learning-resources")},
     "Bundle": {"prefix": "BND", "layers": ["learning"], "store": ("yaml", "bundles")},
@@ -279,6 +279,22 @@ JSONL_FAMILIES = {"tools": {"Tool"}, "assessments": {"ExposureAssessment", "Craf
                   "signals": {"ChangeSignal"}, "events": {"DriverEvent"}, "changes": {"ChangeRecord"},
                   "instruments": {"Instrument"}}
 RATING_TYPES = {"ExposureAssessment", "CraftRating", "FunctionRating", "RelevanceRating"}
+
+
+@functools.lru_cache(maxsize=None)
+def exposure_level_order() -> list[str]:
+    """Intensity order of technical-exposure levels (CR-IO-003; ADR-0029 §7). Views and distributions sort E-levels
+    by this order, never by code order (E0 < E2 < E1 < E3)."""
+    ex = load_yaml(VOCAB / "exposure_instrument_v2.yaml")
+    return list(ex["constructs"]["technical_exposure"]["ordinal_order"])
+
+
+def prefix_entity_map() -> dict[str, list[str]]:
+    out: dict[str, list[str]] = {}
+    for t, e in ENTITY.items():
+        if e["prefix"]:
+            out.setdefault(e["prefix"], []).append(t)
+    return out
 
 
 @functools.lru_cache(maxsize=None)

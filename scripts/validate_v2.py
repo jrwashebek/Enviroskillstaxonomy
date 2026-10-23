@@ -6,12 +6,15 @@ Checks (issue codes are stable; tests and authoring agents rely on them):
                E-COMPUTED-FIELD E-PERSONAL-DATA E-CONFIDENTIAL E-COORDS-CULTURAL E-TRIBAL-HOLD E/W-TRIBAL-LEAK
                E-TEXT-HASH E/W-LINT-TYPING E/W-LINT-INDICATOR E/W-LINT-LENGTH E-LLM-DRAFT E-SOURCE-UNRESOLVED
                E-V1KEY-UNRESOLVED E-V1-WORKBOOK-HASH E-LICENSE-V1 W-LICENSE-V1-REWRITE E-PATHWAY-RECOMMENDED
-               E-MODULE-SUBSECTOR
+               E-MODULE-SUBSECTOR E-SEED-CANDIDATE E/W-NOTATION-INTERIM E/W-INDEPENDENCE-KEY-UNLISTED
+               E-ORG-TARGET-TRIBAL W-ORG-SMALL-N W-MVP-ROLE-TARGET I-SP12-QUARANTINE E-REVIEW-EVENT-STATUS
+               E-LEVEL-DISTRIBUTION W-ROLE-KEY W-COMPUTED-FIELD-DEPRECATED
   cross-record E-ID-DUPLICATE E-REF-DANGLING W-REF-PENDING E-REF-TYPE E-DEPENDENCY-DIRECTION E-TRIBAL-INHERIT
-               I-STALE-ASSESSMENT W-COMPETENCY-NO-TASK W-SUPERSEDED-TARGET
+               I-STALE-ASSESSMENT W-COMPETENCY-NO-TASK W-SUPERSEDED-TARGET E-PR2-ATTRIBUTE
+  waivers      E-WAIVER-FORMAT E-WAIVER-SIGNER I-WAIVER-VOID   (data/v2/governance/lint_waivers.csv; ADR-0029 §5)
   registry     E-REGISTRY-FORMAT E-REGISTRY-APPEND-ONLY E-REGISTRY-TRANSITION E-REGISTRY-MISSING E-REGISTRY-ORPHAN
   crosswalks   E-SSSOM-FORMAT E-SSSOM-VALUE E-SSSOM-THIRD-PARTY-TEXT E-X1-INCOMPLETE E-X1-DECISION E-X1-DUPLICATE
-               E-X1-STALE W-X1-PENDING
+               E-X1-STALE W-X1-PENDING I-SSSOM-1_1-EXTENSION W-SSSOM-REVIEW-PROVENANCE E-SSSOM-SELECTION-1_1
   files        E-PERSONAL-DATA / E-CONFIDENTIAL also run over every other file under data/v2 (CSV, TSV, MD...)
 
 Usage:
@@ -94,6 +97,12 @@ LINEAGE_KEYS = {"replaces", "replacedBy"}
 RELEASABLE_STATUSES = {"candidate", "published", "deprecated", "superseded", "withdrawn"}
 LIVE_EXCLUDED_STATUSES = {"superseded", "withdrawn"}
 V1_LICENSE = "LicenseRef-EMSTv1-PendingDedication"
+AT_OR_AFTER_CANDIDATE = {"candidate", "published", "deprecated"}
+SEED_V1_FORBIDDEN = {"candidate", "published", "deprecated", "superseded", "withdrawn"}
+IN_FORCE_STATUSES = {"interim-in-force", "in-force", "in-force-litigated", "issued"}
+WAIVER_COLUMNS = ["record_id", "rule_id", "text_sha256", "waiver_class", "reviewer", "second_reviewer", "decided_on", "rationale"]
+WAIVERS_REL = Path("governance") / "lint_waivers.csv"
+SELECTION_FLAGS = {("use", "selection"), ("use_class", "selection"), ("useClass", "selection"), ("selection_use", "true")}
 
 
 class Issue:
@@ -150,6 +159,15 @@ def _get_path(rec, dotted):
     return [c for c in cur if isinstance(c, str)]
 
 
+def _parse_other(s: str) -> dict:
+    out = {}
+    for part in (s or "").split(";"):
+        if "=" in part:
+            k, v = part.split("=", 1)
+            out[k.strip()] = v.strip()
+    return out
+
+
 def _lang_values(v):
     if isinstance(v, str):
         return [v]
@@ -188,6 +206,9 @@ class Validator:
         self.source_ids = self._load_source_ids()
         self.v1keys, self.v1_competencies = self._load_v1_keys()
         self.copyb_sha = self._copyb_sha()
+        self.waivers = self._load_waivers()
+        self.valid_waivers = self._valid_waivers()
+        self._load_change_vocab()
         self.io_lint = self._load_io_linter()
 
     # ------------------------------------------------------------------ configuration
@@ -196,6 +217,7 @@ class Validator:
         snake = {re.sub(r"(?<!^)(?=[A-Z])", "_", f).lower() for f in cf}
         self.computed_names = cf | snake
         self.inverse = {t: set(v) for t, v in (self.computed.get("inverse_fields_by_type") or {}).items()}
+        self.transitional = {t: set(v) for t, v in (self.computed.get("transitional_on_drafts") or {}).items()}
         th = self.gov["tribal_hold"]
         self.tribal_triggers = [_compile(p) for p in th["triggers"]]
         self.tribal_skip = set(th.get("skip_keys", []))
@@ -246,7 +268,7 @@ class Validator:
             tools = self.data / "tools" / "tools.jsonl"
             names = mod.load_jsonl_names(tools if tools.exists() else None, ["prefLabel", "productExamples"],
                                          {"software-product", "platform", "model", "dataset-product", "instrument-model"})
-            linter = mod.Linter(mod.load_rules(), "release" if self.strict else "ci", mod.load_waivers(mod.DEFAULT_WAIVERS), names, [])
+            linter = mod.Linter(mod.load_rules(), "release" if self.strict else "ci", self.valid_waivers, names, [])
             return mod, linter
         except Exception as e:  # noqa: BLE001
             self._io_lint_error = f"{type(e).__name__}: {e}"
@@ -281,6 +303,66 @@ class Validator:
             code = "E-LINT-INDICATOR" if (h.fails and not seed) else "W-LINT-INDICATOR"
             m = f" [{h.match}]" if h.match else ""
             self.r.add(code, loc, f"{h.rule_id}{m}: {h.message}", h.record_id)
+
+    def _load_waivers(self):
+        """data/v2/governance/lint_waivers.csv (ADR-0029 §5.5); IO's validation/waivers/ file is the fallback."""
+        p = self.data / WAIVERS_REL
+        if not p.exists():
+            p = self.repo / "validation" / "waivers" / "indicator_lint_waivers.csv"
+        self.waivers_path = p
+        if not p.exists():
+            return []
+        rows = list(csv.reader(p.read_text(encoding="utf-8").splitlines()))
+        if not rows:
+            return []
+        if rows[0] != WAIVER_COLUMNS:
+            self.r.add("E-WAIVER-FORMAT", p, f"header must be {','.join(WAIVER_COLUMNS)}")
+            return []
+        out = []
+        for i, row in enumerate(rows[1:], 2):
+            if not any(row):
+                continue
+            if len(row) != len(WAIVER_COLUMNS):
+                self.r.add("E-WAIVER-FORMAT", f"{p}:{i}", f"{len(row)} columns, expected {len(WAIVER_COLUMNS)}")
+                continue
+            w = dict(zip(WAIVER_COLUMNS, row))
+            w["_where"] = f"{p}:{i}"
+            out.append(w)
+        return out
+
+    def _valid_waivers(self):
+        """Waivers signed only by pseudonymous humans (pid:); others are reported and never applied (ADR-0012; IO rules)."""
+        ok = []
+        for w in self.waivers:
+            bad = False
+            if w["waiver_class"] not in ("accepted-warning", "false-positive"):
+                self.r.add("E-WAIVER-FORMAT", w["_where"], f"waiver_class {w['waiver_class']!r} must be accepted-warning or false-positive")
+                bad = True
+            if not re.fullmatch(r"[0-9a-f]{64}", w["text_sha256"] or ""):
+                self.r.add("E-WAIVER-FORMAT", w["_where"], "text_sha256 must be the 64-hex SHA-256 of the normalized statement")
+                bad = True
+            signers = [("reviewer", w["reviewer"]), ("second_reviewer", w["second_reviewer"])]
+            for col, who in signers:
+                if (col == "reviewer" or who) and not re.match(r"^pid:", who or ""):
+                    self.r.add("E-WAIVER-SIGNER", w["_where"], f"{col} {who!r} is not a pseudonymous human ID (pid:...); agents never sign waivers")
+                    bad = True
+            if w["waiver_class"] == "false-positive" and not w["second_reviewer"]:
+                self.r.add("E-WAIVER-FORMAT", w["_where"], "false-positive waivers need two human reviewers")
+                bad = True
+            if w["reviewer"] and w["reviewer"] == w["second_reviewer"]:
+                self.r.add("E-WAIVER-FORMAT", w["_where"], "reviewer and second_reviewer must differ")
+                bad = True
+            if not bad:
+                ok.append({k: v for k, v in w.items() if not k.startswith("_")})
+        return ok
+
+    def _load_change_vocab(self):
+        ct = L.load_yaml(self.repo / "vocab" / "change_types.yaml")
+        self.independence_keys = {k["key"] for k in (ct.get("independence_keys") or {}).get("keys", [])}
+        self.tribal_actors = set(self.schema["$defs"]["v_tribalActor"]["enum"])
+        self.sector_actor_terms = set(self.schema["$defs"]["v_sectorActor"]["enum"]) | set(self.schema["$defs"]["v_sectorActorSubtype"]["enum"])
+        roles = self.repo / "docs" / "decisions" / "mvp_role_set.csv"
+        self.role_keys = {r["role_key"] for r in L.read_csv(roles)} if roles.exists() else set()
 
     def _load_hold(self):
         p = self.data / "governance" / "tribal_hold.yaml"
@@ -418,11 +500,78 @@ class Validator:
         self.check_hash(loc, rec)
         self.check_lint(loc, rec)
         self.check_provenance(loc, rec)
+        self.check_semantics(loc, rec)
         if typ == "Pathway" and rec.get("recommended") is True:
             self.r.add("E-PATHWAY-RECOMMENDED", loc, "no pathway may be labelled recommended before the M-03 gate (ADR-0023, ADR-0027)", rid)
         if loc.area not in ("core", "register", "other") and typ in ("Competency", "Task") \
                 and rec.get("validationStatus") != "seed-v1" and not rec.get("subsectors"):
             self.r.add("E-MODULE-SUBSECTOR", loc, "module records must cite at least one subsector code (WP-06; ADR-0018)", rid)
+
+    def check_semantics(self, loc, rec):
+        """Record-level rules from the ADR-0029 rulings that JSON Schema cannot express cleanly."""
+        rid, typ, status = rec.get("id"), rec.get("type"), rec.get("status")
+        # §1.3 no seed-v1 at candidate. Seed-keyed superseded/withdrawn v1 stubs (never minted) are exempt: CR-DE-004.
+        if rec.get("validationStatus") == "seed-v1" and status in SEED_V1_FORBIDDEN \
+                and (status in AT_OR_AFTER_CANDIDATE or (isinstance(rid, str) and rid.startswith("emst:"))):
+            self.r.add("E-SEED-CANDIDATE", loc, f"seed-v1 content cannot be {status}: rewrite it as a draft and review it first (ADR-0029 §1.3)", rid)
+        # §8.2 interim EMST-* notation schemes (pre-ADR-0029 encoding of typed fields)
+        interim = sorted({n.get("scheme") for n in rec.get("notation") or []
+                          if isinstance(n, dict) and str(n.get("scheme", "")).startswith("EMST-")})
+        if interim:
+            code = "E-NOTATION-INTERIM" if (status in AT_OR_AFTER_CANDIDATE or self.strict) else "W-NOTATION-INTERIM"
+            self.r.add(code, loc, f"interim notation scheme(s) {', '.join(interim)}: move each value to its typed field (ADR-0029 §8; AUTHORING_GUIDE §12)", rid)
+        if typ == "ChangeSignal":
+            self._check_signal(loc, rec)
+        elif typ == "ExposureAssessment":
+            for i, te in enumerate(rec.get("technicalExposure") or []):
+                dist = te.get("levelDistribution") if isinstance(te, dict) else None
+                if isinstance(dist, dict) and dist:
+                    tot = sum(v for v in dist.values() if isinstance(v, (int, float)))
+                    if abs(tot - 1.0) > 0.01:
+                        self.r.add("E-LEVEL-DISTRIBUTION", loc, f"technicalExposure[{i}].levelDistribution sums to {tot:.3f}, not 1 ± 0.01 (ADR-0029 §9.2)", rid)
+            if str(rec.get("targetId", "")).startswith("mvp-role:"):
+                self.r.add("W-MVP-ROLE-TARGET", loc, "targetId mvp-role:… is a placeholder; re-key to the RoleProfile/RoleVariant seed key (excluded from releases)", rid)
+        elif typ == "DriverEvent":
+            if rec.get("eventType") == "submitted-for-review" and rec.get("statusAfter") in IN_FORCE_STATUSES:
+                self.r.add("E-REVIEW-EVENT-STATUS", loc, f"a submitted-for-review event cannot put an instrument {rec.get('statusAfter')} (use under-review; ADR-0029 §8.2)", rid)
+        elif typ in ("RoleProfile", "RoleVariant") and isinstance(rid, str) and rid.startswith("seed:"):
+            self._check_role_key(loc, rid, typ)
+
+    def _check_signal(self, loc, rec):
+        rid = rec.get("id")
+        st = rec.get("signalStatus")
+        key = rec.get("independenceKey")
+        if key is None:
+            key = next((n.get("value") for n in rec.get("notation") or [] if isinstance(n, dict) and n.get("scheme") == "EMST-independenceKey"), None)
+        if st in ("active", "watch") and key and key not in self.independence_keys:
+            code = "E-INDEPENDENCE-KEY-UNLISTED" if st == "active" else "W-INDEPENDENCE-KEY-UNLISTED"
+            self.r.add(code, loc, f"independenceKey {key!r} is not listed in vocab/change_types.yaml#independence_keys (file a CR to LM/CA)", rid)
+        if rec.get("targetType") == "organization":
+            actor = rec.get("sectorActor")
+            tid = str(rec.get("targetId", ""))
+            if rec.get("tribalPrograms") is True or actor in self.tribal_actors or rec.get("indigenousDataFlag") is True \
+                    or re.search(r"tribal|tribe|nation\b|pueblo|rancheria|band of", tid, re.I):
+                self.r.add("E-ORG-TARGET-TRIBAL", loc, "organization targets are never Tribal governments, organizations or enterprises (ADR-0007 V3; CR-LM-001)", rid)
+            n = (rec.get("measure") or {}).get("n")
+            if isinstance(n, int) and n < 5:
+                self.r.add("W-ORG-SMALL-N", loc, f"organization measure with n = {n} < 5 is suppressed in releases (ADR-0012)", rid)
+        if str(rec.get("targetId", "")).startswith("mvp-role:"):
+            self.r.add("W-MVP-ROLE-TARGET", loc, "targetId mvp-role:… is a placeholder; re-key to the RoleProfile/RoleVariant seed key (excluded from releases)", rid)
+        sps = set(rec.get("scenarioSignposts") or []) | {n.get("value") for n in rec.get("notation") or []
+                                                         if isinstance(n, dict) and n.get("scheme") == "EMST-signpost"}
+        if sps & {"vocab:scenarios#SP-12", "SP-12"}:
+            self.r.add("I-SP12-QUARANTINE", loc, "reads signpost SP-12 (Tribal Council only): quarantined like careFlag, excluded from releases and never counted (ER-0)", rid)
+
+    def _check_role_key(self, loc, rid, typ):
+        body = rid[len("seed:"):]
+        parts = body.split("/")
+        ok = (typ == "RoleProfile" and len(parts) == 1) or \
+             (typ == "RoleVariant" and len(parts) in (2, 3) and parts[1] in self.sector_actor_terms)
+        if not ok:
+            want = "seed:<role_key>" if typ == "RoleProfile" else "seed:<role_key>/<sector_actor>[/<slice>]"
+            self.r.add("W-ROLE-KEY", loc, f"{typ} seed key should be {want} (CR-IA-001; AUTHORING_GUIDE §3)", rid)
+        elif self.role_keys and parts[0] not in self.role_keys:
+            self.r.add("W-ROLE-KEY", loc, f"role_key {parts[0]!r} is not in docs/decisions/mvp_role_set.csv", rid)
 
     def check_location(self, loc, rec):
         rid, typ = rec.get("id"), rec.get("type")
@@ -464,9 +613,7 @@ class Validator:
             if not L.luhn32_valid(code):
                 self.r.add("E-ID-CHECK", loc, f"check symbol of {rid} is invalid (Luhn mod-32)", rid)
             want = L.ENTITY[typ]["prefix"]
-            if want is None:
-                self.r.add("E-ID-PREFIX", loc, f"{typ} has no ID TYPE prefix in vocab/identifiers.yaml; keep a seed: key (CR-DE-002)", rid)
-            elif prefix != want:
+            if prefix != want:
                 self.r.add("E-ID-PREFIX", loc, f"{typ} IDs use TYPE {want}, not {prefix}", rid)
             if not L.namespace_ok(ns):
                 self.r.add("E-ID-NAMESPACE", loc, f"namespace {ns!r} is not registered", rid)
@@ -480,7 +627,10 @@ class Validator:
             if k in self.computed_names:
                 self.r.add("E-COMPUTED-FIELD", loc, f"computed field {'/'.join(map(str, path + (k,)))} is not allowed in source records (SPEC §14.2; ADR-0021)", rid)
             if not path and k in self.inverse.get(typ, set()):
-                self.r.add("E-COMPUTED-FIELD", loc, f"{k} on {typ} is an inverse link computed in bundles; store the link on the other side", rid)
+                if k in self.transitional.get(typ, set()) and rec.get("status") == "draft" and not self.strict:
+                    self.r.add("W-COMPUTED-FIELD-DEPRECATED", loc, f"{k} on {typ} is now a computed inverse (ADR-0029 §1.2): remove it before candidate; the build ignores it", rid)
+                else:
+                    self.r.add("E-COMPUTED-FIELD", loc, f"{k} on {typ} is an inverse link computed in bundles; store the link on the other side", rid)
 
     def check_personal(self, loc, rec):
         rid = rec.get("id")
@@ -691,6 +841,45 @@ class Validator:
                 continue
             code = "E-COMPETENCY-NO-TASK" if (rec.get("status") in RELEASABLE_STATUSES or self.strict) else "W-COMPETENCY-NO-TASK"
             self.r.add(code, loc, "competency is not supported by any task (SPEC §5.2; ADR-0003 G-1)", rid)
+        self.check_pr2()
+        self.check_waivers_current()
+
+    def check_pr2(self):
+        """E-PR2-ATTRIBUTE (ADR-0029 §5.4): above the competency's lowest level that has indicators (from levels[]),
+        an Indicator at candidate or later states its distinguishingAttribute. PUB-11 (IO) checks the value."""
+        order = {lv: i for i, lv in enumerate(self.schema["$defs"]["v_level"]["enum"])}
+        lowest = {}
+        for cid in self.by_type.get("Competency", []):
+            levels = [lv.get("level") for lv in self.records[cid][1].get("levels") or [] if isinstance(lv, dict) and lv.get("indicators")]
+            levels = [x for x in levels if x in order]
+            if levels:
+                lowest[cid] = min(levels, key=order.get)
+        for rid in self.by_type.get("Indicator", []):
+            loc, rec = self.records[rid]
+            if rec.get("status") not in AT_OR_AFTER_CANDIDATE:
+                continue
+            low = lowest.get(rec.get("competency"))
+            lv = rec.get("level")
+            if low and lv in order and order[lv] > order[low] and not rec.get("distinguishingAttribute"):
+                self.r.add("E-PR2-ATTRIBUTE", loc, f"indicator at {lv} (above {low}, the lowest level of {rec.get('competency')} with indicators) needs distinguishingAttribute (SPEC §8.2 PR-2)", rid)
+
+    def check_waivers_current(self):
+        """A waiver applies only while record id, rule id and normalized-text hash all match (IO rules); report voids."""
+        if not self.valid_waivers:
+            return
+        norm = None
+        if self.io_lint:
+            mod, linter = self.io_lint
+            norm = lambda rec: (lambda f: mod.text_sha256(f[0], linter.rules) if f else None)(linter.statement_fields(mod.Record(rec, "")))  # noqa: E731
+        for w in self.valid_waivers:
+            target = self.records.get(w["record_id"])
+            if target is None:
+                self.r.add("I-WAIVER-VOID", self.waivers_path, f"waiver {w['record_id']} {w['rule_id']}: record not found")
+                continue
+            rec = target[1]
+            cur = norm(rec) if norm else L.text_sha256(((rec.get("statement") or {}).get("en")) or "")
+            if cur and cur != w["text_sha256"]:
+                self.r.add("I-WAIVER-VOID", self.waivers_path, f"waiver {w['record_id']} {w['rule_id']}: text changed since the waiver; it no longer applies", w["record_id"])
 
     def _stale(self, loc, rec):
         pairs = (("task", "taskTextSha256", "task"), ("competency", "competencyTextSha256", "competency"),
@@ -804,6 +993,9 @@ class Validator:
     # ------------------------------------------------------------------ crosswalks
     def check_crosswalks(self):
         cw = self.data / "crosswalks"
+        mp = L.load_yaml(self.repo / "vocab" / "mapping_predicates.yaml")
+        self.sssom_ext_only = list(mp.get("justifications_sssom_1_1_only") or [])
+        self.sssom_ext_counts = {}
         vocab_pred = set(self.schema["$defs"]["v_mappingPredicate"]["enum"])
         vocab_just = set(self.schema["$defs"]["v_mappingJustification"]["enum"])
         tsvs = sorted(cw.rglob("*.sssom.tsv")) if cw.exists() else []
@@ -840,8 +1032,22 @@ class Validator:
             if c not in SSSOM_COLUMNS:
                 self.r.add("E-SSSOM-FORMAT", tsv, f"unknown column {c} (declare SSSOM 1.1 slots as extensions)")
         third_party = not tsv.parent.name.startswith("emst")
+        ext_only = set(self.sssom_ext_only)
+        agent_set = any(str(x).startswith("emstagent:") for x in (meta.get("creator_id") or []) + (meta.get("author_id") or [])) \
+            or "agent-drafted" in str(meta.get("mapping_set_description", "")).lower()
+        n_ext = 0
         for i, row in enumerate(rows, 2):
             where = f"{tsv}:{i}"
+            just = row.get("mapping_justification")
+            other = _parse_other(row.get("other", ""))
+            if just in ext_only:
+                n_ext += 1
+            selection = any(other.get(k) == v for k, v in SELECTION_FLAGS)
+            if selection and just == "semapv:LLMBasedMatching":
+                self.r.add("E-SSSOM-SELECTION-1_1", where, "row flagged for selection use still carries semapv:LLMBasedMatching: selection needs two human reviewers (ADR-0022; CR-IA-002)")
+            if just == "semapv:MappingReview" and row.get("reviewer_id") and "original_justification" not in other \
+                    and (agent_set or str(row.get("author_id", "")).startswith("emstagent:")):
+                self.r.add("W-SSSOM-REVIEW-PROVENANCE", where, "reviewed agent-drafted row: keep original_justification=semapv:LLMBasedMatching in `other` (CR-IA-002 #3; ADR-0019 §4)")
             if row.get("predicate_id") not in preds:
                 self.r.add("E-SSSOM-VALUE", where, f"predicate {row.get('predicate_id')!r} not in vocab/mapping_predicates.yaml")
             if row.get("mapping_justification") not in justs:
@@ -860,6 +1066,9 @@ class Validator:
                 self.r.add("E-SSSOM-VALUE", where, "sssom:NoTermFound used with an unsupported predicate")
             if third_party and meta.get("license", "").startswith("CC0") and row.get("object_label"):
                 self.r.add("E-SSSOM-THIRD-PARTY-TEXT", where, "CC0 mapping sets store external IDs only; move upstream labels to external/ (ADR-0013 §5)")
+        if n_ext:
+            self.sssom_ext_counts[str(tsv.relative_to(self.data)) if tsv.is_relative_to(self.data) else str(tsv)] = n_ext
+            self.r.add("I-SSSOM-1_1-EXTENSION", tsv, f"{n_ext} of {len(rows)} rows use SSSOM 1.1-only justification(s) {', '.join(sorted(ext_only))}: valid as 1.0 plus the declared extension; re-validate when 1.1 is final (CR-IA-002)")
 
     def _x1(self, x1: Path):
         if not x1.exists():
@@ -937,6 +1146,8 @@ class Validator:
             "liveCoreCompetencies": len(live_core),
             "liveCoreCompetenciesNotHeld": len([r for r in live_core if r not in set(held)]),
             "heldRecords": len(held),
+            "sssom11ExtensionRows": dict(sorted(getattr(self, "sssom_ext_counts", {}).items())),
+            "lintWaivers": dict(sorted(Counter(w["rule_id"] for w in self.valid_waivers).items())),
             "issues": dict(sorted(self.r.codes().items())),
         }
 

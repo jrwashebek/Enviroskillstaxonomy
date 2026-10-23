@@ -136,8 +136,8 @@ COMPETENCIES = [
                   tasks=["seed:v1-7.1.3-T1"], evidence=["project file entry"], v1=["v1:7.1.3:intermediate:I2"]),
             ],
             "L3": [
-                I("Identifies which professional code provision and integrity policy apply to a contested situation and "
-                  "selects the escalation path the policy provides, in a case-based exercise.", SJT + BARS,
+                I("Selects the escalation path that the organization's integrity policy provides for a contested "
+                  "situation, naming the code provision at stake, in a case-based exercise.", SJT + BARS,
                   attr="ATT-GUI", tasks=["seed:sc-escalate-integrity-conflict"], evidence=["case response"],
                   v1=["v1:7.1.3:intermediate:I1", "v1:7.1.3:intermediate:I4"]),
                 I("Designs a project's peer-review and change-documentation steps so that every change to a finding after "

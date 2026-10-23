@@ -1,0 +1,41 @@
+id: seed:DB-C08-T4
+type: Task
+prefLabel:
+  en: Review a watershed model's calibration and load estimates produced with automated tools against monitoring data before they support allocations
+statement:
+  en: Review a watershed model's calibration and load estimates produced with automated tools against monitoring data before they support allocations
+textSha256: dae5fa8dfceb96b6b8e476ea1636253a1947a4242b96bac6dd912248c30fd9aa
+supports:
+- competency: seed:DB-C08
+  strength: primary
+workFunction: WF-MONITOR
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: remote
+formationDependency: 'yes'
+homeModule: waterq
+subsectors:
+- W06
+layer: L2
+module: waterq
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: Review task split from model production (ADR-0003 G-2).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

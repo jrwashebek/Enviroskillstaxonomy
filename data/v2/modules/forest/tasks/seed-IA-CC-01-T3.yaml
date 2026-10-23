@@ -1,0 +1,45 @@
+id: seed:IA-CC-01-T3
+type: Task
+prefLabel:
+  en: Adjust a grazing permit's terms and conditions from monitoring results, documenting the basis for each change
+statement:
+  en: Adjust a grazing permit's terms and conditions from monitoring results, documenting the basis for each change
+textSha256: e9bace6045c6deec14ee60aa668bd1c81dd16f8641245acdef57cbd25017fcde
+supports:
+- competency: seed:IA-CC-01
+  strength: primary
+workFunction: WF-AUTHORIZE
+relationshipTypes:
+- stakeholder
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: remote-capable
+formationDependency: partial
+accountabilityConstraint:
+  required: true
+  basis:
+    en: Permit terms are issued or modified by the authorized officer under the agency's grazing authority.
+homeModule: forest
+subsectors:
+- L05
+layer: L2
+module: forest
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

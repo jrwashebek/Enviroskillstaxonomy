@@ -168,6 +168,8 @@ def generate_enums(vocab_dir: Path = L.VOCAB) -> dict[str, dict]:
     sa = V["sector_actors"]
     put("v_sectorActor", _notations(sa["terms"]), "sector_actors.yaml#terms")
     put("v_sectorActorSubtype", [s["notation"] for t in sa["terms"] for s in t.get("subtypes", [])], "sector_actors.yaml#terms.subtypes")
+    tribal = [t for t in sa["terms"] if t["notation"] == "tribal"]
+    put("v_tribalActor", ["tribal"] + [x["notation"] for t in tribal for x in t.get("subtypes", [])], "sector_actors.yaml#terms.tribal (+subtypes)")
     put("v_industry", sa["industry"]["values"], "sector_actors.yaml#industry")
     put("v_ownership", sa["ownership"]["values"], "sector_actors.yaml#ownership")
     put("v_deliveryModel", _notations(sa["delivery_model"]["values"]), "sector_actors.yaml#delivery_model")
@@ -186,11 +188,47 @@ def generate_enums(vocab_dir: Path = L.VOCAB) -> dict[str, dict]:
 
     put("v_stateClassField", [_camel(f["field"]) for f in V["state_class_fields"]["fields"]], "state_class_fields.yaml#fields")
 
+    # formerly schema-local code lists, moved into vocab/ by the CA (CR-DE-001 #4; ADR-0029 §1)
+    put("v_toolType", _notations(ct["tool_types"]["values"]), "competency_types.yaml#tool_types")
+    dm = V["driver_mechanisms"]
+    put("v_instrumentType", _notations(dm["instrument_types"]["values"]), "driver_mechanisms.yaml#instrument_types")
+    put("v_eventType", _notations(dm["event_types"]["values"]), "driver_mechanisms.yaml#event_types")
+    put("v_eventDirection", _notations(dm["event_directions"]["values"]), "driver_mechanisms.yaml#event_directions")
+    put("v_instrumentStatus", _notations(dm["instrument_statuses"]["values"]), "driver_mechanisms.yaml#instrument_statuses")
+    put("v_credentialType", _notations(a["credential_types"]["values"]), "authority_positions.yaml#credential_types")
+    put("v_closureType", _notations(a["closure_types"]["values"]), "authority_positions.yaml#closure_types")
+    put("v_pathwayType", _notations(ft["pathway_types"]["values"]), "friction_types.yaml#pathway_types")
+    put("v_learningResourceType", _notations(ft["learning_resource_types"]["values"]), "friction_types.yaml#learning_resource_types")
+    put("v_frictionDirection", _notations(ft["friction_directions"]["values"]), "friction_types.yaml#friction_directions")
+    put("v_frictionSeverity", _notations(ft["friction_severities"]["values"]), "friction_types.yaml#friction_severities")
+    put("v_frictionBasis", _notations(ft["friction_bases"]["values"]), "friction_types.yaml#friction_bases")
+    put("v_signalStatus", _notations(c["signal_statuses"]["values"]), "change_types.yaml#signal_statuses")
+    put("v_signalFamily", _notations(c["signal_families"]["values"]), "change_types.yaml#signal_families")
+    put("v_changeIndicatorKind", _notations(c["change_indicator_kinds"]["values"]), "change_types.yaml#change_indicator_kinds")
+    put("v_indicatorUseClass", lc["use_tiers"]["indicator_use_classes"], "lifecycle_states.yaml#use_tiers.indicator_use_classes")
+    ros = ev["rating_object_schemes"]["values"]
+    put("v_ratingObjectScheme", _notations(ros), "evidence_labels.yaml#rating_object_schemes")
+    put("v_ratingObjectSchemeV2", [x["notation"] for x in ros if not x.get("v1_only")],
+        "evidence_labels.yaml#rating_object_schemes (items without v1_only)")
+    put("v_signpost", [x["notation"] for x in sc["signposts"]], "scenarios.yaml#signposts")
+    put("v_scenarioPole", [f"{ax['notation']}:{p['notation']}" for ax in sc["axes"] for p in ax["poles"]], "scenarios.yaml#axes.poles")
+
     used = {s.split("#")[0].split(" ")[0] for s in (e["source"] for e in E.values())}
     missing = sorted(set(VOCAB_FILES) - used)
     if missing:
         raise ValueError(f"vocab files that generate no enumeration: {missing}")
     return E
+
+
+def _status_pattern(values) -> str:
+    """One anchored alternation: literal notations plus each item's own pattern (CR-DE-001 #4)."""
+    alts = []
+    for v in values:
+        if v.get("pattern"):
+            alts.append(v["pattern"].lstrip("^").rstrip("$"))
+        else:
+            alts.append(re.escape(v["notation"]))
+    return "^(" + "|".join(alts) + ")$"
 
 
 def _camel(snake: str) -> str:
@@ -214,6 +252,8 @@ def state_class_fields(vocab_dir: Path = L.VOCAB) -> dict:
             schema = {"$ref": "#/$defs/Date"}
         elif fmt == "number":
             schema = {"type": "number"}
+        elif fmt == "enum list" and re.fullmatch(r"[a-z0-9-]+(\|[a-z0-9-]+)+", ex):
+            schema = {"type": "array", "uniqueItems": True, "items": {"enum": ex.split("|")}}
         elif fmt.startswith("list") or fmt == "enum list":
             schema = {"type": "array"}
         elif fmt in ("record", "structured (from, to, ratio)"):
@@ -243,6 +283,12 @@ def build_schema(vocab_dir: Path = L.VOCAB, src: Path = L.SCHEMA_SRC) -> dict:
         "pattern": idf["form"]["regex"],
         "$comment": "GENERATED from vocab/identifiers.yaml#form.regex",
     }
+    for name, (fname, key) in {"SeriesStatus": ("mapping_predicates.yaml", "series_statuses"),
+                               "SourceStatus": ("evidence_labels.yaml", "source_statuses")}.items():
+        defs[name] = {"type": "string", "pattern": _status_pattern(L.load_yaml(vocab_dir / fname)[key]["values"]),
+                      "$comment": f"GENERATED from vocab/{fname}#{key}"}
+    defs["SignpostRef"] = {"enum": ["vocab:scenarios#" + x for x in enums["v_signpost"]["enum"]],
+                           "$comment": "GENERATED from vocab/scenarios.yaml#signposts"}
     scf = state_class_fields(vocab_dir)
     scf["$comment"] = "GENERATED from vocab/state_class_fields.yaml#fields"
     defs["StateClassFields"] = scf
@@ -258,8 +304,9 @@ def build_schema(vocab_dir: Path = L.VOCAB, src: Path = L.SCHEMA_SRC) -> dict:
     out["$comment"] = ("GENERATED by scripts/build_schema.py from schema/src/emst.schema.src.yaml and vocab/*.yaml. "
                        "Do not edit; run the script. Schema version " + L.SCHEMA_VERSION + ".")
     out["allOf"] = s["allOf"]
-    structural = {k: v for k, v in defs.items() if not k.startswith("v_") and k not in ("EmstId", "StateClassFields")}
-    generated = {k: defs[k] for k in sorted(k for k in defs if k.startswith("v_") or k in ("EmstId", "StateClassFields"))}
+    gen_names = ("EmstId", "StateClassFields", "SeriesStatus", "SourceStatus", "SignpostRef")
+    structural = {k: v for k, v in defs.items() if not k.startswith("v_") and k not in gen_names}
+    generated = {k: defs[k] for k in sorted(k for k in defs if k.startswith("v_") or k in gen_names)}
     out["$defs"] = {**structural, **generated}
     return out
 

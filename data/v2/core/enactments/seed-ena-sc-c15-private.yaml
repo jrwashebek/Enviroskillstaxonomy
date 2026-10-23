@@ -1,0 +1,51 @@
+id: seed:ena-sc-c15-private
+type: Enactment
+prefLabel:
+  en: Company subject to several disclosure regimes
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SC-C15
+enactmentKind: actor
+actorType: firm
+authorityBasis:
+  en: State climate-disclosure statutes and regulations (California's emissions and climate-risk laws, the latter enjoined), the EU sustainability-reporting directive as narrowed in 2026, and federal reporting programmes under reconsideration.
+principal:
+  en: Executives, the board and investors.
+accountabilityVenue:
+  en: State regulators; EU national authorities; assurance providers; securities litigation.
+authorityPosition: regulated-party
+characteristicInstruments:
+- seed:ins/ca-sb-253
+- seed:ins/ca-sb-261
+- seed:ins/eu-omnibus-i
+- seed:ins/sec-climate-disclosure
+- seed:ins/ghgrp-reconsideration
+note:
+  en: 'Jurisdictional judgment is now as much of the job as reporting [E: V2-15].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - V2-06
+  - V2-15
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

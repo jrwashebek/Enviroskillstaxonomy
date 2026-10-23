@@ -1,0 +1,41 @@
+id: seed:ena-sl-c02-waterq-t3
+type: Task
+prefLabel:
+  en: Check effluent limits proposed by permit-drafting software against the standards and allocation calculations before public notice
+statement:
+  en: Check effluent limits proposed by permit-drafting software against the standards and allocation calculations before public notice
+textSha256: 4695578c03154cc089360b7c36f5eb1518f40458d6c5eccce9fee14cdd57f74b
+supports:
+- competency: seed:SL-C02
+  strength: primary
+workFunction: WF-AUTHORIZE
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: remote
+formationDependency: 'yes'
+homeModule: waterq
+subsectors:
+- W06
+layer: L2
+module: waterq
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: Review-and-defence task split from drafting (ADR-0003 G-2).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

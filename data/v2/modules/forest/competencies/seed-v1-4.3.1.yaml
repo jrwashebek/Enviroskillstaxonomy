@@ -1,18 +1,51 @@
 id: seed:v1-4.3.1
 type: Competency
 prefLabel:
-  en: Wildland firefighting
+  en: Suppress wildland fire safely with ground tactics and resources
+altLabel:
+  en:
+  - Wildland firefighting
+  - Wildland fire suppression
+definition:
+  en: 'Ground suppression of unwanted wildland fire: sizing up fires, constructing and holding control lines, firing operations, mop-up and patrol, and leading crews and resources while maintaining lookouts, communications, escape routes and safety zones. Excludes incident command system functions (core DB-C42) and prescribed fire (v1 4.3.2).'
 statement:
-  en: Suppressing unwanted fires on wildlands using appropriate tactics and ensuring firefighter safety.
+  en: Sizes up fires and selects tactics, constructs and holds control lines with hand tools, water and equipment, conducts firing operations and mop-up, and leads crews or resources while keeping lookouts, communications, escape routes and safety zones in place, so that the fire is contained without harm to people.
 notation:
 - scheme: EMSTv1
   value: 4.3.1
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-4.3.1-l1-a
+  - seed:ind-4.3.1-l1-b
+- level: L2
+  indicators:
+  - seed:ind-4.3.1-l2-a
+  - seed:ind-4.3.1-l2-b
+- level: L3
+  indicators:
+  - seed:ind-4.3.1-l3-a
+  - seed:ind-4.3.1-l3-b
+- level: L4
+  indicators:
+  - seed:ind-4.3.1-l4-a
+  - seed:ind-4.3.1-l4-b
+homeModule: forest
+subsectors:
+- L07
+reusability: subsector-specific
 layer: L1
 module: forest
-homeModule: forest
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Domain:
   code: '4'
   label: Field Operations Skills
@@ -20,14 +53,12 @@ v1SkillArea:
   code: '4.3'
   label: Fire Management
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: Fire-specific (L07); proficiency is qualification-anchored, so NWCG positions become Credential gates with PMS 310-1 crosswalk; ICS participation goes to core DB-C42; title defect fixed; TN enactment notes held (FC verdict). Role verdicts considered: FC:change|FC:carry|TN:add. Title and description were merged in the v1 database and are split here from the source text.'
-license: CC0-1.0
-sensitivity: public
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: Fire-specific (L07); proficiency is qualification-anchored, so NWCG positions become Credential gates with PMS 310-1 crosswalk; ICS participation goes to core DB-C42; title defect fixed; TN enactment notes held (FC verdict). Role verdicts considered: FC:change|FC:carry|TN:add. Title and description were merged in the v1 database and are split here from the source text. WP-06: Moved to MOD-11 (L07). Proficiency is qualification-anchored, so wildland fire position qualifications are Credential gates with a position-qualification crosswalk, not levels (ADR-0003 T-8); the USWFS-USFS aligned federal qualification standards take effect January 2027 (V3-13; L5 instrument seed:ins/wildland-fire-quals-alignment). ICS participation goes to core DB-C42. Actor enactment notes requested by TN are held under ADR-0007 and not authored here. Basis [J]; dates [E: V3-13].'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:4.3.1
     v1Code: 4.3.1
@@ -38,7 +69,8 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
   - v1Key: v1:4.3.1
     v1Code: 4.3.1
     v1Table: source_text/competencies
@@ -47,10 +79,12 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
 v1Seed:
   v1Title: Wildland firefighting Suppressing unwanted fires on wildlands using appropriate tactics and ensuring firefighter safety.
   v1Description: ''

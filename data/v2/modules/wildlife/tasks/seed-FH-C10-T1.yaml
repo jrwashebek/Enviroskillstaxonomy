@@ -1,0 +1,44 @@
+id: seed:FH-C10-T1
+type: Task
+prefLabel:
+  en: Spawn broodstock following the genetic management plan's mating scheme and record parentage for each lot
+statement:
+  en: Spawn broodstock following the genetic management plan's mating scheme and record parentage for each lot
+textSha256: b0172759e3c980d3e9b1c7da5b4166786293beef2515aecd8185ab2e435754d0
+supports:
+- competency: seed:FH-C10
+  strength: primary
+workFunction: WF-OPERATE
+workflowProfiles:
+- WP-OPERATIONS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: seasonal
+  placeBoundness: system-specific
+  currencyDecay: M
+homeModule: wildlife
+subsectors:
+- L03
+layer: L2
+module: wildlife
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

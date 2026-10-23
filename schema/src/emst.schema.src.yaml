@@ -130,7 +130,7 @@ $defs:
       sources: {type: array, items: {$ref: '#/$defs/SourceId'}, uniqueItems: true}
   PublicationRuleCheck:
     type: object
-    description: 'Result of one publication rule at one level (SPEC §8.2). Values per CR-IO-001 (interim, pending CA).'
+    description: 'Result of one publication rule at one level (SPEC §8.2; CR-IO-001 as ratified in ADR-0029 §5).'
     additionalProperties: false
     required: [result]
     properties:
@@ -287,6 +287,15 @@ $defs:
         then: {required: [versionIntroduced, lastChangedIn]}
       - if: {required: [lifecycleState], properties: {lifecycleState: {enum: [watch, proposed, emerging]}}}
         then: {required: [reviewBy]}
+      # v1 seeds never become candidates (ADR-0029 §1.3); seed-keyed superseded/withdrawn seeds are lineage stubs
+      - if: {required: [status], properties: {status: {enum: [candidate, published, deprecated]}}}
+        then: {properties: {validationStatus: {not: {const: seed-v1}}}}
+      - if:
+          required: [id, status]
+          properties:
+            id: {$ref: '#/$defs/EmstId'}
+            status: {enum: [superseded, withdrawn]}
+        then: {properties: {validationStatus: {not: {const: seed-v1}}}}
 
   # ------------------------------------------------------------------------------------------------ v1 seed material
   V1CompetencySeed:
@@ -361,6 +370,8 @@ $defs:
         else: {required: [competencyType, statement, levelSpan, homeModule, definition, lifecycleState]}
       - if: {required: [competencyType], properties: {competencyType: {const: transversal}}}
         then: {required: [transversalCluster]}
+      - if: {required: [status], properties: {status: {not: {const: draft}}}}
+        then: {not: {required: [enactments]}}
     required: [validationStatus, useTier]
     properties:
       type: {const: Competency}
@@ -392,9 +403,19 @@ $defs:
                 distinctness: {$ref: '#/$defs/PublicationRuleCheck'}
                 assessability: {$ref: '#/$defs/PublicationRuleCheck'}
                 consensus: {$ref: '#/$defs/PublicationRuleCheck'}
+              allOf:
+                - if: {required: [existence], properties: {existence: {required: [result], properties: {result: {const: pass}}}}}
+                  then: {properties: {existence: {required: [evidence], properties: {evidence: {minItems: 1}}}}}
+                - if: {required: [consensus], properties: {consensus: {required: [result], properties: {result: {const: pass}}}}}
+                  then: {properties: {consensus: {required: [evidence], properties: {evidence: {minItems: 1}}}}}
       awarenessBundle: {$ref: '#/$defs/RefList'}
       knowledge: {$ref: '#/$defs/RefList'}
-      enactments: {$ref: '#/$defs/RefList'}
+      enactments:
+        $ref: '#/$defs/RefList'
+        deprecated: true
+        description: >-
+          DEPRECATED (ADR-0029 §1.2): a computed inverse of Enactment.competency (vocab/rules/inverse-links@1.1.0).
+          Tolerated on drafts during S1 with W-COMPUTED-FIELD-DEPRECATED; rejected from candidate on; ignored by the build.
       homeModule: {$ref: '#/$defs/ModuleNs'}
       subsectors: {type: array, uniqueItems: true, items: {$ref: '#/$defs/v_subsector'}}
       reusability: {$ref: '#/$defs/v_reusability'}
@@ -450,14 +471,14 @@ $defs:
       statement: {$ref: '#/$defs/LangMap', description: 'One sentence, ≤ 30 words: observable verb + object + condition + standard.'}
       augmentationMode: {$ref: '#/$defs/v_augmentationMode'}
       assessmentMethods: {type: array, minItems: 1, uniqueItems: true, items: {$ref: '#/$defs/v_assessmentMethod'}}
-      useClass: {enum: [describe, develop, select]}
+      useClass: {$ref: '#/$defs/v_indicatorUseClass'}
       obs4: {type: integer, minimum: 0, maximum: 3}
       obs4Flags: {type: array, uniqueItems: true, items: {enum: [P, C, O, T]}}
       evidenceTypes: {type: array, items: {type: string}}
       evidencePlan: {$ref: '#/$defs/Text'}
       jurisdictionVariable: {type: boolean}
       servedTasks: {$ref: '#/$defs/RefList'}
-      distinguishingAttribute: {$ref: '#/$defs/v_proficiencyAttribute', description: 'Attribute on which this indicator differs from the adjacent lower level (SPEC §8.2 PR-2; CR-IO-001, interim).'}
+      distinguishingAttribute: {$ref: '#/$defs/v_proficiencyAttribute', description: 'Attribute on which this indicator differs from the adjacent lower level (SPEC §8.2 PR-2; ADR-0029 §5). Required at candidate above the lowest level with indicators (E-PR2-ATTRIBUTE).'}
       safetyOrLegalCritical: {type: boolean}
     unevaluatedProperties: false
 
@@ -474,7 +495,7 @@ $defs:
         then: {required: [enactedInModule]}
       - if: {required: [enactmentKind], properties: {enactmentKind: {const: craft}}}
         then: {required: [craft]}
-      - if: {required: [actorType], properties: {actorType: {enum: [tribal, federally-recognized-tribe, inter-tribal-organization, tribal-college, tribal-enterprise, ancsa-corporation, native-hawaiian-organization, state-recognized-tribe]}}}
+      - if: {required: [actorType], properties: {actorType: {$ref: '#/$defs/v_tribalActor'}}}
         then: {required: [indigenousDataFlag], properties: {indigenousDataFlag: {const: true}}}
     required: [validationStatus, useTier]
     properties:
@@ -751,7 +772,7 @@ $defs:
       layer: {enum: [L3, learning]}
       fromVariant: {$ref: '#/$defs/RecordRef'}
       toVariant: {$ref: '#/$defs/RecordRef'}
-      pathwayType: {enum: [new-hire, upskill, reskill, cross-sector, baseline]}
+      pathwayType: {$ref: '#/$defs/v_pathwayType'}
       outcomes: {$ref: '#/$defs/RefList'}
       modes: {type: array, items: {type: string}}
       assessmentPlan: {$ref: '#/$defs/Text'}
@@ -792,7 +813,7 @@ $defs:
     properties:
       type: {const: Tool}
       layer: {const: L4}
-      toolType: {enum: [software-category, software-product, platform, model, dataset-product, instrument-class, instrument-model, protocol, technical-standard, reporting-framework, credential-bound-standard]}
+      toolType: {$ref: '#/$defs/v_toolType'}
       category: {type: string}
       vendorNeutral: {type: boolean}
       productExamples: {type: array, items: {type: string}}
@@ -814,7 +835,7 @@ $defs:
     properties:
       raterType: {$ref: '#/$defs/v_raterType'}
       raterId: {$ref: '#/$defs/AgentId'}
-      assessedAt: {$ref: '#/$defs/Date'}
+      assessedAt: {anyOf: [{$ref: '#/$defs/Date'}, {$ref: '#/$defs/PartialDate'}], description: 'YYYY-MM-DD; external-index records may give YYYY or YYYY-MM (CR-LM-002; ADR-0029 §9).'}
       method: {type: string, minLength: 1}
       confidence: {$ref: '#/$defs/Confidence'}
       instrument: {type: string, pattern: '^[a-z0-9][a-z0-9.-]*(@[0-9][0-9A-Za-z.-]*)?$'}
@@ -847,6 +868,8 @@ $defs:
             provenance: {properties: {method: {const: llm-assisted}}}
       - if: {required: [evidenceLabel], properties: {evidenceLabel: {const: E}}}
         then: {properties: {sources: {minItems: 1}}}
+      - if: {not: {required: [raterType], properties: {raterType: {const: external-index}}}}
+        then: {properties: {assessedAt: {$ref: '#/$defs/Date'}}}
 
   ExposureAssessment:
     type: object
@@ -855,27 +878,63 @@ $defs:
       - $ref: '#/$defs/RatingBase'
       - if: {required: [raterType], properties: {raterType: {const: v1-analyst}}}
         then: {required: [v1Flags]}
-        else: {required: [technicalExposure]}
+        else:
+          if: {required: [raterType], properties: {raterType: {const: external-index}}}
+          then: {anyOf: [{required: [technicalExposure]}, {required: [externalSource], properties: {externalSource: {required: [values]}}}]}
+          else: {required: [technicalExposure]}
       - if: {required: [raterType], properties: {raterType: {const: external-index}}}
         then: {required: [externalSource]}
       - if: {required: [deploymentMode], properties: {deploymentMode: {enum: [supervises-system, system-executes]}}}
         then: {required: [deploymentEvidence]}
-    required: [task, taskTextSha256]
+      # grain (CR-LM-002; ADR-0029 §9): occupation-grain external-index records target a role; all others a task
+      - if:
+          required: [raterType, externalSource]
+          properties:
+            raterType: {const: external-index}
+            externalSource: {required: [unit], properties: {unit: {const: occupation}}}
+        then:
+          required: [targetType, targetId, crosswalkPath, crosswalkMinMatchType]
+          not: {anyOf: [{required: [task]}, {required: [taskTextSha256]}]}
+          properties: {targetType: {enum: [RoleProfile, RoleVariant]}}
+        else:
+          required: [task, taskTextSha256]
+          not: {anyOf: [{required: [targetType]}, {required: [targetId]}, {required: [crosswalkPath]}, {required: [crosswalkMinMatchType]}]}
     properties:
       type: {const: ExposureAssessment}
       layer: {const: L5}
       task: {$ref: '#/$defs/RecordRef'}
       taskTextSha256: {$ref: '#/$defs/Sha256', description: Hash of the exact statement rated; a mismatch with the task's textSha256 marks the assessment stale.}
+      targetType: {$ref: '#/$defs/v_entityType', description: 'Occupation-grain external-index records only: RoleProfile or RoleVariant.'}
+      targetId: {$ref: '#/$defs/AnyRef'}
+      crosswalkPath: {type: array, minItems: 1, items: {type: string}}
+      crosswalkMinMatchType: {$ref: '#/$defs/v_mappingPredicate'}
       technicalExposure:
         type: array
         minItems: 1
         items:
-          type: object
-          additionalProperties: false
-          required: [vector, level]
-          properties:
-            vector: {$ref: '#/$defs/v_exposureVector'}
-            level: {$ref: '#/$defs/v_exposureLevel'}
+          oneOf:
+            - type: object
+              additionalProperties: false
+              required: [vector, level]
+              properties:
+                vector: {$ref: '#/$defs/v_exposureVector'}
+                level: {$ref: '#/$defs/v_exposureLevel'}
+            - type: object
+              additionalProperties: false
+              required: [vector, levelDistribution, basis]
+              properties:
+                vector: {$ref: '#/$defs/v_exposureVector'}
+                levelDistribution:
+                  type: object
+                  additionalProperties: false
+                  minProperties: 1
+                  description: Shares of E0-E3 summing to 1 ± 0.01 (validator E-LEVEL-DISTRIBUTION).
+                  properties:
+                    E0: {type: number, minimum: 0, maximum: 1}
+                    E1: {type: number, minimum: 0, maximum: 1}
+                    E2: {type: number, minimum: 0, maximum: 1}
+                    E3: {type: number, minimum: 0, maximum: 1}
+                basis: {$ref: '#/$defs/Text'}
       deploymentMode: {$ref: '#/$defs/v_deploymentMode'}
       deploymentStage: {$ref: '#/$defs/v_deploymentStage'}
       deploymentEvidence:
@@ -888,11 +947,11 @@ $defs:
           properties:
             description: {$ref: '#/$defs/Text'}
             sources: {type: array, items: {$ref: '#/$defs/SourceId'}}
-      sWatch: {type: boolean}
+      sWatch: {type: boolean, description: 'XR-04 watch flag; any rater type (ADR-0029 §1.5).'}
       strategy: {$ref: '#/$defs/v_adoptionStrategy'}
       noDeployedToolPerformsCore: {type: boolean}
       shouldRemainHumanReason: {$ref: '#/$defs/Text'}
-      tacitExperienceRequirement: {$ref: '#/$defs/v_tacitExperienceRequirement'}
+      tacitExperienceRequirement: {$ref: '#/$defs/v_tacitExperienceRequirement', description: 'Any rater type (ADR-0029 §1.5).'}
       scenario: {$ref: '#/$defs/v_scenario'}
       demandDirection: {$ref: '#/$defs/v_demandDirection'}
       reproductionRisk: {$ref: '#/$defs/v_reproductionRisk'}
@@ -900,14 +959,18 @@ $defs:
       externalSource:
         type: object
         additionalProperties: false
-        required: [index, release, matchedOnetTasks, aggregation]
+        required: [index, release, aggregation, unit]
         properties:
           index: {type: string}
           release: {type: string}
-          matchedOnetTasks: {type: array, minItems: 1, items: {type: string}}
+          unit: {enum: [onet-task, dwa, iwa, occupation]}
+          matchedOnetTasks: {type: array, items: {type: string}}
           aggregation: {type: string}
-          dispersion: {type: number}
+          values: {type: object, description: "The index's own published numbers for the matched unit(s)."}
+          dispersion: {anyOf: [{type: number}, {type: object}]}
           noExternalAnalogue: {type: boolean}
+        if: {not: {required: [unit], properties: {unit: {const: occupation}}}}
+        then: {required: [matchedOnetTasks], properties: {matchedOnetTasks: {minItems: 1}}}
     unevaluatedProperties: false
 
   CraftRating:
@@ -969,14 +1032,14 @@ $defs:
       - $ref: '#/$defs/RatingBase'
       - if: {required: [raterType], properties: {raterType: {const: v1-analyst}}}
         then: {required: [subject, object, objectScheme]}
-        else: {required: [subject, subjectTextSha256, object, objectScheme, relevance], properties: {objectScheme: {enum: [role-profile, role-variant]}}}
+        else: {required: [subject, subjectTextSha256, object, objectScheme, relevance], properties: {objectScheme: {$ref: '#/$defs/v_ratingObjectSchemeV2'}}}
     properties:
       type: {const: RelevanceRating}
       layer: {const: L5}
       subject: {$ref: '#/$defs/RecordRef', description: Competency (or task) being related.}
       subjectTextSha256: {$ref: '#/$defs/Sha256'}
       object: {$ref: '#/$defs/AnyRef', description: 'Role profile or variant; for v1-analyst records a legacy EMSTv1 reference (family, reform flags, ethical lens, CLD tag).'}
-      objectScheme: {enum: [role-profile, role-variant, v1-family, v1-reform-flags, v1-ethical-lens, v1-cld]}
+      objectScheme: {$ref: '#/$defs/v_ratingObjectScheme', description: 'v1_only schemes require raterType v1-analyst (vocab/evidence_labels.yaml#rating_object_schemes).'}
       relevance:
         type: object
         additionalProperties: false
@@ -999,13 +1062,30 @@ $defs:
         then: {required: [indigenousDataFlag], properties: {indigenousDataFlag: {const: true}}}
       - if: {required: [reviewStatus], properties: {reviewStatus: {not: {const: unreviewed}}}}
         then: {required: [reviewer]}
+      # CR-LM-001 (ADR-0029 §8)
+      - if: {required: [signalStatus], properties: {signalStatus: {const: active}}}
+        then: {required: [signalFamily, independenceKey]}
+      - if: {required: [registeredDeployment]}
+        then: {required: [signalFamily], properties: {signalFamily: {const: deployment}}}
+      - if: {required: [targetType], properties: {targetType: {const: organization}}}
+        then:
+          properties:
+            targetId: {type: string, pattern: '^(opm-agency|census-gov):[A-Za-z0-9-]+$'}
+            tribalPrograms: {const: false}
+            sectorActor: {not: {$ref: '#/$defs/v_tribalActor'}}
     required: [targetType, targetId, measure, observedPeriod, geography, source, sourceRelease, corpus, method, toolVersion, crosswalkPath, crosswalkMinMatchType, direction, directionConfidence, drivers, steepCategory, novelty, reliability, corroboration, careFlag, tribalPrograms, personalData, evidenceLabel, reviewStatus, reviewBy, signalStatus]
     properties:
       type: {const: ChangeSignal}
       layer: {const: L5}
       signalType: {$ref: '#/$defs/v_roleSignalType'}
-      targetType: {$ref: '#/$defs/v_entityType'}
+      targetType: {anyOf: [{$ref: '#/$defs/v_entityType'}, {const: organization}]}
       targetId: {$ref: '#/$defs/AnyRef'}
+      signalFamily: {$ref: '#/$defs/v_signalFamily'}
+      independenceKey: {type: string, pattern: '^[a-z0-9][a-z0-9-]{1,60}$', description: 'Upstream-provider key; active signals must use a key listed in vocab/change_types.yaml#independence_keys.'}
+      registeredDeployment: {type: boolean, description: 'Only with signalFamily deployment (ER-2).'}
+      impact: {type: integer, minimum: 1, maximum: 3}
+      scenarioSignposts: {type: array, uniqueItems: true, items: {$ref: '#/$defs/SignpostRef'}}
+      pointsToward: {type: array, uniqueItems: true, items: {anyOf: [{$ref: '#/$defs/v_scenario'}, {$ref: '#/$defs/v_scenarioPole'}]}}
       measure:
         type: object
         additionalProperties: false
@@ -1017,6 +1097,21 @@ $defs:
           ci95: {type: [array, 'null'], minItems: 2, maxItems: 2, items: {type: number}, description: null when not estimable}
           n: {type: [integer, 'null'], minimum: 0}
           denominator: {type: string}
+          baseline:
+            type: object
+            additionalProperties: false
+            properties:
+              value: {type: number}
+              ci95: {type: [array, 'null'], minItems: 2, maxItems: 2, items: {type: number}}
+              n: {type: [integer, 'null'], minimum: 0}
+              note: {type: string}
+          sensitivity:
+            type: object
+            additionalProperties: false
+            properties:
+              weighting: {type: string}
+              value: {type: number}
+              baselineValue: {type: number}
       observedPeriod: {$ref: '#/$defs/Period'}
       comparisonPeriod: {$ref: '#/$defs/Period'}
       geography: {type: string}
@@ -1057,7 +1152,7 @@ $defs:
       evidenceLabel: {$ref: '#/$defs/v_evidenceLabel'}
       reviewStatus: {$ref: '#/$defs/v_reviewStatus'}
       reviewer: {$ref: '#/$defs/AgentId'}
-      signalStatus: {enum: [watch, active, retired], description: 'SPEC §5.14 `status`; renamed to avoid the editorial-status field (CR-DE-001).'}
+      signalStatus: {$ref: '#/$defs/v_signalStatus', description: 'SPEC §5.14 `status`, renamed to avoid the editorial-status field (ADR-0029 §1).'}
     unevaluatedProperties: false
 
   WatchItem:
@@ -1091,7 +1186,7 @@ $defs:
       type: {const: Instrument}
       layer: {const: L5}
       citation: {type: string, minLength: 3}
-      instrumentType: {enum: [statute, regulation, executive-order, memo, guidance, court-decision, permit-programme, agreement-authority, disclosure-regime, state-hr-order, standard-with-legal-force]}
+      instrumentType: {$ref: '#/$defs/v_instrumentType'}
       jurisdiction: {type: string}
       mechanisms: {type: array, minItems: 1, uniqueItems: true, items: {$ref: '#/$defs/v_driverMechanism'}}
     unevaluatedProperties: false
@@ -1104,11 +1199,11 @@ $defs:
       type: {const: DriverEvent}
       layer: {const: L5}
       instrument: {$ref: '#/$defs/RecordRef'}
-      eventType: {enum: [introduced, passed-chamber, enacted, proposed, interim, final, effective, enjoined, stayed, vacated, remanded, rescinded, decided, expired, sunset]}
+      eventType: {$ref: '#/$defs/v_eventType'}
       eventDate: {$ref: '#/$defs/Date'}
       jurisdiction: {type: string}
-      direction: {enum: [expands, contracts, reshapes]}
-      statusAfter: {type: string}
+      direction: {$ref: '#/$defs/v_eventDirection'}
+      statusAfter: {$ref: '#/$defs/v_instrumentStatus'}
       sources: {type: array, minItems: 1, items: {$ref: '#/$defs/SourceId'}}
       evidenceLabel: {$ref: '#/$defs/v_evidenceLabel'}
       recordedBy: {$ref: '#/$defs/AgentId'}
@@ -1120,8 +1215,8 @@ $defs:
       - $ref: '#/$defs/RecordBase'
       - if:
           anyOf:
-            - {required: [fromActor], properties: {fromActor: {enum: [tribal, federally-recognized-tribe, inter-tribal-organization, tribal-college, tribal-enterprise, ancsa-corporation, native-hawaiian-organization, state-recognized-tribe]}}}
-            - {required: [toActor], properties: {toActor: {enum: [tribal, federally-recognized-tribe, inter-tribal-organization, tribal-college, tribal-enterprise, ancsa-corporation, native-hawaiian-organization, state-recognized-tribe]}}}
+            - {required: [fromActor], properties: {fromActor: {$ref: '#/$defs/v_tribalActor'}}}
+            - {required: [toActor], properties: {toActor: {$ref: '#/$defs/v_tribalActor'}}}
         then: {required: [indigenousDataFlag], properties: {indigenousDataFlag: {const: true}}}
     required: [fromActor, toActor, frictionType, direction, severity, basis, asOf, evidenceLabel, sources]
     properties:
@@ -1132,9 +1227,9 @@ $defs:
       fromVariant: {$ref: '#/$defs/RecordRef'}
       toVariant: {$ref: '#/$defs/RecordRef'}
       frictionType: {$ref: '#/$defs/v_frictionType'}
-      direction: {enum: [from-to, to-from, both]}
-      severity: {enum: [blocking, costly, minor]}
-      basis: {enum: [statute, regulation, policy, practice]}
+      direction: {$ref: '#/$defs/v_frictionDirection'}
+      severity: {$ref: '#/$defs/v_frictionSeverity'}
+      basis: {$ref: '#/$defs/v_frictionBasis'}
       movableBy: {type: array, items: {type: string}}
       mitigation: {$ref: '#/$defs/Text'}
       asOf: {$ref: '#/$defs/Date'}
@@ -1151,12 +1246,12 @@ $defs:
     properties:
       type: {const: Credential}
       layer: {const: L6}
-      credentialType: {enum: [licence, certification, certificate, position-qualification, mandated-training-record]}
+      credentialType: {$ref: '#/$defs/v_credentialType'}
       issuer: {type: string, minLength: 2}
       issuingJurisdiction: {type: string}
       legalBasis: {type: string}
       scopeOfPractice: {$ref: '#/$defs/Text'}
-      closureType: {enum: [legal-licensure, regulation-mandated-training, voluntary]}
+      closureType: {$ref: '#/$defs/v_closureType'}
       renewal: {type: string}
       reciprocity: {type: string}
       ctid: {type: string, pattern: '^ce-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'}
@@ -1180,7 +1275,7 @@ $defs:
       type: {const: SeriesRecord}
       layer: {const: L6}
       seriesCode: {type: string, pattern: '^\d{4}$'}
-      seriesStatus: {type: string, pattern: '^(active|proposed-realignment|realigned-to:\d{4}|cancelled)$', description: 'SPEC §5.20 `status`; renamed (CR-DE-001).'}
+      seriesStatus: {$ref: '#/$defs/SeriesStatus', description: 'SPEC §5.20 `status`, renamed (ADR-0029 §1).'}
       effectiveDate: {$ref: '#/$defs/Date'}
       successorSeries: {type: string, pattern: '^\d{4}$'}
       qualificationStandardVersion: {type: string}
@@ -1237,7 +1332,7 @@ $defs:
     properties:
       type: {const: LearningResource}
       layer: {const: learning}
-      resourceType: {enum: [course, program, module, work-based-learning, apprenticeship, microcredential, other]}
+      resourceType: {$ref: '#/$defs/v_learningResourceType'}
       provider: {type: string, minLength: 2}
       cip: {type: string, pattern: '^\d{2}\.\d{4}$'}
       teaches:
@@ -1293,7 +1388,7 @@ $defs:
       rights: {type: string}
       sourceType: {enum: [peer-reviewed, government, standard, dataset, index, industry-report, job-posting, grey-literature, news, practitioner, legal]}
       quality: {type: string, pattern: '^(High|Medium|Low)(;.*)?$'}
-      sourceStatus: {type: string, pattern: '^(current|outdated|superseded-by:.+|poor-fit|unverified)$', description: 'SPEC §5.24 `status`; renamed (CR-DE-001).'}
+      sourceStatus: {$ref: '#/$defs/SourceStatus', description: 'SPEC §5.24 `status`, renamed (ADR-0029 §1).'}
     unevaluatedProperties: false
 
   ChangeRecord:

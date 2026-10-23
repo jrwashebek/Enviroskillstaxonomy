@@ -1,0 +1,44 @@
+id: seed:DB-C11-T1
+type: Task
+prefLabel:
+  en: Run an aquifer test on a supply well or wellfield to estimate transmissivity and storage from drawdown and recovery data
+statement:
+  en: Run an aquifer test on a supply well or wellfield to estimate transmissivity and storage from drawdown and recovery data
+textSha256: 48656d1a704dc17188ea978e1bffb08e28813ef7f1cafc9d10871b8aa9c7be71
+supports:
+- competency: seed:DB-C11
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-PROJECT
+- WP-REGPROGRAM
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+signOffAuthority:
+  kind: licensure
+homeModule: waterq
+subsectors:
+- W05
+- W01
+- P04
+layer: L2
+module: waterq
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

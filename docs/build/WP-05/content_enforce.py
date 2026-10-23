@@ -73,7 +73,7 @@ COMPETENCIES = [
                   evidence=["custody forms"], critical=True),
             ],
             "L2": [
-                I("Conducts a routine inspection independently and writes a report in which each finding cites the "
+                I("Writes the report of an independently conducted routine inspection so that each finding cites the "
                   "requirement, the supporting evidence and the compliance determination.", WS + TB, attr="ATT-AUT",
                   tasks=["seed:sc-write-inspection-report"], evidence=["inspection report"]),
                 I("Selects the enforcement response for each finding from the program's response policy, documenting the "

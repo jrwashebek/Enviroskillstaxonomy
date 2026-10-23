@@ -95,7 +95,7 @@ VALID = {
     "Instrument": base("seed:fx-ins", "Instrument", "L5", "Synthetic statute", citation="Synthetic Act of 2026", instrumentType="statute",
                        jurisdiction="US-federal", mechanisms=["DM-02"]),
     "DriverEvent": base("seed:fx-evt", "DriverEvent", "L5", "Synthetic enactment event", instrument="seed:fx-ins", eventType="enacted",
-                        eventDate="2026-01-01", jurisdiction="US-federal", direction="reshapes", statusAfter="in force", sources=["DE-022"],
+                        eventDate="2026-01-01", jurisdiction="US-federal", direction="reshapes", statusAfter="in-force", sources=["DE-022"],
                         evidenceLabel="S", recordedBy="emstagent:fixture@1", reviewBy="2027-10-23"),
     "FrictionRecord": base("seed:fx-frc", "FrictionRecord", "L5", "Synthetic friction", fromActor="federal", toActor="state",
                            frictionType="pay-system-and-direction", direction="from-to", severity="minor", basis="practice",

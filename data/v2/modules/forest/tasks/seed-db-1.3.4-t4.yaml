@@ -1,0 +1,40 @@
+id: seed:db-1.3.4-t4
+type: Task
+prefLabel:
+  en: Verify aerial, drone or AI-detected damage polygons on the ground, recording agent and severity where detections are wrong
+statement:
+  en: Verify aerial, drone or AI-detected damage polygons on the ground, recording agent and severity where detections are wrong
+textSha256: 43470fe1c5e0262d00e08d761e7fc18977cae07a81768cf1cc61f42593600290
+supports:
+- competency: seed:v1-1.3.4
+  strength: primary
+workFunction: WF-MONITOR
+workflowProfiles:
+- WP-PROJECT
+- WP-REGPROGRAM
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: forest
+subsectors:
+- L01
+layer: L2
+module: forest
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

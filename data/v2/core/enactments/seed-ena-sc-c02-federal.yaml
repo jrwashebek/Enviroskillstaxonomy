@@ -1,0 +1,52 @@
+id: seed:ena-sc-c02-federal
+type: Enactment
+prefLabel:
+  en: Federal administrative record
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SC-C02
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: Judicial review on the administrative record; the 2025 Supreme Court standard of substantial deference in environmental review; record-management requirements in federal permitting technology standards; federal AI-use policy for agencies.
+principal:
+  en: The deciding official, with agency counsel.
+accountabilityVenue:
+  en: Federal courts; inspectors general.
+characteristicInstruments:
+- seed:ins/seven-county
+- seed:ins/ceq-permitting-data-standard
+- seed:ins/permitting-tech-action-plan
+- seed:ins/omb-m-25-21
+- seed:ins/speed-act
+note:
+  en: 'Structured, provenance-tagged records (for example LLM-extracted, validated or unreviewed field tags) are a workable pattern for AI provenance [E: SC-009].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SC-009
+  - V2-02
+  - V2-03
+  - V2-08
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

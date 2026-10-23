@@ -1,22 +1,33 @@
 id: seed:v1-4.3.4-T1
 type: Task
 prefLabel:
-  en: Monitor fire weather and calculate fire danger indices
+  en: Calculate fuel moisture and fire danger indices from on-site fire weather observations for an operational period
 statement:
-  en: Monitor fire weather and calculate fire danger indices
-textSha256: 21a9392d4e331edf70c6add7a026885a7eb0884ef1b27c1d725b05458f3ba2e6
+  en: Calculate fuel moisture and fire danger indices from on-site fire weather observations for an operational period
+textSha256: dede8f20c27b30a11377dba18022b6ac27de211b2cad76b2cd7f313de24b0b98
 supports:
 - competency: seed:v1-4.3.4
   strength: primary
+workFunction: WF-MONITOR
+workflowProfiles:
+- WP-INCIDENT
+- WP-OPERATIONS
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+homeModule: forest
+subsectors:
+- L07
+layer: L2
+module: forest
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 notation:
 - scheme: EMSTv1
   value: 4.3.4:T1
-layer: L2
-module: forest
-homeModule: forest
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T1
 v1Domain:
   code: '4'
@@ -25,14 +36,12 @@ v1SkillArea:
   code: '4.3'
   label: Fire Management
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:4.3.4:T1
     v1Code: 4.3.4
@@ -42,9 +51,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

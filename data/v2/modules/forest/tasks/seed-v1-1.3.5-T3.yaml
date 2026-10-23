@@ -1,22 +1,33 @@
 id: seed:v1-1.3.5-T3
 type: Task
 prefLabel:
-  en: Monitor harvesting operations for compliance with environmental standards
+  en: Inspect active harvest operations for compliance with best management practices for water quality and soil protection
 statement:
-  en: Monitor harvesting operations for compliance with environmental standards
-textSha256: cf652a16a17b2149b1cb4c604e4c27566b1344630711eba66e9c5213858a77aa
+  en: Inspect active harvest operations for compliance with best management practices for water quality and soil protection
+textSha256: 8c86834d61f75fa04c2a582e331d17dffebc930dd8b311efaf258884fb2c237b
 supports:
 - competency: seed:v1-1.3.5
   strength: primary
+workFunction: WF-MONITOR
+workflowProfiles:
+- WP-PROJECT
+- WP-COMPLIANCE
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: forest
+subsectors:
+- L01
+layer: L2
+module: forest
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 notation:
 - scheme: EMSTv1
   value: 1.3.5:T3
-layer: L2
-module: forest
-homeModule: forest
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T3
 v1Domain:
   code: '1'
@@ -25,14 +36,12 @@ v1SkillArea:
   code: '1.3'
   label: Forestry Science
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:1.3.5:T3
     v1Code: 1.3.5
@@ -42,9 +51,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

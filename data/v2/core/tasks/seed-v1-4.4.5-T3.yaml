@@ -17,6 +17,9 @@ reproductionRegime:
   placeBoundness: general
   credentialGate: none
   currencyDecay: H
+credentialGates:
+- credential: seed:crd-nims-ics-training
+  kind: preferred
 notation:
 - scheme: EMSTv1
   value: 4.4.5:T3
@@ -35,7 +38,7 @@ v1SkillArea:
   code: '4.4'
   label: Safety & Emergency Response
 editorialNote:
-  en: 'G-2 split role: adaptation or decision in place. Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
+  en: 'G-2 split role: adaptation or decision in place. Credential gates link the WP-07 register (T-8); gates are inputs, never proficiency. Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:

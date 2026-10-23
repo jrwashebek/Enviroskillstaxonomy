@@ -1,0 +1,46 @@
+id: seed:ind-4.3.2-l1-b
+type: Indicator
+prefLabel:
+  en: Records weather and fire behaviour observations at the required interval during a…
+competency: seed:v1-4.3.2
+level: L1
+statement:
+  en: Records weather and fire behaviour observations at the required interval during a burn, reporting any value outside prescription immediately.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:v1-4.2.3-T2
+safetyOrLegalCritical: true
+layer: L1
+module: forest
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.2:foundational:I3
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  - v1Key: v1:4.3.2:foundational:I7
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

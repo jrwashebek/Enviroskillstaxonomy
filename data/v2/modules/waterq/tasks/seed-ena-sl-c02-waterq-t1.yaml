@@ -1,0 +1,39 @@
+id: seed:ena-sl-c02-waterq-t1
+type: Task
+prefLabel:
+  en: Derive water-quality-based effluent limits for a discharge from receiving-water data, standards and the waterbody's allocation
+statement:
+  en: Derive water-quality-based effluent limits for a discharge from receiving-water data, standards and the waterbody's allocation
+textSha256: f4544594f7339fe86646bcf931bbb4f3356f0ff34ca505f99be722a6d37e7651
+supports:
+- competency: seed:SL-C02
+  strength: primary
+workFunction: WF-AUTHORIZE
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: remote
+formationDependency: 'yes'
+homeModule: waterq
+subsectors:
+- W06
+layer: L2
+module: waterq
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

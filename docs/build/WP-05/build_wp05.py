@@ -4,7 +4,7 @@
 One-shot authoring tool. Content lives in content_*.py beside this file; this script turns it into one-record-per-file
 YAML under data/v2/core/ (competencies, tasks, indicators, enactments) and three craft-rating passes under
 data/v2/assessments/emst-craft@0.1/. After the first write the YAML records are authoritative: edit them, not this
-script, unless you regenerate everything WP-05 owns on purpose (--force).
+script, unless you deliberately regenerate everything WP-05 owns (re-running overwrites WP-05 records).
 
 v1 seed records (rewrites and re-pointed split-source tasks) are edited in place: the record id, notation, v1 facets
 and derivedFrom lineage are kept; text and v2 fields are replaced; v1Seed is dropped once every published level has
@@ -244,8 +244,8 @@ def assemble(comps):
             enas.append(r["id"])
         p, r = build_competency(c)
         r["levels"] = levels
-        if enas:
-            r["enactments"] = enas
+        # Competency.enactments is an inverse link computed in bundles (ADR-0029; RULINGS_FOR_DE 1.2):
+        # enactments point to their competency only.
         out.append((p, r))
     return out
 

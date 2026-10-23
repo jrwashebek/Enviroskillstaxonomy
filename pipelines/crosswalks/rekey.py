@@ -50,6 +50,11 @@ def main():
                 mm["roleVariant"] = m[mm["roleVariant"]]
                 changed += 1
                 hit = True
+            key = mm.get("roleVariantKey")
+            if key and f"seed:{key}" in m:
+                mm["roleVariantKey"] = m[f"seed:{key}"].split(":", 1)[1]
+                changed += 1
+                hit = True
         if hit and not dry:
             S.L.write_yaml(y, rec)
     print(f"{'would change' if dry else 'changed'} {changed} references")

@@ -1,0 +1,61 @@
+id: seed:IA-CC-04
+type: Competency
+prefLabel:
+  en: Plan, maintain and decommission resource road and trail transportation systems
+altLabel:
+  en:
+  - Forest road management
+  - Travel analysis
+  - Road decommissioning
+definition:
+  en: Planning the resource road and trail system (travel analysis, minimum system), locating and specifying roads and trails to minimize resource effects, specifying drainage and crossing practices for maintenance and reconstruction, and prescribing storage or decommissioning of unneeded roads. Excludes trail construction itself (core v1 4.2.5) and road engineering design sealed by a licensed engineer.
+statement:
+  en: Analyzes the road and trail system to recommend a minimum system, locates alignments in the field to avoid erosion and stream crossings, specifies drainage, surfacing and crossing practices for maintenance and reconstruction, and prescribes storage or decommissioning of unneeded roads, documenting resource effects and costs.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:ind-ia-cc-04-l2-a
+  - seed:ind-ia-cc-04-l2-b
+- level: L3
+  indicators:
+  - seed:ind-ia-cc-04-l3-a
+  - seed:ind-ia-cc-04-l3-b
+- level: L4
+  indicators:
+  - seed:ind-ia-cc-04-l4-a
+  - seed:ind-ia-cc-04-l4-b
+homeModule: forest
+subsectors:
+- L01
+- U02
+reusability: subsector-specific
+layer: L1
+module: forest
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Resource road and trail transportation systems: public-lands gap function (roads 419 low-similarity plan components, IA §5.7 [E]); trail construction itself stays core (v1 4.2.5). Road-rule instruments are L5. Basis [J] for content.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - IA-033
+  - IA-034
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

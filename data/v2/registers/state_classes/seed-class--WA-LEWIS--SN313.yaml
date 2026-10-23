@@ -1,0 +1,89 @@
+id: seed:class/WA-LEWIS/SN313
+type: StateClassRecord
+prefLabel:
+  en: Environmental Health Specialist II
+notation:
+- scheme: class-WA-LEWIS
+  value: SN313
+jurisdictionId:
+  stateFips: '53'
+  countyFips: '53041'
+  label: Lewis County, Washington
+employerType: county
+agency: Lewis County (public health environmental health programme)
+classCode: SN313
+classTitle: Environmental Health Specialist II
+seriesId: Environmental Health Specialist
+levelIndex:
+  ordinal: 2
+  label: II
+supervisoryStatus: non-supervisory
+specEffectiveDate: '2007-10-01'
+workDescriptionText:
+  storage: hash-and-url
+  url: https://jobs.lewiscountywa.gov/media/attachments/job_617/Environmental_Health_Specialist_II_SN313.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+mqText:
+  storage: hash-and-url
+  url: https://jobs.lewiscountywa.gov/media/attachments/job_617/Environmental_Health_Specialist_II_SN313.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+  paraphrase: Bachelor's in public health, biological science, chemistry or related science plus 2 years professional public health or environmental regulatory experience.
+mqLocation: spec
+degreeRule: required
+licensesRequired:
+- credential: registered sanitarian (Washington) or Registered Environmental Health Specialist (NEHA)
+  issuer: Washington State Board of Registered Sanitarians or NEHA
+  timing: not-stated
+- credential: driver licence
+  issuer: state of residence
+  timing: at-hire
+- credential: HAZWOPER certification
+  issuer: OSHA-compliant training provider
+  timing: for-some-positions
+payBasis: hourly
+payMinMax:
+  min: 47.33
+  max: 63.63
+  currency: USD
+  basis: hourly
+payGradeLabel: Grade 122
+payEffectiveDate: '2026-01-01'
+emstMapping:
+- roleVariantKey: R26-environmental-health-specialist/local
+  pending: role variant not yet authored by WP-08; re-run this script to link it (CR-IA-001 key)
+  roleLevel: journey
+  matchType: skos:closeMatch
+  confidence: 0.7
+  reviewer: null
+  reviewDate: null
+  competencyTargets: []
+  crosswalkRecord: emst-x5-wa-lewis:R26-environmental-health-specialist/local:SN313
+  note: competency targets with level are added when WP-08 authors the role profile
+editorialNote:
+  en: 'Dated record as of 2026-10-23; re-run each 1 July or on plan revision (ADR-0022 X5). Spec effective October 2007 (day not stated; first of month used). Pay from the 2026 master schedule (no stated effective date; calendar-year start assumed); that grade numbering is unchanged since the 2007 spec is not confirmed (SL to verify). Bargaining unit not stated. FLSA: non-exempt.'
+layer: L6
+module: core
+status: draft
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2027-07-01'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:ia-wp09@phase4
+  generatedAt: '2026-10-23T19:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp09-crosswalk@1
+  evidenceLabel: E
+  sources:
+  - WP09-009
+  - WP09-010
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0022
+  - ADR-0006

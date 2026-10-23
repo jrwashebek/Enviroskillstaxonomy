@@ -72,6 +72,7 @@ class Builder:
     def __init__(self):
         self.idx = index_existing()
         self.manifest = {}
+        self.written = set()
         if MANIFEST.exists():
             for r in L.read_csv(MANIFEST):
                 self.manifest[r["id"]] = r
@@ -91,6 +92,7 @@ class Builder:
             old.unlink()
             origin = origin + "+moved"
         self.idx[dest.stem] = dest
+        self.written.add(rid)
         self.manifest[rid] = {"id": rid, "type": rec["type"], "module": module, "path": str(dest.relative_to(REPO)),
                               "origin": origin}
 
@@ -275,7 +277,7 @@ class Builder:
         return rid
 
     # ------------------------------------------------------------------ driver
-    def run(self, src_files):
+    def run(self, src_files, full=False):
         for f in src_files:
             src = L.load_yaml(f)
             module = src["module"]
@@ -285,13 +287,20 @@ class Builder:
                 self.task(t, t.get("module", module), seed(t["comp"]), t["sub"], t.get("life", "established"))
             for e in src.get("enactments", []):
                 self.enactment(e, e.get("module", module))
+        if full:   # a full run drops records this WP authored earlier that no source defines any more
+            for rid, row in list(self.manifest.items()):
+                if rid not in self.written and row["origin"].startswith("new"):
+                    p = REPO / row["path"]
+                    if p.exists():
+                        p.unlink()
+                    del self.manifest[rid]
         rows = sorted(self.manifest.values(), key=lambda r: (r["module"], r["type"], r["id"]))
         MANIFEST.write_text(L.csv_text(["id", "type", "module", "path", "origin"], rows), encoding="utf-8")
 
 
 def main(argv):
     files = [Path(a) for a in argv] or sorted((HERE / "src").glob("*.yaml"))
-    Builder().run(files)
+    Builder().run(files, full=not argv)
     print(f"wrote records from {len(files)} source file(s); manifest: {MANIFEST.relative_to(REPO)}")
 
 

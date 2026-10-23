@@ -1,0 +1,45 @@
+id: seed:ind-4.3.5-l3-b
+type: Indicator
+prefLabel:
+  en: Evaluates treatment effectiveness after the first storms, recommending follow-up or…
+competency: seed:v1-4.3.5
+level: L3
+statement:
+  en: Evaluates treatment effectiveness after the first storms, recommending follow-up or long-term restoration with the monitoring evidence behind each recommendation.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:v1-4.3.5-T3
+distinguishingAttribute: ATT-CPX
+layer: L1
+module: forest
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.5:intermediate:I7
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  - v1Key: v1:4.3.5:advanced:I6
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

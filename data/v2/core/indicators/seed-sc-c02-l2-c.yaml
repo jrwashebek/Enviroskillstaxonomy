@@ -1,0 +1,45 @@
+id: seed:sc-c02-l2-c
+type: Indicator
+prefLabel:
+  en: Confirms in a test docket with known unique comments that every substantive comment has a reasoned response, at the detection rate the program sets.
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SC-C02
+level: L2
+statement:
+  en: Confirms in a test docket with known unique comments that every substantive comment has a reasoned response, at the detection rate the program sets.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- comment-response matrix
+servedTasks:
+- seed:sc-confirm-comment-responses
+distinguishingAttribute: ATT-KNO
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

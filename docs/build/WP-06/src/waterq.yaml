@@ -1,0 +1,590 @@
+# WP-06 authoring source — MOD-02 Water resources, water-quality regulation and watersheds
+# (namespace: waterq; subsectors W04 W05 W06). Rows: candidate_disposition DB-C08, DB-C10, DB-C11, DB-C47 (absorbs
+# PS-C14 and v1 6.6.2), FC-C06, FC-C07; v1_disposition 6.6.2 (merge into DB-C47). Enactments at the end. Content [J].
+module: waterq
+competencies:
+
+  - id: DB-C08
+    label: Develop pollutant load allocations and watershed restoration plans for impaired waters
+    alt: [TMDL development, Total maximum daily load, Watershed-based plan]
+    def: >-
+      Quantifying pollutant loads to impaired waters and their loading capacity, allocating loads among point and
+      nonpoint sources with a margin of safety, and building watershed implementation and monitoring plans with
+      stakeholders. Excludes discharge permit drafting (SL-C02 waterq enactment) and water quality standards setting.
+    stmt: >-
+      Quantifies pollutant loads and a waterbody's loading capacity from monitoring data and watershed models,
+      allocates loads among point and nonpoint sources with an explicit margin of safety, and builds an implementation
+      plan with stakeholders that assigns reductions, practices and monitoring, documenting the analysis so it withstands
+      review.
+    span: [L2, L4]
+    sub: [W06]
+    att: ATT-CPX
+    src: [DB-022]
+    note: >-
+      TMDLs and watershed plans are subsector-specific (W06); programme labels kept as altLabel only (ADR-0016 naming
+      rule; typing lint). DC primary, SC secondary. Model products are L4. Basis [J].
+    tasks:
+      - id: DB-C08-T1
+        text: Quantify pollutant loads from point and nonpoint sources to an impaired water using monitoring data and a watershed model
+        wf: WF-ASSESS
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: DB-C08-T2
+        text: Allocate a waterbody's loading capacity among point and nonpoint sources with an explicit margin of safety
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM, WP-RULEMAKING]
+        rel: [stakeholder, public]
+      - id: DB-C08-T3
+        text: Prepare a watershed implementation plan with stakeholders that assigns load reductions, practices and monitoring to responsible parties
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-REGPROGRAM]
+        modes: [MODE-ENGAGE]
+        rel: [stakeholder, public]
+      - id: DB-C08-T4
+        text: Review a watershed model's calibration and load estimates produced with automated tools against monitoring data before they support allocations
+        wf: WF-MONITOR
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        note: Review task split from model production (ADR-0003 G-2).
+    ind:
+      L2:
+        - t: Calculates source loads for a routine impairment from monitoring data and flow records, documenting methods so that a reviewer can reproduce each value.
+          a: [work-sample, record-audit]
+          st: [T1]
+        - t: Accepts or rejects a watershed model calibration after comparing simulated and observed flows and concentrations against the agreed performance criteria.
+          m: assisted
+          a: [work-sample, seeded-error-work-sample]
+          st: [T4]
+      L3:
+        - t: Allocates loading capacity among sources with an explicit margin of safety, documenting the basis for each allocation and how uncertainty was treated.
+          a: [work-sample, moot-defense]
+          st: [T2]
+          att: ATT-CPX
+        - t: Facilitates stakeholders to agree a watershed implementation plan, recording each party's practices, load reductions and monitoring commitments.
+          modes: [MODE-ENGAGE]
+          a: [portfolio-review, counterpart-360]
+          st: [T3]
+          att: ATT-SCO
+      L4:
+        - t: Sets the programme's modelling and allocation guidance for impairments with dominant nonpoint sources, documenting acceptance criteria for models and reasonable assurance.
+          a: [portfolio-review]
+          st: [T1, T2]
+          att: ATT-GUI
+        - t: Defends an allocation decision in public comment and review, producing the data and analysis behind each challenged element.
+          modes: [MODE-RESOLVE]
+          a: [moot-defense]
+          st: [T2]
+          att: ATT-SCO
+
+  - id: DB-C10
+    label: Plan water supply and allocation under hydrologic uncertainty
+    alt: [Water supply planning, Drought contingency planning, Water rights administration]
+    def: >-
+      Forecasting water demand and supply under drought and climate scenarios, preparing drought contingency and
+      integrated resource plans, administering water-right or allocation decisions and evaluating conjunctive use,
+      reuse and storage options. Excludes utility treatment operation (water module) and flood hazard mapping.
+    stmt: >-
+      Forecasts demand and supply under drought and climate scenarios, prepares drought contingency and integrated
+      resource plans with triggers and actions, evaluates water-right or allocation applications against availability
+      and priority, and compares conjunctive-use, reuse and storage options by yield, cost and reliability.
+    span: [L2, L4]
+    sub: [W04, W05]
+    att: ATT-CPX
+    src: [DB-001]
+    note: >-
+      Water supply and allocation planning is W04-specific; part of role R17 hydrologist. Water-right systems are
+      jurisdiction-variable (prior appropriation, riparian, hybrid). Basis [J]; workforce counts [E: DB-001].
+    tasks:
+      - id: DB-C10-T1
+        text: Forecast water demand and supply under drought and climate scenarios for a utility or basin plan, stating assumptions and uncertainty
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM, WP-CAPITAL]
+      - id: DB-C10-T2
+        text: Prepare a drought contingency plan with triggers, stages and response actions tied to supply indicators
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [public]
+      - id: DB-C10-T3
+        text: Evaluate a water-right or allocation application against water availability, priority and impairment of existing users
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        rel: [stakeholder]
+      - id: DB-C10-T4
+        text: Compare conjunctive-use, reuse and storage options by yield, cost and reliability for an integrated resource plan
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-CAPITAL]
+    ind:
+      L2:
+        - t: Evaluates a routine allocation application against availability and priority, documenting the data and the finding on impairment of existing users.
+          a: [work-sample, record-audit]
+          st: [T3]
+        - t: Produces a demand and supply forecast for one scenario with documented inputs, so that a reviewer can reproduce the result.
+          a: [work-sample]
+          st: [T1]
+      L3:
+        - t: Prepares a drought contingency plan whose stage triggers are tied to supply indicators, documenting how each trigger was set and tested on past droughts.
+          a: [work-sample, portfolio-review]
+          st: [T2]
+          att: ATT-CPX
+        - t: Compares supply options under several climate scenarios, documenting where the ranking of options changes and why.
+          a: [work-sample, structured-interview-bars]
+          st: [T4, T1]
+          att: ATT-KNO
+      L4:
+        - t: Negotiates a shortage-sharing or allocation agreement among water users or jurisdictions, recording the terms and the hydrologic basis for them.
+          modes: [MODE-RESOLVE]
+          a: [portfolio-review, counterpart-360]
+          st: [T3]
+          att: ATT-SCO
+        - t: Sets the agency's planning scenarios and uncertainty methods for supply plans, documenting the evidence behind each scenario.
+          a: [portfolio-review]
+          st: [T1]
+          att: ATT-GUI
+
+  - id: DB-C11
+    label: Characterize groundwater systems and protect drinking water sources
+    alt: [Hydrogeology, Source water protection, Wellhead protection, Underground injection control review]
+    def: >-
+      Designing and interpreting aquifer tests, well logs and groundwater monitoring, delineating wellhead and
+      source-water protection areas, evaluating contaminant transport toward supply wells, and applying well
+      construction and injection-well requirements. Excludes contaminated-site cleanup decisions (waste module DB-C20).
+    stmt: >-
+      Designs and interprets aquifer tests and groundwater monitoring, builds conceptual hydrogeologic models,
+      delineates wellhead and source-water protection areas, evaluates contaminant transport toward supply wells and
+      reviews well construction and injection applications, so that drinking water sources are protected on documented
+      evidence.
+    span: [L2, L4]
+    sub: [W05, W01, P04]
+    att: ATT-CPX
+    src: [DB-001]
+    note: >-
+      Groundwater and source-water protection is W05-specific; part of role R17. Professional geologist licensure is a
+      Credential gate for public groundwater reports in many states (DB-CR-015). Basis [J].
+    tasks:
+      - id: DB-C11-T1
+        text: Run an aquifer test on a supply well or wellfield to estimate transmissivity and storage from drawdown and recovery data
+        wf: WF-ASSESS
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-PROJECT, WP-REGPROGRAM]
+        so: licensure
+      - id: DB-C11-T2
+        text: Delineate a wellhead or source-water protection area from hydrogeologic data and time-of-travel criteria
+        wf: WF-PLAN
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: DB-C11-T3
+        text: Review a well construction or injection well application against construction and protection standards before approval
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [stakeholder]
+      - id: DB-C11-T4
+        text: Evaluate contaminant transport toward a supply well from monitoring data and a groundwater model, recommending protective actions
+        wf: WF-ASSESS
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM, WP-PROJECT]
+    ind:
+      L2:
+        - t: Interprets a routine aquifer test, reporting transmissivity and storage with the method used and the data quality limitations.
+          a: [work-sample]
+          st: [T1]
+        - t: Reviews a well construction application against the standards, listing each deficiency with the requirement it fails.
+          a: [seeded-error-work-sample, record-audit]
+          st: [T3]
+      L3:
+        - t: Delineates a protection area for a wellfield in a heterogeneous aquifer, documenting how uncertainty in aquifer properties shaped the boundary.
+          a: [work-sample, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+        - t: Evaluates a contaminant plume's threat to a supply well, recommending protective actions with the data and model evidence behind each.
+          a: [work-sample]
+          st: [T4]
+          att: ATT-AUT
+      L4:
+        - t: Sets the programme's protection-area delineation and review criteria, documenting the technical basis and the evidence each application must carry.
+          a: [portfolio-review]
+          st: [T2, T3]
+          att: ATT-GUI
+        - t: Defends a protection-area or permit decision on appeal, producing the hydrogeologic evidence for each contested element.
+          modes: [MODE-RESOLVE]
+          a: [moot-defense]
+          st: [T2, T3]
+          att: ATT-SCO
+
+  - id: DB-C47
+    label: Administer compensatory mitigation programmes for aquatic resources and habitat
+    alt: [Compensatory mitigation, Mitigation banking, In-lieu fee programmes, Habitat and conservation banking, Biodiversity credits]
+    def: >-
+      Reviewing, approving and tracking mitigation banks, in-lieu fee programmes and permittee-responsible mitigation:
+      credit-debit methods, performance standards, financial assurances, credit release and long-term management,
+      practised by reviewers, bank sponsors or advisors, with emerging biodiversity-credit methods as an extension.
+      Excludes voluntary carbon credit integrity (markets module).
+    stmt: >-
+      Calculates the mitigation required for permitted impacts with credit-debit methods, reviews bank and in-lieu fee
+      instruments, verifies credit release against monitoring and inspection, keeps the credit ledger reconciled and
+      evaluates emerging habitat-credit methods, so that each credit transaction is documented and defensible.
+    span: [L2, L4]
+    sub: [W06, M02, L02]
+    att: ATT-CPX
+    df:
+      - {v1Key: 'v1:6.6.2', relation: merged-from, note: 'v1 6.6.2 biodiversity credits and habitat banking merged into DB-C47 (PS verdict)'}
+    src: [DB-038]
+    note: >-
+      Survivor; absorbs PS-C14 (credit lifecycle, private variant) and v1 6.6.2; anchored in the regulatory
+      compensatory mitigation and conservation banking market (W06), with biodiversity credits as an emerging extension
+      (PS verdict). Regulator, sponsor and advisor variants share the task core. Basis [J].
+    tasks:
+      - id: v1-6.6.2-T1
+        text: Apply a credit-debit method to calculate the compensatory mitigation required for permitted impacts to aquatic resources or habitat
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: v1-6.6.2-T2
+        text: Review a mitigation bank or in-lieu fee instrument's performance standards, financial assurances and long-term management plan
+        wf: WF-REVIEW
+        fd: remote
+        form: partial
+        prof: [WP-AGREEMENT, WP-REGPROGRAM]
+        rel: [stakeholder, intergovernmental]
+      - id: v1-6.6.2-T3
+        text: Verify a bank's credit release request against monitoring reports and a site inspection before credits are released
+        wf: WF-ENFORCE.assure
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: DB-C47-T4
+        text: Reconcile mitigation credit debits and releases in the programme ledger with permit and bank records each reporting period
+        wf: WF-RESOURCE
+        fd: remote
+        form: 'no'
+        prof: [WP-REGPROGRAM]
+      - id: DB-C47-T5
+        text: Evaluate a proposed habitat or biodiversity credit methodology for additionality, permanence and measurement before programme acceptance
+        wf: WF-REVIEW
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM, WP-AGREEMENT]
+        life: emerging
+    ind:
+      L2:
+        - t: Calculates the mitigation required for a routine permitted impact with the programme's credit-debit method, documenting every input value.
+          a: [work-sample, record-audit]
+          st: [v1-6.6.2-T1]
+        - t: Reconciles the credit ledger with permit and bank records for a period, listing every unmatched debit or release and its resolution.
+          a: [seeded-error-work-sample]
+          st: [T4]
+      L3:
+        - t: Reviews a bank instrument's performance standards and financial assurances, writing comments that cite the deficiency and the standard affected.
+          a: [work-sample]
+          st: [v1-6.6.2-T2]
+          att: ATT-CPX
+        - t: Decides a credit release request after checking monitoring reports and inspecting the site, documenting the criteria met and unmet.
+          a: [task-book-observation, record-audit]
+          st: [v1-6.6.2-T3]
+          att: ATT-AUT
+      L4:
+        - t: Negotiates instrument terms with a bank sponsor and the interagency review team, recording the agreed standards, credit schedule and assurances.
+          modes: [MODE-RESOLVE]
+          a: [portfolio-review, counterpart-360]
+          st: [v1-6.6.2-T2]
+          att: ATT-SCO
+        - t: Evaluates a new habitat-credit methodology against additionality, permanence and measurement criteria, documenting the evidence for acceptance or rejection.
+          a: [portfolio-review]
+          st: [T5]
+          att: ATT-GUI
+
+  - id: FC-C06
+    label: Delineate wetlands and other aquatic resources in the field
+    alt: [Wetland delineation, Aquatic resource delineation, Jurisdictional determination support]
+    def: >-
+      Determining wetland and other aquatic resource boundaries from vegetation, hydric soil and hydrology indicators
+      under the federal manual and regional supplements, completing data forms, mapping boundaries and supporting
+      jurisdictional determinations and permit applications. Excludes the jurisdictional determination itself, which
+      depends on the current definition of regulated waters (L5).
+    stmt: >-
+      Identifies vegetation, hydric soil and hydrology indicators at paired sample points, completes data forms, places
+      and maps boundaries with survey-grade positioning, and checks modelled wetland maps against field evidence, so that
+      delineations support jurisdictional and permit decisions and pass field verification.
+    span: [L1, L3]
+    sub: [W06]
+    att: ATT-AUT
+    src: [FC-046, FC-065]
+    note: >-
+      Wetland and aquatic resource delineation (W06); FC primary, SC secondary. Jurisdiction-sensitive: the definition
+      of regulated waters is still proposed (L5 seed:ins/wotus-definition; V2). Professional Wetland Scientist (SWS PCP,
+      V3-08) is a Credential, not a level. Basis [J].
+    tasks:
+      - id: FC-C06-T1
+        text: Delineate a wetland boundary from vegetation, hydric soil and hydrology indicators using the applicable regional supplement
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT, WP-REGPROGRAM]
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: ecosystem-type, currencyDecay: M}
+      - id: FC-C06-T2
+        text: Complete wetland determination data forms at paired upland and wetland sample points along the boundary
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: FC-C06-T3
+        text: Map delineated boundaries with survey-grade positioning and reconcile them with prior delineations and imagery
+        wf: WF-ASSESS
+        fd: on-site-preferred
+        form: partial
+        prof: [WP-PROJECT]
+      - id: FC-C06-T4
+        text: Verify a remotely modelled wetland map against field indicators before it is used in a jurisdictional or permit decision
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+    ind:
+      L1:
+        - t: Identifies hydrophytic vegetation, hydric soil and hydrology indicators at a sample point under supervision, recording them on the data form as the lead confirms.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T2]
+        - t: Describes a soil profile's horizons, colours and redoximorphic features at a sample point, with descriptions that match the lead's check.
+          a: [blind-re-measurement]
+          st: [T2]
+      L2:
+        - t: Delineates a wetland boundary on an assigned site independently, so that the delineation passes the programme's field verification.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T1]
+        - t: Accepts or rejects a modelled wetland map unit after checking field indicators at sample points, recording the evidence for each decision.
+          m: assisted
+          a: [blind-re-measurement, record-audit]
+          st: [T4]
+          att: ATT-AUG
+      L3:
+        - t: Delineates a site with problem soils or atypical hydrology, documenting the indicators used and the procedure for difficult situations applied.
+          a: [task-book-observation, structured-interview-bars]
+          st: [T1]
+          att: ATT-CPX
+        - t: Evaluates trainees' delineations in the field against the programme's verification standard, documenting corrections and readiness for independent work.
+          a: [task-book-observation]
+          st: [T1, T2]
+          att: ATT-FOR
+
+  - id: FC-C07
+    label: Assess stream channel form and function in the field
+    alt: [Stream geomorphic assessment, Fluvial geomorphology field assessment]
+    def: >-
+      Measuring and interpreting channel geometry, substrate, bankfull indicators, habitat units and riparian
+      condition, recognizing channel evolution stage and process drivers, and using the results to design and monitor
+      restoration. Excludes hydraulic design of structures by a licensed engineer.
+    stmt: >-
+      Surveys channel cross-sections, profile and substrate, identifies bankfull indicators and channel evolution
+      stage, classifies habitat units and riparian condition, and interprets the processes driving channel change, so
+      that restoration targets and monitoring metrics rest on field evidence.
+    span: [L1, L3]
+    sub: [W06, L08]
+    att: ATT-AUT
+    src: [FC-043]
+    note: >-
+      Stream geomorphic assessment, the diagnostic missing beside core v1 4.2.4 and v1 1.2.5 (FC verdict); FC primary,
+      DC secondary. Part of roles R09 and R17. Basis [J].
+    tasks:
+      - id: FC-C07-T1
+        text: Survey channel cross-sections, longitudinal profile and substrate at a reach following the geomorphic assessment protocol
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT, WP-RESEARCH]
+      - id: FC-C07-T2
+        text: Identify bankfull indicators and channel evolution stage at a reach from field evidence
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+        rr: {mentorshipDependence: H, cycleDependence: none, placeBoundness: ecosystem-type, currencyDecay: L}
+      - id: FC-C07-T3
+        text: Classify habitat units and riparian condition along a reach to identify the processes driving channel change
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: FC-C07-T4
+        text: Set restoration design targets and post-project monitoring metrics from geomorphic assessment results
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-PROJECT]
+    ind:
+      L1:
+        - t: Surveys cross-sections and a longitudinal profile with a crew following the protocol, with closure and spacing that pass the lead's quality check.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+        - t: Conducts a pebble count at a riffle following the protocol, with a size distribution within tolerance of a repeat count.
+          a: [blind-re-measurement]
+          st: [T1]
+      L2:
+        - t: Identifies bankfull indicators at a reach and justifies the bankfull elevation chosen, with results that agree with a senior assessor's call.
+          a: [blind-re-measurement, structured-interview-bars]
+          st: [T2]
+        - t: Classifies habitat units and riparian condition along a reach, recording each unit's boundaries and condition on the reach map.
+          a: [work-sample, blind-re-measurement]
+          st: [T3]
+      L3:
+        - t: Interprets channel evolution stage and process drivers at a disturbed reach, documenting the evidence that separates competing explanations.
+          a: [work-sample, structured-interview-bars]
+          st: [T2, T3]
+          att: ATT-CPX
+        - t: Sets restoration targets and monitoring metrics from the assessment, documenting the expected trajectory and the evidence that would show failure.
+          a: [work-sample, portfolio-review]
+          st: [T4]
+          att: ATT-SCO
+
+enactments:
+  - id: ena-sl-c02-waterq
+    comp: SL-C02
+    label: Discharge, certification and dredge-and-fill permitting enactment of environmental permit writing
+    sub: [W06]
+    ap: regulator
+    instr: ['seed:ins/wotus-definition']
+    note: >-
+      Absorbs DB-C07 (discharge permit writing). State and EPA permit writers issue discharge permits under the Clean
+      Water Act national pollutant discharge elimination system, with technology- and water-quality-based effluent
+      limits, monitoring and fact sheets; states certify federal licences under section 401; the Corps of Engineers and
+      assuming states issue section 404 dredge-and-fill permits, whose reach depends on the regulated-waters definition.
+    tasks:
+      - id: ena-sl-c02-waterq-t1
+        text: Derive water-quality-based effluent limits for a discharge from receiving-water data, standards and the waterbody's allocation
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: ena-sl-c02-waterq-t2
+        text: Write a discharge permit fact sheet that explains the basis for every limit and monitoring requirement in the draft permit
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        rel: [public]
+      - id: ena-sl-c02-waterq-t3
+        text: Check effluent limits proposed by permit-drafting software against the standards and allocation calculations before public notice
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        note: Review-and-defence task split from drafting (ADR-0003 G-2).
+  - id: ena-sl-c03-waterq
+    comp: SL-C03
+    label: Discharge compliance inspection enactment of regulatory compliance inspection
+    sub: [W06]
+    ap: regulator
+    note: >-
+      Water inspectors conduct compliance evaluation and sampling inspections at permitted dischargers, checking
+      treatment operation, self-monitoring, laboratory practices and records against permit conditions; dredge-and-fill
+      compliance inspections check permitted impacts and mitigation sites.
+    tasks:
+      - id: ena-sl-c03-waterq-t1
+        text: Collect a compliance sample at a permitted outfall and audit the discharger's self-monitoring records against the permit
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+  - id: ena-sl-c04-waterq
+    comp: SL-C04
+    label: Water enforcement enactment of environmental enforcement cases
+    sub: [W06]
+    ap: regulator
+    note: >-
+      Water enforcement cases arise from discharge monitoring report violations, inspections, spills and unauthorized
+      fill, leading to orders, penalties, compliance schedules and restoration requirements; citizen suits are a
+      characteristic feature of the water regime.
+  - id: ena-sc-c14-waterq
+    comp: SC-C14
+    label: Water programme authorization and assumption enactment of delegated regulatory programmes
+    sub: [W06]
+    ap: regulator
+    instr: ['seed:ins/florida-404-assumption']
+    note: >-
+      Most states are authorized to run the discharge permit programme, and a few have assumed the dredge-and-fill
+      permit programme, under EPA oversight; programme reviews, memoranda of agreement and assumption litigation are the
+      enactment's characteristic work.
+  - id: ena-4.1.3-waterq
+    comp: v1-4.1.3
+    label: Ambient monitoring enactment of water quality testing and aquatic surveys
+    sub: [W06, W04]
+    ap: regulator
+    note: >-
+      State and interstate water programmes sample streams, lakes and estuaries for chemical, biological and habitat
+      indicators to assess designated-use attainment and list impaired waters, with sampling designs and quality
+      assurance that must support assessment decisions.
+  - id: ena-fc-c01-waterq
+    comp: FC-C01
+    label: Continuous water quality monitoring enactment of field sensor network deployment
+    sub: [W06, W04]
+    ap: service-provider
+    note: >-
+      Continuous sondes and stream gauges record temperature, dissolved oxygen, conductivity, turbidity and flow;
+      fouling, drift and ice decide data quality, so deployment, servicing and post-correction follow written protocols.
+  - id: ena-db-c52-waterq
+    comp: DB-C52
+    label: Discharge permitting enactment of cumulative burden analysis
+    sub: [W06, X03]
+    ap: regulator
+    note: >-
+      Where state law requires it, discharge permits and certifications in burdened communities consider cumulative
+      pollution and exposure; methods and decision effects follow the applicable instrument (venue applicability per
+      ADR-0016).
+  - id: ena-fh-c01-waterq
+    comp: FH-C01
+    label: Dredge-and-fill permitting enactment of listed-species consultation
+    sub: [W06]
+    ap: regulator
+    note: >-
+      Dredge-and-fill and other water permits with a federal nexus trigger listed-species consultation; permit reviewers
+      prepare effects determinations and carry consultation outcomes into permit conditions.
+  - id: ena-db-c25-waterq
+    comp: DB-C25
+    label: Water compliance enactment of data-driven compliance targeting
+    sub: [W06]
+    ap: regulator
+    note: >-
+      Electronic discharge monitoring reports, continuous monitoring and remote imagery let water programmes target
+      inspections and detect unreported discharges; targeting results are verified in the field before enforcement.
+  - id: ena-fc-c11-waterq
+    comp: FC-C11
+    label: Aquatic survey enactment of field biosecurity and decontamination
+    sub: [W06, W04]
+    ap: service-provider
+    note: >-
+      Stream and lake sampling crews decontaminate boots, nets, boats and sondes between waterbodies to stop the
+      spread of invasive species and pathogens, following programme protocols.
+  - id: ena-fc-c12-waterq
+    comp: FC-C12
+    label: Lake and river sampling enactment of small-boat aquatic field work
+    sub: [W06, W04]
+    ap: service-provider
+    note: >-
+      Lake, reservoir and large-river monitoring is done from small boats, combining navigation and anchoring with
+      sampling gear and cold-water, current and weather hazards.
+  - id: ena-dc-cand-03-waterq
+    comp: DC-CAND-03
+    label: Ambient water monitoring enactment of monitoring and sampling design
+    sub: [W06]
+    ap: regulator
+    note: >-
+      Probabilistic and targeted ambient monitoring designs determine whether a programme can estimate statewide
+      condition and list impaired waters with known confidence.

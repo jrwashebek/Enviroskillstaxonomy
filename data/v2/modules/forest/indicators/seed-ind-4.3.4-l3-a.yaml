@@ -1,0 +1,39 @@
+id: seed:ind-4.3.4-l3-a
+type: Indicator
+prefLabel:
+  en: Adjusts a modelled fire spread prediction after comparing it with observed behaviour,…
+competency: seed:v1-4.3.4
+level: L3
+statement:
+  en: Adjusts a modelled fire spread prediction after comparing it with observed behaviour, and records the discrepancy and its likely cause.
+augmentationMode: assisted
+assessmentMethods:
+- prediction-log-calibration
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:db-4.3.4-t4
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: forest
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -1,22 +1,36 @@
 id: seed:v1-6.5.5-T1
 type: Task
 prefLabel:
-  en: Support implementation of global agreements like the Convention on Biological Diversity
+  en: Prepare a national or programme implementation report under an international conservation agreement from monitoring and management records
 statement:
-  en: Support implementation of global agreements like the Convention on Biological Diversity
-textSha256: 9c3949f87a760f853f810ce042559f99e37ceaf1382b65df417908cc5aa57c5b
+  en: Prepare a national or programme implementation report under an international conservation agreement from monitoring and management records
+textSha256: f5367e565d6ad49ddc96107f27b87e6e1ad9e488bafb12341efa1166c7c6162b
 supports:
 - competency: seed:v1-6.5.5
   strength: primary
+workFunction: WF-MONITOR.attest
+relationshipTypes:
+- intergovernmental
+workflowProfiles:
+- WP-DISCLOSURE
+- WP-AGREEMENT
+fieldDependency: remote
+formationDependency: partial
+homeModule: wildlife
+subsectors:
+- L02
+- L03
+layer: L2
+module: wildlife
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 notation:
 - scheme: EMSTv1
   value: 6.5.5:T1
-layer: L2
-module: wildlife
-homeModule: wildlife
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T1
 v1Domain:
   code: '6'
@@ -25,14 +39,12 @@ v1SkillArea:
   code: '6.5'
   label: Intergovernmental Relations
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:6.5.5:T1
     v1Code: 6.5.5
@@ -42,9 +54,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

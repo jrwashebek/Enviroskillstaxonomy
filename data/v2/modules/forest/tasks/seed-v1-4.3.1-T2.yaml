@@ -1,22 +1,36 @@
 id: seed:v1-4.3.1-T2
 type: Task
 prefLabel:
-  en: Implement firing operations to remove fuel ahead of fire
+  en: Execute a firing operation that removes fuel between the control line and the fire under the firing boss's direction
 statement:
-  en: Implement firing operations to remove fuel ahead of fire
-textSha256: 6a68cdc68b7c21c77a15592cf8106fb0f6dd49497da4df2c445ebf731a8e2c06
+  en: Execute a firing operation that removes fuel between the control line and the fire under the firing boss's direction
+textSha256: b9cd6be0824a679e7399597aa42524cbfc03cabbca903e9ffbb08a22596a1b82
 supports:
 - competency: seed:v1-4.3.1
   strength: primary
+workFunction: WF-RESPOND
+workflowProfiles:
+- WP-INCIDENT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  credentialGate: internal-qualification
+signOffAuthority:
+  kind: position-qualification
+homeModule: forest
+subsectors:
+- L07
+layer: L2
+module: forest
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 notation:
 - scheme: EMSTv1
   value: 4.3.1:T2
-layer: L2
-module: forest
-homeModule: forest
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T2
 v1Domain:
   code: '4'
@@ -25,14 +39,12 @@ v1SkillArea:
   code: '4.3'
   label: Fire Management
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:4.3.1:T2
     v1Code: 4.3.1
@@ -42,9 +54,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

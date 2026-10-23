@@ -1,18 +1,47 @@
 id: seed:v1-5.5.1
 type: Competency
 prefLabel:
-  en: Visitor information services
+  en: Provide visitor information, orientation and safety messaging in parks and protected areas
+altLabel:
+  en:
+  - Visitor information services
+  - Visitor contact station operations
+definition:
+  en: 'Front-line visitor contact at parks, trailheads and visitor centres: orienting visitors to routes, conditions, regulations and hazards, tailoring safety information and recommendations to each visitor''s plans and abilities, and logging questions and incidents to improve messaging. Excludes formal interpretation programmes (core v1 5.1.3) and law enforcement.'
 statement:
-  en: Providing accurate and helpful information to people about natural areas, including orientation, safety information, and answers to questions.
+  en: Orients visitors to routes, current conditions, regulations and hazards, tailors safety information and trip recommendations to each visitor's stated plans and abilities, checks posted and online information against current conditions, and logs questions and incidents so that messaging gaps are found and fixed.
 notation:
 - scheme: EMSTv1
   value: 5.5.1
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - seed:ind-5.5.1-l1-a
+  - seed:ind-5.5.1-l1-b
+- level: L2
+  indicators:
+  - seed:ind-5.5.1-l2-a
+  - seed:ind-5.5.1-l2-b
+- level: L3
+  indicators:
+  - seed:ind-5.5.1-l3-a
+  - seed:ind-5.5.1-l3-b
+homeModule: parks
+subsectors:
+- L10
+reusability: subsector-specific
 layer: L1
 module: parks
-homeModule: parks
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Domain:
   code: '5'
   label: Communication & Engagement Skills
@@ -20,14 +49,12 @@ v1SkillArea:
   code: '5.5'
   label: Customer Service
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-15 parks. Rationale: Visitor information services are L10-specific; not Statecraft (SC verdict). Role verdicts considered: SC:change.'
-license: CC0-1.0
-sensitivity: public
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-15 parks. Rationale: Visitor information services are L10-specific; not Statecraft (SC verdict). Role verdicts considered: SC:change. WP-06: Moved to MOD-15 (L10-specific); not Statecraft (SC verdict). Home of entry tasks for role R21 park ranger. Trait and reputation indicators from v1 removed (B03, B11). Basis [J].'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:5.5.1
     v1Code: 5.5.1
@@ -38,7 +65,8 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
   - v1Key: v1:5.5.1
     v1Code: 5.5.1
     v1Table: source_text/competencies
@@ -47,10 +75,12 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
 v1Seed:
   v1Title: Visitor information services
   v1Description: Providing accurate and helpful information to people about natural areas, including orientation, safety information, and answers to questions.

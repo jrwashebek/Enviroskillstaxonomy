@@ -150,8 +150,10 @@ def build_task(t, comp, existing):
     rec["reproductionRegime"] = {"mentorshipDependence": mentor, "cycleDependence": CYCLE[cyc],
                                  "placeBoundness": PLACE[place], "credentialGate": CRED[cred],
                                  "currencyDecay": decay}
-    if t["cred"]:
-        rec["credentialGates"] = [{"credential": c, "kind": k} for c, k in t["cred"]]
+    from cred_links import LINKS, NOTES
+    creds = t["cred"] or LINKS.get(tid, [])
+    if creds:
+        rec["credentialGates"] = [{"credential": c, "kind": k} for c, k in creds]
     if existing and existing.get("notation"):
         rec["notation"] = existing["notation"]
     rec.update({"homeModule": "core", "layer": "L2", "module": "core", "status": "draft",
@@ -166,8 +168,12 @@ def build_task(t, comp, existing):
     note = SPLIT_NOTE[t["split"]]
     if t["note"]:
         note += " " + t["note"]
-    if t["rr"].split()[3] != "none":
-        note += " Credential gate level is the author's draft pending the WP-07 Credential register (T-8)."
+    if t["rr"].split()[3] != "none" and not creds:
+        note += " Credential gate level is the author's draft; the gate is not yet in the WP-07 Credential register (T-8)."
+    elif creds:
+        note += " Credential gates link the WP-07 register (T-8); gates are inputs, never proficiency."
+    if NOTES.get(tid):
+        note += " " + NOTES[tid]
     if existing:
         note += " Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2)."
     rec["editorialNote"] = {"en": note}

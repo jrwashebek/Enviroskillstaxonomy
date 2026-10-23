@@ -1,18 +1,48 @@
 id: seed:v1-4.3.5
 type: Competency
 prefLabel:
-  en: Post-fire rehabilitation
+  en: Stabilize burned areas after wildfire from field assessment of burn severity and values at risk
+altLabel:
+  en:
+  - Post-fire rehabilitation
+  - Burned area emergency response
+definition:
+  en: 'Post-fire emergency assessment and stabilization: field verification of soil burn severity, erosion and debris-flow risk to values, prescription and implementation of stabilization treatments and monitoring of their effectiveness after storms. Excludes long-term restoration (core v1 4.2.1) and rapid multi-hazard assessment (hazards module FC-C25).'
 statement:
-  en: Implementing treatments to reduce erosion, prevent invasive species establishment, and promote recovery after wildfire.
+  en: Verifies satellite burn-severity maps at field plots, assesses soil burn severity, erosion and debris-flow risk to values, prescribes and implements stabilization treatments such as mulch, seeding and drainage, and monitors treatment effectiveness after storms, adapting follow-up work to what is observed.
 notation:
 - scheme: EMSTv1
   value: 4.3.5
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - seed:ind-4.3.5-l1-a
+  - seed:ind-4.3.5-l1-b
+- level: L2
+  indicators:
+  - seed:ind-4.3.5-l2-a
+  - seed:ind-4.3.5-l2-b
+- level: L3
+  indicators:
+  - seed:ind-4.3.5-l3-a
+  - seed:ind-4.3.5-l3-b
+homeModule: forest
+subsectors:
+- L07
+- L01
+reusability: subsector-specific
 layer: L1
 module: forest
-homeModule: forest
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Domain:
   code: '4'
   label: Field Operations Skills
@@ -20,14 +50,12 @@ v1SkillArea:
   code: '4.3'
   label: Fire Management
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: Model ground-truth competency (field verification of satellite burn severity); pattern generalized into FC-C25 in MOD-09 (FC verdict). Role verdicts considered: FC:carry|TN:add.'
-license: CC0-1.0
-sensitivity: public
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: Model ground-truth competency (field verification of satellite burn severity); pattern generalized into FC-C25 in MOD-09 (FC verdict). Role verdicts considered: FC:carry|TN:add. WP-06: Moved to MOD-11; model ground-truth competency (field verification of satellite burn severity); pattern generalized into FC-C25 in MOD-09 (FC verdict). Actor enactment notes requested by TN are held (ADR-0007), not authored here. Basis [J].'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:4.3.5
     v1Code: 4.3.5
@@ -38,7 +66,8 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
   - v1Key: v1:4.3.5
     v1Code: 4.3.5
     v1Table: source_text/competencies
@@ -47,10 +76,12 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
 v1Seed:
   v1Title: Post-fire rehabilitation
   v1Description: Implementing treatments to reduce erosion, prevent invasive species establishment, and promote recovery after wildfire.

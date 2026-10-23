@@ -1,0 +1,59 @@
+id: seed:DB-C08
+type: Competency
+prefLabel:
+  en: Develop pollutant load allocations and watershed restoration plans for impaired waters
+altLabel:
+  en:
+  - TMDL development
+  - Total maximum daily load
+  - Watershed-based plan
+definition:
+  en: Quantifying pollutant loads to impaired waters and their loading capacity, allocating loads among point and nonpoint sources with a margin of safety, and building watershed implementation and monitoring plans with stakeholders. Excludes discharge permit drafting (SL-C02 waterq enactment) and water quality standards setting.
+statement:
+  en: Quantifies pollutant loads and a waterbody's loading capacity from monitoring data and watershed models, allocates loads among point and nonpoint sources with an explicit margin of safety, and builds an implementation plan with stakeholders that assigns reductions, practices and monitoring, documenting the analysis so it withstands review.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:ind-db-c08-l2-a
+  - seed:ind-db-c08-l2-b
+- level: L3
+  indicators:
+  - seed:ind-db-c08-l3-a
+  - seed:ind-db-c08-l3-b
+- level: L4
+  indicators:
+  - seed:ind-db-c08-l4-a
+  - seed:ind-db-c08-l4-b
+homeModule: waterq
+subsectors:
+- W06
+reusability: subsector-specific
+layer: L1
+module: waterq
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: TMDLs and watershed plans are subsector-specific (W06); programme labels kept as altLabel only (ADR-0016 naming rule; typing lint). DC primary, SC secondary. Model products are L4. Basis [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - DB-022
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

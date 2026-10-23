@@ -1,0 +1,166 @@
+id: seed:lc-pw-cor1-field-technician-to-ground-truth-steward
+type: Pathway
+prefLabel:
+  en: 'Exploratory pathway: field resource technician to ground-truth and validation steward (emerging role)'
+definition:
+  en: 'Upskills a journey-level field technician into the emerging ground-truth and validation steward role: designing and collecting field reference data, calibrating observers, judging the fitness of remote and AI products, and transferring that judgment to others. The target role is emerging, with the counter-signal that validation may be absorbed into vendor services (mvp_role_set.csv). Exploratory.'
+notation:
+- scheme: mvp-corridor
+  value: COR-1
+fromVariant: seed:R02-field-resource-technician
+toVariant: seed:R05-ground-truth-validation-steward
+pathwayType: upskill
+outcomes:
+- seed:dc-cand-03-l2-a
+- seed:dc-cand-03-l2-b
+- seed:dc-cand-09-l2-a
+- seed:dc-cand-09-l2-b
+- seed:dc-cand-11-l2-a
+- seed:dc-cand-11-l2-b
+- seed:dc-cand-13-dc-l3-a
+- seed:dc-cand-13-dc-l3-b
+- seed:dc-cand-13-l3-a
+- seed:dc-cand-13-l3-b
+- seed:dc-cand-13-sc-l3-a
+- seed:dc-cand-13-sc-l3-b
+- seed:ind-fc-c02-l2-a
+- seed:ind-fc-c02-l2-b
+- seed:ind-fc-c02-l3-a
+- seed:ind-fc-c02-l3-b
+- seed:ind-fc-c02-l3-c
+- seed:ind-fc-c31-l2-a
+- seed:ind-fc-c31-l2-b
+- seed:ind-fcena-dc-cand-13-l3-a
+- seed:ind-fcena-dc-cand-13-l3-b
+- seed:ind-fcena-dc-cand-13-l3-c
+- seed:ind-fs-c04-l2-a
+- seed:ind-fs-c04-l2-b
+- seed:ind-fs-c04-l2-c
+- seed:lc-txd-continuity-l2-a
+- seed:lc-txd-continuity-l2-b
+- seed:lc-txd-continuity-l2-c
+- seed:lc-txd-evaluate-l3-a
+- seed:lc-txd-evaluate-l3-b
+- seed:lc-txd-evaluate-l3-c
+- seed:lc-txd-evaluate-l3-d
+- seed:sc-c18-l2-a
+- seed:sc-c18-l2-b
+modes:
+- FD
+- WBL
+- MEN
+- CL
+- CAP
+assessmentPlan:
+  en: 'Each CLO is assessed with the methods its indicators list; field-craft outcomes are assessed at least once in the field, statecraft outcomes in a live or simulated stakeholder or legal-administrative setting, data-craft outcomes on real data with a reproducible product (LC template R4-R5). Assisted-mode outcomes include a seeded-error validation drill. Supervisor formation plan required: the learner''s supervisor works to seed:v1-7.2.2 at L2 or above and a named mentor or evaluator to seed:IO-C01 at L3 (ADR-0026 R7). Training use only; never a selection instrument (IO).'
+sequence:
+- step: 1
+  tasks:
+  - seed:fc-gt-design-sample
+  - seed:fs-c04-collect-labels
+  - seed:fs-c04-maintain
+  outcomes:
+  - seed:ind-fc-c02-l2-a
+  - seed:ind-fc-c02-l2-b
+  - seed:ind-fs-c04-l2-a
+  - seed:ind-fs-c04-l2-b
+  - seed:ind-fs-c04-l2-c
+  roleLevel: journey
+  note:
+    en: 'Reference-data design and collection with an analyst. CLOs: seed:FC-C02@L2, seed:FS-C04@L2. Formation (observed-wbl): seed:fs-c04-collect-labels: 1 labelled sample campaign, observed; release when metadata complete; evaluator sign-off.'
+- step: 2
+  tasks:
+  - seed:fc-qa-calibration-session
+  - seed:fc-qa-blind-check
+  - seed:dc-03-sample-design
+  outcomes:
+  - seed:ind-fc-c31-l2-a
+  - seed:ind-fc-c31-l2-b
+  - seed:dc-cand-03-l2-a
+  - seed:dc-cand-03-l2-b
+  roleLevel: journey
+  note:
+    en: 'Observer calibration and sampling design. CLOs: seed:FC-C31@L2, seed:DC-CAND-03@L2. Formation (observed-wbl): seed:fc-qa-blind-check: 1 blind re-measurement of a crew sample; release when differences computed against tolerances.'
+- step: 3
+  tasks:
+  - seed:fs-c04-regional-validation
+  - seed:fc-gt-fitness
+  - seed:dc-13-accept-batch
+  outcomes:
+  - seed:dc-cand-09-l2-a
+  - seed:dc-cand-09-l2-b
+  - seed:dc-cand-13-dc-l3-a
+  - seed:dc-cand-13-dc-l3-b
+  - seed:dc-cand-13-l3-a
+  - seed:dc-cand-13-l3-b
+  - seed:dc-cand-13-sc-l3-a
+  - seed:dc-cand-13-sc-l3-b
+  - seed:ind-fcena-dc-cand-13-l3-a
+  - seed:ind-fcena-dc-cand-13-l3-b
+  - seed:ind-fcena-dc-cand-13-l3-c
+  - seed:ind-fc-c02-l3-a
+  - seed:ind-fc-c02-l3-b
+  - seed:ind-fc-c02-l3-c
+  roleLevel: senior
+  note:
+    en: 'Fitness-for-use decisions on remote and AI products. CLOs: seed:DC-CAND-09@L2, seed:DC-CAND-13@L3, seed:FC-C02@L3.'
+- step: 4
+  tasks:
+  - seed:lc-txd-rate-performance
+  - seed:lc-txd-field-walkthrough
+  - seed:fc-qa-retrain-decision
+  outcomes:
+  - seed:lc-txd-evaluate-l3-a
+  - seed:lc-txd-evaluate-l3-b
+  - seed:lc-txd-evaluate-l3-c
+  - seed:lc-txd-evaluate-l3-d
+  - seed:lc-txd-continuity-l2-a
+  - seed:lc-txd-continuity-l2-b
+  - seed:lc-txd-continuity-l2-c
+  roleLevel: senior
+  note:
+    en: 'Formation of others and knowledge continuity: evaluate observers and capture site-specific knowledge from departing staff. CLOs: seed:IO-C01@L3, seed:FH-C07@L2.'
+- step: 5
+  tasks:
+  - seed:dc-11-brief-official
+  - seed:fc-gt-feedback
+  outcomes:
+  - seed:dc-cand-11-l2-a
+  - seed:dc-cand-11-l2-b
+  - seed:sc-c18-l2-a
+  - seed:sc-c18-l2-b
+  roleLevel: senior
+  note:
+    en: 'No model without a decision owner (R6): brief the accountable official on what the validation supports. CLOs: seed:DC-CAND-11@L2, seed:SC-C18@L2.'
+durationAndCost:
+  hours: 200
+  months: 12
+  costNote: '[J] Mostly field time and senior-analyst mentoring; reference-data campaigns are the main direct cost.'
+alternativeFormationRoutes:
+- Seasonal reference-data campaigns shared across agencies can supply field exposure where single programmes lack plots [S].
+recommended: false
+layer: learning
+module: core
+status: draft
+lifecycleState: proposed
+reviewBy: '2027-04-23'
+useTier: exploratory
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'EXPLORATORY, not recommended: no pathway is labelled recommended until it passes CM''s M-03 validation gate (ADR-0023 §5; ADR-0027). Built from the role-profile delta (ADR-0026 R1); hours, months and quotas are LC judgment for pilot calibration. Role records are WP-08''s; frictions attach when CM''s friction register exists. Staged outside data/v2 until the role records resolve (CR-LC-001).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:20:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-pathways@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0026
+  - ADR-0023
+  - ADR-0027
+  - ADR-0004

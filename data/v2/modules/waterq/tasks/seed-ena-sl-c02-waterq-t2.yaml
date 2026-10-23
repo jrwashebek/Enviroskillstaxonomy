@@ -1,0 +1,41 @@
+id: seed:ena-sl-c02-waterq-t2
+type: Task
+prefLabel:
+  en: Write a discharge permit fact sheet that explains the basis for every limit and monitoring requirement in the draft permit
+statement:
+  en: Write a discharge permit fact sheet that explains the basis for every limit and monitoring requirement in the draft permit
+textSha256: eb09e096a876f32b6b48e8a41d8837be15c5eaf3da3dd18ed4d6cf7531a379e7
+supports:
+- competency: seed:SL-C02
+  strength: primary
+workFunction: WF-AUTHORIZE
+relationshipTypes:
+- public
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: remote
+formationDependency: 'yes'
+homeModule: waterq
+subsectors:
+- W06
+layer: L2
+module: waterq
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

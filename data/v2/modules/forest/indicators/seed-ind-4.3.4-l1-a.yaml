@@ -1,0 +1,42 @@
+id: seed:ind-4.3.4-l1-a
+type: Indicator
+prefLabel:
+  en: Takes and records fire weather observations with belt instruments at the required…
+competency: seed:v1-4.3.4
+level: L1
+statement:
+  en: Takes and records fire weather observations with belt instruments at the required interval, so that values match a check reading within tolerance.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- blind-re-measurement
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:v1-4.3.4-T1
+layer: L1
+module: forest
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.4:foundational:I1
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

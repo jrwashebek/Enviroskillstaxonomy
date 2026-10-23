@@ -1,0 +1,346 @@
+# WP-06 authoring source — MOD-15 Parks, recreation, protected areas and visitor use (namespace: parks; subsector L10)
+# Pulled forward to wave 1 by the CA (ADR-0018). Rows: v1_disposition 5.5.1 (move-to-module); candidate_disposition
+# IA-CC-02 (absorbs C-LM-02), IA-CC-03, IA-CC-07. Enactments at the end. Content [J].
+module: parks
+competencies:
+
+  - id: v1-5.5.1
+    label: Provide visitor information, orientation and safety messaging in parks and protected areas
+    alt: [Visitor information services, Visitor contact station operations]
+    def: >-
+      Front-line visitor contact at parks, trailheads and visitor centres: orienting visitors to routes, conditions,
+      regulations and hazards, tailoring safety information and recommendations to each visitor's plans and abilities,
+      and logging questions and incidents to improve messaging. Excludes formal interpretation programmes (core v1
+      5.1.3) and law enforcement.
+    stmt: >-
+      Orients visitors to routes, current conditions, regulations and hazards, tailors safety information and trip
+      recommendations to each visitor's stated plans and abilities, checks posted and online information against
+      current conditions, and logs questions and incidents so that messaging gaps are found and fixed.
+    span: [L1, L3]
+    sub: [L10]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-15 (L10-specific); not Statecraft (SC verdict). Home of entry tasks for role R21 park ranger. Trait
+      and reputation indicators from v1 removed (B03, B11). Basis [J].
+    tasks:
+      - id: v1-5.5.1-T1
+        text: Orient visitors at a contact station to routes, conditions, regulations and hazards matched to their plans and abilities
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        modes: [MODE-ENGAGE]
+        rel: [public]
+      - id: v1-5.5.1-T2
+        text: Give safety information and trip recommendations tailored to current conditions and each visitor's stated plans
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        modes: [MODE-ENGAGE]
+        rel: [public]
+      - id: v1-5.5.1-T3
+        text: Log visitor questions, incidents and concerns to identify information gaps and revise visitor messaging
+        wf: WF-LEARN
+        fd: on-site-preferred
+        form: 'no'
+        prof: [WP-OPERATIONS]
+      - id: db-5.5.1-t4
+        text: Check visitor information from automated or online sources against current site conditions before it is posted or repeated to visitors
+        wf: WF-MONITOR
+        fd: on-site-preferred
+        form: partial
+        prof: [WP-OPERATIONS]
+    ind:
+      L1:
+        - t: Answers routine visitor questions about routes, facilities and regulations accurately, referring questions outside the station's information sheets to the named contact.
+          a: [simulation-role-play, task-book-observation]
+          st: [T1]
+          v1: ['v1:5.5.1:foundational:I2', 'v1:5.5.1:foundational:I4']
+        - t: Records each visitor contact, question and incident on the station log during the shift, so that daily totals reconcile with the log.
+          a: [record-audit]
+          st: [T3]
+          v1: ['v1:5.5.1:foundational:I6']
+      L2:
+        - t: Recommends a route or activity matched to a visitor's stated plans, abilities and current conditions, naming the hazards and turnaround points that apply.
+          a: [simulation-role-play, task-book-observation]
+          st: [T2]
+          v1: ['v1:5.5.1:intermediate:I1', 'v1:5.5.1:intermediate:I2']
+        - t: Corrects or withholds posted or online visitor information that conflicts with current site conditions, recording the conflict and the correction made.
+          m: assisted
+          a: [seeded-error-work-sample, task-book-observation]
+          st: [t4]
+          att: ATT-AUG
+      L3:
+        - t: Revises the site's visitor messaging from logged questions and incidents, documenting which gap each change addresses.
+          a: [work-sample, record-audit]
+          st: [T3]
+          att: ATT-SCO
+          v1: ['v1:5.5.1:advanced:I2', 'v1:5.5.1:advanced:I5']
+        - t: Evaluates new staff's visitor contacts against the station's service and safety standards, documenting coaching given and readiness to work alone.
+          a: [task-book-observation, counterpart-360]
+          st: [T1, T2]
+          att: ATT-FOR
+          v1: ['v1:5.5.1:advanced:I3']
+
+  - id: IA-CC-02
+    label: Plan and manage recreation opportunity and visitor use
+    alt: [Recreation opportunity spectrum planning, Visitor use management, Travel management]
+    def: >-
+      Classifying recreation settings, estimating visitor use and capacity, designating motorized and non-motorized
+      routes, monitoring social and resource indicators and choosing management actions, including permit and
+      reservation systems, to sustain resources and visitor experiences. Excludes facility construction and trail
+      building (core v1 4.2.5).
+    stmt: >-
+      Assigns recreation setting classes, estimates use and capacity from counts and indicators, designates routes that
+      separate conflicting uses, monitors resource and social indicators against thresholds, and selects actions such as
+      permits or reservations when conditions degrade, documenting the evidence behind each decision.
+    span: [L2, L4]
+    sub: [L10]
+    att: ATT-CPX
+    src: [IA-033, IA-034, LM-017]
+    note: >-
+      Survivor for recreation and visitor use; absorbs C-LM-02 (ADR-0018 s.4). Public-lands gap function with strong
+      plan demand (motorized recreation/ROS 533 low-similarity plan components, IA §5.7 [E]). Part of role R21.
+      Basis [E] for demand; [J] content.
+    tasks:
+      - id: IA-CC-02-T1
+        text: Assign recreation opportunity classes to a planning area from setting characteristics, access and existing use
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-REGPROGRAM]
+      - id: IA-CC-02-T2
+        text: Estimate visitor use and capacity for a site from counts, permits and indicators of resource and social conditions
+        wf: WF-ASSESS
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: IA-CC-02-T3
+        text: Designate motorized and non-motorized routes in a travel plan that separate conflicting uses and protect resources
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [public, stakeholder]
+      - id: IA-CC-02-T4
+        text: Monitor visitor-use indicators against thresholds and select management actions when conditions degrade
+        wf: WF-MONITOR
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-REGPROGRAM, WP-OPERATIONS]
+      - id: IA-CC-02-T5
+        text: Design a permit or reservation system for a congested site from use data, capacity estimates and equitable access
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [public]
+    ind:
+      L2:
+        - t: Estimates use at a site from counter, permit and observation data, documenting the counting methods and their error.
+          a: [work-sample]
+          st: [T2]
+        - t: Monitors resource and social indicators at a site against thresholds, reporting each exceedance with the data that show it.
+          a: [work-sample, record-audit]
+          st: [T4]
+      L3:
+        - t: Designates routes in a travel plan that separate conflicting uses, documenting resource effects and user input for each designation.
+          modes: [MODE-ENGAGE]
+          a: [work-sample, portfolio-review]
+          st: [T3]
+          att: ATT-CPX
+        - t: Selects management actions for a site exceeding indicator thresholds, documenting why less restrictive options were rejected.
+          a: [work-sample, structured-interview-bars]
+          st: [T4]
+          att: ATT-AUT
+      L4:
+        - t: Designs a permit or reservation system for a congested area, documenting capacity, access equity and the monitoring that will test it.
+          a: [portfolio-review]
+          st: [T5]
+          att: ATT-GUI
+        - t: Recommends recreation setting classes and capacities for a plan revision to a decision-maker, recording the public input and evidence considered.
+          modes: [MODE-ENGAGE]
+          a: [portfolio-review, simulation-role-play]
+          st: [T1, T2]
+          att: ATT-SCO
+
+  - id: IA-CC-03
+    label: Assess and design for scenic resources
+    alt: [Scenery management, Visual resource management, Viewshed analysis]
+    def: >-
+      Applying scenic integrity or visual quality objectives to the design and evaluation of projects, including viewshed
+      analysis from key observation points, contrast rating and design changes that keep projects within scenic
+      objectives. Excludes landscape architecture design of facilities sealed by a licensed professional.
+    stmt: >-
+      Runs viewshed analyses from key observation points and checks them in the field, rates the visual contrast of
+      proposed projects against scenic objectives, and recommends design changes that bring projects within those
+      objectives, documenting the evidence for each finding.
+    span: [L2, L3]
+    sub: [L10, L01]
+    att: ATT-CPX
+    src: [IA-033, IA-034]
+    note: >-
+      Scenic resource assessment and design: one of IA's seven public-lands gap functions (scenic 482 low-similarity plan
+      components, IA §5.7 [E]). FC primary, DC secondary. Basis [J] content.
+    tasks:
+      - id: IA-CC-03-T1
+        text: Rate a proposed project's visual contrast from key observation points against the area's scenic objectives
+        wf: WF-REVIEW
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: IA-CC-03-T2
+        text: Run a viewshed analysis from key observation points and verify modelled visibility at field locations
+        wf: WF-ASSESS
+        fd: on-site-preferred
+        form: partial
+        prof: [WP-PROJECT]
+      - id: IA-CC-03-T3
+        text: Recommend design changes that reduce a project's visual contrast to meet scenic objectives
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-PROJECT]
+    ind:
+      L2:
+        - t: Completes a contrast rating from a key observation point, scoring form, line, colour and texture so that a second rater's scores agree within tolerance.
+          a: [blind-re-measurement, work-sample]
+          st: [T1]
+        - t: Produces a viewshed analysis from key observation points, checking modelled visibility at field locations and recording each mismatch.
+          m: assisted
+          a: [work-sample]
+          st: [T2]
+      L3:
+        - t: Recommends design changes for a high-visibility project that bring contrast within scenic objectives, documenting the expected rating after each change.
+          a: [work-sample, portfolio-review]
+          st: [T3]
+          att: ATT-CPX
+        - t: Evaluates cumulative scenic effects of several projects in one viewshed, documenting the analysis and its implications for the next approval.
+          a: [work-sample, structured-interview-bars]
+          st: [T1, T2]
+          att: ATT-SCO
+
+  - id: IA-CC-07
+    label: Monitor and steward wilderness character
+    alt: [Wilderness character monitoring, Minimum requirements analysis, Wilderness stewardship]
+    def: >-
+      Establishing baselines and monitoring trends in wilderness character qualities (untrammeled, natural, undeveloped,
+      solitude or primitive recreation) and applying minimum-requirements analysis to proposed administrative actions in
+      designated wilderness. Excludes general recreation planning (IA-CC-02).
+    stmt: >-
+      Establishes a wilderness character baseline from indicator measures, monitors and reports trends, and completes
+      minimum-requirements analyses for proposed administrative actions, documenting alternatives and their effects on
+      each quality so that decisions protect wilderness character.
+    span: [L2, L4]
+    sub: [L10, L01]
+    att: ATT-CPX
+    src: [IA-033, IA-034]
+    note: >-
+      Wilderness character monitoring and stewardship: public-lands gap function (IA-CC-07). FC primary, SC secondary.
+      The governing statute is an L5 instrument and is not named here. Basis [J].
+    tasks:
+      - id: IA-CC-07-T1
+        text: Establish a wilderness character baseline from indicator measures for each wilderness quality using available monitoring data
+        wf: WF-ASSESS
+        fd: remote-capable
+        form: partial
+        prof: [WP-REGPROGRAM]
+      - id: IA-CC-07-T2
+        text: Monitor wilderness character indicators in the field and report trends against the baseline
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: IA-CC-07-T3
+        text: Complete a minimum-requirements analysis for a proposed administrative action, documenting alternatives and effects on wilderness character
+        wf: WF-REVIEW
+        fd: remote-capable
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+    ind:
+      L2:
+        - t: Collects wilderness character indicator data on assigned routes following the monitoring protocol, with records that pass the programme's quality check.
+          a: [task-book-observation, record-audit]
+          st: [T2]
+        - t: Reports indicator trends against the baseline for one wilderness, stating the data limitations for each indicator.
+          a: [work-sample]
+          st: [T1, T2]
+      L3:
+        - t: Completes a minimum-requirements analysis for a proposed action, documenting alternatives, effects on each quality and the minimum tool selected.
+          a: [work-sample, moot-defense]
+          st: [T3]
+          att: ATT-CPX
+        - t: Builds a wilderness character baseline from mixed data sources, documenting the measures chosen and why others were excluded.
+          a: [work-sample]
+          st: [T1]
+          att: ATT-GUI
+      L4:
+        - t: Sets the unit's wilderness monitoring strategy, defining indicators, thresholds and the evidence that triggers management change.
+          a: [portfolio-review]
+          st: [T1, T2]
+          att: ATT-GUI
+        - t: Defends a minimum-requirements decision to reviewers and the public, producing the analysis for each contested element.
+          modes: [MODE-RESOLVE]
+          a: [moot-defense]
+          st: [T3]
+          att: ATT-SCO
+
+enactments:
+  - id: ena-5.1.3-parks
+    comp: v1-5.1.3
+    label: Park interpretation enactment of environmental interpretation
+    sub: [L10]
+    ap: resource-manager
+    note: >-
+      Park interpreters design and deliver guided programmes, exhibits and media that connect visitors to natural and
+      cultural resources and support resource protection behaviour; interpretive certifications are Credentials.
+  - id: ena-6.2.3-parks
+    comp: v1-6.2.3
+    label: Park and protected-area enactment of public land management planning
+    sub: [L10]
+    ap: resource-manager
+    note: >-
+      Parks prepare general management, foundation and visitor use plans setting desired conditions, zoning and visitor
+      capacity; state and local park systems prepare master plans with public engagement.
+  - id: ena-db-c05-parks
+    comp: DB-C05
+    label: Park facilities enactment of risk-based asset management
+    sub: [L10]
+    ap: resource-manager
+    note: >-
+      Park systems manage roads, trails, buildings, water and wastewater systems and visitor facilities with condition
+      assessment and deferred-maintenance prioritization; facility condition data drive capital requests.
+  - id: ena-db-c50-parks
+    comp: DB-C50
+    label: Park undertaking enactment of historic preservation review
+    sub: [L10, L11]
+    ap: resource-manager
+    instr: ['seed:ins/nhpa-s106-regs']
+    note: >-
+      Park construction, rehabilitation and maintenance of historic structures and landscapes need historic preservation
+      review; consultation content held under ADR-0007 §D is not authored here.
+  - id: ena-sl-c08-parks
+    comp: SL-C08
+    label: Park project enactment of environmental review
+    sub: [L10]
+    ap: resource-manager
+    note: >-
+      Visitor facility, trail and management projects in parks are reviewed under the agency's current environmental
+      review procedures, with visitor experience and park resources as characteristic issues.
+  - id: ena-4.2.2-parks
+    comp: v1-4.2.2
+    label: Park enactment of invasive species control
+    sub: [L10]
+    ap: resource-manager
+    note: >-
+      Parks detect and control invasive plants and animals along visitor corridors and in protected natural areas,
+      often with volunteers, balancing treatment with visitor use.
+  - id: ena-fc-c26-parks
+    comp: FC-C26
+    label: Recreation site enactment of tree risk assessment
+    sub: [L10, L01]
+    ap: resource-manager
+    note: >-
+      Campgrounds, trailheads and other developed recreation sites require periodic tree risk assessment and hazard-tree
+      mitigation where people and structures are targets; tree risk qualifications are Credentials.

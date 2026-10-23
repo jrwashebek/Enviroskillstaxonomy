@@ -1,0 +1,39 @@
+id: seed:ind-db-c49-l4-b
+type: Indicator
+prefLabel:
+  en: Reviews other assessors' models before panel submission, returning each model whose…
+competency: seed:DB-C49
+level: L4
+statement:
+  en: Reviews other assessors' models before panel submission, returning each model whose diagnostics or data handling do not support the advice.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+- counterpart-360
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:DB-C49-T1
+distinguishingAttribute: ATT-FOR
+layer: L1
+module: wildlife
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

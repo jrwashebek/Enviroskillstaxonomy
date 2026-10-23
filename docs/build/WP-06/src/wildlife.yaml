@@ -1,0 +1,486 @@
+# WP-06 authoring source — MOD-12 Fish, wildlife and aquatic resources (namespace: wildlife; subsectors L02 L03)
+# v1-seeded section. Rows: v1_disposition 1.4.5, 6.5.5 (move-to-module); candidate_disposition DB-C49, FH-C10, FC-C15.
+# Actor enactment notes requested by TN for 1.4.5 are held (ADR-0007) and not authored here. Content [J].
+module: wildlife
+competencies:
+
+  - id: v1-1.4.5
+    label: Manage fish populations and habitats to stated conservation and harvest objectives
+    alt: [Fisheries management, Inland fisheries management]
+    def: >-
+      Assessing inland fish populations and their habitats and setting harvest regulations, stocking and habitat
+      actions that meet conservation and recreation objectives, then evaluating the results. Excludes formal stock
+      assessment modelling for commercial or interjurisdictional stocks (DB-C49) and hatchery operation (FH-C10).
+    stmt: >-
+      Samples fish populations to estimate abundance, size and age structure, growth and mortality; identifies the
+      habitat and water-quality factors limiting them; recommends harvest regulations, stocking or habitat actions
+      that fit stated objectives; and evaluates the response so that management is adjusted on evidence.
+    span: [L1, L4]
+    sub: [L03]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-12 (L03-specific under G-4). Home of role R16 with DB-C49 and FH-C10. AFS certification is a
+      Credential. Actor enactment notes requested by TN are held under ADR-0007 and not authored here. Basis [J].
+    tasks:
+      - id: v1-1.4.5-T1
+        text: Sample fish populations by electrofishing, netting or hydroacoustics following the survey protocol to estimate abundance and size structure
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM, WP-RESEARCH]
+        rr: {mentorshipDependence: M, cycleDependence: seasonal, placeBoundness: ecosystem-type, currencyDecay: M}
+      - id: v1-1.4.5-T2
+        text: Recommend harvest regulations, stocking or habitat actions for a fishery from population assessment results and angler objectives
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [public, stakeholder]
+      - id: v1-1.4.5-T3
+        text: Assess water quality and habitat conditions limiting a fish population, identifying the factors management can change
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: db-1.4.5-t4
+        text: Estimate age and growth from scales or otoliths and calculate mortality from catch-curve data for a fish population
+        wf: WF-ASSESS
+        fd: remote-capable
+        form: 'yes'
+        prof: [WP-REGPROGRAM, WP-RESEARCH]
+      - id: db-1.4.5-t5
+        text: Evaluate a stocking programme's contribution to a fishery from marked-fish returns and survey catch data
+        wf: WF-LEARN
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+    ind:
+      L1:
+        - t: Records length, weight and species of captured fish following the survey protocol, with catch data that match a biologist's check of the same sample.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T1]
+          v1: ['v1:1.4.5:foundational:I3', 'v1:1.4.5:foundational:I4']
+        - t: Removes scale or otolith samples and labels them to the protocol, so that every sample can be read and matched to its fish record.
+          a: [task-book-observation]
+          st: [t4]
+          v1: ['v1:1.4.5:foundational:I3']
+      L2:
+        - t: Estimates abundance and size structure from survey data with the programme's methods, reporting each estimate with its precision.
+          a: [work-sample]
+          st: [T1]
+          v1: ['v1:1.4.5:intermediate:I2']
+        - t: Calculates growth and mortality from age data and catch curves, documenting the assumptions behind each estimate.
+          a: [work-sample, knowledge-test]
+          st: [t4]
+          v1: ['v1:1.4.5:intermediate:I3', 'v1:1.4.5:intermediate:I4']
+      L3:
+        - t: Recommends regulations for a fishery where biological and angler objectives conflict, documenting the expected effects of each alternative considered.
+          modes: [MODE-ENGAGE]
+          a: [work-sample, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+          v1: ['v1:1.4.5:intermediate:I5']
+        - t: Evaluates a stocking programme from marked-fish returns, recommending continuation, change or ending with the evidence for the recommendation.
+          a: [work-sample]
+          st: [t5]
+          att: ATT-AUT
+          v1: ['v1:1.4.5:intermediate:I6']
+      L4:
+        - t: Writes a management plan for a multi-species fishery with monitoring triggers that state when regulations or stocking will change.
+          a: [portfolio-review]
+          st: [T2, t5]
+          att: ATT-GUI
+          v1: ['v1:1.4.5:advanced:I1', 'v1:1.4.5:advanced:I3']
+        - t: Reviews biologists' assessments and recommendations for the region, returning each one whose data or methods do not support its conclusion.
+          a: [record-audit, counterpart-360]
+          st: [T1, T2]
+          att: ATT-FOR
+
+  - id: v1-6.5.5
+    label: Implement international wildlife and fisheries conservation agreements
+    alt: [International conservation agreements, Wildlife trade controls, Migratory species agreements]
+    def: >-
+      Carrying out a government's or organization's commitments under international and bilateral conservation
+      agreements (wildlife trade, migratory species, transboundary habitats and shared fish stocks): reporting,
+      transboundary coordination and trade-permit findings. Excludes domestic consultation duties and agreements with
+      domestic governments.
+    stmt: >-
+      Prepares implementation reports under international conservation agreements from monitoring and management
+      records, coordinates transboundary habitat and population actions with counterpart agencies, and makes the
+      findings that wildlife-trade permits require, documenting how each commitment is met.
+    span: [L2, L4]
+    sub: [L02, L03]
+    att: ATT-SCO
+    note: >-
+      Moved to MOD-12 (L02/L03-specific, low US workforce share). Domestic rights-based subjects raised in the v1
+      verdicts belong to a held competency (TN-C01; ADR-0007) and are not authored here. Agreement names are L5
+      instruments. Basis [J].
+    tasks:
+      - id: v1-6.5.5-T1
+        text: Prepare a national or programme implementation report under an international conservation agreement from monitoring and management records
+        wf: WF-MONITOR.attest
+        fd: remote
+        form: partial
+        prof: [WP-DISCLOSURE, WP-AGREEMENT]
+        rel: [intergovernmental]
+      - id: v1-6.5.5-T2
+        text: Coordinate transboundary habitat or population management actions with counterpart agencies under a bilateral conservation agreement
+        wf: WF-RESOURCE
+        fd: remote
+        form: partial
+        prof: [WP-AGREEMENT]
+        rel: [intergovernmental]
+        modes: [MODE-ENGAGE]
+      - id: v1-6.5.5-T3
+        text: Review an application to import or export a listed species against the trade agreement's non-detriment and legal-acquisition findings
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+    ind:
+      L2:
+        - t: Compiles a section of an implementation report from programme records, so that every reported figure traces to a cited source.
+          a: [record-audit]
+          st: [T1]
+          v1: ['v1:6.5.5:intermediate:I2']
+        - t: Reviews a routine trade-permit application, documenting the evidence for each required finding and the decision recommended.
+          a: [work-sample, record-audit]
+          st: [T3]
+      L3:
+        - t: Makes a non-detriment finding for a species with sparse population data, documenting the evidence, uncertainty and conditions attached.
+          a: [work-sample, structured-interview-bars]
+          st: [T3]
+          att: ATT-CPX
+        - t: Coordinates a transboundary management action with a counterpart agency, recording the agreed actions, responsibilities and reporting dates.
+          modes: [MODE-ENGAGE]
+          a: [portfolio-review, counterpart-360]
+          st: [T2]
+          att: ATT-SCO
+          v1: ['v1:6.5.5:advanced:I3']
+      L4:
+        - t: Represents the agency in a technical negotiation under an international agreement, recording the positions taken and the commitments that result.
+          modes: [MODE-RESOLVE]
+          a: [simulation-role-play, portfolio-review]
+          st: [T2]
+          att: ATT-SCO
+          v1: ['v1:6.5.5:expert:I3']
+        - t: Writes the agency's implementation guidance for a new agreement obligation, defining responsibilities, data and reporting procedures.
+          a: [portfolio-review]
+          st: [T1]
+          att: ATT-GUI
+          v1: ['v1:6.5.5:advanced:I6']
+
+  - id: DB-C49
+    label: Conduct fisheries stock assessments and develop management advice
+    alt: [Fisheries stock assessment, Catch advice]
+    def: >-
+      Integrating catch, survey, observer and electronic-monitoring and biological data into stock assessment models,
+      including data-limited methods, characterizing uncertainty and advising managers on catch limits and reference
+      points through scientific review. Excludes inland fishery regulation-setting (v1 1.4.5).
+    stmt: >-
+      Fits stock assessment models to catch, survey and biological data, applies data-limited methods where data are
+      sparse, checks automated monitoring data against observer samples, characterizes uncertainty and presents catch
+      advice and reference points to scientific review, answering reviewers with documented analyses.
+    span: [L2, L4]
+    sub: [L03, L04]
+    att: ATT-CPX
+    src: [DB-062]
+    note: >-
+      Fisheries stock assessment and management advice (L03); DC primary, SC secondary. Part of role R16; marine stocks
+      overlap MOD-13 (wave 3). Model software is L4. Basis [J].
+    tasks:
+      - id: DB-C49-T1
+        text: Fit a stock assessment model to catch, survey and biological data, documenting model diagnostics and retrospective patterns
+        wf: WF-ASSESS
+        fd: remote
+        form: 'yes'
+        prof: [WP-RESEARCH, WP-REGPROGRAM]
+      - id: DB-C49-T2
+        text: Apply a data-limited assessment method to a stock with sparse catch and survey data, stating the uncertainty in reference points
+        wf: WF-ASSESS
+        fd: remote
+        form: partial
+        prof: [WP-RESEARCH]
+      - id: DB-C49-T3
+        text: Present assessment results and catch advice to a scientific review panel, answering its requested analyses with documented runs
+        wf: WF-REVIEW
+        fd: remote-capable
+        form: partial
+        prof: [WP-RESEARCH, WP-REGPROGRAM]
+        rel: [intergovernmental, stakeholder]
+      - id: DB-C49-T4
+        text: Review species and length data from automated electronic monitoring against observer subsamples before the data enter an assessment
+        wf: WF-MONITOR
+        fd: remote
+        form: partial
+        prof: [WP-RESEARCH]
+        note: Verification task where automated monitoring compresses data production (ADR-0003 G-2).
+    ind:
+      L2:
+        - t: Fits a configured assessment model to updated data, checking convergence, residual and retrospective diagnostics and reporting them in the standard assessment tables.
+          m: assisted
+          a: [work-sample]
+          st: [T1]
+          ep: Confirm with two reviewers that diagnostics are reported to the standard table format on sample assessments.
+        - t: Accepts or rejects electronic-monitoring species and length data after comparing them with observer subsamples, documenting the agreement found.
+          m: assisted
+          a: [seeded-error-work-sample, record-audit]
+          st: [T4]
+      L3:
+        - t: Applies a data-limited method to a sparse-data stock, documenting how assumptions drive the reference points and which data would most reduce uncertainty.
+          a: [work-sample, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+        - t: Answers a review panel's requested analyses with documented model runs, stating which conclusions changed and why.
+          a: [moot-defense, work-sample]
+          st: [T3]
+          att: ATT-SCO
+      L4:
+        - t: Sets the assessment approach for a stock where data sources conflict, documenting the weighting choices and the sensitivity of advice to them.
+          a: [portfolio-review, moot-defense]
+          st: [T1, T2]
+          att: ATT-GUI
+        - t: Reviews other assessors' models before panel submission, returning each model whose diagnostics or data handling do not support the advice.
+          a: [record-audit, counterpart-360]
+          st: [T1]
+          att: ATT-FOR
+
+  - id: FH-C10
+    label: Operate fish hatchery and aquatic propagation programmes
+    alt: [Fish hatchery operations, Aquatic propagation, Conservation hatchery management]
+    def: >-
+      Managing broodstock, spawning and genetics, fish health, rearing conditions, marking and release so that hatchery
+      production meets recovery or harvest objectives and its contribution can be evaluated. Excludes fishery
+      regulation (v1 1.4.5) and aquaculture for food production.
+    stmt: >-
+      Spawns broodstock to the genetic management plan, monitors fish health and treats disease under veterinary
+      direction, adjusts feeding, density and water flow to growth and water-quality targets, and marks and releases
+      fish to the release plan so that returns can be evaluated.
+    span: [L1, L3]
+    sub: [L03]
+    att: ATT-AUT
+    src: [FH-041]
+    note: >-
+      Hatchery and aquatic propagation (L03); FC primary, DC secondary. Part of role R16; federal hatchery workforce is
+      partly Federal Wage System. Fish health inspector and drug-use authorizations are Credential gates. Basis [J].
+    tasks:
+      - id: FH-C10-T1
+        text: Spawn broodstock following the genetic management plan's mating scheme and record parentage for each lot
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: system-specific, currencyDecay: M}
+      - id: FH-C10-T2
+        text: Monitor fish health in rearing units, recognizing disease signs and starting treatment under veterinary direction
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+      - id: FH-C10-T3
+        text: Adjust feeding, density and water flow in rearing units to meet growth targets and water-quality limits
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+      - id: FH-C10-T4
+        text: Release marked hatchery fish to the release plan's size, timing and location so that returns can be evaluated
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: partial
+        prof: [WP-OPERATIONS]
+    ind:
+      L1:
+        - t: Feeds and cleans rearing units to the daily schedule, recording feed amounts, mortalities and water readings that pass the supervisor's log check.
+          a: [task-book-observation, record-audit]
+          st: [T3]
+        - t: Reports fish showing disease signs to the culturist the same shift, citing the unit, number affected and signs observed.
+          a: [task-book-observation]
+          st: [T2]
+      L2:
+        - t: Spawns broodstock to the mating scheme, recording parentage for each lot so that the genetics record reconciles with the plan.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+        - t: Adjusts rearing density, flow and feed rates from growth and water-quality data, documenting each change against the production targets.
+          a: [work-sample, record-audit]
+          st: [T3]
+      L3:
+        - t: Manages a disease outbreak in the facility with the fish health specialist, documenting isolation, treatment and the outcome for each affected unit.
+          a: [record-audit, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+        - t: Plans a release that meets size, timing and marking targets, documenting how the plan supports evaluation of returns.
+          a: [work-sample]
+          st: [T4]
+          att: ATT-SCO
+
+  - id: FC-C15
+    label: Capture, handle and mark wildlife and fish humanely and safely
+    alt: [Wildlife capture and handling, Fish tagging, Chemical immobilization]
+    def: >-
+      Planning and conducting live capture of wildlife and fish (traps, nets, electrofishing, chemical immobilization
+      where authorized), handling, marking and tagging with minimal stress and injury, and managing zoonotic and
+      personal safety risks under animal-care protocols and permits. Excludes survey design and population analysis.
+    stmt: >-
+      Captures animals with methods suited to the species and site, immobilizes them where authorized while monitoring
+      vital signs, marks or tags them and records biological data while minimizing handling time and stress, and applies
+      zoonotic and personal safety precautions, following the animal-care protocol and permit conditions.
+    span: [L1, L3]
+    sub: [L02, L03]
+    att: ATT-AUT
+    note: >-
+      Humane capture, handling and marking (L02/L03); FC primary, SC secondary (permits and animal-care approvals).
+      Scientific collection permits, animal-use protocol approval and controlled-drug authorization are Credential
+      gates. Basis [J].
+    tasks:
+      - id: FC-C15-T1
+        text: Capture animals with traps, nets or electrofishing following the approved animal-care protocol and permit conditions
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-RESEARCH, WP-REGPROGRAM]
+        cg: external-certificate
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: ecosystem-type, currencyDecay: M}
+      - id: FC-C15-T2
+        text: Immobilize an animal chemically where authorized, monitoring vital signs until recovery and recording drug doses
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-RESEARCH, WP-REGPROGRAM]
+        cg: external-certificate
+        acc: Controlled immobilization drugs are used only by personnel authorized under the applicable drug-control and animal-care requirements.
+      - id: FC-C15-T3
+        text: Mark captured animals with tags or other marks while recording biological data within protocol handling-time and stress limits
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-RESEARCH, WP-REGPROGRAM]
+      - id: FC-C15-T4
+        text: Apply zoonotic disease and personal safety precautions when handling wildlife, including protective equipment and decontamination
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-RESEARCH, WP-REGPROGRAM]
+    ind:
+      L1:
+        - t: Checks set traps or nets at the interval the protocol requires, recording each check so that no animal is held longer than the protocol allows.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+          sc: true
+        - t: Uses the protective equipment and decontamination steps the protocol requires for the species, as confirmed by the supervisor's observation.
+          a: [task-book-observation]
+          st: [T4]
+          sc: true
+      L2:
+        - t: Marks and samples captured animals within the protocol's handling-time limit, recording biological data that pass the project's quality check.
+          a: [task-book-observation, record-audit]
+          st: [T3]
+        - t: Selects capture methods and settings for a species and site, documenting how the choice limits injury and bycatch.
+          a: [work-sample, structured-interview-bars]
+          st: [T1]
+      L3:
+        - t: Immobilizes an animal where authorized, adjusting care when vital signs leave the protocol's range and recording doses and recovery.
+          a: [task-book-observation, record-audit]
+          st: [T2]
+          att: ATT-CPX
+          sc: true
+        - t: Evaluates crew members' capture and handling against the animal-care protocol, documenting coaching given and who is cleared to work unsupervised.
+          a: [task-book-observation, counterpart-360]
+          st: [T1, T3]
+          att: ATT-FOR
+
+enactments:
+  - id: ena-1.4.3-wildlife
+    comp: v1-1.4.3
+    label: Fish and wildlife identification enactment of species identification
+    sub: [L02, L03]
+    ap: resource-manager
+    note: >-
+      Fish and wildlife staff identify species, sex and age class in hand, by sight and sound and from sign, and
+      adjudicate camera-trap, acoustic and genetic classifier outputs against that evidence, because harvest, listing and
+      survey decisions depend on correct identification.
+  - id: ena-6.2.3-wildlife
+    comp: v1-6.2.3
+    label: Refuge and wildlife-area enactment of public land management planning
+    sub: [L02, L03]
+    ap: resource-manager
+    note: >-
+      Wildlife refuges and state wildlife management areas prepare comprehensive conservation and area management plans
+      setting habitat objectives, public uses (hunting, fishing, wildlife observation) and compatibility
+      determinations; state wildlife action plans set species priorities across ownerships.
+  - id: ena-sc-c08-wildlife
+    comp: SC-C08
+    label: Cooperative conservation enactment of cross-jurisdictional stewardship agreements
+    sub: [L02, L03]
+    ap: resource-manager
+    note: >-
+      Fish and wildlife programmes rely on federal-state cooperative agreements, interstate compacts for shared fish
+      stocks and migratory birds, and grant agreements that fund state wildlife work; agreement types covered by the
+      ADR-0007 hold are not authored here.
+  - id: ena-fc-c14-wildlife
+    comp: FC-C14
+    label: Aerial survey enactment of uncrewed and automated field systems
+    sub: [L02, L03]
+    ap: resource-manager
+    note: >-
+      Uncrewed aircraft are used for waterfowl, marine mammal, nest and habitat surveys and for thermal detection of
+      animals; flight planning must minimize disturbance to the animals counted, and automated counts are checked
+      against observer counts.
+  - id: ena-4.2.2-wildlife
+    comp: v1-4.2.2
+    label: Aquatic and wildlife enactment of invasive species control
+    sub: [L02, L03]
+    ap: resource-manager
+    note: >-
+      Fish and wildlife agencies detect and control aquatic invasive species and invasive animals, run boat inspection
+      and decontamination programmes and remove invasive fish where they threaten native populations.
+  - id: ena-5.1.3-wildlife
+    comp: v1-5.1.3
+    label: Wildlife area and hatchery enactment of environmental interpretation
+    sub: [L02, L03]
+    ap: resource-manager
+    note: >-
+      Refuges, hatcheries and wildlife areas interpret wildlife and fisheries management for visitors, hunters, anglers
+      and schools, including the reasons for regulations and habitat management.
+  - id: ena-fh-c01-wildlife
+    comp: FH-C01
+    label: Fish and wildlife agency enactment of listed-species consultation
+    sub: [L02, L03]
+    ap: regulator
+    note: >-
+      Fish and wildlife biologists in the consulting agencies review biological assessments, write biological opinions
+      and incidental take statements, and state wildlife agencies comment on federal actions; regulation changes to the
+      consultation framework are tracked as L5 instruments.
+    instr: ['seed:ins/esa-s4-s7-regs-2025', 'seed:ins/esa-harm-rescission']
+  - id: ena-fc-c11-wildlife
+    comp: FC-C11
+    label: Fish and wildlife enactment of field biosecurity and decontamination
+    sub: [L02, L03]
+    ap: resource-manager
+    note: >-
+      Fish and wildlife field work spreads pathogens and invasives (amphibian chytrid, whirling disease, bat white-nose
+      fungus, aquatic invasive species) unless gear, boats and clothing are decontaminated between sites to protocol.
+  - id: ena-fc-c12-wildlife
+    comp: FC-C12
+    label: Fisheries enactment of small-boat aquatic field work
+    sub: [L03]
+    ap: resource-manager
+    note: >-
+      Fisheries sampling from electrofishing boats, netting skiffs and survey vessels combines boat operation with
+      sampling gear, electrical and drowning hazards.
+  - id: ena-fc-c03-wildlife
+    comp: FC-C03
+    label: Wildlife monitoring enactment of automated species detection adjudication
+    sub: [L02, L03]
+    ap: resource-manager
+    note: >-
+      Camera-trap, acoustic and imaging programmes produce automated species detections at volume; biologists
+      adjudicate them with field-formed identification expertise and set review rates by species and error cost.
+  - id: ena-dc-cand-03-wildlife
+    comp: DC-CAND-03
+    label: Population monitoring enactment of monitoring and sampling design
+    sub: [L02, L03]
+    ap: resource-manager
+    note: >-
+      Wildlife and fish population monitoring designs must account for detection probability, survey timing and
+      spatial sampling so that trends and abundance estimates support harvest and listing decisions.

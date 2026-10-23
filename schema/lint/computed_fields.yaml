@@ -54,7 +54,11 @@ fields:
   - inverseLinks
 # Inverse links are computed in bundles; storing them on the "one" side would let the two sides drift (IA §3).
 inverse_fields_by_type:
-  Task: [tools]
-  Competency: [tasks, indicatorsByLevel]
+  Task: [tools]                                        # inverse of Tool.servesTasks (ADR-0029 §1.2)
+  Competency: [tasks, indicatorsByLevel, enactments]    # enactments: inverse of Enactment.competency (ADR-0029 §1.2)
   RoleProfile: [variants]
   Instrument: [events]
+# Inverse fields tolerated on DRAFT records during the S1 transition (warning W-COMPUTED-FIELD-DEPRECATED); an error
+# from status candidate on. The build ignores the stored value and recomputes it (inverse-links@1.1.0; ADR-0029 §1.2).
+transitional_on_drafts:
+  Competency: [enactments]

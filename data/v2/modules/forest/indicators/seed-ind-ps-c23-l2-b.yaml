@@ -1,0 +1,37 @@
+id: seed:ind-ps-c23-l2-b
+type: Indicator
+prefLabel:
+  en: Checks fiber-sourcing records against the chain-of-custody standard, listing every…
+competency: seed:PS-C23
+level: L2
+statement:
+  en: Checks fiber-sourcing records against the chain-of-custody standard, listing every record that fails and the correction required.
+augmentationMode: unaided
+assessmentMethods:
+- seeded-error-work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:PS-C23-T4
+layer: L1
+module: forest
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

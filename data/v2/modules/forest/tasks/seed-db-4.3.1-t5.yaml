@@ -1,0 +1,43 @@
+id: seed:db-4.3.1-t5
+type: Task
+prefLabel:
+  en: Direct a crew's tactical assignment, adjusting tactics when observed fire behaviour or weather departs from the briefing
+statement:
+  en: Direct a crew's tactical assignment, adjusting tactics when observed fire behaviour or weather departs from the briefing
+textSha256: 9f491f94cebf53a321d71addad52de469cffce3bfb601d13d3e372f3f81ddbdb
+supports:
+- competency: seed:v1-4.3.1
+  strength: primary
+workFunction: WF-RESPOND
+workflowProfiles:
+- WP-INCIDENT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  credentialGate: internal-qualification
+signOffAuthority:
+  kind: position-qualification
+homeModule: forest
+subsectors:
+- L07
+layer: L2
+module: forest
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

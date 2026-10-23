@@ -27,7 +27,7 @@ import wp07_content as C  # noqa: E402
 AGENT = "emstagent:lc-agent@wp-07"
 TOOL = "claude-opus-5-5"
 PROMPT = "wp07-transversal-learning@1"
-GEN = "2026-10-23T14:30:00Z"
+GEN = "2026-10-23T14:05:00Z"
 CHECKED_ON = "2026-10-23"
 CORE = REPO / "data" / "v2" / "core"
 ADRS = ["ADR-0025", "ADR-0026", "ADR-0004", "ADR-0003"]
@@ -275,8 +275,7 @@ class Builder:
         rec["levels"] = levels
         if ks_ids:
             rec["knowledge"] = ks_ids
-        if ena_ids:
-            rec["enactments"] = ena_ids
+        # Competency.enactments is not stored: it is a computed inverse link (CR-DE-001 ruling, ADR-0029; inverse-links@1.1.0).
         rec["homeModule"] = "core"
         rec["learningDesign"] = c["learningDesign"]
         rec.update({"layer": "L1", "module": "core", "status": "draft", "lifecycleState": "established",

@@ -86,7 +86,7 @@ COMPS = [
       levels={
           "L2": [I("Prepares equipment, supplies and vehicles against a readiness checklist, with critical instruments tested before departure and no campaign day lost to missing gear.", "u", "record-audit", t="ready"),
                  I("Runs a remote field camp with water, food storage, sanitation, wildlife precautions and resupply kept to plan, as checked at the supervisor's visit.", "u", "task-book-observation", t="camp"),
-                 I("Secures access permissions for all field sites before the season, recording the conditions of access that crews must follow.", "u", "record-audit", t="acc")],
+                 I("Arranges access permissions for all field sites before the season, recording the conditions of access that crews must follow.", "u", "record-audit", t="acc")],
           "L3": [I("Schedules a field campaign against phenology, flow, tide or weather windows so that each protocol's sampling window is planned, documenting contingencies.", "u", "portfolio-review", att="ATT-CPX", t="sched"),
                  I("Re-plans a campaign in the field when weather, access or crew availability changes, protecting the highest-priority samples first and recording what was lost.", "u", "record-audit portfolio-review", att="ATT-GUI", t="replan")],
           "L4": [I("Plans multi-crew, multi-season field programs across a region, documenting logistics, contingency and staffing assumptions that program managers can review.", "u", "portfolio-review", att="ATT-SCO", t="sched"),

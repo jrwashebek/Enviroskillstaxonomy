@@ -1,18 +1,52 @@
 id: seed:v1-4.3.3
 type: Competency
 prefLabel:
-  en: Fuels management
+  en: Design fuels treatments that reduce wildfire hazard and verify their effects in the field
+altLabel:
+  en:
+  - Fuels management
+  - Hazardous fuels reduction
+definition:
+  en: Assessing fuels, designing mechanical, prescribed fire, grazing and other fuels treatments, supervising their implementation to residual specifications and verifying effects on fuels and expected fire behaviour, including field verification of mapped fuels. Excludes prescribed fire execution (v1 4.3.2) and community wildfire plans as a whole.
 statement:
-  en: Reducing wildfire risk and intensity by treating vegetation and fuels on the landscape.
+  en: Assesses fuels with field sampling and verified fuel maps, designs treatments that change expected fire behaviour where it matters, supervises implementation to residual fuel and canopy specifications and re-measures fuels after treatment, so that effectiveness and maintenance needs are known.
 notation:
 - scheme: EMSTv1
   value: 4.3.3
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-4.3.3-l1-a
+  - seed:ind-4.3.3-l1-b
+- level: L2
+  indicators:
+  - seed:ind-4.3.3-l2-a
+  - seed:ind-4.3.3-l2-b
+- level: L3
+  indicators:
+  - seed:ind-4.3.3-l3-a
+  - seed:ind-4.3.3-l3-b
+- level: L4
+  indicators:
+  - seed:ind-4.3.3-l4-a
+  - seed:ind-4.3.3-l4-b
+homeModule: forest
+subsectors:
+- L07
+- L01
+reusability: subsector-specific
 layer: L1
 module: forest
-homeModule: forest
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Domain:
   code: '4'
   label: Field Operations Skills
@@ -20,14 +54,12 @@ v1SkillArea:
   code: '4.3'
   label: Fire Management
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: Durable; mechanized/remote treatment equipment noted as robotics-pending and lidar fuels mapping as DC input; add field verification of fuels maps; title defect fixed (FC verdict). Role verdicts considered: FC:change|FC:carry|IO:change. Title and description were merged in the v1 database and are split here from the source text.'
-license: CC0-1.0
-sensitivity: public
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: Durable; mechanized/remote treatment equipment noted as robotics-pending and lidar fuels mapping as DC input; add field verification of fuels maps; title defect fixed (FC verdict). Role verdicts considered: FC:change|FC:carry|IO:change. Title and description were merged in the v1 database and are split here from the source text. WP-06: Moved to MOD-11; durable. Mechanized and remote treatment equipment are robotics-pending (L4); lidar fuels mapping is a DC input; field verification of fuels maps added (FC verdict); title defect fixed. Basis [J].'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:4.3.3
     v1Code: 4.3.3
@@ -38,7 +70,8 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
   - v1Key: v1:4.3.3
     v1Code: 4.3.3
     v1Table: source_text/competencies
@@ -47,10 +80,12 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
 v1Seed:
   v1Title: Fuels management Reducing wildfire risk and intensity by treating vegetation and fuels on the landscape.
   v1Description: ''

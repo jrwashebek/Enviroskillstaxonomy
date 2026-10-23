@@ -15,8 +15,11 @@ reproductionRegime:
   mentorshipDependence: M
   cycleDependence: none
   placeBoundness: general
-  credentialGate: external-certificate
+  credentialGate: licence
   currencyDecay: H
+credentialGates:
+- credential: seed:crd-remote-pilot-certificate
+  kind: required
 notation:
 - scheme: EMSTv1
   value: 4.5.4:T1
@@ -35,7 +38,7 @@ v1SkillArea:
   code: '4.5'
   label: Equipment Operation
 editorialNote:
-  en: 'G-2 split role: execution to protocol (production). Credential gate level is the author''s draft pending the WP-07 Credential register (T-8). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
+  en: 'G-2 split role: execution to protocol (production). Credential gates link the WP-07 register (T-8); gates are inputs, never proficiency. Public-aircraft operations under agency authority use an agency pilot qualification (not yet in the register). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:

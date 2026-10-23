@@ -27,7 +27,7 @@ import emstlib as L  # noqa: E402
 SRC = REPO / "docs" / "research" / "domain-bench" / "credentials_register.csv"
 OUT = REPO / "data" / "v2" / "registers" / "credentials"
 AGENT = "emstagent:lc-agent@wp-07"
-GEN = "2026-10-23T15:30:00Z"
+GEN = "2026-10-23T14:15:00Z"
 CHECKED = "2026-10-23"
 
 SKIP = {"DB-CR-005": "Tribal-related; held for TN (ADR-0007 §D)", "DB-CR-089": "organizational accreditation, not a person credential"}
@@ -37,7 +37,10 @@ V308 = {"DB-CR-043", "DB-CR-022", "DB-CR-067", "DB-CR-009", "DB-CR-018", "DB-CR-
 V307 = {"DB-CR-041"}
 
 MANDATED_TRAINING = {"DB-CR-024", "DB-CR-025", "DB-CR-026", "DB-CR-033", "DB-CR-053"}
-REG_MANDATED_QUAL = {"DB-CR-012", "DB-CR-019", "DB-CR-032", "DB-CR-068", "DB-CR-078", "DB-CR-085", "DB-CR-081"}
+# closureType follows vocab/authority_positions.yaml#closure_types as defined: "regulation-mandated-training" only where a
+# regulation requires the credential for the act; employer or interagency-policy requirements are "voluntary" by that
+# definition (CR-LC-001 asks the CA for an employer-or-policy-mandated value).
+REG_MANDATED_QUAL = {"DB-CR-012", "DB-CR-019", "DB-CR-032", "DB-CR-078", "DB-CR-085"}
 
 OVERRIDE = {
     "DB-CR-001": dict(key="seed:crd-drinking-water-treatment-operator",
@@ -78,9 +81,9 @@ OVERRIDE = {
                       note="IEMA rebranded as ISEP by July 2025 (V3-07); never use IEMA as the current name. Post-nominals reported as GradISEP, AISEP, PISEP and FISEP (LC-102; a secondary source naming six of seven grades); the Full grade's post-nominal and the competency basis of each grade were not confirmed on an ISEP page. Chartered Environmentalist is recorded separately."),
     "DB-CR-081": dict(key="seed:crd-wildland-fire-position-qualification", name="Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
                       issuer="The employing agency's certifying official, under the interagency wildland fire position qualification standard",
-                      credentialType="position-qualification", closureType="regulation-mandated-training",
+                      credentialType="position-qualification", closureType="voluntary",
                       verified=(True, ["V3-13", "LC-103", "LC-104"]),
-                      note="Each qualification is certified by the employing agency after task-book evaluation, not issued by the standards body (LC-104). The standard is revised annually and was updated in January 2026, changing some position names; USWFS-USFS aligned federal qualification standards take effect January 2027 (NWCG is not a party to that alignment) (V3-13, LC-103). Gate type: required by agency and interagency policy, not by statute. Holding a qualification is a gate, not a proficiency level (ADR-0004 §8)."),
+                      note="Each qualification is certified by the employing agency after task-book evaluation, not issued by the standards body (LC-104). The standard is revised annually and was updated in January 2026, changing some position names; USWFS-USFS aligned federal qualification standards take effect January 2027 (NWCG is not a party to that alignment) (V3-13, LC-103). Gate type: required by agency and interagency policy for incident and prescribed-fire assignments, not by statute or regulation, so closureType is 'voluntary' under the vocabulary's definition (CR-LC-001 proposes an employer-or-policy-mandated value). Holding a qualification is a gate, not a proficiency level (ADR-0004 §8)."),
     "DB-CR-091": dict(key="seed:crd-remote-pilot-certificate", issuer="Federal Aviation Administration", issuingJurisdiction="United States",
                       credentialType="licence", closureType="legal-licensure", verified=(False, ["LC-105", "LC-040"])),
     "DB-CR-043": dict(key="seed:crd-rehs-rs"),
@@ -103,12 +106,12 @@ EXTRA = [
          note="Split from DB-CR-064. Licensing arrangement between ISEP and the Society for the Environment not checked this session."),
     dict(key="seed:crd-contracting-officers-representative", name="Federal contracting officer's representative certification (FAC-COR)",
          issuer="Federal acquisition workforce certification programme administered through the employing agency", issuingJurisdiction="United States (federal)",
-         credentialType="certification", closureType="regulation-mandated-training", subsectors="", verified=(False, []),
-         note="Gate for the federal technical-representative enactment of PS-C01 (seed:lc-ena-txf-scope-federal-technical-rep). Current programme name, levels and issuer not verified this session (WP-15 check)."),
+         credentialType="certification", closureType="voluntary", subsectors="", verified=(False, []),
+         note="Required by federal acquisition policy for designated representatives (policy, not regulation; closureType per vocabulary definition). Gate for the federal technical-representative enactment of PS-C01 (seed:lc-ena-txf-scope-federal-technical-rep). Current programme name, levels and issuer not verified this session (WP-15 check)."),
     dict(key="seed:crd-state-inspector-credential", name="State environmental inspector credential (programme-issued delegation to inspect)",
          issuer="The state programme that delegates inspection authority (varies by state and programme)", issuingJurisdiction="Each US state programme",
-         credentialType="position-qualification", closureType="regulation-mandated-training", subsectors="", verified=(False, []),
-         note="Generic placeholder for state-issued inspector credentials used by the regulatory-inspector enactment of IO-C01; each state's programme name, basis and renewal must be recorded per state (SL lane, X5)."),
+         credentialType="position-qualification", closureType="voluntary", subsectors="", verified=(False, []),
+         note="Legal basis varies by state; closureType is the conservative default until each state's basis is recorded. Generic placeholder for state-issued inspector credentials used by the regulatory-inspector enactment of IO-C01; each state's programme name, basis and renewal must be recorded per state (SL lane, X5)."),
 ]
 
 TYPE_MAP = {"license": "licence", "certification": "certification", "certificate": "certificate", "qualification": "position-qualification"}

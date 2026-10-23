@@ -1,0 +1,84 @@
+id: seed:class/TX/2585
+type: StateClassRecord
+prefLabel:
+  en: Sanitarian III
+notation:
+- scheme: class-TX
+  value: '2585'
+jurisdictionId:
+  stateFips: '48'
+  label: Texas
+employerType: state-agency
+agency: Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications
+classCode: '2585'
+classTitle: Sanitarian III
+seriesId: Sanitarian I-IV
+levelIndex:
+  ordinal: 3
+  label: III
+supervisoryStatus: lead
+specEffectiveDate: '2026-07-01'
+workDescriptionText:
+  storage: hash-and-url
+  url: https://hr.sao.texas.gov/Compensation/JobDescriptions/1830.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+mqText:
+  storage: hash-and-url
+  url: https://hr.sao.texas.gov/Compensation/JobDescriptions/1830.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+  paraphrase: Same as Sanitarian I.
+mqLocation: agency-policy
+degreeRule: required
+licensesRequired:
+- credential: registration as a professional sanitarian
+  issuer: State of Texas
+  timing: not-stated
+payBasis: annual
+payMinMax:
+  min: 57614
+  max: 93138
+  currency: USD
+  basis: annual
+payGradeLabel: B22
+payEffectiveDate: '2026-07-01'
+militaryEquivalent:
+- source: SL-052
+  note: class listed in the Texas SAO military crosswalk (native crosswalk; candidate gold set for X5); codes not extracted
+emstMapping:
+- roleVariantKey: R26-environmental-health-specialist/state
+  pending: role variant not yet authored by WP-08; re-run this script to link it (CR-IA-001 key)
+  roleLevel: senior
+  matchType: skos:closeMatch
+  confidence: 0.65
+  reviewer: null
+  reviewDate: null
+  competencyTargets: []
+  crosswalkRecord: emst-x5-tx:R26-environmental-health-specialist/state:2585
+  note: competency targets with level are added when WP-08 authors the role profile
+editorialNote:
+  en: Dated record as of 2026-10-23; re-run each 1 July or on plan revision (ADR-0022 X5).
+layer: L6
+module: core
+status: draft
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2027-07-01'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:ia-wp09@phase4
+  generatedAt: '2026-10-23T19:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp09-crosswalk@1
+  evidenceLabel: E
+  sources:
+  - WP09-002
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0022
+  - ADR-0006

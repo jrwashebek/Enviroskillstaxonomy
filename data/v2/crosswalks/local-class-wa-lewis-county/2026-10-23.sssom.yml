@@ -1,0 +1,30 @@
+mapping_set_id: https://w3id.org/emst/crosswalks/local-class-wa-lewis-county/2026-10-23
+mapping_set_version: 0.1.0-draft
+mapping_set_title: 'X5 EMST role variants to Lewis County (WA) classes: county environmental health'
+mapping_set_description: Agent-drafted candidate mappings from MVP role variants (seed:<role_key>/<sector_actor>, CR-IA-001) to native class codes; class grain, with position overrides only for the PA pilot (ADR-0022 X5; SL disagreement 6). role_level in `other` names the EMST role level the class corresponds to; register_record names the dated StateClassRecord (data/v2/registers/state_classes/) or 'pending'. Native state crosswalks (TX military crosswalk, PA federal-title equivalencies) are candidate gold sets. Not a classification, qualification or selection decision.
+subject_source: emstsrc:emst-v2-role-variants
+subject_source_version: 2.0.0-draft (MVP role set 2026-10-23)
+object_source: emstsrc:local-class-wa-lewis-county
+object_source_version: Lewis County class specification SN313 (2007) and 2026 master salary schedule
+mapping_tool: pipelines/crosswalks/x5_state_classes.py@0.1.0
+comment: Snapshot 2026-10-23; re-run each 1 July or when the plan revises.
+license: https://creativecommons.org/publicdomain/zero/1.0/
+creator_id:
+- emstagent:ia-wp09@phase4
+mapping_date: '2026-10-23'
+curie_map:
+  emst: https://w3id.org/emst/
+  seed: https://w3id.org/emst/seed/
+  emstagent: https://w3id.org/emst/agent/
+  sssom: https://w3id.org/sssom/
+  semapv: https://w3id.org/semapv/vocab/
+  skos: http://www.w3.org/2004/02/skos/core#
+  LewisCoWA: https://w3id.org/emst/ext/local-class/WA-lewis-county/
+  emstsrc: https://w3id.org/emst/sources/
+extension_definitions:
+- slot_name: record_id
+  property: https://w3id.org/sssom/record_id
+  type_hint: xsd:string
+- slot_name: reviewer_agreement
+  property: https://w3id.org/sssom/reviewer_agreement
+  type_hint: xsd:double

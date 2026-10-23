@@ -1,0 +1,46 @@
+id: seed:sc-negotiate-permit-conditions
+type: Task
+prefLabel:
+  en: Negotiate permit conditions or mitigation with an applicant, generating options that meet the governing requirements and recording the agreed terms
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Negotiate permit conditions or mitigation with an applicant, generating options that meet the governing requirements and recording the agreed terms
+textSha256: 83080f9b668b64455e1b9b0f36ec690950afd70c831e93aad616fa806472a73c
+supports:
+- competency: seed:SC-C07
+  strength: primary
+workFunction: WF-AUTHORIZE
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+modes:
+- MODE-RESOLVE
+relationshipTypes:
+- stakeholder
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Negotiate permit conditions or mitigation with an applicant, generating options that meet the governing requirements and recording the agreed terms" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

@@ -1,18 +1,49 @@
 id: seed:v1-6.5.5
 type: Competency
 prefLabel:
-  en: International conservation agreements
+  en: Implement international wildlife and fisheries conservation agreements
+altLabel:
+  en:
+  - International conservation agreements
+  - Wildlife trade controls
+  - Migratory species agreements
+definition:
+  en: 'Carrying out a government''s or organization''s commitments under international and bilateral conservation agreements (wildlife trade, migratory species, transboundary habitats and shared fish stocks): reporting, transboundary coordination and trade-permit findings. Excludes domestic consultation duties and agreements with domestic governments.'
 statement:
-  en: Understanding and implementing conservation commitments and collaborations that span international boundaries.
+  en: Prepares implementation reports under international conservation agreements from monitoring and management records, coordinates transboundary habitat and population actions with counterpart agencies, and makes the findings that wildlife-trade permits require, documenting how each commitment is met.
 notation:
 - scheme: EMSTv1
   value: 6.5.5
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:ind-6.5.5-l2-a
+  - seed:ind-6.5.5-l2-b
+- level: L3
+  indicators:
+  - seed:ind-6.5.5-l3-a
+  - seed:ind-6.5.5-l3-b
+- level: L4
+  indicators:
+  - seed:ind-6.5.5-l4-a
+  - seed:ind-6.5.5-l4-b
+homeModule: wildlife
+subsectors:
+- L02
+- L03
+reusability: subsector-specific
 layer: L1
 module: wildlife
-homeModule: wildlife
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Domain:
   code: '6'
   label: Policy & Regulatory Skills
@@ -20,14 +51,12 @@ v1SkillArea:
   code: '6.5'
   label: Intergovernmental Relations
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-12 wildlife. Rationale: International conservation agreements (CITES, migratory species, transboundary fisheries) are L02/L03-specific with low US workforce share; US-Tribal treaty rights are a different subject, owned by TN-C01 (held). Role verdicts considered: TN:add.'
-license: CC0-1.0
-sensitivity: public
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-12 wildlife. Rationale: International conservation agreements (CITES, migratory species, transboundary fisheries) are L02/L03-specific with low US workforce share; US-Tribal treaty rights are a different subject, owned by TN-C01 (held). Role verdicts considered: TN:add. WP-06: Moved to MOD-12 (L02/L03-specific, low US workforce share). Domestic rights-based subjects raised in the v1 verdicts belong to a held competency (TN-C01; ADR-0007) and are not authored here. Agreement names are L5 instruments. Basis [J].'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:6.5.5
     v1Code: 6.5.5
@@ -38,7 +67,8 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
   - v1Key: v1:6.5.5
     v1Code: 6.5.5
     v1Table: source_text/competencies
@@ -47,10 +77,12 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
 v1Seed:
   v1Title: International conservation agreements
   v1Description: Understanding and implementing conservation commitments and collaborations that span international boundaries.

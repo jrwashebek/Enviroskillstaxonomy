@@ -1,0 +1,153 @@
+id: seed:lc-pw-cor2-corps-to-fire-operations
+type: Pathway
+prefLabel:
+  en: 'Exploratory pathway: conservation corps member to wildland fire operations (entry)'
+definition:
+  en: Moves a corps member into entry wildland fire operations through safety culture, fireline and saw work, fire behaviour basics and prescribed-fire crew work, evaluated on qualifying assignments. Position qualifications are gates, not levels (ADR-0003 T-8). Exploratory.
+notation:
+- scheme: mvp-corridor
+  value: COR-2
+fromVariant: seed:R01-conservation-corps-member
+toVariant: seed:R06-wildland-fire-operations
+pathwayType: new-hire
+outcomes:
+- seed:ind-4.3.1-l1-a
+- seed:ind-4.3.1-l1-b
+- seed:ind-4.3.1-l2-a
+- seed:ind-4.3.1-l2-b
+- seed:ind-4.3.2-l1-a
+- seed:ind-4.3.2-l1-b
+- seed:ind-4.3.4-l1-a
+- seed:ind-4.3.4-l1-b
+- seed:ind-fc-c18-l1-a
+- seed:ind-fc-c18-l1-b
+- seed:ind-fc-c18-l1-c
+- seed:ind-v1-4.4.1-a-l1-a
+- seed:ind-v1-4.4.1-a-l1-b
+- seed:ind-v1-4.4.1-a-l1-c
+- seed:ind-v1-4.4.2-l1-a
+- seed:ind-v1-4.4.2-l1-b
+- seed:ind-v1-4.4.5-l1-a
+- seed:ind-v1-4.4.5-l1-b
+- seed:ind-v1-4.4.5-l1-c
+- seed:ind-v1-4.5.2-l1-a
+- seed:ind-v1-4.5.2-l1-b
+- seed:ind-v1-4.5.2-l1-c
+- seed:lc-txc-safety-l1-a
+- seed:lc-txc-safety-l1-b
+- seed:lc-txc-safety-l1-c
+- seed:lc-txc-safety-l2-a
+- seed:lc-txc-safety-l2-b
+- seed:lc-txc-safety-l2-c
+modes:
+- WBL
+- FD
+- SIM
+- CL
+- MEN
+assessmentPlan:
+  en: 'Each CLO is assessed with the methods its indicators list; field-craft outcomes are assessed at least once in the field, statecraft outcomes in a live or simulated stakeholder or legal-administrative setting, data-craft outcomes on real data with a reproducible product (LC template R4-R5). Assisted-mode outcomes include a seeded-error validation drill. Supervisor formation plan required: the learner''s supervisor works to seed:v1-7.2.2 at L2 or above and a named mentor or evaluator to seed:IO-C01 at L3 (ADR-0026 R7). Training use only; never a selection instrument (IO).'
+sequence:
+- step: 1
+  tasks:
+  - seed:lc-txc-exercise-stop-work
+  - seed:fc-risk-heat-recognize
+  - seed:v1-4.4.3-T2
+  - seed:v1-4.4.2-T1
+  outcomes:
+  - seed:lc-txc-safety-l1-a
+  - seed:lc-txc-safety-l1-b
+  - seed:lc-txc-safety-l1-c
+  - seed:ind-v1-4.4.1-a-l1-a
+  - seed:ind-v1-4.4.1-a-l1-b
+  - seed:ind-v1-4.4.1-a-l1-c
+  - seed:ind-v1-4.4.2-l1-a
+  - seed:ind-v1-4.4.2-l1-b
+  - seed:ind-fc-c18-l1-a
+  - seed:ind-fc-c18-l1-b
+  - seed:ind-fc-c18-l1-c
+  roleLevel: entry
+  note:
+    en: 'Safety culture first: stop-work, heat and smoke illness, navigation and first aid. CLOs: seed:v1-4.4.1-B@L1, seed:v1-4.4.1-A@L1, seed:v1-4.4.2@L1, seed:FC-C18@L1.'
+- step: 2
+  tasks:
+  - seed:v1-4.3.1-T1
+  - seed:v1-4.3.1-T3
+  - seed:v1-4.5.2-T1
+  - seed:v1-4.4.5-T1
+  outcomes:
+  - seed:ind-4.3.1-l1-a
+  - seed:ind-4.3.1-l1-b
+  - seed:ind-v1-4.5.2-l1-a
+  - seed:ind-v1-4.5.2-l1-b
+  - seed:ind-v1-4.5.2-l1-c
+  - seed:ind-v1-4.4.5-l1-a
+  - seed:ind-v1-4.4.5-l1-b
+  - seed:ind-v1-4.4.5-l1-c
+  roleLevel: entry
+  note:
+    en: 'Fireline, mop-up, saw work and emergency communication, evaluated only on the assignment type each task is coded for (R5) [E: LC-104]. CLOs: seed:v1-4.3.1@L1, seed:v1-4.5.2@L1, seed:v1-4.4.5@L1. Formation (observed-wbl): seed:v1-4.3.1-T1: task-book tasks on qualifying incidents; release when evaluator sign-off in coded context. Formation (observed-wbl): seed:v1-4.5.2-T1: felling within certification limits, observed by a saw evaluator; release when evaluator sign-off.'
+- step: 3
+  tasks:
+  - seed:v1-4.3.4-T1
+  - seed:v1-4.2.3-T1
+  - seed:v1-4.2.3-T2
+  outcomes:
+  - seed:ind-4.3.4-l1-a
+  - seed:ind-4.3.4-l1-b
+  - seed:ind-4.3.2-l1-a
+  - seed:ind-4.3.2-l1-b
+  roleLevel: entry
+  note:
+    en: 'Fire weather and prescribed-fire crew work. CLOs: seed:v1-4.3.4@L1, seed:v1-4.3.2@L1. Formation (supervised-repetitions+validation-drill): seed:v1-4.3.4-T1: 10 hand calculations of fuel moisture and indices from on-site observations; release when within tolerance of the reference calculation. Formation (observed-wbl): seed:v1-4.2.3-T1: ignition on qualifying prescribed fires under a firing boss; release when evaluator sign-off.'
+- step: 4
+  tasks:
+  - seed:lc-txc-deliver-briefing
+  - seed:db-4.3.1-t5
+  - seed:fc-risk-briefing
+  outcomes:
+  - seed:lc-txc-safety-l2-a
+  - seed:lc-txc-safety-l2-b
+  - seed:lc-txc-safety-l2-c
+  - seed:ind-4.3.1-l2-a
+  - seed:ind-4.3.1-l2-b
+  roleLevel: journey
+  note:
+    en: 'Journey step: briefings and directing a small crew''s tactical assignment, with turn-down practice (TX-C L2-L3). CLOs: seed:v1-4.4.1-B@L2, seed:v1-4.3.1@L2.'
+recognitionOfPriorLearning:
+- seed:crd-wilderness-first-aid
+durationAndCost:
+  hours: 200
+  months: 12
+  costNote: '[J] Entry training plus one to two seasons of supervised assignments; aligned federal qualification standards take effect January 2027 [E: V3-13].'
+alternativeFormationRoutes:
+- Sand-table and scenario simulation for rare events (entrapment, escaped prescribed fire) only; never in place of graduated exposure on assignments (ADR-0026 FC vs LC trade-off).
+recommended: false
+layer: learning
+module: core
+status: draft
+lifecycleState: proposed
+reviewBy: '2027-04-23'
+useTier: exploratory
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'EXPLORATORY, not recommended: no pathway is labelled recommended until it passes CM''s M-03 validation gate (ADR-0023 §5; ADR-0027). Built from the role-profile delta (ADR-0026 R1); hours, months and quotas are LC judgment for pilot calibration. Role records are WP-08''s; frictions attach when CM''s friction register exists. Staged outside data/v2 until the role records resolve (CR-LC-001).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:20:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-pathways@1
+  sources:
+  - LC-104
+  - V3-13
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0026
+  - ADR-0023
+  - ADR-0027
+  - ADR-0004

@@ -1,0 +1,40 @@
+id: seed:ind-4.3.2-l3-b
+type: Indicator
+prefLabel:
+  en: Halts uncrewed-aircraft ignition when the firing pattern or fire behaviour departs…
+competency: seed:v1-4.3.2
+level: L3
+statement:
+  en: Halts uncrewed-aircraft ignition when the firing pattern or fire behaviour departs from the plan, and records the departure and the action taken.
+augmentationMode: supervisory
+assessmentMethods:
+- task-book-observation
+- simulation-role-play
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:db-4.3.2-t4
+distinguishingAttribute: ATT-AUG
+safetyOrLegalCritical: true
+layer: L1
+module: forest
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

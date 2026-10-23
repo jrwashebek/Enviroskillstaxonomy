@@ -47,6 +47,22 @@
   "Bundle": "emstv:Bundle",
   "Source": "emstv:Source",
   "ChangeRecord": "emstv:ChangeRecord",
+  "E0": {
+   "@id": "emstv:E0",
+   "@type": "xsd:double"
+  },
+  "E1": {
+   "@id": "emstv:E1",
+   "@type": "xsd:double"
+  },
+  "E2": {
+   "@id": "emstv:E2",
+   "@type": "xsd:double"
+  },
+  "E3": {
+   "@id": "emstv:E3",
+   "@type": "xsd:double"
+  },
   "accountabilityConstraint": {
    "@id": "emstv:accountabilityConstraint",
    "@type": "@json"
@@ -115,8 +131,7 @@
    "@id": "emstv:assessability"
   },
   "assessedAt": {
-   "@id": "emstv:assessedAt",
-   "@type": "xsd:date"
+   "@id": "emstv:assessedAt"
   },
   "assessmentContext": {
    "@id": "emstv:assessmentContext",
@@ -154,6 +169,13 @@
   },
   "bargainingUnit": {
    "@id": "emstv:bargainingUnit"
+  },
+  "baseline": {
+   "@id": "emstv:baseline"
+  },
+  "baselineValue": {
+   "@id": "emstv:baselineValue",
+   "@type": "xsd:double"
   },
   "basis": {
    "@id": "emstv:basis",
@@ -381,8 +403,7 @@
    "@id": "emstv:disclaimers"
   },
   "dispersion": {
-   "@id": "emstv:dispersion",
-   "@type": "xsd:double"
+   "@id": "emstv:dispersion"
   },
   "distinctness": {
    "@id": "emstv:distinctness"
@@ -557,12 +578,19 @@
    "@id": "emstv:hypothesizedEntity",
    "@type": "@json"
   },
+  "impact": {
+   "@id": "emstv:impact",
+   "@type": "xsd:integer"
+  },
   "importance": {
    "@id": "emstv:importance",
    "@type": "xsd:integer"
   },
   "inScheme": {
    "@id": "skos:inScheme"
+  },
+  "independenceKey": {
+   "@id": "emstv:independenceKey"
   },
   "index": {
    "@id": "emstv:index"
@@ -671,6 +699,9 @@
    "@id": "emstv:levelBand",
    "@container": "@set"
   },
+  "levelDistribution": {
+   "@id": "emstv:levelDistribution"
+  },
   "levelIndex": {
    "@id": "emstv:levelIndex"
   },
@@ -707,8 +738,7 @@
    "@id": "emstv:mapsTo"
   },
   "matchedOnetTasks": {
-   "@id": "emstv:matchedOnetTasks",
-   "@container": "@set"
+   "@id": "emstv:matchedOnetTasks"
   },
   "maturity": {
    "@id": "emstv:maturity"
@@ -862,6 +892,10 @@
   "placeBoundness": {
    "@id": "emstv:placeBoundness"
   },
+  "pointsToward": {
+   "@id": "emstv:pointsToward",
+   "@container": "@set"
+  },
   "positiveEducationRequirement": {
    "@id": "emstv:positiveEducationRequirement",
    "@type": "xsd:boolean"
@@ -949,6 +983,10 @@
   },
   "recordedBy": {
    "@id": "emstv:recordedBy"
+  },
+  "registeredDeployment": {
+   "@id": "emstv:registeredDeployment",
+   "@type": "xsd:boolean"
   },
   "relatedTitles": {
    "@id": "emstv:relatedTitles",
@@ -1067,6 +1105,10 @@
    "@id": "emstv:scenarioSensitivity",
    "@type": "@json"
   },
+  "scenarioSignposts": {
+   "@id": "emstv:scenarioSignposts",
+   "@container": "@set"
+  },
   "scheme": {
    "@id": "emstv:notationScheme"
   },
@@ -1138,6 +1180,9 @@
   "signOffAuthority": {
    "@id": "emstv:signOffAuthority",
    "@type": "@json"
+  },
+  "signalFamily": {
+   "@id": "emstv:signalFamily"
   },
   "signalStatus": {
    "@id": "emstv:signalStatus"
@@ -1246,8 +1291,7 @@
    "@id": "emstv:targetCode"
   },
   "targetId": {
-   "@id": "emstv:targetId",
-   "@type": "@id"
+   "@id": "emstv:targetId"
   },
   "targetLevel": {
    "@id": "emstv:targetLevel"
@@ -1455,6 +1499,9 @@
   },
   "versionIntroduced": {
    "@id": "emstv:firstRelease"
+  },
+  "weighting": {
+   "@id": "emstv:weighting"
   },
   "workDescriptionText": {
    "@id": "emstv:workDescriptionText"

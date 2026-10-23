@@ -1,0 +1,47 @@
+id: seed:FC-C15-T1
+type: Task
+prefLabel:
+  en: Capture animals with traps, nets or electrofishing following the approved animal-care protocol and permit conditions
+statement:
+  en: Capture animals with traps, nets or electrofishing following the approved animal-care protocol and permit conditions
+textSha256: 03252cf212a8d28a325aacee10c08f760c484837d6e29f99d8c3600def2c26bf
+supports:
+- competency: seed:FC-C15
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-RESEARCH
+- WP-REGPROGRAM
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: seasonal
+  placeBoundness: ecosystem-type
+  currencyDecay: M
+  credentialGate: external-certificate
+homeModule: wildlife
+subsectors:
+- L02
+- L03
+layer: L2
+module: wildlife
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
