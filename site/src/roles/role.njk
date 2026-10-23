@@ -26,23 +26,24 @@ eleventyComputed:
   {% for v in role.variants %}
   <li class="emst-card">
     <h3><a href="{{ v.url | url }}">{{ v.actorLabel }}</a></h3>
-    <p>Authority position: {{ v.authorityPositionLabel or "not set" }}{% if v.subtype %} · {{ v.subtype }}{% endif %}</p>
+    <p>Authority position: {{ v.authorityPositionLabel or "not set" }}{% if v.subtypeLabel %} · {{ v.subtypeLabel }}{% endif %}</p>
     <p><a href="{{ v.url | url }}">How it is changing</a> · <a href="{{ v.gapUrl | url }}">Gap check</a> · <a href="{{ v.pathwaysUrl | url }}">Where it can lead</a></p>
   </li>
   {% endfor %}
 </ul>
 {% else %}
-<div class="emst-callout emst-callout--empty" role="status"><p>No sector-actor variants of this role are in this build yet.</p></div>
+<div class="emst-callout emst-callout--empty" role="status"><p>No employer-type variants of this role are in this build yet.</p></div>
 {% endif %}
 
 <h2>Role levels</h2>
 <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Role levels">
 <table class="usa-table usa-table--compact">
-  <caption>Role levels and the proficiency band each spans</caption>
+  <caption>Role levels and the proficiency band each spans (editorial draft)</caption>
   <thead><tr><th scope="col">Role level</th><th scope="col">Proficiency band</th></tr></thead>
-  <tbody>{% for l in role.roleLevels %}<tr><td>{{ l.key | titlecase }}</td><td>{{ l.band | join(" to ") }}</td></tr>{% endfor %}</tbody>
+  <tbody>{% for l in role.roleLevels %}<tr><td>{{ l.key | titlecase }}</td><td>{% for b in l.band | uniq %}{{ b }} ({{ emst.labels.level[b] | lower }}){% if not loop.last %} to {% endif %}{% endfor %}</td></tr>{% endfor %}</tbody>
 </table>
 </div>
+<p class="emst-muted">Proficiency levels run from L1 ({{ emst.labels.level.L1 | lower }}) to L5 ({{ emst.labels.level.L5 | lower }}); <a href="{{ '/competencies/' | url }}">each competency page</a> describes what each level looks like.</p>
 <p>Primary work function: {{ role.primaryWorkFunctionLabel or "not set" }} <span class="emst-muted">(editorial classification of the role, not a rated value)</span>.</p>
 
 {% set occ = role.crosswalks | where("noTerm", false) %}

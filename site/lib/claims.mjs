@@ -110,3 +110,16 @@ export function textViolates(text, rules) {
   if (rules.strict.some((w) => new RegExp(phraseRx(w.phrase).source, "i").test(t))) return true;
   return sentencesOf(t).some((s) => rules.conflations.some((c) => conflates(s, c)));
 }
+
+/** RFC 4180 CSV (quoted fields, doubled quotes) into objects keyed by the header row; same parser as the checker. */
+export function parseCsv(text) {
+  const rows = []; let row = []; let cur = ""; let q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += c; continue; }
+    if (c === '"') q = true; else if (c === ",") { row.push(cur); cur = ""; } else if (c === "\n") { row.push(cur); rows.push(row); row = []; cur = ""; } else if (c !== "\r") cur += c;
+  }
+  if (cur || row.length) { row.push(cur); rows.push(row); }
+  const [h, ...rest] = rows;
+  return rest.filter((r) => r.length > 1).map((r) => Object.fromEntries(h.map((k, i) => [k, r[i] ?? ""])));
+}

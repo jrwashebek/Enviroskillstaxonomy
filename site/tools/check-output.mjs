@@ -14,13 +14,15 @@
 //  E. WP-15 claims register (docs/methods/claims_register.csv, docs/methods/WP15_SIGNOFF.md): every unverified or held
 //     row the explorer uses is mapped in claims/register_map.yaml; mapped instrument titles are always followed by
 //     "Unverified — not for citation"; judgment-dated event days never appear; no `do_not_say` wrong form appears
-//     (quoted phrases from the register plus claims/do_not_publish.yaml).
+//     (single-quoted phrases from the register, "mixing ..." items where their terms share a sentence, plus
+//     claims/do_not_publish.yaml; double-quoted phrases are reported, not enforced; see lib/claims.mjs).
 // Writes reports/check-output.json and, when everything passes, _site/download/security/SITE_SHA256SUMS.
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, join, relative, resolve, extname } from "node:path";
 import { fileURLToPath } from "node:url";
 import yaml from "js-yaml";
+import { parseRegister, sentencesOf, conflates, phraseRx } from "../lib/claims.mjs";
 
 const SITE = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ROOT = resolve(SITE, "..");
@@ -41,6 +43,9 @@ const isRemote = (u) => ABS.test(u) || NONLOCAL_SCHEME.test(u);
 function stripScriptsAndStyles(html) { return html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " "); }
 function decode(s) { return s.replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&#x27;/g, "'").replace(/&#(\d+);/g, (m, n) => String.fromCharCode(Number(n))); }
 function textOf(html) { return decode(stripScriptsAndStyles(html).replace(/<[^>]+>/g, " ")).replace(/\s+/g, " "); }
+// Text with a line break at every block boundary (cell, list item, paragraph), for sentence-level rules.
+const BLOCK = /<\/?(?:p|li|td|th|tr|dt|dd|h[1-6]|div|section|caption|figcaption|summary|br|ul|ol|table|thead|tbody|details|figure|header|footer|nav|main|blockquote|pre|legend|fieldset|label|option)\b[^>]*>/gi;
+function blockTextOf(html) { return decode(stripScriptsAndStyles(html).replace(BLOCK, "\n").replace(/<[^>]+>/g, " ")).replace(/[ \t\r\f\v]+/g, " "); }
 // Remove every element that carries `attr` (balanced on its own tag name).
 function removeElementsWith(html, attrRx) {
   let out = html, guard = 0;
@@ -99,21 +104,14 @@ const REG_PATH = join(ROOT, "docs", "methods", "claims_register.csv");
 const register = existsSync(REG_PATH) ? parseCsv(readFileSync(REG_PATH, "utf-8")) : [];
 const regMap = (yaml.load(readFileSync(join(SITE, "claims", "register_map.yaml"), "utf-8")).rows) || {};
 const dnp = (yaml.load(readFileSync(join(SITE, "claims", "do_not_publish.yaml"), "utf-8")).patterns) || [];
-const STOP = new Set("about above after again against before being below between could would should their there these those which while where whose with within without other under through during first since still often among into from that this were have been than then them they what when your more most such only also each both many much very same some over make made".split(" "));
-const anchorsOf = (claim) => [...new Set((claim.match(/[A-Za-z][A-Za-z0-9.()-]{4,}/g) || []).map((w) => w.toLowerCase().replace(/[().]+$/, "")).filter((w) => !STOP.has(w)))];
-const wrongForms = [];
-for (const r of register) {
-  // Quoted wrong forms only: an opening quote after a space, bracket or start, a closing quote before a boundary
-  // (so possessives such as "LM's" are not read as quotes).
-  for (const m of String(r.do_not_say || "").matchAll(/(?:^|[\s(;])'([^']{2,}?)'(?=[\s,;.)]|$)/g)) {
-    const phrase = m[1].trim();
-    // Safe forms the register recommends ("write '...'") are not wrong forms. Short quoted words ('final', 'deployed')
-    // are too common to match on their own; the curated patterns in claims/do_not_publish.yaml cover them in context.
-    if (/\bwrite\s*$/i.test(String(r.do_not_say).slice(0, m.index + m[0].indexOf("'")))) continue;
-    if (phrase.length < 12) continue;
-    wrongForms.push({ claim: r.claim_id, phrase, strict: true, anchors: anchorsOf(r.claim) });
-  }
-}
+// Wrong forms from the register's `do_not_say` column, parsed by lib/claims.mjs (shared with the view model):
+// single-quoted phrases of 12+ characters anywhere; "mixing ..." items only where their terms share a sentence without
+// being distinguished. Shorter quoted words ('final', 'maintain') are too common to match on their own: the curated
+// patterns in claims/do_not_publish.yaml cover them in context. Double-quoted phrases are recorded, not enforced (the
+// register double-quotes a wrong form while data/v2 text still uses it), and are reported below.
+const dns = parseRegister(register);
+const wrongForms = dns.strict.map((w) => ({ claim: w.claim, phrase: w.phrase, strict: true }));
+const deferredHits = new Map(dns.deferred.map((d) => [`${d.claim}|${d.phrase}`, { claim: d.claim, phrase: d.phrase, pages: 0, example: null }]));
 for (const d of dnp) wrongForms.push({ claim: d.claim, rx: new RegExp(d.rx, "i"), unlessBefore: !!d.unless_before });
 const bundle = JSON.parse(readFileSync(join(meta.releaseDir, "emst.bundle.jsonld"), "utf-8"))["@graph"];
 const instrumentTitles = new Map(bundle.filter((r) => r.type === "Instrument").map((r) => [r.id, (r.prefLabel || {}).en || ""]));
@@ -270,6 +268,18 @@ for (const f of files) {
         i = low.indexOf(ph, i + ph.length);
       }
     }
+    // E4 (conflation): a "mixing ..." item fails only where all its terms share one sentence, undistinguished.
+    if (dns.conflations.length) {
+      const sentences = sentencesOf(blockTextOf(html));
+      for (const c of dns.conflations) {
+        const s = sentences.find((x) => conflates(x, c));
+        if (s) fail(f, "E4", `${c.claim} conflation (${c.terms.map((t) => `'${t.text}'`).join(" with ")}) in one sentence: "${s.slice(0, 200)}"`);
+      }
+    }
+    for (const d of deferredHits.values()) {
+      const m = new RegExp(phraseRx(d.phrase).source, "i").exec(visible);
+      if (m) { d.pages++; if (!d.example) d.example = { url, text: visible.slice(Math.max(0, m.index - 80), m.index + d.phrase.length + 80) }; }
+    }
     const isVariant = /^\/roles\/[^/]+\/[^/]+\/$/.test(url);
     if (isVariant && !/assessment pending/i.test(visible)) fail(f, "D7", "role-change page without 'assessment pending'");
     const hr = /^\/(federal-series|state-classes)\/[^/]+\/$/.test(url) || (isVariant && /· (Federal government|State government)<\/span><\/h1>/.test(html));
@@ -294,7 +304,9 @@ for (const f of files) {
 }
 
 // Search index and gap data are JSON inside pages; they were covered by the HTML text and fetch checks above.
-stats.registerRows = register.length; stats.wrongForms = wrongForms.length; stats.unverifiedInstruments = mappedUnverified.length;
+stats.registerRows = register.length; stats.wrongForms = wrongForms.length + dns.conflations.length;
+stats.deferredWrongForms = [...deferredHits.values()];   // not enforced (double-quoted in the register); reported only
+ stats.unverifiedInstruments = mappedUnverified.length;
 const report = { ok: problems.length === 0, release: releaseId, outDir: relative(SITE, OUT), stats, problems };
 mkdirSync(join(SITE, "reports"), { recursive: true });
 writeFileSync(join(SITE, "reports", "check-output.json"), JSON.stringify(report, null, 1));
@@ -309,4 +321,5 @@ if (problems.length) {
 const sums = files.map((f) => `${createHash("sha256").update(readFileSync(f)).digest("hex")}  ${relative(OUT, f).split("\\").join("/")}`).sort((a, b) => a.slice(66).localeCompare(b.slice(66)));
 mkdirSync(join(OUT, "download", "security"), { recursive: true });
 writeFileSync(join(OUT, "download", "security", "SITE_SHA256SUMS"), sums.join("\n") + "\n");
+for (const d of stats.deferredWrongForms) if (d.pages) console.log(`[check] note: ${d.claim} "${d.phrase}" (double-quoted in the register, not enforced) still renders on ${d.pages} page(s), e.g. ${d.example.url}`);
 console.log(`[check] OK: ${stats.pages} pages, ${stats.files} files, ${stats.figures} figures with badges, ${stats.v1Drawers} v1 drawers, ${stats.externalLinks} outbound links (navigation only), 0 problems`);

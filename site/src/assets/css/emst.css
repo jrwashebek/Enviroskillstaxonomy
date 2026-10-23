@@ -122,6 +122,8 @@ details.emst-drawer { background: var(--emst-bg-soft); }
 
 /* Long identifiers (record IDs, build hashes) wrap instead of widening the page at 320 CSS px (WCAG 1.4.10) */
 code { overflow-wrap: anywhere; }
+/* Printed web addresses (the GitHub Issues link) may break anywhere so they reflow at 320 CSS px (WCAG 1.4.10). */
+.emst-url { overflow-wrap: anywhere; word-break: break-word; }
 .emst-dl dd, .emst-footer p, .emst-card, td { overflow-wrap: break-word; }
 .emst-gap textarea.usa-textarea { height: 4.5rem; }
 .emst-gap fieldset.emst-subfieldset { border: 0; padding: 0; margin: 0.5rem 0; }

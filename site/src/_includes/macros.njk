@@ -49,15 +49,15 @@
   <thead><tr>{% if showSet %}<th scope="col">Mapping set</th>{% endif %}<th scope="col">Maps to</th><th scope="col">Match</th><th scope="col">Review status</th><th scope="col">Note</th></tr></thead>
   <tbody>
   {% for r in rows %}
-  <tr>{% if showSet %}<td>{{ r.set }}</td>{% endif %}<td>{% if r.noTerm %}No matching term (recorded as NoTermFound){% else %}<code>{{ r.object }}</code>{% if r.objectLabel %} {{ r.objectLabel }}{% endif %}{% endif %}</td>
-  <td>{{ r.predicate | replace("skos:", "") }}{% if r.confidence %}, confidence {{ r.confidence }}{% endif %}</td>
+  <tr>{% if showSet %}<td>{{ r.set }}</td>{% endif %}<td>{% if r.noTerm %}No matching term{% else %}<code>{{ r.object }}</code>{% if r.objectLabel %} {{ r.objectLabel }}{% endif %}{% endif %}</td>
+  <td>{{ r.predicate | match }}{% if r.confidence %}, confidence {{ r.confidence }}{% endif %}</td>
   <td>{{ r.reviewStatus }}{% if r.raterType == "llm" %} (agent draft){% endif %}</td>
   <td>{{ r.comment | truncate(220) }}</td></tr>
   {% endfor %}
   </tbody>
 </table>
 </div>
-<p class="emst-muted">Draft mappings are navigation aids, not alignment claims. No alignment with O*NET, ESCO, OPM or any state system is claimed until a human-reviewed mapping set exists (ADR-0022, ADR-0027 §3).</p>
+<p class="emst-muted">Draft mappings are navigation aids, not alignment claims. No alignment with O*NET, ESCO, OPM or any state system is claimed until a human-reviewed mapping set exists.</p>
 {% endif %}
 {%- endmacro %}
 
@@ -98,7 +98,7 @@
       <dt>Work function</dt><dd>{{ gateText(t.workFunction) }}</dd>
       <dt>Craft profile</dt><dd>{{ gateText(t.craft) }}</dd>
       {% if t.fieldDependency or t.formationDependency %}<dt>Field and formation</dt><dd>{% if t.fieldDependency %}Field dependency: {{ t.fieldDependency | replace("-", " ") }}. {% endif %}{% if t.formationDependency %}Formation task: {{ t.formationDependency }}. {% endif %}<span class="emst-muted">(Editorial draft attribute set by the author, not a rated value.)</span></dd>{% endif %}
-      {% if t.credentialGates.length or t.credentialGatesPending %}<dt>Credentials</dt><dd>{% if t.credentialGates.length %}Credentials that may be involved (agent-drafted link, not a verified requirement; credential issuer verified): {% for g in t.credentialGates %}{{ g.title }} (drafted as {{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}. {% endif %}{% if t.credentialGatesPending %}{{ t.credentialGatesPending }} further credential link{{ "s" if t.credentialGatesPending != 1 }} not shown until verified against a source.{% endif %}</dd>{% endif %}
+      {% if t.credentialGates.length or t.credentialGatesPending %}<dt>Credentials</dt><dd>{% if t.credentialGates.length %}Credentials that may be involved (agent-drafted link, not a requirement; the credential's issuer was checked against a cited source): {% for g in t.credentialGates %}{{ g.title }} (drafted as {{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}. {% endif %}{% if t.credentialGatesPending %}{{ t.credentialGatesPending }} credential gate{{ "s" if t.credentialGatesPending != 1 }} not shown until the issuer is verified.{% endif %}</dd>{% endif %}
       {% if t.signOff %}<dt>Sign-off authority</dt><dd>{{ t.signOff }}</dd>{% elif t.signOffPending %}<dt>Sign-off authority</dt><dd>Not shown until a verified credential or legal basis is attached.</dd>{% endif %}
       {% if t.tools.length %}<dt>Tools layer (dated)</dt><dd>{% for x in t.tools %}{{ x.title }} ({{ x.lifecycleState }}){% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
       {% if t.supports.length %}<dt>Supports</dt><dd>{% for s in t.supports %}{% if s.url %}<a href="{{ s.url | url }}">{{ s.title }}</a>{% else %}{{ s.competency }}{% endif %} ({{ s.strength }}){% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
@@ -114,14 +114,14 @@
 <li class="emst-card">
   <h3>{{ s.title }}</h3>
   <p><span class="emst-tag emst-tag--emerging">Watch</span> Not counted as a change indicator: watch signals do not meet the two-family, human-reviewed evidence rule.</p>
-  {% if s.unverified.length %}<p><strong>Unverified — not for citation</strong> (claims register {{ s.unverified | join(", ") }}). Details are not shown until the verification pass re-checks them.</p>{% else %}
+  {% if s.unverified.length %}<p><strong>Withheld</strong> (claims register {{ s.unverified | join(", ") }}): not shown until the verification pass re-checks it.</p>{% else %}
   <dl class="emst-dl">
     <dt>About</dt><dd>{{ s.targetLabel }}</dd>
     <dt>Signal family</dt><dd>{{ s.family }}</dd>
     {% if s.measure %}<dt>Measure</dt><dd data-figure-inline>{% if s.measure.value != null %}{{ s.measure.value }} {{ s.measure.unit }}{% endif %}{% if s.measure.n != null %} (n = {{ s.measure.n }}{% if s.measure.denominator %} {{ s.measure.denominator }}{% endif %}){% endif %}{% if s.measure.n != null and s.measure.n < 10 %}; too few to say{% endif %}</dd>{% endif %}
     {% if s.period %}<dt>Observed</dt><dd>{{ s.period.start }} to {{ s.period.end }}</dd>{% endif %}
     <dt>Source release</dt><dd>{{ s.sourceRelease or s.source }}</dd>
-    <dt>Reliability</dt><dd>{{ s.reliability }}{% if s.reliabilityText %}: {{ s.reliabilityText }}{% endif %}</dd>
+    <dt>Reliability</dt><dd>{{ s.reliability }}{% if s.reliabilityText %}: {{ s.reliabilityText }}{% endif %} <span class="emst-muted">(grade set by the AI agent that entered the signal; not yet re-graded from the underlying source)</span></dd>
     <dt>Review by</dt><dd>{{ s.reviewBy }}</dd>
   </dl>{% endif %}
   <p class="emst-meta">{{ tierBadge({"tier": "exploratory", "source": "watch signal"}) }} {{ evBadge(s.evidence) }}</p>
@@ -131,11 +131,11 @@
 {% macro venueBlock(c, venueInfo) -%}
 {% if c.venue.length %}
 <div class="emst-callout" data-figure data-use-tier="describe" data-evidence="computed">
-  <p><strong>Where this work has a current legal basis</strong> (computed from linked policy instruments, as of {{ c.venue[0].asOf }}{% if venueInfo.source == "wp05-prototype" %}; prototype computation pending change request CR-SC-001{% elif venueInfo.source == "rule-over-release" %}; rule {{ venueInfo.rule }} applied to the release records, not yet emitted by the release build{% endif %})</p>
+  <p><strong>Where this work has a current legal basis</strong> (computed from linked policy instruments, as of {{ c.venue[0].asOf }}{% if venueInfo.source == "wp05-prototype" %}; prototype computation, pending a change request{% elif venueInfo.source == "rule-over-release" %}; rule {{ venueInfo.rule }} applied to the release records, not yet emitted by the release build{% endif %})</p>
   <ul class="usa-list">
   {% for v in c.venue %}<li>{{ v.actor | titlecase }}: {% if v.value == "basis-not-yet-linked" %}basis not yet linked{% elif v.value == "not-shown-unverified" %}not shown (rests on an instrument record that is not re-verified){% else %}{{ v.value | replace("-", " ") }}{% if not v.basisLinked %}, basis not yet linked{% elif not v.basisVerified %}, basis linked but its status is not yet verified{% endif %}{% endif %}</li>{% endfor %}
   </ul>
-  <p class="emst-muted">"Required basis" means an instrument linked as <em>requiring</em> this work is in force; "permitted" means no in-force instrument requires it and it remains lawful; "no current basis" means every instrument that required it is inactive. Instruments that only enable or constrain the work never decide the value. {% if venueInfo.source == "wp05-prototype" %}The prototype computation cannot tell those roles apart, so "required basis" is not shown from it (CR-CP-001 ruling A1). {% endif %}Values that rest on an instrument record the verification pass has not re-checked are not shown. Shown with no exclusions (project lead default, Q4).</p>
+  <p class="emst-muted">"Required basis" means an instrument linked as <em>requiring</em> this work is in force; "permitted" means no in-force instrument requires it and it remains lawful; "no current basis" means every instrument that required it is inactive. Instruments that only enable or constrain the work never decide the value. {% if venueInfo.source == "wp05-prototype" %}The prototype computation cannot tell those roles apart, so "required basis" is not shown from it. {% endif %}Values that rest on an instrument record the verification pass has not re-checked are not shown. Shown with no exclusions (the EMST project lead's default).</p>
   <p class="emst-meta"><span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>describe</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>computed from draft instrument links (agent drafts, unreviewed)</span></p>
 </div>
 {% endif %}

@@ -53,6 +53,12 @@ export default async function (cfg) {
   cfg.addFilter("capText", (c) => ({ levelRule: "limited by the level rule: indicator levels not yet placed by a panel", evidence: "limited by validation evidence not yet met", declaredCeiling: "limited by the author's declared ceiling", lifecycle: "limited by its lifecycle state", lint: "limited by indicator lint", pathway: "limited by the pathway rule" })[c] || (c ? `limited by ${c}` : ""));
   cfg.addFilter("sentence", (s) => { s = String(s || ""); return s.charAt(0).toUpperCase() + s.slice(1); });
   cfg.addFilter("dateOnly", (s) => String(s || "").slice(0, 10));
+  // SKOS match predicates in plain words (package review issue 6): "A broadMatch B" means B is broader than A.
+  cfg.addFilter("match", (p, noun = "term") => {
+    const k = String(p || "").replace(/^skos:/, "");
+    return ({ exactMatch: "exact fit", closeMatch: "close fit", broadMatch: `broader ${noun}`, narrowMatch: `more specific ${noun}`, relatedMatch: "partial fit" })[k]
+      || k.replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
+  });
 
   // Optional portable build: every link becomes relative so the folder works from disk (file://) or any sub-path.
   if (process.env.EMST_PORTABLE === "1") {

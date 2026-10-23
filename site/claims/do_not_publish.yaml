@@ -1,8 +1,11 @@
 # Wrong forms that must never appear in explorer output (WP15_SIGNOFF.md §2.3; claims_register.csv `do_not_say`).
-# tools/check-output.mjs reads this file AND every single-quoted phrase in the register's `do_not_say` column:
-#   - quoted phrases of 12+ characters are matched anywhere in visible text (case-insensitive);
-#   - shorter quoted phrases are matched only within 150 characters of two anchor words from the row's claim;
-#   - the patterns below cover wrong forms the register describes without quoting them.
+# tools/check-output.mjs reads this file AND the register's `do_not_say` column (parsed by lib/claims.mjs):
+#   - single-quoted phrases of 12+ characters are matched anywhere in visible text (case-insensitive, word-bounded);
+#   - a "mixing ..." item fails only where all its terms share one sentence and the sentence does not say they
+#     differ (e.g. RPT-05: USDA OIG's 16% together with PPS's 'more than a quarter');
+#   - double-quoted phrases are recorded but not enforced while data/v2 still uses them (reported, not failed);
+#   - shorter quoted words are not matched on their own; the patterns below cover them, and wrong forms the register
+#     describes without quoting them, in context.
 # A match fails the build. `unless_before` skips a match preceded (within 20 characters) by a negation.
 # Owner: CP (WP-12), from LM's register. Licence: CC0-1.0.
 version: 1

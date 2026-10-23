@@ -15,6 +15,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import yaml from "js-yaml";
+import { parseRegister, textViolates } from "./claims.mjs";
 
 export const USE_TIERS = ["exploratory", "describe", "develop", "select"];
 const TIER_RANK = Object.fromEntries(USE_TIERS.map((t, i) => [t, i]));
@@ -117,6 +118,7 @@ export function buildModel({ root, releaseDir, meta }) {
     instrumentStatus: Object.fromEntries(dm.instrument_statuses.values.map((t) => [t.notation, t.definition])),
     mechanism: Object.fromEntries(dm.terms.map((t) => [t.notation, t.definition])),
     mechanismName: Object.fromEntries(dm.terms.map((t) => [t.notation, String(t.prefLabel || t.notation).replace(/-/g, " ")])),
+    instrumentLinkRole: Object.fromEntries((dm.instrument_link_roles?.values || []).map((t) => [t.notation, t.definition])),
     subsector: Object.fromEntries(flattenSubsectors(subs).map((t) => [t.notation, t.prefLabel])),
   };
   function flattenSubsectors(d) {
@@ -145,7 +147,8 @@ export function buildModel({ root, releaseDir, meta }) {
     }
     claims.signoff = existsSync(join(root, "docs", "methods", "WP15_SIGNOFF.md")) ? "docs/methods/WP15_SIGNOFF.md" : null;
   }
-  const dnsPhrases = [...claims.rows.values()].flatMap((r) => [...String(r.do_not_say || "").matchAll(/(?:^|[\s(;])'([^']{12,}?)'(?=[\s,;.)]|$)/g)].map((m) => m[1].toLowerCase()));
+  // Register wrong forms (lib/claims.mjs, shared with tools/check-output.mjs): strict phrases and "mixing ..." items.
+  const dnsRules = parseRegister([...claims.rows.values()]);
   const gateLabels = gates.labels;
 
   // ---------------------------------------------------------------- computed views
@@ -168,6 +171,7 @@ export function buildModel({ root, releaseDir, meta }) {
   if (venue.source === "release-view" || venue.source === "rule-over-release") {
     const v = loadJson(meta.venue.path, []);
     venue.rule = Array.isArray(v) ? null : `${v.header?.ruleId}@${v.header?.ruleVersion}`;
+    if (!venue.asOf && !Array.isArray(v)) venue.asOf = v.header?.asOf || null;
     venue.rows = (Array.isArray(v) ? v : (v.rows || [])).map((r) => {
       const insts = (r.deciding || []).map((x) => x.instrument);
       if (insts.some((i) => claims.byInstrument.has(i))) return { ...r, venueApplicability: "not-shown-unverified", basisLinked: false, withheld: true };
@@ -193,14 +197,17 @@ export function buildModel({ root, releaseDir, meta }) {
   }
 
   // ---------------------------------------------------------------- shared helpers
+  const stripRefs = (t) => (t == null ? t : String(t).replace(/\s*\((?:ADR-\d|SPEC §|CR-[A-Z]+-\d)[^)]*\)/g, ""));
   const release = {
     id: manifest.emstRelease || meta?.version || "unknown",
     profile: meta?.profile || "release",
     isPreview: (meta?.profile || "release") !== "release",
     schemaVersion: manifest.schemaVersion, date: manifest.released, buildCommit: manifest.buildCommit,
-    notice: manifest.notice, indigenousStatement: manifest.indigenousKnowledgeStatement,
+    // Reader-facing text: internal decision references such as "(ADR-0012 I-2; ADR-0024)" are left out (package review
+    // issue 6); the release notes in the download keep them.
+    notice: stripRefs(manifest.notice), indigenousStatement: stripRefs(manifest.indigenousKnowledgeStatement),
     license: manifest.license, buildOk: meta?.buildOk !== false, warning: meta?.warning || null,
-    displayGateRule: `${dgv.header.ruleId}@${dgv.header.ruleVersion}`, gatesSha256: dgv.header.gatesSha256,
+    displayGateRule: `${dgv.header.ruleId}@${dgv.header.ruleVersion}`, gatesSha256: dgv.header.gatesSha256, gatesVersion: gates.version || "",
     agreementStudies: agreementIndex.studies || [], eutRule: `${eutv.header.ruleId}@${eutv.header.ruleVersion}`,
     changeRule: `${civ.header.ruleId}@${civ.header.ruleVersion}`,
   };
@@ -246,6 +253,10 @@ export function buildModel({ root, releaseDir, meta }) {
       other: o, objectSourceVersion: m.object_source_version || "",
     };
   }
+
+  // Link role of a typed instrument link (vocab/driver_mechanisms.yaml#instrument_link_roles), in plain words.
+  const LINK_ROLE_TEXT = { requires: "requires this work", enables: "enables this work", constrains: "constrains this work", "removed-requirement": "removed an earlier requirement for this work" };
+  const linkRoleText = (r) => LINK_ROLE_TEXT[r] || `linked as "${String(r).replace(/-/g, " ")}"`;
 
   // "R10-environmental-review-specialist/private" -> "Environmental review specialist (private)"
   function keyLabel(k) {
@@ -417,6 +428,8 @@ export function buildModel({ root, releaseDir, meta }) {
       importance: ja.renders ? b.importance ?? null : null, timeShare: ja.renders ? b.timeShare ?? null : null,
       critical: ja.renders ? !!b.critical : null, neededAtEntry: ja.renders ? !!b.neededAtEntry : null };
   }
+  // Profile depth (RoleProfile notation MVPtier), in plain words for readers.
+  const DEPTH_TEXT = { P1: "full profile (corridor role)", P2: "earlier draft at lower depth", P4: "earlier draft at lower depth", P3: "emerging role (What's coming only)" };
   const roles = [];
   const roleById = new Map();
   for (const r of roleRecs) {
@@ -435,14 +448,27 @@ export function buildModel({ root, releaseDir, meta }) {
       entryFrom: r.entryFrom || [], progressesTo: r.progressesTo || [], homeModule: r.homeModule || "core", isModule: (r.homeModule || "core") !== "core",
       status: r.status, tier: tierOf(r), evidence: evidenceOf(r), variants: [],
       depthTier: (r.notation || []).find((n) => n.scheme === "MVPtier")?.value || "",
-      horizonLabel: r.horizon || "", scenarioSensitivityList: Object.entries(r.scenarioSensitivity || {}).map(([k, v]) => ({ scenario: k, direction: v })),
+      horizonLabel: r.horizon || "", scenarioSensitivityList: Object.entries(r.scenarioSensitivity || {}).map(([k, v]) => ({ scenario: k, label: (sc.terms || []).find((t) => t.notation === k)?.prefLabel || "", direction: v })),
       feederRoleIds: (r.feederRoles || []).map((f) => f.role), evidenceSignalIds: r.evidenceSignals || [],
       crosswalks: (mappingsBySubject.get(r.id) || []).map(crosswalkRow),
     };
+    vm.depthLabel = DEPTH_TEXT[vm.depthTier] || "depth not recorded";
     vm.whatsComingOnly = vm.depthTier === "P3";            // coordinator ruling: P3 roles appear only in "What's coming"
     if (vm.whatsComingOnly) vm.url = `/whats-coming/#${vm.slug}`;
     roles.push(vm);
     roleById.set(r.id, vm);
+  }
+  // RoleVariant.indicativeGradeOrBand: {scheme, byRoleLevel: {entry: "GS-3 to GS-5", ...}, label} (current), or
+  // {scheme, band, label} / a plain string (older shapes). Bands are listed in the role's level order.
+  function gradeOf(g, role) {
+    if (!g) return null;
+    if (typeof g === "string") return { scheme: "", label: "", bands: [{ level: "", band: g }] };
+    const order = (role?.roleLevels || []).map((l) => l.key);
+    const rank = (k) => (order.indexOf(k) < 0 ? 99 : order.indexOf(k));
+    const bands = g.byRoleLevel && typeof g.byRoleLevel === "object"
+      ? Object.entries(g.byRoleLevel).filter(([, b]) => b).sort((a, b) => rank(a[0]) - rank(b[0])).map(([level, band]) => ({ level, band: String(band) }))
+      : g.band ? [{ level: "", band: String(g.band) }] : [];
+    return bands.length ? { scheme: g.scheme || "", label: g.label || "", bands } : null;
   }
   const variants = [];
   for (const v of variantRecs) {
@@ -462,11 +488,16 @@ export function buildModel({ root, releaseDir, meta }) {
       id: v.id, slug: `${role.slug}--${slugOf(v.id.split("/").slice(1).join("-") || actor)}`, role, actor, actorLabel: (labels.sectorActor[actor] || actor) + (slice ? ` (${slice.replace(/[-/]/g, " ")})` : ""),
       subtype: v.sectorActorSubtype || "", subtypeLabel: labels.sectorActorSubtype[v.sectorActorSubtype] || v.sectorActorSubtype || "", authorityPosition: v.authorityPosition || "", authorityPositionLabel: labels.authorityPosition[v.authorityPosition] || v.authorityPosition || "",
       industry: v.industry || "", ownership: v.ownership || "", deliveryModel: v.deliveryModel || "", definition: en(v.definition), title: en(v.prefLabel) || `${role.title} (${labels.sectorActor[actor] || actor})`,
-      bundle, instruments: (v.instruments || []).map((i) => ({ id: i, title: en(records.get(i)?.prefLabel) || i })),
+      // Typed instrument links ({instrument, role, note}; ADR-0030); a bare ID string is the pre-typing shape.
+      bundle, instruments: (v.instruments || []).map((x) => {
+        const id = typeof x === "string" ? x : x?.instrument || x?.id || null;
+        if (!id) return null;
+        return { id, role: typeof x === "object" ? x.role || "" : "", note: typeof x === "object" ? en(x.note) : "", title: en(records.get(id)?.prefLabel) || id };
+      }).filter(Boolean),
       credentialGates: gatesOf(v.credentialGates).shown, credentialGatesPending: gatesOf(v.credentialGates).pending,
       signOff: signOffOf(v.signOffAuthority).shown || "", signOffPending: signOffOf(v.signOffAuthority).pending,
       tools: (v.toolsCommonlyRequired || []).map((t) => records.get(t)).filter(Boolean).map(toolVM),
-      grade: v.indicativeGradeOrBand || null, jurisdictionalContext: v.jurisdictionalContext || [], disclaimers: v.disclaimers || [],
+      grade: gradeOf(v.indicativeGradeOrBand, role), jurisdictionalContext: v.jurisdictionalContext || [], disclaimers: v.disclaimers || [],
       lifecycleState: v.lifecycleState || role.lifecycleState, status: v.status, tier: tierOf(v), evidence: evidenceOf(v),
       crosswalks: (mappingsBySubject.get(v.id) || []).map(crosswalkRow),
     };
@@ -505,8 +536,13 @@ export function buildModel({ root, releaseDir, meta }) {
       ],
       emerging: v.role.competencyTargets.filter((t) => ["emerging", "proposed"].includes(t.competency.lifecycleState)).map((t) => t.competency),
       formation: v.bundle.filter((b) => b.formationTask || b.task.formationDependency === "yes"),
-      drivers: signals.filter((s) => s.targetId === `vocab:work_functions#${v.role.primaryWorkFunction}` || s.targetId === `vocab:sector_actors#${v.actor}` || s.targetId === v.id || s.targetId === v.role.id)
-        .map((s) => signalVM(s)),
+      // Signals about this role, this variant or the role's primary work function. Signals about a whole employer
+      // type (e.g. every federal headcount figure) are not specific to the role: they are counted here and listed in
+      // What's coming. Signals tied to an unverified claims-register row are withheld everywhere, only counted.
+      drivers: signals.filter((s) => s.targetId === `vocab:work_functions#${v.role.primaryWorkFunction}` || s.targetId === v.id || s.targetId === v.role.id)
+        .map((s) => signalVM(s)).filter((s) => !s.unverified.length),
+      actorWide: signals.filter((s) => s.targetId === `vocab:sector_actors#${v.actor}` && !(claims.bySignal.get(s.id) || []).length).length,
+      withheld: signals.filter((s) => [`vocab:work_functions#${v.role.primaryWorkFunction}`, `vocab:sector_actors#${v.actor}`, v.id, v.role.id].includes(s.targetId) && (claims.bySignal.get(s.id) || []).length).length,
     };
   }
 
@@ -587,11 +623,11 @@ export function buildModel({ root, releaseDir, meta }) {
     const target = s.targetId || "";
     let targetLabel = target;
     const m = target.match(/^vocab:(work_functions|sector_actors|scenarios)#(.+)$/);
-    if (m) targetLabel = m[1] === "work_functions" ? `Work function: ${labels.workFunction[m[2]] || m[2]}` : m[1] === "sector_actors" ? `Sector actor: ${labels.sectorActor[m[2]] || m[2]}` : `Signpost ${m[2]}`;
+    if (m) targetLabel = m[1] === "work_functions" ? `Work function: ${labels.workFunction[m[2]] || m[2]}` : m[1] === "sector_actors" ? `Employer type: ${labels.sectorActor[m[2]] || m[2]}` : `Signpost ${m[2]}`;
     else if (records.has(target)) targetLabel = en(records.get(target).prefLabel);
     const unv = claims.bySignal.get(s.id) || [];
     return {
-      id: s.id, title: en(s.prefLabel) + (unv.length ? ` (Unverified — not for citation; claims register ${unv.join(", ")})` : ""), family: fam || "unknown", status: s.signalStatus || "watch", direction: s.direction || "", directionConfidence: s.directionConfidence || "",
+      id: s.id, title: unv.length ? "" : en(s.prefLabel), family: fam || "unknown", status: s.signalStatus || "watch", direction: s.direction || "", directionConfidence: s.directionConfidence || "",
       drivers: s.drivers || [], reliability: s.reliability || "", reliabilityText: labels.reliability[s.reliability] || "",
       measure: s.measure || null, period: s.observedPeriod || null, sourceRelease: s.sourceRelease || "", source: s.source || "",
       sectorActor: s.sectorActor || "", geography: s.geography || "", method: s.method || "", reviewBy: s.reviewBy || "",
@@ -600,13 +636,18 @@ export function buildModel({ root, releaseDir, meta }) {
       unverified: claims.bySignal.get(s.id) || [],
     };
   }
-  const signalVMs = signals.map(signalVM).sort((a, b) => a.family.localeCompare(b.family) || a.title.localeCompare(b.title));
+  // WP-15 sign-off, package review issue 2: a signal tied to an unverified register row is withheld entirely (its
+  // headline is the claim), and only counted with the register row.
+  const signalAll = signals.map(signalVM);
+  const signalVMs = signalAll.filter((s) => !s.unverified.length).sort((a, b) => a.family.localeCompare(b.family) || a.title.localeCompare(b.title));
+  const signalsWithheld = { n: signalAll.length - signalVMs.length, rows: [...new Set(signalAll.flatMap((s) => s.unverified))].sort() };
   const signalById = new Map(signalVMs.map((s) => [s.id, s]));
   const watchItems = byType("WatchItem").map((w) => ({
     id: w.id, slug: slugOf(w.id), title: en(w.prefLabel), lifecycleState: w.lifecycleState || "watch", reviewBy: w.reviewBy || "", outcome: w.outcome || "open",
     counterSignal: en(w.scopeNote).replace(/^Counter-signal \(what would show it is not forming\):\s*/i, ""),
     hypothesized: w.hypothesizedEntity ? { type: w.hypothesizedEntity.type, label: en(w.hypothesizedEntity.label), statement: en(w.hypothesizedEntity.functionStatement) } : null,
-    signals: (w.signals || []).map((id) => signalById.get(id)).filter(Boolean), evidence: evidenceOf(w), tier: { tier: "exploratory", source: "lifecycle cap (watch)" },
+    signals: (w.signals || []).map((id) => signalById.get(id)).filter(Boolean),
+    signalsWithheld: (w.signals || []).filter((id) => (claims.bySignal.get(id) || []).length).length, evidence: evidenceOf(w), tier: { tier: "exploratory", source: "lifecycle cap (watch)" },
   })).filter((w) => releasable(w.title + w.counterSignal));
   const instruments = byType("Instrument");
   const events = byType("DriverEvent");
@@ -637,7 +678,8 @@ export function buildModel({ root, releaseDir, meta }) {
     const byMech = new Map();
     for (const i of instrumentVMs) for (const m of i.mechanisms) { if (!byMech.has(m.code)) byMech.set(m.code, []); byMech.get(m.code).push(i); }
     for (const v of variants) {
-      const typed = v.instruments.map((x) => instById.get(x.id)).filter(Boolean).map((i) => ({ i, via: "typed link on this variant" }));
+      const typed = v.instruments.map((x) => (instById.has(x.id) ? { i: instById.get(x.id), role: x.role,
+        via: x.role ? `${linkRoleText(x.role)} (typed link on this variant)` : "typed link on this variant (role not recorded)" } : null)).filter(Boolean);
       const seen = new Set(typed.map((x) => x.i.id));
       const mechs = new Map();
       for (const t of v.role.competencyTargets) for (const e of records.get(t.id)?.instrumentSensitivity || []) if (e.mechanism) mechs.set(e.mechanism, (mechs.get(e.mechanism) || 0) + 1);
@@ -650,7 +692,7 @@ export function buildModel({ root, releaseDir, meta }) {
     }
   }
   const changeIndicators = civ.rows.map((r) => ({
-    ...r, targetLabel: (() => { const m = String(r.targetId).match(/^vocab:(work_functions|sector_actors|scenarios)#(.+)$/); if (m) return m[1] === "work_functions" ? `Work function: ${labels.workFunction[m[2]] || m[2]}` : m[1] === "sector_actors" ? `Sector actor: ${labels.sectorActor[m[2]] || m[2]}` : `Signpost ${m[2]}`; return en(records.get(r.targetId)?.prefLabel) || r.targetId; })(),
+    ...r, targetLabel: (() => { const m = String(r.targetId).match(/^vocab:(work_functions|sector_actors|scenarios)#(.+)$/); if (m) return m[1] === "work_functions" ? `Work function: ${labels.workFunction[m[2]] || m[2]}` : m[1] === "sector_actors" ? `Employer type: ${labels.sectorActor[m[2]] || m[2]}` : `Signpost ${m[2]}`; return en(records.get(r.targetId)?.prefLabel) || r.targetId; })(),
   })).filter((r) => !String(r.targetId).endsWith("SP-12"));
 
   const scenarios = {
@@ -659,10 +701,11 @@ export function buildModel({ root, releaseDir, meta }) {
     signposts: sc.signposts.filter((s) => s.notation !== "SP-12" && s.access !== "tribal-council-only" && releasable(s.signpost)).map((s) => ({
       code: s.notation, text: s.signpost, source: s.source, cadence: s.cadence, pointsToward: s.points_toward,
       signals: signalVMs.filter((x) => x.signposts.includes(s.notation) || x.target === `vocab:scenarios#${s.notation}`),
+      signalsWithheld: signalAll.filter((x) => x.unverified.length && (x.signposts.includes(s.notation) || x.target === `vocab:scenarios#${s.notation}`)).length,
     })),
     noRegret: sc.no_regret_moves_2026_2029.filter((m) => releasable(m.move)).map((m) => ({ code: m.id, text: m.move })),
     // Wildcards whose wording matches a register wrong form (e.g. WF-07) are left out (WP-15 sign-off §2.3).
-    wildcards: sc.wildcards.filter((w) => releasable(w.wildcard + w.effect) && !dnsPhrases.some((p) => (w.wildcard + " " + w.effect).toLowerCase().includes(p))).map((w) => ({ code: w.id, text: w.wildcard, effect: w.effect })),
+    wildcards: sc.wildcards.filter((w) => releasable(w.wildcard + w.effect) && !textViolates(`${w.wildcard}: ${w.effect}`, dnsRules)).map((w) => ({ code: w.id, text: w.wildcard, effect: w.effect })),
   };
 
   // ---------------------------------------------------------------- HR registers: OPM series and state classes
@@ -712,6 +755,16 @@ export function buildModel({ root, releaseDir, meta }) {
   const hrSrc = meta?.hrViews || { source: "unavailable" };
   const hr = { source: hrSrc.source, dropped: 0, stamp: null };
   const readHr = (rel) => { const p = hrSrc.dir ? join(hrSrc.dir, rel) : null; return p && existsSync(p) ? loadJson(p) : null; };
+  // The generators stamp a rule status written before the rule was registered ("proposed (...; not yet in
+  // vocab/rules/)"). Read the status from the registered rule file when it exists, so the page is not stale.
+  const ruleStamp = (st) => {
+    if (!st) return st;
+    const f = join(root, "vocab", "rules", `${st.ruleId}@${st.ruleVersion}.yaml`);
+    if (!existsSync(f)) return { ...st, ruleStatus: String(st.ruleStatus || "not registered").replace(/\s*\(.*\)\s*$/, "") + " (not yet registered)" };
+    let status = "registered";
+    try { status = loadYaml(f)?.status || status; } catch { /* keep "registered" */ }
+    return { ...st, ruleStatus: `registered rule, status ${status}` };
+  };
   const inRelease = (id) => { const ok = !!id && records.has(id); if (id && !ok) hr.dropped++; return ok; };
   const instrumentById = new Map(instrumentVMs.map((i) => [i.id, i]));
   // CR-CP-001 B5: in role-scoped HR views the role's home module renders in the main section; other modules and
@@ -732,15 +785,24 @@ export function buildModel({ root, releaseDir, meta }) {
     return { task: tv, pctTime: ok ? t.pctTime ?? null : null, importance: ok ? t.importance ?? null : null, critical: ok ? !!t.critical : null, neededAtEntry: ok ? !!t.neededAtEntry : null, formationTask: !!t.formationTask };
   }
   const setHrContext = (roleId) => { const r = records.get(roleId); hrJa = jaGate(r); hrHome = r?.homeModule || "core"; return hrJa; };
-  const hrGates = (gs) => gatesOf((gs || []).map((g) => ({ credential: g.credential, kind: g.kind })));
+  // WP-08 views now carry credential gates as {shown: [...], notShownUntilIssuerVerified: n}; older views carried an
+  // array. Either way each shown gate is re-checked against the release bundle (a gate whose issuer is not verified
+  // there joins the withheld count), and the generator's withheld count is added, so nothing unverified is shown.
+  const hrGates = (gs) => {
+    const list = Array.isArray(gs) ? gs : Array.isArray(gs?.shown) ? gs.shown : [];
+    const withheld = Array.isArray(gs) ? 0 : Math.max(0, Number(gs?.notShownUntilIssuerVerified) || 0);
+    const g = gatesOf(list.filter((x) => x && x.credential).map((x) => ({ credential: x.credential, kind: x.kind })));
+    return { shown: g.shown, pending: g.pending + withheld };
+  };
   function fedProfile(code) {
     const d = readHr(`federal-series/${code}.json`);
     if (!d) return null;
-    hr.stamp = hr.stamp || d.stamp;
+    hr.stamp = hr.stamp || ruleStamp(d.stamp);
     const roles = (d.roles || []).filter((r) => inRelease(r.role) && (!r.variant || inRelease(r.variant)) && !roleById.get(r.role)?.whatsComingOnly).map((r) => (setHrContext(r.role), {
-      role: roleById.get(r.role) || null, variant: variantById.get(r.variant) || null, depth: r.tier || "", functionStatement: r.functionStatement || "",
+      role: roleById.get(r.role) || null, variant: variantById.get(r.variant) || null, depth: DEPTH_TEXT[r.tier] || "depth not recorded", functionStatement: r.functionStatement || "",
       x4: r.x4 || null, credentialGates: hrGates(r.credentialGates),
-      instruments: (r.instruments || []).filter((i) => instrumentById.has(i.id)).map((i) => instrumentById.get(i.id)),
+      instruments: (r.instruments || []).map((i) => (typeof i === "string" ? { id: i } : i || {})).filter((i) => instrumentById.has(i.id))
+        .map((i) => ({ ...instrumentById.get(i.id), linkRole: i.role || "", linkRoleText: i.role ? linkRoleText(i.role) : "" })),
       ja: hrJa, homeModule: hrHome, homeModuleLabel: labels.module[hrHome] || hrHome,
       bands: (r.bands || []).map((b) => {
         const duties = (b.majorDuties || []).map((m) => {
@@ -757,17 +819,17 @@ export function buildModel({ root, releaseDir, meta }) {
     }));
     const withoutFed = (d.rolesWithoutFederalVariant || []).filter(inRelease).map((id) => roleById.get(id)).filter(Boolean);
     const feeders = (d.feederOrDestinationRoles || []).map((x) => (typeof x === "string" ? x : x.role)).filter(inRelease).map((id) => roleById.get(id)).filter(Boolean);
-    return { stamp: d.stamp, evidenceNotice: d.evidenceNotice || "", generalCompetencies: d.generalCompetencies || "", roles, withoutFed, feeders };
+    return { stamp: ruleStamp(d.stamp), evidenceNotice: d.evidenceNotice || "", generalCompetencies: d.generalCompetencies || "", roles, withoutFed, feeders };
   }
   function classView(recordId) {
     const stem = String(recordId).replace(/^seed:class\//, "").replace(/\//g, "--");
     const d = readHr(`state-class/${stem}.json`);
     if (!d) return null;
-    hr.stamp = hr.stamp || d.stamp;
+    hr.stamp = hr.stamp || ruleStamp(d.stamp);
     return {
-      stamp: d.stamp, evidenceNotice: d.evidenceNotice || "",
+      stamp: ruleStamp(d.stamp), evidenceNotice: d.evidenceNotice || "",
       mappings: (d.mappings || []).filter((m) => inRelease(m.roleVariant) && !roleById.get(m.role)?.whatsComingOnly).map((m) => (setHrContext(m.role), {
-        variant: variantById.get(m.roleVariant) || null, roleTitle: m.roleTitle || "", depth: m.tier || "", roleLevels: m.roleLevels || [],
+        variant: variantById.get(m.roleVariant) || null, roleTitle: m.roleTitle || "", depth: DEPTH_TEXT[m.tier] || "depth not recorded", roleLevels: m.roleLevels || [],
         matchType: m.matchType || "", confidence: m.confidence ?? "", review: m.review || "", authorityPosition: labels.authorityPosition[m.authorityPosition] || m.authorityPosition || "",
         targets: (m.competencyTargets || []).map(hrTarget).filter(Boolean), tasks: (m.topTasks || []).map(hrTask).filter(Boolean), credentialGates: hrGates(m.credentialGates),
         ja: hrJa, homeModuleLabel: labels.module[hrHome] || hrHome,
@@ -818,13 +880,15 @@ export function buildModel({ root, releaseDir, meta }) {
     claims: { signoff: claims.signoff, unverifiedInstruments: [...claims.byInstrument.keys()].length },
     competencies, coreCompetencies: competencies.filter((c) => !c.isModule), moduleList,
     roles, rolesMain: roles.filter((r) => !r.whatsComingOnly), variants, pathwaysFrom, translations, pathwayRecords: pathwayRecs.length,
-    signals: signalVMs, watchItems, instruments: instrumentVMs, changeIndicators, scenarios,
+    signals: signalVMs, signalsWithheld, watchItems, instruments: instrumentVMs, changeIndicators, scenarios,
     series, stateClasses, emergingCompetencies, emergingRoles, search, gapCompetencies,
     titleIndex: Object.fromEntries(competencies.map((c) => [c.id, c.title])),
     stats: {
       tasks: taskVMs.size, indicators: indicators.size, mappings: mappings.length, tools: tools.length,
       v1Assessments: [...v1ByTask.values()].reduce((s, x) => s + x.length, 0), gatedRendering: dgv.rows.filter((r) => r.decision === "production" || r.decision === "tentative").length,
       gatedRows: dgv.rows.length,
+      depth: { full: roles.filter((r) => !r.whatsComingOnly && r.depthTier === "P1").length,
+        lower: roles.filter((r) => !r.whatsComingOnly && r.depthTier !== "P1").length, emerging: roles.filter((r) => r.whatsComingOnly).length },
     },
   };
 }

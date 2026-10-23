@@ -20,7 +20,7 @@ eleventyComputed:
   <dt>Specification</dt><dd>{% if s.specUrl %}<a href="{{ s.specUrl }}" rel="noreferrer">Official class specification</a> (external site; retrieved {{ s.specRetrieved }}){% else %}not linked{% endif %}{% if s.specEffective %}; effective {{ s.specEffective }}{% endif %}</dd>
   {% if s.mq %}<dt>Minimum qualifications (paraphrase)</dt><dd>{{ s.mq }}</dd>{% endif %}
   {% if s.degreeRule %}<dt>Degree rule</dt><dd>{{ s.degreeRule | replace("-", " ") }}</dd>{% endif %}
-  {% if s.licenses.length %}<dt>Licences and certifications</dt><dd><ul class="usa-list">{% for l in s.licenses %}<li>{{ l.credential }}{% if l.issuer %} ({{ l.issuer }}){% endif %}{% if l.timing %}: {{ l.timing }}{% endif %}</li>{% endfor %}</ul></dd>{% endif %}
+  {% if s.licenses.length %}<dt>Licenses and certifications</dt><dd><ul class="usa-list">{% for l in s.licenses %}<li>{{ l.credential }}{% if l.issuer %} ({{ l.issuer }}){% endif %}{% if l.timing %}: {{ l.timing }}{% endif %}</li>{% endfor %}</ul></dd>{% endif %}
   {% if s.pay %}<dt>Pay</dt><dd>{{ s.pay }}{% if s.payEffective %} (effective {{ s.payEffective }}){% endif %}</dd>{% endif %}
   {% if s.appointmentRoute.length %}<dt>Appointment route</dt><dd>{{ s.appointmentRoute | join(", ") }}</dd>{% endif %}
   <dt>Review by</dt><dd>{{ s.reviewBy }}</dd>
@@ -32,11 +32,11 @@ eleventyComputed:
 {% if s.rows.length or s.pending.length %}
 <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Role variant mappings">
 <table class="usa-table usa-table--compact" data-figure data-use-tier="exploratory" data-evidence="S">
-  <caption>Draft class-to-variant mappings (X5). <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>agent-drafted mapping, unreviewed</span></caption>
+  <caption>Draft class-to-variant mappings. <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>agent-drafted mapping, unreviewed</span></caption>
   <thead><tr><th scope="col">EMST role variant</th><th scope="col">Role level</th><th scope="col">Match</th><th scope="col">Status</th></tr></thead>
   <tbody>
-  {% for r in s.rows %}<tr><td>{% if r.variant %}<a href="{{ r.variant.url | url }}">{{ r.subjectLabel }}</a>{% else %}{{ r.subjectLabel }}{% endif %}</td><td>{{ r.other.role_level or "not set" }}</td><td>{{ r.predicate | replace("skos:", "") }}, confidence {{ r.confidence }}</td><td>{{ r.reviewStatus }}{% if not r.variant %}; role variant not yet in this build{% endif %}</td></tr>{% endfor %}
-  {% if not s.rows.length %}{% for p in s.pending %}<tr><td>{% if p.variant %}<a href="{{ p.variant.url | url }}">{{ p.variant.title }}</a>{% else %}{{ p.key }}{% endif %}</td><td>{{ p.level }}</td><td>{{ p.match | replace("skos:", "") }}, confidence {{ p.confidence }}</td><td>{% if p.variant %}linked{% else %}role variant not yet in this build{% endif %}</td></tr>{% endfor %}{% endif %}
+  {% for r in s.rows %}<tr><td>{% if r.variant %}<a href="{{ r.variant.url | url }}">{{ r.subjectLabel }}</a>{% else %}{{ r.subjectLabel }}{% endif %}</td><td>{{ r.other.role_level or "not set" }}</td><td>{{ r.predicate | match("class") }}, confidence {{ r.confidence }}</td><td>{{ r.reviewStatus }}{% if not r.variant %}; role variant not yet in this build{% endif %}</td></tr>{% endfor %}
+  {% if not s.rows.length %}{% for p in s.pending %}<tr><td>{% if p.variant %}<a href="{{ p.variant.url | url }}">{{ p.variant.title }}</a>{% else %}{{ p.key }}{% endif %}</td><td>{{ p.level }}</td><td>{{ p.match | match("class") }}, confidence {{ p.confidence }}</td><td>{% if p.variant %}linked{% else %}role variant not yet in this build{% endif %}</td></tr>{% endfor %}{% endif %}
   </tbody>
 </table>
 </div>
@@ -49,7 +49,7 @@ eleventyComputed:
 {% for mp in s.view.mappings %}
 <section class="emst-card" aria-labelledby="cv-{{ loop.index }}">
   <h3 id="cv-{{ loop.index }}">{% if mp.variant %}<a href="{{ mp.variant.url | url }}">{{ mp.roleTitle }} ({{ mp.variant.actorLabel }})</a>{% else %}{{ mp.roleTitle }}{% endif %}</h3>
-  <p>Role level{{ "s" if mp.roleLevels.length != 1 }} read against this class: {{ mp.roleLevels | join(", ") }} · {{ mp.matchType | replace("skos:", "") }}, confidence {{ mp.confidence }} ({{ mp.review }}) · authority position {{ mp.authorityPosition }}.</p>
+  <p>Role level{{ "s" if mp.roleLevels.length != 1 }} read against this class: {{ mp.roleLevels | join(", ") }} · {{ mp.matchType | match("class") }}, confidence {{ mp.confidence }} ({{ mp.review }}) · authority position {{ mp.authorityPosition }} · profile depth: {{ mp.depth }}.</p>
   {% set dflt = mp.targets | where("isDefault", true) %}{% set other = mp.targets | where("isDefault", false) %}
   <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Competency targets for {{ mp.roleTitle }}">
   <table class="usa-table usa-table--compact" data-figure data-use-tier="{{ mp.variant.tier.tier if mp.variant else 'exploratory' }}" data-evidence="S">
@@ -60,8 +60,8 @@ eleventyComputed:
   </div>
   {% if other.length %}<details class="emst-disclosure"><summary>{{ other.length }} more target{{ "s" if other.length != 1 }} from other module editorial sections or not yet established (not part of the default HR view)</summary><div><ul class="usa-list">{% for t in other %}<li><a href="{{ t.competency.url | url }}">{{ t.competency.title }}</a> ({{ t.competency.moduleLabel if t.competency.isModule else t.competency.lifecycleState }})</li>{% endfor %}</ul></div></details>{% endif %}
   {% if mp.tasks.length %}<p><strong>Main tasks at this level (editorial draft; % time set by the supervisor):</strong></p><ul class="usa-list">{% for t in mp.tasks %}<li>{{ t.task.statement }}</li>{% endfor %}</ul>{% endif %}
-  {% if mp.credentialGates.shown.length %}<p>Credentials that may be involved (agent-drafted link, not a verified requirement; credential issuer verified): {% for g in mp.credentialGates.shown %}{{ g.title }} (drafted as {{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
-  {% if mp.credentialGates.pending %}<p class="emst-muted">{{ mp.credentialGates.pending }} further credential link{{ "s" if mp.credentialGates.pending != 1 }} not shown until verified against a source.</p>{% endif %}
+  {% if mp.credentialGates.shown.length %}<p>Credentials that may be involved (agent-drafted link, not a requirement; the credential's issuer was checked against a cited source): {% for g in mp.credentialGates.shown %}{{ g.title }} (drafted as {{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
+  {% if mp.credentialGates.pending %}<p class="emst-muted">{{ mp.credentialGates.pending }} credential gate{{ "s" if mp.credentialGates.pending != 1 }} not shown until the issuer is verified.</p>{% endif %}
 </section>
 {% endfor %}
 {% endif %}

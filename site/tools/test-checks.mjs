@@ -5,6 +5,7 @@ import { spawnSync } from "node:child_process";
 import { mkdirSync, readFileSync, rmSync, writeFileSync, copyFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { parseRegister, parseCsv } from "../lib/claims.mjs";
 
 const SITE = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const FIX = join(SITE, ".cache", "check-fixtures");
@@ -30,15 +31,45 @@ const seeds = {
   E3: (h) => h.replace("</main>", "<p>FAST-41: 2015-12-04 enacted.</p></main>"),
   E4: (h) => h.replace("</main>", "<p>The aligned standards take effect in 2027; NWCG is not a party.</p><p>AEI shows 77% of tasks are automated.</p></main>"),
 };
-let failed = 0;
-for (const [rule, f] of Object.entries(seeds)) {
+// "Mixing" wrong forms (RPT-05: USDA OIG's 16% with PPS's 'more than a quarter') fail only when conflated.
+const add = (h, frag) => h.replace("</main>", `${frag}</main>`);
+const extraSeeds = [
+  { name: "E4 conflation (same sentence)", rule: "E4", f: (h) => add(h, "<p>USDA OIG put the Forest Service's loss at 16%, and the Forest Service lost more than a quarter of its staff.</p>") },
+  { name: "E4 conflation (one table cell)", rule: "E4", f: (h) => add(h, "<table><tr><td>Forest Service loss: 16 percent or more than a quarter</td></tr></table>") },
+];
+const mustPass = [
+  { name: "'more than a quarter' alone", f: (h) => add(h, "<p>U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026).</p>") },
+  { name: "16% distinguished from 'more than a quarter'", f: (h) => add(h, "<p>USDA OIG put the 2025 loss at 16%, on a different base from PPS's more than a quarter.</p>") },
+  { name: "16% and 'more than a quarter' in separate sentences", f: (h) => add(h, "<p>USDA OIG put the 2025 loss at 16%.</p><p>The National Park Service lost more than a quarter of its staff.</p>") },
+  { name: "16% and 'more than a quarter' in separate table cells", f: (h) => add(h, "<table><tr><td>OIG: 16%</td><td>PPS: more than a quarter</td></tr></table>") },
+];
+// A double-quoted register phrase is recorded but not enforced while data/v2 still uses it: it must not fail the
+// build, and the report must list it. (Skipped once the register re-quotes it with single quotes.)
+const regText = readFileSync(join(SITE, "..", "docs", "methods", "claims_register.csv"), "utf-8");
+const deferred = parseRegister(parseCsv(regText)).deferred.find((d) => d.phrase.length >= 12);
+if (deferred) mustPass.push({ name: `deferred "${deferred.phrase}" (reported, not failed)`, f: (h) => add(h, `<p>Text that still says ${deferred.phrase}.</p>`), reported: deferred.phrase });
+
+const run = (html) => {
   rmSync(FIX, { recursive: true, force: true });
   mkdirSync(join(FIX, "evidence"), { recursive: true });
-  writeFileSync(join(FIX, "evidence", "index.html"), f(good));
+  writeFileSync(join(FIX, "evidence", "index.html"), html);
   const r = spawnSync(process.execPath, [join(SITE, "tools", "check-output.mjs"), FIX], { encoding: "utf-8" });
-  const rep = JSON.parse(readFileSync(join(SITE, "reports", "check-output.json"), "utf-8"));
+  return { status: r.status, rep: JSON.parse(readFileSync(join(SITE, "reports", "check-output.json"), "utf-8")) };
+};
+let failed = 0;
+for (const [rule, f] of Object.entries(seeds)) {
+  const { status, rep } = run(f(good));
   const hit = rep.problems.some((p) => p.rule === rule || p.rule.startsWith(rule));
-  if (r.status === 0 || !hit) { failed++; console.error(`[test-checks] seeded ${rule} NOT detected`); }
+  if (status === 0 || !hit) { failed++; console.error(`[test-checks] seeded ${rule} NOT detected`); }
+}
+for (const x of extraSeeds) {
+  const { status, rep } = run(x.f(good));
+  if (status === 0 || !rep.problems.some((p) => p.rule === x.rule)) { failed++; console.error(`[test-checks] seeded ${x.name} NOT detected`); }
+}
+for (const x of mustPass) {
+  const { status, rep } = run(x.f(good));
+  if (status !== 0) { failed++; console.error(`[test-checks] ${x.name} wrongly failed: ${JSON.stringify(rep.problems.slice(0, 2))}`); }
+  if (x.reported && !(rep.stats.deferredWrongForms || []).some((d) => d.phrase === x.reported && d.pages > 0)) { failed++; console.error(`[test-checks] ${x.name} not reported`); }
 }
 // The unmodified page must pass.
 rmSync(FIX, { recursive: true, force: true });
@@ -48,4 +79,4 @@ const ok = spawnSync(process.execPath, [join(SITE, "tools", "check-output.mjs"),
 if (ok.status !== 0) { failed++; console.error("[test-checks] clean fixture failed:", ok.stderr.slice(0, 400)); }
 rmSync(FIX, { recursive: true, force: true });
 if (failed) { console.error(`[test-checks] ${failed} seeded cases failed`); process.exit(1); }
-console.log(`[test-checks] OK: ${Object.keys(seeds).length} seeded violations detected; clean page passes`);
+console.log(`[test-checks] OK: ${Object.keys(seeds).length + extraSeeds.length} seeded violations detected; ${mustPass.length} near-misses pass; clean page passes`);

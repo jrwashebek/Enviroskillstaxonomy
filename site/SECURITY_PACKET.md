@@ -121,7 +121,7 @@ These are design-excluded (ADR-0012), and the output checks in `tools/check-outp
 | PW.4 Reuse well-secured software | USWDS 3 from GSA; minimal dependency tree; 14-day cooldown; no runtime third-party code | §3 |
 | PW.5 Secure coding | Autoescaping, no `innerHTML`, CSP, no inline scripts, input size limits | §4 |
 | PW.6 Build configuration | Deterministic data build (`build_release.py` byte-identical builds); Eleventy configuration in the repository | `eleventy.config.js` |
-| PW.7 / PW.8 Review and test | Seeded-violation test of the checker (16 cases); static output checks; browser tests of privacy behaviour; axe-core | `tools/test-checks.mjs`, `tools/check-output.mjs`, `tools/browser-checks.mjs` |
+| PW.7 / PW.8 Review and test | Seeded-violation test of the checker (21 cases, plus 5 near-misses that must pass); static output checks; browser tests of privacy behaviour; axe-core | `tools/test-checks.mjs`, `tools/check-output.mjs`, `tools/browser-checks.mjs` |
 | PW.9 Secure defaults | No telemetry; nothing is saved without a user action; a warning before leaving the page with unsaved ratings | `gap-check.js` |
 | RV.1 Identify vulnerabilities | `npm audit` at build; SBOMs published so adopters can scan | §3 |
 | RV.2 / RV.3 Respond and analyse root cause | Private vulnerability reporting via the repository security policy (the Steward's route; not yet published) | open item |
@@ -142,5 +142,5 @@ These are design-excluded (ADR-0012), and the output checks in `tools/check-outp
    - the HR views (WP-08 generators).
 
    The explorer re-checks every ID against the release bundle, so held or excluded records cannot appear. The data still bypass `build_release.py`'s own gate until those views are emitted by the release. The CA accepted CR-CP-001 A1–A3, and DE ports these views into the release; the explorer switches automatically when `views/venue_applicability.json` and `views/federal-series/` appear.
-7. **Unverified external claims.** The WP-15 sign-off clears the explorer for internal drafts and the NGO-pilot preview only. Records tied to unverified register rows render as "Unverified — not for citation". `check-output.mjs` section E fails the build on any `do_not_say` wrong form.
+7. **Unverified external claims.** The WP-15 sign-off covers internal drafts and the NGO-pilot preview only. Instruments tied to unverified register rows render as "Unverified — not for citation"; signals tied to them are withheld and only counted. `check-output.mjs` section E fails the build on any `do_not_say` wrong form (a "mixing …" entry only where its figures share a sentence); double-quoted register phrases are reported, not enforced, until the data stops using them.
 6. **Preview profile.** The current build includes draft records, by design for the pilot preview, and every page says so. A distribution build should use a tagged release (`EMST_RELEASE_DIR`).

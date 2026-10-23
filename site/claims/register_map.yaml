@@ -1,7 +1,8 @@
 # Map from WP-15 claims-register rows (docs/methods/claims_register.csv) to the release records the explorer renders.
 # Owner: CP (WP-12). Read by lib/model.mjs (to label or suppress) and tools/check-output.mjs (to verify).
 # Rule (WP15_SIGNOFF.md §2.1-2.2): a record tied to an `unverified` row renders only as its title plus
-# "Unverified — not for citation (claims register <id>)", with no status, date or event detail; a `held` row's records
+# "Unverified — not for citation (claims register <id>)", with no status, date or event detail; a signal tied to such a
+# row is withheld entirely and only counted (its headline is the claim; package review issue 2); a `held` row's records
 # never render. The check fails if an unverified or held row used by the explorer has no entry here.
 # Licence: CC0-1.0.
 version: 1
@@ -18,7 +19,8 @@ rows:
   REG-03: {instruments: [seed:ins/co-hb26-1205]}
   REG-04: {instruments: [seed:ins/fix-our-forests-act]}
   REG-05: {instruments: [seed:ins/ghgrp-reconsideration]}
-  REG-06: {instruments: [seed:ins/obbba-ira-rescissions], signals: [seed:sig/foresight/ws-10-obbba-ira-rescissions]}
+  # The role-level copy of the same signal (data/v2/signals/2026/s2a-change-view-atoms.jsonl) carries the same claim.
+  REG-06: {instruments: [seed:ins/obbba-ira-rescissions], signals: [seed:sig/foresight/ws-10-obbba-ira-rescissions, seed:sig/foresight/ws-10-obbba-ira-rescissions/R09-restoration-project-lead]}
   REG-07: {instruments: [seed:ins/tx-hb-3923]}
   # Baseline event days dated by LM judgment (evidenceLabel J on the event): the date is suppressed.
   REG-08: {events_with_evidence_label: [J, S]}

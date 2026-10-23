@@ -7,7 +7,8 @@ title: Home
 <p class="emst-lede">Start with a role. See how its work is shifting, check development gaps on your own device, and explore where the role can lead across federal, state, local, nonprofit and private employers.</p>
 
 <div class="emst-callout emst-callout--warn" role="note">
-  <p><strong>What you are looking at.</strong> This is release {{ emst.release.id }}{% if emst.release.isPreview %}, an internal preview built from draft records{% endif %}. The competencies, tasks and role profiles were drafted by AI agents and the project team and have not been reviewed by practitioners. No change in any task has yet been assessed by a v2 multi-rater study, so every "how is this changing" answer says <em>assessment pending</em>. Use it to explore and to give feedback, not to make decisions about people.</p>
+  <p><strong>Status: draft for NGO-pilot preview ({{ emst.release.date }}).</strong> AI agents checked facts against sources; some claims still await entries in the project's claims register, and records tied to those claims are withheld or marked "Unverified — not for citation". Not yet reviewed by independent human experts. Date-sensitive statements will be re-checked before external release.</p>
+  <p><strong>What you are looking at.</strong> This is release {{ emst.release.id }}{% if emst.release.isPreview %}, a preview built from draft records{% endif %}. The competencies, tasks and role profiles were drafted by AI agents (Anthropic's Claude) working to a charter set by the EMST project lead, partly from the project lead's earlier version 1 taxonomy. Practitioners have not reviewed them. No change in any task has yet been assessed by independent human raters, so every "how is this changing" answer says <em>assessment pending</em>. The explorer shows no time shares, importance ratings, critical or needed-at-entry flags, or AI-agent craft ratings. Use it to explore and to give feedback, not to make decisions about people.</p>
 </div>
 
 <h2>Three things you can do</h2>
@@ -19,10 +20,10 @@ title: Home
 
 <h2>What is in this build</h2>
 <div class="emst-stats">
-  {{ m.statFigure(emst.rolesMain.length, "Role profiles with role-change pages", emst.figures.roles, "Being authored by the role-profile work package; pages appear as records are added." if emst.roles.length == 0 else emst.variants.length + " sector-actor variants; " + (emst.roles.length - emst.rolesMain.length) + " more emerging roles in What's coming") }}
+  {{ m.statFigure(emst.rolesMain.length, "Role profiles with role-change pages", emst.figures.roles, "Pages appear as role records are added." if emst.roles.length == 0 else emst.stats.depth.full + " corridor roles profiled in full and " + emst.stats.depth.lower + " earlier drafts at lower depth; " + emst.variants.length + " variants by employer type; " + emst.stats.depth.emerging + " more emerging roles in What's coming") }}
   {{ m.statFigure(emst.coreCompetencies.length, "Core competencies (live records)", emst.figures.coreCompetencies) }}
   {{ m.statFigure(emst.moduleList.length, "Module editorial sections", emst.figures.moduleCompetencies, ((emst.competencies | length) - (emst.coreCompetencies | length)) + " module competency records, kept out of default HR views") }}
-  {{ m.statFigure(emst.stats.gatedRendering, "Rated values that pass the display gate", emst.figures.gate, "Out of " + emst.stats.gatedRows + " gated or editorial value slots. Values render only after a human agreement study passes (alpha lower bound at least 0.667).") }}
+  {{ m.statFigure(emst.stats.gatedRendering, "Rated values that pass the display gate", emst.figures.gate, "Out of " + emst.stats.gatedRows + " gated or editorial value slots. A rated value is shown only after independent human raters are found to agree on it; values they do not agree on are never shown.") }}
 </div>
 
 <h2>Also here</h2>
@@ -32,3 +33,6 @@ title: Home
   <li><a href="{{ '/competencies/' | url }}">All core competencies</a> with levels, observable indicators and the tasks they serve.</li>
   <li><a href="{{ '/evidence/' | url }}">How to read the evidence</a>: use tiers, evidence labels, the display gate and the v1 evidence drawer.</li>
 </ul>
+
+<h2>Comment or correct</h2>
+<p>Every comment and correction goes to the project's public GitHub Issues page, linked at the foot of every page. <a href="{{ '/challenge/' | url }}">How to challenge a judgment</a> says what to include.</p>

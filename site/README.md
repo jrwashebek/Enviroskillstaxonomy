@@ -69,11 +69,11 @@ The same script also runs the claims-hygiene and display rules:
 It also enforces the WP-15 sign-off (`docs/methods/WP15_SIGNOFF.md`, `docs/methods/claims_register.csv`):
 
 - **Unverified or held register rows are mapped.** Every unverified or held row the explorer uses must be mapped in `claims/register_map.yaml`, and so must every signal that cites one of those rows' sources.
-- **Unverified records are labelled.** Every mapped instrument or signal title is followed by "Unverified — not for citation".
+- **Unverified records are labelled or withheld.** Every mapped instrument title is followed by "Unverified — not for citation". A mapped signal is withheld entirely and only counted ("2 unverified signals withheld"), because a signal's headline is itself the claim (package review issue 2); if its title ever renders, the label must follow it.
 - **Judgment dates do not appear.** Event days dated by judgment (REG-08) never appear.
-- **Wrong forms fail the build.** No `do_not_say` wrong form appears: the register's quoted phrases of 12 or more characters, plus the context patterns in `claims/do_not_publish.yaml` for short forms such as 'realigned' or 'final'.
+- **Wrong forms fail the build.** No `do_not_say` wrong form appears. `lib/claims.mjs` parses the column (shared with the view model): single-quoted phrases of 12 or more characters fail anywhere; an item that starts "mixing …" (RPT-05: USDA OIG's 16% with PPS's 'more than a quarter') fails only where all its terms share one sentence, table cell or list item without a phrase such as "different base"; double-quoted phrases are recorded but not enforced while data still uses them, and the check lists where they still render. The context patterns in `claims/do_not_publish.yaml` cover short forms such as 'realigned' or 'final'.
 
-`tools/test-checks.mjs` seeds 19 violations into a fixture page and confirms that the checker reports each one.
+`tools/test-checks.mjs` seeds 21 violations into a fixture page and confirms that the checker reports each one. It also checks five near-misses that must pass: 'more than a quarter' alone, the 16% figure distinguished from it, the two in separate sentences or table cells, and a double-quoted (deferred) register phrase, which must be reported but not fail.
 
 `tools/browser-checks.mjs` loads 50 pages in a local Chromium (playwright-core with the browsers in `PLAYWRIGHT_BROWSERS_PATH`). On each page it:
 
@@ -113,9 +113,10 @@ These are enforced in `lib/model.mjs` and checked in `tools/check-output.mjs`.
 - **Computed federal applicability.** It is read only from the computed view, and nothing is excluded (Q4 default).
 - **Module content out of default HR views** (CR-CP-001 ruling B5). Cross-role lists show core content only. Role-scoped views (role page, Federal Series Profile, State Class View) show the role's home-module content labelled "editorial section, not a stewarded module". Other modules and non-established items are placed in a collapsed, labelled section.
 - **Editorial design values versus job-analysis values** (CR-CP-001 ruling B4; display-gate@1.1.0). Bundle membership, role levels, formation flags and target levels show as "editorial draft". Importance, time share, critical, needed-at-entry and distinguishing show "Assessment pending (job analysis)". View 1 counts tasks rather than shares. HR views list duties without percentages ("% time: set by the supervisor; EMST supplies none before job analysis"). The gap check ranks by gap size alone.
-- **Claims register.** Records tied to unverified register rows show only their title and "Unverified — not for citation". Signal direction and driver tags are agent drafts and are not shown. P3 roles appear only in What's coming.
+- **Claims register.** Instruments tied to unverified register rows show only their title and "Unverified — not for citation"; signals tied to them are withheld and counted. Signal direction and driver tags are agent drafts and are not shown. P3 roles appear only in What's coming.
+- **Signals on role pages.** A role-change page lists signals about the role, its variant or its primary work function. Signals about an employer type as a whole (for example agency headcounts) are counted there and listed in What's coming (package review issue 31). Reliability grades are shown as set by the agent that entered the signal.
 - **Federal applicability is computed.** Only instruments linked as *requiring* the work decide the value (venue-applicability@1.0.0). The WP-05 prototype fallback never shows "required basis" (CR-CP-001 ruling A1).
-- **Credentials never stated as requirements.** Credential gates are never presented as requirements. A credential appears as "may be involved (agent-drafted link)" only when its issuer is verified; others are counted, not shown.
+- **Credentials never stated as requirements.** Credential gates are never presented as requirements. A credential appears as "may be involved (agent-drafted link)" only when its issuer is verified in the release bundle; others are counted ("n credential gates not shown until the issuer is verified"). WP-08 views carry gates as `{shown, notShownUntilIssuerVerified}`; the explorer re-checks every shown gate against the bundle and adds the generator's withheld count.
 - **Proposed realignments.** Series that OPM has proposed for realignment read "proposed, not final".
 - **No recommended pathways.** Pathways are never "recommended".
 
@@ -126,7 +127,8 @@ These are enforced in `lib/model.mjs` and checked in `tools/check-output.mjs`.
 - **No external context.** External index context is absent: those records are third-party licensed and excluded from releases.
 - **Stop-gap computed views.** Federal applicability (registered rule run by the explorer over the release) and the HR views (WP-08 generators) are stop-gaps until `build_release.py` emits them (CR-CP-001 A1–A2, accepted).
 - **Job-analysis values hidden.** Importance, time shares, critical and needed-at-entry flags stay hidden until reviewed (CR-CP-001 B4). Role-change summaries are task counts.
-- **Not cleared for external publication.** The WP-15 sign-off covers internal drafts and the NGO-pilot preview only, pending AS co-signature and the re-checks.
+- **Not for external publication yet.** The WP-15 sign-off covers internal drafts and the NGO-pilot preview only, pending the remaining co-signature and the re-checks.
+- **Authorship, status and comments.** Every page footer carries the package authorship statement (AI agents, working to a charter set by the EMST project lead; no independent human expert review yet) and the one call to action, a link to the repository's GitHub Issues page. The home page carries the package status line.
 - **Exports.** Exports are CSV and print-to-PDF. DOCX exports (IDP, PD skeleton) are not built.
 
 Licence: Apache-2.0 for this code; data and standard text CC0 1.0. USWDS is in the public domain, with its fonts under the SIL Open Font License.

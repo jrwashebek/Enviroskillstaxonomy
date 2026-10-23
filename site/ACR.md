@@ -73,7 +73,7 @@ The four "Partially supports" entries are 1.1.1, 1.3.1 and 4.1.2, which await as
 | 3.1.1 Language of Page | Supports | `<html lang="en">`. |
 | 3.2.1 On Focus | Supports | Focus never changes context. |
 | 3.2.2 On Input | Supports | Choosing a role level updates the target text in place, with no change of context. Opening a file applies it and announces the result in a status region. |
-| 3.2.6 Consistent Help | Supports | The same footer links ("Challenge a judgment", "Accessibility", "Privacy") appear in the same order on every page. |
+| 3.2.6 Consistent Help | Supports | The same footer links ("Challenge a judgment", "Accessibility", "Privacy") and the same comment route (a link to the repository's GitHub Issues page) appear in the same order on every page. |
 | 3.3.1 Error Identification | Supports | File-open problems (wrong schema, different role variant, file too large) are described in text in a `role="status"` region. No form is submitted, so there is no other validation. |
 | 3.3.2 Labels or Instructions | Supports | Every input has a visible label. The note field has a hint ("Do not type names or other personal details") tied by `aria-describedby`. |
 | 3.3.7 Redundant Entry | Supports | Answers can be saved and reopened, so nothing has to be re-entered. |

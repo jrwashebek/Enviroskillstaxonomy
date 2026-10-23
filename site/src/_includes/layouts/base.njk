@@ -17,8 +17,8 @@
 <a class="usa-skipnav" href="#main-content">Skip to main content</a>
 <div class="emst-release-banner" role="region" aria-label="Release and use notice">
   <div class="emst-wrap">
-    <p><strong>Release {{ emst.release.id }}{% if emst.release.isPreview %} · internal preview of draft records, not a release{% endif %}.</strong>
-    {% if emst.release.isPreview %}Every record here is an unreviewed draft, mostly written by AI agents. Nothing has been validated by practitioners yet.{% endif %}
+    <p><strong>Release {{ emst.release.id }}{% if emst.release.isPreview %} · draft for NGO-pilot preview, not a release{% endif %}.</strong>
+    {% if emst.release.isPreview %}Every record here is a draft, mostly written by AI agents, and has not yet been reviewed by independent human experts.{% endif %}
     For development and planning only; not a selection instrument.</p>
     {% if emst.release.warning %}<p><strong>Build warning:</strong> {{ emst.release.warning }}</p>{% endif %}
   </div>
@@ -55,9 +55,11 @@
 </div>
 <footer class="emst-footer">
   <div class="emst-wrap">
-    <p><strong>Release {{ emst.release.id }}</strong> · profile <code>{{ emst.release.profile }}</code> · schema {{ emst.release.schemaVersion }} · released {{ emst.release.date }} · build <code>{{ emst.release.buildCommit }}</code> · display gate {{ emst.release.displayGateRule }} · use tiers {{ emst.release.eutRule }}</p>
+    <p><strong>Release {{ emst.release.id }}</strong> · profile <code>{{ emst.release.profile }}</code> · schema {{ emst.release.schemaVersion }} · released {{ emst.release.date }} · build <code>{{ emst.release.buildCommit }}</code> · display gates {{ emst.release.gatesVersion }} (release view stamped {{ emst.release.displayGateRule }}; the explorer applies the role-profile rules of {{ emst.release.gatesVersion }} itself) · use tiers {{ emst.release.eutRule }}</p>
     <p>{{ emst.release.notice }}</p>
-    <p data-emst-policy="indigenous-statement">{{ emst.release.indigenousStatement }} Content under the project's Tribal content hold is excluded from every build until a Tribal Advisory Council approves it; it is not shown and not counted on these pages.</p>
+    <p data-emst-policy="indigenous-statement">{{ emst.release.indigenousStatement }} Content under the project's Tribal content hold is excluded from every build until a Tribal Advisory Council approves it. These pages neither show nor describe it; the release notes give only a count of held records.</p>
+    <p><strong>Who made this.</strong> This explorer and its records were researched and drafted by a team of AI agents (Anthropic's Claude), each given a specialist role, working to a charter set by the EMST project lead. AI agents checked the facts against sources in October 2026. No independent human expert has reviewed it yet. Role names such as "Chief Taxonomy Architect", or "EMST's federal HR agent" on these pages, are AI agent roles, not people.</p>
+    <p>To comment, correct an error or ask about the pilot, open an issue at <a class="emst-url" href="https://github.com/jrwashebek/Enviroskillstaxonomy/issues" rel="noreferrer">github.com/jrwashebek/Enviroskillstaxonomy/issues</a> (GitHub is a third-party site; this explorer sends nothing itself).</p>
     <p>This explorer runs entirely in your browser. It sets no cookies, keeps no logs, loads nothing from other websites and sends nothing you enter anywhere. <a href="{{ '/about/privacy/' | url }}">What we do not collect</a>.</p>
     <ul>
       <li><a href="{{ '/about/privacy/' | url }}">Privacy</a></li>

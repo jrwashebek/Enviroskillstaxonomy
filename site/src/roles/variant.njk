@@ -33,16 +33,16 @@ eleventyComputed:
     <text x="{{ 88 + wA + wP }}" y="{{ y + 17 }}" font-size="13" fill="#1b1b1b">{{ l.assessed }} of {{ l.total }} assessed</text>
     {% endfor %}
   </svg>
-  <p>Tasks at each role level by assessment status. Dotted means assessment pending. Counts, not time shares: time shares are job-analysis values and stay hidden until a job analysis confirms them (CR-CP-001).</p>
+  <p>Tasks at each role level by assessment status. Dotted means assessment pending. Counts, not time shares: time shares are job-analysis values and stay hidden until a job analysis confirms them.</p>
   <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Tasks by assessment status and role level">
   <table class="usa-table usa-table--compact">
     <caption>Tasks by assessment status and role level (table of the chart)</caption>
     <thead><tr><th scope="col">Role level</th><th scope="col">Proficiency band</th><th scope="col" class="emst-num">Tasks</th><th scope="col" class="emst-num">Assessed (v2 multi-rater)</th><th scope="col" class="emst-num">Assessment pending</th></tr></thead>
-    <tbody>{% for l in v.levelCounts %}<tr><td>{{ l.key | titlecase }}</td><td>{{ l.band | join(" to ") }}</td><td class="emst-num">{{ l.total }}</td><td class="emst-num">{{ l.assessed }}</td><td class="emst-num">{{ l.pending }}</td></tr>{% endfor %}</tbody>
+    <tbody>{% for l in v.levelCounts %}<tr><td>{{ l.key | titlecase }}</td><td>{% for b in l.band | uniq %}{{ b }} ({{ emst.labels.level[b] | lower }}){% if not loop.last %} to {% endif %}{% endfor %}</td><td class="emst-num">{{ l.total }}</td><td class="emst-num">{{ l.assessed }}</td><td class="emst-num">{{ l.pending }}</td></tr>{% endfor %}</tbody>
   </table>
   </div>
   <p><strong>Evidence mix:</strong> v1 single-analyst codes exist for some tasks. They appear only in each task's evidence drawer and are not counted here.</p>
-  <p><strong>External context:</strong> not in this build. Occupation-level external exposure indices are third-party licensed and excluded from release files (ADR-0029 §9.6); task-level external values need a human-reviewed O*NET task crosswalk first. Values are never averaged across indices.</p>
+  <p><strong>External context:</strong> not in this build. Occupation-level external exposure indices are third-party licensed and excluded from release files; task-level external values need a human-reviewed O*NET task crosswalk first. Values are never averaged across indices.</p>
   <p class="emst-muted">Computed with rule role-change@0.1.0 (interim; reference implementation in the explorer build).</p>
   {{ m.meta(v.tier, v.evidence, "computed at build from release records") }}
 </figure>
@@ -81,11 +81,13 @@ eleventyComputed:
 {% else %}<p>No policy instrument is linked to this variant in this build.</p>{% endif %}
 {% set c = v.change %}
 {% if c.drivers.length %}
-<p>Signals recorded about this role's primary work function ({{ v.role.primaryWorkFunctionLabel }}) or its sector actor. All are <strong>watch</strong> signals: none yet meets the evidence rule for a change indicator (two independent signal families, human-reviewed).</p>
+<p>Signals recorded about this role or its primary work function ({{ v.role.primaryWorkFunctionLabel }}). All are <strong>watch</strong> signals: none yet meets the evidence rule for a change indicator (two independent signal families, human-reviewed).</p>
 <ul class="emst-cards">{% for s in c.drivers %}{{ m.signalItem(s) }}{% endfor %}</ul>
 {% else %}
-<p>No change signal in this build targets this role, its primary work function or its sector actor. "No signal yet" is a finding, not a reassurance.</p>
+<p>No change signal in this build targets this role or its primary work function. "No signal yet" is a finding, not a reassurance.</p>
 {% endif %}
+{% if c.actorWide %}<p class="emst-muted">{{ c.actorWide }} further signal{{ "s" if c.actorWide != 1 }} describe{{ "s" if c.actorWide == 1 }} {{ v.actorLabel | lower if v.actor == "federal" or v.actor == "state" else "this kind of" }} employers as a whole (for example agency headcounts), not this role, so {{ "they are" if c.actorWide != 1 else "it is" }} listed only in <a href="{{ '/whats-coming/' | url }}">What's coming</a>.</p>{% endif %}
+{% if c.withheld %}<p class="emst-muted">{{ c.withheld }} signal{{ "s" if c.withheld != 1 }} withheld: {{ "they rest" if c.withheld != 1 else "it rests" }} on a claim the verification pass has not re-checked.</p>{% endif %}
 
 <h2>Emerging in this role</h2>
 {% if c.emerging.length %}
@@ -100,7 +102,7 @@ eleventyComputed:
 <h2>Competencies this role targets</h2>
 <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Competency targets">
 <table class="usa-table usa-table--compact" data-figure data-use-tier="{{ v.role.tier.tier }}" data-evidence="{{ v.role.evidence.label }}">
-  <caption>Target levels by role level (editorial draft: agent-drafted, unreviewed; validated later by a Delphi panel). {{ m.tierBadge(v.role.tier) }} {{ m.evBadge(v.role.evidence) }}</caption>
+  <caption>Target levels by role level: design statements drafted by AI agents, not findings. Not yet reviewed by practitioners. {{ m.tierBadge(v.role.tier) }} {{ m.evBadge(v.role.evidence) }}</caption>
   <thead><tr><th scope="col">Competency</th>{% for l in v.role.roleLevels %}<th scope="col">{{ l.key | titlecase }}</th>{% endfor %}{% if v.actor == "federal" %}<th scope="col">Federal applicability (computed)</th>{% endif %}</tr></thead>
   <tbody>
   {% for t in v.role.competencyTargets %}
@@ -111,12 +113,12 @@ eleventyComputed:
   </tbody>
 </table>
 </div>
-<p class="emst-muted">Importance and "distinguishing" flags for these competencies are job-analysis values: assessment pending (job analysis).{% if v.actor == "federal" %} Federal applicability is read only from the computed view ({{ "prototype computation; 'required basis' is never shown from it" if emst.venue.source == "wp05-prototype" else ("rule " + emst.venue.rule + " over the release records") }}; as of {{ emst.venue.asOf }}). Nothing is excluded from this view (project lead default, Q4).{% endif %}</p>
+<p class="emst-muted">Importance and "distinguishing" flags for these competencies are job-analysis values: assessment pending (job analysis).{% if v.actor == "federal" %} Federal applicability is read only from the computed view ({{ "prototype computation; 'required basis' is never shown from it" if emst.venue.source == "wp05-prototype" else ("rule " + emst.venue.rule + " over the release records") }}; as of {{ emst.venue.asOf }}). Nothing is excluded from this view (the EMST project lead's default).{% endif %}</p>
 
 <h2>Crosswalks and credentials</h2>
-{% if v.credentialGates.length %}<p>Credentials that may be involved (agent-drafted link, not a verified requirement; credential issuer verified): {% for g in v.credentialGates %}{{ g.title }} (drafted as {{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
-{% if v.credentialGatesPending %}<p class="emst-muted">{{ v.credentialGatesPending }} further credential link{{ "s" if v.credentialGatesPending != 1 }} not shown until the issuer is verified (SPEC §10.5 rule 8).</p>{% endif %}
-{% if v.grade %}<p>Indicative {{ v.grade.scheme }} band: {{ v.grade.band }} ({{ v.grade.label }}; advisor judgment).</p>{% endif %}
+{% if v.credentialGates.length %}<p>Credentials that may be involved (agent-drafted link, not a requirement; the credential's issuer was checked against a cited source): {% for g in v.credentialGates %}{{ g.title }} (drafted as {{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
+{% if v.credentialGatesPending %}<p class="emst-muted">{{ v.credentialGatesPending }} credential gate{{ "s" if v.credentialGatesPending != 1 }} not shown until the issuer is verified.</p>{% endif %}
+{% if v.grade %}<p>Indicative {{ v.grade.scheme + " " if v.grade.scheme }}grade band{{ "s" if v.grade.bands.length != 1 }}: {% for b in v.grade.bands %}{% if b.level %}{{ b.level | titlecase }} {% endif %}{{ b.band }}{% if not loop.last %}; {% endif %}{% endfor %} <span class="emst-muted">({{ v.grade.label + "; " if v.grade.label }}judgment by EMST's federal HR agent, an AI agent; not reviewed by a classifier)</span>.</p>{% endif %}
 {{ m.crosswalkTable(v.crosswalks, "Draft crosswalks for this variant", true) }}
 {% if not v.crosswalks.length %}<p>No variant-level crosswalk rows in this build.</p>{% endif %}
 
