@@ -232,6 +232,8 @@ export function buildModel({ root, releaseDir, meta }) {
   const credVerified = (id) => records.get(id)?.issuerVerified?.verified === true;
   const gatesOf = (gs) => {
     const all = (gs || []).filter((g) => g && g.credential);
+    // Even when the issuer is verified, the link between this work and the credential is an agent draft: shown as a
+    // "may be involved" note, never as a requirement (coordinator ruling; SPEC §10.5 rule 8).
     const shown = all.filter((g) => credVerified(g.credential)).map((g) => ({ kind: g.kind, title: credTitle(g.credential) }));
     return { shown, pending: all.length - shown.length };
   };
@@ -375,8 +377,13 @@ export function buildModel({ root, releaseDir, meta }) {
       scenarioSensitivity: r.scenarioSensitivity || null, evidenceSignals: r.evidenceSignals || [], feederRoles: (r.feederRoles || []).map((f) => f.role),
       entryFrom: r.entryFrom || [], progressesTo: r.progressesTo || [], homeModule: r.homeModule || "core", isModule: (r.homeModule || "core") !== "core",
       status: r.status, tier: tierOf(r), evidence: evidenceOf(r), variants: [],
+      depthTier: (r.notation || []).find((n) => n.scheme === "MVPtier")?.value || "",
+      horizonLabel: r.horizon || "", scenarioSensitivityList: Object.entries(r.scenarioSensitivity || {}).map(([k, v]) => ({ scenario: k, direction: v })),
+      feederRoleIds: (r.feederRoles || []).map((f) => f.role), evidenceSignalIds: r.evidenceSignals || [],
       crosswalks: (mappingsBySubject.get(r.id) || []).map(crosswalkRow),
     };
+    vm.whatsComingOnly = vm.depthTier === "P3";            // coordinator ruling: P3 roles appear only in "What's coming"
+    if (vm.whatsComingOnly) vm.url = `/whats-coming/#${vm.slug}`;
     roles.push(vm);
     roleById.set(r.id, vm);
   }
@@ -384,6 +391,7 @@ export function buildModel({ root, releaseDir, meta }) {
   for (const v of variantRecs) {
     const role = roleById.get(v.variantOf);
     if (!role) continue;
+    if (role.whatsComingOnly) { role.variants.push({ id: v.id, actor: v.sectorActor, actorLabel: labels.sectorActor[v.sectorActor] || v.sectorActor, whatsComingOnly: true }); continue; }
     const drops = new Set(v.taskDrops || []);
     const overrides = new Map((v.taskOverrides || []).map((b) => [b.task, b]));
     const bundle = [
@@ -411,6 +419,9 @@ export function buildModel({ root, releaseDir, meta }) {
     variants.push(vm);
   }
   for (const r of roles) r.variants.sort((a, b) => a.actor.localeCompare(b.actor));
+  for (const r of roles) if (r.whatsComingOnly) {
+    r.feeders = r.feederRoleIds.map((id) => roleById.get(id)).filter(Boolean);
+  }
   roles.sort((a, b) => a.title.localeCompare(b.title));
   const variantById = new Map(variants.map((v) => [v.id, v]));
 
@@ -670,7 +681,7 @@ export function buildModel({ root, releaseDir, meta }) {
 
   // ---------------------------------------------------------------- search index (one file, loaded before typing)
   const search = [
-    ...roles.map((r) => ({ t: r.title, k: "Role", u: r.url, a: r.altLabels.join(" ") })),
+    ...roles.map((r) => ({ t: r.title, k: r.whatsComingOnly ? "Emerging role (What's coming)" : "Role", u: r.url, a: r.altLabels.join(" ") })),
     ...variants.map((v) => ({ t: v.title, k: "Role variant", u: v.url, a: "" })),
     ...competencies.map((c) => ({ t: c.title, k: c.isModule ? `Competency (${c.moduleLabel} editorial section)` : "Competency", u: c.url, a: c.altLabels.join(" ") + " " + c.v1Codes.join(" ") })),
     ...series.map((s) => ({ t: `${s.code} ${s.title}`, k: "Federal series profile", u: s.url, a: "" })),
@@ -697,7 +708,7 @@ export function buildModel({ root, releaseDir, meta }) {
   return {
     release, labels, gateLabels, counts, figures, venue: { source: venue.source, asOf: venue.asOf, n: venueBy.size }, hr,
     competencies, coreCompetencies: competencies.filter((c) => !c.isModule), moduleList,
-    roles, variants, pathwaysFrom, translations, pathwayRecords: pathwayRecs.length,
+    roles, rolesMain: roles.filter((r) => !r.whatsComingOnly), variants, pathwaysFrom, translations, pathwayRecords: pathwayRecs.length,
     signals: signalVMs, watchItems, instruments: instrumentVMs, changeIndicators, scenarios,
     series, stateClasses, emergingCompetencies, emergingRoles, search, gapCompetencies,
     titleIndex: Object.fromEntries(competencies.map((c) => [c.id, c.title])),
