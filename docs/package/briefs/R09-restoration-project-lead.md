@@ -42,7 +42,7 @@ a project role.
 
 | Work | Expected change (agent draft) | Driver | Outside signal (every task change: assessment pending) |
 |---|---|---|---|
-| **How restoration is delivered** | **Transforming:** reduced federal capacity could shift delivery toward partners and contracts | workforce capacity, policy | The Forest Service and the National Park Service each lost more than a quarter of their employees, September 2024 – January 2026 (reliability B) [2]. Appropriations fell far less than staffing: FY2026 Interior–Environment funding was 1.9% below FY2025 [3] |
+| **How restoration is delivered** | **Transforming:** reduced federal capacity could shift delivery toward partners and contracts | workforce capacity, policy | The Forest Service and the National Park Service each lost more than a quarter of their employees, September 2024 – January 2026 (reliability B) [2]. Appropriations fell far less than staffing: FY2026 Interior–Environment funding, enacted in January 2026 after most of the decline, was 1.9% below FY2025 [3] |
 | Read site response | Transforming, adding evidence: drone and satellite imagery could add response evidence between visits, while reading the site stays with people | sensing technology | none yet |
 | **Decide whether restoration to historical conditions is feasible** | **Emerging:** expected to become routine as sites shift state | climate | none yet |
 | Write technical approaches for solicitations | Transforming, compressing drafting: proposal sections can be AI-drafted, so review against the solicitation and the organization's real capacity would grow | AI | none yet |

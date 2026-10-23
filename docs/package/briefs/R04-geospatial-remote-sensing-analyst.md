@@ -43,7 +43,7 @@ Main tasks, in rough work order. This is a selection; EMST shows no time shares.
 
 | Work | Expected change (agent draft) | Driver | Outside signal (every task change: assessment pending) |
 |---|---|---|---|
-| Classify imagery into land cover | Transforming, compressing production: pretrained Earth-observation models and embeddings could compress classification, moving the analyst's time to training data, transfer tests and accuracy assessment | AI | Remote sensing, imagery and lidar: 63 registered AI use cases in eleven federal environmental units, 11 deployed (2025 inventory, EMST keyword classification; reliability A) [1] |
+| Classify imagery into land cover | Transforming, compressing production: pretrained Earth-observation models and embeddings could compress classification, moving the analyst's time to training data, transfer tests and accuracy assessment | AI | Remote sensing, imagery and lidar: 63 registered AI use cases in eleven federal environmental units, 11 deployed (2025 inventory; family counts are EMST's keyword classification of official data, not OMB's) [1] |
 | Assess map accuracy | Transforming, growing: accuracy assessment would grow as products multiply | AI, sensing technology | none yet |
 | Design maps | Transforming: generative tools can draft maps and graphics, but design for the decision stays | AI | none yet |
 | **Check that a product's training data and validation reference are independent** | **New** | AI | none yet |

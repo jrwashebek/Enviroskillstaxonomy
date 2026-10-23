@@ -88,7 +88,7 @@ things threatened that learning in 2025–26, and none of them is AI:
   July 2025 AmeriCorps also told grantees whose grants had been terminated, including programs in states that had not
   joined the litigation, that they were eligible for reinstatement; how many took it up is not documented. An
   11 September 2026 settlement with 23 state attorneys general and two governors covers FY2026 in those jurisdictions
-  only. Programs elsewhere have no equivalent protection, and the litigation is stayed until 1 February 2027 [4, 5].
+  only; it does not cover programs elsewhere. The litigation is stayed until 1 February 2027 [4, 5].
   **Corps leads should check whether their state is in the coalition.**
 - **Fewer openings.** On one job board, AmeriCorps positions fell 42% and paid internships 43.8% (March–September
   2025) [2].

@@ -100,7 +100,7 @@ mobility, knowledge capture) differ from the remedies for automation.
 
 ## Part 2. What the evidence says
 
-### Slide 4. Most registered environmental AI is science work, and most of it is not deployed
+### Slide 4. Classical machine learning for science is the largest type of registered environmental AI, and most use cases are not deployed
 
 **Headline:** In federal environmental units, classical machine learning for science work is the largest type of
 registered AI. Of the 347 use cases that report a stage, 61 are deployed, and none of the five in NEPA review or
@@ -114,7 +114,7 @@ permitting is.
 - Governmentwide, the 2025 inventory lists 3,611 use cases, 445 of them high-impact [8]
 
 **Speaker notes:** Source: OMB 2025 Federal Agency AI Use Case Inventory (README as of 13 April 2026). EMST counted 504
-use cases in eleven environmental units, nine bureaus and two USDA mission areas: the U.S. Geological Survey (187),
+use cases in eleven environmental units (nine agencies and bureaus and two USDA mission areas): the U.S. Geological Survey (187),
 NOAA (157), USDA Natural Resources and Environment (76), EPA (29), USDA Farm Production and Conservation (20), the Fish
 and Wildlife Service (11), the Bureau of Reclamation (8), the Bureau of Land Management (7), the Bureau of Safety and
 Environmental Enforcement (6), the National Park Service (2) and the Bureau of Indian Affairs (1). "Deployed" means
@@ -289,7 +289,7 @@ August 2026 update; the original 2025 paper reported 13%, and the update revises
 through reduced hiring; it shrinks when education is controlled for, some of the differing trends began before
 generative AI, and ADP under-covers government [77]. Do not cite it as causal. For corps, grant status matters: an
 11 September 2026 AmeriCorps settlement with 23 state attorneys general and two governors covers FY2026 in those
-jurisdictions only, and programs elsewhere have no equivalent protection [34, 111]. EMST's design response is the
+jurisdictions only; it does not cover programs elsewhere [34]. EMST's design response is the
 formation provisions in its exploratory pathways: unaided work before AI assistance is credited, such as 50
 identifications checked by an experienced observer, two effects sections drafted unaided, and one comment set of 200+
 coded by hand. The quotas are EMST's curriculum draft, for the pilot to calibrate [93; J]. The pilot pre-registers the
@@ -366,7 +366,7 @@ the documents that gate hiring and development, not to sit on a shelf.
 - **Open and private by design:** CC0 data, a static explorer that stores no personal data, an accessibility target of
   WCAG 2.2 AA
 
-**Speaker notes:** North star (charter): "If those blends are visible and portable, mobility follows." Product strategy:
+**Speaker notes:** North star (charter): "If those blends are visible and portable, mobility follows." [21] Product strategy:
 exports into position descriptions, class specifications, postings, assessments, development plans and learning records
 take priority over browse-only views. The evidence behind that strategy is that announcing skills-based policy does not
 by itself change who is hired. In a Burning Glass Institute and Harvard Business School study of private firms that
@@ -425,7 +425,7 @@ individual is sent to EMST. EMST's AI-literacy content maps to the Department of
 Understand AI Principles, Explore AI Uses, Direct AI Effectively, Evaluate AI Outputs and Use AI Responsibly (TEN
 07-25, 13 February 2026) [94]. WIOA has not been reauthorized; H.R. 8210 was ordered reported 19–14 with no floor vote
 found [103]. EMST claims no alignment with O*NET, ESCO, OPM, state or accreditation frameworks until a reviewed mapping
-set exists.
+set exists [89].
 
 ---
 
@@ -456,8 +456,7 @@ EMST v2 cannot yet claim and how it would earn each claim.
 **Speaker notes:** No organization has committed. EMST's commitment register is the only source of committed status,
 and it is empty; an organization is a partner only when a signed record is entered there [104]. The expansion decision
 in March 2028 uses pre-set usefulness thresholds, with a veto on usefulness for a practitioner panel that is still to be
-recruited, and requires
-EMST identifiers to appear in real hiring or training documents at half or more of the pilot organizations. Reliability
+recruited, and requires EMST identifiers to appear in real hiring or training documents at half or more of the pilot organizations. Reliability
 studies, a modified Delphi panel and a matrix-sampled job-analysis survey are designed now and would run with people
 from 2027. No October 2026 posting baseline exists, so EMST makes no claim about posting volumes or content beyond the
 one-board figures cited. The Tribal outreach gate stays closed until reviewer compensation is funded and a Council exists;

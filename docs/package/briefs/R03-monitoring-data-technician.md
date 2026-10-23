@@ -41,7 +41,7 @@ Main tasks, in rough work order. This is a selection; EMST shows no time shares.
 
 | Work | Expected change (agent draft) | Driver | Outside signal (every task change: assessment pending) |
 |---|---|---|---|
-| Service deployed sensors | Transforming: as networked sensors multiply, field time would move from manual collection to servicing and verifying instruments | sensing technology | Water and hydrology: 36 registered AI use cases in eleven federal environmental units, 10 deployed (2025 inventory, EMST keyword classification; reliability A) [2] |
+| Service deployed sensors | Transforming: as networked sensors multiply, field time would move from manual collection to servicing and verifying instruments | sensing technology | Water and hydrology: 36 registered AI use cases in eleven federal environmental units, 10 deployed (2025 inventory; family counts are EMST's keyword classification of official data, not OMB's) [2] |
 | Review automated flags | Transforming, compressing first-pass quality control: automated checks would apply the first flags, and the technician would adjudicate them against field and instrument records | AI, automation | none yet |
 | **Audit automated flags: measure false-flag and missed-error rates** | **Emerging** | AI | none yet |
 | **Configure automated quality control on streaming feeds** (senior) | **Emerging:** expected to move to senior technicians | sensing technology | none yet |
@@ -67,7 +67,7 @@ Draft targets by level, entry / journey / senior (agent draft; design statements
 
 | Competency | Draft targets | Why now |
 |---|---|---|
-| Deploy, maintain and verify field sensor networks *(emerging)* | Supervised / Independent / Senior | Most field time goes to instruments |
+| Deploy, maintain and verify field sensor networks *(emerging)* | Supervised / Independent / Senior | Field time is expected to shift toward instruments (agent draft) |
 | Assure the quality of environmental data from collection to release | Supervised / Independent / Senior | Flag adjudication and audits |
 | Engineer environmental sensor-network and streaming data pipelines | — / Independent / Senior | Streaming quality-control configuration |
 | Validate AI-generated work products before professional use *(emerging)* | Supervised / Independent / Independent | Basic data and AI skills every EMST role includes |

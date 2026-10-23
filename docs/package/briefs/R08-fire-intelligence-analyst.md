@@ -45,7 +45,7 @@ Main tasks, in rough work order. This is a selection; EMST shows no time shares.
 |---|---|---|---|
 | **The role itself** | **New role forming (expected):** year-round fire intelligence could take shape as detection networks come online and federal fire is reorganized under the U.S. Wildland Fire Service (Secretarial Order 3448, 12 January 2026) [1] | sensing technology, AI, policy | Earth Fire Alliance launched three operational FireSat satellites in July 2026, according to several secondary reports (partly checked); dates for early-adopter data access are **not** confirmed [2] |
 | **Continuous multi-source fusion for dispatch** | **New** | AI, sensing technology | none yet |
-| **Adjudicate automated detections before ordering** | **New** | AI, sensing technology | Fire and smoke: 31 registered AI use cases in eleven federal environmental units, 8 deployed (2025 inventory, EMST keyword classification; reliability A) [3] |
+| **Adjudicate automated detections before ordering** | **New** | AI, sensing technology | Fire and smoke: 31 registered AI use cases in eleven federal environmental units, 8 deployed (2025 inventory; family counts are EMST's keyword classification of official data, not OMB's) [3] |
 | **Track forecast skill against observed outcomes** (senior, lead) | **New** | AI | none yet |
 | Predict fire spread and intensity | Transforming: spread models run continuously, and hand-worked predictions are kept as a formation check | AI | none yet |
 

@@ -664,7 +664,7 @@ def main():
     f1(); f2(); f3(); f4(); f5_f6(); f7(); f8(); f9(); f10()
     INDEX.append({
         "figure_id": "NOT-BUILT-1", "file": "",
-        "headline": "Two exposure profiles (analytical vs field occupations on capability and usage indices)",
+        "headline": "Exposure gradient (capability and usage indices)",
         "suggested_chart_form": "Held: would be a paired dot plot of occupation percentiles on a capability index and a usage index.",
         "source_note": "Not built. Values derive from the Eloundou et al. replication labels and Microsoft 'Working with AI' results files, whose license terms are not yet in the third-party license register (ADR-0013 amendment; CR-LM-002). The finding appears in the report as attributed prose. Build once EMST records the terms; BLS's public-domain AI exposure categories are a license-free alternative once ingested.",
         "use_tier": "", "evidence_label": "", "as_of": AS_OF})

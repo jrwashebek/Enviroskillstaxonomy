@@ -41,7 +41,7 @@ Main tasks, in rough work order. This is a selection; EMST shows no time shares.
 
 | Work | Expected change (agent draft) | Driver | Outside signal (every task change: assessment pending) |
 |---|---|---|---|
-| Draft permits and fact sheets | Transforming, compressing drafting: permit-drafting software and AI first drafts could compress production, moving the writer's time to specifying and checking conditions | AI | Generative-AI drafting and summarizing: 41 registered use cases in eleven federal environmental units, 4 deployed (2025 inventory, EMST keyword classification; reliability A). A registered use case shows that a tool exists, not that it is used [1] |
+| Draft permits and fact sheets | Transforming, compressing drafting: permit-drafting software and AI first drafts could compress production, moving the writer's time to specifying and checking conditions | AI | Generative-AI drafting and summarizing: 41 registered use cases in eleven federal environmental units, 4 deployed (2025 inventory; family counts are EMST's keyword classification of official data, not OMB's). A registered use case shows that a tool exists, not that it is used [1] |
 | **Review AI-drafted permits against the record** | **New** | AI | none yet |
 | Completeness review | Transforming: partly automated in electronic permitting systems | AI, policy | none yet |
 | **Confirm or override automated eligibility and completeness checks** | **New:** electronic permitting adds automated checks | AI, policy | none yet |

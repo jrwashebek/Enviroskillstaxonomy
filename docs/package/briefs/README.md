@@ -126,6 +126,8 @@ tasks that feed it are disappearing.
 
 ## Comment or correct
 
+How to take part in the 2027 NGO pilot: see section 8.5 of the flagship report.
+
 To comment, correct an error or ask about the pilot, open an issue at
 [github.com/jrwashebek/Enviroskillstaxonomy/issues](https://github.com/jrwashebek/Enviroskillstaxonomy/issues).
 
@@ -140,7 +142,7 @@ Text: CC BY 4.0. Cite as: *EMST contributors, "How this role is changing: <role>
 (`data/v2/core/roles/`, `data/v2/core/variants/`; fire roles in `data/v2/modules/forest/`), the generated Federal Series
 Profiles and State Class Views (`docs/build/WP-08/generated/`), the role-change views
 (`docs/build/WP-08/generated/change_view/`), the exploratory pathways and formation provisions
-(`docs/build/WP-07/staging/pathways/`, `docs/build/WP-07/formation_provisions.csv`), the foresight scenarios
+(`data/v2/core/pathways/`, `data/v2/modules/forest/pathways/`, `docs/build/WP-07/formation_provisions.csv`), the foresight scenarios
 (`docs/research/strategic-foresight/scenarios.md`) and the claims register (`docs/methods/claims_register.csv`). A brief
 adds no data of its own; where a brief and the explorer differ, the explorer and the data release are authoritative.
 Each brief's technical note gives its role key and the claims-register rows behind its numbered sources. Display rule:

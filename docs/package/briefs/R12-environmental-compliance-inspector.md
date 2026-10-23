@@ -44,7 +44,7 @@ Main tasks, in rough work order. This is a selection; EMST shows no time shares.
 |---|---|---|---|
 | **Where inspection capacity sits** | **Transforming role.** Most inspections are already done by delegated state and local programs [J]. With EPA staffing down 24% in a year, federal oversight, training and backstop capacity for those programs is thinner [1; J] | workforce capacity | EPA had 12,849 employees at the end of January 2026, 24% fewer than a year earlier (reliability B) [1] |
 | Write inspection reports | Transforming, compressing drafting: drafted inspection notes could compress report production, while findings of fact stay the inspector's | AI | none yet |
-| **Review automated anomaly flags before inspection or referral** | **New** | AI, sensing technology | Inspection, compliance and enforcement use cases appear among the registered AI of federal environmental units (2025 inventory; reliability A) [2] |
+| **Review automated anomaly flags before inspection or referral** | **New** | AI, sensing technology | Inspection, compliance and enforcement use cases appear among the registered AI of federal environmental units (2025 inventory; family counts are EMST's keyword classification of official data, not OMB's) [2] |
 | Verify self-reported values | Transforming: electronic reporting and continuous monitoring could make independent checks routine | sensing technology, policy | none yet |
 | Rank facilities for inspection (senior) | Transforming: data-driven targeting could change how inspections are selected | AI | none yet |
 | On-site inspection | Stable: current tools do not compress it | — | none yet |
