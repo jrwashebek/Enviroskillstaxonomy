@@ -367,10 +367,12 @@ def f8():
 
 # ---------------------------------------------------------------- F9 policy timeline
 VERIFIED_IDS_EXTRA = {"WP05-001", "WP05-002", "WP05-003", "WP05-004", "CP-043", "IO-034", "IO-022", "IO-020", "IO-028", "DC-016"}
+# Sources re-verified in the WP-15 pass (docs/methods/WP15_SIGNOFF.md; docs/methods/sources.csv LM-154 ... LM-161)
+WP15_IDS = {"LM-154", "LM-155", "LM-156", "LM-157", "LM-158", "LM-159", "LM-160", "LM-161"}
 
 
 def is_verified_source(s):
-    return s[:3] in ("V1-", "V2-", "V3-", "V4-") or s in VERIFIED_IDS_EXTRA
+    return s[:3] in ("V1-", "V2-", "V3-", "V4-") or s in VERIFIED_IDS_EXTRA or s in WP15_IDS
 
 
 def f9():
@@ -393,7 +395,8 @@ def f9():
         "american-security-drone": "Field technology", "faa-part-108": "Field technology",
         "uswfs": "Wildland fire", "wildland-fire-quals": "Wildland fire", "fy2026-interior": "Appropriations",
         "americorps": "Entry pathways", "workforce-pell": "Workforce system", "aswa-2026": "Workforce system",
-        "dol-tegl": "Workforce system",
+        "dol-tegl": "Workforce system", "baaja-s5653": "Environmental review", "co-ag-admt": "AI governance",
+        "usfs-objection": "Environmental review",
     }
     def dom(iid):
         k = iid.replace("seed:ins/", "")
@@ -409,7 +412,9 @@ def f9():
             i = ins.get(d["instrument"], {})
             if not no_tribal(d) or not no_tribal(i) or "tribal" in d["instrument"] or (d["instrument"] in hold_text and hold_text):
                 continue
-            if d.get("evidenceLabel") != "E" or not d.get("sources") or not all(is_verified_source(s) for s in d["sources"]):
+            srcs = d.get("sources") or []
+            ok = bool(srcs) and (all(is_verified_source(x) for x in srcs) or any(x in WP15_IDS for x in srcs))
+            if d.get("evidenceLabel") != "E" or not ok:
                 continue
             lab = dom(d["instrument"])
             if lab is None:
@@ -423,7 +428,8 @@ def f9():
         ("2026-11-10", "California SB 253: first Scope 1-2 reports due", "Disclosure and markets", "US-CA", "V2-15;DISC-01", ("V2-15", "Nov 10, 2026")),
         ("2027-01-01", "Colorado SB 26-189 (automated decision tools: notice and disclosure) takes effect", "AI governance", "US-CO", "CP-043;AIGOV-02", ("CP-043", "effective Jan 1, 2027")),
         ("2027-01-01", "FedRAMP Consolidated Rules mandatory for all stakeholders", "AI governance", "US", "V2-10;CMP-02", ("V2-10", "Jan 1, 2027 mandatory")),
-        ("2027-01", "USWFS-USFS aligned federal wildland fire qualification standards take effect (NWCG not a party)", "Wildland fire", "US", "V3-13;WF-10", ("V3-13", "effective January 2027")),
+        ("2027-01", "USWFS-USFS aligned federal wildland fire qualification standards take effect (the alignment is between USWFS and USFS standards)", "Wildland fire", "US", "V3-13;WF-10", ("V3-13", "effective January 2027")),
+        ("2026-10-26", "Colorado Attorney General: comments and hearing on interim draft SB 26-189 rules", "AI governance", "US-CO", "LM-155;AIGOV-03", ("AIGOV-03", "2026-10-26")),
         ("2027-02-01", "AmeriCorps litigation stay ends (settlement covers FY2026 only)", "Entry pathways", "US", "V1-05;WF-06", ("V1-05", "Feb 1, 2027")),
         ("2027-03-19", "EU CSRD transposition deadline after Omnibus I", "Disclosure and markets", "EU", "V2-15;DISC-02", ("V2-15", "Mar 19, 2027")),
         ("2027-04-26", "ADA Title II web accessibility compliance date for public entities of 50,000+ (WCAG 2.1 AA)", "Accessibility", "US", "V2-11;CMP-01", ("V2-11", "Apr 26, 2027")),
