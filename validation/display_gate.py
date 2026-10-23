@@ -126,6 +126,13 @@ def decide(value: dict, result: dict | None, gates: dict, view_tier: str = "desc
     marker, note = dimension_marker(result, gates, value.get("stratum"))
     if marker == "hidden":
         return out(False, "hidden", note or "below_gate")
+    cat_rule = gates.get("categories") or {}
+    if cat_rule and value.get("category") is not None:
+        for pc in result.get("perCategory") or []:
+            if str(pc.get("category")) == str(value.get("category")) and (_num(pc.get("nUnits")) or 0) >= cat_rule["min_units"]:
+                a = _num(pc.get("alpha"))
+                if a is None or a < cat_rule["cap_below_point_alpha"]:
+                    marker = "tentative" if marker == "production" else marker
     n_h = int(_num(value.get("nHumanRaters")) or 0)
     if not value.get("humanConsensus"):
         return out(False, "hidden", "no_consensus")

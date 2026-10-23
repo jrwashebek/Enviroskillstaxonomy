@@ -204,6 +204,18 @@ NAME = {
  'iap2': 'IAP2: International Association for Public Participation (and IAP2 USA)',
  'gcse': 'Global Council for Science and the Environment (incl. Council of Environmental Deans and Directors)',
  'nwcg': 'National Wildfire Coordinating Group (NWCG) qualification system (PMS 310-1, Position Task Books)',
+ 'bls-ep': 'BLS Employment Projections (incl. AI exposure categories) and OEWS',
+ 'openlmp': 'OpenLMP (machine-readable land management plans)',
+ 'neha': 'National Environmental Health Association (NEHA; REHS/RS credential)',
+ 'omb-ai': 'OMB AI memoranda M-25-21, M-25-22 and M-26-04',
+ 'gao': 'U.S. Government Accountability Office (GAO)',
+ 'crs': 'Congressional Research Service (CRS)',
+ 'fed-training': 'Federal training institutions (DOI University; NPS and BLM training centres)',
+ 'esip': 'Earth Science Information Partners (ESIP), incl. Data Management Training Clearinghouse',
+ 'tni': 'TNI (The NELAC Institute) standards, incl. Field Sampling and Measurement Organization standard',
+ 'abet': 'ABET (EAC and ETAC environmental engineering programme criteria)',
+ 'merit': 'OPM Merit Hiring Plan',
+ 'IO-E21': 'State AI-in-employment laws (Illinois HB 3773; Colorado SB 26-189, which replaced SB 24-205; California automated-decision-system regulations)',
 }
 STATUS = {
  'onet-db': 'O*NET 31.0 (Aug 2026); CSV, JSON and RDF downloads added Jul 2026; O*NET-SOC 2019 remains the taxonomy; no later database release announced as of Oct 2026; modernized Work Context slated for a future release',
@@ -280,6 +292,7 @@ STATUS = {
  'AS-E123': 'Environment programme active (climate-smart forests, Indigenous-led conservation); not a workforce-skills programme',
  'AS-E126': 'AI in Science postdoctoral fellowships advertised for 2026 (indirect evidence); not a workforce-skills programme',
  'AS-E065': 'IEMA rebranded as ISEP by Jul 2025',
+ 'AS-E012': 'Bureau fire programmes moved to USWFS (SO 3448, Jan 12 2026); 0480 is on OPM\'s proposed (not final) Phase One list for realignment to 0401; other 2026 status not checked',
  'AS-E118': 'Incubation of EMST through Dec 2027 not confirmed (questions_for_project_lead.md Q3); no commitment recorded',
 }
 URL = {  # corrected URLs from verification findings
@@ -287,9 +300,37 @@ URL = {  # corrected URLs from verification findings
  'ieee': 'https://sagroups.ieee.org/1484-20-3', 'wef-foj': 'https://www.weforum.org/publications/the-future-of-jobs-report-2025/',
  'linkedin': 'https://economicgraph.linkedin.com', 'TN-E03': '', 'AS-E096': '',
  'fire-quals': 'https://iqcsweb.nwcg.gov/sites/default/files/documents/2026_Transition_Plan.pdf',
- 'abc-wpi': '', 'issp': 'https://www.bdcnetwork.com/codes-and-standards/news/55162937/new-gbci-certification-recognizes-expertise-in-sustainability',
+ 'abc-wpi': '', 'issp': '',
+ 'lightcast': 'https://lightcast.io', 'credential-engine': 'https://credentialengine.org',
+ 'uswfs': 'https://www.doi.gov/wildlandfireservice/about', 'fwd': 'https://data.opm.gov',
 }
 
+JOIN_ADD = {'ECO-LM-03': ['onet-task-id'], 'bls-ep': ['soc']}  # keyed per SPEC s11.4
+OWNER = {
+ 'issp': 'GBCI (credential steward; credentials developed by ISSP)',
+ 'abc-wpi': 'Water Professionals International (formerly ABC)',
+ 'isep': 'ISEP (formerly IEMA)',
+}
+WHAT = {
+ 'workforce-pell': 'Pell eligibility for short-term programmes identified and approved by governors working with state workforce boards, then reviewed by ED',
+ 'SC-E18': 'Federal executive core qualifications (five-ECQ framework since Oct 1 2025)',
+}
+DETAIL_FIX = [  # (cluster or entity key, or None for all; pattern; replacement)
+ (None, r'\[AS\] Anchor partner', '[AS] Proposed (candidate) anchor partner'),
+ (None, r'\[AS\] Founding consortium member', '[AS] Proposed founding consortium member'),
+ (None, r'\b(First|Second) design partner', lambda m: 'Candidate ' + m.group(1).lower() + ' design partner'),
+ ('SC-E18', r'crosswalk SC components and anchors to ECQ competencies',
+  'crosswalk only to the current five-ECQ framework (X9); Political Savvy, Partnering and Influencing/Negotiating no longer exist'),
+ ('isep', r'IEMA membership levels', 'ISEP (formerly IEMA) membership levels'),
+ ('abc-wpi', r'\bABC need-to-know', 'WPI (formerly ABC) need-to-know'),
+ ('AS-E012', r'positions realigned into 0401', 'positions proposed for realignment into 0401'),
+]
+OWNER_PREF = {
+ 'index': ['LM', 'FS', 'IA'], 'paper': ['LM', 'FS', 'CM', 'IA'], 'dataset': ['LM', 'IA', 'DE', 'SL', 'FH'],
+ 'standard': ['IA', 'DE', 'LC', 'IO', 'DC'], 'credential': ['LC', 'DB', 'PS'], 'policy': ['SC', 'FH', 'SL', 'CP', 'DC'],
+ 'platform': ['IA', 'DC', 'CP', 'DE'], 'tool': ['IA', 'DC', 'CP', 'DE'], 'research-program': ['LM', 'FS', 'DC', 'CM'],
+ 'organization': ['AS'], 'coalition': ['AS'], 'working-group': ['AS', 'FH'], 'fund': ['AS'],
+}
 MODES = ['ingest', 'crosswalk', 'benchmark', 'partner', 'funder', 'adopter', 'validator', 'distribution', 'watch']
 TRIBAL_RE = re.compile(r'Tribal|Tribe|Indigenous|Native American|Native Hawaiian|Alaska Native|Inter-?Tribal|Intertribal|'
                        r'AIHEC|\bITEP\b|NATHPO|THPO|\bBIA\b|OCAP|CARE Principles|Local Contexts|Mukurtu|First Nations|'
@@ -336,9 +377,13 @@ def member_status(eid):
         return ('source-read', acc, '', '', '') if acc else ('unverified', '', '', '', '')
     return 'unverified', '', '', '', ''
 
-def fact_status(fid):
+FACT_SCOPED = {'V3-07': {'issp', 'isep', 'DB-ECO-031'}, 'V3-08': {'issp', 'abc-wpi'}}
+
+def fact_status(fid, key=None):
     f = facts[fid]
     st = f['verification_status']
+    if fid in FACT_SCOPED and key not in FACT_SCOPED[fid] and st == 'corrected':
+        st = 'verified'   # the fact's corrections concern other entities
     st = {'refuted': 'corrected'}.get(st, st)
     return st, RUN_DATE, http(f.get('source_url')), f.get('source_date', ''), f"{fid}: {f['correct_statement'][:400]}"
 
@@ -359,7 +404,7 @@ for key, ids in groups.items():
     sts = [(i,) + member_status(i) for i in ids]
     checks = list(sts)
     for fid in FACTS.get(key, []) + sum((FACTS.get(i, []) for i in ids if i != key), []):
-        checks.append((fid,) + fact_status(fid))
+        checks.append((fid,) + fact_status(fid, key))
     for i in ids:
         for sid in SOURCE_CHECKS.get(i, []):
             res = results[sid]
@@ -390,6 +435,7 @@ for key, ids in groups.items():
     tribal = (any(r['role_folder'] == 'tribal-sovereignty' for r in rows) or bool(TRIBAL_RE.search(name))
               or bool(TRIBAL_RE.search(' '.join(r['name'] for r in rows)))) and key not in NOT_TRIBAL
     joins = [k for k, rx in JOINS if re.search(rx, blob)]
+    joins += [j for j in JOIN_ADD.get(key, []) if j not in joins]
     # URL: corrected override, else best verified check URL that is the entity's own site, else representative URL
     url = URL.get(key, URL.get(rep['entity_id'], None))
     if url is None:
@@ -405,8 +451,16 @@ for key, ids in groups.items():
             seen.add(d)
             details.append(f"[{ROLE_CODE.get(r['role_folder'], '?')}] {d}")
     latest = STATUS.get(key, STATUS.get(rep['entity_id'], rep['latest_release_or_status']))
+    detail_txt = ' || '.join(details)
+    for k, pat, rep_ in DETAIL_FIX:
+        if k is None or k == key:
+            detail_txt = re.sub(pat, rep_, detail_txt)
     note_parts = [c[5] for c in checks if c[5]]
-    owner = 'TN' if tribal else ROLE_CODE.get(rep['role_folder'], 'AS')
+    pref = [c for c in OWNER_PREF.get(rep['entity_type'], []) if c in roles]
+    owner = 'TN' if tribal else (pref[0] if pref else ROLE_CODE.get(rep['role_folder'], 'AS'))
+    if status in ('verified', 'corrected', 'superseded') and re.match(r'\s*(partially )?(UNVERIFIED|not verified)', latest or '', re.I):
+        first = re.sub(r'^[A-Z0-9-]+ \([^)]*\): |^[A-Z0-9-]+: ', '', best[5])
+        latest = 'Checked ' + RUN_DATE + ': ' + re.split(r'(?<=[.;])\s', first, maxsplit=1)[0][:300]
     t0 = rep['entity_type']
     review = REVIEW_FAST if (t0 in FAST_TYPES or status in ('unverified', 'unreachable', 'not-found')) else REVIEW_SLOW
     if tribal:
@@ -423,13 +477,13 @@ for key, ids in groups.items():
         ('name', scrub(name)),
         ('entity_type', t0),
         ('entity_type_alternates', '|'.join(t for t in types if t != t0)),
-        ('owner_or_host', scrub(rep['owner_or_host'])),
+        ('owner_or_host', scrub(OWNER.get(key, rep['owner_or_host']))),
         ('sector_focus', scrub(rep['sector_focus'])),
-        ('what_it_illuminates', scrub(rep['what_it_illuminates'])),
+        ('what_it_illuminates', scrub(WHAT.get(key, rep['what_it_illuminates']))),
         ('latest_release_or_status', scrub(latest)),
         ('how_emst_connects', modes_out),
         ('join_keys', '|'.join(joins) or 'none'),
-        ('integration_detail', scrub(' || '.join(details))),
+        ('integration_detail', scrub(detail_txt)),
         ('url', scrub(url)),
         ('verification_status', status),
         ('verified_on', best[2] or ''),
@@ -467,3 +521,22 @@ print('verification_status', dict(Counter(r['verification_status'] for r in out)
 print('release_status', dict(Counter(r['release_status'] for r in out)))
 print('tribal_related', Counter(r['tribal_related'] for r in out)['true'])
 print('join onet-task-id', sum('onet-task-id' in r['join_keys'] for r in out))
+
+# ---------------------------------------------------------------- generated summary (computed view; never typed into documents)
+SUMMARY = ROOT / 'docs/adoption/ecosystem_atlas_summary.csv'
+with open(SUMMARY, 'w', newline='', encoding='utf-8') as f:
+    w = csv.writer(f)
+    w.writerow(['dimension', 'value', 'count', 'build_date', 'rule'])
+    w.writerow(['input', 'merged ecosystem rows', len(eco), RUN_DATE, 'build_ecosystem_atlas.py'])
+    w.writerow(['input', 'contributing roles', len({r['role_folder'] for r in eco}), RUN_DATE, 'build_ecosystem_atlas.py'])
+    w.writerow(['output', 'atlas entities', len(out), RUN_DATE, 'build_ecosystem_atlas.py'])
+    w.writerow(['output', 'entities merged from more than one row', sum(1 for r in out if int(r['n_contributing_rows']) > 1), RUN_DATE, 'build_ecosystem_atlas.py'])
+    w.writerow(['output', 'entities recorded by more than one role', sum(1 for r in out if '|' in r['contributing_roles']), RUN_DATE, 'build_ecosystem_atlas.py'])
+    for dim in ['verification_status', 'release_status', 'entity_type', 'tribal_related', 'atlas_owner_role', 'review_by']:
+        for v, n in sorted(Counter(r[dim] for r in out).items(), key=lambda x: -x[1]):
+            w.writerow([dim, v, n, RUN_DATE, 'build_ecosystem_atlas.py'])
+    for jk in sorted({j for r in out for j in r['join_keys'].split('|')}):
+        w.writerow(['join_keys', jk, sum(jk in r['join_keys'].split('|') for r in out), RUN_DATE, 'build_ecosystem_atlas.py'])
+    for m in MODES:
+        w.writerow(['how_emst_connects', m, sum(m in r['how_emst_connects'].split('|') for r in out), RUN_DATE, 'build_ecosystem_atlas.py'])
+print('summary written to', SUMMARY.relative_to(ROOT))

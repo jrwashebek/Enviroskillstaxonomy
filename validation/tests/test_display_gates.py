@@ -209,3 +209,9 @@ def test_lawshe_small_panels_cannot_reach_significance():
 
 def test_lawshe_retain_rule():
     assert lawshe.retain(12, 13, 15) and not lawshe.retain(11, 15, 15) and not lawshe.retain(12, 11, 15)
+
+
+def test_weak_category_caps_marker_at_tentative():
+    r = result(0.85, perCategory=[{"category": "2", "nUnits": 14, "alpha": 0.42}, {"category": "0", "nUnits": 60, "alpha": 0.9}])
+    assert dec(v=value(category="2"), r=r)["marker"] == "tentative"
+    assert dec(v=value(category="0"), r=r)["marker"] == "production"

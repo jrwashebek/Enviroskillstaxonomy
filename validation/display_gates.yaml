@@ -61,6 +61,14 @@ strata:
     render on the overall result with the note `stratum_not_estimated`. (XR-07: module tasks are assessed before any
     sector-wide conclusion.)
 
+categories:
+  rule: >
+    When the agreement result reports perCategory one-vs-rest alpha, a category coded in >= 10 units whose point alpha
+    is < 0.50 caps values coded in that category at `tentative` even when the dimension passes (protocol_reliability_study.md §7.1).
+  min_units: 10
+  cap_below_point_alpha: 0.50
+  cap_to: tentative
+
 markers:
   production: {min_lower_bound: 0.80, ui: "no badge; agreement shown in the evidence drawer"}
   tentative: {min_lower_bound: 0.667, ui: "badge 'Tentative' with alpha, 95% CI and n units in text (never colour alone)"}

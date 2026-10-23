@@ -25,7 +25,8 @@ WATCH_REVIEW_BY = "2027-10-23"  # ADR-0015: watch items review at +12 months
 
 # Fields used here that SPEC 5.14 / 5.12 does not define (CR-LM-001, CR-LM-002).
 PROPOSED_FIELDS = {
-    "ChangeSignal": ["signalStatus", "signalFamily", "independenceKey", "impact", "scenarioSignposts"],
+    "ChangeSignal": ["signalStatus", "signalFamily", "independenceKey", "impact", "scenarioSignposts", "registeredDeployment",
+                     "measure.baseline", "measure.sensitivity"],
     "ExposureAssessment": ["targetType", "targetId", "crosswalkPath", "crosswalkMinMatchType"],
 }
 

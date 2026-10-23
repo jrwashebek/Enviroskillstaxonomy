@@ -120,7 +120,7 @@ add("esa-harm-rescission", "PI-ESA-01", "Rescission of the ESA regulatory defini
     [("proposed", "2025-04-17", "contracts", "proposed", ["LM-107"], "E", H, "Proposed at 90 FR 16102 (V2-05)."),
      ("final", "2026-07-14", "contracts", "final-not-yet-effective", ["LM-107"], "E", S, "Final rule published (V2-05)."),
      ("effective", "2026-09-14", "contracts", "in-force-litigated", ["LM-107"], "E", P,
-      "Effective 2026-09-14 (not 2026-09-12). Suits filed in W.D. Wash. in mid-July 2026 by conservation groups and, separately, a Tribal government (V2-05). Prospective only; s.7 adverse-modification duties unchanged.")])
+      "Effective 2026-09-14 (not 2026-09-12). Suits filed in W.D. Wash. in mid-July 2026 (V2-05). Prospective only; s.7 adverse-modification duties and critical habitat designations unchanged.")])
 add("esa-4d-4b2-rules", "PI-ESA-02", "ESA blanket 4(d) rule elimination and section 4(b)(2) critical-habitat exclusions rule",
     "50 CFR 17.31 and 17.90", "regulation", "US", ["DM-06", "DM-10"], ["SC-019"],
     [("final", "2026-07-21", "contracts", "final-not-yet-effective", ["SC-019"], "E", P, "SC row; not re-verified in V2."),

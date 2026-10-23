@@ -2,6 +2,7 @@
 
 - **Work package:** WP-13 · **Author:** A10b (AS) · **Date:** 2026-10-23 · **Template licence:** CC0 1.0 (see `LICENSING.md` §2)
 - **Builds:** ADR-0009 §3 (phased federation; MSA terms; orphan clause), ADR-0018 (modules, three-module and home-module rules), ADR-0010 (namespaces, IDs), ADR-0013 (no separate licence), ADR-0007 (Tribal hold), ADR-0012 (no personal data), ADR-0024 (evidence by use); SPEC §3.2, §12, §18.2; governance charter Art. 4.7.
+- **Provisional status carried:** ADR-0018 is **provisional-pending-verification** — the module structure is accepted, but module-partner readiness rests on [J] claims of which V3 confirmed only a subset (SAF, TWS, AFS, SRM, SER, NEHA, ASFPM active; ISSP credentials issued by GBCI; IEMA now ISEP). ADR-0009 needs the project lead for constituting bodies with external members.
 - **Status:** template. **No agreement has been signed and none can take effect before v2.2 (2029).** Through v2.0–v2.1 (2027–2028) modules are editorial sections authored centrally, with candidate advisory partners (Schedule D is the advisory-partner letter used in that period). <!-- PENDING Q8: default — no module is described as stewarded. -->
 
 > **How to use this template.** Text in `[square brackets]` is completed for each agreement. Do not delete the core terms in Articles 3–8; they are the conditions under which the module may carry the EMST name (charter Art. 11). This is not legal advice; each party's counsel reviews the final text.

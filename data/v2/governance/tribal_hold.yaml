@@ -1,0 +1,44 @@
+# Tribal content hold — machine-readable list read by scripts/validate_v2.py and scripts/build_release.py.
+# Basis: ADR-0007 §D (content hold), §C (vetoes V1–V5); questions_for_project_lead.md Q1 default; SPEC §16.1.
+# Rule: until a Tribal Advisory Council constituted by Tribal governments and inter-Tribal organizations exists and
+# approves, nothing Tribal-related is published. Held items may exist only as internal drafts flagged
+#   indigenousDataFlag: true, approvalStatus: pending-tribal-review, sensitivity: restricted-governed
+# and every release artifact excludes them (counted, never listed, in release notes).
+# This file holds KEYS only, never content. It is not released. Owner: DE with TN (gate G-TN). Changes to this file
+# are change type T (routed to the Tribal Council first). Licence: CC0-1.0.
+tacConstituted: false
+decidedIn: [ADR-0007, ADR-0011]
+# v1 competencies whose dispositions are hold-for-tribal-review: the seed, its tasks, its v1 tag records and every
+# successor are held.
+heldV1Codes: ["5.3.2", "6.5.1", "7.1.1"]
+# v1 ethical lens L2 (Cultural Rights & Self-Determination): every L2 definition and tag is held (ADR-0007 §D).
+heldV1EthicalLenses: [L2]
+# Candidate and successor keys that are held wherever they appear (authoring agents use these seed keys).
+heldSeedKeys:
+  - seed:TN-C01
+  - seed:TN-C02
+  - seed:TN-C03
+  - seed:TN-C04
+  - seed:TN-C05
+  - seed:TN-C06
+  - seed:TN-C07
+  - seed:TN-C08
+  - seed:TN-C09
+  - seed:TN-C10
+  - seed:TN-C11
+  - seed:TN-C12
+  - seed:TN-C13
+  - seed:SC-C13
+  - seed:v1-5.3.2
+  - seed:v1-6.5.1
+  - seed:v1-7.1.1
+# Categories held by rule (enforced by schema conditions and validate_v2 lineage/inheritance checks):
+heldCategories:
+  - Tribal role variants (RoleVariant.sectorActor = tribal)
+  - Enactments, frictions and state class records whose actor is Tribal
+  - Tasks with relationshipType government-to-government
+  - Role variants with jurisdictionalContext trust-or-tribal-lands or treaty-reserved-rights-area
+  - Tribal-flagged change signals (ChangeSignal.tribalPrograms = true) and TN role signals
+  - The Tribal engagement protocol and the Indigenous data governance policy (AI-drafted)
+  - Records referencing held records through a dependent link (task -> competency, indicator -> competency, ...)
+# Internal multi-rater analytical tagging is allowed (analysis, not taking Indigenous content), as held drafts.

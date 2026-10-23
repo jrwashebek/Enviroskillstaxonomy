@@ -153,7 +153,7 @@ def word_count(s: str) -> int:
 # ---------------------------------------------------------------------------------------------------------------
 
 CROCKFORD = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
-SEED_RE = re.compile(r"^seed:[A-Za-z0-9][A-Za-z0-9._-]{0,95}$")
+SEED_RE = re.compile(r"^seed:[A-Za-z0-9][A-Za-z0-9._/-]{0,119}$")
 SEED_PATTERN = SEED_RE.pattern
 
 
@@ -224,7 +224,7 @@ def iri(emst_id: str) -> str:
 
 def id_to_stem(rid: str) -> str:
     if is_seed(rid):
-        return "seed-" + rid[len("seed:"):]
+        return "seed-" + rid[len("seed:"):].replace("/", "--")
     if rid.startswith("emst:"):
         return rid.split("/", 1)[1]
     raise ValueError(f"not a record id: {rid!r}")
@@ -255,7 +255,7 @@ ENTITY = {
     "RelevanceRating": {"prefix": "ASM", "layers": ["L5"], "store": ("jsonl", "assessments")},
     "ChangeSignal": {"prefix": "SIG", "layers": ["L5"], "store": ("jsonl", "signals")},
     "WatchItem": {"prefix": None, "layers": ["L5"], "store": ("yaml", "watch-items")},
-    "Instrument": {"prefix": "INS", "layers": ["L5"], "store": ("yaml", "instruments")},
+    "Instrument": {"prefix": "INS", "layers": ["L5"], "store": ("jsonl", "instruments")},
     "DriverEvent": {"prefix": "EVT", "layers": ["L5"], "store": ("jsonl", "events")},
     "FrictionRecord": {"prefix": "FRC", "layers": ["L5"], "store": ("yaml", "frictions")},
     "Credential": {"prefix": "CRD", "layers": ["L6"], "store": ("yaml-register", "credentials")},
@@ -270,7 +270,8 @@ ENTITY = {
 YAML_DIR_TO_TYPE = {v["store"][1]: k for k, v in ENTITY.items() if v["store"][0] in ("yaml", "yaml-register")}
 JSONL_FAMILIES = {"tools": {"Tool"}, "assessments": {"ExposureAssessment", "CraftRating", "FunctionRating",
                                                      "RelevanceRating"},
-                  "signals": {"ChangeSignal"}, "events": {"DriverEvent"}, "changes": {"ChangeRecord"}}
+                  "signals": {"ChangeSignal"}, "events": {"DriverEvent"}, "changes": {"ChangeRecord"},
+                  "instruments": {"Instrument"}}
 RATING_TYPES = {"ExposureAssessment", "CraftRating", "FunctionRating", "RelevanceRating"}
 
 

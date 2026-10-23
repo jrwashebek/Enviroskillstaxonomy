@@ -21,7 +21,7 @@ $defs:
   SeedKey:
     type: string
     description: Throwaway draft key used until a record reaches `candidate` (ADR-0010 §2).
-    pattern: '^seed:[A-Za-z0-9][A-Za-z0-9._-]{0,95}$'
+    pattern: '^seed:[A-Za-z0-9][A-Za-z0-9._/-]{0,119}$'
   RecordRef:
     description: An EMST ID or, for drafts, a seed key.
     anyOf: [{$ref: '#/$defs/EmstId'}, {$ref: '#/$defs/SeedKey'}]
@@ -88,7 +88,7 @@ $defs:
   SourceId:
     type: string
     description: Team source ID (e.g. LM-001, V4-10) resolving to a sources.csv or key-facts row, or an EMST Source record ID.
-    pattern: '^([A-Z][A-Z0-9]{0,5}-[A-Za-z0-9.-]{1,24}|emst:[a-z0-9-]+/SRC-[0-9A-HJKMNP-TV-Z]{7}|seed:[A-Za-z0-9._-]{1,96})$'
+    pattern: '^([A-Z][A-Z0-9]{0,5}-[A-Za-z0-9.-]{1,24}|emst:[a-z0-9-]+/SRC-[0-9A-HJKMNP-TV-Z]{7}|seed:[A-Za-z0-9._/-]{1,120})$'
   ModuleNs:
     anyOf:
       - {$ref: '#/$defs/v_moduleNamespace'}
@@ -132,6 +132,9 @@ $defs:
       evidence: {type: string}
       checkedOn: {$ref: '#/$defs/Date'}
 
+  DecisionRef:
+    type: string
+    pattern: '^(ADR-\d{4}|DP-\d+|CR-[A-Z]{2}-\d{3}|WP-\d{2}|P-[A-Z]{2,3}-\d{2})'
   # ------------------------------------------------------------------------------------------------ provenance
   DerivedFrom:
     type: object
@@ -177,7 +180,11 @@ $defs:
           nUnits: {type: integer, minimum: 1}
       toolVersion: {type: string, minLength: 1}
       promptVersion: {type: string, minLength: 1}
-      adr: {type: array, items: {type: string, pattern: '^(ADR-\d{4}|DP-\d+|CR-[A-Z]{2}-\d{3}|WP-\d{2}|P-[A-Z]{2}-\d{2})'}}
+      adr:
+        description: Decision reference(s), e.g. ADR-0028 or [ADR-0011, CR-DE-001].
+        anyOf:
+          - {$ref: '#/$defs/DecisionRef'}
+          - {type: array, minItems: 1, items: {$ref: '#/$defs/DecisionRef'}}
     allOf:
       - if: {required: [method], properties: {method: {const: v1-migration}}}
         then: {required: [derivedFrom]}
