@@ -1,0 +1,89 @@
+@prefix emst: <https://w3id.org/emst/> .
+@prefix emstv: <https://w3id.org/emst/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://w3id.org/emst/core/TSK-69GJPJR> a skos:Concept ;
+    owl:versionInfo "0.1.0" ;
+    skos:definition "Conduct field inspections and desktop reviews to ensure activities meet legal requirements"@en ;
+    skos:inScheme <https://w3id.org/emst/core/tasks> ;
+    skos:notation "6.1.2:T1"^^emstv:v1Code ;
+    skos:prefLabel "Conduct field inspections and desktop reviews to ensure activities meet legal requirements"@en ;
+    skos:related <https://w3id.org/emst/core/CMP-7BB5426> ;
+    emstv:status "proposed" .
+
+<https://w3id.org/emst/core/TSK-6EFQRDE> a skos:Concept ;
+    owl:versionInfo "0.1.0" ;
+    skos:definition "Develop checklists and procedures for regulatory compliance"@en ;
+    skos:inScheme <https://w3id.org/emst/core/tasks> ;
+    skos:notation "6.1.2:T2"^^emstv:v1Code ;
+    skos:prefLabel "Develop checklists and procedures for regulatory compliance"@en ;
+    skos:related <https://w3id.org/emst/core/CMP-7BB5426> ;
+    emstv:status "proposed" .
+
+<https://w3id.org/emst/core/TSK-9YY1TPK> a skos:Concept ;
+    owl:versionInfo "0.1.0" ;
+    skos:definition "Create and update spatial layers representing land use, vegetation, and infrastructure"@en ;
+    skos:inScheme <https://w3id.org/emst/core/tasks> ;
+    skos:notation "2.1.1:T1"^^emstv:v1Code ;
+    skos:prefLabel "Create and update spatial layers representing land use, vegetation, and infrastructure"@en ;
+    skos:related <https://w3id.org/emst/core/CMP-T6N5VE4> ;
+    emstv:status "proposed" .
+
+<https://w3id.org/emst/core/TSK-C8AHHH3> a skos:Concept ;
+    owl:versionInfo "0.1.0" ;
+    skos:definition "Coordinate with regulatory agencies during audits or investigations"@en ;
+    skos:inScheme <https://w3id.org/emst/core/tasks> ;
+    skos:notation "6.1.2:T3"^^emstv:v1Code ;
+    skos:prefLabel "Coordinate with regulatory agencies during audits or investigations"@en ;
+    skos:related <https://w3id.org/emst/core/CMP-7BB5426> ;
+    emstv:status "proposed" .
+
+<https://w3id.org/emst/core/TSK-NBSGJ8S> a skos:Concept ;
+    owl:versionInfo "0.1.0" ;
+    skos:definition "Generate printable and digital maps for reports, briefings, and field crews"@en ;
+    skos:inScheme <https://w3id.org/emst/core/tasks> ;
+    skos:notation "2.1.1:T3"^^emstv:v1Code ;
+    skos:prefLabel "Generate printable and digital maps for reports, briefings, and field crews"@en ;
+    skos:related <https://w3id.org/emst/core/CMP-T6N5VE4> ;
+    emstv:status "proposed" .
+
+<https://w3id.org/emst/core/TSK-S1S6TPS> a skos:Concept ;
+    owl:versionInfo "0.1.0" ;
+    skos:definition "Analyze spatial data to support environmental assessments and planning decisions"@en ;
+    skos:inScheme <https://w3id.org/emst/core/tasks> ;
+    skos:notation "2.1.1:T2"^^emstv:v1Code ;
+    skos:prefLabel "Analyze spatial data to support environmental assessments and planning decisions"@en ;
+    skos:related <https://w3id.org/emst/core/CMP-T6N5VE4> ;
+    emstv:status "proposed" .
+
+<https://w3id.org/emst/core/CMP-7BB5426> a skos:Concept ;
+    owl:versionInfo "0.1.0" ;
+    skos:broadMatch <http://data.europa.eu/esco/skill/4cc2ede9-6ad7-44fa-9709-3ec4d3116e48> ;
+    skos:definition "Evaluating whether environmental management activities meet the requirements of applicable environmental laws and regulations."@en ;
+    skos:inScheme emst:core ;
+    skos:narrowMatch <http://data.europa.eu/esco/skill/afbc401c-cad8-43b6-8d61-775d2c7b58d5> ;
+    skos:notation "6.1.2"^^emstv:v1Code ;
+    skos:prefLabel "Regulatory compliance assessment"@en ;
+    skos:topConceptOf emst:core ;
+    emstv:status "proposed" .
+
+<https://w3id.org/emst/core/CMP-T6N5VE4> a skos:Concept ;
+    owl:versionInfo "0.1.0" ;
+    skos:closeMatch <http://data.europa.eu/esco/skill/440f64e5-e66c-45ee-bc29-53c14a2ad720> ;
+    skos:definition "Using specialized mapping software to create, analyze, and display maps and geographic information."@en ;
+    skos:inScheme emst:core ;
+    skos:narrowMatch <http://data.europa.eu/esco/skill/bad66a63-4e3f-41f9-9e5d-a4d5f12f8d36> ;
+    skos:notation "2.1.1"^^emstv:v1Code ;
+    skos:prefLabel "Geographic Information Systems (GIS) operation"@en ;
+    skos:relatedMatch <http://data.europa.eu/esco/skill/377861af-f966-4c87-a2db-7e99904312b9> ;
+    skos:topConceptOf emst:core ;
+    emstv:status "proposed" .
+
+emst:core a skos:ConceptScheme ;
+    owl:versionInfo "2.0.0-draft.1" ;
+    skos:prefLabel "EMST core competencies (example)"@en .
+
+<https://w3id.org/emst/core/tasks> a skos:ConceptScheme ;
+    skos:prefLabel "EMST core tasks (example)"@en .
+

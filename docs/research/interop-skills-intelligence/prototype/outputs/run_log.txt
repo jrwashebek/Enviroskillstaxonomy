@@ -1,0 +1,287 @@
+{
+ "semantic_backend": "wordllama-0.4.0.post1-l2_supercat_256",
+ "gold": {
+  "dev": {
+   "n_items": 60,
+   "by_status": {
+    "requirement": 47,
+    "noise": 11,
+    "generic": 2
+   },
+   "by_fit_non_noise": {
+    "good": 42,
+    "weak": 7
+   }
+  },
+  "heldout": {
+   "n_items": 30,
+   "by_status": {
+    "requirement": 23,
+    "noise": 7
+   },
+   "by_fit_non_noise": {
+    "good": 16,
+    "weak": 7
+   }
+  },
+  "annotator": "single AI annotator (IA role, Claude); judged blind to system output; NOT a human SME gold set"
+ },
+ "bands": {
+  "dev": {
+   "band_tercile": {
+    "high": {
+     "n": 16,
+     "p_at_1": 0.688,
+     "wilson95": [
+      0.444,
+      0.858
+     ]
+    },
+    "medium": {
+     "n": 23,
+     "p_at_1": 0.435,
+     "wilson95": [
+      0.256,
+      0.632
+     ]
+    },
+    "low": {
+     "n": 10,
+     "p_at_1": 0.5,
+     "wilson95": [
+      0.237,
+      0.763
+     ]
+    },
+    "noise_items": {
+     "high": 5,
+     "low": 5,
+     "medium": 1
+    }
+   },
+   "band_agreement": {
+    "high": {
+     "n": 8,
+     "p_at_1": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "medium": {
+     "n": 21,
+     "p_at_1": 0.571,
+     "wilson95": [
+      0.365,
+      0.755
+     ]
+    },
+    "low": {
+     "n": 20,
+     "p_at_1": 0.35,
+     "wilson95": [
+      0.181,
+      0.567
+     ]
+    },
+    "noise_items": {
+     "medium": 5,
+     "low": 4,
+     "high": 2
+    }
+   },
+   "band_agreement_prep": {
+    "high": {
+     "n": 11,
+     "p_at_1": 0.636,
+     "wilson95": [
+      0.354,
+      0.848
+     ]
+    },
+    "medium": {
+     "n": 17,
+     "p_at_1": 0.588,
+     "wilson95": [
+      0.36,
+      0.784
+     ]
+    },
+    "low": {
+     "n": 21,
+     "p_at_1": 0.286,
+     "wilson95": [
+      0.138,
+      0.5
+     ]
+    },
+    "noise_items": {
+     "low": 4,
+     "high": 4,
+     "medium": 3
+    }
+   }
+  },
+  "heldout": {
+   "band_tercile": {
+    "high": {
+     "n": 8,
+     "p_at_1": 0.75,
+     "wilson95": [
+      0.409,
+      0.929
+     ]
+    },
+    "medium": {
+     "n": 6,
+     "p_at_1": 0.5,
+     "wilson95": [
+      0.188,
+      0.812
+     ]
+    },
+    "low": {
+     "n": 9,
+     "p_at_1": 0.222,
+     "wilson95": [
+      0.063,
+      0.547
+     ]
+    },
+    "noise_items": {
+     "medium": 3,
+     "low": 2,
+     "high": 2
+    }
+   },
+   "band_agreement": {
+    "high": {
+     "n": 3,
+     "p_at_1": 1.0,
+     "wilson95": [
+      0.438,
+      1.0
+     ]
+    },
+    "medium": {
+     "n": 13,
+     "p_at_1": 0.462,
+     "wilson95": [
+      0.232,
+      0.709
+     ]
+    },
+    "low": {
+     "n": 7,
+     "p_at_1": 0.286,
+     "wilson95": [
+      0.082,
+      0.641
+     ]
+    },
+    "noise_items": {
+     "low": 4,
+     "medium": 2,
+     "high": 1
+    }
+   },
+   "band_agreement_prep": {
+    "high": {
+     "n": 4,
+     "p_at_1": 1.0,
+     "wilson95": [
+      0.51,
+      1.0
+     ]
+    },
+    "medium": {
+     "n": 9,
+     "p_at_1": 0.333,
+     "wilson95": [
+      0.121,
+      0.646
+     ]
+    },
+    "low": {
+     "n": 10,
+     "p_at_1": 0.2,
+     "wilson95": [
+      0.057,
+      0.51
+     ]
+    },
+    "noise_items": {
+     "low": 4,
+     "high": 2,
+     "medium": 1
+    }
+   }
+  }
+ }
+}
+
+== dev / acceptable ==
+full:tfidf               P@1 0.531 [0.388, 0.673]  Hit@3 0.735  Hit@5 0.816  P@3 0.320  MRR 0.650  n=49
+full:bm25                P@1 0.408 [0.265, 0.531]  Hit@3 0.694  Hit@5 0.776  P@3 0.272  MRR 0.551  n=49
+full:fused               P@1 0.531 [0.388, 0.673]  Hit@3 0.735  Hit@5 0.878  P@3 0.333  MRR 0.659  n=49
+full:semantic            P@1 0.388 [0.265, 0.531]  Hit@3 0.531  Hit@5 0.633  P@3 0.211  MRR 0.492  n=49
+titledesc:tfidf          P@1 0.469 [0.327, 0.612]  Hit@3 0.714  Hit@5 0.776  P@3 0.272  MRR 0.594  n=49
+titledesc:bm25           P@1 0.367 [0.224, 0.51]  Hit@3 0.714  Hit@5 0.776  P@3 0.279  MRR 0.538  n=49
+titledesc:fused          P@1 0.449 [0.306, 0.571]  Hit@3 0.714  Hit@5 0.796  P@3 0.279  MRR 0.591  n=49
+titledesc:semantic       P@1 0.327 [0.204, 0.449]  Hit@3 0.429  Hit@5 0.551  P@3 0.190  MRR 0.435  n=49
+full:fused+prep          P@1 0.469 [0.327, 0.612]  Hit@3 0.755  Hit@5 0.837  P@3 0.340  MRR 0.626  n=49
+task-max:tfidf           P@1 0.327 [0.204, 0.469]  Hit@3 0.531  Hit@5 0.571  P@3 0.231  MRR 0.450  n=49
+task-max:bm25            P@1 0.388 [0.265, 0.51]  Hit@3 0.571  Hit@5 0.612  P@3 0.231  MRR 0.496  n=49
+task-max:fused           P@1 0.429 [0.286, 0.571]  Hit@3 0.592  Hit@5 0.612  P@3 0.245  MRR 0.516  n=49
+task-max:semantic        P@1 0.265 [0.143, 0.388]  Hit@3 0.429  Hit@5 0.531  P@3 0.190  MRR 0.393  n=49
+hybrid-rrf:full+task     P@1 0.449 [0.306, 0.592]  Hit@3 0.633  Hit@5 0.776  P@3 0.272  MRR 0.582  n=49
+
+== dev / pooled ==
+full:tfidf               P@1 0.592 [0.449, 0.714]  Hit@3 0.755  Hit@5 0.816  P@3 0.354  MRR 0.690  n=49
+full:bm25                P@1 0.449 [0.306, 0.592]  Hit@3 0.714  Hit@5 0.776  P@3 0.299  MRR 0.576  n=49
+full:fused               P@1 0.592 [0.449, 0.735]  Hit@3 0.755  Hit@5 0.878  P@3 0.367  MRR 0.698  n=49
+full:semantic            P@1 0.429 [0.286, 0.571]  Hit@3 0.551  Hit@5 0.633  P@3 0.224  MRR 0.519  n=49
+titledesc:tfidf          P@1 0.510 [0.367, 0.653]  Hit@3 0.755  Hit@5 0.776  P@3 0.306  MRR 0.628  n=49
+titledesc:bm25           P@1 0.408 [0.285, 0.551]  Hit@3 0.755  Hit@5 0.776  P@3 0.313  MRR 0.570  n=49
+titledesc:fused          P@1 0.490 [0.347, 0.612]  Hit@3 0.776  Hit@5 0.816  P@3 0.313  MRR 0.625  n=49
+titledesc:semantic       P@1 0.347 [0.224, 0.469]  Hit@3 0.469  Hit@5 0.571  P@3 0.211  MRR 0.455  n=49
+full:fused+prep          P@1 0.531 [0.388, 0.673]  Hit@3 0.755  Hit@5 0.837  P@3 0.367  MRR 0.660  n=49
+task-max:tfidf           P@1 0.388 [0.265, 0.531]  Hit@3 0.571  Hit@5 0.592  P@3 0.265  MRR 0.501  n=49
+task-max:bm25            P@1 0.449 [0.327, 0.592]  Hit@3 0.592  Hit@5 0.633  P@3 0.265  MRR 0.540  n=49
+task-max:fused           P@1 0.490 [0.347, 0.633]  Hit@3 0.612  Hit@5 0.633  P@3 0.279  MRR 0.560  n=49
+task-max:semantic        P@1 0.286 [0.163, 0.408]  Hit@3 0.469  Hit@5 0.551  P@3 0.204  MRR 0.418  n=49
+hybrid-rrf:full+task     P@1 0.510 [0.367, 0.653]  Hit@3 0.653  Hit@5 0.796  P@3 0.306  MRR 0.620  n=49
+
+== heldout / acceptable ==
+full:tfidf               P@1 0.478 [0.261, 0.696]  Hit@3 0.696  Hit@5 0.826  P@3 0.319  MRR 0.598  n=23
+full:bm25                P@1 0.391 [0.174, 0.609]  Hit@3 0.609  Hit@5 0.739  P@3 0.275  MRR 0.525  n=23
+full:fused               P@1 0.478 [0.261, 0.652]  Hit@3 0.696  Hit@5 0.783  P@3 0.333  MRR 0.609  n=23
+full:semantic            P@1 0.435 [0.261, 0.652]  Hit@3 0.652  Hit@5 0.739  P@3 0.275  MRR 0.559  n=23
+titledesc:tfidf          P@1 0.435 [0.217, 0.652]  Hit@3 0.522  Hit@5 0.609  P@3 0.246  MRR 0.507  n=23
+titledesc:bm25           P@1 0.391 [0.217, 0.609]  Hit@3 0.522  Hit@5 0.565  P@3 0.246  MRR 0.481  n=23
+titledesc:fused          P@1 0.435 [0.217, 0.652]  Hit@3 0.522  Hit@5 0.652  P@3 0.261  MRR 0.512  n=23
+titledesc:semantic       P@1 0.304 [0.13, 0.478]  Hit@3 0.478  Hit@5 0.565  P@3 0.232  MRR 0.411  n=23
+full:fused+prep          P@1 0.391 [0.216, 0.565]  Hit@3 0.696  Hit@5 0.783  P@3 0.319  MRR 0.572  n=23
+task-max:tfidf           P@1 0.348 [0.174, 0.522]  Hit@3 0.565  Hit@5 0.652  P@3 0.203  MRR 0.481  n=23
+task-max:bm25            P@1 0.348 [0.174, 0.565]  Hit@3 0.565  Hit@5 0.696  P@3 0.232  MRR 0.482  n=23
+task-max:fused           P@1 0.391 [0.217, 0.565]  Hit@3 0.565  Hit@5 0.696  P@3 0.246  MRR 0.508  n=23
+task-max:semantic        P@1 0.478 [0.304, 0.696]  Hit@3 0.652  Hit@5 0.652  P@3 0.275  MRR 0.569  n=23
+hybrid-rrf:full+task     P@1 0.435 [0.217, 0.609]  Hit@3 0.652  Hit@5 0.739  P@3 0.304  MRR 0.568  n=23
+
+== heldout / pooled ==
+full:tfidf               P@1 0.478 [0.261, 0.696]  Hit@3 0.696  Hit@5 0.826  P@3 0.319  MRR 0.598  n=23
+full:bm25                P@1 0.391 [0.174, 0.609]  Hit@3 0.609  Hit@5 0.739  P@3 0.275  MRR 0.525  n=23
+full:fused               P@1 0.478 [0.261, 0.652]  Hit@3 0.696  Hit@5 0.783  P@3 0.333  MRR 0.609  n=23
+full:semantic            P@1 0.435 [0.261, 0.652]  Hit@3 0.652  Hit@5 0.739  P@3 0.275  MRR 0.559  n=23
+titledesc:tfidf          P@1 0.435 [0.217, 0.652]  Hit@3 0.522  Hit@5 0.609  P@3 0.246  MRR 0.507  n=23
+titledesc:bm25           P@1 0.391 [0.217, 0.609]  Hit@3 0.522  Hit@5 0.565  P@3 0.246  MRR 0.481  n=23
+titledesc:fused          P@1 0.435 [0.217, 0.652]  Hit@3 0.522  Hit@5 0.652  P@3 0.261  MRR 0.512  n=23
+titledesc:semantic       P@1 0.304 [0.13, 0.478]  Hit@3 0.478  Hit@5 0.565  P@3 0.232  MRR 0.411  n=23
+full:fused+prep          P@1 0.391 [0.216, 0.565]  Hit@3 0.696  Hit@5 0.783  P@3 0.319  MRR 0.572  n=23
+task-max:tfidf           P@1 0.348 [0.174, 0.522]  Hit@3 0.565  Hit@5 0.652  P@3 0.203  MRR 0.481  n=23
+task-max:bm25            P@1 0.348 [0.174, 0.565]  Hit@3 0.565  Hit@5 0.696  P@3 0.232  MRR 0.482  n=23
+task-max:fused           P@1 0.391 [0.217, 0.565]  Hit@3 0.565  Hit@5 0.696  P@3 0.246  MRR 0.508  n=23
+task-max:semantic        P@1 0.478 [0.304, 0.696]  Hit@3 0.652  Hit@5 0.652  P@3 0.275  MRR 0.569  n=23
+hybrid-rrf:full+task     P@1 0.435 [0.217, 0.609]  Hit@3 0.652  Hit@5 0.739  P@3 0.304  MRR 0.568  n=23
+
+runtime 54.5s

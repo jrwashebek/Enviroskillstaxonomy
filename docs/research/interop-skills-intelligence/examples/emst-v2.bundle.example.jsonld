@@ -1,0 +1,2489 @@
+{
+ "@context": "https://w3id.org/emst/context/v2/emst.context.jsonld",
+ "emst_version": "2.0.0-draft.1",
+ "schema_version": "0.1.0",
+ "released": "2026-10-23",
+ "layer_versions": {
+  "L0": "0.1.0",
+  "L1": "0.1.0",
+  "L2": "0.1.0",
+  "L5": "0.1.0",
+  "L6": "0.1.0"
+ },
+ "modules": [
+  {
+   "namespace": "core",
+   "steward": "EMST core editorial board (proposed)",
+   "version": "0.1.0"
+  }
+ ],
+ "license": "https://creativecommons.org/licenses/by/4.0/",
+ "@graph": [
+  {
+   "id": "emst:core/VOC-CK4SFXC",
+   "type": "VocabularyTerm",
+   "vocabulary": "craft",
+   "layer": "L0",
+   "status": "proposed",
+   "version": "0.1.0",
+   "prefLabel": {
+    "en": "Field craft"
+   },
+   "notation": [
+    {
+     "scheme": "EMSTv1-craft",
+     "value": "FC"
+    }
+   ],
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "notes": "Charter craft; v1 code kept as notation"
+   }
+  },
+  {
+   "id": "emst:core/VOC-9WGFR4G",
+   "type": "VocabularyTerm",
+   "vocabulary": "craft",
+   "layer": "L0",
+   "status": "proposed",
+   "version": "0.1.0",
+   "prefLabel": {
+    "en": "Data craft"
+   },
+   "notation": [
+    {
+     "scheme": "EMSTv1-craft",
+     "value": "DC"
+    }
+   ],
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "notes": "Charter craft; v1 code kept as notation"
+   }
+  },
+  {
+   "id": "emst:core/VOC-MTF1ZH4",
+   "type": "VocabularyTerm",
+   "vocabulary": "craft",
+   "layer": "L0",
+   "status": "proposed",
+   "version": "0.1.0",
+   "prefLabel": {
+    "en": "Statecraft"
+   },
+   "notation": [
+    {
+     "scheme": "EMSTv1-craft",
+     "value": "SC"
+    }
+   ],
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "notes": "Charter craft; v1 code kept as notation"
+   }
+  },
+  {
+   "id": "emst:core/CMP-T6N5VE4",
+   "type": "Competency",
+   "layer": "L1",
+   "module": "core",
+   "competencyType": "core",
+   "prefLabel": {
+    "en": "Geographic Information Systems (GIS) operation"
+   },
+   "statement": {
+    "en": "Using specialized mapping software to create, analyze, and display maps and geographic information."
+   },
+   "definition": {
+    "en": "Using specialized mapping software to create, analyze, and display maps and geographic information."
+   },
+   "notation": [
+    {
+     "scheme": "EMSTv1",
+     "value": "2.1.1"
+    }
+   ],
+   "status": "proposed",
+   "version": "0.1.0",
+   "firstRelease": "2.0.0-draft.1",
+   "lastChangedRelease": "2.0.0-draft.1",
+   "craft": {
+    "v1Primary": "DC",
+    "v1Secondary": "FC",
+    "ordinal": {
+     "FC": "supporting",
+     "DC": "defining",
+     "SC": "none"
+    },
+    "computed": false,
+    "provenance": {
+     "method": "v1-migration",
+     "generatedAt": "2026-10-23T00:00:00Z",
+     "agent": [
+      "emstagent:ia-example-builder-0.1.0"
+     ],
+     "evidenceLabel": "J",
+     "reviewStatus": "unreviewed",
+     "notes": "v1 single-analyst irreducibility tag mapped to ordinal fallback; to be re-elicited at task level (CA DP-5)"
+    }
+   },
+   "proficiency": [
+    {
+     "level": "EMSTv1level:foundational",
+     "practicedAtLevel": true,
+     "indicators": [
+      {
+       "id": "emst:core/IND-XZZVH7F",
+       "statement": {
+        "en": "Creates simple maps using existing data layers"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:foundational:I1",
+          "sheet": "Proficiency Indicators",
+          "row": 162,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-BSMYWQ6",
+       "statement": {
+        "en": "Edits features and attributes in spatial databases"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:foundational:I2",
+          "sheet": "Proficiency Indicators",
+          "row": 162,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-MVFB1ZG",
+       "statement": {
+        "en": "Understands coordinate systems and projections"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:foundational:I3",
+          "sheet": "Proficiency Indicators",
+          "row": 162,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-GPF1DSJ",
+       "statement": {
+        "en": "Performs basic queries and selections"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:foundational:I4",
+          "sheet": "Proficiency Indicators",
+          "row": 162,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-H7VRJTE",
+       "statement": {
+        "en": "Symbolizes features appropriately for map communication"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:foundational:I5",
+          "sheet": "Proficiency Indicators",
+          "row": 162,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-AYAFTDX",
+       "statement": {
+        "en": "Exports maps and data in various formats"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:foundational:I6",
+          "sheet": "Proficiency Indicators",
+          "row": 162,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      }
+     ],
+     "knowledge": {
+      "en": "Understands GIS concepts (layers, attributes, projections, spatial relationships)"
+     },
+     "application": {
+      "en": "Performs basic GIS operations"
+     }
+    },
+    {
+     "level": "EMSTv1level:intermediate",
+     "practicedAtLevel": true,
+     "indicators": [
+      {
+       "id": "emst:core/IND-0R0T2FT",
+       "statement": {
+        "en": "Designs and builds geodatabases"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:intermediate:I1",
+          "sheet": "Proficiency Indicators",
+          "row": 163,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-QQ1ES9J",
+       "statement": {
+        "en": "Performs multi-step spatial analyses (buffer, overlay, proximity)"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:intermediate:I2",
+          "sheet": "Proficiency Indicators",
+          "row": 163,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-J34ATMD",
+       "statement": {
+        "en": "Creates custom symbology and layout templates"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:intermediate:I3",
+          "sheet": "Proficiency Indicators",
+          "row": 163,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-0XDWSPS",
+       "statement": {
+        "en": "Uses geoprocessing tools and model builder"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:intermediate:I4",
+          "sheet": "Proficiency Indicators",
+          "row": 163,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-V693CC6",
+       "statement": {
+        "en": "Integrates GPS data with GIS"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:intermediate:I5",
+          "sheet": "Proficiency Indicators",
+          "row": 163,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-QQW5SW2",
+       "statement": {
+        "en": "Manages coordinate system transformations"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:intermediate:I6",
+          "sheet": "Proficiency Indicators",
+          "row": 163,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      }
+     ],
+     "knowledge": {
+      "en": "Applies spatial analysis principles; understands data structures"
+     },
+     "application": {
+      "en": "Conducts spatial analysis and manages GIS data"
+     }
+    },
+    {
+     "level": "EMSTv1level:advanced",
+     "practicedAtLevel": true,
+     "indicators": [
+      {
+       "id": "emst:core/IND-6A7W5X6",
+       "statement": {
+        "en": "Designs enterprise GIS architectures"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:advanced:I1",
+          "sheet": "Proficiency Indicators",
+          "row": 164,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-34W6P6B",
+       "statement": {
+        "en": "Writes Python scripts to automate workflows"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:advanced:I2",
+          "sheet": "Proficiency Indicators",
+          "row": 164,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-5B4RARN",
+       "statement": {
+        "en": "Performs advanced spatial statistics and modeling"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:advanced:I3",
+          "sheet": "Proficiency Indicators",
+          "row": 164,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-67K7C4Q",
+       "statement": {
+        "en": "Develops custom GIS tools and extensions"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:advanced:I4",
+          "sheet": "Proficiency Indicators",
+          "row": 164,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-CWWAM0Q",
+       "statement": {
+        "en": "Integrates GIS with databases and other systems"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:advanced:I5",
+          "sheet": "Proficiency Indicators",
+          "row": 164,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-1NN174E",
+       "statement": {
+        "en": "Manages large spatial datasets efficiently"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:advanced:I6",
+          "sheet": "Proficiency Indicators",
+          "row": 164,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      }
+     ],
+     "knowledge": {
+      "en": "Expert in GIS architecture, spatial analysis, and automation"
+     },
+     "application": {
+      "en": "Develops custom GIS solutions and enterprise systems"
+     }
+    },
+    {
+     "level": "EMSTv1level:expert",
+     "practicedAtLevel": true,
+     "indicators": [
+      {
+       "id": "emst:core/IND-A4C9ZVT",
+       "statement": {
+        "en": "Develops organizational GIS strategy"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:expert:I1",
+          "sheet": "Proficiency Indicators",
+          "row": 165,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-FFNR5AM",
+       "statement": {
+        "en": "Leads enterprise GIS implementation"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:expert:I2",
+          "sheet": "Proficiency Indicators",
+          "row": 165,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-XXKZYV1",
+       "statement": {
+        "en": "Influences GIS standards and best practices"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:expert:I3",
+          "sheet": "Proficiency Indicators",
+          "row": 165,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-TNXGH28",
+       "statement": {
+        "en": "Provides expert consultation on complex spatial problems"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:expert:I4",
+          "sheet": "Proficiency Indicators",
+          "row": 165,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-39H1JDC",
+       "statement": {
+        "en": "Publishes on GIS methods and applications"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:expert:I5",
+          "sheet": "Proficiency Indicators",
+          "row": 165,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-F2E760B",
+       "statement": {
+        "en": "Represents organization in GIS community leadership"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:2.1.1:expert:I6",
+          "sheet": "Proficiency Indicators",
+          "row": 165,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      }
+     ],
+     "knowledge": {
+      "en": "Shapes GIS strategy and standards"
+     },
+     "application": {
+      "en": "Provides GIS leadership at organizational level"
+     }
+    }
+   ],
+   "families": [
+    {
+     "family": "EMSTv1fam:F1",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F2",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F3",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F4",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F5",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F6",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F7",
+     "relevance": "core"
+    },
+    {
+     "family": "EMSTv1fam:F9",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F10",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F12",
+     "relevance": "supporting"
+    }
+   ],
+   "enactments": [
+    {
+     "sectorActor": "EMSTv1:sector/public_agencies",
+     "note": {
+      "en": "Land management planning, resource mapping, permit tracking"
+     },
+     "provenance": {
+      "method": "v1-migration",
+      "generatedAt": "2026-10-23T00:00:00Z",
+      "agent": [
+       "emstagent:ia-example-builder-0.1.0"
+      ],
+      "evidenceLabel": "J",
+      "reviewStatus": "unreviewed",
+      "notes": "v1 sector application note; v1 sectors do not match the seven v2 sector actors and must be re-derived"
+     }
+    },
+    {
+     "sectorActor": "EMSTv1:sector/private_sector",
+     "note": {
+      "en": "Site analysis, environmental compliance, supply chain visualization"
+     },
+     "provenance": {
+      "method": "v1-migration",
+      "generatedAt": "2026-10-23T00:00:00Z",
+      "agent": [
+       "emstagent:ia-example-builder-0.1.0"
+      ],
+      "evidenceLabel": "J",
+      "reviewStatus": "unreviewed",
+      "notes": "v1 sector application note; v1 sectors do not match the seven v2 sector actors and must be re-derived"
+     }
+    },
+    {
+     "sectorActor": "EMSTv1:sector/ngos",
+     "note": {
+      "en": "Conservation prioritization, land acquisition planning, advocacy mapping"
+     },
+     "provenance": {
+      "method": "v1-migration",
+      "generatedAt": "2026-10-23T00:00:00Z",
+      "agent": [
+       "emstagent:ia-example-builder-0.1.0"
+      ],
+      "evidenceLabel": "J",
+      "reviewStatus": "unreviewed",
+      "notes": "v1 sector application note; v1 sectors do not match the seven v2 sector actors and must be re-derived"
+     }
+    },
+    {
+     "sectorActor": "EMSTv1:sector/consulting",
+     "note": {
+      "en": "Spatial analysis for clients, environmental impact mapping"
+     },
+     "provenance": {
+      "method": "v1-migration",
+      "generatedAt": "2026-10-23T00:00:00Z",
+      "agent": [
+       "emstagent:ia-example-builder-0.1.0"
+      ],
+      "evidenceLabel": "J",
+      "reviewStatus": "unreviewed",
+      "notes": "v1 sector application note; v1 sectors do not match the seven v2 sector actors and must be re-derived"
+     }
+    },
+    {
+     "sectorActor": "EMSTv1:sector/academia",
+     "note": {
+      "en": "Research GIS, spatial analysis methods, teaching"
+     },
+     "provenance": {
+      "method": "v1-migration",
+      "generatedAt": "2026-10-23T00:00:00Z",
+      "agent": [
+       "emstagent:ia-example-builder-0.1.0"
+      ],
+      "evidenceLabel": "J",
+      "reviewStatus": "unreviewed",
+      "notes": "v1 sector application note; v1 sectors do not match the seven v2 sector actors and must be re-derived"
+     }
+    }
+   ],
+   "changeNote": [
+    {
+     "release": "2.0.0-draft.1",
+     "change": "retained",
+     "note": "Migrated from v1 with lineage; content not yet revalidated"
+    }
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:2.1.1",
+      "v1Code": "2.1.1",
+      "sheet": "Competencies",
+      "row": 42,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+     }
+    ]
+   }
+  },
+  {
+   "id": "emst:core/TSK-9YY1TPK",
+   "type": "Task",
+   "layer": "L2",
+   "module": "core",
+   "prefLabel": {
+    "en": "Create and update spatial layers representing land use, vegetation, and infrastructure"
+   },
+   "statement": {
+    "en": "Create and update spatial layers representing land use, vegetation, and infrastructure"
+   },
+   "notation": [
+    {
+     "scheme": "EMSTv1-task",
+     "value": "2.1.1:T1"
+    }
+   ],
+   "v1Tier": "T1",
+   "supports": [
+    {
+     "competency": "emst:core/CMP-T6N5VE4",
+     "strength": "defining"
+    }
+   ],
+   "status": "proposed",
+   "version": "0.1.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:2.1.1:T1",
+      "sheet": "Competencies",
+      "row": 42,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+     }
+    ]
+   }
+  },
+  {
+   "id": "emst:core/ASM-43ZX6XV",
+   "type": "ExposureAssessment",
+   "layer": "L5",
+   "task": "emst:core/TSK-9YY1TPK",
+   "instrument": "emst-v1-task13",
+   "values": {
+    "autoType": "A",
+    "tacitDensity": "Lo",
+    "careerLadder": "P",
+    "vector": "AI",
+    "horizon": "1"
+   },
+   "assessedAt": "2026-02-23",
+   "prefLabel": {
+    "en": "v1 Task 13 exposure for v1:2.1.1:T1"
+   },
+   "status": "active",
+   "version": "1.0.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:2.1.1:T1",
+      "sheet": "Dimension Tags",
+      "row": 42,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+      "v1ProvenanceCode": "reconstructed_d2"
+     }
+    ],
+    "notes": "Single analyst with LLM; no inter-rater reliability (CA audit)"
+   }
+  },
+  {
+   "id": "emst:core/TSK-S1S6TPS",
+   "type": "Task",
+   "layer": "L2",
+   "module": "core",
+   "prefLabel": {
+    "en": "Analyze spatial data to support environmental assessments and planning decisions"
+   },
+   "statement": {
+    "en": "Analyze spatial data to support environmental assessments and planning decisions"
+   },
+   "notation": [
+    {
+     "scheme": "EMSTv1-task",
+     "value": "2.1.1:T2"
+    }
+   ],
+   "v1Tier": "T2",
+   "supports": [
+    {
+     "competency": "emst:core/CMP-T6N5VE4",
+     "strength": "defining"
+    }
+   ],
+   "status": "proposed",
+   "version": "0.1.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:2.1.1:T2",
+      "sheet": "Competencies",
+      "row": 42,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+     }
+    ]
+   }
+  },
+  {
+   "id": "emst:core/ASM-HC32CPQ",
+   "type": "ExposureAssessment",
+   "layer": "L5",
+   "task": "emst:core/TSK-S1S6TPS",
+   "instrument": "emst-v1-task13",
+   "values": {
+    "autoType": "A",
+    "tacitDensity": "Med",
+    "careerLadder": "C",
+    "vector": "AI",
+    "horizon": "1"
+   },
+   "assessedAt": "2026-02-23",
+   "prefLabel": {
+    "en": "v1 Task 13 exposure for v1:2.1.1:T2"
+   },
+   "status": "active",
+   "version": "1.0.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:2.1.1:T2",
+      "sheet": "Dimension Tags",
+      "row": 42,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+      "v1ProvenanceCode": "reconstructed_d2"
+     }
+    ],
+    "notes": "Single analyst with LLM; no inter-rater reliability (CA audit)"
+   }
+  },
+  {
+   "id": "emst:core/TSK-NBSGJ8S",
+   "type": "Task",
+   "layer": "L2",
+   "module": "core",
+   "prefLabel": {
+    "en": "Generate printable and digital maps for reports, briefings, and field crews"
+   },
+   "statement": {
+    "en": "Generate printable and digital maps for reports, briefings, and field crews"
+   },
+   "notation": [
+    {
+     "scheme": "EMSTv1-task",
+     "value": "2.1.1:T3"
+    }
+   ],
+   "v1Tier": "T3",
+   "supports": [
+    {
+     "competency": "emst:core/CMP-T6N5VE4",
+     "strength": "defining"
+    }
+   ],
+   "status": "proposed",
+   "version": "0.1.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:2.1.1:T3",
+      "sheet": "Competencies",
+      "row": 42,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+     }
+    ]
+   }
+  },
+  {
+   "id": "emst:core/ASM-MXJTN93",
+   "type": "ExposureAssessment",
+   "layer": "L5",
+   "task": "emst:core/TSK-NBSGJ8S",
+   "instrument": "emst-v1-task13",
+   "values": {
+    "autoType": "Ac",
+    "tacitDensity": "Lo",
+    "careerLadder": "P",
+    "vector": "AI",
+    "horizon": "1"
+   },
+   "assessedAt": "2026-02-23",
+   "prefLabel": {
+    "en": "v1 Task 13 exposure for v1:2.1.1:T3"
+   },
+   "status": "active",
+   "version": "1.0.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:2.1.1:T3",
+      "sheet": "Dimension Tags",
+      "row": 42,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+      "v1ProvenanceCode": "reconstructed_d2"
+     }
+    ],
+    "notes": "Single analyst with LLM; no inter-rater reliability (CA audit)"
+   }
+  },
+  {
+   "id": "emst:core/SIG-2JJN7DV",
+   "type": "ChangeSignal",
+   "layer": "L5",
+   "signalType": "plan-requirement",
+   "prefLabel": {
+    "en": "Share of USFS binding plan direction linked to 2.1.1: 2012-rule vs 1982-rule plans"
+   },
+   "about": [
+    "emst:core/CMP-T6N5VE4"
+   ],
+   "sectorActor": [
+    "EMSTv1:sector/public_agencies"
+   ],
+   "jurisdiction": [
+    "https://w3id.org/emst/ext/jurisdiction/US-federal"
+   ],
+   "observedPeriod": {
+    "start": "2012",
+    "end": "2026"
+   },
+   "comparisonPeriod": {
+    "start": "1982",
+    "end": "2011"
+   },
+   "measure": {
+    "name": "delta share of linked binding components (top-1)",
+    "value": -0.0008,
+    "unit": "proportion",
+    "ci95": [
+     -0.0015,
+     -0.0003
+    ],
+    "denominator": "linked standards/guidelines in USFS plans by planning rule"
+   },
+   "direction": "decrease",
+   "linkerQuality": {
+    "goldSet": "IA dev gold v0.1 (single AI annotator)",
+    "precisionAt1": 0.531,
+    "ci95": [
+     0.388,
+     0.673
+    ]
+   },
+   "corpus": {
+    "name": "OpenLMP plan components",
+    "version": "0.1.0",
+    "license": "see /home/claude/lmps/LICENSE-DATA"
+   },
+   "caveats": [
+    "Planning-rule era confounds plan format and extraction method with real change",
+    "Linker top-1 precision about 0.5; small shifts are noise"
+   ],
+   "status": "proposed",
+   "version": "0.1.0",
+   "provenance": {
+    "method": "lexical-linker",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-prototype-0.1.0"
+    ],
+    "evidenceLabel": "S",
+    "reviewStatus": "unreviewed",
+    "notes": "Demonstration of the L5 record shape, not a finding"
+   }
+  },
+  {
+   "id": "emst:core/CMP-7BB5426",
+   "type": "Competency",
+   "layer": "L1",
+   "module": "core",
+   "competencyType": "core",
+   "prefLabel": {
+    "en": "Regulatory compliance assessment"
+   },
+   "statement": {
+    "en": "Evaluating whether environmental management activities meet the requirements of applicable environmental laws and regulations."
+   },
+   "definition": {
+    "en": "Evaluating whether environmental management activities meet the requirements of applicable environmental laws and regulations."
+   },
+   "notation": [
+    {
+     "scheme": "EMSTv1",
+     "value": "6.1.2"
+    }
+   ],
+   "status": "proposed",
+   "version": "0.1.0",
+   "firstRelease": "2.0.0-draft.1",
+   "lastChangedRelease": "2.0.0-draft.1",
+   "craft": {
+    "v1Primary": "SC",
+    "v1Secondary": "DC",
+    "ordinal": {
+     "FC": "none",
+     "DC": "supporting",
+     "SC": "defining"
+    },
+    "computed": false,
+    "provenance": {
+     "method": "v1-migration",
+     "generatedAt": "2026-10-23T00:00:00Z",
+     "agent": [
+      "emstagent:ia-example-builder-0.1.0"
+     ],
+     "evidenceLabel": "J",
+     "reviewStatus": "unreviewed",
+     "notes": "v1 single-analyst irreducibility tag mapped to ordinal fallback; to be re-elicited at task level (CA DP-5)"
+    }
+   },
+   "proficiency": [
+    {
+     "level": "EMSTv1level:foundational",
+     "practicedAtLevel": true,
+     "indicators": [
+      {
+       "id": "emst:core/IND-0BQW0ZV",
+       "statement": {
+        "en": "Uses compliance checklists accurately"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:foundational:I1",
+          "sheet": "Proficiency Indicators",
+          "row": 706,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-AJ0TY9C",
+       "statement": {
+        "en": "Documents compliance status and deficiencies"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:foundational:I2",
+          "sheet": "Proficiency Indicators",
+          "row": 706,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-HX69PY9",
+       "statement": {
+        "en": "Identifies obvious violations or non-compliance"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:foundational:I3",
+          "sheet": "Proficiency Indicators",
+          "row": 706,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-WB7F05Z",
+       "statement": {
+        "en": "Follows inspection protocols and safety procedures"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:foundational:I4",
+          "sheet": "Proficiency Indicators",
+          "row": 706,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-KSKFB7G",
+       "statement": {
+        "en": "Maintains accurate records for regulatory reporting"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:foundational:I5",
+          "sheet": "Proficiency Indicators",
+          "row": 706,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-JK5DC8C",
+       "statement": {
+        "en": "Understands consequences of non-compliance"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:foundational:I6",
+          "sheet": "Proficiency Indicators",
+          "row": 706,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      }
+     ],
+     "knowledge": {
+      "en": "Understands basic compliance concepts and requirements"
+     },
+     "application": {
+      "en": "Conducts routine compliance inspections with guidance"
+     }
+    },
+    {
+     "level": "EMSTv1level:intermediate",
+     "practicedAtLevel": true,
+     "indicators": [
+      {
+       "id": "emst:core/IND-YF12FBT",
+       "statement": {
+        "en": "Develops compliance protocols and checklists"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:intermediate:I1",
+          "sheet": "Proficiency Indicators",
+          "row": 707,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-N4ECE9X",
+       "statement": {
+        "en": "Conducts thorough compliance audits"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:intermediate:I2",
+          "sheet": "Proficiency Indicators",
+          "row": 707,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-JTNE1J2",
+       "statement": {
+        "en": "Identifies subtle or emerging compliance issues"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:intermediate:I3",
+          "sheet": "Proficiency Indicators",
+          "row": 707,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-APSYZR3",
+       "statement": {
+        "en": "Interprets regulatory requirements in context"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:intermediate:I4",
+          "sheet": "Proficiency Indicators",
+          "row": 707,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-2HNTR97",
+       "statement": {
+        "en": "Develops corrective action plans"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:intermediate:I5",
+          "sheet": "Proficiency Indicators",
+          "row": 707,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-X2MNH8Z",
+       "statement": {
+        "en": "Coordinates with regulatory agencies professionally"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:intermediate:I6",
+          "sheet": "Proficiency Indicators",
+          "row": 707,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      }
+     ],
+     "knowledge": {
+      "en": "Applies compliance frameworks across multiple regulations"
+     },
+     "application": {
+      "en": "Conducts comprehensive compliance assessments independently"
+     }
+    },
+    {
+     "level": "EMSTv1level:advanced",
+     "practicedAtLevel": true,
+     "indicators": [
+      {
+       "id": "emst:core/IND-PE1EPMJ",
+       "statement": {
+        "en": "Designs comprehensive compliance management systems"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:advanced:I1",
+          "sheet": "Proficiency Indicators",
+          "row": 708,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-92V76Z5",
+       "statement": {
+        "en": "Evaluates compliance risks and prioritizes mitigation"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:advanced:I2",
+          "sheet": "Proficiency Indicators",
+          "row": 708,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-C721CDW",
+       "statement": {
+        "en": "Manages relationships with multiple regulatory agencies"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:advanced:I3",
+          "sheet": "Proficiency Indicators",
+          "row": 708,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-KN6QN0R",
+       "statement": {
+        "en": "Leads response to enforcement actions"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:advanced:I4",
+          "sheet": "Proficiency Indicators",
+          "row": 708,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-TD1Z2G9",
+       "statement": {
+        "en": "Develops compliance culture within organizations"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:advanced:I5",
+          "sheet": "Proficiency Indicators",
+          "row": 708,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-46JRDE4",
+       "statement": {
+        "en": "Integrates compliance with environmental management systems"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:advanced:I6",
+          "sheet": "Proficiency Indicators",
+          "row": 708,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      }
+     ],
+     "knowledge": {
+      "en": "Expert in regulatory compliance across complex operations"
+     },
+     "application": {
+      "en": "Leads organizational compliance programs"
+     }
+    },
+    {
+     "level": "EMSTv1level:expert",
+     "practicedAtLevel": true,
+     "indicators": [
+      {
+       "id": "emst:core/IND-H9PAK1Y",
+       "statement": {
+        "en": "Influences development of compliance protocols and standards"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:expert:I1",
+          "sheet": "Proficiency Indicators",
+          "row": 709,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-B5WPHDQ",
+       "statement": {
+        "en": "Provides expert consultation on complex compliance matters"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:expert:I2",
+          "sheet": "Proficiency Indicators",
+          "row": 709,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-PVF9E5T",
+       "statement": {
+        "en": "Develops innovative compliance approaches"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:expert:I3",
+          "sheet": "Proficiency Indicators",
+          "row": 709,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-1TS45WB",
+       "statement": {
+        "en": "Advises on regulatory enforcement policy"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:expert:I4",
+          "sheet": "Proficiency Indicators",
+          "row": 709,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-PMY87EG",
+       "statement": {
+        "en": "Publishes on compliance management"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:expert:I5",
+          "sheet": "Proficiency Indicators",
+          "row": 709,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      },
+      {
+       "id": "emst:core/IND-MTSM4JC",
+       "statement": {
+        "en": "Recognized expert in regulatory compliance"
+       },
+       "provenance": {
+        "method": "v1-migration",
+        "generatedAt": "2026-10-23T00:00:00Z",
+        "agent": [
+         "emstagent:ia-example-builder-0.1.0"
+        ],
+        "evidenceLabel": "J",
+        "reviewStatus": "unreviewed",
+        "derivedFrom": [
+         {
+          "v1Key": "v1:6.1.2:expert:I6",
+          "sheet": "Proficiency Indicators",
+          "row": 709,
+          "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+         }
+        ]
+       }
+      }
+     ],
+     "knowledge": {
+      "en": "Shapes compliance standards and best practices"
+     },
+     "application": {
+      "en": "Leads industry or sector-wide compliance initiatives"
+     }
+    }
+   ],
+   "families": [
+    {
+     "family": "EMSTv1fam:F1",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F2",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F3",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F4",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F8",
+     "relevance": "core"
+    },
+    {
+     "family": "EMSTv1fam:F9",
+     "relevance": "supporting"
+    },
+    {
+     "family": "EMSTv1fam:F14",
+     "relevance": "supporting"
+    }
+   ],
+   "enactments": [
+    {
+     "sectorActor": "EMSTv1:sector/public_agencies",
+     "note": {
+      "en": "Compliance inspections, enforcement, oversight programs"
+     },
+     "provenance": {
+      "method": "v1-migration",
+      "generatedAt": "2026-10-23T00:00:00Z",
+      "agent": [
+       "emstagent:ia-example-builder-0.1.0"
+      ],
+      "evidenceLabel": "J",
+      "reviewStatus": "unreviewed",
+      "notes": "v1 sector application note; v1 sectors do not match the seven v2 sector actors and must be re-derived"
+     }
+    },
+    {
+     "sectorActor": "EMSTv1:sector/private_sector",
+     "note": {
+      "en": "Corporate compliance programs, audit management, risk mitigation"
+     },
+     "provenance": {
+      "method": "v1-migration",
+      "generatedAt": "2026-10-23T00:00:00Z",
+      "agent": [
+       "emstagent:ia-example-builder-0.1.0"
+      ],
+      "evidenceLabel": "J",
+      "reviewStatus": "unreviewed",
+      "notes": "v1 sector application note; v1 sectors do not match the seven v2 sector actors and must be re-derived"
+     }
+    },
+    {
+     "sectorActor": "EMSTv1:sector/ngos",
+     "note": {
+      "en": "Compliance monitoring, citizen enforcement, watchdog activities"
+     },
+     "provenance": {
+      "method": "v1-migration",
+      "generatedAt": "2026-10-23T00:00:00Z",
+      "agent": [
+       "emstagent:ia-example-builder-0.1.0"
+      ],
+      "evidenceLabel": "J",
+      "reviewStatus": "unreviewed",
+      "notes": "v1 sector application note; v1 sectors do not match the seven v2 sector actors and must be re-derived"
+     }
+    },
+    {
+     "sectorActor": "EMSTv1:sector/consulting",
+     "note": {
+      "en": "Compliance audits, management systems development, training"
+     },
+     "provenance": {
+      "method": "v1-migration",
+      "generatedAt": "2026-10-23T00:00:00Z",
+      "agent": [
+       "emstagent:ia-example-builder-0.1.0"
+      ],
+      "evidenceLabel": "J",
+      "reviewStatus": "unreviewed",
+      "notes": "v1 sector application note; v1 sectors do not match the seven v2 sector actors and must be re-derived"
+     }
+    },
+    {
+     "sectorActor": "EMSTv1:sector/academia",
+     "note": {
+      "en": "Compliance research, teaching, program evaluation"
+     },
+     "provenance": {
+      "method": "v1-migration",
+      "generatedAt": "2026-10-23T00:00:00Z",
+      "agent": [
+       "emstagent:ia-example-builder-0.1.0"
+      ],
+      "evidenceLabel": "J",
+      "reviewStatus": "unreviewed",
+      "notes": "v1 sector application note; v1 sectors do not match the seven v2 sector actors and must be re-derived"
+     }
+    }
+   ],
+   "changeNote": [
+    {
+     "release": "2.0.0-draft.1",
+     "change": "retained",
+     "note": "Migrated from v1 with lineage; content not yet revalidated"
+    }
+   ],
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:6.1.2",
+      "v1Code": "6.1.2",
+      "sheet": "Competencies",
+      "row": 178,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+     }
+    ],
+    "notes": "v1 qa_flags: sector_text_marker_asterisk"
+   }
+  },
+  {
+   "id": "emst:core/TSK-69GJPJR",
+   "type": "Task",
+   "layer": "L2",
+   "module": "core",
+   "prefLabel": {
+    "en": "Conduct field inspections and desktop reviews to ensure activities meet legal requirements"
+   },
+   "statement": {
+    "en": "Conduct field inspections and desktop reviews to ensure activities meet legal requirements"
+   },
+   "notation": [
+    {
+     "scheme": "EMSTv1-task",
+     "value": "6.1.2:T1"
+    }
+   ],
+   "v1Tier": "T1",
+   "supports": [
+    {
+     "competency": "emst:core/CMP-7BB5426",
+     "strength": "defining"
+    }
+   ],
+   "status": "proposed",
+   "version": "0.1.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:6.1.2:T1",
+      "sheet": "Competencies",
+      "row": 178,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+     }
+    ]
+   }
+  },
+  {
+   "id": "emst:core/ASM-65JZYE5",
+   "type": "ExposureAssessment",
+   "layer": "L5",
+   "task": "emst:core/TSK-69GJPJR",
+   "instrument": "emst-v1-task13",
+   "values": {
+    "autoType": "A",
+    "tacitDensity": "Hi",
+    "careerLadder": "C",
+    "vector": "AI",
+    "horizon": "1"
+   },
+   "assessedAt": "2026-02-23",
+   "prefLabel": {
+    "en": "v1 Task 13 exposure for v1:6.1.2:T1"
+   },
+   "status": "active",
+   "version": "1.0.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:6.1.2:T1",
+      "sheet": "Dimension Tags",
+      "row": 178,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+      "v1ProvenanceCode": "d6_exposure_file_reconciled_2026_03"
+     }
+    ],
+    "notes": "Single analyst with LLM; no inter-rater reliability (CA audit)"
+   }
+  },
+  {
+   "id": "emst:core/TSK-6EFQRDE",
+   "type": "Task",
+   "layer": "L2",
+   "module": "core",
+   "prefLabel": {
+    "en": "Develop checklists and procedures for regulatory compliance"
+   },
+   "statement": {
+    "en": "Develop checklists and procedures for regulatory compliance"
+   },
+   "notation": [
+    {
+     "scheme": "EMSTv1-task",
+     "value": "6.1.2:T2"
+    }
+   ],
+   "v1Tier": "T2",
+   "supports": [
+    {
+     "competency": "emst:core/CMP-7BB5426",
+     "strength": "defining"
+    }
+   ],
+   "status": "proposed",
+   "version": "0.1.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:6.1.2:T2",
+      "sheet": "Competencies",
+      "row": 178,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+     }
+    ]
+   }
+  },
+  {
+   "id": "emst:core/ASM-QP6FENZ",
+   "type": "ExposureAssessment",
+   "layer": "L5",
+   "task": "emst:core/TSK-6EFQRDE",
+   "instrument": "emst-v1-task13",
+   "values": {
+    "autoType": "S",
+    "tacitDensity": "Lo",
+    "careerLadder": "P",
+    "vector": "AI",
+    "horizon": "1"
+   },
+   "assessedAt": "2026-02-23",
+   "prefLabel": {
+    "en": "v1 Task 13 exposure for v1:6.1.2:T2"
+   },
+   "status": "active",
+   "version": "1.0.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:6.1.2:T2",
+      "sheet": "Dimension Tags",
+      "row": 178,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+      "v1ProvenanceCode": "d6_exposure_file_reconciled_2026_03"
+     }
+    ],
+    "notes": "Single analyst with LLM; no inter-rater reliability (CA audit)"
+   }
+  },
+  {
+   "id": "emst:core/TSK-C8AHHH3",
+   "type": "Task",
+   "layer": "L2",
+   "module": "core",
+   "prefLabel": {
+    "en": "Coordinate with regulatory agencies during audits or investigations"
+   },
+   "statement": {
+    "en": "Coordinate with regulatory agencies during audits or investigations"
+   },
+   "notation": [
+    {
+     "scheme": "EMSTv1-task",
+     "value": "6.1.2:T3"
+    }
+   ],
+   "v1Tier": "T3",
+   "supports": [
+    {
+     "competency": "emst:core/CMP-7BB5426",
+     "strength": "defining"
+    }
+   ],
+   "status": "proposed",
+   "version": "0.1.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:6.1.2:T3",
+      "sheet": "Competencies",
+      "row": 178,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080"
+     }
+    ]
+   }
+  },
+  {
+   "id": "emst:core/ASM-5E4RM2J",
+   "type": "ExposureAssessment",
+   "layer": "L5",
+   "task": "emst:core/TSK-C8AHHH3",
+   "instrument": "emst-v1-task13",
+   "values": {
+    "autoType": "H",
+    "tacitDensity": "Hi",
+    "careerLadder": "C",
+    "vector": "none",
+    "horizon": "N"
+   },
+   "assessedAt": "2026-02-23",
+   "prefLabel": {
+    "en": "v1 Task 13 exposure for v1:6.1.2:T3"
+   },
+   "status": "active",
+   "version": "1.0.0",
+   "provenance": {
+    "method": "v1-migration",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-example-builder-0.1.0"
+    ],
+    "evidenceLabel": "J",
+    "reviewStatus": "unreviewed",
+    "derivedFrom": [
+     {
+      "v1Key": "v1:6.1.2:T3",
+      "sheet": "Dimension Tags",
+      "row": 178,
+      "workbookSha256": "6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080",
+      "v1ProvenanceCode": "d6_exposure_file_reconciled_2026_03"
+     }
+    ],
+    "notes": "Single analyst with LLM; no inter-rater reliability (CA audit)"
+   }
+  },
+  {
+   "id": "emst:core/SIG-PD2J025",
+   "type": "ChangeSignal",
+   "layer": "L5",
+   "signalType": "plan-requirement",
+   "prefLabel": {
+    "en": "Share of USFS binding plan direction linked to 6.1.2: 2012-rule vs 1982-rule plans"
+   },
+   "about": [
+    "emst:core/CMP-7BB5426"
+   ],
+   "sectorActor": [
+    "EMSTv1:sector/public_agencies"
+   ],
+   "jurisdiction": [
+    "https://w3id.org/emst/ext/jurisdiction/US-federal"
+   ],
+   "observedPeriod": {
+    "start": "2012",
+    "end": "2026"
+   },
+   "comparisonPeriod": {
+    "start": "1982",
+    "end": "2011"
+   },
+   "measure": {
+    "name": "delta share of linked binding components (top-1)",
+    "value": -0.0024,
+    "unit": "proportion",
+    "ci95": [
+     -0.0042,
+     -0.0005
+    ],
+    "denominator": "linked standards/guidelines in USFS plans by planning rule"
+   },
+   "direction": "decrease",
+   "linkerQuality": {
+    "goldSet": "IA dev gold v0.1 (single AI annotator)",
+    "precisionAt1": 0.531,
+    "ci95": [
+     0.388,
+     0.673
+    ]
+   },
+   "corpus": {
+    "name": "OpenLMP plan components",
+    "version": "0.1.0",
+    "license": "see /home/claude/lmps/LICENSE-DATA"
+   },
+   "caveats": [
+    "Planning-rule era confounds plan format and extraction method with real change",
+    "Linker top-1 precision about 0.5; small shifts are noise"
+   ],
+   "status": "proposed",
+   "version": "0.1.0",
+   "provenance": {
+    "method": "lexical-linker",
+    "generatedAt": "2026-10-23T00:00:00Z",
+    "agent": [
+     "emstagent:ia-prototype-0.1.0"
+    ],
+    "evidenceLabel": "S",
+    "reviewStatus": "unreviewed",
+    "notes": "Demonstration of the L5 record shape, not a finding"
+   }
+  },
+  {
+   "type": "Mapping",
+   "record_id": "emst-v1-esco:2.1.1:1",
+   "subject_id": "emst:core/CMP-T6N5VE4",
+   "subject_label": "Geographic Information Systems (GIS) operation",
+   "predicate_id": "skos:closeMatch",
+   "object_id": "ESCO:440f64e5-e66c-45ee-bc29-53c14a2ad720",
+   "object_label": "use geographic information systems",
+   "object_source": "http://data.europa.eu/esco",
+   "object_source_version": "v1.2.0 (inferred)",
+   "mapping_justification": "semapv:LLMBasedMatching",
+   "confidence": 0.85,
+   "author_id": [
+    "emstagent:ia-prototype-0.1.0"
+   ],
+   "reviewer_id": [
+    "emstagent:claude-in-session-IA"
+   ],
+   "mapping_date": "2026-10-23",
+   "review_date": "2026-10-23",
+   "review_status": "accepted",
+   "comment": "Same capability (operate GIS); ESCO is tool-agnostic like a durable EMST competency should be | single-pass LLM review; requires human SME confirmation",
+   "similarity_score": 0.4143,
+   "similarity_measure": "tfidf-cosine(word 1-2gram, emst stoplists)"
+  },
+  {
+   "type": "Mapping",
+   "record_id": "emst-v1-esco:2.1.1:2",
+   "subject_id": "emst:core/CMP-T6N5VE4",
+   "subject_label": "Geographic Information Systems (GIS) operation",
+   "predicate_id": "skos:narrowMatch",
+   "object_id": "ESCO:bad66a63-4e3f-41f9-9e5d-a4d5f12f8d36",
+   "object_label": "create GIS reports",
+   "object_source": "http://data.europa.eu/esco",
+   "object_source_version": "v1.2.0 (inferred)",
+   "mapping_justification": "semapv:LLMBasedMatching",
+   "confidence": 0.7,
+   "author_id": [
+    "emstagent:ia-prototype-0.1.0"
+   ],
+   "reviewer_id": [
+    "emstagent:claude-in-session-IA"
+   ],
+   "mapping_date": "2026-10-23",
+   "review_date": "2026-10-23",
+   "review_status": "accepted",
+   "comment": "ESCO skill is one output of GIS operation | single-pass LLM review; requires human SME confirmation",
+   "similarity_score": 0.3258,
+   "similarity_measure": "tfidf-cosine(word 1-2gram, emst stoplists)"
+  },
+  {
+   "type": "Mapping",
+   "record_id": "emst-v1-esco:2.1.1:3",
+   "subject_id": "emst:core/CMP-T6N5VE4",
+   "subject_label": "Geographic Information Systems (GIS) operation",
+   "predicate_id": "skos:relatedMatch",
+   "object_id": "ESCO:377861af-f966-4c87-a2db-7e99904312b9",
+   "object_label": "geographic information systems",
+   "object_source": "http://data.europa.eu/esco",
+   "object_source_version": "v1.2.0 (inferred)",
+   "mapping_justification": "semapv:LLMBasedMatching",
+   "confidence": 0.7,
+   "author_id": [
+    "emstagent:ia-prototype-0.1.0"
+   ],
+   "reviewer_id": [
+    "emstagent:claude-in-session-IA"
+   ],
+   "mapping_date": "2026-10-23",
+   "review_date": "2026-10-23",
+   "review_status": "accepted",
+   "comment": "ESCO knowledge concept vs EMST competency (type mismatch: knowledge vs skill) | single-pass LLM review; requires human SME confirmation",
+   "similarity_score": 0.2576,
+   "similarity_measure": "tfidf-cosine(word 1-2gram, emst stoplists)"
+  },
+  {
+   "type": "Mapping",
+   "record_id": "emst-v2-onetsoc:15-1299.02:2.1.1",
+   "subject_id": "ONETSOC:15-1299.02",
+   "subject_label": "Geographic Information Systems Technologists and Technicians",
+   "predicate_id": "emst:requiresCompetency",
+   "object_id": "emst:core/CMP-T6N5VE4",
+   "object_label": "Geographic Information Systems (GIS) operation",
+   "object_source": "https://www.onetcenter.org/taxonomy.html",
+   "object_source_version": "O*NET-SOC 2019 (O*NET 31.0)",
+   "mapping_justification": "semapv:LLMBasedMatching",
+   "confidence": 0.6,
+   "author_id": [
+    "emstagent:claude-in-session-IA"
+   ],
+   "mapping_date": "2026-10-23",
+   "review_status": "candidate",
+   "comment": "Illustrative role-to-competency link; O*NET code verified in ESCO-O*NET crosswalk file; requires FH/LM review"
+  },
+  {
+   "type": "Mapping",
+   "record_id": "emst-v1-esco:6.1.2:1",
+   "subject_id": "emst:core/CMP-7BB5426",
+   "subject_label": "Regulatory compliance assessment",
+   "predicate_id": "skos:relatedMatch",
+   "object_id": "ESCO:d0586c39-a2d9-4492-a970-c566a64ffd86",
+   "object_label": "ensure regulatory compliance concerning distribution activities",
+   "object_source": "http://data.europa.eu/esco",
+   "object_source_version": "v1.2.0 (inferred)",
+   "mapping_justification": "semapv:LLMBasedMatching",
+   "confidence": 0.7,
+   "author_id": [
+    "emstagent:ia-prototype-0.1.0"
+   ],
+   "reviewer_id": [
+    "emstagent:claude-in-session-IA"
+   ],
+   "mapping_date": "2026-10-23",
+   "review_date": "2026-10-23",
+   "review_status": "rejected",
+   "comment": "Distribution/logistics compliance context | single-pass LLM review; requires human SME confirmation",
+   "predicate_modifier": "Not",
+   "similarity_score": 0.2739,
+   "similarity_measure": "tfidf-cosine(word 1-2gram, emst stoplists)"
+  },
+  {
+   "type": "Mapping",
+   "record_id": "emst-v1-esco:6.1.2:2",
+   "subject_id": "emst:core/CMP-7BB5426",
+   "subject_label": "Regulatory compliance assessment",
+   "predicate_id": "skos:broadMatch",
+   "object_id": "ESCO:4cc2ede9-6ad7-44fa-9709-3ec4d3116e48",
+   "object_label": "meet the requirements of legal bodies",
+   "object_source": "http://data.europa.eu/esco",
+   "object_source_version": "v1.2.0 (inferred)",
+   "mapping_justification": "semapv:LLMBasedMatching",
+   "confidence": 0.5,
+   "author_id": [
+    "emstagent:ia-prototype-0.1.0"
+   ],
+   "reviewer_id": [
+    "emstagent:claude-in-session-IA"
+   ],
+   "mapping_date": "2026-10-23",
+   "review_date": "2026-10-23",
+   "review_status": "accepted",
+   "comment": "ESCO skill is generic legal-requirements compliance | single-pass LLM review; requires human SME confirmation",
+   "similarity_score": 0.2109,
+   "similarity_measure": "tfidf-cosine(word 1-2gram, emst stoplists)"
+  },
+  {
+   "type": "Mapping",
+   "record_id": "emst-v1-esco:6.1.2:3",
+   "subject_id": "emst:core/CMP-7BB5426",
+   "subject_label": "Regulatory compliance assessment",
+   "predicate_id": "skos:narrowMatch",
+   "object_id": "ESCO:afbc401c-cad8-43b6-8d61-775d2c7b58d5",
+   "object_label": "prepare compliance documents",
+   "object_source": "http://data.europa.eu/esco",
+   "object_source_version": "v1.2.0 (inferred)",
+   "mapping_justification": "semapv:LLMBasedMatching",
+   "confidence": 0.55,
+   "author_id": [
+    "emstagent:ia-prototype-0.1.0"
+   ],
+   "reviewer_id": [
+    "emstagent:claude-in-session-IA"
+   ],
+   "mapping_date": "2026-10-23",
+   "review_date": "2026-10-23",
+   "review_status": "accepted",
+   "comment": "Preparing compliance documents is part of compliance assessment | single-pass LLM review; requires human SME confirmation",
+   "similarity_score": 0.2106,
+   "similarity_measure": "tfidf-cosine(word 1-2gram, emst stoplists)"
+  }
+ ]
+}

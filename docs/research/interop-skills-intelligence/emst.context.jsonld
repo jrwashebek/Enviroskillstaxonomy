@@ -1,0 +1,565 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "emst": "https://w3id.org/emst/",
+    "emstv": "https://w3id.org/emst/vocab#",
+    "emstagent": "https://w3id.org/emst/agent/",
+    "EMSTv1": "https://w3id.org/emst/v1/competency/",
+    "EMSTv1fam": "https://w3id.org/emst/v1/family/",
+    "EMSTv1level": "https://w3id.org/emst/v1/level/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "skosxl": "http://www.w3.org/2008/05/skos-xl#",
+    "dct": "http://purl.org/dc/terms/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "schema": "https://schema.org/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "sssom": "https://w3id.org/sssom/",
+    "semapv": "https://w3id.org/semapv/vocab/",
+    "ceasn": "https://purl.org/ctdlasn/terms/",
+    "ceterms": "https://purl.org/ctdl/terms/",
+    "ESCO": "http://data.europa.eu/esco/skill/",
+    "ESCOocc": "http://data.europa.eu/esco/occupation/",
+    "ONETSOC": "https://w3id.org/emst/ext/onet-soc/",
+    "SOC2018": "https://www.bls.gov/soc/2018/#",
+    "id": "@id",
+    "type": "@type",
+    "VocabularyTerm": "emstv:VocabularyTerm",
+    "Competency": "emstv:Competency",
+    "Task": "emstv:Task",
+    "KnowledgeStatement": "emstv:KnowledgeStatement",
+    "RoleProfile": "emstv:RoleProfile",
+    "ProfessionFamily": "emstv:ProfessionFamily",
+    "Tool": "emstv:Tool",
+    "Credential": "emstv:Credential",
+    "LearningResource": "emstv:LearningResource",
+    "ChangeSignal": "emstv:ChangeSignal",
+    "ExposureAssessment": "emstv:ExposureAssessment",
+    "DriverEvent": "emstv:DriverEvent",
+    "Source": "emstv:Source",
+    "Mapping": "sssom:Mapping",
+    "emst_version": {
+      "@id": "owl:versionInfo"
+    },
+    "schema_version": {
+      "@id": "dct:conformsTo"
+    },
+    "released": {
+      "@id": "dct:issued",
+      "@type": "xsd:date"
+    },
+    "license": {
+      "@id": "dct:license",
+      "@type": "@id"
+    },
+    "prefLabel": {
+      "@id": "skos:prefLabel",
+      "@container": "@language"
+    },
+    "altLabel": {
+      "@id": "skos:altLabel",
+      "@container": "@language"
+    },
+    "hiddenLabel": {
+      "@id": "skos:hiddenLabel",
+      "@container": "@language"
+    },
+    "definition": {
+      "@id": "skos:definition",
+      "@container": "@language"
+    },
+    "scopeNote": {
+      "@id": "skos:scopeNote",
+      "@container": "@language"
+    },
+    "editorialNote": {
+      "@id": "skos:editorialNote"
+    },
+    "statement": {
+      "@id": "emstv:statement",
+      "@container": "@language"
+    },
+    "keywords": {
+      "@id": "schema:keywords",
+      "@container": "@language"
+    },
+    "notation": {
+      "@id": "emstv:notation",
+      "@container": "@set"
+    },
+    "scheme": {
+      "@id": "emstv:notationScheme"
+    },
+    "value": {
+      "@id": "skos:notation"
+    },
+    "inScheme": {
+      "@id": "skos:inScheme",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "broader": {
+      "@id": "skos:broader",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "related": {
+      "@id": "skos:related",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "layer": {
+      "@id": "emstv:layer"
+    },
+    "module": {
+      "@id": "emstv:module"
+    },
+    "status": {
+      "@id": "emstv:status"
+    },
+    "version": {
+      "@id": "schema:version"
+    },
+    "firstRelease": {
+      "@id": "emstv:firstRelease"
+    },
+    "lastChangedRelease": {
+      "@id": "emstv:lastChangedRelease"
+    },
+    "replaces": {
+      "@id": "dct:replaces",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "replacedBy": {
+      "@id": "dct:isReplacedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "changeNote": {
+      "@id": "skos:changeNote",
+      "@container": "@set"
+    },
+    "release": {
+      "@id": "emstv:release"
+    },
+    "change": {
+      "@id": "emstv:changeType"
+    },
+    "note": {
+      "@id": "skos:note",
+      "@container": "@language"
+    },
+    "provenance": {
+      "@id": "emstv:provenance"
+    },
+    "method": {
+      "@id": "emstv:method"
+    },
+    "agent": {
+      "@id": "prov:wasAttributedTo",
+      "@container": "@set"
+    },
+    "generatedAt": {
+      "@id": "prov:generatedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "derivedFrom": {
+      "@id": "prov:wasDerivedFrom",
+      "@container": "@set"
+    },
+    "v1Key": {
+      "@id": "emstv:v1Key"
+    },
+    "v1Code": {
+      "@id": "emstv:v1Code"
+    },
+    "sheet": {
+      "@id": "emstv:v1Sheet"
+    },
+    "row": {
+      "@id": "emstv:v1Row",
+      "@type": "xsd:integer"
+    },
+    "workbookSha256": {
+      "@id": "emstv:sourceSha256"
+    },
+    "v1ProvenanceCode": {
+      "@id": "emstv:v1ProvenanceCode"
+    },
+    "sources": {
+      "@id": "dct:source",
+      "@container": "@set"
+    },
+    "evidenceLabel": {
+      "@id": "emstv:evidenceLabel"
+    },
+    "confidence": {
+      "@id": "sssom:confidence",
+      "@type": "xsd:double"
+    },
+    "reviewStatus": {
+      "@id": "emstv:reviewStatus"
+    },
+    "reviewers": {
+      "@id": "emstv:reviewer",
+      "@container": "@set"
+    },
+    "reviewedAt": {
+      "@id": "emstv:reviewedAt",
+      "@type": "xsd:date"
+    },
+    "toolVersion": {
+      "@id": "emstv:toolVersion"
+    },
+    "promptVersion": {
+      "@id": "emstv:promptVersion"
+    },
+    "notes": {
+      "@id": "skos:note"
+    },
+    "competencyType": {
+      "@id": "emstv:competencyType"
+    },
+    "workFunctions": {
+      "@id": "emstv:workFunction",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "subsectors": {
+      "@id": "emstv:subsector",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "craft": {
+      "@id": "emstv:craftProfile"
+    },
+    "weights": {
+      "@id": "emstv:craftWeights",
+      "@type": "@json"
+    },
+    "ordinal": {
+      "@id": "emstv:craftOrdinal",
+      "@type": "@json"
+    },
+    "computed": {
+      "@id": "emstv:computed",
+      "@type": "xsd:boolean"
+    },
+    "v1Primary": {
+      "@id": "emstv:v1CraftPrimary"
+    },
+    "v1Secondary": {
+      "@id": "emstv:v1CraftSecondary"
+    },
+    "proficiency": {
+      "@id": "emstv:proficiencyAnchor",
+      "@container": "@list"
+    },
+    "level": {
+      "@id": "emstv:level",
+      "@type": "@id"
+    },
+    "knowledge": {
+      "@id": "emstv:knowledge",
+      "@container": "@language"
+    },
+    "application": {
+      "@id": "emstv:application",
+      "@container": "@language"
+    },
+    "indicators": {
+      "@id": "emstv:indicator",
+      "@container": "@set"
+    },
+    "observable": {
+      "@id": "emstv:observable",
+      "@type": "xsd:boolean"
+    },
+    "assessmentMethods": {
+      "@id": "emstv:assessmentMethod",
+      "@container": "@set"
+    },
+    "practicedAtLevel": {
+      "@id": "emstv:practicedAtLevel",
+      "@type": "xsd:boolean"
+    },
+    "enactments": {
+      "@id": "emstv:enactment",
+      "@container": "@set"
+    },
+    "sectorActor": {
+      "@id": "emstv:sectorActor",
+      "@type": "@id"
+    },
+    "jurisdiction": {
+      "@id": "dct:spatial",
+      "@type": "@id"
+    },
+    "families": {
+      "@id": "emstv:familyRelevance",
+      "@container": "@set"
+    },
+    "family": {
+      "@id": "emstv:family",
+      "@type": "@id"
+    },
+    "relevance": {
+      "@id": "emstv:relevance"
+    },
+    "supports": {
+      "@id": "emstv:supportsLink",
+      "@container": "@set"
+    },
+    "competency": {
+      "@id": "emstv:competency",
+      "@type": "@id"
+    },
+    "strength": {
+      "@id": "emstv:strength"
+    },
+    "tools": {
+      "@id": "emstv:usesTool",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "v1Tier": {
+      "@id": "emstv:v1Tier"
+    },
+    "exposureSummary": {
+      "@id": "emstv:exposureSummary",
+      "@type": "@json"
+    },
+    "function": {
+      "@id": "emstv:function",
+      "@type": "@id"
+    },
+    "variantOf": {
+      "@id": "emstv:variantOf",
+      "@type": "@id"
+    },
+    "lifecycleStatus": {
+      "@id": "emstv:lifecycleStatus"
+    },
+    "taskBundle": {
+      "@id": "emstv:taskBundleItem",
+      "@container": "@set"
+    },
+    "task": {
+      "@id": "emstv:task",
+      "@type": "@id"
+    },
+    "importance": {
+      "@id": "emstv:importance",
+      "@type": "xsd:double"
+    },
+    "timeShare": {
+      "@id": "emstv:timeShare",
+      "@type": "xsd:double"
+    },
+    "competencyTargets": {
+      "@id": "emstv:competencyTarget",
+      "@container": "@set"
+    },
+    "entryFrom": {
+      "@id": "emstv:entryFrom",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "progressesTo": {
+      "@id": "emstv:progressesTo",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "frictions": {
+      "@id": "emstv:transferFriction",
+      "@type": "@json"
+    },
+    "members": {
+      "@id": "skos:member",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "toolType": {
+      "@id": "emstv:toolType"
+    },
+    "vendorNeutral": {
+      "@id": "emstv:vendorNeutral",
+      "@type": "xsd:boolean"
+    },
+    "productExamples": {
+      "@id": "emstv:productExample",
+      "@container": "@set"
+    },
+    "expectedHalfLifeYears": {
+      "@id": "emstv:expectedHalfLifeYears",
+      "@type": "xsd:double"
+    },
+    "signalType": {
+      "@id": "emstv:signalType"
+    },
+    "about": {
+      "@id": "emstv:about",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "observedPeriod": {
+      "@id": "dct:temporal",
+      "@type": "@json"
+    },
+    "comparisonPeriod": {
+      "@id": "emstv:comparisonPeriod",
+      "@type": "@json"
+    },
+    "measure": {
+      "@id": "emstv:measure",
+      "@type": "@json"
+    },
+    "direction": {
+      "@id": "emstv:direction"
+    },
+    "linkerQuality": {
+      "@id": "emstv:linkerQuality",
+      "@type": "@json"
+    },
+    "corpus": {
+      "@id": "emstv:corpus",
+      "@type": "@json"
+    },
+    "caveats": {
+      "@id": "emstv:caveat",
+      "@container": "@set"
+    },
+    "instrument": {
+      "@id": "emstv:instrument"
+    },
+    "scenario": {
+      "@id": "emstv:scenario",
+      "@type": "@id"
+    },
+    "values": {
+      "@id": "emstv:assessmentValues",
+      "@type": "@json"
+    },
+    "assessedAt": {
+      "@id": "emstv:assessedAt",
+      "@type": "xsd:date"
+    },
+    "eventDate": {
+      "@id": "emstv:eventDate",
+      "@type": "xsd:date"
+    },
+    "eventStatus": {
+      "@id": "emstv:eventStatus"
+    },
+    "affects": {
+      "@id": "emstv:affects",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "expectedEffect": {
+      "@id": "emstv:expectedEffect"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "sha256": {
+      "@id": "emstv:sha256"
+    },
+    "publisher": {
+      "@id": "dct:publisher"
+    },
+    "published": {
+      "@id": "dct:issued"
+    },
+    "accessed": {
+      "@id": "emstv:accessed"
+    },
+    "sourceType": {
+      "@id": "emstv:sourceType"
+    },
+    "rights": {
+      "@id": "dct:rights"
+    },
+    "record_id": {
+      "@id": "sssom:record_id"
+    },
+    "subject_id": {
+      "@id": "owl:annotatedSource",
+      "@type": "@id"
+    },
+    "subject_label": {
+      "@id": "sssom:subject_label"
+    },
+    "predicate_id": {
+      "@id": "owl:annotatedProperty",
+      "@type": "@id"
+    },
+    "predicate_modifier": {
+      "@id": "sssom:predicate_modifier"
+    },
+    "object_id": {
+      "@id": "owl:annotatedTarget",
+      "@type": "@id"
+    },
+    "object_label": {
+      "@id": "sssom:object_label"
+    },
+    "object_source": {
+      "@id": "sssom:object_source",
+      "@type": "@id"
+    },
+    "object_source_version": {
+      "@id": "sssom:object_source_version"
+    },
+    "mapping_justification": {
+      "@id": "sssom:mapping_justification",
+      "@type": "@id"
+    },
+    "similarity_score": {
+      "@id": "sssom:similarity_score",
+      "@type": "xsd:double"
+    },
+    "similarity_measure": {
+      "@id": "sssom:similarity_measure"
+    },
+    "author_id": {
+      "@id": "sssom:author_id",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "reviewer_id": {
+      "@id": "sssom:reviewer_id",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "reviewer_agreement": {
+      "@id": "sssom:reviewer_agreement",
+      "@type": "xsd:double"
+    },
+    "mapping_date": {
+      "@id": "sssom:mapping_date"
+    },
+    "review_date": {
+      "@id": "sssom:review_date"
+    },
+    "review_status": {
+      "@id": "emstv:reviewStatus"
+    },
+    "mapping_set_id": {
+      "@id": "sssom:mapping_set_id",
+      "@type": "@id"
+    },
+    "comment": {
+      "@id": "rdfs:comment"
+    },
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "vocabulary": {
+      "@id": "emstv:vocabulary"
+    },
+    "ordinalValue": {
+      "@id": "emstv:ordinal"
+    }
+  }
+}

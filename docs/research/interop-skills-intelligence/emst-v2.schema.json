@@ -1,0 +1,374 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/emst/schema/emst-v2.schema.json",
+  "title": "EMST v2 record (DRAFT 0.1.0, IA proposal)",
+  "description": "Draft data model for the Environmental Management Skills Taxonomy v2, aligned to the CA layered hypothesis (L0 reference vocabularies, L1 competencies, L2 tasks/knowledge, L3 role profiles, L4 tools, L5 change signals and assessments, L6 crosswalks) with namespaced subsector modules. A document is either a Bundle (a JSON-LD @graph of entities) or a single entity discriminated by `type`. Proposal by role IA; not adopted. Pending CA decisions DP-1..DP-10.",
+  "oneOf": [
+    {"$ref": "#/$defs/Bundle"},
+    {"$ref": "#/$defs/Entity"}
+  ],
+  "$defs": {
+    "EmstId": {
+      "type": "string",
+      "description": "Persistent opaque identifier as a compact IRI: emst:<namespace>/<TYPE>-<6 Crockford base32 symbols><Luhn mod-32 check symbol>. Expands to https://w3id.org/emst/<namespace>/<TYPE>-<code>. The namespace records the minting authority (core or a module steward), not the concept's current home; IDs are never reused or re-pointed.",
+      "pattern": "^emst:[a-z][a-z0-9-]{1,30}/(VOC|CMP|TSK|KNW|IND|ROL|FAM|TL|CRD|LRN|SIG|ASM|EVT|SRC|MST|MAP)-[0-9A-HJKMNP-TV-Z]{7}$"
+    },
+    "ExternalId": {
+      "type": "string",
+      "description": "Any absolute IRI or registered CURIE (ESCO:, ONET:, SOC2018:, OPM:, CIP2020:, CTID:, EMSTv1: ...).",
+      "pattern": "^([a-zA-Z][a-zA-Z0-9+.-]*:)\\S+$"
+    },
+    "Ref": {
+      "description": "Reference to an EMST entity or an external concept.",
+      "anyOf": [{"$ref": "#/$defs/EmstId"}, {"$ref": "#/$defs/ExternalId"}]
+    },
+    "SemVer": {"type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?$"},
+    "LangMap": {
+      "type": "object",
+      "description": "Language-tagged strings (BCP 47 keys), e.g. {\"en\": \"...\", \"es\": \"...\"}. JSON-LD @language container.",
+      "minProperties": 1,
+      "propertyNames": {"pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"},
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "LangMapMulti": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"},
+      "additionalProperties": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+    },
+    "Layer": {"enum": ["L0", "L1", "L2", "L3", "L4", "L5", "L6"]},
+    "Status": {
+      "description": "Lifecycle. 'withdrawn' keeps the record resolvable; 'superseded' requires replacedBy.",
+      "enum": ["draft", "proposed", "active", "deprecated", "superseded", "withdrawn"]
+    },
+    "EvidenceLabel": {"enum": ["E", "J", "S"]},
+    "ReviewStatus": {"enum": ["unreviewed", "spot_checked", "reviewed", "validated", "gold"]},
+    "Provenance": {
+      "type": "object",
+      "description": "Attached to every record and to every machine-derived value. Borrowed from OpenLMP (extraction method, confidence, enriched_by, review_status) and extended with v1 lineage and the EMST evidence label.",
+      "required": ["method", "generatedAt"],
+      "properties": {
+        "method": {"enum": ["v1-migration", "human-authoring", "sme-panel", "delphi", "llm", "rule", "lexical-linker", "import", "computed"]},
+        "agent": {"type": "array", "items": {"type": "string"}, "description": "People (ORCID preferred), panels, or software agents with version, e.g. emstagent:ia-prototype-0.1.0, emstagent:claude-opus-5.5"},
+        "generatedAt": {"type": "string", "format": "date-time"},
+        "derivedFrom": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "v1Key": {"type": "string", "pattern": "^v1:"},
+              "v1Code": {"type": "string"},
+              "sheet": {"type": "string"},
+              "row": {"type": "integer"},
+              "workbookSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+              "v1ProvenanceCode": {"type": "string", "description": "e.g. session_direct, reconstructed_d2"},
+              "entity": {"$ref": "#/$defs/Ref"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "sources": {"type": "array", "items": {"type": "string"}, "description": "Source IDs (SRC entities or role source IDs such as IA-012)."},
+        "evidenceLabel": {"$ref": "#/$defs/EvidenceLabel"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "reviewStatus": {"$ref": "#/$defs/ReviewStatus"},
+        "reviewers": {"type": "array", "items": {"type": "string"}},
+        "reviewedAt": {"type": "string", "format": "date"},
+        "interRaterAgreement": {"type": "object", "properties": {"statistic": {"type": "string"}, "value": {"type": "number"}, "nRaters": {"type": "integer"}}},
+        "toolVersion": {"type": "string"},
+        "promptVersion": {"type": "string"},
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "ConceptBase": {
+      "type": "object",
+      "required": ["id", "type", "prefLabel", "layer", "status", "version", "provenance"],
+      "properties": {
+        "@context": {},
+        "id": {"$ref": "#/$defs/EmstId"},
+        "type": {"type": "string"},
+        "prefLabel": {"$ref": "#/$defs/LangMap"},
+        "altLabel": {"$ref": "#/$defs/LangMapMulti"},
+        "hiddenLabel": {"$ref": "#/$defs/LangMapMulti"},
+        "definition": {"$ref": "#/$defs/LangMap"},
+        "scopeNote": {"$ref": "#/$defs/LangMap"},
+        "editorialNote": {"type": "array", "items": {"type": "string"}},
+        "notation": {
+          "type": "array",
+          "description": "Human-readable codes, each with its scheme. v1 codes are kept here as aliases (scheme EMSTv1), never as IDs.",
+          "items": {"type": "object", "required": ["scheme", "value"], "properties": {"scheme": {"type": "string"}, "value": {"type": "string"}}, "additionalProperties": false}
+        },
+        "layer": {"$ref": "#/$defs/Layer"},
+        "module": {"type": "string", "pattern": "^[a-z][a-z0-9-]{1,30}$", "description": "Current home module (core, water, fire, esg, ...). May differ from the namespace in the id."},
+        "inScheme": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "broader": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "related": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "status": {"$ref": "#/$defs/Status"},
+        "version": {"$ref": "#/$defs/SemVer"},
+        "firstRelease": {"$ref": "#/$defs/SemVer"},
+        "lastChangedRelease": {"$ref": "#/$defs/SemVer"},
+        "replaces": {"type": "array", "items": {"$ref": "#/$defs/EmstId"}},
+        "replacedBy": {"type": "array", "items": {"$ref": "#/$defs/EmstId"}},
+        "changeNote": {"type": "array", "items": {"type": "object", "properties": {"release": {"$ref": "#/$defs/SemVer"}, "change": {"enum": ["new", "retained", "clarified", "split", "merged", "moved", "deprecated", "withdrawn"]}, "note": {"type": "string"}}}},
+        "license": {"type": "string"},
+        "provenance": {"$ref": "#/$defs/Provenance"}
+      },
+      "allOf": [
+        {"if": {"properties": {"status": {"const": "superseded"}}, "required": ["status"]}, "then": {"required": ["replacedBy"]}}
+      ]
+    },
+    "VocabularyTerm": {
+      "description": "L0 reference vocabulary term (craft, sector actor, work function, subsector, jurisdiction, level of responsibility, tool type, signal type ...).",
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {
+        "type": {"const": "VocabularyTerm"},
+        "layer": {"const": "L0"},
+        "vocabulary": {"enum": ["craft", "sector-actor", "work-function", "subsector", "jurisdiction", "level-of-responsibility", "tool-type", "signal-type", "competency-type", "lifecycle"]},
+        "ordinal": {"type": "integer"}
+      },
+      "required": ["vocabulary"]
+    },
+    "CraftProfile": {
+      "type": "object",
+      "description": "Craft blend. Either weights (0..1; need not sum to 1) or an ordinal per craft (fallback in CA hypothesis). Computed for competencies and roles; elicited for tasks.",
+      "properties": {
+        "weights": {"type": "object", "properties": {"FC": {"type": "number", "minimum": 0, "maximum": 1}, "DC": {"type": "number", "minimum": 0, "maximum": 1}, "SC": {"type": "number", "minimum": 0, "maximum": 1}}, "additionalProperties": false},
+        "ordinal": {"type": "object", "properties": {"FC": {"enum": ["none", "supporting", "defining"]}, "DC": {"enum": ["none", "supporting", "defining"]}, "SC": {"enum": ["none", "supporting", "defining"]}}, "additionalProperties": false},
+        "computed": {"type": "boolean"},
+        "v1Primary": {"enum": ["FC", "DC", "SC"]},
+        "v1Secondary": {"enum": ["FC", "DC", "SC"]},
+        "provenance": {"$ref": "#/$defs/Provenance"}
+      },
+      "additionalProperties": false
+    },
+    "Indicator": {
+      "type": "object",
+      "required": ["id", "statement"],
+      "properties": {
+        "id": {"$ref": "#/$defs/EmstId"},
+        "statement": {"$ref": "#/$defs/LangMap"},
+        "observable": {"type": "boolean", "description": "IO judgement that the indicator can be observed or assessed."},
+        "assessmentMethods": {"type": "array", "items": {"enum": ["work-sample", "structured-interview", "portfolio", "supervisor-rating", "knowledge-test", "simulation", "field-observation"]}},
+        "provenance": {"$ref": "#/$defs/Provenance"}
+      },
+      "additionalProperties": false
+    },
+    "ProficiencyAnchor": {
+      "type": "object",
+      "required": ["level"],
+      "properties": {
+        "level": {"$ref": "#/$defs/Ref", "description": "Level-of-responsibility term (L0) or, during migration, EMSTv1:level/foundational etc."},
+        "knowledge": {"$ref": "#/$defs/LangMap"},
+        "application": {"$ref": "#/$defs/LangMap"},
+        "indicators": {"type": "array", "items": {"$ref": "#/$defs/Indicator"}},
+        "practicedAtLevel": {"type": "boolean", "description": "SFIA-style: false means the competency is not defined at this level."}
+      },
+      "additionalProperties": false
+    },
+    "Enactment": {
+      "type": "object",
+      "description": "How performance differs in a sector actor or jurisdiction (CA: context, not content).",
+      "required": ["sectorActor", "note"],
+      "properties": {
+        "sectorActor": {"$ref": "#/$defs/Ref"},
+        "jurisdiction": {"$ref": "#/$defs/Ref"},
+        "note": {"$ref": "#/$defs/LangMap"},
+        "provenance": {"$ref": "#/$defs/Provenance"}
+      },
+      "additionalProperties": false
+    },
+    "Competency": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {
+        "type": {"const": "Competency"},
+        "layer": {"const": "L1"},
+        "competencyType": {"enum": ["core", "transversal", "module"]},
+        "statement": {"$ref": "#/$defs/LangMap", "description": "Active-verb competency statement (RSD skillStatement / CTDL-ASN competencyText / CASE fullStatement)."},
+        "workFunctions": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "subsectors": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "craft": {"$ref": "#/$defs/CraftProfile"},
+        "proficiency": {"type": "array", "items": {"$ref": "#/$defs/ProficiencyAnchor"}},
+        "enactments": {"type": "array", "items": {"$ref": "#/$defs/Enactment"}},
+        "families": {"type": "array", "items": {"type": "object", "properties": {"family": {"$ref": "#/$defs/Ref"}, "relevance": {"enum": ["core", "supporting"]}}, "required": ["family", "relevance"]}},
+        "keywords": {"$ref": "#/$defs/LangMapMulti"}
+      },
+      "required": ["statement"]
+    },
+    "Task": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {
+        "type": {"const": "Task"},
+        "layer": {"const": "L2"},
+        "statement": {"$ref": "#/$defs/LangMap"},
+        "supports": {"type": "array", "items": {"type": "object", "required": ["competency"], "properties": {"competency": {"$ref": "#/$defs/Ref"}, "strength": {"enum": ["defining", "supporting"]}, "provenance": {"$ref": "#/$defs/Provenance"}}, "additionalProperties": false}},
+        "knowledge": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "tools": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "workFunctions": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "craft": {"$ref": "#/$defs/CraftProfile"},
+        "v1Tier": {"enum": ["T1", "T2", "T3"]},
+        "exposureSummary": {"type": "object", "description": "Computed view of the latest accepted ExposureAssessment records (L5); never edited by hand.", "properties": {"computedFrom": {"type": "array", "items": {"$ref": "#/$defs/EmstId"}}, "modalType": {"type": "string"}}}
+      },
+      "required": ["statement"]
+    },
+    "KnowledgeStatement": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {"type": {"const": "KnowledgeStatement"}, "layer": {"const": "L2"}, "statement": {"$ref": "#/$defs/LangMap"}},
+      "required": ["statement"]
+    },
+    "RoleProfile": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {
+        "type": {"const": "RoleProfile"},
+        "layer": {"const": "L3"},
+        "function": {"$ref": "#/$defs/Ref"},
+        "sectorActor": {"$ref": "#/$defs/Ref"},
+        "variantOf": {"$ref": "#/$defs/EmstId"},
+        "lifecycleStatus": {"enum": ["proposed", "emerging", "established", "transforming", "declining"]},
+        "taskBundle": {"type": "array", "items": {"type": "object", "required": ["task"], "properties": {"task": {"$ref": "#/$defs/Ref"}, "importance": {"type": "number", "minimum": 1, "maximum": 5}, "timeShare": {"type": "number", "minimum": 0, "maximum": 1}, "provenance": {"$ref": "#/$defs/Provenance"}}, "additionalProperties": false}},
+        "competencyTargets": {"type": "array", "items": {"type": "object", "required": ["competency", "level"], "properties": {"competency": {"$ref": "#/$defs/Ref"}, "level": {"$ref": "#/$defs/Ref"}, "importance": {"type": "number", "minimum": 1, "maximum": 5}}, "additionalProperties": false}},
+        "entryFrom": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "progressesTo": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "frictions": {"type": "array", "items": {"type": "object", "properties": {"toSectorActor": {"$ref": "#/$defs/Ref"}, "kind": {"enum": ["credential-recognition", "classification", "pay-system", "security-citizenship", "licensure", "other"]}, "note": {"type": "string"}}}},
+        "craft": {"$ref": "#/$defs/CraftProfile"}
+      }
+    },
+    "ProfessionFamily": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {"type": {"const": "ProfessionFamily"}, "layer": {"const": "L3"}, "members": {"type": "array", "items": {"$ref": "#/$defs/Ref"}}}
+    },
+    "Tool": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {
+        "type": {"const": "Tool"},
+        "layer": {"const": "L4"},
+        "toolType": {"enum": ["software-category", "software-product", "instrument", "model", "protocol", "standard", "reporting-framework", "dataset"]},
+        "vendorNeutral": {"type": "boolean", "description": "true for categories (e.g. desktop GIS); products are examples attached to a category."},
+        "productExamples": {"type": "array", "items": {"type": "string"}},
+        "expectedHalfLifeYears": {"type": "number"}
+      },
+      "required": ["toolType"]
+    },
+    "Credential": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {"type": {"const": "Credential"}, "credentialType": {"type": "string"}, "issuer": {"type": "string"}, "ctid": {"type": "string", "pattern": "^ce-[0-9a-f-]{36}$"}, "covers": {"type": "array", "items": {"$ref": "#/$defs/Ref"}}}
+    },
+    "LearningResource": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {"type": {"const": "LearningResource"}, "resourceType": {"enum": ["course", "program", "module", "work-based-learning", "apprenticeship", "microcredential", "other"]}, "provider": {"type": "string"}, "cip": {"type": "string", "pattern": "^\\d{2}\\.\\d{4}$"}, "teaches": {"type": "array", "items": {"$ref": "#/$defs/Ref"}}}
+    },
+    "ChangeSignal": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "description": "L5: a dated, attributed observation that a task, competency or role is changing (demand, content, exposure, policy).",
+      "properties": {
+        "type": {"const": "ChangeSignal"},
+        "layer": {"const": "L5"},
+        "signalType": {"enum": ["posting-demand", "pd-content", "plan-requirement", "curriculum-coverage", "policy-event", "exposure", "foresight", "emergence-candidate"]},
+        "about": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/Ref"}},
+        "sectorActor": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "jurisdiction": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "observedPeriod": {"type": "object", "required": ["start"], "properties": {"start": {"type": "string"}, "end": {"type": "string"}}},
+        "comparisonPeriod": {"type": "object", "properties": {"start": {"type": "string"}, "end": {"type": "string"}}},
+        "measure": {
+          "type": "object",
+          "required": ["name", "value"],
+          "properties": {
+            "name": {"type": "string"},
+            "value": {"type": "number"},
+            "unit": {"type": "string"},
+            "ci95": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+            "n": {"type": "integer"},
+            "denominator": {"type": "string"}
+          }
+        },
+        "direction": {"enum": ["increase", "decrease", "new", "no-change", "unclear"]},
+        "linkerQuality": {"type": "object", "description": "Quality of the text-to-taxonomy step that produced the signal, from the current gold-set evaluation.", "properties": {"goldSet": {"type": "string"}, "precisionAt1": {"type": "number"}, "ci95": {"type": "array", "items": {"type": "number"}}}},
+        "corpus": {"type": "object", "properties": {"name": {"type": "string"}, "version": {"type": "string"}, "sha256": {"type": "string"}, "license": {"type": "string"}}},
+        "caveats": {"type": "array", "items": {"type": "string"}}
+      },
+      "required": ["signalType", "about", "observedPeriod"]
+    },
+    "ExposureAssessment": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {
+        "type": {"const": "ExposureAssessment"},
+        "layer": {"const": "L5"},
+        "task": {"$ref": "#/$defs/Ref"},
+        "instrument": {"type": "string", "description": "e.g. emst-v1-task13, aei-task-usage, eloundou-rubric"},
+        "scenario": {"$ref": "#/$defs/Ref"},
+        "values": {"type": "object", "description": "Instrument-specific values, e.g. {autoType: Ac, tacit: Hi, career: P, vector: AI, horizon: 1}"},
+        "assessedAt": {"type": "string", "format": "date"}
+      },
+      "required": ["task", "instrument", "values"]
+    },
+    "DriverEvent": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {
+        "type": {"const": "DriverEvent"},
+        "layer": {"const": "L5"},
+        "jurisdiction": {"$ref": "#/$defs/Ref"},
+        "instrument": {"type": "string"},
+        "eventDate": {"type": "string", "format": "date"},
+        "eventStatus": {"enum": ["proposed", "in-force", "stayed", "rescinded", "superseded", "expired"]},
+        "affects": {"type": "array", "items": {"$ref": "#/$defs/Ref"}},
+        "expectedEffect": {"type": "string"}
+      },
+      "required": ["eventDate", "eventStatus"]
+    },
+    "Source": {
+      "allOf": [{"$ref": "#/$defs/ConceptBase"}],
+      "properties": {"type": {"const": "Source"}, "url": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "publisher": {"type": "string"}, "published": {"type": "string"}, "accessed": {"type": "string"}, "sourceType": {"type": "string"}, "rights": {"type": "string"}}
+    },
+    "Mapping": {
+      "type": "object",
+      "description": "L6 crosswalk record. Field names and semantics follow SSSOM (mapping-commons, v1.0 with 1.1 draft slots record_id, reviewer_agreement, review_date); stored canonically as SSSOM/TSV, mirrored here for JSON-LD exports.",
+      "required": ["type", "record_id", "subject_id", "predicate_id", "object_id", "mapping_justification"],
+      "properties": {
+        "type": {"const": "Mapping"},
+        "record_id": {"type": "string"},
+        "subject_id": {"$ref": "#/$defs/Ref"},
+        "subject_label": {"type": "string"},
+        "predicate_id": {"enum": ["skos:exactMatch", "skos:closeMatch", "skos:broadMatch", "skos:narrowMatch", "skos:relatedMatch", "emst:requiresCompetency", "emst:evidencesTask"]},
+        "predicate_modifier": {"enum": ["Not"]},
+        "object_id": {"$ref": "#/$defs/Ref"},
+        "object_label": {"type": "string"},
+        "object_source": {"type": "string"},
+        "object_source_version": {"type": "string"},
+        "mapping_justification": {"type": "string", "pattern": "^semapv:[A-Za-z]+$"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "similarity_score": {"type": "number", "minimum": 0, "maximum": 1},
+        "similarity_measure": {"type": "string"},
+        "author_id": {"type": "array", "items": {"type": "string"}},
+        "reviewer_id": {"type": "array", "items": {"type": "string"}},
+        "reviewer_agreement": {"type": "number", "minimum": -1, "maximum": 1},
+        "mapping_date": {"type": "string"},
+        "review_date": {"type": "string"},
+        "review_status": {"enum": ["candidate", "accepted", "rejected", "needs-review", "deprecated"]},
+        "mapping_set_id": {"type": "string"},
+        "comment": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "Entity": {
+      "oneOf": [
+        {"$ref": "#/$defs/VocabularyTerm"}, {"$ref": "#/$defs/Competency"}, {"$ref": "#/$defs/Task"},
+        {"$ref": "#/$defs/KnowledgeStatement"}, {"$ref": "#/$defs/RoleProfile"}, {"$ref": "#/$defs/ProfessionFamily"},
+        {"$ref": "#/$defs/Tool"}, {"$ref": "#/$defs/Credential"}, {"$ref": "#/$defs/LearningResource"},
+        {"$ref": "#/$defs/ChangeSignal"}, {"$ref": "#/$defs/ExposureAssessment"}, {"$ref": "#/$defs/DriverEvent"},
+        {"$ref": "#/$defs/Source"}, {"$ref": "#/$defs/Mapping"}
+      ]
+    },
+    "Bundle": {
+      "type": "object",
+      "required": ["@context", "emst_version", "@graph"],
+      "properties": {
+        "@context": {},
+        "emst_version": {"$ref": "#/$defs/SemVer"},
+        "schema_version": {"$ref": "#/$defs/SemVer"},
+        "layer_versions": {"type": "object", "propertyNames": {"pattern": "^L[0-6]$"}, "additionalProperties": {"$ref": "#/$defs/SemVer"}},
+        "modules": {"type": "array", "items": {"type": "object", "required": ["namespace", "version"], "properties": {"namespace": {"type": "string"}, "steward": {"type": "string"}, "version": {"$ref": "#/$defs/SemVer"}}}},
+        "released": {"type": "string", "format": "date"},
+        "license": {"type": "string"},
+        "@graph": {"type": "array", "items": {"$ref": "#/$defs/Entity"}}
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+ "name": "emst-v2-example",
+ "version": "2.0.0-draft.1",
+ "licenses": [
+  {
+   "name": "CC-BY-4.0"
+  }
+ ],
+ "profile": "data-package",
+ "resources": [
+  {
+   "name": "competencies",
+   "path": "competencies.csv",
+   "format": "csv",
+   "schema": {
+    "fields": [
+     {
+      "name": "competency_id",
+      "type": "string"
+     },
+     {
+      "name": "uri",
+      "type": "string"
+     },
+     {
+      "name": "v1_code",
+      "type": "string"
+     },
+     {
+      "name": "pref_label_en",
+      "type": "string"
+     },
+     {
+      "name": "statement_en",
+      "type": "string"
+     },
+     {
+      "name": "layer",
+      "type": "string"
+     },
+     {
+      "name": "module",
+      "type": "string"
+     },
+     {
+      "name": "status",
+      "type": "string"
+     },
+     {
+      "name": "version",
+      "type": "string"
+     },
+     {
+      "name": "craft_v1_primary",
+      "type": "string"
+     },
+     {
+      "name": "craft_v1_secondary",
+      "type": "string"
+     },
+     {
+      "name": "case_uuid",
+      "type": "string"
+     },
+     {
+      "name": "ctid",
+      "type": "string"
+     },
+     {
+      "name": "prov_method",
+      "type": "string"
+     },
+     {
+      "name": "prov_v1_key",
+      "type": "string"
+     },
+     {
+      "name": "prov_workbook_sha256",
+      "type": "string"
+     }
+    ],
+    "primaryKey": [
+     "competency_id"
+    ]
+   }
+  },
+  {
+   "name": "tasks",
+   "path": "tasks.csv",
+   "format": "csv",
+   "schema": {
+    "fields": [
+     {
+      "name": "task_id",
+      "type": "string"
+     },
+     {
+      "name": "competency_id",
+      "type": "string"
+     },
+     {
+      "name": "v1_key",
+      "type": "string"
+     },
+     {
+      "name": "tier",
+      "type": "string"
+     },
+     {
+      "name": "statement_en",
+      "type": "string"
+     },
+     {
+      "name": "v1_auto_type",
+      "type": "string"
+     },
+     {
+      "name": "v1_horizon",
+      "type": "string"
+     }
+    ],
+    "primaryKey": [
+     "task_id"
+    ]
+   }
+  },
+  {
+   "name": "proficiency",
+   "path": "proficiency.csv",
+   "format": "csv",
+   "schema": {
+    "fields": [
+     {
+      "name": "competency_id",
+      "type": "string"
+     },
+     {
+      "name": "level",
+      "type": "string"
+     },
+     {
+      "name": "knowledge_en",
+      "type": "string"
+     },
+     {
+      "name": "application_en",
+      "type": "string"
+     }
+    ],
+    "primaryKey": [
+     "competency_id",
+     "level"
+    ]
+   }
+  },
+  {
+   "name": "indicators",
+   "path": "indicators.csv",
+   "format": "csv",
+   "schema": {
+    "fields": [
+     {
+      "name": "indicator_id",
+      "type": "string"
+     },
+     {
+      "name": "competency_id",
+      "type": "string"
+     },
+     {
+      "name": "level",
+      "type": "string"
+     },
+     {
+      "name": "statement_en",
+      "type": "string"
+     },
+     {
+      "name": "v1_key",
+      "type": "string"
+     }
+    ],
+    "primaryKey": [
+     "indicator_id"
+    ]
+   }
+  },
+  {
+   "name": "mappings",
+   "path": "mappings.sssom.tsv",
+   "format": "tsv",
+   "description": "SSSOM/TSV with YAML header"
+  }
+ ]
+}
