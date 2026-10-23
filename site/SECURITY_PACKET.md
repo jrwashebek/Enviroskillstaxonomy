@@ -138,7 +138,7 @@ These are design-excluded (ADR-0012), and the output checks in `tools/check-outp
    - A published SECURITY.md disclosure route.
    - The voluntary CISA attestation form.
 5. **Stop-gap inputs** (CR-CP-001). Two computed views come from scripts outside the release build:
-   - federal applicability (WP-05 prototype);
+   - federal applicability (DE's registered rule `scripts/rules/venue_applicability.py`, run by `site/tools/venue_view.py` over the release bundle; the WP-05 prototype is only a fallback);
    - the HR views (WP-08 generators).
 
    The explorer re-checks every ID against the release bundle, so held or excluded records cannot appear. The data still bypass `build_release.py`'s own gate until those views are emitted by the release. The CA accepted CR-CP-001 A1–A3, and DE ports these views into the release; the explorer switches automatically when `views/venue_applicability.json` and `views/federal-series/` appear.

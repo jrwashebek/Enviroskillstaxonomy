@@ -82,3 +82,21 @@ AUTHORING_GUIDE, `scripts/build_release.py`, the "For WP-12" notes in WP-03, WP-
   instrument "USWFS-USFS aligned federal wildland fire qualification standards" with its dated status, and the wrong
   form now fails the build. The PMS 310-1 sentence was not added: it is not in the release or the register.
 - js-yaml 4.1.1 -> 4.3.2 (GHSA-h67p-54hq-rp68 and related, build-time only); `npm audit` 0 vulnerabilities.
+- 18:50 Data moved on (CR-SC-001 typed `characteristicInstruments`): the WP-05 prototype now fails on the new shape.
+  DE has registered `scripts/rules/venue_applicability.py` (venue-applicability@1.0.0) but `build_release.py` does not
+  emit the view yet, so `site/tools/venue_view.py` applies DE's `compute()` to the release bundle (held/excluded
+  records never read). Required-basis is shown only from this typed-link rule; values resting on an unverified
+  instrument are withheld; "basis linked but status not yet verified" where no dated event backs the requires link.
+- 19:00 One-command build verified from scratch (`npm run build`: fresh preview release, vendor, SBOM, clean, 773
+  pages, output checks 0 problems). Checker self-test 19/19. CR-CP-001 implementation note appended.
+
+## Status at hand-back
+- Views: View 1 (role change), View 2 (gap check: role, chosen-competency, team grid), View 3 (pathways + X11 seed),
+  View 4 (what's coming), Federal Series Profiles, State Class Views, competencies, modules, evidence, privacy,
+  accessibility, security, download, search.
+- Checks: `npm test` = checker self-test + static output checks (A–E) + browser checks (axe WCAG 2.2 A/AA on 71
+  pages, reflow, text spacing, target size, focus, network capture, gap-check privacy round trip, team-grid minimum
+  cell, search). All pass on the final build.
+- Open: screen-reader/AT testing (ACR "partially supports" items); DOCX exports; signed releases, Scorecard, SHA-pinned
+  site workflow (WP-16/DE); release-emitted venue and HR views (DE, CR-CP-001 A1–A2); IO activation of
+  display-gate@1.1.0 (the explorer already applies its lists); comprehension testing of the evidence labels.

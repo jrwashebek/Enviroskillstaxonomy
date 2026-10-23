@@ -16,6 +16,8 @@ textSha256: 034b3e0fbb1d6666aafc087469935d98ecf7a755aa8aa30820b2ad3029637300
 supports:
 - competency: seed:SL-C03
   strength: primary
+- competency: seed:v1-4.4.4-A
+  strength: contributing
 workFunction: WF-ENFORCE
 fieldDependency: on-site-required
 formationDependency: 'yes'
@@ -38,11 +40,12 @@ v1SkillArea:
   code: '6.1'
   label: Environmental Law & Regulation
 editorialNote:
-  en: 'Rewritten from the v1 task text: "Conduct field inspections and desktop reviews to ensure activities meet legal requirements" (WP-05).'
+  en: 'Rewritten from the v1 task text: "Conduct field inspections and desktop reviews to ensure activities meet legal requirements" (WP-05). | S2 (CR-FC-001 ruling): contributing link to v1-4.4.4-A (hazardous, industrial and energized sites) added by FC.'
 provenance:
   method: llm-assisted
   agent:
   - emstagent:a5-sc@wp-05
+  - emstagent:fc-agent@wp-03
   generatedAt: '2026-10-23T14:30:00Z'
   toolVersion: claude-opus-5-5
   promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1

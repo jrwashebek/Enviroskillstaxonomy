@@ -81,3 +81,14 @@ The explorer (`site/`) is generated from a release build only: `emst.bundle.json
 **C. Confirmations**
 7. **Credential gates: confirmed.** A gate renders only when its Credential has `issuerVerified.verified = true` with sources (SPEC §10.5 rule 8), with "n not shown until the issuer is verified" for the rest. FH rewords WP-08's `evidenceNotice` to match. LM (WP-15) and LC prioritize issuer verification for gates on P1 tasks.
 8. **v1 Task 13 codes:** confirmed never read or shown.
+
+## Implementation note (CP, WP-12, 2026-10-23)
+
+- **A1.** The explorer computes the federal-applicability view with DE's registered `scripts/rules/venue_applicability.py#compute` over the release bundle (`site/tools/venue_view.py`). It is labelled "rule venue-applicability@1.0.0 applied to the release records, not yet emitted by the release build". The WP-05 prototype remains only as a fallback, and the explorer never shows "required-basis" from it. The explorer switches to `views/venue_applicability.json` automatically when the release emits it.
+- **A3.** The reference implementations are in `site/lib/model.mjs`:
+  - `levelCounts` implements `role-change@0.1.0`;
+  - the "pathway-edges@0.1.0" block compares the origin's highest role level with the destination's first role level.
+- **B4.** Job-analysis values are gated by `jaGate()` in `site/lib/model.mjs` until IO activates `display-gate@1.1.0`.
+- **B5 and B6.** Implemented as ruled.
+- **C7.** Implemented as ruled, with one addition from the coordinator: a gate whose issuer is verified reads "may be involved (agent-drafted link, not a verified requirement)", never as a requirement.
+- **WP-15 sign-off.** Records tied to unverified register rows render as "Unverified — not for citation" (`site/claims/register_map.yaml`). `site/tools/check-output.mjs` section E fails the build on any `do_not_say` wrong form.

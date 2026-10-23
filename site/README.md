@@ -27,7 +27,7 @@ What `npm run build` does:
 
 | Step | Script | What it does |
 |---|---|---|
-| 1 | `tools/prepare-release.mjs` | Runs `scripts/build_release.py --profile preview` into `.cache/release/` unless the cached build is newer than `data/`, `vocab/`, `scripts/` and `validation/display_gates.yaml`. It takes a few minutes on first run. If a fresh build fails, the previous one is kept and every page shows a build warning. It also prepares two computed views, each labelled as a stop-gap (CR-CP-001): the federal-applicability view (WP-05 prototype), and the WP-08 generated HR views (read-only). |
+| 1 | `tools/prepare-release.mjs` | Runs `scripts/build_release.py --profile preview` into `.cache/release/` unless the cached build is newer than `data/`, `vocab/`, `scripts/` and `validation/display_gates.yaml`. It takes a few minutes on first run. If a fresh build fails, the previous one is kept and every page shows a build warning. It also prepares two computed views until the release emits them (CR-CP-001 A1–A2): federal applicability, computed by `tools/venue_view.py` with DE's registered rule venue-applicability@1.0.0 over the release records (the WP-05 prototype is only a fallback, and never shows "required basis"); and WP-08's generated HR views, read-only, with every ID re-checked against the bundle. |
 | 2 | `tools/vendor.mjs` | Copies the USWDS 3 stylesheet and the 50 files it references into `src/assets/vendor/`. It refuses any stylesheet that references an external URL. |
 | 3 | `tools/sbom.mjs` | Writes two CycloneDX 1.5 SBOMs (runtime and build) with `npm sbom`. |
 | 4 | `tools/clean.mjs`, then Eleventy | Writes the site to `_site/`. |
@@ -114,7 +114,7 @@ These are enforced in `lib/model.mjs` and checked in `tools/check-output.mjs`.
 - **Module content out of default HR views** (CR-CP-001 ruling B5). Cross-role lists show core content only. Role-scoped views (role page, Federal Series Profile, State Class View) show the role's home-module content labelled "editorial section, not a stewarded module". Other modules and non-established items are placed in a collapsed, labelled section.
 - **Editorial design values versus job-analysis values** (CR-CP-001 ruling B4; display-gate@1.1.0). Bundle membership, role levels, formation flags and target levels show as "editorial draft". Importance, time share, critical, needed-at-entry and distinguishing show "Assessment pending (job analysis)". View 1 counts tasks rather than shares. HR views list duties without percentages ("% time: set by the supervisor; EMST supplies none before job analysis"). The gap check ranks by gap size alone.
 - **Claims register.** Records tied to unverified register rows show only their title and "Unverified — not for citation". Signal direction and driver tags are agent drafts and are not shown. P3 roles appear only in What's coming.
-- **No "required basis" from the prototype.** The federal-applicability prototype never shows "required basis" (CR-CP-001 ruling A1).
+- **Federal applicability is computed.** Only instruments linked as *requiring* the work decide the value (venue-applicability@1.0.0). The WP-05 prototype fallback never shows "required basis" (CR-CP-001 ruling A1).
 - **Credentials never stated as requirements.** Credential gates are never presented as requirements. A credential appears as "may be involved (agent-drafted link)" only when its issuer is verified; others are counted, not shown.
 - **Proposed realignments.** Series that OPM has proposed for realignment read "proposed, not final".
 - **No recommended pathways.** Pathways are never "recommended".
@@ -124,7 +124,7 @@ These are enforced in `lib/model.mjs` and checked in `tools/check-output.mjs`.
 - **Preview profile.** No IDs are minted yet, so the explorer shows release `2.0.0-dev` built with the internal preview profile, which includes drafts. Every page says so.
 - **No v2 assessments.** No v2 multi-rater assessment exists, so every "how is this changing" value is "assessment pending".
 - **No external context.** External index context is absent: those records are third-party licensed and excluded from releases.
-- **Stop-gap computed views.** Federal applicability (WP-05 prototype) and the HR views (WP-08 generators) are stop-gaps until `build_release.py` emits them (CR-CP-001).
+- **Stop-gap computed views.** Federal applicability (registered rule run by the explorer over the release) and the HR views (WP-08 generators) are stop-gaps until `build_release.py` emits them (CR-CP-001 A1–A2, accepted).
 - **Job-analysis values hidden.** Importance, time shares, critical and needed-at-entry flags stay hidden until reviewed (CR-CP-001 B4). Role-change summaries are task counts.
 - **Not cleared for external publication.** The WP-15 sign-off covers internal drafts and the NGO-pilot preview only, pending AS co-signature and the re-checks.
 - **Exports.** Exports are CSV and print-to-PDF. DOCX exports (IDP, PD skeleton) are not built.

@@ -14,9 +14,6 @@ definition:
   en: 'Turning technical environmental information (findings, data, plans, rules and decisions) into accurate written, spoken and visual products for specialist and public audiences: plain-language summaries, reports, fact sheets, presentations, public-meeting remarks, news releases, media interviews, testimony and digital posts. Covers audience analysis, accuracy checks with subject experts, accessibility and translation, clearance, and answering public and media questions. Excludes risk and crisis messaging under uncertainty (DB-C29, TX-E), briefing decision-makers for authoritative decisions (SC-C18), designing public engagement (SC-C06) and interpretation (v1 5.1.3).'
 statement:
   en: Analyzes the audience and purpose, then writes, presents and adapts technical environmental information into accurate, accessible products for specialist and public audiences, checks them with subject experts before release, and answers public and media questions without overstating certainty, so that readers and listeners can use the information correctly.
-notation:
-- scheme: EMSTv1
-  value: 5.1.1
 competencyType: practice
 levelSpan:
   min: L1
@@ -59,12 +56,6 @@ status: draft
 lifecycleState: established
 useTier: develop
 validationStatus: draft
-v1Domain:
-  code: '5'
-  label: Communication & Engagement Skills
-v1SkillArea:
-  code: '5.1'
-  label: Public Communication
 editorialNote:
   en: 'S2 close-out B (A8 LC; ADR-0030 §3.1 M2). Rewritten in place as the survivor for communicating technical environmental information in writing and speech: absorbs v1 5.1.2 (presentation), 5.1.5 (science communication), 5.5.4 (public information and media relations) and, through it, 5.1.4 (digital outreach; platforms are L4). Risk and crisis messaging stays in DB-C29 (TX-E); generic public relations is referenced from O*NET and ESCO (G-8); crosswalk to OPM Writing and Oral Communication goes through X9 (FH verdict). v1 D5 indicators restored from source text were rewritten; Expert indicators naming recognition or publication are retired (B03, B04). Needed by R12 and R13 (P1). Basis [J].'
 license: CC0-1.0
@@ -77,38 +68,14 @@ provenance:
   toolVersion: claude-opus-5-5
   promptVersion: s2b-lc@1
   derivedFrom:
-  - v1Key: v1:5.1.1
-    v1Code: 5.1.1
-    v1Table: competencies
-    v1Sheet: Competencies
-    v1Row: 147
-    v1Fields:
-    - title
-    - description
-    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: rewritten
-  - v1Key: v1:5.1.1
-    v1Code: 5.1.1
-    v1Table: source_text/competencies
-    sourceTextLine: 9983
-    relation: recovered
-    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   - v1Key: v1:5.1.2
-    v1Code: 5.1.2
     relation: merged-from
-    note: v1 5.1.2 (merge) → seed:v1-5.1.1 per v1_disposition.csv
-  - v1Key: v1:5.1.4
-    v1Code: 5.1.4
-    relation: merged-from
-    note: v1 5.1.4 (merge) → seed:v1-5.1.1 per v1_disposition.csv
   - v1Key: v1:5.1.5
-    v1Code: 5.1.5
     relation: merged-from
-    note: v1 5.1.5 (merge) → seed:v1-5.1.1 per v1_disposition.csv
   - v1Key: v1:5.5.4
-    v1Code: 5.5.4
     relation: merged-from
-    note: v1 5.5.4 (merge) → seed:v1-5.1.1 per v1_disposition.csv
+  - v1Key: v1:5.1.4
+    relation: merged-from
   sources:
   - LC-034
   evidenceLabel: J

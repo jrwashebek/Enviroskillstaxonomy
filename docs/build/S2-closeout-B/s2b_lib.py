@@ -146,7 +146,7 @@ def _label(text: str, n: int = 14) -> str:
 
 
 def indicator(cid, key, level, text, mode, methods, area, roles, served, att=None, obs4=3, jv=False,
-              use="develop", derived=None, evidence_plan=None, safety=None, subsectors=None):
+              use="develop", derived=None, evidence_plan=None, safety=None, subsectors=None, lifecycle="established"):
     rec = {"id": key, "type": "Indicator", "prefLabel": {"en": _label(text)}, "competency": cid, "level": level,
            "statement": {"en": text}, "augmentationMode": mode, "assessmentMethods": methods, "useClass": use,
            "obs4": obs4}
@@ -159,8 +159,11 @@ def indicator(cid, key, level, text, mode, methods, area, roles, served, att=Non
         rec["distinguishingAttribute"] = att
     if safety is not None:
         rec["safetyOrLegalCritical"] = safety
-    rec.update({"layer": "L1", "module": area, "status": "draft", "lifecycleState": "established", "useTier": use,
-                "validationStatus": "draft", "license": "CC0-1.0", "sensitivity": "public",
+    rec.update({"layer": "L1", "module": area, "status": "draft", "lifecycleState": lifecycle, "useTier": use,
+                "validationStatus": "draft"})
+    if lifecycle in ("emerging", "proposed"):
+        rec["reviewBy"] = "2027-10-23"
+    rec.update({"license": "CC0-1.0", "sensitivity": "public",
                 "provenance": prov(roles, derived=derived, adr=["ADR-0004", "ADR-0003"])})
     return rec
 
@@ -314,7 +317,8 @@ def build(c: dict, row: str):
         for i in inds:
             put(indicator(c["id"], i["id"], lvl, i["text"], i["mode"], i["methods"], area, c["roles"], i.get("served"),
                           att=i.get("att"), obs4=i.get("obs4", 3), jv=i.get("jv", False), derived=i.get("derived"),
-                          evidence_plan=i.get("plan"), safety=i.get("safety")), area, row)
+                          evidence_plan=i.get("plan"), safety=i.get("safety"),
+                          lifecycle=c.get("lifecycle", "established")), area, row)
     for k in c.get("knowledge", []):
         put(knowledge(k["id"], k["text"], c["id"], k["lowest"], area, c["roles"], derived=k.get("derived")), area, row)
     for t in c.get("tasks", []):

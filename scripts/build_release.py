@@ -48,6 +48,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import emstlib as L  # noqa: E402
 from rules import (agreement, assessment_staleness, change_indicator, effective_use_tier, gated_values,  # noqa: E402
                    inverse_links, io_bridge, registry, venue_applicability)
+from rules import (federal_series_profile, job_family_membership, mirror_links, pathway_edges,  # noqa: E402
+                   role_change, state_class_view)
 
 V1_LICENSE = "LicenseRef-EMSTv1-PendingDedication"
 CC0_IRI = "https://creativecommons.org/publicdomain/zero/1.0/"
@@ -649,6 +651,14 @@ class Builder:
                                                "studies": sorted(results)}
         files["views/display_gate.json"] = gated_values.compute(released, self.rules["display-gate"], results, dg_stamp)
         files["views/venue_applicability.json"] = venue_applicability.compute(released, self.date, st("venue-applicability"))
+        # HR and mobility views (RULINGS_FOR_DE §19; CR-FH-001, CR-CP-001): released records and released mappings only
+        mappings = self._mapping_rows(released)
+        files.update(federal_series_profile.compute(released, mappings, st("federal-series-profile"), self.date))
+        files.update(state_class_view.compute(released, st("state-class-view")))
+        files["views/job_families.json"] = job_family_membership.compute(released, self.rules["job-family-membership"], st("job-family-membership"))
+        files.update(role_change.compute(released, files["views/display_gate.json"], self.date, st("role-change")))
+        files["views/mirror_links.json"] = mirror_links.compute(released, mappings, st("mirror-links"))
+        files["views/pathway_edges.json"] = pathway_edges.compute(released, st("pathway-edges"))
         self.recurrence = self.three_module_recurrence(released)
         return {k: L.dump_json(v).encode() for k, v in files.items()}
 
