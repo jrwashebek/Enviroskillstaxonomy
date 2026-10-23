@@ -1,0 +1,34 @@
+---
+layout: layouts/base.njk
+title: Home
+---
+{% import "macros.njk" as m %}
+<h1>How environmental jobs are changing</h1>
+<p class="emst-lede">Start with a role. See how its work is shifting, check development gaps on your own device, and explore where the role can lead across federal, state, local, nonprofit and private employers.</p>
+
+<div class="emst-callout emst-callout--warn" role="note">
+  <p><strong>What you are looking at.</strong> This is release {{ emst.release.id }}{% if emst.release.isPreview %}, an internal preview built from draft records{% endif %}. The competencies, tasks and role profiles were drafted by AI agents and the project team and have not been reviewed by practitioners. No change in any task has yet been assessed by a v2 multi-rater study, so every "how is this changing" answer says <em>assessment pending</em>. Use it to explore and to give feedback, not to make decisions about people.</p>
+</div>
+
+<h2>Three things you can do</h2>
+<ul class="emst-cards">
+  <li class="emst-card"><h3><a href="{{ '/roles/' | url }}">See how a role is changing</a></h3><p>Tasks, drivers and evidence status for each role variant, with the evidence behind every statement one click down.</p></li>
+  <li class="emst-card"><h3><a href="{{ '/gap-check/' | url }}">Check development gaps</a></h3><p>Rate yourself or a team member against observable indicators. Runs only in your browser; you save the result as a file.</p></li>
+  <li class="emst-card"><h3><a href="{{ '/pathways/' | url }}">Explore where a role can lead</a></h3><p>Exploratory moves between roles and sectors, with shared competencies and known frictions. Never a recommendation.</p></li>
+</ul>
+
+<h2>What is in this build</h2>
+<div class="emst-stats">
+  {{ m.statFigure(emst.roles.length, "Role profiles", emst.figures.roles, "Being authored by the role-profile work package; pages appear as records are added." if emst.roles.length == 0 else emst.variants.length + " sector-actor variants") }}
+  {{ m.statFigure(emst.coreCompetencies.length, "Core competencies (live records)", emst.figures.coreCompetencies) }}
+  {{ m.statFigure(emst.moduleList.length, "Module editorial sections", emst.figures.moduleCompetencies, emst.figures and (emst.competencies | length) - (emst.coreCompetencies | length) + " module competency records, kept out of default HR views") }}
+  {{ m.statFigure(emst.stats.gatedRendering, "Rated values that pass the display gate", {tier: {tier: "exploratory", source: "display gate"}, ev: {label: "S", labelText: "Speculation", isAgentDraft: true, reviewStatus: "unreviewed"}}, "Out of " + emst.stats.gatedRows + " gated or editorial value slots. Values render only after a human agreement study passes (alpha lower bound at least 0.667).") }}
+</div>
+
+<h2>Also here</h2>
+<ul class="usa-list">
+  <li><a href="{{ '/whats-coming/' | url }}">What's coming</a>: watch items, emerging competencies, policy signposts and no-regret moves.</li>
+  <li><a href="{{ '/federal-series/' | url }}">Federal series profiles</a> and <a href="{{ '/state-classes/' | url }}">state and local class views</a> for HR and classification staff.</li>
+  <li><a href="{{ '/competencies/' | url }}">All core competencies</a> with levels, observable indicators and the tasks they serve.</li>
+  <li><a href="{{ '/evidence/' | url }}">How to read the evidence</a>: use tiers, evidence labels, the display gate and the v1 evidence drawer.</li>
+</ul>

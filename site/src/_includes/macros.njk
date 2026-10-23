@@ -1,0 +1,143 @@
+{#- EMST explorer macros. Every figure carries a use-tier badge and an evidence badge (ADR-0027 §2-3). -#}
+
+{% macro tierBadge(t) -%}
+<span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>{{ t.tier }}{% if t.source == "computed" %}<span class="usa-sr-only">, computed by {{ t.rule }}</span>{% elif t.source %} <span class="emst-muted">({{ t.source }})</span>{% endif %}</span>
+{%- endmacro %}
+
+{% macro evBadge(e) -%}
+<span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>{{ e.label }} {{ e.labelText | lower }}{% if e.isV1Seed %}; v1 seed text, not yet rewritten{% elif e.isAgentDraft %}; AI-agent draft, {{ e.reviewStatus }}{% else %}; {{ e.reviewStatus }}{% endif %}</span>
+{%- endmacro %}
+
+{% macro meta(t, e, extra) -%}
+<p class="emst-meta">{{ tierBadge(t) }} {{ evBadge(e) }}{% if extra %} <span class="emst-badge">{{ extra }}</span>{% endif %}</p>
+{%- endmacro %}
+
+{#- A figure: any number or computed value shown to users. data-figure makes the claims lint check its badges. -#}
+{% macro statFigure(value, caption, fig, note) -%}
+<figure class="emst-figure" data-figure data-use-tier="{{ fig.tier.tier }}" data-evidence="{{ fig.ev.label }}">
+  <figcaption>{{ caption }}</figcaption>
+  <p class="emst-stat">{{ value }}</p>
+  {% if note %}<p class="emst-muted">{{ note }}</p>{% endif %}
+  {{ meta(fig.tier, fig.ev, "computed at build from release records") }}
+</figure>
+{%- endmacro %}
+
+{% macro gateText(g) -%}
+{% if g.renders %}{{ g.value }}{% else %}<span class="emst-pending" data-gate="{{ g.label }}">{{ g.text }}</span>{% endif %}
+{%- endmacro %}
+
+{% macro lifecycleTag(state) -%}
+{% if state == "emerging" or state == "proposed" or state == "watch" %}<span class="emst-tag emst-tag--emerging">{{ state | titlecase }}</span>{% elif state %}<span class="emst-tag">{{ state | titlecase }}</span>{% endif %}
+{%- endmacro %}
+
+{% macro moduleTag(c) -%}
+{% if c.isModule %}<span class="emst-tag emst-tag--module">{{ c.moduleLabel }} editorial section (not a stewarded module)</span>{% endif %}
+{%- endmacro %}
+
+{% macro hrDisclaimer() -%}
+<div class="emst-callout emst-callout--warn" role="note">
+  <p><strong>Not a classification basis. Not a job analysis. Not for RIF, adverse action or performance-rating decisions.</strong></p>
+  <p>This view describes work for development and planning. Any position description built from it is a draft that must be reviewed, revised and adopted by the responsible official, and is subject to classification review.</p>
+</div>
+{%- endmacro %}
+
+{% macro crosswalkTable(rows, caption, showSet) -%}
+{% if rows.length %}
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="{{ caption }}">
+<table class="usa-table usa-table--compact usa-table--borderless">
+  <caption>{{ caption }}</caption>
+  <thead><tr>{% if showSet %}<th scope="col">Mapping set</th>{% endif %}<th scope="col">Maps to</th><th scope="col">Match</th><th scope="col">Review status</th><th scope="col">Note</th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+  <tr>{% if showSet %}<td>{{ r.set }}</td>{% endif %}<td>{% if r.noTerm %}No matching term (recorded as NoTermFound){% else %}<code>{{ r.object }}</code>{% if r.objectLabel %} {{ r.objectLabel }}{% endif %}{% endif %}</td>
+  <td>{{ r.predicate | replace("skos:", "") }}{% if r.confidence %}, confidence {{ r.confidence }}{% endif %}</td>
+  <td>{{ r.reviewStatus }}{% if r.raterType == "llm" %} (agent draft){% endif %}</td>
+  <td>{{ r.comment | truncate(220) }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+<p class="emst-muted">Draft mappings are navigation aids, not alignment claims. No alignment with O*NET, ESCO, OPM or any state system is claimed until a human-reviewed mapping set exists (ADR-0022, ADR-0027 §3).</p>
+{% endif %}
+{%- endmacro %}
+
+{% macro v1Drawer(t, gateLabels) -%}
+{% if t.v1Prior.length %}
+<details class="emst-drawer emst-v1-drawer" data-v1-drawer>
+  <summary>Evidence drawer: v1 prior evidence ({{ t.v1Prior.length }} record{% if t.v1Prior.length != 1 %}s{% endif %})</summary>
+  <div>
+    <p><strong>{{ gateLabels.v1_prior }}</strong></p>
+    <p>These codes were assigned in EMST v1 by one analyst working with an AI assistant. They are prior evidence only: not a v2 assessment, never counted or averaged, and not shown anywhere else in the explorer.</p>
+    {% if t.v1Contested %}<p><span class="emst-tag emst-tag--contested">Contested</span> {{ t.v1ContestedReasons | join("; ") }}</p>{% endif %}
+    <div class="emst-table-wrap" tabindex="0" role="region" aria-label="v1 prior codes for this task">
+    <table class="usa-table usa-table--compact">
+      <caption>v1 prior codes, one row per v1 source</caption>
+      <thead><tr><th scope="col">v1 source</th><th scope="col">Dated</th><th scope="col">Codes</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+      {% for a in t.v1Prior %}
+      <tr><td>{{ a.source }}</td><td>{{ a.assessedAt }}</td>
+        <td><ul class="usa-list usa-list--unstyled">{% for kv in a.values %}<li>{{ kv[0] }}: {{ kv[1] }}</li>{% endfor %}</ul></td>
+        <td>Confidence {{ a.confidence }}.{% if a.stale %} Rated against earlier task wording; the task text has since changed.{% endif %}{% if a.flags.length %} Flags: {{ a.flags | join(", ") }}.{% endif %}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    <p>What would change this: blind ratings by practitioners in at least two settings under the v2 exposure codebook, with agreement above the publication threshold. <a href="{{ '/challenge/' | url }}">Challenge this</a> (quote task ID <code>{{ t.id }}</code>).</p>
+  </div>
+</details>
+{% endif %}
+{%- endmacro %}
+
+{% macro taskBlock(t, gateLabels, extra) -%}
+<details class="emst-task" id="{{ t.anchor }}">
+  <summary><span class="emst-task__text">{{ t.statement }}</span>
+    <span class="emst-task__status">How it is changing: assessment pending{% if extra %} · {{ extra }}{% endif %}</span></summary>
+  <div>
+    <dl class="emst-dl">
+      <dt>How this task is changing</dt><dd>{{ gateText(t.exposure) }}</dd>
+      <dt>Work function</dt><dd>{{ gateText(t.workFunction) }}</dd>
+      <dt>Craft profile</dt><dd>{{ gateText(t.craft) }}</dd>
+      {% if t.fieldDependency or t.formationDependency %}<dt>Field and formation</dt><dd>{% if t.fieldDependency %}Field dependency: {{ t.fieldDependency | replace("-", " ") }}. {% endif %}{% if t.formationDependency %}Formation task: {{ t.formationDependency }}. {% endif %}<span class="emst-muted">(Editorial draft attribute set by the author, not a rated value.)</span></dd>{% endif %}
+      {% if t.credentialGates.length %}<dt>Credential gates</dt><dd>{% for g in t.credentialGates %}{{ g.title }} ({{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
+      {% if t.signOff %}<dt>Sign-off authority</dt><dd>{{ t.signOff }}</dd>{% endif %}
+      {% if t.tools.length %}<dt>Tools layer (dated)</dt><dd>{% for x in t.tools %}{{ x.title }} ({{ x.lifecycleState }}){% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
+      {% if t.supports.length %}<dt>Supports</dt><dd>{% for s in t.supports %}{% if s.url %}<a href="{{ s.url | url }}">{{ s.title }}</a>{% else %}{{ s.competency }}{% endif %} ({{ s.strength }}){% if not loop.last %}; {% endif %}{% endfor %}</dd>{% endif %}
+      <dt>Task ID</dt><dd><code>{{ t.id }}</code></dd>
+    </dl>
+    {{ meta(t.tier, t.evidence) }}
+    {{ v1Drawer(t, gateLabels) }}
+  </div>
+</details>
+{%- endmacro %}
+
+{% macro signalItem(s) -%}
+<li class="emst-card">
+  <h3>{{ s.title }}</h3>
+  <p><span class="emst-tag emst-tag--emerging">Watch</span> Not counted as a change indicator: watch signals do not meet the two-family, human-reviewed evidence rule.</p>
+  <dl class="emst-dl">
+    <dt>About</dt><dd>{{ s.targetLabel }}</dd>
+    <dt>Signal family</dt><dd>{{ s.family }}</dd>
+    <dt>Direction</dt><dd>{{ s.direction or "not stated" }}{% if s.directionConfidence %} (confidence {{ s.directionConfidence }}){% endif %}</dd>
+    <dt>Drivers</dt><dd>{{ s.drivers | join(", ") or "not tagged" }}</dd>
+    {% if s.measure %}<dt>Measure</dt><dd data-figure-inline>{% if s.measure.value != null %}{{ s.measure.value }} {{ s.measure.unit }}{% endif %}{% if s.measure.n != null %} (n = {{ s.measure.n }}{% if s.measure.denominator %} {{ s.measure.denominator }}{% endif %}){% endif %}{% if s.measure.n != null and s.measure.n < 10 %}; too few to say{% endif %}</dd>{% endif %}
+    {% if s.period %}<dt>Observed</dt><dd>{{ s.period.start }} to {{ s.period.end }}</dd>{% endif %}
+    <dt>Source release</dt><dd>{{ s.sourceRelease or s.source }}</dd>
+    <dt>Reliability</dt><dd>{{ s.reliability }}{% if s.reliabilityText %}: {{ s.reliabilityText }}{% endif %}</dd>
+    <dt>Review by</dt><dd>{{ s.reviewBy }}</dd>
+  </dl>
+  <p class="emst-meta">{{ tierBadge({tier: "exploratory", source: "watch signal"}) }} {{ evBadge(s.evidence) }}</p>
+</li>
+{%- endmacro %}
+
+{% macro venueBlock(c, venueInfo) -%}
+{% if c.venue.length %}
+<div class="emst-callout" data-figure data-use-tier="describe" data-evidence="computed">
+  <p><strong>Where this work has a current legal basis</strong> (computed from linked policy instruments, as of {{ c.venue[0].asOf }}{% if venueInfo.source == "wp05-prototype" %}; prototype computation pending change request CR-SC-001{% endif %})</p>
+  <ul class="usa-list">
+  {% for v in c.venue %}<li>{{ v.actor | titlecase }}: {{ v.value | replace("-", " ") }}{% if not v.basisLinked %}, basis not yet linked{% endif %}</li>{% endfor %}
+  </ul>
+  <p class="emst-muted">"Required basis" means a linked instrument in force requires or enables this work; "permitted" means no linked instrument requires it and it remains lawful; "no current basis" means every linked instrument is inactive. Shown with no exclusions (project lead default, Q4). The rule cannot yet tell an instrument that requires the work from one that only enables it, so "required basis" may overstate.</p>
+  <p class="emst-meta"><span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>describe</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>computed from draft instrument links (agent drafts, unreviewed)</span></p>
+</div>
+{% endif %}
+{%- endmacro %}

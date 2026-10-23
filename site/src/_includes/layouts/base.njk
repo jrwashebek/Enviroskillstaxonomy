@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="{{ site.csp }}">
+<meta name="referrer" content="no-referrer">
+{% if emst.release.isPreview %}<meta name="robots" content="noindex, nofollow">{% endif %}
+<meta name="description" content="{{ description or 'EMST Explorer: how environmental jobs are changing, local-first gap check, exploratory pathways. Generated from an EMST release build.' }}">
+<meta name="emst-release" content="{{ emst.release.id }}">
+<title>{{ title }} · EMST Explorer · {{ emst.release.id }}</title>
+<link rel="stylesheet" href="{{ '/assets/vendor/uswds/css/uswds.min.css' | url }}">
+<link rel="stylesheet" href="{{ '/assets/css/emst.css' | url }}">
+<script src="{{ '/assets/js/emst.js' | url }}"></script>
+</head>
+<body>
+<a class="usa-skipnav" href="#main-content">Skip to main content</a>
+<div class="emst-release-banner" role="region" aria-label="Release and use notice">
+  <div class="emst-wrap">
+    <p><strong>Release {{ emst.release.id }}{% if emst.release.isPreview %} · internal preview of draft records, not a release{% endif %}.</strong>
+    {% if emst.release.isPreview %}Every record here is an unreviewed draft, mostly written by AI agents. Nothing has been validated by practitioners yet.{% endif %}
+    For development and planning only; not a selection instrument.</p>
+    {% if emst.release.warning %}<p><strong>Build warning:</strong> {{ emst.release.warning }}</p>{% endif %}
+  </div>
+</div>
+<header class="emst-header">
+  <div class="emst-wrap">
+    <p class="emst-header__title"><a href="{{ '/' | url }}">EMST Explorer</a></p>
+    <p class="emst-header__sub">Environmental Management Skills Taxonomy: how environmental jobs are changing</p>
+    <nav class="emst-nav" aria-label="Main">
+      <ul>
+        {% set navItems = [
+          ["/", "Home"], ["/roles/", "Roles"], ["/gap-check/", "Gap check"], ["/pathways/", "Pathways"],
+          ["/whats-coming/", "What's coming"], ["/federal-series/", "Federal series"], ["/state-classes/", "State and local classes"],
+          ["/competencies/", "Competencies"], ["/evidence/", "Evidence"], ["/search/", "Search"]
+        ] %}
+        {% for item in navItems %}
+        {% set active = (page.url == item[0]) or (item[0] != "/" and page.url.startsWith(item[0])) %}
+        <li><a href="{{ item[0] | url }}"{% if active %} aria-current="page"{% endif %}>{{ item[1] }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="emst-wrap">
+  {% if crumbs %}
+  <nav class="emst-crumbs" aria-label="Breadcrumb"><ol>
+    <li><a href="{{ '/' | url }}">Home</a></li>
+    {% for c in crumbs %}<li>{% if c[0] %}<a href="{{ c[0] | url }}">{{ c[1] }}</a>{% else %}<span aria-current="page">{{ c[1] }}</span>{% endif %}</li>{% endfor %}
+  </ol></nav>
+  {% endif %}
+  <main id="main-content" tabindex="-1">
+{{ content | safe }}
+  </main>
+</div>
+<footer class="emst-footer">
+  <div class="emst-wrap">
+    <p><strong>Release {{ emst.release.id }}</strong> · profile <code>{{ emst.release.profile }}</code> · schema {{ emst.release.schemaVersion }} · released {{ emst.release.date }} · build <code>{{ emst.release.buildCommit }}</code> · display gate {{ emst.release.displayGateRule }} · use tiers {{ emst.release.eutRule }}</p>
+    <p>{{ emst.release.notice }}</p>
+    <p data-emst-policy="indigenous-statement">{{ emst.release.indigenousStatement }} Content under the project's Tribal content hold is excluded from every build until a Tribal Advisory Council approves it; it is not shown and not counted on these pages.</p>
+    <p>This explorer runs entirely in your browser. It sets no cookies, keeps no logs, loads nothing from other websites and sends nothing you enter anywhere. <a href="{{ '/about/privacy/' | url }}">What we do not collect</a>.</p>
+    <ul>
+      <li><a href="{{ '/about/privacy/' | url }}">Privacy</a></li>
+      <li><a href="{{ '/about/accessibility/' | url }}">Accessibility</a></li>
+      <li><a href="{{ '/about/security/' | url }}">Security</a></li>
+      <li><a href="{{ '/download/' | url }}">Download and cite</a></li>
+      <li><a href="{{ '/challenge/' | url }}">Challenge a judgment</a></li>
+      <li><a href="{{ '/evidence/' | url }}">How to read the evidence</a></li>
+    </ul>
+    <p>Data and standard text: CC0 1.0. Explorer code: Apache-2.0. Built with the U.S. Web Design System (USWDS 3) design tokens and components; this is not a U.S. government website.</p>
+  </div>
+</footer>
+{% for s in scripts or [] %}<script src="{{ s | url }}" defer></script>
+{% endfor %}
+</body>
+</html>

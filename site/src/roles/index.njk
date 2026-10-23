@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+title: Roles
+crumbs: [[null, "Roles"]]
+---
+{% import "macros.njk" as m %}
+<h1>Roles</h1>
+<p class="emst-lede">Each role is defined by the work it does and its level of responsibility, with a variant for each kind of employer (federal, state, local, nonprofit, private, academic). Pick a role, then a variant, to see how it is changing.</p>
+
+{% if emst.roles.length == 0 %}
+<div class="emst-callout emst-callout--empty" role="status">
+  <p><strong>No role profiles in this build yet.</strong> Role profiles are being authored now (work package WP-08). When they are added to the data and the explorer is rebuilt, each role gets a role-change page, a gap check and a pathways page automatically.</p>
+  <p>Until then you can <a href="{{ '/competencies/' | url }}">browse the core competencies</a>, run a <a href="{{ '/gap-check/competencies/' | url }}">gap check against chosen competencies</a>, look at <a href="{{ '/federal-series/' | url }}">federal series</a> and <a href="{{ '/state-classes/' | url }}">state and local classes</a> with their draft role crosswalks, or see <a href="{{ '/whats-coming/' | url }}">what's coming</a>.</p>
+</div>
+{% else %}
+{{ m.statFigure(emst.roles.length + " roles, " + emst.variants.length + " variants", "Role profiles in this build", emst.figures.roles) }}
+{% for grp in emst.roles | groupBy("lifecycleState") %}
+<h2>{{ "Established roles" if grp.key == "established" else (grp.key | titlecase) + " roles (exploratory; see What's coming)" }}</h2>
+<ul class="emst-cards">
+  {% for r in grp.items %}
+  <li class="emst-card">
+    <h3><a href="{{ r.url | url }}">{{ r.title }}</a></h3>
+    <p>{{ r.functionStatement | truncate(180) }}</p>
+    <p>{% for v in r.variants %}<a href="{{ v.url | url }}">{{ v.actorLabel }}</a>{% if not loop.last %} · {% endif %}{% else %}<span class="emst-muted">No variants yet</span>{% endfor %}</p>
+    {{ m.meta(r.tier, r.evidence) }}
+  </li>
+  {% endfor %}
+</ul>
+{% endfor %}
+{% endif %}

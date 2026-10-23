@@ -1,0 +1,121 @@
+/* EMST explorer: additions on top of USWDS 3 (vendored). No inline styles anywhere (CSP style-src 'self'). Licence: Apache-2.0. */
+:root {
+  --emst-ink: #1b1b1b;
+  --emst-muted: #565c65;
+  --emst-line: #a9aeb1;
+  --emst-bg-soft: #f0f0f0;
+  --emst-accent: #005ea2;
+  --emst-warn-bg: #faf3d1;
+  --emst-warn-line: #ffbe2e;
+  --emst-focus: #2491ff;
+}
+body { color: var(--emst-ink); }
+.emst-wrap { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
+.emst-prose { max-width: 46rem; }
+
+/* Skip link and focus: always visible on focus (WCAG 2.4.7, 2.4.11) */
+.usa-skipnav:focus { left: 0; top: 0; z-index: 100; }
+a:focus, button:focus, input:focus, select:focus, textarea:focus, summary:focus, [tabindex]:focus {
+  outline: 0.25rem solid var(--emst-focus); outline-offset: 0.125rem;
+}
+main:focus { outline: none; }
+
+/* Preview and release banner */
+.emst-release-banner { background: var(--emst-warn-bg); border-bottom: 0.25rem solid var(--emst-warn-line); padding: 0.5rem 0; font-size: 0.95rem; }
+.emst-release-banner p { margin: 0.15rem 0; }
+
+/* Header and navigation: no JavaScript menu; the list wraps on small screens (reflow at 320 CSS px) */
+.emst-header { border-bottom: 1px solid var(--emst-line); padding: 0.75rem 0 0.5rem; }
+.emst-header__title { font-size: 1.4rem; font-weight: 700; margin: 0; }
+.emst-header__title a { color: var(--emst-ink); text-decoration: none; }
+.emst-header__title a:hover { text-decoration: underline; }
+.emst-header__sub { margin: 0.1rem 0 0.5rem; color: var(--emst-muted); font-size: 0.95rem; }
+.emst-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; }
+.emst-nav a { display: inline-block; padding: 0.35rem 0; min-height: 24px; color: var(--emst-accent); }
+.emst-nav a[aria-current="page"] { font-weight: 700; color: var(--emst-ink); border-bottom: 0.2rem solid var(--emst-accent); }
+
+main { padding: 1rem 0 2.5rem; }
+h1 { margin-top: 0.5rem; }
+.emst-lede { font-size: 1.15rem; max-width: 46rem; }
+.emst-muted { color: var(--emst-muted); }
+
+/* Badges: text first, never colour alone */
+.emst-meta { margin: 0.35rem 0 0.75rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.emst-badge { display: inline-block; border: 1px solid var(--emst-line); border-radius: 0.25rem; padding: 0.05rem 0.4rem; font-size: 0.85rem; background: #fff; }
+.emst-badge__k { font-weight: 700; margin-right: 0.2rem; }
+.emst-badge--tier { border-left: 0.3rem solid #1a4480; }
+.emst-badge--ev { border-left: 0.3rem dotted #565c65; }
+.emst-badge--pending { border-style: dashed; }
+.emst-tag { display: inline-block; font-size: 0.8rem; padding: 0.05rem 0.4rem; border: 1px solid var(--emst-ink); border-radius: 0.2rem; text-transform: none; }
+.emst-tag--contested { border-style: double; border-width: 3px; }
+.emst-tag--emerging { border-style: dashed; }
+.emst-tag--module { border-style: dotted; }
+.emst-pending { font-style: italic; }
+
+/* Figures: chart + visible summary + table */
+.emst-figure { border: 1px solid var(--emst-line); border-radius: 0.25rem; padding: 0.75rem 1rem; margin: 1rem 0; }
+.emst-figure figcaption { font-weight: 700; margin-bottom: 0.25rem; }
+.emst-figure svg { max-width: 100%; height: auto; display: block; }
+.emst-stat { font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+.emst-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+.emst-stats .emst-figure { margin: 0; }
+
+/* Tables scroll inside their own box rather than the page (WCAG 1.4.10) */
+.emst-table-wrap { overflow-x: auto; max-width: 100%; }
+.emst-table-wrap:focus { outline: 0.25rem solid var(--emst-focus); }
+.usa-table { font-size: 0.95rem; }
+.usa-table caption { text-align: left; font-weight: 700; }
+td.emst-num, th.emst-num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Task blocks and drawers (native <details>: keyboard and no-JS friendly) */
+details.emst-task, details.emst-drawer, details.emst-disclosure { border: 1px solid var(--emst-line); border-radius: 0.25rem; margin: 0.5rem 0; background: #fff; }
+details.emst-task > summary, details.emst-drawer > summary, details.emst-disclosure > summary { cursor: pointer; padding: 0.5rem 0.75rem; min-height: 24px; }
+details.emst-task[open] > summary, details.emst-disclosure[open] > summary { border-bottom: 1px solid var(--emst-line); }
+details.emst-task > div, details.emst-drawer > div, details.emst-disclosure > div { padding: 0.5rem 0.75rem 0.75rem; }
+details.emst-drawer { background: var(--emst-bg-soft); }
+.emst-task__status { display: block; font-size: 0.85rem; color: var(--emst-muted); }
+.emst-dl { display: grid; grid-template-columns: minmax(9rem, 14rem) 1fr; gap: 0.25rem 1rem; margin: 0.5rem 0; }
+.emst-dl dt { font-weight: 700; }
+.emst-dl dd { margin: 0; }
+@media (max-width: 40em) { .emst-dl { grid-template-columns: 1fr; } .emst-dl dd { margin-bottom: 0.4rem; } }
+
+.emst-callout { border-left: 0.4rem solid #1a4480; background: #f0f0f0; padding: 0.6rem 0.9rem; margin: 1rem 0; max-width: 46rem; }
+.emst-callout--warn { border-left-color: var(--emst-warn-line); background: var(--emst-warn-bg); }
+.emst-callout--empty { border-left-style: dashed; }
+.emst-callout p { margin: 0.3rem 0; }
+
+.emst-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; list-style: none; padding: 0; }
+.emst-card { border: 1px solid var(--emst-line); border-radius: 0.25rem; padding: 0.75rem 1rem; }
+.emst-card h2, .emst-card h3 { margin-top: 0.2rem; font-size: 1.15rem; }
+
+.emst-crumbs { font-size: 0.9rem; margin: 0.5rem 0 0; }
+.emst-crumbs ol { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.25rem; }
+.emst-crumbs li + li::before { content: "›"; margin: 0 0.35rem 0 0.1rem; color: var(--emst-muted); }
+
+/* Gap check */
+.emst-gap fieldset { border: 1px solid var(--emst-line); border-radius: 0.25rem; padding: 0.5rem 0.75rem 0.75rem; margin: 0.75rem 0; }
+.emst-gap legend { font-weight: 700; padding: 0 0.25rem; }
+.emst-gap .usa-radio__label { min-height: 24px; }
+.emst-gap .emst-levels { margin: 0.25rem 0 0.5rem; }
+.emst-gap textarea { max-width: 100%; }
+.emst-toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0.75rem 0; }
+.emst-toolbar .usa-button { margin: 0; }
+.emst-status { min-height: 1.5rem; font-weight: 700; }
+[hidden] { display: none !important; }
+.emst-js-only { display: none; }
+.emst-has-js .emst-js-only { display: block; }
+.emst-has-js .emst-nojs-note { display: none; }
+
+/* Footer */
+.emst-footer { border-top: 1px solid var(--emst-line); background: var(--emst-bg-soft); padding: 1rem 0 2rem; font-size: 0.92rem; }
+.emst-footer ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; }
+.emst-footer p { max-width: 60rem; }
+
+/* Print: the gap-check summary and role-change pages print as briefs */
+@media print {
+  .emst-nav, .emst-toolbar, .usa-skipnav, .emst-noprint { display: none !important; }
+  details.emst-task, details.emst-drawer { break-inside: avoid; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+@media (forced-colors: active) { .emst-badge, .emst-tag, .emst-figure, details.emst-task { border: 1px solid CanvasText; } }
