@@ -1,0 +1,715 @@
+**Environmental Management Skills Taxonomy**
+
+Infrastructure Setup Guide
+
+*GitHub · GitBook · Airtable*
+
+This document walks you through building the foundational infrastructure
+for publishing, sharing, and evolving the taxonomy over time. No prior
+experience with GitHub, GitBook, or Airtable is assumed. Every step is
+explicit.
+
++-----------------------------------------------------------------------+
+| **Before you begin**                                                  |
+|                                                                       |
+| You will need: a computer with internet access, an email address, and |
+| approximately 3--4 hours to complete the full setup the first time    |
+| through. Each section can also be completed independently on separate |
+| occasions.                                                            |
++-----------------------------------------------------------------------+
+
+**Part 0: How the Three Tools Work Together**
+
+Before touching any of the tools, it helps to understand what each one
+does and why they are connected the way they are.
+
+  --------------- ---------------------- ---------------------------------
+  **Tool**        **Role**               **Who uses it**
+
+  **Airtable**    The living database.   You and your team. Not
+                  Where you edit, tag,   public-facing.
+                  validate, and manage   
+                  the taxonomy.          
+
+  **GitHub**      The versioned archive. Researchers, technical
+                  Stable, citable        integrators, partner
+                  snapshots of the       organizations. The citable public
+                  taxonomy at each       record.
+                  release point.         
+
+  **GitBook**     The readable           Practitioners, funders, agency
+                  publication. Turns the staff, SAF reviewers. The
+                  GitHub files into a    public-facing interface.
+                  navigable website      
+                  anyone can read.       
+  --------------- ---------------------- ---------------------------------
+
+The data flows in one direction: Airtable → GitHub → GitBook. You edit
+in Airtable. When you are ready to publish a version, you export from
+Airtable and commit the files to GitHub. GitBook reads from GitHub and
+displays the result as a website. You never edit the GitHub files
+directly, and GitBook has no editing interface --- it only displays what
+GitHub contains.
+
++-----------------------------------------------------------------------+
+| **The key discipline**                                                |
+|                                                                       |
+| Airtable is the only place where the taxonomy is edited. GitHub and   |
+| GitBook are outputs, not working environments. Maintaining this       |
+| discipline is what prevents the \'multiple versions\' problem.        |
++-----------------------------------------------------------------------+
+
+**Part 1: Setting Up GitHub**
+
+GitHub is a platform for storing, versioning, and sharing files. Think
+of it as a filing cabinet where every time you add or change a file, the
+system records what changed, when, and why. This record is what makes
+the taxonomy citable --- anyone can reference a specific version and
+know exactly what it contained.
+
+**Step 1.1 --- Create a GitHub Account**
+
+1.  Go to github.com in your browser.
+
+2.  Click the green Sign up button in the top right corner.
+
+3.  Enter your email address, create a password, and choose a username.
+    For organizational credibility, use a username connected to EPIC or
+    your professional identity rather than a personal handle.
+
+4.  Complete the verification steps GitHub presents (usually a puzzle or
+    email confirmation).
+
+5.  When asked to choose a plan, select the Free plan. You do not need a
+    paid plan for this project.
+
++-----------------------------------------------------------------------+
+| **Note on organizational accounts**                                   |
+|                                                                       |
+| GitHub offers organization accounts (github.com/organizations) that   |
+| allow multiple people to manage a repository under an organization    |
+| name rather than an individual username. If EPIC has or will have     |
+| multiple staff working on this, setting up an organization account    |
+| under the EPIC name is worth considering. You can always transfer a   |
+| personal repository to an organization later.                         |
++-----------------------------------------------------------------------+
+
+**Step 1.2 --- Create the Repository**
+
+A repository (often called a \'repo\') is the container for all of your
+taxonomy files. Think of it as the project folder on GitHub.
+
+6.  Once logged in, click the + icon in the top right corner of the
+    GitHub interface and select New repository from the dropdown menu.
+
+7.  Name the repository. We recommend:
+    **environmental-management-skills-taxonomy**
+
+8.  Add a short description: \"A structured competency taxonomy for
+    environmental management workforce forecasting. Pre-Delphi release
+    v0.9.\"
+
+9.  Set visibility to Public. This is what makes the repository citable
+    and shareable without requiring recipients to have a GitHub account.
+
+10. Check the box that says Add a README file. This creates a
+    placeholder file you will replace with the README draft in Part 3.
+
+11. In the Add .gitignore dropdown, you can leave this set to None for
+    now.
+
+12. In the Choose a license dropdown, select Creative Commons Zero v1.0
+    Universal. Note: you will manually specify CC BY 4.0 in the README
+    text --- this dropdown selection is a secondary signal that does not
+    override your stated license.
+
+13. Click Create repository. You will be taken to the repository
+    homepage.
+
+**Step 1.3 --- Create the Folder Structure**
+
+GitHub does not have traditional folders --- instead, folders are
+implied by file paths. You will create the structure by uploading files
+into named paths. For now, create placeholder files to establish the
+folders.
+
+14. On the repository homepage, click Add file, then Create new file.
+
+15. In the filename box at the top, type: **core/README.md**
+
+16. In the text editor below, type a single line: \"Core competency
+    architecture files.\"
+
+17. Scroll down to the Commit new file section. In the first text box
+    (the commit message), type: \"Initialize folder structure\". Leave
+    everything else as default.
+
+18. Click Commit new file.
+
+19. Repeat this process to create: signals/README.md (type \"Analytical
+    signal attributes --- provisional pending Delphi\") and
+    docs/README.md (type \"Data dictionary and schema documentation\").
+
++-----------------------------------------------------------------------+
+| **What you have now**                                                 |
+|                                                                       |
+| A public GitHub repository with three folders (core, signals, docs)   |
+| and a placeholder README. The repository has a URL --- something like |
+| github.com/\[your-username\]/environmental-management-skills-taxonomy |
+| --- that you can share immediately. The README will be sparse until   |
+| you replace it in Part 3.                                             |
++-----------------------------------------------------------------------+
+
+**Step 1.4 --- Upload the Taxonomy Files**
+
+Now upload the actual taxonomy data. You will upload CSV exports of the
+Excel workbook\'s sheets, organized into the appropriate folders.
+
+**First: Export from Excel**
+
+For each sheet in the Excel workbook, save it as a separate CSV file.
+The sheets to export and where they go:
+
+  -------------------------- --------------- -----------------------------
+  **Sheet Name**             **Folder**      **Export Filename**
+
+  Competencies               **core/**       competencies.csv
+
+  Proficiency Indicators     **core/**       proficiency_indicators.csv
+
+  Profession Family View     **core/**       profession_family_view.csv
+
+  Structure Summary          **core/**       structure_summary.csv
+
+  Dimension Tags             **signals/**    dimension_tags.csv
+
+  Workforce Signals          **signals/**    workforce_signals.csv
+
+  Labor Market Crosswalk     **signals/**    labor_market_crosswalk.csv
+
+  Data Dictionary            **docs/**       data_dictionary.csv
+  -------------------------- --------------- -----------------------------
+
+To export a sheet as CSV from Excel: click on the sheet tab, go to File
+\> Save As, choose CSV UTF-8 (Comma delimited) as the file type, and
+save. Repeat for each sheet. Rename the files to match the Export
+Filename column above.
+
+**Then: Upload to GitHub**
+
+20. In your repository, click on the core folder.
+
+21. Click Add file, then Upload files.
+
+22. Drag and drop the four core CSV files (competencies.csv,
+    proficiency_indicators.csv, profession_family_view.csv,
+    structure_summary.csv) into the upload area.
+
+23. In the commit message box at the bottom, type: \"Add core competency
+    files --- v0.9 pre-Delphi\"
+
+24. Click Commit changes.
+
+25. Navigate back to the repository root (click the repository name at
+    the top), then click into the signals folder and repeat the upload
+    process for the three signals CSVs.
+
+26. Repeat for the docs folder with data_dictionary.csv.
+
+**Step 1.5 --- Tag the Release**
+
+Tagging creates a named, permanent snapshot of the repository at this
+point in time. This is what makes the taxonomy formally citable as v0.9.
+
+27. On the repository homepage, look at the right sidebar. You will see
+    a section called Releases. Click Create a new release.
+
+28. Click the Choose a tag dropdown and type v0.9 in the box, then click
+    Create new tag: v0.9 on publish.
+
+29. In the Release title field, type: Environmental Management Skills
+    Taxonomy v0.9 --- Pre-Delphi Release
+
+30. In the description box, paste the following:
+
+> Pre-Delphi release of the Environmental Management Skills Taxonomy.
+>
+> 215 competencies \| 6 primary domains + cross-cutting layer \| 45
+> skill areas \| 15 profession families
+>
+> Competency content, proficiency indicators, and analytical frameworks
+> are substantive
+>
+> but provisional pending expert Delphi validation. Signal attributes
+> (automation
+>
+> exposure, stability tiers, reform flags) carry Session-direct
+> provenance and are
+>
+> explicitly flagged for validation priority.
+>
+> See README for full documentation and citation guidance.
+
+31. Click Publish release.
+
++-----------------------------------------------------------------------+
+| **You now have a citable URL**                                        |
+|                                                                       |
+| The release page has a permanent URL you can use in citations         |
+| immediately. It will look like:                                       |
+| github.com/\[                                                         |
+| username\]/environmental-management-skills-taxonomy/releases/tag/v0.9 |
++-----------------------------------------------------------------------+
+
+**Part 2: Adding the README**
+
+The README is the first thing anyone sees when they visit the
+repository. It should explain what the taxonomy is, how to use it, and
+how to cite it. The full README text was developed separately --- these
+steps show you how to add it to the repository.
+
+32. On the repository homepage, click on the README.md file (it
+    currently contains placeholder text).
+
+33. Click the pencil icon (Edit this file) in the top right of the file
+    view.
+
+34. Select all of the existing placeholder text and delete it.
+
+35. Paste the full README text developed in the taxonomy project (the
+    revised version addressing the correct competency counts, primary
+    purpose framing, and analytical architecture description).
+
+36. Scroll down to the Commit changes section. In the commit message,
+    type: \"Add full README --- v0.9 pre-Delphi\"
+
+37. Click Commit changes.
+
++-----------------------------------------------------------------------+
+| **Markdown formatting**                                               |
+|                                                                       |
+| The README uses Markdown --- a simple formatting system where \#      |
+| creates a heading, \*\* wraps bold text, and - creates a bullet list. |
+| GitHub automatically renders Markdown into formatted text when        |
+| displaying the file. You do not need to know Markdown to paste and    |
+| commit the text, but it helps to know that the \# symbols and \*\*    |
+| marks are formatting instructions, not literal characters that will   |
+| appear in the rendered version.                                       |
++-----------------------------------------------------------------------+
+
+**Part 3: Setting Up GitBook**
+
+GitBook turns your GitHub repository into a navigable, readable website.
+It reads the Markdown files in your repository and renders them as a
+structured documentation site. When you update GitHub, GitBook updates
+automatically.
+
+**Step 3.1 --- Create a GitBook Account**
+
+38. Go to gitbook.com in your browser.
+
+39. Click Sign up and create an account. You can sign up using your
+    GitHub account credentials, which simplifies the connection between
+    the two platforms --- click Continue with GitHub if you choose this
+    option.
+
+40. When prompted to choose a plan, the Free plan is sufficient to
+    start. GitBook\'s free tier allows one public space, which is all
+    you need for the initial launch.
+
+**Step 3.2 --- Create a New Space**
+
+In GitBook, a \'space\' is a documentation site --- the equivalent of
+your GitHub repository rendered as a website.
+
+41. After logging in, you will see a dashboard. Click New space or the +
+    button to create a new space.
+
+42. Name it: Environmental Management Skills Taxonomy
+
+43. Set the visibility to Public so anyone with the link can read it
+    without needing a GitBook account.
+
+**Step 3.3 --- Connect GitBook to GitHub**
+
+This is the critical step that links the two platforms. Once connected,
+GitBook will read content from your GitHub repository and display it as
+web pages.
+
+44. Inside your GitBook space, look for the Integrations or Settings
+    menu (usually accessible via the gear icon or left sidebar).
+
+45. Find the GitHub Sync option and click it.
+
+46. Click Connect with GitHub. You will be redirected to GitHub to
+    authorize GitBook\'s access.
+
+47. On the GitHub authorization page, select your account (or the EPIC
+    organization if you have set one up) and click Authorize gitbook.
+
+48. Back in GitBook, you will be prompted to select which repository to
+    sync with. Select environmental-management-skills-taxonomy.
+
+49. For the branch, select main (this is the default branch where your
+    files live).
+
+50. GitBook will ask which direction to sync: select GitHub to GitBook
+    (GitHub is the source of truth).
+
+51. Click Sync. GitBook will pull in your repository files and attempt
+    to render them.
+
++-----------------------------------------------------------------------+
+| **What GitBook renders**                                              |
+|                                                                       |
+| GitBook looks for a file called SUMMARY.md in your repository root to |
+| build the navigation structure. If no SUMMARY.md exists, it will      |
+| render whatever Markdown files it finds, but the navigation will be   |
+| unstructured. Creating a SUMMARY.md is the next setup task --- see    |
+| Step 3.4.                                                             |
++-----------------------------------------------------------------------+
+
+**Step 3.4 --- Create the Navigation File (SUMMARY.md)**
+
+SUMMARY.md is a table of contents that tells GitBook how to organize the
+navigation sidebar. You create it in GitHub and GitBook reads it
+automatically.
+
+52. Go back to your GitHub repository.
+
+53. Click Add file, then Create new file.
+
+54. Name the file SUMMARY.md (it must be in the root of the repository,
+    not inside a folder).
+
+55. Paste the following template into the editor:
+
+> \# Environmental Management Skills Taxonomy
+>
+> \## Introduction
+>
+> \* \[About This Taxonomy\](README.md)
+>
+> \* \[How to Use It\](docs/how_to_use.md)
+>
+> \* \[Version History\](docs/version_history.md)
+>
+> \## Domain Architecture
+>
+> \* \[Overview of Domains\](docs/domain_overview.md)
+>
+> \* \[Domain 1: Ecological & Scientific Knowledge\](docs/domain1.md)
+>
+> \* \[Domain 2: Technical & Technological Skills\](docs/domain2.md)
+>
+> \* \[Domain 3: Management & Administrative Skills\](docs/domain3.md)
+>
+> \* \[Domain 4: Field Operations Skills\](docs/domain4.md)
+>
+> \* \[Domain 5: Communication & Engagement Skills\](docs/domain5.md)
+>
+> \* \[Domain 6: Policy & Regulatory Skills\](docs/domain6.md)
+>
+> \* \[Cross-Cutting Integration Layer\](docs/crosscutting.md)
+>
+> \## Analytical Frameworks
+>
+> \* \[Craft Framework\](docs/craft_framework.md)
+>
+> \* \[Stability Tiers\](docs/stability_tiers.md)
+>
+> \* \[Automation Exposure
+> Classification\](docs/exposure_classification.md)
+>
+> \* \[Ethical Lens Framework\](docs/ethical_lenses.md)
+>
+> \## Data & Documentation
+>
+> \* \[Data Dictionary\](docs/data_dictionary.md)
+>
+> \* \[Labor Market Crosswalk\](docs/labor_market_crosswalk.md)
+>
+> \* \[Download the Data\](docs/download.md)
+>
+> \## Delphi Validation
+>
+> \* \[Validation Process\](docs/delphi_process.md)
+>
+> \* \[How to Contribute\](docs/contributing.md)
+
+56. In the commit message, type: \"Add SUMMARY.md navigation structure\"
+
+57. Click Commit new file. GitBook will detect the change within a few
+    minutes and update the navigation sidebar automatically.
+
++-----------------------------------------------------------------------+
+| **Placeholder pages**                                                 |
+|                                                                       |
+| The SUMMARY.md references several Markdown files (like                |
+| docs/domain1.md) that do not yet exist. GitBook will show these as    |
+| broken links until you create them. This is expected --- the          |
+| navigation structure is scaffolded now and filled in over time. The   |
+| pages that matter most for the initial launch are README.md (already  |
+| done) and docs/data_dictionary.md (see Step 3.5).                     |
++-----------------------------------------------------------------------+
+
+**Step 3.5 --- Create the Data Dictionary Page**
+
+The Data Dictionary is the most important documentation page for
+technical and research audiences. It explains what every field means and
+what values are valid.
+
+58. In your GitHub repository, click Add file, then Create new file.
+
+59. Name the file docs/data_dictionary.md
+
+60. The content for this page comes directly from the Data Dictionary
+    sheet in the Excel workbook --- convert it to Markdown table format.
+    A basic Markdown table looks like this:
+
+> \| Field \| Sheet \| Values \| Notes \|
+>
+> \|\-\-\-\-\-\--\|\-\-\-\-\-\--\|\-\-\-\-\-\-\--\|\-\-\-\-\-\--\|
+>
+> \| Competency Code \| Competencies \| 1.1.1 format \| Primary key \|
+
+61. Paste the converted content, commit with message: \"Add data
+    dictionary page\"
+
+**Part 4: Setting Up Airtable**
+
+Airtable is your working database --- the place where the taxonomy
+lives, is edited, and is validated. Unlike GitHub (which stores files)
+and GitBook (which displays files), Airtable is a full database with
+filtering, linking between tables, and collaborative editing.
+
+**Step 4.1 --- Log In and Create a Base**
+
+A \'base\' in Airtable is the equivalent of a workbook in Excel --- it
+contains multiple related tables. Since EPIC already has an Airtable
+subscription, you will log in with your organizational credentials.
+
+62. Go to airtable.com and log in with your EPIC account credentials.
+
+63. On the home screen, click Add a base or the + icon to create a new
+    base.
+
+64. Select Start from scratch.
+
+65. Name the base: EMST --- Environmental Management Skills Taxonomy
+
+**Step 4.2 --- Create the Core Tables**
+
+Airtable works best when data is split into linked tables rather than
+stored in one wide table. The 8 sheets from your Excel workbook should
+become linked tables in Airtable. Start with the three most important
+tables.
+
+**Table 1: Competencies**
+
+66. Rename the default Table 1 to Competencies by double-clicking on the
+    tab name.
+
+67. Create the following fields by clicking the + icon at the right end
+    of the field headers. For each field, click + , name it, and choose
+    the appropriate field type:
+
+  ---------------------- ------------------ -----------------------------
+  **Field Name**         **Field Type**     **Notes**
+
+  Competency Code        Single line text   *Primary key --- set as the
+                                            primary field*
+
+  Domain \#              Number             
+
+  Domain Name            Single line text   
+
+  Skill Area Code        Number             
+
+  Skill Area Name        Single line text   
+
+  Competency Title       Single line text   
+
+  Description            Long text          
+
+  Job Task 1             Long text          
+
+  Job Task 2             Long text          
+
+  Job Task 3             Long text          
+  ---------------------- ------------------ -----------------------------
+
+68. Once the fields are created, import your data: click the grid icon
+    in the top left, then Import data, then CSV file. Upload the
+    competencies.csv file you exported earlier. Map each CSV column to
+    the corresponding Airtable field.
+
+**Table 2: Dimension Tags**
+
+This table holds the analytical signal attributes. Because it has 71
+columns, it is better split into linked sub-tables. For now, create it
+as a single table and split it later.
+
+69. Click the + tab at the bottom of the screen to add a new table. Name
+    it Dimension Tags.
+
+70. Create a Competency Code field (Single line text) as the primary
+    field.
+
+71. Import dimension_tags.csv using the same import process. Airtable
+    will create the remaining fields automatically from the CSV headers.
+
+**Linking the Tables**
+
+The power of Airtable over Excel is the ability to link records between
+tables so that each Dimension Tags row is directly connected to its
+Competency record.
+
+72. In the Dimension Tags table, click + to add a new field.
+
+73. Choose Link to another record as the field type.
+
+74. In the dropdown, select the Competencies table.
+
+75. Name this field Competency Link.
+
+76. Airtable will ask if you want to allow linking to multiple records
+    --- select No (each Dimension Tags row links to exactly one
+    competency).
+
+77. Once the link field is created, you can populate it manually or use
+    Airtable automations to match on the Competency Code field. For now,
+    this link is structural scaffolding --- populate it during the next
+    working session.
+
+**Step 4.3 --- Create a Filtered View for Delphi Review**
+
+Airtable\'s most powerful feature for your purposes is views --- saved
+filter configurations that show different subsets of the data. Create a
+view specifically for Delphi review items.
+
+78. In the Dimension Tags table, click the Views panel on the left
+    sidebar (it may show as an icon of stacked rows).
+
+79. Click Add a view, then select Grid view.
+
+80. Name this view: Delphi Priority --- High Implicit Ethical
+
+81. Click Filter in the toolbar, then Add filter.
+
+82. Set the filter to: L1 Equity & Justice is not empty OR L2 Cultural
+    Rights is not empty (add conditions for each ethical lens column).
+
+83. Click Save view. This view will show only the competencies with
+    ethical lens flags --- the 36 high-implicit items identified for
+    Delphi priority review.
+
++-----------------------------------------------------------------------+
+| **Views are non-destructive**                                         |
+|                                                                       |
+| Creating a view does not change or delete any data. It is simply a    |
+| saved lens on the same underlying data. You can create as many views  |
+| as you need --- by domain, by stability tier, by automation type, by  |
+| profession family --- without affecting the data itself.              |
++-----------------------------------------------------------------------+
+
+**Part 5: The Ongoing Update Workflow**
+
+Once the infrastructure is set up, updates follow a consistent
+three-step cycle. This section describes the process you will use for
+every future update to the taxonomy.
+
+**Step 5.1 --- Edit in Airtable**
+
+All edits --- whether from Delphi validation, sentinel network inputs,
+policy reform monitoring, or your own ongoing analysis --- happen in
+Airtable. Never edit the GitHub CSV files directly. Never edit the
+GitBook pages directly (except for documentation-only pages that are not
+generated from the database).
+
+**Step 5.2 --- Export and Commit to GitHub**
+
+When you have completed a round of updates and are ready to publish a
+new version, export from Airtable and commit to GitHub.
+
+84. In Airtable, open the table you want to export (e.g., Competencies).
+
+85. Click the grid icon or the \... menu in the top right, and select
+    Download CSV.
+
+86. Save the file with the same filename as the existing GitHub file
+    (e.g., competencies.csv).
+
+87. Go to your GitHub repository and navigate to the file you are
+    replacing (e.g., core/competencies.csv).
+
+88. Click on the file, then click the pencil icon to edit. On the edit
+    page, look for the option to upload a file --- on some versions of
+    GitHub this appears as drag and drop the file here, or you may need
+    to delete the old file and upload the new one.
+
+89. Alternatively: on the folder page (e.g., /core), click Add file \>
+    Upload files, and upload the new CSV. GitHub will prompt you to
+    confirm you want to replace the existing file.
+
+90. In the commit message, describe what changed: e.g., \"Update
+    competencies --- post-Delphi Round 1 revisions\"
+
+91. Click Commit changes.
+
++-----------------------------------------------------------------------+
+| **Batching updates**                                                  |
+|                                                                       |
+| Export and commit all changed tables at once rather than one at a     |
+| time. A single commit message can describe multiple file changes.     |
+| Batching keeps the commit history clean and makes it easier to        |
+| understand what changed in each version.                              |
++-----------------------------------------------------------------------+
+
+**Step 5.3 --- Tag a New Release (for major versions only)**
+
+Not every commit needs to be a tagged release. Tag releases for
+significant milestones: post-Delphi Round 1 (v1.0), post-Delphi Round 2
+(v1.1), annual updates (v2.0), etc. Follow the same process described in
+Step 1.5.
+
+**Step 5.4 --- GitBook Updates Automatically**
+
+Once GitHub is updated, GitBook detects the change and re-renders the
+affected pages within a few minutes. No action is required on your part.
+You can verify the update by visiting the GitBook site and checking that
+the changes appear.
+
+**Part 6: Quick Reference**
+
+  ------------------------------ ----------------------------------------
+  **Task**                       **Where / How**
+
+  **Edit a competency**          Airtable --- Competencies table
+
+  **Update a tag value**         Airtable --- Dimension Tags table
+
+  **Publish an update**          Export CSV from Airtable → commit to
+                                 GitHub
+
+  **Create a citable version**   GitHub → Releases → Draft a new release
+                                 → tag and publish
+
+  **Share the taxonomy           Share the GitBook URL or the GitHub
+  publicly**                     release URL
+
+  **Invite a Delphi reviewer**   Share the Airtable base with view-only
+                                 access for the relevant view
+
+  **Check what changed in a      GitHub → Commits (shows full history of
+  previous version**             every change)
+
+  **Find a specific competency** Airtable --- use the Search bar or
+                                 create a filtered view
+
+  **Export data for analysis**   Airtable → Download CSV from any table
+                                 or view
+  ------------------------------ ----------------------------------------
+
+*Environmental Policy Innovation Center · Digital Service for the Planet
+Fellowship, New America · February 2026*

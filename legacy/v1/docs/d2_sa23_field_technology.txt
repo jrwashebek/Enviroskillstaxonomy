@@ -1,0 +1,51 @@
+====================================================================================================
+DOMAIN 2 SKILL AREA 2.3: FIELD TECHNOLOGY & SENSORS
+Craft: DC Primary | FC Secondary (field deployment and equipment)
+Confirmed SA Total: A=12, Ac=3, V=0, H=0, S=0 | Total=15
+Source: Session transcript 2026-02-22 (Task 13 Domain 2 classification session)
+====================================================================================================
+
+INSTRUMENT DIMENSIONS:
+  Auto Type (col T13:Tx Auto Type): A | Ac | H | V | S
+  Tacit (col T13:Tx Tacit):          Hi | Med | Lo
+  Career (col T13:Tx Career):         P | C | X
+  Vector (col T13:Tx Vector):         AI | Ro | Cv | —
+  Horizon (col T13:Tx Horizon):       1 | 2 | 3 | N  [stored as string]
+
+CONFIDENCE CODES:
+  [C] = Confirmed anchor call in session transcript
+  [R] = Reconstructed from SA distribution totals + arithmetic reconciliation
+  [I] = Inferred from standing rules + task description logic (Delphi review recommended)
+
+HEADER NOTES:
+  Confirmed SA total: A=12, Ac=3, V=0, H=0, S=0.
+  FC-secondary character produces 80% A rate — field execution protection without H calls (D1-2 rule).
+  2.3.2 T1 and T2: Cv vector CONFIRMED. Drone AI flight planning and physical UAS inseparable at modal deployment.
+  2.3.2 T3: Ac — photogrammetry processing. HIGHEST PRIORITY S-trajectory in Domain 2.
+  2.3.4 T3: A confirmed (not H). Mobile app training demonstrable via screen; LSD mechanism absent.
+  CLD signals: 2.3.1 T3 (Low), 2.3.3 T3 (Low) — sensor data download and field data sync.
+
+----------------------------------------------------------------------------------------------------
+Code     Task  Task Description (abbreviated)                          Auto  Tacit  Career  Vec   Horiz  CLD   S-Traj  Conf Notes
+----------------------------------------------------------------------------------------------------
+2.3.1    T1    Install soil moisture/temp/weather sensors in remote    A     Hi     C       AI    1      —     —       [I]  FC-secondary sensor installation. Physical field work with equipment judgment.
+2.3.1    T2    Calibrate/troubleshoot sensor malfunctions              A     Hi     C       AI    1      —     —       [I]  Technical field troubleshooting. Embodied sensor behavior diagnosis.
+2.3.1    T3    Download, store, transmit sensor data for analysis      Ac    Lo     P       AI    1      CLD   —       [C]  CLD-Low confirmed. Automated telemetry displaces manual logger download. Procedural logistics.
+2.3.2    T1    Conduct aerial surveys using drones (vegetation/infra)  A     Med    C       Cv    1      —     —       [C]  CONFIRMED Cv vector. AI flight planning + physical UAS operationally inseparable at modal deployment. Practitioner remains primary (A).
+2.3.2    T2    Capture high-res imagery/thermal data for monitoring    A     Med    C       Cv    1      —     —       [C]  CONFIRMED Cv vector. Semi-autonomous flight execution. Practitioner manages mission; system executes.
+2.3.2    T3    Process drone imagery using photogrammetry software     Ac    Med    C       AI    1      —     S-Traj  [I]  Photogrammetry processing. S-trajectory: highest-priority D2 case. Incomplete internal bracket (no practitioner-primary T below T3). GCP residual evaluation and artifact ID key judgment.
+2.3.3    T1    Set up mobile data collection platforms for field data  A     Med    C       AI    1      —     —       [I]  Platform configuration and deployment. Design/setup requires practitioner judgment.
+2.3.3    T2    Use tablets/devices to record field observations        A     Med    C       AI    1      —     —       [I]  Field data recording. FC-secondary character; physical field work with digital tool.
+2.3.3    T3    Sync field-collected data with central databases        Ac    Lo     P       AI    1      CLD   —       [C]  CLD-Low confirmed. Background sync automation. QC review partially survives but developmental value low.
+2.3.4    T1    Use ID/survey apps (iNaturalist, Survey123) for data    A     Med    C       AI    1      —     —       [I]  Mobile app field data collection. Standard professional tool use.
+2.3.4    T2    Customize mobile forms/workflows for monitoring         A     Med    C       AI    1      —     —       [I]  Mobile form design and configuration. Practitioner-primary specification.
+2.3.4    T3    Train teams on field app use/troubleshoot deployments   A     Med    C       AI    1      —     —       [C]  CONFIRMED A (not H). Mobile app training is screen-demonstrable; no terrain-specific embodied instruction required. LSD mechanism does not fire.
+2.3.5    T1    Operate satellite phones/radios in no-cell areas        A     Hi     C       AI    1      —     —       [I]  Field communication operation. FC-secondary physical field equipment.
+2.3.5    T2    Establish protocols for field communication/emergency   A     Med    C       AI    1      —     —       [I]  Protocol design and emergency management. Judgment-intensive practitioner design function.
+2.3.5    T3    Maintain/troubleshoot communication equipment           A     Hi     C       AI    1      —     —       [I]  Equipment maintenance. Physical hands-on troubleshooting. FC-secondary.
+----------------------------------------------------------------------------------------------------
+
+PATTERN NOTES:
+  FC-secondary/DC Primary A-rate finding: highest A rate in D2, confirming field execution protection.
+  Cv at 2.3.2 establishes the drone convergence precedent — same mechanism as D4 4.5.4.
+  S-trajectory at 2.3.2 T3: no practitioner-primary scoping/synthesis bracket below T3.

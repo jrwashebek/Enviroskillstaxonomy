@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Same Title, Different Job — Forester Position Description Transformation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#F5F4F0;--surface:#FFF;--surface-gov:#FAFAF8;--text:#1A1A1A;--text-sec:#555550;--text-tert:#8A8A80;--border:#DDD9D0;--border-light:#EEEAE4;--green:#2D7A4F;--green-bg:#EBF5EF;--green-border:#C4E2D0;--green-text:#1B5E3A;--yellow:#8A7018;--yellow-bg:#FDF6E3;--yellow-border:#E0D08A;--yellow-text:#6B5600;--amber:#B85C1A;--amber-bg:#FEF0E5;--amber-border:#E0B898;--amber-text:#8A4010;--red:#B83030;--red-bg:#FDECEC;--red-border:#E0A8A8;--red-text:#8A2020;--accent:#2C5F7C;--accent-bg:#EDF3F7;--accent-border:#C0D6E4;--new-green:#1A6B3A;--new-green-bg:#E8F4ED}
+  html{font-size:15px}body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .page-header{max-width:1200px;margin:0 auto;padding:2.5rem 2rem 0}
+  .eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+  h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;line-height:1.2;margin-bottom:.6rem}
+  .subtitle{font-size:.95rem;color:var(--text-sec);max-width:720px;line-height:1.55;margin-bottom:1.75rem}
+  .tabs{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;gap:0;border-bottom:2px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100}
+  .tab{padding:.85rem 1.5rem;font-size:.8rem;font-weight:600;color:var(--text-tert);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;user-select:none;white-space:nowrap}
+  .tab:hover{color:var(--text-sec)}.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .tab__num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:.65rem;font-weight:700;margin-right:.4rem;background:var(--border-light);color:var(--text-tert);transition:all .2s}
+  .tab.active .tab__num{background:var(--accent);color:white}
+  .stage-desc{max-width:1200px;margin:0 auto;padding:1.25rem 2rem}
+  .stage-desc__inner{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:8px;padding:1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start}
+  .stage-desc__icon{width:32px;height:32px;border-radius:50%;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:.85rem;flex-shrink:0}
+  .stage-desc__text{font-size:.85rem;color:var(--accent);line-height:1.55}
+  .stage-desc__text strong{font-weight:600;display:block;margin-bottom:.15rem;font-size:.9rem;color:#1A4A64}
+  .main{max-width:1200px;margin:0 auto;padding:.75rem 2rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}
+  .col-label{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tert);margin-bottom:.75rem;padding-left:.25rem}
+  /* PD Column */
+  .pd{background:var(--surface-gov);border:1px solid var(--border);border-radius:6px;padding:1.75rem;font-family:'IBM Plex Mono','Courier New',monospace;font-size:.78rem;line-height:1.65;position:relative}
+  .pd::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:#6B7A5C;border-radius:6px 0 0 6px}
+  .pd__header{text-align:center;padding-bottom:1rem;margin-bottom:1rem;border-bottom:1px solid var(--border)}
+  .pd__agency{font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tert)}
+  .pd__title{font-size:.95rem;font-weight:500;margin:.35rem 0 .15rem}
+  .pd__series{font-size:.72rem;color:var(--text-sec)}
+  .pd__section-label{font-size:.68rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tert);margin:1.25rem 0 .5rem;padding-bottom:.25rem;border-bottom:1px dashed var(--border-light)}
+  .duty{margin-bottom:1rem;padding:.6rem .7rem;border-radius:4px;position:relative;transition:all .35s}
+  .duty__head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem}
+  .duty__name{font-weight:500;font-size:.8rem}
+  .duty__pct{font-size:.72rem;color:var(--text-tert);white-space:nowrap}
+  .duty__desc{font-size:.75rem;color:var(--text-sec);line-height:1.6}
+  .duty[data-exposure="compress"]{background:var(--amber-bg);border-left:3px solid var(--amber)}
+  .duty[data-exposure="compress"] .duty__pct{text-decoration:line-through;color:var(--amber)}
+  .duty[data-exposure="augment"]{background:var(--yellow-bg);border-left:3px solid var(--yellow)}
+  .duty[data-exposure="protect"]{background:var(--green-bg);border-left:3px solid var(--green)}
+  .duty[data-exposure="disrupt"]{background:var(--red-bg);border-left:3px solid var(--red)}
+  .duty__new-pct{display:none;font-size:.72rem;font-weight:500;margin-left:.5rem}
+  .duty[data-exposure] .duty__new-pct{display:inline}
+  .duty[data-exposure="compress"] .duty__new-pct{color:var(--amber)}
+  .duty[data-exposure="augment"] .duty__new-pct{color:var(--yellow)}
+  .duty[data-exposure="protect"] .duty__new-pct{color:var(--green)}
+  .duty[data-exposure="disrupt"] .duty__new-pct{color:var(--red)}
+  .duty__tag{display:none;position:absolute;top:.5rem;right:.5rem;font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:600;padding:.15rem .5rem;border-radius:3px;letter-spacing:.04em}
+  .ksa-item{font-size:.75rem;color:var(--text-sec);padding:.25rem 0;line-height:1.55;transition:all .3s}.ksa-item::before{content:'\2014 ';color:var(--text-tert)}
+  .ksa-item.struck{text-decoration:line-through;color:var(--text-tert);opacity:.6}
+  .ksa-new{display:none;font-family:'DM Sans',sans-serif;font-size:.75rem;padding:.3rem .5rem;margin:.2rem 0;background:var(--new-green-bg);border-left:2px solid var(--new-green);border-radius:0 3px 3px 0;color:var(--new-green);line-height:1.5}.ksa-new::before{content:'+ ';font-weight:700}
+  /* Right Column */
+  .right-panel{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .right-panel::before{content:'';display:block;height:4px;background:linear-gradient(90deg,#1B4332,#40916C,#D8F3DC)}
+  .rp-inner{padding:1.5rem}.rp-title{font-family:'Source Serif 4',Georgia,serif;font-size:1.05rem;font-weight:700;margin-bottom:.2rem}
+  .rp-subtitle{font-size:.78rem;color:var(--text-tert);margin-bottom:1.25rem}
+  .stage-content{display:none}.stage-content.active{display:block}
+  /* Competency blocks */
+  .comp-block{margin-bottom:1.1rem;padding:.85rem 1rem;border-radius:6px;border:1px solid var(--border-light);background:var(--surface)}
+  .comp-block__origin{font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tert);margin-bottom:.35rem}
+  .comp-block__title{font-family:'Source Serif 4',Georgia,serif;font-size:.92rem;font-weight:600;margin-bottom:.35rem;line-height:1.3}
+  .comp-block__body{font-size:.8rem;color:var(--text-sec);line-height:1.6}
+  .comp-block__hidden{margin-top:.6rem;padding-top:.6rem;border-top:1px dashed var(--border-light)}
+  .hidden-label{font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--new-green);margin-bottom:.25rem}
+  .hidden-item{font-size:.78rem;color:var(--new-green);line-height:1.55;padding:.15rem 0}.hidden-item::before{content:'+ ';font-weight:700}
+  /* Disruption blocks */
+  .disrupt-block{margin-bottom:1rem;padding:.85rem 1rem;border-radius:6px;border-left:4px solid;background:var(--surface)}
+  .disrupt-block--H{border-color:var(--green);background:var(--green-bg)}.disrupt-block--A{border-color:var(--yellow);background:var(--yellow-bg)}.disrupt-block--Ac{border-color:var(--amber);background:var(--amber-bg)}.disrupt-block--V{border-color:var(--red);background:var(--red-bg)}
+  .disrupt-block__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem}
+  .disrupt-block__title{font-family:'Source Serif 4',Georgia,serif;font-size:.9rem;font-weight:600;line-height:1.3}
+  .disrupt-tag{font-size:.62rem;font-weight:700;padding:.2rem .55rem;border-radius:100px;letter-spacing:.05em;white-space:nowrap}
+  .disrupt-tag--H{background:var(--green);color:white}.disrupt-tag--A{background:var(--yellow);color:white}.disrupt-tag--Ac{background:var(--amber);color:white}.disrupt-tag--V{background:var(--red);color:white}
+  .disrupt-block__body{font-size:.78rem;line-height:1.6}
+  .disrupt-block--H .disrupt-block__body{color:var(--green-text)}.disrupt-block--A .disrupt-block__body{color:var(--yellow-text)}.disrupt-block--Ac .disrupt-block__body{color:var(--amber-text)}.disrupt-block--V .disrupt-block__body{color:var(--red-text)}
+  .disrupt-block__shift{margin-top:.5rem;padding-top:.5rem;border-top:1px dashed;font-size:.72rem;font-weight:500}
+  .disrupt-block--Ac .disrupt-block__shift{border-color:var(--amber-border);color:var(--amber)}.disrupt-block--A .disrupt-block__shift{border-color:var(--yellow-border);color:var(--yellow)}
+  .cld-warning{margin-top:1.25rem;padding:.85rem 1rem;background:#FFF8F0;border:1px solid var(--amber-border);border-radius:6px}
+  .cld-warning__title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--amber);margin-bottom:.35rem}
+  .cld-warning__body{font-size:.78rem;color:var(--amber-text);line-height:1.6}
+  .cld-warning__ladder{display:flex;align-items:center;gap:0;margin-top:.75rem;font-size:.68rem;font-weight:500}
+  .ladder-step{padding:.35rem .55rem;border:1px solid var(--border);background:var(--surface);color:var(--text-sec);text-align:center;line-height:1.3}
+  .ladder-step:first-child{border-radius:4px 0 0 4px}.ladder-step:last-child{border-radius:0 4px 4px 0}
+  .ladder-arrow{font-size:.8rem;color:var(--text-tert);padding:0 .1rem}
+  .ladder-step.disrupted{background:var(--amber-bg);border-color:var(--amber-border);color:var(--amber);text-decoration:line-through}
+  /* Functional Position blocks */
+  .redesign-section{margin-bottom:1.25rem}
+  .redesign-section__label{font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tert);margin-bottom:.5rem}
+  .fp-block{margin-bottom:.85rem;padding:.75rem .9rem;border-radius:6px;border:1px solid var(--border-light);background:var(--surface);position:relative;overflow:hidden}
+  .fp-block::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%}
+  .fp-block--sense::before{background:var(--green)}.fp-block--analyze::before{background:var(--yellow)}.fp-block--integrate::before{background:var(--yellow)}.fp-block--decide::before{background:var(--green)}.fp-block--structure::before{background:var(--amber)}
+  .fp-block__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.25rem}
+  .fp-block__position{font-family:'Source Serif 4',Georgia,serif;font-size:.88rem;font-weight:600;line-height:1.3}
+  .fp-block__direction{font-size:.6rem;font-weight:600;padding:.15rem .45rem;border-radius:3px;letter-spacing:.04em}
+  .fp-dir--stable{background:var(--green-bg);color:var(--green)}.fp-dir--expanding{background:var(--yellow-bg);color:var(--yellow)}.fp-dir--augmented{background:var(--yellow-bg);color:var(--yellow)}.fp-dir--compressing{background:var(--amber-bg);color:var(--amber)}
+  .fp-block__body{font-size:.78rem;color:var(--text-sec);line-height:1.55}
+  .new-comp-section{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border-light)}
+  .new-comp-item{display:flex;align-items:flex-start;gap:.5rem;padding:.4rem 0;font-size:.78rem;line-height:1.55;color:var(--new-green)}
+  .new-comp-item__marker{width:5px;height:5px;border-radius:50%;background:var(--new-green);flex-shrink:0;margin-top:.45rem}
+  .pathway-box{margin-top:1.25rem;padding:.85rem 1rem;border-radius:6px;background:var(--accent-bg);border:1px solid var(--accent-border)}
+  .pathway-box__title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:.35rem}
+  .pathway-box__body{font-size:.78rem;color:var(--accent);line-height:1.6}
+  .footer{max-width:1200px;margin:0 auto;padding:0 2rem 2.5rem}
+  .footer__note{font-size:.72rem;color:var(--text-tert);line-height:1.55;border-top:1px solid var(--border);padding-top:1rem}
+  @media(max-width:900px){.main{grid-template-columns:1fr}.tabs{overflow-x:auto}.page-header,.stage-desc,.main,.footer{padding-left:1.25rem;padding-right:1.25rem}}
+</style>
+</head>
+<body>
+<header class="page-header">
+  <div class="eyebrow">Environmental Management Skills Taxonomy — Working Prototype</div>
+  <h1>Same Title. Different Timber.</h1>
+  <p class="subtitle">A federal Forester position description hasn't been rewritten in years. But a Forester's work — from stand reading to timber sale administration — is being restructured by AI and remote sensing at different rates across different task clusters. The field stays. The pipeline around it shifts.</p>
+</header>
+<nav class="tabs" id="tabs">
+  <div class="tab active" data-stage="1"><span class="tab__num">1</span>The Competency Gap</div>
+  <div class="tab" data-stage="2"><span class="tab__num">2</span>The Disruption Pattern</div>
+  <div class="tab" data-stage="3"><span class="tab__num">3</span>The Redesigned Role</div>
+</nav>
+<div class="stage-desc"><div class="stage-desc__inner"><div class="stage-desc__icon" id="stageIcon">1</div><div class="stage-desc__text"><strong id="stageTitle">The Competency Gap</strong><span id="stageBody">Even before AI, the position description was failing to describe the actual job. Foresters exercise ecological judgment — reading stands, diagnosing forest health, calibrating prescriptions to site conditions — that no PD captures. The right side translates duty statements into competency language and surfaces what's missing.</span></div></div></div>
+<div class="main">
+  <div class="left-col">
+    <div class="col-label" id="leftLabel">Position Description (Current)</div>
+    <div class="pd" id="pdColumn">
+      <div class="pd__header">
+        <div class="pd__agency">U.S. Department of Agriculture — Forest Service</div>
+        <div class="pd__title">Forester</div>
+        <div class="pd__series">GS-0460-09/11 — Forester<br>Silviculture/Timber Staff, Ranger District</div>
+      </div>
+      <div class="pd__section-label">Major Duties and Responsibilities</div>
+      <div class="duty" id="duty1"><div class="duty__head"><span class="duty__name">1. Silvicultural Prescription and Stand Management</span><span><span class="duty__pct">(30%)</span><span class="duty__new-pct"></span></span></div><div class="duty__desc">Develops silvicultural prescriptions for vegetation management projects based on stand exams, site conditions, and management objectives. Marks timber for harvest and thinning operations. Monitors treatment effectiveness and recommends adjustments. Applies knowledge of forest ecology, stand dynamics, and regeneration methods.</div><div class="duty__tag"></div></div>
+      <div class="duty" id="duty2"><div class="duty__head"><span class="duty__name">2. Forest Inventory and Mensuration</span><span><span class="duty__pct">(25%)</span><span class="duty__new-pct"></span></span></div><div class="duty__desc">Conducts stand exams and timber cruises to estimate volume, species composition, and stand structure. Measures tree height, diameter, and age using standard instruments. Enters inventory data into forest management databases. Uses growth and yield models to project stand development under management alternatives.</div><div class="duty__tag"></div></div>
+      <div class="duty" id="duty3"><div class="duty__head"><span class="duty__name">3. Forest Health Assessment and Protection</span><span><span class="duty__pct">(15%)</span><span class="duty__new-pct"></span></span></div><div class="duty__desc">Surveys forests for evidence of insect outbreaks, disease, and abiotic stress. Identifies pest and pathogen species. Assesses severity, extent, and risk of spread. Recommends mitigation treatments including sanitation cutting, prescribed fire, and biological controls. Coordinates with regional forest health specialists.</div><div class="duty__tag"></div></div>
+      <div class="duty" id="duty4"><div class="duty__head"><span class="duty__name">4. Timber Sale Preparation and Administration</span><span><span class="duty__pct">(20%)</span><span class="duty__new-pct"></span></span></div><div class="duty__desc">Prepares timber sale packages including layout, appraisal, and contract specifications. Administers active timber sale contracts. Inspects logging operations for contract compliance and resource protection. Coordinates with purchasers, engineering staff, and resource specialists.</div><div class="duty__tag"></div></div>
+      <div class="duty" id="duty5"><div class="duty__head"><span class="duty__name">5. Reforestation and Vegetation Monitoring</span><span><span class="duty__pct">(10%)</span><span class="duty__new-pct"></span></span></div><div class="duty__desc">Plans and oversees reforestation activities including site preparation, species selection, and planting. Establishes monitoring plots to track regeneration success and stand development. Coordinates with nursery programs on seedling orders and genetic stock.</div><div class="duty__tag"></div></div>
+      <div class="pd__section-label">Knowledge, Skills, and Abilities</div>
+      <div class="pd__ksa-section" id="ksaSection">
+        <div class="ksa-item" id="ksa1">Knowledge of silvicultural systems and practices for diverse forest types</div>
+        <div class="ksa-item" id="ksa2">Skill in forest mensuration including cruising, volume estimation, and growth modeling</div>
+        <div class="ksa-item" id="ksa3">Knowledge of forest insects, diseases, and abiotic stressors</div>
+        <div class="ksa-item" id="ksa4">Ability to prepare and administer timber sale contracts</div>
+        <div class="ksa-item" id="ksa5">Skill in the use of GIS, GPS, and forest management software</div>
+      </div>
+      <div id="ksaNewContainer"></div>
+    </div>
+  </div>
+  <div class="right-col">
+    <div class="col-label" id="rightLabel">What the Job Actually Requires</div>
+    <div class="right-panel"><div class="rp-inner">
+      <!-- STAGE 1 -->
+      <div class="stage-content active" id="stage1">
+        <div class="rp-title">The Forester Behind the Position Description</div>
+        <div class="rp-subtitle">What a competency-based rewrite reveals — even before accounting for AI</div>
+        <div class="comp-block"><div class="comp-block__origin">Duty 1 → Rewritten</div><div class="comp-block__title">Stand Reading and Silvicultural Judgment</div><div class="comp-block__body">Reads stands — interpreting the interaction of species composition, stand structure, site quality, disturbance history, and management objectives to develop silvicultural prescriptions calibrated to specific conditions. This is embodied professional judgment built through years of walking stands in different forest types, seasons, and post-disturbance conditions. Timber marking is the visible output; the stand reading that determines what to mark is the actual competency.</div><div class="comp-block__hidden"><div class="hidden-label">What the PD doesn't say</div><div class="hidden-item">Integrates climate change projections into species selection and regeneration strategy — adapting silviculture in real time to conditions no textbook anticipated</div><div class="hidden-item">Exercises judgment under ecological uncertainty: prescriptions balance timber objectives, habitat, fire risk, and carbon simultaneously</div></div></div>
+        <div class="comp-block"><div class="comp-block__origin">Duty 2 → Rewritten</div><div class="comp-block__title">Forest Measurement and Inventory Design</div><div class="comp-block__body">Designs and implements statistically valid forest inventories that balance precision against operational cost. The core competency is not operating instruments — it's knowing what to measure, at what intensity, for what purpose, and how to reconcile field data with remote sensing products. Ground-truth judgment determines whether LiDAR-derived metrics are reliable for a specific stand condition.</div><div class="comp-block__hidden"><div class="hidden-label">What the PD doesn't say</div><div class="hidden-item">Evaluates where remote sensing can substitute for field plots and where it cannot — a judgment that requires understanding both the technology's capabilities and the forest's structural complexity</div><div class="hidden-item">Calibrates growth models for local conditions that deviate from regional defaults</div></div></div>
+        <div class="comp-block"><div class="comp-block__origin">Duty 3 → Rewritten</div><div class="comp-block__title">Forest Health Diagnosis Under Field Conditions</div><div class="comp-block__body">Diagnoses forest health problems in the field through visual assessment — reading crown condition, bark patterns, insect galleries, fruiting bodies, and needle retention across variable light, weather, and seasonal conditions. This is pattern recognition built through repeated exposure to specific pest-host systems in specific forest types. The PD says "identifies pest and pathogen species"; the actual competency is diagnosing the interaction of multiple stressors under conditions a field guide can't anticipate.</div><div class="comp-block__hidden"><div class="hidden-label">What the PD doesn't say</div><div class="hidden-item">Distinguishes abiotic stress from biotic damage when symptoms overlap — drought-stressed trees attacked by secondary bark beetles require different responses than primary outbreak</div><div class="hidden-item">Predicts spread risk by reading landscape connectivity, host density, and weather patterns in situ</div></div></div>
+        <div class="comp-block"><div class="comp-block__origin">Duties 4 & 5 → Rewritten</div><div class="comp-block__title">Timber Program Administration and Regeneration Stewardship</div><div class="comp-block__body">Navigates the institutional machinery of timber sale programs — appraisal methods, contract law, purchaser relationships, logging system design, and post-harvest regeneration obligations. The PD describes this as paperwork; the actual competency is maintaining the connection between silvicultural intent and operational outcome across a multi-year sale cycle while coordinating with contractors whose incentives diverge from resource protection.</div><div class="comp-block__hidden"><div class="hidden-label">What the PD doesn't say</div><div class="hidden-item">Sale administration is the primary interface between silvicultural prescription and logging reality — the forester's judgment on compliance determines whether the prescription is honored or compromised</div><div class="hidden-item">Reforestation decisions (species, stock type, site prep) encode assumptions about future climate that current protocols don't require foresters to articulate</div></div></div>
+      </div>
+      <!-- STAGE 2 -->
+      <div class="stage-content" id="stage2">
+        <div class="rp-title">Where AI Lands — and Where It Doesn't</div>
+        <div class="rp-subtitle">Task-level exposure from EMST Domains 1 and 4, mapped to a forester's workflow</div>
+        <div class="disrupt-block disrupt-block--H"><div class="disrupt-block__head"><div class="disrupt-block__title">Stand Reading, Timber Marking, and Silvicultural Prescription</div><div class="disrupt-tag disrupt-tag--H">HUMAN-ESSENTIAL</div></div><div class="disrupt-block__body">The Fieldcraft core. Silvicultural prescription judgment — reading a stand's structure, species composition, and site quality to determine what to cut, what to leave, and why — depends on embodied field experience that no model replicates. The FC/DC structural pattern in the EMST confirms: every Human-Essential call in forestry science falls on Fieldcraft Primary competencies. AI can model growth; it cannot read a stand.</div></div>
+        <div class="disrupt-block disrupt-block--H"><div class="disrupt-block__head"><div class="disrupt-block__title">Forest Health Field Diagnosis</div><div class="disrupt-tag disrupt-tag--H">HUMAN-ESSENTIAL</div></div><div class="disrupt-block__body">Diagnosing pest-host-environment interactions in the field requires sensory engagement under variable conditions — bark texture, frass patterns, crown transparency, needle discoloration in specific light. AI image tools can flag crown decline from satellite imagery, but the diagnostic judgment that determines treatment response is built through years of walking affected stands.</div></div>
+        <div class="disrupt-block disrupt-block--A"><div class="disrupt-block__head"><div class="disrupt-block__title">Growth Modeling and Yield Prediction</div><div class="disrupt-tag disrupt-tag--A">AUGMENTATION</div></div><div class="disrupt-block__body">AI-enhanced growth simulators (FVS, Organon, AI-calibrated variants) are deployed tools. But model selection, parameterization for local conditions, and interpretation of projections against field reality remain practitioner-primary. The forester decides which model to trust and when the model's assumptions break.</div><div class="disrupt-block__shift">Time allocation: steady. Better tools, same practitioner judgment.</div></div>
+        <div class="disrupt-block disrupt-block--Ac"><div class="disrupt-block__head"><div class="disrupt-block__title">Forest Inventory Data Collection and Processing</div><div class="disrupt-tag disrupt-tag--Ac">COMPRESSIVE</div></div><div class="disrupt-block__body">LiDAR-derived stand metrics, drone-based canopy assessment, and AI species classification from aerial imagery are substantially compressing the time required for inventory. What required a crew-week of cruising can now be estimated from remote sensing with targeted ground-truth verification. The human role shifts from primary data collection to designing verification protocols and calibrating remote products against field reality.</div><div class="disrupt-block__shift">Time allocation: 25% → ~12%. Fewer cruisers needed for the same inventory volume. Career ladder disruption zone.</div></div>
+        <div class="disrupt-block disrupt-block--Ac"><div class="disrupt-block__head"><div class="disrupt-block__title">Timber Sale Documentation and Administration</div><div class="disrupt-tag disrupt-tag--Ac">COMPRESSIVE</div></div><div class="disrupt-block__body">AI document generation compresses appraisal calculations, contract preparation, and sale package documentation. Digital compliance tracking and automated spatial analysis tools reduce administrative overhead. The residual function is professional judgment on contract compliance and the relationship management with purchasers that determines whether silvicultural prescriptions are implemented as designed.</div><div class="disrupt-block__shift">Time allocation: 20% → ~12%. Document production compresses; field inspection and relationship management do not.</div></div>
+        <div class="cld-warning"><div class="cld-warning__title">Career Ladder Disruption</div><div class="cld-warning__body">The traditional forester developmental sequence breaks at the entry point. LiDAR and AI inventory tools compress the cruising and data collection tasks through which entry-level foresters historically built stand-reading skills — the embodied familiarity with forest structure that makes silvicultural judgment possible. The irony: the most protected competency (stand reading) depends on a developmental pathway (cruising) that's being automated.</div><div class="cld-warning__ladder"><div class="ladder-step disrupted">Cruise<br>timber</div><div class="ladder-arrow">→</div><div class="ladder-step disrupted">Process<br>inventory</div><div class="ladder-arrow">→</div><div class="ladder-step">Mark &<br>prescribe</div><div class="ladder-arrow">→</div><div class="ladder-step">Administer<br>program</div></div></div>
+      </div>
+      <!-- STAGE 3 -->
+      <div class="stage-content" id="stage3">
+        <div class="rp-title">Forester — Redesigned</div>
+        <div class="rp-subtitle">Organized by functional position in the data-to-decision lifecycle</div>
+        <div class="redesign-section"><div class="redesign-section__label">Functional Profile</div>
+          <div class="fp-block fp-block--sense"><div class="fp-block__head"><div class="fp-block__position">Sensing & Generating</div><div class="fp-block__direction fp-dir--stable">HUMAN-ESSENTIAL</div></div><div class="fp-block__body">Stand reading, site assessment, forest health diagnosis, timber marking. The field interface where ground truth is generated. Less time spent on plot-based inventory; more time spent on targeted verification of remote sensing products and stand-level interpretation that remote sensing cannot provide. The critical competency: knowing what's worth noticing that isn't in the LiDAR.</div></div>
+          <div class="fp-block fp-block--structure"><div class="fp-block__head"><div class="fp-block__position">Structuring & Curating</div><div class="fp-block__direction fp-dir--compressing">COMPRESSING</div></div><div class="fp-block__body">Inventory data compilation, cruise data processing, sale package documentation, growth model data management. AI-primary for production; practitioner role is quality review and calibration. Requires new competency: evaluating AI-derived stand metrics for errors that systematic remote sensing approaches introduce — edge effects, species misclassification in mixed stands, understory occlusion.</div></div>
+          <div class="fp-block fp-block--analyze"><div class="fp-block__head"><div class="fp-block__position">Analyzing & Interpreting</div><div class="fp-block__direction fp-dir--augmented">AUGMENTED</div></div><div class="fp-block__body">Growth modeling, yield projection, alternatives analysis for vegetation management. AI-augmented but practitioner-primary — the forester selects models, calibrates to local conditions, and interprets projections against field-developed knowledge of how specific forest types respond to treatment. Climate adaptation modeling is the growth edge.</div></div>
+          <div class="fp-block fp-block--integrate"><div class="fp-block__head"><div class="fp-block__position">Integrating & Presenting</div><div class="fp-block__direction fp-dir--expanding">EXPANDING</div></div><div class="fp-block__body">Synthesis of inventory data, growth projections, ecological constraints, and management objectives into coherent silvicultural prescriptions and sale designs. This function absorbs time freed from data collection. Expanding because the forester increasingly integrates AI-generated products from multiple sources — LiDAR metrics, satellite health detection, automated growth projections — into prescriptions that require field-calibrated judgment.</div></div>
+          <div class="fp-block fp-block--decide"><div class="fp-block__head"><div class="fp-block__position">Deciding & Directing</div><div class="fp-block__direction fp-dir--stable">HUMAN-ESSENTIAL</div></div><div class="fp-block__body">Silvicultural prescription authority, sale administration compliance decisions, reforestation species and stock selection under climate uncertainty. The accountability relationship with the timber sale contract and the land. Knowing when to override the model's recommendation — when field conditions contradict the LiDAR, when the growth projection doesn't account for a pest outbreak, when the contract requires renegotiation.</div></div>
+        </div>
+        <div class="new-comp-section"><div class="redesign-section__label">New Competency Requirements</div>
+          <div class="new-comp-item"><div class="new-comp-item__marker"></div><div>Remote sensing calibration and ground-truth protocol design — knowing where LiDAR fails, where drone imagery misclassifies, and how to design efficient verification that catches systematic errors</div></div>
+          <div class="new-comp-item"><div class="new-comp-item__marker"></div><div>AI growth model evaluation — assessing when AI-calibrated growth projections diverge from field reality and how to parameterize for conditions the model hasn't seen (novel climate, new pest regimes)</div></div>
+          <div class="new-comp-item"><div class="new-comp-item__marker"></div><div>Climate-adaptive silviculture — prescribing for conditions that differ from historical norms, including assisted migration decisions, species selection under uncertainty, and carbon co-benefit quantification</div></div>
+          <div class="new-comp-item"><div class="new-comp-item__marker"></div><div>Developmental pathway mentorship — designing structured field experiences for entry-level foresters that build stand-reading capacity when the traditional cruising apprenticeship no longer provides enough field hours</div></div>
+        </div>
+        <div class="pathway-box"><div class="pathway-box__title">Career Pathway Redesign Implication</div><div class="pathway-box__body">The traditional forester entry pathway — cruise timber, process inventory data, assist with stand exams, learn to mark timber under supervision — assumed that hundreds of hours in the field measuring trees built the embodied stand-reading judgment that silviculture requires. With LiDAR compressing inventory fieldwork, agencies need intentional alternatives: structured stand-reading apprenticeships, calibration assignments where junior foresters ground-truth remote sensing, and early exposure to prescription development — or the next generation inherits silvicultural authority without the field intuition that makes prescriptions ecologically sound.</div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+<div class="footer"><div class="footer__note"><strong>Working prototype</strong> — Environmental Management Skills Taxonomy (EMST V1), New America / Environmental Policy Innovation Center, 2026. Position description is illustrative and generic. Competency rewrites drawn from EMST SA 1.3 (Forestry Science), SA 4.1–4.3 (Field Operations), and F1 (Forestry) profession family classifications. Exposure classifications from Task 13 cross-domain synthesis.</div></div>
+<script>
+const STAGES={
+1:{title:'The Competency Gap',body:'Even before AI, the position description was failing to describe the actual job. Foresters exercise ecological judgment — reading stands, diagnosing forest health, calibrating prescriptions to site conditions — that no PD captures. The right side translates duty statements into competency language and surfaces what\u2019s missing.',rightLabel:'What the Job Actually Requires',leftLabel:'Position Description (Current)',duties:{},ksaStrikes:[],ksaNew:[]},
+2:{title:'The Disruption Pattern',body:'Now overlay AI exposure data. The traditional duties are color-coded by disruption level. The field competencies (stand reading, forest health diagnosis) are structurally protected. The inventory pipeline and administrative documentation are compressing. The career ladder breaks at the entry point.',rightLabel:'Task-Level AI Exposure, 3\u20135 Year Horizon',leftLabel:'Position Description \u2014 Annotated',duties:{duty1:{exposure:'protect',newPct:'\u2192 steady',tag:'H',tagColor:'green'},duty2:{exposure:'compress',newPct:'\u2192 ~12%',tag:'Ac',tagColor:'amber'},duty3:{exposure:'protect',newPct:'\u2192 steady',tag:'H',tagColor:'green'},duty4:{exposure:'compress',newPct:'\u2192 ~12%',tag:'Ac',tagColor:'amber'},duty5:{exposure:'augment',newPct:'\u2192 steady',tag:'A',tagColor:'yellow'}},ksaStrikes:[],ksaNew:[]},
+3:{title:'The Redesigned Role',body:'The position description is rebuilt from scratch \u2014 organized by functional position rather than duty percentages. New competencies appear: remote sensing calibration, AI growth model evaluation, climate-adaptive silviculture, and the explicit developmental pathway challenge.',rightLabel:'Redesigned Position Description',leftLabel:'Position Description \u2014 What Changes',duties:{duty1:{exposure:'protect',newPct:'\u2192 expanding',tag:'H',tagColor:'green'},duty2:{exposure:'compress',newPct:'\u2192 ~12%',tag:'Ac',tagColor:'amber'},duty3:{exposure:'protect',newPct:'\u2192 steady',tag:'H',tagColor:'green'},duty4:{exposure:'compress',newPct:'\u2192 ~12%',tag:'Ac',tagColor:'amber'},duty5:{exposure:'augment',newPct:'\u2192 steady',tag:'A',tagColor:'yellow'}},ksaStrikes:['ksa2','ksa5'],ksaNew:['Remote sensing calibration: LiDAR/drone verification protocol design for forest inventory','AI growth model evaluation and local condition parameterization','Climate-adaptive silviculture: species selection and prescription under novel conditions','Developmental pathway design: structured stand-reading mentorship for entry-level foresters']}
+};
+const TC={green:{bg:'#EBF5EF',color:'#2D7A4F',border:'#C4E2D0'},yellow:{bg:'#FDF6E3',color:'#8A7018',border:'#E0D08A'},amber:{bg:'#FEF0E5',color:'#B85C1A',border:'#E0B898'},red:{bg:'#FDECEC',color:'#B83030',border:'#E0A8A8'}};
+function setStage(n){const d=STAGES[n];document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.stage==n));document.getElementById('stageIcon').textContent=n;document.getElementById('stageTitle').textContent=d.title;document.getElementById('stageBody').textContent=d.body;document.getElementById('leftLabel').textContent=d.leftLabel;document.getElementById('rightLabel').textContent=d.rightLabel;document.querySelectorAll('.stage-content').forEach(sc=>sc.classList.remove('active'));document.getElementById('stage'+n).classList.add('active');
+['duty1','duty2','duty3','duty4','duty5'].forEach(id=>{const el=document.getElementById(id);const dd=d.duties[id];if(dd){el.setAttribute('data-exposure',dd.exposure);el.querySelector('.duty__new-pct').textContent=dd.newPct;const tag=el.querySelector('.duty__tag');const tc=TC[dd.tagColor];tag.style.display='block';tag.style.background=tc.bg;tag.style.color=tc.color;tag.style.border='1px solid '+tc.border;tag.textContent=dd.tag}else{el.removeAttribute('data-exposure');el.querySelector('.duty__new-pct').textContent='';el.querySelector('.duty__tag').style.display='none'}});
+['ksa1','ksa2','ksa3','ksa4','ksa5'].forEach(id=>{document.getElementById(id).classList.toggle('struck',d.ksaStrikes.includes(id))});
+const c=document.getElementById('ksaNewContainer');c.innerHTML='';d.ksaNew.forEach(text=>{const div=document.createElement('div');div.className='ksa-new';div.style.display='block';div.textContent=text;c.appendChild(div)})}
+document.querySelectorAll('.tab').forEach(tab=>{tab.addEventListener('click',()=>setStage(parseInt(tab.dataset.stage)))});
+setStage(1);
+</script>
+</body>
+</html>
