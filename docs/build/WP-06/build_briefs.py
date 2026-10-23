@@ -44,7 +44,7 @@ BRIEF = {
         partners="AWWA; WEF; Water Professionals International (formerly ABC; exam criteria); state operator certification boards; NRWA/RCAP (small systems); ASDWA (review); EPA Office of Water (federal partner). Readiness: Strong [J].",
         demand="Utility and state job postings; operator need-to-know criteria and exam blueprints (may be proprietary: AS/IA to negotiate use); state class specifications; consumer confidence reports; sanitary survey forms.",
         issues=["Licensure may stretch time-to-certify if automation removes hands-on tasks [S; confirm with certification-board data].",
-                "Core DB-C05 (asset management) and PS-C09 (greenhouse gas inventories) are planned but not yet authored: the enactments here point at their seed keys (`W-REF-PENDING`). DB-C06 (operational-technology security) is not yet authored; its enactment is listed in the WP-06 worklog for wiring."],
+                "Core DB-C05 (asset management) is planned but not yet authored: the enactment and task here point at its seed key (`W-REF-PENDING`) and resolve when it is written."],
     ),
     "waterq": dict(
         scope_in="Water resources, hydrology and supply planning, groundwater and source-water protection, surface water-quality regulation (load allocations, discharge permits, certifications), wetlands and compensatory mitigation, and stream assessment.",

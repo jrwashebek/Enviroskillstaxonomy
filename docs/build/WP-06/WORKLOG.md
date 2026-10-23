@@ -26,7 +26,7 @@ Re-run order: `build_wp06.py` → `rate_crafts.py write` (only if task text chan
 - 14:25 Read `RULINGS_FOR_DE.md` (ADR-0029) when the validator briefly failed mid-update: no WP-06 change needed (WP-06 never writes `Competency.enactments`; `distinguishingAttribute` is already on every indicator above the lowest level).
 - 14:28–14:40 Three blind craft-rating passes run and written (`data/v2/assessments/emst-craft@0.1/wp06-db-pass{1,2,3}.jsonl`). Rater notes matching the Tribal-hold trigger list were dropped from the records (one pass-2 note on an international-agreement task); raw answers stay in `ratings/` for audit.
 - 14:45 WP-07's credential register appeared; credential gates wired onto tasks (`credential_gates.yaml`). Task text unchanged, so ratings stay current.
-- Final: validator 0 errors overall; WP-06 records carry only `W-REF-PENDING` (enactments and one task pointing at planned core targets DB-C05 and PS-C09, not yet authored). IO lint in release mode: 0 failing; only A03 (info) hits.
+- 15:05 Final: validator 0 errors overall; WP-06 records carry only `W-REF-PENDING` (three enactments and one task pointing at planned core target DB-C05, not yet authored). IO lint in release mode: 0 failing; only A03 (info) hits.
 
 ## Craft ratings (ADR-0005; codebook `emst-craft-codebook@1.0.0-draft`)
 
@@ -53,12 +53,10 @@ Each pass is a separate `claude -p` session (model `claude-opus-5-5`) started in
 | Core competency | Modules to enact | Note |
 |---|---|---|
 | DB-C05 asset management | water, forest, parks | enactments already written; `W-REF-PENDING` until authored |
-| PS-C09 GHG inventories | air, waste, water | enactments already written; `W-REF-PENDING` |
-| DB-C06 operational-technology security | water, air, waste | not written (would dangle) |
-| DB-C42 environmental response within incident command | hazards, forest, envhealth | not written |
+| DB-C42 environmental response within incident command | hazards, forest, envhealth | not written (would dangle) |
 | PS-C15 land rights, rights-of-way and realty | forest (public-lands realty), water (utility easements), parks | not written (ADR-0018 s.4) |
-| SL-C12 financial assistance to local governments | water (revolving funds), waste, hazards | not written |
-| DB-C21 emerging contaminants across media | water, waste, envhealth, air | not written |
+
+Wired at 15:05 once the core records appeared: PS-C09 (air, waste, water), DB-C06 (water, air, waste), SL-C12 (water, waste, hazards), DB-C21 (water, waste, envhealth, air).
 
 ## Open issues and change requests
 
