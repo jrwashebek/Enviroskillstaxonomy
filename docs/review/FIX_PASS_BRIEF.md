@@ -64,9 +64,12 @@ Do not present organizations, jurisdictions or programmes as participating, part
 
 Remove internal IDs and acronyms from reader-facing text. This covers seed IDs, R01/COR-1, WP-nn, CA/DE/IO role codes and L1–L5 without explanation. Either spell things out or move them to a short technical note at the end. Keep numbered citations.
 
-### 7. Call to action (package must-fix 8)
+### 7. Call to action (package must-fix 8) — resolved by the project lead
 
-Wherever a contact or next step is needed, use the literal placeholder `{{EMST_CONTACT}}`. Write it once per document, in a sentence such as: "To comment, correct an error or ask about the pilot: {{EMST_CONTACT}}." The orchestrator will fill it in. Every CTA must lead to that placeholder. Never invent an email address or URL.
+Readers are sent to the repository's GitHub Issues page. Use this sentence once per document, adapted as needed:
+"To comment, correct an error or ask about the pilot, open an issue at
+[github.com/jrwashebek/Enviroskillstaxonomy/issues](https://github.com/jrwashebek/Enviroskillstaxonomy/issues)."
+Every call to action should lead there. Do not invent any other email address or URL. Credit the human as "the EMST project lead"; no personal name appears anywhere in the package.
 
 ### 8. Facts the reviews corrected
 
@@ -97,3 +100,9 @@ Never `git commit`; the orchestrator commits. If the harness refuses a write, do
 Keep a worklog at `docs/review/fixlog_<A|B|C>.md`. It is a table: issue ID (PKG-n / EVD-n / WP15-Cnnn), file, what changed, and status (fixed / softened / deferred + reason).
 
 Your final reply is at most 250 words. Give counts of issues fixed, softened and deferred (generated from your worklog), anything deferred, any CRs, and anything the orchestrator must decide.
+
+## Notes from Fix-A (report, finished)
+
+- **F05 correction.** The sensitivity check undercuts the plan-monitoring headline. Of the 36 2012-rule documents, 22 are monitoring reports or stand-alone monitoring plans. In plan documents alone the shares are about 10% against 3%, and the intervals overlap. Any deck slide or brief that uses the "monitoring demand" claim must match the report (deck slide 7 in particular).
+- **Report status line.** The report's status line now uses its own numbers: all 118 references are tied to register rows, 10 of them only in part. For the briefs and the deck, use the generic status line in section 2, without the "13 references" figure.
+- **The report is now draft 0.9.1.** Its corrected wording on every topic in section 8 is authoritative. When a brief or the deck says the same thing, align it with `docs/package/report/flagship_report.md`.

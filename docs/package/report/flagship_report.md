@@ -537,7 +537,7 @@ Until a Tribal Advisory Council constituted by Tribal governments and inter-Trib
 
 **No organization has committed yet.** EMST's commitment register is the only source of committed status, and it is empty [104]. In its October 2026 scan EMST found no standing environment-sector coalition on workforce skills and AI; the closest activity is ad hoc joint statements, such as the February 2025 statement by four natural-resource professional societies on federal workforce reductions [108]. That leaves a convening role open.
 
-**Challenge this report.** Readers who hold better evidence, or who see a claim that does not match their work, are asked to send it so it can be checked and recorded. To comment, correct an error or ask about the pilot: {{EMST_CONTACT}}.
+**Challenge this report.** Readers who hold better evidence, or who see a claim that does not match their work, are asked to send it so it can be checked and recorded. To comment, correct an error or ask about the pilot, open an issue at [github.com/jrwashebek/Enviroskillstaxonomy/issues](https://github.com/jrwashebek/Enviroskillstaxonomy/issues).
 
 ---
 
