@@ -1,0 +1,113 @@
+# EMST v2 L0 vocabulary — lifecycle states, protect overlay, editorial statuses, use tiers and validation statuses (ADR-0015, ADR-0010, ADR-0024)
+scheme: lifecycle_states
+title: Lifecycle and status vocabularies
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0015, ADR-0010, ADR-0024]
+steward: CA with FS, IO, DE
+license: CC0-1.0
+description: >
+  Editorial status (is the record released and its ID stable?) and lifecycle state (how established is this work in
+  the world?) are independent. Thresholds are FS starting values, recalibrated after the first annual Signals Review.
+
+lifecycle_states:
+  - notation: watch
+    prefLabel: Watch
+    lives_in: L5 only (WatchItem = signal cluster + hypothesized entity)
+    meaning: Something may be forming.
+    max_use_tier: exploratory
+    review_by_months: 12
+    lapses_without_new_evidence: true
+    entry_threshold: "≥ 2 signals, or one high-priority signal."
+  - notation: proposed
+    prefLabel: Proposed
+    lives_in: L1–L4 (persistent ID; non-normative flag)
+    meaning: A draft definition exists, composed from L2 tasks.
+    max_use_tier: exploratory
+    review_by_months: 12
+    entry_threshold: "≥ 3 independent signals of ≥ 2 types from ≥ 2 sector actors, or one mandate with an effective date."
+    required_fields_for_roles: [evidenceSignals, feederRoles, horizon, scenarioSensitivity, reviewBy, counterSignal]
+  - notation: emerging
+    prefLabel: Emerging
+    lives_in: L1–L4
+    meaning: Observable in work.
+    max_use_tier: develop
+    review_by_months: 24
+    entry_threshold: "≥ 10 postings or PDs across ≥ 2 actor types in 12 months, or a named operating programme; feeder roles identified."
+  - notation: established
+    prefLabel: Established
+    lives_in: L1–L4
+    meaning: Validated and stable.
+    max_use_tier: select
+    review_by_months: 36
+    entry_threshold: "≥ 30 postings or PDs across ≥ 3 actor types over 12 months, or a major employer's classification or PD standard; plus SME validation to IO's standard and assessable indicators."
+  - notation: declining
+    prefLabel: Declining
+    lives_in: L1–L4
+    meaning: Demand falling or the task substituted.
+    max_use_tier: select (flagged; development de-prioritized)
+    review_by_months: 24
+    entry_threshold: "Demand share down ≥ 30% over 24 months, or the substitution-confirmation checklist met. Protect check mandatory."
+  - notation: withdrawn
+    prefLabel: Withdrawn
+    lives_in: L1–L4 (ID and crosswalks kept; never reused)
+    meaning: No longer current.
+    max_use_tier: none
+    entry_threshold: "Below threshold for 36 months, no protect flag, and Editorial Board (CA during Phase 4) approval."
+  - notation: lapsed
+    prefLabel: Lapsed
+    lives_in: L5
+    meaning: Watch item expired without new evidence.
+  - notation: merged
+    prefLabel: Merged
+    lives_in: L1–L4
+    meaning: Absorbed into another ID; redirects.
+
+l4_state_mapping:
+  description: DC's L4 tool lifecycle maps onto the shared states.
+  watch: watch
+  active: established
+  legacy: declining
+  retired: withdrawn
+
+protect_overlay:
+  definition: Stored governance decision (never computed) preventing withdrawal of a capability whose loss would be irreversible or dangerous.
+  criteria_two_of:
+    - "Failure would be severe: life safety, legal duty, irreversible ecological harm, or broken trust."
+    - "Reproducing the capability takes 5 years or more."
+    - "Supply is fragile in two or more scenarios (SC1–SC4)."
+  effects:
+    - "Cannot move to withdrawn without Editorial Board approval plus sector consultation."
+    - "Priority for knowledge capture and formation design."
+  tribal_rule: "Protect decisions on Tribal-related content require Tribal Council consent."
+
+editorial_statuses:
+  - {notation: draft, definition: "Being authored; uses a seed: key; may change freely."}
+  - {notation: candidate, definition: "Persistent ID minted; in a frozen review packet (rc release)."}
+  - {notation: published, definition: "Released; ID and meaning stable."}
+  - {notation: deprecated, definition: "Still valid but discouraged; successor recommended."}
+  - {notation: superseded, definition: "Meaning replaced; replacedBy required; remains resolvable."}
+  - {notation: withdrawn, definition: "Removed without successor; resolves to a tombstone with explanation."}
+
+use_tiers:
+  description: Effective use tier = min(lifecycle cap, IO evidence met, reliability gate for any tag shown).
+  values:
+    - {notation: exploratory, definition: "Foresight, 'what's coming', curriculum exploration; not for decisions.", aliases: [AS exploratory]}
+    - {notation: describe, definition: "Workforce analytics, planning, curriculum mapping.", aliases: [IO describe/plan]}
+    - {notation: develop, definition: "Training, task books, IDPs, self-assessment.", aliases: [IO develop, AS training-grade]}
+    - {notation: select, definition: "Hiring and promotion — only as input to the employer's own job analysis.", aliases: [IO select/promote, AS selection-grade]}
+
+validation_statuses:
+  - {notation: seed-v1, definition: "Migrated from v1 as seed content; not validated."}
+  - {notation: draft, definition: "Authored or rewritten in v2; not yet reviewed."}
+  - {notation: reviewed, definition: "Reviewed by editors and craft or module leads."}
+  - {notation: panel-retained, definition: "Retained by a pre-registered Delphi or SME panel at the exact Lawshe critical value."}
+  - {notation: job-analysis-confirmed, definition: "Confirmed by a composition-corrected job-analysis survey for a function cluster, with linkage to critical tasks."}
+  - {notation: criterion-supported, definition: "Criterion-related, transportability or validity-generalization evidence exists for a stated use."}
+
+reliability_gate:
+  statistic: Krippendorff's alpha (level-appropriate), bootstrap 95% CI, decided on the lower bound
+  production: ">= 0.80"
+  tentative: "0.667 – 0.80 (shown with a tentative marker)"
+  not_shown: "< 0.667"

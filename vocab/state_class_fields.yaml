@@ -1,0 +1,215 @@
+# EMST v2 L0 vocabulary — state class record fields (ADR-0022)
+scheme: state_class_fields
+title: State and local class-record minimal common fields (L6 StateClassRecord)
+schemeVersion: 0.1.0-draft
+status: draft
+lastReviewed: '2026-10-23'
+decidedIn:
+- ADR-0022
+- ADR-0006
+steward: SL with IA and DE
+license: CC0-1.0
+description: 'SL''s Minimal Common Fields v0.1 (P-SL-07): 16 MUST, 10 SHOULD, 2 MAY. Records are dated crosswalk
+  records per state class (position overrides only in pilots and flagged-broad classes), re-run each 1 July or when
+  the state plan revises, never overwritten. Where reuse of spec text is restricted, store a hash and URL instead
+  of verbatim text. Source: docs/research/state-local/minimal_common_fields.csv.'
+fields:
+- field: jurisdiction_id
+  requirement: MUST
+  definition: Government unit that owns the class
+  format: Census government ID or state FIPS + local ID
+  vocab_or_example: 'state FIPS ''48'' (TX); local: county/city/special-district ID'
+  why_needed: Join to Census ASPEP and EEO-4; disambiguate 90,000+ local governments [J]
+  observed_in_sample: All rows (as name only)
+- field: employer_type
+  requirement: MUST
+  definition: Kind of public employer
+  format: enum
+  vocab_or_example: state-agency|county|municipal|special-district|utility|regional-council|tribal|federal
+  why_needed: Local and utility roles differ in authority and funding
+  observed_in_sample: Implicit only; no state publishes it
+- field: agency
+  requirement: MUST
+  definition: Agency or department
+  format: text
+  vocab_or_example: EGLE; MPCA; TPWD
+  why_needed: Agencies overlay their own MQs (TX, WI, MN)
+  observed_in_sample: All rows
+- field: class_code
+  requirement: MUST
+  definition: Native class identifier
+  format: string (verbatim)
+  vocab_or_example: TX 2651; WA 523S; CA 0762/00100762; MN 001350; WI 26961; MI position code EQALTEC56R; San Jose
+    8201
+  why_needed: Stable join key; formats vary widely
+  observed_in_sample: Exposed for TX, WA, CA, MN, WI, San Jose; not exposed in NY career pages or PA postings
+- field: class_title
+  requirement: MUST
+  definition: Native class title
+  format: text
+  vocab_or_example: Environmental Quality Analyst 9-P11
+  why_needed: Display and NLP input
+  observed_in_sample: All rows
+- field: series_id
+  requirement: MUST
+  definition: Native series or family
+  format: text
+  vocab_or_example: Natural Resource Specialist 1-6
+  why_needed: Groups levels into ladders
+  observed_in_sample: All rows
+- field: level_index
+  requirement: MUST
+  definition: Ordinal level in series plus native label
+  format: int + text
+  vocab_or_example: 1-6 (WA); I-V (TX); 9/10/P11/12 (MI); Trainee 1/Trainee 2/1 (NY); Range A/B/C (CA)
+  why_needed: Crosswalk to the EMST level-of-responsibility scale
+  observed_in_sample: All series
+- field: supervisory_status
+  requirement: MUST
+  definition: Non-supervisory, lead, supervisor, manager, executive
+  format: enum
+  vocab_or_example: 'TX: supervision normally at IV-V; NY M-grades'
+  why_needed: Most reliable signal for level mapping across systems
+  observed_in_sample: Stated in TX, WA, CA, MN specs
+- field: spec_effective_date
+  requirement: MUST
+  definition: Date the spec text took effect
+  format: ISO date
+  vocab_or_example: WA 2025-07-01; MN 1976/1998
+  why_needed: Stale specs (MN) mislead NLP; crosswalks must be dated
+  observed_in_sample: WA, TX, MN, WI, San Jose
+- field: work_description_text
+  requirement: MUST
+  definition: Definition, distinguishing characteristics, examples of work
+  format: text (verbatim)
+  vocab_or_example: TX 'Examples of Work Performed'
+  why_needed: Primary NLP input for competency and task mapping
+  observed_in_sample: All specs; thin in NY career pages
+- field: mq_text
+  requirement: MUST
+  definition: Minimum or desirable qualifications, verbatim
+  format: text
+  vocab_or_example: PA 'any equivalent combination of experience and training'
+  why_needed: Legal basis of screening
+  observed_in_sample: Specs (CA, WA, TX guidelines) or postings (MN, PA, MI)
+- field: mq_location
+  requirement: MUST
+  definition: Where binding qualifications live
+  format: enum
+  vocab_or_example: spec|exam-bulletin|posting|agency-policy|set-at-recruitment
+  why_needed: MN, WI and TX agencies set MQs outside the spec
+  observed_in_sample: Varies by state
+- field: degree_rule
+  requirement: MUST
+  definition: Degree requirement regime
+  format: enum
+  vocab_or_example: required|substitutable|not-required|agency-set|per-recruitment
+  why_needed: Skills-based hiring status
+  observed_in_sample: All rows (see sample)
+- field: substitution_rule
+  requirement: SHOULD
+  definition: Machine-readable experience/education equivalences
+  format: structured (from, to, ratio)
+  vocab_or_example: 'FL: 2 yrs=AA, 4 yrs=BA; WA: experience=education year-for-year; graduate degree=2 yrs'
+  why_needed: Lets EMST proficiency evidence slot into existing rules
+  observed_in_sample: WA, FL, PA, CA, TX, San Jose
+- field: experience_years_min
+  requirement: SHOULD
+  definition: Minimum years by level
+  format: number
+  vocab_or_example: TPWD 0/2/6/10
+  why_needed: Level mapping; CLD entry-path analysis
+  observed_in_sample: Most rows
+- field: licenses_required
+  requirement: MUST
+  definition: Licenses or registrations with issuer and timing
+  format: list of (credential, issuer, at-hire|within-N-months|for-some-positions)
+  vocab_or_example: CA REHS (H&S Code 514-534) for some DHS positions; FDACS pest control license within 1 yr; WA
+    LG/LEG/LHG desired
+  why_needed: Licensure sets scope of practice and blocks substitution
+  observed_in_sample: CA, WA, TX, FL, MI
+- field: pay_basis
+  requirement: MUST
+  definition: Pay unit
+  format: enum
+  vocab_or_example: annual|monthly|hourly
+  why_needed: 'CA monthly, MI/MN hourly, TX annual: comparison needs normalization'
+  observed_in_sample: All rows
+- field: pay_min_max
+  requirement: MUST
+  definition: Range minimum and maximum
+  format: numbers
+  vocab_or_example: TX B16 $40,918-$61,130
+  why_needed: Pay-band signal and friction (pay ratio)
+  observed_in_sample: Most rows
+- field: pay_grade_label
+  requirement: SHOULD
+  definition: Native grade or range label
+  format: text
+  vocab_or_example: TX B16; WA Range 44; NY SG-18 / M-4
+  why_needed: Native reference
+  observed_in_sample: Most rows
+- field: pay_effective_date
+  requirement: MUST
+  definition: Date of pay figures
+  format: ISO date
+  vocab_or_example: '2026-07-01'
+  why_needed: Pay tables change annually
+  observed_in_sample: Most rows
+- field: bargaining_unit
+  requirement: SHOULD
+  definition: Representation unit and shadow-class flag
+  format: text + boolean
+  vocab_or_example: WA WPEA shadow class; MN BU 216 (MMA); NY PEF PS&T
+  why_needed: Reclassification constraints; transfer frictions
+  observed_in_sample: WA, MN, NY
+- field: appointment_route
+  requirement: SHOULD
+  definition: How people enter the class
+  format: enum list
+  vocab_or_example: open-competitive-exam|continuous-T&E|application-as-exam|non-competitive (NY HELPS)|provisional|transfer-list|performance-based
+    (LEAP)
+  why_needed: Competency evidence enters at different points
+  observed_in_sample: CA, NY, PA
+- field: related_titles
+  requirement: SHOULD
+  definition: Native lateral, transfer and promotion links
+  format: list of class refs
+  vocab_or_example: NY 70.1 list; MN equivalents; next class in series
+  why_needed: State-validated adjacency (gold set)
+  observed_in_sample: NY, MN, PA
+- field: soc_code
+  requirement: SHOULD
+  definition: SOC 2018 occupation code assigned by the employer
+  format: string
+  vocab_or_example: 19-2041
+  why_needed: Join to OEWS, O*NET and EEO-4 reporting [J]
+  observed_in_sample: Not exposed in any sampled spec
+- field: federal_equivalent
+  requirement: MAY
+  definition: Equivalent OPM series and grade band
+  format: string
+  vocab_or_example: PA Careers for Federal Employees list
+  why_needed: Federal-state mobility
+  observed_in_sample: PA only
+- field: military_equivalent
+  requirement: MAY
+  definition: Equivalent military occupation codes
+  format: list
+  vocab_or_example: TX military crosswalk
+  why_needed: Veteran pathways; crosswalk precedent
+  observed_in_sample: TX
+- field: provenance
+  requirement: MUST
+  definition: Source URL, retrieval date, hash, extractor and version
+  format: record
+  vocab_or_example: as in OpenLMP
+  why_needed: Reproducibility (DE); dated crosswalks
+  observed_in_sample: n/a
+- field: emst_mapping
+  requirement: MUST
+  definition: Target role variant, competencies with level, match type, confidence, reviewer, review date
+  format: record
+  vocab_or_example: role_variant_id; match_type exact|close|broad|narrow|related; confidence 0-1
+  why_needed: Human-reviewed crosswalk artifact (IA)
+  observed_in_sample: n/a

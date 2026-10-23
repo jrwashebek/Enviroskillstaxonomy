@@ -1,0 +1,45 @@
+# EMST v2 L0 vocabulary — modules (stewardship units), namespaces and waves (ADR-0018, ADR-0009, ADR-0010)
+scheme: modules
+title: Subsector modules
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0018, ADR-0009, ADR-0010]
+steward: CA with DB, AS
+license: CC0-1.0
+description: >
+  A module is a namespaced bundle of subsectors with a steward and its own review cycle. Through v2.1 (2027–2028)
+  modules are EDITORIAL SECTIONS authored centrally with a named advisory partner; a section becomes a stewarded
+  module only after a signed Module Stewardship Agreement and two on-time review cycles (orphan clause applies).
+  Partner names are candidates from DB and AS research, not commitments; readiness ratings are DB [J] unless noted.
+core:
+  notation: core
+  prefLabel: EMST core
+  definition: L0 vocabularies, transversal practice, cross-subsector competencies and tasks, cross-cutting practice areas (X01–X05, X07) and core role profiles.
+  namespace: core
+terms:
+  - {notation: MOD-01, namespace: water, prefLabel: Water and wastewater utilities, subsectors: [W01, W02, W03], wave: 1, readiness: Strong, candidate_partners: "AWWA; WEF; Water Professionals International (formerly ABC; operator exam criteria); state operator certification boards; NRWA/RCAP; ASDWA (review)", licensure: "State licensure of operators; PE for design"}
+  - {notation: MOD-02, namespace: waterq, prefLabel: "Water resources, water-quality regulation and watersheds", subsectors: [W04, W05, W06], wave: 1, readiness: Moderate, candidate_partners: "ACWA; Association of State Wetland Managers; SWS PCP; AIH; NGWA"}
+  - {notation: MOD-03, namespace: air, prefLabel: Air quality, subsectors: [P01], wave: 1, readiness: Moderate, candidate_partners: "NACAA; AAPCA; A&WMA; EPA APTI curricula (federal partner)"}
+  - {notation: MOD-04, namespace: waste, prefLabel: "Waste, materials and remediation", subsectors: [P02, P03, P04], wave: 1, readiness: Strong, candidate_partners: "SWANA; ASTSWMO; ITRC; IHMM"}
+  - {notation: MOD-05, namespace: ehs, prefLabel: "Chemicals, pesticides and EHS compliance", subsectors: [P05, P06], wave: 2, readiness: Moderate, candidate_partners: "AAPCO; BCSP; BGC; IHMM; NAEM"}
+  - {notation: MOD-06, namespace: envhealth, prefLabel: Environmental public health, subsectors: [H01, H02], wave: 1, readiness: Strong, candidate_partners: "NEHA (verified active, V3-07); NACCHO; APHL; EHAC"}
+  - {notation: MOD-07a, namespace: extract, prefLabel: "Extractives: mining, reclamation, oil and gas, orphan wells", subsectors: [E03, E04], wave: 2, readiness: Weak, candidate_partners: "IMCC; NAAMLP; IOGCC", note: "Public-lands mineral and energy authorizations drafted in wave 1 as MOD-11 enactments."}
+  - {notation: MOD-07b, namespace: energy, prefLabel: "Clean energy, grid and energy management", subsectors: [E01, E02, E05], wave: 2, readiness: Weak, candidate_partners: "IREC; NABCEP; ISA (utility vegetation); AEE"}
+  - {notation: MOD-08, namespace: climate, prefLabel: Climate mitigation and adaptation, subsectors: [C01, C02], wave: 2, readiness: Weak, candidate_partners: "ASAP; US Climate Alliance; ICLEI; CARB verifier programme (partner)"}
+  - {notation: MOD-09, namespace: hazards, prefLabel: "Emergency management, hazard mitigation and floodplain management", subsectors: [C03], wave: 1, readiness: Strong, candidate_partners: "IAEM; NEMA; ASFPM (verified active, V3-07); FEMA EMI"}
+  - {notation: MOD-10, namespace: markets, prefLabel: "Corporate sustainability, ESG and environmental markets", subsectors: [M01, M02], wave: 3, readiness: Moderate, candidate_partners: "ISEP (formerly IEMA); GBCI (issues ISSP credentials); GRI; NMBA; ICVCM", note: "Private-led (PS). Core disclosure competencies and private variants enter in wave 1."}
+  - {notation: MOD-11, namespace: forest, prefLabel: "Forests, rangelands, fire and public-lands multiple use", subsectors: [L01, L05, L07], wave: 1, readiness: Strong, seeded_from_v1: true, candidate_partners: "SAF and SRM (verified active, V3-07); NASF; USWFS/USFS training with NWCG as reviewer", includes_gap_functions: [range and grazing, roads and trails transportation systems, lands and realty, mineral and energy authorization enactments], home_of_role_family: fire intelligence (R08)}
+  - {notation: MOD-12, namespace: wildlife, prefLabel: "Fish, wildlife and aquatic resources", subsectors: [L02, L03], wave: 1, readiness: Strong, seeded_from_v1: true, candidate_partners: "TWS and AFS (verified active, V3-07); AFWA"}
+  - {notation: MOD-13, namespace: marine, prefLabel: Marine and coastal, subsectors: [L04], wave: 3, readiness: Weak, candidate_partners: "Coastal States Organization; The Coastal Society; Sea Grant network"}
+  - {notation: MOD-14, namespace: worklands, prefLabel: "Working lands, restoration and land conservation", subsectors: [L06, L08, L09], wave: 2, readiness: Moderate, candidate_partners: "SWCS; NACD; ASA (CCA); SER (verified active, V3-07); Land Trust Alliance"}
+  - {notation: MOD-15, namespace: parks, prefLabel: "Parks, recreation, protected areas and visitor use", subsectors: [L10], wave: 1, readiness: Moderate, candidate_partners: "NRPA; NAI; National Association of State Park Directors", includes_gap_functions: [recreation and visitor use, scenery, wilderness character], note: "Pulled forward from DB's wave 3 for 0025 and NPS coverage."}
+  - {notation: MOD-16, namespace: culture, prefLabel: Cultural resources and historic preservation, subsectors: [L11], wave: 2, readiness: Moderate, candidate_partners: "NCSHPO; ACRA; SAA; RPA; NATHPO only through the Tribal Council", note: "Section 106 effects review is a core competency; THPO coordination is held under ADR-0007."}
+  - {notation: MOD-17, namespace: built, prefLabel: "Built environment: urban planning and transportation environmental", subsectors: [U01, U02], wave: 2, readiness: Moderate, candidate_partners: "APA/AICP; AASHTO Center for Environmental Excellence; TRB"}
+  - {notation: MOD-18, namespace: lab, prefLabel: Environmental laboratory and analytical services, subsectors: [X06], wave: 2, readiness: Moderate, candidate_partners: "TNI; APHL", note: "Analyst job family; 'generate legally defensible analytical data' is a core competency."}
+reserved_namespaces:
+  - {pattern: "tribal-<steward>", purpose: "Tribally stewarded modules: own licence, labels and withdrawal right; excluded from bulk CC0 unless opted in; governed only by the Tribal steward (ADR-0007)."}
+rules:
+  three_module_rule: "A competency is core if the same task core is enacted in three or more modules and differs only in knowledge base or regulatory regime."
+  home_module_rule: "Otherwise it has exactly one home module — the module whose regulatory regime governs the legal sufficiency of its deliverable — with enactments elsewhere."
+  dependency_direction: "Module records may reference core records; core records must not depend on module records."

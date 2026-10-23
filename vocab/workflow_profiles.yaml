@@ -1,0 +1,53 @@
+# EMST v2 L0 vocabulary — workflow profiles: named sequences over work functions (ADR-0017)
+scheme: workflow_profiles
+title: Workflow profiles
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0017]
+steward: CA with SC, DB
+license: CC0-1.0
+description: Optional facet on tasks and roles. A task may participate in several profiles.
+
+terms:
+  - notation: WP-PROJECT
+    prefLabel: Project and authorization lifecycle
+    definition: v1's six stages, kept as a named profile; preserves the review/permitting separation for reform analysis.
+    sequence: [WF-PLAN, WF-REVIEW, WF-AUTHORIZE, WF-BUILD, WF-MONITOR, WF-LEARN]
+    v1_origin: S1–S6 (workflow_stage_definitions.md)
+  - notation: WP-REGPROGRAM
+    prefLabel: Regulatory-programme cycle
+    sequence: [WF-RULE, WF-AUTHORIZE, WF-MONITOR, WF-ENFORCE, WF-AUTHORIZE]
+    definition: Standards and rules, permit issuance, monitoring and reporting, inspection and enforcement, renewal.
+  - notation: WP-OPERATIONS
+    prefLabel: Operations cycle
+    sequence: [WF-OPERATE, WF-MONITOR, WF-OPERATE, WF-MONITOR]
+    definition: Operate, monitor, adjust, maintain and report, every shift, under a permit, with an operator in responsible charge.
+  - notation: WP-COMPLIANCE
+    prefLabel: Compliance and enforcement cycle
+    sequence: [WF-ENFORCE, WF-ENFORCE, WF-MONITOR]
+    definition: Inspect, determine violation, enforce or assist, verify return to compliance.
+  - notation: WP-DISCLOSURE
+    prefLabel: Disclosure cycle
+    sequence: [WF-PLAN, WF-MONITOR, WF-MONITOR, WF-ENFORCE, WF-MONITOR]
+    definition: Boundary and materiality, data and controls, calculation, assurance, approval and publication on an annual cycle.
+  - notation: WP-INCIDENT
+    prefLabel: Incident cycle
+    sequence: [WF-PLAN, WF-RESPOND, WF-RESPOND, WF-BUILD]
+    definition: Prepare, respond, recover, mitigate, at operational tempo under incident command.
+  - notation: WP-RULEMAKING
+    prefLabel: Rulemaking cycle
+    sequence: [WF-ASSESS, WF-RULE, WF-RULE, WF-RULE, WF-LEARN]
+    definition: Problem definition, proposal, comment and response, final rule, implementation review.
+  - notation: WP-CAPITAL
+    prefLabel: Utility capital-and-compliance cycle
+    sequence: [WF-ASSESS, WF-PLAN, WF-RESOURCE, WF-BUILD, WF-OPERATE]
+    definition: Asset condition assessment, capital planning, rates and financing, construction, operation.
+  - notation: WP-AGREEMENT
+    prefLabel: Stewardship-agreement cycle
+    sequence: [WF-PLAN, WF-RESOURCE, WF-BUILD, WF-MONITOR, WF-LEARN]
+    definition: Scope, negotiate and execute shared-stewardship or Good Neighbor-type agreements, implement, review.
+  - notation: WP-RESEARCH
+    prefLabel: Research cycle
+    sequence: [WF-PLAN, WF-ASSESS, WF-ASSESS, WF-LEARN]
+    definition: Question, design, observe and analyse, publish and apply.

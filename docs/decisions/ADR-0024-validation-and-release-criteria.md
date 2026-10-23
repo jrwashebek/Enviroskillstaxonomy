@@ -1,0 +1,37 @@
+# ADR-0024: Validation regime, use-labelled release criteria, reliability gates and the first job-analysis clusters
+
+- **Decision point:** DP-23 (new; CA) — release posture, minimum evidence by use, reliability and LLM gates, Delphi design, first clusters
+- **Status:** accepted
+- **Date:** 2026-10-23 · **Decider:** CA
+- **Roles consulted:** IO, FH, SL, LC, FC, SC, DC, IA, DE, CM, TN, CP, AS
+- **Related:** ADR-0001, ADR-0004, ADR-0005, ADR-0015 (use tiers), ADR-0019, ADR-0020 (Delphi redesign)
+
+## Context
+
+v1 explicitly decided that an AI-augmented single analyst needed no inter-rater reliability; even deterministic rules were misapplied (11/222 CLD flags contradict their rule) [E: IO-009, IO-001]. With v1's planned 3–5 reviewers per competency, Lawshe CVR significance is impossible at 3 and requires unanimity at 5 [E: IO computation]. Validity belongs to a use, not to a taxonomy [E-u: IO-025, IO-094]. The biggest trade-off IO names: defensibility against speed and coverage.
+
+## Decision
+
+1. **Release posture (P-IO-13; answers IO open Q1):** v2.0 (~7–9 months into the build) is **describe/develop-grade** — for the NGO pilot and first federal and state training uses. **Selection-grade content arrives per function cluster** as each completes job analysis and linkage (≈ months 12–15); criterion evidence at months 18–24. No release is "validated for selection" in itself; an employer's selection use is defensible only after its own job analysis confirms the content.
+2. **Every element carries** `useTier` (ADR-0015), `validationStatus` (`seed-v1 | draft | reviewed | panel-retained | job-analysis-confirmed | criterion-supported`), and indicators carry `useClass` and `obs4`.
+3. **Minimum evidence by use** — IO's table (§8 Q4) is adopted as release criteria, including: provenance and versioning (all uses); SME content review across ≥ 3 sector actors and all relevant crafts with Delphi retention at the exact critical CVR and ≥ 75% essential or useful (published competencies); tag reliability reported with CI for every tag shown, values with **α < .667 not shown** (all uses); indicators lint-clean with OBS-4 ≥ 2 and an evidence plan (develop) or OBS-4 = 3, no flags, double-coded (select); level placement ≥ 70% modal with IQR ≤ 1 (develop, select); response-process evidence (n ≈ 10–15 cognitive interviews); bias and sensitivity review incl. accessibility and TN review of Indigenous-related content; assessor agreement ≥ .70 where sign-offs confer qualification; job-analysis confirmation for the specific job family, linkage, standardized scoring and standard-setting, adverse-impact plan, criterion/transportability evidence where content validity is insufficient, a complete UGESP-style documentation package, and AI documentation plus jurisdiction checks if any AI scores or screens (select).
+4. **Reliability gates (P-IO-10):** Krippendorff's α with bootstrap CI, decided on the **lower bound**: ≥ .80 production, .667–.80 tentative (shown with a tentative marker), < .667 not shown. Study size for decisions: 120–200 units × 6 raters (≈ ±0.04–0.07) rather than 40 units (≈ ±0.15).
+5. **LLM-assisted tagging only behind IO's gate (P-IO-11):** frozen model and prompt versions; held-out gold set; non-inferiority margin .05 against the average single human; a blind audit stream measuring anchoring; seeded errors; abstention; drift checks; disclosure. **An LLM is never the sole coder of a selection-relevant value.**
+6. **Pre-registered modified Delphi (P-IO-08, replaces v1 Tasks 20–21):** 15–25 members per panel; exact Lawshe critical values (N = 15 → 12 essential; N = 20 → 15; N = 25 → 18); 75% agreement; level placement ≥ 70% modal with IQR ≤ 1; ≤ 15% change stability rule; hard stop after round 3; CREDES/ACCORD reporting; **pre-registration on OSF Registries, mirrored as a timestamped repo release** (answers IO open Q5).
+7. **Composition correction for contraction bias (P-IO-09; P-FC-21):** over-recruit thinned public field and statecraft strata; include recently separated incumbents; remove participation costs (compensation); cap any sector actor at 30% of a panel; active field practitioners in proportion to the field workforce; ≥ 50% independent panelists where panels are recruited through adopters; rake and test weights. Tribal participants only through Tribal research approval, on Tribal time (P-TN-16).
+8. **Tasks first (P-IO-07):** matrix-sampled job-analysis survey (≤ ~80 tasks per respondent; importance, frequency, consequence of error, needed at entry, AI mode); competencies are job-related only via linkage to ≥ 1 critical task.
+9. **First job-analysis clusters (answers IO open Q4), run with FH/SL design partners:** (1) **field monitoring and inventory** (R02, R03; FC); (2) **regulatory compliance, permitting and environmental review** (R10, R11, R12; SC); (3) **geospatial and data analysis** (R04; DC); (4) **water quality and drinking-water/wastewater operations** (R11 NPDES variant, R24, R25; non-forestry coverage test); (5) the AS/FH **Job-Analysis Starter Pack** series for natural resources (0401/0404, R09/R13 federal variants).
+10. **Craft-rating pilot** (ADR-0005) and **ethical lenses:** if lens E/I/A coding fails the α gate after two codebook iterations, ethics is expressed only through observable indicators and the lens columns retire (answers IO open Q6).
+11. **Claims hygiene for v1 statistics:** v1 observability figures (IO's 1,354 manually coded statements) may be cited externally only after human double-coding with α ≥ .80 (P-IO-18; answers IO open Q7); no v1 single-analyst exposure statistic is published as a finding (ADR-0027).
+12. **Gold sets and published agreement** for every rated layer and automated tagger, LMPs pattern (P-DE-10): ≥ 10% of tasks (≥ 60), stratified by module and craft, double-coded blind; SCORES.md per release; CI blocks automated taggers below threshold.
+13. **IO's three candidate competencies** (evaluate and certify others' task performance; serve as SME in merit-based hiring assessments; elicit and document tacit expertise) enter the transversal layer (ADR-0025), because evaluator and mentor capacity is the binding constraint on training-use validity (LC §1.8).
+
+## Rationale
+
+UGESP content validity rests on work behaviours; task-level ratings are more reliable than abstract descriptors; specificity raises reliability [E-u: IO-020, IO-044, IO-045]. Survey precision: n = 30 gives ±0.36 on a 1–5 mean, n = 50 ±0.28; criterion studies need n ≈ 194 to detect r = .20 — consortium and transportability designs are required, which EMST task profiles can support as job-similarity evidence (P-IO-17) [E: IO computations].
+
+## Dissent and trade-offs
+
+- **Product pressure vs defensibility:** publishing all ~250 competencies at v2.0 would claim more than the evidence supports; a smaller, honest, use-labelled release is chosen (IO disagreement 3). Coverage momentum is carried by `develop`-tier modules and the "what's coming" view instead.
+- **FH/AS timelines:** selection-grade content for natural-resources series lands after the first design-partner year; the Starter Pack produces the first defensible validation data (P-AS-03).
+- **Fairness vs validity in method choice:** multi-method assessment with documented consideration of alternatives, never a single high-impact hurdle (IO disagreement 6).

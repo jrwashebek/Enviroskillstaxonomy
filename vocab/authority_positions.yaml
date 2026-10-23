@@ -1,0 +1,59 @@
+# EMST v2 L0 vocabulary — authority position (required on every role variant) and sign-off authority (ADR-0017)
+scheme: authority_positions
+title: Authority position
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0017]
+steward: CA with SL, DB, PS
+license: CC0-1.0
+description: >
+  Which side of a regulatory or resource relationship a role variant sits on. Orthogonal to sector actor: one
+  employer can hold several positions (a city regulates as a health department and is regulated as a POTW).
+  Mirror roles share tasks with inverted posture and are linked for mobility computations.
+
+terms:
+  - notation: regulator
+    prefLabel: Regulator
+    definition: Issues authorizations, inspects and enforces over others' actions.
+    examples: [state NPDES permit writer, county environmental health inspector, local air district engineer]
+  - notation: resource-manager
+    prefLabel: Resource manager
+    definition: Decides over lands, waters, species, assets or programmes it holds or manages.
+    examples: [federal district ranger, state forester, land trust stewardship manager]
+  - notation: regulated-party
+    prefLabel: Regulated party
+    definition: Applicant, permittee, operator in responsible charge or reporting entity that must meet requirements.
+    examples: [utility treatment operator, facility EHS manager, project developer]
+  - notation: service-provider
+    prefLabel: Service provider
+    definition: Prepares or delivers work for another party under contract.
+    examples: [environmental consultant preparing an EA, contract crew, contract laboratory]
+  - notation: independent-verifier
+    prefLabel: Independent verifier
+    definition: Provides third-party verification, assurance or certification.
+    examples: [GHG verifier, certification-scheme auditor, independent assurance provider]
+  - notation: funder
+    prefLabel: Funder
+    definition: Provides grants, loans or other financial assistance and oversees their use.
+    examples: [state revolving fund programme manager, foundation programme officer]
+  - notation: advocate
+    prefLabel: Advocate or watchdog
+    definition: Influences decisions without formal authority; monitors and challenges.
+    examples: [NGO policy advocate, citizen-suit watchdog]
+  - notation: advisor-researcher
+    prefLabel: Advisor or researcher
+    definition: Holds epistemic authority; advises, researches and synthesizes.
+    examples: [academic advisor, agency research scientist, advisory committee member]
+
+sign_off_authority:
+  description: >
+    Attribute on tasks (the task requires sign-off) and on role variants (the variant holds sign-off). Each value
+    links to Credential records. Missing sign-off authority is a BLOCKING friction in mobility computations, not
+    a skill gap.
+  values:
+    - {notation: licensure, prefLabel: Licensure, definition: "State or professional licence conferring legal scope of practice.", examples: [PE seal, PG, RPF, certified operator in responsible charge, LSP/LSRP opinion]}
+    - {notation: legal-signatory, prefLabel: Legal signatory, definition: "Designated official whose signature carries legal attestation.", examples: [certifying official on DMRs or Title V compliance certifications]}
+    - {notation: regulatory-definition, prefLabel: Regulatory definition, definition: "Qualification defined in a regulation for a specific act.", examples: [Environmental Professional for all-appropriate-inquiries due diligence, SOI-qualified professional for Section 106]}
+    - {notation: accreditation, prefLabel: Accreditation, definition: "Accreditation of a person or body to verify or certify.", examples: [accredited GHG verifier, accredited laboratory analyst signatory]}
+    - {notation: position-qualification, prefLabel: Position qualification, definition: "Interagency or programme position qualification required to act in a role.", examples: [NWCG/IQCS position qualifications such as burn boss, NIMS NQS positions]}

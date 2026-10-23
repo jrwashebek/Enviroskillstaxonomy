@@ -1,0 +1,86 @@
+# EMST v2 L0 vocabulary — work functions, sub-functions and cross-cutting modes (ADR-0017)
+scheme: work_functions
+title: Work functions
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0017, ADR-0002]
+steward: CA with SC, DB, SL
+license: CC0-1.0
+description: >
+  Primary facet on L2 tasks (one primary function per task); competency and role values are computed. Subsector-
+  neutral. Generalizes v1's six NEPA/public-lands stages, which survive as the WP-PROJECT workflow profile.
+
+terms:
+  - notation: WF-ASSESS
+    prefLabel: Assess and sense
+    definition: Inventory, survey, sample, characterize and observe environmental conditions and systems, including research data collection.
+  - notation: WF-PLAN
+    prefLabel: Plan and design
+    definition: Produce plans, designs, strategies and monitoring or sampling designs, including mitigation planning.
+  - notation: WF-REVIEW
+    prefLabel: Review consequences
+    definition: Assess the consequences of proposed actions — NEPA and state environmental policy act review, EHP review, effects and cumulative-impact analysis, historic-property effects review.
+    note: Kept separate from WF-AUTHORIZE because reforms act on review and authorization differently.
+  - notation: WF-RULE
+    prefLabel: Make rules and policy
+    definition: Develop rules, legislation, codes, standards and policy instruments.
+  - notation: WF-AUTHORIZE
+    prefLabel: Authorize
+    definition: Issue, apply for or administer permits, licences, approvals, special uses and resource-use authorizations (authority position tells which side).
+    subfunctions:
+      - {notation: WF-AUTHORIZE.delegated, prefLabel: Administer or oversee delegated and assumed programmes, definition: "Operate a programme under delegated, primacy or assumed authority, or oversee local or delegated delivery."}
+  - notation: WF-RESOURCE
+    prefLabel: Resource and finance
+    definition: Budgets, appropriations, rates, fees and cost recovery, grants and financial assistance, credit and easement transactions, green finance.
+  - notation: WF-BUILD
+    prefLabel: Build and implement
+    definition: Carry out one-time projects and treatments — restoration, construction, remediation installation, fuels treatment.
+  - notation: WF-OPERATE
+    prefLabel: Operate and maintain
+    definition: Continuously operate and maintain plants, networks, laboratories, facilities and assets, including vegetation and asset maintenance and process control.
+  - notation: WF-MONITOR
+    prefLabel: Monitor and verify
+    definition: Monitor, measure, quality-assure and validate conditions, outputs and models.
+    subfunctions:
+      - {notation: WF-MONITOR.attest, prefLabel: Report and attest, definition: "Prepare and certify regulatory reports and disclosures carrying legal attestation (DMRs, TRI, GHGRP, CCRs, corporate disclosures)."}
+  - notation: WF-ENFORCE
+    prefLabel: Inspect, enforce and assure
+    definition: Inspect for compliance, build and resolve enforcement cases, and provide assurance.
+    subfunctions:
+      - {notation: WF-ENFORCE.assist, prefLabel: Compliance and technical assistance, definition: "Help regulated entities and local governments achieve compliance."}
+      - {notation: WF-ENFORCE.assure, prefLabel: Third-party verification and assurance, definition: "Independently verify assertions, credits or disclosures."}
+  - notation: WF-RESPOND
+    prefLabel: Respond and recover
+    definition: Prepare for, respond to and recover from incidents and emergencies, typically under incident command; includes post-disaster assessment.
+  - notation: WF-LEARN
+    prefLabel: Learn and adapt
+    definition: Adaptive management, evaluation, knowledge continuity and the formation of others.
+  - notation: WF-MANAGE
+    prefLabel: Lead and manage organizations
+    definition: Supervision, programme and project management, workforce planning and administration.
+    note: CA addition (ADR-0017) so that general management is not counted as Statecraft.
+
+modes:
+  description: Cross-cutting, multi-valued, optional modes on tasks.
+  terms:
+    - notation: MODE-ENGAGE
+      prefLabel: Engage and communicate
+      definition: Communicate, educate, engage and consult.
+      relationship_types:
+        - {value: public, definition: "Public participation and communication."}
+        - {value: stakeholder, definition: "Engagement with interested and affected parties."}
+        - {value: client, definition: "Client and customer relationships."}
+        - {value: intergovernmental, definition: "Coordination among governments and agencies."}
+        - {value: government-to-government, definition: "Relations with Tribal nations as sovereigns; never public participation. Tasks carrying this type fall under the Tribal content gate."}
+    - notation: MODE-RESOLVE
+      prefLabel: Resolve and defend
+      definition: Objections, appeals, hearings, litigation, mediation and negotiation of disputes.
+
+v1_stage_mapping:
+  S1-Planning: WF-PLAN
+  S2-Environmental-Review: WF-REVIEW
+  S3-Permitting: WF-AUTHORIZE
+  S4-Implementation-and-Field-Ops: [WF-BUILD, WF-OPERATE]
+  S5-Monitoring: WF-MONITOR
+  S6-Adaptive-Management-and-Learning: WF-LEARN

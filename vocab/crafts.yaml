@@ -1,0 +1,122 @@
+# EMST v2 L0 vocabulary — crafts, rating rubric, task attributes and reproduction regimes
+scheme: crafts
+title: The three crafts of environmental work
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0005, ADR-0003]
+steward: CA with FC, DC and SC leads
+license: CC0-1.0
+description: >
+  Field craft, Data craft and Statecraft are rated per L2 task (0 none / 1 supporting / 2 defining).
+  Competency and role blends are computed, never stored. Several crafts may be defining at once;
+  a task may have no defining craft (general professional practice). Raters code blind to the parent
+  competency, domain and any prior craft label. The 0/1/2 scale is provisional until the IO craft-rating
+  pilot reports; the schema also accepts constant-sum-100 and nominal-defining scales.
+
+terms:
+  - notation: FC
+    prefLabel: Field craft
+    definition: >
+      The capacity to perceive, measure, act and stay safe in a specific place — reading land, water, air,
+      living systems and the engineered systems that hold, treat or move them, and producing the ground truth
+      and physical interventions that other environmental work depends on. It is formed through repeated,
+      supervised exposure to real conditions and is evidenced by performance in the field, wherever the
+      practitioner later applies it.
+    source: P-FC-01 (FC report §1.1), broadened per P-DB-12
+    defining_test: >
+      Rate 2 if PRESENCE holds (competent performance requires the practitioner's senses or body in the place
+      at the time) AND at least one of PHYSICAL CONSEQUENCE (managing consequences in the physical world in real
+      time: safety, irreversible intervention) or GROUND-TRUTH AUTHORITY (the output is the reference against
+      which other data are judged). Rate 1 where field knowledge catches errors but intermediate performance is
+      possible without it.
+    components:
+      - {notation: FC-a, prefLabel: Perceptual expertise, definition: "Reading the site or system: identification, sign, condition, anomaly, across seasons and states."}
+      - {notation: FC-b, prefLabel: Measurement and sampling integrity, definition: "Producing defensible data at the point of observation: protocol fidelity, calibration, QC, custody; knowing when conditions invalidate the protocol."}
+      - {notation: FC-c, prefLabel: Situated judgment and intervention, definition: "Deciding and acting in place with incomplete information: go/no-go, timing, triage, irreversible actions."}
+      - {notation: FC-d, prefLabel: Physical and operational skill, definition: "Tools, machines, vehicles, vessels, aircraft (crewed and uncrewed), process equipment and instruments; maintenance and improvisation; fitness."}
+      - {notation: FC-e, prefLabel: Risk management in uncontrolled environments, definition: "Hazard recognition, LCES-type thinking, job hazard analysis, emergency response, lone work, remote medicine."}
+      - {notation: FC-f, prefLabel: Place knowledge and temporal depth, definition: "Knowing a place's or system's history, variability and reference conditions, built over seasons there."}
+      - {notation: FC-g, prefLabel: Working with people on the land, definition: "Leading crews; reading the site with landowners, permittees, contractors, volunteers and Tribal monitors on their terms; teaching field judgment."}
+
+  - notation: DC
+    prefLabel: Data craft
+    definition: >
+      The disciplined capacity to turn observations of environmental systems into warranted evidence, models
+      and decision support: designing what gets measured, stewarding data so it stays fit for use and properly
+      governed, analysing and modelling with honest uncertainty, and putting results in front of decision-makers
+      in a form they can act on. Because more of that computation is now done by machines, data craft includes
+      specifying, validating, supervising and answering for AI-generated analysis.
+    irreducible_contribution: warrant — a claim about the world the practitioner can show and answer for (provenance, method, uncertainty, fitness for a stated decision)
+    source: P-DC-01 (DC report §2.2)
+    defining_test: >
+      Rate 2 when the defining deliverable is an evidence product (dataset, analysis, model, validation, risk
+      determination or evidence-bearing design), its quality is judged by its warrant, and performing it well
+      requires choosing or checking methods rather than merely operating a tool. Not DC-defining when the
+      deliverable is an observation made in place (FC), an authorization or institutional commitment (SC), or
+      disciplinary knowledge all crafts draw on (a knowledge area).
+    components:
+      - {notation: DC-ACQ, prefLabel: Acquire, definition: "Measurement and monitoring designs; field-capture and sensor data systems (observation itself stays FC)."}
+      - {notation: DC-STW, prefLabel: Steward, definition: "Fit-for-use, traceable, protected, reusable data, incl. sensitive-information protection."}
+      - {notation: DC-ANL, prefLabel: Analyze and model, definition: "Inferences, maps, models and forecasts with stated validity."}
+      - {notation: DC-INT, prefLabel: Integrate and communicate, definition: "Decision-support products, uncertainty statements, traceable text analyses."}
+      - {notation: DC-ASR, prefLabel: Assure and govern, definition: "Validations, review designs, evaluation sets, risk tiers, procurement acceptance, enterprise data and AI governance (authorization stays SC)."}
+
+  - notation: SC
+    prefLabel: Statecraft
+    definition: >
+      The learnable capacity to turn knowledge and public purpose into decisions that are authorized,
+      legitimate, resourced and durable, working through law and administrative procedure, institutions,
+      budgets and relationships across jurisdictions and sectors. Its defining deliverable is a commitment that
+      holds: a review, permit, rule, agreement, budget or coalition that survives challenge, staff turnover and
+      implementation.
+    source: P-SC-01 (SC report §2)
+    defining_test: >
+      Rate 2 when the defining deliverable is a commitment that requires authority, legitimacy or agreement
+      from another institution or the public and must hold over time — removing the procedural, relational or
+      fiscal work would leave a technically sound product that is unauthorized, illegitimate, unfunded or
+      reversible. General management (scheduling, facilities, supervision) and general communication are not
+      statecraft unless they produce authorization or legitimacy.
+    deliverable_properties: [authorized, legitimate, resourced, durable]
+    components:
+      - {notation: SC1, prefLabel: Legal-procedural fluency, definition: "The right authority, procedure and level of review, applied correctly."}
+      - {notation: SC2, prefLabel: Institutional navigation and intergovernmental coordination, definition: "Multi-agency and multi-level action on a shared schedule."}
+      - {notation: SC3, prefLabel: Coalition, partnership and agreement building, definition: "Shared implementation across boundaries."}
+      - {notation: SC4, prefLabel: Negotiation and conflict resolution, definition: "Agreed terms where interests conflict."}
+      - {notation: SC5, prefLabel: Public engagement and legitimacy, definition: "Decisions affected publics and governments can accept as fair; government-to-government consultation is a distinct relationship, not public engagement."}
+      - {notation: SC6, prefLabel: Fiscal and appropriations craft, definition: "Money that arrives, on terms that work."}
+      - {notation: SC7, prefLabel: Political judgment and timing, definition: "Choices that survive changes of administration and litigation."}
+      - {notation: SC8, prefLabel: Accountability and integrity, definition: "A record showing why a decision was reasonable, and honest dealing."}
+      - {notation: SC9, prefLabel: Instrument design and drafting, definition: "Binding text that can be enforced and implemented."}
+
+rating_scale:
+  scale_id: ordinal-0-2
+  values:
+    - {value: 0, prefLabel: none, definition: "The craft contributes nothing a competent performer must bring."}
+    - {value: 1, prefLabel: supporting, definition: "The craft catches errors or improves quality, but intermediate performance is possible without it."}
+    - {value: 2, prefLabel: defining, definition: "Removing the craft's contribution would collapse the task (craft-specific test above)."}
+  alternative_scales: [constant-sum-100, nominal-defining]
+  general_practice_rule: "A task with no craft rated 2 rolls up as 'general professional practice' in blends."
+  calibration_set: "v1's ten craft integration points plus FC's four worked examples (drone mission; orthomosaic processing; field inspection; AI species ID verification)."
+
+task_attributes:
+  field_dependency:
+    definition: "Must the work happen in place?"
+    values: [on-site-required, on-site-preferred, remote-capable, remote]
+  formation_dependency:
+    definition: "Must the expertise have been formed through field or institutional exposure, even if the task is now done remotely?"
+    values: [yes, partial, no]
+
+reproduction_regime_attributes:
+  mentorship_dependence: {definition: "Supervised in-place repetitions needed to reach independent performance.", values: [L, M, H]}
+  cycle_dependence: {definition: "How many natural or operating cycles a learner must see; rare-event skills need simulation.", values: [none, seasonal, multi-year-or-rare-event]}
+  place_boundness:
+    definition: "How portable the knowledge is across places and systems; used as a transfer cost in mobility metrics."
+    values:
+      - {value: general, definition: "Portable across actors and regions (saw, meters, navigation)."}
+      - {value: ecosystem-type, definition: "Re-learning cost across regions, not across actors in the same region (regional flora, fuel types)."}
+      - {value: site-specific, definition: "Lost when people leave a site."}
+      - {value: system-specific, definition: "Bound to an engineered system's configuration (a plant, a network, an instrument fleet)."}
+  credential_gate: {definition: "Strongest gate on performing the task.", values: [none, internal-qualification, external-certificate, licence]}
+  currency_decay: {definition: "How fast unpractised skill decays.", values: [L, M, H]}
+  entry_path_dependence: {definition: "Computed from role profiles: whether formation happens mainly in entry or seasonal roles.", computed: true}

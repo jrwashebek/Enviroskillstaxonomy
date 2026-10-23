@@ -1,0 +1,62 @@
+# EMST v2 L0 vocabulary — change types, role-signal types, signal directions and driver tags (ADR-0028, ADR-0015, ADR-0009)
+scheme: change_types
+title: Change vocabularies
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0028, ADR-0015, ADR-0009, ADR-0008]
+steward: CA with LM, FS, IA
+license: CC0-1.0
+description: >
+  Vocabularies for describing change in work and content. Editorial change-request types (E, C, S, D, X, T) are in
+  vocab/evidence_labels.yaml#change_types. Lifecycle states are in vocab/lifecycle_states.yaml.
+
+content_change_types:
+  description: How a competency, task or role is changing in the world (team schema 5.2 change_type; used on candidates and signals).
+  values:
+    - {notation: new, definition: "Work that did not exist or had no analogue (e.g. no O*NET task analogue) and is appearing."}
+    - {notation: emerging, definition: "Work observable in a growing number of settings but not yet established."}
+    - {notation: transforming, definition: "Established work whose task bundle, tools or standards are changing materially."}
+    - {notation: stable, definition: "Established work without material change."}
+    - {notation: declining, definition: "Work whose demand share is falling or whose tasks are being substituted."}
+
+role_signal_types:
+  description: Team schema 5.3 signal_type for role-level signals.
+  values:
+    - {notation: new-role, definition: "A role is forming that did not exist before."}
+    - {notation: transforming-role, definition: "A role's task bundle or standards are changing materially."}
+    - {notation: declining-role, definition: "Demand for a role is falling."}
+    - {notation: merging-roles, definition: "Two or more roles are combining (incl. organizational consolidations)."}
+    - {notation: splitting-role, definition: "A role is dividing into distinct roles."}
+    - {notation: skill-shift, definition: "The competency mix of a role is shifting without a title change."}
+    - {notation: entry-path-at-risk, definition: "The entry roles or formation tasks that feed a role are disappearing (career-ladder destruction or fiscal/policy contraction)."}
+
+signal_directions:
+  values: [augment, automate, new, grow, decline, stable, reshape]
+  direction_confidence: [low, med, high]
+
+driver_tags:
+  description: Every signal and change indicator carries driver attribution so fiscal and policy shocks do not masquerade as AI effects.
+  values:
+    - {notation: AI, definition: "Artificial intelligence (LLM, ML, agents)."}
+    - {notation: sensing-tech, definition: "Sensors, imagery, eDNA, acoustic arrays, camera traps."}
+    - {notation: automation-robotics, definition: "Physical automation and robotics, process control."}
+    - {notation: policy-reform, definition: "Changes in law, rules, policy or procedure."}
+    - {notation: fiscal, definition: "Appropriations, budget cuts, grants, hiring freezes for budget reasons."}
+    - {notation: demographic, definition: "Retirements, age structure, labour supply."}
+    - {notation: climate, definition: "Climate-driven workload and hazard change."}
+    - {notation: market, definition: "Private demand, disclosure markets, prices."}
+    - {notation: workforce-capacity, definition: "Hiring rules, staffing levels, reorganizations and classification changes that change capacity to perform."}
+    - {notation: other, definition: "Other driver, described in the record."}
+
+horizons:
+  values: [now, 1-3y, 3-5y, 5-10y, 10y+]
+
+steep_v_categories: [social, technological, economic, environmental, political, values]
+
+signal_reliability:
+  values:
+    - {notation: A, definition: "Primary official or peer-reviewed source; directly observed."}
+    - {notation: B, definition: "Credible secondary source with traceable primary basis."}
+    - {notation: C, definition: "Single secondary or practitioner report."}
+    - {notation: D, definition: "Unverified, anecdotal or vendor claim."}

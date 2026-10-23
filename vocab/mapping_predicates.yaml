@@ -1,0 +1,60 @@
+# EMST v2 L0 vocabulary — mapping predicates, justifications and crosswalk set registry (ADR-0022, ADR-0010)
+scheme: mapping_predicates
+title: Mapping predicates for EMST crosswalks
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0022, ADR-0010, ADR-0011]
+steward: IA with DE
+license: CC0-1.0
+description: >
+  All crosswalks are SSSOM 1.0 mapping sets (1.1 slots record_id and reviewer_agreement as declared extensions;
+  1.1 is alpha only as of 2026-05-22), one set per upstream version, with external IDs only in CC0 files.
+
+skos_predicates:
+  - {notation: "skos:exactMatch", definition: "Coextensive concepts; use for v1→v2 only when text is carried verbatim.", ctdl_asn_export: "ceasn:exactAlignment", case_export: exactMatchOf}
+  - {notation: "skos:closeMatch", definition: "Sufficiently similar to be used interchangeably for most purposes.", ctdl_asn_export: "ceasn:majorAlignment", case_export: isRelatedTo}
+  - {notation: "skos:broadMatch", definition: "Object is broader than subject.", ctdl_asn_export: "ceasn:broadAlignment", case_export: isPartOf}
+  - {notation: "skos:narrowMatch", definition: "Object is narrower than subject.", ctdl_asn_export: "ceasn:narrowAlignment", case_export: hasPart}
+  - {notation: "skos:relatedMatch", definition: "Associated but not hierarchically.", ctdl_asn_export: "ceasn:minorAlignment", case_export: isRelatedTo}
+
+emst_relations:
+  - {notation: "emst:replacedBy", definition: "v1 or superseded record is replaced by the object (one row per successor for splits)."}
+  - {notation: "emst:splitInto", definition: "Subject split into several objects."}
+  - {notation: "emst:mergedInto", definition: "Several subjects merged into one object."}
+  - {notation: "emst:retiredWithoutReplacement", definition: "Subject retired; object is sssom:NoTermFound."}
+  - {notation: "emst:movedToTools", definition: "Subject's tool-fluency content moved to the L4 object."}
+  - {notation: "emst:evidencesTask", definition: "A text-to-competency link whose best-supported task is the object (NLP evidence)."}
+  - {notation: "emst:variantOf", definition: "Role variant of a role profile."}
+  - {notation: "emst:equivalentEvidence", definition: "Credential or qualification accepted as evidence for a CLO (recognition of prior learning)."}
+  - {notation: "emst:mirrorRole", definition: "Role variants sharing tasks with inverted authority position (permit writer ↔ permittee compliance ↔ consultant preparer)."}
+
+modifiers_and_special_values:
+  negation: "predicate_modifier: Not"
+  no_match: "sssom:NoTermFound"
+
+justifications:
+  - "semapv:ManualMappingCuration"
+  - "semapv:LexicalMatching"
+  - "semapv:SemanticSimilarityThresholdMatching"
+  - "semapv:LLMBasedMatching"
+  - "semapv:MappingChaining"
+  - "semapv:MappingReview"
+
+match_type_ladder_for_use:
+  selection: "≥ skos:closeMatch, two independent human reviewers, reviewer agreement recorded"
+  analytics: "any predicate; coverage, predicate mix, κ and staleness reported per set; partial matches may raise only a watch"
+  navigation: "single-reviewed candidates labelled as such"
+
+mapping_sets:
+  - {id: X1, name: "EMST v1 → v2", subject: "v1 competencies and tasks", object: "v2 IDs", completeness: "CI-enforced: every v1 key accounted for"}
+  - {id: X2, name: "EMST task → O*NET task/DWA", object_source_version: "O*NET 31.0 (Aug 2026); plus 27.x for Eloundou labels", coders: 2, target_kappa: 0.6}
+  - {id: X3, name: "Role variant → O*NET-SOC 2019 / SOC 2018", note: "fix verified family→SOC errors; SOC 2028 final notice planned 2027"}
+  - {id: X4, name: "Role variant → OPM series register", note: "statuses incl. proposed-realignment; quarterly re-check"}
+  - {id: X5, name: "Role variant → state class records", note: "minimal common fields; dated; native state crosswalks as gold sets"}
+  - {id: X6, name: "Competency/CLO → CIP 2020 and accreditation criteria", note: "SAF, ABET EAC/ETAC, EHAC, NAAEE 2025; I/R/E scale"}
+  - {id: X7, name: "Competency → ESCO v1.2.1"}
+  - {id: X8, name: "Role variant → private reference job architecture"}
+  - {id: X9, name: "Competency → OPM FWCI general/technical competencies and USA Hire"}
+  - {id: X10, name: "Credential ↔ CLO evidence-equivalence register"}
+  - {id: X11, name: "Public ↔ private translation (TR IDs)", note: "with friction fields"}

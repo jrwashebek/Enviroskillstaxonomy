@@ -1,0 +1,89 @@
+# EMST v2 L0 vocabulary — scenario set SC1–SC4 (ADR-0008 §7; FS scenarios.md)
+scheme: scenarios
+title: EMST workforce scenarios 2026–2035
+scenario_set_id: emst-scenarios-2026
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+next_refresh: 2029 (or after a wildcard)
+decidedIn: [ADR-0008]
+steward: FS (chair of quarterly triage)
+license: CC0-1.0
+description: >
+  Two independent axes replace v1's investment × adoption-mode matrix. Augmentation vs substitution is a STRATEGY
+  set wind-tunnelled against these scenarios, not an axis. Scenario-conditioned rows are recorded only for tasks above
+  the exposure threshold or flagged formation tasks.
+
+axes:
+  - notation: AX-1
+    prefLabel: Public stewardship capacity
+    poles:
+      - {notation: rebuilt-coordinated, definition: "By about 2030 the combined federal, state and Tribal environmental workforce has stabilized or grown in the functions that matter and entry cohorts are restored; devolved work carries funding, standards and mobility mechanisms."}
+      - {notation: thin-fragmented, definition: "Attrition is not replaced and devolution is unfunded; capacity varies widely; contractors, platforms and volunteers fill gaps ad hoc."}
+  - notation: AX-2
+    prefLabel: AI reliability and legitimacy in environmental decisions
+    poles:
+      - {notation: trusted-assured, definition: "AI-assisted records and analyses are accepted by courts, publics and governments under assurance regimes."}
+      - {notation: brittle-contested, definition: "AI fails off-distribution or loses legitimacy; it is confined to low-stakes uses."}
+
+terms:
+  - notation: SC1
+    prefLabel: Assured Augmentation
+    axes: {AX-1: rebuilt-coordinated, AX-2: trusted-assured}
+    summary: Headcount near 2024 levels but recomposed toward validators, ground-truth crews, intelligence analysts and product owners; field craft is the bottleneck.
+    key_risk: Validation without formation.
+  - notation: SC2
+    prefLabel: Human Premium
+    axes: {AX-1: rebuilt-coordinated, AX-2: brittle-contested}
+    summary: AI confined to low-stakes uses; senior reviewers, consultation leads, field and fire leaders command a premium; throughput falls and backlogs grow.
+    key_risk: Capacity without speed invites a political swing.
+  - notation: SC3
+    prefLabel: Platform Stewardship
+    axes: {AX-1: thin-fragmented, AX-2: trusted-assured}
+    summary: Vendors, platforms and philanthropy deliver; agencies become intelligent customers; strong private demand in GHG accounting, MRV and utilities.
+    key_risk: A hollow state, data-rights lock-in and a broken field ladder.
+  - notation: SC4
+    prefLabel: Patchwork Retreat
+    axes: {AX-1: thin-fragmented, AX-2: brittle-contested}
+    summary: Juniors are cut and AI under-delivers; fire absorbs capacity; refugia (Tribal programmes, statutory state agencies, extension, endowed NGOs, data nonprofits) carry the sector.
+    key_risk: Irreversible loss of fire leadership, place-based judgment, taxonomic skills and Tribal–federal relationships.
+
+predetermined_in_all_scenarios:
+  - Rising fire and hazard workload
+  - Expert retirements
+  - Regulatory oscillation
+  - Tribal assertion of governmental roles
+  - Continuing private GHG-accounting demand
+
+signposts:
+  - {signpost: "Headcount and entry-grade hiring share in environmental series", source: "OPM Federal Workforce Data", cadence: quarterly, points_toward: AX-1}
+  - {signpost: "Staffing-floor, RIF-moratorium and reprogramming language", source: "CRS appropriations reports; Congress.gov", cadence: per bill, points_toward: AX-1}
+  - {signpost: "Conservation internship, AmeriCorps and permanent postings vs 2024", source: "Conservation Job Board data (one board; label scope)", cadence: semi-annual, points_toward: AX-1}
+  - {signpost: "Court decisions on AI-assisted environmental records", source: "federal dockets; CRS legal sidebars", cadence: monthly, points_toward: AX-2}
+  - {signpost: "High-impact AI uses in permitting, enforcement and monitoring; withdrawals", source: "agency AI use-case inventories", cadence: annual, points_toward: AX-2}
+  - {signpost: "AI-in-environmental-review procurements and cancellations", source: "SAM.gov; state procurement portals", cadence: quarterly, points_toward: "AX-2; SC3"}
+  - {signpost: "Contract obligations for environmental analysis vs FTE", source: "USAspending; budget justifications", cadence: annual, points_toward: SC3}
+  - {signpost: "FireSat/EO data access terms and agency ingestion", source: "Earth Fire Alliance; agency announcements", cadence: quarterly, points_toward: "SC1/SC3"}
+  - {signpost: "FAA Part 108 (BVLOS) final rule", source: "Federal Register", cadence: event, points_toward: sensing timing}
+  - {signpost: "Fire-season acres vs 10-year average; fire staffing", source: "NIFC IMSR; agency staffing", cadence: "weekly in season / annual", points_toward: "predetermined pressure; SC4"}
+  - {signpost: "Discontinued federal environmental datasets", source: "agency notices; NGO trackers", cadence: quarterly, points_toward: "SC3/SC4"}
+  - {signpost: "Tribal co-stewardship agreements signed or stalled", source: "GAO, agency reports, Tribal organizations (only via the Tribal Council)", cadence: annual, points_toward: AX-1}
+
+wildcards:
+  - {id: W1, wildcard: "Catastrophic fire or flood year with mass casualties", effect: "Emergency rebuild (SC1/SC2) or blame-driven reorganization"}
+  - {id: W2, wildcard: "Landmark appellate ruling on an AI-assisted EIS, either way", effect: "Moves AX-2 quickly"}
+  - {id: W3, wildcard: "AI-caused environmental harm incident", effect: "SC2/SC4"}
+  - {id: W4, wildcard: "Step change in agentic AI reliability", effect: "SC1/SC3"}
+  - {id: W5, wildcard: "USFS fire merged into USWFS", effect: "Fire-role redesign across a large workforce"}
+  - {id: W6, wildcard: "Loss of a core public Earth-observation or monitoring programme", effect: "SC3 or SC4"}
+  - {id: W7, wildcard: "Recession hitting state budgets", effect: "Devolution fails; SC4"}
+
+no_regret_moves_2026_2029:
+  - {id: NR-1, move: "Protect an entry cohort and its learning substrate; redesign entry work for AI."}
+  - {id: NR-2, move: "Run a tacit-knowledge capture sprint."}
+  - {id: NR-3, move: "Make AI validation and assurance cross-cutting."}
+  - {id: NR-4, move: "Treat ground truth as infrastructure."}
+  - {id: NR-5, move: "Build skills-based mobility channels."}
+  - {id: NR-6, move: "Build intelligent-customer capacity (procurement, data rights, model audit)."}
+  - {id: NR-7, move: "Fund agreement craft alongside devolution."}
+  - {id: NR-8, move: "Run horizon scanning from v2.0."}

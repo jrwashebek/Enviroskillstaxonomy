@@ -1,0 +1,125 @@
+# EMST v2 L0 vocabulary — proficiency levels and attributes (ADR-0004)
+scheme: proficiency_levels
+title: Responsibility-anchored proficiency levels
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0004]
+steward: CA with IO
+license: CC0-1.0
+description: >
+  One generic scale, defined once on seven attributes. Each competency declares a level span and carries
+  2–5 anchored indicators only at levels that pass the publication rules. Years of experience are descriptive
+  only (typicalTimeToLevel) and never define a level. Awareness (A) is a knowledge bundle, not a level.
+  L5 is defined only for competencies where SME panels confirm strategic demand.
+
+attributes:
+  - {notation: ATT-AUT, prefLabel: Autonomy, parallels: "FES supervisory controls; SFIA autonomy"}
+  - {notation: ATT-GUI, prefLabel: Guidelines and judgment, parallels: "FES guidelines"}
+  - {notation: ATT-CPX, prefLabel: Complexity, parallels: "FES complexity"}
+  - {notation: ATT-SCO, prefLabel: Scope and influence, parallels: "FES scope and effect; personal contacts; private ladders (task → task budget → project/client → practice/revenue)"}
+  - {notation: ATT-KNO, prefLabel: Knowledge application, parallels: "FES knowledge required"}
+  - {notation: ATT-AUG, prefLabel: Augmented practice (tools and AI), parallels: "new in EMST v2"}
+  - {notation: ATT-FOR, prefLabel: Formation of others, parallels: "new in EMST v2; carries v1's career-ladder finding into the level definitions"}
+
+terms:
+  - notation: A
+    prefLabel: Awareness (knowledge bundle, not a level)
+    definition: >
+      Knowing an issue exists, recognizing when it applies, and knowing whom to involve. Recorded as knowledge
+      statements tagged A and assessed only by knowledge checks; never a selection criterion beyond a
+      minimum-knowledge screen.
+    isLevel: false
+  - notation: L1
+    prefLabel: Supervised
+    ordinal: 1
+    descriptors:
+      ATT-AUT: Works under direct or close direction; work is checked.
+      ATT-GUI: Follows written procedures; refers deviations.
+      ATT-CPX: Defined, repetitive tasks with few variables.
+      ATT-SCO: Own tasks; contacts within the work unit.
+      ATT-KNO: Applies procedural knowledge of a defined task.
+      ATT-AUG: Uses approved tools under prescribed checks; reports anomalies.
+      ATT-FOR: Learns through supervised performance.
+  - notation: L2
+    prefLabel: Independent
+    ordinal: 2
+    descriptors:
+      ATT-AUT: Completes standard assignments without step-by-step direction; reviewed for results.
+      ATT-GUI: Selects among established methods; interprets guidance for routine cases.
+      ATT-CPX: Varied routine cases; recognizes non-routine cases and escalates.
+      ATT-SCO: Own assignments; routine contacts with partners and the public.
+      ATT-KNO: Applies the body of standard methods in the specialty.
+      ATT-AUG: Selects tools for routine work; verifies outputs against independent evidence; documents acceptance or rejection.
+      ATT-FOR: Shows peers routine tasks.
+  - notation: L3
+    prefLabel: Senior
+    ordinal: 3
+    descriptors:
+      ATT-AUT: Plans own approach to non-routine work; review is for policy fit, not method.
+      ATT-GUI: Adapts methods where guidance is incomplete or conflicting; documents deviations.
+      ATT-CPX: Non-routine cases with multiple interacting variables and uncertain or conflicting data.
+      ATT-SCO: Project or site; persuades and negotiates with external parties on technical matters.
+      ATT-KNO: Integrates knowledge across specialties for a case.
+      ATT-AUG: Calibrates trust in specific tools across conditions; decides when not to use them; reviews others' AI-assisted products.
+      ATT-FOR: Coaches trainees; evaluates task performance against standards (task-book evaluator).
+  - notation: L4
+    prefLabel: Lead / Expert
+    ordinal: 4
+    descriptors:
+      ATT-AUT: Sets the technical approach for a programme or team; work is accepted as technically authoritative.
+      ATT-GUI: Creates methods, criteria or guidance where none exist; resolves conflicts between guidelines.
+      ATT-CPX: Novel, high-consequence or contested problems without precedent.
+      ATT-SCO: Programme or landscape; represents the organization in technical disputes and negotiations; may hold revenue or sign-off accountability.
+      ATT-KNO: Technical depth others rely on; extends methods.
+      ATT-AUG: Designs verified human-AI workflows and acceptance criteria for a programme; audits for drift and misuse.
+      ATT-FOR: Certifies others' qualification; designs developmental experiences, including protected unaided practice.
+  - notation: L5
+    prefLabel: Strategic
+    ordinal: 5
+    publication_note: Defined only where SME panels confirm strategic demand (expected ~15–25 governance, policy and portfolio competencies).
+    descriptors:
+      ATT-AUT: Sets direction across programmes or organizations; accountable to executives, boards or elected officials.
+      ATT-GUI: Establishes policy or standards on which others' guidance is based.
+      ATT-CPX: Systemic problems spanning institutions, jurisdictions or long horizons.
+      ATT-SCO: Organization or sector; negotiates commitments between governments or organizations.
+      ATT-KNO: Integrates technical, legal, fiscal and political knowledge for strategic choices.
+      ATT-AUG: Sets organizational governance for AI and automation, including formation and accountability safeguards.
+      ATT-FOR: Sets formation pathways and protects entry cohorts organization-wide.
+
+publication_rules:
+  - {id: PR-1, name: existence, rule: "Job-analysis data show the performance is required at that level (≥ 20% of incumbents at that level rate it important or above)."}
+  - {id: PR-2, name: distinctness, rule: "Indicators differ from the adjacent level on at least one named attribute, not on adjectives."}
+  - {id: PR-3, name: assessability, rule: "At least two indicators at the level reach OBS-4 = 3 for the level's use class."}
+  - {id: PR-4, name: consensus, rule: "Delphi placement ≥ 70% modal with IQR ≤ 1."}
+
+default_spans_by_type:
+  field-technique-or-operational-procedure: [L1, L3]
+  analytical-method: [L1, L4]
+  programme-or-system-design: [L2, L4]
+  governance-policy-negotiation: [L2, L5]
+  cross-cutting-professional-practice: [A, L4]
+  strategic-only: [L4, L5]
+
+anchoring_resolutions:
+  - {use: classification of a position, anchor: generic descriptors + indicator list, score: required level per competency (position profile)}
+  - {use: selection and promotion, anchor: exercise-specific BARS built from indicators, score: rating per indicator cluster with SME standard-setting}
+  - {use: training and qualification, anchor: entrustment-supervision scale on task-book tasks, score: "1 assessor performed; 2 step-by-step direction; 3 assessor present for correction; 4 available on call; 5 no supervision needed"}
+
+augmentation_modes:
+  - {value: unaided, definition: "Performed without AI or automation; retained at L1–L2 where formation, safety or legal accountability require it."}
+  - {value: assisted, definition: "Performed with AI or automation; the standard includes verification and an accountable decision."}
+  - {value: supervisory, definition: "Supervising automated or AI systems that execute; the standard includes oversight and intervention."}
+
+role_level_bands:
+  - {key: entry, band: [L1, L2]}
+  - {key: journey, band: [L2, L3]}
+  - {key: senior, band: [L3, L4]}
+  - {key: lead, band: [L4, L4]}
+  - {key: strategic, band: [L4, L5]}
+
+crosswalk_notes:
+  opm_five_point_with_awareness: {A: 1, L1: 2, L2: 3, L3: 4, L4: 5, L5: 5}
+  grades: "Indicative grade or pay bands appear only on role variants, labelled 'not a classification criterion'. No grade-equivalence table is published."
+  licensure_and_position_qualifications: "Mapped through module-specific anchors; the credential is a gate, not a level."
+  four_level_drafts: "v1 and craft-lead four-level drafts map to L1–L4 and are re-sorted between L4 and L5 by the attribute test."

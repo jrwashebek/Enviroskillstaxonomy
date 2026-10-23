@@ -1,0 +1,146 @@
+# EMST v2 L0 vocabulary — driver mechanisms (ADR-0028)
+scheme: driver_mechanisms
+title: Durable driver mechanisms
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: '2026-10-23'
+decidedIn:
+- ADR-0028
+- ADR-0021
+- ADR-0016
+steward: SC (quarterly instrument-registry refresh)
+license: CC0-1.0
+description: 'L0 mechanisms through which dated L5 Instruments act. Tasks and competencies link to mechanisms through
+  sensitivity edges asserted once with evidence; instruments link to mechanisms; sensitivity and venue applicability
+  are computed so nothing on a competency goes stale. Replaces v1''s six reform flags (kept as frozen seed events).
+  Source: docs/research/statecraft/driver_mechanisms.csv (SC), extended with mechanisms for operations and markets.'
+terms:
+- notation: DM-01
+  prefLabel: review-scope
+  definition: What effects, alternatives and resources an impact review must cover
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: narrowing
+  notes: Seven County; DOI dropped direct/indirect/cumulative categories
+- notation: DM-02
+  prefLabel: review-timeline
+  definition: Deadlines, page limits, paid acceleration, comment and objection windows
+  replaces_v1_flag: NEPA-timeline
+  direction_observed_2025_26: compressing
+  notes: Generalizes beyond NEPA to state shot clocks and objection rules
+- notation: DM-03
+  prefLabel: screening-exemption
+  definition: Categorical exclusions, exemptions, CE adoption across agencies, statutory exclusions
+  replaces_v1_flag: CatEx-scope
+  direction_observed_2025_26: expanding
+  notes: Includes CEQA-type exemptions
+- notation: DM-04
+  prefLabel: participation-requirement
+  definition: Required versus discretionary public involvement, comment periods, cooperating-agency participation
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: shrinking (required); discretion rising
+  notes: Engagement moves from compliance step to judgment (SC-C06)
+- notation: DM-05
+  prefLabel: multi-agency-coordination
+  definition: Lead, cooperating and participating roles; one-document approach; joint schedules and dashboards
+  replaces_v1_flag: one-federal-decision
+  direction_observed_2025_26: codified in statute; agency discretion over cooperators
+  notes: Replaces an executive-order label with the durable mechanism
+- notation: DM-06
+  prefLabel: esa-consultation
+  definition: Section 7 consultation, incidental take, 4(d) and critical habitat rules
+  replaces_v1_flag: consultation-reform (part)
+  direction_observed_2025_26: narrowing; litigated
+  notes: Split from consultation-reform
+- notation: DM-07
+  prefLabel: historic-preservation-review
+  definition: NHPA section 106 review and program alternatives
+  replaces_v1_flag: consultation-reform (part)
+  direction_observed_2025_26: not verified this session
+  notes: Becomes the critical path when NEPA accelerates
+- notation: DM-08
+  prefLabel: judicial-review
+  definition: Deference, standing, limitations periods, remedies (vacatur vs remand)
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: deference up; remedies narrowing (pending)
+  notes: Drives record-integrity and litigation-risk competencies
+- notation: DM-09
+  prefLabel: jurisdiction-scope
+  definition: Which waters, lands, species or sources fall under federal authority
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: narrowing (proposed)
+  notes: Pushes work to state, Tribal and local law
+- notation: DM-10
+  prefLabel: substantive-standard
+  definition: Protective standards, definitions and findings that set what is prohibited or required
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: rescinding (federal)
+  notes: Litigated; states and air districts respond
+- notation: DM-11
+  prefLabel: authority-delegation
+  definition: State or Tribal primacy, assumption and delegated programs and their oversight
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: fragile
+  notes: Florida 404 reverted to Corps in 2026
+- notation: DM-12
+  prefLabel: agreement-authority
+  definition: 'Shared implementation agreements: GNA, recreation GNA, co-stewardship, TFPA, 638, shared stewardship
+    MOUs'
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: expanding (GNA); uncertain (co-stewardship)
+  notes: Sovereign-consultation is a relationship tag, not a reform mechanism (TN)
+- notation: DM-13
+  prefLabel: disclosure-requirement
+  definition: Mandatory reporting and disclosure by regulated entities
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: federal receding; CA starting; EU narrowed
+  notes: Private-sector statecraft driver
+- notation: DM-14
+  prefLabel: digital-process
+  definition: Electronic permitting, data standards, workflow automation, AI governance in review
+  replaces_v1_flag: digital-permitting
+  direction_observed_2025_26: expanding
+  notes: Most persistent v1 flag
+- notation: DM-15
+  prefLabel: fiscal-mechanism
+  definition: Fees, cost recovery, revenue retention, appropriations conditions
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: expanding (fees, retention)
+  notes: Links to SC-C10
+- notation: DM-16
+  prefLabel: workforce-capacity
+  definition: Hiring rules, staffing levels and classification changes that change capacity to perform
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: not assessed by SC
+  notes: FH/SL lane; include so capacity shocks are not mistaken for skill change
+- notation: DM-17
+  prefLabel: operator-certification
+  definition: Licensure, certification and responsible-charge rules for operators and practitioners (grades, experience
+    hours, reciprocity).
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: unknown
+  notes: CA addition for MOD-01/-06 (DB §3.4–3.5); evidence to be gathered.
+- notation: DM-18
+  prefLabel: market-integrity-standard
+  definition: Standards and registries governing environmental credits, offsets and claims integrity.
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: tightening
+  notes: CA addition for MOD-10 (PS, DB).
+- notation: DM-19
+  prefLabel: funding-program
+  definition: Creation, expansion, cut or reinstatement of grant, loan and workforce programmes (e.g. SRF, AmeriCorps,
+    Workforce Pell, Brownfields job training).
+  replaces_v1_flag: (none; new)
+  direction_observed_2025_26: mixed
+  notes: CA addition; separates programme funding from fees and cost recovery (DM-15).
+retired:
+- notation: DM-00
+  prefLabel: (retired) S2-S3-boundary
+  definition: Workflow-model property, not a driver; retired.
+  status: withdrawn
+v1_flag_seed_events:
+  NEPA-timeline: DM-02
+  digital-permitting: DM-14
+  CatEx-scope: DM-03
+  consultation-reform: DM-06|DM-07 (Tribal consultation content held under ADR-0007)
+  one-federal-decision: DM-05
+  S2-S3-boundary: retired (workflow property)

@@ -1,0 +1,80 @@
+# EMST v2 L0 vocabulary — competency types, reusability levels and entity kinds (ADR-0003)
+scheme: competency_types
+title: Competency types and entity kinds
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0003, ADR-0025]
+steward: CA with DC, IO, LC
+license: CC0-1.0
+
+terms:
+  - notation: practice
+    prefLabel: Practice competency
+    definition: A performed capability whose work product can be judged without knowing which tool produced it.
+    title_form: verb + object (+ context)
+    assessed_by: anchored indicators at levels in span
+  - notation: knowledge-area
+    prefLabel: Knowledge area
+    definition: A body of disciplinary knowledge several crafts draw on; carries no craft-primary tag (its tasks carry craft ratings).
+    title_form: noun phrase
+    assessed_by: knowledge tests; linked knowledge statements
+  - notation: transversal
+    prefLabel: Transversal practice
+    definition: Professional practice required across work functions and modules, with craft, actor or module enactments.
+    title_form: verb + object
+    assessed_by: indicators; enactment-specific anchors
+    clusters:
+      - {notation: TX-A, prefLabel: Data and AI practice (universal floor)}
+      - {notation: TX-B, prefLabel: Professional integrity and accountability}
+      - {notation: TX-C, prefLabel: Safety culture}
+      - {notation: TX-D, prefLabel: Formation of others and knowledge continuity}
+      - {notation: TX-E, prefLabel: Systems and collaboration}
+      - {notation: TX-F, prefLabel: Professional services and funding practice}
+
+reusability:
+  description: Computed suggestion from task links across modules; reviewed value stored on the competency. Decides core vs module with the three-module rule.
+  values:
+    - {notation: transversal, definition: "Required across work functions in all or most modules."}
+    - {notation: cross-subsector, definition: "Same task core enacted in three or more modules."}
+    - {notation: subsector-specific, definition: "Home module only, enactments elsewhere optional."}
+    - {notation: role-specific, definition: "Specific to one role family."}
+
+entity_kinds:
+  - {kind: Competency, layer: L1, types: [practice, knowledge-area, transversal]}
+  - {kind: Indicator, layer: L1}
+  - {kind: Enactment, layer: L1, enactment_kinds: [actor, module, craft]}
+  - {kind: Task, layer: L2}
+  - {kind: KnowledgeStatement, layer: L2}
+  - {kind: RoleProfile, layer: L3}
+  - {kind: RoleVariant, layer: L3}
+  - {kind: JobFamily, layer: L3, computed_membership: true}
+  - {kind: Pathway, layer: L3}
+  - {kind: Tool, layer: L4}
+  - {kind: ExposureAssessment, layer: L5}
+  - {kind: CraftRating, layer: L5}
+  - {kind: FunctionRating, layer: L5}
+  - {kind: RelevanceRating, layer: L5}
+  - {kind: ChangeSignal, layer: L5}
+  - {kind: WatchItem, layer: L5}
+  - {kind: Instrument, layer: L5}
+  - {kind: DriverEvent, layer: L5}
+  - {kind: FrictionRecord, layer: L5}
+  - {kind: Credential, layer: L6}
+  - {kind: SeriesRecord, layer: L6}
+  - {kind: StateClassRecord, layer: L6}
+  - {kind: Mapping, layer: L6}
+  - {kind: LearningResource, layer: learning}
+  - {kind: Bundle, layer: learning, computed_contents: true}
+  - {kind: Source, layer: provenance}
+  - {kind: ChangeRecord, layer: provenance}
+
+typing_rules:
+  T-1: "Substitution invariance (DC-R1): stays true and assessable when every named product, platform, model, format, vendor service and instrument is replaced by a functional equivalent; otherwise the named thing goes to L4/L5."
+  T-2: "Judgment-bearing evidence (DC-R2): evidenced by a judgment-bearing work product, not by operating an interface."
+  T-3: "Half-life threshold (DC-R3): useful life under two L1 review cycles (< 2 years) → L4/L5."
+  T-4: "Reference direction (DC-R4): L4/L5 point to L1/L2; L1/L2 never name an L4 product or L5 instrument; a tool CLASS may be named when it changes the work condition."
+  T-5: "Promotion (DC-R5): a tool class becomes an L1 competency only when it creates a new judgment-bearing work product evidenced in ≥ 2 sector actors or ≥ 3 organizations; until then lifecycle 'proposed'."
+  T-6: "Tools-layer vs task-bundle change (FC): tools-layer if a proficient practitioner meets the same anchors after brief familiarization."
+  T-7: "Instrument vs tool: legal or policy force changed by public process → L5 Instrument; practitioner-chosen method or technical standard → L4."
+  T-8: "Credentials are gates, not competencies."

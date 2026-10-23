@@ -1,0 +1,78 @@
+# EMST v2 L0 vocabulary — identifier types, namespaces and the ID pattern (ADR-0010)
+scheme: identifiers
+title: EMST identifier scheme
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0010]
+steward: TSC (DE, IA)
+license: CC0-1.0
+
+form:
+  compact: "emst:<namespace>/<TYPE>-<6 Crockford base32><1 Luhn mod-32 check>"
+  iri: "https://w3id.org/emst/<namespace>/<TYPE>-<code>"
+  alphabet: "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
+  regex: "^emst:(core|[a-z][a-z0-9-]{1,30})/(VOC|CMP|KNW|IND|TSK|ROL|VAR|ENA|FAM|TL|INS|EVT|CRD|LRN|PTH|BND|SIG|ASM|FRC|SRC|MAP|CHG)-[0-9A-HJKMNP-TV-Z]{7}$"
+  minting: "random 30-bit body from a CSPRNG, minted once at status 'candidate' by scripts/mint_ids.py into the append-only data/v2/ids/registry.csv; collisions rejected and re-minted; never reused or re-pointed"
+  draft_keys: "seed:<free text> before candidate"
+  derived_ids: "CASE identifier, CTID (ce-<uuid>) and RSD UUID = UUIDv5(namespace=UUIDv5(URL, 'https://w3id.org/emst/'), name=EMST IRI)"
+  v1_aliases: "notation: [{scheme: EMSTv1, value: 'D.SA.N'}] — never an ID"
+
+types:
+  - {prefix: VOC, entity: VocabularyTerm}
+  - {prefix: CMP, entity: Competency}
+  - {prefix: KNW, entity: KnowledgeStatement}
+  - {prefix: IND, entity: Indicator}
+  - {prefix: TSK, entity: Task}
+  - {prefix: ROL, entity: RoleProfile}
+  - {prefix: VAR, entity: RoleVariant}
+  - {prefix: ENA, entity: Enactment}
+  - {prefix: FAM, entity: JobFamily}
+  - {prefix: TL, entity: Tool}
+  - {prefix: INS, entity: Instrument}
+  - {prefix: EVT, entity: DriverEvent}
+  - {prefix: CRD, entity: Credential}
+  - {prefix: LRN, entity: LearningResource}
+  - {prefix: PTH, entity: Pathway}
+  - {prefix: BND, entity: Bundle}
+  - {prefix: SIG, entity: ChangeSignal}
+  - {prefix: ASM, entity: "ExposureAssessment / CraftRating / FunctionRating / RelevanceRating"}
+  - {prefix: FRC, entity: FrictionRecord}
+  - {prefix: SRC, entity: Source}
+  - {prefix: MAP, entity: Mapping (SSSOM record_id)}
+  - {prefix: CHG, entity: ChangeRecord}
+
+namespaces:
+  minting_authority_rule: "The namespace names who minted the ID (DOI-prefix pattern); promotion to core keeps the ID; forks mint in their own namespace; the TSC registers namespaces."
+  registered:
+    - {namespace: core, owner: EMST core editors}
+    - {namespace: water, module: MOD-01}
+    - {namespace: waterq, module: MOD-02}
+    - {namespace: air, module: MOD-03}
+    - {namespace: waste, module: MOD-04}
+    - {namespace: ehs, module: MOD-05}
+    - {namespace: envhealth, module: MOD-06}
+    - {namespace: extract, module: MOD-07a}
+    - {namespace: energy, module: MOD-07b}
+    - {namespace: climate, module: MOD-08}
+    - {namespace: hazards, module: MOD-09}
+    - {namespace: markets, module: MOD-10}
+    - {namespace: forest, module: MOD-11}
+    - {namespace: wildlife, module: MOD-12}
+    - {namespace: marine, module: MOD-13}
+    - {namespace: worklands, module: MOD-14}
+    - {namespace: parks, module: MOD-15}
+    - {namespace: culture, module: MOD-16}
+    - {namespace: built, module: MOD-17}
+    - {namespace: lab, module: MOD-18}
+  reserved:
+    - {pattern: "tribal-<steward>", rule: "Registered only at the request of a Tribal steward, under ADR-0007."}
+
+versioning:
+  taxonomy: "SemVer; MAJOR = published ID withdrawn without successor, change of meaning of an L0 term or the level scale, schema field removal or rename; MINOR = new entities/modules/terms, supersessions with successors, optional fields; PATCH = attested meaning-preserving edits, provenance fixes"
+  cadence: "PATCH as needed (crosswalks ≥ quarterly); MINOR every April; MAJOR ≤ once every 3 years with ≥ 12 months' notice; prior MAJOR supported ≥ 24 months"
+  schema: "own SemVer"
+  fast_layers: "dated snapshots pinned per release"
+  mapping_sets: "mapping_set_version + object_source_version"
+  stewarded_modules: "MINOR.PATCH inside a core MAJOR (from v2.2)"
+  concepts: "no per-concept SemVer; versionIntroduced, lastChangedIn, changeNote[]"

@@ -1,0 +1,115 @@
+# EMST v2 L0 vocabulary — sector actors and subtypes, plus the orthogonal industry, ownership and delivery-model facets (ADR-0007)
+scheme: sector_actors
+title: Sector actors
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0007, ADR-0017]
+steward: CA with SL, PS, TN, FH
+license: CC0-1.0
+description: >
+  Sector actor is a property of an employment context (role variants, enactments, frictions, signals), never a tag
+  on a competency. Utility and consulting are NOT sector actors: they are industry and delivery-model facets that
+  cut across actors. Tribal subtypes follow the TN advisor's draft (simulated voice) and are subject to the
+  Tribal Advisory Council; nothing Tribal-related is published before that Council approves.
+
+terms:
+  - notation: federal
+    prefLabel: Federal government
+    definition: U.S. federal departments, agencies and bureaus as employers and authorities.
+    subtypes:
+      - {notation: federal-agency, prefLabel: Federal agency or bureau}
+      - {notation: federal-science-agency, prefLabel: Federal science agency or laboratory}
+      - {notation: federal-land-manager, prefLabel: Federal land management agency}
+      - {notation: federal-regulator, prefLabel: Federal regulatory agency or programme office}
+  - notation: state
+    prefLabel: State government
+    definition: State agencies, commissions and boards, including delegated or primacy programmes.
+    subtypes:
+      - {notation: state-agency, prefLabel: State environmental, natural resource or health agency}
+      - {notation: state-commission, prefLabel: State commission or board (e.g. oil and gas, utilities)}
+      - {notation: state-university-extension, prefLabel: State extension or survey (when acting as an agency)}
+  - notation: local
+    prefLabel: Local government
+    definition: Counties, municipalities, special districts and other sub-state public bodies.
+    subtypes:
+      - {notation: county, prefLabel: County}
+      - {notation: municipality, prefLabel: City, town or municipality}
+      - {notation: special-district, prefLabel: Special district (water, sanitation, air, fire, park, mosquito control)}
+      - {notation: regional-authority, prefLabel: Regional authority or council of governments}
+      - {notation: conservation-district, prefLabel: Conservation district}
+      - {notation: local-health-department, prefLabel: Local health department}
+  - notation: tribal
+    prefLabel: Tribal nations and Tribal organizations
+    definition: >
+      Sovereign Tribal governments as governments and employers, and related Indigenous organizations with
+      distinct legal status. Pending Tribal review (ADR-0007).
+    approvalStatus: pending-tribal-review
+    subtypes:
+      - {notation: federally-recognized-tribe, prefLabel: Federally recognized Tribe}
+      - {notation: inter-tribal-organization, prefLabel: Inter-Tribal organization or consortium}
+      - {notation: tribal-college, prefLabel: Tribal college or university}
+      - {notation: tribal-enterprise, prefLabel: Tribal enterprise}
+      - {notation: ancsa-corporation, prefLabel: ANCSA corporation (distinct legal category)}
+      - {notation: native-hawaiian-organization, prefLabel: Native Hawaiian organization (distinct status)}
+      - {notation: state-recognized-tribe, prefLabel: State-recognized Tribe (distinct status)}
+  - notation: ngo
+    prefLabel: Nonprofit and nongovernmental organizations
+    definition: Charitable, advocacy, membership and service nonprofits, including conservation corps and land trusts.
+    subtypes:
+      - {notation: conservation-corps, prefLabel: Conservation or service corps}
+      - {notation: land-trust, prefLabel: Land trust}
+      - {notation: watershed-group, prefLabel: Watershed or restoration organization}
+      - {notation: advocacy-organization, prefLabel: Policy or advocacy organization}
+      - {notation: community-organization, prefLabel: Community environmental or environmental health organization}
+      - {notation: science-ngo, prefLabel: Science, data or research NGO}
+      - {notation: professional-society, prefLabel: Professional society or association}
+      - {notation: foundation, prefLabel: Foundation or philanthropy}
+  - notation: private
+    prefLabel: Private sector
+    definition: For-profit firms of every ownership type. Industry, ownership and delivery model are separate facets.
+    subtypes:
+      - {notation: firm, prefLabel: Firm}
+      - {notation: self-employed, prefLabel: Self-employed or sole practitioner}
+  - notation: academic
+    prefLabel: Academic and research institutions
+    definition: Universities, colleges (incl. community colleges) and independent research institutes as employers and educators.
+    subtypes:
+      - {notation: university, prefLabel: University}
+      - {notation: community-college, prefLabel: Community or technical college}
+      - {notation: research-institute, prefLabel: Independent research institute}
+
+industry:
+  description: Employer industry (PS's 14 employer types, extended for public and NGO use). Facet on role variants.
+  values:
+    - consulting-engineering
+    - utility-water
+    - utility-electric
+    - energy-renewables
+    - energy-oil-gas
+    - mining-minerals
+    - forest-products
+    - forest-certification
+    - agriculture-food
+    - carbon-nature-markets
+    - corporate-sustainability
+    - industrial-ehs
+    - finance-insurance
+    - assurance-audit
+    - env-tech
+    - waste-materials
+    - transportation-infrastructure
+    - public-administration
+    - education-research
+    - nonprofit-services
+
+ownership:
+  description: Ownership of the employer (orthogonal to sector actor).
+  values: [public, investor-owned, cooperative, nonprofit, tribal, private-closely-held]
+
+delivery_model:
+  description: How the work is delivered.
+  values:
+    - {value: in-house, definition: "Performed by the employer for itself."}
+    - {value: contracted, definition: "Performed under contract for another party (consultants, contract crews, contract operators)."}
+    - {value: independent-third-party, definition: "Performed independently of both parties (verifiers, auditors, neutrals)."}

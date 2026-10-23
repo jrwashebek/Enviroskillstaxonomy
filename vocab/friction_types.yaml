@@ -1,0 +1,63 @@
+# EMST v2 L0 vocabulary — transfer-friction types, jurisdictional context and assessment methods (ADR-0023, ADR-0007, ADR-0004)
+scheme: friction_types
+title: Transfer frictions, jurisdictional context and assessment methods
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0023, ADR-0007, ADR-0004, ADR-0017]
+steward: CM (frictions) with FH, SL, PS, DB; CA (jurisdictional context); IO (assessment methods)
+license: CC0-1.0
+
+friction_types:
+  description: >
+    FrictionRecord.frictionType. Each record sits on an actor pair and (where possible) a role-variant pair, with
+    direction, severity (blocking / costly / minor), basis (statute / regulation / policy / practice), movableBy,
+    mitigation, evidence label, source and asOf. Tribal-specific frictions are recorded only as the Tribal Council decides.
+  values:
+    - {notation: qualification-gate, definition: "Positive-education requirements; specialized experience and time-in-grade; state class minimum qualifications and degree rules."}
+    - {notation: assessment-format, definition: "USA Hire or SME-QA technical assessment; essays; state civil-service exam; private interview formats."}
+    - {notation: licence-or-certification, definition: "Required licence or certification and whether it is recognized across jurisdictions (PE, PG, forester registration, operator grades, pesticide applicator, NWCG/IQCS qualifications)."}
+    - {notation: sign-off-authority-missing, definition: "Destination tasks require sign-off authority the mover does not hold (blocking)."}
+    - {notation: appointment-type-and-status, definition: "Seasonal, temporary or term appointments; competitive status and reinstatement; noncompetitive eligibility (corps, veterans' authorities, Schedule A); probation reset; list and status gates."}
+    - {notation: pay-system-and-direction, definition: "Pay system and level mapping and the expected pay delta by level, including pay cuts (e.g. federal-to-consulting moves at the median) and state-federal pay ratios."}
+    - {notation: retirement-and-benefits-portability, definition: "FERS deferred annuity; state defined-benefit vesting and service-credit purchase; health coverage continuity."}
+    - {notation: veterans-preference, definition: "Federal and state veterans' preference effects."}
+    - {notation: security-suitability-citizenship, definition: "Background, suitability, clearance and citizenship requirements."}
+    - {notation: geography-and-housing, definition: "Duty-station remoteness, relocation support, residency requirements."}
+    - {notation: seasonality-and-windows, definition: "Seasonal hiring cycles and short application windows."}
+    - {notation: credential-recognition, definition: "Recognition of corps service, military, Tribal and foreign credentials."}
+    - {notation: post-employment-ethics, definition: "Post-employment and conflict-of-interest restrictions on federal-to-private and consulting moves."}
+    - {notation: bargaining-unit, definition: "Bargaining-unit seniority and benefit loss; shadow classes."}
+    - {notation: hiring-time, definition: "Time to hire (e.g. state ~90 days, local ~136 days in SL's sample)."}
+    - {notation: information-and-networks, definition: "Where jobs are posted; referral hiring; access to networks."}
+    - {notation: place-bound-knowledge, definition: "Re-learning cost for ecosystem-type or site-specific knowledge (a transfer cost, not a barrier)."}
+
+jurisdictional_context:
+  description: Categorical facet only; MUST NOT be implemented as a geographic layer of Tribal places.
+  values:
+    - {notation: trust-or-tribal-lands, definition: "Work on trust or Tribal lands where Tribal law and compact standards may override EMST default qualification statements."}
+    - {notation: treaty-reserved-rights-area, definition: "Areas where treaty-reserved rights shape obligations."}
+    - {notation: co-managed-area, definition: "Areas under co-management or co-stewardship agreements."}
+    - {notation: delegated-program-jurisdiction, definition: "Programmes run under delegated, primacy or assumed authority."}
+    - {notation: federal-lands, definition: "Federally managed lands and waters."}
+    - {notation: state-lands, definition: "State-managed lands and waters."}
+    - {notation: private-lands, definition: "Private and working lands."}
+
+assessment_methods:
+  description: Indicator.assessmentMethods (IO, FC, SC, DC proposals).
+  values:
+    - {notation: work-sample, definition: "Scored performance on a realistic work product."}
+    - {notation: seeded-error-work-sample, definition: "Work sample with planted defects the candidate must catch (tool-agnostic; used for assisted-mode indicators)."}
+    - {notation: structured-interview-bars, definition: "Structured interview scored on behaviourally anchored rating scales."}
+    - {notation: situational-judgment-test, definition: "Scenario-based judgment items."}
+    - {notation: simulation-role-play, definition: "Standardized simulation (negotiation, hearing, contested meeting) scored on BARS."}
+    - {notation: task-book-observation, definition: "Observed performance of listed tasks in context, signed by a qualified evaluator (entrustment scale)."}
+    - {notation: check-ride, definition: "Normal and abnormal procedures performed before an evaluator (aviation, UAS, vessels)."}
+    - {notation: blind-re-measurement, definition: "Agreement with blind re-measurement or a reference observer within stated tolerances."}
+    - {notation: prediction-test, definition: "Predict field or system outcomes, then check."}
+    - {notation: record-audit, definition: "Audit of the candidate's records against standards (administrative record, chain of custody, QA logs)."}
+    - {notation: moot-defense, definition: "Defend a decision record before mock counsel or a panel."}
+    - {notation: portfolio-review, definition: "Review of work products against rubrics (L4–L5 recognition)."}
+    - {notation: knowledge-test, definition: "Test of knowledge statements (incl. Awareness bundles)."}
+    - {notation: counterpart-360, definition: "Structured counterpart input (personnel data; adopter-held only)."}
+    - {notation: prediction-log-calibration, definition: "Review of logged predictions for calibration over time (personnel data; adopter-held only)."}

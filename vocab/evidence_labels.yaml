@@ -1,0 +1,56 @@
+# EMST v2 L0 vocabulary — evidence labels, provenance methods, review statuses, rater types and change types (TEAM_BRIEF §3; ADR-0010, ADR-0009)
+scheme: evidence_labels
+title: Evidence, provenance and change vocabularies
+schemeVersion: 1.0.0-draft
+status: draft
+lastReviewed: 2026-10-23
+decidedIn: [ADR-0010, ADR-0009, ADR-0008, ADR-0024]
+steward: CA with DE, IA, IO
+license: CC0-1.0
+
+evidence_labels:
+  - {notation: E, prefLabel: Evidence, definition: "Supported by a cited source actually read; at least one resolvable source ID is required."}
+  - {notation: J, prefLabel: Expert judgment, definition: "Reasoned professional judgment; the basis is stated."}
+  - {notation: S, prefLabel: Speculation, definition: "Plausible but unsupported; states what would confirm or refute it."}
+
+provenance_methods:
+  - v1-migration
+  - source-text-recovery
+  - human-authoring
+  - sme-panel
+  - delphi
+  - job-analysis
+  - llm-assisted
+  - rule
+  - lexical-linker
+  - import
+  - computed
+
+derived_from_relations: [carried, rewritten, split-from, merged-from, recovered, prior-evidence, reference-only]
+
+review_statuses:
+  - {notation: unreviewed, definition: "No human review."}
+  - {notation: spot-checked, definition: "Sample reviewed."}
+  - {notation: reviewed, definition: "Each record reviewed by a named reviewer."}
+  - {notation: validated, definition: "Passed the applicable validation gate (ADR-0024)."}
+  - {notation: gold, definition: "Part of a double-annotated gold set."}
+
+rater_types:
+  - {notation: expert-panel, definition: "Pre-registered SME or Delphi panel."}
+  - {notation: sme, definition: "Individual subject-matter expert rater."}
+  - {notation: analyst, definition: "Trained taxonomy rater."}
+  - {notation: llm, definition: "Frozen LLM coder behind IO's gate; never sole coder of selection-relevant values."}
+  - {notation: external-index, definition: "Value joined from an external index via the curated crosswalk."}
+  - {notation: v1-analyst, definition: "v1 single-analyst, LLM-assisted classification; prior evidence only (rater id v1-analyst-01)."}
+
+change_types:
+  - {notation: E, prefLabel: Errata, fast_track: true}
+  - {notation: C, prefLabel: Crosswalk update, fast_track: true}
+  - {notation: S, prefLabel: Substantive add or modify, evidence_rule: "two independent sources incl. ≥ 1 demand signal or SME panel data"}
+  - {notation: D, prefLabel: Deprecate}
+  - {notation: X, prefLabel: Structural (schema or vocabulary), evidence_rule: "two independent sources incl. ≥ 1 demand signal or SME panel data"}
+  - {notation: T, prefLabel: Tribal-related, routing: "Tribal Council first; pauses until it decides"}
+
+semver_impacts: [major, minor, patch]
+
+comment_dispositions: [noted, accepted, accepted-with-modification, deferred, rejected]
