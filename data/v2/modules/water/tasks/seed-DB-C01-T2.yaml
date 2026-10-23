@@ -1,0 +1,43 @@
+id: seed:DB-C01-T2
+type: Task
+prefLabel:
+  en: Verify disinfection contact time against required inactivation values at each operating flow and correct shortfalls before water enters distribution
+statement:
+  en: Verify disinfection contact time against required inactivation values at each operating flow and correct shortfalls before water enters distribution
+textSha256: bb1935f10131cd911b985007c39eb96451c2a6dd98efa55568272957de93fc68
+supports:
+- competency: seed:DB-C01
+  strength: primary
+workFunction: WF-MONITOR
+workflowProfiles:
+- WP-OPERATIONS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  credentialGate: licence
+signOffAuthority:
+  kind: licensure
+homeModule: water
+subsectors:
+- W01
+layer: L2
+module: water
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -1,22 +1,28 @@
 id: seed:v1-5.5.2-T1
 type: Task
 prefLabel:
-  en: Process applications and issue permits for recreation, research, or resource use
+  en: Process applications for routine recreation, research or resource-use permits, issuing standard authorizations within the limits delegated to the position
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Process applications and issue permits for recreation, research, or resource use
-textSha256: 95a3e005b58414722a13926481db1fb0fba448011e94c8bd859f0ea4312e93a5
+  en: Process applications for routine recreation, research or resource-use permits, issuing standard authorizations within the limits delegated to the position
+textSha256: 4dbc9099001a75d54d39bc4952523f98e761aba2c46c1998ea6a9fabab57b311
 supports:
 - competency: seed:v1-5.5.2
   strength: primary
+workFunction: WF-AUTHORIZE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 5.5.2:T1
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T1
 v1Domain:
   code: '5'
@@ -25,14 +31,16 @@ v1SkillArea:
   code: '5.5'
   label: Customer Service
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'Rewritten from the v1 task text: "Process applications and issue permits for recreation, research, or resource use" (WP-05).'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:5.5.2:T1
     v1Code: 5.5.2
@@ -42,9 +50,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

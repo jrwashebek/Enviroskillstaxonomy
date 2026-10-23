@@ -1,0 +1,39 @@
+id: seed:ind-db-c01-l4-b
+type: Indicator
+prefLabel:
+  en: Certifies the monthly operating report as operator in responsible charge after…
+competency: seed:DB-C01
+level: L4
+statement:
+  en: Certifies the monthly operating report as operator in responsible charge after checking automatically compiled values against bench sheets and shift logs.
+augmentationMode: assisted
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:DB-C01-T5
+distinguishingAttribute: ATT-AUG
+safetyOrLegalCritical: true
+layer: L1
+module: water
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

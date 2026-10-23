@@ -1,0 +1,43 @@
+id: seed:lc-txf-delivery-l2-c
+type: Indicator
+prefLabel:
+  en: Maintains a project risk register that records each risk's likelihood
+competency: seed:PS-C03
+level: L2
+statement:
+  en: Maintains a project risk register that records each risk's likelihood, impact, owner and mitigation, updated at every progress review.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:v1-3.1.3-T1
+- seed:v1-3.1.3-T2
+distinguishingAttribute: ATT-AUT
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  derivedFrom:
+  - v1Key: v1:3.1.3:intermediate:I3
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

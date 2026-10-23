@@ -1,22 +1,32 @@
 id: seed:v1-4.1.5-T1
 type: Task
 prefLabel:
-  en: Use mobile data collection apps to record field observations in real-time
+  en: Record field observations on a mobile form or paper data sheet at the time of observation, completing every protocol field and metadata element
 statement:
-  en: Use mobile data collection apps to record field observations in real-time
-textSha256: 07fc6b47616310d035e3cf40e25e4eb670fdf27a21d5d8cf0b56429e2c43134d
+  en: Record field observations on a mobile form or paper data sheet at the time of observation, completing every protocol field and metadata element
+textSha256: 257b888cb06f5a0271411102ed38e17d422d1734c4b7425bdd412b6f549c9423
 supports:
 - competency: seed:FC-C23
   strength: primary
+workFunction: WF-MONITOR
+fieldDependency: on-site-required
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: L
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: L
 notation:
 - scheme: EMSTv1
   value: 4.1.5:T1
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Tier: T1
 v1Domain:
   code: '4'
@@ -25,14 +35,14 @@ v1SkillArea:
   code: '4.1'
   label: Field Assessment & Monitoring
 editorialNote:
-  en: Supports re-pointed from v1 competency 4.1.5 to seed:FC-C23 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: 'G-2 split role: execution to protocol (production). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:4.1.5:T1
     v1Code: 4.1.5
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

@@ -1,22 +1,30 @@
 id: seed:v1-2.1.2-T1
 type: Task
 prefLabel:
-  en: Interpret satellite and aerial imagery to detect changes in vegetation, soil, or water
+  en: Interpret satellite and aerial imagery to detect changes in vegetation, soil or water condition across a management area between two dates.
 statement:
-  en: Interpret satellite and aerial imagery to detect changes in vegetation, soil, or water
-textSha256: 3510c7a7b3a4154934f8cd29f4509f7f3f0c1427e1190402da29b953a860dcae
-supports:
-- competency: seed:v1-2.1.2
-  strength: primary
+  en: Interpret satellite and aerial imagery to detect changes in vegetation, soil or water condition across a management area between two dates.
+textSha256: 340241dbed1b3878d2bd6137d92e8cc468507d5e59fa7d45e6f06dc68f8c18ee
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 2.1.2:T1
+supports:
+- competency: seed:v1-2.1.2
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T1
 v1Domain:
   code: '2'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '2.1'
   label: Geospatial Technologies
-editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.1.2:T1
     v1Code: 2.1.2
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

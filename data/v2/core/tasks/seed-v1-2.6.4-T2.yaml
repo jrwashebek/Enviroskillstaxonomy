@@ -1,22 +1,30 @@
 id: seed:v1-2.6.4-T2
 type: Task
 prefLabel:
-  en: Use ML to flag suspect data for review and automatically correct common errors
+  en: Audit automated flags and corrections on a sensor or batch dataset, measuring false-flag and missed-error rates on a reviewed sample.
 statement:
-  en: Use ML to flag suspect data for review and automatically correct common errors
-textSha256: 57f733e22ef902403215e4781ddaa2121fd9327472d16a92d23f68269f4b3e04
-supports:
-- competency: seed:v1-2.2.3
-  strength: primary
+  en: Audit automated flags and corrections on a sensor or batch dataset, measuring false-flag and missed-error rates on a reviewed sample.
+textSha256: 171036e0f53db634554a115e03c0d2de81eb6a85006d69fe3b99f98990785a8b
+editorialNote:
+  en: Supports re-pointed from v1 competency 2.6.4 to seed:v1-2.2.3 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 2.6.4:T2
+supports:
+- competency: seed:v1-2.2.3
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T2
 v1Domain:
   code: '2'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '2.6'
   label: Ai-Enhanced Environmental Monitoring
-editorialNote:
-  en: Supports re-pointed from v1 competency 2.6.4 to seed:v1-2.2.3 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.6.4:T2
     v1Code: 2.6.4
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

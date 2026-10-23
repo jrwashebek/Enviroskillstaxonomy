@@ -1,0 +1,123 @@
+id: seed:SL-C02
+type: Competency
+prefLabel:
+  en: Issue environmental permits and resource-use authorizations as the deciding authority
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability of the authority that decides an application to evaluate it, derive and draft the limits, conditions and monitoring that implement the governing requirements, answer public comment, and issue, condition or deny the permit or authorization on a defensible record. Excludes the applicant's side of the process and the programme knowledge of each permit type, which module enactments carry.
+statement:
+  en: Evaluates applications against the applicable law, rules and technical standards; derives limits, conditions and monitoring requirements from the technical record; drafts the permit or authorization and its fact sheet or decision rationale; responds to comments; and issues, conditions or denies it on a record that withstands administrative and judicial review.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - permit writing
+  - permit writer
+  - NPDES permit writer
+  - air permit engineer
+  - Title V permitting
+  - dredge-and-fill permit review
+  - special-use permit administration
+  - grazing permit administration
+instrumentSensitivity:
+- mechanism: DM-11
+  rationale:
+    en: Delegated and assumed permit programmes can revert to federal administration.
+  evidenceLabel: E
+  sources:
+  - SC-021
+- mechanism: DM-09
+  rationale:
+    en: Jurisdictional scope (which waters, sources or lands are covered) is being narrowed by rule.
+  evidenceLabel: E
+  sources:
+  - V2-07
+- mechanism: DM-10
+  rationale:
+    en: Substantive standards behind some permit limits were rescinded and are litigated.
+  evidenceLabel: E
+  sources:
+  - V2-06
+- mechanism: DM-14
+  rationale:
+    en: Electronic permitting and AI drafting change production of permits and fact sheets.
+  evidenceLabel: E
+  sources:
+  - V2-08
+- mechanism: DM-15
+  rationale:
+    en: Permit fees and cost recovery fund many state permit programmes.
+  evidenceLabel: J
+learningDesign:
+  assessmentContext:
+    en: Assess with permit-file work samples (limit derivation, condition drafting) and seeded-error review of AI-drafted permits; programme-specific anchors come from module enactments.
+editorialNote:
+  en: 'WP-05 (A5 SC; SL reviewed the state and local enactments). Survivor for permit and authorization writing: absorbs DB-C07, DB-C12 (air permitting part of v1 6.7.5) and C-LM-03 and the regulator half of v1 6.1.3. Regulator and resource-manager variants are actor enactments with authorityPosition; programme specifics (water discharge, air operating, waste, wetland fill, land-use authorizations) are module enactments (WP-06). v1 described this work from the applicant side; state postings describe the permit-writer side [E: SL-079, SL-088]. Mirror links: SC-C01 regulated-party enactment (applicant pathway) and DB-C26 (permittee compliance).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-021
+  - SL-050
+  - SL-073
+  - SL-076
+  - SL-079
+  - SL-088
+  - V2-06
+  - V2-07
+  derivedFrom:
+  - v1Key: v1:6.1.3
+    relation: split-from
+  - v1Key: v1:6.7.5
+    relation: split-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - seed:sl-c02-l1-a
+  - seed:sl-c02-l1-b
+- level: L2
+  indicators:
+  - seed:sl-c02-l2-a
+  - seed:sl-c02-l2-b
+  - seed:sl-c02-l2-c
+- level: L3
+  indicators:
+  - seed:sl-c02-l3-a
+  - seed:sl-c02-l3-b
+  - seed:sl-c02-l3-c
+- level: L4
+  indicators:
+  - seed:sl-c02-l4-a
+  - seed:sl-c02-l4-b
+enactments:
+- seed:ena-sl-c02-state-regulator
+- seed:ena-sl-c02-federal-regulator
+- seed:ena-sl-c02-local-regulator
+- seed:ena-sl-c02-federal-resource-manager
+- seed:ena-sl-c02-state-resource-manager

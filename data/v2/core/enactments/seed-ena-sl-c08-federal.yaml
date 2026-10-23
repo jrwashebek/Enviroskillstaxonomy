@@ -1,0 +1,58 @@
+id: seed:ena-sl-c08-federal
+type: Enactment
+prefLabel:
+  en: Federal agency environmental review
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SL-C08
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: NEPA as amended by the Fiscal Responsibility Act of 2023 (page and time limits, lead and cooperating agencies), implemented through each department's own procedures after CEQ's government-wide regulations were removed (final 2026-01-08); sponsor-paid acceleration under NEPA section 112.
+principal:
+  en: The lead agency's responsible official; department leadership.
+accountabilityVenue:
+  en: Federal courts under substantial deference (Seven County, 2025); inspectors general; Congress.
+characteristicInstruments:
+- seed:ins/nepa-fra-2023
+- seed:ins/ceq-nepa-regs-removal
+- seed:ins/ceq-nepa-guidance-2025
+- seed:ins/doi-nepa-procedures
+- seed:ins/usda-nepa-procedures
+- seed:ins/dot-nepa-procedures
+- seed:ins/epa-nepa-procedures
+- seed:ins/nepa-s112-fee
+- seed:ins/seven-county
+- seed:ins/usfs-objection-rule
+- seed:ins/ceq-permitting-data-standard
+note:
+  en: 'The same review skill is enacted against different, versioned department procedures (DOI handbook; USDA 7 CFR 1b; DOT; EPA proposed), so knowing which procedure and version governs each step is part of federal performance [E: V2-01].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - V2-01
+  - V2-02
+  - V2-04
+  - V2-08
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

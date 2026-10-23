@@ -1,22 +1,30 @@
 id: seed:v1-2.1.5-T2
 type: Task
 prefLabel:
-  en: Apply cartographic principles such as scale, symbology, and color theory
+  en: Apply cartographic conventions for scale, symbology and colour to a map series, so that maps remain comparable across editions.
 statement:
-  en: Apply cartographic principles such as scale, symbology, and color theory
-textSha256: 30ea1576f0faa619e31a487a5a4df2a4bf848ef702199f5f08673ce7a62705e3
-supports:
-- competency: seed:v1-2.1.5
-  strength: primary
+  en: Apply cartographic conventions for scale, symbology and colour to a map series, so that maps remain comparable across editions.
+textSha256: a25beabe7e000533ae93f34f12efa902427e9ac055ebb65244f21477569ac4cf
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 2.1.5:T2
+supports:
+- competency: seed:v1-2.1.5
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: remote
+formationDependency: 'no'
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T2
 v1Domain:
   code: '2'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '2.1'
   label: Geospatial Technologies
-editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.1.5:T2
     v1Code: 2.1.5
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

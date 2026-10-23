@@ -1,0 +1,35 @@
+mapping_set_id: https://w3id.org/emst/crosswalks/onet-soc/2019
+mapping_set_version: 0.1.0-draft
+mapping_set_title: X3a EMST roles to O*NET-SOC 2019 occupations
+mapping_set_description: 'Agent-drafted candidate mappings (review_status=candidate in `other`); no human reviewer yet. Subjects are MVP role profile keys from docs/decisions/mvp_role_set.csv (seed:<role_key>), to be re-keyed to RoleVariant IDs when WP-08 authors them (CR-IA-001); `applies_to` in `other` names the variant or level slice. Predicate rules: closeMatch = core work largely interchangeable for statistics and navigation; broadMatch = the role is a specialisation of a broader occupation; narrowMatch = the occupation is one slice of the role; relatedMatch = partial overlap or feeder/destination; skos:closeMatch sssom:NoTermFound = no SOC occupation adequately covers the role (reason in comment). Tribal role variants are held (ADR-0007 §D) and not mapped. v1 family rows (EMSTv1fam) record the verified v1 errors as predicate_modifier Not and the ADR-0022 §5 additions; the family sheet is retired as an anchor. Not for classification, selection or RIF decisions.'
+subject_source: emstsrc:emst-v2-roles
+subject_source_version: 2.0.0-draft (MVP role set 2026-10-23)
+object_source: emstsrc:onet-soc-2019
+object_source_version: O*NET-SOC 2019 taxonomy; codes checked against O*NET 27.2 data-level occupations (O*NET 31.0, Aug 2026, keeps O*NET-SOC 2019 per V4-08)
+mapping_tool: pipelines/crosswalks/x3_soc.py@0.1.0
+see_also:
+- https://www.onetcenter.org/taxonomy.html
+- docs/research/_verification/V4_key_facts.csv#V4-08
+comment: ADR-0022 X3; WP-09. Prepare a SOC 2028 re-map when the final notice is published (planned 2027, V3-02).
+license: https://creativecommons.org/publicdomain/zero/1.0/
+creator_id:
+- emstagent:ia-wp09@phase4
+mapping_date: '2026-10-23'
+curie_map:
+  emst: https://w3id.org/emst/
+  seed: https://w3id.org/emst/seed/
+  emstagent: https://w3id.org/emst/agent/
+  sssom: https://w3id.org/sssom/
+  semapv: https://w3id.org/semapv/vocab/
+  skos: http://www.w3.org/2004/02/skos/core#
+  ONETSOC: https://www.onetonline.org/link/summary/
+  SOC2018: https://www.bls.gov/soc/2018/#
+  EMSTv1fam: https://w3id.org/emst/v1/family/
+  emstsrc: https://w3id.org/emst/sources/
+extension_definitions:
+- slot_name: record_id
+  property: https://w3id.org/sssom/record_id
+  type_hint: xsd:string
+- slot_name: reviewer_agreement
+  property: https://w3id.org/sssom/reviewer_agreement
+  type_hint: xsd:double

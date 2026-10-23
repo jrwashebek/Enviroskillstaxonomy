@@ -1,22 +1,35 @@
 id: seed:v1-3.5.5-T3
 type: Task
 prefLabel:
-  en: Balance data-driven insights with human judgment, traditional knowledge, and community values
+  en: Set governance rules that keep consequential AI-assisted decisions with accountable people and that weigh affected communities' input on AI priorities.
 statement:
-  en: Balance data-driven insights with human judgment, traditional knowledge, and community values
-textSha256: 6666d853727588f4f457484ff261889af32d0b4130c6db201e49c7e22825edc9
-supports:
-- competency: seed:DC-CAND-21
-  strength: primary
+  en: Set governance rules that keep consequential AI-assisted decisions with accountable people and that weigh affected communities' input on AI priorities.
+textSha256: 8191613df09b5eef8a43da627e0c89d9c30885af108d96f2215f9e47f4f21048
+editorialNote:
+  en: 'Rewritten actor-neutral: the v1 framing of this task was retired by TN; its replacement indicator (no ingestion without consent) is held under TN-C03 (v1_disposition 3.5.5). Supports re-pointed from v1 competency 3.5.5 to seed:DC-CAND-21 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
 notation:
 - scheme: EMSTv1
   value: 3.5.5:T3
+supports:
+- competency: seed:DC-CAND-21
+  strength: primary
+workFunction: WF-MANAGE
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- stakeholder
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
 v1Tier: T3
 v1Domain:
   code: '3'
@@ -24,18 +37,15 @@ v1Domain:
 v1SkillArea:
   code: '3.5'
   label: Leadership
-editorialNote:
-  en: Supports re-pointed from v1 competency 3.5.5 to seed:DC-CAND-21 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: restricted-governed
-indigenousDataFlag: true
-approvalStatus: pending-tribal-review
-aiUsePermitted: false
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:3.5.5:T3
     v1Code: 3.5.5
@@ -45,9 +55,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

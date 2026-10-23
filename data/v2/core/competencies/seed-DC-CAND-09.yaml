@@ -1,0 +1,68 @@
+id: seed:DC-CAND-09
+type: Competency
+prefLabel:
+  en: Evaluate model fitness-for-purpose and validate against independent evidence
+altLabel:
+  en:
+  - Model evaluation
+  - AI model interpretation and explainability
+definition:
+  en: 'The capability to judge whether a statistical, process, learned or AI model is fit for a stated decision: checking assumptions and domain of applicability, designing independent validation, quantifying error by condition, detecting use outside the model''s envelope, interpreting what drives predictions and documenting limits.'
+statement:
+  en: 'Judges whether a statistical, process, learned or AI model is fit for a stated decision: checks assumptions and domain of applicability; designs independent validation with blocked hold-outs or field reference data; quantifies error by condition; detects use outside the model''s envelope; explains which inputs drive predictions; and documents the limits.'
+editorialNote:
+  en: 'Candidate DC-CAND-09 (core-v2.0): DC enactment of the validation floor at model level; absorbs v1 2.6.5 interpretability content (model-risk content in DC-CAND-19). FC secondary for ecological models: out-of-distribution failure is usually first seen in the field.'
+notation:
+- scheme: EMST-candidate
+  value: DC-CAND-09
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:dc-cand-09-l1-a
+  - seed:dc-cand-09-l1-b
+- level: L2
+  indicators:
+  - seed:dc-cand-09-l2-a
+  - seed:dc-cand-09-l2-b
+- level: L3
+  indicators:
+  - seed:dc-cand-09-l3-a
+  - seed:dc-cand-09-l3-b
+- level: L4
+  indicators:
+  - seed:dc-cand-09-l4-a
+  - seed:dc-cand-09-l4-b
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.6.5
+    relation: merged-from
+    note: interpretability methods and limits
+  sources:
+  - DC-001
+  - DC-005
+  - DC-012
+  adr:
+  - ADR-0003
+  - ADR-0025

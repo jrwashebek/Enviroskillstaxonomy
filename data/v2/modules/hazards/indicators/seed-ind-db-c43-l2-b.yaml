@@ -1,0 +1,37 @@
+id: seed:ind-db-c43-l2-b
+type: Indicator
+prefLabel:
+  en: Accepts or returns an elevation certificate after checking its data against the…
+competency: seed:DB-C43
+level: L2
+statement:
+  en: Accepts or returns an elevation certificate after checking its data against the permit, survey and flood map, recording each discrepancy found.
+augmentationMode: unaided
+assessmentMethods:
+- seeded-error-work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:DB-C43-T3
+layer: L1
+module: hazards
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -1,0 +1,45 @@
+id: seed:fc-clean-blanks
+type: Task
+prefLabel:
+  en: Prepare field and equipment blanks at each site so that contamination introduced in the field can be detected
+statement:
+  en: Prepare field and equipment blanks at each site so that contamination introduced in the field can be detected
+textSha256: 20ff0c3d790321f908f9a48ab61e86cc5b9358f944fbafe70e7110228c12e833
+supports:
+- competency: seed:FC-C16
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: on-site-required
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: L
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: execution to protocol (production).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

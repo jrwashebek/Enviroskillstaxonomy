@@ -4,7 +4,7 @@ title: Change vocabularies
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0028, ADR-0015, ADR-0009, ADR-0008]
+decidedIn: [ADR-0028, ADR-0015, ADR-0009, ADR-0008, ADR-0029]
 steward: CA with LM, FS, IA
 license: CC0-1.0
 description: >
@@ -60,3 +60,68 @@ signal_reliability:
     - {notation: B, definition: "Credible secondary source with traceable primary basis."}
     - {notation: C, definition: "Single secondary or practitioner report."}
     - {notation: D, definition: "Unverified, anecdotal or vendor claim."}
+
+signal_statuses:
+  description: ChangeSignal.signalStatus (SPEC §5.14; ADR-0028 §1; renamed from `status`, CR-DE-001 #1).
+  values:
+    - {notation: watch, definition: "Recorded and shown in the 'what's coming' view; moves no indicator."}
+    - {notation: active, definition: "Reviewed and eligible to count under vocab/rules/change-indicator@1.0.0.yaml; signalFamily and a listed independenceKey are required."}
+    - {notation: retired, definition: "No longer current; kept for provenance; never counted."}
+
+change_indicator_kinds:
+  description: Kinds of computed change indicator (vocab/rules/change-indicator@1.0.0.yaml).
+  values:
+    - {notation: role-change, definition: "Change indicator on a role profile or role variant."}
+    - {notation: skill-change, definition: "Change indicator on a task or competency."}
+
+signal_families:
+  description: >
+    ChangeSignal.signalFamily (ADR-0028 §2-§3; CR-LM-001 #1). The evidence rule needs two independent families pointing
+    the same way; two indices built on the same data family count as one. counts_toward lists the indicator kinds a
+    family may count toward; an empty list means context only.
+  values:
+    - {notation: capability, counts_toward: [role-change, skill-change], definition: "What technology can do on the work (capability benchmarks, exposure indices)."}
+    - {notation: observed-use, counts_toward: [role-change, skill-change], definition: "Observed use of technology on the work (usage data)."}
+    - {notation: deployment, counts_toward: [role-change, skill-change], definition: "Registered or observed deployments (e.g. AI use-case inventories); registeredDeployment marks a registered one."}
+    - {notation: postings-pds, counts_toward: [role-change, skill-change], definition: "Job postings and position descriptions (duties text, volume)."}
+    - {notation: headcount, counts_toward: [role-change, skill-change], definition: "Workforce counts, accessions, separations and entry-grade shares."}
+    - {notation: plan-requirements, counts_toward: [role-change, skill-change], definition: "Requirements written into plans, permits and programmes (e.g. monitoring components)."}
+    - {notation: worker-report, counts_toward: [role-change, skill-change], definition: "Structured reports from practitioners (sentinels, surveys)."}
+    - {notation: policy, counts_toward: [role-change], definition: "Policy and state HR events; counts toward role-change indicators only, never toward skill-change indicators (ADR-0028 §3)."}
+    - {notation: projection, counts_toward: [], definition: "Official or third-party projections; context only."}
+    - {notation: workload, counts_toward: [], definition: "Workload measures (e.g. fire acres, case backlogs); context only."}
+
+independence_keys:
+  description: >
+    Upstream data providers behind each ChangeSignal.independenceKey (CR-LM-001 #2; steward LM). Two counted signals are
+    independent only if their provider sets are disjoint, so no indicator rests on a single vendor's data (ADR-0008 §4).
+    independenceKey is a slug, not a generated enumeration. An ACTIVE signal's key MUST be listed here; a WATCH signal's
+    unlisted key is treated as its own provider and raises a warning. Carried verbatim from
+    docs/methods/ci/evidence_rule.py#PROVIDERS on 2026-10-23 [J: LM; BLS lineage E: V4-07].
+  keys:
+    - {key: anthropic-economic-index, providers: [anthropic]}
+    - {key: anthropic-labor-market-impacts, providers: [anthropic]}
+    - {key: anthropic-robot-exposure, providers: [anthropic]}
+    - {key: ms-working-with-ai, providers: [microsoft]}
+    - {key: eloundou-gpts-are-gpts, providers: [openai-eloundou]}
+    - {key: bls-ai-exposure-theoretical, providers: [felten-raj-seamans, openai-eloundou, eisfeldt]}
+    - {key: bls-ai-exposure-observed, providers: [anthropic, microsoft]}
+    - {key: pnnl-openai-draftnepabench, providers: [pnnl, openai]}
+    - {key: ombegov-ai-inventory, providers: [omb-agency-self-report]}
+    - {key: opm-ehri-fwd, providers: [opm-ehri]}
+    - {key: gao-opm, providers: [opm-ehri]}
+    - {key: openlmp-usfs-western-plans, providers: [openlmp]}
+
+signal_external_targets:
+  description: >
+    ChangeSignal targets that are not EMST entity types (CR-LM-001 #4). Occupation-grain signals (BLS, O*NET-SOC) are
+    NOT a target type: they attach to role profiles or variants through the X3 path with crosswalkPath and
+    crosswalkMinMatchType.
+  values:
+    - notation: organization
+      id_schemes: ['opm-agency:<code>', 'census-gov:<id>']
+      definition: >
+        A government employer identified by an official code. Never a Tribal government, Tribal organization or Tribal
+        enterprise (ADR-0007 V3); never a named NGO or private firm (use aggregates by sector actor and industry);
+        measures with n < 5 are suppressed (ADR-0012). Organization signals inform staffing-outcome and entry-path
+        context and never move a role change indicator directly.

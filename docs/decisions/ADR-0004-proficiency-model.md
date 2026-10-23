@@ -55,3 +55,12 @@ v1 levels are tenure bands (0–2, 3–5, 6–10, 10+ years) with templated text
 - **LC** argued three trainable levels suffice: preserved as a training view (L1–L3 trainable).
 - **DC, SC, FC** wrote four-level anchors: they map without loss; DC said a split of L3 would be the natural extension — the five-level scale provides it at the top instead.
 - **Trade-off named:** comparability and defensibility versus the legibility of one uniform four-by-N grid; and one more level to validate, contained by level spans.
+
+## Amendments
+
+- **2026-10-23 — CR-IO-001 / ADR-0029 §5 (CA).**
+  - **Publication-rule results.** Each result is `pass | fail | pending | not-applicable`. Evidence is required when PR-1 or PR-4 is `pass`, and CI rejects either `pass` without `job-analysis-confirmed` or `panel-retained` indicators respectively (PUB-14).
+  - **PR-2 field.** PR-2 is recorded in `Indicator.distinguishingAttribute` (an `ATT-*` attribute). It is required above the lowest level that has indicators once a record is `candidate`.
+  - **Tier mapping.** IO's mapping is ratified: indicators are published at a level when the rules required by the record's use tier pass. Untested rules show "level placement pending validation".
+  - **Consequence for rc.1.** Until a Delphi runs, no level is develop-grade.
+  - **Waivers.** They live in `data/v2/governance/lint_waivers.csv`.

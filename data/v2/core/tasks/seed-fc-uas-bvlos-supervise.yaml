@@ -1,0 +1,44 @@
+id: seed:fc-uas-bvlos-supervise
+type: Task
+prefLabel:
+  en: Supervise several automated aircraft in a beyond-visual-line-of-sight operation, deciding when to abort or continue each flight
+statement:
+  en: Supervise several automated aircraft in a beyond-visual-line-of-sight operation, deciding when to abort or continue each flight
+textSha256: 433a714f2f27b89c623f8e43761e8974316c3d5fffe1c51bfdcd9e8ba8562ff8
+supports:
+- competency: seed:FC-C14
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: general
+  credentialGate: external-certificate
+  currencyDecay: H
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: adaptation or decision in place. Credential gate level is the author''s draft pending the WP-07 Credential register (T-8).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

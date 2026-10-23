@@ -1,0 +1,46 @@
+id: seed:ena-sl-c02-federal-resource-manager
+type: Enactment
+prefLabel:
+  en: Federal land manager issuing resource-use authorizations
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SL-C02
+enactmentKind: actor
+actorType: federal-land-manager
+authorityBasis:
+  en: Land-management statutes and regulations authorizing special uses, grazing, mineral and right-of-way authorizations, decided within the governing land management plan.
+principal:
+  en: The authorized officer (district ranger, field manager or superintendent).
+accountabilityVenue:
+  en: Administrative appeals or objection processes; federal courts.
+authorityPosition: resource-manager
+characteristicInstruments:
+- seed:ins/usfs-objection-rule
+additionalTasks:
+- seed:sc-issue-resource-use-authorization
+note:
+  en: 'Resource-manager variant: the authority decides over a resource it holds rather than over another party''s emissions; terms, fees and monitoring conditions replace effluent or emission limits [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

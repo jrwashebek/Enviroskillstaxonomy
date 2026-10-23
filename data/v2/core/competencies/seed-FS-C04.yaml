@@ -1,0 +1,53 @@
+id: seed:FS-C04
+type: Competency
+prefLabel:
+  en: Design and steward field reference data for Earth-observation and AI models
+definition:
+  en: Planning field plots and labelled samples, maintaining reference datasets with their metadata, provenance and access conditions, and running regional validation that establishes where Earth-observation and AI models are fit for use. Covers the reference-data lifecycle across seasons and products. Excludes model training and evaluation statistics as such (data craft) and single-product field checks (FC-C02).
+statement:
+  en: Plan field plots and labelled samples, maintain reference datasets with metadata, provenance and access conditions across seasons and products, and run regional validation that establishes where Earth-observation and AI models are fit for use.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:ind-fs-c04-l2-a
+  - seed:ind-fs-c04-l2-b
+  - seed:ind-fs-c04-l2-c
+- level: L3
+  indicators:
+  - seed:ind-fs-c04-l3-a
+  - seed:ind-fs-c04-l3-b
+  - seed:ind-fs-c04-l3-c
+- level: L4
+  indicators:
+  - seed:ind-fs-c04-l4-a
+  - seed:ind-fs-c04-l4-b
+homeModule: core
+layer: L1
+module: core
+status: draft
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: WP-03 (FC) draft. Core practice from candidate FS-C04 (FC primary, DC secondary; lifecycle emerging). Core of the ground-truth and validation steward role (R05) with FC-C02, FC-C31 and the TX-A validation floor.
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

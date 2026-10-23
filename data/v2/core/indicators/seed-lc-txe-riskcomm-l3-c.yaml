@@ -1,0 +1,40 @@
+id: seed:lc-txe-riskcomm-l3-c
+type: Indicator
+prefLabel:
+  en: Revises standing advisories
+competency: seed:DB-C29
+level: L3
+statement:
+  en: Revises standing advisories when new evidence changes the risk picture, documenting what changed and why for the public record.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:lc-txe-draft-advisory
+distinguishingAttribute: ATT-GUI
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

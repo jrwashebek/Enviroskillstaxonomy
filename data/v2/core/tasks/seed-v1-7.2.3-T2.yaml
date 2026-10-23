@@ -1,22 +1,31 @@
 id: seed:v1-7.2.3-T2
 type: Task
 prefLabel:
-  en: Apply calibrated trust in operational contexts — accepting AI outputs when within the validated reliability envelope, qualifying them when near its edges, and overriding them when outside it — while documenting the basis of each judgment call
+  en: Decide whether to accept, qualify or override an AI output in operational work, based on whether the case lies inside the tool's validated reliability envelope.
 statement:
-  en: Apply calibrated trust in operational contexts — accepting AI outputs when within the validated reliability envelope, qualifying them when near its edges, and overriding them when outside it — while documenting the basis of each judgment call
-textSha256: 876f1b9aeb05121e350156a7bbbcdad49a19a523300a1feeaf8e20641befb1f5
-supports:
-- competency: seed:v1-7.2.3
-  strength: primary
+  en: Decide whether to accept, qualify or override an AI output in operational work, based on whether the case lies inside the tool's validated reliability envelope.
+textSha256: 49e0e5002bacb2aec7649157459f69e8c9037b465003b9f77fd1aae3e2e10d55
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 7.2.3:T2
+supports:
+- competency: seed:v1-7.2.3
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
 v1Tier: T2
 v1Domain:
   code: '7'
@@ -24,15 +33,15 @@ v1Domain:
 v1SkillArea:
   code: '7.2'
   label: Human-Ai Professional Practice
-editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:7.2.3:T2
     v1Code: 7.2.3
@@ -42,9 +51,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

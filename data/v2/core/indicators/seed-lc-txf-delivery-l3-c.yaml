@@ -1,0 +1,40 @@
+id: seed:lc-txf-delivery-l3-c
+type: Indicator
+prefLabel:
+  en: Directs quality review of a multi-author deliverable
+competency: seed:PS-C03
+level: L3
+statement:
+  en: Directs quality review of a multi-author deliverable by assigning qualified reviewers and recording the disposition of every review comment before release.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:lc-txf-run-quality-review
+distinguishingAttribute: ATT-FOR
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

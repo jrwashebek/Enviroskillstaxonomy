@@ -1,0 +1,39 @@
+id: seed:dc-cand-18-l4-b
+type: Indicator
+prefLabel:
+  en: Audits a corpus used by AI assistants for stale or unauthorized sources, ordering removals…
+competency: seed:DC-CAND-18
+level: L4
+statement:
+  en: Audits a corpus used by AI assistants for stale or unauthorized sources, ordering removals and reporting the results to its owners.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:dc-18-test-retrieval
+- seed:dc-18-assign-ownership
+distinguishingAttribute: ATT-SCO
+layer: L1
+module: core
+status: draft
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

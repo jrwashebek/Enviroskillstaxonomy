@@ -1,0 +1,42 @@
+id: seed:sc-validate-burden-screening
+type: Task
+prefLabel:
+  en: Validate a burden screening for a permit decision against local monitoring or health data, documenting where the screening misrepresents conditions
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Validate a burden screening for a permit decision against local monitoring or health data, documenting where the screening misrepresents conditions
+textSha256: 6d5ae17efcfb96a709d6d41c25f8822e39cb11f5dba96c905bd6ae15bb09705b
+supports:
+- competency: seed:DB-C52
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Validate a burden screening for a permit decision against local monitoring or health data, documenting where the screening misrepresents conditions" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

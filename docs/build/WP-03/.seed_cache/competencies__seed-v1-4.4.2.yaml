@@ -1,0 +1,231 @@
+id: seed:v1-4.4.2
+type: Competency
+prefLabel:
+  en: First aid and emergency medical response
+statement:
+  en: Providing immediate medical care for injuries or illnesses in field settings.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 4.4.2
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.4'
+  label: Safety & Emergency Response
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-RESPOND (FC). Rationale: Levels were defined by certification (CPR, WFR, EMT); certificates become Credentials and proficiency is anchored on scenario-based field evaluation (FC, LC verdicts; T-8). Role verdicts considered: FC:change|LC:change.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.4.2
+    v1Code: 4.4.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 128
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:4.4.2
+    v1Code: 4.4.2
+    v1Table: source_text/competencies
+    sourceTextLine: 8222
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+  - ADR-0013
+v1Seed:
+  v1Title: First aid and emergency medical response
+  v1Description: Providing immediate medical care for injuries or illnesses in field settings.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.4.2:foundational
+    knowledge: Holds basic first aid and CPR certification
+    application: Provides basic first aid for minor injuries
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.2:foundational:I1
+      n: 1
+      text: Holds current First Aid/CPR certification
+      origin: database
+    - v1Key: v1:4.4.2:foundational:I2
+      n: 2
+      text: Treats minor injuries (cuts, scrapes, blisters)
+      origin: database
+    - v1Key: v1:4.4.2:foundational:I3
+      n: 3
+      text: Recognizes serious injuries requiring medical attention
+      origin: database
+    - v1Key: v1:4.4.2:foundational:I4
+      n: 4
+      text: Activates emergency response appropriately
+      origin: database
+    - v1Key: v1:4.4.2:foundational:I5
+      n: 5
+      text: Maintains basic first aid kit
+      origin: database
+    - v1Key: v1:4.4.2:foundational:I6
+      n: 6
+      text: Documents injuries and treatments
+      origin: database
+    - v1Key: v1:4.4.2:foundational:I7
+      n: 7
+      text: Follows bloodborne pathogen protocols
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.4.2:intermediate
+    knowledge: Holds Wilderness First Responder or EMT certification
+    application: Manages medical emergencies in remote settings
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.2:intermediate:I1
+      n: 1
+      text: Holds Wilderness First Responder (WFR) or EMT certification
+      origin: database
+    - v1Key: v1:4.4.2:intermediate:I2
+      n: 2
+      text: Assesses and treats injuries in backcountry settings
+      origin: database
+    - v1Key: v1:4.4.2:intermediate:I3
+      n: 3
+      text: Manages medical emergencies until evacuation possible
+      origin: database
+    - v1Key: v1:4.4.2:intermediate:I4
+      n: 4
+      text: Improvises medical care with limited resources
+      origin: database
+    - v1Key: v1:4.4.2:intermediate:I5
+      n: 5
+      text: Coordinates helicopter or ground evacuations
+      origin: database
+    - v1Key: v1:4.4.2:intermediate:I6
+      n: 6
+      text: Communicates medical information to responders
+      origin: database
+    - v1Key: v1:4.4.2:intermediate:I7
+      n: 7
+      text: Maintains advanced first aid and trauma supplies
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.2:intermediate:I8
+      n: 8
+      text: Provides medical support for field crews
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.2:intermediate:I9
+      n: 9
+      text: Makes evacuation vs. care-in-place decisions
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.4.2:advanced
+    knowledge: Holds advanced medical certifications; understands wilderness medicine
+    application: Provides advanced medical care and leads medical response
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.2:advanced:I1
+      n: 1
+      text: Holds Wilderness EMT, Paramedic, or similar advanced certification
+      origin: database
+    - v1Key: v1:4.4.2:advanced:I2
+      n: 2
+      text: Provides advanced life support in remote settings
+      origin: database
+    - v1Key: v1:4.4.2:advanced:I3
+      n: 3
+      text: Manages complex medical situations and multiple patients
+      origin: database
+    - v1Key: v1:4.4.2:advanced:I4
+      n: 4
+      text: Trains staff in wilderness first aid
+      origin: database
+    - v1Key: v1:4.4.2:advanced:I5
+      n: 5
+      text: Develops medical response plans for field operations
+      origin: database
+    - v1Key: v1:4.4.2:advanced:I6
+      n: 6
+      text: Maintains medical equipment and supplies
+      origin: database
+    - v1Key: v1:4.4.2:advanced:I7
+      n: 7
+      text: Coordinates with search and rescue organizations
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.2:advanced:I8
+      n: 8
+      text: Serves as medical advisor for field programs
+      origin: restored-from-source-text
+    - v1Key: v1:4.4.2:advanced:I9
+      n: 9
+      text: Conducts medical drills and exercises
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.4.2:expert
+    knowledge: Shapes wilderness medicine practices
+    application: Provides medical program leadership
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.4.2:expert:I1
+      n: 1
+      text: Directs medical programs for field operations
+      origin: database
+    - v1Key: v1:4.4.2:expert:I2
+      n: 2
+      text: Develops wilderness medicine protocols and training
+      origin: database
+    - v1Key: v1:4.4.2:expert:I3
+      n: 3
+      text: Provides medical direction for search and rescue
+      origin: database
+    - v1Key: v1:4.4.2:expert:I4
+      n: 4
+      text: Publishes on wilderness medicine topics
+      origin: database
+    - v1Key: v1:4.4.2:expert:I5
+      n: 5
+      text: Trains wilderness medicine instructors
+      origin: database
+    - v1Key: v1:4.4.2:expert:I6
+      n: 6
+      text: Achieves recognition for wilderness medical expertise
+      origin: database
+    - v1Key: v1:4.4.2:expert:I7
+      n: 7
+      text: Advances wilderness medicine practices in field operations
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.4.2:sector:public_agencies
+    text: Ranger medical response, remote duty station care
+  - sector: private_sector
+    v1Key: v1:4.4.2:sector:private_sector
+    text: Expedition medicine, remote site medical support
+  - sector: ngos
+    v1Key: v1:4.4.2:sector:ngos
+    text: Field program medical support, volunteer safety
+  - sector: consulting
+    v1Key: v1:4.4.2:sector:consulting
+    text: Medical planning for remote projects
+  - sector: academia
+    v1Key: v1:4.4.2:sector:academia
+    text: Field research medical support, outdoor program medicine
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

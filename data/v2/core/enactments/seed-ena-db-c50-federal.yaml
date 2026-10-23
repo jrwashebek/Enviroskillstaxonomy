@@ -1,0 +1,46 @@
+id: seed:ena-db-c50-federal
+type: Enactment
+prefLabel:
+  en: Federal agency official for an undertaking
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:DB-C50
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: NHPA section 106 and the ACHP regulations (36 CFR part 800); a rewrite advanced by the ACHP on 2026-07-24 is at OIRA and unpublished; program alternatives and programmatic agreements.
+principal:
+  en: The agency official with jurisdiction over the undertaking.
+accountabilityVenue:
+  en: ACHP comment process; federal courts.
+characteristicInstruments:
+- seed:ins/nhpa-s106-regs
+note:
+  en: 'Federal agencies carry the review duty for their undertakings, including permits and funding they provide; acceleration of environmental review does not shorten this review [E: SC-039, V2-14].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SC-039
+  - V2-14
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

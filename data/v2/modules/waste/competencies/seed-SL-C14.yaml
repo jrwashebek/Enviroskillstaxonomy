@@ -1,0 +1,61 @@
+id: seed:SL-C14
+type: Competency
+prefLabel:
+  en: Regulate solid waste and materials management facilities
+altLabel:
+  en:
+  - Solid waste facility permitting and inspection
+  - Landfill regulation
+definition:
+  en: Regulator-side permitting, inspection and enforcement at landfills, transfer stations, recycling, composting, scrap tire and other materials facilities, including review of design, operating, financial assurance, closure and post-closure plans. Excludes facility operation (DB-C16) and hazardous waste facility permits (SL-C02 waste enactment).
+statement:
+  en: Reviews solid waste facility applications and design, operating, closure and post-closure plans, sets and checks financial assurance, inspects facilities for permit compliance and reviews their monitoring reports, so that authorizations are enforceable and conditions are verified in the field and in the record.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:ind-sl-c14-l2-a
+  - seed:ind-sl-c14-l2-b
+- level: L3
+  indicators:
+  - seed:ind-sl-c14-l3-a
+  - seed:ind-sl-c14-l3-b
+- level: L4
+  indicators:
+  - seed:ind-sl-c14-l4-a
+  - seed:ind-sl-c14-l4-b
+homeModule: waste
+subsectors:
+- P02
+reusability: subsector-specific
+layer: L1
+module: waste
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Regulating solid waste and materials facilities (P02; regulator variant beside DB-C16). Regulator side of role R29. Basis [E] for the function in state classes (SL-059, SL-078, SL-083, SL-072); [J] for content.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - SL-059
+  - SL-078
+  - SL-083
+  - SL-072
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

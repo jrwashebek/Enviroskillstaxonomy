@@ -1,0 +1,50 @@
+id: seed:v1-4.5.2-T3
+type: Task
+prefLabel:
+  en: Maintain and troubleshoot small engines
+statement:
+  en: Maintain and troubleshoot small engines
+textSha256: 1dc23381b2e48739406e51cffd518073dc9d813d1d9a93b58b94c7cd751f9e42
+supports:
+- competency: seed:v1-4.5.2
+  strength: primary
+notation:
+- scheme: EMSTv1
+  value: 4.5.2:T3
+layer: L2
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Tier: T3
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.5'
+  label: Equipment Operation
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.5.2:T3
+    v1Code: 4.5.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 133
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0013

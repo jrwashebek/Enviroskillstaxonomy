@@ -1,0 +1,46 @@
+id: seed:ps-c18-l2-b
+type: Indicator
+prefLabel:
+  en: Screens a proposed contractor for conflicts with the project's regulated parties, recording the result and any mitigation required before award.
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:PS-C18
+level: L2
+statement:
+  en: Screens a proposed contractor for conflicts with the project's regulated parties, recording the result and any mitigation required before award.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- screening record
+servedTasks:
+- seed:sc-screen-assignment-conflicts
+distinguishingAttribute: ATT-SCO
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

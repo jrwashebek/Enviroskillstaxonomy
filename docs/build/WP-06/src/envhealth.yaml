@@ -1,0 +1,331 @@
+# WP-06 authoring source — MOD-06 Environmental public health (namespace: envhealth; subsectors H01 H02)
+# Rows: candidate_disposition SL-C07 (absorbs DB-C27), LC-C-07 (absorbs DB-C28), DB-C39 (emerging).
+# Content evidence label J unless noted. All text agent-drafted.
+module: envhealth
+competencies:
+
+  - id: SL-C07
+    label: Conduct environmental public health inspections and plan reviews
+    alt: [Sanitarian inspection, Environmental health specialist inspection, Retail food and onsite wastewater programme inspection]
+    def: >-
+      Risk-based inspection of food establishments, onsite wastewater systems, private wells, recreational water,
+      institutions and housing against sanitary and health codes, with review of construction plans and permit
+      applications for those facilities, practised by local and state environmental health programmes. Excludes outbreak
+      investigation (LC-C-07) and laboratory analysis.
+    stmt: >-
+      Inspects regulated facilities and premises against health codes, prioritizing findings by public-health risk;
+      reviews plans and site evaluations before construction or operating permits are issued; educates operators;
+      orders correction or closure where an imminent hazard exists; and documents findings to the standard needed for
+      follow-up and enforcement.
+    span: [L1, L4]
+    sub: [H01]
+    att: ATT-AUT
+    src: [SL-035, SL-052, SL-060, DB-044, DB-045, V3-08]
+    note: >-
+      Survivor for EH inspections and plan reviews; absorbs DB-C27 (same task core). Home of role R26 environmental
+      health specialist. REHS/RS (issued by NEHA, V3-08) and state sanitarian registration are Credential gates that
+      define legal scope in some states (ADR-0006 rule 3a), not levels. Code editions (food code, pool code) are L5
+      instruments. Basis [E] for the function in state and local classes (SL-035, SL-052, SL-060); [J] for content.
+    tasks:
+      - id: SL-C07-T1
+        text: Inspect a retail food establishment for foodborne illness risk factors, ranking violations by public-health risk and recording required corrections
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+        rel: [stakeholder]
+        cg: licence
+        so: licensure
+        rr: {mentorshipDependence: H, cycleDependence: none, placeBoundness: general, currencyDecay: M}
+        acc: Where the state registers sanitarians or environmental health specialists, inspections are performed by registered staff or by trainees under their supervision.
+      - id: SL-C07-T2
+        text: Evaluate an onsite wastewater site's soils, separation distances and proposed design before issuing a construction permit
+        wf: WF-AUTHORIZE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        rel: [public]
+        cg: licence
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: site-specific, currencyDecay: L}
+      - id: SL-C07-T3
+        text: Review food establishment construction plans against code provisions for equipment, layout and plumbing before approving construction
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [stakeholder]
+      - id: SL-C07-T4
+        text: Inspect a public swimming pool's water chemistry, circulation and safety equipment, closing the pool when an imminent health hazard exists
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+        acc: Closure orders are issued under the health officer's delegated authority.
+      - id: SL-C07-T5
+        text: Inspect a rental dwelling for lead hazards, mold, pests and sanitation violations in response to a tenant complaint
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+        rel: [public]
+      - id: SL-C07-T6
+        text: Review an inspection report drafted from dictated notes or a digital checklist against field observations before issuing it to the operator
+        wf: WF-ENFORCE
+        fd: remote-capable
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+        note: Review task split from report drafting where speech-to-text and drafting tools compress production (ADR-0003 G-2).
+    ind:
+      L1:
+        - t: Completes a joint food establishment inspection with a trainer, identifying the same priority violations the trainer records on the standardization form.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T1]
+        - t: Measures food temperatures, sanitizer concentration and hot-water temperature with calibrated instruments, recording values that match the trainer's readings within tolerance.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T1, T4]
+      L2:
+        - t: Inspects a routine food establishment independently, ranking violations by risk factor so that the report passes the programme's standardization review.
+          a: [record-audit, task-book-observation]
+          st: [T1]
+          sc: true
+        - t: Rejects or corrects each finding in a drafted inspection report that does not match field observations, before the report is issued to the operator.
+          m: assisted
+          a: [seeded-error-work-sample, record-audit]
+          st: [T6]
+          att: ATT-AUG
+      L3:
+        - t: Determines whether a non-routine onsite wastewater site can be permitted, such as one with shallow bedrock or seasonal saturation, documenting the soil evidence and design conditions.
+          a: [work-sample, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+        - t: Orders closure of a facility presenting an imminent health hazard, documenting the hazard, the legal basis and the conditions for reopening.
+          a: [record-audit, moot-defense]
+          st: [T4, T5]
+          att: ATT-AUT
+          sc: true
+      L4:
+        - t: Standardizes other inspectors by conducting joint inspections and scoring their agreement with the programme's standard, documenting retraining for each inspector who falls below it.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+          att: ATT-FOR
+        - t: Sets the programme's risk-based inspection frequencies from violation history and establishment risk categories, documenting the criteria and an annual check of outcomes.
+          a: [portfolio-review]
+          st: [T1]
+          att: ATT-SCO
+
+  - id: LC-C-07
+    label: Investigate outbreaks, complaints and emerging environmental health hazards to control exposure
+    alt: [Environmental health investigation, Foodborne and waterborne outbreak investigation, Vector and zoonotic disease control]
+    def: >-
+      Hypothesis-driven field investigation of environmental causes of illness and exposure (foodborne, waterborne,
+      vector-borne and zoonotic disease, harmful algal blooms, mold and other emerging hazards) with epidemiologists and
+      laboratories, and selection of control measures. Excludes routine code inspection (SL-C07) and population-level
+      risk assessment (core v1 6.7.1).
+    stmt: >-
+      Investigates complaints, case clusters and outbreaks with epidemiologists and laboratories by collecting samples,
+      interviewing staff and reviewing records to identify contributing factors; runs vector surveillance; selects and
+      verifies control measures; and issues advisories when exposure thresholds are exceeded, documenting each step in
+      the investigation record.
+    span: [L1, L4]
+    sub: [H01, H02]
+    att: ATT-AUT
+    src: [LC-005, DB-044]
+    note: >-
+      Survivor for environmental public health hazard investigation (food, water, vectors, zoonoses); absorbs DB-C28
+      (complaints, outbreaks and emerging hazards incl. harmful algal blooms, heat and mold). Basis [E] for curricular
+      gap (LC-005); [J] for content. Mosquito-control and pesticide-applicator licences are Credential gates.
+    tasks:
+      - id: LC-C-07-T1
+        text: Collect food, water and environmental samples during an outbreak investigation following chain-of-custody and laboratory submission requirements
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-INCIDENT]
+      - id: LC-C-07-T2
+        text: Interview an implicated establishment's staff and review its records to identify contributing factors of a foodborne outbreak
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-INCIDENT]
+        rel: [stakeholder]
+      - id: LC-C-07-T3
+        text: Survey larval and adult mosquito populations at fixed and complaint sites following the vector programme's trapping protocol
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        rr: {mentorshipDependence: M, cycleDependence: seasonal, placeBoundness: ecosystem-type, currencyDecay: M}
+      - id: LC-C-07-T4
+        text: Select mosquito control measures from surveillance counts and arbovirus test results against the programme's action thresholds
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-OPERATIONS]
+        cg: licence
+      - id: LC-C-07-T5
+        text: Issue a recreational-water advisory for a harmful algal bloom when sampled toxin concentrations exceed the programme's thresholds
+        wf: WF-RESPOND
+        fd: remote-capable
+        form: partial
+        prof: [WP-INCIDENT]
+        rel: [public]
+        acc: Advisories are issued under the health officer's authority.
+      - id: LC-C-07-T6
+        text: Check an automated complaint-cluster or syndromic alert against case reports and field observations before opening an environmental investigation
+        wf: WF-ASSESS
+        fd: remote
+        form: 'yes'
+        prof: [WP-INCIDENT]
+        note: Verification task where automated surveillance compresses detection (ADR-0003 G-2).
+    ind:
+      L1:
+        - t: Collects outbreak samples under an investigator's direction, labelling and preserving each sample so that the laboratory accepts every submission.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+        - t: Sets and services mosquito traps at assigned sites following the trapping protocol, recording counts that reconcile with the programme's identification check.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T3]
+      L2:
+        - t: Conducts an environmental assessment at an establishment linked to a foodborne illness complaint, recording contributing factors on the programme's investigation form.
+          a: [work-sample, record-audit]
+          st: [T2]
+        - t: Accepts or rejects an automated cluster alert after checking it against case reports and field information, documenting the decision and its basis.
+          m: assisted
+          a: [record-audit, seeded-error-work-sample]
+          st: [T6]
+          att: ATT-AUG
+      L3:
+        - t: Leads the environmental arm of a multi-site outbreak investigation, framing hypotheses with epidemiologists and selecting sampling that tests them.
+          a: [structured-interview-bars, portfolio-review]
+          st: [T1, T2]
+          att: ATT-CPX
+        - t: Selects vector control measures from surveillance and arbovirus data against action thresholds, documenting why each measure was chosen or rejected.
+          a: [work-sample]
+          st: [T4]
+          att: ATT-GUI
+      L4:
+        - t: Designs the programme's investigation protocol for an emerging hazard, such as a new harmful algal bloom toxin, defining sampling, thresholds and advisory triggers.
+          a: [portfolio-review]
+          st: [T5]
+          att: ATT-GUI
+        - t: Reviews investigators' outbreak reports for the soundness of causal conclusions, returning each report whose evidence does not support its conclusions.
+          a: [record-audit, counterpart-360]
+          st: [T2]
+          att: ATT-FOR
+
+  - id: DB-C39
+    label: Plan and run extreme heat preparedness and response programmes
+    alt: [Extreme heat preparedness, Heat health action planning]
+    def: >-
+      Local and state programmes that reduce heat-related illness and death: mapping heat vulnerability, planning and
+      activating cooling resources, alerts and outreach, coordinating protections for outdoor workers and high-risk
+      residents, and evaluating outcomes with health partners. Excludes building energy design and general climate
+      adaptation planning (core v1 1.5.3).
+    stmt: >-
+      Maps heat vulnerability from temperature, health, housing and population data; prepares a heat response plan with
+      activation thresholds; activates cooling resources, alerts and outreach when thresholds are met; and evaluates
+      each season's response with health surveillance data in an after-action report that changes the next plan.
+    span: [L2, L4]
+    sub: [H01, C02, C03]
+    life: emerging
+    att: ATT-CPX
+    src: [DB-044]
+    note: >-
+      Extreme heat preparedness programmes are emerging (lifecycle emerging; reviewBy set). Home MOD-06 under the
+      home-module rule because health departments carry the legal duty for most activation decisions; enacted in
+      MOD-09 and MOD-08 later. Basis [J]: DB Phase 2; promotion evidence threshold per ADR-0015.
+    tasks:
+      - id: DB-C39-T1
+        text: Map heat vulnerability across a jurisdiction from temperature, health, housing and population data to target cooling resources and outreach
+        wf: WF-ASSESS
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+      - id: DB-C39-T2
+        text: Activate the heat response plan when forecast thresholds are met, coordinating cooling centers, alerts and outreach to high-risk residents
+        wf: WF-RESPOND
+        fd: remote-capable
+        form: partial
+        prof: [WP-INCIDENT]
+        rel: [public, intergovernmental]
+        modes: [MODE-ENGAGE]
+      - id: DB-C39-T3
+        text: Evaluate a heat season's response using health surveillance and activation records, recommending plan changes in an after-action report
+        wf: WF-LEARN
+        fd: remote
+        form: 'no'
+        prof: [WP-INCIDENT]
+    ind:
+      L2:
+        - t: Produces a heat vulnerability map from specified temperature, health and housing data layers, documenting data sources and known gaps on the map.
+          a: [work-sample]
+          st: [T1]
+        - t: Activates cooling-centre and alert procedures when the forecast meets the plan's threshold, logging each notification against the plan's checklist.
+          a: [simulation-role-play, record-audit]
+          st: [T2]
+      L3:
+        - t: Sets activation thresholds for the jurisdiction from local temperature-mortality evidence and forecast skill, documenting the trade-off between false alarms and missed events.
+          a: [work-sample, structured-interview-bars]
+          st: [T1, T2]
+          att: ATT-GUI
+        - t: Writes the after-action report for a heat season, linking each recommended change to surveillance or activation evidence.
+          a: [work-sample]
+          st: [T3]
+          att: ATT-SCO
+      L4:
+        - t: Negotiates roles and resources for heat response with emergency management, housing and labour agencies, recording the commitments in the adopted plan.
+          a: [portfolio-review, counterpart-360]
+          st: [T2]
+          att: ATT-SCO
+        - t: Designs the programme's outcome evaluation, defining the health and process measures used to judge whether the plan reduced heat illness.
+          a: [portfolio-review]
+          st: [T3]
+          att: ATT-GUI
+
+enactments:
+  - id: ena-sl-c04-envhealth
+    comp: SL-C04
+    label: Health-code enforcement enactment of environmental enforcement cases
+    sub: [H01]
+    ap: regulator
+    note: >-
+      Environmental health programmes enforce sanitary and health codes through permit suspension and revocation,
+      closure orders, administrative hearings, compliance schedules and referral to prosecutors, often under county
+      health officer or board of health authority rather than an environmental agency. Case records come from SL-C07
+      inspections and LC-C-07 investigations.
+  - id: ena-fc-c16-envhealth
+    comp: FC-C16
+    label: Environmental health sampling enactment of trace and emerging-contaminant sampling
+    sub: [H01, H02]
+    ap: regulator
+    note: >-
+      Outbreak, complaint and private-well investigations require clean sampling of food, water, surfaces and air for
+      pathogens, toxins and trace contaminants, coordinated with public health laboratories and their acceptance
+      criteria. Sample validity depends on contamination control and holding times set by the receiving laboratory.
+  - id: ena-1.4.3-envhealth
+    comp: v1-1.4.3
+    label: Vector identification enactment of species identification
+    sub: [H01]
+    ap: regulator
+    note: >-
+      Vector control programmes identify mosquitoes, ticks and other vectors to species from field-collected
+      specimens, because control decisions and arbovirus testing depend on the vector species. Automated trap and image
+      identification outputs are adjudicated against keyed identification.
+  - id: ena-6.7.1-envhealth
+    comp: v1-6.7.1
+    label: Exposure investigation enactment of environmental health risk assessment
+    sub: [H02]
+    ap: advisor-researcher
+    note: >-
+      Health departments apply risk assessment to community exposure investigations, health consultations on
+      contaminated sites, private-well and recreational-water exposures and health impact assessment, translating
+      exposure estimates into health-protective recommendations for the public and other agencies.
+  - id: ena-4.1.3-envhealth
+    comp: v1-4.1.3
+    label: Recreational and private water enactment of water quality testing
+    sub: [H01]
+    ap: regulator
+    note: >-
+      Environmental health staff sample beaches, pools and private wells for indicator bacteria, toxins and chemical
+      contaminants, where field method, holding time and timing relative to rainfall determine whether advisories and
+      well-owner guidance are defensible.

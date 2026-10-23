@@ -1,0 +1,62 @@
+id: seed:DC-CAND-22
+type: Competency
+prefLabel:
+  en: Design decision-support products for actual decision contexts
+altLabel:
+  en:
+  - Decision support systems
+definition:
+  en: The capability to build maps, dashboards, scenario tools and briefings around the real decision, its timing, authority and constraints, to test them with decision-makers, to show trade-offs and uncertainty, and to evaluate whether the product changed or improved decisions. Decision-support software is L4.
+statement:
+  en: Builds maps, dashboards, scenario tools and briefings around the real decision, its timing, authority and constraints; tests them with decision-makers; shows trade-offs and uncertainty; and evaluates whether the product changed or improved decisions.
+editorialNote:
+  en: 'Successor of v1 2.4.3 (candidate_disposition DC-CAND-22): rewritten to the decision context rather than the software (T-1). SC secondary: decision mapping depends on authority and timing.'
+notation:
+- scheme: EMST-candidate
+  value: DC-CAND-22
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:dc-cand-22-l2-a
+  - seed:dc-cand-22-l2-b
+- level: L3
+  indicators:
+  - seed:dc-cand-22-l3-a
+  - seed:dc-cand-22-l3-b
+- level: L4
+  indicators:
+  - seed:dc-cand-22-l4-a
+  - seed:dc-cand-22-l4-b
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.4.3
+    relation: merged-from
+    note: decision support systems, rewritten to the decision context
+  sources:
+  - DC-001
+  - DC-044
+  adr:
+  - ADR-0003
+  - ADR-0025

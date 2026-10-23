@@ -1,0 +1,45 @@
+id: seed:lc-txc-safety-l3-b
+type: Indicator
+prefLabel:
+  en: Conducts a no-blame review of a near miss or incident with the
+competency: seed:v1-4.4.1-B
+level: L3
+statement:
+  en: Conducts a no-blame review of a near miss or incident with the people involved, recording contributing conditions and corrective actions with owners and dates.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:v1-4.4.1-T3
+distinguishingAttribute: ATT-SCO
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  derivedFrom:
+  - v1Key: v1:4.4.1:intermediate:I6
+    relation: rewritten
+  - v1Key: v1:4.4.1:intermediate:I7
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

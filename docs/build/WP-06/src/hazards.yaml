@@ -1,0 +1,388 @@
+# WP-06 authoring source — MOD-09 Emergency management, hazard mitigation and floodplain management
+# (namespace: hazards; subsector C03). Rows: candidate_disposition DB-C40, DB-C41, DB-C43, FC-C25.
+# Content [J]; agent-drafted. Funding-programme status is volatile (L5 instruments; verify before any external use).
+module: hazards
+competencies:
+
+  - id: DB-C40
+    label: Develop hazard mitigation plans and fundable mitigation projects
+    alt: [Hazard mitigation planning, Mitigation grant development, Benefit-cost analysis for mitigation]
+    def: >-
+      Preparing a jurisdiction's hazard mitigation plan (hazard and risk assessment, capability assessment, strategy
+      and actions agreed with stakeholders) and turning plan actions into scoped projects with benefit-cost analyses
+      and funding applications. Excludes floodplain permit administration (DB-C43) and response operations.
+    stmt: >-
+      Assesses hazards and risk for a jurisdiction, builds a mitigation strategy and action plan with stakeholders,
+      scopes projects with their alternatives and constraints, and prepares benefit-cost analyses and funding
+      applications, so that the plan meets approval criteria and its projects are eligible for the funding available.
+    span: [L2, L4]
+    sub: [C03, C02]
+    att: ATT-CPX
+    src: [DB-030]
+    note: >-
+      Hazard mitigation planning and fundable projects (C03); home of role R30 with DB-C43. Federal, state and other
+      mitigation funding programmes changed in 2025-26 (DB-030 flagged; status to be verified by WP-15 before external
+      use); programme names are L5 instruments. Certified emergency manager and floodplain manager credentials are
+      Credential gates. Basis [J].
+    tasks:
+      - id: DB-C40-T1
+        text: Conduct a hazard and risk assessment for a jurisdiction from hazard histories, exposure inventories and climate projections, documenting data limitations
+        wf: WF-ASSESS
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: DB-C40-T2
+        text: Facilitate a mitigation planning committee to agree goals, actions and responsible agencies for a plan update
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-REGPROGRAM]
+        modes: [MODE-ENGAGE]
+        rel: [public, intergovernmental]
+      - id: DB-C40-T3
+        text: Prepare a benefit-cost analysis for a mitigation project following the funder's methodology, documenting every input and its source
+        wf: WF-RESOURCE
+        fd: remote
+        form: 'yes'
+        prof: [WP-CAPITAL]
+      - id: DB-C40-T4
+        text: Scope a mitigation project's alternatives, costs and environmental constraints to the level a funding application requires
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-CAPITAL]
+      - id: DB-C40-T5
+        text: Review a benefit-cost analysis or plan section drafted with automated tools against source data and funder requirements before submission
+        wf: WF-REVIEW
+        fd: remote
+        form: 'yes'
+        prof: [WP-CAPITAL, WP-REGPROGRAM]
+        note: Review-and-defence task split from drafting (ADR-0003 G-2).
+    ind:
+      L2:
+        - t: Compiles a hazard profile for one hazard from historical events, exposure data and projections, citing each source and stating its limitations.
+          a: [work-sample]
+          st: [T1]
+        - t: Prepares a benefit-cost analysis for a routine project with the funder's method, so that a reviewer can trace every input to its documented source.
+          a: [work-sample, record-audit]
+          st: [T3]
+      L3:
+        - t: Scopes a mitigation project with several alternatives and environmental constraints, documenting why the proposed alternative is the one submitted for funding.
+          a: [work-sample, portfolio-review]
+          st: [T4]
+          att: ATT-CPX
+        - t: Rejects or corrects figures in an automatically drafted benefit-cost analysis that do not match source data, recording each correction before submission.
+          m: assisted
+          a: [seeded-error-work-sample]
+          st: [T5]
+          att: ATT-AUG
+      L4:
+        - t: Leads a multi-jurisdiction plan update to adoption, recording each participating government's actions and commitments in the approved plan.
+          modes: [MODE-ENGAGE]
+          a: [portfolio-review, counterpart-360]
+          st: [T2]
+          att: ATT-SCO
+        - t: Sets the jurisdiction's mitigation project priorities across hazards, documenting the risk, cost and equity criteria used and how each project scored.
+          a: [portfolio-review]
+          st: [T1, T4]
+          att: ATT-GUI
+
+  - id: DB-C41
+    label: Conduct environmental and historic preservation review for disaster recovery and mitigation projects
+    alt: [Environmental and historic preservation review, EHP review]
+    def: >-
+      Environmental, historic preservation, floodplain, wetland and species review of disaster recovery and hazard
+      mitigation projects funded through emergency management programmes, under compressed timelines, including
+      project conditions and verification at closeout. Excludes general environmental review outside disaster
+      programmes (core SL-C08) and the historic preservation review practice itself (core DB-C50).
+    stmt: >-
+      Determines the review each recovery or mitigation project needs, applies floodplain, wetland, species and historic
+      preservation requirements under compressed timelines, writes project conditions into awards, coordinates required
+      consultations and verifies completed work against conditions, so that funded projects proceed lawfully and their
+      records withstand audit.
+    span: [L2, L4]
+    sub: [C03, X01, L11]
+    att: ATT-CPX
+    src: [DB-030, DB-031]
+    note: >-
+      EHP review for disaster recovery is the emergency-management enactment of environmental review; home MOD-09 under
+      the home-module rule, with core review competencies SL-C08 and DB-C50 enacted here. Consultation content that
+      ADR-0007 holds is not authored here (TN-C11). Part of role R30. Basis [J].
+    tasks:
+      - id: DB-C41-T1
+        text: Determine the level of environmental review a disaster recovery project needs from its scope, location and available exclusions
+        wf: WF-REVIEW
+        fd: remote
+        form: 'yes'
+        prof: [WP-PROJECT, WP-INCIDENT]
+      - id: DB-C41-T2
+        text: Apply the floodplain and wetland decision process to a recovery project, documenting the alternatives considered and minimization measures
+        wf: WF-REVIEW
+        fd: remote
+        form: 'yes'
+        prof: [WP-PROJECT]
+        rel: [public]
+      - id: DB-C41-T3
+        text: Write project conditions that carry environmental and historic preservation commitments into a recovery or mitigation funding award
+        wf: WF-REVIEW
+        fd: remote
+        form: partial
+        prof: [WP-PROJECT]
+      - id: DB-C41-T4
+        text: Verify a project's completed work against its environmental and historic preservation conditions before closeout and final payment
+        wf: WF-MONITOR
+        fd: on-site-preferred
+        form: partial
+        prof: [WP-PROJECT]
+      - id: DB-C41-T5
+        text: Review an AI-drafted environmental review record for a recovery project against the project file before it is signed
+        wf: WF-REVIEW
+        fd: remote
+        form: 'yes'
+        prof: [WP-PROJECT]
+        note: Review-and-defence task split from drafting (ADR-0003 G-2).
+    ind:
+      L2:
+        - t: Determines the review level for a routine recovery project from its scope and location, documenting the exclusion or analysis that applies.
+          a: [work-sample, record-audit]
+          st: [T1]
+        - t: Writes award conditions that state each environmental and historic preservation commitment in terms a project manager can verify at closeout.
+          a: [work-sample]
+          st: [T3]
+      L3:
+        - t: Applies the floodplain and wetland decision process to a project with no practicable alternative outside the floodplain, documenting minimization measures adopted.
+          a: [work-sample, portfolio-review]
+          st: [T2]
+          att: ATT-CPX
+        - t: Rejects or corrects statements in an AI-drafted review record that conflict with the project file, recording each correction before signature.
+          m: assisted
+          a: [seeded-error-work-sample, record-audit]
+          st: [T5]
+          att: ATT-AUG
+      L4:
+        - t: Designs the programme's streamlined review procedures for a declared disaster, defining which project types use pre-agreed conditions and which need full review.
+          a: [portfolio-review]
+          st: [T1, T3]
+          att: ATT-GUI
+        - t: Resolves a closeout finding that completed work departed from its conditions, documenting the corrective action or the basis for accepting the change.
+          modes: [MODE-RESOLVE]
+          a: [moot-defense, record-audit]
+          st: [T4]
+          att: ATT-SCO
+
+  - id: DB-C43
+    label: Administer local floodplain management regulations and flood insurance programme requirements
+    alt: [Floodplain administration, NFIP community floodplain management, Community Rating System coordination]
+    def: >-
+      Local and state floodplain administration: permit review against floodplain ordinances, substantial-damage and
+      substantial-improvement determinations, elevation certificate and map-change records, compliance inspection and
+      community rating activities that keep a community in good standing in the flood insurance programme. Excludes
+      mitigation planning (DB-C40) and flood modelling for map revisions.
+    stmt: >-
+      Reviews development in flood hazard areas against the floodplain ordinance, makes substantial-damage and
+      substantial-improvement determinations, checks elevation certificates and map changes, inspects completed
+      structures and documents community rating activities, so that permit decisions withstand audit and appeal and the
+      community keeps its programme standing.
+    span: [L2, L4]
+    sub: [C03, W04, U01]
+    att: ATT-AUT
+    src: [DB-030, V3-08]
+    note: >-
+      Local floodplain administration (C03). Certified Floodplain Manager (ASFPM, V3-08) is a Credential, required by
+      some states for floodplain administrators; it is a gate, not a level. Home of role R30 with DB-C40. Programme
+      names kept as altLabel (ADR-0016 naming rule). Basis [J].
+    tasks:
+      - id: DB-C43-T1
+        text: Review a development permit application in a mapped flood hazard area against the floodplain ordinance's elevation and construction standards
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        rel: [public]
+        cg: external-certificate
+      - id: DB-C43-T2
+        text: Make substantial-damage determinations for flood-damaged structures after an event from damage inspections and cost estimates
+        wf: WF-AUTHORIZE
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-REGPROGRAM, WP-INCIDENT]
+        rel: [public]
+        acc: Substantial-damage determinations are made by the community's designated floodplain administrator.
+      - id: DB-C43-T3
+        text: Check an elevation certificate against the permit, survey and flood map before accepting it into community records
+        wf: WF-MONITOR
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: DB-C43-T4
+        text: Prepare the community's rating-programme documentation for floodplain activities that reduce flood insurance premiums
+        wf: WF-MONITOR.attest
+        fd: remote
+        form: 'no'
+        prof: [WP-REGPROGRAM, WP-DISCLOSURE]
+      - id: DB-C43-T5
+        text: Inspect a completed floodplain structure for compliance with permitted elevation, venting and utility requirements before occupancy is approved
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+    ind:
+      L2:
+        - t: Reviews a routine floodplain development permit against the ordinance, listing each standard met or unmet with the plan sheet that shows it.
+          a: [work-sample, record-audit]
+          st: [T1]
+        - t: Accepts or returns an elevation certificate after checking its data against the permit, survey and flood map, recording each discrepancy found.
+          a: [seeded-error-work-sample]
+          st: [T3]
+      L3:
+        - t: Makes substantial-damage determinations for a neighbourhood after a flood, applying a consistent cost method and documenting each determination for appeal.
+          a: [work-sample, record-audit]
+          st: [T2]
+          att: ATT-CPX
+          sc: true
+        - t: Inspects completed floodplain structures for elevation, venting and utility compliance, documenting each finding that blocks occupancy approval.
+          a: [task-book-observation, record-audit]
+          st: [T5]
+          att: ATT-AUT
+      L4:
+        - t: Defends the community's permit and determination records in a programme audit, producing for each sampled case the evidence the standards require.
+          a: [moot-defense, record-audit]
+          st: [T1, T2]
+          att: ATT-SCO
+        - t: Drafts higher floodplain standards for the community's ordinance, documenting expected risk reduction and the rating-programme credit each standard earns.
+          a: [portfolio-review]
+          st: [T4]
+          att: ATT-GUI
+
+  - id: FC-C25
+    label: Conduct rapid post-disaster field assessments
+    alt: [Post-disaster rapid assessment, Damage assessment, Burned area and flood field verification]
+    def: >-
+      Rapid, safe field assessment of burned, flooded, storm-damaged or landslide-affected areas: verifying remotely
+      sensed damage and severity maps on the ground, identifying immediate hazards and prioritizing stabilization and
+      protective actions for response and recovery. Excludes long-term rehabilitation (forest module v1 4.3.5) and
+      structural engineering evaluation.
+    stmt: >-
+      Assesses affected areas quickly and safely, verifies remote damage and severity maps at field plots, identifies
+      immediate hazards such as debris-flow paths, hazard trees and spills, and prioritizes stabilization and protective
+      actions, documenting geolocated findings that incident command and recovery planners can act on.
+    span: [L1, L3]
+    sub: [C03]
+    life: emerging
+    att: ATT-AUT
+    src: [FC-027]
+    note: >-
+      Rapid post-disaster field assessment generalizes the v1 4.3.5 ground-truth pattern (FC verdict); home C03.
+      Lifecycle emerging (reviewBy set) pending ADR-0015 evidence. Field-craft primary; ICS participation is core
+      DB-C42 (not yet authored). Basis [J].
+    tasks:
+      - id: FC-C25-T1
+        text: Verify a remotely sensed damage or burn-severity map at field plots, recording where the map misclassifies conditions
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-INCIDENT]
+      - id: FC-C25-T2
+        text: Identify immediate post-disaster hazards such as debris-flow paths, hazard trees and spills, marking exclusion areas for responders and the public
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-INCIDENT]
+        rr: {mentorshipDependence: H, cycleDependence: multi-year-or-rare-event, placeBoundness: ecosystem-type, currencyDecay: H}
+      - id: FC-C25-T3
+        text: Prioritize stabilization treatments for values at risk from field findings and hazard modelling, documenting the basis for each priority
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-INCIDENT]
+      - id: FC-C25-T4
+        text: Conduct a rapid damage assessment of structures and infrastructure on a standard form, submitting geolocated findings to incident command
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-INCIDENT]
+    ind:
+      L1:
+        - t: Records damage observations on the standard form at assigned locations under a team lead, so that each record carries location, photo and damage category.
+          a: [task-book-observation, record-audit]
+          st: [T4]
+        - t: Stops work and reports a hazard such as an unstable slope or damaged tree before entering an assessment area, following the team safety briefing.
+          a: [task-book-observation, simulation-role-play]
+          st: [T2]
+          sc: true
+      L2:
+        - t: Verifies a remotely sensed severity map at field plots independently, recording each plot where field conditions differ from the mapped class.
+          m: assisted
+          a: [blind-re-measurement, record-audit]
+          st: [T1]
+          att: ATT-AUG
+        - t: Identifies debris-flow paths and hazard trees in an assigned area, marking exclusion zones that the team lead confirms on review.
+          a: [task-book-observation]
+          st: [T2]
+          att: ATT-AUT
+          sc: true
+      L3:
+        - t: Prioritizes stabilization treatments across an affected area after checking hazard model outputs against field findings, documenting where field evidence overrode the model.
+          m: assisted
+          a: [work-sample, structured-interview-bars]
+          st: [T3]
+          att: ATT-CPX
+        - t: Leads an assessment team in a non-routine event, adapting the assessment protocol to conditions and documenting each deviation and its effect on findings.
+          a: [task-book-observation, counterpart-360]
+          st: [T4]
+          att: ATT-GUI
+
+enactments:
+  - id: ena-sl-c08-hazards
+    comp: SL-C08
+    label: Disaster recovery enactment of environmental review
+    sub: [C03, X01]
+    ap: funder
+    note: >-
+      Emergency management agencies and grantees perform environmental review of recovery and mitigation projects
+      funded under disaster assistance programmes, using emergency exclusions, programmatic reviews and compressed
+      timelines; the module competency DB-C41 carries the disaster-specific tasks and conditions.
+  - id: ena-db-c50-hazards
+    comp: DB-C50
+    label: Disaster recovery enactment of historic preservation review
+    sub: [C03, L11]
+    ap: funder
+    instr: ['seed:ins/nhpa-s106-regs']
+    note: >-
+      Historic preservation review of disaster recovery and mitigation projects relies on programmatic agreements
+      with state historic preservation offices, emergency review provisions and treatment of damaged historic
+      properties under time pressure. Consultation content held under ADR-0007 §D is not authored in this enactment.
+  - id: ena-1.5.2-hazards
+    comp: v1-1.5.2
+    label: Hazard risk assessment enactment of climate vulnerability assessment
+    sub: [C03, C02]
+    ap: advisor-researcher
+    note: >-
+      Hazard mitigation planning applies vulnerability assessment to people, structures, critical facilities and
+      lifelines exposed to floods, wildfire, heat, storms and other hazards, combining hazard histories with climate
+      projections; DB-C40 carries the planning tasks.
+  - id: ena-fc-c14-hazards
+    comp: FC-C14
+    label: Post-disaster imagery enactment of uncrewed and automated field systems
+    sub: [C03]
+    ap: service-provider
+    note: >-
+      Uncrewed aircraft collect post-disaster damage imagery and support debris-flow and levee inspection, flying near
+      responders under temporary flight restrictions and incident airspace coordination; imagery-derived damage maps
+      are verified on the ground (FC-C25).
+  - id: ena-fc-c01-hazards
+    comp: FC-C01
+    label: Flood warning enactment of field sensor network deployment
+    sub: [C03, W04]
+    ap: service-provider
+    note: >-
+      Local flood warning systems deploy stream and rain gauges whose siting, maintenance and failure modes during
+      floods decide whether warnings are issued in time; gauge datum and rating checks are module-specific.
+  - id: ena-dc-cand-04-hazards
+    comp: DC-CAND-04
+    label: Flood and hazard warning enactment of sensor-network and streaming data pipelines
+    sub: [C03]
+    ap: service-provider
+    note: >-
+      Flood and hazard warning pipelines ingest gauge, radar and forecast data and trigger alerts; thresholds,
+      redundancy, latency and handling of gauge failure during events are the module-specific design concerns.

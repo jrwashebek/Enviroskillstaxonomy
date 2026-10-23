@@ -1,0 +1,75 @@
+id: seed:SL-C10
+type: Competency
+prefLabel:
+  en: Provide compliance and technical assistance to regulated entities and local governments
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to help regulated entities and local governments understand and meet their environmental obligations before enforcement is needed, through guidance, training, site assistance and help lines, while keeping assistance separate from enforcement as program policy requires.
+statement:
+  en: Designs and delivers plain-language guidance, training, site assistance and help lines that help regulated entities and local governments understand and meet their obligations before enforcement is needed, keeping assistance separate from enforcement decisions as the program's policy requires.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - compliance assistance
+  - small business environmental assistance
+  - technical assistance to local governments
+instrumentSensitivity:
+- mechanism: DM-16
+  rationale:
+    en: Assistance programmes shrink or grow with staffing and funding.
+  evidenceLabel: J
+- mechanism: DM-19
+  rationale:
+    en: Grant and assistance programmes fund many state assistance offices.
+  evidenceLabel: J
+editorialNote:
+  en: 'WP-05 (A5 SC; SL reviewed). Compliance and technical assistance recurs in every regulatory module (G-4); FL DEP and PA DEP classes name it as a core duty, and v1 had public education but none aimed at regulated parties [E: SL-059, SL-080]. Mirror: DB-C26 (the regulated party''s compliance system).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SL-059
+  - SL-080
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - seed:sl-c10-l1-a
+  - seed:sl-c10-l1-b
+- level: L2
+  indicators:
+  - seed:sl-c10-l2-a
+  - seed:sl-c10-l2-b
+- level: L3
+  indicators:
+  - seed:sl-c10-l3-a
+  - seed:sl-c10-l3-b
+enactments:
+- seed:ena-sl-c10-state
+- seed:ena-sl-c10-state-to-local

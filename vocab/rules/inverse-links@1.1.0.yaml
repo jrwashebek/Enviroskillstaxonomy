@@ -1,0 +1,24 @@
+# EMST computed-view rule (SPEC §14.3; ADR-0021; CR-DE-003). Normative definition; code in `implementation`.
+ruleId: inverse-links
+version: 1.1.0
+status: active
+replaces: inverse-links@1.0.0
+steward: DE (implementation) · CA (definition)
+decidedIn: [ADR-0001, ADR-0003, ADR-0021, ADR-0029, CR-DE-001, CR-DE-003]
+computes: >
+  Every inverse convenience link. Source records store each link once, on the many side; these inverses appear only in
+  bundles and views and MUST NOT appear in source records (schema/lint/computed_fields.yaml#inverse_fields_by_type).
+inputs: [released Task, Tool and Enactment records]
+definition:
+  competency_tasks: "For each released competency C: every released task T with Task.supports ∋ {competency: C, strength}, as {task, strength}, sorted by task ID (as 1.0.0)."
+  task_tools: "For each released task T: every released Tool L with T ∈ L.servesTasks, as Task.tools[] (sorted IDs). L4 points to L2, never the reverse (ADR-0003 T-4; CR-DE-001 #8)."
+  competency_enactments: "For each released competency C: every released Enactment E with E.competency = C, as Competency.enactments[] (sorted IDs), core and module enactments alike; each item carries E.enactmentKind and E.module (CR-DE-001 #9)."
+  held: "An inverse never lists a record the release gate excluded (held Tribal-related, pending licence, draft)."
+outputs:
+  view: views/inverse_links.json
+  bundle_fields: [Competency.enactments, Task.tools]
+  fields: "competency, tasks[{task, strength}], enactments[{enactment, enactmentKind, module}], ruleId, ruleVersion, buildCommit"
+parameters: {}
+implementation: scripts/build_release.py#Release.views
+changeNote:
+  - {date: '2026-10-23', note: "Adds task_tools and competency_enactments (CR-DE-001 #8-#9; ADR-0029)."}

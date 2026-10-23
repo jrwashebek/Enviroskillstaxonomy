@@ -1,0 +1,46 @@
+id: seed:sc-decide-cooperating-request
+type: Task
+prefLabel:
+  en: Decide a request for cooperating-agency status on a review, stating the reasons for granting or denying the request in the record
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Decide a request for cooperating-agency status on a review, stating the reasons for granting or denying the request in the record
+textSha256: 2120deae3a9c7d77ff077785812313db143a644dbb7a921b7a30db168a8ea7f5
+supports:
+- competency: seed:SC-C09
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+relationshipTypes:
+- intergovernmental
+workflowProfiles:
+- WP-PROJECT
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Decide a request for cooperating-agency status on a review, stating the reasons for granting or denying the request in the record" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

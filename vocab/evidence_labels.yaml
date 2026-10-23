@@ -4,7 +4,7 @@ title: Evidence, provenance and change vocabularies
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0010, ADR-0009, ADR-0008, ADR-0024]
+decidedIn: [ADR-0010, ADR-0009, ADR-0008, ADR-0024, ADR-0029]
 steward: CA with DE, IA, IO
 license: CC0-1.0
 
@@ -54,3 +54,23 @@ change_types:
 semver_impacts: [major, minor, patch]
 
 comment_dispositions: [noted, accepted, accepted-with-modification, deferred, rejected]
+
+# --- Moved from schema-local enums (CR-DE-001; ADR-0029).
+source_statuses:
+  description: Source.sourceStatus (SPEC §5.24; renamed from `status`, CR-DE-001 #1).
+  values:
+    - {notation: current, definition: "Current and fit for citation."}
+    - {notation: outdated, definition: "Superseded by events or newer data; cite only as history."}
+    - {notation: "superseded-by:<sourceId>", pattern: '^superseded-by:.+$', definition: "Replaced by the named source."}
+    - {notation: poor-fit, definition: "Does not support the claim it was attached to."}
+    - {notation: unverified, definition: "Not yet checked by the verification pass."}
+
+rating_object_schemes:
+  description: RelevanceRating.objectScheme (SPEC §5.13). The v1-* values are allowed only for raterType v1-analyst (prior evidence; CR-DE-001).
+  values:
+    - {notation: role-profile, definition: "Object is a role profile."}
+    - {notation: role-variant, definition: "Object is a role variant."}
+    - {notation: v1-family, v1_only: true, definition: "v1 profession family (Core/Supporting matrix)."}
+    - {notation: v1-reform-flags, v1_only: true, definition: "v1 reform flag."}
+    - {notation: v1-ethical-lens, v1_only: true, definition: "v1 ethical lens cell."}
+    - {notation: v1-cld, v1_only: true, definition: "v1 competency-level CLD flag and R9 severity (context of the severity prior; CR-DE-003)."}

@@ -1,22 +1,30 @@
 id: seed:v1-2.4.5-T2
 type: Task
 prefLabel:
-  en: Detect trends, cycles, and anomalies in ecological monitoring datasets
+  en: Detect cycles and anomalies in an ecological monitoring time series, separating them from artefacts of sampling or instrument change.
 statement:
-  en: Detect trends, cycles, and anomalies in ecological monitoring datasets
-textSha256: 1fcb66da52b0bc0896a2de2cbfa2362fc70d9b170bb6ed583ffce3243a05bfdf
-supports:
-- competency: seed:v1-2.2.2
-  strength: primary
+  en: Detect cycles and anomalies in an ecological monitoring time series, separating them from artefacts of sampling or instrument change.
+textSha256: 963bb7335ee561cae81c2ae5e526df8f5a014f82cc15f5e910f0d050a7fa26e9
+editorialNote:
+  en: Supports re-pointed from v1 competency 2.4.5 to seed:v1-2.2.2 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 2.4.5:T2
+supports:
+- competency: seed:v1-2.2.2
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T2
 v1Domain:
   code: '2'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '2.4'
   label: Advanced Analytics
-editorialNote:
-  en: Supports re-pointed from v1 competency 2.4.5 to seed:v1-2.2.2 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.4.5:T2
     v1Code: 2.4.5
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

@@ -1,22 +1,36 @@
 id: seed:v1-3.7.2-T3
 type: Task
 prefLabel:
-  en: Design gamified behavior change programs using mobile apps to engage employees or communities in waste reduction
+  en: Design a source-separation campaign for a community or institution, testing messages with a pilot group before full rollout
 statement:
-  en: Design gamified behavior change programs using mobile apps to engage employees or communities in waste reduction
-textSha256: 3d4e7d8f4fef97afe7d14f43eccac7cc66a6e96d9777f813e183532a4c17545f
+  en: Design a source-separation campaign for a community or institution, testing messages with a pilot group before full rollout
+textSha256: 3821fbbab730b3e18c81f572af3cdceb41a731f7a28b6ce29e8e5ff34b35e3e5
 supports:
 - competency: seed:v1-3.7.2
   strength: primary
+workFunction: WF-PLAN
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- public
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: waste
+subsectors:
+- P02
+layer: L2
+module: waste
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 notation:
 - scheme: EMSTv1
   value: 3.7.2:T3
-layer: L2
-module: waste
-homeModule: waste
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T3
 v1Domain:
   code: '3'
@@ -25,14 +39,12 @@ v1SkillArea:
   code: '3.7'
   label: Circular Economy & Waste Systems
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:3.7.2:T3
     v1Code: 3.7.2
@@ -42,9 +54,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -1,0 +1,44 @@
+id: seed:fc-haz-energized
+type: Task
+prefLabel:
+  en: Keep required clearances from energized lines, confined spaces and operating machinery during field work at utility and industrial sites, stopping when clearance cannot be held
+statement:
+  en: Keep required clearances from energized lines, confined spaces and operating machinery during field work at utility and industrial sites, stopping when clearance cannot be held
+textSha256: 4ac6f6f2c50908a9656651c6b5a7e8fb4409c14e15f60483adcc41bf9eeeabd4
+supports:
+- competency: seed:v1-4.4.4-A
+  strength: primary
+workFunction: WF-OPERATE
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: system-specific
+  credentialGate: internal-qualification
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: adaptation or decision in place. Credential gate level is the author''s draft pending the WP-07 Credential register (T-8).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

@@ -1,0 +1,65 @@
+id: seed:DC-CAND-05
+type: Competency
+prefLabel:
+  en: Record provenance and AI involvement in work products
+altLabel:
+  en:
+  - Document data provenance and lineage for environmental evidence
+definition:
+  en: 'The capability to record and preserve where data and derived products came from: sources and versions, methods, transformations, models and AI systems involved, human review steps and responsible parties, so that findings can be traced, reproduced or corrected. Level 1 is part of the universal floor; levels 2 and above are data-craft practice.'
+statement:
+  en: Records, for own data and work products, the sources and versions, collection methods, transformations, models and AI systems involved, human review steps and responsible parties; builds lineage records for derived products; and designs provenance capture into workflows, so that any finding can be traced, reproduced or corrected.
+editorialNote:
+  en: TX-A at L1 (floor), DC practice at L2 and above (candidate_disposition DC-CAND-05; ADR-0025 §1). Precondition for validation and for SC's defensible administrative record (seed:SC-C02 link). Template and data-standard names live in L4/L5.
+notation:
+- scheme: EMST-candidate
+  value: DC-CAND-05
+competencyType: transversal
+transversalCluster: TX-A
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:dc-cand-05-l1-a
+  - seed:dc-cand-05-l1-b
+- level: L2
+  indicators:
+  - seed:dc-cand-05-l2-a
+  - seed:dc-cand-05-l2-b
+- level: L3
+  indicators:
+  - seed:dc-cand-05-l3-a
+  - seed:dc-cand-05-l3-b
+- level: L4
+  indicators:
+  - seed:dc-cand-05-l4-a
+  - seed:dc-cand-05-l4-b
+homeModule: core
+reusability: transversal
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - DC-002
+  - DC-008
+  - DC-034
+  - DC-037
+  adr:
+  - ADR-0003
+  - ADR-0025

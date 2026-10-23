@@ -1,22 +1,32 @@
 id: seed:v1-1.4.3-T2
 type: Task
 prefLabel:
-  en: Record and classify species observations in biological databases
+  en: Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database
 statement:
-  en: Record and classify species observations in biological databases
-textSha256: 4c8652b86ad43dec92ad2426b8aa2ee4db6df13dac50717b9e222b689783fb49
+  en: Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database
+textSha256: 7268f7692f83c0d8642c9ebb44c85578768773cc6d543c02e092405d74e1ff36
 supports:
 - competency: seed:v1-1.4.3
   strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote-capable
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: seasonal
+  placeBoundness: ecosystem-type
+  credentialGate: none
+  currencyDecay: M
 notation:
 - scheme: EMSTv1
   value: 1.4.3:T2
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Tier: T2
 v1Domain:
   code: '1'
@@ -25,14 +35,14 @@ v1SkillArea:
   code: '1.4'
   label: Wildlife & Fisheries Biology
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: 'G-2 split role: specification, review or defence of a product. Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:1.4.3:T2
     v1Code: 1.4.3
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

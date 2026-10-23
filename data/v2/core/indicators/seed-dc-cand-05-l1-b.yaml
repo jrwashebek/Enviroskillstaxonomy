@@ -1,0 +1,36 @@
+id: seed:dc-cand-05-l1-b
+type: Indicator
+prefLabel:
+  en: Fills every required field of the organization's provenance template for a field dataset, as…
+competency: seed:DC-CAND-05
+level: L1
+statement:
+  en: Fills every required field of the organization's provenance template for a field dataset, as confirmed by a second person's check.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:dc-05-provenance-record
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

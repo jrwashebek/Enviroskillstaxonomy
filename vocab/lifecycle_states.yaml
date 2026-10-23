@@ -4,7 +4,7 @@ title: Lifecycle and status vocabularies
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0015, ADR-0010, ADR-0024]
+decidedIn: [ADR-0015, ADR-0010, ADR-0024, ADR-0029]
 steward: CA with FS, IO, DE
 license: CC0-1.0
 description: >
@@ -97,6 +97,8 @@ use_tiers:
     - {notation: describe, definition: "Workforce analytics, planning, curriculum mapping.", aliases: [IO describe/plan]}
     - {notation: develop, definition: "Training, task books, IDPs, self-assessment.", aliases: [IO develop, AS training-grade]}
     - {notation: select, definition: "Hiring and promotion — only as input to the employer's own job analysis.", aliases: [IO select/promote, AS selection-grade]}
+  indicator_use_classes: [describe, develop, select]
+  indicator_use_classes_note: "Indicator.useClass is a use tier other than exploratory (SPEC §5.3; CR-DE-001). The effective tier is computed by vocab/rules/effective-use-tier@1.0.0.yaml."
 
 validation_statuses:
   - {notation: seed-v1, definition: "Migrated from v1 as seed content; not validated."}

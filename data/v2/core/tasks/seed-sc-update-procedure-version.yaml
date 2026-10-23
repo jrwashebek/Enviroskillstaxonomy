@@ -1,0 +1,40 @@
+id: seed:sc-update-procedure-version
+type: Task
+prefLabel:
+  en: Update program procedures and templates to a new governing version, recording which pending actions follow the old and new versions
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Update program procedures and templates to a new governing version, recording which pending actions follow the old and new versions
+textSha256: a0648084cebd5e8b4a4465b612e7ec24bcd7e41d8049d2fa8162aad010f69990
+supports:
+- competency: seed:SC-C12
+  strength: primary
+workFunction: WF-RULE
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

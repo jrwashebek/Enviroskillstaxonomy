@@ -1,22 +1,32 @@
 id: seed:v1-4.4.4-T2
 type: Task
 prefLabel:
-  en: Implement appropriate containment and notification procedures
+  en: Isolate an incidentally discovered hazardous material, establishing a safe distance and notifying the designated responder before any further work
 statement:
-  en: Implement appropriate containment and notification procedures
-textSha256: 7f77cb7c8482fdcb0475a5c77cd61c3b6c99c358590f5b8c5b8083c7a20824cf
+  en: Isolate an incidentally discovered hazardous material, establishing a safe distance and notifying the designated responder before any further work
+textSha256: 65f7f48f3f8e28b65c5f94c3a55013200fe43fd88ca0844b21c58eb622fc3a17
 supports:
-- competency: seed:v1-4.4.4
+- competency: seed:v1-4.4.4-A
   strength: primary
+workFunction: WF-RESPOND
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: H
 notation:
 - scheme: EMSTv1
   value: 4.4.4:T2
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Tier: T2
 v1Domain:
   code: '4'
@@ -25,14 +35,14 @@ v1SkillArea:
   code: '4.4'
   label: Safety & Emergency Response
 editorialNote:
-  en: 'v1 competency 4.4.4 is split: reassign this task to one of [''seed:v1-4.4.4-A'', ''seed:DB-C20'', ''seed:crd-hazwoper''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
+  en: 'G-2 split role: adaptation or decision in place. Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:4.4.4:T2
     v1Code: 4.4.4
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

@@ -1,0 +1,39 @@
+id: seed:dc-cand-13-dc-l3-a
+type: Indicator
+prefLabel:
+  en: Sets acceptance rules for a batch of AI outputs from the estimated error rate,…
+competency: seed:DC-CAND-13
+level: L3
+statement:
+  en: Sets acceptance rules for a batch of AI outputs from the estimated error rate, rejecting batches whose interval exceeds the tolerance.
+augmentationMode: assisted
+assessmentMethods:
+- work-sample
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:dc-13-accept-batch
+distinguishingAttribute: ATT-GUI
+layer: L1
+module: core
+status: draft
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

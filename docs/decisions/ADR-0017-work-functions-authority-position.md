@@ -79,3 +79,9 @@ Facets on variants (ADR-0007): industry (PS's 14 employer types), ownership, del
 - **SL** wanted authority position as a facet on role variants rather than an L0 term applied to tasks (SL open Q1) — adopted on variants; tasks inherit it only through the variant.
 - **DB** considered "Finance & transact" orphaned under Plan & design — given its own home in `WF-RESOURCE`.
 - **Trade-off named:** a richer facet that more raters must agree on versus misclassifying two of the largest job families (operators and emergency responders) and most state regulatory work.
+
+## Amendments
+
+- **2026-10-23 — CR-IO-002 / ADR-0029 §6 (CA).**
+  - **Unmeasured equals not shown.** The status line ("values with α < .667 are not shown") applies to Task.workFunction and to the assignment of external units to authority positions. Before any admissible study, views show "Assessment pending".
+  - **Editorial fields.** RoleProfile.primaryWorkFunction, RoleVariant.sectorActor, sectorActorSubtype and authorityPosition are definitional and are labelled "editorial", not α-gated. Views navigate by the editorial role function until the work-function study reports.

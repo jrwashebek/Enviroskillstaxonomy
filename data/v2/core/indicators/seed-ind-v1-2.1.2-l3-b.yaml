@@ -1,0 +1,37 @@
+id: seed:ind-v1-2.1.2-l3-b
+type: Indicator
+prefLabel:
+  en: Tests a pretrained Earth-observation model or embedding against independent local reference data before use,…
+competency: seed:v1-2.1.2
+level: L3
+statement:
+  en: Tests a pretrained Earth-observation model or embedding against independent local reference data before use, documenting where accuracy falls below the requirement.
+augmentationMode: assisted
+assessmentMethods:
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:dc-212-transfer-test
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

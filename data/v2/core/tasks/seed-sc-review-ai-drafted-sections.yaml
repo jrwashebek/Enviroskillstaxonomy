@@ -1,0 +1,44 @@
+id: seed:sc-review-ai-drafted-sections
+type: Task
+prefLabel:
+  en: Verify AI-drafted sections of an environmental document against the project record, correcting unsupported statements and recording which text was machine-drafted
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Verify AI-drafted sections of an environmental document against the project record, correcting unsupported statements and recording which text was machine-drafted
+textSha256: ee434a901788359fd991deb953c2087e69c44bf3d5426d215d8d62fd499d9a91
+supports:
+- competency: seed:SL-C08
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-PROJECT
+editorialNote:
+  en: 'Specification/review counterpart of the production task (G-2); AI drafting tools for review documents are in production or beta [E: SC-009]. Rewritten from the v1 task text: "Verify AI-drafted sections of an environmental document against the project record, correcting unsupported statements and recording which text was machine-drafted" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

@@ -1,0 +1,62 @@
+id: seed:DB-C43
+type: Competency
+prefLabel:
+  en: Administer local floodplain management regulations and flood insurance programme requirements
+altLabel:
+  en:
+  - Floodplain administration
+  - NFIP community floodplain management
+  - Community Rating System coordination
+definition:
+  en: 'Local and state floodplain administration: permit review against floodplain ordinances, substantial-damage and substantial-improvement determinations, elevation certificate and map-change records, compliance inspection and community rating activities that keep a community in good standing in the flood insurance programme. Excludes mitigation planning (DB-C40) and flood modelling for map revisions.'
+statement:
+  en: Reviews development in flood hazard areas against the floodplain ordinance, makes substantial-damage and substantial-improvement determinations, checks elevation certificates and map changes, inspects completed structures and documents community rating activities, so that permit decisions withstand audit and appeal and the community keeps its programme standing.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:ind-db-c43-l2-a
+  - seed:ind-db-c43-l2-b
+- level: L3
+  indicators:
+  - seed:ind-db-c43-l3-a
+  - seed:ind-db-c43-l3-b
+- level: L4
+  indicators:
+  - seed:ind-db-c43-l4-a
+  - seed:ind-db-c43-l4-b
+homeModule: hazards
+subsectors:
+- C03
+- W04
+- U01
+reusability: subsector-specific
+layer: L1
+module: hazards
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Local floodplain administration (C03). Certified Floodplain Manager (ASFPM, V3-08) is a Credential, required by some states for floodplain administrators; it is a gate, not a level. Home of role R30 with DB-C40. Programme names kept as altLabel (ADR-0016 naming rule). Basis [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - DB-030
+  - V3-08
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -1,22 +1,32 @@
 id: seed:v1-3.7.2-T1
 type: Task
 prefLabel:
-  en: Use IoT sensors and AI-powered analytics to identify waste generation patterns and reduction opportunities in real-time
+  en: Conduct a waste characterization audit by sorting and weighing samples from a facility's waste stream following a statistical sampling protocol
 statement:
-  en: Use IoT sensors and AI-powered analytics to identify waste generation patterns and reduction opportunities in real-time
-textSha256: aceed3c9287c7149f5f721fae8c2eadc6fe739f87f1eaba1c60a7d5613480605
+  en: Conduct a waste characterization audit by sorting and weighing samples from a facility's waste stream following a statistical sampling protocol
+textSha256: 29c75901f93f7e68c044212060aac53381eb70f168822eaa3aecca891dc88168
 supports:
 - competency: seed:v1-3.7.2
   strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: waste
+subsectors:
+- P02
+layer: L2
+module: waste
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 notation:
 - scheme: EMSTv1
   value: 3.7.2:T1
-layer: L2
-module: waste
-homeModule: waste
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T1
 v1Domain:
   code: '3'
@@ -25,14 +35,12 @@ v1SkillArea:
   code: '3.7'
   label: Circular Economy & Waste Systems
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:3.7.2:T1
     v1Code: 3.7.2
@@ -42,9 +50,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

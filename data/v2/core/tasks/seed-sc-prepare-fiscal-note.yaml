@@ -1,0 +1,42 @@
+id: seed:sc-prepare-fiscal-note
+type: Task
+prefLabel:
+  en: Prepare a fiscal or implementation note on a proposed bill or ordinance, estimating its staffing, cost and schedule effects on the program
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Prepare a fiscal or implementation note on a proposed bill or ordinance, estimating its staffing, cost and schedule effects on the program
+textSha256: eef77f2c9bcb1633e23844c0281af3b53f8259dedbae0b89b3090c369078d34f
+supports:
+- competency: seed:v1-6.4.5
+  strength: primary
+- competency: seed:SC-C10
+  strength: contributing
+workFunction: WF-RULE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

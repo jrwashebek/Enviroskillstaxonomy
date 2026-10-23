@@ -1,22 +1,32 @@
 id: seed:v1-6.5.2-T2
 type: Task
 prefLabel:
-  en: Participate in interagency workgroups or task forces
+  en: Represent the agency in an interagency working group on a shared project, stating the agency's positions within the authority delegated to the representative
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Participate in interagency workgroups or task forces
-textSha256: 82a84e30c3a67ad6a48708401edc2f6ba5c51347d0b6dce7fb377ef290aced2a
+  en: Represent the agency in an interagency working group on a shared project, stating the agency's positions within the authority delegated to the representative
+textSha256: 8895907721c1d79f230ab2b924c3d04590a25d8078b07f1fc7f104c1181e5b38
 supports:
-- competency: seed:v1-6.5.2
+- competency: seed:SC-C09
   strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- intergovernmental
 notation:
 - scheme: EMSTv1
   value: 6.5.2:T2
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T2
 v1Domain:
   code: '6'
@@ -25,14 +35,16 @@ v1SkillArea:
   code: '6.5'
   label: Intergovernmental Relations
 editorialNote:
-  en: 'v1 competency 6.5.2 is split: reassign this task to one of [''seed:SC-C09'', ''seed:SC-C14''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
-license: CC0-1.0
-sensitivity: public
+  en: 'Rewritten from the v1 task text: "Represent the agency in an interagency working group on a shared project, stating the agency''s positions within the authority delegated to the representative" (WP-05).'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:6.5.2:T2
     v1Code: 6.5.2
@@ -42,9 +54,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

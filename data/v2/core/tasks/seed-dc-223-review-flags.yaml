@@ -1,0 +1,33 @@
+id: seed:dc-223-review-flags
+type: Task
+prefLabel:
+  en: Review automated flags on a sensor dataset against field and instrument records, accepting, correcting or rejecting each flag.
+statement:
+  en: Review automated flags on a sensor dataset against field and instrument records, accepting, correcting or rejecting each flag.
+textSha256: b43167490a0ff3bc7da44ef3a4f3149382c5b99e2b72a4311845a711fc5a9675
+supports:
+- competency: seed:v1-2.2.3
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003

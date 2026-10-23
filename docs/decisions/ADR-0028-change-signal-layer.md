@@ -53,3 +53,12 @@ Sixteen durable mechanisms joined to dated instruments keep competencies from go
 - **SC:** a second, maintained layer must rejoin durable competencies to the instrument fluency employers hire on (views do this); acceptable only if P-SC-14 has an owner — named in the build plan.
 - **LM vs FS:** false positives vs late detection — `watch`, `lapsed` and `reviewBy` limit false-positive cost.
 - **TN:** the Tribal channel exists only on Tribal terms; Tribal workforce change will be under-measured by design.
+
+## Amendments
+
+- **2026-10-23 — CR-LM-001, CR-LM-003 / ADR-0029 §8, §10 (CA).**
+  - **Signal fields (§1).** §1 gains `signalFamily`, `independenceKey`, `registeredDeployment`, `impact`, `scenarioSignposts[]`, `pointsToward[]` and measure `baseline`/`sensitivity`; `status` is renamed `signalStatus`. `signalFamily` and a listed `independenceKey` are required for `active` signals.
+  - **Policy family (§2–§3).** `policy` counts toward role-change indicators only; `projection` and `workload` never count. "Single vendor" is enforced through the provider table in `vocab/change_types.yaml#independence_keys`.
+  - **Driver events (§3).** They gain `submitted-for-review`, a vocabulary for `statusAfter` (incl. `under-review`) and the instrument type `agency-order`.
+  - **Targets.** An occupation is not a target type: occupation-grain signals attach through X3. Government organizations may be targets; Tribal ones never may (V3).
+  - **Rule and lane.** The evidence rule is registered as `vocab/rules/change-indicator@1.0.0.yaml`. The WP-10 write lane is ratified.

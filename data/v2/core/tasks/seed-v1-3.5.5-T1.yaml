@@ -1,22 +1,31 @@
 id: seed:v1-3.5.5-T1
 type: Task
 prefLabel:
-  en: Ensure AI tools used in environmental work are transparent, accountable, and aligned with conservation values
+  en: Set organizational rules that make the AI tools used in environmental work transparent and accountable, assigning an owner and review cycle to each use.
 statement:
-  en: Ensure AI tools used in environmental work are transparent, accountable, and aligned with conservation values
-textSha256: b011e2a604df7f4a05197facda18fdf27eaf2af1b24414de0f7fe27665c322ae
-supports:
-- competency: seed:DC-CAND-21
-  strength: primary
+  en: Set organizational rules that make the AI tools used in environmental work transparent and accountable, assigning an owner and review cycle to each use.
+textSha256: 631c28b9c93c87f933bfedc67c6cdb25e689ec3e6f28e8502035886a4c0883a9
+editorialNote:
+  en: Supports re-pointed from v1 competency 3.5.5 to seed:DC-CAND-21 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 3.5.5:T1
+supports:
+- competency: seed:DC-CAND-21
+  strength: primary
+workFunction: WF-MANAGE
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
 v1Tier: T1
 v1Domain:
   code: '3'
@@ -24,15 +33,15 @@ v1Domain:
 v1SkillArea:
   code: '3.5'
   label: Leadership
-editorialNote:
-  en: Supports re-pointed from v1 competency 3.5.5 to seed:DC-CAND-21 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:3.5.5:T1
     v1Code: 3.5.5
@@ -42,9 +51,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

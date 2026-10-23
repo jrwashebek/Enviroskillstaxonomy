@@ -27,3 +27,11 @@ To keep CI green, the seed writes these three types to the guide's locations. No
 ## Consequences if not accepted
 
 The CA moves three directories at integration. The data does not change.
+
+## CA ruling
+
+- **Ruling:** **accept** (option 1, with the builder kept in LM's lane) · **Date:** 2026-10-23 · **Decider:** CA · **Recorded in:** PHASE4_BUILD_PLAN WP-10 (amendment), ADR-0029 §10, SPEC §17.1, DECISION_LOG `CR-LM-003`
+
+1. **WP-10 lane ratified:** `data/v2/signals/`, `data/v2/instruments/`, `data/v2/events/`, `data/v2/core/watch-items/`, `data/v2/assessments/external/` and `docs/methods/`. The authoring-guide locations win, and nothing moves back. SC contributes instrument-registry content (P-SC-14) through LM's builder inputs or a CR to LM. The registry stays a single-writer file.
+2. **The builder stays in `docs/methods/scripts/`** as LM's authoring tool, on four conditions: it is deterministic; it writes only inside the ratified lane; neither CI nor the release build ever invokes it; and its outputs must validate like any authored record. Code that CI or the release build runs moves to DE's lane: the evidence rule goes to `scripts/` and its tests to `tests/` (CR-LM-001 #3).
+3. **Not needed:** the validator keeps raising `E-LOCATION` for L5 registry types under `signals/`.

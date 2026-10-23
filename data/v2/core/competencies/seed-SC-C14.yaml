@@ -1,0 +1,94 @@
+id: seed:SC-C14
+type: Competency
+prefLabel:
+  en: Operate within, or oversee, delegated and assumed regulatory programs
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to run a regulatory program under authority delegated, approved or assumed from another level of government, or to oversee such a program, including the conditions on which the authority rests and the plan for its withdrawal or reversion. Covers state-to-local delegation and federal oversight of state programs.
+statement:
+  en: 'Administers a state or local program that holds delegated, primacy or assumed authority, or oversees one: meets and documents the conditions on which the authority rests, manages the oversight relationship and its reporting, keeps program rules at least as stringent as the authority requires, and plans for withdrawal or reversion of authority.'
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L5
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - primacy program administration
+  - delegated program management
+  - state program authorization
+  - oversight of local program delivery
+instrumentSensitivity:
+- mechanism: DM-11
+  rationale:
+    en: Delegation, assumption and primacy are fragile and can revert after litigation.
+  evidenceLabel: E
+  sources:
+  - SC-021
+- mechanism: DM-09
+  rationale:
+    en: Narrower federal jurisdiction pushes states toward their own programmes.
+  evidenceLabel: E
+  sources:
+  - V2-07
+- mechanism: DM-19
+  rationale:
+    en: Federal programme grants that fund delegated programmes are set annually.
+  evidenceLabel: J
+editorialNote:
+  en: 'WP-05 (A5 SC; SL reviewed). Survivor: absorbs SL-C01 (administer a delegated or primacy program) and SL-C11 (oversee local or delegated delivery) and the delegation part of v1 6.5.2. Actor-specific competency authorized by ADR-0007 B.5(3) because the authority is contingent on another government''s predicates and can revert [E: SC-021]. v1 text never named primacy or delegation [E: SL-087]. The Tribal treatment-as-state variant is held content and is not authored here. Level span reaches L5; L5 indicators await SME confirmation (proficiency_levels L5 note).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-021
+  - SC-023
+  - SL-071
+  - SL-072
+  - SL-079
+  - SL-085
+  - SL-088
+  derivedFrom:
+  - v1Key: v1:6.5.2
+    relation: split-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L2
+  indicators:
+  - seed:sc-c14-l2-a
+  - seed:sc-c14-l2-b
+- level: L3
+  indicators:
+  - seed:sc-c14-l3-a
+  - seed:sc-c14-l3-b
+- level: L4
+  indicators:
+  - seed:sc-c14-l4-a
+  - seed:sc-c14-l4-b
+enactments:
+- seed:ena-sc-c14-state-delegated
+- seed:ena-sc-c14-federal-overseer
+- seed:ena-sc-c14-state-overseer-local
+- seed:ena-sc-c14-local-delegate

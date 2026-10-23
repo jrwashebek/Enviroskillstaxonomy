@@ -1,0 +1,39 @@
+id: seed:ind-db-c17-l2-a
+type: Indicator
+prefLabel:
+  en: Checks a producer's filed tonnage and fee calculation against its supporting records,…
+competency: seed:DB-C17
+level: L2
+statement:
+  en: Checks a producer's filed tonnage and fee calculation against its supporting records, listing every discrepancy with the record that shows it.
+augmentationMode: unaided
+assessmentMethods:
+- seeded-error-work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:DB-C17-T2
+layer: L1
+module: waste
+status: draft
+lifecycleState: emerging
+reviewBy: '2027-10-23'
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

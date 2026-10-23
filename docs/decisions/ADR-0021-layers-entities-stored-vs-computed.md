@@ -47,3 +47,10 @@ DE implements `scripts/build_views.py` and the rule registry in Phase 4 WP-01; C
 ## Dissent and trade-offs
 
 **DE** names the cost: source files are less self-contained; mitigated by shipping computed views with every release (DE disagreement 3).
+
+## Amendments
+
+- **2026-10-23 — CR-DE-003, CR-DE-001 / ADR-0029 §1, §4 (CA).**
+  - **Rule registry home.** `vocab/rules/<rule-id>@<version>.yaml` is the only home for computed-view rules; `schema/rules/` was rejected. Registered so far: `counts@1.0.0`, `inverse-links@1.0.0` and `@1.1.0`, `assessment-staleness@1.0.0`, `effective-use-tier@0.1.0` (interim) and `@1.0.0`, `change-indicator@1.0.0`, and `display-gate@1.0.0`.
+  - **Rules versus code.** The code lives in `scripts/` (DE) and `validation/` (IO); the views are built by `scripts/build_release.py` today, which is where the "`scripts/build_views.py`" named above currently lives.
+  - **Inverse links.** `Task.tools[]` and `Competency.enactments[]` are inverse links: computed in bundles, forbidden in source.

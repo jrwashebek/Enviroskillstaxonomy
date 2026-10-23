@@ -1,0 +1,44 @@
+id: seed:fc-veh-atv
+type: Task
+prefLabel:
+  en: Operate an all-terrain or utility vehicle on slopes and rough ground within the machine's stability limits, carrying loads within rated capacity
+statement:
+  en: Operate an all-terrain or utility vehicle on slopes and rough ground within the machine's stability limits, carrying loads within rated capacity
+textSha256: 6ea9011276d0581a043ab91f3a108ea24c7416078e1e5612a2fc73aae609e13e
+supports:
+- competency: seed:v1-4.5.3-A
+  strength: primary
+workFunction: WF-OPERATE
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: internal-qualification
+  currencyDecay: H
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: execution to protocol (production). Credential gate level is the author''s draft pending the WP-07 Credential register (T-8).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

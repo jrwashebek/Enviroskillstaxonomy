@@ -1,0 +1,68 @@
+id: seed:SL-C07
+type: Competency
+prefLabel:
+  en: Conduct environmental public health inspections and plan reviews
+altLabel:
+  en:
+  - Sanitarian inspection
+  - Environmental health specialist inspection
+  - Retail food and onsite wastewater programme inspection
+definition:
+  en: Risk-based inspection of food establishments, onsite wastewater systems, private wells, recreational water, institutions and housing against sanitary and health codes, with review of construction plans and permit applications for those facilities, practised by local and state environmental health programmes. Excludes outbreak investigation (LC-C-07) and laboratory analysis.
+statement:
+  en: Inspects regulated facilities and premises against health codes, prioritizing findings by public-health risk; reviews plans and site evaluations before construction or operating permits are issued; educates operators; orders correction or closure where an imminent hazard exists; and documents findings to the standard needed for follow-up and enforcement.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-sl-c07-l1-a
+  - seed:ind-sl-c07-l1-b
+- level: L2
+  indicators:
+  - seed:ind-sl-c07-l2-a
+  - seed:ind-sl-c07-l2-b
+- level: L3
+  indicators:
+  - seed:ind-sl-c07-l3-a
+  - seed:ind-sl-c07-l3-b
+- level: L4
+  indicators:
+  - seed:ind-sl-c07-l4-a
+  - seed:ind-sl-c07-l4-b
+homeModule: envhealth
+subsectors:
+- H01
+reusability: subsector-specific
+layer: L1
+module: envhealth
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Survivor for EH inspections and plan reviews; absorbs DB-C27 (same task core). Home of role R26 environmental health specialist. REHS/RS (issued by NEHA, V3-08) and state sanitarian registration are Credential gates that define legal scope in some states (ADR-0006 rule 3a), not levels. Code editions (food code, pool code) are L5 instruments. Basis [E] for the function in state and local classes (SL-035, SL-052, SL-060); [J] for content.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - SL-035
+  - SL-052
+  - SL-060
+  - DB-044
+  - DB-045
+  - V3-08
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

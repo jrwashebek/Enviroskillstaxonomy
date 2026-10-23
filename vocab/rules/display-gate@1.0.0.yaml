@@ -1,0 +1,34 @@
+# EMST computed-view rule (SPEC §10.5, §14.3; ADR-0024 §4, ADR-0017, ADR-0027; CR-IO-002). Normative definition.
+ruleId: display-gate
+version: 1.0.0
+status: active
+steward: IO (parameters and implementation) · CP (only renderer) · DE (agreement results) · CA (definition)
+decidedIn: [ADR-0017, ADR-0024, ADR-0027, ADR-0029, CR-IO-002]
+computes: For each gated value a view might show, whether it renders and with which marker (production, tentative, editorial, pending).
+inputs: [released rating records, agreement results in dist/views/agreement/ (display_gates.yaml#agreement_result_schema), released records' editorial fields]
+definition:
+  unmeasured: "No admissible study → not rendered; label 'Assessment pending'."
+  admissible_study: >
+    Human rater types only (expert-panel, sme, analyst); ≥ 120 units; ≥ 3 distinct raters; ≥ 2 pairable values per
+    counted unit; unit bootstrap ≥ 10,000 resamples decided on the 2.5th percentile; pre-registered and blind; same
+    codebook version as the values; lapses after 36 months. Any llm, external-index or v1-analyst rater in the counted
+    set makes the study inadmissible. An LLM coder becomes admissible only by passing
+    validation/protocol_llm_coder_gate.md AND a reviewed change record amending the parameters; never for select values.
+  thresholds: "Lower bound ≥ .80 → production; .667 to < .80 → tentative; < .667 → not shown."
+  strata: "A module or sector-actor stratum with ≥ 30 study units needs its own lower bound ≥ .667 for its values to render."
+  weak_categories: "A category with one-vs-rest point alpha < .50 (≥ 10 units) caps its values at tentative."
+  value_support: "Production values need a ≥ 3-human-rater consensus; tentative values need ≥ 2 agreeing human codes or an adjudication."
+  select_views: "Admit production values only."
+  editorial_fields: [RoleProfile.primaryWorkFunction, RoleVariant.sectorActor, RoleVariant.sectorActorSubtype, RoleVariant.authorityPosition, Enactment.actorType, Competency.homeModule, Competency.competencyType, Competency.transversalCluster, Task.supports]
+  editorial_rule: "Rendered with the label 'editorial'; not alpha-gated."
+  gated_fields: "Every task-level rating, including Task.workFunction; the assignment of external units (postings, PDs, state classes) to authority positions."
+  verified_facts: "Credential gates, signOffAuthority and accountabilityConstraint need E-labelled sources; without a source they are not shown."
+  data_download: "The gate governs views only; source records and the release bundle carry every value with its validationStatus."
+outputs:
+  view: views/display_gate.json
+  fields: "recordId, field, decision ∈ {production, tentative, editorial, pending, hidden}, studyId, ruleId, ruleVersion, buildCommit"
+parameters:
+  file: {path: validation/display_gates.yaml, pin: "sha256 recorded in the view header at each build"}
+implementation: validation/display_gate.py#decide (IO); views must render gated values only through it or an equivalent passing validation/tests/test_display_gates.py
+changeNote:
+  - {date: '2026-10-23', note: "Ratifies IO's encoded semantics with CA clarifications (CR-IO-002; ADR-0029)."}

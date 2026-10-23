@@ -1,0 +1,41 @@
+id: seed:SL-C07-T6
+type: Task
+prefLabel:
+  en: Review an inspection report drafted from dictated notes or a digital checklist against field observations before issuing it to the operator
+statement:
+  en: Review an inspection report drafted from dictated notes or a digital checklist against field observations before issuing it to the operator
+textSha256: c7c47bfe7ca50b7e4be57c11e3fa5ca6cb896e3673989b1436e6a2a4463515a6
+supports:
+- competency: seed:SL-C07
+  strength: primary
+workFunction: WF-ENFORCE
+workflowProfiles:
+- WP-COMPLIANCE
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: envhealth
+subsectors:
+- H01
+layer: L2
+module: envhealth
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: Review task split from report drafting where speech-to-text and drafting tools compress production (ADR-0003 G-2).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

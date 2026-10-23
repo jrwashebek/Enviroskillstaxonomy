@@ -1,0 +1,45 @@
+id: seed:DB-C16-T1
+type: Task
+prefLabel:
+  en: Direct daily landfill cell operations, setting working-face size, compaction and cover to permit conditions and forecast weather
+statement:
+  en: Direct daily landfill cell operations, setting working-face size, compaction and cover to permit conditions and forecast weather
+textSha256: 31d5ba272a4cf172a778b0bd334b36960aa6af25adccb8df618e138c0f90650a
+supports:
+- competency: seed:DB-C16
+  strength: primary
+workFunction: WF-OPERATE
+workflowProfiles:
+- WP-OPERATIONS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: seasonal
+  placeBoundness: site-specific
+  currencyDecay: M
+  credentialGate: licence
+homeModule: waste
+subsectors:
+- P02
+layer: L2
+module: waste
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -1,0 +1,48 @@
+id: seed:DB-C01-T3
+type: Task
+prefLabel:
+  en: Respond to a treatment upset by isolating the affected process unit, bringing backup treatment online and notifying the primacy agency
+statement:
+  en: Respond to a treatment upset by isolating the affected process unit, bringing backup treatment online and notifying the primacy agency
+textSha256: a3c99f61fafb84f5bc25dccff8e58116c63d7b1b0842cf7d1b0645af8d7295b5
+supports:
+- competency: seed:DB-C01
+  strength: primary
+workFunction: WF-RESPOND
+workflowProfiles:
+- WP-OPERATIONS
+- WP-INCIDENT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: system-specific
+  currencyDecay: H
+  credentialGate: licence
+signOffAuthority:
+  kind: licensure
+homeModule: water
+subsectors:
+- W01
+layer: L2
+module: water
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

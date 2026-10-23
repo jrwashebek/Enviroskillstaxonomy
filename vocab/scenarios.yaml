@@ -6,7 +6,7 @@ schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
 next_refresh: 2029 (or after a wildcard)
-decidedIn: [ADR-0008]
+decidedIn: [ADR-0008, ADR-0029]
 steward: FS (chair of quarterly triage)
 license: CC0-1.0
 description: >
@@ -56,18 +56,21 @@ predetermined_in_all_scenarios:
   - Continuing private GHG-accounting demand
 
 signposts:
-  - {signpost: "Headcount and entry-grade hiring share in environmental series", source: "OPM Federal Workforce Data", cadence: quarterly, points_toward: AX-1}
-  - {signpost: "Staffing-floor, RIF-moratorium and reprogramming language", source: "CRS appropriations reports; Congress.gov", cadence: per bill, points_toward: AX-1}
-  - {signpost: "Conservation internship, AmeriCorps and permanent postings vs 2024", source: "Conservation Job Board data (one board; label scope)", cadence: semi-annual, points_toward: AX-1}
-  - {signpost: "Court decisions on AI-assisted environmental records", source: "federal dockets; CRS legal sidebars", cadence: monthly, points_toward: AX-2}
-  - {signpost: "High-impact AI uses in permitting, enforcement and monitoring; withdrawals", source: "agency AI use-case inventories", cadence: annual, points_toward: AX-2}
-  - {signpost: "AI-in-environmental-review procurements and cancellations", source: "SAM.gov; state procurement portals", cadence: quarterly, points_toward: "AX-2; SC3"}
-  - {signpost: "Contract obligations for environmental analysis vs FTE", source: "USAspending; budget justifications", cadence: annual, points_toward: SC3}
-  - {signpost: "FireSat/EO data access terms and agency ingestion", source: "Earth Fire Alliance; agency announcements", cadence: quarterly, points_toward: "SC1/SC3"}
-  - {signpost: "FAA Part 108 (BVLOS) final rule (NPRM Aug 7 2025; final rule at OIRA since Jul 10 2026, unpublished as of Oct 21 2026 per V2-17; status partly trade-press)", source: "Federal Register", cadence: event, points_toward: sensing timing}
-  - {signpost: "Fire-season acres vs 10-year average; fire staffing", source: "NIFC IMSR; agency staffing", cadence: "weekly in season / annual", points_toward: "predetermined pressure; SC4"}
-  - {signpost: "Discontinued federal environmental datasets", source: "agency notices; NGO trackers", cadence: quarterly, points_toward: "SC3/SC4"}
-  - {signpost: "Tribal co-stewardship agreements signed or stalled", source: "GAO, agency reports, Tribal organizations (only via the Tribal Council)", cadence: annual, points_toward: AX-1}
+  # Notations SP-01…SP-12 in the original order (CR-LM-001 #8). ChangeSignal.scenarioSignposts[] items are
+  # vocab:scenarios#SP-NN; pointsToward[] items are a scenario notation (SC1…SC4) or an axis pole written
+  # AX-n:<pole> (e.g. AX-1:thin-fragmented). SP-12 readings are recorded only as the Tribal Council decides.
+  - {notation: SP-01, signpost: "Headcount and entry-grade hiring share in environmental series", source: "OPM Federal Workforce Data", cadence: quarterly, points_toward: AX-1}
+  - {notation: SP-02, signpost: "Staffing-floor, RIF-moratorium and reprogramming language", source: "CRS appropriations reports; Congress.gov", cadence: per bill, points_toward: AX-1}
+  - {notation: SP-03, signpost: "Conservation internship, AmeriCorps and permanent postings vs 2024", source: "Conservation Job Board data (one board; label scope)", cadence: semi-annual, points_toward: AX-1}
+  - {notation: SP-04, signpost: "Court decisions on AI-assisted environmental records", source: "federal dockets; CRS legal sidebars", cadence: monthly, points_toward: AX-2}
+  - {notation: SP-05, signpost: "High-impact AI uses in permitting, enforcement and monitoring; withdrawals", source: "agency AI use-case inventories", cadence: annual, points_toward: AX-2}
+  - {notation: SP-06, signpost: "AI-in-environmental-review procurements and cancellations", source: "SAM.gov; state procurement portals", cadence: quarterly, points_toward: "AX-2; SC3"}
+  - {notation: SP-07, signpost: "Contract obligations for environmental analysis vs FTE", source: "USAspending; budget justifications", cadence: annual, points_toward: SC3}
+  - {notation: SP-08, signpost: "FireSat/EO data access terms and agency ingestion", source: "Earth Fire Alliance; agency announcements", cadence: quarterly, points_toward: "SC1/SC3"}
+  - {notation: SP-09, signpost: "FAA Part 108 (BVLOS) final rule (NPRM Aug 7 2025; final rule at OIRA since Jul 10 2026, unpublished as of Oct 21 2026 per V2-17; status partly trade-press)", source: "Federal Register", cadence: event, points_toward: sensing timing}
+  - {notation: SP-10, signpost: "Fire-season acres vs 10-year average; fire staffing", source: "NIFC IMSR; agency staffing", cadence: "weekly in season / annual", points_toward: "predetermined pressure; SC4"}
+  - {notation: SP-11, signpost: "Discontinued federal environmental datasets", source: "agency notices; NGO trackers", cadence: quarterly, points_toward: "SC3/SC4"}
+  - {notation: SP-12, signpost: "Tribal co-stewardship agreements signed or stalled", source: "GAO, agency reports, Tribal organizations (only via the Tribal Council)", cadence: annual, points_toward: AX-1, access: tribal-council-only}
 
 wildcards:
   - {id: W1, wildcard: "Catastrophic fire or flood year with mass casualties", effect: "Emergency rebuild (SC1/SC2) or blame-driven reorganization"}

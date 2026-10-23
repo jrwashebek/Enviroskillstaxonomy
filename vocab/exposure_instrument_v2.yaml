@@ -5,7 +5,7 @@ schemeVersion: 2.0.0-draft
 instrument_id: emst-exposure@2.0
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0008, ADR-0028, ADR-0007]
+decidedIn: [ADR-0008, ADR-0028, ADR-0007, ADR-0029]
 steward: CA with LM, FS, FC, DC, IO
 license: CC0-1.0
 description: >
@@ -30,6 +30,11 @@ constructs:
       - {notation: E1, definition: "Time cut by at least half at equal quality with the technology alone (aligns with Eloundou E1)."}
       - {notation: E2, definition: "Time cut by at least half only with complementary software or system integration built on the technology."}
       - {notation: E3, definition: "Technology can perform the full task end to end at equal quality under current conditions."}
+    ordinal_order: [E0, E2, E1, E3]
+    ordinal_order_note: >
+      Intensity order (CR-IO-003, ADR-0029): E1 (time halved with the technology alone) is more direct exposure than
+      E2 (halved only with complementary software or systems). Codes are labels, not ranks: ordinal alpha and every
+      sorted display or computed distribution use this order, with nominal alpha reported alongside.
   deployment_mode:
     construct: b
     unit: task × sector actor
@@ -52,7 +57,7 @@ constructs:
     scenario_conditioned: true (scenario rows only)
     staffing_outcome_values: [grow, stable, compress, decline, insufficient-evidence]
     scenario_rows:
-      applies_to: "Only tasks above the exposure threshold (E2+ on any vector, or deployment mode compressive or higher) or flagged formation tasks."
+      applies_to: "Only tasks above the exposure threshold: any vector at E1, E2 or E3, or deployment mode compressive or higher, or a flagged formation task (CR-IO-003)."
       demand_direction: [up, flat, reshape, external, down]
       reproduction_risk: [L, M, H]
       scenario_ids: [SC1, SC2, SC3, SC4]

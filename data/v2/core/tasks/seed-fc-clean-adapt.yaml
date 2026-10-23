@@ -1,0 +1,45 @@
+id: seed:fc-clean-adapt
+type: Task
+prefLabel:
+  en: Change sampling location, order or method on site when a likely contamination source is found, recording the source and the change
+statement:
+  en: Change sampling location, order or method on site when a likely contamination source is found, recording the source and the change
+textSha256: 56347df9bb03d83f4f599e197da50540ec3e2fd50b3773849b51b78c2356b52c
+supports:
+- competency: seed:FC-C16
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: adaptation or decision in place.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

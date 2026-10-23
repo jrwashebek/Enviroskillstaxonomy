@@ -1,22 +1,35 @@
 id: seed:v1-3.7.1-T3
 type: Task
 prefLabel:
-  en: Design digital marketplaces connecting waste generators with material users in industrial symbiosis networks
+  en: Match waste generators with material users in an industrial symbiosis network, recording each exchange's material, quantity and regulatory status
 statement:
-  en: Design digital marketplaces connecting waste generators with material users in industrial symbiosis networks
-textSha256: 42126e81ae81d251aafca19bc2050e2ba5a26ebdca68b63d6a43c6a00bdae6bd
+  en: Match waste generators with material users in an industrial symbiosis network, recording each exchange's material, quantity and regulatory status
+textSha256: 637e8d06a72f988442f2dd936260b7cba86ae78e32d43440496c493b50e4fac5
 supports:
 - competency: seed:v1-3.7.1
   strength: primary
+workFunction: WF-PLAN
+relationshipTypes:
+- stakeholder
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: remote
+formationDependency: 'no'
+homeModule: waste
+subsectors:
+- P02
+- M01
+layer: L2
+module: waste
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 notation:
 - scheme: EMSTv1
   value: 3.7.1:T3
-layer: L2
-module: waste
-homeModule: waste
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T3
 v1Domain:
   code: '3'
@@ -25,14 +38,12 @@ v1SkillArea:
   code: '3.7'
   label: Circular Economy & Waste Systems
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:3.7.1:T3
     v1Code: 3.7.1
@@ -42,9 +53,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

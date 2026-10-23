@@ -36,3 +36,52 @@ Correct SPEC §4, §5.1, §5.14, §5.20, §5.24, §12.2 and §17.1 to the interi
 ## Consequences if not accepted
 
 Each alternative is a schema rebuild plus a migration rerun; no IDs depend on it yet. After the first `candidate` mint, renaming fields becomes a MAJOR schema change.
+
+## CA ruling
+
+- **Ruling:** **accept with changes** · **Date:** 2026-10-23 · **Decider:** CA (Phase 4 integrator) · **Recorded in:** ADR-0029 §1, DECISION_LOG `CR-DE-001`, SPEC 2.0.0-draft.2
+- **Implementation:** DE, per `RULINGS_FOR_DE.md` §1. Schema SemVer: 2.0.0-draft.2 (no IDs depend on any item yet).
+
+### SPEC corrections (items 1–9)
+
+| # | Ruling | Reason |
+|---|---|---|
+| 1 | **Accept** `signalStatus`, `seriesStatus`, `sourceStatus` | One field name, one meaning: `status` stays the editorial status on every record (SPEC §4, §10.1). |
+| 2 | **Accept** `prefLabel`; no `title` field on SeriesRecord or Source | The common base already carries the label. |
+| 3 | **Accept** the base-array `notation` on VocabularyTerm (`scheme` = the vocabulary's `scheme` value; minItems 1). The YAML files in `vocab/` keep writing the short code as a string; the build converts. | One notation model for every record; authoring convenience stays in `vocab/`. |
+| 4 | **Accept**: `scripts/mint_id.py` is the single writer; `scripts/mint_ids.py` is only an alias and must not diverge | SPEC §12.2, ADR-0010 §2 and `vocab/identifiers.yaml#form.minting` corrected. |
+| 5 | **Accept** `data/v2/instruments/instruments.jsonl` | Same decision as CR-LM-003; SPEC §17.1 corrected. |
+| 6 | **Accept**: `definition` is MUST on VocabularyTerm and on authored (non-seed) Competency, RoleProfile, RoleVariant, JobFamily and Pathway. Indicator `statement` and Enactment `note` serve as their definitions. | SPEC §4 corrected. |
+| 7 | **Accept**: type-specific MUST fields apply when `validationStatus ≠ seed-v1`. Seed-v1 records are never released, and the validator lists their gaps. **Addition:** a record cannot move to `candidate` while `validationStatus = seed-v1`. | Seeds cannot honestly supply v2 judgments. Forcing the fields would invite fabricated values. |
+| 8 | **Accept**: `Task.tools[]` is forbidden in source and computed by `inverse-links` | L4 points to L1/L2, never the reverse (ADR-0003 T-4). |
+| 9 | **Changed**: `Competency.enactments[]` is **removed from source records altogether**, not limited to core enactments. Each Enactment's `competency` field is the one stored link. The build computes `Competency.enactments[]` as an inverse link in bundles (`vocab/rules/inverse-links@1.1.0.yaml`). | ADR-0001 stores links once, on the many side. A stored inverse drifts exactly as `Task.tools[]` would, and "core only" would still be a second copy. No source record uses the field today (checked 2026-10-23). |
+
+### Schema-local enumerations
+
+**Accept with changes.** The enumerations move into vocabularies, but into the **existing 19 files**, not new `l5_registry.yaml` / `l6_registers.yaml` files. This keeps the generator rule "every vocab file generates an enumeration" and `tests/test_schema_build.py` unchanged, and each list sits with the vocabulary its steward already owns. The CA has written them (values copied exactly from `schema/src`, plus the additions accepted in CR-LM-001):
+
+| Schema field | Vocabulary home (new key) |
+|---|---|
+| `Tool.toolType` | `vocab/competency_types.yaml#tool_types` |
+| `Instrument.instrumentType` (+ `agency-order`) | `vocab/driver_mechanisms.yaml#instrument_types` |
+| `DriverEvent.eventType` (+ `submitted-for-review`) | `vocab/driver_mechanisms.yaml#event_types` |
+| `DriverEvent.direction` | `vocab/driver_mechanisms.yaml#event_directions` |
+| `DriverEvent.statusAfter` (CR-LM-001 #5) | `vocab/driver_mechanisms.yaml#instrument_statuses` |
+| `Credential.credentialType`, `closureType` | `vocab/authority_positions.yaml#credential_types`, `#closure_types` |
+| `Pathway.pathwayType`, `LearningResource.resourceType` | `vocab/friction_types.yaml#pathway_types`, `#learning_resource_types` |
+| `FrictionRecord.direction`, `severity`, `basis` | `vocab/friction_types.yaml#friction_directions`, `#friction_severities`, `#friction_bases` |
+| `ChangeSignal.signalStatus` (+ `signalFamily`, CR-LM-001) | `vocab/change_types.yaml#signal_statuses`, `#signal_families` |
+| `Indicator.useClass` | `vocab/lifecycle_states.yaml#use_tiers.indicator_use_classes` |
+| `RelevanceRating.objectScheme` | `vocab/evidence_labels.yaml#rating_object_schemes` |
+| `SeriesRecord.seriesStatus` (pattern) | `vocab/mapping_predicates.yaml#series_statuses` |
+| `Source.sourceStatus` (pattern) | `vocab/evidence_labels.yaml#source_statuses` |
+
+### DE additions not named in the SPEC
+
+**Ratified**, all optional and closed. The SPEC now names each of them.
+
+- `Competency.v1Seed`: reference-only seed material. It is stripped from every release artifact (the build's self-check that fails on any `v1Seed` in a bundle stays). It is never counted, never rendered in a view and never an input to a computed view. It may remain on `candidate` records because the release build strips it. Carrying it as one object rather than ~6,600 seed Indicator records is the right call: those records would invite counting and display as v2 indicators.
+- On rating records: `v1Values`, `mappingRule`, `sWatch` and `tacitExperienceRequirement`. `sWatch` and `tacitExperienceRequirement` are codebook fields (XR-04; supporting task attributes), so they become SPEC fields for every rater type, not only v1.
+- Competency-subject v1 ratings (`competency` + `competencyTextSha256`; `subject` + `subjectTextSha256` on RelevanceRating) and the legacy `objectScheme` values `v1-family | v1-reform-flags | v1-ethical-lens | v1-cld`: **only for `raterType = v1-analyst`**. They are prior evidence and never a v2 value (ADR-0008 §5).
+- `Indicator.obs4Flags`, `evidencePlan` (MUST when `useClass = develop` and `obs4 = 2`), `safetyOrLegalCritical`, `distinguishingAttribute` (CR-IO-001); `Competency.transversalCluster` (MUST when `competencyType = transversal`); `reviewBy` on the common base (MUST for watch, proposed and emerging records, SPEC §10.2).
+- Seed keys may contain `/`. In file names `/` is written `--`.

@@ -1,0 +1,45 @@
+id: seed:ena-sl-c16-state
+type: Enactment
+prefLabel:
+  en: State employee in a licensure-split class
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SL-C16
+enactmentKind: actor
+actorType: state-agency
+authorityBasis:
+  en: State licensing acts (engineering, geology, environmental health, operator certification) and the state class plan, which assigns sealing duties only to licensed classes.
+principal:
+  en: The licensed supervisor in responsible charge; the licensing board.
+accountabilityVenue:
+  en: State licensing boards.
+note:
+  en: 'SL review: class plans are split by licence, so moving into a licensed class is a credential gate, not a proficiency step [E: SL-055, SL-054].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sl-review@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SL-054
+  - SL-055
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

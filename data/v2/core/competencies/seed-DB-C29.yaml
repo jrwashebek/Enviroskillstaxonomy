@@ -1,0 +1,118 @@
+id: seed:DB-C29
+type: Competency
+prefLabel:
+  en: Communicate environmental and health risks under uncertainty
+altLabel:
+  en:
+  - Risk and crisis communication
+  - Public advisories and notices
+definition:
+  en: Designs and delivers risk and crisis communication (advisories, do-not-drink and boil-water notices, smoke and heat messages, cleanup and exposure updates) that is accurate, timely, actionable and understood by affected publics, states uncertainty plainly, is tested for comprehension, and reaches people in the languages they use. Excludes environmental education and interpretation, and the underlying risk assessment.
+statement:
+  en: Prepares and delivers risk and crisis messages that state what is known, what is uncertain and what people should do, tailored to affected audiences and their languages, tested for comprehension, coordinated with partner agencies, and updated as evidence changes.
+competencyType: transversal
+transversalCluster: TX-E
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:lc-txe-riskcomm-l1-a
+  - seed:lc-txe-riskcomm-l1-b
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L2
+  indicators:
+  - seed:lc-txe-riskcomm-l2-a
+  - seed:lc-txe-riskcomm-l2-b
+  - seed:lc-txe-riskcomm-l2-c
+  - seed:lc-txe-riskcomm-l2-d
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L3
+  indicators:
+  - seed:lc-txe-riskcomm-l3-a
+  - seed:lc-txe-riskcomm-l3-b
+  - seed:lc-txe-riskcomm-l3-c
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L4
+  indicators:
+  - seed:lc-txe-riskcomm-l4-a
+  - seed:lc-txe-riskcomm-l4-b
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+homeModule: core
+learningDesign:
+  assessmentContext: stakeholder | incident (message products scored; simulated public meetings and calls)
+  recommendedModes:
+  - CL
+  - SIM
+  - WBL
+  - MEN
+  typicalHoursPerLevelStep: 16
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'TX-E (candidate DB-C29; ADR-0025 §1). v1 communication competencies are educational or interpretive; risk communication under uncertainty is a distinct, assessable performance required across modules (DB rationale; DB-021, DB-030). Module enactments (water: public notification; envhealth: advisories; hazards and forest: smoke and evacuation messaging) are handed to WP-06.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

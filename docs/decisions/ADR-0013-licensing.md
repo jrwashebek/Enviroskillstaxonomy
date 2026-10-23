@@ -40,3 +40,7 @@
 
 - **AS** dissents for content: CC BY would make provenance and fundability stronger. **Trade-off named:** less adoption friction and one licence per record (chosen) versus enforceable attribution of content. The CA judges that the mark-and-DOI convention captures most of AS's benefit at little of the cost.
 - **TN's** carve-out adds schema complexity (namespace and licence separation from day one), accepted.
+
+## Amendments
+
+- **2026-10-23 — CR-LM-002 / ADR-0029 §9 (CA).** Values derived from third-party index datasets whose licence the V-pass has not verified carry `LicenseRef-EMST-third-party-index-derived`. They are excluded from the CC0 files and from **every** release bundle until AS (with CP) records the index's terms in the third-party licence register. After that they ship under those terms in `external/`, or in the bundle with attribution where the terms allow. Only IDs and numbers are stored, never index text.

@@ -1,0 +1,70 @@
+id: seed:DB-C13
+type: Competency
+prefLabel:
+  en: Operate ambient air monitoring networks to regulatory quality-assurance criteria
+altLabel:
+  en:
+  - Ambient air monitoring quality assurance
+  - Air monitoring network operation
+  - Source testing and continuous emissions monitoring oversight
+definition:
+  en: Siting, operating, calibrating and auditing regulatory ambient monitors and validating their data, together with oversight of source testing and continuous emissions monitors and the correction and integration of low-cost sensor and satellite data, while keeping regulatory and non-regulatory data distinct. Excludes emissions inventories and modelling (DB-C14).
+statement:
+  en: Sites, operates, calibrates and audits regulatory monitors; validates and certifies data against quality-assurance criteria; oversees stack tests and continuous emissions monitor certification; and corrects low-cost sensor data against collocated reference monitors, documenting each step so the data withstand certification, audit and public scrutiny.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-db-c13-l1-a
+  - seed:ind-db-c13-l1-b
+- level: L2
+  indicators:
+  - seed:ind-db-c13-l2-a
+  - seed:ind-db-c13-l2-b
+- level: L3
+  indicators:
+  - seed:ind-db-c13-l3-a
+  - seed:ind-db-c13-l3-b
+- level: L4
+  indicators:
+  - seed:ind-db-c13-l4-a
+  - seed:ind-db-c13-l4-b
+homeModule: air
+subsectors:
+- P01
+reusability: subsector-specific
+layer: L1
+module: air
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Survivor; absorbs FC-C17 (field station operation and audit, as field anchors) and SL-C13 (emissions testing and monitoring programmes); splits monitoring QA out of v1 6.7.5. Part of role R28 and of monitoring technician R03. Visible-emissions observer certification is a Credential gate. Basis [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:6.7.5
+    relation: split-from
+    note: monitoring QA part of v1 6.7.5 (DB, SL, FC, SC verdicts)
+  sources:
+  - DB-023
+  - FC-058
+  - SL-085
+  - SL-050
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

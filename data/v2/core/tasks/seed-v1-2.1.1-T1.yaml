@@ -1,22 +1,30 @@
 id: seed:v1-2.1.1-T1
 type: Task
 prefLabel:
-  en: Create and update spatial layers representing land use, vegetation, and infrastructure
+  en: Maintain spatial layers of land use, vegetation and infrastructure with topology rules, attribute standards and update dates recorded.
 statement:
-  en: Create and update spatial layers representing land use, vegetation, and infrastructure
-textSha256: 7a6f9058396394746e20dae00b0d1e51ffa0226e10061c6b19c3e5683ba24613
-supports:
-- competency: seed:v1-2.1.1
-  strength: primary
+  en: Maintain spatial layers of land use, vegetation and infrastructure with topology rules, attribute standards and update dates recorded.
+textSha256: 09982876d116e059c18c3b8cd780a932213c7a8cc826d1f742bd0f94af5b31cb
+editorialNote:
+  en: 'Re-pointed from superseded v1 2.1.1 (move-to-tools) to its durable remainder v1 2.1.4. v1 competency 2.1.1 is move-to-tools: reassign this task to one of [''seed:v1-2.1.4'', ''seed:tool-gis-platforms''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
 notation:
 - scheme: EMSTv1
   value: 2.1.1:T1
+supports:
+- competency: seed:v1-2.1.4
+  strength: primary
+workFunction: WF-OPERATE
+fieldDependency: remote
+formationDependency: 'no'
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T1
 v1Domain:
   code: '2'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '2.1'
   label: Geospatial Technologies
-editorialNote:
-  en: 'v1 competency 2.1.1 is move-to-tools: reassign this task to one of [''seed:v1-2.1.4'', ''seed:tool-gis-platforms''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.1.1:T1
     v1Code: 2.1.1
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

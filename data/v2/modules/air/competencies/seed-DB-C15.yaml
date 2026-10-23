@@ -1,0 +1,61 @@
+id: seed:DB-C15
+type: Competency
+prefLabel:
+  en: Plan smoke management for prescribed and managed fire within air quality requirements
+altLabel:
+  en:
+  - Smoke management
+  - Prescribed fire smoke coordination
+  - Exceptional events demonstration
+definition:
+  en: 'Coordination between fire managers and air regulators that lets prescribed and managed fire proceed while smoke impacts stay within air quality requirements: burn-window and dispersion assessment, burn-day decisions, public health messaging and exceptional-event documentation. Excludes burn execution (forest module, v1 4.3.2).'
+statement:
+  en: Assesses burn windows against dispersion forecasts, existing air quality and sensitive receptors; prepares or decides burn-day approvals; coordinates public health messaging; verifies smoke forecasts during burns; and documents smoke-affected monitoring days, so that fire use proceeds within applicable air quality requirements.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:ind-db-c15-l2-a
+  - seed:ind-db-c15-l2-b
+- level: L3
+  indicators:
+  - seed:ind-db-c15-l3-a
+  - seed:ind-db-c15-l3-b
+- level: L4
+  indicators:
+  - seed:ind-db-c15-l4-a
+  - seed:ind-db-c15-l4-b
+homeModule: air
+subsectors:
+- P01
+- L07
+reusability: subsector-specific
+layer: L1
+module: air
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Smoke management sits at the air-fire boundary; home MOD-03 under the home-module rule because air programmes govern the legal sufficiency of the deliverable (ADR-0018 s.6), enacted in MOD-11 for burn planning (seed:ena-db-c15-forest). Part of roles R07 and R28. OpenLMP plan components cite air or smoke 373 times (DB-011). Basis [J], demand count [E].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - DB-011
+  - DB-023
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -1,0 +1,56 @@
+id: seed:v1-4.4.4-A
+type: Competency
+prefLabel:
+  en: Work safely on hazardous, industrial and energized field sites
+definition:
+  en: 'Recognizing and controlling chemical, physical and energy hazards during field work at contaminated, industrial, utility and construction sites: following site health and safety plans, selecting and using protective equipment, keeping confined-space, electrical and line-clearance limits, decontaminating, and responding to incidental discovery of hazardous materials with isolation and notification. Hazardous-waste operations training is a credential gate. Excludes remediation management (waste module) and emergency hazmat response.'
+statement:
+  en: Follow site health and safety plans at contaminated, industrial and energized sites; use the protective equipment and decontamination the plan requires; keep confined-space, electrical and line-clearance limits; and isolate, report and withdraw safely when hazardous materials are discovered unexpectedly.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - seed:ind-v1-4.4.4-a-l1-a
+  - seed:ind-v1-4.4.4-a-l1-b
+  - seed:ind-v1-4.4.4-a-l1-c
+- level: L2
+  indicators:
+  - seed:ind-v1-4.4.4-a-l2-a
+  - seed:ind-v1-4.4.4-a-l2-b
+  - seed:ind-v1-4.4.4-a-l2-c
+- level: L3
+  indicators:
+  - seed:ind-v1-4.4.4-a-l3-a
+  - seed:ind-v1-4.4.4-a-l3-b
+homeModule: core
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: WP-03 (FC) draft. Core part of split v1 4.4.4 (position 1); absorbs PS-C24 (work safely on hazardous, industrial and energized sites). Remediation management goes to DB-C20 (MOD-04); hazardous-waste operations training is the Credential seed:crd-hazwoper (planned, WP-07).
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.4.4
+    relation: split-from
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - ADR-0011
+  - WP-03

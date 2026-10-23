@@ -1,0 +1,39 @@
+id: seed:lc-txd-evaluate-l4-b
+type: Indicator
+prefLabel:
+  en: Reviews a sample of other evaluators' sign-offs against the recorded evidence and
+competency: seed:IO-C01
+level: L4
+statement:
+  en: Reviews a sample of other evaluators' sign-offs against the recorded evidence and returns each rating the evidence does not support, with the reason.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:lc-txd-certify-qualification
+distinguishingAttribute: ATT-SCO
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

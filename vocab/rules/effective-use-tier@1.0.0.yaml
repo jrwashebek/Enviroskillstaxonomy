@@ -1,0 +1,35 @@
+# EMST computed-view rule (SPEC §10.4, §14.3; ADR-0015, ADR-0024; CR-DE-003, CR-IO-001, CR-IO-002). Normative definition.
+ruleId: effective-use-tier
+version: 1.0.0
+status: active
+replaces: effective-use-tier@0.1.0
+steward: DE (implementation) · IO (evidence inputs) · CA (definition)
+decidedIn: [ADR-0015, ADR-0024, ADR-0029, CR-DE-003, CR-IO-001, CR-IO-002]
+computes: Effective use tier = the minimum of the caps below (ADR-0015), for Competency, Task, Indicator, RoleProfile, RoleVariant, KnowledgeStatement, Enactment and Pathway.
+inputs: [released records, validation/indicator_lint_rules.yaml#publication_rules.tier_requirements, the display-gate@1.0.0 view]
+tier_order: [exploratory, describe, develop, select]
+definition:
+  declared_ceiling: "`useTier` as stored (default exploratory)."
+  lifecycle_cap: "watch, proposed → exploratory; emerging → develop; established, declining → select; withdrawn, lapsed, merged → no tier (not for use)."
+  evidence_cap: >
+    seed-v1 → exploratory; draft, reviewed → describe; panel-retained → develop; job-analysis-confirmed,
+    criterion-supported → select. For Competency, select additionally requires ≥ 1 linked task with critical = true in
+    a role variant whose validationStatus ≥ job-analysis-confirmed (SPEC §5.2; ADR-0001).
+  level_rule_cap: >
+    Competency only: the highest tier whose tier_requirements (PR-1…PR-4 results and the OBS-4 minimum) are met at
+    EVERY published level (SPEC §8.2, ratified in CR-IO-001); a competency with no published level is capped at describe.
+    Indicator: its own useClass, and no higher than its competency's level_rule_cap.
+  indicator_lint_cap: "An Indicator with an unwaived lint flag is capped at develop (select requires no flags; waivers in data/v2/governance/lint_waivers.csv)."
+  reliability: >
+    Tags are not capped here record by record: display-gate@1.0.0 decides, per value, whether a gated tag renders and
+    whether it is production or tentative; select views admit production values only. The effective tier never rises
+    because a tag is shown.
+  pathway: "Pathway: capped at exploratory until it passes the M-03 validation gate (ADR-0023); recommended stays false until then (SPEC §5.10)."
+outputs:
+  view: views/effective_use_tier.json
+  fields: "id, effectiveUseTier, declaredCeiling, caps{lifecycle, evidence, levelRule, indicatorLint}, bindingCap, ruleId, ruleVersion, buildCommit"
+parameters:
+  tier_requirements: {path: validation/indicator_lint_rules.yaml, key: publication_rules.tier_requirements, pin: "sha256 of the file at build, recorded in the view header"}
+implementation: scripts/build_release.py#Release.views (to be extended by DE; see RULINGS_FOR_DE.md §4)
+changeNote:
+  - {date: '2026-10-23', note: "Adds the evidence, level-rule and indicator-lint caps; states how the reliability gate applies (ADR-0029)."}

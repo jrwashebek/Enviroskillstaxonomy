@@ -7,6 +7,7 @@ lastReviewed: '2026-10-23'
 decidedIn:
 - ADR-0022
 - ADR-0006
+- ADR-0029
 steward: SL with IA and DE
 license: CC0-1.0
 description: 'SL''s Minimal Common Fields v0.1 (P-SL-07): 16 MUST, 10 SHOULD, 2 MAY. Records are dated crosswalk
@@ -66,9 +67,10 @@ fields:
   observed_in_sample: All series
 - field: supervisory_status
   requirement: MUST
-  definition: Non-supervisory, lead, supervisor, manager, executive
+  definition: 'Supervisory level of the class: non-supervisory, lead, supervisor, manager or executive (e.g. TX:
+    supervision normally at IV-V; NY M-grades). Machine values per CR-DE-002 #4.'
   format: enum
-  vocab_or_example: 'TX: supervision normally at IV-V; NY M-grades'
+  vocab_or_example: non-supervisory|lead|supervisor|manager|executive
   why_needed: Most reliable signal for level mapping across systems
   observed_in_sample: Stated in TX, WA, CA, MN specs
 - field: spec_effective_date
@@ -165,10 +167,11 @@ fields:
   observed_in_sample: WA, MN, NY
 - field: appointment_route
   requirement: SHOULD
-  definition: How people enter the class
+  definition: 'How people enter the class: open-competitive-exam; continuous-t-and-e (continuous training-and-experience
+    evaluation); application-as-exam; non-competitive (e.g. NY HELPS); provisional; transfer-list; performance-based
+    (e.g. LEAP). Machine values per CR-DE-002 #4; a class may have several.'
   format: enum list
-  vocab_or_example: open-competitive-exam|continuous-T&E|application-as-exam|non-competitive (NY HELPS)|provisional|transfer-list|performance-based
-    (LEAP)
+  vocab_or_example: open-competitive-exam|continuous-t-and-e|application-as-exam|non-competitive|provisional|transfer-list|performance-based
   why_needed: Competency evidence enters at different points
   observed_in_sample: CA, NY, PA
 - field: related_titles

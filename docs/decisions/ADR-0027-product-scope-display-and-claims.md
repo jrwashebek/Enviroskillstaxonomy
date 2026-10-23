@@ -52,3 +52,9 @@ WCAG 2.2 AA (a superset of Section 508's WCAG 2.0 AA and the WCAG 2.1 AA require
 - **CP** wanted v1 values visible at task level by default; moved into an evidence drawer to satisfy IO's rule and avoid repeating Flourish's mistake. Trade-off: less "insight" on day one, more credibility with federal adopters.
 - **AS vs CP:** kits before interactive views when they compete — adopted (AS disagreement 5).
 - **FS:** publishing the "what's coming" view risks speculation in front of HR users; contained by labelling and use-tier filtering.
+
+## Amendments
+
+- **2026-10-23 — CR-LM-002, CR-IO-002 / ADR-0029 §6, §9 (CA).**
+  - **View 1's external context.** It shows occupation-level index values attached through X3, labelled "Occupation-level external index; not specific to this role's tasks", with dispersion, index release and match type. Values matched more broadly than `closeMatch` appear only in the evidence drawer, and values are never averaged across indices.
+  - **Task work function.** In View 1 it is "Assessment pending" until the first reliability study reports.

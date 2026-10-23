@@ -1,0 +1,46 @@
+id: seed:LC-C-07-T5
+type: Task
+prefLabel:
+  en: Issue a recreational-water advisory for a harmful algal bloom when sampled toxin concentrations exceed the programme's thresholds
+statement:
+  en: Issue a recreational-water advisory for a harmful algal bloom when sampled toxin concentrations exceed the programme's thresholds
+textSha256: 5423dd4419e546ca497a88fec2b825e4ae394e046b02fa4f0beb7f1f0a46c36d
+supports:
+- competency: seed:LC-C-07
+  strength: primary
+workFunction: WF-RESPOND
+relationshipTypes:
+- public
+workflowProfiles:
+- WP-INCIDENT
+fieldDependency: remote-capable
+formationDependency: partial
+accountabilityConstraint:
+  required: true
+  basis:
+    en: Advisories are issued under the health officer's authority.
+homeModule: envhealth
+subsectors:
+- H01
+- H02
+layer: L2
+module: envhealth
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

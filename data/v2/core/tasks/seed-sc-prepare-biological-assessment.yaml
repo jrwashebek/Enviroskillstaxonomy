@@ -1,0 +1,44 @@
+id: seed:sc-prepare-biological-assessment
+type: Task
+prefLabel:
+  en: Prepare a biological assessment for a proposed action, stating the effects determination for each listed species and critical habitat with supporting evidence
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Prepare a biological assessment for a proposed action, stating the effects determination for each listed species and critical habitat with supporting evidence
+textSha256: 04f8c85f7e3f34225ce9adc9578acc9d4fa202ea2328a7ceaaafb9f44fff3c1d
+supports:
+- competency: seed:FH-C01
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-PROJECT
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Prepare a biological assessment for a proposed action, stating the effects determination for each listed species and critical habitat with supporting evidence" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

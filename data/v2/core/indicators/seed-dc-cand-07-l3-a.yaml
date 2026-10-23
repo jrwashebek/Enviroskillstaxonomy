@@ -1,0 +1,38 @@
+id: seed:dc-cand-07-l3-a
+type: Indicator
+prefLabel:
+  en: Checks AI training sets, embeddings, retrieval corpora and high-resolution outputs for leakage of withheld…
+competency: seed:DC-CAND-07
+level: L3
+statement:
+  en: Checks AI training sets, embeddings, retrieval corpora and high-resolution outputs for leakage of withheld information, documenting the controls applied.
+augmentationMode: assisted
+assessmentMethods:
+- work-sample
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:dc-07-leakage-check
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

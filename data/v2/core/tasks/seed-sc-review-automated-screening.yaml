@@ -1,0 +1,44 @@
+id: seed:sc-review-automated-screening
+type: Task
+prefLabel:
+  en: Review automated exclusion-screening results for a batch of routine actions, confirming or overriding each flagged extraordinary circumstance
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Review automated exclusion-screening results for a batch of routine actions, confirming or overriding each flagged extraordinary circumstance
+textSha256: b05a137a811239144a50ef318587ba2308d9ffac30003c9a64cf0b6dec92033a
+supports:
+- competency: seed:SC-C03
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-PROJECT
+editorialNote:
+  en: 'Review counterpart of the screening task where rules-based or AI screening compresses production (G-2). Rewritten from the v1 task text: "Review automated exclusion-screening results for a batch of routine actions, confirming or overriding each flagged extraordinary circumstance" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

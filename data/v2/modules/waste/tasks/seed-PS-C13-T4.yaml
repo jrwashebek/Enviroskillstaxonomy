@@ -1,0 +1,41 @@
+id: seed:PS-C13-T4
+type: Task
+prefLabel:
+  en: Verify a database report and an AI-drafted records summary against source records before relying on them in the assessment
+statement:
+  en: Verify a database report and an AI-drafted records summary against source records before relying on them in the assessment
+textSha256: 410918caac716ede7ca51e72b5bdb3688c4b6c26e2e1dbf1e091ff3c906a4e85
+supports:
+- competency: seed:PS-C13
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: remote
+formationDependency: 'yes'
+homeModule: waste
+subsectors:
+- P04
+layer: L2
+module: waste
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: Verification task split from AI-assisted records summary (ADR-0003 G-2).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

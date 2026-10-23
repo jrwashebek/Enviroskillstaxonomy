@@ -1,20 +1,34 @@
 id: seed:v1-7.1.2
 type: Competency
 prefLabel:
-  en: Intervention authorization and ecological precaution
+  en: Authorize ecological interventions with legitimate standing and precaution
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to establish, before a management intervention proceeds, that every party whose authority, consent or standing it requires has authorized it, that precautionary criteria for reversibility and uncertainty have been applied, and that monitoring and exit conditions are set and recorded.
 statement:
-  en: Evaluating proposed ecological interventions against reversibility, historical precedent, and authorization standards to determine whether precautionary criteria are met before proceeding.
+  en: Before a management intervention proceeds, identifies every party whose authority, consent or standing it requires, tests the intervention against reversibility, uncertainty and precedent criteria, sets monitoring obligations and exit conditions, and records who authorized it and on what basis.
 competencyType: transversal
 transversalCluster: TX-B
+levelSpan:
+  min: L2
+  max: L4
+homeModule: core
+reusability: transversal
+altLabel:
+  en:
+  - intervention authorization
+  - ecological precaution
+  - authorization with standing
 notation:
 - scheme: EMSTv1
   value: 7.1.2
-layer: L1
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Domain:
   code: '7'
   label: Cross-Cutting Professional Practice
@@ -22,14 +36,16 @@ v1SkillArea:
   code: '7.1'
   label: Professional Ethics Architecture
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | transversal | TX-B. Rationale: Treats Tribal governments as authorities with standing (TN carry); moved to the transversal layer with observable indicators (ADR-0025). Role verdicts considered: TN:carry|CA:change.'
-license: CC0-1.0
-sensitivity: public
+  en: 'WP-05 (A5 SC). v1 7.1.2 rewrite moved to the transversal layer with observable indicators (ADR-0025). TN''s verdict that Tribal governments are authorities with standing is preserved as a held enactment for TN to draft under the Tribal hold; this record is written actor-neutrally and names no Tribal content. Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | transversal | TX-B. Rationale: Treats Tribal governments as authorities with standing (TN carry); moved to the transversal layer with observable indicators (ADR-0025). Role verdicts considered: TN:carry|CA:change.'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:7.1.2
     v1Code: 7.1.2
@@ -40,123 +56,26 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Intervention authorization and ecological precaution
-  v1Description: Evaluating proposed ecological interventions against reversibility, historical precedent, and authorization standards to determine whether precautionary criteria are met before proceeding.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:7.1.2:foundational
-    knowledge: Understands that technical feasibility does not constitute authorization; distinguishes passive, low-intervention, and high-intervention management approaches and their different ethical stakes; recognizes the precautionary principle as an operational decision criterion
-    application: Identifies when a proposed action triggers precautionary review; applies a checklist-based precautionary assessment with guidance
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.1.2:foundational:I1
-      n: 1
-      text: Explains the distinction between asking "can we do this?" and "should we do this, and who decides?"
-      origin: database
-    - v1Key: v1:7.1.2:foundational:I2
-      n: 2
-      text: Identifies characteristics that distinguish low-intervention from high-intervention management approaches (reversibility, historical precedent, scale, uncertainty)
-      origin: database
-    - v1Key: v1:7.1.2:foundational:I3
-      n: 3
-      text: Recognizes management contexts where intervention authorization is explicitly required (assisted migration, genetic rescue, hydrological modification, prescribed fire)
-      origin: database
-    - v1Key: v1:7.1.2:foundational:I4
-      n: 4
-      text: Locates relevant authorization requirements for a proposed action in applicable regulatory and governance frameworks
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:7.1.2:intermediate
-    knowledge: Applies precautionary criteria to specific intervention proposals; understands authorization standing across institutional contexts; evaluates historical precedent as an authorization criterion
-    application: Conducts independent precautionary assessment for a proposed intervention; facilitates multi-stakeholder authorization processes
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.1.2:intermediate:I1
-      n: 1
-      text: Applies reversibility and uncertainty criteria to assess whether precautionary triggers apply to a specific proposed intervention
-      origin: database
-    - v1Key: v1:7.1.2:intermediate:I2
-      n: 2
-      text: Identifies all parties with authorization standing for a given intervention and their respective roles in authorization processes
-      origin: database
-    - v1Key: v1:7.1.2:intermediate:I3
-      n: 3
-      text: Evaluates the historical precedent record for a proposed intervention and interprets its implications for authorization requirements
-      origin: database
-    - v1Key: v1:7.1.2:intermediate:I4
-      n: 4
-      text: Communicates precautionary assessment findings to decision-makers in terms that distinguish what is technically feasible from what is authorized and appropriate
-      origin: database
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:7.1.2:advanced
-    knowledge: Expert in intervention ethics frameworks; deep understanding of authorization landscapes across regulatory, tribal, and landowner contexts; applies precautionary governance frameworks in contested multi-stakeholder environments
-    application: Designs intervention authorization frameworks; navigates conflicts between organizational intervention preferences and authorization requirements; provides authoritative guidance on precautionary criteria
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.1.2:advanced:I1
-      n: 1
-      text: Designs intervention decision frameworks that embed authorization requirements, reversibility thresholds, and monitoring triggers as operational governance tools
-      origin: database
-    - v1Key: v1:7.1.2:advanced:I2
-      n: 2
-      text: Navigates situations where organizational or agency preferences for intervention conflict with authorization requirements or precautionary criteria
-      origin: database
-    - v1Key: v1:7.1.2:advanced:I3
-      n: 3
-      text: Provides authoritative guidance when an intervention's precedent status is contested or when authorization standing is disputed
-      origin: database
-    - v1Key: v1:7.1.2:advanced:I4
-      n: 4
-      text: Advises on intervention authorization in novel contexts where existing frameworks are incomplete or silent
-      origin: database
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:7.1.2:expert
-    knowledge: Advances field-wide frameworks for ecological intervention authorization; recognized authority on precautionary governance; shapes institutional standards for high-intervention management
-    application: Contributes to policy development on intervention authorization; influences professional standards on precautionary practice
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.1.2:expert:I1
-      n: 1
-      text: Contributes to development of agency or professional association guidance on ecological intervention authorization standards
-      origin: database
-    - v1Key: v1:7.1.2:expert:I2
-      n: 2
-      text: Publishes or presents on precautionary governance frameworks for novel ecological intervention contexts
-      origin: database
-    - v1Key: v1:7.1.2:expert:I3
-      n: 3
-      text: Advises on intervention authorization in landmark or precedent-setting management situations
-      origin: database
-    - v1Key: v1:7.1.2:expert:I4
-      n: 4
-      text: Recognized as a leading practitioner in ecological precaution and intervention ethics in environmental management
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:7.1.2:sector:public_agencies
-    text: High-intervention management authorization, NEPA alternatives analysis, tribal consultation for interventions
-  - sector: private_sector
-    v1Key: v1:7.1.2:sector:private_sector
-    text: Ecological engineering project authorization, habitat intervention design
-  - sector: ngos
-    v1Key: v1:7.1.2:sector:ngos
-    text: Conservation intervention decision frameworks, assisted migration governance
-  - sector: consulting
-    v1Key: v1:7.1.2:sector:consulting
-    text: Intervention authorization advisory, precautionary assessment services
-  - sector: academia
-    v1Key: v1:7.1.2:sector:academia
-    text: Intervention ethics research, precautionary principle pedagogy
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L2
+  indicators:
+  - seed:v1-7-1-2-l2-a
+  - seed:v1-7-1-2-l2-b
+- level: L3
+  indicators:
+  - seed:v1-7-1-2-l3-a
+  - seed:v1-7-1-2-l3-b
+- level: L4
+  indicators:
+  - seed:v1-7-1-2-l4-a
+  - seed:v1-7-1-2-l4-b

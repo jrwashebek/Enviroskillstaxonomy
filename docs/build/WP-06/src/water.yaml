@@ -1,0 +1,617 @@
+# WP-06 authoring source — MOD-01 Water and wastewater utilities (namespace: water; subsectors W01 W02 W03)
+# Rows: candidate_disposition DB-C01, DB-C02, DB-C09, SL-C06 (absorbs DB-C04, LC-C-05, SL-C05);
+#       v1_disposition 4.7.1, 4.7.3 (move-to-module). Enactments of core competencies at the end.
+# Content evidence label J (DB Phase 2 analysis; credential facts per V3-08). All text agent-drafted.
+module: water
+competencies:
+
+  - id: DB-C01
+    label: Operate drinking water treatment processes to meet water quality targets
+    alt: [Drinking water treatment operation, Water treatment operator in responsible charge]
+    def: >-
+      Running a drinking water treatment plant's unit processes, from raw-water intake to finished water entering
+      distribution, so that finished water meets health-based and aesthetic targets. Covers process testing, dosing
+      and setpoint control, supervision of automated control, upset response and the process record. Excludes
+      distribution operation, laboratory accreditation work and plant design.
+    stmt: >-
+      Controls coagulation, clarification, filtration, disinfection and corrosion control by reading plant conditions,
+      running process tests and adjusting setpoints; supervises automated control; responds to raw-water changes and
+      upsets; and keeps a process record that shows finished water met its targets and withstands regulatory review.
+    span: [L1, L4]
+    sub: [W01]
+    att: ATT-AUT
+    df:
+      - {v1Key: 'v1:1.2.4', relation: reference-only, note: 'v1 water-quality knowledge used as background; no v1 operator competency existed'}
+    src: [DB-020, DB-021, DB-041, V3-08]
+    note: >-
+      Survivor for drinking-water process operation; absorbs LC-C-05 (sensor-supported operation) and SL-C05
+      (responsible-charge operation). Operator certification is a Credential gate issued by state programmes, with
+      standardized exams from Water Professionals International (formerly ABC) in many states (V3-08); it is never a
+      proficiency level (ADR-0003 T-8). Fieldcraft here is plant-floor sensory judgment (DB report s.3.3). Levels follow
+      the generic scale; certification grade tied to system classification is recorded on role variants. Basis [J]: DB
+      Phase 2, operator need-to-know criteria (unverified, DB-020).
+    tasks:
+      - id: DB-C01-T1
+        text: Run jar tests and adjust coagulant dosing when raw-water turbidity, temperature or organic content changes
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        cg: licence
+        so: licensure
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: system-specific, currencyDecay: M}
+        acc: Process changes at a public water system are made or approved by an operator certified at the grade required for the system's classification.
+      - id: DB-C01-T2
+        text: Verify disinfection contact time against required inactivation values at each operating flow and correct shortfalls before water enters distribution
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        cg: licence
+        so: licensure
+      - id: DB-C01-T3
+        text: Respond to a treatment upset by isolating the affected process unit, bringing backup treatment online and notifying the primacy agency
+        wf: WF-RESPOND
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS, WP-INCIDENT]
+        cg: licence
+        so: licensure
+        rr: {mentorshipDependence: H, cycleDependence: multi-year-or-rare-event, placeBoundness: system-specific, currencyDecay: H}
+      - id: DB-C01-T4
+        text: Supervise automated process-control loops, overriding setpoints when analyzer readings conflict with bench tests or visual plant checks
+        wf: WF-OPERATE
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        cg: licence
+        so: licensure
+      - id: DB-C01-T5
+        text: Review an automatically compiled monthly operating report against bench sheets and shift logs before certifying it for submission
+        wf: WF-MONITOR.attest
+        fd: remote-capable
+        form: partial
+        prof: [WP-OPERATIONS, WP-COMPLIANCE]
+        so: licensure
+        note: Review-and-defence task split from report production (ADR-0003 G-2); report compilation is increasingly automated.
+    ind:
+      L1:
+        - t: Records raw-water, process and finished-water readings on the shift log at the required frequency, so that entries reconcile with analyzer data at supervisor review.
+          a: [task-book-observation, record-audit]
+          st: [T1, T5]
+        - t: Performs a jar test under an operator's direction following the plant procedure, reporting the coagulant dose that meets the settled-water turbidity target.
+          a: [task-book-observation]
+          st: [T1]
+      L2:
+        - t: Adjusts coagulant and disinfectant doses within the plant operating plan when raw-water quality changes, documenting each change and the test result that justified it.
+          a: [task-book-observation, record-audit]
+          st: [T1, T2]
+          sc: true
+        - t: Overrides an automated dosing setpoint when bench tests or visual checks contradict analyzer readings, and records the conflicting evidence and the action taken.
+          m: supervisory
+          a: [task-book-observation, simulation-role-play]
+          st: [T4]
+          att: ATT-AUG
+          sc: true
+      L3:
+        - t: Restores treatment performance during a non-routine upset, such as a taste-and-odor event or sudden turbidity spike, selecting process changes that keep finished water within targets.
+          a: [simulation-role-play, structured-interview-bars]
+          st: [T3]
+          att: ATT-CPX
+          sc: true
+        - t: Evaluates junior operators' upset responses on the plant floor against the plant task-book standards, documenting the coaching given and the remaining gaps.
+          a: [task-book-observation, counterpart-360]
+          att: ATT-FOR
+      L4:
+        - t: Sets the plant's process-control strategy and alarm limits, including when automated control may run unattended, documenting the acceptance criteria used to audit it.
+          m: supervisory
+          a: [portfolio-review, record-audit]
+          st: [T4]
+          att: ATT-SCO
+        - t: Certifies the monthly operating report as operator in responsible charge after checking automatically compiled values against bench sheets and shift logs.
+          m: assisted
+          a: [record-audit]
+          st: [T5]
+          att: ATT-AUG
+          sc: true
+
+  - id: DB-C02
+    label: Operate wastewater treatment and resource-recovery processes to permit limits
+    alt: [Wastewater treatment operation, Water resource recovery facility operation]
+    def: >-
+      Running a municipal or industrial wastewater treatment plant's biological, physical-chemical and solids-handling
+      processes so that effluent meets discharge permit limits and biosolids, reclaimed water and recovered energy meet
+      their quality requirements. Covers process control, upset and wet-weather response and the operating record.
+      Excludes collection-system operation and facility design.
+    stmt: >-
+      Controls biological treatment, nutrient removal, solids handling and digestion by interpreting laboratory and
+      online data and adjusting process controls; responds to toxic loads and wet-weather flows; and keeps an operating
+      record showing that effluent met permit limits and that biosolids and recovered resources met their requirements.
+    span: [L1, L4]
+    sub: [W02]
+    att: ATT-AUT
+    df:
+      - {v1Key: 'v1:1.2.4', relation: reference-only, note: 'v1 water-quality knowledge used as background; no v1 operator competency existed'}
+    src: [DB-022, DB-041, V3-08]
+    note: >-
+      Survivor for wastewater and resource-recovery operation; absorbs the wastewater content of LC-C-05 and SL-C05.
+      Largest uncovered public workforce in v1 (DB-003). Operator certification is a state-issued Credential gate
+      (V3-08), not a level. Basis [J]: DB Phase 2.
+    tasks:
+      - id: DB-C02-T1
+        text: Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        cg: licence
+        so: licensure
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: system-specific, currencyDecay: M}
+        acc: Process decisions at a permitted treatment works are made or approved by an operator certified at the grade the state requires for the facility.
+      - id: DB-C02-T2
+        text: Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        rr: {mentorshipDependence: H, cycleDependence: multi-year-or-rare-event, placeBoundness: system-specific, currencyDecay: M}
+      - id: DB-C02-T3
+        text: Route peak wet-weather flows through the plant to protect biological treatment, recording any bypass or overflow for required reporting
+        wf: WF-RESPOND
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS, WP-INCIDENT]
+        cg: licence
+        so: licensure
+      - id: DB-C02-T4
+        text: Operate anaerobic digestion and solids handling to meet biosolids pathogen-reduction and stability requirements while recovering digester gas
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        cg: licence
+      - id: DB-C02-T5
+        text: Review automatically compiled discharge monitoring data against laboratory records and shift logs before the monthly discharge report is signed
+        wf: WF-MONITOR.attest
+        fd: remote-capable
+        form: partial
+        prof: [WP-OPERATIONS, WP-COMPLIANCE]
+        so: licensure
+        note: Review-and-defence task split from report production (ADR-0003 G-2).
+    ind:
+      L1:
+        - t: Collects process-control samples and reads settleability and dissolved-oxygen values following the plant procedure, so that results match laboratory checks within the plant's tolerance.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T1]
+        - t: Reports foam, odor or color changes in a process unit to the shift operator before the end of the round, citing the location and time observed.
+          a: [task-book-observation]
+          st: [T2]
+      L2:
+        - t: Sets wasting and aeration rates for the shift from solids inventory and settleability trends, documenting each change against the plant's operating targets.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+          sc: true
+        - t: Distinguishes sensor drift from a real process change by comparing an online analyzer trend with a bench test, and records the decision.
+          m: assisted
+          a: [work-sample, task-book-observation]
+          st: [T1, T5]
+          att: ATT-AUG
+      L3:
+        - t: Selects corrective actions for a non-routine biological upset, such as filamentous bulking or nitrification loss, that return effluent to permit limits within the plant's recovery target.
+          a: [simulation-role-play, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+        - t: Directs wet-weather operations during a high-flow event, routing flow to protect biological treatment and documenting every bypass for reporting.
+          a: [task-book-observation, record-audit]
+          st: [T3]
+          att: ATT-AUT
+          sc: true
+      L4:
+        - t: Sets the plant's nutrient-removal and solids-handling operating strategy, including acceptance criteria for automated control, and audits performance against them each quarter.
+          m: supervisory
+          a: [portfolio-review, record-audit]
+          st: [T1, T4]
+          att: ATT-SCO
+        - t: Certifies a trainee operator's readiness for unsupervised shifts after observing task-book performance, including a protected unaided upset simulation.
+          a: [task-book-observation, simulation-role-play]
+          att: ATT-FOR
+
+  - id: DB-C09
+    label: Inspect stormwater control measures from construction through long-term maintenance
+    alt: [Construction stormwater inspection, Post-construction stormwater control verification, MS4 inspection]
+    def: >-
+      Field inspection and verification of erosion and sediment controls on construction sites and of permanent
+      stormwater control measures, including green infrastructure, over their lifecycle, with direction of corrective
+      maintenance under a municipal or state stormwater programme. Excludes design of control measures and programme
+      management.
+    stmt: >-
+      Inspects construction erosion and sediment controls and permanent stormwater control measures, judges whether
+      each functions as designed, directs corrective maintenance, verifies completion and documents findings to the
+      standard needed to support enforcement under a stormwater programme.
+    span: [L1, L3]
+    sub: [W03, U02]
+    att: ATT-AUT
+    df:
+      - {v1Key: 'v1:4.7.3', relation: reference-only, note: 'sits beside rewritten v1 4.7.3 (programme management)'}
+    src: [DB-022]
+    note: >-
+      Stormwater control lifecycle inspection (W03); sits beside rewritten v1 4.7.1 (installation) and 4.7.3
+      (programme management) per DB and FC verdicts. Inspector certifications (e.g. EnviroCert credentials) are Credential
+      gates, unverified for currency except CPESC (V3-08). Basis [J]: DB Phase 2.
+    tasks:
+      - id: DB-C09-T1
+        text: Inspect a construction site's erosion and sediment controls after a qualifying rain event, documenting deficiencies with photographs and required corrections
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+        rel: [stakeholder]
+      - id: DB-C09-T2
+        text: Verify that a permanent stormwater control measure infiltrates, detains or treats runoff as designed using field tests and visual indicators
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE, WP-OPERATIONS]
+      - id: DB-C09-T3
+        text: Direct an owner to correct a failing stormwater control measure and confirm the repair through a follow-up inspection
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: partial
+        prof: [WP-COMPLIANCE]
+        rel: [stakeholder]
+      - id: DB-C09-T4
+        text: Check deficiencies flagged from remote imagery or sensor data against a field visit before recording a stormwater violation
+        wf: WF-ENFORCE
+        fd: on-site-preferred
+        form: partial
+        prof: [WP-COMPLIANCE]
+        note: Verification task added where remote detection compresses screening (ADR-0003 G-2).
+    ind:
+      L1:
+        - t: Completes a construction stormwater inspection checklist on site under a lead inspector, photographing each deficiency so that the record matches the lead's findings.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+        - t: Identifies sediment leaving a site, failed silt fence and unstabilized slopes during an inspection, citing the location of each on the site plan.
+          a: [task-book-observation]
+          st: [T1]
+      L2:
+        - t: Inspects construction and permanent control measures independently, writing findings and required corrections that the programme accepts without rework.
+          a: [record-audit, task-book-observation]
+          st: [T1, T2]
+        - t: Accepts or rejects a remotely flagged deficiency after a field visit, documenting the evidence for the decision in the inspection record.
+          m: assisted
+          a: [record-audit]
+          st: [T4]
+          att: ATT-AUG
+      L3:
+        - t: Determines whether a non-routine control measure, such as an underground treatment unit, performs as designed by selecting field tests and interpreting results against design criteria.
+          a: [work-sample, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+        - t: Prepares an inspection case file for a repeat violator that the enforcement unit accepts without further fieldwork, citing each prior notice and follow-up.
+          a: [record-audit]
+          st: [T3]
+          att: ATT-SCO
+
+  - id: SL-C06
+    label: Assure public water system compliance with drinking water requirements
+    alt: [Drinking water primacy compliance, Public water system supervision, Lead and copper compliance analysis]
+    def: >-
+      Determining which drinking water requirements apply to each public water system, tracking monitoring and
+      reporting, conducting sanitary surveys and directing corrective action and public notification, practised from
+      the regulator side (primacy agency) or as a utility's compliance lead. Excludes treatment operation and plant design.
+    stmt: >-
+      Determines the monitoring, contaminant-limit and treatment-technique requirements that apply to a public water
+      system, tracks its monitoring and reporting, conducts sanitary surveys, reviews service-line inventories and
+      sampling plans, and directs corrective action and public notification when a system falls out of compliance.
+    span: [L2, L4]
+    sub: [W01]
+    att: ATT-CPX
+    src: [SL-071, DB-021]
+    note: >-
+      Survivor for public water system compliance; absorbs DB-C04 (same task core). Regulator and utility
+      (regulated-party) variants share the task core; the authority position goes on the role variant (ADR-0017).
+      Home of role R24 drinking water programme analyst. Delegated-programme oversight is core SC-C14, enacted in this
+      module. Rule versions (lead and copper, PFAS) are L5 instruments, not named here (ADR-0003 T-4). Basis [E] for
+      the function's existence in state classes (SL-071); [J] for content.
+    tasks:
+      - id: SL-C06-T1
+        text: Determine the monitoring schedule, contaminant limits and treatment-technique requirements that apply to a public water system from its source, size and treatment
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM, WP-COMPLIANCE]
+      - id: SL-C06-T2
+        text: Conduct a sanitary survey of a public water system's source, treatment, storage, distribution and operations, documenting significant deficiencies
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM, WP-COMPLIANCE]
+        rel: [stakeholder]
+      - id: SL-C06-T3
+        text: Review a utility's service-line inventory and lead sampling plan against applicable requirements and return deficiencies for correction
+        wf: WF-ENFORCE.assure
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+      - id: SL-C06-T4
+        text: Issue a violation notice with a public-notification directive when monitoring results exceed a contaminant limit or required monitoring is missed
+        wf: WF-ENFORCE
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM, WP-COMPLIANCE]
+        rel: [public, stakeholder]
+        acc: Violation determinations and public-notification directives are issued under the primacy agency's delegated authority.
+      - id: SL-C06-T5
+        text: Verify compliance determinations generated by an automated data system against laboratory reports before recording a violation
+        wf: WF-ENFORCE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        note: Verification task split from automated determination (ADR-0003 G-2).
+      - id: SL-C06-T6
+        text: Prepare a utility's annual consumer water quality report from compliance monitoring data, checking every reported value against laboratory records
+        wf: WF-MONITOR.attest
+        fd: remote
+        form: partial
+        prof: [WP-COMPLIANCE, WP-DISCLOSURE]
+        rel: [public]
+        note: Utility (regulated-party) variant task.
+    ind:
+      L2:
+        - t: Determines the monitoring and reporting requirements for a routine small system from its inventory record, producing a schedule that a senior reviewer accepts without change.
+          a: [work-sample, record-audit]
+          st: [T1]
+        - t: Accepts or rejects each violation flagged by the compliance data system after checking the underlying laboratory report, and records the basis before entry.
+          m: assisted
+          a: [record-audit, seeded-error-work-sample]
+          st: [T5]
+      L3:
+        - t: Conducts a sanitary survey of a system with multiple sources and treatment trains, classifying each deficiency by public-health significance consistent with programme guidance.
+          a: [task-book-observation, record-audit]
+          st: [T2]
+          att: ATT-CPX
+        - t: Determines applicable requirements for a non-routine case, such as a source change or consecutive-system arrangement, documenting the reasoning so another analyst can reproduce it.
+          a: [work-sample, structured-interview-bars]
+          st: [T1]
+          att: ATT-GUI
+      L4:
+        - t: Sets the programme's review criteria for service-line inventories and sampling plans, including checks for automated screening, and audits a sample of decisions each year.
+          m: supervisory
+          a: [portfolio-review, record-audit]
+          st: [T3, T5]
+          att: ATT-SCO
+        - t: Resolves contested violation determinations with a utility's counsel and engineer, issuing a decision consistent with the applicable requirements that withstands appeal.
+          a: [moot-defense, portfolio-review]
+          st: [T4]
+          att: ATT-CPX
+
+  - id: v1-4.7.1
+    label: Install green stormwater infrastructure to design specifications
+    alt: [Green infrastructure installation, Bioretention and permeable pavement installation]
+    def: >-
+      Field construction and establishment of green stormwater infrastructure (bioretention, swales, permeable
+      pavement, green roofs and similar measures) so that the installed measure matches its design and functions as
+      intended. Covers grading, media and plant installation, erosion control during construction and as-built
+      verification. Excludes design and long-term inspection (DB-C09).
+    stmt: >-
+      Builds green stormwater infrastructure to design specifications: sets grades and elevations, places engineered
+      media and plants, protects the work from sediment during construction and verifies by field tests that the
+      installed measure infiltrates and drains as designed before handover.
+    span: [L1, L3]
+    sub: [W03, U01]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-01 (W03). Rewritten to the installation function; programme leadership indicators removed
+      (B03); performance inspection sits in DB-C09 (DB, FC verdicts). Green-infrastructure installer certificates are
+      Credential gates. Basis [J].
+    tasks:
+      - id: v1-4.7.1-T1
+        text: Install bioretention cells, swales and permeable pavement to design grades, media depths and planting plans
+        wf: WF-BUILD
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT, WP-CAPITAL]
+      - id: v1-4.7.1-T2
+        text: Construct a green roof system to specification, verifying drainage layers, growing-media depth and plant establishment before handover
+        wf: WF-BUILD
+        fd: on-site-required
+        form: partial
+        prof: [WP-PROJECT, WP-CAPITAL]
+      - id: v1-4.7.1-T3
+        text: Test infiltration and drawdown of a newly installed measure and record as-built conditions that differ from the design
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+    ind:
+      L1:
+        - t: Places engineered media and plants to the planting plan under a crew lead's direction, so that depths and spacing pass the lead's check.
+          a: [task-book-observation]
+          st: [T1]
+          v1: ['v1:4.7.1:foundational:I1', 'v1:4.7.1:foundational:I2']
+        - t: Installs sediment controls around green infrastructure work during construction following the erosion control plan, so that no sediment enters finished media.
+          a: [task-book-observation]
+          st: [T1]
+          v1: ['v1:4.7.1:foundational:I3']
+      L2:
+        - t: Builds a bioretention cell independently to design grades and elevations, verified by a survey of inlet, overflow and media surface within the specified tolerance.
+          a: [work-sample, blind-re-measurement]
+          st: [T1]
+          v1: ['v1:4.7.1:intermediate:I1']
+        - t: Runs an infiltration test on a completed measure following the specified method, recording results and any as-built departure from design on the handover form.
+          a: [work-sample, record-audit]
+          st: [T3]
+      L3:
+        - t: Adapts installation to non-routine site conditions, such as unexpected utilities or shallow groundwater, documenting the change and the designer's acceptance before proceeding.
+          a: [structured-interview-bars, record-audit]
+          st: [T1, T2]
+          att: ATT-GUI
+        - t: Evaluates crew members' installation work against the specification and task-book standards, documenting corrections required before sign-off.
+          a: [task-book-observation, counterpart-360]
+          att: ATT-FOR
+          v1: ['v1:4.7.1:expert:I6']
+
+  - id: v1-4.7.3
+    label: Manage a municipal stormwater programme to meet permit conditions
+    alt: [Stormwater system management, MS4 programme management, Municipal separate storm sewer system compliance]
+    def: >-
+      Running a local government's stormwater programme so that the drainage system and its control measures are
+      maintained and the programme meets its discharge permit: maintenance planning, illicit-discharge detection,
+      public education, construction and post-construction oversight, monitoring and annual reporting. Excludes
+      individual control-measure inspection (DB-C09) and system design.
+    stmt: >-
+      Plans and runs maintenance of drainage infrastructure and stormwater control measures, detects and eliminates
+      illicit discharges, coordinates construction and post-construction oversight and education, and compiles the
+      monitoring and activity record the permit requires, so that the programme can show compliance at annual report
+      and audit.
+    span: [L1, L4]
+    sub: [W03]
+    att: ATT-SCO
+    note: >-
+      Moved to MOD-01 (W03); one of few v1 items native to local government (SL, DB, FC verdicts). Rewritten from
+      v1 'stormwater system management' to the programme function; permit-programme names kept as altLabel only
+      (ADR-0016 naming rule). Basis [J].
+    tasks:
+      - id: v1-4.7.3-T1
+        text: Inspect catch basins, pipes and outfalls on a scheduled route, recording each structure that restricts flow for cleaning
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+      - id: v1-4.7.3-T2
+        text: Trace an illicit discharge from a dry-weather outfall flow to its source using field screening and system maps
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+      - id: v1-4.7.3-T3
+        text: Schedule maintenance of vegetated stormwater control measures from inspection findings and condition records across the system
+        wf: WF-MANAGE
+        fd: remote-capable
+        form: 'no'
+        prof: [WP-OPERATIONS]
+      - id: db-4.7.3-t4
+        text: Compile the stormwater programme's annual report from inspection, monitoring and activity records, checking each figure against its source record
+        wf: WF-MONITOR.attest
+        fd: remote
+        form: partial
+        prof: [WP-COMPLIANCE, WP-DISCLOSURE]
+        note: Regulated-party reporting task; a local government is the permittee here (DB report s.3.6).
+    ind:
+      L1:
+        - t: Inspects drainage structures on an assigned route following the inspection form, recording condition codes that match a supervisor's re-inspection.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T1]
+          v1: ['v1:4.7.3:foundational:I1']
+        - t: Reports a suspected illicit discharge observed on the route the same day, citing the outfall location, flow, odor and color observed.
+          a: [task-book-observation]
+          st: [T2]
+          v1: ['v1:4.7.3:foundational:I4']
+      L2:
+        - t: Traces a dry-weather discharge to its source through the drainage network, documenting the screening results that identify the responsible property.
+          a: [work-sample, record-audit]
+          st: [T2]
+          v1: ['v1:4.7.3:intermediate:I4']
+        - t: Builds a maintenance schedule for vegetated control measures from inspection findings, so that every measure is serviced within the frequency the programme sets.
+          a: [work-sample]
+          st: [T3]
+          v1: ['v1:4.7.3:intermediate:I1']
+      L3:
+        - t: Compiles the programme's annual report from inspection, monitoring and activity records, checking each figure against its source record so that it traces at audit.
+          m: assisted
+          a: [record-audit]
+          st: [t4]
+          att: ATT-SCO
+        - t: Prioritizes outfall screening and maintenance across the system using condition and complaint data, documenting the risk basis for the order chosen.
+          a: [work-sample, structured-interview-bars]
+          st: [T3]
+          att: ATT-CPX
+      L4:
+        - t: Designs the programme's inspection, illicit-discharge and maintenance procedures to meet a new permit term, documenting how each permit condition is met.
+          a: [portfolio-review]
+          st: [T3, t4]
+          att: ATT-GUI
+        - t: Defends the programme's compliance record in a regulator audit, producing for each sampled permit condition the records that demonstrate performance.
+          a: [moot-defense, record-audit]
+          st: [t4]
+          att: ATT-SCO
+
+enactments:
+  - id: ena-sl-c03-water
+    comp: SL-C03
+    label: Drinking water and stormwater inspection enactment of regulatory compliance inspection
+    sub: [W01, W03]
+    ap: regulator
+    note: >-
+      In MOD-01 the core inspection practice is applied in two regimes: sanitary surveys of public water systems
+      (source, treatment, storage, distribution, operations and management, under the state primacy programme for the
+      Safe Drinking Water Act) and inspection of municipal stormwater programmes and construction sites under Clean
+      Water Act stormwater permits. Module content: SL-C06 (sanitary survey tasks) and DB-C09 (stormwater control
+      inspection). Inspector registration requirements vary by state.
+  - id: ena-sc-c14-water
+    comp: SC-C14
+    label: Drinking water primacy enactment of delegated regulatory programmes
+    sub: [W01]
+    ap: regulator
+    note: >-
+      States, territories and some other governments hold primary enforcement responsibility (primacy) for public
+      water system supervision under the Safe Drinking Water Act. The enactment covers primacy application and
+      revision packages when new drinking water rules are adopted, EPA regional oversight reviews of the state
+      programme, and operator certification and capacity development programme requirements tied to federal funding.
+      Module home of the related practice: SL-C06.
+  - id: ena-db-c05-water
+    comp: DB-C05
+    label: Utility enactment of risk-based asset management
+    sub: [W01, W02, W03]
+    ap: service-provider
+    note: >-
+      Water, wastewater and stormwater utilities apply risk-based asset management to linear and vertical assets:
+      condition assessment of pipes (including camera inspection with automated defect coding), likelihood and
+      consequence-of-failure scoring, renewal programmes and capital improvement plans tied to rate setting and state
+      revolving fund applications. Asset management plans are a condition of some funding programmes.
+    tasks:
+      - id: ena-db-c05-water-t1
+        text: Adjudicate automatically coded pipe defects from a sewer inspection video before the condition scores enter the renewal model
+        wf: WF-MONITOR
+        fd: remote-capable
+        form: 'yes'
+        prof: [WP-CAPITAL, WP-OPERATIONS]
+        note: Verification of automated defect coding (DB report s.3.8).
+  - id: ena-fc-c16-water
+    comp: FC-C16
+    label: Drinking water compliance sampling enactment of trace and emerging-contaminant sampling
+    sub: [W01]
+    ap: service-provider
+    note: >-
+      Utility and regulator staff collect compliance samples at the tap and in distribution for lead and copper,
+      disinfection by-products and emerging contaminants such as PFAS, where first-draw and stagnation protocols,
+      site selection from the service-line inventory and contamination control decide whether results are valid.
+      Chain of custody and field quality control follow the certified laboratory's requirements.
+    tasks:
+      - id: ena-fc-c16-water-t1
+        text: Collect a first-draw lead and copper sample at a sampling-pool residence following the stagnation and container protocol, documenting any deviation
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+        rel: [public]
+  - id: ena-ps-c09-water
+    comp: PS-C09
+    label: Utility enactment of organizational greenhouse gas inventories
+    sub: [W01, W02]
+    ap: regulated-party
+    note: >-
+      Water and wastewater utilities inventory energy-related emissions and process emissions (nitrous oxide from
+      nutrient removal, methane from digestion and collection systems) for municipal climate commitments and voluntary
+      or state reporting. Process-emission factors and direct measurement campaigns are module-specific knowledge.
+  - id: ena-dc-cand-04-water
+    comp: DC-CAND-04
+    label: Utility operations-data enactment of sensor-network and streaming data pipelines
+    sub: [W01, W02]
+    ap: service-provider
+    note: >-
+      Treatment plants and distribution systems generate continuous analyzer, flow and pressure data through
+      supervisory control systems and historians. The enactment covers data pipelines that keep compliance-relevant
+      values traceable, flag analyzer drift and separate operational from compliance data, within operational
+      technology security constraints (core DB-C06, when authored).

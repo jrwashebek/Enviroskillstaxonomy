@@ -1,0 +1,95 @@
+id: seed:SC-C08
+type: Competency
+prefLabel:
+  en: Design and administer cross-jurisdictional stewardship agreements
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to design and run master and project agreements under which agencies, other governments and nonprofit partners share stewardship work across jurisdictional boundaries, within legal limits on delegating governmental functions, and to keep them working through turnover. Excludes contract and grant administration in general.
+statement:
+  en: 'Designs and runs master and project agreements under which agencies, other governments and nonprofit partners share stewardship work: scopes work within legal limits on delegating inherently governmental functions, sets roles, reporting, revenue retention and reinvestment, and keeps agreements working through staff turnover and changes of administration.'
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L5
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - Good Neighbor Agreement administration
+  - shared stewardship agreements
+  - stewardship agreements
+  - interagency agreements
+  - memoranda of understanding
+instrumentSensitivity:
+- mechanism: DM-12
+  rationale:
+    en: Shared implementation agreement authorities are expanding.
+  evidenceLabel: E
+  sources:
+  - SC-030
+  - SC-034
+- mechanism: DM-15
+  rationale:
+    en: Revenue retention and reinvestment change agreement finance.
+  evidenceLabel: E
+  sources:
+  - SC-030
+editorialNote:
+  en: 'WP-05 (A5 SC). Survivor: absorbs FS-C14 and CC-CM-03 and v1 6.5.3 and 6.5.4 (merged). Agreement authority is expanding: 540 agreements in FY2025 (426 with states, 50 with counties), county revenue retention through FY2028, recreation agreements new, a state statute extending state authority, and a bill for 20-year agreements [E: SC-030, SC-031, SC-034, SC-032]. Agreements with Tribal governments (and co-stewardship content) route through TN-C04 under the hold. Indicators adapted from SC-A-C08-1..4. L5 indicators await SME confirmation.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-030
+  - SC-031
+  - SC-032
+  - SC-034
+  derivedFrom:
+  - v1Key: v1:6.5.3
+    relation: merged-from
+  - v1Key: v1:6.5.4
+    relation: merged-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - seed:sc-c08-l1-a
+  - seed:sc-c08-l1-b
+- level: L2
+  indicators:
+  - seed:sc-c08-l2-a
+  - seed:sc-c08-l2-b
+- level: L3
+  indicators:
+  - seed:sc-c08-l3-a
+  - seed:sc-c08-l3-b
+- level: L4
+  indicators:
+  - seed:sc-c08-l4-a
+  - seed:sc-c08-l4-b
+enactments:
+- seed:ena-sc-c08-federal
+- seed:ena-sc-c08-state
+- seed:ena-sc-c08-county
+- seed:ena-sc-c08-ngo

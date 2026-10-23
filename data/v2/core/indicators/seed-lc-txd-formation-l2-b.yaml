@@ -1,0 +1,42 @@
+id: seed:lc-txd-formation-l2-b
+type: Indicator
+prefLabel:
+  en: Drafts a staged-exposure plan for one entry role that states which tasks
+competency: seed:v1-7.2.2
+level: L2
+statement:
+  en: Drafts a staged-exposure plan for one entry role that states which tasks the trainee performs unaided, how many times, and the check that releases work done with AI assistance.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:v1-7.2.2-T2
+- seed:lc-txd-set-by-hand-quota
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  derivedFrom:
+  - v1Key: v1:7.2.2:intermediate:I3
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

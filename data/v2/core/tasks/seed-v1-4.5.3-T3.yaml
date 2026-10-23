@@ -1,22 +1,32 @@
 id: seed:v1-4.5.3-T3
 type: Task
 prefLabel:
-  en: Perform pre-trip inspections and basic maintenance
+  en: Inspect a field vehicle before each trip for tires, fluids, lights, recovery gear and load security, reporting defects before departure
 statement:
-  en: Perform pre-trip inspections and basic maintenance
-textSha256: 0eb82367f5563c236aad1ac507dd6edbd05069fae5b004973e05817f2eac5819
+  en: Inspect a field vehicle before each trip for tires, fluids, lights, recovery gear and load security, reporting defects before departure
+textSha256: 6482e3cbe3ab834e1b26c741a330633b91aeed031cf7df34e20156cd14c83906
 supports:
-- competency: seed:v1-4.5.3
+- competency: seed:v1-4.5.3-A
   strength: primary
+workFunction: WF-OPERATE
+fieldDependency: on-site-required
+formationDependency: 'no'
+reproductionRegime:
+  mentorshipDependence: L
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: L
 notation:
 - scheme: EMSTv1
   value: 4.5.3:T3
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Tier: T3
 v1Domain:
   code: '4'
@@ -25,14 +35,14 @@ v1SkillArea:
   code: '4.5'
   label: Equipment Operation
 editorialNote:
-  en: 'v1 competency 4.5.3 is split: reassign this task to one of [''seed:v1-4.5.3-A'', ''seed:v1-4.5.3-B''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
+  en: 'G-2 split role: execution to protocol (production). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:4.5.3:T3
     v1Code: 4.5.3
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

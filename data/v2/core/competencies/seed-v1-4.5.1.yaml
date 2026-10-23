@@ -1,19 +1,38 @@
 id: seed:v1-4.5.1
 type: Competency
 prefLabel:
-  en: Hand tool proficiency
+  en: Use and maintain hand tools safely for field work
+definition:
+  en: Selecting, using, sharpening, maintaining, transporting and storing non-powered hand tools for vegetation management, trail work, fireline construction, restoration and sampling, with safe body position, spacing and technique, including crosscut saw work. Crosscut sawyer certification is a credential gate. Excludes powered equipment.
 statement:
-  en: Using non-powered tools effectively and safely for field work.
+  en: Select and use the right hand tool for vegetation, trail, fireline, restoration and sampling work with safe body position, spacing and technique; sharpen and maintain tools so they stay safe; and transport and store them safely.
 competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - seed:ind-v1-4.5.1-l1-a
+  - seed:ind-v1-4.5.1-l1-b
+- level: L2
+  indicators:
+  - seed:ind-v1-4.5.1-l2-a
+  - seed:ind-v1-4.5.1-l2-b
+- level: L3
+  indicators:
+  - seed:ind-v1-4.5.1-l3-a
+  - seed:ind-v1-4.5.1-l3-b
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 4.5.1
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Domain:
   code: '4'
   label: Field Operations Skills
@@ -21,14 +40,14 @@ v1SkillArea:
   code: '4.5'
   label: Equipment Operation
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-BUILD (FC). Rationale: Observable and foundational; trail and fire tool anchors (FC verdict). Role verdicts considered: FC:carry.'
+  en: 'WP-03 (FC) draft. Carried; wording tightened and an adaptation task (tool and technique choice on site) added. Formation task for corps and fire entry roles. v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-BUILD (FC). Rationale: Observable and foundational; trail and fire tool anchors (FC verdict). Role verdicts considered: FC:carry.'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:4.5.1
     v1Code: 4.5.1
@@ -39,7 +58,7 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:4.5.1
     v1Code: 4.5.1
     v1Table: source_text/competencies
@@ -48,172 +67,11 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Hand tool proficiency
-  v1Description: Using non-powered tools effectively and safely for field work.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:4.5.1:foundational
-    knowledge: Understands basic hand tools and their uses
-    application: Uses common hand tools safely and effectively
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:4.5.1:foundational:I1
-      n: 1
-      text: Uses shovels, rakes, and hoes effectively
-      origin: database
-    - v1Key: v1:4.5.1:foundational:I2
-      n: 2
-      text: Operates Pulaskis, McLeods, and fire tools properly
-      origin: database
-    - v1Key: v1:4.5.1:foundational:I3
-      n: 3
-      text: Uses hand saws and loppers safely
-      origin: database
-    - v1Key: v1:4.5.1:foundational:I4
-      n: 4
-      text: Maintains proper body mechanics to prevent injury
-      origin: database
-    - v1Key: v1:4.5.1:foundational:I5
-      n: 5
-      text: Carries tools safely while hiking
-      origin: database
-    - v1Key: v1:4.5.1:foundational:I6
-      n: 6
-      text: Recognizes when tools are dull or damaged
-      origin: database
-    - v1Key: v1:4.5.1:foundational:I7
-      n: 7
-      text: Cleans tools after use
-      origin: restored-from-source-text
-    - v1Key: v1:4.5.1:foundational:I8
-      n: 8
-      text: Stores tools properly to prevent damage
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:4.5.1:intermediate
-    knowledge: Understands tool selection and maintenance principles
-    application: Uses diverse tools efficiently and maintains them properly
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:4.5.1:intermediate:I1
-      n: 1
-      text: Selects optimal tools for specific tasks and conditions
-      origin: database
-    - v1Key: v1:4.5.1:intermediate:I2
-      n: 2
-      text: Uses specialized tools (weed wrenches, dibbles, bark spuds)
-      origin: database
-    - v1Key: v1:4.5.1:intermediate:I3
-      n: 3
-      text: Sharpens tools properly (files, stones, grinders)
-      origin: database
-    - v1Key: v1:4.5.1:intermediate:I4
-      n: 4
-      text: Makes minor tool repairs and adjustments
-      origin: database
-    - v1Key: v1:4.5.1:intermediate:I5
-      n: 5
-      text: Works efficiently with proper technique
-      origin: database
-    - v1Key: v1:4.5.1:intermediate:I6
-      n: 6
-      text: Maintains large tool inventories
-      origin: database
-    - v1Key: v1:4.5.1:intermediate:I7
-      n: 7
-      text: Trains others in proper tool use
-      origin: restored-from-source-text
-    - v1Key: v1:4.5.1:intermediate:I8
-      n: 8
-      text: Improvises tool solutions for unique situations
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:4.5.1:advanced
-    knowledge: Expert in tool selection, use, and program management
-    application: Manages tool programs and teaches advanced techniques
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:4.5.1:advanced:I1
-      n: 1
-      text: Manages organizational tool programs
-      origin: database
-    - v1Key: v1:4.5.1:advanced:I2
-      n: 2
-      text: Procures tools appropriate to needs and budgets
-      origin: database
-    - v1Key: v1:4.5.1:advanced:I3
-      n: 3
-      text: Develops tool use standards and training
-      origin: database
-    - v1Key: v1:4.5.1:advanced:I4
-      n: 4
-      text: Modifies or fabricates specialized tools
-      origin: database
-    - v1Key: v1:4.5.1:advanced:I5
-      n: 5
-      text: Teaches advanced tool techniques
-      origin: database
-    - v1Key: v1:4.5.1:advanced:I6
-      n: 6
-      text: Ensures tool safety across programs
-      origin: database
-    - v1Key: v1:4.5.1:advanced:I7
-      n: 7
-      text: Evaluates new tools and equipment
-      origin: restored-from-source-text
-    - v1Key: v1:4.5.1:advanced:I8
-      n: 8
-      text: Maintains tool shops and facilities
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:4.5.1:expert
-    knowledge: Shapes tool practices in field operations
-    application: Provides leadership on equipment and technique
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:4.5.1:expert:I1
-      n: 1
-      text: Influences tool standards and procurement across organizations
-      origin: database
-    - v1Key: v1:4.5.1:expert:I2
-      n: 2
-      text: Develops innovative tool applications
-      origin: database
-    - v1Key: v1:4.5.1:expert:I3
-      n: 3
-      text: Achieves recognition for tool expertise
-      origin: database
-    - v1Key: v1:4.5.1:expert:I4
-      n: 4
-      text: Mentors tool specialists
-      origin: database
-    - v1Key: v1:4.5.1:expert:I5
-      n: 5
-      text: Advances hand tool technology and techniques
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:4.5.1:sector:public_agencies
-    text: Trail tools, fire tools, restoration implements
-  - sector: private_sector
-    v1Key: v1:4.5.1:sector:private_sector
-    text: Landscaping tools, forestry implements
-  - sector: ngos
-    v1Key: v1:4.5.1:sector:ngos
-    text: Volunteer tool programs, preserve maintenance tools
-  - sector: consulting
-    v1Key: v1:4.5.1:sector:consulting
-    text: Specialized assessment and sampling tools
-  - sector: academia
-    v1Key: v1:4.5.1:sector:academia
-    text: Research tools, teaching tool collections
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+  - WP-03

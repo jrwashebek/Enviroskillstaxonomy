@@ -1,0 +1,68 @@
+id: seed:DC-CAND-06
+type: Competency
+prefLabel:
+  en: Steward and publish environmental data for reuse
+altLabel:
+  en:
+  - Data stewardship
+  - Metadata standards and management
+definition:
+  en: 'The capability to prepare environmental datasets for discovery and reuse by others: metadata and vocabulary standards, repositories, licences and persistent identifiers, documented fitness for use, sensitivity review before release and review of machine-generated metadata; including stewardship of the authoritative datasets that plans and decisions rely on.'
+statement:
+  en: 'Prepares environmental datasets for discovery and reuse: applies metadata and vocabulary standards; chooses repositories, licences and persistent identifiers; documents fitness for use; runs sensitivity review before release; reviews machine-generated metadata for accuracy; and stewards the authoritative datasets that plans and decisions rely on, including their versions and supersession.'
+editorialNote:
+  en: 'Survivor (candidate_disposition DC-CAND-06): absorbs C-LM-04 (authoritative plan datasets) and v1 2.2.5 metadata content. Metadata editors, templates and named metadata standards are L4.'
+notation:
+- scheme: EMST-candidate
+  value: DC-CAND-06
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:dc-cand-06-l1-a
+  - seed:dc-cand-06-l1-b
+- level: L2
+  indicators:
+  - seed:dc-cand-06-l2-a
+  - seed:dc-cand-06-l2-b
+- level: L3
+  indicators:
+  - seed:dc-cand-06-l3-a
+  - seed:dc-cand-06-l3-b
+- level: L4
+  indicators:
+  - seed:dc-cand-06-l4-a
+  - seed:dc-cand-06-l4-b
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.2.5
+    relation: merged-from
+    note: metadata documentation of fitness for use
+  sources:
+  - DC-001
+  - DC-036
+  - DC-046
+  adr:
+  - ADR-0003
+  - ADR-0025

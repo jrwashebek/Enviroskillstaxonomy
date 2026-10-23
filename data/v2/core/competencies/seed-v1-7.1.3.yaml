@@ -1,20 +1,45 @@
 id: seed:v1-7.1.3
 type: Competency
 prefLabel:
-  en: Regulatory professional integrity
+  en: Maintain the integrity of regulatory and scientific findings under institutional pressure
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to produce and report regulatory and scientific findings that represent the evidence, including uncertainty, contrary evidence and AI assistance, to disclose conflicts, and to use documented channels when pressure conflicts with professional obligations. Assessed through work products and records, never as a trait.
 statement:
-  en: Maintaining independent professional judgment and transparent reporting practices when institutional pressures conflict with obligations to regulatory processes, the public, and ecological systems.
+  en: 'Produces and reports regulatory and scientific findings that reflect the evidence when employers, clients, funders or schedules press otherwise: discloses conflicts, uncertainty, dissenting views and AI assistance, documents requests to alter findings, and uses the organization''s integrity and escalation procedures.'
 competencyType: transversal
 transversalCluster: TX-B
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: transversal
+altLabel:
+  en:
+  - regulatory professional integrity
+  - scientific integrity
+  - integrity of findings
+instrumentSensitivity:
+- mechanism: DM-14
+  rationale:
+    en: AI-assisted analysis creates new disclosure and provenance duties.
+  evidenceLabel: J
+- mechanism: DM-16
+  rationale:
+    en: Federal scientific-integrity policies are being revised under a 2025 order.
+  evidenceLabel: E
+  sources:
+  - WP05-004
 notation:
 - scheme: EMSTv1
   value: 7.1.3
-layer: L1
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Domain:
   code: '7'
   label: Cross-Cutting Professional Practice
@@ -22,14 +47,18 @@ v1SkillArea:
   code: '7.1'
   label: Professional Ethics Architecture
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | transversal | TX-B. Rationale: Extended to AI provenance in the record, disclosure of AI assistance and cross-boundary independence (PS-C18) (SC, PS verdicts); rule names to L5. Role verdicts considered: IO:change|LC:change|PS:carry|SC:carry.'
-license: CC0-1.0
-sensitivity: public
+  en: 'WP-05 (A5 SC). v1 7.1.3 rewrite to TX-B, extended to AI provenance in the record, disclosure of AI assistance and cross-boundary independence (with PS-C18) (SC, PS verdicts). v1 cited NEPA scientific-integrity requirements; rule names move to L5 (federal scientific-integrity policies are being updated under a 2025 executive order [E: WP05-004]). Indicators adapted from IO exemplar rewrites for v1 7.1.3. Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | transversal | TX-B. Rationale: Extended to AI provenance in the record, disclosure of AI assistance and cross-boundary independence (PS-C18) (SC, PS verdicts); rule names to L5. Role verdicts considered: IO:change|LC:change|PS:carry|SC:carry.'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - WP05-004
   derivedFrom:
   - v1Key: v1:7.1.3
     v1Code: 7.1.3
@@ -40,123 +69,33 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Regulatory professional integrity
-  v1Description: Maintaining independent professional judgment and transparent reporting practices when institutional pressures conflict with obligations to regulatory processes, the public, and ecological systems.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:7.1.3:foundational
-    knowledge: Distinguishes professional obligations to employers from obligations to regulatory processes, the public, and ecological systems; recognizes when these obligations are in tension; understands the difference between acceptable professional discretion and inappropriate institutional pressure
-    application: Identifies potential conflicts of interest in assigned work; follows established disclosure procedures with guidance
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.1.3:foundational:I1
-      n: 1
-      text: Explains the distinction between an employer's legitimate direction of professional work and pressure that compromises regulatory or scientific integrity
-      origin: database
-    - v1Key: v1:7.1.3:foundational:I2
-      n: 2
-      text: Identifies common situations where institutional interests and regulatory obligations come into tension (timeline pressure on impact assessment findings, client interests in permitting outcomes, funder interests in monitoring results)
-      origin: database
-    - v1Key: v1:7.1.3:foundational:I3
-      n: 3
-      text: Locates relevant professional codes of ethics and scientific integrity policies applicable to their disciplinary context
-      origin: database
-    - v1Key: v1:7.1.3:foundational:I4
-      n: 4
-      text: Understands disclosure requirements for conflicts of interest in regulatory submissions and public documents
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:7.1.3:intermediate
-    knowledge: Applies professional ethics frameworks to specific regulatory contexts; understands reporting obligations when institutional misconduct is observed; navigates conflicts of interest with transparency
-    application: Independently assesses and discloses conflicts of interest; documents institutional pressures affecting professional judgment; seeks guidance when obligations conflict
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.1.3:intermediate:I1
-      n: 1
-      text: Applies disciplinary codes of ethics and NEPA scientific integrity requirements to specific contested situations
-      origin: database
-    - v1Key: v1:7.1.3:intermediate:I2
-      n: 2
-      text: Documents instances where institutional pressure affected or potentially affected professional judgment, maintaining records appropriate to potential whistleblower obligations
-      origin: database
-    - v1Key: v1:7.1.3:intermediate:I3
-      n: 3
-      text: Communicates uncertainty and dissenting findings honestly in regulatory submissions, even when findings are inconvenient to organizational interests
-      origin: database
-    - v1Key: v1:7.1.3:intermediate:I4
-      n: 4
-      text: Identifies escalation pathways when internal disclosure processes are inadequate to resolve integrity conflicts
-      origin: database
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:7.1.3:advanced
-    knowledge: Expert in professional ethics frameworks and scientific integrity policy across regulatory contexts; understands organizational conditions that produce systemic integrity failures; experienced in advising colleagues navigating professional ethics conflicts
-    application: Builds organizational cultures and quality management systems that protect regulatory independence; develops protocols for managing institutional pressures; advises colleagues navigating integrity conflicts
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.1.3:advanced:I1
-      n: 1
-      text: Designs quality assurance systems that structurally protect regulatory findings from institutional capture (documentation requirements, peer review protocols, escalation procedures)
-      origin: database
-    - v1Key: v1:7.1.3:advanced:I2
-      n: 2
-      text: Identifies organizational patterns that systematically compromise regulatory integrity and develops corrective protocols
-      origin: database
-    - v1Key: v1:7.1.3:advanced:I3
-      n: 3
-      text: Advises practitioners navigating conflicts between employer instructions and professional obligations without compromising either the relationship or the integrity of findings
-      origin: database
-    - v1Key: v1:7.1.3:advanced:I4
-      n: 4
-      text: Contributes to organization-level scientific integrity programs and advises leadership on institutional culture conditions enabling honest practice
-      origin: database
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:7.1.3:expert
-    knowledge: Shapes professional standards for regulatory integrity across environmental management disciplines; recognized authority on institutional conditions enabling and undermining independent professional judgment
-    application: Advances field-wide frameworks for regulatory professional integrity; contributes to policy development on scientific integrity standards
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.1.3:expert:I1
-      n: 1
-      text: Contributes to development of professional association ethics standards or agency scientific integrity policies in environmental management
-      origin: database
-    - v1Key: v1:7.1.3:expert:I2
-      n: 2
-      text: Publishes or presents on institutional conditions that produce regulatory integrity failures and structural protections against them
-      origin: database
-    - v1Key: v1:7.1.3:expert:I3
-      n: 3
-      text: Provides expert assessment in investigations involving allegations of compromised regulatory integrity in environmental management
-      origin: database
-    - v1Key: v1:7.1.3:expert:I4
-      n: 4
-      text: Recognized as a leading practitioner in regulatory professional ethics and scientific integrity in environmental management
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:7.1.3:sector:public_agencies
-    text: Scientific integrity in NEPA analysis, regulatory disclosure obligations, whistleblower protocol development
-  - sector: private_sector
-    v1Key: v1:7.1.3:sector:private_sector
-    text: ESG reporting integrity, regulatory compliance science independence
-  - sector: ngos
-    v1Key: v1:7.1.3:sector:ngos
-    text: Independent monitoring integrity, donor-influence management
-  - sector: consulting
-    v1Key: v1:7.1.3:sector:consulting
-    text: Conflict of interest disclosure, regulatory advisory independence
-  - sector: academia
-    v1Key: v1:7.1.3:sector:academia
-    text: Scientific integrity research, professional ethics pedagogy
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - seed:v1-7-1-3-l1-a
+  - seed:v1-7-1-3-l1-b
+- level: L2
+  indicators:
+  - seed:v1-7-1-3-l2-a
+  - seed:v1-7-1-3-l2-b
+- level: L3
+  indicators:
+  - seed:v1-7-1-3-l3-a
+  - seed:v1-7-1-3-l3-b
+- level: L4
+  indicators:
+  - seed:v1-7-1-3-l4-a
+  - seed:v1-7-1-3-l4-b
+enactments:
+- seed:ena-v1-7-1-3-federal
+- seed:ena-v1-7-1-3-consultant

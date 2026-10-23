@@ -1,0 +1,63 @@
+id: seed:DC-CAND-12
+type: Competency
+prefLabel:
+  en: Build, run and validate environmental forecast and scenario systems
+altLabel:
+  en:
+  - Build, run and validate environmental forecast systems and digital twins
+  - Digital twin development and management
+definition:
+  en: The capability to assemble observation streams, process models, learned emulators or hybrids, data assimilation and update cycles into operational forecast or what-if systems; define their fitness for the decisions served; validate them continuously under changing conditions; manage versions, access and retirement; and communicate when the system should not be trusted.
+statement:
+  en: Assembles observation streams, process models, learned emulators or hybrids, data assimilation and update cycles into operational forecast or what-if systems; defines their fitness for the decisions they serve; validates them continuously under changing conditions; manages versions, access and retirement; and communicates when the system should not be trusted.
+editorialNote:
+  en: 'Survivor (candidate_disposition DC-CAND-12; lifecycle emerging, develop-only): absorbs FS-C11 (digital-twin lifecycle stewardship) and v1 2.7.3. Title made technology-neutral (G-5); ''digital twin'' kept as altLabel. Programme and model names live in L4.'
+notation:
+- scheme: EMST-candidate
+  value: DC-CAND-12
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:dc-cand-12-l2-a
+  - seed:dc-cand-12-l2-b
+- level: L3
+  indicators:
+  - seed:dc-cand-12-l3-a
+  - seed:dc-cand-12-l3-b
+- level: L4
+  indicators:
+  - seed:dc-cand-12-l4-a
+  - seed:dc-cand-12-l4-b
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: draft
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.7.3
+    relation: merged-from
+    note: digital twin development and management
+  sources:
+  - DC-001
+  adr:
+  - ADR-0003
+  - ADR-0025

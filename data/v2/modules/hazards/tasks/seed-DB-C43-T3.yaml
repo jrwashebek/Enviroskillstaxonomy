@@ -1,0 +1,41 @@
+id: seed:DB-C43-T3
+type: Task
+prefLabel:
+  en: Check an elevation certificate against the permit, survey and flood map before accepting it into community records
+statement:
+  en: Check an elevation certificate against the permit, survey and flood map before accepting it into community records
+textSha256: 80883606baa94db96c203776de110b5f85ab7e34dddf94cd2831e07fd876ac01
+supports:
+- competency: seed:DB-C43
+  strength: primary
+workFunction: WF-MONITOR
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: remote
+formationDependency: 'yes'
+homeModule: hazards
+subsectors:
+- C03
+- W04
+- U01
+layer: L2
+module: hazards
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

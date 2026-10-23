@@ -53,3 +53,11 @@ Fix F10 and F12 code–title errors now; mark F8, F11 and F13 mappings misdirect
 - **SSSOM vs a simple table:** heavier and unfamiliar to HR users; the only open format with per-row provenance, negation and "no term"; a flattened CSV is shipped alongside (IA disagreement 3).
 - **SL: fidelity vs maintainability** — class-level crosswalks with position overrides only in pilots (SL disagreement 6), adopted.
 - **Trade-off named:** a crosswalk programme is the largest recurring cost after content; it is what makes EMST usable inside every other system.
+
+## Amendments
+
+- **2026-10-23 — CR-IA-001, CR-IA-002 / ADR-0029 §11–§12 (CA).**
+  - **SSSOM acceptance:** every mapping set validates against SSSOM 1.0, with the SSSOM 1.1 justification `semapv:LLMBasedMatching` accepted as a declared extension for unreviewed agent-drafted rows, and is re-validated against SSSOM 1.1 when it is final.
+  - **Reviewed rows** take `semapv:MappingReview` and keep `original_justification` in `other`. Selection-use subsets are therefore strictly SSSOM 1.0.
+  - **Role and variant seed keys** for crosswalk subjects are `seed:<role_key>` and `seed:<role_key>/<sector_actor>[/<slice>]`.
+  - **X12** is registered in `vocab/mapping_predicates.yaml` (CR-DE-002).

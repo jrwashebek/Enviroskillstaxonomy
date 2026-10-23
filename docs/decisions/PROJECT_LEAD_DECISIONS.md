@@ -19,6 +19,7 @@ Answers from the project lead to `questions_for_project_lead.md`. Each answer su
 | Q8 Governance bodies at rc.1 | Project lead acts as interim Editorial Board; CA decision log continues; no module described as stewarded |
 | Q9 Funding the floor and compensation | Degradation ladder applies (sentinels at the year-five floor of 30; smaller panels reported as such; no Tribal outreach) |
 | Q10 Retire task sequence v7; update project instructions | Repo follows the ADRs; companion-project descriptions flagged as v1 history |
+| Q11 Lead-signed invitation to inter-Tribal organizations to help form a Tribal Advisory Council (added 2026-10-23) | No invitation drafted for sending; no contact; content hold stays; WP-13 formation procedure internal only |
 
 ## Note on the CC0 dedication (Q2)
 

@@ -1,22 +1,30 @@
 id: seed:v1-2.3.1-T1
 type: Task
 prefLabel:
-  en: Install soil moisture, temperature, and weather sensors in remote field sites
+  en: Install soil moisture, temperature and weather sensors at remote field sites, recording location, height, orientation and installation conditions.
 statement:
-  en: Install soil moisture, temperature, and weather sensors in remote field sites
-textSha256: 369fcf1fd9b9066739931c2676cadd56a6e13f84405b1586c24bf6e9fd0118f2
-supports:
-- competency: seed:v1-2.3.1
-  strength: primary
+  en: Install soil moisture, temperature and weather sensors at remote field sites, recording location, height, orientation and installation conditions.
+textSha256: 7c629c75eae0de8cad1797c387200e156926a1451c30d88311f69b6e00aa1c66
+editorialNote:
+  en: 'Split from v1 2.3.1: field deployment and siting (FC-C01). Re-pointed by WP-04 (DC; owner of the D2 v1 row); content review by the target''s owner. v1 competency 2.3.1 is split: reassign this task to one of [''seed:FC-C01'', ''seed:DC-CAND-04''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
 notation:
 - scheme: EMSTv1
   value: 2.3.1:T1
+supports:
+- competency: seed:FC-C01
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T1
 v1Domain:
   code: '2'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '2.3'
   label: Field Technology
-editorialNote:
-  en: 'v1 competency 2.3.1 is split: reassign this task to one of [''seed:FC-C01'', ''seed:DC-CAND-04''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.3.1:T1
     v1Code: 2.3.1
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

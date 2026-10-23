@@ -1,0 +1,40 @@
+id: seed:DB-C14-T4
+type: Task
+prefLabel:
+  en: Check emissions estimates generated automatically from activity or sensor data against source tests and inventory methods before inclusion
+statement:
+  en: Check emissions estimates generated automatically from activity or sensor data against source tests and inventory methods before inclusion
+textSha256: 908820bea53b8caf6fd9c964546666aa585d850f11310e2af6d0a308ad38f673
+supports:
+- competency: seed:DB-C14
+  strength: primary
+workFunction: WF-MONITOR
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: remote
+formationDependency: partial
+homeModule: air
+subsectors:
+- P01
+- C01
+layer: L2
+module: air
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

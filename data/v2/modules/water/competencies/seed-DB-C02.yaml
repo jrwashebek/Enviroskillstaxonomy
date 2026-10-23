@@ -1,0 +1,68 @@
+id: seed:DB-C02
+type: Competency
+prefLabel:
+  en: Operate wastewater treatment and resource-recovery processes to permit limits
+altLabel:
+  en:
+  - Wastewater treatment operation
+  - Water resource recovery facility operation
+definition:
+  en: Running a municipal or industrial wastewater treatment plant's biological, physical-chemical and solids-handling processes so that effluent meets discharge permit limits and biosolids, reclaimed water and recovered energy meet their quality requirements. Covers process control, upset and wet-weather response and the operating record. Excludes collection-system operation and facility design.
+statement:
+  en: Controls biological treatment, nutrient removal, solids handling and digestion by interpreting laboratory and online data and adjusting process controls; responds to toxic loads and wet-weather flows; and keeps an operating record showing that effluent met permit limits and that biosolids and recovered resources met their requirements.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-db-c02-l1-a
+  - seed:ind-db-c02-l1-b
+- level: L2
+  indicators:
+  - seed:ind-db-c02-l2-a
+  - seed:ind-db-c02-l2-b
+- level: L3
+  indicators:
+  - seed:ind-db-c02-l3-a
+  - seed:ind-db-c02-l3-b
+- level: L4
+  indicators:
+  - seed:ind-db-c02-l4-a
+  - seed:ind-db-c02-l4-b
+homeModule: water
+subsectors:
+- W02
+reusability: subsector-specific
+layer: L1
+module: water
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Survivor for wastewater and resource-recovery operation; absorbs the wastewater content of LC-C-05 and SL-C05. Largest uncovered public workforce in v1 (DB-003). Operator certification is a state-issued Credential gate (V3-08), not a level. Basis [J]: DB Phase 2.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:1.2.4
+    relation: reference-only
+    note: v1 water-quality knowledge used as background; no v1 operator competency existed
+  sources:
+  - DB-022
+  - DB-041
+  - V3-08
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

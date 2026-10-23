@@ -8,6 +8,7 @@ decidedIn:
 - ADR-0028
 - ADR-0021
 - ADR-0016
+- ADR-0029
 steward: SC (quarterly instrument-registry refresh)
 license: CC0-1.0
 description: 'L0 mechanisms through which dated L5 Instruments act. Tasks and competencies link to mechanisms through
@@ -144,3 +145,65 @@ v1_flag_seed_events:
   consultation-reform: DM-06|DM-07 (Tribal consultation content held under ADR-0007)
   one-federal-decision: DM-05
   S2-S3-boundary: retired (workflow property)
+
+# --- L5 instrument-registry code lists (moved from schema-local enums, CR-DE-001; additions CR-LM-001 #5-#7; ADR-0029)
+# Steward: SC with LM (instrument registry, P-SC-14).
+instrument_types:
+  description: Instrument.instrumentType (SPEC §5.16).
+  values:
+    - {notation: statute, definition: "Act of a legislature."}
+    - {notation: regulation, definition: "Rule issued by an agency under statutory authority."}
+    - {notation: executive-order, definition: "Executive order of a president or governor."}
+    - {notation: agency-order, definition: "Secretarial or agency order (e.g. a Secretarial Order); added by CR-LM-001 #7."}
+    - {notation: memo, definition: "Policy memorandum (e.g. OMB or OPM memoranda)."}
+    - {notation: guidance, definition: "Guidance without the force of law."}
+    - {notation: court-decision, definition: "Judicial decision."}
+    - {notation: permit-programme, definition: "Permit or authorization programme."}
+    - {notation: agreement-authority, definition: "Authority to enter agreements (e.g. co-management, delegation, compacts)."}
+    - {notation: disclosure-regime, definition: "Mandatory or voluntary disclosure regime."}
+    - {notation: state-hr-order, definition: "State human-resources order (e.g. skills-based hiring orders)."}
+    - {notation: standard-with-legal-force, definition: "Technical standard incorporated into law."}
+
+event_types:
+  description: DriverEvent.eventType (SPEC §5.16; ADR-0028 §3).
+  values:
+    - {notation: introduced, definition: "Bill introduced."}
+    - {notation: passed-chamber, definition: "Bill passed one chamber."}
+    - {notation: enacted, definition: "Bill enacted."}
+    - {notation: proposed, definition: "Proposed rule or action published."}
+    - {notation: submitted-for-review, definition: "Submitted to a review body before issuance (e.g. OIRA), dated by that body's public record; not in force (CR-LM-001 #6)."}
+    - {notation: interim, definition: "Interim or interim final rule issued."}
+    - {notation: final, definition: "Final rule or action issued."}
+    - {notation: effective, definition: "Effective date reached."}
+    - {notation: enjoined, definition: "Enforcement enjoined by a court."}
+    - {notation: stayed, definition: "Stayed by a court or the issuing body."}
+    - {notation: vacated, definition: "Vacated by a court."}
+    - {notation: remanded, definition: "Remanded by a court."}
+    - {notation: rescinded, definition: "Rescinded by the issuing body."}
+    - {notation: decided, definition: "Court decision issued."}
+    - {notation: expired, definition: "Expired."}
+    - {notation: sunset, definition: "Ended by a sunset provision."}
+
+event_directions:
+  description: DriverEvent.direction (SPEC §5.16).
+  values:
+    - {notation: expands, definition: "Expands the scope or force of the work the instrument requires."}
+    - {notation: contracts, definition: "Contracts it."}
+    - {notation: reshapes, definition: "Changes how the work is done without a net expansion or contraction."}
+
+instrument_statuses:
+  description: DriverEvent.statusAfter, the instrument's status after the event (SPEC §5.16; CR-LM-001 #5). Instrument.currentStatus is computed from the latest event.
+  values:
+    - {notation: pending-legislation, definition: "Bill introduced or passed one chamber; not law."}
+    - {notation: proposed, definition: "Proposed and open or closed for comment; not in force."}
+    - {notation: under-review, definition: "Submitted to a review body (e.g. OIRA) before issuance; not in force."}
+    - {notation: interim-in-force, definition: "Interim or interim final rule in force pending final action."}
+    - {notation: final-not-yet-effective, definition: "Final, effective date not yet reached."}
+    - {notation: in-force, definition: "In force."}
+    - {notation: in-force-litigated, definition: "In force while challenged in court."}
+    - {notation: enjoined, definition: "Enforcement enjoined by a court."}
+    - {notation: stayed, definition: "Stayed by a court or the issuing body."}
+    - {notation: vacated, definition: "Vacated by a court."}
+    - {notation: rescinded, definition: "Rescinded by the issuing body."}
+    - {notation: repealed, definition: "Repealed by the legislature."}
+    - {notation: issued, definition: "Issued and in effect on issuance (orders, memos, guidance, decisions)."}

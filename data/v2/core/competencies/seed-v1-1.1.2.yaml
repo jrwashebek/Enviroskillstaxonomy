@@ -1,19 +1,44 @@
 id: seed:v1-1.1.2
 type: Competency
 prefLabel:
-  en: Biodiversity assessment and monitoring
+  en: Assess and monitor biodiversity across species and habitats
+definition:
+  en: 'Designing, running and interpreting biodiversity inventories and monitoring across taxa and habitats, from field protocols through long-term trend analysis to reporting findings for conservation decisions. An integrative practice: field, data and statecraft contributions are rated per task rather than labelled on the competency. Excludes single-taxon identification and statistical methods as such.'
 statement:
-  en: Measuring and tracking the variety of plants, animals, and other organisms in an area to understand ecosystem health.
+  en: Design and run biodiversity inventories and monitoring across taxa and habitats, combine field, passive-detector and genetic evidence, analyse long-term change against objectives, and report findings and their uncertainty in a form conservation decision-makers can act on.
 competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-v1-1.1.2-l1-a
+  - seed:ind-v1-1.1.2-l1-b
+- level: L2
+  indicators:
+  - seed:ind-v1-1.1.2-l2-a
+  - seed:ind-v1-1.1.2-l2-b
+  - seed:ind-v1-1.1.2-l2-c
+- level: L3
+  indicators:
+  - seed:ind-v1-1.1.2-l3-a
+  - seed:ind-v1-1.1.2-l3-b
+  - seed:ind-v1-1.1.2-l3-c
+- level: L4
+  indicators:
+  - seed:ind-v1-1.1.2-l4-a
+  - seed:ind-v1-1.1.2-l4-b
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 1.1.2
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Domain:
   code: '1'
   label: Ecological & Scientific Knowledge
@@ -21,14 +46,14 @@ v1SkillArea:
   code: '1.1'
   label: Ecosystem Science
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS/WF-MONITOR. Rationale: Kept as an integrative practice; tasks span FC design/implementation, DC analysis and SC reporting, so craft is rated per task, not labelled on the competency (FC verdict). Role verdicts considered: FC:change.'
+  en: 'WP-03 (FC) draft. Rewritten as an integrative practice (FC verdict): the compound v1 task ''design and implement'' is split into design (D) and implementation (P), with an adaptation task added. v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS/WF-MONITOR. Rationale: Kept as an integrative practice; tasks span FC design/implementation, DC analysis and SC reporting, so craft is rated per task, not labelled on the competency (FC verdict). Role verdicts considered: FC:change.'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:1.1.2
     v1Code: 1.1.2
@@ -39,7 +64,7 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:1.1.2
     v1Code: 1.1.2
     v1Table: source_text/competencies
@@ -48,148 +73,11 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Biodiversity assessment and monitoring
-  v1Description: Measuring and tracking the variety of plants, animals, and other organisms in an area to understand ecosystem health.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:1.1.2:foundational
-    knowledge: Understands biodiversity concepts (genetic, species, ecosystem diversity)
-    application: Conducts basic biodiversity surveys
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.2:foundational:I1
-      n: 1
-      text: Explains importance of biodiversity for ecosystem function
-      origin: database
-    - v1Key: v1:1.1.2:foundational:I2
-      n: 2
-      text: Conducts species inventories using standardized protocols
-      origin: database
-    - v1Key: v1:1.1.2:foundational:I3
-      n: 3
-      text: Uses field guides and keys for species identification
-      origin: database
-    - v1Key: v1:1.1.2:foundational:I4
-      n: 4
-      text: Records biodiversity data accurately
-      origin: database
-    - v1Key: v1:1.1.2:foundational:I5
-      n: 5
-      text: Calculates basic diversity indices (richness, Shannon index)
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:1.1.2:intermediate
-    knowledge: Applies biodiversity assessment methods; understands sampling design
-    application: Designs and implements monitoring programs
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.2:intermediate:I1
-      n: 1
-      text: Designs statistically valid sampling protocols for biodiversity assessment
-      origin: database
-    - v1Key: v1:1.1.2:intermediate:I2
-      n: 2
-      text: Uses multiple survey methods appropriate to taxa and systems
-      origin: database
-    - v1Key: v1:1.1.2:intermediate:I3
-      n: 3
-      text: Analyzes spatial and temporal patterns in biodiversity
-      origin: database
-    - v1Key: v1:1.1.2:intermediate:I4
-      n: 4
-      text: Interprets biodiversity indicators of ecosystem condition
-      origin: database
-    - v1Key: v1:1.1.2:intermediate:I5
-      n: 5
-      text: Identifies priority areas for biodiversity conservation
-      origin: database
-    - v1Key: v1:1.1.2:intermediate:I6
-      n: 6
-      text: Integrates biodiversity data into management decisions
-      origin: database
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:1.1.2:advanced
-    knowledge: Expert in biodiversity science; understands conservation biogeography
-    application: Leads landscape-scale biodiversity assessments
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.2:advanced:I1
-      n: 1
-      text: Designs comprehensive biodiversity monitoring programs
-      origin: database
-    - v1Key: v1:1.1.2:advanced:I2
-      n: 2
-      text: Analyzes biodiversity trends across spatial and temporal scales
-      origin: database
-    - v1Key: v1:1.1.2:advanced:I3
-      n: 3
-      text: Models biodiversity responses to environmental change
-      origin: database
-    - v1Key: v1:1.1.2:advanced:I4
-      n: 4
-      text: Evaluates effectiveness of conservation interventions on biodiversity
-      origin: database
-    - v1Key: v1:1.1.2:advanced:I5
-      n: 5
-      text: Uses advanced techniques (eDNA, acoustic monitoring, remote sensing)
-      origin: database
-    - v1Key: v1:1.1.2:advanced:I6
-      n: 6
-      text: Publishes biodiversity research
-      origin: database
-    - v1Key: v1:1.1.2:advanced:I7
-      n: 7
-      text: Integrates biodiversity assessment with conservation planning
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:1.1.2:expert
-    knowledge: Shapes biodiversity science and conservation practice
-    application: Leads major biodiversity initiatives at regional/global scales
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.2:expert:I1
-      n: 1
-      text: Directs national or international biodiversity programs
-      origin: database
-    - v1Key: v1:1.1.2:expert:I2
-      n: 2
-      text: Influences biodiversity policy and targets (e.g., post-2020 biodiversity framework)
-      origin: database
-    - v1Key: v1:1.1.2:expert:I3
-      n: 3
-      text: Develops innovative biodiversity assessment approaches
-      origin: database
-    - v1Key: v1:1.1.2:expert:I4
-      n: 4
-      text: Publishes influential biodiversity research
-      origin: database
-    - v1Key: v1:1.1.2:expert:I5
-      n: 5
-      text: Provides expert guidance on biodiversity to governments/organizations
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:1.1.2:sector:public_agencies
-    text: Biodiversity inventories for protected areas, Endangered Species Act assessments
-  - sector: private_sector
-    v1Key: v1:1.1.2:sector:private_sector
-    text: Biodiversity impact assessments, biodiversity net gain calculations
-  - sector: ngos
-    v1Key: v1:1.1.2:sector:ngos
-    text: Biodiversity hotspot identification, conservation prioritization
-  - sector: consulting
-    v1Key: v1:1.1.2:sector:consulting
-    text: Biodiversity surveys for development projects, offset calculations
-  - sector: academia
-    v1Key: v1:1.1.2:sector:academia
-    text: Biodiversity research, macroecology, conservation biology
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+  - WP-03

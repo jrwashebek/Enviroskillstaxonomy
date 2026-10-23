@@ -1,22 +1,32 @@
 id: seed:v1-2.6.4-T3
 type: Task
 prefLabel:
-  en: Develop automated pipelines that process and validate data from collection to analysis
+  en: Build an automated validation step into a data pipeline from collection to analysis, logging every flag and correction it applies.
 statement:
-  en: Develop automated pipelines that process and validate data from collection to analysis
-textSha256: 980f1d2269df0c86b9d137a4bad517b3c74539f73a686cb61ed896c9ae3d882c
-supports:
-- competency: seed:v1-2.2.3
-  strength: primary
+  en: Build an automated validation step into a data pipeline from collection to analysis, logging every flag and correction it applies.
+textSha256: e79a008b00ef08bf95339269cc204451171683979558244fa1651fcb67e580cf
+editorialNote:
+  en: Supports re-pointed from v1 competency 2.6.4 to seed:v1-2.2.3 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 2.6.4:T3
+supports:
+- competency: seed:v1-2.2.3
+  strength: primary
+- competency: seed:DC-CAND-04
+  strength: contributing
+workFunction: WF-OPERATE
+fieldDependency: remote
+formationDependency: 'no'
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T3
 v1Domain:
   code: '2'
@@ -24,15 +34,15 @@ v1Domain:
 v1SkillArea:
   code: '2.6'
   label: Ai-Enhanced Environmental Monitoring
-editorialNote:
-  en: Supports re-pointed from v1 competency 2.6.4 to seed:v1-2.2.3 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.6.4:T3
     v1Code: 2.6.4
@@ -42,9 +52,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

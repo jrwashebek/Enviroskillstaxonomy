@@ -1,22 +1,33 @@
 id: seed:v1-1.7.1-T1
 type: Task
 prefLabel:
-  en: Evaluate whether an ecosystem has transformed beyond its historical range of variability
+  en: Evaluate whether a site's vegetation, soils and disturbance regime have moved beyond the historical range of variability, citing field and record evidence
 statement:
-  en: Evaluate whether an ecosystem has transformed beyond its historical range of variability
-textSha256: 3907751424ef53d3638ecbfc0fc85079383398c8dd85c3609bfe4b3ddb67ed5c
+  en: Evaluate whether a site's vegetation, soils and disturbance regime have moved beyond the historical range of variability, citing field and record evidence
+textSha256: 0b5b5606a9a283e131e4bfe9da71da3b68f80999b763a67ea8e5dbf81bb6921c
 supports:
 - competency: seed:v1-1.7.1
   strength: primary
+workFunction: WF-ASSESS
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: ecosystem-type
+  credentialGate: none
+  currencyDecay: L
 notation:
 - scheme: EMSTv1
   value: 1.7.1:T1
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
 v1Tier: T1
 v1Domain:
   code: '1'
@@ -25,14 +36,14 @@ v1SkillArea:
   code: '1.7'
   label: Novel Ecosystems & Adaptation
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: 'G-2 split role: execution to protocol (production). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:1.7.1:T1
     v1Code: 1.7.1
@@ -42,9 +53,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

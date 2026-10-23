@@ -1,22 +1,34 @@
 id: seed:v1-1.4.2-T3
 type: Task
 prefLabel:
-  en: Train field crews in standardized wildlife monitoring protocols
+  en: Train seasonal crew members in survey protocol and identification cues, checking each trainee's detections against an experienced observer
 statement:
-  en: Train field crews in standardized wildlife monitoring protocols
-textSha256: 736d7f6501cce675d8be6a2ce26ab4708bd4724dd24916f3077270046e84d525
+  en: Train seasonal crew members in survey protocol and identification cues, checking each trainee's detections against an experienced observer
+textSha256: 87aacc7f9451bba4759badd554d252b72ea227aca9f44fb066549bcc69d62911
 supports:
 - competency: seed:v1-4.1.2
   strength: primary
+- competency: seed:FC-C20
+  strength: contributing
+workFunction: WF-LEARN
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: seasonal
+  placeBoundness: ecosystem-type
+  credentialGate: none
+  currencyDecay: M
 notation:
 - scheme: EMSTv1
   value: 1.4.2:T3
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Tier: T3
 v1Domain:
   code: '1'
@@ -25,14 +37,14 @@ v1SkillArea:
   code: '1.4'
   label: Wildlife & Fisheries Biology
 editorialNote:
-  en: Supports re-pointed from v1 competency 1.4.2 to seed:v1-4.1.2 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: 'G-2 split role: formation of others in the practice. Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:1.4.2:T3
     v1Code: 1.4.2
@@ -42,9 +54,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

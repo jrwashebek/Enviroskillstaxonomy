@@ -1,19 +1,44 @@
 id: seed:v1-1.1.5
 type: Competency
 prefLabel:
-  en: Habitat requirements analysis
+  en: Assess species habitat requirements and habitat condition
+definition:
+  en: Determining what conditions species need through field study of habitat use, behaviour and condition, evaluating habitat suitability across sites and landscapes, and turning results into habitat recommendations and planning inputs. Excludes geospatial software operation (tools layer) and live capture and handling.
 statement:
-  en: Determining what specific conditions different plants and animals need to survive and thrive in their environment.
+  en: Document species' habitat use and behaviour in the field, assess habitat condition and suitability at site and landscape scale, test suitability models against field observations, and recommend habitat measures for planning and management.
 competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-v1-1.1.5-l1-a
+  - seed:ind-v1-1.1.5-l1-b
+- level: L2
+  indicators:
+  - seed:ind-v1-1.1.5-l2-a
+  - seed:ind-v1-1.1.5-l2-b
+  - seed:ind-v1-1.1.5-l2-c
+- level: L3
+  indicators:
+  - seed:ind-v1-1.1.5-l3-a
+  - seed:ind-v1-1.1.5-l3-b
+  - seed:ind-v1-1.1.5-l3-c
+- level: L4
+  indicators:
+  - seed:ind-v1-1.1.5-l4-a
+  - seed:ind-v1-1.1.5-l4-b
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 1.1.5
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Domain:
   code: '1'
   label: Ecological & Scientific Knowledge
@@ -21,14 +46,14 @@ v1SkillArea:
   code: '1.1'
   label: Ecosystem Science
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS. Rationale: Habitat assessment practice with field anchors; scale dependency (site FC, landscape DC) represented as task-level blend; absorbs 1.4.4 (FC verdict). Role verdicts considered: FC:change.'
+  en: 'WP-03 (FC) draft. Rewritten; absorbs v1 1.4.4 animal behaviour and habitat relationships. GIS-based analysis is rewritten as testing a suitability map against field observations (the GIS tool is L4). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS. Rationale: Habitat assessment practice with field anchors; scale dependency (site FC, landscape DC) represented as task-level blend; absorbs 1.4.4 (FC verdict). Role verdicts considered: FC:change.'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:1.1.5
     v1Code: 1.1.5
@@ -39,7 +64,7 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:1.1.5
     v1Code: 1.1.5
     v1Table: source_text/competencies
@@ -52,144 +77,11 @@ provenance:
     note: v1 1.4.4 (merge) → seed:v1-1.1.5 per v1_disposition.csv
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Habitat requirements analysis
-  v1Description: Determining what specific conditions different plants and animals need to survive and thrive in their environment.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:1.1.5:foundational
-    knowledge: Understands basic habitat concepts (cover, forage, water, space)
-    application: Describes habitat for common species
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.5:foundational:I1
-      n: 1
-      text: Lists habitat components for focal species
-      origin: database
-    - v1Key: v1:1.1.5:foundational:I2
-      n: 2
-      text: Uses habitat assessment protocols in the field
-      origin: database
-    - v1Key: v1:1.1.5:foundational:I3
-      n: 3
-      text: Identifies obvious habitat limitations
-      origin: database
-    - v1Key: v1:1.1.5:foundational:I4
-      n: 4
-      text: Measures basic habitat variables (vegetation structure, water availability)
-      origin: database
-    - v1Key: v1:1.1.5:foundational:I5
-      n: 5
-      text: Understands concept of habitat quality
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:1.1.5:intermediate
-    knowledge: Applies habitat ecology theory; understands limiting factors
-    application: Conducts habitat assessments and suitability analyses
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.5:intermediate:I1
-      n: 1
-      text: Conducts comprehensive habitat assessments
-      origin: database
-    - v1Key: v1:1.1.5:intermediate:I2
-      n: 2
-      text: Identifies limiting habitat factors for species
-      origin: database
-    - v1Key: v1:1.1.5:intermediate:I3
-      n: 3
-      text: Uses GIS to map and analyze habitat
-      origin: database
-    - v1Key: v1:1.1.5:intermediate:I4
-      n: 4
-      text: Develops habitat suitability models
-      origin: database
-    - v1Key: v1:1.1.5:intermediate:I5
-      n: 5
-      text: Evaluates effects of land use on habitat quality and connectivity
-      origin: database
-    - v1Key: v1:1.1.5:intermediate:I6
-      n: 6
-      text: Makes habitat management recommendations
-      origin: database
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:1.1.5:advanced
-    knowledge: Expert in habitat ecology; understands scale-dependent habitat selection
-    application: Designs habitat management strategies across landscapes
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.5:advanced:I1
-      n: 1
-      text: Models habitat suitability at multiple spatial scales
-      origin: database
-    - v1Key: v1:1.1.5:advanced:I2
-      n: 2
-      text: Designs habitat connectivity analyses
-      origin: database
-    - v1Key: v1:1.1.5:advanced:I3
-      n: 3
-      text: Predicts habitat shifts under climate change
-      origin: database
-    - v1Key: v1:1.1.5:advanced:I4
-      n: 4
-      text: Develops landscape-scale habitat conservation strategies
-      origin: database
-    - v1Key: v1:1.1.5:advanced:I5
-      n: 5
-      text: Evaluates effectiveness of habitat management interventions
-      origin: database
-    - v1Key: v1:1.1.5:advanced:I6
-      n: 6
-      text: Publishes habitat ecology research
-      origin: database
-    - v1Key: v1:1.1.5:advanced:I7
-      n: 7
-      text: Integrates habitat science into regional conservation planning
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:1.1.5:expert
-    knowledge: Shapes habitat science and conservation practice
-    application: Leads transformative habitat conservation initiatives
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.1.5:expert:I1
-      n: 1
-      text: Develops innovative habitat modeling approaches
-      origin: database
-    - v1Key: v1:1.1.5:expert:I2
-      n: 2
-      text: Influences habitat conservation policy
-      origin: database
-    - v1Key: v1:1.1.5:expert:I3
-      n: 3
-      text: Leads major habitat conservation programs
-      origin: database
-    - v1Key: v1:1.1.5:expert:I4
-      n: 4
-      text: Publishes influential habitat ecology research
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:1.1.5:sector:public_agencies
-    text: Critical habitat designation, habitat conservation plans
-  - sector: private_sector
-    v1Key: v1:1.1.5:sector:private_sector
-    text: Habitat mitigation, habitat conservation banking
-  - sector: ngos
-    v1Key: v1:1.1.5:sector:ngos
-    text: Habitat protection prioritization, wildlife corridor design
-  - sector: consulting
-    v1Key: v1:1.1.5:sector:consulting
-    text: Habitat assessments for development projects, mitigation design
-  - sector: academia
-    v1Key: v1:1.1.5:sector:academia
-    text: Habitat ecology research, species-habitat relationships
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+  - WP-03

@@ -1,7 +1,7 @@
 # ADR-0007: Sector actors, structured enactments, and the Tribal boundary
 
 - **Decision point:** DP-7 (sector-actor representation and the Tribal protocol boundary)
-- **Status:** accepted for the model, the five vetoes and the content hold; **needs-project-lead** for the binding Tribal Advisory Council (TAC) and the charter carve-out; **needs-real-consultation** for every item of Tribal-related content
+- **Status:** accepted for the model, the five vetoes and the content hold. The binding Tribal Advisory Council (TAC) authority, the charter carve-out and reviewer compensation were **accepted by the project lead (Q1, 2026-10-23)**. **Needs-project-lead** for any invitation to help form the TAC (Q11). **Needs-real-consultation** for every item of Tribal-related content.
 - **Date:** 2026-10-23 · **Decider:** CA
 - **Roles consulted:** TN, SC, SL, PS, DB, FH, CM, CP, DE, IA, LM, AS, FC
 - **Related:** ADR-0006, ADR-0012 (no personal data), ADR-0013 (licensing carve-out), ADR-0016 (DEI/EJ containers), ADR-0017 (authority position), `vocab/sector_actors.yaml`
@@ -62,3 +62,19 @@ The taxonomy states on its face that Indigenous knowledge is a distinct body of 
 - **LM and IA completeness goals** lose Tribal postings; TN accepts the measurement gap and so does the CA.
 - **IO and CM timelines:** Tribal research approvals slow any Delphi including Tribal professionals; run the federal/state Delphi on schedule and the Tribal track on Tribal time (TN disagreement 6).
 - **Simulated-voice limit:** this ADR adopts TN's vetoes as invariants because they reduce harm in every case; it does not and cannot ratify any Tribal content.
+
+## Amendments
+
+- **2026-10-23 — Project lead decision Q1 (recorded by CA).** The project lead accepted §D.10 in full:
+  - (a) binding consent authority for the TAC over the inclusion, wording and release of Tribal-related content;
+  - (b) a charter carve-out so the CA (later the Editorial Board) cannot override the TAC in that category, with "withhold" as the default;
+  - (c) Tribal reviewer compensation budgeted before first contact.
+
+  The §D content hold stays in force until a Council constituted by Tribal governments and inter-Tribal organizations exists and approves (`PROJECT_LEAD_DECISIONS.md`).
+- **2026-10-23 — Forming the Council is not EMST's to do; inviting help is the project lead's question (CA; Q11).** Under Q1 the Council is constituted by Tribal governments and inter-Tribal organizations, not by EMST. A **lead-signed invitation to inter-Tribal organizations to help *form* a Tribal Advisory Council** would be the project's first contact with organizations of sovereign governments. It would also commit the Q1(c) compensation budget. It is therefore a question for the project lead (`questions_for_project_lead.md` Q11), not a build task.
+  - **Default until answered:** no invitation is drafted for sending and no contact is made.
+  - **WP-13:** it may describe a formation procedure only as an internal document marked "for the project lead; not for distribution".
+  - **Agents:** no agent, including the TN role, drafts outreach as if it spoke for or to any nation.
+- **2026-10-23 — CR-LM-001 / ADR-0029 §8 (CA).** Two applications of V3:
+  - Change signals may target a government organization by official code, but never a Tribal government, Tribal organization or Tribal enterprise; CI rejects it.
+  - The Tribal co-stewardship signpost (SP-12) is readable only through the Tribal Council.

@@ -21,3 +21,12 @@
 ## Interim
 
 `codebook_exposure_XR.md` uses the order E0 < E2 < E1 < E3 for ordinal α and reports nominal α alongside. Eligibility includes E1. Both are reversible if CA decides otherwise.
+
+## CA ruling
+
+- **Ruling:** **accept both items; keep the codes (no rename)** · **Date:** 2026-10-23 · **Decider:** CA · **Recorded in:** `vocab/exposure_instrument_v2.yaml` (applied), ADR-0008 (amendment), ADR-0029 §7, SPEC §11.3, DECISION_LOG `CR-IO-003` · **SemVer:** patch (clarification; codebook stays `emst-exposure@2.0`)
+
+1. **Order.** `ordinal_order: [E0, E2, E1, E3]` is added to `constructs.technical_exposure`. The codes are labels, not ranks. Ordinal α uses `ordinal_order`, with nominal α reported alongside. Any view or computed distribution that sorts levels uses `ordinal_order`, never code order. The decision rests on the vocabulary's own definitions: E1 halves time with the technology alone, while E2 halves it only with complementary systems, so E1 is the more direct exposure. It does not rest on IO's recollection of how Eloundou et al. weight E1 and E2. That citation stays **E-u**, and WP-15 must verify it before any publication repeats it.
+2. **Eligibility.** `scenario_rows.applies_to` now reads: "any vector at E1, E2 or E3, or deployment mode compressive or higher, or a flagged formation task". "E2+" in code order wrongly excluded the directly exposed E1 tasks.
+
+IO's interim in `validation/codebook_exposure_XR.md` §3.2 and §6 already matches. No data change is needed: no v2 multi-rater exposure values exist yet.

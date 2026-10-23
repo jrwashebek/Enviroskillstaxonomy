@@ -1,22 +1,31 @@
 id: seed:v1-4.4.1-T3
 type: Task
 prefLabel:
-  en: Investigate incidents and near-misses to prevent recurrence
+  en: Conduct a no-blame review of a near miss or incident with the people involved to identify contributing conditions and corrective actions
 statement:
-  en: Investigate incidents and near-misses to prevent recurrence
-textSha256: 54b4b35e0f4f51f164ee3048107f28b79e3986113379d8134771bbd2d6d14d39
+  en: Conduct a no-blame review of a near miss or incident with the people involved to identify contributing conditions and corrective actions
+textSha256: f8908d940bf7684fa7ca6105d5051ac3783ed556f8d81620f651410c6a675a1c
 supports:
-- competency: seed:v1-4.4.1
+- competency: seed:v1-4.4.1-B
   strength: primary
+workFunction: WF-LEARN
+fieldDependency: on-site-preferred
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: general
+  currencyDecay: M
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 4.4.1:T3
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 v1Tier: T3
 v1Domain:
   code: '4'
@@ -25,14 +34,16 @@ v1SkillArea:
   code: '4.4'
   label: Safety & Emergency Response
 editorialNote:
-  en: 'v1 competency 4.4.1 is split: reassign this task to one of [''seed:v1-4.4.1-A'', ''seed:v1-4.4.1-B''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
+  en: 'v1 competency 4.4.1 is split: reassign this task to one of [''seed:v1-4.4.1-A'', ''seed:v1-4.4.1-B''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). | WP-07: rewritten to v2 task rules (one verb, 8-30 words, no product names; ADR-0003 G-2). v1 4.4.1-T3 (incident investigation) re-pointed from the superseded v1 4.4.1 to its TX-C successor and rewritten (WP-07).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
   derivedFrom:
   - v1Key: v1:4.4.1:T3
     v1Code: 4.4.1
@@ -42,9 +53,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

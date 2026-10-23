@@ -4,7 +4,7 @@ title: Transfer frictions, jurisdictional context and assessment methods
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0023, ADR-0007, ADR-0004, ADR-0017]
+decidedIn: [ADR-0023, ADR-0007, ADR-0004, ADR-0017, ADR-0026, ADR-0029]
 steward: CM (frictions) with FH, SL, PS, DB; CA (jurisdictional context); IO (assessment methods)
 license: CC0-1.0
 
@@ -61,3 +61,46 @@ assessment_methods:
     - {notation: knowledge-test, definition: "Test of knowledge statements (incl. Awareness bundles)."}
     - {notation: counterpart-360, definition: "Structured counterpart input (personnel data; adopter-held only)."}
     - {notation: prediction-log-calibration, definition: "Review of logged predictions for calibration over time (personnel data; adopter-held only)."}
+
+# --- Code lists moved from schema-local enums (CR-DE-001; ADR-0029). Mobility (ADR-0023) and learning (ADR-0026).
+friction_directions:
+  description: FrictionRecord.direction (SPEC §5.17).
+  values:
+    - {notation: from-to, definition: "Friction applies moving from fromActor/fromVariant to toActor/toVariant."}
+    - {notation: to-from, definition: "Friction applies in the reverse direction only."}
+    - {notation: both, definition: "Friction applies in both directions."}
+
+friction_severities:
+  description: FrictionRecord.severity (SPEC §5.17).
+  values:
+    - {notation: blocking, definition: "Prevents the move until removed (e.g. missing licence or sign-off authority)."}
+    - {notation: costly, definition: "Move possible at material cost in time or money."}
+    - {notation: minor, definition: "Move possible with brief familiarization."}
+
+friction_bases:
+  description: FrictionRecord.basis (SPEC §5.17).
+  values:
+    - {notation: statute, definition: "Set by statute."}
+    - {notation: regulation, definition: "Set by regulation."}
+    - {notation: policy, definition: "Set by agency or employer policy."}
+    - {notation: practice, definition: "Customary practice without a written rule."}
+
+pathway_types:
+  description: Pathway.pathwayType (SPEC §5.10; ADR-0023, ADR-0026).
+  values:
+    - {notation: new-hire, definition: "Entry into the role from outside the sector or from education."}
+    - {notation: upskill, definition: "Development within the same role or role family."}
+    - {notation: reskill, definition: "Move to a different role family."}
+    - {notation: cross-sector, definition: "Move between sector actors (e.g. federal to state, public to private)."}
+    - {notation: baseline, definition: "Reference pathway used for comparison."}
+
+learning_resource_types:
+  description: LearningResource.resourceType (SPEC §5.22; ADR-0026).
+  values:
+    - {notation: course, definition: "Single course."}
+    - {notation: program, definition: "Degree or certificate programme."}
+    - {notation: module, definition: "Short module within a course or programme."}
+    - {notation: work-based-learning, definition: "Structured learning on the job."}
+    - {notation: apprenticeship, definition: "Registered or structured apprenticeship."}
+    - {notation: microcredential, definition: "Short credential-bearing learning unit."}
+    - {notation: other, definition: "Other resource type, described in the record."}

@@ -1,0 +1,42 @@
+id: seed:sc-check-permit-completeness
+type: Task
+prefLabel:
+  en: Review a permit application for administrative and technical completeness, issuing a deficiency notice that lists each missing element and its basis
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Review a permit application for administrative and technical completeness, issuing a deficiency notice that lists each missing element and its basis
+textSha256: 55b87d651c19a37fbec750d140357ff3a636c7b7e8f9e712d8a21cab8a6d9be5
+supports:
+- competency: seed:SL-C02
+  strength: primary
+workFunction: WF-AUTHORIZE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+workflowProfiles:
+- WP-REGPROGRAM
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

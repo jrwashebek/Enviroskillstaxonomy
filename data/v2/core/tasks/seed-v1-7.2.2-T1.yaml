@@ -1,22 +1,31 @@
 id: seed:v1-7.2.2-T1
 type: Task
 prefLabel:
-  en: Analyze an AI-augmented workflow to identify which entry-level formation tasks have been compressed by automation and what tacit knowledge practitioners are no longer developing through ordinary work
+  en: Analyze a workflow to identify which entry-level tasks form judgment and which of them AI tools or automation now perform
 statement:
-  en: Analyze an AI-augmented workflow to identify which entry-level formation tasks have been compressed by automation and what tacit knowledge practitioners are no longer developing through ordinary work
-textSha256: b9a92fac937d5b302f08b4fbffc6798cb0f5ab9bae1215afb7251e90ee780fc9
+  en: Analyze a workflow to identify which entry-level tasks form judgment and which of them AI tools or automation now perform
+textSha256: e3bfe47a33dbc9d83150d75507104df71d1632d1c04f34d9b00987df0dee8c0b
 supports:
 - competency: seed:v1-7.2.2
   strength: primary
+workFunction: WF-LEARN
+fieldDependency: remote-capable
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  currencyDecay: L
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 7.2.2:T1
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 v1Tier: T1
 v1Domain:
   code: '7'
@@ -25,14 +34,16 @@ v1SkillArea:
   code: '7.2'
   label: Human-Ai Professional Practice
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: 'v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). | WP-07: rewritten to v2 task rules (one verb, 8-30 words, no product names; ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
   derivedFrom:
   - v1Key: v1:7.2.2:T1
     v1Code: 7.2.2
@@ -42,9 +53,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

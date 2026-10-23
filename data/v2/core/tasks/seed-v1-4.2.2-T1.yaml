@@ -1,22 +1,32 @@
 id: seed:v1-4.2.2-T1
 type: Task
 prefLabel:
-  en: Implement invasive species control using mechanical, chemical, or biological methods
+  en: Treat invasive plants by mechanical, chemical or biological methods to the treatment prescription, protecting non-target vegetation and water
 statement:
-  en: Implement invasive species control using mechanical, chemical, or biological methods
-textSha256: 09e5eb7bfc488fed7423b4eeaae7ec30eec9169dfa1f31836743e1449b037501
+  en: Treat invasive plants by mechanical, chemical or biological methods to the treatment prescription, protecting non-target vegetation and water
+textSha256: 4d18ac8632d9bdf76982840f2ffdce5234a1a185ca52768871e5ea6da3e6369d
 supports:
 - competency: seed:v1-4.2.2
   strength: primary
+workFunction: WF-BUILD
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: seasonal
+  placeBoundness: ecosystem-type
+  credentialGate: licence
+  currencyDecay: M
 notation:
 - scheme: EMSTv1
   value: 4.2.2:T1
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Tier: T1
 v1Domain:
   code: '4'
@@ -25,14 +35,14 @@ v1SkillArea:
   code: '4.2'
   label: Land Management Implementation
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: 'G-2 split role: execution to protocol (production). Credential gate level is the author''s draft pending the WP-07 Credential register (T-8). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:4.2.2:T1
     v1Code: 4.2.2
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

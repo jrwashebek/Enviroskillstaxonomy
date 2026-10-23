@@ -23,3 +23,16 @@
 ## Consequences if not accepted
 
 Watch items, OPM series and state class records stay on seed keys through rc.1 (they can still be released only if a policy allows seed-keyed records, which the release gate does not); X12 validates only as an unregistered set; any non-EMST YAML consumer misreads `formation_dependency`.
+
+## CA ruling
+
+- **Ruling:** **accept items 1–4; reject item 5** · **Date:** 2026-10-23 · **Decider:** CA · **Recorded in:** ADR-0029 §2, DECISION_LOG `CR-DE-002`
+- **Applied by the CA in `vocab/`:** items 1–4 (vocabulary lane). **Implementation:** DE regenerates the schema and updates the minting and validation code, per `RULINGS_FOR_DE.md` §2.
+
+| # | Ruling | Applied |
+|---|---|---|
+| 1 | **Accept** `WCH` (WatchItem), `SER` (SeriesRecord) and `SCR` (StateClassRecord) | `vocab/identifiers.yaml#types` and `#form.regex`; SPEC §12.1; ADR-0010 §2. These kinds now mint like every other type. The release gate's rule against seed-keyed records stays. |
+| 2 | **Accept** X12 | `vocab/mapping_predicates.yaml#mapping_sets`: `X12`, "TX-A floor and AI practice → DOL AI Literacy Framework (TEN 07-25)", `object_source_version: "TEN 07-25 (2026-02-13)"`, as ADR-0022 and SPEC §15 already define it. |
+| 3 | **Accept** | `vocab/crafts.yaml`: `values: ['yes', partial, 'no']`. The CA also loaded all 19 vocabulary files with a YAML 1.1 loader: no other code list resolves to booleans. Rule for every vocabulary writer from now on: quote `yes`, `no`, `on`, `off`, `y` and `n` codes. |
+| 4 | **Accept** | `vocab/state_class_fields.yaml`: `supervisory_status` = `non-supervisory\|lead\|supervisor\|manager\|executive`; `appointment_route` = `open-competitive-exam\|continuous-t-and-e\|application-as-exam\|non-competitive\|provisional\|transfer-list\|performance-based` (format `enum list`). The state examples (NY HELPS, LEAP, the TX and NY supervision notes) move into `definition` prose. No StateClassRecord exists yet, so no data changes. |
+| 5 | **Reject** | No new flag. The fact is already recorded once, in provenance: `derivedFrom.relation = recovered`, with `v1Values.recovered_from` naming the working record. A flag would put the same fact in a second place. `v1Flags` stays a list of misalignment flags only. |

@@ -1,0 +1,76 @@
+id: seed:DC-CAND-13
+type: Competency
+prefLabel:
+  en: Validate AI-generated work products before professional use
+altLabel:
+  en:
+  - Validate AI-generated environmental analyses before professional use
+  - AI-output validation
+definition:
+  en: The capability to check AI-produced identifications, maps, classifications, summaries, regulatory analyses and drafts against independent evidence before they are used in professional work, at the volume the work produces, and to record what was checked and changed. It excludes designing review architectures and setting model risk tiers, which are data-craft specialist competencies.
+statement:
+  en: Checks AI-produced species identifications, maps, classifications, summaries, regulatory analyses and drafts against independent evidence such as field observation, source documents, applicable legal text and expert knowledge; uses structured sampling when volumes are large; and records what was checked, what was changed and the confidence the validation supports.
+editorialNote:
+  en: 'TX-A universal floor: every role profile carries L1 on AI-output validation (ADR-0025 §1). Survivor of the validation cluster: absorbs v1 7.2.1, FS-C01 and FH-C15 (candidate_disposition merge-into DC-CAND-13). Craft enactments: FC (ecological plausibility and ground truth), DC (validation at volume), SC (legal sufficiency, record provenance, authorization of oversight; split part of v1 7.1.4).'
+notation:
+- scheme: EMST-candidate
+  value: DC-CAND-13
+competencyType: transversal
+transversalCluster: TX-A
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:dc-cand-13-l1-a
+  - seed:dc-cand-13-l1-b
+  - seed:dc-cand-13-l1-c
+- level: L2
+  indicators:
+  - seed:dc-cand-13-l2-a
+  - seed:dc-cand-13-l2-b
+- level: L3
+  indicators:
+  - seed:dc-cand-13-l3-a
+  - seed:dc-cand-13-l3-b
+- level: L4
+  indicators:
+  - seed:dc-cand-13-l4-a
+  - seed:dc-cand-13-l4-b
+enactments:
+- seed:ena-dc-cand-13-fc
+- seed:ena-dc-cand-13-dc
+- seed:v1-7.1.4-A
+homeModule: core
+reusability: transversal
+layer: L1
+module: core
+status: draft
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:7.2.1
+    relation: merged-from
+    note: v1 7.2.1 is the writing model; rewritten to observable anchors (ADR-0025)
+  sources:
+  - DC-001
+  - DC-016
+  - DC-032
+  - DC-045
+  adr:
+  - ADR-0003
+  - ADR-0025

@@ -1,0 +1,46 @@
+id: seed:sl-c10-l2-a
+type: Indicator
+prefLabel:
+  en: Conducts a compliance-assistance visit at a small facility, delivering a written gap list with corrective steps that the program's guidance supports.
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SL-C10
+level: L2
+statement:
+  en: Conducts a compliance-assistance visit at a small facility, delivering a written gap list with corrective steps that the program's guidance supports.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- gap list
+servedTasks:
+- seed:sc-assistance-site-visit
+distinguishingAttribute: ATT-AUT
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

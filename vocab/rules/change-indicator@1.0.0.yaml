@@ -1,0 +1,48 @@
+# EMST computed-view rule (SPEC §11.6, §14.3; ADR-0028 §2; CR-LM-001 #3). Normative definition; code in `implementation`.
+ruleId: change-indicator
+version: 1.0.0
+status: active
+steward: LM (method) · DE (implementation) · CA (definition)
+decidedIn: [ADR-0008, ADR-0028, ADR-0029, CR-LM-001]
+reference_implementation: docs/methods/ci/evidence_rule.py (LM, 2026-10-23); DE ports it and LM then retires the copy
+computes: >
+  Whether a set of signals and external-index assessments moves a computed change indicator {targetId, direction,
+  driver, kind ∈ vocab/change_types.yaml#change_indicator_kinds}. Decision ∈ {moves, watch, invalid}, with reason codes
+  and the IDs counted. Anything that does not move stays `watch`: shown in the "what's coming" view, moving nothing.
+inputs:
+  - released ChangeSignal records (signalStatus watch or active; retired never counted)
+  - released ExposureAssessment records with raterType external-index (family and key per instrument, below)
+  - vocab/change_types.yaml#signal_families (counts_toward), #independence_keys (providers)
+definition:
+  ER-0: >
+    Exclusions before counting: any ChangeSignal with personalData ≠ false makes the result `invalid`; records with
+    careFlag, tribalPrograms or indigenousDataFlag true are quarantined until the Tribal Council clears them, as are
+    readings of signpost SP-12; v1-analyst records are prior evidence only; other targets and other directions are ignored.
+  ER-1: >
+    Two independent families point the same way: the families must differ, each must list the indicator's kind in
+    counts_toward (projection and workload never count; policy counts for role-change only), and the two counted records
+    must have DISJOINT provider sets (independence_keys; an unlisted key is its own provider). Two indices on the same
+    data family count as one.
+  ER-2: "Persistence: two distinct observation periods of the same measure in the same family, or one period plus a deployment-family signal with registeredDeployment = true."
+  ER-3: "Every counted record's crosswalkMinMatchType is skos:exactMatch or skos:closeMatch; broader matches can raise only a watch."
+  ER-4: "Driver declared and consistent: each counted record carries the indicator's driver tag (external AI-exposure indices count as driver AI by construction)."
+  ER-5: "Named human review: reviewStatus ∈ {reviewed, validated, gold} and a reviewer that is a pid: or panel: ID, never an emstagent: ID."
+  active_signals: "A signal counts only when signalStatus = active, which requires signalFamily and a listed independenceKey (CR-LM-001 #1-#2). Watch signals are evaluated for the 'what's coming' view but never move an indicator."
+  organization_targets: "Signals with targetType organization never match a role or skill indicator target."
+external_index_instruments:
+  eloundou-gpts-are-gpts: {family: capability, independenceKey: eloundou-gpts-are-gpts}
+  ms-working-with-ai-applicability: {family: observed-use, independenceKey: ms-working-with-ai}
+  aei-task-usage: {family: observed-use, independenceKey: anthropic-economic-index}
+  aei-labor-market-impacts: {family: observed-use, independenceKey: anthropic-labor-market-impacts}
+  aei-robot-exposure: {family: capability, independenceKey: anthropic-robot-exposure}
+  bls-ai-exposure-theoretical: {family: capability, independenceKey: bls-ai-exposure-theoretical}
+  bls-ai-exposure-observed: {family: observed-use, independenceKey: bls-ai-exposure-observed}
+outputs:
+  view: views/change_indicators.json
+  fields: "targetId, kind, direction, driver, decision, reasons[], counted[], ruleId, ruleVersion, buildCommit"
+reason_codes: [ER-0-PERSONAL-DATA, ER-0-QUARANTINED, ER-0-V1-PRIOR-EVIDENCE, ER-0-DIRECTION, ER-1-NONCOUNTING-FAMILY, ER-1-POLICY-NOT-FOR-SKILL-CHANGE, ER-1-ONE-FAMILY, ER-1-SAME-VENDOR, ER-2-NO-PERSISTENCE, ER-3-MATCH-TYPE, ER-4-DRIVER, ER-5-NO-NAMED-REVIEW]
+tests: "tests/test_evidence_rule.py with tests/fixtures/evidence_rule_cases.yaml (moved from docs/methods/ci/), incl. the regression that no seeded agent signal moves an indicator."
+parameters: {}
+implementation: scripts/rules/change_indicator.py (to be ported by DE; see RULINGS_FOR_DE.md §8)
+changeNote:
+  - {date: '2026-10-23', note: "Registered from LM's reference implementation; adds the active-only and SP-12 conditions (CR-LM-001; ADR-0029)."}

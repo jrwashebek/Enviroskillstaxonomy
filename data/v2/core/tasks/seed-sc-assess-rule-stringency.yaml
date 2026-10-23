@@ -1,0 +1,42 @@
+id: seed:sc-assess-rule-stringency
+type: Task
+prefLabel:
+  en: Assess whether a proposed change to program rules keeps them at least as stringent as the delegated authority requires, documenting each provision compared
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Assess whether a proposed change to program rules keeps them at least as stringent as the delegated authority requires, documenting each provision compared
+textSha256: dc9745083b27e74c35f977d708b4ff5a25ff75a5f9c263ccef084b32c4d7ce71
+supports:
+- competency: seed:SC-C14
+  strength: primary
+workFunction: WF-AUTHORIZE.delegated
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-REGPROGRAM
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

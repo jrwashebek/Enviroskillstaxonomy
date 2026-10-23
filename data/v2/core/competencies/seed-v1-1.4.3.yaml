@@ -1,19 +1,45 @@
 id: seed:v1-1.4.3
 type: Competency
 prefLabel:
-  en: Species identification and classification
+  en: Identify organisms from field characters, specimens, images and recordings
+definition:
+  en: Identifying plants, animals, fungi and other organisms to the taxonomic level a task requires from diagnostic features, keys, vouchers, images and recordings; expressing uncertainty correctly; and confirming or rejecting identifications suggested by AI tools or other observers. Covers tree and shrub identification from leaves, twigs, bark, fruit and form. Excludes taxonomy as a research discipline.
 statement:
-  en: Accurately identifying different animals and understanding how they are related taxonomically.
+  en: Identify organisms to the level a task requires from diagnostic features, keys, specimens, images and recordings; record uncertainty and collect evidence when unsure; and accept, correct or reject identifications suggested by AI tools or other observers, stating the diagnostic reason.
 competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-v1-1.4.3-l1-a
+  - seed:ind-v1-1.4.3-l1-b
+  - seed:ind-v1-1.4.3-l1-c
+- level: L2
+  indicators:
+  - seed:ind-v1-1.4.3-l2-a
+  - seed:ind-v1-1.4.3-l2-b
+  - seed:ind-v1-1.4.3-l2-c
+- level: L3
+  indicators:
+  - seed:ind-v1-1.4.3-l3-a
+  - seed:ind-v1-1.4.3-l3-b
+  - seed:ind-v1-1.4.3-l3-c
+- level: L4
+  indicators:
+  - seed:ind-v1-1.4.3-l4-a
+  - seed:ind-v1-1.4.3-l4-b
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 1.4.3
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Domain:
   code: '1'
   label: Ecological & Scientific Knowledge
@@ -21,14 +47,14 @@ v1SkillArea:
   code: '1.4'
   label: Wildlife & Fisheries Biology
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS. Rationale: One of the most durable FC capabilities and the one AI tools most change: add adjudicating AI-suggested identifications (pairs with FC-C03), blind identification-test anchors; absorbs LC-C-03 (regional plant and tree keys); FS stress test suggests protect. Role verdicts considered: FC:change. Title and description were merged in the v1 database and are split here from the source text.'
+  en: 'WP-03 (FC) draft. Rewritten; absorbs LC-C-03 (regional plant and tree identification). Pairs with FC-C03 (adjudicating automated detections at volume). Formation-dependent: expertise is built in the field even where review is on screen (ADR-0005). Reference libraries may carry sensitive names or locations; community-held knowledge enters only with consent (route to TN). Protect suggested for Editorial Board (see WP-03 worklog). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS. Rationale: One of the most durable FC capabilities and the one AI tools most change: add adjudicating AI-suggested identifications (pairs with FC-C03), blind identification-test anchors; absorbs LC-C-03 (regional plant and tree keys); FS stress test suggests protect. Role verdicts considered: FC:change. Title and description were merged in the v1 database and are split here from the source text.'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:1.4.3
     v1Code: 1.4.3
@@ -39,7 +65,7 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:1.4.3
     v1Code: 1.4.3
     v1Table: source_text/competencies
@@ -48,181 +74,11 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Species identification and classification Accurately identifying different animals and understanding how they are related taxonomically.
-  v1Description: ''
-  titleDescriptionSplit: true
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:1.4.3:foundational
-    knowledge: Knows common species in local area; understands basic taxonomy
-    application: Identifies common species in the field
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.4.3:foundational:I1
-      n: 1
-      text: Identifies common local wildlife to species level
-      origin: database
-    - v1Key: v1:1.4.3:foundational:I2
-      n: 2
-      text: Uses field guides and identification keys
-      origin: database
-    - v1Key: v1:1.4.3:foundational:I3
-      n: 3
-      text: Distinguishes similar species using field marks
-      origin: database
-    - v1Key: v1:1.4.3:foundational:I4
-      n: 4
-      text: Records species observations with accurate nomenclature
-      origin: database
-    - v1Key: v1:1.4.3:foundational:I5
-      n: 5
-      text: Understands taxonomic hierarchy (kingdom to species)
-      origin: database
-    - v1Key: v1:1.4.3:foundational:I6
-      n: 6
-      text: Recognizes when expert verification is needed
-      origin: database
-    - v1Key: v1:1.4.3:foundational:I7
-      n: 7
-      text: Photographs specimens for documentation
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:1.4.3:intermediate
-    knowledge: Expert in regional fauna; understands functional morphology and taxonomy
-    application: Identifies diverse species including difficult taxa
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.4.3:intermediate:I1
-      n: 1
-      text: Identifies most regional species including challenging groups
-      origin: database
-    - v1Key: v1:1.4.3:intermediate:I2
-      n: 2
-      text: Uses morphological keys for difficult identifications
-      origin: database
-    - v1Key: v1:1.4.3:intermediate:I3
-      n: 3
-      text: Identifies species from signs (tracks, scat, calls, nests)
-      origin: database
-    - v1Key: v1:1.4.3:intermediate:I4
-      n: 4
-      text: Verifies identifications using multiple characteristics
-      origin: database
-    - v1Key: v1:1.4.3:intermediate:I5
-      n: 5
-      text: Understands subspecies and geographic variation
-      origin: database
-    - v1Key: v1:1.4.3:intermediate:I6
-      n: 6
-      text: Uses bioacoustics for species identification
-      origin: database
-    - v1Key: v1:1.4.3:intermediate:I7
-      n: 7
-      text: Maintains specimen collections for reference
-      origin: restored-from-source-text
-    - v1Key: v1:1.4.3:intermediate:I8
-      n: 8
-      text: Trains others in species identification
-      origin: restored-from-source-text
-    - v1Key: v1:1.4.3:intermediate:I9
-      n: 9
-      text: Contributes to species checklists and databases
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:1.4.3:advanced
-    knowledge: Taxonomic expert for specific groups; understands evolutionary relationships
-    application: Serves as identification authority; resolves difficult identifications
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.4.3:advanced:I1
-      n: 1
-      text: Expert identifier for challenging taxonomic groups
-      origin: database
-    - v1Key: v1:1.4.3:advanced:I2
-      n: 2
-      text: Uses genetic tools for identification (DNA barcoding, eDNA)
-      origin: database
-    - v1Key: v1:1.4.3:advanced:I3
-      n: 3
-      text: Identifies cryptic species and subspecies
-      origin: database
-    - v1Key: v1:1.4.3:advanced:I4
-      n: 4
-      text: Understands phylogenetic relationships and nomenclatural changes
-      origin: database
-    - v1Key: v1:1.4.3:advanced:I5
-      n: 5
-      text: Discovers or documents range extensions or new species records
-      origin: database
-    - v1Key: v1:1.4.3:advanced:I6
-      n: 6
-      text: Curates museum collections or voucher specimens
-      origin: database
-    - v1Key: v1:1.4.3:advanced:I7
-      n: 7
-      text: Publishes taxonomic papers or field guides
-      origin: restored-from-source-text
-    - v1Key: v1:1.4.3:advanced:I8
-      n: 8
-      text: Provides identification training and workshops
-      origin: restored-from-source-text
-    - v1Key: v1:1.4.3:advanced:I9
-      n: 9
-      text: Reviews records for rare species committees
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:1.4.3:expert
-    knowledge: Shapes taxonomic understanding of groups
-    application: Contributes to taxonomic revisions; influences classification
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:1.4.3:expert:I1
-      n: 1
-      text: Describes new species or revises taxonomy
-      origin: database
-    - v1Key: v1:1.4.3:expert:I2
-      n: 2
-      text: Publishes taxonomic monographs or revisions
-      origin: database
-    - v1Key: v1:1.4.3:expert:I3
-      n: 3
-      text: Serves on taxonomic committees (AOU, ASM, etc.)
-      origin: database
-    - v1Key: v1:1.4.3:expert:I4
-      n: 4
-      text: Influences changes in scientific nomenclature
-      origin: database
-    - v1Key: v1:1.4.3:expert:I5
-      n: 5
-      text: Maintains authoritative reference collections
-      origin: database
-    - v1Key: v1:1.4.3:expert:I6
-      n: 6
-      text: Recognized international expert for taxa
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:1.4.3:sector:public_agencies
-    text: Species documentation, rare species verification, inventory programs
-  - sector: private_sector
-    v1Key: v1:1.4.3:sector:private_sector
-    text: Species lists for projects, wildlife surveys
-  - sector: ngos
-    v1Key: v1:1.4.3:sector:ngos
-    text: Biodiversity documentation, rare species monitoring
-  - sector: consulting
-    v1Key: v1:1.4.3:sector:consulting
-    text: Species identification for environmental assessments
-  - sector: academia
-    v1Key: v1:1.4.3:sector:academia
-    text: Taxonomy research, museum curation, systematic biology
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+  - WP-03

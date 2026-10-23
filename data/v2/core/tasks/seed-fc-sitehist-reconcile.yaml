@@ -1,0 +1,48 @@
+id: seed:fc-sitehist-reconcile
+type: Task
+prefLabel:
+  en: Reconcile field evidence of site history with maps, aerial photographs, management records and accounts from people who know the site
+statement:
+  en: Reconcile field evidence of site history with maps, aerial photographs, management records and accounts from people who know the site
+textSha256: c30af1922d38e191a73118c1d533a1e403540e9e8c684a199949157b8cb43454
+supports:
+- competency: seed:FC-C22
+  strength: primary
+workFunction: WF-ASSESS
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- stakeholder
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: site-specific
+  credentialGate: none
+  currencyDecay: L
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: specification, review or defence of a product.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

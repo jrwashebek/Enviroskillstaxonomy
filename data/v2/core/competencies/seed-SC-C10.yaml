@@ -1,0 +1,94 @@
+id: seed:SC-C10
+type: Competency
+prefLabel:
+  en: Formulate, justify and execute public budgets across appropriations cycles
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: 'The capability to obtain and use public funds on terms that hold: building and defending budget requests, executing funds within legal limits, planning for funding gaps, and designing fees, cost recovery and retained revenue within authority. Excludes project budgeting and internal cost tracking, which are general project management.'
+statement:
+  en: Builds and defends program budget requests and justifications, executes funds within purpose, time and amount limits, plans for continuing resolutions and funding lapses, designs and administers fees, cost recovery and retained revenue within law, and links spending to outcomes that legislators, boards and auditors accept.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L5
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - public budgeting
+  - appropriations
+  - budget formulation and execution
+  - fee and cost recovery design
+instrumentSensitivity:
+- mechanism: DM-15
+  rationale:
+    en: Fees, cost recovery and revenue retention are expanding.
+  evidenceLabel: E
+  sources:
+  - V2-04
+  - SC-030
+- mechanism: DM-19
+  rationale:
+    en: Programme funding is cut, rescinded or reinstated by appropriations.
+  evidenceLabel: J
+- mechanism: DM-16
+  rationale:
+    en: Staffing levels follow appropriations.
+  evidenceLabel: J
+editorialNote:
+  en: 'WP-05 (A5 SC). Split from v1 3.1.2 (project budgeting goes to PS-C03); public fiscal and appropriations work is a distinct Statecraft deliverable [J; SC verdict]. 2025 created fiscal instruments with workforce effects (sponsor-paid review fees; agreement revenue retention) [E: V2-04, SC-030]. Indicators adapted from SC-A-C10-1..4. Span reaches L5; L5 indicators await SME confirmation.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-013
+  - SC-030
+  - SC-042
+  - V2-04
+  derivedFrom:
+  - v1Key: v1:3.1.2
+    relation: split-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - seed:sc-c10-l1-a
+  - seed:sc-c10-l1-b
+- level: L2
+  indicators:
+  - seed:sc-c10-l2-a
+  - seed:sc-c10-l2-b
+- level: L3
+  indicators:
+  - seed:sc-c10-l3-a
+  - seed:sc-c10-l3-b
+- level: L4
+  indicators:
+  - seed:sc-c10-l4-a
+  - seed:sc-c10-l4-b
+enactments:
+- seed:ena-sc-c10-federal
+- seed:ena-sc-c10-state
+- seed:ena-sc-c10-local
+- seed:ena-sc-c10-agreement-revenue

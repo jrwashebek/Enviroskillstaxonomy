@@ -4,7 +4,7 @@ title: Competency types and entity kinds
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0003, ADR-0025]
+decidedIn: [ADR-0003, ADR-0025, ADR-0029]
 steward: CA with DC, IO, LC
 license: CC0-1.0
 
@@ -78,3 +78,19 @@ typing_rules:
   T-6: "Tools-layer vs task-bundle change (FC): tools-layer if a proficient practitioner meets the same anchors after brief familiarization."
   T-7: "Instrument vs tool: legal or policy force changed by public process → L5 Instrument; practitioner-chosen method or technical standard → L4."
   T-8: "Credentials are gates, not competencies."
+
+# --- L4 typing (ADR-0003 T-1…T-7); moved from a schema-local enum (CR-DE-001; ADR-0029).
+tool_types:
+  description: Tool.toolType (SPEC §5.11).
+  values:
+    - {notation: software-category, definition: "Class of software (e.g. GIS desktop)."}
+    - {notation: software-product, definition: "Named software product."}
+    - {notation: platform, definition: "Hosted platform or service."}
+    - {notation: model, definition: "Analytical, simulation or AI model."}
+    - {notation: dataset-product, definition: "Named dataset or data product."}
+    - {notation: instrument-class, definition: "Class of field or laboratory instrument."}
+    - {notation: instrument-model, definition: "Named instrument model."}
+    - {notation: protocol, definition: "Field, laboratory or analytical protocol."}
+    - {notation: technical-standard, definition: "Technical standard without legal force (with legal force it is an L5 Instrument, T-7)."}
+    - {notation: reporting-framework, definition: "Reporting or disclosure framework used as a method."}
+    - {notation: credential-bound-standard, definition: "Standard whose use requires a credential."}

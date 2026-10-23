@@ -1,22 +1,32 @@
 id: seed:v1-6.1.2-T3
 type: Task
 prefLabel:
-  en: Coordinate with regulatory agencies during audits or investigations
+  en: Coordinate a regulatory agency's inspection or audit of the facility, providing requested records and documenting each finding raised
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Coordinate with regulatory agencies during audits or investigations
-textSha256: 59d1d366401c6d6335152f4a64a965a1e9e9c340ceb7597be970099c3f34780a
+  en: Coordinate a regulatory agency's inspection or audit of the facility, providing requested records and documenting each finding raised
+textSha256: 695d93d4f2f9e0cf2f6b05b171ff8df7662d3f59c2a0f7436608b1015a631fd1
 supports:
-- competency: seed:v1-6.1.2
+- competency: seed:DB-C26
   strength: primary
+workFunction: WF-MONITOR
+fieldDependency: on-site-required
+formationDependency: partial
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- stakeholder
 notation:
 - scheme: EMSTv1
   value: 6.1.2:T3
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T3
 v1Domain:
   code: '6'
@@ -25,14 +35,16 @@ v1SkillArea:
   code: '6.1'
   label: Environmental Law & Regulation
 editorialNote:
-  en: 'v1 competency 6.1.2 is split: reassign this task to one of [''seed:SL-C03'', ''seed:DB-C26''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
-license: CC0-1.0
-sensitivity: public
+  en: 'Rewritten from the v1 task text: "Coordinate with regulatory agencies during audits or investigations" (WP-05).'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:6.1.2:T3
     v1Code: 6.1.2
@@ -42,9 +54,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

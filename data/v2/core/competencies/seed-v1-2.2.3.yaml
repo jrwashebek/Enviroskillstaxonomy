@@ -1,34 +1,59 @@
 id: seed:v1-2.2.3
 type: Competency
 prefLabel:
-  en: Data quality control and validation
+  en: Assure the quality of environmental data from collection to release
+altLabel:
+  en:
+  - Data quality control and validation
+definition:
+  en: 'The capability to design and run quality assurance and quality control for environmental data from collection to release: protocols, checks, audits, flagging and correction rules, including the design, tuning and audit of automated checks on sensor and batch data. Field calibration and sample handling stay field craft.'
 statement:
-  en: Ensuring that information collected is accurate, consistent, and reliable before it's used for decision-making.
-competencyType: practice
+  en: 'Designs and runs quality assurance and control for environmental data from collection to release: writes QA protocols; applies range, consistency and completeness checks; audits datasets; designs, tunes and audits automated anomaly flags and corrections on sensor and batch data; records every flag and correction; and trains others on validation rules.'
+editorialNote:
+  en: 'Rewritten by WP-04 (title/description defect fixed); absorbs v1 2.6.4 (design and audit of automated QC). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-MONITOR (DC). Rationale: Durable share high; absorbs 2.6.4 (design and audit of automated QC); title/description defect fixed (DC, IA verdicts). Role verdicts considered: DC:change|IA:change. Title and description were merged in the v1 database and are split here from the source text.'
 notation:
 - scheme: EMSTv1
   value: 2.2.3
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-v1-2.2.3-l1-a
+  - seed:ind-v1-2.2.3-l1-b
+- level: L2
+  indicators:
+  - seed:ind-v1-2.2.3-l2-a
+  - seed:ind-v1-2.2.3-l2-b
+- level: L3
+  indicators:
+  - seed:ind-v1-2.2.3-l3-a
+  - seed:ind-v1-2.2.3-l3-b
+- level: L4
+  indicators:
+  - seed:ind-v1-2.2.3-l4-a
+  - seed:ind-v1-2.2.3-l4-b
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '2'
-  label: Technical & Technological Skills
-v1SkillArea:
-  code: '2.2'
-  label: Data Management & Analysis
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-MONITOR (DC). Rationale: Durable share high; absorbs 2.6.4 (design and audit of automated QC); title/description defect fixed (DC, IA verdicts). Role verdicts considered: DC:change|IA:change. Title and description were merged in the v1 database and are split here from the source text.'
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.2.3
     v1Code: 2.2.3
@@ -39,198 +64,23 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:2.2.3
     v1Code: 2.2.3
     v1Table: source_text/competencies
     sourceTextLine: 3397
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
   - v1Key: v1:2.6.4
     v1Code: 2.6.4
     relation: merged-from
     note: v1 2.6.4 (merge) → seed:v1-2.2.3 per v1_disposition.csv
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Data quality control and validation Ensuring that information collected is accurate, consistent, and reliable before it's used for decision-making.
-  v1Description: ''
-  titleDescriptionSplit: true
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:2.2.3:foundational
-    knowledge: Understands importance of data quality
-    application: Follows data quality procedures
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:2.2.3:foundational:I1
-      n: 1
-      text: Enters data carefully and double-checks entries
-      origin: database
-    - v1Key: v1:2.2.3:foundational:I2
-      n: 2
-      text: Recognizes obvious data errors
-      origin: database
-    - v1Key: v1:2.2.3:foundational:I3
-      n: 3
-      text: Follows data collection protocols precisely
-      origin: database
-    - v1Key: v1:2.2.3:foundational:I4
-      n: 4
-      text: Uses data validation features in forms
-      origin: database
-    - v1Key: v1:2.2.3:foundational:I5
-      n: 5
-      text: Reports data quality issues to supervisors
-      origin: database
-    - v1Key: v1:2.2.3:foundational:I6
-      n: 6
-      text: Understands concepts of accuracy, precision, completeness
-      origin: database
-    - v1Key: v1:2.2.3:foundational:I7
-      n: 7
-      text: Documents data collection conditions
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:2.2.3:intermediate
-    knowledge: Applies data quality principles and methods
-    application: Implements quality control procedures
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:2.2.3:intermediate:I1
-      n: 1
-      text: Develops data validation rules and checks
-      origin: database
-    - v1Key: v1:2.2.3:intermediate:I2
-      n: 2
-      text: Conducts systematic data quality audits
-      origin: database
-    - v1Key: v1:2.2.3:intermediate:I3
-      n: 3
-      text: Identifies and corrects outliers and anomalies
-      origin: database
-    - v1Key: v1:2.2.3:intermediate:I4
-      n: 4
-      text: Implements automated data validation
-      origin: database
-    - v1Key: v1:2.2.3:intermediate:I5
-      n: 5
-      text: Tracks data quality metrics
-      origin: database
-    - v1Key: v1:2.2.3:intermediate:I6
-      n: 6
-      text: Develops data quality reports
-      origin: database
-    - v1Key: v1:2.2.3:intermediate:I7
-      n: 7
-      text: Trains data collectors on quality standards
-      origin: restored-from-source-text
-    - v1Key: v1:2.2.3:intermediate:I8
-      n: 8
-      text: Investigates and resolves data quality issues
-      origin: restored-from-source-text
-    - v1Key: v1:2.2.3:intermediate:I9
-      n: 9
-      text: Documents quality control procedures
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:2.2.3:advanced
-    knowledge: Expert in quality assurance/quality control (QA/QC) systems
-    application: Designs comprehensive QA/QC programs
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:2.2.3:advanced:I1
-      n: 1
-      text: Develops organizational QA/QC frameworks
-      origin: database
-    - v1Key: v1:2.2.3:advanced:I2
-      n: 2
-      text: Implements ISO quality standards
-      origin: database
-    - v1Key: v1:2.2.3:advanced:I3
-      n: 3
-      text: Uses statistical process control
-      origin: database
-    - v1Key: v1:2.2.3:advanced:I4
-      n: 4
-      text: Designs quality control sampling schemes
-      origin: database
-    - v1Key: v1:2.2.3:advanced:I5
-      n: 5
-      text: Evaluates measurement system accuracy and bias
-      origin: database
-    - v1Key: v1:2.2.3:advanced:I6
-      n: 6
-      text: Develops automated data validation pipelines
-      origin: database
-    - v1Key: v1:2.2.3:advanced:I7
-      n: 7
-      text: Conducts data quality assessments across programs
-      origin: restored-from-source-text
-    - v1Key: v1:2.2.3:advanced:I8
-      n: 8
-      text: Trains practitioners in QA/QC methods
-      origin: restored-from-source-text
-    - v1Key: v1:2.2.3:advanced:I9
-      n: 9
-      text: Integrates QA/QC into data management systems
-      origin: restored-from-source-text
-    - v1Key: v1:2.2.3:advanced:I10
-      n: 10
-      text: Publishes on data quality methods
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:2.2.3:expert
-    knowledge: Shapes data quality standards and practices
-    application: Provides leadership on data quality
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:2.2.3:expert:I1
-      n: 1
-      text: Develops data quality standards for sector
-      origin: database
-    - v1Key: v1:2.2.3:expert:I2
-      n: 2
-      text: Influences organizational data quality policy
-      origin: database
-    - v1Key: v1:2.2.3:expert:I3
-      n: 3
-      text: Leads enterprise data quality programs
-      origin: database
-    - v1Key: v1:2.2.3:expert:I4
-      n: 4
-      text: Provides expert consultation on data quality
-      origin: database
-    - v1Key: v1:2.2.3:expert:I5
-      n: 5
-      text: Publishes influential work on data quality
-      origin: database
-    - v1Key: v1:2.2.3:expert:I6
-      n: 6
-      text: Advances data quality practices in environmental field
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:2.2.3:sector:public_agencies
-    text: Monitoring program QA/QC, regulatory data quality
-  - sector: private_sector
-    v1Key: v1:2.2.3:sector:private_sector
-    text: Laboratory QA/QC, environmental compliance data
-  - sector: ngos
-    v1Key: v1:2.2.3:sector:ngos
-    text: Citizen science data validation, program data quality
-  - sector: consulting
-    v1Key: v1:2.2.3:sector:consulting
-    text: Data quality services, QA/QC for projects
-  - sector: academia
-    v1Key: v1:2.2.3:sector:academia
-    text: Research data quality, laboratory QA/QC
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.2'
+  label: Data Management & Analysis

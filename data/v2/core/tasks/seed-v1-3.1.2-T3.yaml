@@ -1,22 +1,31 @@
 id: seed:v1-3.1.2-T3
 type: Task
 prefLabel:
-  en: Justify budget adjustments based on project scope changes or risks
+  en: Justify a budget revision to the client or sponsor by linking each change to a scope change or realized risk
 statement:
-  en: Justify budget adjustments based on project scope changes or risks
-textSha256: 76c85c08c986c888fe21592b47ef74823e37728834362f7b0321460b46f24a65
+  en: Justify a budget revision to the client or sponsor by linking each change to a scope change or realized risk
+textSha256: 11355f3dc5cbba537dfa3495f0172fd16167941192f89faf0b297e74300159c1
 supports:
-- competency: seed:v1-3.1.2
+- competency: seed:PS-C03
   strength: primary
+workFunction: WF-MANAGE
+fieldDependency: remote
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: L
+  cycleDependence: none
+  placeBoundness: general
+  currencyDecay: L
+homeModule: core
 notation:
 - scheme: EMSTv1
   value: 3.1.2:T3
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
 v1Tier: T3
 v1Domain:
   code: '3'
@@ -25,14 +34,16 @@ v1SkillArea:
   code: '3.1'
   label: Project Management
 editorialNote:
-  en: 'v1 competency 3.1.2 is split: reassign this task to one of [''seed:PS-C03'', ''seed:SC-C10''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
+  en: 'v1 competency 3.1.2 is split: reassign this task to one of [''seed:PS-C03'', ''seed:SC-C10''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). | WP-07: rewritten to v2 task rules (one verb, 8-30 words, no product names; ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
   derivedFrom:
   - v1Key: v1:3.1.2:T3
     v1Code: 3.1.2
@@ -42,9 +53,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

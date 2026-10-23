@@ -1,18 +1,49 @@
 id: seed:v1-3.7.1
 type: Competency
 prefLabel:
-  en: Circular economy strategy and business model design
+  en: Develop materials-management strategies that keep products and materials in use
+altLabel:
+  en:
+  - Circular economy strategy
+  - Reverse logistics and closed-loop systems
+  - Take-back programme design
+definition:
+  en: Assessing where products and materials leave productive use and designing reuse, repair, take-back, reverse-logistics, industrial-symbiosis and recycled-content strategies for an organization, community or region, with evaluation of environmental and economic effects. Excludes producer-responsibility administration (DB-C17) and facility operation (DB-C16).
 statement:
-  en: Redesigning business models and systems to eliminate waste, keep materials in use, and regenerate natural systems using digital platforms and data-driven approaches.
+  en: Identifies where products and materials leave productive use, designs take-back, reverse-logistics, reuse and industrial-symbiosis strategies with their collection and processing routes, and compares the strategies' environmental and economic effects so that the chosen strategy can be tracked against stated targets.
 notation:
 - scheme: EMSTv1
   value: 3.7.1
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - seed:ind-3.7.1-l1-a
+  - seed:ind-3.7.1-l1-b
+- level: L2
+  indicators:
+  - seed:ind-3.7.1-l2-a
+  - seed:ind-3.7.1-l2-b
+- level: L3
+  indicators:
+  - seed:ind-3.7.1-l3-a
+  - seed:ind-3.7.1-l3-b
+homeModule: waste
+subsectors:
+- P02
+- M01
+reusability: subsector-specific
 layer: L1
 module: waste
-homeModule: waste
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Domain:
   code: '3'
   label: Management & Administrative Skills
@@ -20,14 +51,12 @@ v1SkillArea:
   code: '3.7'
   label: Circular Economy & Waste Systems
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-04 waste. Rationale: Rewritten from corporate business-model framing toward materials strategy and producer-responsibility compliance (DB-C17); absorbs 3.7.4 (DB, PS verdicts). Role verdicts considered: DC:change|DB:change|PS:change.'
-license: CC0-1.0
-sensitivity: public
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-04 waste. Rationale: Rewritten from corporate business-model framing toward materials strategy and producer-responsibility compliance (DB-C17); absorbs 3.7.4 (DB, PS verdicts). Role verdicts considered: DC:change|DB:change|PS:change. WP-06: Moved to MOD-04 and rewritten from corporate business-model framing toward materials strategy (DB, PS, DC verdicts); absorbs v1 3.7.4 (reverse logistics). Digital product passports, blockchain, RFID and AI tools named in v1 move to L4 (ADR-0003 T-1). Basis [J].'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:3.7.1
     v1Code: 3.7.1
@@ -38,7 +67,8 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
   - v1Key: v1:3.7.1
     v1Code: 3.7.1
     v1Table: source_text/competencies
@@ -51,10 +81,12 @@ provenance:
     note: v1 3.7.4 (merge) → seed:v1-3.7.1 per v1_disposition.csv
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
 v1Seed:
   v1Title: Circular economy strategy and business model design
   v1Description: Redesigning business models and systems to eliminate waste, keep materials in use, and regenerate natural systems using digital platforms and data-driven approaches.

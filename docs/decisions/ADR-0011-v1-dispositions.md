@@ -17,8 +17,8 @@ The v1 database is a single linear lineage (V1 → v1u → V3 → reconciled cop
 1. **Baseline = copyB** (`20260223_SkillsTaxonomy_Core_V3_reconciled__copyB_aaf34c8c.xlsx`), via the frozen, hash-pinned `data/v1_baseline/` (P-DE-01).
 2. **For content, the source text outranks the database** (`data/v1_baseline/source_text/`): restore D5 Knowledge/Application and indicators, the 2,104 truncated indicators and the 19 title/description splits before any rewriting (P-DE-02, P-DE-12, P-IO-15).
 3. **All 222 competencies and 666 tasks migrate as seed records** with `derivedFrom` lineage and a row in the v1→v2 SSSOM crosswalk; CI fails if any v1 key is unaccounted for (P-DE-08).
-4. **Every v1 tag migrates as prior evidence only** — rater `v1-analyst-01`, low confidence, misalignment flags — never as a v2 value (P-DE-03, P-IO-14; ADR-0008 §5). This covers craft primary/secondary, workflow stages (incl. the five recovered dual-primary second stages), reform flags, families, exposure, CLD, stability tier and the 20 populated lens cells plus the D7.2 lens values recovered from the D7 record.
-5. **Stored summaries are not migrated** (modal exposure, counts, Zero-Core, FPP, tier, reform count); they become computed views or retire (P-DE-04, P-DE-13).
+4. **Every v1 tag migrates as prior evidence only** — rater `v1-analyst-01`, low confidence, misalignment flags — never as a v2 value (P-DE-03, P-IO-14; ADR-0008 §5). This covers craft primary/secondary, workflow stages (incl. the five recovered dual-primary second stages), reform flags, families, exposure, the competency-level CLD flag with its R9 severity and S-trajectory flag (kept only as the context of the R9 severity prior), and the 20 populated lens cells plus the D7.2 lens values recovered from the D7 record. *(Amended 2026-10-23, CR-DE-003 / ADR-0029: "stability tier" removed from this list; see rule 5.)*
+5. **Stored summaries are not migrated** (modal exposure, counts, Zero-Core, FPP, **stability tier**, reform count); they become computed views or retire (P-DE-04, P-DE-13). The test: a v1 value that its documented rule fully determines from inputs that migrate is a summary. The stability tier passes that test (zero rule violations, data-audit C05), so it is not migrated. It stays readable in `data/v1_baseline/craft_stage_reform.csv`, and the computed robustness class replaces it (ADR-0008 §6). The v1 CLD flag fails the test (11 of 222 contradict its rule), so it carries analyst judgment and migrates under rule 4. *(Amended 2026-10-23, CR-DE-003 / ADR-0029.)*
 
 ### Disposition vocabulary (per competency, `v1_disposition.csv`)
 
@@ -78,3 +78,7 @@ The structural verdicts rest on the audit's direct inspection of v1 and DE's rep
 
 - **FC** retires none of the 49 FC competencies (carry 21, change 27); **DC** retires 7 of 35 D2. The CA follows both, with merges where duplicates exist across their lanes.
 - **Trade-off named:** migration effort and a smaller, honest v2.0 versus continuity of v1's counts and published narratives (which must not be cited without re-derivation; ADR-0027).
+
+## Amendments
+
+- **2026-10-23 — CR-DE-003 / ADR-0029 §3 (CA).** This resolves the conflict between rule 4 and rule 5 over the stability tier. **The tier is not migrated**: it is a rule-determined summary (rule 5). The reform flags migrate as prior evidence and seed frozen historical driver events (ADR-0028 §3). The competency-level CLD flag, R9 severity and S-trajectory flag migrate as prior evidence only (`data/v2/assessments/emst-v1-cld/`). They are never a v2 value, never displayed, and never an input to the computed CLD.

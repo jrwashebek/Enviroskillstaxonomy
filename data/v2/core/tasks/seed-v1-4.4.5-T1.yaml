@@ -1,22 +1,32 @@
 id: seed:v1-4.4.5-T1
 type: Task
 prefLabel:
-  en: Use radios, satellite phones, and emergency beacons to communicate during incidents
+  en: Communicate an emergency to dispatch by radio, satellite device or beacon, giving location, nature of the emergency and resources needed in the required format
 statement:
-  en: Use radios, satellite phones, and emergency beacons to communicate during incidents
-textSha256: c4d3a55b4351c3608fb18a98bbc052606eac7bc9dbe991d60057d903d08c5fe6
+  en: Communicate an emergency to dispatch by radio, satellite device or beacon, giving location, nature of the emergency and resources needed in the required format
+textSha256: d4871c4a93ffaec61db0af9ddd6bb53c0408d7ff72b62539e5abf7fdf0548a66
 supports:
 - competency: seed:v1-4.4.5
   strength: primary
+workFunction: WF-RESPOND
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: L
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: H
 notation:
 - scheme: EMSTv1
   value: 4.4.5:T1
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Tier: T1
 v1Domain:
   code: '4'
@@ -25,14 +35,14 @@ v1SkillArea:
   code: '4.4'
   label: Safety & Emergency Response
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: 'G-2 split role: execution to protocol (production). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:4.4.5:T1
     v1Code: 4.4.5
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

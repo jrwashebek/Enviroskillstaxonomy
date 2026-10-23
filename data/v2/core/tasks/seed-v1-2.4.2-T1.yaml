@@ -1,22 +1,35 @@
 id: seed:v1-2.4.2-T1
 type: Task
 prefLabel:
-  en: Develop models to forecast wildfire spread under different weather conditions
+  en: Run a fire spread model for an incident or plan under alternative weather scenarios, calibrating inputs to observed fire behaviour.
 statement:
-  en: Develop models to forecast wildfire spread under different weather conditions
-textSha256: 71489bb188f2e45cd9dd237192a5948c77f3c30085288676c7eb0fc6e1caea32
-supports:
-- competency: seed:v1-2.4.2
-  strength: primary
+  en: Run a fire spread model for an incident or plan under alternative weather scenarios, calibrating inputs to observed fire behaviour.
+textSha256: 412185ebdb7e77f79b1088793fcc33628c1a4700d1d6b36433b00b9a36831291
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 2.4.2:T1
+supports:
+- competency: seed:v1-2.4.2
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: remote-capable
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: seasonal
+  placeBoundness: ecosystem-type
+  currencyDecay: M
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T1
 v1Domain:
   code: '2'
@@ -24,15 +37,15 @@ v1Domain:
 v1SkillArea:
   code: '2.4'
   label: Advanced Analytics
-editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.4.2:T1
     v1Code: 2.4.2
@@ -42,9 +55,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

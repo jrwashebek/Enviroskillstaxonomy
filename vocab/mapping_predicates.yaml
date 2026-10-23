@@ -4,12 +4,14 @@ title: Mapping predicates for EMST crosswalks
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0022, ADR-0010, ADR-0011]
+decidedIn: [ADR-0022, ADR-0010, ADR-0011, ADR-0029]
 steward: IA with DE
 license: CC0-1.0
 description: >
   All crosswalks are SSSOM 1.0 mapping sets (1.1 slots record_id and reviewer_agreement as declared extensions;
-  1.1 is alpha only as of 2026-05-22), one set per upstream version, with external IDs only in CC0 files.
+  1.1 is alpha only as of 2026-05-22), one set per upstream version, with external IDs only in CC0 files. The SSSOM 1.1
+  justification value semapv:LLMBasedMatching is accepted as a declared extension for unreviewed agent-drafted rows
+  (CR-IA-002); a human-reviewed row takes semapv:MappingReview and keeps its original justification in `other`.
 
 skos_predicates:
   - {notation: "skos:exactMatch", definition: "Coextensive concepts; use for v1→v2 only when text is carried verbatim.", ctdl_asn_export: "ceasn:exactAlignment", case_export: exactMatchOf}
@@ -40,6 +42,7 @@ justifications:
   - "semapv:LLMBasedMatching"
   - "semapv:MappingChaining"
   - "semapv:MappingReview"
+justifications_sssom_1_1_only: ["semapv:LLMBasedMatching"]   # accepted extension until SSSOM 1.1 is final (CR-IA-002); re-validate then
 
 match_type_ladder_for_use:
   selection: "≥ skos:closeMatch, two independent human reviewers, reviewer agreement recorded"
@@ -58,3 +61,14 @@ mapping_sets:
   - {id: X9, name: "Competency → OPM FWCI general/technical competencies and USA Hire"}
   - {id: X10, name: "Credential ↔ CLO evidence-equivalence register"}
   - {id: X11, name: "Public ↔ private translation (TR IDs)", note: "with friction fields"}
+  - {id: X12, name: "TX-A floor and AI practice → DOL AI Literacy Framework (TEN 07-25)", object_source_version: "TEN 07-25 (2026-02-13)", note: "official area names (e.g. Direct AI Effectively); NoTermFound where DOL lacks environmental validation content (ADR-0022; CR-DE-002 #2)"}
+
+series_statuses:
+  description: >
+    SeriesRecord.seriesStatus (SPEC §5.20; renamed from `status`, CR-DE-001 #1). Old series codes are kept as
+    aliases and nothing is overwritten; a series proposed for realignment is never shown as realigned.
+  values:
+    - {notation: active, definition: "Series in use."}
+    - {notation: proposed-realignment, definition: "OPM has proposed realigning the series; not yet realigned."}
+    - {notation: "realigned-to:<code>", pattern: '^realigned-to:\d{4}$', definition: "Realigned; <code> is the four-digit successor series."}
+    - {notation: cancelled, definition: "Series cancelled."}

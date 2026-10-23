@@ -1,0 +1,23 @@
+# EMST computed-view rule (SPEC §14.3; ADR-0021; CR-DE-003). Normative definition; code in `implementation`.
+ruleId: assessment-staleness
+version: 1.0.0
+status: active
+steward: DE (implementation) · CA (definition)
+decidedIn: [ADR-0008, ADR-0021, ADR-0029, CR-DE-003]
+computes: Whether each released rating still describes the current text it rated (P-DE-05).
+inputs: [released ExposureAssessment, CraftRating, FunctionRating and RelevanceRating records; their subject records]
+definition:
+  task_ratings: "stale = (task.textSha256 is set) AND (task.textSha256 ≠ rating.taskTextSha256)."
+  competency_ratings: >
+    For v1-analyst ratings whose subject is a competency: stale = competency_text_sha256(prefLabel.en, statement.en)
+    ≠ rating.competencyTextSha256 (subjectTextSha256 on RelevanceRating), using the normalization in
+    scripts/emstlib.py#competency_text_sha256. [Implementation pending; 1.0.0 as implemented covers task ratings only.]
+  role_target_ratings: "Occupation-grain external-index records (no task) are never stale by text; they lapse by index release (CR-LM-002)."
+  use: "A stale rating is excluded from consensus values and from display; it stays in the data as history."
+outputs:
+  view: views/assessment_staleness.json
+  fields: "assessment, task, stale, ruleId, ruleVersion, buildCommit"
+parameters: {}
+implementation: scripts/build_release.py#Release.views
+changeNote:
+  - {date: '2026-10-23', note: "Registered from the implementation (CR-DE-003); competency-level case specified for DE."}

@@ -75,3 +75,11 @@ The scenario set **SC1 Assured Augmentation, SC2 Human Premium, SC3 Platform Ste
 - **FC:** "Human-Essential" was persuasive but wrong for presence-required *and* augmented field work; the two-field model is less quotable and more accurate.
 - **DC:** indices built from LLM usage under-measure environmental data work dominated by classical ML on sensor and EO data — hence the sensing tracker and inventory-based deployment signals.
 - **SC:** reads 6.4.4 T2 (comment analysis) as Ac, not S (P-SC-11) — consistent with XR-04.
+
+## Amendments
+
+- **2026-10-23 — CR-IO-003, CR-LM-002, CR-DE-003 / ADR-0029 §3, §7, §9 (CA).**
+  - **Codebook order and eligibility.** The codebook gains `ordinal_order: [E0, E2, E1, E3]`. Codes are labels, not ranks: ordinal α uses this order, with nominal α alongside. Scenario rows apply at E1, E2 or E3.
+  - **Occupation-grain index values (§4).** Until X2 exists, external-index values may be ingested at occupation grain and attached to RoleProfile or RoleVariant through the X3 path (`targetType`, `targetId`, `crosswalkPath`, `crosswalkMinMatchType`; `externalSource.unit = occupation`). They may carry `levelDistribution` with a stated `basis`, or only the index's own values, and a partial `assessedAt`.
+  - **Use of those values.** They are context only and count toward an indicator only under `change-indicator@1.0.0`.
+  - **v1 CLD (§5).** The v1 competency-level CLD flag migrates only as the context of the R9 severity prior. The stability tier is not migrated (ADR-0011 rule 5).

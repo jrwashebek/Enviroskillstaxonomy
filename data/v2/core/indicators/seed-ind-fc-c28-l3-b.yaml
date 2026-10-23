@@ -1,0 +1,40 @@
+id: seed:ind-fc-c28-l3-b
+type: Indicator
+prefLabel:
+  en: Re-plans a campaign in the field when weather
+competency: seed:FC-C28
+level: L3
+statement:
+  en: Re-plans a campaign in the field when weather, access or crew availability changes, protecting the highest-priority samples first and recording what was lost.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:fc-camp-replan
+distinguishingAttribute: ATT-GUI
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

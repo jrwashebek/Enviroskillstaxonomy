@@ -1,20 +1,118 @@
 id: seed:v1-7.2.2
 type: Competency
 prefLabel:
-  en: Designing workflows for tacit knowledge formation in AI-augmented practice
+  en: Design developmental work experiences that preserve the formation of professional judgment
+altLabel:
+  en:
+  - Designing workflows for tacit knowledge formation in AI-augmented practice
+  - Design AI-augmented apprenticeships
+  - Design performance-based qualification for field and technical work
+  - Design structured developmental field experiences
+definition:
+  en: Designs the sequence of supervised work, unaided practice, rotations, task-book assignments and qualification steps through which entry and developing staff form the judgment their role requires, including where AI or automation now performs tasks that once built it. Covers formation analysis of workflows, staged-exposure and by-hand rules, performance-based qualification design and evaluation of whether formation works. Excludes observing and certifying one person's performance (a separate TX-D competency) and leading a field crew.
 statement:
-  en: Structuring human roles, mentoring sequences, and deliberate practice opportunities within AI-augmented workflows to ensure that practitioners develop foundational tacit knowledge that AI tools are compressing at entry level.
-competencyType: transversal
-transversalCluster: TX-D
+  en: Analyzes which tasks in a workflow form judgment, then designs developmental experiences (supervised repetitions, unaided by-hand quotas, rotations, task books and qualification steps) so that entry and developing staff still form that judgment when AI or automation performs those tasks, and evaluates whether the design works.
 notation:
 - scheme: EMSTv1
   value: 7.2.2
+competencyType: transversal
+transversalCluster: TX-D
+levelSpan:
+  min: L2
+  max: L5
+levels:
+- level: L2
+  indicators:
+  - seed:lc-txd-formation-l2-a
+  - seed:lc-txd-formation-l2-b
+  - seed:lc-txd-formation-l2-c
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L3
+  indicators:
+  - seed:lc-txd-formation-l3-a
+  - seed:lc-txd-formation-l3-b
+  - seed:lc-txd-formation-l3-c
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L4
+  indicators:
+  - seed:lc-txd-formation-l4-a
+  - seed:lc-txd-formation-l4-b
+  - seed:lc-txd-formation-l4-c
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L5
+  indicators:
+  - seed:lc-txd-formation-l5-a
+  - seed:lc-txd-formation-l5-b
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+knowledge:
+- seed:lc-ks-txd-formation-task
+- seed:lc-ks-txd-by-hand-quota
+- seed:lc-ks-txd-unaided-decline
+enactments:
+- seed:lc-ena-txd-formation-fc
+- seed:lc-ena-txd-formation-dc
+- seed:lc-ena-txd-formation-sc
+homeModule: core
+learningDesign:
+  assessmentContext: desk-data | stakeholder (design products reviewed by a peer supervisor; field context for field roles)
+  recommendedModes:
+  - CL
+  - WS
+  - COP
+  - CAP
+  typicalHoursPerLevelStep: 16
+  prerequisites:
+  - seed:IO-C01
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Domain:
   code: '7'
   label: Cross-Cutting Professional Practice
@@ -22,14 +120,16 @@ v1SkillArea:
   code: '7.2'
   label: Human-Ai Professional Practice
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | transversal | TX-D. Rationale: Survivor for formation design; absorbs FH-C06, FS-C13 and LC-C-01; required for supervisors and training officers (LC, FC, FS verdicts). Role verdicts considered: FC:carry|LC:carry|FS:change.'
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | transversal | TX-D. Rationale: Survivor for formation design; absorbs FH-C06, FS-C13 and LC-C-01; required for supervisors and training officers (LC, FC, FS verdicts). Role verdicts considered: FC:carry|LC:carry|FS:change. | WP-07: Rewritten v1 7.2.2 (TX-D formation survivor; ADR-0025). Absorbs FH-C06 (developmental field experiences), FS-C13 (AI-augmented apprenticeships) and LC-C-01 (performance-based qualification design), per candidate_disposition.csv. v1 levels mapped by IO''s attribute test: v1 Foundational content (explaining formation loss) becomes knowledge statements, not an L1 level; v1 Expert ''Publishes/Recognized'' indicators are retired (B03, B04). L5 is drafted because the ATT-FOR L5 descriptor (''sets formation pathways and protects entry cohorts organization-wide'') is this competency''s core; it stays provisional until SME panels confirm strategic demand (ADR-0004 §4). Required for supervisors and training officers (v1_disposition.csv).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
   derivedFrom:
   - v1Key: v1:7.2.2
     v1Code: 7.2.2
@@ -40,123 +140,15 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+  sources:
+  - LC-034
+  - LC-104
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Designing workflows for tacit knowledge formation in AI-augmented practice
-  v1Description: Structuring human roles, mentoring sequences, and deliberate practice opportunities within AI-augmented workflows to ensure that practitioners develop foundational tacit knowledge that AI tools are compressing at entry level.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:7.2.2:foundational
-    knowledge: Understands that tacit knowledge forms through practice, not instruction alone; recognizes that when AI automates a task, the developmental value of performing that task is also lost unless deliberately preserved; understands the concept of career ladder destruction as a structural workforce concern
-    application: Identifies tasks in their own workflow where AI automation has changed the learning pathway; articulates what a junior practitioner would no longer develop by following the AI-augmented version of a process
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.2.2:foundational:I1
-      n: 1
-      text: Explains the difference between task completion and knowledge formation — why automating a task can eliminate developmental value even when outputs are produced
-      origin: database
-    - v1Key: v1:7.2.2:foundational:I2
-      n: 2
-      text: Identifies specific formation pathways at risk in AI-augmented workflows in their domain context
-      origin: database
-    - v1Key: v1:7.2.2:foundational:I3
-      n: 3
-      text: Recognizes the difference between nominal mentoring (assigning a mentor) and deliberate practice design (sequencing experiences to develop specific tacit knowledge)
-      origin: database
-    - v1Key: v1:7.2.2:foundational:I4
-      n: 4
-      text: Distinguishes between AI tools that compress incidental administrative overhead and AI tools that compress developmental content
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:7.2.2:intermediate
-    knowledge: Applies knowledge formation frameworks to workflow analysis; understands how tacit knowledge develops through the information flow across functional positions; designs deliberate practice that targets specific compressed formation pathways
-    application: Conducts formation pathway analysis for a defined AI-augmented workflow; designs mentoring and practice interventions targeted at identified gaps; communicates formation concerns to organizational decision-makers
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.2.2:intermediate:I1
-      n: 1
-      text: Maps an AI-augmented workflow to identify which functional positions and career ladder stages have had their developmental content compressed
-      origin: database
-    - v1Key: v1:7.2.2:intermediate:I2
-      n: 2
-      text: Designs deliberate practice sequences that expose junior practitioners to the underlying phenomena that AI tools are processing on their behalf
-      origin: database
-    - v1Key: v1:7.2.2:intermediate:I3
-      n: 3
-      text: Develops staged exposure protocols — defining when practitioners should be required to perform tasks manually before using AI assistance
-      origin: database
-    - v1Key: v1:7.2.2:intermediate:I4
-      n: 4
-      text: Articulates the formation design rationale to supervisors and organizational managers who are optimizing for efficiency rather than knowledge ecology
-      origin: database
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:7.2.2:advanced
-    knowledge: Expert in tacit knowledge formation theory and its application to AI-augmented professional practice; deep understanding of how the information flow across functional positions shapes formation pathways; experienced in designing and evaluating formation programs at organizational scale
-    application: Leads organizational formation pathway analysis and workflow redesign; advises on AI adoption decisions from a knowledge ecology perspective; develops organizational standards for formation-aware AI deployment
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.2.2:advanced:I1
-      n: 1
-      text: Designs organization-wide formation pathway protocols for AI-augmented workflows, specifying required developmental experiences across career stages
-      origin: database
-    - v1Key: v1:7.2.2:advanced:I2
-      n: 2
-      text: Advises leadership on AI adoption sequencing — which tools to deploy when, based on formation pathway readiness at each career stage
-      origin: database
-    - v1Key: v1:7.2.2:advanced:I3
-      n: 3
-      text: Develops evaluation frameworks for assessing whether AI-augmented workflows are producing practitioners with the tacit knowledge to supervise, validate, and correct AI outputs
-      origin: database
-    - v1Key: v1:7.2.2:advanced:I4
-      n: 4
-      text: Identifies formation pathway failures before they produce competency gaps — recognizing early indicators of knowledge ecology degradation in cohort development patterns
-      origin: database
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:7.2.2:expert
-    knowledge: Shapes field-wide frameworks for formation-aware AI deployment in environmental professions; recognized authority on knowledge ecology in professional practice; contributes to curriculum and accreditation standards that address AI-augmented formation
-    application: Advances workforce development standards for human-AI teaming practice; influences accreditation standards for environmental professional preparation in AI-augmented environments
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.2.2:expert:I1
-      n: 1
-      text: Contributes to development of professional accreditation standards addressing formation pathway requirements in AI-augmented environmental practice
-      origin: database
-    - v1Key: v1:7.2.2:expert:I2
-      n: 2
-      text: Publishes or presents on knowledge ecology dynamics and formation-aware AI deployment frameworks in environmental professions
-      origin: database
-    - v1Key: v1:7.2.2:expert:I3
-      n: 3
-      text: Advises educational programs and organizations on curriculum design for AI-augmented professional preparation
-      origin: database
-    - v1Key: v1:7.2.2:expert:I4
-      n: 4
-      text: Recognized as a leading practitioner in formation-aware AI deployment and knowledge ecology preservation in environmental management
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:7.2.2:sector:public_agencies
-    text: Workforce planning for AI-augmented operations, formation-aware deployment protocols, training program design
-  - sector: private_sector
-    v1Key: v1:7.2.2:sector:private_sector
-    text: Knowledge ecology audits, AI workforce transition design
-  - sector: ngos
-    v1Key: v1:7.2.2:sector:ngos
-    text: Formation pathway preservation in AI-augmented monitoring programs
-  - sector: consulting
-    v1Key: v1:7.2.2:sector:consulting
-    text: AI workforce transition advisory, formation-aware deployment design
-  - sector: academia
-    v1Key: v1:7.2.2:sector:academia
-    text: Knowledge ecology research, AI-augmented curriculum design, professional formation pedagogy
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

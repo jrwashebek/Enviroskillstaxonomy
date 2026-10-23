@@ -1,0 +1,44 @@
+id: seed:sc-evaluate-sponsor-document
+type: Task
+prefLabel:
+  en: Evaluate a sponsor-prepared environmental document for adequacy and objectivity, returning specific deficiencies the preparer must correct before adoption
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Evaluate a sponsor-prepared environmental document for adequacy and objectivity, returning specific deficiencies the preparer must correct before adoption
+textSha256: 58041dedd975463530c7dd2aa8471d5d883aa66a8087f27c7bf9af0dbac2b89e
+supports:
+- competency: seed:SC-C04
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-PROJECT
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Evaluate a sponsor-prepared environmental document for adequacy and objectivity, returning specific deficiencies the preparer must correct before adoption" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

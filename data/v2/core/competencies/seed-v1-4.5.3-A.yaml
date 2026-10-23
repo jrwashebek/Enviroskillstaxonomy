@@ -1,0 +1,56 @@
+id: seed:v1-4.5.3-A
+type: Competency
+prefLabel:
+  en: Drive and operate field vehicles safely on unpaved roads and off road
+definition:
+  en: 'Operating four-wheel-drive trucks, utility vehicles and all-terrain vehicles on unpaved roads and off road for field work: pre-trip inspection, loading and securing equipment, reading road and terrain conditions, recovering stuck vehicles safely, towing trailers, and deciding when a route is unsafe. Driver licences and off-highway vehicle authorizations are gates. Excludes heavy equipment for ecological treatments (worklands module).'
+statement:
+  en: Inspect, load and drive field vehicles on unpaved roads and off road; read road, weather and terrain conditions; recover stuck vehicles safely; tow trailers; and turn back when a route is unsafe.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - seed:ind-v1-4.5.3-a-l1-a
+  - seed:ind-v1-4.5.3-a-l1-b
+  - seed:ind-v1-4.5.3-a-l1-c
+- level: L2
+  indicators:
+  - seed:ind-v1-4.5.3-a-l2-a
+  - seed:ind-v1-4.5.3-a-l2-b
+  - seed:ind-v1-4.5.3-a-l2-c
+- level: L3
+  indicators:
+  - seed:ind-v1-4.5.3-a-l3-a
+  - seed:ind-v1-4.5.3-a-l3-b
+homeModule: core
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: WP-03 (FC) draft. Core part of split v1 4.5.3 (position 1). v1 4.5.3 T1 (tractors, excavators, skid steers) belongs to the worklands successor seed:v1-4.5.3-B and is handed to WP-06 (it must move into modules/worklands/tasks/ to respect the core-module dependency rule).
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.5.3
+    relation: split-from
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - ADR-0011
+  - WP-03

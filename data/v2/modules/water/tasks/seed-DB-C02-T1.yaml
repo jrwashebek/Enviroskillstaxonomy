@@ -1,0 +1,51 @@
+id: seed:DB-C02-T1
+type: Task
+prefLabel:
+  en: Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits
+statement:
+  en: Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits
+textSha256: 65476f748c9e9b0b62aa4239cce78a7db2d55d471156f78a2c18793f22315329
+supports:
+- competency: seed:DB-C02
+  strength: primary
+workFunction: WF-OPERATE
+workflowProfiles:
+- WP-OPERATIONS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: seasonal
+  placeBoundness: system-specific
+  currencyDecay: M
+  credentialGate: licence
+signOffAuthority:
+  kind: licensure
+accountabilityConstraint:
+  required: true
+  basis:
+    en: Process decisions at a permitted treatment works are made or approved by an operator certified at the grade the state requires for the facility.
+homeModule: water
+subsectors:
+- W02
+layer: L2
+module: water
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

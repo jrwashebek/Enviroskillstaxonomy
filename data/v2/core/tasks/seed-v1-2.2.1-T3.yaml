@@ -1,22 +1,30 @@
 id: seed:v1-2.2.1-T3
 type: Task
 prefLabel:
-  en: Develop data backup and archiving procedures to ensure long-term accessibility
+  en: Set backup, archiving and recovery procedures for an environmental database, testing recovery on a schedule.
 statement:
-  en: Develop data backup and archiving procedures to ensure long-term accessibility
-textSha256: 4f67f24ed89d9832b666222d0b1546fceeb70ae49adecec4c973e95e6c1c4a94
-supports:
-- competency: seed:v1-2.2.1
-  strength: primary
+  en: Set backup, archiving and recovery procedures for an environmental database, testing recovery on a schedule.
+textSha256: c212424a9dd04991d4ecaa099d01e21844328ef4ad59b2665b5baf739b5d060c
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 2.2.1:T3
+supports:
+- competency: seed:v1-2.2.1
+  strength: primary
+workFunction: WF-OPERATE
+fieldDependency: remote
+formationDependency: 'no'
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T3
 v1Domain:
   code: '2'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '2.2'
   label: Data Management & Analysis
-editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.2.1:T3
     v1Code: 2.2.1
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

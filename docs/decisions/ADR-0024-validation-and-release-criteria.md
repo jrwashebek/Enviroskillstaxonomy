@@ -35,3 +35,16 @@ Content validity rests on work behaviours (SIOP Principles; AERA/APA/NCME Standa
 - **Product pressure vs defensibility:** publishing all ~250 competencies at v2.0 would claim more than the evidence supports; a smaller, honest, use-labelled release is chosen (IO disagreement 3). Coverage momentum is carried by `develop`-tier modules and the "what's coming" view instead.
 - **FH/AS timelines:** selection-grade content for natural-resources series lands after the first design-partner year; the Starter Pack produces the first defensible validation data (P-AS-03).
 - **Fairness vs validity in method choice:** multi-method assessment with documented consideration of alternatives, never a single high-impact hurdle (IO disagreement 6).
+
+## Amendments
+
+- **2026-10-23 — CR-IO-001, CR-IO-002 / ADR-0029 §5–§6 (CA).**
+  - **Display-gate semantics (§4)** are fixed in `vocab/rules/display-gate@1.0.0.yaml`, with parameters in `validation/display_gates.yaml`:
+    - unmeasured = "Assessment pending";
+    - an admissible study is human-rated, with ≥ 120 units, ≥ 3 raters (6 remains the design target) and a bootstrap lower bound, is pre-registered and blind, and lapses after 36 months;
+    - LLM, external-index or v1 raters make a study inadmissible;
+    - stratum gate at ≥ 30 units;
+    - weak-category cap;
+    - production needs ≥ 3 humans;
+    - select views show production values only.
+  - **Tier mapping (§3).** IO's publication-rule tier mapping is ratified.

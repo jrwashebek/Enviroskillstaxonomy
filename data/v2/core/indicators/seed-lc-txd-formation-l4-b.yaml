@@ -1,0 +1,43 @@
+id: seed:lc-txd-formation-l4-b
+type: Indicator
+prefLabel:
+  en: Advises programme leadership on the sequence for adopting an AI tool
+competency: seed:v1-7.2.2
+level: L4
+statement:
+  en: Advises programme leadership on the sequence for adopting an AI tool, stating which entry formation tasks it removes and the alternative formation route needed before deployment.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- structured-interview-bars
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:lc-txd-advise-ai-adoption
+distinguishingAttribute: ATT-SCO
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  derivedFrom:
+  - v1Key: v1:7.2.2:advanced:I2
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

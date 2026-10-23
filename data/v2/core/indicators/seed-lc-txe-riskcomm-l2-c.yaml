@@ -1,0 +1,40 @@
+id: seed:lc-txe-riskcomm-l2-c
+type: Indicator
+prefLabel:
+  en: Verifies an AI-drafted or machine-translated advisory against the source data and a
+competency: seed:DB-C29
+level: L2
+statement:
+  en: Verifies an AI-drafted or machine-translated advisory against the source data and a fluent reviewer before release, correcting each change of meaning.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:lc-txe-verify-generated-notice
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

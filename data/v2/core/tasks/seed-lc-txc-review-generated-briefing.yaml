@@ -1,0 +1,43 @@
+id: seed:lc-txc-review-generated-briefing
+type: Task
+prefLabel:
+  en: Review a template- or AI-generated hazard briefing against conditions observed on site before delivering it to the crew
+statement:
+  en: Review a template- or AI-generated hazard briefing against conditions observed on site before delivering it to the crew
+textSha256: a12cfe5d106b41ea2ff0d129bfde5bb066da469208585bbb31ecf8e86c656927
+supports:
+- competency: seed:v1-4.4.1-B
+  strength: primary
+workFunction: WF-OPERATE
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: seasonal
+  placeBoundness: ecosystem-type
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'Review half of the G-2 split: drafting the briefing is compressible; checking it against the site is not.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

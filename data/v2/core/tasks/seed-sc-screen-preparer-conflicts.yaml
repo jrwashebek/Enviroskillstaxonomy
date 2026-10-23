@@ -1,0 +1,44 @@
+id: seed:sc-screen-preparer-conflicts
+type: Task
+prefLabel:
+  en: Screen a contractor's disclosure statement for financial or other interest in the project outcome before the contractor begins preparing the document
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Screen a contractor's disclosure statement for financial or other interest in the project outcome before the contractor begins preparing the document
+textSha256: 591b2714ede79fd1da15175f1dd69c19701129a0d9495debe217890e380d3bcc
+supports:
+- competency: seed:SC-C04
+  strength: primary
+- competency: seed:PS-C18
+  strength: contributing
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Screen a contractor''s disclosure statement for financial or other interest in the project outcome before the contractor begins preparing the document" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

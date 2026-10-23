@@ -1,22 +1,30 @@
 id: seed:v1-2.6.2-T2
 type: Task
 prefLabel:
-  en: Use AI models to automatically detect and classify species vocalizations
+  en: Set detection thresholds for automated classification of species vocalizations from a verified sample of recordings, stating the expected precision.
 statement:
-  en: Use AI models to automatically detect and classify species vocalizations
-textSha256: a677af4e0a962ec1e39dd2eb42c040c2f3445c726ff532b380b76d02363176da
-supports:
-- competency: seed:v1-2.4.1
-  strength: primary
+  en: Set detection thresholds for automated classification of species vocalizations from a verified sample of recordings, stating the expected precision.
+textSha256: da93b84f91bb6c3847fa6b577bec91b6a5e53940c539c686d69d771b44249e8e
+editorialNote:
+  en: Supports re-pointed from v1 competency 2.6.2 to seed:v1-2.4.1 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 2.6.2:T2
+supports:
+- competency: seed:v1-2.4.1
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T2
 v1Domain:
   code: '2'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '2.6'
   label: Ai-Enhanced Environmental Monitoring
-editorialNote:
-  en: Supports re-pointed from v1 competency 2.6.2 to seed:v1-2.4.1 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.6.2:T2
     v1Code: 2.6.2
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

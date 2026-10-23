@@ -1,22 +1,32 @@
 id: seed:v1-2.3.2-T2
 type: Task
 prefLabel:
-  en: Capture high-resolution imagery and thermal data to support monitoring or inspections
+  en: Capture imagery or thermal data that meet a mission's accuracy requirement by placing and surveying ground control and check points
 statement:
-  en: Capture high-resolution imagery and thermal data to support monitoring or inspections
-textSha256: fe1baaeff5e883ed04d5372568cc3de78a88e41a7e8dc8e2085aabf69fcb90f3
+  en: Capture imagery or thermal data that meet a mission's accuracy requirement by placing and surveying ground control and check points
+textSha256: 2149929c8431cc7e27bd977f3f57f0990307bf84aa1611edb35f11cd4dfb39e6
 supports:
 - competency: seed:FC-C14
   strength: primary
+workFunction: WF-ASSESS
+fieldDependency: on-site-required
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: external-certificate
+  currencyDecay: M
 notation:
 - scheme: EMSTv1
   value: 2.3.2:T2
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Tier: T2
 v1Domain:
   code: '2'
@@ -25,14 +35,14 @@ v1SkillArea:
   code: '2.3'
   label: Field Technology
 editorialNote:
-  en: Supports re-pointed from v1 competency 2.3.2 to seed:FC-C14 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: 'G-2 split role: execution to protocol (production). Credential gate level is the author''s draft pending the WP-07 Credential register (T-8). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:2.3.2:T2
     v1Code: 2.3.2
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

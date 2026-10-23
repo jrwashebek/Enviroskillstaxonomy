@@ -1,0 +1,41 @@
+id: seed:DB-C16-T3
+type: Task
+prefLabel:
+  en: Audit a materials recovery facility's inbound loads and finished bales for contamination, setting corrective actions with haulers and line supervisors
+statement:
+  en: Audit a materials recovery facility's inbound loads and finished bales for contamination, setting corrective actions with haulers and line supervisors
+textSha256: d9e03f789d700ec7582c11fc2ab83c1d83e1fff31a6f8d0dc726d297768b2659
+supports:
+- competency: seed:DB-C16
+  strength: primary
+workFunction: WF-MONITOR
+relationshipTypes:
+- client
+workflowProfiles:
+- WP-OPERATIONS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: waste
+subsectors:
+- P02
+layer: L2
+module: waste
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

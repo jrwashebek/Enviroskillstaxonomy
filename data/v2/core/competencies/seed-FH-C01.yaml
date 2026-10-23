@@ -1,0 +1,96 @@
+id: seed:FH-C01
+type: Competency
+prefLabel:
+  en: Assess effects on protected species and conduct interagency consultation on proposed actions
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability of an action agency, or of a consulting wildlife or fisheries agency, to determine and document a proposed action's effects on listed species and designated critical habitat and to complete interagency consultation, carrying its terms into the action. Excludes species status assessments for listing decisions.
+statement:
+  en: Determines whether a proposed action may affect listed species or designated critical habitat, prepares the biological assessment, consults the wildlife or fisheries agency to reach concurrence or an opinion, and carries the resulting terms, conservation measures and reporting duties into the action's design and decision.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - ESA Section 7 consultation
+  - biological assessment preparation
+  - listed species consultation
+instrumentSensitivity:
+- mechanism: DM-06
+  rationale:
+    en: Consultation, take and protective-rule frameworks narrowed and are litigated.
+  evidenceLabel: E
+  sources:
+  - V2-05
+  - SC-019
+  - SC-020
+- mechanism: DM-10
+  rationale:
+    en: The take definition no longer covers habitat modification alone.
+  evidenceLabel: E
+  sources:
+  - V2-05
+- mechanism: DM-02
+  rationale:
+    en: Acceleration of environmental review does not speed consultation.
+  evidenceLabel: E
+  sources:
+  - SC-039
+editorialNote:
+  en: 'WP-05 (A5 SC; FH candidate). Recurs across forest, water, energy, transport and wildlife modules (G-4). Species rules changed in 2025-26 (harm definition rescinded, effective 2026-09-14, litigated; blanket protective rule eliminated; consultation rules proposed) [E: V2-05], so the text is regulation-neutral and the rules attach in L5. Seed note kept: WP-05 (A5 SC; FH candidate). Recurs across forest, water, energy, transport and wildlife modules (G-4). Species rules changed in 2025-26 (harm definition rescinded, effective 2026-09-14, litigated; blanket protective rule eliminated; consultation rules proposed) [E: V2-05], so the text is regulation-neutral and the rules attach in L5.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-018
+  - SC-019
+  - SC-020
+  - SC-039
+  - V2-05
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - seed:fh-c01-l1-a
+  - seed:fh-c01-l1-b
+- level: L2
+  indicators:
+  - seed:fh-c01-l2-a
+  - seed:fh-c01-l2-b
+  - seed:fh-c01-l2-c
+- level: L3
+  indicators:
+  - seed:fh-c01-l3-a
+  - seed:fh-c01-l3-b
+- level: L4
+  indicators:
+  - seed:fh-c01-l4-a
+  - seed:fh-c01-l4-b
+enactments:
+- seed:ena-fh-c01-action-agency
+- seed:ena-fh-c01-consulting-agency
+- seed:ena-fh-c01-state

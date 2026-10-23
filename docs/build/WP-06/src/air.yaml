@@ -1,0 +1,413 @@
+# WP-06 authoring source — MOD-03 Air quality (namespace: air; subsector P01)
+# Rows: candidate_disposition DB-C13 (absorbs FC-C17, SL-C13), DB-C14, DB-C15 (home air; MOD-11 enactment);
+#       v1_disposition 6.7.5 (split into DB-C13, DB-C14 and the SL-C02 air enactment, which absorbs DB-C12).
+# The three v1 6.7.5 task seeds move from core/ to modules/air/ (their successors live here). Content [J].
+module: air
+competencies:
+
+  - id: DB-C13
+    label: Operate ambient air monitoring networks to regulatory quality-assurance criteria
+    alt: [Ambient air monitoring quality assurance, Air monitoring network operation, Source testing and continuous emissions monitoring oversight]
+    def: >-
+      Siting, operating, calibrating and auditing regulatory ambient monitors and validating their data, together with
+      oversight of source testing and continuous emissions monitors and the correction and integration of low-cost
+      sensor and satellite data, while keeping regulatory and non-regulatory data distinct. Excludes emissions
+      inventories and modelling (DB-C14).
+    stmt: >-
+      Sites, operates, calibrates and audits regulatory monitors; validates and certifies data against quality-assurance
+      criteria; oversees stack tests and continuous emissions monitor certification; and corrects low-cost sensor data
+      against collocated reference monitors, documenting each step so the data withstand certification, audit and
+      public scrutiny.
+    span: [L1, L4]
+    sub: [P01]
+    att: ATT-AUT
+    df:
+      - {v1Key: 'v1:6.7.5', relation: split-from, note: 'monitoring QA part of v1 6.7.5 (DB, SL, FC, SC verdicts)'}
+    src: [DB-023, FC-058, SL-085, SL-050]
+    note: >-
+      Survivor; absorbs FC-C17 (field station operation and audit, as field anchors) and SL-C13 (emissions testing and
+      monitoring programmes); splits monitoring QA out of v1 6.7.5. Part of role R28 and of monitoring technician R03.
+      Visible-emissions observer certification is a Credential gate. Basis [J].
+    tasks:
+      - id: v1-6.7.5-T1
+        text: Calculate design values from validated ambient monitoring data to determine whether an area meets air quality standards
+        wf: WF-MONITOR
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+        note: Moved from core with its successor (v1 6.7.5 split).
+      - id: DB-C13-T1
+        text: Audit a regulatory air monitor's flow and gas calibration against transfer standards following the quality assurance project plan
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-REGPROGRAM, WP-OPERATIONS]
+        rr: {mentorshipDependence: M, cycleDependence: none, placeBoundness: system-specific, currencyDecay: M}
+      - id: DB-C13-T2
+        text: Validate a quarter's ambient monitoring data against quality-assurance criteria, flagging or invalidating values before data certification
+        wf: WF-MONITOR
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: DB-C13-T3
+        text: Collocate low-cost sensors with a regulatory monitor to derive correction factors, documenting sensor performance before the data are published
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [public]
+      - id: DB-C13-T4
+        text: Observe a stack emissions test against the approved protocol, recording deviations that affect whether the results are acceptable
+        wf: WF-ENFORCE.assure
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+        rel: [stakeholder]
+      - id: DB-C13-T5
+        text: Review relative-accuracy and calibration results for a continuous emissions monitoring system before its data are accepted for compliance
+        wf: WF-MONITOR
+        fd: remote
+        form: partial
+        prof: [WP-COMPLIANCE]
+      - id: DB-C13-T6
+        text: Site a new ambient monitoring station against criteria for probe height, obstructions, spacing and spatial scale of representativeness
+        wf: WF-PLAN
+        fd: on-site-required
+        form: partial
+        prof: [WP-REGPROGRAM]
+    ind:
+      L1:
+        - t: Performs a monitor's routine zero, span and flow checks following the operating procedure, recording results on the station log that match the audit record.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+        - t: Exchanges particulate filters and samples following chain-of-custody and handling procedures, so that every sample is accepted by the laboratory.
+          a: [task-book-observation, record-audit]
+          st: [T1]
+      L2:
+        - t: Audits a monitor against transfer standards independently, failing any channel outside acceptance limits and recording the corrective action taken.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T1]
+          sc: true
+        - t: Validates a quarter's monitoring data against quality-assurance criteria, flagging or invalidating each affected value with the criterion that applies.
+          m: assisted
+          a: [seeded-error-work-sample, record-audit]
+          st: [T2]
+          att: ATT-AUG
+      L3:
+        - t: Derives and documents correction factors for collocated low-cost sensors, rejecting sensors whose performance fails the programme's targets before data release.
+          m: assisted
+          a: [work-sample]
+          st: [T3]
+          att: ATT-CPX
+        - t: Determines whether stack test results are acceptable after observing the test against the protocol, documenting each deviation and its effect on the result.
+          a: [task-book-observation, record-audit]
+          st: [T4]
+          att: ATT-AUT
+      L4:
+        - t: Writes the network's quality assurance project plan, setting acceptance criteria, audit frequency and the rules separating regulatory from sensor data.
+          a: [portfolio-review]
+          st: [T1, T2, T3]
+          att: ATT-GUI
+        - t: Defends the network's data certification in an external systems audit, producing the calibration and validation records for each sampled site.
+          a: [moot-defense, record-audit]
+          st: [T2, v1-6.7.5-T1]
+          att: ATT-SCO
+
+  - id: DB-C14
+    label: Build emissions inventories and air quality models for attainment planning
+    alt: [Emissions inventory development, Air quality modelling, Attainment planning]
+    def: >-
+      Compiling point, area, mobile and natural source emissions inventories, running or reviewing dispersion and
+      photochemical models, and developing control strategies and attainment demonstrations for areas that do not meet
+      air quality standards, including review of applicants' modelling in permits. Excludes ambient monitoring
+      operation (DB-C13) and permit drafting (SL-C02 air enactment).
+    stmt: >-
+      Compiles emissions inventories with documented methods, runs or reviews dispersion and photochemical models, and
+      develops control strategies and attainment demonstrations with stated assumptions and uncertainty, so that the
+      plan shows how and when an area will meet air quality standards and withstands regulatory and public review.
+    span: [L2, L4]
+    sub: [P01, C01]
+    att: ATT-CPX
+    df:
+      - {v1Key: 'v1:6.7.5', relation: split-from, note: 'inventories and modelling part of v1 6.7.5 (DB, SL verdicts)'}
+    src: [DB-023]
+    note: >-
+      Emissions inventories and attainment modelling split out of v1 6.7.5 (DB, SL verdicts). Part of role R28. Model
+      products (e.g. regulatory dispersion and photochemical models) are L4 tools, named nowhere in L1/L2 text.
+      Basis [J].
+    tasks:
+      - id: v1-6.7.5-T2
+        text: Develop a control strategy for a nonattainment area that selects emission reductions sufficient to demonstrate attainment by the deadline
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM, WP-RULEMAKING]
+        rel: [stakeholder, public]
+        note: Moved from core with its successor (v1 6.7.5 split).
+      - id: v1-6.7.5-T3
+        text: Estimate population exposure and health effects of air pollution to set priorities among candidate control measures
+        wf: WF-ASSESS
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+        note: Moved from core with its successor (v1 6.7.5 split).
+      - id: DB-C14-T1
+        text: Compile a point, area, mobile and natural source emissions inventory for a planning year with documented methods and activity data
+        wf: WF-ASSESS
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: DB-C14-T2
+        text: Run a photochemical model for an attainment demonstration under an approved modelling protocol, documenting model performance against monitored data
+        wf: WF-ASSESS
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+      - id: DB-C14-T3
+        text: Review a permit applicant's dispersion modelling analysis against the agreed protocol and guidance before accepting its conclusions
+        wf: WF-REVIEW
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        rel: [stakeholder]
+        note: Review task split from model production (ADR-0003 G-2).
+      - id: DB-C14-T4
+        text: Check emissions estimates generated automatically from activity or sensor data against source tests and inventory methods before inclusion
+        wf: WF-MONITOR
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+    ind:
+      L2:
+        - t: Compiles a source category's emissions estimates with documented activity data and emission factors, so that a reviewer can reproduce each estimate from the file.
+          a: [work-sample, record-audit]
+          st: [T1]
+        - t: Accepts or rejects automatically generated emissions estimates after checking them against source tests and inventory methods, recording the basis for each.
+          m: assisted
+          a: [seeded-error-work-sample]
+          st: [T4]
+      L3:
+        - t: Reviews an applicant's dispersion modelling against the agreed protocol, writing findings that state which conclusions are accepted and which require revision.
+          a: [work-sample, record-audit]
+          st: [T3]
+          att: ATT-AUT
+        - t: Evaluates photochemical model performance against monitored data, documenting where the model is fit for the attainment test and where it is not.
+          a: [work-sample, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+      L4:
+        - t: Develops an attainment demonstration's control strategy, documenting why the selected reductions are sufficient and how uncertainty was treated.
+          a: [portfolio-review, moot-defense]
+          st: [v1-6.7.5-T2, T2]
+          att: ATT-SCO
+        - t: Sets the agency's modelling protocol requirements for permit applicants, including acceptance checks for model inputs prepared with automated tools.
+          m: supervisory
+          a: [portfolio-review]
+          st: [T3]
+          att: ATT-GUI
+
+  - id: DB-C15
+    label: Plan smoke management for prescribed and managed fire within air quality requirements
+    alt: [Smoke management, Prescribed fire smoke coordination, Exceptional events demonstration]
+    def: >-
+      Coordination between fire managers and air regulators that lets prescribed and managed fire proceed while smoke
+      impacts stay within air quality requirements: burn-window and dispersion assessment, burn-day decisions, public
+      health messaging and exceptional-event documentation. Excludes burn execution (forest module, v1 4.3.2).
+    stmt: >-
+      Assesses burn windows against dispersion forecasts, existing air quality and sensitive receptors; prepares or
+      decides burn-day approvals; coordinates public health messaging; verifies smoke forecasts during burns; and
+      documents smoke-affected monitoring days, so that fire use proceeds within applicable air quality requirements.
+    span: [L2, L4]
+    sub: [P01, L07]
+    att: ATT-CPX
+    src: [DB-011, DB-023]
+    note: >-
+      Smoke management sits at the air-fire boundary; home MOD-03 under the home-module rule because air programmes
+      govern the legal sufficiency of the deliverable (ADR-0018 s.6), enacted in MOD-11 for burn planning
+      (seed:ena-db-c15-forest). Part of roles R07 and R28. OpenLMP plan components cite air or smoke 373 times
+      (DB-011). Basis [J], demand count [E].
+    tasks:
+      - id: DB-C15-T1
+        text: Evaluate a burn request against forecast dispersion, current air quality and sensitive receptors before issuing a burn-day decision
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        rel: [intergovernmental]
+      - id: DB-C15-T2
+        text: Prepare the smoke management section of a burn plan, identifying sensitive receptors, dispersion limits and contingency actions
+        wf: WF-PLAN
+        fd: remote-capable
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: DB-C15-T3
+        text: Compile an exceptional-event demonstration for a smoke-affected monitoring day, linking the monitored values to the fire with supporting evidence
+        wf: WF-MONITOR
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+      - id: DB-C15-T4
+        text: Issue public smoke advisories with health partners when monitored or forecast smoke exceeds advisory thresholds
+        wf: WF-RESPOND
+        fd: remote
+        form: partial
+        prof: [WP-INCIDENT]
+        rel: [public, intergovernmental]
+      - id: DB-C15-T5
+        text: Compare a smoke dispersion forecast with monitor and observer data during a burn, recommending holding or stopping ignition when the forecast fails
+        wf: WF-MONITOR
+        fd: on-site-preferred
+        form: 'yes'
+        prof: [WP-PROJECT, WP-INCIDENT]
+    ind:
+      L2:
+        - t: Prepares a burn plan's smoke section, mapping sensitive receptors and stating the dispersion conditions under which ignition may proceed.
+          a: [work-sample]
+          st: [T2]
+        - t: Evaluates a routine burn request against forecast dispersion and current monitored values, issuing a decision consistent with the programme's criteria.
+          a: [work-sample, record-audit]
+          st: [T1]
+      L3:
+        - t: Recommends holding or stopping ignition after comparing observed smoke behaviour with the dispersion forecast, recording the observations behind the recommendation.
+          m: assisted
+          a: [simulation-role-play, task-book-observation]
+          st: [T5]
+          att: ATT-CPX
+          sc: true
+        - t: Compiles an exceptional-event demonstration that links monitored values to a specific fire through dispersion, chemistry and observation evidence.
+          a: [work-sample]
+          st: [T3]
+          att: ATT-KNO
+      L4:
+        - t: Negotiates smoke-management criteria and coordination procedures between land managers and air agencies, recording agreed thresholds and decision roles.
+          a: [portfolio-review, counterpart-360]
+          st: [T1, T2]
+          att: ATT-SCO
+        - t: Sets the programme's advisory thresholds and messaging protocol with health agencies, documenting the evidence for each threshold.
+          a: [portfolio-review]
+          st: [T4]
+          att: ATT-GUI
+
+enactments:
+  - id: ena-sl-c02-air
+    comp: SL-C02
+    label: Air permitting enactment of environmental permit writing
+    sub: [P01]
+    ap: regulator
+    note: >-
+      Absorbs DB-C12. State and local air agencies (and EPA where it implements directly) issue construction permits
+      under new source review and prevention of significant deterioration, and operating permits under Clean Air Act
+      Title V, with applicability determinations, control technology review, modelling review (DB-C14) and monitoring,
+      recordkeeping and reporting conditions. Programme authority knowledge lives here, not in a separate competency.
+    tasks:
+      - id: ena-sl-c02-air-t1
+        text: Determine whether a proposed modification at a stationary source triggers major new source review from emissions increases and netting
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: ena-sl-c02-air-t2
+        text: Draft operating permit conditions for a major stationary air source with monitoring sufficient to show compliance with each applicable requirement
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+      - id: ena-sl-c02-air-t3
+        text: Review a control technology determination submitted with an air permit application against comparable sources and cost criteria
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [stakeholder]
+      - id: ena-sl-c02-air-t4
+        text: Check permit conditions drafted from a template or AI tool against the source's applicable requirements before public notice
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        note: Review-and-defence task split from drafting (ADR-0003 G-2).
+  - id: ena-sl-c03-air
+    comp: SL-C03
+    label: Air compliance inspection enactment of regulatory compliance inspection
+    sub: [P01]
+    ap: regulator
+    note: >-
+      Air inspectors examine stationary sources' control equipment, operating parameters, continuous monitoring and
+      records against permit conditions, read visible emissions by the certified opacity method, and observe stack
+      tests (with DB-C13). Visible-emissions observer certification, renewed every six months under the reference
+      method, is a Credential gate.
+    tasks:
+      - id: ena-sl-c03-air-t1
+        text: Read visible emissions from a stationary source following the certified opacity-observation method, recording each reading and observation condition
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+        cg: external-certificate
+        rr: {mentorshipDependence: M, cycleDependence: none, placeBoundness: general, currencyDecay: H}
+  - id: ena-sl-c04-air
+    comp: SL-C04
+    label: Air enforcement enactment of environmental enforcement cases
+    sub: [P01]
+    ap: regulator
+    note: >-
+      Air enforcement cases arise from inspections, excess-emission and deviation reports, continuous monitoring data
+      and community complaints; penalty calculation follows the agency's air penalty policy, and settlements often
+      include supplemental projects and monitoring commitments.
+  - id: ena-sc-c14-air
+    comp: SC-C14
+    label: State implementation plan and delegation enactment of delegated regulatory programmes
+    sub: [P01]
+    ap: regulator
+    note: >-
+      States carry out air quality planning through state implementation plans that EPA approves into federal law,
+      and receive approval or delegation to run operating-permit programmes and federal emission standards; plan
+      submittals, completeness and approval actions, sanctions clocks and federal plans are the enactment's
+      characteristic work, with DB-C14 supplying the technical demonstration.
+  - id: ena-ps-c09-air
+    comp: PS-C09
+    label: Facility reporting enactment of greenhouse gas inventories
+    sub: [P01, C01]
+    ap: regulated-party
+    instr: ['seed:ins/ghgrp-reconsideration']
+    note: >-
+      Facilities and suppliers calculate and report greenhouse gas emissions under federal and state mandatory
+      reporting programmes using monitoring methods defined by source category; the federal programme is under
+      reconsideration (L5 instrument), while state programmes continue, so the enactment carries regime-specific
+      calculation and verification knowledge.
+  - id: ena-fc-c01-air
+    comp: FC-C01
+    label: Air sensor network enactment of field sensor network deployment
+    sub: [P01, X03]
+    ap: service-provider
+    note: >-
+      Air agencies and community groups deploy low-cost particulate and gas sensors alongside regulatory monitors;
+      siting, power, enclosure and maintenance decisions determine whether sensor data can be corrected and used, and
+      community-led networks need agreed data-sharing and maintenance roles.
+  - id: ena-dc-cand-04-air
+    comp: DC-CAND-04
+    label: Air data enactment of sensor-network and streaming data pipelines
+    sub: [P01]
+    ap: service-provider
+    note: >-
+      Near-real-time air quality reporting combines regulatory monitors, corrected sensor data and satellite
+      products; pipelines must apply correction factors, quality flags and data-completeness rules, and keep
+      preliminary data visibly separate from certified regulatory data.
+  - id: ena-db-c52-air
+    comp: DB-C52
+    label: Air permitting enactment of cumulative burden analysis
+    sub: [P01, X03]
+    ap: regulator
+    note: >-
+      Where state or local law requires it, air permit decisions in areas with high existing pollution burdens
+      consider cumulative exposure from multiple sources, using monitoring, modelling and population data; the
+      method and the decision effect are set by the applicable instrument (venue applicability per ADR-0016).
+  - id: ena-6.7.1-air
+    comp: v1-6.7.1
+    label: Air toxics enactment of environmental health risk assessment
+    sub: [P01, H02]
+    ap: regulator
+    note: >-
+      Air programmes apply inhalation risk assessment to air toxics permitting, residual-risk reviews and community
+      monitoring results, combining dispersion modelling, exposure assumptions and toxicity values into cancer and
+      non-cancer risk estimates used in permit and planning decisions.

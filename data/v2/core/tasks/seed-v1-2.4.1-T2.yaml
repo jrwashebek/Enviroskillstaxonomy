@@ -1,22 +1,30 @@
 id: seed:v1-2.4.1-T2
 type: Task
 prefLabel:
-  en: Use clustering algorithms to identify patterns in species distribution data
+  en: Identify patterns in species distribution data with unsupervised clustering, testing whether clusters are stable across samples and settings.
 statement:
-  en: Use clustering algorithms to identify patterns in species distribution data
-textSha256: 132c495d9c70ff1263860ec9cbe322dfc4b4c650b49e4384b188a734daaa08d7
-supports:
-- competency: seed:v1-2.4.1
-  strength: primary
+  en: Identify patterns in species distribution data with unsupervised clustering, testing whether clusters are stable across samples and settings.
+textSha256: a829bb2d0be9c62d15596c3d297de5c5e1402a3d1df77a1afdfc862156cab33b
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 2.4.1:T2
+supports:
+- competency: seed:v1-2.4.1
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T2
 v1Domain:
   code: '2'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '2.4'
   label: Advanced Analytics
-editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.4.1:T2
     v1Code: 2.4.1
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

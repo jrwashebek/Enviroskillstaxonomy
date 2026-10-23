@@ -1,0 +1,41 @@
+id: seed:ind-fcena-dc-cand-13-l1-a
+type: Indicator
+prefLabel:
+  en: Flags an AI-generated identification
+competency: seed:DC-CAND-13
+level: L1
+statement:
+  en: Flags an AI-generated identification, map or note that conflicts with what the person observed on site, recording the observation before the output is used.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:fc-txa-escalate
+- seed:fc-txa-field-check
+layer: L1
+module: core
+status: draft
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

@@ -1,0 +1,42 @@
+id: seed:LC-C-07-T6
+type: Task
+prefLabel:
+  en: Check an automated complaint-cluster or syndromic alert against case reports and field observations before opening an environmental investigation
+statement:
+  en: Check an automated complaint-cluster or syndromic alert against case reports and field observations before opening an environmental investigation
+textSha256: 82ca758750338792fc899805c90aab037d116c4e501c7005c5381208fb411c57
+supports:
+- competency: seed:LC-C-07
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-INCIDENT
+fieldDependency: remote
+formationDependency: 'yes'
+homeModule: envhealth
+subsectors:
+- H01
+- H02
+layer: L2
+module: envhealth
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: Verification task where automated surveillance compresses detection (ADR-0003 G-2).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

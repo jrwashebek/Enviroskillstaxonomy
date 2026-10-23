@@ -1,0 +1,103 @@
+id: seed:SL-C03
+type: Competency
+prefLabel:
+  en: Conduct regulatory compliance inspections
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability of a regulatory authority's inspector to plan and conduct inspections of facilities, sites or activities, gather evidence to an evidentiary standard, document findings of fact against permit conditions and rules, and start the response the enforcement policy sets. Excludes building the enforcement case, which is a separate competency.
+statement:
+  en: Plans and conducts announced or unannounced inspections of facilities, sites or activities against permit conditions and applicable rules; observes, measures and samples to evidentiary standard; documents findings of fact; and issues or recommends compliance assistance, notices of violation or referral as the program's enforcement response policy directs.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - compliance inspection
+  - environmental inspector
+  - facility inspection
+  - site inspection
+instrumentSensitivity:
+- mechanism: DM-09
+  rationale:
+    en: Jurisdictional scope decides which sites and waters are inspected under federal authority.
+  evidenceLabel: E
+  sources:
+  - V2-07
+- mechanism: DM-11
+  rationale:
+    en: Inspection authority follows delegated programme status.
+  evidenceLabel: E
+  sources:
+  - SC-021
+- mechanism: DM-14
+  rationale:
+    en: Remote sensing, continuous monitoring and electronic reporting change inspection targeting and evidence.
+  evidenceLabel: J
+- mechanism: DM-16
+  rationale:
+    en: Inspector staffing levels change inspection capacity without changing the skill.
+  evidenceLabel: J
+learningDesign:
+  assessmentContext:
+    en: Assess through accompanied inspections recorded on a task book, report audits and moot testimony; chain-of-custody sampling is a safety- and legal-critical indicator.
+editorialNote:
+  en: 'WP-05 (A5 SC; SL reviewed). Survivor for regulatory inspection: absorbs FC-C04, DB-C24 (part), FH-C11 (part) and the authority half of v1 6.1.2. Inspection is the modal state and local environmental task (TX EPS and NRS, PA EPS, FL DEP) [E: SL-050, SL-078, SL-059]. Field craft and statecraft are both defining (findings of fact that must hold in an enforcement proceeding; codebook E4). Indicators adapted in part from IO exemplar rewrites for v1 6.1.2. Mirror: DB-C26 (facility compliance management, regulated party).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SL-050
+  - SL-059
+  - SL-078
+  - SL-083
+  - SL-088
+  derivedFrom:
+  - v1Key: v1:6.1.2
+    relation: split-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - seed:sl-c03-l1-a
+  - seed:sl-c03-l1-b
+- level: L2
+  indicators:
+  - seed:sl-c03-l2-a
+  - seed:sl-c03-l2-b
+- level: L3
+  indicators:
+  - seed:sl-c03-l3-a
+  - seed:sl-c03-l3-b
+  - seed:sl-c03-l3-c
+- level: L4
+  indicators:
+  - seed:sl-c03-l4-a
+  - seed:sl-c03-l4-b
+enactments:
+- seed:ena-sl-c03-state
+- seed:ena-sl-c03-local
+- seed:ena-sl-c03-federal

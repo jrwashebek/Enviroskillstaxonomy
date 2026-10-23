@@ -1,22 +1,32 @@
 id: seed:v1-4.2.1-T2
 type: Task
 prefLabel:
-  en: Operate restoration equipment (seed drills, tree planters, mulch blowers)
+  en: Operate seed drills, tree planters or mulch blowers to the treatment specification, calibrating application rates before each unit
 statement:
-  en: Operate restoration equipment (seed drills, tree planters, mulch blowers)
-textSha256: 474017835fb7e5dab0c1f8308e21e3c14fccfd7f2da6b46febb4adae62956115
+  en: Operate seed drills, tree planters or mulch blowers to the treatment specification, calibrating application rates before each unit
+textSha256: 793e242e21dd35d737ede2316549d22374cea7513a1548f28779192aed47cc19
 supports:
 - competency: seed:v1-4.2.1
   strength: primary
+workFunction: WF-BUILD
+fieldDependency: on-site-required
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: seasonal
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
 notation:
 - scheme: EMSTv1
   value: 4.2.1:T2
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Tier: T2
 v1Domain:
   code: '4'
@@ -25,14 +35,14 @@ v1SkillArea:
   code: '4.2'
   label: Land Management Implementation
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: 'G-2 split role: execution to protocol (production). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:4.2.1:T2
     v1Code: 4.2.1
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

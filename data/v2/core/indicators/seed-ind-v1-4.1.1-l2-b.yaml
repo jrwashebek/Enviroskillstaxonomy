@@ -1,0 +1,43 @@
+id: seed:ind-v1-4.1.1-l2-b
+type: Indicator
+prefLabel:
+  en: Adapts the sampling layout when post-fire
+competency: seed:v1-4.1.1
+level: L2
+statement:
+  en: Adapts the sampling layout when post-fire, flooded or grazed conditions depart from protocol assumptions, recording each deviation so data stay comparable.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:fc-veg-adapt-protocol
+distinguishingAttribute: ATT-GUI
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.1.1:intermediate:I5
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

@@ -1,0 +1,43 @@
+id: seed:DB-C19-T3
+type: Task
+prefLabel:
+  en: Oversee monitoring well installation and development, verifying screen placement against field lithology before the well is completed
+statement:
+  en: Oversee monitoring well installation and development, verifying screen placement against field lithology before the well is completed
+textSha256: b4cd0460cd44bc656cd89b4fdb4d1e7d4bb8db828155e39c85c4985929723fe4
+supports:
+- competency: seed:DB-C19
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+credentialGates:
+- credential: seed:crd-hazwoper
+  kind: entry
+homeModule: waste
+subsectors:
+- P04
+- W05
+layer: L2
+module: waste
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

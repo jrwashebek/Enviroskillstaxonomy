@@ -4,7 +4,7 @@ title: EMST identifier scheme
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0010]
+decidedIn: [ADR-0010, ADR-0029]
 steward: TSC (DE, IA)
 license: CC0-1.0
 
@@ -12,8 +12,8 @@ form:
   compact: "emst:<namespace>/<TYPE>-<6 Crockford base32><1 Luhn mod-32 check>"
   iri: "https://w3id.org/emst/<namespace>/<TYPE>-<code>"
   alphabet: "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
-  regex: "^emst:(core|[a-z][a-z0-9-]{1,30})/(VOC|CMP|KNW|IND|TSK|ROL|VAR|ENA|FAM|TL|INS|EVT|CRD|LRN|PTH|BND|SIG|ASM|FRC|SRC|MAP|CHG)-[0-9A-HJKMNP-TV-Z]{7}$"
-  minting: "random 30-bit body from a CSPRNG, minted once at status 'candidate' by scripts/mint_ids.py into the append-only data/v2/ids/registry.csv; collisions rejected and re-minted; never reused or re-pointed"
+  regex: "^emst:(core|[a-z][a-z0-9-]{1,30})/(VOC|CMP|KNW|IND|TSK|ROL|VAR|ENA|FAM|TL|INS|EVT|CRD|LRN|PTH|BND|SIG|ASM|FRC|SRC|MAP|CHG|WCH|SER|SCR)-[0-9A-HJKMNP-TV-Z]{7}$"
+  minting: "random 30-bit body from a CSPRNG, minted once at status 'candidate' by scripts/mint_id.py (scripts/mint_ids.py is an alias only; CR-DE-001 #4) into the append-only data/v2/ids/registry.csv; collisions rejected and re-minted; never reused or re-pointed"
   draft_keys: "seed:<free text> before candidate"
   derived_ids: "CASE identifier, CTID (ce-<uuid>) and RSD UUID = UUIDv5(namespace=UUIDv5(URL, 'https://w3id.org/emst/'), name=EMST IRI)"
   v1_aliases: "notation: [{scheme: EMSTv1, value: 'D.SA.N'}] — never an ID"
@@ -41,6 +41,9 @@ types:
   - {prefix: SRC, entity: Source}
   - {prefix: MAP, entity: Mapping (SSSOM record_id)}
   - {prefix: CHG, entity: ChangeRecord}
+  - {prefix: WCH, entity: WatchItem}          # added 2026-10-23, CR-DE-002 #1 (ADR-0029)
+  - {prefix: SER, entity: SeriesRecord}       # added 2026-10-23, CR-DE-002 #1
+  - {prefix: SCR, entity: StateClassRecord}   # added 2026-10-23, CR-DE-002 #1
 
 namespaces:
   minting_authority_rule: "The namespace names who minted the ID (DOI-prefix pattern); promotion to core keeps the ID; forks mint in their own namespace; the TSC registers namespaces."

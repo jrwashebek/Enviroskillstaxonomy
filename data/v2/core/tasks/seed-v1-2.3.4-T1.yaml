@@ -1,22 +1,30 @@
 id: seed:v1-2.3.4-T1
 type: Task
 prefLabel:
-  en: Use identification and survey apps (e.g., iNaturalist, Survey123) to collect species and habitat data
+  en: Collect species and habitat observations with a mobile data-collection app, checking location accuracy and completeness before submission.
 statement:
-  en: Use identification and survey apps (e.g., iNaturalist, Survey123) to collect species and habitat data
-textSha256: edaf42f056c035514ffc4086583ec05fe779722dddcafc3209bbb772617bb3ab
-supports:
-- competency: seed:v1-2.3.4
-  strength: primary
+  en: Collect species and habitat observations with a mobile data-collection app, checking location accuracy and completeness before submission.
+textSha256: 7b9fa1c1bb7f4c3bf30446dbf6fbb1e3b201cc2f3bddf5458ad42c00aecb5cce
+editorialNote:
+  en: 'v1 2.3.4 moved to L4 (seed:tool-field-data-apps); residual to FC-C23; app names moved to L4. Re-pointed by WP-04 (DC; owner of the D2 v1 row); content review by the target''s owner. v1 competency 2.3.4 is move-to-tools: reassign this task to one of [''seed:FC-C23'', ''seed:tool-field-data-apps''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
 notation:
 - scheme: EMSTv1
   value: 2.3.4:T1
+supports:
+- competency: seed:FC-C23
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: on-site-required
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T1
 v1Domain:
   code: '2'
@@ -24,15 +32,15 @@ v1Domain:
 v1SkillArea:
   code: '2.3'
   label: Field Technology
-editorialNote:
-  en: 'v1 competency 2.3.4 is move-to-tools: reassign this task to one of [''seed:FC-C23'', ''seed:tool-field-data-apps''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.3.4:T1
     v1Code: 2.3.4
@@ -42,9 +50,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

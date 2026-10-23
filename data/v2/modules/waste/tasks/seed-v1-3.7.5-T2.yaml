@@ -1,22 +1,32 @@
 id: seed:v1-3.7.5-T2
 type: Task
 prefLabel:
-  en: Use digital twins to model material flows and test circular economy scenarios
+  en: Model material-flow scenarios that compare the effect of proposed circularity interventions on virgin-material demand and disposal
 statement:
-  en: Use digital twins to model material flows and test circular economy scenarios
-textSha256: 89038f3f95e2dbf718f6234a72736eb669a9f8f2125229a0d83185b46374b03d
+  en: Model material-flow scenarios that compare the effect of proposed circularity interventions on virgin-material demand and disposal
+textSha256: 5416eca489a43d0b0d1a9e18e661e30ed404533d2f416cba4025c1b593e4b16b
 supports:
 - competency: seed:v1-3.7.5
   strength: primary
+workFunction: WF-PLAN
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: remote
+formationDependency: 'no'
+homeModule: waste
+subsectors:
+- P02
+layer: L2
+module: waste
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 notation:
 - scheme: EMSTv1
   value: 3.7.5:T2
-layer: L2
-module: waste
-homeModule: waste
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T2
 v1Domain:
   code: '3'
@@ -25,14 +35,12 @@ v1SkillArea:
   code: '3.7'
   label: Circular Economy & Waste Systems
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:3.7.5:T2
     v1Code: 3.7.5
@@ -42,9 +50,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

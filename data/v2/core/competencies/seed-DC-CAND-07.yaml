@@ -1,0 +1,63 @@
+id: seed:DC-CAND-07
+type: Competency
+prefLabel:
+  en: Protect sensitive ecological, cultural and personal information in data products
+altLabel:
+  en:
+  - Sensitive-data protection
+definition:
+  en: The capability to determine and document the sensitivity of rare-species locations, cultural-resource information, personal data and information held under data-holder agreements; to apply generalization, withholding or controlled access proportionate to the risk without altering the stored record; and to check derived products, including AI training sets and summaries, for leakage.
+statement:
+  en: Determines and documents the sensitivity of rare-species locations, cultural-resource information, personal data and information held under data-holder agreements; applies generalization, withholding or controlled access proportionate to the risk; never alters the stored record; records reasons and review dates; and checks derived products such as maps, model outputs, AI summaries and training sets for leakage.
+editorialNote:
+  en: 'Candidate DC-CAND-07 (core-v2.0; X07). Indicators touching Tribal data or Indigenous knowledge are drafted only inside the hold (TN-C03, TN-C07; ADR-0007 §D) and are NOT authored here; this record is the actor-neutral technical execution layer and must be co-designed with TN. Observable practices follow GBIF sensitive-data guidance (documented reason and review date; generalize only the distributed copy) [E: DC-029].'
+notation:
+- scheme: EMST-candidate
+  value: DC-CAND-07
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:dc-cand-07-l1-a
+  - seed:dc-cand-07-l1-b
+- level: L2
+  indicators:
+  - seed:dc-cand-07-l2-a
+  - seed:dc-cand-07-l2-b
+- level: L3
+  indicators:
+  - seed:dc-cand-07-l3-a
+  - seed:dc-cand-07-l3-b
+- level: L4
+  indicators:
+  - seed:dc-cand-07-l4-a
+  - seed:dc-cand-07-l4-b
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - DC-001
+  - DC-029
+  - DC-036
+  adr:
+  - ADR-0003
+  - ADR-0025

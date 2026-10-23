@@ -1,0 +1,42 @@
+id: seed:sc-investigate-exceedance
+type: Task
+prefLabel:
+  en: Investigate a permit exceedance at the facility, identifying the root cause and documenting corrective actions and the notice given to the agency
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Investigate a permit exceedance at the facility, identifying the root cause and documenting corrective actions and the notice given to the agency
+textSha256: a632a843337c9825fca1abbd25e5143ebea78847d7b4af4d042e1c088310555f
+supports:
+- competency: seed:DB-C26
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-COMPLIANCE
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

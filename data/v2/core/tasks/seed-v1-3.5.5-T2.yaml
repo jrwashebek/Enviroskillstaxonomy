@@ -1,22 +1,33 @@
 id: seed:v1-3.5.5-T2
 type: Task
 prefLabel:
-  en: Address ethical challenges of algorithmic decision-making (bias, transparency, accountability)
+  en: Review the organization's AI use cases for bias, transparency and accountability risks, directing corrective action where a use falls short.
 statement:
-  en: Address ethical challenges of algorithmic decision-making (bias, transparency, accountability)
-textSha256: b4f5a8de58763367738ce35f10048a5d34ed434c2cc9b9cb44674208b9b26893
-supports:
-- competency: seed:DC-CAND-21
-  strength: primary
+  en: Review the organization's AI use cases for bias, transparency and accountability risks, directing corrective action where a use falls short.
+textSha256: a19ffc69316e13572cefd2df9f1bb78e00439636a1258cecebe46d167faceb53
+editorialNote:
+  en: Supports re-pointed from v1 competency 3.5.5 to seed:DC-CAND-21 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 3.5.5:T2
+supports:
+- competency: seed:DC-CAND-21
+  strength: primary
+- competency: seed:DC-CAND-19
+  strength: contributing
+workFunction: WF-MANAGE
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
 v1Tier: T2
 v1Domain:
   code: '3'
@@ -24,15 +35,15 @@ v1Domain:
 v1SkillArea:
   code: '3.5'
   label: Leadership
-editorialNote:
-  en: Supports re-pointed from v1 competency 3.5.5 to seed:DC-CAND-21 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:3.5.5:T2
     v1Code: 3.5.5
@@ -42,9 +53,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

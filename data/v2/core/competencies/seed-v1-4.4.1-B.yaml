@@ -1,0 +1,130 @@
+id: seed:v1-4.4.1-B
+type: Competency
+prefLabel:
+  en: Apply safety practices and stop-work authority across field, facility and incident settings
+altLabel:
+  en:
+  - Safety culture
+  - Stop-work and turn-down authority
+  - Learning from incidents
+definition:
+  en: 'Applies an organization''s safety-culture practices in everyday environmental work: recognizing and reporting hazards and near misses, exercising and honouring stop-work and turn-down authority, briefing and debriefing safety, and learning from incidents without blame, in field, facility and incident settings. Excludes the technical assessment and control of hazards for specific field operations (field risk management, a Field Craft practice competency) and the administration of occupational-safety programmes.'
+statement:
+  en: Recognizes, reports and acts on hazards and near misses, exercises and honours stop-work authority, runs safety briefings and after-action reviews, and builds a reporting culture in which colleagues raise concerns and learn from incidents, across field, facility and incident settings.
+competencyType: transversal
+transversalCluster: TX-C
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:lc-txc-safety-l1-a
+  - seed:lc-txc-safety-l1-b
+  - seed:lc-txc-safety-l1-c
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L2
+  indicators:
+  - seed:lc-txc-safety-l2-a
+  - seed:lc-txc-safety-l2-b
+  - seed:lc-txc-safety-l2-c
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L3
+  indicators:
+  - seed:lc-txc-safety-l3-a
+  - seed:lc-txc-safety-l3-b
+  - seed:lc-txc-safety-l3-c
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L4
+  indicators:
+  - seed:lc-txc-safety-l4-a
+  - seed:lc-txc-safety-l4-b
+  - seed:lc-txc-safety-l4-c
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+knowledge:
+- seed:lc-ks-txc-stop-work
+- seed:lc-ks-txc-just-culture
+homeModule: core
+learningDesign:
+  assessmentContext: field | incident | facility (observed in context; simulation for rare events)
+  recommendedModes:
+  - WBL
+  - MEN
+  - SIM
+  - CL
+  typicalHoursPerLevelStep: 24
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'TX-C successor split from v1 4.4.1 (ADR-0025 §1; v1_disposition.csv). Required of field and facility roles (ADR-0025). Basis for the text: v1 4.4.1 indicators (foundational I5, I8; intermediate I2, I6, I7; advanced I8) rewritten to IO''s sentence pattern, and incident-qualification practice that codes the setting a task must be evaluated in [E: LC-104]. Module enactments (forest: wildland fire turn-down; water: plant and confined-space work; hazards: incident response) are handed to WP-06. v1 task 4.4.1-T3 (incident investigation) is re-pointed here; T1 and T2 stay with seed:v1-4.4.1-A.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  derivedFrom:
+  - v1Key: v1:4.4.1
+    relation: split-from
+    note: Safety-culture part of v1 4.4.1; field risk management is seed:v1-4.4.1-A (FC, WP-03); programme administration is referenced from O*NET/ESCO (v1_disposition.csv).
+  sources:
+  - LC-104
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003
+  - ADR-0011

@@ -1,22 +1,31 @@
 id: seed:v1-7.1.4-T2
 type: Task
 prefLabel:
-  en: Design human-in-the-loop oversight architectures for AI-assisted environmental workflows that define practitioner roles, escalation triggers, and accountability pathways
+  en: Design human oversight for an AI-assisted workflow, defining reviewer qualifications, review rates by risk and the triggers for escalation.
 statement:
-  en: Design human-in-the-loop oversight architectures for AI-assisted environmental workflows that define practitioner roles, escalation triggers, and accountability pathways
-textSha256: 5baec20ffd46962a5d061e8c1209c3687208469611102bf609495ac7a226e4d0
-supports:
-- competency: seed:v1-7.1.4
-  strength: primary
+  en: Design human oversight for an AI-assisted workflow, defining reviewer qualifications, review rates by risk and the triggers for escalation.
+textSha256: e2ac75726bf2f9f16f37af64738fb02295f0b10c4bdbd312df436ebb4a4196ee
+editorialNote:
+  en: 'Split from v1 7.1.4 (oversight design → DC-CAND-14; ADR-0025 §3). v1 competency 7.1.4 is split: reassign this task to one of [''seed:v1-7.1.4-A'', ''seed:DC-CAND-19'', ''seed:DC-CAND-14''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
 notation:
 - scheme: EMSTv1
   value: 7.1.4:T2
+supports:
+- competency: seed:DC-CAND-14
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
 v1Tier: T2
 v1Domain:
   code: '7'
@@ -24,15 +33,15 @@ v1Domain:
 v1SkillArea:
   code: '7.1'
   label: Professional Ethics Architecture
-editorialNote:
-  en: 'v1 competency 7.1.4 is split: reassign this task to one of [''seed:v1-7.1.4-A'', ''seed:DC-CAND-19'', ''seed:DC-CAND-14''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:7.1.4:T2
     v1Code: 7.1.4
@@ -42,9 +51,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

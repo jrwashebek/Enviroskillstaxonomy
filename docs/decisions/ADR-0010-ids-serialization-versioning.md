@@ -73,3 +73,11 @@ Both agree on the principles: the repository is the only editable copy; every ot
 - **IA** preferred deterministic migration minting and SemVer per layer and per concept; rejected as above for simplicity and to avoid implied v1 identity.
 - **DE** had no check symbol and lowercase single-letter types; IA's form is adopted for human legibility. Trade-off: slightly longer IDs.
 - **CP:** opaque IDs are harder to remember; sequential IDs invite people to read meaning into them, which is how v1 codes became structural (IA disagreement).
+
+## Amendments
+
+- **2026-10-23 — CR-DE-001 #4, CR-DE-002 #1 / ADR-0029 §1–§2 (CA).**
+  - **Minting script.** The single writer is `scripts/mint_id.py`; `scripts/mint_ids.py`, named in §2 above, is an alias only.
+  - **New TYPE prefixes:** `WCH` (WatchItem), `SER` (SeriesRecord) and `SCR` (StateClassRecord). The regex is in `vocab/identifiers.yaml#form.regex`.
+  - **Seed keys.** They may contain `/`, which is written `--` in file names.
+  - **VocabularyTerm notation.** It uses the common-base array form `[{scheme, value}]`.

@@ -1,0 +1,21 @@
+# EMST computed-view rule (SPEC §14.3; ADR-0015; CR-DE-003). Normative definition; code in `implementation`.
+ruleId: effective-use-tier
+version: 0.1.0
+status: interim
+supersededBy: effective-use-tier@1.0.0
+steward: DE (implementation) · CA (definition)
+decidedIn: [ADR-0015, ADR-0024, CR-DE-003]
+computes: Interim effective use tier for Competency, Task, Indicator, RoleProfile, RoleVariant, KnowledgeStatement and Enactment.
+inputs: [released records]
+definition: >
+  tier = min over TIER_ORDER [exploratory, describe, develop, select] of: the declared ceiling (`useTier`, default
+  exploratory); the lifecycle cap (watch, proposed → exploratory; emerging → develop; established, declining → select;
+  withdrawn, lapsed, merged → none); and 'develop' unless validationStatus ∈ {job-analysis-confirmed,
+  criterion-supported}. The reliability gate and IO's evidence inputs are NOT applied (each row says so).
+outputs:
+  view: views/effective_use_tier.json
+  fields: "id, effectiveUseTier, declaredCeiling, lifecycleState, note, ruleId, ruleVersion, buildCommit"
+parameters: {}
+implementation: scripts/build_release.py#Release.views
+changeNote:
+  - {date: '2026-10-23', note: "Registered from the implementation as interim (CR-DE-003); replaced by 1.0.0."}

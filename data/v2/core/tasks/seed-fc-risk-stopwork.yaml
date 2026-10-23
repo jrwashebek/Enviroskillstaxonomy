@@ -1,0 +1,44 @@
+id: seed:fc-risk-stopwork
+type: Task
+prefLabel:
+  en: Stop field work when hazards change beyond the controls in the job hazard analysis, re-briefing the crew before work resumes
+statement:
+  en: Stop field work when hazards change beyond the controls in the job hazard analysis, re-briefing the crew before work resumes
+textSha256: e05d1c8d91bd7c0e66f86b1913b9f8725ae6ea7687a3de140c98c47c92adc6d5
+supports:
+- competency: seed:v1-4.4.1-A
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: adaptation or decision in place.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

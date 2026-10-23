@@ -1,0 +1,126 @@
+id: seed:SL-C08
+type: Competency
+prefLabel:
+  en: Conduct environmental impact review of proposed actions
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to scope, prepare or direct, and conclude the analysis of a proposed action's reasonably foreseeable environmental effects and alternatives under the review procedures that govern the deciding agency, so that the decision record shows the effects were considered. Excludes choosing the level of review, consultation on protected species and historic-property review, which are separate competencies.
+statement:
+  en: 'Scopes, prepares or directs, and concludes the environmental review of a proposed action under the procedures that govern the deciding agency: defines purpose, alternatives and effects boundaries, integrates interdisciplinary analysis, keeps within page and time limits, and documents how effects were considered in the decision.'
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - environmental review
+  - NEPA review
+  - state environmental policy act review
+  - CEQA, SEPA, MEPA or SEQR review
+  - environmental assessment and impact statement preparation
+instrumentSensitivity:
+- mechanism: DM-01
+  rationale:
+    en: Review scope narrowed by the 2025 Supreme Court decision and department procedures.
+  evidenceLabel: E
+  sources:
+  - V2-01
+  - V2-02
+- mechanism: DM-02
+  rationale:
+    en: Statutory page and time limits and sponsor-paid acceleration change how reviews are scheduled.
+  evidenceLabel: E
+  sources:
+  - V2-04
+- mechanism: DM-04
+  rationale:
+    en: Public involvement for lower levels of review became discretionary under department procedures.
+  evidenceLabel: E
+  sources:
+  - SC-038
+- mechanism: DM-05
+  rationale:
+    en: Lead and cooperating agency rules codified in statute.
+  evidenceLabel: E
+  sources:
+  - V2-01
+- mechanism: DM-08
+  rationale:
+    en: Deference and remedy doctrine set how much analysis the record needs.
+  evidenceLabel: E
+  sources:
+  - V2-02
+  - V2-03
+- mechanism: DM-14
+  rationale:
+    en: Digital-first documents, data standard and AI drafting tools change production.
+  evidenceLabel: E
+  sources:
+  - V2-08
+editorialNote:
+  en: 'WP-05 (A5 SC; SL reviewed the state and local enactments). Successor of v1 6.1.4 (split with SC-C03); written regulation-neutral after removal of the government-wide NEPA regulations (final 2026-01-08) so that agency-specific and state procedures attach as enactments and L5 instruments [E: V2-01]. Production tasks are split from AI-assisted review tasks (G-2). Tribal environmental-review enactment reserved for TN under the hold. Basis [J]: SC report sections 4-5, SL report section 2(a,d). Seed note kept: WP-05 (A5 SC; SL reviewed the state and local enactments). Successor of v1 6.1.4 (split with SC-C03); written regulation-neutral after removal of the government-wide NEPA regulations (final 2026-01-08) so that agency-specific and state procedures attach as enactments and L5 instruments [E: V2-01]. Production tasks are split from AI-assisted review tasks (G-2). Tribal environmental-review enactment reserved for TN under the hold. Basis [J]: SC report sections 4-5, SL report section 2(a,d).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-011
+  - SC-012
+  - SC-014
+  - SC-038
+  - SL-038
+  - SL-070
+  - V2-01
+  - V2-02
+  - V2-04
+  derivedFrom:
+  - v1Key: v1:6.1.4
+    relation: split-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - seed:sl-c08-l1-a
+  - seed:sl-c08-l1-b
+- level: L2
+  indicators:
+  - seed:sl-c08-l2-a
+  - seed:sl-c08-l2-b
+  - seed:sl-c08-l2-c
+- level: L3
+  indicators:
+  - seed:sl-c08-l3-a
+  - seed:sl-c08-l3-b
+  - seed:sl-c08-l3-c
+- level: L4
+  indicators:
+  - seed:sl-c08-l4-a
+  - seed:sl-c08-l4-b
+  - seed:sl-c08-l4-c
+enactments:
+- seed:ena-sl-c08-federal
+- seed:ena-sl-c08-state
+- seed:ena-sl-c08-local
+- seed:ena-sl-c08-consultant

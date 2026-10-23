@@ -1,0 +1,42 @@
+id: seed:lc-txf-delivery-l1-b
+type: Indicator
+prefLabel:
+  en: Updates an assigned section of the project schedule with actual progress each
+competency: seed:PS-C03
+level: L1
+statement:
+  en: Updates an assigned section of the project schedule with actual progress each week and flags each task forecast to miss its date.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:v1-3.1.1-T2
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  derivedFrom:
+  - v1Key: v1:3.1.1:foundational:I2
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

@@ -1,0 +1,42 @@
+id: seed:sc-structure-severable-decision
+type: Task
+prefLabel:
+  en: Structure a decision document and its record so that each severable element could be corrected on remand without vacating the whole decision
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Structure a decision document and its record so that each severable element could be corrected on remand without vacating the whole decision
+textSha256: fc6b48a99747c351e2345819018a232eea02926d390ed2e8f125cdc3a296a996
+supports:
+- competency: seed:SC-C17
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+modes:
+- MODE-RESOLVE
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

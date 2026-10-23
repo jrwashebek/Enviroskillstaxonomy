@@ -1,22 +1,30 @@
 id: seed:v1-6.4.3-T3
 type: Task
 prefLabel:
-  en: Prepare impact statements to support rulemaking or legislative action
+  en: Prepare the regulatory impact analysis supporting a proposed rule, presenting costs, benefits and distributional effects of each alternative considered
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Prepare impact statements to support rulemaking or legislative action
-textSha256: 08dcd2de351b4192688c962a659849cf9c93f8cfbc618887ed61aba3920b119c
+  en: Prepare the regulatory impact analysis supporting a proposed rule, presenting costs, benefits and distributional effects of each alternative considered
+textSha256: 66621168405cba596c22b44cbcb873d45ad4508841053daf7a8d87685e6d3f44
 supports:
 - competency: seed:v1-6.3.4
   strength: primary
+workFunction: WF-RULE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+workflowProfiles:
+- WP-RULEMAKING
 notation:
 - scheme: EMSTv1
   value: 6.4.3:T3
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T3
 v1Domain:
   code: '6'
@@ -25,14 +33,16 @@ v1SkillArea:
   code: '6.4'
   label: Policy Development
 editorialNote:
-  en: Supports re-pointed from v1 competency 6.4.3 to seed:v1-6.3.4 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'Rewritten from the v1 task text: "Prepare impact statements to support rulemaking or legislative action" (WP-05).'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:6.4.3:T3
     v1Code: 6.4.3
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

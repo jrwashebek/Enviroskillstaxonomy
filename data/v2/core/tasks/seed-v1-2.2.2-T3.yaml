@@ -1,22 +1,32 @@
 id: seed:v1-2.2.2-T3
 type: Task
 prefLabel:
-  en: Create visualizations to communicate key patterns and uncertainties
+  en: Prepare statistical graphics that show the main patterns and their uncertainty for a technical or decision audience.
 statement:
-  en: Create visualizations to communicate key patterns and uncertainties
-textSha256: 9e9e7591680b13570c66ae08fd6943771cbca1383d58b933b5a13344a7a83609
-supports:
-- competency: seed:v1-2.2.2
-  strength: primary
+  en: Prepare statistical graphics that show the main patterns and their uncertainty for a technical or decision audience.
+textSha256: 82f07da9b0722a07ef22d3063a3ea83910a5a405902231648c02c307413f12cd
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
 notation:
 - scheme: EMSTv1
   value: 2.2.2:T3
+supports:
+- competency: seed:v1-2.2.2
+  strength: primary
+- competency: seed:v1-2.1.5
+  strength: contributing
+workFunction: WF-ASSESS
+fieldDependency: remote
+formationDependency: 'no'
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Tier: T3
 v1Domain:
   code: '2'
@@ -24,15 +34,15 @@ v1Domain:
 v1SkillArea:
   code: '2.2'
   label: Data Management & Analysis
-editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.2.2:T3
     v1Code: 2.2.2
@@ -42,9 +52,7 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0013

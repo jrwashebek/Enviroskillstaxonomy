@@ -1,22 +1,32 @@
 id: seed:v1-2.3.2-T1
 type: Task
 prefLabel:
-  en: Conduct aerial surveys of landscapes using drones for vegetation or infrastructure mapping
+  en: Plan an uncrewed-aircraft survey mission around airspace, terrain, wildlife and crew positions, holding the flight when crew positions conflict with the path
 statement:
-  en: Conduct aerial surveys of landscapes using drones for vegetation or infrastructure mapping
-textSha256: 41336410498273ecd2880785378c1d207c298ada879f1cd0453b1e66f6dd8031
+  en: Plan an uncrewed-aircraft survey mission around airspace, terrain, wildlife and crew positions, holding the flight when crew positions conflict with the path
+textSha256: 2f3cf6aa8f0db1b5f6a95fd4c74cf2898f60747dc6dbaa23548037842d887ce8
 supports:
 - competency: seed:FC-C14
   strength: primary
+workFunction: WF-PLAN
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: external-certificate
+  currencyDecay: H
 notation:
 - scheme: EMSTv1
   value: 2.3.2:T1
+homeModule: core
 layer: L2
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 v1Tier: T1
 v1Domain:
   code: '2'
@@ -25,14 +35,14 @@ v1SkillArea:
   code: '2.3'
   label: Field Technology
 editorialNote:
-  en: Supports re-pointed from v1 competency 2.3.2 to seed:FC-C14 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+  en: 'G-2 split role: design or planning of the work. Credential gate level is the author''s draft pending the WP-07 Credential register (T-8). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
   derivedFrom:
   - v1Key: v1:2.3.2:T1
     v1Code: 2.3.2
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

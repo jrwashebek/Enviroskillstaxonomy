@@ -1,0 +1,43 @@
+id: seed:ena-db-c52-federal
+type: Enactment
+prefLabel:
+  en: Federal agency distributional analysis
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:DB-C52
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: 'No current government-wide executive-order basis: EO 12898 was revoked by EO 14173 (2025-01-21) and EO 14096 by EO 14148 (2025-01-20). Analysis remains possible where a statute, a program rule or the agency''s own procedures call for it; revocation does not change statutory duties.'
+principal:
+  en: The deciding official.
+accountabilityVenue:
+  en: Federal courts; inspectors general.
+note:
+  en: 'ADR-0016: applicability is computed, not asserted. With the federal instruments linked (pending L5 registration), federal applicability computes to no-current-basis while statute-based duties keep the work permitted; Q4 default shows the computed value with a note and no exclusion.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - WP05-001
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

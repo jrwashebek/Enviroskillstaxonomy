@@ -4,7 +4,7 @@ title: The three crafts of environmental work
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0005, ADR-0003]
+decidedIn: [ADR-0005, ADR-0003, ADR-0029]
 steward: CA with FC, DC and SC leads
 license: CC0-1.0
 description: >
@@ -105,7 +105,7 @@ task_attributes:
     values: [on-site-required, on-site-preferred, remote-capable, remote]
   formation_dependency:
     definition: "Must the expertise have been formed through field or institutional exposure, even if the task is now done remotely?"
-    values: [yes, partial, no]
+    values: ['yes', partial, 'no']   # quoted: YAML 1.1 loaders read bare yes/no as booleans (CR-DE-002 #3)
 
 reproduction_regime_attributes:
   mentorship_dependence: {definition: "Supervised in-place repetitions needed to reach independent performance.", values: [L, M, H]}

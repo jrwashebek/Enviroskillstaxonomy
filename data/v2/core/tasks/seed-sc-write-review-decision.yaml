@@ -1,0 +1,48 @@
+id: seed:sc-write-review-decision
+type: Task
+prefLabel:
+  en: Write the decision document for a reviewed action, explaining how the analyzed effects, alternatives and public comments informed the choice made
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Write the decision document for a reviewed action, explaining how the analyzed effects, alternatives and public comments informed the choice made
+textSha256: 8cfea31b17d27dd6657ef84a87e570f130d94d53e4c9209793b188b456d8a355
+supports:
+- competency: seed:SL-C08
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+workflowProfiles:
+- WP-PROJECT
+accountabilityConstraint:
+  required: true
+  basis:
+    en: The decision is signed by an accountable official; courts defer to that official's reasoned explanation.
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Write the decision document for a reviewed action, explaining how the analyzed effects, alternatives and public comments informed the choice made" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

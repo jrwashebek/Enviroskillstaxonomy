@@ -1,0 +1,46 @@
+id: seed:sl-c16-l4-a
+type: Indicator
+prefLabel:
+  en: Sets an organization's procedures for responsible charge and sealing, including review of AI-assisted deliverables, with periodic audits of sealed work.
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SL-C16
+level: L4
+statement:
+  en: Sets an organization's procedures for responsible charge and sealing, including review of AI-assisted deliverables, with periodic audits of sealed work.
+augmentationMode: supervisory
+assessmentMethods:
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- procedures
+- audit results
+servedTasks:
+- seed:sc-seal-deliverable
+distinguishingAttribute: ATT-AUG
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

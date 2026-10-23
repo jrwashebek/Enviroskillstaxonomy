@@ -1,0 +1,43 @@
+id: seed:lc-txc-safety-l3-c
+type: Indicator
+prefLabel:
+  en: Coaches crew members to raise safety concerns
+competency: seed:v1-4.4.1-B
+level: L3
+statement:
+  en: Coaches crew members to raise safety concerns by answering each raised concern within the shift and recording the response in the unit log.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:lc-txc-report-near-miss
+distinguishingAttribute: ATT-FOR
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  derivedFrom:
+  - v1Key: v1:4.4.1:advanced:I8
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

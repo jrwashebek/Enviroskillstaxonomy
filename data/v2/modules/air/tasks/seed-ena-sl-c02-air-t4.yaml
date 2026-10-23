@@ -1,0 +1,41 @@
+id: seed:ena-sl-c02-air-t4
+type: Task
+prefLabel:
+  en: Check permit conditions drafted from a template or AI tool against the source's applicable requirements before public notice
+statement:
+  en: Check permit conditions drafted from a template or AI tool against the source's applicable requirements before public notice
+textSha256: 8d285b11b7cdfdd96f81a4b98e17573c3b5b433ba6692f08ec192d949c7c95a3
+supports:
+- competency: seed:SL-C02
+  strength: primary
+workFunction: WF-AUTHORIZE
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: remote
+formationDependency: 'yes'
+homeModule: air
+subsectors:
+- P01
+layer: L2
+module: air
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: Review-and-defence task split from drafting (ADR-0003 G-2).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

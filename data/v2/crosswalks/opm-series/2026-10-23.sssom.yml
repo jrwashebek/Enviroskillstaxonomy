@@ -1,0 +1,33 @@
+mapping_set_id: https://w3id.org/emst/crosswalks/opm-series/2026-10-23
+mapping_set_version: 0.1.0-draft
+mapping_set_title: X4 EMST roles to OPM occupational series (federal variants)
+mapping_set_description: Agent-drafted candidate mappings from MVP role profiles (seed:<role_key>; federal variant implied, re-key to RoleVariant IDs per CR-IA-001) to the EMST OPM series register (data/v2/registers/opm_series/, status as of 2026-10-23). Series proposed for realignment in OPM's Phase One list carry target_series_status=proposed-realignment and proposed_successor in `other`; they are never shown as realigned. Predicates as in X3 (closeMatch interchangeable; broadMatch role is a specialisation within a broad series; narrowMatch the series is one slice of the role; relatedMatch partial overlap, feeder or destination; Not for disambiguation). Not a classification basis, not a job analysis, not for RIF or rating decisions.
+subject_source: emstsrc:emst-v2-roles
+subject_source_version: 2.0.0-draft (MVP role set 2026-10-23)
+object_source: emstsrc:opm-series-register
+object_source_version: snapshot 2026-10-23 (OPM CHCO memo index re-checked per V1-10)
+mapping_tool: pipelines/crosswalks/x4_opm_series.py@0.1.0
+see_also:
+- https://www.opm.gov/chcoc/latest-memos/modernization-and-consolidation-of-occupational-series.pdf
+- https://www.opm.gov/policy-data-oversight/classification-qualifications/
+comment: ADR-0022 X4; OPM series codes carry no official URI, so the OPMseries prefix is an EMST namespace for the code.
+license: https://creativecommons.org/publicdomain/zero/1.0/
+creator_id:
+- emstagent:ia-wp09@phase4
+mapping_date: '2026-10-23'
+curie_map:
+  emst: https://w3id.org/emst/
+  seed: https://w3id.org/emst/seed/
+  emstagent: https://w3id.org/emst/agent/
+  sssom: https://w3id.org/sssom/
+  semapv: https://w3id.org/semapv/vocab/
+  skos: http://www.w3.org/2004/02/skos/core#
+  OPMseries: https://w3id.org/emst/ext/opm-series/
+  emstsrc: https://w3id.org/emst/sources/
+extension_definitions:
+- slot_name: record_id
+  property: https://w3id.org/sssom/record_id
+  type_hint: xsd:string
+- slot_name: reviewer_agreement
+  property: https://w3id.org/sssom/reviewer_agreement
+  type_hint: xsd:double

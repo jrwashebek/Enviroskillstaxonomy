@@ -1,0 +1,934 @@
+# WP-06 authoring source — MOD-04 Waste, materials and remediation (namespace: waste; subsectors P02 P03 P04)
+# Rows: candidate_disposition DB-C16, DB-C17 (absorbs PS-C17), DB-C18, DB-C19 (absorbs FC-C05), DB-C20 (absorbs
+# FH-C12, SL-C09; receives the remediation part of v1 4.4.4), PS-C13, SL-C14; v1_disposition 3.7.1 (absorbs 3.7.4),
+# 3.7.2, 3.7.5 (move-to-module), 4.4.4 (split, part 2). Enactments at the end. Content [J]; agent-drafted.
+module: waste
+competencies:
+
+  - id: DB-C16
+    label: Operate solid waste collection, processing and disposal systems to permit conditions
+    alt: [Solid waste operations management, Landfill operations, Materials recovery facility operations]
+    def: >-
+      Planning and operating municipal solid waste collection, transfer, materials recovery, organics processing and
+      landfill systems, including cell operations, cover, leachate and landfill gas control and contamination
+      management, so that facilities meet permit conditions and diversion goals. Excludes regulatory oversight of
+      facilities (SL-C14) and producer-responsibility administration (DB-C17).
+    stmt: >-
+      Plans collection and processing service, runs landfill cells, cover, leachate and gas systems, manages inbound
+      contamination and supervises automated sorting, so that facilities meet their permit conditions and diversion goals
+      and the operating record withstands regulator inspection.
+    span: [L1, L4]
+    sub: [P02]
+    att: ATT-AUT
+    src: [DB-024]
+    note: >-
+      Solid waste systems (P02); operator side of role R29. State landfill operator certification and association
+      certifications are Credential gates. AI-vision and robotic sorting are deployed physical automation that v1's
+      exposure instrument missed (DB report s.3.8), so tasks include supervising it. Basis [J]: DB Phase 2.
+    tasks:
+      - id: DB-C16-T1
+        text: Direct daily landfill cell operations, setting working-face size, compaction and cover to permit conditions and forecast weather
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        cg: licence
+        rr: {mentorshipDependence: H, cycleDependence: seasonal, placeBoundness: site-specific, currencyDecay: M}
+      - id: DB-C16-T2
+        text: Inspect landfill gas wells and leachate collection after storms, adjusting wellfield vacuum and pumping to stay within monitoring limits
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+      - id: DB-C16-T3
+        text: Audit a materials recovery facility's inbound loads and finished bales for contamination, setting corrective actions with haulers and line supervisors
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-OPERATIONS]
+        rel: [client]
+      - id: DB-C16-T4
+        text: Supervise automated optical and robotic sorting at a materials recovery facility, changing settings when bale audits show misclassified material
+        wf: WF-OPERATE
+        fd: on-site-required
+        form: partial
+        prof: [WP-OPERATIONS]
+      - id: DB-C16-T5
+        text: Plan collection routes and service levels from tonnage, set-out and contamination data within crew safety and workload limits
+        wf: WF-PLAN
+        fd: remote-capable
+        form: 'no'
+        prof: [WP-OPERATIONS]
+    ind:
+      L1:
+        - t: Records inbound load inspections at the scale house or tipping floor following the facility procedure, rejecting prohibited wastes the procedure lists.
+          a: [task-book-observation, record-audit]
+          st: [T1, T3]
+        - t: Reads landfill gas wellhead values with a calibrated meter on an assigned route, recording readings that match a supervisor's re-measurement within tolerance.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T2]
+      L2:
+        - t: Runs the working face for a shift, keeping face size, compaction and daily cover within the operating plan as verified at the end-of-day inspection.
+          a: [task-book-observation]
+          st: [T1]
+          sc: true
+        - t: Changes optical-sorter settings when a bale audit shows misclassified material, and records the audit result and the change made.
+          m: supervisory
+          a: [task-book-observation, record-audit]
+          st: [T3, T4]
+          att: ATT-AUG
+      L3:
+        - t: Adjusts wellfield and leachate operations after a non-routine event, such as a surface-emission exceedance or a leachate seep, documenting the corrective action and follow-up readings.
+          a: [work-sample, record-audit]
+          st: [T2]
+          att: ATT-CPX
+          sc: true
+        - t: Evaluates operators' working-face and wellfield tasks against the facility task book, documenting the coaching given and sign-off decisions.
+          a: [task-book-observation, counterpart-360]
+          att: ATT-FOR
+      L4:
+        - t: Sets the facility's contamination-reduction strategy with haulers and municipalities, defining audit frequency, thresholds and contract consequences in the operating plan.
+          a: [portfolio-review]
+          st: [T3, T5]
+          att: ATT-SCO
+        - t: Defines acceptance criteria for automated sorting performance and audits them each quarter against manual bale audits, documenting drift and corrective action.
+          m: supervisory
+          a: [portfolio-review, record-audit]
+          st: [T4]
+          att: ATT-AUG
+
+  - id: DB-C17
+    label: Administer extended producer responsibility and materials-management programmes
+    alt: [Extended producer responsibility administration, Packaging EPR compliance, Producer responsibility organization oversight]
+    def: >-
+      Implementing producer responsibility and materials-management requirements, from the regulator side (review of
+      producer responsibility organization plans, needs assessments, performance targets, eco-modulated fees and
+      report audits) and from the regulated side (keeping a producer's product data and filings complete across
+      jurisdictions). Excludes facility operation and general waste reduction programmes.
+    stmt: >-
+      Reviews producer responsibility programme plans and needs assessments against performance and convenience
+      requirements, sets or checks targets and fee modulation, audits producer reports, and, on the regulated side,
+      compiles a producer's material data and filings for every jurisdiction where requirements apply.
+    span: [L2, L4]
+    sub: [P02, M01]
+    life: emerging
+    att: ATT-CPX
+    src: [DB-064]
+    note: >-
+      Survivor; absorbs PS-C17 (producer-responsibility compliance, the private enactment); state EPR administration is
+      the public enactment. Change type new (DB-064); lifecycle emerging pending ADR-0015 evidence because state
+      programmes are in first implementation cycles. Statute names are L5 instruments. Basis [J].
+    tasks:
+      - id: DB-C17-T1
+        text: Review a producer responsibility organization's programme plan against performance targets, convenience standards and needs-assessment findings before approval
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [stakeholder]
+      - id: DB-C17-T2
+        text: Audit a producer's annual report on material tonnage, recycling rates and fee calculations against its supporting records
+        wf: WF-ENFORCE.assure
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM, WP-COMPLIANCE]
+      - id: DB-C17-T3
+        text: Compile a producer's packaging and product material data for the filing required in each jurisdiction with a producer responsibility requirement
+        wf: WF-MONITOR.attest
+        fd: remote
+        form: 'no'
+        prof: [WP-COMPLIANCE, WP-DISCLOSURE]
+        note: Regulated-party variant (absorbs PS-C17).
+      - id: DB-C17-T4
+        text: Verify recycling and recovery rates reported from an automated material-tracking system against weighbridge and processor records
+        wf: WF-MONITOR
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+    ind:
+      L2:
+        - t: Checks a producer's filed tonnage and fee calculation against its supporting records, listing every discrepancy with the record that shows it.
+          a: [seeded-error-work-sample, record-audit]
+          st: [T2]
+        - t: Compiles a producer's material data for one jurisdiction's filing, so that every reported value traces to a product or packaging record.
+          a: [work-sample, record-audit]
+          st: [T3]
+      L3:
+        - t: Reviews a programme plan against performance and convenience requirements, writing deficiency findings that cite the requirement and the plan section affected.
+          a: [work-sample]
+          st: [T1]
+          att: ATT-CPX
+        - t: Accepts or rejects recovery rates reported from an automated tracking system after checking them against weighbridge and processor records, documenting the basis.
+          m: assisted
+          a: [seeded-error-work-sample]
+          st: [T4]
+          att: ATT-AUG
+      L4:
+        - t: Designs the agency's audit protocol for producer reports, including sampling of processor records and acceptance criteria for automated tracking data.
+          m: supervisory
+          a: [portfolio-review]
+          st: [T2, T4]
+          att: ATT-GUI
+        - t: Negotiates performance targets and fee-modulation criteria with a producer responsibility organization and advisory body, recording the agreed terms and their evidence basis.
+          modes: [MODE-RESOLVE]
+          a: [portfolio-review, counterpart-360]
+          st: [T1]
+          att: ATT-SCO
+
+  - id: DB-C18
+    label: Determine hazardous waste status and manage generator compliance
+    alt: [Hazardous waste determination, Hazardous waste generator compliance, RCRA generator compliance]
+    def: >-
+      Facility-side determination of whether wastes are hazardous by listing and characteristic, and management of
+      accumulation, labelling, manifesting, land disposal restriction notices, universal waste, contingency planning
+      and personnel training so that each determination is documented and the facility passes inspection. Excludes
+      treatment, storage and disposal facility operation and regulator inspection.
+    stmt: >-
+      Determines whether each waste stream is hazardous from process knowledge and laboratory data, manages
+      accumulation areas, labelling and shipments with complete manifests and notices, maintains the contingency plan
+      and trains personnel for their duties, documenting every determination so that the facility's record withstands
+      inspection.
+    span: [L1, L4]
+    sub: [P03, P06]
+    att: ATT-AUT
+    src: [DB-024, DB-057]
+    note: >-
+      Hazardous waste determination and generator compliance (P03). Practised mainly by regulated parties (role R37
+      variants) and by remediation and federal-facility staff (R27). CHMM (IHMM, V3-08) is a Credential, not a level;
+      manifest signature is a legal-signatory sign-off. Basis [J].
+    tasks:
+      - id: DB-C18-T1
+        text: Determine whether a waste stream is hazardous from process knowledge and laboratory data, documenting the listing and characteristic evaluation
+        wf: WF-ASSESS
+        fd: remote-capable
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+        so: legal-signatory
+      - id: DB-C18-T2
+        text: Inspect satellite and central accumulation areas for container condition, labelling, dating and segregation, correcting deficiencies before shipment
+        wf: WF-MONITOR
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+      - id: DB-C18-T3
+        text: Prepare a hazardous waste manifest and land disposal restriction notice for a shipment, reconciling quantities and waste codes with the receiving facility
+        wf: WF-MONITOR.attest
+        fd: remote-capable
+        form: partial
+        prof: [WP-COMPLIANCE]
+        so: legal-signatory
+        acc: The generator's signature on the manifest certifies the accuracy of the shipment description.
+      - id: DB-C18-T4
+        text: Review a waste code assigned by profiling software or a disposal vendor against the generator's process knowledge before signing the waste profile
+        wf: WF-MONITOR.attest
+        fd: remote
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+        so: legal-signatory
+        note: Review task split from vendor or software profiling (ADR-0003 G-2).
+      - id: DB-C18-T5
+        text: Train facility personnel in hazardous waste handling and emergency procedures for their duties, keeping training records current
+        wf: WF-LEARN
+        fd: on-site-preferred
+        form: 'no'
+        prof: [WP-COMPLIANCE]
+    ind:
+      L1:
+        - t: Inspects an accumulation area with the weekly checklist under supervision, recording container, label and date deficiencies that match the supervisor's findings.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T2]
+        - t: Labels and dates hazardous waste containers following the facility procedure, so that every container passes the next weekly inspection.
+          a: [task-book-observation]
+          st: [T2]
+      L2:
+        - t: Determines the status of a routine waste stream from process knowledge and safety data, documenting the listing and characteristic evaluation in the waste determination record.
+          a: [work-sample, record-audit]
+          st: [T1]
+          sc: true
+        - t: Prepares a manifest and land disposal restriction notice for a shipment, so that quantities and waste codes reconcile with the receiving facility's acknowledgement.
+          a: [record-audit]
+          st: [T3]
+          sc: true
+      L3:
+        - t: Determines the status of a non-routine waste, such as a mixed or off-specification material, selecting the testing needed and documenting the reasoning for reviewers.
+          a: [work-sample, structured-interview-bars]
+          st: [T1]
+          att: ATT-CPX
+        - t: Rejects or corrects a waste code assigned by profiling software or a vendor when it conflicts with process knowledge, documenting the basis before signing.
+          m: assisted
+          a: [seeded-error-work-sample, record-audit]
+          st: [T4]
+          att: ATT-AUG
+      L4:
+        - t: Designs the facility's waste determination and generator-compliance procedures across sites, defining review points and the evidence each determination must carry.
+          a: [portfolio-review]
+          st: [T1, T5]
+          att: ATT-GUI
+        - t: Defends a contested waste determination in a regulator inspection or audit, producing the process and analytical evidence on which it rests.
+          a: [moot-defense, record-audit]
+          st: [T1]
+          att: ATT-SCO
+
+  - id: DB-C19
+    label: Conduct environmental site assessment and site characterization
+    alt: [Phase I and Phase II environmental site assessment, Site characterization, Conceptual site model development]
+    def: >-
+      Assessing whether and how a property is contaminated: records review, reconnaissance and interviews; design and
+      execution of soil, groundwater, soil-gas and sediment sampling; and construction and updating of a conceptual
+      site model across media, with judgment of whether data are usable for the decision. Excludes remedy selection
+      (DB-C20) and transaction due diligence sign-off (PS-C13).
+    stmt: >-
+      Identifies potential contamination from records, reconnaissance and interviews; designs sampling that tests the
+      conceptual site model; logs and samples soils, groundwater and soil gas in the field; and updates the model with
+      each data set, stating which gaps still prevent a remedy decision and whether the data are usable.
+    span: [L1, L4]
+    sub: [P04, W05]
+    att: ATT-AUT
+    src: [DB-025, FC-038, FC-044]
+    note: >-
+      Survivor; absorbs FC-C05 (field investigation at contaminated sites). Site characterization home is P04; part of
+      role R27. Professional geologist licensure for groundwater reports is a Credential gate in many states; HAZWOPER
+      is an entry gate (seed:crd-hazwoper, WP-07). Basis [J].
+    tasks:
+      - id: DB-C19-T1
+        text: Design a sampling and analysis plan that tests the conceptual site model's exposure pathways against stated data quality objectives
+        wf: WF-PLAN
+        fd: remote-capable
+        form: partial
+        prof: [WP-PROJECT]
+      - id: DB-C19-T2
+        text: Log soil cores and choose sample intervals in the field from lithology, staining, odor and field-screening readings
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+        cgs: [{credential: crd-hazwoper, kind: entry}]
+        rr: {mentorshipDependence: H, cycleDependence: none, placeBoundness: site-specific, currencyDecay: M}
+      - id: DB-C19-T3
+        text: Oversee monitoring well installation and development, verifying screen placement against field lithology before the well is completed
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+        cgs: [{credential: crd-hazwoper, kind: entry}]
+      - id: DB-C19-T4
+        text: Update the conceptual site model with new data, identifying the data gaps that still prevent a remedy decision
+        wf: WF-ASSESS
+        fd: remote
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: DB-C19-T5
+        text: Review automated data-validation qualifiers and analytical results for usability before the results enter the site database
+        wf: WF-MONITOR
+        fd: remote
+        form: partial
+        prof: [WP-PROJECT]
+        note: Review task split from automated validation (ADR-0003 G-2).
+    ind:
+      L1:
+        - t: Collects soil and groundwater samples under a field lead following the sampling plan and decontamination procedure, completing chain-of-custody forms that pass laboratory receipt.
+          a: [task-book-observation, record-audit]
+          st: [T2]
+          sc: true
+        - t: Records boring logs with lithology, moisture and field-screening readings at each interval, so that logs match the field lead's description of the same core.
+          a: [task-book-observation, blind-re-measurement]
+          st: [T2]
+      L2:
+        - t: Selects sample intervals in the field from lithology, staining and screening readings, documenting the rationale for each interval on the boring log.
+          a: [task-book-observation, work-sample]
+          st: [T2]
+        - t: Accepts or rejects analytical results for use after checking validation qualifiers against the project's data quality objectives, recording the usability decision.
+          m: assisted
+          a: [seeded-error-work-sample, record-audit]
+          st: [T5]
+          att: ATT-AUG
+      L3:
+        - t: Designs a sampling and analysis plan for a site with multiple media and pathways, linking each sample to the conceptual-model hypothesis it tests.
+          a: [work-sample, portfolio-review]
+          st: [T1]
+          att: ATT-CPX
+        - t: Revises the conceptual site model when data contradict it, documenting the change and which earlier conclusions no longer hold.
+          a: [work-sample, structured-interview-bars]
+          st: [T4]
+          att: ATT-GUI
+      L4:
+        - t: Sets the characterization strategy for a site where contamination is contested between parties, defining the lines of evidence each party's reviewers will accept.
+          modes: [MODE-RESOLVE]
+          a: [portfolio-review, moot-defense]
+          st: [T1, T4]
+          att: ATT-SCO
+        - t: Evaluates field staff's logging and sampling against the programme's task book, certifying readiness for independent field leadership.
+          a: [task-book-observation]
+          st: [T2, T3]
+          att: ATT-FOR
+
+  - id: DB-C20
+    label: Select remedies for contaminated sites and oversee cleanup through long-term stewardship
+    alt: [Remedy selection and remedial design oversight, Remediation project management, Long-term stewardship of contaminated sites]
+    def: >-
+      Evaluating remedial alternatives against cleanup criteria, selecting and specifying remedies, overseeing
+      contractors during implementation and optimization, and managing institutional controls, periodic reviews and
+      closure; in public programmes, also administering cleanup funds and cost recovery. Excludes site characterization
+      (DB-C19) and emergency hazardous materials response.
+    stmt: >-
+      Compares remedial alternatives against cleanup criteria, cost and acceptance, selects and specifies the remedy,
+      oversees contractors against the approved design and safety plan, uses performance data to optimize or transition
+      the remedy, and manages institutional controls, periodic reviews, closure and cleanup-fund administration.
+    span: [L2, L4]
+    sub: [P04]
+    att: ATT-CPX
+    df:
+      - {v1Key: 'v1:4.4.4', relation: split-from, note: 'receives the remediation-management part of v1 4.4.4 (DB, FC, IO, PS, LC verdicts)'}
+    src: [DB-025, DB-058, FH-041, SL-077, SL-082, SL-074]
+    note: >-
+      Survivor; absorbs FH-C12 (cleanup oversight) and SL-C09 (cleanup oversight and remediation funds) and receives
+      the remediation-management part of v1 4.4.4. Home of role R27 remediation project manager. Licensed site
+      professional opinions (state LSP/LSRP programmes) are recorded as regulatory-definition sign-off authority;
+      HAZWOPER is an entry gate. Basis [J].
+    tasks:
+      - id: DB-C20-T1
+        text: Evaluate remedial alternatives for a contaminated site against threshold and balancing criteria, documenting the comparison in a feasibility study
+        wf: WF-PLAN
+        fd: remote
+        form: 'yes'
+        prof: [WP-PROJECT, WP-REGPROGRAM]
+      - id: DB-C20-T2
+        text: Oversee a remediation contractor's field work against the approved design and health and safety plan, documenting deviations and corrective actions
+        wf: WF-BUILD
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+        cgs: [{credential: crd-hazwoper, kind: required}]
+      - id: DB-C20-T3
+        text: Decide from performance monitoring data whether to optimize, continue or transition an operating remedy, recording the evidence for the decision
+        wf: WF-MONITOR
+        fd: remote-capable
+        form: partial
+        prof: [WP-PROJECT]
+      - id: DB-C20-T4
+        text: Conduct a periodic review of a closed site's remedy and institutional controls, recording whether the remedy remains protective
+        wf: WF-MONITOR
+        fd: on-site-preferred
+        form: partial
+        prof: [WP-REGPROGRAM]
+        rel: [public]
+      - id: DB-C20-T5
+        text: Review a cleanup fund reimbursement claim against the approved work plan and eligible costs before approving payment
+        wf: WF-RESOURCE
+        fd: remote
+        form: 'no'
+        prof: [WP-REGPROGRAM]
+      - id: DB-C20-T6
+        text: Check an AI-drafted remedial alternatives analysis against site data and cleanup criteria before it is submitted to the regulator
+        wf: WF-REVIEW
+        fd: remote
+        form: 'yes'
+        prof: [WP-PROJECT]
+        note: Review-and-defence task split from AI-assisted drafting (ADR-0003 G-2; P-FS-11).
+    ind:
+      L2:
+        - t: Oversees a contractor's daily remediation work against the design and safety plan, documenting each deviation and the corrective action agreed on site.
+          a: [task-book-observation, record-audit]
+          st: [T2]
+          sc: true
+        - t: Reviews a cleanup fund claim against the approved work plan, approving or denying each cost item with the eligibility basis recorded.
+          a: [seeded-error-work-sample, record-audit]
+          st: [T5]
+      L3:
+        - t: Compares remedial alternatives for a site with multiple contaminants and media, documenting how each alternative meets the threshold criteria and why the preferred one was chosen.
+          a: [work-sample, portfolio-review]
+          st: [T1]
+          att: ATT-CPX
+        - t: Rejects or corrects statements in an AI-drafted alternatives analysis that conflict with site data or cleanup criteria, recording each correction before submission.
+          m: assisted
+          a: [seeded-error-work-sample]
+          st: [T6]
+          att: ATT-AUG
+      L4:
+        - t: Decides whether an operating remedy should be optimized or transitioned from performance trends, defending the decision to regulators and the community with the supporting data.
+          modes: [MODE-RESOLVE]
+          a: [moot-defense, portfolio-review]
+          st: [T3]
+          att: ATT-SCO
+        - t: Sets the programme's periodic-review protocol for closed sites, defining the evidence that institutional controls are still effective.
+          a: [portfolio-review]
+          st: [T4]
+          att: ATT-GUI
+
+  - id: PS-C13
+    label: Conduct environmental due diligence for property transactions
+    alt: [Phase I environmental site assessment, All appropriate inquiries, Transaction screen]
+    def: >-
+      Assessing a property before acquisition or financing to the inquiry standard that conveys landowner liability
+      protection: records and database review, site reconnaissance, interviews and judgment of which findings are
+      recognized environmental conditions, with scoping of follow-up sampling. Excludes site characterization sampling
+      (DB-C19).
+    stmt: >-
+      Reviews historical, regulatory and physical-setting records, inspects the property and adjoining uses, interviews
+      owners and users, determines which findings are recognized environmental conditions and scopes follow-up sampling,
+      signing the findings as the qualified environmental professional where the standard requires it.
+    span: [L1, L3]
+    sub: [P04]
+    att: ATT-AUT
+    note: >-
+      Environmental due diligence for property transactions (P04); private-led (consulting and finance) with local
+      and state brownfield variants. The federal 'environmental professional' definition is a regulatory-definition
+      sign-off (DB-CR-032), not a level. Database reports and AI-drafted summaries are L4 tools; their verification
+      is a task. Basis [J]: PS and DB Phase 2.
+    tasks:
+      - id: PS-C13-T1
+        text: Review historical records, aerial photographs and regulatory databases to identify past property uses that could have released hazardous substances
+        wf: WF-ASSESS
+        fd: remote
+        form: 'yes'
+        prof: [WP-PROJECT]
+        rel: [client]
+      - id: PS-C13-T2
+        text: Conduct a site reconnaissance of a property and adjoining uses, documenting observed conditions that indicate a release
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: PS-C13-T3
+        text: Determine which findings are recognized environmental conditions and state the basis for each determination in the assessment report
+        wf: WF-ASSESS
+        fd: remote
+        form: 'yes'
+        prof: [WP-PROJECT]
+        so: regulatory-definition
+      - id: PS-C13-T4
+        text: Verify a database report and an AI-drafted records summary against source records before relying on them in the assessment
+        wf: WF-ASSESS
+        fd: remote
+        form: 'yes'
+        prof: [WP-PROJECT]
+        note: Verification task split from AI-assisted records summary (ADR-0003 G-2).
+      - id: PS-C13-T5
+        text: Scope a follow-up investigation that tests each recognized environmental condition with targeted sampling
+        wf: WF-PLAN
+        fd: remote
+        form: partial
+        prof: [WP-PROJECT]
+        rel: [client]
+    ind:
+      L1:
+        - t: Assembles historical sources for a property under a reviewer's direction, listing every source checked and the property uses it shows.
+          a: [work-sample, record-audit]
+          st: [T1]
+        - t: Photographs and describes conditions during a site reconnaissance using the firm's checklist, so that the reviewer can locate each observation on the site plan.
+          a: [task-book-observation]
+          st: [T2]
+      L2:
+        - t: Prepares an assessment for a routine commercial property, stating for each finding whether it is a recognized environmental condition and the evidence for that call.
+          a: [work-sample, record-audit]
+          st: [T3]
+        - t: Rejects or corrects entries in an AI-drafted records summary that do not match the source records, documenting each correction in the file.
+          m: assisted
+          a: [seeded-error-work-sample]
+          st: [T4]
+          att: ATT-AUG
+      L3:
+        - t: Determines recognized environmental conditions for a non-routine property, such as a former industrial site with incomplete records, documenting data gaps and their significance.
+          a: [work-sample, structured-interview-bars]
+          st: [T3]
+          att: ATT-CPX
+        - t: Scopes follow-up sampling that tests each recognized environmental condition, explaining to the client how results will change the transaction decision.
+          modes: [MODE-ENGAGE]
+          a: [work-sample, simulation-role-play]
+          st: [T5]
+          att: ATT-SCO
+
+  - id: SL-C14
+    label: Regulate solid waste and materials management facilities
+    alt: [Solid waste facility permitting and inspection, Landfill regulation]
+    def: >-
+      Regulator-side permitting, inspection and enforcement at landfills, transfer stations, recycling, composting,
+      scrap tire and other materials facilities, including review of design, operating, financial assurance, closure and
+      post-closure plans. Excludes facility operation (DB-C16) and hazardous waste facility permits (SL-C02 waste
+      enactment).
+    stmt: >-
+      Reviews solid waste facility applications and design, operating, closure and post-closure plans, sets and checks
+      financial assurance, inspects facilities for permit compliance and reviews their monitoring reports, so that
+      authorizations are enforceable and conditions are verified in the field and in the record.
+    span: [L2, L4]
+    sub: [P02]
+    att: ATT-CPX
+    src: [SL-059, SL-078, SL-083, SL-072]
+    note: >-
+      Regulating solid waste and materials facilities (P02; regulator variant beside DB-C16). Regulator side of role
+      R29. Basis [E] for the function in state classes (SL-059, SL-078, SL-083, SL-072); [J] for content.
+    tasks:
+      - id: SL-C14-T1
+        text: Review a landfill permit application's design, operating, closure and post-closure plans against applicable requirements, issuing deficiency notices
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+        rel: [stakeholder]
+      - id: SL-C14-T2
+        text: Inspect a transfer station or composting facility for permit compliance, documenting violations with photographs and measurements
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+      - id: SL-C14-T3
+        text: Calculate the financial assurance a facility must hold from its closure and post-closure cost estimates and verify the instrument provided
+        wf: WF-RESOURCE
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM]
+      - id: SL-C14-T4
+        text: Review a permitted landfill's groundwater and gas monitoring reports, requiring assessment monitoring when results exceed background
+        wf: WF-MONITOR
+        fd: remote
+        form: partial
+        prof: [WP-REGPROGRAM, WP-COMPLIANCE]
+    ind:
+      L2:
+        - t: Inspects a routine materials facility against its permit, documenting each violation with the permit condition, evidence and photograph so that the case file is complete.
+          a: [task-book-observation, record-audit]
+          st: [T2]
+        - t: Reviews a semi-annual groundwater monitoring report against background values, identifying each exceedance that requires assessment monitoring.
+          a: [seeded-error-work-sample]
+          st: [T4]
+      L3:
+        - t: Reviews a landfill permit application's design and closure plans, writing deficiency notices that cite the requirement and the plan section affected.
+          a: [work-sample, record-audit]
+          st: [T1]
+          att: ATT-CPX
+        - t: Calculates the financial assurance required from cost estimates and checks the instrument provided, documenting any shortfall and the required correction.
+          a: [work-sample]
+          st: [T3]
+          att: ATT-KNO
+      L4:
+        - t: Drafts permit conditions for a non-routine facility, such as an organics digester co-located with a landfill, that inspectors can verify in the field.
+          a: [work-sample, portfolio-review]
+          st: [T1]
+          att: ATT-GUI
+        - t: Resolves a contested permit condition with an operator's engineer and counsel, recording the agreed condition and its technical basis in the permit record.
+          modes: [MODE-RESOLVE]
+          a: [moot-defense, portfolio-review]
+          st: [T1]
+          att: ATT-SCO
+
+  - id: v1-3.7.1
+    label: Develop materials-management strategies that keep products and materials in use
+    alt: [Circular economy strategy, Reverse logistics and closed-loop systems, Take-back programme design]
+    def: >-
+      Assessing where products and materials leave productive use and designing reuse, repair, take-back,
+      reverse-logistics, industrial-symbiosis and recycled-content strategies for an organization, community or
+      region, with evaluation of environmental and economic effects. Excludes producer-responsibility administration
+      (DB-C17) and facility operation (DB-C16).
+    stmt: >-
+      Identifies where products and materials leave productive use, designs take-back, reverse-logistics, reuse and
+      industrial-symbiosis strategies with their collection and processing routes, and compares the strategies'
+      environmental and economic effects so that the chosen strategy can be tracked against stated targets.
+    span: [L1, L3]
+    sub: [P02, M01]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-04 and rewritten from corporate business-model framing toward materials strategy (DB, PS, DC
+      verdicts); absorbs v1 3.7.4 (reverse logistics). Digital product passports, blockchain, RFID and AI tools named
+      in v1 move to L4 (ADR-0003 T-1). Basis [J].
+    tasks:
+      - id: v1-3.7.1-T1
+        text: Design a take-back or product-as-a-service model for a product line, specifying collection, refurbishment and end-of-life routes
+        wf: WF-PLAN
+        fd: remote
+        form: 'no'
+        prof: [WP-PROJECT]
+        rel: [client]
+      - id: v1-3.7.1-T2
+        text: Identify circularity opportunities across a value chain from material flow data, ranking them by avoided material and cost
+        wf: WF-ASSESS
+        fd: remote
+        form: partial
+        prof: [WP-PROJECT]
+      - id: v1-3.7.1-T3
+        text: Match waste generators with material users in an industrial symbiosis network, recording each exchange's material, quantity and regulatory status
+        wf: WF-PLAN
+        fd: remote
+        form: 'no'
+        prof: [WP-PROJECT]
+        rel: [stakeholder]
+      - id: v1-3.7.4-T1
+        text: Design a reverse supply chain for returned products, specifying collection points, transport routes and processing destinations
+        wf: WF-PLAN
+        fd: remote
+        form: 'no'
+        prof: [WP-PROJECT]
+      - id: v1-3.7.4-T2
+        text: Specify a tracking system that records returned products and recovered materials from collection to final destination
+        wf: WF-PLAN
+        fd: remote
+        form: 'no'
+        prof: [WP-PROJECT]
+      - id: v1-3.7.4-T3
+        text: Forecast return volumes for a take-back programme from sales and product-life data to size refurbishment and recycling capacity
+        wf: WF-PLAN
+        fd: remote
+        form: 'no'
+        prof: [WP-PROJECT]
+    ind:
+      L1:
+        - t: Maps material inputs, products and wastes for a process under supervision, so that the map accounts for every stream in the facility's purchasing and waste records.
+          a: [work-sample]
+          st: [T2]
+          v1: ['v1:3.7.1:foundational:I3']
+        - t: Identifies linear material uses in a facility that could be reused or returned, citing the records that show each stream's volume.
+          a: [work-sample]
+          st: [T2]
+          v1: ['v1:3.7.1:foundational:I2']
+      L2:
+        - t: Designs a take-back route for a product line, specifying collection, sorting and end-of-life destinations with their expected recovery rates and costs.
+          a: [work-sample, portfolio-review]
+          st: [T1, v1-3.7.4-T1]
+          v1: ['v1:3.7.1:intermediate:I2']
+        - t: Ranks circularity options for a value chain by avoided virgin material, cost and implementation risk, documenting the assumptions behind each estimate.
+          a: [work-sample]
+          st: [T2]
+          v1: ['v1:3.7.1:intermediate:I6']
+      L3:
+        - t: Designs a multi-party materials strategy for a region or sector, recording each party's commitments and the indicators used to track progress.
+          a: [portfolio-review, counterpart-360]
+          st: [T3]
+          att: ATT-SCO
+          v1: ['v1:3.7.1:advanced:I2']
+        - t: Rejects or qualifies a material-flow opportunity identified by an automated analysis when site data or regulatory status contradict it, recording the evidence.
+          m: assisted
+          a: [seeded-error-work-sample]
+          st: [T2]
+          att: ATT-AUG
+
+  - id: v1-3.7.2
+    label: Plan and run waste reduction programmes for facilities and communities
+    alt: [Waste reduction and zero waste programmes, Source reduction programmes]
+    def: >-
+      Characterizing waste streams and designing source-reduction, reuse, separation and organics programmes for a
+      facility, institution or community, engaging generators to change practice and tracking generation and
+      diversion to show whether waste fell. Excludes facility operation (DB-C16) and producer-responsibility
+      administration (DB-C17).
+    stmt: >-
+      Characterizes waste streams through audits, designs source-reduction, reuse, separation and organics programmes,
+      engages generators to change practice and tracks generation and diversion against baseline, so that the
+      programme can show whether it reduced waste and where to act next.
+    span: [L1, L3]
+    sub: [P02]
+    att: ATT-AUT
+    note: >-
+      Moved to MOD-04 (P02). Rewritten from v1's technology-led framing; sensors, analytics platforms and gamified
+      apps go to L4 (ADR-0003 T-1). Zero-waste certifications (e.g. a GBCI-administered facility certification) are
+      Credential or L4 standards, not levels. Basis [J].
+    tasks:
+      - id: v1-3.7.2-T1
+        text: Conduct a waste characterization audit by sorting and weighing samples from a facility's waste stream following a statistical sampling protocol
+        wf: WF-ASSESS
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-PROJECT]
+      - id: v1-3.7.2-T2
+        text: Track waste generation and diversion by stream, checking hauler and scale data for gaps before reporting progress
+        wf: WF-MONITOR
+        fd: remote
+        form: 'no'
+        prof: [WP-PROJECT, WP-DISCLOSURE]
+      - id: v1-3.7.2-T3
+        text: Design a source-separation campaign for a community or institution, testing messages with a pilot group before full rollout
+        wf: WF-PLAN
+        fd: remote-capable
+        form: 'no'
+        prof: [WP-PROJECT]
+        modes: [MODE-ENGAGE]
+        rel: [public]
+    ind:
+      L1:
+        - t: Sorts and weighs audit samples into the protocol's material categories under supervision, recording weights that reconcile with the sample total within tolerance.
+          a: [task-book-observation]
+          st: [T1]
+          v1: ['v1:3.7.2:foundational:I2']
+        - t: Records monthly generation and diversion figures from hauler and scale reports, flagging every missing or inconsistent figure to the programme lead.
+          a: [record-audit]
+          st: [T2]
+          v1: ['v1:3.7.2:foundational:I3']
+      L2:
+        - t: Designs a waste characterization audit for a facility, specifying sample size, sorting categories and timing so that results estimate composition within a stated error.
+          a: [work-sample]
+          st: [T1]
+        - t: Designs a source-separation programme for an institution from audit results, setting targets and the measures used to check them.
+          a: [work-sample, portfolio-review]
+          st: [T3]
+          v1: ['v1:3.7.2:intermediate:I1']
+      L3:
+        - t: Evaluates a community waste reduction programme against its baseline, attributing changes in generation and diversion to programme actions with stated uncertainty.
+          a: [work-sample, structured-interview-bars]
+          st: [T2]
+          att: ATT-CPX
+        - t: Negotiates reduction and diversion commitments with large generators, recording each commitment and how it will be verified.
+          modes: [MODE-ENGAGE]
+          a: [portfolio-review, counterpart-360]
+          st: [T3]
+          att: ATT-SCO
+
+  - id: v1-3.7.5
+    label: Conduct material flow analysis for facilities, supply chains and regions
+    alt: [Material flow analysis, Industrial ecology accounting]
+    def: >-
+      Building mass-balanced accounts of material stocks and flows for a facility, supply chain or region, reconciling
+      data from several sources with stated uncertainty, and using the accounts to locate losses and compare
+      material-efficiency and circularity scenarios. Excludes product life-cycle assessment (core v1 3.7.3).
+    stmt: >-
+      Builds mass-balanced material flow accounts for a facility, supply chain or region, reconciles conflicting data
+      sources with stated uncertainty, and models scenarios that show how proposed interventions change virgin-material
+      demand, losses and disposal.
+    span: [L1, L3]
+    sub: [P02]
+    att: ATT-KNO
+    note: >-
+      Material flow analysis kept as a capability in MOD-04 (DB verdict); software, blockchain, sensors and digital
+      twins named in v1 move to L4 (ADR-0003 T-1). DC-heavy analytical method. Basis [J].
+    tasks:
+      - id: v1-3.7.5-T1
+        text: Build a mass-balanced material flow account for a facility or region, reconciling inputs, stocks, outputs and losses with stated uncertainty
+        wf: WF-ASSESS
+        fd: remote
+        form: partial
+        prof: [WP-PROJECT, WP-RESEARCH]
+      - id: v1-3.7.5-T2
+        text: Model material-flow scenarios that compare the effect of proposed circularity interventions on virgin-material demand and disposal
+        wf: WF-PLAN
+        fd: remote
+        form: 'no'
+        prof: [WP-PROJECT]
+      - id: v1-3.7.5-T3
+        text: Specify a material-tracking data system for a supply chain, defining data sources, verification checks and reporting outputs
+        wf: WF-PLAN
+        fd: remote
+        form: 'no'
+        prof: [WP-PROJECT]
+    ind:
+      L1:
+        - t: Compiles input and output quantities for a process from purchasing, production and waste records, so that the balance closes within the tolerance the analyst sets.
+          a: [work-sample]
+          st: [T1]
+          v1: ['v1:3.7.5:foundational:I2', 'v1:3.7.5:foundational:I4']
+        - t: Draws a material flow diagram for a facility from a supplied account, labelling every flow with its quantity and data source.
+          a: [work-sample]
+          st: [T1]
+          v1: ['v1:3.7.5:foundational:I1']
+      L2:
+        - t: Builds a material flow account for a facility or supply chain, reconciling conflicting data sources and stating the uncertainty of each flow.
+          a: [work-sample, portfolio-review]
+          st: [T1]
+          v1: ['v1:3.7.5:intermediate:I1']
+        - t: Models two or more intervention scenarios on a material flow account, reporting the change in virgin-material demand and disposal with stated assumptions.
+          a: [work-sample]
+          st: [T2]
+      L3:
+        - t: Builds a regional or dynamic material flow account where data are sparse, documenting the estimation methods and testing their sensitivity.
+          a: [work-sample, portfolio-review]
+          st: [T1]
+          att: ATT-CPX
+          v1: ['v1:3.7.5:advanced:I1', 'v1:3.7.5:advanced:I6']
+        - t: Specifies the data checks a material-tracking system must pass before its outputs are used in reporting, including checks of automated data feeds.
+          m: supervisory
+          a: [portfolio-review]
+          st: [T3]
+          att: ATT-AUG
+
+enactments:
+  - id: ena-sl-c02-waste
+    comp: SL-C02
+    label: Hazardous waste facility permitting enactment of environmental permit writing
+    sub: [P03, P04]
+    ap: regulator
+    note: >-
+      Permit writers in state hazardous waste programmes (authorized under the Resource Conservation and Recovery Act)
+      and EPA regions write operating, post-closure and corrective action permits for treatment, storage and disposal
+      facilities, making closure, financial assurance, groundwater monitoring and corrective action requirements
+      enforceable. Solid waste facility permits are the module competency SL-C14.
+    tasks:
+      - id: ena-sl-c02-waste-t1
+        text: Draft permit conditions for a hazardous waste storage or treatment facility that make closure, corrective action and financial assurance requirements enforceable
+        wf: WF-AUTHORIZE
+        fd: remote
+        form: 'yes'
+        prof: [WP-REGPROGRAM]
+  - id: ena-sl-c03-waste
+    comp: SL-C03
+    label: Hazardous and solid waste inspection enactment of regulatory compliance inspection
+    sub: [P02, P03]
+    ap: regulator
+    note: >-
+      Waste inspectors examine generators, transporters, treatment, storage and disposal facilities and solid waste
+      facilities: accumulation areas, containers, manifests, training and contingency records, and facility operating
+      conditions. Generator inspections test the determinations made under the module competency DB-C18.
+    tasks:
+      - id: ena-sl-c03-waste-t1
+        text: Inspect a hazardous waste generator's accumulation areas, manifests and training records against applicable requirements, documenting each violation
+        wf: WF-ENFORCE
+        fd: on-site-required
+        form: 'yes'
+        prof: [WP-COMPLIANCE]
+  - id: ena-sl-c04-waste
+    comp: SL-C04
+    label: Waste and cleanup enforcement enactment of environmental enforcement cases
+    sub: [P02, P03, P04]
+    ap: regulator
+    note: >-
+      Waste enforcement cases run from inspection findings to administrative orders, penalties and consent agreements
+      for generators and facilities, and in cleanup programmes to unilateral orders, settlements with potentially
+      responsible parties and cost recovery, where liability allocation and site history shape the case.
+  - id: ena-sc-c14-waste
+    comp: SC-C14
+    label: Hazardous waste programme authorization enactment of delegated regulatory programmes
+    sub: [P03]
+    ap: regulator
+    note: >-
+      States run hazardous waste programmes in lieu of the federal programme once EPA authorizes them, and must adopt
+      new federal rules to keep authorization current; programme revision applications, EPA oversight and state
+      cleanup programme memoranda of agreement are the enactment's characteristic work.
+  - id: ena-fc-c16-waste
+    comp: FC-C16
+    label: Contaminated-site enactment of trace and emerging-contaminant sampling
+    sub: [P04]
+    ap: service-provider
+    note: >-
+      Site characterization for emerging contaminants such as PFAS requires sampling that avoids cross-contamination
+      from field equipment, clothing and materials, with field blanks and equipment blanks that show contamination
+      control, because reporting limits are near background introduced by sampling.
+  - id: ena-6.7.1-waste
+    comp: v1-6.7.1
+    label: Risk-based cleanup enactment of environmental health risk assessment
+    sub: [P04]
+    ap: advisor-researcher
+    note: >-
+      Remediation programmes derive risk-based cleanup levels and evaluate site risks for current and reasonably
+      anticipated land use, including vapour intrusion and groundwater exposure pathways, which feed remedy selection
+      under DB-C20.
+  - id: ena-db-c52-waste
+    comp: DB-C52
+    label: Waste facility siting enactment of cumulative burden analysis
+    sub: [P02, P03]
+    ap: regulator
+    note: >-
+      Where state or local law requires it, solid and hazardous waste facility permits and siting decisions consider
+      existing pollution burdens and population vulnerability in the affected area, with analysis methods and
+      decision effects set by the applicable instrument (venue applicability per ADR-0016).
+  - id: ena-ps-c09-waste
+    comp: PS-C09
+    label: Landfill and materials enactment of greenhouse gas inventories
+    sub: [P02]
+    ap: regulated-party
+    note: >-
+      Landfill owners and municipalities estimate landfill methane generation and collection efficiency, and
+      materials programmes estimate avoided emissions, for facility reporting and community inventories; methane
+      models, surface-emission surveys and gas-flow data are module-specific inputs.
+  - id: ena-fc-c14-waste
+    comp: FC-C14
+    label: Landfill survey enactment of uncrewed and automated field systems
+    sub: [P02, P04]
+    ap: service-provider
+    note: >-
+      Landfill and remediation sites use uncrewed aircraft for volumetric airspace surveys, cover-integrity imagery and
+      methane-leak screening; flight planning must account for active equipment, landfill gas hazards and site safety
+      rules.

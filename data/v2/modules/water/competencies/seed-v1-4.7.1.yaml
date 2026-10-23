@@ -1,18 +1,48 @@
 id: seed:v1-4.7.1
 type: Competency
 prefLabel:
-  en: Green infrastructure installation
+  en: Install green stormwater infrastructure to design specifications
+altLabel:
+  en:
+  - Green infrastructure installation
+  - Bioretention and permeable pavement installation
+definition:
+  en: Field construction and establishment of green stormwater infrastructure (bioretention, swales, permeable pavement, green roofs and similar measures) so that the installed measure matches its design and functions as intended. Covers grading, media and plant installation, erosion control during construction and as-built verification. Excludes design and long-term inspection (DB-C09).
 statement:
-  en: Installing systems that manage stormwater, reduce heat, and provide ecological benefits in urban areas.
+  en: 'Builds green stormwater infrastructure to design specifications: sets grades and elevations, places engineered media and plants, protects the work from sediment during construction and verifies by field tests that the installed measure infiltrates and drains as designed before handover.'
 notation:
 - scheme: EMSTv1
   value: 4.7.1
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - seed:ind-4.7.1-l1-a
+  - seed:ind-4.7.1-l1-b
+- level: L2
+  indicators:
+  - seed:ind-4.7.1-l2-a
+  - seed:ind-4.7.1-l2-b
+- level: L3
+  indicators:
+  - seed:ind-4.7.1-l3-a
+  - seed:ind-4.7.1-l3-b
+homeModule: water
+subsectors:
+- W03
+- U01
+reusability: subsector-specific
 layer: L1
 module: water
-homeModule: water
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Domain:
   code: '4'
   label: Field Operations Skills
@@ -20,14 +50,12 @@ v1SkillArea:
   code: '4.7'
   label: Urban Environmental Infrastructure
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-01 water. Rationale: Green infrastructure (W03); DB-C09 inspection competency sits beside it; add O&M inspection tasks (DB, FC verdicts). Role verdicts considered: DB:carry|FC:carry.'
-license: CC0-1.0
-sensitivity: public
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-01 water. Rationale: Green infrastructure (W03); DB-C09 inspection competency sits beside it; add O&M inspection tasks (DB, FC verdicts). Role verdicts considered: DB:carry|FC:carry. WP-06: Moved to MOD-01 (W03). Rewritten to the installation function; programme leadership indicators removed (B03); performance inspection sits in DB-C09 (DB, FC verdicts). Green-infrastructure installer certificates are Credential gates. Basis [J].'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:4.7.1
     v1Code: 4.7.1
@@ -38,7 +66,8 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
   - v1Key: v1:4.7.1
     v1Code: 4.7.1
     v1Table: source_text/competencies
@@ -47,10 +76,12 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
 v1Seed:
   v1Title: Green infrastructure installation
   v1Description: Installing systems that manage stormwater, reduce heat, and provide ecological benefits in urban areas.

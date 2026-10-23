@@ -1,18 +1,47 @@
 id: seed:v1-3.7.5
 type: Competency
 prefLabel:
-  en: Material flow analysis and optimization
+  en: Conduct material flow analysis for facilities, supply chains and regions
+altLabel:
+  en:
+  - Material flow analysis
+  - Industrial ecology accounting
+definition:
+  en: Building mass-balanced accounts of material stocks and flows for a facility, supply chain or region, reconciling data from several sources with stated uncertainty, and using the accounts to locate losses and compare material-efficiency and circularity scenarios. Excludes product life-cycle assessment (core v1 3.7.3).
 statement:
-  en: Analyzing and optimizing material flows through industrial systems, supply chains, and economies using data analytics and systems modeling.
+  en: Builds mass-balanced material flow accounts for a facility, supply chain or region, reconciles conflicting data sources with stated uncertainty, and models scenarios that show how proposed interventions change virgin-material demand, losses and disposal.
 notation:
 - scheme: EMSTv1
   value: 3.7.5
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - seed:ind-3.7.5-l1-a
+  - seed:ind-3.7.5-l1-b
+- level: L2
+  indicators:
+  - seed:ind-3.7.5-l2-a
+  - seed:ind-3.7.5-l2-b
+- level: L3
+  indicators:
+  - seed:ind-3.7.5-l3-a
+  - seed:ind-3.7.5-l3-b
+homeModule: waste
+subsectors:
+- P02
+reusability: subsector-specific
 layer: L1
 module: waste
-homeModule: waste
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Domain:
   code: '3'
   label: Management & Administrative Skills
@@ -20,14 +49,12 @@ v1SkillArea:
   code: '3.7'
   label: Circular Economy & Waste Systems
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-04 waste. Rationale: Material flow analysis kept as a capability in MOD-04 (DB verdict); tool-bound tasks to L4. Role verdicts considered: DC:change|DB:change|PS:change.'
-license: CC0-1.0
-sensitivity: public
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-04 waste. Rationale: Material flow analysis kept as a capability in MOD-04 (DB verdict); tool-bound tasks to L4. Role verdicts considered: DC:change|DB:change|PS:change. WP-06: Material flow analysis kept as a capability in MOD-04 (DB verdict); software, blockchain, sensors and digital twins named in v1 move to L4 (ADR-0003 T-1). DC-heavy analytical method. Basis [J].'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:3.7.5
     v1Code: 3.7.5
@@ -38,7 +65,8 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
   - v1Key: v1:3.7.5
     v1Code: 3.7.5
     v1Table: source_text/competencies
@@ -47,10 +75,12 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
 v1Seed:
   v1Title: Material flow analysis and optimization
   v1Description: Analyzing and optimizing material flows through industrial systems, supply chains, and economies using data analytics and systems modeling.

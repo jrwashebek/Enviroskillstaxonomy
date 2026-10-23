@@ -1,18 +1,52 @@
 id: seed:v1-4.7.3
 type: Competency
 prefLabel:
-  en: Stormwater system management
+  en: Manage a municipal stormwater programme to meet permit conditions
+altLabel:
+  en:
+  - Stormwater system management
+  - MS4 programme management
+  - Municipal separate storm sewer system compliance
+definition:
+  en: 'Running a local government''s stormwater programme so that the drainage system and its control measures are maintained and the programme meets its discharge permit: maintenance planning, illicit-discharge detection, public education, construction and post-construction oversight, monitoring and annual reporting. Excludes individual control-measure inspection (DB-C09) and system design.'
 statement:
-  en: Operating and maintaining urban drainage systems and best management practices for water quality.
+  en: Plans and runs maintenance of drainage infrastructure and stormwater control measures, detects and eliminates illicit discharges, coordinates construction and post-construction oversight and education, and compiles the monitoring and activity record the permit requires, so that the programme can show compliance at annual report and audit.
 notation:
 - scheme: EMSTv1
   value: 4.7.3
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-4.7.3-l1-a
+  - seed:ind-4.7.3-l1-b
+- level: L2
+  indicators:
+  - seed:ind-4.7.3-l2-a
+  - seed:ind-4.7.3-l2-b
+- level: L3
+  indicators:
+  - seed:ind-4.7.3-l3-a
+  - seed:ind-4.7.3-l3-b
+- level: L4
+  indicators:
+  - seed:ind-4.7.3-l4-a
+  - seed:ind-4.7.3-l4-b
+homeModule: water
+subsectors:
+- W03
+reusability: subsector-specific
 layer: L1
 module: water
-homeModule: water
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Domain:
   code: '4'
   label: Field Operations Skills
@@ -20,14 +54,12 @@ v1SkillArea:
   code: '4.7'
   label: Urban Environmental Infrastructure
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-01 water. Rationale: One of few v1 items native to local government (MS4); seed of the water module; add BMP/MS4 inspection tasks (SL, DB, FC verdicts). Role verdicts considered: DB:carry|FC:carry|SL:carry.'
-license: CC0-1.0
-sensitivity: public
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-01 water. Rationale: One of few v1 items native to local government (MS4); seed of the water module; add BMP/MS4 inspection tasks (SL, DB, FC verdicts). Role verdicts considered: DB:carry|FC:carry|SL:carry. WP-06: Moved to MOD-01 (W03); one of few v1 items native to local government (SL, DB, FC verdicts). Rewritten from v1 ''stormwater system management'' to the programme function; permit-programme names kept as altLabel only (ADR-0016 naming rule). Basis [J].'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:4.7.3
     v1Code: 4.7.3
@@ -38,7 +70,8 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
   - v1Key: v1:4.7.3
     v1Code: 4.7.3
     v1Table: source_text/competencies
@@ -47,10 +80,12 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
 v1Seed:
   v1Title: Stormwater system management
   v1Description: Operating and maintaining urban drainage systems and best management practices for water quality.

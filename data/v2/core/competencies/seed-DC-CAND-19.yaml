@@ -1,0 +1,66 @@
+id: seed:DC-CAND-19
+type: Competency
+prefLabel:
+  en: Assess and manage model risk for consequential environmental decisions
+altLabel:
+  en:
+  - Model risk management
+definition:
+  en: The capability to inventory models and AI systems that inform decisions, tier them by consequence, set proportional requirements for validation, documentation, independent review, monitoring and retirement, and decide when a model must not be used. Authorizing adoption stays with statecraft.
+statement:
+  en: Maintains an inventory of models and AI systems that inform environmental decisions; tiers them by consequence for payments, permits, enforcement, safety, rights and protected resources; sets proportional requirements for validation, documentation, independent review, monitoring and retirement; provides independent challenge to model owners; and decides when a model must not be used.
+editorialNote:
+  en: 'DC specialist responsible-AI competency (ADR-0025 §2). Survivor: absorbs FS-C02 and the risk-tiering part of v1 7.1.4. The high-impact environmental archetypes are models that drive payments or enforcement [E: DC-001]. Policy instruments that define high-impact use live in the L5 registry.'
+notation:
+- scheme: EMST-candidate
+  value: DC-CAND-19
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:dc-cand-19-l2-a
+  - seed:dc-cand-19-l2-b
+- level: L3
+  indicators:
+  - seed:dc-cand-19-l3-a
+  - seed:dc-cand-19-l3-b
+- level: L4
+  indicators:
+  - seed:dc-cand-19-l4-a
+  - seed:dc-cand-19-l4-b
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: draft
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:7.1.4
+    relation: split-from
+    note: risk tiering (ADR-0025 §3)
+  sources:
+  - DC-001
+  - DC-005
+  - DC-007
+  - DC-051
+  - DC-059
+  adr:
+  - ADR-0003
+  - ADR-0025

@@ -1,0 +1,48 @@
+id: seed:sc-c09-l4-b
+type: Indicator
+prefLabel:
+  en: Coaches project coordinators on interagency disputes, evaluating their coordination plans against the program standard before projects start.
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SC-C09
+level: L4
+statement:
+  en: Coaches project coordinators on interagency disputes, evaluating their coordination plans against the program standard before projects start.
+augmentationMode: unaided
+assessmentMethods:
+- portfolio-review
+useClass: develop
+obs4: 2
+jurisdictionVariable: false
+evidencePlan:
+  en: Pilot the assessment method with two trained raters on synthetic cases before use; promote to obs4 3 only after IO double-coding.
+evidenceTypes:
+- coaching record
+- plan reviews
+servedTasks:
+- seed:v1-6.5.2-T2
+distinguishingAttribute: ATT-FOR
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

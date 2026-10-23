@@ -1,0 +1,44 @@
+id: seed:fc-edrr-contain
+type: Task
+prefLabel:
+  en: Delimit a newly confirmed invasive infestation within days of confirmation so that the rapid-response treatment covers every occupied patch
+statement:
+  en: Delimit a newly confirmed invasive infestation within days of confirmation so that the rapid-response treatment covers every occupied patch
+textSha256: 2cd7f31a3bc0f0fc033f07cd1396b940625e0475438c2ef5adb1fd65b6e815d4
+supports:
+- competency: seed:v1-4.2.2
+  strength: primary
+workFunction: WF-RESPOND
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: ecosystem-type
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: adaptation or decision in place.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

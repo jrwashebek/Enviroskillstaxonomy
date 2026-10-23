@@ -1,0 +1,46 @@
+id: seed:sc-c04-l3-c
+type: Indicator
+prefLabel:
+  en: Checks AI-assisted portions of a sponsor-prepared document against sources after requiring the preparer to disclose which content was machine-drafted.
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SC-C04
+level: L3
+statement:
+  en: Checks AI-assisted portions of a sponsor-prepared document against sources after requiring the preparer to disclose which content was machine-drafted.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- disclosure
+- verification log
+servedTasks:
+- seed:sc-document-independent-evaluation
+distinguishingAttribute: ATT-AUG
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

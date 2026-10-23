@@ -1,19 +1,45 @@
 id: seed:v1-6.4.5
 type: Competency
 prefLabel:
-  en: Legislative process navigation
+  en: Navigate legislative and governing-body processes for environmental programs
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to follow and take part in the legislative, appropriations and governing-body processes that shape a program, providing technical assistance, testimony, briefings and fiscal or implementation notes within the organization's rules on lobbying and official communication.
 statement:
-  en: Understanding how laws are made and implemented, and working effectively within legislative systems that affect environmental management.
+  en: Tracks bills, ordinances and appropriations measures that affect a program; prepares technical assistance, testimony, briefings and fiscal or implementation notes for legislators, councils, boards and commissions; and works with their staff within the organization's rules on lobbying and official communications.
 competencyType: practice
+levelSpan:
+  min: L2
+  max: L5
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - legislative process navigation
+  - legislative liaison
+  - testimony preparation
+  - fiscal notes
+instrumentSensitivity:
+- mechanism: DM-19
+  rationale:
+    en: Programme funding is set or changed through appropriations measures.
+  evidenceLabel: J
+- mechanism: DM-14
+  rationale:
+    en: Automated bill tracking compresses monitoring tasks.
+  evidenceLabel: E
+  sources:
+  - SC-004
 notation:
 - scheme: EMSTv1
   value: 6.4.5
-layer: L1
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Domain:
   code: '6'
   label: Policy & Regulatory Skills
@@ -21,14 +47,18 @@ v1SkillArea:
   code: '6.4'
   label: Policy Development
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-RULE (SC). Rationale: Broadened to legislative, appropriations and governing-body processes (Congress, legislatures, county boards, utility commissions); Tribal council enactment held (SC verdict). Role verdicts considered: SC:change.'
-license: CC0-1.0
-sensitivity: public
+  en: 'WP-05 (A5 SC). v1 6.4.5 rewrite, broadened to legislative, appropriations and governing-body processes (Congress, legislatures, county boards, utility commissions) [J; SC verdict]. Bill tracking was coded V in v1 [E: SC-004]; the review and fiscal-note tasks remain human. The Tribal council enactment is held content (not authored). L5 indicators await SME confirmation. Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-RULE (SC). Rationale: Broadened to legislative, appropriations and governing-body processes (Congress, legislatures, county boards, utility commissions); Tribal council enactment held (SC verdict). Role verdicts considered: SC:change.'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-004
   derivedFrom:
   - v1Key: v1:6.4.5
     v1Code: 6.4.5
@@ -39,193 +69,36 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:6.4.5
     v1Code: 6.4.5
     v1Table: source_text/competencies
     sourceTextLine: 13924
     relation: recovered
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Legislative process navigation
-  v1Description: Understanding how laws are made and implemented, and working effectively within legislative systems that affect environmental management.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:6.4.5:foundational
-    knowledge: Understands legislative process and how laws are made
-    application: Supports legislative tracking and engagement
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.4.5:foundational:I1
-      n: 1
-      text: Explains how bills become laws
-      origin: database
-    - v1Key: v1:6.4.5:foundational:I2
-      n: 2
-      text: Tracks relevant legislation through databases
-      origin: database
-    - v1Key: v1:6.4.5:foundational:I3
-      n: 3
-      text: Summarizes legislative proposals
-      origin: database
-    - v1Key: v1:6.4.5:foundational:I4
-      n: 4
-      text: Understands committee structure and process
-      origin: database
-    - v1Key: v1:6.4.5:foundational:I5
-      n: 5
-      text: Compiles information for legislative briefings
-      origin: database
-    - v1Key: v1:6.4.5:foundational:I6
-      n: 6
-      text: Attends legislative hearings
-      origin: database
-    - v1Key: v1:6.4.5:foundational:I7
-      n: 7
-      text: Maintains relationships with legislative staff
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:6.4.5:intermediate
-    knowledge: Applies understanding of legislative process to advocacy and engagement
-    application: Engages with legislative process independently
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.4.5:intermediate:I1
-      n: 1
-      text: Analyzes legislation for environmental implications
-      origin: database
-    - v1Key: v1:6.4.5:intermediate:I2
-      n: 2
-      text: Prepares written testimony and statements
-      origin: database
-    - v1Key: v1:6.4.5:intermediate:I3
-      n: 3
-      text: Briefs legislators and staff on technical matters
-      origin: database
-    - v1Key: v1:6.4.5:intermediate:I4
-      n: 4
-      text: Tracks legislative developments proactively
-      origin: database
-    - v1Key: v1:6.4.5:intermediate:I5
-      n: 5
-      text: Builds relationships with legislative staff
-      origin: database
-    - v1Key: v1:6.4.5:intermediate:I6
-      n: 6
-      text: Coordinates organizational legislative strategy
-      origin: database
-    - v1Key: v1:6.4.5:intermediate:I7
-      n: 7
-      text: Provides technical assistance on environmental legislation
-      origin: restored-from-source-text
-    - v1Key: v1:6.4.5:intermediate:I8
-      n: 8
-      text: Monitors appropriations and budget processes
-      origin: restored-from-source-text
-    - v1Key: v1:6.4.5:intermediate:I9
-      n: 9
-      text: Engages in coalition advocacy
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:6.4.5:advanced
-    knowledge: Expert in legislative strategy and process
-    application: Leads legislative advocacy and engagement
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.4.5:advanced:I1
-      n: 1
-      text: Develops legislative strategy for organizations
-      origin: database
-    - v1Key: v1:6.4.5:advanced:I2
-      n: 2
-      text: Provides oral testimony at hearings
-      origin: database
-    - v1Key: v1:6.4.5:advanced:I3
-      n: 3
-      text: Drafts legislative language or amendments
-      origin: database
-    - v1Key: v1:6.4.5:advanced:I4
-      n: 4
-      text: Builds coalitions for legislative advocacy
-      origin: database
-    - v1Key: v1:6.4.5:advanced:I5
-      n: 5
-      text: Navigates complex legislative negotiations
-      origin: database
-    - v1Key: v1:6.4.5:advanced:I6
-      n: 6
-      text: Influences legislative outcomes
-      origin: database
-    - v1Key: v1:6.4.5:advanced:I7
-      n: 7
-      text: Manages legislative advocacy teams
-      origin: restored-from-source-text
-    - v1Key: v1:6.4.5:advanced:I8
-      n: 8
-      text: Provides legislative training
-      origin: restored-from-source-text
-    - v1Key: v1:6.4.5:advanced:I9
-      n: 9
-      text: Evaluates legislative effectiveness
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:6.4.5:expert
-    knowledge: Shapes legislative outcomes and policy
-    application: Leads major legislative initiatives
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:6.4.5:expert:I1
-      n: 1
-      text: Leads passage of major environmental legislation
-      origin: database
-    - v1Key: v1:6.4.5:expert:I2
-      n: 2
-      text: Influences legislative priorities and agendas
-      origin: database
-    - v1Key: v1:6.4.5:expert:I3
-      n: 3
-      text: Provides expert consultation to elected officials
-      origin: database
-    - v1Key: v1:6.4.5:expert:I4
-      n: 4
-      text: Recognized authority in legislative process
-      origin: database
-    - v1Key: v1:6.4.5:expert:I5
-      n: 5
-      text: Builds bipartisan support for legislation
-      origin: database
-    - v1Key: v1:6.4.5:expert:I6
-      n: 6
-      text: Leads major policy advocacy campaigns
-      origin: database
-    - v1Key: v1:6.4.5:expert:I7
-      n: 7
-      text: Shapes legislative strategy at national level
-      origin: restored-from-source-text
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:6.4.5:sector:public_agencies
-    text: Legislative affairs, testimony, technical assistance
-  - sector: private_sector
-    v1Key: v1:6.4.5:sector:private_sector
-    text: Government relations, legislative advocacy
-  - sector: ngos
-    v1Key: v1:6.4.5:sector:ngos
-    text: Legislative advocacy, grassroots campaigns, coalition building
-  - sector: consulting
-    v1Key: v1:6.4.5:sector:consulting
-    text: Legislative strategy, advocacy support
-  - sector: academia
-    v1Key: v1:6.4.5:sector:academia
-    text: Limited direct application; policy analysis of legislation
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L2
+  indicators:
+  - seed:v1-6-4-5-l2-a
+  - seed:v1-6-4-5-l2-b
+- level: L3
+  indicators:
+  - seed:v1-6-4-5-l3-a
+  - seed:v1-6-4-5-l3-b
+- level: L4
+  indicators:
+  - seed:v1-6-4-5-l4-a
+  - seed:v1-6-4-5-l4-b
+enactments:
+- seed:ena-v1-6-4-5-federal
+- seed:ena-v1-6-4-5-state
+- seed:ena-v1-6-4-5-local

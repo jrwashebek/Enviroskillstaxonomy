@@ -1,0 +1,61 @@
+id: seed:DB-C39
+type: Competency
+prefLabel:
+  en: Plan and run extreme heat preparedness and response programmes
+altLabel:
+  en:
+  - Extreme heat preparedness
+  - Heat health action planning
+definition:
+  en: 'Local and state programmes that reduce heat-related illness and death: mapping heat vulnerability, planning and activating cooling resources, alerts and outreach, coordinating protections for outdoor workers and high-risk residents, and evaluating outcomes with health partners. Excludes building energy design and general climate adaptation planning (core v1 1.5.3).'
+statement:
+  en: Maps heat vulnerability from temperature, health, housing and population data; prepares a heat response plan with activation thresholds; activates cooling resources, alerts and outreach when thresholds are met; and evaluates each season's response with health surveillance data in an after-action report that changes the next plan.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:ind-db-c39-l2-a
+  - seed:ind-db-c39-l2-b
+- level: L3
+  indicators:
+  - seed:ind-db-c39-l3-a
+  - seed:ind-db-c39-l3-b
+- level: L4
+  indicators:
+  - seed:ind-db-c39-l4-a
+  - seed:ind-db-c39-l4-b
+homeModule: envhealth
+subsectors:
+- H01
+- C02
+- C03
+reusability: subsector-specific
+layer: L1
+module: envhealth
+status: draft
+lifecycleState: emerging
+reviewBy: '2027-10-23'
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Extreme heat preparedness programmes are emerging (lifecycle emerging; reviewBy set). Home MOD-06 under the home-module rule because health departments carry the legal duty for most activation decisions; enacted in MOD-09 and MOD-08 later. Basis [J]: DB Phase 2; promotion evidence threshold per ADR-0015.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - DB-044
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

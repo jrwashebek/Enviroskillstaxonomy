@@ -1,0 +1,48 @@
+id: seed:ena-sl-c02-federal-regulator
+type: Enactment
+prefLabel:
+  en: Federal permitting authority
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: seed:SL-C02
+enactmentKind: actor
+actorType: federal-regulator
+authorityBasis:
+  en: Federal permit programmes where no state is authorized, and federal programmes never delegated (such as the Corps dredge-and-fill programme outside assumed states); federal objection authority over state-issued permits in delegated programmes.
+principal:
+  en: The regional administrator or district engineer who signs the permit.
+accountabilityVenue:
+  en: Federal administrative appeals boards; federal courts.
+authorityPosition: regulator
+characteristicInstruments:
+- seed:ins/wotus-definition
+- seed:ins/ghg-endangerment-rescission
+note:
+  en: Same permit-writing performance; the authority basis is federal and the oversight relationship runs the other way (mirror of the state delegated enactment of SC-C14) [J].
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - V2-06
+  - V2-07
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

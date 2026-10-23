@@ -1,34 +1,59 @@
 id: seed:v1-2.1.5
 type: Competency
 prefLabel:
-  en: Cartography and visualization
+  en: Design maps and visualizations that communicate environmental data and uncertainty
+altLabel:
+  en:
+  - Cartography and visualization
+definition:
+  en: The capability to design maps, charts and other visual products, including interactive and three-dimensional ones, whose scale, symbology, encoding and depiction of uncertainty fit the audience and the decision. Visualization and immersive platforms are L4.
 statement:
-  en: Creating clear, effective maps and visual displays that communicate geographic information to different audiences.
-competencyType: practice
+  en: Designs maps, charts and other visual products, including interactive and three-dimensional ones, whose scale, symbology, colour, visual encoding and depiction of uncertainty fit the audience and the decision; tests products with intended users; and avoids encodings that mislead.
+editorialNote:
+  en: 'Rewritten by WP-04 around visual encoding and uncertainty depiction for the audience; absorbs the durable part of v1 2.7.4 (immersive platforms to L4 watch seed:tool-immersive-platforms). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | MODE-ENGAGE (DC). Rationale: Durable share high; rewritten around visual encoding and uncertainty depiction for the audience; absorbs the durable part of 2.7.4 (DC disposition). Role verdicts considered: DC:change.'
 notation:
 - scheme: EMSTv1
   value: 2.1.5
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-v1-2.1.5-l1-a
+  - seed:ind-v1-2.1.5-l1-b
+- level: L2
+  indicators:
+  - seed:ind-v1-2.1.5-l2-a
+  - seed:ind-v1-2.1.5-l2-b
+- level: L3
+  indicators:
+  - seed:ind-v1-2.1.5-l3-a
+  - seed:ind-v1-2.1.5-l3-b
+- level: L4
+  indicators:
+  - seed:ind-v1-2.1.5-l4-a
+  - seed:ind-v1-2.1.5-l4-b
+homeModule: core
+reusability: cross-subsector
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '2'
-  label: Technical & Technological Skills
-v1SkillArea:
-  code: '2.1'
-  label: Geospatial Technologies
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | MODE-ENGAGE (DC). Rationale: Durable share high; rewritten around visual encoding and uncertainty depiction for the audience; absorbs the durable part of 2.7.4 (DC disposition). Role verdicts considered: DC:change.'
+lifecycleState: established
+useTier: develop
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:2.1.5
     v1Code: 2.1.5
@@ -39,181 +64,23 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:2.1.5
     v1Code: 2.1.5
     v1Table: source_text/competencies
     sourceTextLine: 3256
-    relation: recovered
+    relation: reference-only
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   - v1Key: v1:2.7.4
     v1Code: 2.7.4
     relation: merged-from
     note: v1 2.7.4 (move-to-tools) → seed:v1-2.1.5 per v1_disposition.csv
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Cartography and visualization
-  v1Description: Creating clear, effective maps and visual displays that communicate geographic information to different audiences.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:2.1.5:foundational
-    knowledge: Understands basic cartographic principles
-    application: Creates simple maps following templates
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:2.1.5:foundational:I1
-      n: 1
-      text: Applies appropriate symbology for data types
-      origin: database
-    - v1Key: v1:2.1.5:foundational:I2
-      n: 2
-      text: Creates clear map layouts with standard elements
-      origin: database
-    - v1Key: v1:2.1.5:foundational:I3
-      n: 3
-      text: Uses color effectively for map communication
-      origin: database
-    - v1Key: v1:2.1.5:foundational:I4
-      n: 4
-      text: Understands map scale and generalization
-      origin: database
-    - v1Key: v1:2.1.5:foundational:I5
-      n: 5
-      text: Exports maps in appropriate formats
-      origin: database
-    - v1Key: v1:2.1.5:foundational:I6
-      n: 6
-      text: Follows organizational map standards
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:2.1.5:intermediate
-    knowledge: Applies advanced cartographic design principles
-    application: Creates professional, publication-quality maps
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:2.1.5:intermediate:I1
-      n: 1
-      text: Designs custom maps for diverse audiences
-      origin: database
-    - v1Key: v1:2.1.5:intermediate:I2
-      n: 2
-      text: Uses typography effectively
-      origin: database
-    - v1Key: v1:2.1.5:intermediate:I3
-      n: 3
-      text: Applies color theory and visual hierarchy
-      origin: database
-    - v1Key: v1:2.1.5:intermediate:I4
-      n: 4
-      text: Creates multi-page map series and atlases
-      origin: database
-    - v1Key: v1:2.1.5:intermediate:I5
-      n: 5
-      text: Designs web maps and story maps
-      origin: database
-    - v1Key: v1:2.1.5:intermediate:I6
-      n: 6
-      text: Uses data-driven pages and automated map production
-      origin: database
-    - v1Key: v1:2.1.5:intermediate:I7
-      n: 7
-      text: Incorporates charts, graphs, and inset maps
-      origin: restored-from-source-text
-    - v1Key: v1:2.1.5:intermediate:I8
-      n: 8
-      text: Ensures accessibility in map design
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:2.1.5:advanced
-    knowledge: Expert in cartographic design and visualization
-    application: Develops innovative visualization approaches
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:2.1.5:advanced:I1
-      n: 1
-      text: Creates sophisticated interactive visualizations
-      origin: database
-    - v1Key: v1:2.1.5:advanced:I2
-      n: 2
-      text: Develops custom web mapping applications
-      origin: database
-    - v1Key: v1:2.1.5:advanced:I3
-      n: 3
-      text: Uses 3D visualization and animation
-      origin: database
-    - v1Key: v1:2.1.5:advanced:I4
-      n: 4
-      text: Applies user experience (UX) design to maps
-      origin: database
-    - v1Key: v1:2.1.5:advanced:I5
-      n: 5
-      text: Develops organizational cartographic standards
-      origin: database
-    - v1Key: v1:2.1.5:advanced:I6
-      n: 6
-      text: Trains staff in cartographic design
-      origin: database
-    - v1Key: v1:2.1.5:advanced:I7
-      n: 7
-      text: Creates award-quality maps
-      origin: restored-from-source-text
-    - v1Key: v1:2.1.5:advanced:I8
-      n: 8
-      text: Uses emerging visualization technologies
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:2.1.5:expert
-    knowledge: Shapes cartographic practice and visualization
-    application: Provides leadership on visualization strategy
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:2.1.5:expert:I1
-      n: 1
-      text: Develops innovative visualization approaches
-      origin: database
-    - v1Key: v1:2.1.5:expert:I2
-      n: 2
-      text: Influences cartographic standards
-      origin: database
-    - v1Key: v1:2.1.5:expert:I3
-      n: 3
-      text: Leads organizational visualization programs
-      origin: database
-    - v1Key: v1:2.1.5:expert:I4
-      n: 4
-      text: Publishes on cartographic methods
-      origin: database
-    - v1Key: v1:2.1.5:expert:I5
-      n: 5
-      text: Achieves recognition for cartographic excellence
-      origin: database
-    - v1Key: v1:2.1.5:expert:I6
-      n: 6
-      text: Advances state of the art in environmental visualization
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:2.1.5:sector:public_agencies
-    text: Public information maps, planning maps, web mapping
-  - sector: private_sector
-    v1Key: v1:2.1.5:sector:private_sector
-    text: Client presentations, environmental reports, dashboards
-  - sector: ngos
-    v1Key: v1:2.1.5:sector:ngos
-    text: Advocacy maps, public engagement, fundraising materials
-  - sector: consulting
-    v1Key: v1:2.1.5:sector:consulting
-    text: Project maps, permit applications, presentations
-  - sector: academia
-    v1Key: v1:2.1.5:sector:academia
-    text: Research maps, teaching materials, journal figures
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.1'
+  label: Geospatial Technologies

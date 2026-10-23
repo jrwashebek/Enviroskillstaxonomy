@@ -86,3 +86,31 @@
 - **Recommendation:** accept. Cite v1 counts as "v1 (2026-02-23)" history; point current counts to the generated release notes; carry ADR-0002, ADR-0003, ADR-0011 and the DECISION_LOG into the companion research project so its literature and the build stay consistent.
 - **Default if unanswered:** the repo follows the ADRs; the companion project's descriptions are left as v1 history and flagged as out of date.
 - **Needed by:** before WP-14 publishes (sprint S3).
+
+## Q11. A lead-signed invitation to inter-Tribal organizations to help form a Tribal Advisory Council
+
+- **Added:** 2026-10-23 by the CA (Phase 4), after Q1 was accepted (ADR-0007 amendments)
+- **Decision needed:** will you sign and send an invitation to inter-Tribal organizations, asking whether they wish to help **form** a Tribal Advisory Council? Forming it means deciding for themselves whether a Council should exist, who constitutes it, and its charter and terms. If yes, when, and to which organizations?
+- **Why it is yours:**
+  - It would be EMST's first contact with organizations of sovereign governments.
+  - Under Q1 the Council holds binding consent authority, and Tribal governments and inter-Tribal organizations constitute it, not EMST.
+  - Sending it commits the project's relationship and, under Q1(c), money: compensation must be budgeted before first contact.
+  - Q3 (who signs) and Q9 (funding) bear on it.
+  - No agent and no simulated role, TN included, can decide this, or draft the invitation as if speaking for or to any nation.
+- **Recommendation:** yes, but send it only once three conditions hold:
+  1. the compensation line for Council members and Tribal reviewers is secured (Q1(c), Q9(b));
+  2. the signatory is settled (Q3(c));
+  3. a person you choose who has Tribal-relations experience reviews the text before it is sent (not an agent).
+
+  The invitation should:
+  - ask for help forming the Council, not for review of EMST drafts;
+  - attach no Tribal-related EMST content;
+  - state the Q1 commitments: binding consent, the charter carve-out with "withhold" as default, the withdrawal right and Tribally stewarded namespaces;
+  - say that whether, when and how to participate is entirely theirs, including declining;
+  - set no deadline tied to EMST's release schedule (Tribal time, ADR-0007 dissent);
+  - promise nothing about content that only the Council can decide.
+- **Default if unanswered:**
+  - No invitation is drafted for sending, and no contact is made.
+  - The ADR-0007 §D content hold stays in force, and Tribal-related records remain internal drafts excluded from every release.
+  - WP-13 may describe a formation procedure only as an internal document marked "for the project lead; not for distribution".
+- **Needed by:** before WP-13 finalizes the governance charter (sprint S3), and in any case not before the compensation line is secured.

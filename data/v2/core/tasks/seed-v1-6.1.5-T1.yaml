@@ -1,22 +1,30 @@
 id: seed:v1-6.1.5-T1
 type: Task
 prefLabel:
-  en: Respond to reports of environmental violations on managed lands
+  en: Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 statement:
-  en: Respond to reports of environmental violations on managed lands
-textSha256: b0f0b46d939e6ccf6307470fb6fe253601cb066affb92a666be0e14e599d2ec3
+  en: Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response
+textSha256: c1d5db8156143f631e23572976da220f9c517100237bc0a73f436ea7740bc388
 supports:
 - competency: seed:SL-C04
   strength: primary
+workFunction: WF-ENFORCE
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-COMPLIANCE
 notation:
 - scheme: EMSTv1
   value: 6.1.5:T1
-layer: L2
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T1
 v1Domain:
   code: '6'
@@ -25,14 +33,16 @@ v1SkillArea:
   code: '6.1'
   label: Environmental Law & Regulation
 editorialNote:
-  en: Supports re-pointed from v1 competency 6.1.5 to seed:SL-C04 by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: 'Rewritten from the v1 task text: "Respond to reports of environmental violations on managed lands" (WP-05).'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:6.1.5:T1
     v1Code: 6.1.5
@@ -42,9 +52,13 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

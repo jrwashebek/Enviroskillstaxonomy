@@ -1,22 +1,33 @@
 id: seed:v1-3.7.2-T2
 type: Task
 prefLabel:
-  en: Implement digital waste tracking systems providing transparency on waste generation, diversion, and disposal
+  en: Track waste generation and diversion by stream, checking hauler and scale data for gaps before reporting progress
 statement:
-  en: Implement digital waste tracking systems providing transparency on waste generation, diversion, and disposal
-textSha256: 33a7109f7ba2b5b1739e3aaddc832af0959f86a86bceae1c36a037e1e0d88a9b
+  en: Track waste generation and diversion by stream, checking hauler and scale data for gaps before reporting progress
+textSha256: ca08d71f1070fedffc3d83d5d0565cb30203ac15592d539c3427b50581cc1981
 supports:
 - competency: seed:v1-3.7.2
   strength: primary
+workFunction: WF-MONITOR
+workflowProfiles:
+- WP-PROJECT
+- WP-DISCLOSURE
+fieldDependency: remote
+formationDependency: 'no'
+homeModule: waste
+subsectors:
+- P02
+layer: L2
+module: waste
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 notation:
 - scheme: EMSTv1
   value: 3.7.2:T2
-layer: L2
-module: waste
-homeModule: waste
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Tier: T2
 v1Domain:
   code: '3'
@@ -25,14 +36,12 @@ v1SkillArea:
   code: '3.7'
   label: Circular Economy & Waste Systems
 editorialNote:
-  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
-license: CC0-1.0
-sensitivity: public
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:3.7.2:T2
     v1Code: 3.7.2
@@ -42,9 +51,12 @@ provenance:
     v1Fields:
     - Job Tasks
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

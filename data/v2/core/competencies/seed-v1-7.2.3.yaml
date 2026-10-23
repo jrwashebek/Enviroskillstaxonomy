@@ -1,35 +1,64 @@
 id: seed:v1-7.2.3
 type: Competency
 prefLabel:
-  en: Calibrating professional judgment in human-AI collaboration
+  en: Calibrate trust in AI and automation
+altLabel:
+  en:
+  - Calibrating professional judgment in human-AI collaboration
+definition:
+  en: The capability to keep an accurate, evidence-based view of when specific AI and automated tools can be trusted, qualified or overridden in one's own and a team's work, avoiding both automation bias and unwarranted rejection, and to update that view from recorded outcomes. It excludes organizational evaluation programmes (evaluation sets and benchmarking).
 statement:
-  en: Developing and maintaining accurate self-assessment of when to trust, qualify, or override AI outputs — avoiding both automation bias (over-trust) and automation skepticism (under-trust) — through deliberate reflection on the outcomes of past judgment calls.
-competencyType: transversal
-transversalCluster: TX-A
+  en: Maintains an evidence-based calibration of when to trust, qualify or override the outputs of specific AI and automated tools across operating conditions, avoiding both over-trust and unwarranted rejection; applies explicit decision checkpoints in high-consequence work; and updates that calibration from recorded outcomes of past trust decisions.
+editorialNote:
+  en: 'Rewritten by WP-04 (ADR-0025 §1 TX-A: ''Calibrate trust in AI and automation''). Operations enactment is the DB practice competency seed:DB-C03 (supervise automated and AI-assisted process control). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | transversal | TX-A. Rationale: Reliability profiling and documented override decisions; carried with observable anchors and an operations enactment (DB-C03) (DC, DB, IO, LC, CM, CA verdicts). Role verdicts considered: DC:carry|DB:carry|IO:carry|LC:carry|CM:carry|CA:carry.'
 notation:
 - scheme: EMSTv1
   value: 7.2.3
+competencyType: transversal
+transversalCluster: TX-A
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - seed:ind-v1-7.2.3-l1-a
+  - seed:ind-v1-7.2.3-l1-b
+  - seed:ind-v1-7.2.3-l1-c
+- level: L2
+  indicators:
+  - seed:ind-v1-7.2.3-l2-a
+  - seed:ind-v1-7.2.3-l2-b
+  - seed:ind-v1-7.2.3-l2-c
+- level: L3
+  indicators:
+  - seed:ind-v1-7.2.3-l3-a
+  - seed:ind-v1-7.2.3-l3-b
+  - seed:ind-v1-7.2.3-l3-c
+- level: L4
+  indicators:
+  - seed:ind-v1-7.2.3-l4-a
+  - seed:ind-v1-7.2.3-l4-b
+homeModule: core
+reusability: transversal
 layer: L1
 module: core
-homeModule: core
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
-v1Domain:
-  code: '7'
-  label: Cross-Cutting Professional Practice
-v1SkillArea:
-  code: '7.2'
-  label: Human-Ai Professional Practice
-editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | transversal | TX-A. Rationale: Reliability profiling and documented override decisions; carried with observable anchors and an operations enactment (DB-C03) (DC, DB, IO, LC, CM, CA verdicts). Role verdicts considered: DC:carry|DB:carry|IO:carry|LC:carry|CM:carry|CA:carry.'
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
 license: CC0-1.0
 sensitivity: public
+reviewBy: '2028-10-23'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:7.2.3
     v1Code: 7.2.3
@@ -40,123 +69,16 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
-  evidenceLabel: J
-  reviewStatus: unreviewed
+    relation: rewritten
+  sources:
+  - DC-001
+  - DC-045
   adr:
+  - ADR-0003
   - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Calibrating professional judgment in human-AI collaboration
-  v1Description: Developing and maintaining accurate self-assessment of when to trust, qualify, or override AI outputs — avoiding both automation bias (over-trust) and automation skepticism (under-trust) — through deliberate reflection on the outcomes of past judgment calls.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:7.2.3:foundational
-    knowledge: Understands automation bias as a professional risk — the tendency to defer to AI outputs even when independent judgment should override; understands automation skepticism as the symmetric failure; recognizes that calibration requires active effort and deteriorates without deliberate maintenance
-    application: Identifies situations where they may be at risk of automation bias; applies explicit decision checkpoints before accepting AI outputs in high-consequence contexts
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.2.3:foundational:I1
-      n: 1
-      text: Explains automation bias and automation skepticism as distinct failure modes with different consequences in environmental management contexts
-      origin: database
-    - v1Key: v1:7.2.3:foundational:I2
-      n: 2
-      text: Identifies the categories of AI output in their work context that carry the highest consequence if accepted without adequate validation
-      origin: database
-    - v1Key: v1:7.2.3:foundational:I3
-      n: 3
-      text: Applies a structured decision checkpoint before accepting AI outputs in high-consequence contexts — naming the independent evidence they are drawing on
-      origin: database
-    - v1Key: v1:7.2.3:foundational:I4
-      n: 4
-      text: Recognizes when time pressure, organizational culture, or workflow design is creating conditions for automation bias to operate
-      origin: database
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:7.2.3:intermediate
-    knowledge: Applies systematic reliability assessment to build calibrated mental models of specific AI tools; understands how training data distribution, model architecture, and deployment context determine where AI tools are reliable and where they fail; recognizes institutional conditions that erode calibration
-    application: Conducts reliability assessments for AI tools in their operational context; maintains documented calibration records; applies calibrated trust consistently across the range of operating conditions encountered
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.2.3:intermediate:I1
-      n: 1
-      text: Conducts systematic reliability assessment for an AI tool — testing outputs across varying conditions to map the reliability envelope
-      origin: database
-    - v1Key: v1:7.2.3:intermediate:I2
-      n: 2
-      text: Builds a calibrated mental model of a specific AI tool's failure modes and communicates it to colleagues and supervisors
-      origin: database
-    - v1Key: v1:7.2.3:intermediate:I3
-      n: 3
-      text: Maintains calibration under institutional pressure to accept AI outputs more readily than reliability warrants
-      origin: database
-    - v1Key: v1:7.2.3:intermediate:I4
-      n: 4
-      text: Documents trust decisions and their basis in a format that supports retrospective calibration review
-      origin: database
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:7.2.3:advanced
-    knowledge: Expert in calibration methodology and its application across multiple AI tool types; deep understanding of the organizational and workflow conditions that produce and erode calibration; experienced in advising teams on calibration practices and identifying systematic bias patterns
-    application: Designs organizational calibration programs; identifies and corrects systematic calibration failures at team level; advises on workflow and tool deployment conditions that protect calibration quality
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.2.3:advanced:I1
-      n: 1
-      text: Designs team-level calibration programs — defining reliability assessment protocols, calibration review schedules, and documentation standards for AI tools in operational use
-      origin: database
-    - v1Key: v1:7.2.3:advanced:I2
-      n: 2
-      text: Identifies systematic calibration failures — patterns indicating that a team is operating outside an AI tool's validated reliability envelope without recognizing it
-      origin: database
-    - v1Key: v1:7.2.3:advanced:I3
-      n: 3
-      text: Advises on workflow conditions that protect calibration quality, including workload, time pressure, and escalation pathway design
-      origin: database
-    - v1Key: v1:7.2.3:advanced:I4
-      n: 4
-      text: Conducts retrospective calibration reviews using outcome data to identify systematic biases in past judgment and redesign decision heuristics
-      origin: database
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:7.2.3:expert
-    knowledge: Shapes field-wide frameworks for calibration practice in AI-augmented environmental management; recognized authority on automation bias, calibration methodology, and the institutional conditions that enable and undermine calibrated human-AI collaboration
-    application: Advances professional standards for calibration practice; contributes to regulatory guidance on human oversight requirements in AI-assisted environmental decision-making
-    knowledgeApplicationOrigin: database
-    indicators:
-    - v1Key: v1:7.2.3:expert:I1
-      n: 1
-      text: Contributes to development of professional or regulatory standards for human oversight requirements and calibration obligations in AI-assisted environmental applications
-      origin: database
-    - v1Key: v1:7.2.3:expert:I2
-      n: 2
-      text: Publishes or presents on automation bias patterns, calibration methodology, and institutional conditions affecting human-AI judgment quality in environmental management
-      origin: database
-    - v1Key: v1:7.2.3:expert:I3
-      n: 3
-      text: Advises agencies and organizations on calibration program design and the workflow conditions required to maintain calibrated human oversight of AI systems
-      origin: database
-    - v1Key: v1:7.2.3:expert:I4
-      n: 4
-      text: Recognized as a leading practitioner in human-AI calibration practice in environmental management contexts
-      origin: database
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:7.2.3:sector:public_agencies
-    text: Human oversight protocols for AI-assisted regulatory decisions, calibration program design, audit readiness
-  - sector: private_sector
-    v1Key: v1:7.2.3:sector:private_sector
-    text: AI output QC protocols, calibration standards for ESG and compliance AI tools
-  - sector: ngos
-    v1Key: v1:7.2.3:sector:ngos
-    text: Calibrated use of AI monitoring tools, oversight protocol development
-  - sector: consulting
-    v1Key: v1:7.2.3:sector:consulting
-    text: Calibration advisory, human oversight design for AI-assisted regulatory products
-  - sector: academia
-    v1Key: v1:7.2.3:sector:academia
-    text: Automation bias research, calibration methodology pedagogy
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.2'
+  label: Human-Ai Professional Practice

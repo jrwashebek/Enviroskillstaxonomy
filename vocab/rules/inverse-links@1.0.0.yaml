@@ -1,0 +1,19 @@
+# EMST computed-view rule (SPEC §14.3; ADR-0021; CR-DE-003). Normative definition; code in `implementation`.
+ruleId: inverse-links
+version: 1.0.0
+status: superseded
+supersededBy: inverse-links@1.1.0
+steward: DE (implementation) · CA (definition)
+decidedIn: [ADR-0001, ADR-0021, CR-DE-003]
+computes: Inverse of Task.supports (links are stored once, on the many side; ADR-0001).
+inputs: [released Task records]
+definition: >
+  For each released competency C, list every released task T with a `supports` entry {competency: C, strength},
+  as {task: T, strength}, sorted by task ID. Competencies that no released task supports are omitted.
+outputs:
+  view: views/inverse_links.json
+  fields: "competency, tasks[{task, strength}], ruleId, ruleVersion, buildCommit"
+parameters: {}
+implementation: scripts/build_release.py#Release.views
+changeNote:
+  - {date: '2026-10-23', note: "Registered from the implementation (CR-DE-003); superseded by 1.1.0 (CR-DE-001 #8-#9)."}

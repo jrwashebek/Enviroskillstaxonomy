@@ -1,0 +1,47 @@
+id: seed:SL-C06-T4
+type: Task
+prefLabel:
+  en: Issue a violation notice with a public-notification directive when monitoring results exceed a contaminant limit or required monitoring is missed
+statement:
+  en: Issue a violation notice with a public-notification directive when monitoring results exceed a contaminant limit or required monitoring is missed
+textSha256: 5d1efb6e49432567e27a88ae294891eef0e8087c3b427ec49216ed2d4a8a3764
+supports:
+- competency: seed:SL-C06
+  strength: primary
+workFunction: WF-ENFORCE
+relationshipTypes:
+- public
+- stakeholder
+workflowProfiles:
+- WP-REGPROGRAM
+- WP-COMPLIANCE
+fieldDependency: remote
+formationDependency: partial
+accountabilityConstraint:
+  required: true
+  basis:
+    en: Violation determinations and public-notification directives are issued under the primacy agency's delegated authority.
+homeModule: water
+subsectors:
+- W01
+layer: L2
+module: water
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

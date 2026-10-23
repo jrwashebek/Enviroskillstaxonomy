@@ -4,7 +4,7 @@ title: Authority position
 schemeVersion: 1.0.0-draft
 status: draft
 lastReviewed: 2026-10-23
-decidedIn: [ADR-0017]
+decidedIn: [ADR-0017, ADR-0029]
 steward: CA with SL, DB, PS
 license: CC0-1.0
 description: >
@@ -57,3 +57,20 @@ sign_off_authority:
     - {notation: regulatory-definition, prefLabel: Regulatory definition, definition: "Qualification defined in a regulation for a specific act.", examples: [Environmental Professional for all-appropriate-inquiries due diligence, SOI-qualified professional for Section 106]}
     - {notation: accreditation, prefLabel: Accreditation, definition: "Accreditation of a person or body to verify or certify.", examples: [accredited GHG verifier, accredited laboratory analyst signatory]}
     - {notation: position-qualification, prefLabel: Position qualification, definition: "Interagency or programme position qualification required to act in a role.", examples: [NWCG/IQCS position qualifications such as burn boss, NIMS NQS positions]}
+
+# --- Credential register code lists (moved from schema-local enums, CR-DE-001; ADR-0022, ADR-0029). Credentials are gates, never proficiency.
+credential_types:
+  description: Credential.credentialType (SPEC §5.19).
+  values:
+    - {notation: licence, definition: "State or professional licence."}
+    - {notation: certification, definition: "Certification by a professional or standards body, usually with renewal."}
+    - {notation: certificate, definition: "Certificate of completed learning or assessment."}
+    - {notation: position-qualification, definition: "Interagency or programme position qualification."}
+    - {notation: mandated-training-record, definition: "Record of training a regulation requires."}
+
+closure_types:
+  description: Credential.closureType (SPEC §5.19).
+  values:
+    - {notation: legal-licensure, definition: "Law restricts the practice to holders."}
+    - {notation: regulation-mandated-training, definition: "A regulation requires the training for the act."}
+    - {notation: voluntary, definition: "Not legally required; employer or market preference."}

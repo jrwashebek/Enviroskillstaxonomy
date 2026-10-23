@@ -1,18 +1,47 @@
 id: seed:v1-3.7.2
 type: Competency
 prefLabel:
-  en: Waste reduction and zero waste programs
+  en: Plan and run waste reduction programmes for facilities and communities
+altLabel:
+  en:
+  - Waste reduction and zero waste programmes
+  - Source reduction programmes
+definition:
+  en: Characterizing waste streams and designing source-reduction, reuse, separation and organics programmes for a facility, institution or community, engaging generators to change practice and tracking generation and diversion to show whether waste fell. Excludes facility operation (DB-C16) and producer-responsibility administration (DB-C17).
 statement:
-  en: Implementing strategies to systematically reduce and eliminate waste using data analytics, automation, and behavior change approaches.
+  en: Characterizes waste streams through audits, designs source-reduction, reuse, separation and organics programmes, engages generators to change practice and tracks generation and diversion against baseline, so that the programme can show whether it reduced waste and where to act next.
 notation:
 - scheme: EMSTv1
   value: 3.7.2
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - seed:ind-3.7.2-l1-a
+  - seed:ind-3.7.2-l1-b
+- level: L2
+  indicators:
+  - seed:ind-3.7.2-l2-a
+  - seed:ind-3.7.2-l2-b
+- level: L3
+  indicators:
+  - seed:ind-3.7.2-l3-a
+  - seed:ind-3.7.2-l3-b
+homeModule: waste
+subsectors:
+- P02
+reusability: subsector-specific
 layer: L1
 module: waste
-homeModule: waste
 status: draft
-useTier: exploratory
-validationStatus: seed-v1
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
 v1Domain:
   code: '3'
   label: Management & Administrative Skills
@@ -20,14 +49,12 @@ v1SkillArea:
   code: '3.7'
   label: Circular Economy & Waste Systems
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-04 waste. Rationale: Waste reduction programmes are P02-specific. Role verdicts considered: none recorded.'
-license: CC0-1.0
-sensitivity: public
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-04 waste. Rationale: Waste reduction programmes are P02-specific. Role verdicts considered: none recorded. WP-06: Moved to MOD-04 (P02). Rewritten from v1''s technology-led framing; sensors, analytics platforms and gamified apps go to L4 (ADR-0003 T-1). Zero-waste certifications (e.g. a GBCI-administered facility certification) are Credential or L4 standards, not levels. Basis [J].'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
   derivedFrom:
   - v1Key: v1:3.7.2
     v1Code: 3.7.2
@@ -38,7 +65,8 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
   - v1Key: v1:3.7.2
     v1Code: 3.7.2
     v1Table: source_text/competencies
@@ -47,10 +75,12 @@ provenance:
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   evidenceLabel: J
   reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
 v1Seed:
   v1Title: Waste reduction and zero waste programs
   v1Description: Implementing strategies to systematically reduce and eliminate waste using data analytics, automation, and behavior change approaches.

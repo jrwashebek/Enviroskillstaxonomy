@@ -1,0 +1,62 @@
+id: seed:DC-CAND-04
+type: Competency
+prefLabel:
+  en: Engineer environmental sensor-network and streaming data pipelines
+altLabel:
+  en:
+  - Sensor data engineering
+definition:
+  en: 'The capability to design and operate the data path from deployed sensors, telemetry, cameras and recorders to analysis-ready data: ingest, time synchronization, automated quality checks and anomaly flags, gap handling, storage, versioning and alerting, including edge processing where bandwidth is limited. Field deployment, siting and calibration stay field craft.'
+statement:
+  en: 'Designs and operates the data path from deployed sensors, telemetry, cameras and recorders to analysis-ready data: ingest, time synchronization, automated quality checks and anomaly flags, gap handling, storage, versioning and alerting, including processing at the edge where bandwidth is limited; and documents the pipeline so that data remain traceable.'
+editorialNote:
+  en: Split target of v1 2.3.1 (DC part; field deployment, siting, calibration and failure detection go to FC-C01). Absorbs automated QC design from v1 2.6.4 jointly with v1 2.2.3. Product names to L4 (T-1). Module enactment exists in water (seed:ena-dc-cand-04-water, WP-06).
+notation:
+- scheme: EMST-candidate
+  value: DC-CAND-04
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - seed:dc-cand-04-l2-a
+  - seed:dc-cand-04-l2-b
+- level: L3
+  indicators:
+  - seed:dc-cand-04-l3-a
+  - seed:dc-cand-04-l3-b
+- level: L4
+  indicators:
+  - seed:dc-cand-04-l4-a
+  - seed:dc-cand-04-l4-b
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.3.1
+    relation: split-from
+    note: network design and data pipelines (v1_disposition 2.3.1 position 2)
+  sources:
+  - DC-001
+  - DC-046
+  adr:
+  - ADR-0003
+  - ADR-0025

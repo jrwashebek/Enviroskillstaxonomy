@@ -1,0 +1,44 @@
+id: seed:fc-bio-adapt
+type: Task
+prefLabel:
+  en: Adapt the decontamination procedure on site when a new pathogen or invasive organism is suspected, escalating the finding before moving on
+statement:
+  en: Adapt the decontamination procedure on site when a new pathogen or invasive organism is suspected, escalating the finding before moving on
+textSha256: 2d0015309576591bc8c93226a7d14741e2b914c032c6c6c4f35057076223a213
+supports:
+- competency: seed:FC-C11
+  strength: primary
+workFunction: WF-OPERATE
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: ecosystem-type
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: adaptation or decision in place.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

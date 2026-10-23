@@ -1,0 +1,40 @@
+id: seed:ind-fc-c26-l3-a
+type: Indicator
+prefLabel:
+  en: Interprets diagnostic-tool results with visual evidence before changing a risk rating
+competency: seed:FC-C26
+level: L3
+statement:
+  en: Interprets diagnostic-tool results with visual evidence before changing a risk rating, documenting the basis for the change.
+augmentationMode: assisted
+assessmentMethods:
+- portfolio-review
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:fc-tree-advanced
+distinguishingAttribute: ATT-CPX
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

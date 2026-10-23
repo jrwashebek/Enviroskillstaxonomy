@@ -1,0 +1,42 @@
+id: seed:sc-calculate-civil-penalty
+type: Task
+prefLabel:
+  en: Calculate a proposed civil penalty under the program's penalty policy, documenting the gravity, economic benefit and adjustment factors applied
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Calculate a proposed civil penalty under the program's penalty policy, documenting the gravity, economic benefit and adjustment factors applied
+textSha256: 3a993196e1d553dabb336bb1dc5c0fe8774de6d0446787c9fbd85c0876dd7c2a
+supports:
+- competency: seed:SL-C04
+  strength: primary
+workFunction: WF-ENFORCE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+workflowProfiles:
+- WP-COMPLIANCE
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

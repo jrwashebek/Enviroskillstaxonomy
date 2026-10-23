@@ -1,0 +1,39 @@
+id: seed:ind-db-c20-l4-a
+type: Indicator
+prefLabel:
+  en: Decides whether an operating remedy should be optimized or transitioned from…
+competency: seed:DB-C20
+level: L4
+statement:
+  en: Decides whether an operating remedy should be optimized or transitioned from performance trends, defending the decision to regulators and the community with the supporting data.
+augmentationMode: unaided
+assessmentMethods:
+- moot-defense
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- seed:DB-C20-T3
+distinguishingAttribute: ATT-SCO
+layer: L1
+module: waste
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

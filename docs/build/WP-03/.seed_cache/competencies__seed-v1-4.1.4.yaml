@@ -1,0 +1,244 @@
+id: seed:v1-4.1.4
+type: Competency
+prefLabel:
+  en: Soil characterization and sampling
+statement:
+  en: Assessing soil properties, health, and function through field observation and sampling.
+competencyType: practice
+notation:
+- scheme: EMSTv1
+  value: 4.1.4
+layer: L1
+module: core
+homeModule: core
+status: draft
+useTier: exploratory
+validationStatus: seed-v1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.1'
+  label: Field Assessment & Monitoring
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (FC). Rationale: Strongest human-essential case (texture by feel checked against lab results); consolidates 1.2.1 field content and 4.6.5; title defect fixed (FC verdict). Role verdicts considered: FC:change|FC:carry. Title and description were merged in the v1 database and are split here from the source text.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: v1-migration
+  agent:
+  - emstagent:migrate_v1@1.0.0
+  generatedAt: '2026-10-23T12:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.1.4
+    v1Code: 4.1.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 115
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: carried
+  - v1Key: v1:4.1.4
+    v1Code: 4.1.4
+    v1Table: source_text/competencies
+    sourceTextLine: 7578
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
+  - v1Key: v1:1.2.1
+    v1Code: 1.2.1
+    relation: split-from
+    note: v1 1.2.1 (split) → seed:v1-4.1.4 per v1_disposition.csv
+  - v1Key: v1:4.6.5
+    v1Code: 4.6.5
+    relation: merged-from
+    note: v1 4.6.5 (merge) → seed:v1-4.1.4 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0011
+  - ADR-0010
+  - ADR-0013
+v1Seed:
+  v1Title: Soil characterization and sampling Assessing soil properties, health, and function through field observation and sampling.
+  v1Description: ''
+  titleDescriptionSplit: true
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.1.4:foundational
+    knowledge: Understands basic soil concepts and sampling procedures
+    application: Collects soil samples and describes simple profiles
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.4:foundational:I1
+      n: 1
+      text: Digs and describes soil profile pits following protocols
+      origin: database
+    - v1Key: v1:4.1.4:foundational:I2
+      n: 2
+      text: Identifies major soil horizons and properties
+      origin: database
+    - v1Key: v1:4.1.4:foundational:I3
+      n: 3
+      text: Collects representative soil samples avoiding contamination
+      origin: database
+    - v1Key: v1:4.1.4:foundational:I4
+      n: 4
+      text: Uses soil texture by feel method
+      origin: database
+    - v1Key: v1:4.1.4:foundational:I5
+      n: 5
+      text: Records soil observations using standard forms
+      origin: database
+    - v1Key: v1:4.1.4:foundational:I6
+      n: 6
+      text: Uses GPS to document sampling locations accurately
+      origin: database
+    - v1Key: v1:4.1.4:foundational:I7
+      n: 7
+      text: Follows laboratory submission procedures
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.1.4:intermediate
+    knowledge: Applies soil science principles; understands soil-plant-water relationships
+    application: Conducts comprehensive soil assessments
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.4:intermediate:I1
+      n: 1
+      text: Describes soils using official NRCS methodology
+      origin: database
+    - v1Key: v1:4.1.4:intermediate:I2
+      n: 2
+      text: Classifies soils to subgroup level when needed
+      origin: database
+    - v1Key: v1:4.1.4:intermediate:I3
+      n: 3
+      text: Conducts soil health assessments using multiple indicators
+      origin: database
+    - v1Key: v1:4.1.4:intermediate:I4
+      n: 4
+      text: Designs soil sampling strategies for different objectives
+      origin: database
+    - v1Key: v1:4.1.4:intermediate:I5
+      n: 5
+      text: Interprets soil test results for management recommendations
+      origin: database
+    - v1Key: v1:4.1.4:intermediate:I6
+      n: 6
+      text: Uses field tests (infiltration, penetrometer, aggregate stability)
+      origin: database
+    - v1Key: v1:4.1.4:intermediate:I7
+      n: 7
+      text: Recognizes soil problems (compaction, erosion, contamination)
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.4:intermediate:I8
+      n: 8
+      text: Integrates soil data with vegetation and site conditions
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.4:intermediate:I9
+      n: 9
+      text: Uses soil information to guide restoration or management
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.1.4:advanced
+    knowledge: Expert in soil characterization and pedology
+    application: Leads soil survey and assessment programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.4:advanced:I1
+      n: 1
+      text: Conducts detailed soil surveys for complex landscapes
+      origin: database
+    - v1Key: v1:4.1.4:advanced:I2
+      n: 2
+      text: Uses soil information for landscape-level planning
+      origin: database
+    - v1Key: v1:4.1.4:advanced:I3
+      n: 3
+      text: Correlates soils across geographic areas
+      origin: database
+    - v1Key: v1:4.1.4:advanced:I4
+      n: 4
+      text: Evaluates soil carbon sequestration potential
+      origin: database
+    - v1Key: v1:4.1.4:advanced:I5
+      n: 5
+      text: Designs soil monitoring programs for restoration or management
+      origin: database
+    - v1Key: v1:4.1.4:advanced:I6
+      n: 6
+      text: Uses proximal soil sensing and digital soil mapping
+      origin: database
+    - v1Key: v1:4.1.4:advanced:I7
+      n: 7
+      text: Analyzes long-term soil changes from management
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.4:advanced:I8
+      n: 8
+      text: Publishes soil assessment results
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.4:advanced:I9
+      n: 9
+      text: Trains practitioners in soil characterization
+      origin: restored-from-source-text
+    - v1Key: v1:4.1.4:advanced:I10
+      n: 10
+      text: Develops soil assessment protocols and standards
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.1.4:expert
+    knowledge: Shapes soil assessment practices in field
+    application: Directs major soil survey and monitoring initiatives
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.1.4:expert:I1
+      n: 1
+      text: Leads landscape-scale soil assessment programs
+      origin: database
+    - v1Key: v1:4.1.4:expert:I2
+      n: 2
+      text: Develops innovative soil assessment approaches
+      origin: database
+    - v1Key: v1:4.1.4:expert:I3
+      n: 3
+      text: Influences soil survey and monitoring standards
+      origin: database
+    - v1Key: v1:4.1.4:expert:I4
+      n: 4
+      text: Provides expert consultation on complex soil issues
+      origin: database
+    - v1Key: v1:4.1.4:expert:I5
+      n: 5
+      text: Publishes influential soil research
+      origin: database
+    - v1Key: v1:4.1.4:expert:I6
+      n: 6
+      text: Achieves recognition for soil science excellence
+      origin: database
+    - v1Key: v1:4.1.4:expert:I7
+      n: 7
+      text: Advances integration of technology in soil assessment
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.1.4:sector:public_agencies
+    text: Soil surveys, rangeland health assessments, erosion monitoring
+  - sector: private_sector
+    v1Key: v1:4.1.4:sector:private_sector
+    text: Agricultural soil testing, contaminated site assessment, carbon programs
+  - sector: ngos
+    v1Key: v1:4.1.4:sector:ngos
+    text: Restoration site assessment, soil health advocacy
+  - sector: consulting
+    v1Key: v1:4.1.4:sector:consulting
+    text: Soil surveys for development, wetland delineation, Phase I/II assessments
+  - sector: academia
+    v1Key: v1:4.1.4:sector:academia
+    text: Soil research plots, experimental treatments, soil genesis studies
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

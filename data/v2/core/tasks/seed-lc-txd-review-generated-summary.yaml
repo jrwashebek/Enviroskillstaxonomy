@@ -1,0 +1,43 @@
+id: seed:lc-txd-review-generated-summary
+type: Task
+prefLabel:
+  en: Review an AI-generated summary of a departing expert's records against the expert's own account before adding it to the knowledge base
+statement:
+  en: Review an AI-generated summary of a departing expert's records against the expert's own account before adding it to the knowledge base
+textSha256: 00949056dd0f23c7265676d59a3ea27be150dbf2a283d11b01c8f193f2aa6eb0
+supports:
+- competency: seed:FH-C07
+  strength: primary
+workFunction: WF-LEARN
+fieldDependency: remote-capable
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: L
+  cycleDependence: none
+  placeBoundness: site-specific
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'G-2 review half: transcription and summary are compressible; checking them with the holder is not.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003
