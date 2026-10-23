@@ -1,0 +1,38 @@
+id: seed:ps-monitor-easement-terms
+type: Task
+prefLabel:
+  en: Monitor a conservation easement or right-of-way on site against its terms, documenting each violation found and the notice issued
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Monitor a conservation easement or right-of-way on site against its terms, documenting each violation found and the notice issued
+textSha256: 69d519decb00d88a629d9dde0e769302be83742fb7b7804ac98b322c4a9efa49
+supports:
+- competency: seed:PS-C15
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: core
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:ps-code@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0017
+  - ADR-0018
+  - ADR-0023
+  - ADR-0030

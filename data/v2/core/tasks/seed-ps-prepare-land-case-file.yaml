@@ -1,0 +1,38 @@
+id: seed:ps-prepare-land-case-file
+type: Task
+prefLabel:
+  en: Prepare a land exchange or acquisition case file with the appraisal, title evidence and public-interest findings the deciding official needs
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Prepare a land exchange or acquisition case file with the appraisal, title evidence and public-interest findings the deciding official needs
+textSha256: 4e4bdf96e9eec6f26d5dc639b48ec95d6df68138f1fa4d199f9b08c3853b7fe9
+supports:
+- competency: seed:PS-C15
+  strength: primary
+workFunction: WF-RESOURCE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:ps-code@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0017
+  - ADR-0018
+  - ADR-0023
+  - ADR-0030

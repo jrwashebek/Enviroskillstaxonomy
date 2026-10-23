@@ -133,7 +133,7 @@ def build_task(t, comp):
         rec["reviewBy"] = t["reviewBy"]
     note = t.get("note", "")
     derived = None
-    if existing is not None:
+    if existing is not None and rid.startswith("seed:v1-"):
         for k in ("notation", "v1Tier", "v1Domain", "v1SkillArea"):
             if k in existing:
                 rec[k] = existing[k]
@@ -230,7 +230,7 @@ def build_competency(c):
         rec["mirrors"] = [{"target": t, "relation": r} for t, r in c["mirrors"]]
     note = c.get("editorial", "")
     derived = None
-    if existing is not None:
+    if existing is not None and rid.startswith("seed:v1-"):
         for k in ("notation", "v1Domain", "v1SkillArea"):
             if k in existing:
                 rec[k] = existing[k]

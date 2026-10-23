@@ -12,6 +12,9 @@ definition:
   en: 'Designing and carrying out environmental research and monitoring in partnership with community members who share in setting questions, choosing methods, collecting and interpreting data and deciding how findings are used: partnership and data agreements, research ethics review and consent, participatory methods such as participatory mapping and photo-based methods, building community data capacity, joint interpretation and returning findings in usable form. Excludes community-science data collection to a programme protocol (v1 5.4.4), conventional social science surveys (v1 5.6.2), collaborative decision processes (v1 5.2.3) and cumulative-burden analysis (DB-C52).'
 statement:
   en: Builds a research partnership in which community members share in setting the questions, choosing methods, collecting and interpreting data and deciding how findings are used; agrees data ownership, access and consent terms before collection; builds community capacity to collect and analyze data; and returns findings in forms and languages the community can use.
+notation:
+- scheme: EMSTv1
+  value: 5.6.5
 competencyType: practice
 levelSpan:
   min: L1
@@ -50,6 +53,12 @@ status: draft
 lifecycleState: established
 useTier: develop
 validationStatus: draft
+v1Domain:
+  code: '5'
+  label: Communication & Engagement Skills
+v1SkillArea:
+  code: '5.6'
+  label: Social Science & Behavioral Change (New)
 editorialNote:
   en: S2 close-out B (A4 DC; ADR-0030 §4 core residue). Rewritten in place as the survivor for participatory and community-based research; absorbs v1 6.7.3 (CBPR; IA duplicate finding). The six v1 task seeds are rewritten so that the merged duplicates become distinct partnership, interpretation and data-agreement tasks. Enactments for partners with their own research codes stay held under ADR-0007 §D and are not authored here. Environmental justice is an altLabel context only (ADR-0016). v1 Expert indicators naming recognition or publication are retired (B03, B04). Needed by R09 (P1) and R26 (P2). Basis [J].
 license: CC0-1.0
@@ -62,8 +71,26 @@ provenance:
   toolVersion: claude-opus-5-5
   promptVersion: s2b-dc@1
   derivedFrom:
+  - v1Key: v1:5.6.5
+    v1Code: 5.6.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 176
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:5.6.5
+    v1Code: 5.6.5
+    v1Table: source_text/competencies
+    sourceTextLine: 12164
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
   - v1Key: v1:6.7.3
+    v1Code: 6.7.3
     relation: merged-from
+    note: v1 6.7.3 (merge) → seed:v1-5.6.5 per v1_disposition.csv
   evidenceLabel: J
   reviewStatus: unreviewed
   adr:

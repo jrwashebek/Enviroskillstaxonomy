@@ -1,19 +1,34 @@
 id: seed:v1-5.3.1
 type: Competency
 prefLabel:
-  en: Cross-cultural communication
+  en: Practise cultural humility in community, field and team work
+layer: L1
+module: core
+status: draft
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to recognize that one's own cultural assumptions shape how one communicates and works, to seek and follow the norms and protocols of the people one works with, and to change conduct when told it caused harm, in meetings, site visits and teams. Relations owed to other governments and inclusive programme design are separate competencies.
 statement:
-  en: Communicating effectively with people from different cultural backgrounds, being mindful of varying communication styles and cultural norms.
+  en: Asks about and follows the communication norms and protocols of the communities and colleagues one works with, adapts language and meeting practice to them, seeks guidance from the people a community recognizes as cultural advisers before engagement or site visits, and changes conduct when told it caused offence or harm.
 competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - cross-cultural communication
+  - cultural competence
+  - cultural protocols
+  - cultural humility
 notation:
 - scheme: EMSTv1
   value: 5.3.1
-layer: L1
-module: core
-homeModule: core
-status: draft
-useTier: exploratory
-validationStatus: seed-v1
 v1Domain:
   code: '5'
   label: Communication & Engagement Skills
@@ -21,14 +36,16 @@ v1SkillArea:
   code: '5.3'
   label: Cultural Competency
 editorialNote:
-  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | MODE-ENGAGE. Rationale: Reframed as observable cultural humility, separated from Tribal government relations and from DEI/EJ (TN verdict; ADR-0016 s.5); Tribal-specific indicators held. Role verdicts considered: TN:change.'
-license: CC0-1.0
-sensitivity: public
+  en: 'S2 close-out A (A5 SC; reviewer TN (G-TN)). Reframed as observable cultural humility (TN verdict; ADR-0016 §5): separate from relations owed to other governments, which are held content (ADR-0007 §D), and from the inclusive-engagement and community-partnership items (v1 5.3.4-A, 5.3.5). Indicators specific to Tribal nations are held and not authored here; TN may add them inside the hold as enactment variants. Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | MODE-ENGAGE. Rationale: Reframed as observable cultural humility, separated from Tribal government relations and from DEI/EJ (TN verdict; ADR-0016 s.5); Tribal-specific indicators held.'
 provenance:
-  method: v1-migration
+  method: llm-assisted
   agent:
-  - emstagent:migrate_v1@1.0.0
-  generatedAt: '2026-10-23T12:00:00Z'
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
   derivedFrom:
   - v1Key: v1:5.3.1
     v1Code: 5.3.1
@@ -39,153 +56,32 @@ provenance:
     - title
     - description
     workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
-    relation: carried
+    relation: rewritten
   - v1Key: v1:5.3.1
     v1Code: 5.3.1
     v1Table: source_text/competencies
     sourceTextLine: 10717
     relation: recovered
     note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
-  evidenceLabel: J
-  reviewStatus: unreviewed
   adr:
-  - ADR-0011
-  - ADR-0010
-  - ADR-0013
-v1Seed:
-  v1Title: Cross-cultural communication
-  v1Description: Communicating effectively with people from different cultural backgrounds, being mindful of varying communication styles and cultural norms.
-  levels:
-  - v1Level: foundational
-    mapsTo: L1
-    v1Key: v1:5.3.1:foundational
-    knowledge: Awareness of own cultural perspective; basic understanding that cultures differ
-    application: Shows respect for cultural differences; seeks guidance
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.3.1:foundational:I1
-      n: 1
-      text: Demonstrates openness and humility in cross-cultural situations
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:foundational:I2
-      n: 2
-      text: Recognizes own cultural assumptions and biases
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:foundational:I3
-      n: 3
-      text: Asks appropriate questions about cultural protocols
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:foundational:I4
-      n: 4
-      text: Shows willingness to adapt communication approach
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:foundational:I5
-      n: 5
-      text: Seeks guidance from cultural experts or liaisons
-      origin: restored-from-source-text
-  - v1Level: intermediate
-    mapsTo: L2
-    v1Key: v1:5.3.1:intermediate
-    knowledge: Understands cultural dimensions (communication styles, time orientation, hierarchy)
-    application: Adapts communication effectively across cultural contexts
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.3.1:intermediate:I1
-      n: 1
-      text: Adjusts communication style based on cultural context
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:intermediate:I2
-      n: 2
-      text: Uses culturally appropriate forms of address and interaction
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:intermediate:I3
-      n: 3
-      text: Recognizes indirect communication and reads nonverbal cues
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:intermediate:I4
-      n: 4
-      text: Involves cultural liaisons appropriately in planning
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:intermediate:I5
-      n: 5
-      text: Avoids cultural faux pas in routine interactions
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:intermediate:I6
-      n: 6
-      text: Works effectively with interpreters
-      origin: restored-from-source-text
-  - v1Level: advanced
-    mapsTo: L3
-    v1Key: v1:5.3.1:advanced
-    knowledge: Deep understanding of specific cultural contexts; recognizes systemic issues
-    application: Builds authentic relationships across cultures; addresses structural barriers
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.3.1:advanced:I1
-      n: 1
-      text: Develops trusted relationships with diverse cultural communities
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:advanced:I2
-      n: 2
-      text: Recognizes and addresses power dynamics in cross-cultural work
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:advanced:I3
-      n: 3
-      text: Designs culturally responsive engagement processes
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:advanced:I4
-      n: 4
-      text: Identifies and mitigates cultural barriers to participation
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:advanced:I5
-      n: 5
-      text: Trains others in cross-cultural competency
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:advanced:I6
-      n: 6
-      text: Advocates for organizational cultural competency improvements
-      origin: restored-from-source-text
-  - v1Level: expert
-    mapsTo: L4
-    v1Key: v1:5.3.1:expert
-    knowledge: Comprehensive cultural expertise; understands intersectionality
-    application: Leads organizational cultural transformation
-    knowledgeApplicationOrigin: restored-from-source-text
-    indicators:
-    - v1Key: v1:5.3.1:expert:I1
-      n: 1
-      text: Serves as organizational leader on cultural competency
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:expert:I2
-      n: 2
-      text: Mediates complex cross-cultural conflicts
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:expert:I3
-      n: 3
-      text: Develops organizational cultural competency frameworks
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:expert:I4
-      n: 4
-      text: Influences how cultural competency is practiced in sector
-      origin: restored-from-source-text
-    - v1Key: v1:5.3.1:expert:I5
-      n: 5
-      text: Achieves recognition from diverse cultural communities for partnership quality
-      origin: restored-from-source-text
-  sectorApplications:
-  - sector: public_agencies
-    v1Key: v1:5.3.1:sector:public_agencies
-    text: Tribal consultation, environmental justice communities, immigrant communities
-  - sector: private_sector
-    v1Key: v1:5.3.1:sector:private_sector
-    text: International operations, diverse workforce management, global supply chains
-  - sector: ngos
-    v1Key: v1:5.3.1:sector:ngos
-    text: Grassroots organizing, international conservation, community-based work
-  - sector: consulting
-    v1Key: v1:5.3.1:sector:consulting
-    text: Cultural resource management, cross-cultural facilitation services
-  - sector: academia
-    v1Key: v1:5.3.1:sector:academia
-    text: International research, diverse student populations, community partnerships
-  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030
+levels:
+- level: L1
+  indicators:
+  - seed:v1-5-3-1-l1-a
+  - seed:v1-5-3-1-l1-b
+- level: L2
+  indicators:
+  - seed:v1-5-3-1-l2-a
+  - seed:v1-5-3-1-l2-b
+  - seed:v1-5-3-1-l2-c
+- level: L3
+  indicators:
+  - seed:v1-5-3-1-l3-a
+  - seed:v1-5-3-1-l3-b

@@ -250,15 +250,18 @@ def seed_derived_from(old: dict) -> list:
     return out
 
 
-def competency(c: dict, old: dict | None = None) -> dict:
-    """Build a Competency record from a content spec; keep a seed's id/notation/facets when rewriting in place."""
+def competency(c: dict, old: dict | None = None, prev: dict | None = None) -> dict:
+    """Build a Competency record from a content spec; keep a seed's id/notation/facets when rewriting in place.
+    `old` is the unauthored v1 seed (first rewrite); `prev` is this builder's own earlier version (re-run): its
+    notation, v1 facets and derivedFrom lineage are carried forward so a re-run never drops seed lineage."""
+    base = old or prev
     rec = {"id": c["id"], "type": "Competency", "prefLabel": {"en": c["label"]}}
     if c.get("alt"):
         rec["altLabel"] = {"en": c["alt"]}
     rec["definition"] = {"en": c["definition"]}
     rec["statement"] = {"en": c["statement"]}
-    if old and old.get("notation"):
-        rec["notation"] = old["notation"]
+    if base and base.get("notation"):
+        rec["notation"] = base["notation"]
     rec["competencyType"] = c.get("ctype", "practice")
     if c.get("cluster"):
         rec["transversalCluster"] = c["cluster"]
@@ -285,14 +288,15 @@ def competency(c: dict, old: dict | None = None) -> dict:
                 "useTier": c.get("useTier", "develop"), "validationStatus": "draft"})
     if c.get("lifecycle") in ("emerging", "proposed"):
         rec["reviewBy"] = c.get("reviewBy", "2027-10-23")
-    if old:
+    if base:
         for k in ("v1Domain", "v1SkillArea"):
-            if old.get(k):
-                rec[k] = old[k]
+            if base.get(k):
+                rec[k] = base[k]
     rec["editorialNote"] = {"en": c["note"]}
     rec["license"] = "CC0-1.0"
     rec["sensitivity"] = "public"
-    derived = (seed_derived_from(old) if old else []) + list(c.get("derived") or [])
+    carried = seed_derived_from(old) if old else list(((prev or {}).get("provenance") or {}).get("derivedFrom") or [])
+    derived = carried + list(c.get("derived") or [])
     seen, dd = set(), []
     for d in derived:
         k = (d["v1Key"], d["relation"])
@@ -313,6 +317,7 @@ def build(c: dict, row: str):
         old, seed = existing, True
     elif existing is not None and not _owned(existing):
         raise SystemExit(f"{c['id']} exists and is not mine or a seed")
+    prev = existing if (existing is not None and not seed) else None
     for lvl, inds in c.get("levels", {}).items():
         for i in inds:
             put(indicator(c["id"], i["id"], lvl, i["text"], i["mode"], i["methods"], area, c["roles"], i.get("served"),
@@ -323,7 +328,7 @@ def build(c: dict, row: str):
         put(knowledge(k["id"], k["text"], c["id"], k["lowest"], area, c["roles"], derived=k.get("derived")), area, row)
     for t in c.get("tasks", []):
         build_task(t, c, area, row)
-    put(competency(c, old), area, row, allow_seed=seed)
+    put(competency(c, old, prev), area, row, allow_seed=seed)
 
 
 def build_task(t, c, area, row):
@@ -344,11 +349,26 @@ def build_task(t, c, area, row):
                 derived.insert(0, d)
         elif not _owned(old):
             raise SystemExit(f"task {tid} exists and is not mine or a seed")
+        else:                                   # own earlier version: carry seed lineage, notation and v1 facets
+            notation = old.get("notation")
+            for k in ("v1Tier", "v1Domain", "v1SkillArea"):
+                if old.get(k):
+                    keep[k] = old[k]
+            have = {(x.get("v1Key"), x.get("relation")) for x in derived}
+            derived = [x for x in ((old.get("provenance") or {}).get("derivedFrom") or [])
+                       if (x.get("v1Key"), x.get("relation")) not in have] + derived
+    seen, dd = set(), []
+    for x in derived:
+        k = (x.get("v1Key"), x.get("relation"), x.get("v1Table"))
+        if k not in seen:
+            seen.add(k)
+            dd.append(x)
+    derived = dd
     supports = t.get("supports") or [{"competency": c["id"], "strength": "primary"}]
     for extra in t.get("contrib", []):
         supports.append({"competency": extra, "strength": "contributing"})
     note = t.get("note")
-    if old is not None and allow:
+    if old is not None and (allow or notation):
         base = "Rewritten to v2 task rules (one verb, 8-30 words, no product or instrument names; ADR-0003 G-2)."
         note = base + (" " + note if note else "")
     rec = task(tid, t["text"], supports, t["wf"], t["field"], t["formation"], t.get("area", area), c["roles"],
@@ -368,7 +388,9 @@ def supersede_task(tid, into, row, role, note):
         raise SystemExit(f"{tid} is not a seed or mine")
     old["status"] = "superseded"
     old["replacedBy"] = [into]
-    old["editorialNote"] = {"en": ((old.get("editorialNote") or {}).get("en", "") + " | " if old.get("editorialNote") else "") + note}
+    en = (old.get("editorialNote") or {}).get("en", "")
+    if note not in en:
+        old["editorialNote"] = {"en": (en + " | " if en else "") + note}
     pv = old.setdefault("provenance", {})
     ag = pv.setdefault("agent", [])
     if AG[role] not in ag:

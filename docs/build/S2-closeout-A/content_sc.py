@@ -97,8 +97,8 @@ COMPETENCIES = [
                   v1=["v1:3.2.4:advanced:I5"]),
             ],
             "L4": [
-                I("Runs a time-limited technology pilot with success criteria, recording the adoption decision and the "
-                  "tasks kept with staff for accountability or formation.", PORT, attr="ATT-AUG", mode="supervisory",
+                I("Runs a time-limited technology pilot, checking the tool's outputs against its success criteria and "
+                  "recording the adoption decision and the tasks kept with staff.", PORT, attr="ATT-AUG", mode="assisted",
                   tasks=["seed:v1-3.5.1-T2", "seed:v1-3.5.1-T3"], evidence=["pilot record"]),
                 I("Sequences concurrent changes in a reorganization so that no unit exceeds its agreed change capacity in a "
                   "quarter, adjusting the schedule when a threshold is crossed.", PORT, attr="ATT-SCO",
@@ -162,7 +162,7 @@ COMPETENCIES = [
               "project achieved from what changed for other reasons", "WF-LEARN", formation="partial"),
             T("seed:sc-report-results-spending", "Report a programme's results and spending to funders and the public in a "
               "form that lets readers trace each outcome claim to its data", "WF-LEARN", formation="no",
-              derived=[("v1:3.4.5", "merged-from")]),
+              note="Durable remainder of v1 3.4.5 (results and spending transparency); lineage is on the competency."),
         ],
         "levels": {
             "L2": [
@@ -262,7 +262,7 @@ COMPETENCIES = [
                   "with its date and source.", RA, tasks=["seed:v1-5.3.5-T2"], evidence=["concern log"]),
             ],
             "L2": [
-                I("Holds a pre-decision session with an affected community and records the priorities raised and how each "
+                I("Runs a pre-decision session with an affected community and records the priorities raised and how each "
                   "was considered, which the community's representatives confirm as accurate.", C360 + RA,
                   attr="ATT-AUT", obs4=2, tasks=["seed:v1-5.3.5-T2"], evidence=["session record"]),
                 I("Shares draft analyses with an affected community in a usable format and language before the comment "
@@ -278,8 +278,8 @@ COMPETENCIES = [
                 I("Sets up a standing participation structure with terms of reference that community members helped write, "
                   "meeting on its agreed cycle for a year.", PORT, attr="ATT-SCO", tasks=["seed:v1-5.6.3-T2"],
                   evidence=["terms of reference", "meeting record"]),
-                I("Supports a community-led action with the information or resources the community requested, recording "
-                  "each request and the response given.", RA, attr="ATT-AUT", tasks=["seed:v1-5.6.3-T3"],
+                I("Provides the information or resources a community requested for a community-led action, recording each "
+                  "request and the response given.", RA, attr="ATT-AUT", tasks=["seed:v1-5.6.3-T3"],
                   evidence=["request log"]),
             ],
             "L4": [

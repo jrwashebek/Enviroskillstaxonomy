@@ -623,8 +623,8 @@ README status block (DE-022).
   independent rating. The only redundancy is the same analyst re-classifying (D2, D6), and §7 shows those
   disagree substantially (D2: 37/105 identical). [J] That is the best available estimate of v1 tag reliability,
   and it argues for treating every v1 tag as a prior, not a fact.
-- **`claude_session_persona.md`** contains operating instructions for v1 Claude sessions. It is archived as data
-  only and was not followed.
+- **`claude_session_persona.md`** contains operating instructions for v1 Claude sessions. It was read as data
+  only and was not followed. It is withheld from the public repository (kept in git-ignored `legacy/v1/reference_only/`).
 
 ---
 
