@@ -25,8 +25,10 @@
 
 **Competencies enacted here:**
 
-- `seed:v1-6.7.1` Environmental health risk assessment [core] — enactment `seed:ena-6.7.1-waste`
+- `seed:v1-6.7.1` Assess human health risks from environmental exposures [core] — enactment `seed:ena-6.7.1-waste`
 - `seed:DB-C03` Supervise automated and AI-assisted process control in environmental operations [core] — enactment `seed:ena-db-c03-waste`
+- `seed:DB-C06` Protect operational technology at environmental utilities and facilities [core] — enactment `seed:ena-db-c06-waste`
+- `seed:DB-C21` Investigate and manage emerging contaminants across media [core] — enactment `seed:ena-db-c21-waste`
 - `seed:DB-C25` Target inspections and verify compliance using monitoring data and analytics [core] — enactment `seed:ena-db-c25-waste`
 - `seed:DB-C26` Manage a regulated facility's environmental compliance system and obligations calendar [core] — enactment `seed:ena-db-c26-waste`
 - `seed:DB-C29` Communicate environmental and health risks under uncertainty [core] — enactment `seed:ena-db-c29-waste`
@@ -34,13 +36,14 @@
 - `seed:FC-C14` Operate and supervise uncrewed and automated field systems [core] — enactment `seed:ena-fc-c14-waste`
 - `seed:FC-C16` Collect trace-level and genetic environmental samples without contamination [core] — enactment `seed:ena-fc-c16-waste`
 - `seed:FC-C24` Manage field sample custody and field quality control [core] — enactment `seed:ena-fc-c24-waste`
-- `seed:PS-C09` (planned; not yet authored) [core] — enactment `seed:ena-ps-c09-waste`
+- `seed:PS-C09` Build organizational and jurisdictional greenhouse gas inventories for disclosure and reporting [core] — enactment `seed:ena-ps-c09-waste`
 - `seed:SC-C12` Track regulatory change and translate it into operating guidance [core] — enactment `seed:ena-sc-c12-waste`
 - `seed:SC-C14` Operate within, or oversee, delegated and assumed regulatory programs [core] — enactment `seed:ena-sc-c14-waste`
 - `seed:SL-C02` Issue environmental permits and resource-use authorizations as the deciding authority [core] — enactment `seed:ena-sl-c02-waste`
 - `seed:SL-C03` Conduct regulatory compliance inspections [core] — enactment `seed:ena-sl-c03-waste`
 - `seed:SL-C04` Develop and resolve environmental enforcement cases [core] — enactment `seed:ena-sl-c04-waste`
 - `seed:SL-C10` Provide compliance and technical assistance to regulated entities and local governments [core] — enactment `seed:ena-sl-c10-waste`
+- `seed:SL-C12` Administer environmental financial assistance to local governments [core] — enactment `seed:ena-sl-c12-waste`
 
 **Roles served (`docs/decisions/mvp_role_set.csv`):** R27 Remediation project manager; R29 Solid waste and materials management specialist; R37 Facility environmental compliance specialist; R11 Environmental permit writer; R12 Environmental compliance inspector; R23 Enforcement case manager.
 

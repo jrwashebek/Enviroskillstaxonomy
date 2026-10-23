@@ -18,8 +18,10 @@
 
 **Competencies enacted here:**
 
-- `seed:v1-6.7.1` Environmental health risk assessment [core] — enactment `seed:ena-6.7.1-air`
+- `seed:v1-6.7.1` Assess human health risks from environmental exposures [core] — enactment `seed:ena-6.7.1-air`
 - `seed:DB-C03` Supervise automated and AI-assisted process control in environmental operations [core] — enactment `seed:ena-db-c03-air`
+- `seed:DB-C06` Protect operational technology at environmental utilities and facilities [core] — enactment `seed:ena-db-c06-air`
+- `seed:DB-C21` Investigate and manage emerging contaminants across media [core] — enactment `seed:ena-db-c21-air`
 - `seed:DB-C25` Target inspections and verify compliance using monitoring data and analytics [core] — enactment `seed:ena-db-c25-air`
 - `seed:DB-C26` Manage a regulated facility's environmental compliance system and obligations calendar [core] — enactment `seed:ena-db-c26-air`
 - `seed:DB-C52` Analyze cumulative burdens and distributional effects of environmental decisions [core] — enactment `seed:ena-db-c52-air`
@@ -28,7 +30,7 @@
 - `seed:DC-CAND-12` Build, run and validate environmental forecast and scenario systems [core] — enactment `seed:ena-dc-cand-12-air`
 - `seed:FC-C01` Deploy, maintain and verify field sensor networks [core] — enactment `seed:ena-fc-c01-air`
 - `seed:FC-C24` Manage field sample custody and field quality control [core] — enactment `seed:ena-fc-c24-air`
-- `seed:PS-C09` (planned; not yet authored) [core] — enactment `seed:ena-ps-c09-air`
+- `seed:PS-C09` Build organizational and jurisdictional greenhouse gas inventories for disclosure and reporting [core] — enactment `seed:ena-ps-c09-air`
 - `seed:SC-C12` Track regulatory change and translate it into operating guidance [core] — enactment `seed:ena-sc-c12-air`
 - `seed:SC-C14` Operate within, or oversee, delegated and assumed regulatory programs [core] — enactment `seed:ena-sc-c14-air`
 - `seed:SL-C02` Issue environmental permits and resource-use authorizations as the deciding authority [core] — enactment `seed:ena-sl-c02-air`

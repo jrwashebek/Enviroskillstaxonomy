@@ -19,7 +19,7 @@
 
 **Competencies enacted here:**
 
-- `seed:v1-1.5.2` Climate vulnerability assessment [core] — enactment `seed:ena-1.5.2-hazards`
+- `seed:v1-1.5.2` Assess climate vulnerability of species, ecosystems, infrastructure and communities [core] — enactment `seed:ena-1.5.2-hazards`
 - `seed:DB-C29` Communicate environmental and health risks under uncertainty [core] — enactment `seed:ena-db-c29-hazards`
 - `seed:DB-C50` Review effects of proposed actions on historic properties and resolve them through consultation [core] — enactment `seed:ena-db-c50-hazards`
 - `seed:DC-CAND-04` Engineer environmental sensor-network and streaming data pipelines [core] — enactment `seed:ena-dc-cand-04-hazards`
@@ -30,6 +30,7 @@
 - `seed:FC-C14` Operate and supervise uncrewed and automated field systems [core] — enactment `seed:ena-fc-c14-hazards`
 - `seed:FC-C26` Assess tree risk and structural condition [core] — enactment `seed:ena-fc-c26-hazards`
 - `seed:SL-C08` Conduct environmental impact review of proposed actions [core] — enactment `seed:ena-sl-c08-hazards`
+- `seed:SL-C12` Administer environmental financial assistance to local governments [core] — enactment `seed:ena-sl-c12-hazards`
 
 **Roles served (`docs/decisions/mvp_role_set.csv`):** R30 Hazard mitigation and floodplain manager; R10 Environmental review specialist; R06 Wildland fire operations (crew to supervisor).
 

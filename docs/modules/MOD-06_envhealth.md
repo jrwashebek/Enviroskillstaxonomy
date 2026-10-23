@@ -20,7 +20,8 @@
 
 - `seed:v1-1.4.3` Identify organisms from field characters, specimens, images and recordings [core] — enactment `seed:ena-1.4.3-envhealth`
 - `seed:v1-4.1.3` Measure water quality and survey aquatic communities in the field [core] — enactment `seed:ena-4.1.3-envhealth`
-- `seed:v1-6.7.1` Environmental health risk assessment [core] — enactment `seed:ena-6.7.1-envhealth`
+- `seed:v1-6.7.1` Assess human health risks from environmental exposures [core] — enactment `seed:ena-6.7.1-envhealth`
+- `seed:DB-C21` Investigate and manage emerging contaminants across media [core] — enactment `seed:ena-db-c21-envhealth`
 - `seed:DB-C29` Communicate environmental and health risks under uncertainty [core] — enactment `seed:ena-db-c29-envhealth`
 - `seed:FC-C03` Adjudicate automated species detections using field-formed identification expertise [core] — enactment `seed:ena-fc-c03-envhealth`
 - `seed:FC-C16` Collect trace-level and genetic environmental samples without contamination [core] — enactment `seed:ena-fc-c16-envhealth`

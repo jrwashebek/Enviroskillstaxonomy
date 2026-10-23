@@ -32,7 +32,7 @@
 **Competencies enacted here:**
 
 - `seed:v1-1.4.3` Identify organisms from field characters, specimens, images and recordings [core] — enactment `seed:ena-1.4.3-forest`
-- `seed:v1-1.5.2` Climate vulnerability assessment [core] — enactment `seed:ena-1.5.2-forest`
+- `seed:v1-1.5.2` Assess climate vulnerability of species, ecosystems, infrastructure and communities [core] — enactment `seed:ena-1.5.2-forest`
 - `seed:v1-4.2.2` Detect, treat and monitor invasive species in the field [core] — enactment `seed:ena-4.2.2-forest`
 - `seed:v1-5.1.3` Environmental interpretation [core] — enactment `seed:ena-5.1.3-forest`
 - `seed:v1-6.2.3` Prepare and revise management plans for publicly held lands [core] — enactment `seed:ena-6.2.3-forest`
