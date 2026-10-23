@@ -453,7 +453,7 @@ def f9():
     register("F09", "f09_policy_instrument_timeline_2025_2027.csv",
              "In 2025-26 policy instruments reshaped review, authorization, hiring and disclosure work faster than any technology did, and more dated changes are already scheduled for 2027.",
              "Horizontal timeline with one swimlane per domain; recorded events as filled markers, scheduled dates as hollow markers, pending actions as dashed markers; status labels in text, not colour alone; table beside the chart.",
-             "EMST L5 instrument registry and driver events (data/v2/instruments, data/v2/events; agent-recorded, unreviewed) filtered to events whose dates rest on verified records (V1-V4 key facts and the corrections register); scheduled and pending items from the same verified records. Litigation outcomes after the dates shown were not checked. Held (Tribal-related) instruments excluded.")
+             "EMST L5 instrument registry and driver events (data/v2/instruments, data/v2/events; agent-recorded, unreviewed) filtered to events whose dates rest on verified records (V1-V4 key facts, the corrections register and the WP-15 re-checks of 2026-10-23); scheduled and pending items from the same verified records. Bills are shown at their recorded stage only; none is law. Litigation outcomes after the dates shown were not checked. Held (Tribal-related) instruments excluded.")
 
 
 # ---------------------------------------------------------------- F10 corridors

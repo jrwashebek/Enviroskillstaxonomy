@@ -40,7 +40,7 @@ Safety tasks take little time but are all flagged critical. They include a job h
 | Record field observations | Transforming: mobile forms replace paper, and completeness rules move into the form | sensing tech | Assessment pending |
 | Hand-built trail construction | Stable: current tools do not compress it, and demand follows maintenance funding | fiscal | Assessment pending |
 
-The pressure on this role comes from budgets and policy, not from AI. EMST tags none of its headcount or posting signals as AI-driven (`docs/methods/CHANGE_SIGNALS.md` §7.1).
+The verified evidence about this role concerns grant funding and hiring policy. None of the sources behind it attributes the change to AI (`docs/methods/CHANGE_SIGNALS.md` §7.1).
 
 ## What stays human, and why
 
@@ -71,7 +71,7 @@ People learn this work by doing it repeatedly under a crew lead. The draft flags
 ## Pathways in and out (exploratory, not recommended)
 
 - **Corps member → field resource technician (R02; COR-1, new hire).** Five steps. Safety, first aid and navigation come before any data work. Members then collect data to protocol and make **50 unaided identifications checked by an experienced observer** before any AI identification aid is credited. Next come seeded-error drills on AI field products, and the pathway ends with a season capstone signed off on a task book. LC estimates about 240 hours over 12 months, mostly paid placement and mentor time [J].
-- **Corps member → wildland fire operations (R06; COR-2, new hire).** Safety culture first. Fireline and saw work are evaluated on qualifying assignments, members make 10 hand calculations of fuel moisture and fire danger, and they ignite under a firing boss. LC estimates about 200 hours over 12 months [J]. USWFS and USFS aligned federal qualification standards take effect in January 2027. NWCG is not a party [V3-13; WF-10].
+- **Corps member → wildland fire operations (R06; COR-2, new hire).** Safety culture first. Fireline and saw work are evaluated on qualifying assignments, members make 10 hand calculations of fuel moisture and fire danger, and they ignite under a firing boss. LC estimates about 200 hours over 12 months [J]. The January 2027 standards align USWFS and USFS federal qualifications. NWCG separately updated PMS 310-1 in January 2026 [V3-13; WF-10].
 - Prior learning the pathways credit: wilderness first aid; wildland fire position qualifications.
 
 Neither pathway has been tested against observed moves (ADR-0023 §5). Source: `docs/build/WP-07/staging/pathways/seed-lc-pw-cor1-corps-to-field-technician.yaml`, `…cor2-corps-to-fire-operations.yaml`.

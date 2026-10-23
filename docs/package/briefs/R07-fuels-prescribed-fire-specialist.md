@@ -32,7 +32,7 @@ Fuels and prescribed fire specialists assess fuels, design and supervise fuels t
 
 | Work | Change (agent draft) | Driver | Evidence status |
 |---|---|---|---|
-| **Role workload** | **Skill shift:** fuels and prescribed-fire workload grows with fire activity while federal capacity falls | climate, workforce capacity | Watch: USFS headcount fell by more than a quarter, Sep 2024–Jan 2026 (reliability B) [V1-02; WF-02]. A 2026 fire-season workload signal is linked but not yet verified, so it is not quoted here (FIRE-01, awaiting WP-15). |
+| **Role workload** | **Skill shift:** fuels and prescribed-fire workload grows with fire activity while federal capacity falls | climate, workforce capacity | Watch: USFS headcount fell by more than a quarter, Sep 2024–Jan 2026 (reliability B) [V1-02; WF-02]. Context: as of October 11, 2026, the season had reached 63,884 fires and 9.0 million acres year to date, 133% and 145% of the 2016–2025 average [FIRE-01; NIFC]. |
 | Write burn plans | Transforming, compressing drafting: sections are increasingly drafted from templates or AI, but prescription judgment stays | AI | Assessment pending |
 | Assess fuels | Transforming: assessment shifts from plots to verifying mapped fuels | sensing tech | Assessment pending |
 | **Verify remotely sensed fuels maps in the field** | **New routine work:** remotely sensed fuel maps replace much plot sampling | sensing tech, AI | Assessment pending. Watch: remote sensing mentions rise in plans written under the 2012 planning rule, but the signal is weak, because plans name outcomes rather than methods (reliability B) [PLAN-01] |

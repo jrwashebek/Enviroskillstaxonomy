@@ -32,13 +32,13 @@ The role runs from crew member to crew supervisor. It covers constructing and ho
 
 | Work | Change (agent draft) | Driver | Evidence status |
 |---|---|---|---|
-| **The role's institutions** | **Transforming:** federal wildland fire is being reorganized. The U.S. Wildland Fire Service was established at Interior by Secretarial Order 3448 (January 12, 2026). USFS fire was not moved; consolidation is only proposed in the FY2027 budget [V1-06; WF-07]. USWFS–USFS aligned federal qualification standards take effect in January 2027. NWCG is not a party, and it updated PMS 310-1 on January 23, 2026 [V3-13; WF-10]. | policy, workforce capacity | Verified facts. No skill-change indicator. |
+| **The role's institutions** | **Transforming:** federal wildland fire is being reorganized. The U.S. Wildland Fire Service was established at Interior by Secretarial Order 3448 (January 12, 2026). USFS fire was not moved; consolidation is only proposed in the FY2027 budget [V1-06; WF-07]. The January 2027 standards align USWFS and USFS federal qualifications. NWCG separately updated PMS 310-1 in January 2026 [V3-13; WF-10]. | policy, workforce capacity | Verified facts. No skill-change indicator. |
 | Size-up of a new fire | Transforming, adding evidence: satellite and camera detection reaches the size-up earlier, but ground size-up of fuels and values at risk stays | sensing tech, AI | Assessment pending. Watch: federal environmental bureaus' registered AI fire and smoke use cases, 2025 inventory (reliability A) [V4-15; OMB-01] |
 | Fuel moisture and danger indices | Transforming: automated stations supply indices, and hand calculation is kept as a formation task with a by-hand quota | sensing tech | Assessment pending |
 | **Check a template or AI-generated hazard briefing on site before delivering it** | **New** | AI | Assessment pending |
 | Fireline construction | Stable: current tools do not compress it | none | Assessment pending |
 
-Workload: the role-change view also links a 2026 fire-season workload signal. Its figures have not passed a verification pass, so this brief does not quote them (claim FIRE-01, awaiting WP-15). Context only: BLS projects +4% for firefighters over 2025–35, and wildland firefighters are not counted separately [BLS-02].
+Workload (skill shift, driver climate): as of October 11, 2026, the season had reached 63,884 fires and 9.0 million acres year to date. That is 133% and 145% of the 2016–2025 average [FIRE-01; NIFC]. A workload signal is context. It does not show that the work itself is changing. Also context only: BLS projects +4% for firefighters over 2025–35, and wildland firefighters are not counted separately [BLS-02].
 
 ## What stays human, and why
 
