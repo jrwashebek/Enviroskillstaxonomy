@@ -40,7 +40,7 @@ The WP-10 brief named the write lane as `data/v2/signals/`, `data/v2/assessments
 All SPEC §5.14 fields are filled. Choices worth knowing:
 
 - **Targets.** Work functions, modes and sector actors are L0 terms (`targetType: VocabularyTerm`, e.g. `vocab:work_functions#WF-MONITOR`).
-  - Roles are the planned MVP role keys, `mvp-role:R14-forester` (an ExternalRef to `docs/decisions/mvp_role_set.csv`). No reference dangles before WP-08 authors RoleProfile seeds; CR-LM-001 §10 covers the re-point.
+  - Roles are the WP-08 RoleProfile seeds, `seed:<role_key>` (e.g. `seed:R14-forester`; CR-IA-001 ruling). They were re-keyed from the interim `mvp-role:` placeholders on 2026-10-23.
   - Instruments are `seed:ins/…`. Signpost readings target `vocab:scenarios#SP-NN`, using the notations proposed in CR-LM-001 §8.
   - Agency headcount targets `vocab:sector_actors#federal`, with the agency named in the label, until an organization target exists (CR-LM-001 §4).
 - **Occupation-level series** (BLS projections, external indices) are attached to **each MVP role that lists the SOC code**, with a two-step `crosswalkPath`: native SOC, then role → SOC from `mvp_role_set.csv` until X3 exists. `crosswalkMinMatchType` is `skos:closeMatch` for single-SOC roles without a caveat and `skos:broadMatch` otherwise. Under ADR-0028 a broad match can raise a watch but never move an indicator. Occupations with index values but no MVP role are listed in `docs/methods/generated/unattached_occupations.txt`.
@@ -372,7 +372,7 @@ Readings target the proposed signpost notations SP-01…SP-12, assigned in the o
 ## 11. Limits
 
 - No posting baseline: USAJOBS and the state board were blocked (§5.5). No OPM FWD series pull. BLS AI-category XLSX not retrieved. AEI occupation files not ingested. Headcount relies on verified secondary analyses of OPM data.
-- Role targets are planned keys (`mvp-role:<key>`, `W-MVP-ROLE-TARGET`, excluded from releases) until WP-08 authors RoleProfile seeds as `seed:<role_key>` (CR-IA-001 ruling). Re-key them then.
+- Role targets now resolve to WP-08 RoleProfile seeds. Some of those roles live in modules (e.g. `forest`, `air`, `envhealth`); JSONL signals may reference module records, and core YAML records may not.
 - Unlisted independence keys (CA/LM to add to `vocab/change_types.yaml#independence_keys`): `bls-ep-2025-35`, `conservation-job-board`, `pnnl-permitai`, `trade-press-consulting`, `credential-launch`, `fs-data-discontinuity`, `fs-fiscal`, `earth-fire-alliance`, `nifc-imsr`, `agency-ai-strategy`, `mercor-listing`, `federal-register-pipeline`, `crs-appropriations`.
 - The plan-requirement series is USFS-western and cross-era. Mentions are not obligations.
 - Several SC registry rows are not re-verified (§2.4). FS weak signals were recoded only where watch items or signposts cite them; FS owns the full register.
