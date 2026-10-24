@@ -1,0 +1,68 @@
+id: emst:parks/TSK-KP524WT
+type: Task
+prefLabel:
+  en: Orient visitors at a contact station to routes, conditions, regulations and hazards matched to their plans and abilities
+statement:
+  en: Orient visitors at a contact station to routes, conditions, regulations and hazards matched to their plans and abilities
+textSha256: c3db968b0a45119153a7749cd48953cce6cf2b27f844cc2110cdf315484641ef
+supports:
+- competency: emst:parks/CMP-ZJ8688G
+  strength: primary
+workFunction: WF-OPERATE
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- public
+workflowProfiles:
+- WP-OPERATIONS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+credentialGates:
+- credential: emst:core/CRD-B379F8Q
+  kind: preferred
+homeModule: parks
+subsectors:
+- L10
+layer: L2
+module: parks
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+notation:
+- scheme: EMSTv1
+  value: 5.5.1:T1
+v1Tier: T1
+v1Domain:
+  code: '5'
+  label: Communication & Engagement Skills
+v1SkillArea:
+  code: '5.5'
+  label: Customer Service
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:5.5.1:T1
+    v1Code: 5.5.1
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 167
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

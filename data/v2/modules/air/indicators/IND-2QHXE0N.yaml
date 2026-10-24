@@ -1,0 +1,38 @@
+id: emst:air/IND-2QHXE0N
+type: Indicator
+prefLabel:
+  en: Compiles a source category's emissions estimates with documented activity data and…
+competency: emst:air/CMP-ZVX2017
+level: L2
+statement:
+  en: Compiles a source category's emissions estimates with documented activity data and emission factors, so that a reviewer can reproduce each estimate from the file.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:air/TSK-GTVG44K
+layer: L1
+module: air
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

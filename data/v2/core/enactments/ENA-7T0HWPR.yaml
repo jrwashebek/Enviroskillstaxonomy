@@ -1,0 +1,60 @@
+id: emst:core/ENA-7T0HWPR
+type: Enactment
+prefLabel:
+  en: Federal discretionary public involvement
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-YZAD6ZT
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: Department environmental-review procedures that make public involvement discretionary for lower levels of review and require comment solicitation for impact statements; objection rules.
+principal:
+  en: The responsible official.
+accountabilityVenue:
+  en: Federal courts; objection reviewers; Congress.
+characteristicInstruments:
+- instrument: emst:core/INS-3HFPZD5
+  role: requires
+  note:
+    en: Comment solicitation for impact statements.
+- instrument: emst:core/INS-854WGKT
+  role: requires
+- instrument: emst:core/INS-RY63HWN
+  role: removed-requirement
+  note:
+    en: Removed the government-wide public-involvement provisions; never a basis.
+- instrument: emst:core/INS-K0M67F8
+  role: requires
+note:
+  en: 'Federal engagement moved from a compliance step to a reasoned choice in 2026 [E: SC-038].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SC-038
+  - V2-01
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

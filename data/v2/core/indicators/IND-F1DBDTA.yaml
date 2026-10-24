@@ -1,0 +1,48 @@
+id: emst:core/IND-F1DBDTA
+type: Indicator
+prefLabel:
+  en: Adapts the review when the governing procedure changes or a property is discovered during implementation, documenting the revised steps.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-8QWCQ3R
+level: L3
+statement:
+  en: Adapts the review when the governing procedure changes or a property is discovered during implementation, documenting the revised steps.
+augmentationMode: unaided
+assessmentMethods:
+- structured-interview-bars
+- record-audit
+useClass: develop
+obs4: 2
+jurisdictionVariable: false
+evidencePlan:
+  en: Pilot the assessment method with two trained raters on synthetic cases before use; promote to obs4 3 only after IO double-coding.
+evidenceTypes:
+- revised review plan
+servedTasks:
+- emst:core/TSK-EHHK4WT
+distinguishingAttribute: ATT-GUI
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

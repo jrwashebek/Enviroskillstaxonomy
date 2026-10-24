@@ -1,0 +1,63 @@
+id: emst:core/ENA-SWP9M4A
+type: Enactment
+prefLabel:
+  en: Federal decision defensibility
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-TVPV3Y2
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: Judicial review of agency action; the 2025 Supreme Court standard of substantial deference in environmental review; pending legislation on limitations periods, standing and remedies; agency objection processes.
+principal:
+  en: The deciding official, with agency counsel and the Department of Justice.
+accountabilityVenue:
+  en: Federal courts.
+characteristicInstruments:
+- instrument: emst:core/INS-RPPAZ58
+  role: constrains
+- instrument: emst:core/INS-12Y5SR9
+  role: constrains
+  note:
+    en: Pending legislation.
+- instrument: emst:core/INS-K0M67F8
+  role: constrains
+  note:
+    en: Pre-decisional objection sets exhaustion and timing.
+- instrument: emst:core/INS-3DT8P3X
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+note:
+  en: 'PermitTEC-style case datasets can calibrate litigation-risk judgment for training [E: SC-009].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SC-009
+  - V2-02
+  - V2-03
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

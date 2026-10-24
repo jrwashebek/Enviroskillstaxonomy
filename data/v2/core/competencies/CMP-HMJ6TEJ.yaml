@@ -1,0 +1,82 @@
+id: emst:core/CMP-HMJ6TEJ
+type: Competency
+prefLabel:
+  en: Analyze and interpret climate observations and projections for management decisions
+altLabel:
+  en:
+  - Climate data analysis and interpretation
+definition:
+  en: The capability to obtain, process and interpret historical climate records and downscaled projections for a place, choosing scenarios, ensembles and downscaling methods suited to the decision, and to translate results into decision-relevant terms with their uncertainty. Specific climate data portals and model archives are L4.
+statement:
+  en: Obtains, processes and interprets historical climate records and downscaled projections for a management unit; chooses scenarios, ensembles and downscaling methods suited to the decision; analyzes trends and extremes; and translates results into decision-relevant variables with ranges and stated limits for managers and planners.
+editorialNote:
+  en: 'Rewritten by WP-04 (DC lane: v1 craft primary DC, used only to route the seed; v1 tags are prior evidence, not v2 values). Tool-free per T-1 (v1_disposition 1.5.1). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (DC). Rationale: Climate data analysis and interpretation of projections, tool-free (T-1); cross-module. Role verdicts considered: none recorded.'
+notation:
+- scheme: EMSTv1
+  value: 1.5.1
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-WQM4V1W
+  - emst:core/IND-22J4XRJ
+- level: L2
+  indicators:
+  - emst:core/IND-NPB5BAA
+  - emst:core/IND-1P8Q2R8
+- level: L3
+  indicators:
+  - emst:core/IND-JB1TXE9
+  - emst:core/IND-4WQ1JS5
+- level: L4
+  indicators:
+  - emst:core/IND-YYMQ2KS
+  - emst:core/IND-54VYS2Y
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:1.5.1
+    v1Code: 1.5.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 22
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:1.5.1
+    v1Code: 1.5.1
+    v1Table: source_text/competencies
+    sourceTextLine: 1387
+    relation: reference-only
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  adr:
+  - ADR-0003
+  - ADR-0011
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.5'
+  label: Climate Science

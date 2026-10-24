@@ -1,0 +1,53 @@
+id: emst:core/ENA-10VDPS1
+type: Enactment
+prefLabel:
+  en: State employee in a licensure-split class
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-YDXQC56
+enactmentKind: actor
+actorType: state-agency
+authorityBasis:
+  en: State licensing acts (engineering, geology, environmental health, operator certification) and the state class plan, which assigns sealing duties only to licensed classes.
+principal:
+  en: The licensed supervisor in responsible charge; the licensing board.
+accountabilityVenue:
+  en: State licensing boards.
+characteristicInstruments:
+- instrument: emst:core/INS-PYM919M
+  role: constrains
+  note:
+    en: Limits use of a licensed title in classified positions. Example state only; other states' statutes are not yet registered.
+note:
+  en: 'SL review: class plans are split by licence, so moving into a licensed class is a credential gate, not a proficiency step [E: SL-055, SL-054].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sl-review@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SL-054
+  - SL-055
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

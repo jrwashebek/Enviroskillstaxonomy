@@ -1,0 +1,60 @@
+id: emst:core/ENA-A3VR4RF
+type: Enactment
+prefLabel:
+  en: Federal agency community engagement
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-JHR1JC7
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: Programme statutes and agency engagement procedures; the government-wide environmental-justice orders that directed engagement with affected communities were revoked in January 2025, so the work rests on programme authority and agency discretion.
+principal:
+  en: The responsible official for the programme or decision.
+accountabilityVenue:
+  en: Federal courts; inspectors general; Congress.
+characteristicInstruments:
+- instrument: emst:core/INS-118YM20
+  role: requires
+  note:
+    en: Revoked 2025-01-21 by EO 14173.
+- instrument: emst:core/INS-JXVT1X7
+  role: requires
+  note:
+    en: Revoked 2025-01-20 by EO 14148.
+- instrument: emst:core/INS-C7Q9GK6
+  role: removed-requirement
+  note:
+    en: Revoking order; never a basis.
+- instrument: emst:core/INS-4SEMS7B
+  role: removed-requirement
+  note:
+    en: Revoking order; never a basis.
+note:
+  en: 'ADR-0016: applicability is computed. With the revoked orders linked as requires and the revoking orders as removed-requirement, the federal value computes no-current-basis while the work stays possible; the Q4 default shows the value with a note and excludes nothing.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - WP05-001
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

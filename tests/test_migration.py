@@ -185,13 +185,14 @@ def test_v1_tags_are_prior_evidence_only():
     assert kinds[("RelevanceRating", "v1-family")] == 1002 and kinds[("RelevanceRating", "v1-ethical-lens")] == 35
     for r in v1:
         assert r["raterId"] == "v1-analyst-01" and r["confidence"] == "low" and r["provenance"]["derivedFrom"][0]["relation"] in ("prior-evidence", "recovered")
-        assert r["status"] == "draft" and "technicalExposure" not in r
+        # draft, or candidate once WP-16 promoted it for release as prior evidence (ADR-0031 §6)
+        assert r["status"] in ("draft", "candidate") and "technicalExposure" not in r
     flags = Counter(f for r in v1 for f in r.get("v1Flags", []))
     for f in ("text_misaligned", "reconstructed_d2", "d2_divergent", "reconciled_d6_2026_03", "normative_h", "pre15a_hybrid"):
         assert flags[f] > 0, f
     s_calls = [r for r in v1 if r["type"] == "ExposureAssessment" and r["v1Values"].get("auto_type") in ("S", "V")]
     assert s_calls and all(r["deploymentMode"] == "compressive" and r["sWatch"] for r in s_calls)   # XR-04
-    dual = RECS["seed:v1stage/4.3.2"][1]["v1Values"]
+    dual = RECS[L.load_seed_map().get("seed:v1stage/4.3.2", "seed:v1stage/4.3.2")][1]["v1Values"]   # minted at WP-16
     assert dual["stage_primary_2"] == "S1" and dual["dual_primary_exception"] is True
 
 

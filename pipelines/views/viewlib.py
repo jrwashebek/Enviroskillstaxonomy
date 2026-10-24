@@ -49,8 +49,38 @@ LEVEL_KEYS = ["entry", "journey", "senior", "lead", "strategic"]
 
 
 def stamp(rule, version, generator):
-    return {"ruleId": rule, "ruleVersion": version, "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-            "generator": generator, "asOf": AS_OF}
+    """View stamp. The status is read from the registered rule file (vocab/rules/), so a page is never stale about it."""
+    status = "not registered"
+    f = ROOT / "vocab" / "rules" / f"{rule}@{version}.yaml"
+    if f.exists():
+        status = f"registered rule, status {L.load_yaml(f).get('status', 'unknown')}"
+    return {"ruleId": rule, "ruleVersion": version, "ruleStatus": status, "generator": generator, "asOf": AS_OF}
+
+
+# ---------------------------------------------------------------- display gate (display-gate@1.1.0; CR-FIX-B-001)
+def _gate_engine():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("emst_display_gate_views", ROOT / "validation" / "display_gate.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod, mod.load_gates()
+
+
+GATE, GATES = _gate_engine()
+TIME_NOTICE = GATES["role_profile_values"]["role_labels"]["fsp_time_share_notice"]
+PENDING_JA = GATES["role_profile_values"]["role_labels"]["assessment_pending_job_analysis"]
+
+
+def role_value(role, field, context):
+    """IO's decision for one role-profile bundle field in a view context (validation/display_gate.py#decide_role_value).
+    The role record carries the validationStatus and reviewers that govern every bundle value on it."""
+    v = {"field": f"RoleProfile.{field}", "validationStatus": role.get("validationStatus"),
+         "reviewers": list((role.get("provenance") or {}).get("reviewers") or []), "held": held(role)}
+    return GATE.decide_role_value(v, GATES, "describe", context)
+
+
+def shows(role, field, context):
+    return bool(role_value(role, field, context).get("render"))
 
 
 def held(rec):
@@ -60,6 +90,9 @@ def held(rec):
 
 class Data:
     def __init__(self):
+        self.seed_map = L.load_seed_map()
+        self.seed_rev = {v: k for k, v in self.seed_map.items()}
+        self.mvp_keys = {r["role_key"][:3]: r["role_key"] for r in L.read_csv(ROOT / "docs" / "decisions" / "mvp_role_set.csv")}
         self.recs = {}
         self.by_type = defaultdict(list)
         self.v1asm = defaultdict(list)
@@ -98,7 +131,30 @@ class Data:
             self.variants_of[self.recs[i]["variantOf"]].append(self.recs[i])
 
     def get(self, rid):
-        return self.recs.get(rid)
+        """A record by ID; a seed key promoted at WP-16 resolves to its minted record (data/v2/ids/seed_map.csv)."""
+        return self.recs.get(rid) or self.recs.get(self.seed_map.get(rid, ""))
+
+    def canon(self, rid):
+        """The current ID for a reference: the minted ID when a seed key was promoted, else the reference itself."""
+        return self.seed_map.get(rid, rid)
+
+    def seed_of(self, rid):
+        return self.seed_rev.get(rid, rid)
+
+    def role_key(self, role):
+        """The MVP role key (e.g. R13-resource-program-manager) from the role's MVProleSet notation; stable across
+        minting, so generated file names and the report figures that read them do not change."""
+        for n in role.get("notation") or []:
+            if isinstance(n, dict) and n.get("scheme") == "MVProleSet":
+                return self.mvp_keys.get(str(n.get("value")), str(n.get("value")))
+        s = self.seed_of(role["id"])
+        return s.split(":", 1)[1] if s.startswith("seed:") else L.id_to_stem(s)
+
+    def variant_for(self, role_id, actor):
+        """The role's variant for a sector actor, found by variantOf and sectorActor, never by seed-key suffix."""
+        hits = sorted((v for v in self.variants_of.get(role_id, []) if v.get("sectorActor") == actor and not held(v)),
+                      key=lambda v: (self.seed_of(v["id"]).count("/"), v["id"]))
+        return hits[0] if hits else None
 
     def roles(self):
         return [self.recs[i] for i in sorted(self.by_type["RoleProfile"])]
@@ -161,21 +217,31 @@ def primary_target(data, tid, target_ids):
     return sup[0]["competency"] if sup else None
 
 
-def duties(data, role, items):
+def duties(data, role, items, context="federal-series-profile"):
+    """Major duties grouped by the competency each task primarily supports, in role-record order (display-gate@1.1.0
+    `rollups`: job-analysis values never order a view). % time, importance, critical and needed-at-entry are given only
+    where the gate renders them in this context; otherwise they are None and the view prints the gate's label."""
     targets = {t["competency"]: t for t in role.get("competencyTargets") or []}
-    groups = defaultdict(list)
+    groups = {}
     for i in items:
-        groups[primary_target(data, i["task"], targets)].append(i)
+        groups.setdefault(primary_target(data, i["task"], targets), []).append(i)
+    pct_ok = shows(role, "taskBundle.timeShare", context)
+    imp_ok = shows(role, "taskBundle.importance", context)
+    crit_ok = shows(role, "taskBundle.critical", context)
+    entry_ok = shows(role, "taskBundle.neededAtEntry", context)
+    form_ok = shows(role, "taskBundle.formationTask", context)
     out = []
     for cid, its in groups.items():
-        pct = round(100 * sum(i["shareWithin"] for i in its))
-        out.append({"competency": cid, "duty": data.label(cid), "pctTime": pct,
-                    "tasks": [{"task": i["task"], "statement": data.statement(i["task"]), "importance": i.get("importance"),
-                               "critical": i.get("critical", False), "neededAtEntry": i.get("neededAtEntry", False),
-                               "formationTask": i.get("formationTask", False), "variantAdded": i.get("added", False),
-                               "pctTime": round(100 * i["shareWithin"], 1)}
-                              for i in sorted(its, key=lambda x: -x["shareWithin"])]})
-    out.sort(key=lambda d: -d["pctTime"])
+        out.append({"competency": cid, "duty": data.label(cid),
+                    "pctTime": round(100 * sum(i["shareWithin"] for i in its)) if pct_ok else None,
+                    "tasks": [{"task": i["task"], "statement": data.statement(i["task"]),
+                               "importance": i.get("importance") if imp_ok else None,
+                               "critical": i.get("critical", False) if crit_ok else None,
+                               "neededAtEntry": i.get("neededAtEntry", False) if entry_ok else None,
+                               "formationTask": i.get("formationTask", False) if form_ok else None,
+                               "variantAdded": i.get("added", False),
+                               "pctTime": round(100 * i["shareWithin"], 1) if pct_ok else None}
+                              for i in its]})
     return out
 
 
@@ -243,8 +309,7 @@ def targets_at(data, role, levels):
         out.append({"competency": t["competency"], "label": data.label(t["competency"]), "targetLevels": tl,
                     "importance": t.get("importance"), "distinguishing": t.get("distinguishing", False),
                     "competencyType": c.get("competencyType"), "transversalCluster": c.get("transversalCluster")})
-    out.sort(key=lambda x: (-(x["importance"] or 0), x["competency"]))
-    return out
+    return out              # role-record order: importance is a gated job-analysis value and never orders a view
 
 
 def write_json(path, obj):

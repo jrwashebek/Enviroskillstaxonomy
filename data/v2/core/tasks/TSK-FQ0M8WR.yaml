@@ -1,0 +1,42 @@
+id: emst:core/TSK-FQ0M8WR
+type: Task
+prefLabel:
+  en: Review a template- or AI-drafted incident action plan section against current field reports, correcting items that conflict with observed conditions before approval
+statement:
+  en: Review a template- or AI-drafted incident action plan section against current field reports, correcting items that conflict with observed conditions before approval
+textSha256: 3e3291ce775982d463e33a0c186802343e85902d6c9582352889e1c861f617ce
+supports:
+- competency: emst:core/CMP-35BT97W
+  strength: primary
+workFunction: WF-RESPOND
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: general
+  credentialGate: internal-qualification
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split: review and correction of a drafted plan section, alongside the production task seed:db-c42-iap-inputs.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0005

@@ -1,0 +1,88 @@
+id: emst:core/CMP-CZZ31P2
+type: Competency
+prefLabel:
+  en: Manage a regulated facility's environmental compliance system and obligations calendar
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability of a regulated organization to identify every environmental obligation that applies to it, assign owners and deadlines, check performance against permit conditions, prepare reports for certification, manage agency inspections from the regulated side and correct non-compliance. The regulated-party mirror of inspection and enforcement.
+statement:
+  en: Identifies every environmental obligation that applies to a facility or organization, assigns owners and deadlines in a compliance calendar, runs the management system that checks performance against permit conditions, prepares reports for certification, manages agency inspections and audits from the regulated side, and corrects non-compliance with documented root-cause action.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - environmental management system
+  - facility EHS compliance
+  - compliance calendar management
+  - EHS compliance manager
+instrumentSensitivity:
+- mechanism: DM-13
+  rationale:
+    en: Reporting and disclosure requirements set what a facility must certify.
+  evidenceLabel: E
+  sources:
+  - V2-15
+- mechanism: DM-10
+  rationale:
+    en: Changes to substantive standards change facility obligations.
+  evidenceLabel: E
+  sources:
+  - V2-06
+- mechanism: DM-14
+  rationale:
+    en: Electronic reporting changes how reports are prepared and checked.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+editorialNote:
+  en: 'WP-05 (A5 SC). Survivor: absorbs PS-C10 and receives the compliance-management half of v1 6.1.2, which v1 wrote from the regulated side (SL, PS verdicts) [E: SL-088]. Mirror of SL-C03, SL-C04 and SL-C10 for regulator-to-regulated mobility (R12 to R37).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SL-088
+  derivedFrom:
+  - v1Key: v1:6.1.2
+    relation: split-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-VNPGWAK
+  - emst:core/IND-PP4MN2Q
+- level: L2
+  indicators:
+  - emst:core/IND-FHNEBKB
+  - emst:core/IND-EN982J7
+- level: L3
+  indicators:
+  - emst:core/IND-HMP0W84
+  - emst:core/IND-8S7KT9B
+- level: L4
+  indicators:
+  - emst:core/IND-YMHDKQC
+  - emst:core/IND-RTGBKC2

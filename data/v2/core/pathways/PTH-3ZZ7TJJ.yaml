@@ -1,0 +1,232 @@
+id: emst:core/PTH-3ZZ7TJJ
+type: Pathway
+prefLabel:
+  en: 'Exploratory pathway: conservation corps member to field resource technician (entry)'
+definition:
+  en: 'Moves a conservation corps member or alumnus into an entry field resource technician role by building field safety, protocol data collection, identification and the data and AI floor through supervised field work. Exploratory: not validated against observed moves (ADR-0023).'
+notation:
+- scheme: mvp-corridor
+  value: COR-1
+fromVariant: emst:core/ROL-ZK41BZA
+toVariant: emst:core/ROL-ZJFCC09
+pathwayType: new-hire
+modes:
+- WBL
+- FD
+- MEN
+- CL
+- OL
+- AIP
+emstRelease: 2.0.0-rc.1
+cloOutcomes:
+- competency: emst:core/CMP-CERKVPH
+  level: L1
+- competency: emst:core/CMP-WC5GQ9X
+  level: L1
+- competency: emst:core/CMP-V9DP16C
+  level: L1
+- competency: emst:core/CMP-32GRDN0
+  level: L1
+- competency: emst:core/CMP-HSPFCPF
+  level: L1
+- competency: emst:core/CMP-B5C0G9X
+  level: L1
+- competency: emst:core/CMP-9FGSY1P
+  level: L1
+- competency: emst:core/CMP-72R1NBG
+  level: L1
+- competency: emst:core/CMP-B5C0G9X
+  level: L2
+- competency: emst:core/CMP-9FGSY1P
+  level: L2
+- competency: emst:core/CMP-HSPFCPF
+  level: L2
+- competency: emst:core/CMP-FCXN4BQ
+  level: L1
+- competency: emst:core/CMP-7JGQFKZ
+  level: L1
+- competency: emst:core/CMP-MS40XXX
+  level: L1
+- competency: emst:core/CMP-AY1JPJR
+  level: L1
+- competency: emst:core/CMP-72R1NBG
+  level: L2
+- competency: emst:core/CMP-CERKVPH
+  level: L2
+assessmentPlan:
+  en: 'Each CLO is assessed with the methods its indicators list; field-craft outcomes are assessed at least once in the field, statecraft outcomes in a live or simulated stakeholder or legal-administrative setting, data-craft outcomes on real data with a reproducible product (LC template R4-R5). Assisted-mode outcomes include a seeded-error validation drill. Supervisor formation plan required: the learner''s supervisor works to emst:core/CMP-ZPEFG5E at L2 or above and a named mentor or evaluator to emst:core/CMP-0N97D81 at L3 (ADR-0026 R7). Training use only; never a selection instrument (IO).'
+sequence:
+- step: 1
+  tasks:
+  - emst:core/TSK-22VWHXT
+  - emst:core/TSK-HZHFQH7
+  - emst:core/TSK-4AK46CF
+  - emst:core/TSK-Z5PWMDT
+  - emst:core/TSK-PVX3WGK
+  cloOutcomes:
+  - competency: emst:core/CMP-CERKVPH
+    level: L1
+  - competency: emst:core/CMP-WC5GQ9X
+    level: L1
+  - competency: emst:core/CMP-V9DP16C
+    level: L1
+  - competency: emst:core/CMP-32GRDN0
+    level: L1
+  formationProvisions:
+  - task: emst:core/TSK-PVX3WGK
+    responses:
+    - observed-wbl
+    quota:
+      count: 3
+      unit: off-trail navigations by map and compass, observed
+    releaseCriterion: evaluator sign-off on an evaluation course
+    mentorRequired: true
+  - task: emst:core/TSK-Z5PWMDT
+    responses:
+    - observed-wbl
+    quota:
+      count: 2
+      unit: scenario patient assessments, observed
+    releaseCriterion: instructor sign-off
+    mentorRequired: true
+  roleLevel: entry
+  note:
+    en: Safety, first aid and navigation before any data work; observed in the field (R5).
+- step: 2
+  tasks:
+  - emst:core/TSK-4JH3BBZ
+  - emst:core/TSK-S66F3HH
+  - emst:core/TSK-YT60MTY
+  - emst:core/TSK-D6M2KZX
+  cloOutcomes:
+  - competency: emst:core/CMP-HSPFCPF
+    level: L1
+  - competency: emst:core/CMP-B5C0G9X
+    level: L1
+  - competency: emst:core/CMP-9FGSY1P
+    level: L1
+  - competency: emst:core/CMP-72R1NBG
+    level: L1
+  formationProvisions:
+  - task: emst:core/TSK-YT60MTY
+    responses:
+    - supervised-repetitions
+    - validation-drill
+    quota:
+      count: 50
+      unit: unaided identifications checked by an experienced observer
+    releaseCriterion: error rate within the programme's practical-test threshold
+    mentorRequired: true
+  - task: emst:core/TSK-S66F3HH
+    responses:
+    - supervised-repetitions
+    - validation-drill
+    quota:
+      count: 10
+      unit: plots established and recorded under supervision
+    releaseCriterion: calibration-plot cover within tolerance
+    mentorRequired: true
+  roleLevel: entry
+  note:
+    en: Protocol data collection and identification under a crew lead; no identification aid is credited yet.
+- step: 3
+  tasks:
+  - emst:core/TSK-CY37G6A
+  - emst:core/TSK-KF2WKW8
+  - emst:core/TSK-W6AMG77
+  cloOutcomes:
+  - competency: emst:core/CMP-B5C0G9X
+    level: L2
+  - competency: emst:core/CMP-9FGSY1P
+    level: L2
+  - competency: emst:core/CMP-HSPFCPF
+    level: L2
+  formationProvisions:
+  - task: emst:core/TSK-KF2WKW8
+    responses:
+    - validation-drill
+    quota:
+      count: 1
+      unit: seeded-error identification set
+    releaseCriterion: detects the seeded errors at the programme's threshold
+    mentorRequired: true
+  roleLevel: entry
+  note:
+    en: Independent work across normal variation; AI identification aids are credited only after the step 2 quota.
+- step: 4
+  tasks:
+  - emst:core/TSK-ZZXHD85
+  - emst:core/TSK-8ZZRW37
+  - emst:core/TSK-AFQYP62
+  cloOutcomes:
+  - competency: emst:core/CMP-FCXN4BQ
+    level: L1
+  - competency: emst:core/CMP-7JGQFKZ
+    level: L1
+  - competency: emst:core/CMP-MS40XXX
+    level: L1
+  - competency: emst:core/CMP-AY1JPJR
+    level: L1
+  formationProvisions:
+  - task: emst:core/TSK-ZZXHD85
+    responses:
+    - validation-drill
+    quota:
+      count: 1
+      unit: seeded-error field product
+    releaseCriterion: every consequential error flagged
+    mentorRequired: true
+  roleLevel: entry
+  note:
+    en: 'TX-A floor: every role profile carries L1 on data interpretation, responsible AI use and AI-output validation (ADR-0025). Drills use the learner''s own season data.'
+- step: 5
+  tasks:
+  - emst:core/TSK-CS9A84M
+  - emst:core/TSK-KJWMG91
+  - emst:core/TSK-TMVX81X
+  cloOutcomes:
+  - competency: emst:core/CMP-72R1NBG
+    level: L2
+  - competency: emst:core/CMP-CERKVPH
+    level: L2
+  roleLevel: journey
+  note:
+    en: 'Season capstone: an end-to-end survey unit with QC samples and a crew briefing, signed off on a task book (IO-C01 evaluator).'
+recognitionOfPriorLearning:
+- emst:core/CRD-MNP0Y8X
+- emst:core/CRD-3N2G328
+durationAndCost:
+  hours: 240
+  months: 12
+  costNote: '[J] Mostly paid placement and mentor time (about 40-80 mentor hours per trainee per season); corps supply is fragile because the AmeriCorps settlement covers FY2026 only [E: V1-05].'
+alternativeFormationRoutes:
+- 'None proposed: this pathway is itself the formation route for field craft; simulation is used only for rare events such as a medical evacuation [J].'
+recommended: false
+layer: learning
+module: core
+status: candidate
+lifecycleState: proposed
+reviewBy: '2027-04-23'
+useTier: exploratory
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'EXPLORATORY, not recommended: no pathway is labelled recommended until it passes CM''s M-03 validation gate (ADR-0023 §5; ADR-0027). Built from the role-profile delta (ADR-0026 R1); hours, months and quotas are LC judgment for pilot calibration. Role records are WP-08''s; frictions attach when CM''s friction register exists. Moved into data/v2 in S2 (CR-LC-001 #1-#3): outcomes are named as CLOs {competency, level} (generic CLO = levels[].indicators; enactment anchors are reached through the enactment CLO, never listed here, CR-LC-001 #4); formation provisions are typed (formationProvisions), and docs/build/WP-07/formation_provisions.csv stays WP-07''s audit copy; role references are planned targets until WP-08 writes the records.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T14:20:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-pathways@1
+  sources:
+  - V1-05
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0026
+  - ADR-0023
+  - ADR-0027
+  - ADR-0004

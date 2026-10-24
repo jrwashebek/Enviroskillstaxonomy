@@ -1,0 +1,59 @@
+id: emst:water/VAR-8F1GCVN
+type: RoleVariant
+prefLabel:
+  en: Water and wastewater treatment operator (federal)
+variantOf: emst:water/ROL-Q49FT7J
+sectorActor: federal
+authorityPosition: regulated-party
+layer: L3
+module: water
+status: candidate
+validationStatus: draft
+license: CC0-1.0
+definition:
+  en: 'Water and wastewater treatment operator in a federal setting: acts for a regulated party that holds permits or reporting obligations.'
+lifecycleState: established
+useTier: describe
+sensitivity: public
+sectorActorSubtype: federal-agency
+industry: public-administration
+ownership: public
+deliveryModel: in-house
+credentialGates:
+- credential: emst:core/CRD-MAJKW8K
+  kind: required
+- credential: emst:core/CRD-5VSXY66
+  kind: required
+signOffAuthority:
+  kind: licensure
+  credentials:
+  - emst:core/CRD-MAJKW8K
+  - emst:core/CRD-5VSXY66
+indicativeGradeOrBand:
+  scheme: FWS
+  byRoleLevel:
+    entry: WG grade set by the federal wage system job grading standard
+    journey: WG grade set by the federal wage system job grading standard
+    senior: WG grade set by the federal wage system job grading standard
+    lead: WG grade set by the federal wage system job grading standard
+  label: not a classification criterion
+disclaimers:
+- Not a classification basis / not a job analysis / not for RIF or rating decisions.
+- 'Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results.'
+editorialNote:
+  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8). indicativeGradeOrBand is FH judgment from the FH Phase 2 proficiency proposal (report section 6.2), never a classification criterion; indicativeGradeOrBand.byRoleLevel gives the band each role level is read against.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  - emstagent:fh-agent@s2-closeout-a
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0007
+  - ADR-0017
+  - ADR-0022

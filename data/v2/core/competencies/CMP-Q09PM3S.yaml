@@ -1,0 +1,124 @@
+id: emst:core/CMP-Q09PM3S
+type: Competency
+prefLabel:
+  en: Issue environmental permits and resource-use authorizations as the deciding authority
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability of the authority that decides an application to evaluate it, derive and draft the limits, conditions and monitoring that implement the governing requirements, answer public comment, and issue, condition or deny the permit or authorization on a defensible record. Excludes the applicant's side of the process and the programme knowledge of each permit type, which module enactments carry.
+statement:
+  en: Evaluates applications against the applicable law, rules and technical standards; derives limits, conditions and monitoring terms from the technical record; drafts the permit or authorization and its fact sheet or decision rationale; responds to comments; and issues, conditions or denies it on a record that withstands administrative and judicial review.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - permit writing
+  - permit writer
+  - NPDES permit writer
+  - air permit engineer
+  - Title V permitting
+  - dredge-and-fill permit review
+  - special-use permit administration
+  - grazing permit administration
+instrumentSensitivity:
+- mechanism: DM-11
+  rationale:
+    en: Delegated and assumed permit programmes can revert to federal administration.
+  evidenceLabel: E
+  sources:
+  - SC-021
+- mechanism: DM-09
+  rationale:
+    en: Jurisdictional scope (which waters, sources or lands are covered) is being narrowed by rule.
+  evidenceLabel: E
+  sources:
+  - V2-07
+- mechanism: DM-10
+  rationale:
+    en: Substantive standards behind some permit limits were rescinded and are litigated.
+  evidenceLabel: E
+  sources:
+  - V2-06
+- mechanism: DM-14
+  rationale:
+    en: Electronic permitting and AI drafting change production of permits and fact sheets.
+  evidenceLabel: E
+  sources:
+  - V2-08
+- mechanism: DM-15
+  rationale:
+    en: Permit fees and cost recovery fund many state permit programmes.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+mirrors:
+- target: emst:core/ENA-8NTN48M
+  relation: applicant-mirror
+- target: emst:core/CMP-CZZ31P2
+  relation: regulated-party-mirror
+learningDesign:
+  assessmentContext:
+    en: Assess with permit-file work samples (limit derivation, condition drafting) and seeded-error review of AI-drafted permits; programme-specific anchors come from module enactments.
+editorialNote:
+  en: 'WP-05 (A5 SC; SL reviewed the state and local enactments). Survivor for permit and authorization writing: absorbs DB-C07, DB-C12 (air permitting part of v1 6.7.5) and C-LM-03 and the regulator half of v1 6.1.3. Regulator and resource-manager variants are actor enactments with authorityPosition; programme specifics (water discharge, air operating, waste, wetland fill, land-use authorizations) are module enactments (WP-06). v1 described this work from the applicant side; state postings describe the permit-writer side [E: SL-079, SL-088]. Mirror links: SC-C01 regulated-party enactment (applicant pathway) and DB-C26 (permittee compliance). S2 close-out A (A5 SC; CR-SC-001 #3): mirror links migrated from docs/build/WP-05/mirror_links.csv.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-021
+  - SL-050
+  - SL-073
+  - SL-076
+  - SL-079
+  - SL-088
+  - V2-06
+  - V2-07
+  derivedFrom:
+  - v1Key: v1:6.1.3
+    relation: split-from
+  - v1Key: v1:6.7.5
+    relation: split-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-GCD84PA
+  - emst:core/IND-YQGR3DN
+- level: L2
+  indicators:
+  - emst:core/IND-EHFT4WE
+  - emst:core/IND-04YKMD5
+  - emst:core/IND-CQ0BCMT
+- level: L3
+  indicators:
+  - emst:core/IND-WSVCNRR
+  - emst:core/IND-AP50M0G
+  - emst:core/IND-KHZNWG3
+- level: L4
+  indicators:
+  - emst:core/IND-ZYWXESC
+  - emst:core/IND-9TEW0GT

@@ -1,0 +1,78 @@
+id: emst:core/CMP-Q8EGZ6Z
+type: Competency
+prefLabel:
+  en: Assess climate vulnerability of species, ecosystems, infrastructure and communities
+altLabel:
+  en:
+  - Climate vulnerability assessment
+definition:
+  en: The capability to evaluate how climate change threatens species, ecosystems, infrastructure and communities by assessing exposure, sensitivity and adaptive capacity with an established framework, stating confidence, and to rank vulnerabilities so that adaptation can be prioritized. Named index tools are L4.
+statement:
+  en: 'Evaluates how climate change threatens species, ecosystems, infrastructure and communities: assesses exposure, sensitivity and adaptive capacity with an established framework; states the confidence of each rating and the evidence behind it; ranks vulnerabilities; and turns findings into prioritized recommendations for managers.'
+editorialNote:
+  en: 'Rewritten by WP-04 (DC lane: v1 craft primary DC, used only to route the seed; v1 tags are prior evidence, not v2 values). Carried (wording rewritten); vulnerability index tools moved to L4 (emst:core/TL-P929AZV). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-ASSESS. Rationale: Vulnerability assessment recurs across water, forest, wildlife, hazards and infrastructure (G-4). Role verdicts considered: none recorded.'
+notation:
+- scheme: EMSTv1
+  value: 1.5.2
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-ENY6C57
+  - emst:core/IND-GJEWC5E
+- level: L3
+  indicators:
+  - emst:core/IND-3H0HJ8N
+  - emst:core/IND-GE9N3X2
+- level: L4
+  indicators:
+  - emst:core/IND-KDF7Z2K
+  - emst:core/IND-F3DAB8F
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:1.5.2
+    v1Code: 1.5.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 23
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:1.5.2
+    v1Code: 1.5.2
+    v1Table: source_text/competencies
+    sourceTextLine: 1455
+    relation: reference-only
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  adr:
+  - ADR-0003
+  - ADR-0011
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.5'
+  label: Climate Science

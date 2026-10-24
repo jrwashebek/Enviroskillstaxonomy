@@ -1,0 +1,40 @@
+id: emst:core/TSK-S4D8898
+type: Task
+prefLabel:
+  en: Build a translation guide between two sector actors' hiring terms for a recurring career move, checking each equivalence with the receiving employer
+layer: L2
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Build a translation guide between two sector actors' hiring terms for a recurring career move, checking each equivalence with the receiving employer
+textSha256: 8966a19bff4240919788f378a03eda257f7c44950b0a0865c203c06c668e518f
+supports:
+- competency: emst:core/CMP-WJ60RG0
+  strength: primary
+workFunction: WF-MANAGE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+reviewBy: '2027-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  - emstagent:cm-code@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

@@ -1,0 +1,99 @@
+id: emst:core/CMP-G1H42DS
+type: Competency
+prefLabel:
+  en: Maintain the integrity of regulatory and scientific findings under institutional pressure
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to produce and report regulatory and scientific findings that represent the evidence, including uncertainty, contrary evidence and AI assistance, to disclose conflicts, and to use documented channels when pressure conflicts with professional obligations. Assessed through work products and records, never as a trait.
+statement:
+  en: 'Produces and reports regulatory and scientific findings that reflect the evidence when employers, clients, funders or schedules press otherwise: discloses conflicts, uncertainty, dissenting views and AI assistance, documents requests to alter findings, and uses the organization''s integrity and escalation procedures.'
+competencyType: transversal
+transversalCluster: TX-B
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: transversal
+altLabel:
+  en:
+  - regulatory professional integrity
+  - scientific integrity
+  - integrity of findings
+instrumentSensitivity:
+- mechanism: DM-14
+  rationale:
+    en: AI-assisted analysis creates new disclosure and provenance duties.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+- mechanism: DM-16
+  rationale:
+    en: Federal scientific-integrity policies are being revised under a 2025 order.
+  evidenceLabel: E
+  sources:
+  - WP05-004
+notation:
+- scheme: EMSTv1
+  value: 7.1.3
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.1'
+  label: Professional Ethics Architecture
+editorialNote:
+  en: 'WP-05 (A5 SC). v1 7.1.3 rewrite to TX-B, extended to AI provenance in the record, disclosure of AI assistance and cross-boundary independence (with PS-C18) (SC, PS verdicts). v1 cited NEPA scientific-integrity requirements; rule names move to L5 (federal scientific-integrity policies are being updated under a 2025 executive order [E: WP05-004]). Indicators adapted from IO exemplar rewrites for v1 7.1.3. Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | transversal | TX-B. Rationale: Extended to AI provenance in the record, disclosure of AI assistance and cross-boundary independence (PS-C18) (SC, PS verdicts); rule names to L5. Role verdicts considered: IO:change|LC:change|PS:carry|SC:carry.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - WP05-004
+  derivedFrom:
+  - v1Key: v1:7.1.3
+    v1Code: 7.1.3
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 219
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-4KR4SQD
+  - emst:core/IND-DJ5AB6Y
+- level: L2
+  indicators:
+  - emst:core/IND-V8CMH63
+  - emst:core/IND-YHN6SZ6
+- level: L3
+  indicators:
+  - emst:core/IND-XKRX5H1
+  - emst:core/IND-V4DKYVM
+- level: L4
+  indicators:
+  - emst:core/IND-R2M93MJ
+  - emst:core/IND-WHF0ME2

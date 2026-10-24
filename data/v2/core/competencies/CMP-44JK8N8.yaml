@@ -1,0 +1,82 @@
+id: emst:core/CMP-44JK8N8
+type: Competency
+prefLabel:
+  en: Operate chainsaws and other power equipment safely in field conditions
+definition:
+  en: 'Operating chainsaws, brush cutters, mowers, pumps and similar power equipment for felling, bucking, limbing, vegetation management and water handling: pre-use checks, protective equipment, size-up of trees and work areas, felling decisions including justified declines, and small-engine maintenance. Sawyer certification is a credential gate. Excludes heavy equipment.'
+statement:
+  en: 'Operate chainsaws, brush cutters, pumps and similar power equipment safely: run pre-use checks, size up trees, hazards and work areas, fell, buck and limb within certification limits, decline or escalate trees beyond them, and maintain small engines.'
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-YWCB7AC
+  - emst:core/IND-2ZKFN6D
+  - emst:core/IND-923CDTP
+- level: L2
+  indicators:
+  - emst:core/IND-P74MK5J
+  - emst:core/IND-8MDP465
+- level: L3
+  indicators:
+  - emst:core/IND-CXWBAB7
+  - emst:core/IND-3TZQ1C1
+- level: L4
+  indicators:
+  - emst:core/IND-4WY88RW
+  - emst:core/IND-ZHRFA2T
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 4.5.2
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.5'
+  label: Equipment Operation
+editorialNote:
+  en: 'WP-03 (FC) draft. Carried and anchored on FCA-SAW-1..4; declining a tree is evidence of proficiency. Course completion is an input, not an anchor. FS stress test marks it fragile; listed for protect consideration. v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-BUILD (FC). Rationale: Good observable indicators; sawyer certification levels become Credentials (FC verdict). Role verdicts considered: FC:change|FC:carry.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.5.2
+    v1Code: 4.5.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 133
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:4.5.2
+    v1Code: 4.5.2
+    v1Table: source_text/competencies
+    sourceTextLine: 8513
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - ADR-0011
+  - WP-03

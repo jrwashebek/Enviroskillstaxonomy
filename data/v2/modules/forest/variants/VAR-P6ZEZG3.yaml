@@ -1,0 +1,63 @@
+id: emst:forest/VAR-P6ZEZG3
+type: RoleVariant
+prefLabel:
+  en: Wildland fire operations (crew to supervisor) (federal)
+variantOf: emst:forest/ROL-KB8K99D
+sectorActor: federal
+authorityPosition: resource-manager
+layer: L3
+module: forest
+status: candidate
+validationStatus: draft
+license: CC0-1.0
+definition:
+  en: 'Wildland fire operations (crew to supervisor) in a federal setting: acts as resource manager for lands, waters or programmes the employer holds.'
+lifecycleState: established
+useTier: develop
+sensitivity: public
+sectorActorSubtype: federal-land-manager
+industry: public-administration
+ownership: public
+deliveryModel: in-house
+instruments:
+- instrument: emst:core/INS-TB2EVT2
+  role: enables
+  note:
+    en: Establishes the organization; not a basis for the work.
+- instrument: emst:core/INS-14AE5SS
+  role: requires
+credentialGates:
+- credential: emst:core/CRD-3N2G328
+  kind: required
+signOffAuthority:
+  kind: position-qualification
+  credentials:
+  - emst:core/CRD-3N2G328
+indicativeGradeOrBand:
+  scheme: GS
+  byRoleLevel:
+    entry: GS-3 to GS-5
+    journey: GS-6 to GS-7
+    senior: GS-8 to GS-9
+    lead: GS-9 to GS-11
+  label: not a classification criterion
+disclaimers:
+- Not a classification basis / not a job analysis / not for RIF or rating decisions.
+- 'Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results.'
+editorialNote:
+  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8). indicativeGradeOrBand is FH judgment from the FH Phase 2 proficiency proposal (report section 6.2), never a classification criterion; indicativeGradeOrBand.byRoleLevel gives the band each role level is read against.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  - emstagent:fh-agent@s2-closeout-a
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0007
+  - ADR-0017
+  - ADR-0022

@@ -1,0 +1,84 @@
+id: emst:core/CMP-AY1JPJR
+type: Competency
+prefLabel:
+  en: Calibrate trust in AI and automation
+altLabel:
+  en:
+  - Calibrating professional judgment in human-AI collaboration
+definition:
+  en: The capability to keep an accurate, evidence-based view of when specific AI and automated tools can be trusted, qualified or overridden in one's own and a team's work, avoiding both automation bias and unwarranted rejection, and to update that view from recorded outcomes. It excludes organizational evaluation programmes (evaluation sets and benchmarking).
+statement:
+  en: Maintains an evidence-based calibration of when to trust, qualify or override the outputs of specific AI and automated tools across operating conditions, avoiding both over-trust and unwarranted rejection; applies explicit decision checkpoints in high-consequence work; and updates that calibration from recorded outcomes of past trust decisions.
+editorialNote:
+  en: 'Rewritten by WP-04 (ADR-0025 §1 TX-A: ''Calibrate trust in AI and automation''). Operations enactment is the DB practice competency emst:core/CMP-Q825DY3 (supervise automated and AI-assisted process control). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | transversal | TX-A. Rationale: Reliability profiling and documented override decisions; carried with observable anchors and an operations enactment (DB-C03) (DC, DB, IO, LC, CM, CA verdicts). Role verdicts considered: DC:carry|DB:carry|IO:carry|LC:carry|CM:carry|CA:carry.'
+notation:
+- scheme: EMSTv1
+  value: 7.2.3
+competencyType: transversal
+transversalCluster: TX-A
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-HA87JFN
+  - emst:core/IND-WCRZQT9
+  - emst:core/IND-VCQZ81D
+- level: L2
+  indicators:
+  - emst:core/IND-Z7C7Q2Y
+  - emst:core/IND-1S5JH1F
+  - emst:core/IND-2P13KNC
+- level: L3
+  indicators:
+  - emst:core/IND-EE79G1B
+  - emst:core/IND-XZ7RT2E
+  - emst:core/IND-RKK5Q45
+- level: L4
+  indicators:
+  - emst:core/IND-JRGJ91X
+  - emst:core/IND-R4RBT1P
+homeModule: core
+reusability: transversal
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:7.2.3
+    v1Code: 7.2.3
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 223
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  sources:
+  - DC-001
+  - DC-045
+  adr:
+  - ADR-0003
+  - ADR-0011
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.2'
+  label: Human-Ai Professional Practice

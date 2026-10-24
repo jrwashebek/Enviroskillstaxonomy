@@ -1,0 +1,270 @@
+id: emst:forest/CMP-50A7J3B
+type: Competency
+prefLabel:
+  en: Design fuels treatments that reduce wildfire hazard and verify their effects in the field
+altLabel:
+  en:
+  - Fuels management
+  - Hazardous fuels reduction
+definition:
+  en: Assessing fuels, designing mechanical, prescribed fire, grazing and other fuels treatments, supervising their implementation to residual specifications and verifying effects on fuels and expected fire behaviour, including field verification of mapped fuels. Excludes prescribed fire execution (v1 4.3.2) and community wildfire plans as a whole.
+statement:
+  en: Assesses fuels with field sampling and verified fuel maps, designs treatments that change expected fire behaviour where it matters, supervises implementation to residual fuel and canopy specifications and re-measures fuels after treatment, so that effectiveness and maintenance needs are known.
+notation:
+- scheme: EMSTv1
+  value: 4.3.3
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:forest/IND-KZ26AFR
+  - emst:forest/IND-E4CJHJ3
+- level: L2
+  indicators:
+  - emst:forest/IND-G30NNQV
+  - emst:forest/IND-XNZ0477
+- level: L3
+  indicators:
+  - emst:forest/IND-13PDY9S
+  - emst:forest/IND-1ZFN9A9
+- level: L4
+  indicators:
+  - emst:forest/IND-29BNGPS
+  - emst:forest/IND-EVRFTCK
+homeModule: forest
+subsectors:
+- L07
+- L01
+reusability: subsector-specific
+layer: L1
+module: forest
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.3'
+  label: Fire Management
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: Durable; mechanized/remote treatment equipment noted as robotics-pending and lidar fuels mapping as DC input; add field verification of fuels maps; title defect fixed (FC verdict). Role verdicts considered: FC:change|FC:carry|IO:change. Title and description were merged in the v1 database and are split here from the source text. WP-06: Moved to MOD-11; durable. Mechanized and remote treatment equipment are robotics-pending (L4); lidar fuels mapping is a DC input; field verification of fuels maps added (FC verdict); title defect fixed. Basis [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.3
+    v1Code: 4.3.3
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 124
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
+  - v1Key: v1:4.3.3
+    v1Code: 4.3.3
+    v1Table: source_text/competencies
+    sourceTextLine: 8023
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
+v1Seed:
+  v1Title: Fuels management Reducing wildfire risk and intensity by treating vegetation and fuels on the landscape.
+  v1Description: ''
+  titleDescriptionSplit: true
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.3.3:foundational
+    knowledge: Understands fuel types and basic treatment methods
+    application: Implements fuels treatments following plans
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.3:foundational:I1
+      n: 1
+      text: Recognizes different fuel types and their fire behavior implications
+      origin: database
+    - v1Key: v1:4.3.3:foundational:I2
+      n: 2
+      text: Implements mechanical fuels treatments (hand thinning, pruning, chipping)
+      origin: database
+    - v1Key: v1:4.3.3:foundational:I3
+      n: 3
+      text: Piles slash and debris appropriately
+      origin: database
+    - v1Key: v1:4.3.3:foundational:I4
+      n: 4
+      text: Operates chippers and brush mowers safely
+      origin: database
+    - v1Key: v1:4.3.3:foundational:I5
+      n: 5
+      text: Creates defensible space around structures
+      origin: database
+    - v1Key: v1:4.3.3:foundational:I6
+      n: 6
+      text: Documents treatment areas and activities
+      origin: database
+    - v1Key: v1:4.3.3:foundational:I7
+      n: 7
+      text: Understands how fuels treatments reduce fire risk
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.3.3:intermediate
+    knowledge: Applies fuels management principles; understands fire behavior relationships
+    application: Designs and implements fuels treatment projects
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.3:intermediate:I1
+      n: 1
+      text: Assesses fuels using standard fuel models (Scott and Burgan)
+      origin: database
+    - v1Key: v1:4.3.3:intermediate:I2
+      n: 2
+      text: Develops site-specific fuels treatment prescriptions
+      origin: database
+    - v1Key: v1:4.3.3:intermediate:I3
+      n: 3
+      text: Selects appropriate treatment methods for objectives and conditions
+      origin: database
+    - v1Key: v1:4.3.3:intermediate:I4
+      n: 4
+      text: Supervises fuels treatment crews and contractors
+      origin: database
+    - v1Key: v1:4.3.3:intermediate:I5
+      n: 5
+      text: Uses mechanical equipment for larger scale treatments
+      origin: database
+    - v1Key: v1:4.3.3:intermediate:I6
+      n: 6
+      text: Integrates multiple treatment types (mechanical, prescribed fire, grazing)
+      origin: database
+    - v1Key: v1:4.3.3:intermediate:I7
+      n: 7
+      text: Monitors and evaluates treatment effectiveness
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.3:intermediate:I8
+      n: 8
+      text: Uses FlamMap or similar tools to model treatment effects
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.3:intermediate:I9
+      n: 9
+      text: Coordinates treatments with wildfire risk reduction goals
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.3.3:advanced
+    knowledge: Expert in fuels management; skilled in landscape planning
+    application: Leads comprehensive fuels management programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.3:advanced:I1
+      n: 1
+      text: Develops landscape-scale fuels treatment strategies
+      origin: database
+    - v1Key: v1:4.3.3:advanced:I2
+      n: 2
+      text: Uses fire behavior modeling to prioritize treatments (FARSITE, FSim)
+      origin: database
+    - v1Key: v1:4.3.3:advanced:I3
+      n: 3
+      text: Designs treatments creating strategic fuel breaks
+      origin: database
+    - v1Key: v1:4.3.3:advanced:I4
+      n: 4
+      text: Manages complex fuels projects (budgets, contractors, compliance)
+      origin: database
+    - v1Key: v1:4.3.3:advanced:I5
+      n: 5
+      text: Evaluates treatment longevity and maintenance needs
+      origin: database
+    - v1Key: v1:4.3.3:advanced:I6
+      n: 6
+      text: Integrates fuels management with ecosystem management
+      origin: database
+    - v1Key: v1:4.3.3:advanced:I7
+      n: 7
+      text: Develops community wildfire protection plans
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.3:advanced:I8
+      n: 8
+      text: Uses LiDAR and remote sensing for fuels assessment
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.3:advanced:I9
+      n: 9
+      text: Trains practitioners in fuels management
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.3:advanced:I10
+      n: 10
+      text: Publishes or presents fuels treatment outcomes
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.3.3:expert
+    knowledge: Shapes fuels management practice at regional scale
+    application: Provides strategic leadership on wildfire risk reduction
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.3:expert:I1
+      n: 1
+      text: Directs landscape-scale fuels management programs
+      origin: database
+    - v1Key: v1:4.3.3:expert:I2
+      n: 2
+      text: Develops innovative fuels treatment approaches
+      origin: database
+    - v1Key: v1:4.3.3:expert:I3
+      n: 3
+      text: Influences fuels management policy and funding
+      origin: database
+    - v1Key: v1:4.3.3:expert:I4
+      n: 4
+      text: Provides expert consultation on complex fuels issues
+      origin: database
+    - v1Key: v1:4.3.3:expert:I5
+      n: 5
+      text: Publishes influential fuels management research
+      origin: database
+    - v1Key: v1:4.3.3:expert:I6
+      n: 6
+      text: Achieves recognition for wildfire risk reduction leadership
+      origin: database
+    - v1Key: v1:4.3.3:expert:I7
+      n: 7
+      text: Advances integration of fuels management with community protection
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.3.3:sector:public_agencies
+    text: Hazardous fuels reduction, wildfire risk mitigation, community protection
+  - sector: private_sector
+    v1Key: v1:4.3.3:sector:private_sector
+    text: Forest management, wildfire risk reduction services
+  - sector: ngos
+    v1Key: v1:4.3.3:sector:ngos
+    text: Fuels treatments on preserves, community wildfire programs
+  - sector: consulting
+    v1Key: v1:4.3.3:sector:consulting
+    text: Fuels assessments, treatment planning, CWPP development
+  - sector: academia
+    v1Key: v1:4.3.3:sector:academia
+    text: Fuels research, fire behavior studies
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

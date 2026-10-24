@@ -1,0 +1,63 @@
+id: emst:forest/TSK-A23RKQW
+type: Task
+prefLabel:
+  en: Check holding resources, equipment and crew briefing completion against the burn plan before ignition begins
+statement:
+  en: Check holding resources, equipment and crew briefing completion against the burn plan before ignition begins
+textSha256: 45da4677b7ba0ac56d50a3b129a6b64350ed4238c402155257022358e0366589
+supports:
+- competency: emst:forest/CMP-8W0ZQTM
+  strength: primary
+workFunction: WF-BUILD
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: on-site-required
+formationDependency: partial
+homeModule: forest
+subsectors:
+- L07
+- L01
+- L05
+layer: L2
+module: forest
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+notation:
+- scheme: EMSTv1
+  value: 4.2.3:T3
+v1Tier: T3
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.2'
+  label: Land Management Implementation
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.2.3:T3
+    v1Code: 4.2.3
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 119
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

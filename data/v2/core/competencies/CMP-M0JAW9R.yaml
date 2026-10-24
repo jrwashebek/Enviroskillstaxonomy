@@ -1,0 +1,107 @@
+id: emst:core/CMP-M0JAW9R
+type: Competency
+prefLabel:
+  en: Build and maintain a defensible administrative record
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to document the reasons for a decision as it is made, including alternatives, boundaries, responses to substantive comments, consultation outcomes and the provenance of analyses (AI-assisted content included), so that a court, inspector general or successor can reconstruct why the decision was reasonable, and to keep those records intact, retained and disclosable under retention schedules, litigation holds and public-records laws.
+statement:
+  en: 'Documents the reasons for decisions as they are made: the alternatives considered, how scope and effects boundaries were drawn, responses to substantive comments, consultation outcomes and the provenance of analyses including AI-assisted content, so that a reviewing court, inspector general or successor can reconstruct why the decision was reasonable.'
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - administrative record
+  - record of decision support
+  - response to comments
+  - AI provenance in the record
+instrumentSensitivity:
+- mechanism: DM-08
+  rationale:
+    en: Deference and remedy doctrine make the reasoned explanation the main defense.
+  evidenceLabel: E
+  sources:
+  - V2-02
+- mechanism: DM-04
+  rationale:
+    en: Pending standing rules would tie challenges to substantive, unique comments.
+  evidenceLabel: E
+  sources:
+  - V2-03
+- mechanism: DM-14
+  rationale:
+    en: Record management and AI provenance are minimum requirements of federal permitting systems.
+  evidenceLabel: E
+  sources:
+  - V2-08
+  - SC-037
+editorialNote:
+  en: 'WP-05 (A5 SC). Survivor: absorbs FS-C03 (AI provenance in the record) and SC-C05 (supervise AI-assisted drafting and comment analysis for legal defensibility); SC-C05''s legal-adequacy anchors survive as indicators here and in the SC enactment of AI-output validation (DC-CAND-13, WP-04) (ADR-0025). Receives the record half of v1 6.4.4 (split with DC-CAND-16). Under substantial deference the reasoned explanation is the main defense; about 0.4 percent of submissions on one 2025 docket were unique, so merged comment groups can hide the comment that matters [E: V2-02, SC-011]. Indicators adapted from SC-A-C02-1..4 and SC-A-C05-1..4. S2 close-out A (A5 SC; reviewer A4 DC, DC-CAND-07 boundary; ADR-0030 §3.1 M5): absorbs v1 3.3.5 (records management) and, through it, 2.5.2 (collaborative document management). Records integrity, retention, litigation holds and public-records disclosure attach to the decision record; the definition gains one clause. Generic filing-system design is referenced (G-8) and tool training goes to L4; the six re-pointed task seeds are rewritten to the durable record work. Protecting sensitive information inside data products stays with DC-CAND-07.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-009
+  - SC-010
+  - SC-011
+  - SC-012
+  - SC-037
+  - V2-02
+  - V2-03
+  - V2-08
+  derivedFrom:
+  - v1Key: v1:6.4.4
+    relation: split-from
+  - v1Key: v1:3.3.5
+    relation: merged-from
+  - v1Key: v1:2.5.2
+    relation: merged-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-MP89FET
+  - emst:core/IND-FZFDATA
+  - emst:core/IND-V40QPZS
+- level: L2
+  indicators:
+  - emst:core/IND-J8V6GRP
+  - emst:core/IND-NP3A3AG
+  - emst:core/IND-BMHB8T8
+  - emst:core/IND-H0J6TA3
+- level: L3
+  indicators:
+  - emst:core/IND-HDPCKGK
+  - emst:core/IND-QGXZTTX
+  - emst:core/IND-MJ7C1XC
+  - emst:core/IND-WPP8H4R
+- level: L4
+  indicators:
+  - emst:core/IND-5DVRG6S
+  - emst:core/IND-14KE4VD

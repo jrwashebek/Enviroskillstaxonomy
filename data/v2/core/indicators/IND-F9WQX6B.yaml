@@ -1,0 +1,47 @@
+id: emst:core/IND-F9WQX6B
+type: Indicator
+prefLabel:
+  en: Negotiates a consent order on a contested case within the agency's enforceable minimums, recording the basis for each concession made.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-RDN7QER
+level: L3
+statement:
+  en: Negotiates a consent order on a contested case within the agency's enforceable minimums, recording the basis for each concession made.
+augmentationMode: unaided
+assessmentMethods:
+- simulation-role-play
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- negotiation record
+- consent order
+servedTasks:
+- emst:core/TSK-3SKZWV5
+distinguishingAttribute: ATT-SCO
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

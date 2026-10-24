@@ -1,0 +1,76 @@
+id: emst:core/ENA-B3BCY8Y
+type: Enactment
+prefLabel:
+  en: State agency environmental review
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-J597H9A
+enactmentKind: actor
+actorType: state-agency
+authorityBasis:
+  en: State environmental policy acts (for example CEQA, Washington SEPA, Minnesota MEPA, New York SEQR) and their implementing rules; some state acts carry substantive mitigation duties that federal review does not; state transportation agencies may carry federal review responsibilities by assignment and run both regimes in one job.
+principal:
+  en: The state lead agency's decision-maker or board.
+accountabilityVenue:
+  en: State courts; state administrative appeal bodies.
+characteristicInstruments:
+- instrument: emst:core/INS-S3DDQSG
+  role: constrains
+  note:
+    en: Example state only; other states' statutes are not yet registered.
+- instrument: emst:core/INS-RSNR609
+  role: requires
+  note:
+    en: Example state only; other states' statutes are not yet registered.
+- instrument: emst:core/INS-AG6GS3F
+  role: requires
+  note:
+    en: Example state only; other states' statutes are not yet registered.
+- instrument: emst:core/INS-BPP4Y36
+  role: requires
+  note:
+    en: Example state only; other states' statutes are not yet registered.
+- instrument: emst:core/INS-6HAK0H3
+  role: requires
+  note:
+    en: Example state only; other states' statutes are not yet registered.
+- instrument: emst:core/INS-1D4QC7R
+  role: enables
+  note:
+    en: State transportation agencies may carry federal review by assignment. Registered without dated events; basis linked, status not yet verified.
+additionalTasks:
+- emst:core/TSK-J2ER4SM
+note:
+  en: 'SL review: states staff whole units for their own acts (MPCA Environmental Review Unit) and DOTs run both regimes in one position (Caltrans) [E: SL-070, SL-038]. State exemptions and streamlining change on their own schedules (California 2025 trailer bills) [E: V2-16].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sl-review@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SL-038
+  - SL-070
+  - V2-16
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

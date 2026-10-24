@@ -471,6 +471,8 @@ export function buildModel({ root, releaseDir, meta }) {
     return bands.length ? { scheme: g.scheme || "", label: g.label || "", bands } : null;
   }
   const variants = [];
+  const actorCount = new Map();
+  for (const v of variantRecs) actorCount.set(`${v.variantOf}|${v.sectorActor}`, (actorCount.get(`${v.variantOf}|${v.sectorActor}`) || 0) + 1);
   for (const v of variantRecs) {
     const role = roleById.get(v.variantOf);
     if (!role) continue;
@@ -483,9 +485,13 @@ export function buildModel({ root, releaseDir, meta }) {
       ...(v.taskAdds || []).map(bundleItem).filter(Boolean),
     ];
     const actor = v.sectorActor;
-    const slice = v.id.split("/").slice(2).join("/");          // e.g. seed:R37-.../private/applicant-preparer
+    // Variant URL segment and label from the record's fields, never from the ID (IDs are opaque once minted, WP-16):
+    // the sector actor, plus the authority position when the role has more than one variant for that actor.
+    const twin = (actorCount.get(`${v.variantOf}|${actor}`) || 0) > 1;
+    const seg = twin ? `${actor}-${v.authorityPosition || slugOf(v.id)}` : actor;
+    const slice = twin ? (labels.authorityPosition[v.authorityPosition] || v.authorityPosition || "") : "";
     const vm = {
-      id: v.id, slug: `${role.slug}--${slugOf(v.id.split("/").slice(1).join("-") || actor)}`, role, actor, actorLabel: (labels.sectorActor[actor] || actor) + (slice ? ` (${slice.replace(/[-/]/g, " ")})` : ""),
+      id: v.id, slug: `${role.slug}--${slugOf(seg)}`, role, actor, actorLabel: (labels.sectorActor[actor] || actor) + (slice ? ` (${slice})` : ""),
       subtype: v.sectorActorSubtype || "", subtypeLabel: labels.sectorActorSubtype[v.sectorActorSubtype] || v.sectorActorSubtype || "", authorityPosition: v.authorityPosition || "", authorityPositionLabel: labels.authorityPosition[v.authorityPosition] || v.authorityPosition || "",
       industry: v.industry || "", ownership: v.ownership || "", deliveryModel: v.deliveryModel || "", definition: en(v.definition), title: en(v.prefLabel) || `${role.title} (${labels.sectorActor[actor] || actor})`,
       // Typed instrument links ({instrument, role, note}; ADR-0030); a bare ID string is the pre-typing shape.
@@ -502,9 +508,9 @@ export function buildModel({ root, releaseDir, meta }) {
       crosswalks: (mappingsBySubject.get(v.id) || []).map(crosswalkRow),
     };
     vm.hrTargets = role.competencyTargets.filter((t) => t.competency.lifecycleState === "established" && (!t.competency.isModule || t.competency.module === role.homeModule));
-    vm.url = `/roles/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
-    vm.gapUrl = `/gap-check/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
-    vm.pathwaysUrl = `/pathways/${role.slug}/${slugOf(v.id.split("/").slice(1).join("-") || actor)}/`;
+    vm.url = `/roles/${role.slug}/${slugOf(seg)}/`;
+    vm.gapUrl = `/gap-check/${role.slug}/${slugOf(seg)}/`;
+    vm.pathwaysUrl = `/pathways/${role.slug}/${slugOf(seg)}/`;
     vm.emergingNext = [...(role.progressesTo || [])].map((id) => roleById.get(id)).filter((r) => r && r.whatsComingOnly);
     role.variants.push(vm);
     variants.push(vm);
@@ -650,6 +656,10 @@ export function buildModel({ root, releaseDir, meta }) {
     signalsWithheld: (w.signals || []).filter((id) => (claims.bySignal.get(id) || []).length).length, evidence: evidenceOf(w), tier: { tier: "exploratory", source: "lifecycle cap (watch)" },
   })).filter((w) => releasable(w.title + w.counterSignal));
   const instruments = byType("Instrument");
+  // N2 (package re-check; ADR-0031 §8): instruments tied to an unverified claims-register row are withheld from the
+  // release bundle, so they never render; they are only counted here, with their register rows.
+  const withheldInst = [...claims.byInstrument.entries()].filter(([i]) => !records.has(i));
+  const instrumentsWithheld = { n: withheldInst.length, rows: [...new Set(withheldInst.flatMap(([, rows]) => rows))].sort() };
   const events = byType("DriverEvent");
   const eventsBy = new Map();
   for (const e of events) { if (!eventsBy.has(e.instrument)) eventsBy.set(e.instrument, []); eventsBy.get(e.instrument).push(e); }
@@ -734,11 +744,11 @@ export function buildModel({ root, releaseDir, meta }) {
   const stateClasses = byType("StateClassRecord").map((s) => {
     const scheme = (s.notation || [])[0]?.scheme || "";
     const code = s.classCode || (s.notation || [])[0]?.value || "";
-    const jur = s.id.replace(/^seed:class\//, "").split("/")[0];
+    const jur = scheme.startsWith("class-") ? scheme.slice("class-".length) : s.id.replace(/^seed:class\//, "").split("/")[0];
     const rows = classSets.filter((m) => String(m.object_id).endsWith(`:${code}`) && m.mapping_set_id.includes(jur.toLowerCase().split("-")[0])).map((m) => ({ ...crosswalkRow(m), subject: m.subject_id, subjectLabel: m.subject_label, variant: variantById.get(m.subject_id) || null }));
     const pending = (s.emstMapping || []).map((x) => ({ key: x.roleVariantKey || x.roleVariant || "", level: x.roleLevel || "", match: x.matchType || "", confidence: x.confidence ?? "", pending: x.pending || "", variant: variantById.get(`seed:${x.roleVariantKey}`) || variantById.get(x.roleVariant) || null }));
     return {
-      id: s.id, slug: slugOf(s.id.replace(/^seed:class\//, "")), url: `/state-classes/${slugOf(s.id.replace(/^seed:class\//, ""))}/`, jurisdiction: s.jurisdictionId?.label || jur, jurisdictionCode: jur,
+      id: s.id, slug: slugOf(`${jur}/${code}`), url: `/state-classes/${slugOf(`${jur}/${code}`)}/`, jurisdiction: s.jurisdictionId?.label || jur, jurisdictionCode: jur,
       code, scheme, title: s.classTitle || en(s.prefLabel), agency: s.agency || "", employerType: s.employerType || "", seriesName: s.seriesId || "",
       level: s.levelIndex ? `${s.levelIndex.label || ""} (ordinal ${s.levelIndex.ordinal ?? "?"})` : "", supervisory: s.supervisoryStatus || "",
       specEffective: s.specEffectiveDate || "", specUrl: s.workDescriptionText?.url || "", specRetrieved: s.workDescriptionText?.retrieved || "",
@@ -822,7 +832,9 @@ export function buildModel({ root, releaseDir, meta }) {
     return { stamp: ruleStamp(d.stamp), evidenceNotice: d.evidenceNotice || "", generalCompetencies: d.generalCompetencies || "", roles, withoutFed, feeders };
   }
   function classView(recordId) {
-    const stem = String(recordId).replace(/^seed:class\//, "").replace(/\//g, "--");
+    const rec = records.get(recordId) || {};
+    const sch = (rec.notation || [])[0]?.scheme || "";
+    const stem = sch.startsWith("class-") ? `${sch.slice("class-".length)}--${rec.classCode}` : String(recordId).replace(/^seed:class\//, "").replace(/\//g, "--");
     const d = readHr(`state-class/${stem}.json`);
     if (!d) return null;
     hr.stamp = hr.stamp || ruleStamp(d.stamp);
@@ -880,7 +892,7 @@ export function buildModel({ root, releaseDir, meta }) {
     claims: { signoff: claims.signoff, unverifiedInstruments: [...claims.byInstrument.keys()].length },
     competencies, coreCompetencies: competencies.filter((c) => !c.isModule), moduleList,
     roles, rolesMain: roles.filter((r) => !r.whatsComingOnly), variants, pathwaysFrom, translations, pathwayRecords: pathwayRecs.length,
-    signals: signalVMs, signalsWithheld, watchItems, instruments: instrumentVMs, changeIndicators, scenarios,
+    signals: signalVMs, signalsWithheld, watchItems, instruments: instrumentVMs, instrumentsWithheld, changeIndicators, scenarios,
     series, stateClasses, emergingCompetencies, emergingRoles, search, gapCompetencies,
     titleIndex: Object.fromEntries(competencies.map((c) => [c.id, c.title])),
     stats: {

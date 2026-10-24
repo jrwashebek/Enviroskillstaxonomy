@@ -1,0 +1,48 @@
+id: emst:air/TSK-8J5E3XM
+type: Task
+prefLabel:
+  en: Read visible emissions from a stationary source following the certified opacity-observation method, recording each reading and observation condition
+statement:
+  en: Read visible emissions from a stationary source following the certified opacity-observation method, recording each reading and observation condition
+textSha256: b7748fba9e5adcd30690c76c23261ddc8f352284849e71b823b5df824e6289f3
+supports:
+- competency: emst:core/CMP-Z9BVC7K
+  strength: primary
+workFunction: WF-ENFORCE
+workflowProfiles:
+- WP-COMPLIANCE
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  currencyDecay: H
+  credentialGate: external-certificate
+credentialGates:
+- credential: emst:core/CRD-4ATTHPV
+  kind: required
+homeModule: air
+subsectors:
+- P01
+layer: L2
+module: air
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

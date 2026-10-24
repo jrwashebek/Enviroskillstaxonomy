@@ -1,0 +1,64 @@
+id: emst:water/CMP-H9HHYEF
+type: Competency
+prefLabel:
+  en: Inspect stormwater control measures from construction through long-term maintenance
+altLabel:
+  en:
+  - Construction stormwater inspection
+  - Post-construction stormwater control verification
+  - MS4 inspection
+definition:
+  en: Field inspection and verification of erosion and sediment controls on construction sites and of permanent stormwater control measures, including green infrastructure, over their lifecycle, with direction of corrective maintenance under a municipal or state stormwater programme. Excludes design of control measures and programme management.
+statement:
+  en: Inspects construction erosion and sediment controls and permanent stormwater control measures, judges whether each functions as designed, directs corrective maintenance, verifies completion and documents findings to the standard needed to support enforcement under a stormwater programme.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - emst:water/IND-BWFMGER
+  - emst:water/IND-Q204W5Q
+- level: L2
+  indicators:
+  - emst:water/IND-Z7XHJC9
+  - emst:water/IND-6M1TK08
+- level: L3
+  indicators:
+  - emst:water/IND-NHBCZF8
+  - emst:water/IND-6DPMQ7W
+homeModule: water
+subsectors:
+- W03
+- U02
+reusability: subsector-specific
+layer: L1
+module: water
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Stormwater control lifecycle inspection (W03); sits beside rewritten v1 4.7.1 (installation) and 4.7.3 (programme management) per DB and FC verdicts. Inspector certifications (e.g. EnviroCert credentials) are Credential gates, unverified for currency except CPESC (V3-08). Basis [J]: DB Phase 2.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.7.3
+    relation: reference-only
+    note: sits beside rewritten v1 4.7.3 (programme management)
+  sources:
+  - DB-022
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

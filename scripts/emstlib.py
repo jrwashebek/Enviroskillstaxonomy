@@ -213,6 +213,25 @@ def is_record_ref(s) -> bool:
     return is_emst_id(s) or is_seed(s)
 
 
+SEED_TOKEN = re.compile(r"(?<![A-Za-z0-9._/:-])seed:[A-Za-z0-9][A-Za-z0-9._/-]*")
+
+
+def rewrite_seed_refs(text: str, mapping: dict) -> str:
+    """Replace every whole-token seed key found in `mapping` with its minted ID. A key followed by any of
+    [A-Za-z0-9._/-] is a different key and is left alone (the rule scripts/mint_id.py uses; ADR-0031 §6)."""
+    if not mapping:
+        return text
+    return SEED_TOKEN.sub(lambda m: mapping.get(m.group(0), m.group(0)), text)
+
+
+def load_seed_map(path: Path = None) -> dict:
+    """{seed key: minted ID} from data/v2/ids/seed_map.csv (empty before any promotion)."""
+    p = Path(path) if path else SEED_MAP
+    if not p.exists() or p.stat().st_size == 0:
+        return {}
+    return {r["seed_key"]: r["id"] for r in read_csv(p) if r.get("seed_key")}
+
+
 def id_parts(emst_id: str) -> tuple[str, str, str]:
     """emst:<ns>/<TYPE>-<code> -> (ns, TYPE, code)."""
     ns, local = emst_id[len("emst:"):].split("/", 1)

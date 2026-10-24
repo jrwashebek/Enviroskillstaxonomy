@@ -1,0 +1,60 @@
+id: emst:core/ENA-JWKMHZ9
+type: Enactment
+prefLabel:
+  en: Federal land management planning
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-5BKBHEF
+enactmentKind: actor
+actorType: federal-land-manager
+authorityBasis:
+  en: Land-management planning statutes and each agency's planning regulations and directives (forest plans, resource management plans, refuge conservation plans); agency environmental-review procedures, including exclusions for some amendments; objection rules.
+principal:
+  en: The responsible official (forest supervisor, state director or refuge manager).
+accountabilityVenue:
+  en: Objection reviewing officers; federal courts.
+authorityPosition: resource-manager
+characteristicInstruments:
+- instrument: emst:core/INS-K0M67F8
+  role: constrains
+- instrument: emst:core/INS-854WGKT
+  role: requires
+  note:
+    en: Review of plan revisions and amendments.
+- instrument: emst:core/INS-3HFPZD5
+  role: requires
+- instrument: emst:core/INS-0XAAC1S
+  role: removed-requirement
+  note:
+    en: Proposed rescission of a planning-area prohibition; never a basis.
+note:
+  en: 'Objection windows and review levels for plans changed with the 2025-26 procedure revisions [J; E: SC-009 for the objection rule].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SC-009
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

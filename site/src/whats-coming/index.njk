@@ -105,6 +105,7 @@ crumbs: [[null, "What's coming"]]
 
 <h2>Policy instruments and dated events</h2>
 <p>Instruments that change what environmental work requires, with their status as of the release date ({{ emst.release.date }}). Statuses come from dated events with sources; dates after the release date are scheduled, not yet in effect. Records whose facts the verification pass has not re-checked say "Unverified — not for citation" and show no status or dates (claims register).</p>
+{% if emst.instrumentsWithheld.n %}<p><strong>{{ emst.instrumentsWithheld.n }} unverified instrument{{ "s" if emst.instrumentsWithheld.n != 1 }} withheld</strong> (claims register {{ emst.instrumentsWithheld.rows | join(", ") }}): an instrument's name and dated events can carry the claim itself, so this release leaves them out until the verification pass re-checks them.</p>{% endif %}
 <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Policy instruments">
 <table class="usa-table usa-table--compact usa-table--striped" data-figure data-use-tier="describe" data-evidence="{{ emst.figures.instruments.ev.label }}">
   <caption>Instrument registry ({{ emst.instruments.length }}). {{ m.tierBadge(emst.figures.instruments.tier) }} {{ m.evBadge(emst.figures.instruments.ev) }}</caption>

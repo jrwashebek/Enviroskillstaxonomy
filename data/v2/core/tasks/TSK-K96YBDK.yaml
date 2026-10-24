@@ -1,0 +1,53 @@
+id: emst:core/TSK-K96YBDK
+type: Task
+prefLabel:
+  en: Respond to public comments on a draft permit, revising conditions where a comment shows an error and explaining each decision in the response document
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Respond to public comments on a draft permit, revising conditions where a comment shows an error and explaining each decision in the response document
+textSha256: fa413643818eef8517d3291d8ad6c3b807f9577e77f91f895f9a89c6ac3152e9
+supports:
+- competency: emst:core/CMP-Q09PM3S
+  strength: primary
+workFunction: WF-AUTHORIZE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- public
+workflowProfiles:
+- WP-REGPROGRAM
+instrumentSensitivity:
+- mechanism: DM-04
+  rationale:
+    en: Public notice and comment requirements for draft permits set when a response is owed and what it must address.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

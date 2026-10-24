@@ -1,0 +1,49 @@
+id: emst:waste/TSK-SDFWHZN
+type: Task
+prefLabel:
+  en: Prepare a hazardous waste manifest and land disposal restriction notice for a shipment, reconciling quantities and waste codes with the receiving facility
+statement:
+  en: Prepare a hazardous waste manifest and land disposal restriction notice for a shipment, reconciling quantities and waste codes with the receiving facility
+textSha256: 20d22c2294076ada9ed4c1df1feff428a215dd981d6c0c2efd66a4cdca19e28b
+supports:
+- competency: emst:waste/CMP-Q4HAQQP
+  strength: primary
+workFunction: WF-MONITOR.attest
+workflowProfiles:
+- WP-COMPLIANCE
+fieldDependency: remote-capable
+formationDependency: partial
+credentialGates:
+- credential: emst:core/CRD-YY9VVK3
+  kind: required
+signOffAuthority:
+  kind: legal-signatory
+accountabilityConstraint:
+  required: true
+  basis:
+    en: The generator's signature on the manifest certifies the accuracy of the shipment description.
+homeModule: waste
+subsectors:
+- P03
+- P06
+layer: L2
+module: waste
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

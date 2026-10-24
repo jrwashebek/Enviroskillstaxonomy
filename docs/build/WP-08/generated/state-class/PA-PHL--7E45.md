@@ -11,40 +11,47 @@
 - **Licences:** PA motor vehicle operator licence (at-hire); HAZMAT emergency response technician (24-hour) (within-6-months (if assignment requires)); PA DEP water or wastewater operator licence (C-level or higher) (alternative to the experience requirement)
 - **Pay:** Pay range 14 (amounts not retrieved) annual, effective 2023-07-01
 - **Spec text:** stored by URL and hash only (https://www.phila.gov/departments/office-of-human-resources/job-specs/7E45.htm)
-- **Generated:** pipelines/views/state_class_view.py@0.1.0, rule state-class-view@0.1.0 (proposed (CR-FH-001; not yet in vocab/rules/)), as of 2026-10-23
+- **Generated:** pipelines/views/state_class_view.py@0.2.0, rule state-class-view@0.1.0 (registered rule, status active), as of 2026-10-23
 
 ## EMST role: Water and wastewater treatment operator (local variant, journey level; P2)
 
 *Match:* `skos:closeMatch`, confidence 0.7, unreviewed agent draft (`emst-x5-pa-phl:R25-water-wastewater-operator/local:7E45`). *Authority position (editorial):* regulated-party.
 
-**Competency targets at this level (agent draft)**
+**Competency targets at this level (editorial draft target levels, agent-drafted)**
 
-- Operate drinking water treatment processes to meet water quality targets — journey L2 *(distinguishing)*
+- Operate drinking water treatment processes to meet water quality targets — journey L2
 - Operate wastewater treatment and resource-recovery processes to permit limits — journey L2
-- Practice within licensure scope and responsible charge — journey L2
 - Supervise automated and AI-assisted process control in environmental operations — journey L2
-- Protect operational technology at environmental utilities and facilities — journey L2
+- Practice within licensure scope and responsible charge — journey L2
 - Manage field sample custody and field quality control — journey L2
-- Apply safety practices and stop-work authority across field, facility and incident settings — journey L2
 - Work safely on hazardous, industrial and energized field sites — journey L2
+- Protect operational technology at environmental utilities and facilities — journey L2
+- Apply safety practices and stop-work authority across field, facility and incident settings — journey L2
+- Manage a municipal stormwater programme to meet permit conditions — journey L2
+- Interpret and question environmental data products in everyday work — journey L1
 - Use AI tools responsibly in everyday environmental work — journey L1
 - Validate AI-generated work products before professional use — journey L1
-- Manage a municipal stormwater programme to meet permit conditions — journey L2
+- Record provenance and AI involvement in work products — journey L1
+- Manage physical assets and capital plans with risk-based asset management — journey L2
 
-**Main tasks at this level (indicative % of time, agent draft)**
+**Main tasks at this level (agent draft, in record order)**
 
-- Adjust coagulant dosing from jar test results when raw-water turbidity, temperature or organic content changes — 5.7% *(critical, needed at entry)*
-- Verify disinfection contact time against required inactivation values at each operating flow and correct shortfalls before water enters distribution — 5.3% *(critical, needed at entry)*
-- Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits — 5.3% *(critical, needed at entry)*
-- Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it — 5.3% *(critical, needed at entry)*
-- Determine whether an assigned task falls within the scope of one's licence or certification, referring out-of-scope work to a qualified professional — 5.3% *(critical)*
-- Respond to a treatment upset by isolating the affected process unit, bringing backup treatment online and notifying the primacy agency — 4.2% *(needed at entry)*
-- Route peak wet-weather flows through the plant to protect biological treatment, recording any bypass or overflow for required reporting — 4.2% *(needed at entry)*
-- Operate anaerobic digestion and solids handling to meet biosolids pathogen-reduction and stability requirements while recovering digester gas — 4.2% *(needed at entry)*
-- Run a treatment process in safe manual operation when automation or communications fail, adapting the manual operating procedure to conditions — 4.2%
-- Monitor automated control loops and alarms on a treatment process, checking automated responses against field observations of process condition — 4.2% *(needed at entry)*
-- Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check — 4.2% *(needed at entry)*
-- Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them — 4.2% *(needed at entry)*
+*% time: set by the supervisor; EMST supplies none before job analysis.*
+
+*Critical and needed-at-entry tasks: Assessment pending (job analysis).*
+
+- Adjust coagulant dosing from jar test results when raw-water turbidity, temperature or organic content changes
+- Verify disinfection contact time against required inactivation values at each operating flow and correct shortfalls before water enters distribution
+- Respond to a treatment upset by isolating the affected process unit, bringing backup treatment online and notifying the primacy agency
+- Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits
+- Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it
+- Route peak wet-weather flows through the plant to protect biological treatment, recording any bypass or overflow for required reporting
+- Operate anaerobic digestion and solids handling to meet biosolids pathogen-reduction and stability requirements while recovering digester gas
+- Determine whether an assigned task falls within the scope of one's licence or certification, referring out-of-scope work to a qualified professional
+- Run a treatment process in safe manual operation when automation or communications fail, adapting the manual operating procedure to conditions
+- Monitor automated control loops and alarms on a treatment process, checking automated responses against field observations of process condition
+- Override an automated control action when process indicators show it is driving the system toward a permit or safety limit, documenting the decision
+- Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check
 
 *Credential gates (issuer verified):* Drinking water treatment operator certification (Grades I-IV / Class A-D, state-specific) (required); Wastewater treatment operator certification (Grades I-IV) (required); Wastewater collection system operator certification (preferred); Water distribution system operator certification (preferred)
 

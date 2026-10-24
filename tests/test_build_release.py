@@ -45,7 +45,12 @@ def test_repository_preview_build_is_deterministic(tmp_path):
 def test_release_profile_excludes_drafts_held_and_pending_licence(tmp_path):
     b, files = build(L.DATA_V2, tmp_path / "r", version="2.0.0-rc.0")
     graph = json.loads(files["emst.bundle.jsonld"])["@graph"]
-    assert not [r for r in graph if r.get("type") not in ("Mapping", "Release")]   # nothing is a candidate yet
+    recs = [r for r in graph if r.get("type") not in ("Mapping", "Release", "CompetencyLevelOutcome")]   # CLO IRIs are derived
+    # since WP-16 (ADR-0031 §6) the release carries promoted records only: minted IDs at a release status, nothing held,
+    # nothing withheld for an unverified claims-register row
+    assert recs and all(L.is_emst_id(r["id"]) and r.get("status") in build_release.RELEASE_STATUSES for r in recs)
+    assert not [r for r in recs if r["id"] in b.withheld]
+    assert b.excluded.get("draft (not in a release)", 0) > 0
     assert "held (Tribal content hold, ADR-0007 §D)" in b.excluded
     # the project lead dedicated the v1 text to CC0 (Q2): no record is excluded for licence reasons
     assert "v1-derived text pending CC0 dedication (ADR-0013, Q2)" not in b.excluded

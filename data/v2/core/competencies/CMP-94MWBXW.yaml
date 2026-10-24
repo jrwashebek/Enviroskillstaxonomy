@@ -1,0 +1,78 @@
+id: emst:core/CMP-94MWBXW
+type: Competency
+prefLabel:
+  en: Plan climate adaptation and integrate climate risk into plans and capital decisions
+altLabel:
+  en:
+  - Climate adaptation planning
+definition:
+  en: The capability to develop adaptation strategies and actions for species, ecosystems, infrastructure and communities, to evaluate options against climate risk and uncertainty, and to integrate climate risk into management plans, infrastructure design and capital decisions. Decision-support software is L4.
+statement:
+  en: Develops adaptation strategies and actions for species, ecosystems, infrastructure and communities; evaluates options against climate risk, cost and uncertainty; integrates climate risk into management plans, infrastructure design criteria and capital decisions; and sets monitoring triggers for revisiting choices as conditions change.
+editorialNote:
+  en: 'Rewritten by WP-04 (DC lane: v1 craft primary DC, used only to route the seed; v1 tags are prior evidence, not v2 values). Absorbs DB-C38 (integrate climate risk into infrastructure and capital decisions; candidate_disposition merge-into v1:1.5.3). FS-C16 stays a watch item. v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-PLAN. Rationale: Rewritten as planning adaptation and integrating climate risk into plans, infrastructure and capital decisions; absorbs DB-C38; recurs across water, transport, energy, forest and hazards modules (G-4); FS-C16 stays a watch item. Role verdicts considered: none recorded.'
+notation:
+- scheme: EMSTv1
+  value: 1.5.3
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-2NGW4J1
+  - emst:core/IND-2H025TX
+- level: L3
+  indicators:
+  - emst:core/IND-FRX5378
+  - emst:core/IND-NK0MSRH
+- level: L4
+  indicators:
+  - emst:core/IND-ZR5BQQF
+  - emst:core/IND-DWQGZ8K
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:1.5.3
+    v1Code: 1.5.3
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 24
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:1.5.3
+    v1Code: 1.5.3
+    v1Table: source_text/competencies
+    sourceTextLine: 1522
+    relation: reference-only
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  adr:
+  - ADR-0003
+  - ADR-0011
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.5'
+  label: Climate Science

@@ -100,7 +100,7 @@ def compute(released, mappings, stamp, as_of):
             continue
         if H.parse_other(row.get("other")).get("applies_to", "") in FEEDER:
             continue
-        variant = released.get(role["id"] + "/federal")
+        variant = H.variant_for(released, role["id"], "federal")
         if variant is None or H.held(variant):
             continue
         by_series.setdefault(obj.split(":", 1)[1], []).append((role, variant, row))

@@ -1,0 +1,56 @@
+id: emst:core/CMP-QSAV0HJ
+type: Competency
+prefLabel:
+  en: Ground-truth remote-sensed, modelled and AI-generated outputs in the field
+definition:
+  en: Planning and collecting field reference data to test maps, model outputs and automated classifications (burn severity, canopy and fuels, habitat, land cover, mortality, detections); keeping reference observations blind to predictions; coding the causes of disagreement; and feeding corrections back to analysts and model owners. Excludes accuracy statistics and model correction as such (data craft) and the stewardship of reference datasets for model training (FS-C04).
+statement:
+  en: Plan and collect field reference data, blind to predictions, to test maps, model outputs and automated classifications; code the field cause of each mismatch; quantify agreement with an analyst; and decide from field evidence where a product is fit for a stated management use.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-CGFEM3E
+  - emst:core/IND-6MAZ8C8
+- level: L2
+  indicators:
+  - emst:core/IND-PJF02A0
+  - emst:core/IND-JB6QSCJ
+- level: L3
+  indicators:
+  - emst:core/IND-RNW7ND4
+  - emst:core/IND-T8NSJ8C
+  - emst:core/IND-X7MS525
+- level: L4
+  indicators:
+  - emst:core/IND-TWJ5VDW
+  - emst:core/IND-R9X7XAT
+homeModule: core
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: WP-03 (FC) draft. New core FC practice (candidate FC-C02, emerging; anchors FCA-GT-1..4); absorbs FH-C05 (calibrating remote and AI-derived inventories against field measurement) and LC-C-04 (ground-truthing and calibration plots). The field-craft enactment of the TX-A validation floor (DC-CAND-13) points here. Designated entry learning role candidate (P-FC-08).
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

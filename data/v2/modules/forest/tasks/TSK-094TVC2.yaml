@@ -1,0 +1,61 @@
+id: emst:forest/TSK-094TVC2
+type: Task
+prefLabel:
+  en: Lay out harvest unit boundaries, leave areas and skid trails on the ground to the plan's specifications and best management practices
+statement:
+  en: Lay out harvest unit boundaries, leave areas and skid trails on the ground to the plan's specifications and best management practices
+textSha256: d9703a827601e9125609198d8731fccd44f0aab34e4d1e425879baba8fcd937c
+supports:
+- competency: emst:forest/CMP-6DHWV8B
+  strength: primary
+workFunction: WF-PLAN
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: forest
+subsectors:
+- L01
+layer: L2
+module: forest
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+notation:
+- scheme: EMSTv1
+  value: 1.3.5:T2
+v1Tier: T2
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.3'
+  label: Forestry Science
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:1.3.5:T2
+    v1Code: 1.3.5
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 16
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

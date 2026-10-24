@@ -1,0 +1,29 @@
+# Records withheld from release artifacts because the claim they carry rests on a claims-register row that is
+# `unverified` (WP-15 sign-off §2.1: unverified claims are not published; build plan WP-15 acceptance: zero unverified
+# claims in released artifacts). Read by scripts/build_release.py (excluded and counted, never listed in release notes)
+# and scripts/validate_v2.py. The records stay in data/v2 as drafts; they are not minted. Links to them are removed from
+# released records, so a withheld instrument decides no venue value (venue-applicability@1.0.0).
+# Decided by the CA at WP-16 (ADR-0031 §8, package re-check N2). A row is removed only when LM (WP-15) re-verifies its
+# register row and the CA records the change. Events of a withheld instrument are withheld with it.
+# This file is CI-read governance state; it is not released. Licence: CC0-1.0.
+decidedIn: [ADR-0031]
+register: docs/methods/claims_register.csv
+withheld:
+  - {claim: NEPA-09, records: ['seed:ins/dot-nepa-procedures', 'seed:ins/epa-nepa-procedures']}
+  - {claim: ESA-02, records: ['seed:ins/esa-4d-4b2-rules']}
+  - {claim: ESA-03, records: ['seed:ins/esa-s4-s7-regs-2025']}
+  - {claim: CWA-02, records: ['seed:ins/florida-404-assumption']}
+  - {claim: DISC-03, records: ['seed:ins/sec-climate-disclosure']}
+  - {claim: REG-01, records: ['seed:ins/epermit-act']}
+  - {claim: REG-02, records: ['seed:ins/long-term-gna-act']}
+  - {claim: REG-03, records: ['seed:ins/co-hb26-1205']}
+  - {claim: REG-04, records: ['seed:ins/fix-our-forests-act']}
+  - {claim: REG-05, records: ['seed:ins/ghgrp-reconsideration']}
+  - {claim: REG-06, records: ['seed:ins/obbba-ira-rescissions', 'seed:sig/foresight/ws-10-obbba-ira-rescissions', 'seed:sig/foresight/ws-10-obbba-ira-rescissions/R09-restoration-project-lead']}
+  - {claim: REG-07, records: ['seed:ins/tx-hb-3923']}
+# Not withheld, with the reason:
+#   REG-08 (baseline event days dated by LM judgment): the events carry evidenceLabel J, so the bundle states the day
+#     is judgment; views suppress J/S dates.
+#   REG-09 (base instruments registered without events): no event, so no status is asserted; the venue view reports
+#     "basis linked, status not yet verified".
+#   TRB-01 (held): Tribal content is excluded by the Tribal hold (tribal_hold.yaml), not here.

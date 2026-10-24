@@ -1,0 +1,62 @@
+id: emst:core/TSK-BJHWS45
+type: Task
+prefLabel:
+  en: Prepare a mandatory disclosure report from controlled data collected across operations, tracing each reported figure to its source system
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Prepare a mandatory disclosure report from controlled data collected across operations, tracing each reported figure to its source system
+textSha256: 7211a1b8b4b78dacb91799059e4b57e78d6a9b5863031ce8b59be460a2b626b0
+supports:
+- competency: emst:core/CMP-33W8FV5
+  strength: primary
+workFunction: WF-MONITOR.attest
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 3.6.2:T1
+v1Tier: T1
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.6'
+  label: Corporate Sustainability & Esg Management
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Prepare sustainability reports using automated data collection from IoT sensors, ERP systems, and supply chain platforms" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:3.6.2:T1
+    v1Code: 3.6.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 103
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

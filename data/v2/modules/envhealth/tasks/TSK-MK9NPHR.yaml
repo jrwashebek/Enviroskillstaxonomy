@@ -1,0 +1,44 @@
+id: emst:envhealth/TSK-MK9NPHR
+type: Task
+prefLabel:
+  en: Check an automated plan-review or system-sizing output against code provisions and site data before issuing permit conditions
+statement:
+  en: Check an automated plan-review or system-sizing output against code provisions and site data before issuing permit conditions
+textSha256: 4c9102cdb7bd869f2d2482686c3b045442b7b95a81ee95cf33d79b56cc055505
+supports:
+- competency: emst:envhealth/CMP-AWSQ6EK
+  strength: primary
+workFunction: WF-AUTHORIZE
+fieldDependency: remote
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
+homeModule: envhealth
+subsectors:
+- H01
+layer: L2
+module: envhealth
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split: checking automated review output alongside the plan-review tasks T2 and T3.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0005

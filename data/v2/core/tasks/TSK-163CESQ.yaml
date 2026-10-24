@@ -1,0 +1,49 @@
+id: emst:core/TSK-163CESQ
+type: Task
+prefLabel:
+  en: Verify a facility's self-reported emissions or discharge values against independent remote-sensing or ambient data, stating the discrepancy and its uncertainty
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Verify a facility's self-reported emissions or discharge values against independent remote-sensing or ambient data, stating the discrepancy and its uncertainty
+textSha256: 95b5961a5b5c3ba1aa052c575e79b9c8effd3f20fbef61566942bde897d7a575
+supports:
+- competency: emst:core/CMP-1TY9TQH
+  strength: primary
+workFunction: WF-ENFORCE
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-COMPLIANCE
+instrumentSensitivity:
+- mechanism: DM-13
+  rationale:
+    en: Mandatory reporting rules determine which self-reported values exist to verify; their reconsideration or removal changes the task directly.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

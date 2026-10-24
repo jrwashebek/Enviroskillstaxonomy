@@ -2,13 +2,13 @@
  "stamp": {
   "ruleId": "state-class-view",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/state_class_view.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
  "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
- "classRecord": "seed:class/TX/2685",
+ "classRecord": "emst:core/SCR-PQZCV17",
  "class": {
   "jurisdiction": "Texas",
   "employerType": "state-agency",
@@ -38,10 +38,11 @@
  },
  "mappings": [
   {
-   "roleVariant": "seed:R16-fisheries-aquatic-biologist/state",
-   "role": "seed:R16-fisheries-aquatic-biologist",
+   "roleVariant": "emst:wildlife/VAR-EVMFKXV",
+   "role": "emst:wildlife/ROL-DXYAYRQ",
    "roleTitle": "Fisheries and aquatic biologist",
    "tier": "P2",
+   "sectorActor": "state",
    "authorityPosition": "resource-manager",
    "roleLevels": [
     "lead"
@@ -52,244 +53,246 @@
    "crosswalkRecord": "emst-x5-tx:R16-fisheries-aquatic-biologist/state:2685",
    "competencyTargets": [
     {
-     "competency": "seed:v1-1.4.5",
+     "competency": "emst:wildlife/CMP-0FWSASP",
      "label": "Manage fish populations and habitats to stated conservation and harvest objectives",
      "targetLevels": {
       "lead": "L4"
      },
-     "importance": 5,
-     "distinguishing": true,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DB-C49",
+     "competency": "emst:wildlife/CMP-MVVXQNX",
      "label": "Conduct fisheries stock assessments and develop management advice",
      "targetLevels": {
       "lead": "L4"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:FC-C11",
-     "label": "Apply field biosecurity and decontamination protocols",
-     "targetLevels": {
-      "lead": "L2"
-     },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:FC-C12",
-     "label": "Operate small boats and work safely on water in aquatic, coastal and marine field settings",
-     "targetLevels": {
-      "lead": "L3"
-     },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:FC-C15",
+     "competency": "emst:wildlife/CMP-1CEV7YY",
      "label": "Capture, handle and mark wildlife and fish humanely and safely",
      "targetLevels": {
       "lead": "L3"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:v1-4.1.3",
+     "competency": "emst:core/CMP-A140WER",
+     "label": "Operate small boats and work safely on water in aquatic, coastal and marine field settings",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-M17HJEJ",
      "label": "Measure water quality and survey aquatic communities in the field",
      "targetLevels": {
       "lead": "L3"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-02",
-     "label": "Use AI tools responsibly in everyday environmental work",
+     "competency": "emst:core/CMP-C40XE4V",
+     "label": "Apply field biosecurity and decontamination protocols",
      "targetLevels": {
-      "lead": "L1"
+      "lead": "L2"
      },
-     "importance": 3,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-A"
-    },
-    {
-     "competency": "seed:DC-CAND-03",
-     "label": "Design monitoring and sampling for valid environmental inference",
-     "targetLevels": {
-      "lead": "L3"
-     },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-13",
-     "label": "Validate AI-generated work products before professional use",
-     "targetLevels": {
-      "lead": "L1"
-     },
-     "importance": 3,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-A"
-    },
-    {
-     "competency": "seed:FC-C16",
-     "label": "Collect trace-level and genetic environmental samples without contamination",
-     "targetLevels": {
-      "lead": "L3"
-     },
-     "importance": 3,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:FH-C10",
+     "competency": "emst:wildlife/CMP-59HFMXB",
      "label": "Operate fish hatchery and aquatic propagation programmes",
      "targetLevels": {
       "lead": "L3"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:v1-2.2.2",
+     "competency": "emst:core/CMP-G675QW3",
+     "label": "Collect trace-level and genetic environmental samples without contamination",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-2358DGN",
+     "label": "Design monitoring and sampling for valid environmental inference",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-A7R6301",
      "label": "Analyze environmental data statistically and interpret the results",
      "targetLevels": {
       "lead": "L3"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-01",
+     "competency": "emst:core/CMP-FCXN4BQ",
      "label": "Interpret and question environmental data products in everyday work",
      "targetLevels": {
       "lead": "L1"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
      "transversalCluster": "TX-A"
     },
     {
-     "competency": "seed:DC-CAND-05",
+     "competency": "emst:core/CMP-7JGQFKZ",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-MS40XXX",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-8EAS8ZR",
      "label": "Record provenance and AI involvement in work products",
      "targetLevels": {
       "lead": "L1"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
      "transversalCluster": "TX-A"
     }
    ],
+   "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "topTasks": [
     {
-     "task": "seed:v1-1.4.5-T1",
+     "task": "emst:wildlife/TSK-E2S1G3X",
      "statement": "Sample fish populations by electrofishing, netting or hydroacoustics following the survey protocol to estimate abundance and size structure",
-     "pctTime": 5.3,
-     "critical": true,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-1.4.5-T2",
+     "task": "emst:wildlife/TSK-WMNZMFN",
      "statement": "Recommend harvest regulations, stocking or habitat actions for a fishery from population assessment results and angler objectives",
-     "pctTime": 5.2,
-     "critical": true,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-1.4.5-T3",
+     "task": "emst:wildlife/TSK-S448DHV",
      "statement": "Assess water quality and habitat conditions limiting a fish population, identifying the factors management can change",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:db-1.4.5-t4",
+     "task": "emst:wildlife/TSK-1JJVNJQ",
      "statement": "Estimate age, growth and mortality of a fish population from scale or otolith readings and catch-curve data",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:DB-C49-T1",
+     "task": "emst:wildlife/TSK-PV8SZ5F",
      "statement": "Fit a stock assessment model to catch, survey and biological data, documenting model diagnostics and retrospective patterns",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:DB-C49-T2",
+     "task": "emst:wildlife/TSK-DTBJ85W",
      "statement": "Apply a data-limited assessment method to a stock with sparse catch and survey data, stating the uncertainty in reference points",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:FC-C15-T1",
+     "task": "emst:wildlife/TSK-YVZNJJA",
+     "statement": "Present assessment results and catch advice to a scientific review panel, answering its requested analyses with documented runs",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:wildlife/TSK-4VZFZ5Z",
      "statement": "Capture animals with traps, nets or electrofishing following the approved animal-care protocol and permit conditions",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:FC-C15-T2",
+     "task": "emst:wildlife/TSK-4THRNJB",
      "statement": "Immobilize an animal chemically where authorized, monitoring vital signs until recovery and recording drug doses",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:fc-boat-emergency",
+     "task": "emst:wildlife/TSK-9YDB483",
+     "statement": "Mark captured animals with tags or other marks while recording biological data within protocol handling-time and stress limits",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-E95PFY2",
      "statement": "Execute person-overboard, capsize and cold-water immersion procedures for a small-boat crew during drills and real events",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:fc-boat-gear",
+     "task": "emst:core/TSK-N80G7MA",
      "statement": "Work sampling gear such as grabs, nets, sondes or traps over the side of a small vessel, keeping crew clear of lines and winches",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:v1-1.2.4-T1",
-     "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:v1-1.2.4-T2",
-     "statement": "Screen field measurement results against applicable water-quality criteria before leaving the site, triggering resampling or notification when an exceedance appears",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     }
    ],
    "credentialGates": {

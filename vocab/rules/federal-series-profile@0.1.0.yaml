@@ -1,7 +1,7 @@
 # EMST computed-view rule (SPEC §5.20, §14.2-§14.3; ADR-0006 §4, ADR-0017, ADR-0027; CR-FH-001 #1). Normative definition; code in `implementation`.
 ruleId: federal-series-profile
 version: 0.1.0
-status: interim
+status: active
 steward: FH (definition proposal, WP-08) · DE (implementation) · CA (definition)
 decidedIn: [ADR-0006, ADR-0017, ADR-0027, ADR-0030, CR-FH-001, CR-CP-001]
 reference_implementation: pipelines/views/federal_series_profile.py (FH, WP-08; authoring tool, never run by CI)
@@ -23,6 +23,7 @@ outputs:
   view: "views/federal_series_profiles/<series code>.json"
   fields: "seriesCode, seriesStatus{value, asOf, events[]}, role, variant, bands[], duties[], knowledge[], gates[], collapsed[], disclaimers[], ruleId, ruleVersion, buildCommit"
 parameters: {}
-implementation: scripts/build_release.py#Builder.views (to be ported by DE from the reference implementation; RULINGS_FOR_DE.md §19)
+implementation: scripts/rules/federal_series_profile.py#compute (called from scripts/build_release.py#Builder.views)
 changeNote:
   - {date: '2026-10-23', note: "Registered from WP-08's proposed generator, with display constraints from CR-CP-001 B4-B5 (ADR-0030)."}
+  - {date: '2026-10-23', note: "Activated by the CA at WP-16 (ADR-0031 §2; P-02). The release port in scripts/rules/federal_series_profile.py reads released records only, finds variants by variantOf and sectorActor (never by seed-key suffix), and applies display-gate@1.1.0; the WP-08 generator stays an authoring preview."}

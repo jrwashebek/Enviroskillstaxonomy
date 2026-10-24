@@ -63,6 +63,7 @@ def status_lines(data_root: Path = L.DATA_V2) -> list[str]:
         f"| v1 prior-evidence ratings (`raterType: v1-analyst`) | {v1_prior} |",
         f"| Held Tribal-related records (count only; ADR-0007 §D) | {held_n} |",
         f"| Minted persistent IDs (`data/v2/ids/registry.csv`) | {minted} |",
+        f"| Records at `candidate` (minted; what a release build may publish) | {sum(1 for _, r in recs.values() if r.get('status') == 'candidate')} |",
         f"| X1 v1→v2 rows / v1 keys covered | {x1_rows} / {len(x1_subjects)} |",
         "",
         "Records by type: " + ", ".join(f"{t} {n}" for t, n in sorted(by_type.items())) + ".",

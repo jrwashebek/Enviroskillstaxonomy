@@ -1,0 +1,48 @@
+id: emst:waterq/TSK-GSG6S7T
+type: Task
+prefLabel:
+  en: Delineate a wetland boundary from vegetation, hydric soil and hydrology indicators using the applicable regional supplement
+statement:
+  en: Delineate a wetland boundary from vegetation, hydric soil and hydrology indicators using the applicable regional supplement
+textSha256: 4a8ade7e9e1b8b8fb3fda1f7d504ac1329de18a72ce8dc8d6db232da6018f881
+supports:
+- competency: emst:waterq/CMP-PK9D5YY
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-PROJECT
+- WP-REGPROGRAM
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: seasonal
+  placeBoundness: ecosystem-type
+  currencyDecay: M
+credentialGates:
+- credential: emst:core/CRD-ASGC990
+  kind: preferred
+homeModule: waterq
+subsectors:
+- W06
+layer: L2
+module: waterq
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

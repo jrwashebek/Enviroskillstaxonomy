@@ -5,20 +5,29 @@
 > Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).
 
 - **Role:** Air quality specialist (`seed:R28-air-quality-specialist`, P2); authority position (editorial): regulator
-- **Generated:** pipelines/views/state_class_view.py@0.1.0, rule state-class-view@0.1.0 (proposed), as of 2026-10-23
+- **Generated:** pipelines/views/state_class_view.py@0.2.0, rule state-class-view@0.1.0 (registered rule, status active), as of 2026-10-23
 
 ## Mapped classes
 
 No class is mapped in the pilot jurisdictions (TX, WA and PA (state), Lewis County WA (county environmental health), Philadelphia Water Department (municipal utility)). The role's targets below are what a jurisdiction would crosswalk its own class specification against.
 
-## Competency targets by role level (agent draft)
+## Competency targets by role level (editorial draft target levels, agent-drafted)
 
 - Build emissions inventories and air quality models for attainment planning — journey L2, senior L3, lead L4
-- Issue environmental permits and resource-use authorizations as the deciding authority — journey L2, senior L3, lead L4
 - Operate ambient air monitoring networks to regulatory quality-assurance criteria — journey L2, senior L3, lead L4
-- Communicate environmental and health risks under uncertainty — journey L2, senior L3, lead L3
-- Operate within, or oversee, delegated and assumed regulatory programs — journey L2, senior L3, lead L4
+- Issue environmental permits and resource-use authorizations as the deciding authority — journey L2, senior L3, lead L4
 - Conduct regulatory compliance inspections — journey L2, senior L3, lead L3
+- Operate within, or oversee, delegated and assumed regulatory programs — journey L2, senior L3, lead L4
+- Communicate environmental and health risks under uncertainty — journey L2, senior L3, lead L3
+- Plan smoke management for prescribed and managed fire within air quality requirements — journey L2, senior L3, lead L3
+- Develop and resolve environmental enforcement cases — journey L2, senior L3, lead L3
+- Build organizational and jurisdictional greenhouse gas inventories for disclosure and reporting — journey L2, senior L3, lead L3
+- Analyze cumulative burdens and distributional effects of environmental decisions — journey L2, senior L3, lead L3
+- Build, run and validate environmental forecast and scenario systems — journey L2, senior L3, lead L3
+- Interpret and question environmental data products in everyday work — journey L1, senior L1, lead L1
+- Use AI tools responsibly in everyday environmental work — journey L1, senior L1, lead L1
+- Validate AI-generated work products before professional use — journey L1, senior L1, lead L1
+- Record provenance and AI involvement in work products — journey L1, senior L1, lead L1
 
 ---
 Not a classification basis / not a job analysis / not for RIF or rating decisions.

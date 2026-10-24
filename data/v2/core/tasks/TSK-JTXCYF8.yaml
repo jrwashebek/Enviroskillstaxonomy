@@ -1,0 +1,62 @@
+id: emst:core/TSK-JTXCYF8
+type: Task
+prefLabel:
+  en: Analyze monitoring data against a project's milestones and outcome measures, stating where results fall short and the likely reason
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Analyze monitoring data against a project's milestones and outcome measures, stating where results fall short and the likely reason
+textSha256: e803b81fce5440cc9912c7f1838f0200a624c1a8a5c8969ee425b277a7985665
+supports:
+- competency: emst:core/CMP-H8VD8E6
+  strength: primary
+workFunction: WF-LEARN
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 3.1.5:T2
+v1Tier: T2
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.1'
+  label: Project Management
+editorialNote:
+  en: 'S2 close-out A. Rewritten from the v1 task text: "Collect and analyze monitoring data to track milestones and outcomes".'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:3.1.5:T2
+    v1Code: 3.1.5
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 81
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

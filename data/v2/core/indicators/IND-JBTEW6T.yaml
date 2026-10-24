@@ -1,0 +1,40 @@
+id: emst:core/IND-JBTEW6T
+type: Indicator
+prefLabel:
+  en: Decides when a site needs an unscheduled visit or manual sample by
+competency: emst:core/CMP-BQRDVKJ
+level: L2
+statement:
+  en: Decides when a site needs an unscheduled visit or manual sample by checking telemetry against field cues, recording the trigger and what the visit found.
+augmentationMode: assisted
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-JAQYG1M
+distinguishingAttribute: ATT-GUI
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

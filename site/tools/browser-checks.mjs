@@ -25,6 +25,16 @@ if (!process.env.PLAYWRIGHT_BROWSERS_PATH && existsSync("/opt/pw-browsers")) pro
 const AXE = readFileSync(join(SITE, "node_modules", "axe-core", "axe.min.js"), "utf-8");
 const AXE_VERSION = JSON.parse(readFileSync(join(SITE, "node_modules", "axe-core", "package.json"), "utf-8")).version;
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
+// Minting (ADR-0031 §6) gave records ID-stem slugs. The sample names its fixed pages by their seed keys and resolves them
+// through the append-only seed map (data/v2/ids/seed_map.csv), so it keeps testing the same records.
+const SEED_MAP = join(SITE, "..", "data", "v2", "ids", "seed_map.csv");
+const slugOfId = (id) => String(id).replace(/^seed:/, "").replace(/^emst:[a-z0-9-]+\//, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+const seedSlug = new Map();
+if (existsSync(SEED_MAP)) for (const line of readFileSync(SEED_MAP, "utf-8").split(/\r?\n/).slice(1)) {
+  const [k, id] = line.split(",");
+  if (k && id && !seedSlug.has(slugOfId(k))) seedSlug.set(slugOfId(k), slugOfId(id));
+}
+const sl = (k) => seedSlug.get(k) || k;
 
 function firstDir(p) { try { return readdirSync(join(OUT, p), { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name).sort(); } catch { return []; } }
 function sample() {
@@ -40,10 +50,10 @@ function sample() {
   if (fed[0]) s.push(fed[0]);
   const series = firstDir("federal-series"); s.push(...["0401", "0029", "0460"].filter((x) => series.includes(x)).map((x) => `/federal-series/${x}/`));
   const classes = firstDir("state-classes"); s.push(...classes.slice(0, 2).map((x) => `/state-classes/${x}/`));
-  const comps = firstDir("competencies"); s.push(...["db-c09", "v1-3-2-5", "dc-cand-13", "sc-c02"].filter((x) => comps.includes(x)).map((x) => `/competencies/${x}/`));
+  const comps = firstDir("competencies"); s.push(...["db-c09", "v1-3-2-5", "dc-cand-13", "sc-c02"].map(sl).filter((x) => comps.includes(x)).map((x) => `/competencies/${x}/`));
   const mods = firstDir("modules"); if (mods[0]) s.push(`/modules/${mods[0]}/`);
   // Heavier pages: a P1 review role, a module-homed P2 role, a local utility variant, the longest gap check.
-  for (const [r, v] of [["r10-environmental-review-specialist", "federal"], ["r10-environmental-review-specialist", "state"], ["r14-forester", "federal"], ["r25-water-wastewater-operator", "local"], ["r13-resource-program-manager", "state"]]) {
+  for (const [r, v] of [["r10-environmental-review-specialist", "federal"], ["r10-environmental-review-specialist", "state"], ["r14-forester", "federal"], ["r25-water-wastewater-operator", "local"], ["r13-resource-program-manager", "state"]].map(([r, v]) => [sl(r), v])) {
     if (firstDir(`roles/${r}`).includes(v)) { s.push(`/roles/${r}/${v}/`); s.push(`/gap-check/${r}/${v}/`); s.push(`/pathways/${r}/${v}/`); }
   }
   for (const x of ["0028", "0819", "1315"]) if (series.includes(x)) s.push(`/federal-series/${x}/`);

@@ -1,0 +1,49 @@
+id: emst:core/IND-WHF0ME2
+type: Indicator
+prefLabel:
+  en: Investigates an allegation of compromised findings under the organization's procedure, documenting the evidence, findings and corrective actions.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-G1H42DS
+level: L4
+statement:
+  en: Investigates an allegation of compromised findings under the organization's procedure, documenting the evidence, findings and corrective actions.
+augmentationMode: unaided
+assessmentMethods:
+- portfolio-review
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- investigation report
+servedTasks:
+- emst:core/TSK-VYZB99R
+distinguishingAttribute: ATT-SCO
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:7.1.3:expert:I3
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

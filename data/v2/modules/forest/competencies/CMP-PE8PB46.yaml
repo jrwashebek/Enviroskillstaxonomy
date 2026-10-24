@@ -1,0 +1,61 @@
+id: emst:forest/CMP-PE8PB46
+type: Competency
+prefLabel:
+  en: Fuse multi-source fire intelligence into operational decision support
+altLabel:
+  en:
+  - Fire intelligence analysis
+  - Continuous fire situational awareness
+definition:
+  en: Continuous integration of satellite detections, camera feeds, sensor and public reports, weather, fuels and resource status into situational awareness and briefings for initial attack, resource ordering and public warning, including adjudication of automated detections and tracking of prediction accuracy. Excludes fire behaviour prediction for a single incident (v1 4.3.4).
+statement:
+  en: Integrates detections, camera feeds, weather, fuels and resource status into a continuously updated picture, adjudicates automated fire detections before resources are ordered, briefs duty officers and incident commanders, and tracks the accuracy of detections and predictions against outcomes, reporting systematic errors.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:forest/IND-ZHA7BYY
+  - emst:forest/IND-Z81FMRD
+- level: L3
+  indicators:
+  - emst:forest/IND-Q80J2JD
+  - emst:forest/IND-YPEE8Y6
+- level: L4
+  indicators:
+  - emst:forest/IND-M0R195Z
+  - emst:forest/IND-19HA2F8
+homeModule: forest
+subsectors:
+- L07
+reusability: subsector-specific
+layer: L1
+module: forest
+status: candidate
+lifecycleState: emerging
+reviewBy: '2027-10-23'
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Multi-source fire intelligence fusion is the core of emerging role R08 fire intelligence analyst (ADR-0020; WFIC-1 gate), composed with v1 4.3.4 and DC-CAND-12. Change type new; lifecycle emerging (reviewBy set); counter-signal: the function stays inside incident positions with no year-round staffing. Product and platform names are L4. Basis [E] for detection and fusion programmes (FS sources); [J] for content.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - FS-011
+  - FS-053
+  - FS-034
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

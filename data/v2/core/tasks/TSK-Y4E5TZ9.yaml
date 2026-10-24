@@ -1,0 +1,64 @@
+id: emst:core/TSK-Y4E5TZ9
+type: Task
+prefLabel:
+  en: Monitor an agreement's deliverables, invoices and revenue ledger against its terms, amending the agreement when scope or partners change
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Monitor an agreement's deliverables, invoices and revenue ledger against its terms, amending the agreement when scope or partners change
+textSha256: 7c0690e2752505a4f3800a1ca8752fdd3307917f4d256e820c7afce8e43fb75f
+supports:
+- competency: emst:core/CMP-WZ4CQR1
+  strength: primary
+workFunction: WF-RESOURCE
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+workflowProfiles:
+- WP-AGREEMENT
+notation:
+- scheme: EMSTv1
+  value: 6.5.3:T3
+v1Tier: T3
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.5'
+  label: Intergovernmental Relations
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Monitor agreement implementation and update as needed" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.5.3:T3
+    v1Code: 6.5.3
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 199
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

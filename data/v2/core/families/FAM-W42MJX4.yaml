@@ -1,0 +1,36 @@
+id: emst:core/FAM-W42MJX4
+type: JobFamily
+prefLabel:
+  en: Land use and resource planning
+definition:
+  en: Preparing land, resource, recreation and hazard mitigation plans and the regulations that implement them.
+boundaryCriteria:
+  en: Core when the deliverable is a plan or plan component (v1 F9).
+memberRule: job-family-membership@0.1.0
+notation:
+- scheme: EMSTv1family
+  value: F09
+layer: L3
+module: core
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: Navigation only; membership is computed (never stored) by pipelines/views/job_families.py under job-family-membership@0.1.0. Boundary criteria condensed from legacy/v1/docs/profession_family_definitions.md (v1 text dedicated CC0).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0016
+  - ADR-0020
+  - ADR-0021

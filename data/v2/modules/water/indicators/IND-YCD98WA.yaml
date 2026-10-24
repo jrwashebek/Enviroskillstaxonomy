@@ -1,0 +1,43 @@
+id: emst:water/IND-YCD98WA
+type: Indicator
+prefLabel:
+  en: Traces a dry-weather discharge to its source through the drainage network, documenting…
+competency: emst:water/CMP-X3FJ5PQ
+level: L2
+statement:
+  en: Traces a dry-weather discharge to its source through the drainage network, documenting the screening results that identify the responsible property.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:water/TSK-1XR3N1F
+distinguishingAttribute: ATT-SCO
+layer: L1
+module: water
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.7.3:intermediate:I4
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

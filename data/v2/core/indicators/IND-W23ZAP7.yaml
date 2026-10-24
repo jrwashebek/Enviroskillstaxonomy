@@ -1,0 +1,47 @@
+id: emst:core/IND-W23ZAP7
+type: Indicator
+prefLabel:
+  en: Mentors staff through building community partnerships, reviewing each partnership's commitment record with them.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-JHR1JC7
+level: L4
+statement:
+  en: Mentors staff through building community partnerships, reviewing each partnership's commitment record with them.
+augmentationMode: unaided
+assessmentMethods:
+- portfolio-review
+useClass: develop
+obs4: 2
+jurisdictionVariable: false
+evidencePlan:
+  en: Pilot the assessment method with two trained raters on synthetic cases before use; promote to obs4 3 only after IO double-coding.
+evidenceTypes:
+- mentoring record
+servedTasks:
+- emst:core/TSK-94K8BKT
+distinguishingAttribute: ATT-FOR
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

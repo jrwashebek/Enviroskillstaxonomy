@@ -1,0 +1,39 @@
+id: emst:core/IND-VP2FDCK
+type: Indicator
+prefLabel:
+  en: Verifies every claim of past performance
+competency: emst:core/CMP-E7VGVK6
+level: L2
+statement:
+  en: Verifies every claim of past performance, staffing and capacity in an AI-drafted proposal section against the organization's records, removing any claim it cannot support.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-98Y54W2
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:05:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

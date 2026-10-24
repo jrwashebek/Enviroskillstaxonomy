@@ -3,8 +3,9 @@
 
 For each dated StateClassRecord (data/v2/registers/state_classes/, X5) that names a role variant, render the class facts
 next to the EMST role variant at the mapped role level(s): competency targets with level (computed from the role, never
-copied into the register), the variant's tasks at those levels with indicative time share, credential gates and the
-disclaimer. Also writes an index over every P1-P2 state and local variant, with its mapped classes or the statement that
+copied into the register), the variant's tasks at those levels in role-record order, credential gates and the
+disclaimer. Display-gate@1.1.0 governs every bundle value (CR-FIX-B-001; ADR-0031 §4.4): no % time or importance before
+job-analysis-confirmed, no critical / needed-at-entry / distinguishing flag before a pid: reviewer. Also writes an index over every P1-P2 state and local variant, with its mapped classes or the statement that
 no class is mapped in the pilot jurisdictions. Held records are never read.
 
 Outputs  docs/build/WP-08/generated/state-class/<jur>--<code>.json and .md, variant_index.json
@@ -18,7 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import viewlib as V  # noqa: E402
 
-GEN = "pipelines/views/state_class_view.py@0.1.0"
+GEN = "pipelines/views/state_class_view.py@0.2.0"
 PILOTS = "TX, WA and PA (state), Lewis County WA (county environmental health), Philadelphia Water Department (municipal utility)"
 
 
@@ -35,6 +36,16 @@ def class_facts(c):
             "specUrl": (c.get("workDescriptionText") or {}).get("url"), "reviewBy": c.get("reviewBy")}
 
 
+def class_stem(d, c):
+    """File stem <jurisdiction>--<class code> from the class seed key (seed:class/<jur>/<code>), stable after minting."""
+    s = d.seed_of(c["id"])
+    if s.startswith("seed:class/"):
+        return s[len("seed:class/"):].replace("/", "--")
+    jur = c.get("jurisdictionId")
+    jur = jur.get("code") if isinstance(jur, dict) else jur
+    return f"{str(jur).replace('/', '-').replace(':', '-')}--{c.get('classCode')}"
+
+
 def mapping_block(d, m):
     vid = m.get("roleVariant")
     variant = d.get(vid)
@@ -43,15 +54,24 @@ def mapping_block(d, m):
         return None
     levels = [x for x in (m.get("roleLevel") or "").split("|") if x]
     items = V.at_levels(V.effective_bundle(role, variant), levels)
-    tasks = sorted(items, key=lambda i: -i["shareWithin"])[:12]
+    tasks = items[:12]                       # role-record order; time share never orders a view (gate `rollups`)
+    ctx = "state-class-view"
+    pct_ok, crit_ok, entry_ok = (V.shows(role, f"taskBundle.{f}", ctx) for f in ("timeShare", "critical", "neededAtEntry"))
+    imp_ok, dist_ok = (V.shows(role, f"competencyTargets.{f}", ctx) for f in ("importance", "distinguishing"))
+    targets = [dict(x, importance=x["importance"] if imp_ok else None, distinguishing=x["distinguishing"] if dist_ok else None)
+               for x in V.targets_at(d, role, levels)]
     return {"roleVariant": vid, "role": role["id"], "roleTitle": d.label(role["id"]), "tier": d.tier(role),
+            "sectorActor": variant.get("sectorActor"),
             "authorityPosition": variant.get("authorityPosition"), "roleLevels": levels,
             "matchType": m.get("matchType"), "confidence": m.get("confidence"),
             "review": "unreviewed agent draft" if not m.get("reviewer") else f"reviewed by {m['reviewer']} on {m.get('reviewDate')}",
             "crosswalkRecord": m.get("crosswalkRecord"),
-            "competencyTargets": V.targets_at(d, role, levels),
-            "topTasks": [{"task": i["task"], "statement": d.statement(i["task"]), "pctTime": round(100 * i["shareWithin"], 1),
-                          "critical": i.get("critical", False), "neededAtEntry": i.get("neededAtEntry", False)} for i in tasks],
+            "competencyTargets": targets, "pctTimeNotice": V.TIME_NOTICE,
+            "jobAnalysisValues": V.PENDING_JA if not (crit_ok and entry_ok) else None,
+            "topTasks": [{"task": i["task"], "statement": d.statement(i["task"]),
+                          "pctTime": round(100 * i["shareWithin"], 1) if pct_ok else None,
+                          "critical": i.get("critical", False) if crit_ok else None,
+                          "neededAtEntry": i.get("neededAtEntry", False) if entry_ok else None} for i in tasks],
             "credentialGates": V.gate_view(d, variant.get("credentialGates"))}
 
 
@@ -68,19 +88,19 @@ def render_md(v):
            f"- **Spec text:** stored by URL and hash only ({f['specUrl']})",
            f"- **Generated:** {v['stamp']['generator']}, rule {v['stamp']['ruleId']}@{v['stamp']['ruleVersion']} ({v['stamp']['ruleStatus']}), as of {v['stamp']['asOf']}", ""]
     for m in v["mappings"]:
-        out += [f"## EMST role: {m['roleTitle']} ({m['roleVariant'].split('/', 1)[1]} variant, {'/'.join(m['roleLevels'])} level; {m['tier']})", "",
+        out += [f"## EMST role: {m['roleTitle']} ({m['sectorActor']} variant, {'/'.join(m['roleLevels'])} level; {m['tier']})", "",
                 f"*Match:* `{m['matchType']}`, confidence {m['confidence']}, {m['review']} (`{m['crosswalkRecord']}`). "
                 f"*Authority position (editorial):* {m['authorityPosition']}.", "",
-                "**Competency targets at this level (agent draft)**", ""]
+                "**Competency targets at this level (editorial draft target levels, agent-drafted)**", ""]
         for t in m["competencyTargets"]:
-            if t["importance"] < 3:
-                continue
             out.append(f"- {t['label']} — {', '.join(f'{k} {x}' for k, x in t['targetLevels'].items())}" +
                        (" *(distinguishing)*" if t["distinguishing"] else ""))
-        out += ["", "**Main tasks at this level (indicative % of time, agent draft)**", ""]
+        out += ["", "**Main tasks at this level (agent draft, in record order)**", "", f"*{m['pctTimeNotice']}*", ""]
+        if m.get("jobAnalysisValues"):
+            out += [f"*Critical and needed-at-entry tasks: {m['jobAnalysisValues']}*", ""]
         for t in m["topTasks"]:
             flags = ", ".join(x for x, on in (("critical", t["critical"]), ("needed at entry", t["neededAtEntry"])) if on)
-            out.append(f"- {t['statement']} — {t['pctTime']}%" + (f" *({flags})*" if flags else ""))
+            out.append(f"- {t['statement']}" + (f" — {t['pctTime']}%" if t["pctTime"] is not None else "") + (f" *({flags})*" if flags else ""))
         if m["credentialGates"]["shown"] or m["credentialGates"]["notShownUntilIssuerVerified"]:
             out += ["", "*Credential gates (issuer verified):* " + V.gate_text(m["credentialGates"])]
         out.append("")
@@ -101,7 +121,7 @@ def main():
             continue
         view = {"stamp": V.stamp("state-class-view", "0.1.0", GEN), "disclaimer": V.DISCLAIMER,
                 "evidenceNotice": V.EVIDENCE_NOTICE, "classRecord": cid, "class": class_facts(c), "mappings": maps}
-        stem = V.L.id_to_stem(cid).replace("seed-class--", "")
+        stem = class_stem(d, c)
         V.write_json(V.OUT / "state-class" / f"{stem}.json", view)
         V.write_text(V.OUT / "state-class" / f"{stem}.md", render_md(view))
         n += 1
@@ -113,7 +133,7 @@ def main():
         if d.tier(r) not in ("P1", "P2"):
             continue
         for actor in ("state", "local"):
-            v = d.get(f"{r['id']}/{actor}")
+            v = d.variant_for(r["id"], actor)
             if v and v["id"] not in by_variant:
                 by_variant[v["id"]] = []
     for vid, classes in sorted(by_variant.items()):
@@ -122,16 +142,15 @@ def main():
         lv = [r["key"] for r in role["roleLevels"]]
         lines = [f"# State Class View (variant): {d.label(vid)}", "", f"> **{V.DISCLAIMER}**", ">", f"> {V.EVIDENCE_NOTICE}", "",
                  f"- **Role:** {d.label(role['id'])} (`{role['id']}`, {d.tier(role)}); authority position (editorial): {v.get('authorityPosition')}",
-                 f"- **Generated:** {GEN}, rule state-class-view@0.1.0 (proposed), as of {V.AS_OF}", "", "## Mapped classes", ""]
+                 f"- **Generated:** {GEN}, rule state-class-view@0.1.0 ({V.stamp('state-class-view', '0.1.0', GEN)['ruleStatus']}), as of {V.AS_OF}", "", "## Mapped classes", ""]
         if classes:
             lines += [f"- {c['classTitle']} (`{c['classRecord']}`), {'/'.join(c['roleLevels'])} level, `{c['matchType']}` — see `{c['view']}`" for c in classes]
         else:
             lines.append(f"No class is mapped in the pilot jurisdictions ({PILOTS}). The role's targets below are what a "
                          "jurisdiction would crosswalk its own class specification against.")
-        lines += ["", "## Competency targets by role level (agent draft)", ""]
+        lines += ["", "## Competency targets by role level (editorial draft target levels, agent-drafted)", ""]
         for t in V.targets_at(d, role, lv):
-            if t["importance"] >= 4 or t["distinguishing"]:
-                lines.append(f"- {t['label']} — " + ", ".join(f"{k} {x}" for k, x in t["targetLevels"].items()))
+            lines.append(f"- {t['label']} — " + ", ".join(f"{k} {x}" for k, x in t["targetLevels"].items()))
         lines += ["", "---", V.DISCLAIMER, ""]
         V.write_text(V.OUT / "state-class" / "variants" / f"{V.L.id_to_stem(vid)}.md", "\n".join(lines))
     V.write_json(V.OUT / "state-class" / "variant_index.json",

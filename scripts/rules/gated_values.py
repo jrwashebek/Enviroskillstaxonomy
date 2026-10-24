@@ -1,4 +1,4 @@
-"""display-gate@1.0.0 view (vocab/rules/display-gate@1.0.0.yaml; ADR-0029 §6.2).
+"""display-gate view (vocab/rules/display-gate@1.1.0.yaml, active from WP-16; 1.0.0 superseded; ADR-0029 §6.2, ADR-0031 §1).
 
 For every gated value a view might show, IO's validation/display_gate.py::decide() says whether it renders and with
 which marker. Gated values are the task-level ratings (one value per unit, dimension and codebook version, pooled
@@ -56,6 +56,44 @@ def editorial_rows(released: dict, editorial_fields: list[str], stamp: dict) -> 
     return rows
 
 
+ROLE_CONTEXTS = ("role", "gap-check", "federal-series-profile", "state-class-view", "select")
+
+
+def role_profile_rows(released: dict, gm, gates: dict | None, stamp: dict, view_tier: str = "describe") -> list[dict]:
+    """display-gate@1.1.0 role-profile bundle values (CR-CP-001 B4; ADR-0031 §1, P-01 DE follow-up): for every released
+    RoleProfile and every editorial-design or job-analysis field it carries, the decision of
+    validation/display_gate.py#decide (routed to decide_role_value) in each view context. The values themselves stay
+    in the bundle with the role's validationStatus; this view says only whether and how a view may show them."""
+    if not gates or not gm:
+        return []
+    rp = gates.get("role_profile_values") or {}
+    fields = list((rp.get("editorial_design_values") or {}).get("fields") or []) + list((rp.get("job_analysis_values") or {}).get("fields") or [])
+    rows = []
+    for rid, r in sorted(released.items()):
+        if r.get("type") != "RoleProfile":
+            continue
+        present = set()
+        for item in r.get("taskBundle") or []:
+            present |= {f"RoleProfile.taskBundle.{k}" for k in (item if isinstance(item, dict) else {})}
+        for t in r.get("competencyTargets") or []:
+            present |= {f"RoleProfile.competencyTargets.{k}" for k in (t if isinstance(t, dict) else {})}
+            if isinstance(t, dict) and "targetLevels" in t:
+                present.add("RoleProfile.competencyTargets.targetLevel")
+        if r.get("roleLevels"):
+            present.add("RoleProfile.roleLevels")
+        reviewers = list((r.get("provenance") or {}).get("reviewers") or [])
+        for field in fields:
+            if field not in present:
+                continue
+            for ctx in ROLE_CONTEXTS:
+                value = {"field": field, "validationStatus": r.get("validationStatus"), "reviewers": reviewers, "held": False}
+                d = gm.decide(value, None, gates, "select" if ctx == "select" else view_tier, None, context=ctx)
+                rows.append({"recordId": rid, "field": field, "context": ctx, "decision": _decision(d) if d.get("marker") != "pending" else "pending",
+                             "label": d.get("label"), "reason": d.get("reason"), "studyId": None,
+                             "validationStatus": r.get("validationStatus"), **stamp})
+    return rows
+
+
 def compute(released: dict, rule: dict, results: dict, stamp: dict, view_tier: str = "describe") -> dict:
     """Returns the view document {header, rows}. results: {studyId: agreement result} from rules.agreement.emit."""
     gm = io_bridge.load("display_gate")
@@ -85,6 +123,7 @@ def compute(released: dict, rule: dict, results: dict, stamp: dict, view_tier: s
         d = gm.decide(value, result, gates, view_tier, _current_hash(target)) if gm else {"render": False, "label": "engine_unavailable", "reason": ""}
         rows.append({"recordId": u, "field": dim, "codebookVersion": cbv, "decision": _decision(d), "label": d.get("label"),
                      "reason": d.get("reason"), "studyId": (result or {}).get("studyId"), "nRatings": len(rs), **stamp})
+    rows += role_profile_rows(released, gm, gates, stamp, view_tier)
     for rid, r in sorted(released.items()):
         if r.get("type") == "Task" and r.get("workFunction"):
             rt = PROVENANCE_RATER.get((r.get("provenance") or {}).get("method"), "analyst")

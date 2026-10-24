@@ -1,0 +1,37 @@
+id: emst:core/IND-BCQN16E
+type: Indicator
+prefLabel:
+  en: Designs the human-review step for model outputs, choosing which confidence bands go to reviewers…
+competency: emst:core/CMP-ZJZ8VBW
+level: L3
+statement:
+  en: Designs the human-review step for model outputs, choosing which confidence bands go to reviewers so that the workflow meets its error target.
+augmentationMode: supervisory
+assessmentMethods:
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-MBVFZW5
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

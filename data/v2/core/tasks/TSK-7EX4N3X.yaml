@@ -1,0 +1,62 @@
+id: emst:core/TSK-7EX4N3X
+type: Task
+prefLabel:
+  en: Write quality-assurance and escalation procedures that protect the independence of regulatory findings, including peer-review steps and documentation of changes
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Write quality-assurance and escalation procedures that protect the independence of regulatory findings, including peer-review steps and documentation of changes
+textSha256: bb8b4c47bc5b2427639045932e54c149562061989ec7b610d44e6a7f941a0a41
+supports:
+- competency: emst:core/CMP-G1H42DS
+  strength: primary
+workFunction: WF-MANAGE
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 7.1.3:T3
+v1Tier: T3
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.1'
+  label: Professional Ethics Architecture
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Develop organizational quality assurance protocols that protect the independence of regulatory findings from institutional capture, including documentation practices and escalation procedures" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:7.1.3:T3
+    v1Code: 7.1.3
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 219
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

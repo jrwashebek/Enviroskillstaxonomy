@@ -1,0 +1,80 @@
+id: emst:core/SCR-F2WXKAF
+type: StateClassRecord
+prefLabel:
+  en: Natural Resources Specialist V
+notation:
+- scheme: class-TX
+  value: '2686'
+jurisdictionId:
+  stateFips: '48'
+  label: Texas
+employerType: state-agency
+agency: Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications
+classCode: '2686'
+classTitle: Natural Resources Specialist V
+seriesId: Natural Resources Specialist I-V
+levelIndex:
+  ordinal: 5
+  label: V
+supervisoryStatus: supervisor
+specEffectiveDate: '2026-07-01'
+workDescriptionText:
+  storage: hash-and-url
+  url: https://hr.sao.texas.gov/Compensation/JobDescriptions/1860.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+mqText:
+  storage: hash-and-url
+  url: https://hr.sao.texas.gov/Compensation/JobDescriptions/1860.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+  paraphrase: Same as NRS I.
+mqLocation: agency-policy
+degreeRule: agency-set
+licensesRequired: []
+payBasis: annual
+payMinMax:
+  min: 65104
+  max: 106634
+  currency: USD
+  basis: annual
+payGradeLabel: B24
+payEffectiveDate: '2026-07-01'
+militaryEquivalent:
+- source: SL-052
+  note: class listed in the Texas SAO military crosswalk (native crosswalk; candidate gold set for X5); codes not extracted
+emstMapping:
+- roleVariant: emst:core/VAR-AHB4XZ4
+  roleLevel: senior|lead
+  matchType: skos:relatedMatch
+  confidence: 0.3
+  reviewer: null
+  reviewDate: null
+  crosswalkRecord: emst-x5-tx:R13-resource-program-manager/state:2686
+  note: competency targets with level are added when WP-08 authors the role profile
+editorialNote:
+  en: Dated record as of 2026-10-23; re-run each 1 July or on plan revision (ADR-0022 X5).
+layer: L6
+module: core
+status: candidate
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2027-07-01'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:ia-wp09@phase4
+  generatedAt: '2026-10-23T19:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp09-crosswalk@1
+  evidenceLabel: E
+  sources:
+  - SL-051
+  - WP09-007
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0022
+  - ADR-0006

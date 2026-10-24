@@ -1,0 +1,42 @@
+id: emst:core/TSK-QXZXEXB
+type: Task
+prefLabel:
+  en: Plan a compliance inspection from the facility's permit, compliance history and monitoring reports, listing the conditions to verify and the evidence to collect
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Plan a compliance inspection from the facility's permit, compliance history and monitoring reports, listing the conditions to verify and the evidence to collect
+textSha256: 61133b5e6fdaeaad71228f4502f20c3f0ace983b3f4ee17403656708b1342d3a
+supports:
+- competency: emst:core/CMP-Z9BVC7K
+  strength: primary
+workFunction: WF-ENFORCE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+workflowProfiles:
+- WP-COMPLIANCE
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

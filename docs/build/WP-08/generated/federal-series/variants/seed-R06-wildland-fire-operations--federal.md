@@ -4,7 +4,7 @@
 
 - **Role:** Wildland fire operations (crew to supervisor) (`seed:R06-wildland-fire-operations`, P1); authority position (editorial): resource-manager
 - **Indicative band:** GS-3 to GS-5 [entry]; GS-6 to GS-7 [journey]; GS-8 to GS-9 [senior]; GS-9 to GS-11 [lead] (not a classification criterion)
-- **Generated:** pipelines/views/federal_series_profile.py@0.1.0, rule federal-series-profile@0.1.0 (proposed), as of 2026-10-23
+- **Generated:** pipelines/views/federal_series_profile.py@0.2.0, rule federal-series-profile@0.1.0 (registered rule, status active), as of 2026-10-23
 
 ## Series
 

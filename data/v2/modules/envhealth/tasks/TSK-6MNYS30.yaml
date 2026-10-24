@@ -1,0 +1,49 @@
+id: emst:envhealth/TSK-6MNYS30
+type: Task
+prefLabel:
+  en: Inspect a rental dwelling for lead hazards, mold, pests and sanitation violations in response to a tenant complaint
+statement:
+  en: Inspect a rental dwelling for lead hazards, mold, pests and sanitation violations in response to a tenant complaint
+textSha256: a9829851a385fa69ca9bbecad8f5a22d32e78b87c77f101e608de1739054ad4a
+supports:
+- competency: emst:core/CMP-Z9BVC7K
+  strength: primary
+workFunction: WF-ENFORCE
+relationshipTypes:
+- public
+workflowProfiles:
+- WP-COMPLIANCE
+fieldDependency: on-site-required
+formationDependency: 'yes'
+credentialGates:
+- credential: emst:core/CRD-NMQZHHR
+  kind: preferred
+- credential: emst:core/CRD-32J1RWM
+  kind: preferred
+homeModule: envhealth
+subsectors:
+- H01
+layer: L2
+module: envhealth
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
+editorialNote:
+  en: 'S2 (ADR-0030 §3.2): re-pointed from SL-C07 to core SL-C03; listed in seed:ena-sl-c03-envhealth.additionalTasks. Text unchanged, so craft ratings stay current.'

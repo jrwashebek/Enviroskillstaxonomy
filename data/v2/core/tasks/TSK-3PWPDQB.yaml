@@ -1,0 +1,56 @@
+id: emst:core/TSK-3PWPDQB
+type: Task
+prefLabel:
+  en: Analyze terrain, habitat connectivity or resource distribution for a planning question, stating the data, projection and accuracy limits that bound the answer.
+statement:
+  en: Analyze terrain, habitat connectivity or resource distribution for a planning question, stating the data, projection and accuracy limits that bound the answer.
+textSha256: 534b1fd6ccc296082c846f422a6895773d8d297ff282f976315b6841c9dd8146
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+notation:
+- scheme: EMSTv1
+  value: 2.1.4:T1
+supports:
+- competency: emst:core/CMP-YV31ZCF
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+v1Tier: T1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.1'
+  label: Geospatial Technologies
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.1.4:T1
+    v1Code: 2.1.4
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 45
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0011

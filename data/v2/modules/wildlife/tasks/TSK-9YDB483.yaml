@@ -1,0 +1,47 @@
+id: emst:wildlife/TSK-9YDB483
+type: Task
+prefLabel:
+  en: Mark captured animals with tags or other marks while recording biological data within protocol handling-time and stress limits
+statement:
+  en: Mark captured animals with tags or other marks while recording biological data within protocol handling-time and stress limits
+textSha256: ca73bbb5e761fedb08d7138a753870fde3ba560a354bbedd3f5746e65d159b67
+supports:
+- competency: emst:wildlife/CMP-1CEV7YY
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-RESEARCH
+- WP-REGPROGRAM
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: wildlife
+subsectors:
+- L02
+- L03
+layer: L2
+module: wildlife
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
+credentialGates:
+- credential: emst:core/CRD-D2AQ3YP
+  kind: required
+editorialNote:
+  en: 'S2 (CR-DB-001 #7): credential gate to the new scientific collection permit record.'

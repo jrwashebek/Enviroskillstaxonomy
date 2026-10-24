@@ -1,0 +1,81 @@
+id: emst:core/CMP-RPM63WZ
+type: Competency
+prefLabel:
+  en: Maintain independence and manage conflicts of interest across the regulator-regulated boundary
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to identify, disclose and manage financial, employment and relationship conflicts that arise when work or people cross between regulators, regulated parties and their consultants, including recusal and post-employment restrictions, so that work products stay independent of any party's interest in the outcome.
+statement:
+  en: Identifies, discloses and manages financial, employment and relationship conflicts that arise when work crosses between regulators, regulated parties and their consultants, observes recusal and post-employment restrictions, and keeps the work product independent of any party's interest in its outcome.
+competencyType: transversal
+transversalCluster: TX-B
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: transversal
+altLabel:
+  en:
+  - conflict of interest management
+  - independence safeguards
+  - revolving-door restrictions
+  - post-employment restrictions
+instrumentSensitivity:
+- mechanism: DM-02
+  rationale:
+    en: Sponsor-paid acceleration increases sponsor and contractor roles in review.
+  evidenceLabel: E
+  sources:
+  - V2-04
+- mechanism: DM-16
+  rationale:
+    en: Hiring and appointment rule changes alter movement between sectors.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+editorialNote:
+  en: 'WP-05 (A5 SC; PS candidate). Independence across the regulator-regulated boundary (ADR-0025 TX-B); v1 7.1.3 extended per the PS verdict. Sponsor-paid review and sponsor-prepared documents raise the stakes [E: V2-04]. Post-employment restrictions are also a mobility friction (friction type post-employment-ethics).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - V2-04
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-4J4H5N0
+  - emst:core/IND-FNVGSFK
+- level: L2
+  indicators:
+  - emst:core/IND-QTN1P07
+  - emst:core/IND-1KP4B47
+- level: L3
+  indicators:
+  - emst:core/IND-7RVENKN
+  - emst:core/IND-EN514ZX
+  - emst:core/IND-VSD5WF1
+- level: L4
+  indicators:
+  - emst:core/IND-G7N0T59
+  - emst:core/IND-1V3RJE6

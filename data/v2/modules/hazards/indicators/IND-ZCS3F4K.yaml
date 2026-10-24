@@ -1,0 +1,39 @@
+id: emst:hazards/IND-ZCS3F4K
+type: Indicator
+prefLabel:
+  en: Rejects or corrects statements in an AI-drafted review record that conflict with the…
+competency: emst:hazards/CMP-DWTS99J
+level: L3
+statement:
+  en: Rejects or corrects statements in an AI-drafted review record that conflict with the project file, recording each correction before signature.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:hazards/TSK-CGN0FEK
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: hazards
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

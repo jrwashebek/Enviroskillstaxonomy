@@ -1,0 +1,39 @@
+id: emst:core/IND-J3QMDZW
+type: Indicator
+prefLabel:
+  en: Re-tests the pipeline on its evaluation set after a model change, stopping outputs from…
+competency: emst:core/CMP-F6ZC95V
+level: L3
+statement:
+  en: Re-tests the pipeline on its evaluation set after a model change, stopping outputs from entering the record until error rates return within tolerance.
+augmentationMode: supervisory
+assessmentMethods:
+- work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-N525QY1
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

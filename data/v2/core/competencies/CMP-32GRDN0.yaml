@@ -1,0 +1,59 @@
+id: emst:core/CMP-32GRDN0
+type: Competency
+prefLabel:
+  en: Navigate and travel safely in remote terrain with and without digital aids
+definition:
+  en: Planning routes and travelling off trail by map and compass, satellite positioning and digital maps; recording accurate field locations; recognizing and recovering from positioning or device failure; assessing terrain, weather and water-crossing hazards; and taking part in search operations as a specialization. Specific receivers and apps are L4. Excludes aviation navigation.
+statement:
+  en: Plan routes and travel off trail by map and compass as well as satellite positioning, record field locations to the required accuracy, recognize and recover from positioning or device failure, and assess terrain, weather and water-crossing hazards; take part in search operations when assigned.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-GG7ZKMD
+  - emst:core/IND-SRW5NV4
+  - emst:core/IND-DKDP0R1
+- level: L2
+  indicators:
+  - emst:core/IND-5T2N8GG
+  - emst:core/IND-6KKX45Q
+  - emst:core/IND-GBNN395
+- level: L3
+  indicators:
+  - emst:core/IND-PDH7V0P
+  - emst:core/IND-YB24NRW
+  - emst:core/IND-07W5AG1
+homeModule: core
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'WP-03 (FC) draft. Survivor (candidate FC-C18, transforming); receives v1 2.1.3 (location data collection; receivers to L4) and the core of v1 4.4.3 (search operations as a specialization). Non-powered orienteering is required in accredited forestry curricula [E: LC per disposition].'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.1.3
+    relation: merged-from
+  - v1Key: v1:4.4.3
+    relation: merged-from
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - ADR-0011
+  - WP-03

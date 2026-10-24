@@ -1,0 +1,45 @@
+id: emst:core/IND-0R6HZJ2
+type: Indicator
+prefLabel:
+  en: Provides the information or resources a community requested for a community-led action, recording each request and the response given.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-JHR1JC7
+level: L3
+statement:
+  en: Provides the information or resources a community requested for a community-led action, recording each request and the response given.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- request log
+servedTasks:
+- emst:core/TSK-XBD20A8
+distinguishingAttribute: ATT-AUT
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

@@ -1,0 +1,268 @@
+id: emst:forest/CMP-MQJG1YC
+type: Competency
+prefLabel:
+  en: Predict fire behaviour from fuels, weather and topography for operations and planning
+altLabel:
+  en:
+  - Fire weather and behaviour analysis
+  - Fire behaviour analyst practice
+definition:
+  en: Observing fire weather and fuels, calculating fuel moisture and fire danger, predicting spread, intensity and spotting with models and field judgment, comparing predictions with observed behaviour and briefing operations. Excludes multi-source intelligence fusion for dispatch (FS-C05).
+statement:
+  en: Takes fire weather observations and calculates fuel moisture and danger indices, predicts spread, intensity and spotting from fuels, weather and topography, compares predictions with observed fire behaviour and adjusts them, and briefs crews and incident managers on expected behaviour and watch-out situations.
+notation:
+- scheme: EMSTv1
+  value: 4.3.4
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:forest/IND-2KB2MBY
+  - emst:forest/IND-0MWP2TQ
+- level: L2
+  indicators:
+  - emst:forest/IND-PYGPGX5
+  - emst:forest/IND-ZF42EEH
+- level: L3
+  indicators:
+  - emst:forest/IND-1V4GQBP
+  - emst:forest/IND-E18N3T5
+- level: L4
+  indicators:
+  - emst:forest/IND-D2AW0FE
+  - emst:forest/IND-C7J4XM6
+homeModule: forest
+subsectors:
+- L07
+reusability: subsector-specific
+layer: L1
+module: forest
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.3'
+  label: Fire Management
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: FC-primary blend (models DC; observed-vs-predicted reading and briefing FC/SC); FBAN/LTAN crosswalk; feeds role R08 (FC verdict, ADR-0020). Role verdicts considered: FC:carry. WP-06: Moved to MOD-11; FC-primary blend (models DC; observed-versus-predicted reading and briefing FC/SC); fire behaviour analyst positions are Credential gates; feeds roles R08 and R06 (FC verdict, ADR-0020). Model products move to L4. Basis [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.4
+    v1Code: 4.3.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 125
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
+  - v1Key: v1:4.3.4
+    v1Code: 4.3.4
+    v1Table: source_text/competencies
+    sourceTextLine: 8071
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
+v1Seed:
+  v1Title: Fire weather and behavior analysis
+  v1Description: Understanding and predicting how weather and fuels interact to produce fire behavior.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.3.4:foundational
+    knowledge: Understands basic fire weather elements and fire behavior concepts
+    application: Monitors weather and recognizes fire behavior patterns
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.4:foundational:I1
+      n: 1
+      text: Takes and records weather observations (temperature, humidity, wind)
+      origin: database
+    - v1Key: v1:4.3.4:foundational:I2
+      n: 2
+      text: Calculates fuel moisture from weather data
+      origin: database
+    - v1Key: v1:4.3.4:foundational:I3
+      n: 3
+      text: Understands fire danger rating components
+      origin: database
+    - v1Key: v1:4.3.4:foundational:I4
+      n: 4
+      text: Recognizes weather patterns affecting fire behavior
+      origin: database
+    - v1Key: v1:4.3.4:foundational:I5
+      n: 5
+      text: Observes and documents fire behavior on incidents
+      origin: database
+    - v1Key: v1:4.3.4:foundational:I6
+      n: 6
+      text: Uses fire weather websites and apps
+      origin: database
+    - v1Key: v1:4.3.4:foundational:I7
+      n: 7
+      text: Understands how topography affects fire spread
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.3.4:intermediate
+    knowledge: Applies fire behavior science; interprets weather forecasts
+    application: Predicts fire behavior and provides fire weather briefings
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.4:intermediate:I1
+      n: 1
+      text: Completes S-290 (Intermediate Fire Behavior) and S-390 (Fire Behavior Calculations)
+      origin: database
+    - v1Key: v1:4.3.4:intermediate:I2
+      n: 2
+      text: Calculates flame length, rate of spread, and intensity
+      origin: database
+    - v1Key: v1:4.3.4:intermediate:I3
+      n: 3
+      text: Interprets spot weather forecasts for fire operations
+      origin: database
+    - v1Key: v1:4.3.4:intermediate:I4
+      n: 4
+      text: Uses nomograms and calculation tools for fire behavior prediction
+      origin: database
+    - v1Key: v1:4.3.4:intermediate:I5
+      n: 5
+      text: Provides fire behavior briefings to crews
+      origin: database
+    - v1Key: v1:4.3.4:intermediate:I6
+      n: 6
+      text: Recognizes critical fire weather patterns (Red Flag conditions, dry cold fronts)
+      origin: database
+    - v1Key: v1:4.3.4:intermediate:I7
+      n: 7
+      text: Monitors Fire Weather Watches and Red Flag Warnings
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.4:intermediate:I8
+      n: 8
+      text: Applies fire behavior knowledge to tactical decision-making
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.4:intermediate:I9
+      n: 9
+      text: Uses BehavePlus software for fire behavior modeling
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.3.4:advanced
+    knowledge: Expert in fire behavior and meteorology; skilled in complex analysis
+    application: Serves as fire behavior analyst on incidents or in predictive services
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.4:advanced:I1
+      n: 1
+      text: Holds Fire Behavior Analyst (FBAN) qualification
+      origin: database
+    - v1Key: v1:4.3.4:advanced:I2
+      n: 2
+      text: Provides fire behavior analysis on complex incidents
+      origin: database
+    - v1Key: v1:4.3.4:advanced:I3
+      n: 3
+      text: Develops long-term fire behavior forecasts
+      origin: database
+    - v1Key: v1:4.3.4:advanced:I4
+      n: 4
+      text: Uses advanced fire behavior models (FARSITE, FSPro, FlamMap)
+      origin: database
+    - v1Key: v1:4.3.4:advanced:I5
+      n: 5
+      text: Identifies weather-driven windows for successful suppression or burnout operations
+      origin: database
+    - v1Key: v1:4.3.4:advanced:I6
+      n: 6
+      text: Analyzes fuels, weather, and topography interactions comprehensively
+      origin: database
+    - v1Key: v1:4.3.4:advanced:I7
+      n: 7
+      text: Briefs incident management teams on fire behavior forecasts
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.4:advanced:I8
+      n: 8
+      text: Conducts post-fire fire behavior analysis for learning
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.4:advanced:I9
+      n: 9
+      text: Trains fire personnel in fire behavior interpretation
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.4:advanced:I10
+      n: 10
+      text: Contributes to fire behavior research or case studies
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.3.4:expert
+    knowledge: Shapes fire behavior science and operational application
+    application: Provides strategic fire behavior expertise nationally
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.4:expert:I1
+      n: 1
+      text: Serves in Predictive Services or National Fire Weather Program
+      origin: database
+    - v1Key: v1:4.3.4:expert:I2
+      n: 2
+      text: Develops fire behavior analysis methods and tools
+      origin: database
+    - v1Key: v1:4.3.4:expert:I3
+      n: 3
+      text: Influences fire behavior training and doctrine
+      origin: database
+    - v1Key: v1:4.3.4:expert:I4
+      n: 4
+      text: Provides expert consultation on major fire incidents
+      origin: database
+    - v1Key: v1:4.3.4:expert:I5
+      n: 5
+      text: Publishes fire behavior research and analysis
+      origin: database
+    - v1Key: v1:4.3.4:expert:I6
+      n: 6
+      text: Achieves recognition for fire behavior expertise
+      origin: database
+    - v1Key: v1:4.3.4:expert:I7
+      n: 7
+      text: Advances integration of fire behavior science into operations
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.3.4:sector:public_agencies
+    text: Predictive services, fire behavior analysis on incidents, long-range planning
+  - sector: private_sector
+    v1Key: v1:4.3.4:sector:private_sector
+    text: Fire weather services, wildfire risk modeling
+  - sector: ngos
+    v1Key: v1:4.3.4:sector:ngos
+    text: Fire behavior support for prescribed fire programs
+  - sector: consulting
+    v1Key: v1:4.3.4:sector:consulting
+    text: Fire behavior analysis services, expert testimony
+  - sector: academia
+    v1Key: v1:4.3.4:sector:academia
+    text: Fire behavior research, fire weather studies
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

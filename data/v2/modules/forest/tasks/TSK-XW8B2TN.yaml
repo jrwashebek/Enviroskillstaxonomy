@@ -1,0 +1,44 @@
+id: emst:forest/TSK-XW8B2TN
+type: Task
+prefLabel:
+  en: Compare modelled fire behaviour with observed behaviour during an incident, adjusting predictions and recording each discrepancy
+statement:
+  en: Compare modelled fire behaviour with observed behaviour during an incident, adjusting predictions and recording each discrepancy
+textSha256: 2fd066c96376597bc563783fbec11eb8eb09db882ebf45c78d94f547265c4ec8
+supports:
+- competency: emst:forest/CMP-MQJG1YC
+  strength: primary
+workFunction: WF-MONITOR
+workflowProfiles:
+- WP-INCIDENT
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: seasonal
+  placeBoundness: ecosystem-type
+  currencyDecay: H
+homeModule: forest
+subsectors:
+- L07
+layer: L2
+module: forest
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

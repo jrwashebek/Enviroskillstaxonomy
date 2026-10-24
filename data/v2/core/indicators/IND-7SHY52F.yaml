@@ -1,0 +1,38 @@
+id: emst:core/IND-7SHY52F
+type: Indicator
+prefLabel:
+  en: Checks an automated anomaly or intrusion alert against process data and field observation
+competency: emst:core/CMP-SNCR4KM
+level: L2
+statement:
+  en: Checks an automated anomaly or intrusion alert against process data and field observation, closing or escalating it with the evidence recorded.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-68MPRFK
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:dc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-dc@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

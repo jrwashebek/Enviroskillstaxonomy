@@ -1,0 +1,78 @@
+id: emst:core/CMP-G0WT56E
+type: Competency
+prefLabel:
+  en: Assess ecosystem services with production-function models validated against observations
+altLabel:
+  en:
+  - Ecosystem services assessment
+definition:
+  en: The capability to identify, quantify and map ecosystem services such as flood mitigation, water purification, carbon storage, pollination and recreation with production-function models, validate the models against observations, and communicate service benefits with their uncertainty. Named ecosystem-service model products are L4.
+statement:
+  en: Identifies, quantifies and maps ecosystem services such as flood mitigation, water purification, carbon storage, pollination and recreation with production-function models; validates model estimates against observations; states uncertainty and the beneficiaries assumed; and communicates service benefits in planning and outreach without overstating precision.
+editorialNote:
+  en: 'Rewritten by WP-04 (DC lane: v1 craft primary DC, used only to route the seed; v1 tags are prior evidence, not v2 values). Tool names (InVEST, ARIES) moved to L4 (emst:core/TL-4JVSP75); durable method is production-function modelling and validation (DC verdict). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (DC). Rationale: Tool names to L4; durable method is ecosystem-service production-function modelling and validation (DC verdict). Role verdicts considered: DC:change.'
+notation:
+- scheme: EMSTv1
+  value: 6.3.2
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-MJCJHNT
+  - emst:core/IND-BB9QVZD
+- level: L3
+  indicators:
+  - emst:core/IND-PFE3DBN
+  - emst:core/IND-Y3Q8VXZ
+- level: L4
+  indicators:
+  - emst:core/IND-G0MA9AB
+  - emst:core/IND-S59H5BP
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.3.2
+    v1Code: 6.3.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 188
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:6.3.2
+    v1Code: 6.3.2
+    v1Table: source_text/competencies
+    sourceTextLine: 13402
+    relation: reference-only
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  adr:
+  - ADR-0003
+  - ADR-0011
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.3'
+  label: Resource Economics

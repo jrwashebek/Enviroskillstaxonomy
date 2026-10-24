@@ -26,7 +26,7 @@ def test_depth_rules():
     for t, (lo, hi, clo, chi) in {"P1": (15, 40, 6, 12), "P2": (15, 40, 6, 10)}.items():
         for r in roles_by_tier(t):
             assert lo <= len(r["taskBundle"]) <= hi, r["id"]
-            ncrit = sum(1 for c in r["competencyTargets"] if c["importance"] >= 4)
+            ncrit = sum(1 for c in r["competencyTargets"] if (c.get("importance") or 0) >= 4)   # WP-08's own drafts only
             assert clo <= ncrit <= chi, (r["id"], ncrit)
             assert abs(sum(i["timeShare"] for i in r["taskBundle"]) - 1) < 0.002, r["id"]
 
@@ -34,13 +34,13 @@ def test_depth_rules():
 def test_never_selection_and_drafts():
     for r in D.roles():
         assert r["validationStatus"] == "draft" and r["provenance"]["evidenceLabel"] == "S"
-        assert all(c["criticalForSelection"] is False for c in r["competencyTargets"])
+        assert all(c.get("criticalForSelection") is not True for c in r["competencyTargets"])
 
 
 def test_tx_floor_on_every_role():
     for r in D.roles():
         ids = {c["competency"] for c in r["competencyTargets"]}
-        assert {"seed:DC-CAND-01", "seed:DC-CAND-02", "seed:DC-CAND-13", "seed:DC-CAND-05"} <= ids, r["id"]
+        assert {D.canon(k) for k in ("seed:DC-CAND-01", "seed:DC-CAND-02", "seed:DC-CAND-13", "seed:DC-CAND-05")} <= ids, r["id"]
 
 
 def test_emerging_roles_carry_foresight_fields():
@@ -81,7 +81,7 @@ def test_every_p1_p2_federal_and_state_variant_has_a_view():
     sc = json.loads((OUT / "state-class" / "variant_index.json").read_text())["variants"]
     for r in roles_by_tier("P1") + roles_by_tier("P2"):
         for actor, idx in (("federal", fed), ("state", sc), ("local", sc)):
-            v = D.get(f"{r['id']}/{actor}")
+            v = D.variant_for(r["id"], actor)
             if v:
                 assert v["id"] in idx, v["id"]
 
@@ -104,4 +104,28 @@ def test_forester_pd_is_labelled():
     assert "SUBJECT TO CLASSIFICATION REVIEW" in pd and V.DISCLAIMER.split(" / ")[0] in pd
     for k in range(1, 10):
         assert f"## Factor {k} " in pd
-    assert "%)" in pd  # major duties carry % time
+    # display-gate@1.1.0 (CR-FIX-B-001; ADR-0031 §4.4): the PD carries no percentage, flag or truncation
+    assert "% time: set by the supervisor" in pd
+    assert not re.search(r"\(\d+(\.\d+)?%\)", pd)             # no numeric duty percentages
+    assert "…" not in pd                                          # no truncated statements
+    assert "needed-at-entry tasks" not in pd.lower() and "critical tasks" not in pd.lower()
+
+
+TIME_VALUE = re.compile(r"\b\d{1,3}(\.\d+)?%")
+FLAG = re.compile(r"\((?:critical|needed at entry)[^)]*\)|\bcritical, needed at entry\b", re.I)
+
+
+def test_generated_hr_views_show_no_job_analysis_values():
+    """N1 / CR-FIX-B-001: no generated Federal Series Profile or State Class View shows a % time value or a critical /
+    needed-at-entry flag while the role is below job-analysis-confirmed (every role is draft at rc.1)."""
+    files = [p for sub in ("federal-series", "state-class") for p in (OUT / sub).rglob("*") if p.suffix in (".md", ".json")]
+    assert files
+    assert all(r["validationStatus"] == "draft" for r in D.roles())
+    for p in files:
+        text = p.read_text(encoding="utf-8")
+        assert not TIME_VALUE.search(text), (p, TIME_VALUE.search(text).group(0))
+        assert not FLAG.search(text), p
+        if p.suffix == ".json":
+            for key in ("pctTime", "timeShare", "critical", "neededAtEntry", "importance", "distinguishing"):
+                for m in re.finditer(rf'"{key}": ([^,\n}}]+)', text):
+                    assert m.group(1).strip() in ("null", "[]"), (p, key, m.group(1))

@@ -1,0 +1,62 @@
+id: emst:core/TSK-H9EX0ER
+type: Task
+prefLabel:
+  en: Rank proposed changes by legal requirement, mission risk and cost of delay, deferring those below the line with a stated review date
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Rank proposed changes by legal requirement, mission risk and cost of delay, deferring those below the line with a stated review date
+textSha256: a09d1cc490ecef9f363cc46d75c9ff7229270b78ee550f25b8db1cf297a54c67
+supports:
+- competency: emst:core/CMP-8TGJN5F
+  strength: primary
+workFunction: WF-MANAGE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 3.5.3:T3
+v1Tier: T3
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.5'
+  label: Leadership
+editorialNote:
+  en: 'S2 close-out A. Rewritten from the v1 task text: "Prioritize which changes are essential and which can wait to prevent overwhelm".'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:3.5.3:T3
+    v1Code: 3.5.3
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 99
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

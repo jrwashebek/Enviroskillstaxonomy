@@ -1,0 +1,96 @@
+id: emst:core/CMP-RKTGJKD
+type: Competency
+prefLabel:
+  en: Select, justify and document the appropriate level of environmental review
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to decide which level of environmental review a proposed action requires and to record that decision so it can be followed and defended. Covers exclusion screening, extraordinary-circumstance review, adoption of another agency's exclusion where allowed, significance determinations and acceleration options. Excludes conducting the review itself.
+statement:
+  en: Screens a proposed action against the deciding agency's exclusion categories and extraordinary-circumstance criteria, decides whether an excluded action, an assessment or a full impact statement is required, weighs available acceleration options, and documents the determination in a structured form that the responsible official and a reviewing court can follow.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - categorical exclusion determination
+  - level-of-review determination
+  - CE / EA / EIS determination
+instrumentSensitivity:
+- mechanism: DM-03
+  rationale:
+    en: Exclusion categories, adoption across agencies and statutory exclusions are expanding.
+  evidenceLabel: E
+  sources:
+  - V2-01
+  - SC-014
+- mechanism: DM-02
+  rationale:
+    en: Deadlines and sponsor-paid acceleration bear on the choice of review level.
+  evidenceLabel: E
+  sources:
+  - V2-04
+- mechanism: DM-14
+  rationale:
+    en: Rules-based and AI screening of routine exclusions is in deployment.
+  evidenceLabel: E
+  sources:
+  - V2-08
+editorialNote:
+  en: 'WP-05 (A5 SC). Successor of v1 6.1.4 (split with SL-C08). Level-of-review selection is where the 2025-26 reforms act most directly (exclusion consolidation and adoption, deadlines, fees) [E: V2-01, V2-04]; automated exclusion screening moves human judgment to extraordinary circumstances [E: SC-037, V2-08]. Indicators adapted from SC proficiency anchors SC-A-C03-1..4 [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-009
+  - SC-010
+  - SC-013
+  - SC-014
+  - SC-038
+  - V2-01
+  - V2-04
+  derivedFrom:
+  - v1Key: v1:6.1.4
+    relation: split-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-9KXKRQ5
+  - emst:core/IND-33AEV86
+- level: L2
+  indicators:
+  - emst:core/IND-97H5J0W
+  - emst:core/IND-9RGD6KF
+  - emst:core/IND-YJWV4AJ
+- level: L3
+  indicators:
+  - emst:core/IND-H770QAF
+  - emst:core/IND-Z8QPX80
+- level: L4
+  indicators:
+  - emst:core/IND-PFYX463
+  - emst:core/IND-Y9P49J4

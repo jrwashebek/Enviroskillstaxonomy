@@ -2,8 +2,8 @@
  "stamp": {
   "ruleId": "federal-series-profile",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/federal_series_profile.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
@@ -17,18 +17,18 @@
   "group": "0400 Natural Resources Management & Biological Sciences",
   "qualificationStandardVersion": "Professional & Scientific Positions group std + series IOR",
   "positiveEducationRequirement": true,
-  "educationNote": "FH judgment pending verification of the qualification standard",
-  "registerRecord": "seed:opm-series/0454",
+  "educationNote": "from EMST's series record; not yet checked against the OPM qualification standard, so confirm with the HR office",
+  "registerRecord": "emst:core/SER-0NRREB8",
   "registerReviewBy": "2027-01-23",
   "events": []
  },
  "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
  "roles": [
   {
-   "role": "seed:R18-rangeland-management-specialist",
+   "role": "emst:forest/ROL-QM9BY8K",
    "roleTitle": "Rangeland management specialist",
    "tier": "P2",
-   "variant": "seed:R18-rangeland-management-specialist/federal",
+   "variant": "emst:forest/VAR-ZHWANPC",
    "functionStatement": "Keep shared rangelands productive and resilient through monitored, authorized and adapted grazing use.",
    "authorityPosition": "resource-manager",
    "x4": {
@@ -46,7 +46,7 @@
    "signOffAuthority": null,
    "instruments": [
     {
-     "id": "seed:ins/federal-land-use-authorizations",
+     "id": "emst:core/INS-RKV5Q5V",
      "label": "Federal land special-use and grazing authorizations",
      "role": "requires"
     }
@@ -61,400 +61,446 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:FC-C08",
-       "duty": "Monitor rangeland condition with calibrated field indicators",
-       "pctTime": 19,
-       "tasks": [
-        {
-         "task": "seed:FC-C08-T1",
-         "statement": "Measure line-point intercept, canopy gap and soil stability on rangeland monitoring plots following the core-indicator protocol",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 5.3
-        },
-        {
-         "task": "seed:FC-C08-T2",
-         "statement": "Complete a qualitative rangeland health assessment against the ecological site's reference sheet",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 5.3
-        },
-        {
-         "task": "seed:FC-C08-T3",
-         "statement": "Calibrate cover and gap measurements with other observers until results agree within the protocol's tolerance",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.2
-        },
-        {
-         "task": "seed:FC-C08-T4",
-         "statement": "Compare remote-sensing cover estimates with plot data, flagging areas where the product misrepresents observed conditions",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.2
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-4.1.1",
-       "duty": "Sample and assess vegetation using standardized field protocols",
-       "pctTime": 12,
-       "tasks": [
-        {
-         "task": "seed:v1-4.1.1-T1",
-         "statement": "Establish vegetation monitoring plots to protocol and record species composition, cover and density within the program's measurement-quality objectives",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.2
-        },
-        {
-         "task": "seed:v1-4.1.1-T2",
-         "statement": "Relocate permanent plot monuments from recorded bearings and coordinates, re-establishing lost markers so repeat measurements stay comparable",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.2
-        },
-        {
-         "task": "seed:v1-4.1.1-T3",
-         "statement": "Identify plants on sample plots to the protocol's required taxonomic level, collecting labelled vouchers for any plant not identified with certainty",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.2
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-4.1.4",
-       "duty": "Describe, test and sample soils in the field",
-       "pctTime": 12,
-       "tasks": [
-        {
-         "task": "seed:v1-1.2.1-T1",
-         "statement": "Classify soil horizons and profiles in the field to the applicable national soil classification system, documenting diagnostic features for each horizon",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.2
-        },
-        {
-         "task": "seed:v1-4.1.4-T1",
-         "statement": "Describe a soil profile's horizons, colour, texture, structure and coarse fragments in standard terminology on the program's description form",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.2
-        },
-        {
-         "task": "seed:v1-4.1.4-T2",
-         "statement": "Collect soil samples at specified depths and locations for laboratory analysis of texture, nutrients, carbon or contaminants",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.2
-        }
-       ]
-      },
-      {
-       "competency": "seed:SL-C02",
-       "duty": "Issue environmental permits and resource-use authorizations as the deciding authority",
-       "pctTime": 12,
-       "tasks": [
-        {
-         "task": "seed:sc-check-permit-completeness",
-         "statement": "Review a permit application for administrative and technical completeness, issuing a deficiency notice that lists each missing element and its basis",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.2
-        },
-        {
-         "task": "seed:sc-derive-permit-limits",
-         "statement": "Derive permit limits and conditions from the applicable technical standards and the facility's technical record, documenting the calculation basis for each limit",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.2
-        },
-        {
-         "task": "seed:sc-draft-permit-fact-sheet",
-         "statement": "Draft a permit and its fact sheet so that each condition is measurable, enforceable and traceable to its legal or technical basis",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.2
-        }
-       ]
-      },
-      {
-       "competency": "seed:FC-C21",
-       "duty": "Work alongside landowners, permittees, volunteers and communities on the land",
-       "pctTime": 12,
-       "tasks": [
-        {
-         "task": "seed:fc-land-adapt-access",
-         "statement": "Adjust field plans on a landowner's property to their access conditions, livestock, crops or concerns raised on the day, recording the change",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.2
-        },
-        {
-         "task": "seed:fc-land-explain",
-         "statement": "Explain field findings and their limits face to face to landowners or community members on site, answering questions about methods and uncertainty",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.2
-        },
-        {
-         "task": "seed:fc-land-joint-visit",
-         "statement": "Conduct a joint field visit with a landowner or permittee, walking the site together and recording both parties' observations",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.2
-        }
-       ]
-      },
-      {
-       "competency": "seed:IA-CC-01",
+       "competency": "emst:forest/CMP-5JGGHFP",
        "duty": "Plan, authorize and monitor livestock grazing on shared rangelands",
-       "pctTime": 10,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:IA-CC-01-T2",
+         "task": "emst:forest/TSK-0Y241PB",
          "statement": "Monitor utilization, stubble height and streambank alteration on key areas against allotment objectives during the grazing season",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.3
+         "pctTime": null
         },
         {
-         "task": "seed:IA-CC-01-T3",
+         "task": "emst:forest/TSK-44Q1TMR",
          "statement": "Adjust a grazing permit's terms and conditions from monitoring results, documenting the basis for each change",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.2
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.2.2",
+       "competency": "emst:forest/CMP-AE815QW",
+       "duty": "Monitor rangeland condition with calibrated field indicators",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:forest/TSK-Q0MZ8FG",
+         "statement": "Measure line-point intercept, canopy gap and soil stability on rangeland monitoring plots following the core-indicator protocol",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-3JA03YE",
+         "statement": "Complete a qualitative rangeland health assessment against the ecological site's reference sheet",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-B0QKT3Q",
+         "statement": "Calibrate cover and gap measurements with other observers until results agree within the protocol's tolerance",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-X4EFTT0",
+         "statement": "Compare remote-sensing cover estimates with plot data, flagging areas where the product misrepresents observed conditions",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-B5C0G9X",
+       "duty": "Sample and assess vegetation using standardized field protocols",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-S66F3HH",
+         "statement": "Establish vegetation monitoring plots to protocol and record species composition, cover and density within the program's measurement-quality objectives",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-CS9A84M",
+         "statement": "Relocate permanent plot monuments from recorded bearings and coordinates, re-establishing lost markers so repeat measurements stay comparable",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-4Y3QF2T",
+         "statement": "Identify plants on sample plots to the protocol's required taxonomic level, collecting labelled vouchers for any plant not identified with certainty",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-BG6ASMR",
+       "duty": "Describe, test and sample soils in the field",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-D0WFP6Q",
+         "statement": "Classify soil horizons and profiles in the field to the applicable national soil classification system, documenting diagnostic features for each horizon",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-X0DVXY5",
+         "statement": "Describe a soil profile's horizons, colour, texture, structure and coarse fragments in standard terminology on the program's description form",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-Z2MBSW1",
+         "statement": "Collect soil samples at specified depths and locations for laboratory analysis of texture, nutrients, carbon or contaminants",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-Q09PM3S",
+       "duty": "Issue environmental permits and resource-use authorizations as the deciding authority",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-BNP3DX6",
+         "statement": "Review a permit application for administrative and technical completeness, issuing a deficiency notice that lists each missing element and its basis",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-6XW0JCS",
+         "statement": "Derive permit limits and conditions from the applicable technical standards and the facility's technical record, documenting the calculation basis for each limit",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-XRZYPE4",
+         "statement": "Draft a permit and its fact sheet so that each condition is measurable, enforceable and traceable to its legal or technical basis",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-7TZABBG",
+       "duty": "Work alongside landowners, permittees, volunteers and communities on the land",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-7Q319PF",
+         "statement": "Adjust field plans on a landowner's property to their access conditions, livestock, crops or concerns raised on the day, recording the change",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-T3C4KDZ",
+         "statement": "Explain field findings and their limits face to face to landowners or community members on site, answering questions about methods and uncertainty",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-KW491FZ",
+         "statement": "Conduct a joint field visit with a landowner or permittee, walking the site together and recording both parties' observations",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-6SBRTFK",
        "duty": "Detect, treat and monitor invasive species in the field",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.2.2-T1",
+         "task": "emst:core/TSK-QEJJA8W",
          "statement": "Treat invasive plants by mechanical, chemical or biological methods to the treatment prescription, protecting non-target vegetation and water",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.2
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.2.2-T2",
+         "task": "emst:core/TSK-EV8TYX5",
          "statement": "Select a control method for an infestation within integrated pest management, weighing efficacy, non-target risk, timing and follow-up capacity",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.2
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:SL-C08",
+       "competency": "emst:core/CMP-J597H9A",
        "duty": "Conduct environmental impact review of proposed actions",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.1.4-T1",
+         "task": "emst:core/TSK-3JZ26RY",
          "statement": "Prepare an environmental assessment of a proposed action, analyzing the reasonably foreseeable effects of the action and its alternatives within the procedure's page and time limits",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.2
+         "pctTime": null
         },
         {
-         "task": "seed:v1-6.1.4-T2",
+         "task": "emst:core/TSK-XNK4KJ5",
          "statement": "Scope the review of a proposed action with cooperating agencies and the public, setting the purpose, alternatives and effects boundaries the analysis will cover",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 3.2
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-6.2.3",
+       "competency": "emst:core/CMP-5BKBHEF",
        "duty": "Prepare and revise management plans for publicly held lands",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.2.3-T1",
+         "task": "emst:core/TSK-KV99YPG",
          "statement": "Coordinate an interdisciplinary team drafting a forest, range or refuge management plan, assigning plan components and reconciling conflicting resource objectives",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.2
+         "pctTime": null
         },
         {
-         "task": "seed:v1-6.2.3-T2",
+         "task": "emst:core/TSK-AF1VXX8",
          "statement": "Follow the agency's planning procedure and schedule for a plan revision or amendment, documenting each required step and its completion",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.2
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.4.3",
+       "competency": "emst:core/CMP-9FGSY1P",
        "duty": "Identify organisms from field characters, specimens, images and recordings",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.4.3-T1",
+         "task": "emst:core/TSK-YT60MTY",
          "statement": "Identify regional plants and animals to species with dichotomous keys and diagnostic features, collecting evidence for any record not identified with certainty",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 3.2
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.4.3-T2",
+         "task": "emst:core/TSK-H77HSAA",
          "statement": "Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.2
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:IA-CC-01-T2",
-      "seed:FC-C08-T1",
-      "seed:FC-C08-T2",
-      "seed:FC-C08-T3",
-      "seed:v1-4.1.1-T2",
-      "seed:v1-4.1.1-T3",
-      "seed:v1-1.2.1-T1",
-      "seed:v1-4.1.4-T1",
-      "seed:v1-4.1.4-T2",
-      "seed:fc-land-adapt-access",
-      "seed:fc-land-explain",
-      "seed:fc-land-joint-visit"
-     ],
-     "criticalTasks": [
-      "seed:IA-CC-01-T2",
-      "seed:FC-C08-T1",
-      "seed:FC-C08-T2"
-     ],
-     "distinguishingCompetencies": [
-      "seed:IA-CC-01"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:FC-C08",
-       "statement": "Knowledge of and skill in: monitor rangeland condition with calibrated field indicators (EMST target entry L1, journey L2).",
+       "competency": "emst:forest/CMP-5JGGHFP",
+       "statement": "Knowledge of and skill in: plan, authorize and monitor livestock grazing on shared rangelands (EMST target entry L1, journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:IA-CC-01",
-       "statement": "Knowledge of and skill in: plan, authorize and monitor livestock grazing on shared rangelands (EMST target entry L1, journey L2).",
+       "competency": "emst:forest/CMP-AE815QW",
+       "statement": "Knowledge of and skill in: monitor rangeland condition with calibrated field indicators (EMST target entry L1, journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FC-C21",
-       "statement": "Knowledge of and skill in: work alongside landowners, permittees, volunteers and communities on the land (EMST target journey L2).",
+       "competency": "emst:core/CMP-B5C0G9X",
+       "statement": "Knowledge of and skill in: sample and assess vegetation using standardized field protocols (EMST target entry L1, journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SL-C02",
-       "statement": "Knowledge of and skill in: issue environmental permits and resource-use authorizations as the deciding authority (EMST target entry L1, journey L2).",
+       "competency": "emst:core/CMP-BG6ASMR",
+       "statement": "Knowledge of and skill in: describe, test and sample soils in the field (EMST target entry L1, journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.1.1",
-       "statement": "Knowledge of and skill in: sample and assess vegetation using standardized field protocols (EMST target entry L1, journey L2).",
+       "competency": "emst:core/CMP-Q09PM3S",
+       "statement": "Knowledge of and skill in: issue environmental permits and resource-use authorizations as the deciding authority (EMST target entry L1, journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.1.4",
-       "statement": "Knowledge of and skill in: describe, test and sample soils in the field (EMST target entry L1, journey L2).",
+       "competency": "emst:core/CMP-7TZABBG",
+       "statement": "Knowledge of and skill in: work alongside landowners, permittees, volunteers and communities on the land (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-6SBRTFK",
+       "statement": "Knowledge of and skill in: detect, treat and monitor invasive species in the field (EMST target entry L1, journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-J597H9A",
+       "statement": "Knowledge of and skill in: conduct environmental impact review of proposed actions (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-5BKBHEF",
+       "statement": "Knowledge of and skill in: prepare and revise management plans for publicly held lands (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-9FGSY1P",
+       "statement": "Knowledge of and skill in: identify organisms from field characters, specimens, images and recordings (EMST target entry L1, journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target entry L1, journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target entry L1, journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target entry L1, journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target entry L1, journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-QWHKC1A",
+       "statement": "Knowledge of and skill in: negotiate and administer land rights, rights-of-way and realty actions (EMST target entry L1, journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     },
@@ -466,421 +512,466 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:IA-CC-01",
+       "competency": "emst:forest/CMP-5JGGHFP",
        "duty": "Plan, authorize and monitor livestock grazing on shared rangelands",
-       "pctTime": 18,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:IA-CC-01-T1",
+         "task": "emst:forest/TSK-ESRS927",
          "statement": "Design an allotment management plan that sets stocking rate, season, duration and range improvements to meet resource objectives",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.2
+         "pctTime": null
         },
         {
-         "task": "seed:IA-CC-01-T2",
+         "task": "emst:forest/TSK-0Y241PB",
          "statement": "Monitor utilization, stubble height and streambank alteration on key areas against allotment objectives during the grazing season",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.8
+         "pctTime": null
         },
         {
-         "task": "seed:IA-CC-01-T3",
+         "task": "emst:forest/TSK-44Q1TMR",
          "statement": "Adjust a grazing permit's terms and conditions from monitoring results, documenting the basis for each change",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         },
         {
-         "task": "seed:IA-CC-01-T4",
+         "task": "emst:forest/TSK-4ANXJ5W",
          "statement": "Resolve a permittee's non-compliance with grazing terms through notice, negotiation or formal action",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C08",
+       "competency": "emst:forest/CMP-AE815QW",
        "duty": "Monitor rangeland condition with calibrated field indicators",
-       "pctTime": 17,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:FC-C08-T1",
+         "task": "emst:forest/TSK-Q0MZ8FG",
          "statement": "Measure line-point intercept, canopy gap and soil stability on rangeland monitoring plots following the core-indicator protocol",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.8
+         "pctTime": null
         },
         {
-         "task": "seed:FC-C08-T2",
+         "task": "emst:forest/TSK-3JA03YE",
          "statement": "Complete a qualitative rangeland health assessment against the ecological site's reference sheet",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.8
+         "pctTime": null
         },
         {
-         "task": "seed:FC-C08-T3",
+         "task": "emst:forest/TSK-B0QKT3Q",
          "statement": "Calibrate cover and gap measurements with other observers until results agree within the protocol's tolerance",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         },
         {
-         "task": "seed:FC-C08-T4",
+         "task": "emst:forest/TSK-X4EFTT0",
          "statement": "Compare remote-sensing cover estimates with plot data, flagging areas where the product misrepresents observed conditions",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.1.1",
+       "competency": "emst:core/CMP-B5C0G9X",
        "duty": "Sample and assess vegetation using standardized field protocols",
-       "pctTime": 10,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.1.1-T1",
+         "task": "emst:core/TSK-S66F3HH",
          "statement": "Establish vegetation monitoring plots to protocol and record species composition, cover and density within the program's measurement-quality objectives",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.1.1-T2",
+         "task": "emst:core/TSK-CS9A84M",
          "statement": "Relocate permanent plot monuments from recorded bearings and coordinates, re-establishing lost markers so repeat measurements stay comparable",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.1.1-T3",
+         "task": "emst:core/TSK-4Y3QF2T",
          "statement": "Identify plants on sample plots to the protocol's required taxonomic level, collecting labelled vouchers for any plant not identified with certainty",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.1.4",
+       "competency": "emst:core/CMP-BG6ASMR",
        "duty": "Describe, test and sample soils in the field",
-       "pctTime": 10,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.2.1-T1",
+         "task": "emst:core/TSK-D0WFP6Q",
          "statement": "Classify soil horizons and profiles in the field to the applicable national soil classification system, documenting diagnostic features for each horizon",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.1.4-T1",
+         "task": "emst:core/TSK-X0DVXY5",
          "statement": "Describe a soil profile's horizons, colour, texture, structure and coarse fragments in standard terminology on the program's description form",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.1.4-T2",
+         "task": "emst:core/TSK-Z2MBSW1",
          "statement": "Collect soil samples at specified depths and locations for laboratory analysis of texture, nutrients, carbon or contaminants",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:SL-C02",
+       "competency": "emst:core/CMP-Q09PM3S",
        "duty": "Issue environmental permits and resource-use authorizations as the deciding authority",
-       "pctTime": 10,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:sc-check-permit-completeness",
+         "task": "emst:core/TSK-BNP3DX6",
          "statement": "Review a permit application for administrative and technical completeness, issuing a deficiency notice that lists each missing element and its basis",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         },
         {
-         "task": "seed:sc-derive-permit-limits",
+         "task": "emst:core/TSK-6XW0JCS",
          "statement": "Derive permit limits and conditions from the applicable technical standards and the facility's technical record, documenting the calculation basis for each limit",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         },
         {
-         "task": "seed:sc-draft-permit-fact-sheet",
+         "task": "emst:core/TSK-XRZYPE4",
          "statement": "Draft a permit and its fact sheet so that each condition is measurable, enforceable and traceable to its legal or technical basis",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C21",
+       "competency": "emst:core/CMP-7TZABBG",
        "duty": "Work alongside landowners, permittees, volunteers and communities on the land",
-       "pctTime": 10,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-land-adapt-access",
+         "task": "emst:core/TSK-7Q319PF",
          "statement": "Adjust field plans on a landowner's property to their access conditions, livestock, crops or concerns raised on the day, recording the change",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         },
         {
-         "task": "seed:fc-land-explain",
+         "task": "emst:core/TSK-T3C4KDZ",
          "statement": "Explain field findings and their limits face to face to landowners or community members on site, answering questions about methods and uncertainty",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.8
+         "pctTime": null
         },
         {
-         "task": "seed:fc-land-joint-visit",
+         "task": "emst:core/TSK-KW491FZ",
          "statement": "Conduct a joint field visit with a landowner or permittee, walking the site together and recording both parties' observations",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.2.2",
+       "competency": "emst:core/CMP-6SBRTFK",
        "duty": "Detect, treat and monitor invasive species in the field",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.2.2-T1",
+         "task": "emst:core/TSK-QEJJA8W",
          "statement": "Treat invasive plants by mechanical, chemical or biological methods to the treatment prescription, protecting non-target vegetation and water",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.2.2-T2",
+         "task": "emst:core/TSK-EV8TYX5",
          "statement": "Select a control method for an infestation within integrated pest management, weighing efficacy, non-target risk, timing and follow-up capacity",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:SL-C08",
+       "competency": "emst:core/CMP-J597H9A",
        "duty": "Conduct environmental impact review of proposed actions",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.1.4-T1",
+         "task": "emst:core/TSK-3JZ26RY",
          "statement": "Prepare an environmental assessment of a proposed action, analyzing the reasonably foreseeable effects of the action and its alternatives within the procedure's page and time limits",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-6.1.4-T2",
+         "task": "emst:core/TSK-XNK4KJ5",
          "statement": "Scope the review of a proposed action with cooperating agencies and the public, setting the purpose, alternatives and effects boundaries the analysis will cover",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-6.2.3",
+       "competency": "emst:core/CMP-5BKBHEF",
        "duty": "Prepare and revise management plans for publicly held lands",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.2.3-T1",
+         "task": "emst:core/TSK-KV99YPG",
          "statement": "Coordinate an interdisciplinary team drafting a forest, range or refuge management plan, assigning plan components and reconciling conflicting resource objectives",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-6.2.3-T2",
+         "task": "emst:core/TSK-AF1VXX8",
          "statement": "Follow the agency's planning procedure and schedule for a plan revision or amendment, documenting each required step and its completion",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.4.3",
+       "competency": "emst:core/CMP-9FGSY1P",
        "duty": "Identify organisms from field characters, specimens, images and recordings",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.4.3-T1",
+         "task": "emst:core/TSK-YT60MTY",
          "statement": "Identify regional plants and animals to species with dichotomous keys and diagnostic features, collecting evidence for any record not identified with certainty",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.4.3-T2",
+         "task": "emst:core/TSK-H77HSAA",
          "statement": "Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:IA-CC-01-T2",
-      "seed:FC-C08-T1",
-      "seed:FC-C08-T2",
-      "seed:FC-C08-T3",
-      "seed:v1-4.1.1-T2",
-      "seed:v1-4.1.1-T3",
-      "seed:v1-1.2.1-T1",
-      "seed:v1-4.1.4-T1",
-      "seed:v1-4.1.4-T2",
-      "seed:fc-land-adapt-access",
-      "seed:fc-land-explain",
-      "seed:fc-land-joint-visit"
-     ],
-     "criticalTasks": [
-      "seed:IA-CC-01-T1",
-      "seed:IA-CC-01-T2",
-      "seed:FC-C08-T1",
-      "seed:FC-C08-T2"
-     ],
-     "distinguishingCompetencies": [
-      "seed:IA-CC-01"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:FC-C08",
-       "statement": "Knowledge of and skill in: monitor rangeland condition with calibrated field indicators (EMST target senior L3).",
+       "competency": "emst:forest/CMP-5JGGHFP",
+       "statement": "Knowledge of and skill in: plan, authorize and monitor livestock grazing on shared rangelands (EMST target senior L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:IA-CC-01",
-       "statement": "Knowledge of and skill in: plan, authorize and monitor livestock grazing on shared rangelands (EMST target senior L3).",
+       "competency": "emst:forest/CMP-AE815QW",
+       "statement": "Knowledge of and skill in: monitor rangeland condition with calibrated field indicators (EMST target senior L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FC-C21",
-       "statement": "Knowledge of and skill in: work alongside landowners, permittees, volunteers and communities on the land (EMST target senior L3).",
+       "competency": "emst:core/CMP-B5C0G9X",
+       "statement": "Knowledge of and skill in: sample and assess vegetation using standardized field protocols (EMST target senior L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SL-C02",
-       "statement": "Knowledge of and skill in: issue environmental permits and resource-use authorizations as the deciding authority (EMST target senior L3).",
+       "competency": "emst:core/CMP-BG6ASMR",
+       "statement": "Knowledge of and skill in: describe, test and sample soils in the field (EMST target senior L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.1.1",
-       "statement": "Knowledge of and skill in: sample and assess vegetation using standardized field protocols (EMST target senior L3).",
+       "competency": "emst:core/CMP-Q09PM3S",
+       "statement": "Knowledge of and skill in: issue environmental permits and resource-use authorizations as the deciding authority (EMST target senior L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.1.4",
-       "statement": "Knowledge of and skill in: describe, test and sample soils in the field (EMST target senior L3).",
+       "competency": "emst:core/CMP-7TZABBG",
+       "statement": "Knowledge of and skill in: work alongside landowners, permittees, volunteers and communities on the land (EMST target senior L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-6SBRTFK",
+       "statement": "Knowledge of and skill in: detect, treat and monitor invasive species in the field (EMST target senior L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-J597H9A",
+       "statement": "Knowledge of and skill in: conduct environmental impact review of proposed actions (EMST target senior L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-5BKBHEF",
+       "statement": "Knowledge of and skill in: prepare and revise management plans for publicly held lands (EMST target senior L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-9FGSY1P",
+       "statement": "Knowledge of and skill in: identify organisms from field characters, specimens, images and recordings (EMST target senior L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target senior L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target senior L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target senior L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target senior L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-QWHKC1A",
+       "statement": "Knowledge of and skill in: negotiate and administer land rights, rights-of-way and realty actions (EMST target senior L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     }

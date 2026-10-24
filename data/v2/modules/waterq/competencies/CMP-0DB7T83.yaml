@@ -1,0 +1,60 @@
+id: emst:waterq/CMP-0DB7T83
+type: Competency
+prefLabel:
+  en: Plan water supply and allocation under hydrologic uncertainty
+altLabel:
+  en:
+  - Water supply planning
+  - Drought contingency planning
+  - Water rights administration
+definition:
+  en: Forecasting water demand and supply under drought and climate scenarios, preparing drought contingency and integrated resource plans, administering water-right or allocation decisions and evaluating conjunctive use, reuse and storage options. Excludes utility treatment operation (water module) and flood hazard mapping.
+statement:
+  en: Forecasts demand and supply under drought and climate scenarios, prepares drought contingency and integrated resource plans with triggers and actions, evaluates water-right or allocation applications against availability and priority, and compares conjunctive-use, reuse and storage options by yield, cost and reliability.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:waterq/IND-D38MWAC
+  - emst:waterq/IND-XWJD3RA
+- level: L3
+  indicators:
+  - emst:waterq/IND-W8W341C
+  - emst:waterq/IND-B4JQRVX
+- level: L4
+  indicators:
+  - emst:waterq/IND-9BWMM9P
+  - emst:waterq/IND-3BD6CD8
+homeModule: waterq
+subsectors:
+- W04
+- W05
+reusability: subsector-specific
+layer: L1
+module: waterq
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Water supply and allocation planning is W04-specific; part of role R17 hydrologist. Water-right systems are jurisdiction-variable (prior appropriation, riparian, hybrid). Basis [J]; workforce counts [E: DB-001].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - DB-001
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

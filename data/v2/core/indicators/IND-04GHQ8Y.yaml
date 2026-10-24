@@ -1,0 +1,43 @@
+id: emst:core/IND-04GHQ8Y
+type: Indicator
+prefLabel:
+  en: Halts own task
+competency: emst:core/CMP-CERKVPH
+level: L1
+statement:
+  en: Halts own task when a hazard not covered by the pre-work briefing appears, and reports it to the supervisor before work resumes.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- simulation-role-play
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-22VWHXT
+safetyOrLegalCritical: true
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:05:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  derivedFrom:
+  - v1Key: v1:4.4.1:foundational:I8
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

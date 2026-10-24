@@ -97,6 +97,14 @@ def test_display_constraints_before_job_analysis(views, released):
                     assert t["critical"] == H.PENDING and t["neededAtEntry"] == H.PENDING, name
 
 
+def test_state_class_view_files_are_named_by_jurisdiction_and_class(views, released):
+    _, rel, _ = released
+    names = [n for n in views if n.startswith("views/state_class_views/") and not n.endswith("index.json")]
+    assert names and not [n for n in names if n.split("/")[-1].startswith("unknown--")]
+    docs = [views[n] for n in names]
+    assert len({d["classRecord"] for d in docs}) == len(docs)  # one file per class record: no stem collisions
+
+
 def test_job_family_weights_are_one_before_job_analysis(released):
     b, rel, _ = released
     roles = [r for r in _roles(rel) if not H.ja_confirmed(r)]
@@ -129,12 +137,14 @@ def test_role_change_counts_tasks_not_time(views):
 ])
 def test_wp08_acceptance_mirror_pairs(views, released, subject, obj):
     _, rel, _ = released
-    if not any(r["id"].startswith(f"seed:{subject.split('/')[0]}") for r in _roles(rel)):
+    seed_of = {v: k for k, v in L.load_seed_map().items()}      # minted IDs back to their seed keys (ADR-0031 §6)
+    key = lambda rid: seed_of.get(str(rid), str(rid))            # noqa: E731
+    if not any(key(r["id"]).startswith(f"seed:{subject.split('/')[0]}") for r in _roles(rel)):
         pytest.skip("role records not present")
     pairs = views["views/mirror_links.json"]["pairs"]
 
     def match(p):
-        s, o = p["subject"].split(":", 1)[1], str(p["object"]).split(":", 1)[-1]
+        s, o = key(p["subject"]).split(":", 1)[1], key(p["object"]).split(":", 1)[-1]
         return s.startswith(subject + "/") and (o == obj if obj.count("/") > 1 else o.startswith(obj + "/") or o == obj)
     assert any(match(p) for p in pairs if p["level"] == "variant")
 

@@ -1,0 +1,56 @@
+id: emst:core/TSK-TRTTE2M
+type: Task
+prefLabel:
+  en: Transfer data from field sensors into the programme's data system, checking completeness and timestamps against the deployment log.
+statement:
+  en: Transfer data from field sensors into the programme's data system, checking completeness and timestamps against the deployment log.
+textSha256: bb42b12bc0f96ab14dc10cb31b44895827626f6095bd2a9c4b28827f6aec4309
+editorialNote:
+  en: 'Split from v1 2.3.1: data path (DC-CAND-04); installation and calibration tasks go to FC-C01. v1 competency 2.3.1 is split: reassign this task to one of [''emst:core/CMP-BQRDVKJ'', ''emst:core/CMP-BG5GMFW''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
+notation:
+- scheme: EMSTv1
+  value: 2.3.1:T3
+supports:
+- competency: emst:core/CMP-BG5GMFW
+  strength: primary
+workFunction: WF-OPERATE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+v1Tier: T3
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.3'
+  label: Field Technology
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.3.1:T3
+    v1Code: 2.3.1
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 52
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0011

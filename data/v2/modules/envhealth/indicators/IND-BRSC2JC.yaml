@@ -1,0 +1,38 @@
+id: emst:envhealth/IND-BRSC2JC
+type: Indicator
+prefLabel:
+  en: Checks a permit submission against the programme's submission checklist
+competency: emst:envhealth/CMP-AWSQ6EK
+level: L1
+statement:
+  en: Checks a permit submission against the programme's submission checklist, returning each incomplete plan with a list of the missing documents and schedules.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- seeded-error-work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:envhealth/TSK-SFXYSKF
+- emst:envhealth/TSK-ZXP75QE
+layer: L1
+module: envhealth
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

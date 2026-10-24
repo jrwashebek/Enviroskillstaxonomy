@@ -93,7 +93,7 @@ def main():
                                 private_ja=d["private_ja"].replace("|", " "), shared_v1_codes=t["shared_emst_v1_codes"].replace("|", " "),
                                 ps_evidence=t["evidence_label"], review_status="candidate", evidence="S", rater_type="llm",
                                 model=S.MODEL, prompt=S.PROMPT),
-            comment=d["rationale"] + " Seeded from PS translation row; requires PS and CM confirmation."))
+            comment=d["rationale"] + " Seeded from a private-sector translation row; requires review by EMST's private-sector and career-mobility agents."))
     S.write_set("emst-private-ja", "0.1.0", {
         "mapping_set_version": "0.1.0-draft",
         "mapping_set_title": "X8 seed: EMST private role variants to the PS reference job architecture",

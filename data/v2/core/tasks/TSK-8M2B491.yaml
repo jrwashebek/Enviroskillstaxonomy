@@ -1,0 +1,49 @@
+id: emst:core/TSK-8M2B491
+type: Task
+prefLabel:
+  en: Select the response the enforcement policy sets for each inspection finding, issuing a notice of violation, assistance letter or referral
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Select the response the enforcement policy sets for each inspection finding, issuing a notice of violation, assistance letter or referral
+textSha256: bde7b8ace4b51279b68e72f8ff53d83ff2512939033803e6ce87682cc778618a
+supports:
+- competency: emst:core/CMP-Z9BVC7K
+  strength: primary
+workFunction: WF-ENFORCE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+workflowProfiles:
+- WP-COMPLIANCE
+instrumentSensitivity:
+- mechanism: DM-10
+  rationale:
+    en: Enforcement response and penalty policies set the response each finding calls for.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

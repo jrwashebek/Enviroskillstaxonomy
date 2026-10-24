@@ -1,0 +1,93 @@
+id: emst:core/CMP-ZJZ8VBW
+type: Competency
+prefLabel:
+  en: Build and validate automated detection and classification models for environmental observations
+altLabel:
+  en:
+  - Machine learning for environmental applications
+  - Computer vision and acoustic classification
+definition:
+  en: The capability to train, tune and validate learned models that detect, classify or count species, habitats and features in imagery, sound and sensor data, with validation against ground truth, error reported by condition and outputs fit for human review. Model architectures, libraries and pretrained detectors are L4.
+statement:
+  en: Trains, tunes and validates learned models that detect, classify or count species, habitats and features in imagery, acoustic recordings and sensor data; assembles and documents training data; validates against independent ground truth with spatially or temporally blocked hold-outs; reports error by class and condition; and sets thresholds so that outputs can be reviewed.
+editorialNote:
+  en: 'Rewritten by WP-04 with a method-neutral title (G-5); absorbs v1 2.6.1 (computer vision) and 2.6.2 (acoustic AI: thresholds and occupancy from detections; acoustic survey design and recorder deployment go to FC-C01/FC-C03). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (DC). Rationale: Durable share medium; method-neutral title per G-5; absorbs computer vision (2.6.1) and acoustic AI (2.6.2) with ground-truth validation anchors (DC disposition). Role verdicts considered: DC:change.'
+notation:
+- scheme: EMSTv1
+  value: 2.4.1
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-E3PDTE6
+  - emst:core/IND-TYNMGC3
+  - emst:core/IND-08TP3QQ
+- level: L3
+  indicators:
+  - emst:core/IND-AXBKXWK
+  - emst:core/IND-BCQN16E
+- level: L4
+  indicators:
+  - emst:core/IND-BY3R7E1
+  - emst:core/IND-8SYMFQ0
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.4.1
+    v1Code: 2.4.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 57
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:2.4.1
+    v1Code: 2.4.1
+    v1Table: source_text/competencies
+    sourceTextLine: 3786
+    relation: reference-only
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:2.6.1
+    v1Code: 2.6.1
+    relation: merged-from
+    note: v1 2.6.1 (merge) → emst:core/CMP-ZJZ8VBW per v1_disposition.csv
+  - v1Key: v1:2.6.2
+    v1Code: 2.6.2
+    relation: merged-from
+    note: v1 2.6.2 (merge) → emst:core/CMP-ZJZ8VBW per v1_disposition.csv
+  sources:
+  - DC-001
+  - DC-038
+  - DC-039
+  - DC-040
+  adr:
+  - ADR-0003
+  - ADR-0011
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.4'
+  label: Advanced Analytics

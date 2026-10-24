@@ -1,0 +1,44 @@
+id: emst:core/TSK-TSG1J71
+type: Task
+prefLabel:
+  en: Adjust the monitoring schedule or method mix at a site when disturbance, access loss or detector failure threatens the time series, recording the change
+statement:
+  en: Adjust the monitoring schedule or method mix at a site when disturbance, access loss or detector failure threatens the time series, recording the change
+textSha256: 72631607359280a33769d4cbe2bf952cd30efec35d0107b0f371dc333cf197ff
+supports:
+- competency: emst:core/CMP-PYQADZP
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: seasonal
+  placeBoundness: site-specific
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: adaptation or decision in place.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

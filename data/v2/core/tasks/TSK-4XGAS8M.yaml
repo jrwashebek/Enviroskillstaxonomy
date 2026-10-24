@@ -1,0 +1,44 @@
+id: emst:core/TSK-4XGAS8M
+type: Task
+prefLabel:
+  en: Verify AI-generated or machine-translated interpretive text against verified sources and the theme, correcting factual or cultural errors before publication
+statement:
+  en: Verify AI-generated or machine-translated interpretive text against verified sources and the theme, correcting factual or cultural errors before publication
+textSha256: 6dbcd229cb619fcfd2bfddb825901b82b3275c6c4ff2b50317fd6eeb1170f5af
+supports:
+- competency: emst:core/CMP-F7YNT9E
+  strength: primary
+- competency: emst:core/CMP-MS40XXX
+  strength: contributing
+workFunction: WF-BUILD
+fieldDependency: remote
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: site-specific
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split: verifying generated text alongside the writing task seed:v1-5.4.5-T1.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0005

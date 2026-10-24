@@ -1,0 +1,45 @@
+id: emst:core/IND-QTN1P07
+type: Indicator
+prefLabel:
+  en: Recuses from a covered matter and documents the recusal and reassignment in the file before any action on the matter.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-RPM63WZ
+level: L2
+statement:
+  en: Recuses from a covered matter and documents the recusal and reassignment in the file before any action on the matter.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- recusal record
+servedTasks:
+- emst:core/TSK-0YQMV08
+distinguishingAttribute: ATT-AUT
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

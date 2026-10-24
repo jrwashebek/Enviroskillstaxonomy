@@ -1,0 +1,45 @@
+id: emst:core/TSK-PP7FGYB
+type: Task
+prefLabel:
+  en: Lead a multi-party negotiation over a settlement or partnership agreement, keeping each party's commitments within its authority
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Lead a multi-party negotiation over a settlement or partnership agreement, keeping each party's commitments within its authority
+textSha256: 2df7bb1b5081df5c6b3e8378e67c6af20ebbdaff7a0c145b4fd4a1d6d429bf2f
+supports:
+- competency: emst:core/CMP-26YRTPW
+  strength: primary
+workFunction: WF-AUTHORIZE
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+modes:
+- MODE-RESOLVE
+relationshipTypes:
+- intergovernmental
+- stakeholder
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

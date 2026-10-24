@@ -1,0 +1,168 @@
+id: emst:core/PTH-0CXJ72V
+type: Pathway
+prefLabel:
+  en: 'Exploratory pathway: field resource technician to monitoring and data technician'
+definition:
+  en: Upskills a field technician into the monitoring and data technician role, shifting work from collection to sensor deployment, data verification and pipeline quality while keeping manual reference measurements as a standing check against sensors. Exploratory.
+notation:
+- scheme: mvp-corridor
+  value: COR-1
+fromVariant: emst:core/ROL-ZJFCC09
+toVariant: emst:core/ROL-QP4Q27S
+pathwayType: upskill
+modes:
+- FD
+- WBL
+- OL
+- AIP
+- MEN
+emstRelease: 2.0.0-rc.1
+cloOutcomes:
+- competency: emst:core/CMP-BQRDVKJ
+  level: L1
+- competency: emst:core/CMP-BQRDVKJ
+  level: L2
+- competency: emst:core/CMP-72R1NBG
+  level: L2
+- competency: emst:core/CMP-BE3XH7W
+  level: L1
+- competency: emst:core/CMP-BE3XH7W
+  level: L2
+- competency: emst:core/CMP-BG5GMFW
+  level: L2
+- competency: emst:core/CMP-M17HJEJ
+  level: L2
+- competency: emst:core/CMP-MS40XXX
+  level: L2
+- competency: emst:core/CMP-4ZX8Q5F
+  level: L1
+- competency: emst:core/CMP-8EAS8ZR
+  level: L1
+assessmentPlan:
+  en: 'Each CLO is assessed with the methods its indicators list; field-craft outcomes are assessed at least once in the field, statecraft outcomes in a live or simulated stakeholder or legal-administrative setting, data-craft outcomes on real data with a reproducible product (LC template R4-R5). Assisted-mode outcomes include a seeded-error validation drill. Supervisor formation plan required: the learner''s supervisor works to emst:core/CMP-ZPEFG5E at L2 or above and a named mentor or evaluator to emst:core/CMP-0N97D81 at L3 (ADR-0026 R7). Training use only; never a selection instrument (IO).'
+sequence:
+- step: 1
+  tasks:
+  - emst:core/TSK-JM94XGP
+  - emst:core/TSK-T6NP60J
+  - emst:core/TSK-19257PD
+  - emst:core/TSK-XFHXSJV
+  cloOutcomes:
+  - competency: emst:core/CMP-BQRDVKJ
+    level: L1
+  - competency: emst:core/CMP-BQRDVKJ
+    level: L2
+  - competency: emst:core/CMP-72R1NBG
+    level: L2
+  formationProvisions:
+  - task: emst:core/TSK-JM94XGP
+    responses:
+    - observed-wbl
+    quota:
+      count: 3
+      unit: sensor installations, observed
+    releaseCriterion: installation records complete; evaluator sign-off
+    mentorRequired: true
+  - task: emst:core/TSK-XFHXSJV
+    responses:
+    - by-hand-quota
+    quota:
+      count: 1
+      unit: manual meter reading at every service visit
+    releaseCriterion: logged drift within method tolerance
+    mentorRequired: true
+  roleLevel: journey
+  note:
+    en: Sensor deployment and servicing, observed in the field.
+- step: 2
+  tasks:
+  - emst:core/TSK-5XDWY3P
+  - emst:core/TSK-RC9RRMN
+  - emst:core/TSK-JV8WSY0
+  - emst:core/TSK-3RW5EXX
+  cloOutcomes:
+  - competency: emst:core/CMP-BE3XH7W
+    level: L1
+  - competency: emst:core/CMP-BE3XH7W
+    level: L2
+  - competency: emst:core/CMP-BG5GMFW
+    level: L2
+  formationProvisions:
+  - task: emst:core/TSK-JV8WSY0
+    responses:
+    - by-hand-quota
+    quota:
+      count: 1
+      unit: month of automated flags reviewed by hand
+    releaseCriterion: false-flag and missed-error rates reported
+    mentorRequired: true
+  roleLevel: journey
+  note:
+    en: Data verification and pipeline quality; automated flags are credited only after the by-hand review.
+- step: 3
+  tasks:
+  - emst:core/TSK-GPSBMKS
+  - emst:core/TSK-31B4PGH
+  - emst:core/TSK-JAQYG1M
+  cloOutcomes:
+  - competency: emst:core/CMP-M17HJEJ
+    level: L2
+  - competency: emst:core/CMP-MS40XXX
+    level: L2
+  formationProvisions:
+  - task: emst:core/TSK-31B4PGH
+    responses:
+    - observed-wbl
+    quota:
+      count: 5
+      unit: observed grab-sampling events
+    releaseCriterion: zero custody defects
+    mentorRequired: true
+  roleLevel: journey
+  note:
+    en: Reference measurements and the decision to make an unscheduled manual visit.
+- step: 4
+  tasks:
+  - emst:core/TSK-2HNFE1R
+  - emst:core/TSK-PFCC6E6
+  cloOutcomes:
+  - competency: emst:core/CMP-4ZX8Q5F
+    level: L1
+  - competency: emst:core/CMP-8EAS8ZR
+    level: L1
+  roleLevel: journey
+  note:
+    en: 'TX-A floor: every role profile carries L1 on data interpretation, responsible AI use and AI-output validation (ADR-0025).'
+durationAndCost:
+  hours: 160
+  months: 6
+  costNote: '[J] Sensor and meter access plus mentor time; state-approved continuing-education hours may count where programmes allow.'
+alternativeFormationRoutes:
+- Manual grab samples and meter readings stay in routine practice as the reference for every sensor (LC-PW-05 pattern) [J].
+recommended: false
+layer: learning
+module: core
+status: candidate
+lifecycleState: proposed
+reviewBy: '2027-04-23'
+useTier: exploratory
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'EXPLORATORY, not recommended: no pathway is labelled recommended until it passes CM''s M-03 validation gate (ADR-0023 §5; ADR-0027). Built from the role-profile delta (ADR-0026 R1); hours, months and quotas are LC judgment for pilot calibration. Role records are WP-08''s; frictions attach when CM''s friction register exists. Moved into data/v2 in S2 (CR-LC-001 #1-#3): outcomes are named as CLOs {competency, level} (generic CLO = levels[].indicators; enactment anchors are reached through the enactment CLO, never listed here, CR-LC-001 #4); formation provisions are typed (formationProvisions), and docs/build/WP-07/formation_provisions.csv stays WP-07''s audit copy; role references are planned targets until WP-08 writes the records.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T14:20:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-pathways@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0026
+  - ADR-0023
+  - ADR-0027
+  - ADR-0004

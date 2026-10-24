@@ -1,0 +1,40 @@
+id: emst:core/TSK-F1RHMQH
+type: Task
+prefLabel:
+  en: Compile species and habitat occurrence information for an action area, documenting the sources and survey dates used for each listed species
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Compile species and habitat occurrence information for an action area, documenting the sources and survey dates used for each listed species
+textSha256: 31586dbd08d1c8b62b72d69ce6d3a688ba6f36a9314f64a803be193c450158c9
+supports:
+- competency: emst:core/CMP-T1175YK
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

@@ -1,0 +1,63 @@
+id: emst:waste/CMP-Y25PSEQ
+type: Competency
+prefLabel:
+  en: Operate solid waste collection, processing and disposal systems to permit conditions
+altLabel:
+  en:
+  - Solid waste operations management
+  - Landfill operations
+  - Materials recovery facility operations
+definition:
+  en: Planning and operating municipal solid waste collection, transfer, materials recovery, organics processing and landfill systems, including cell operations, cover, leachate and landfill gas control and contamination management, so that facilities meet permit conditions and diversion goals. Excludes regulatory oversight of facilities (SL-C14) and producer-responsibility administration (DB-C17).
+statement:
+  en: Plans collection and processing service, runs landfill cells, cover, leachate and gas systems, manages inbound contamination and supervises automated sorting, so that facilities meet their permit conditions and diversion goals and the operating record withstands regulator inspection.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:waste/IND-H0NTT51
+  - emst:waste/IND-P0KSEMD
+- level: L2
+  indicators:
+  - emst:waste/IND-C0TCYE8
+  - emst:waste/IND-RK3B3BF
+- level: L3
+  indicators:
+  - emst:waste/IND-VXJ8HS4
+  - emst:waste/IND-GXQ3P5R
+- level: L4
+  indicators:
+  - emst:waste/IND-5VP8B75
+  - emst:waste/IND-EVAQEXS
+homeModule: waste
+subsectors:
+- P02
+reusability: subsector-specific
+layer: L1
+module: waste
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Solid waste systems (P02); operator side of role R29. State landfill operator certification and association certifications are Credential gates. AI-vision and robotic sorting are deployed physical automation that v1''s exposure instrument missed (DB report s.3.8), so tasks include supervising it. Basis [J]: DB Phase 2.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - DB-024
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

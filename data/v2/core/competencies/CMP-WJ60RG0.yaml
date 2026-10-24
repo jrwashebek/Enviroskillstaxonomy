@@ -1,0 +1,82 @@
+id: emst:core/CMP-WJ60RG0
+type: Competency
+prefLabel:
+  en: Translate competencies and experience across sector-actor hiring systems
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to express one's own or another person's competencies and experience in the terms a different sector actor's hiring system credits (state class specifications, federal qualification standards and specialized-experience language, private job architectures), with evidence its assessors accept. Rating applicants inside a hiring system is a separate competency.
+statement:
+  en: Maps a person's competencies and experience to a target employer's classification, qualification or job-architecture terms; marks which are credited, which need evidence and which are gaps; rewrites the experience record against the target's requirements; assembles evidence assessors accept; and states the basis and uncertainty of each equivalence claimed.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - career translation
+  - skills translation
+  - experience crediting
+  - cross-sector career moves
+  - transferable skills
+  - public-private job translation
+reviewBy: '2027-10-23'
+instrumentSensitivity:
+- mechanism: DM-16
+  rationale:
+    en: 'Skills-based hiring rules change what evidence counts: self-ratings no longer rank federal applicants, and some states removed degree requirements.'
+  evidenceLabel: E
+  sources:
+  - FH-002
+  - V1-09
+editorialNote:
+  en: 'S2 close-out A (A7 FH with CM; reviewer A2 IA for X11). Translation and crediting for people already moving is the most urgent mobility job: ''what is my work called there, and does it count?'' (mobility report §2). Practitioners name articulation of skills in employers'' terms as a barrier [E: CM-012]; credential fluency gives a hiring advantage [E: CM-014]. Lifecycle emerging (review 2027-10-23): X11 public-private rows and the state class views are the reference translations; pathways stay exploratory (ADR-0023). Kept separate from FH-C13 (hiring subject-matter experts) because the users differ (ADR-0030 §3.1).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  - emstagent:cm-code@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - CM-012
+  - CM-014
+  - CM-019
+  - FH-002
+  - V1-09
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-AQXXF00
+  - emst:core/IND-PMHVPBD
+- level: L2
+  indicators:
+  - emst:core/IND-ST7844F
+  - emst:core/IND-39CW9Y0
+- level: L3
+  indicators:
+  - emst:core/IND-PTP2F0C
+  - emst:core/IND-PBCHEKG
+- level: L4
+  indicators:
+  - emst:core/IND-9K1DEAK
+  - emst:core/IND-TM3H54A
+  - emst:core/IND-GMVBC18

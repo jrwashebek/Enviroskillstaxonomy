@@ -1,0 +1,84 @@
+id: emst:core/CMP-YDXQC56
+type: Competency
+prefLabel:
+  en: Practice within licensure scope and responsible charge
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to perform, seal or certify only the work one's licence, registration or certification permits, to exercise or work under responsible charge as licensing rules require, and to certify AI-assisted deliverables only after personal verification. The credential itself is a gate recorded on tasks and roles, not part of this competency.
+statement:
+  en: Performs, seals or certifies only the work that one's licence, registration or certification permits; works under or exercises responsible charge as the licensing rules require; refers work outside scope; and certifies AI-assisted deliverables only after personally verifying them to the professional standard of care.
+competencyType: transversal
+transversalCluster: TX-B
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: transversal
+altLabel:
+  en:
+  - scope of practice
+  - responsible charge
+  - professional seal
+  - licensed practice
+instrumentSensitivity:
+- mechanism: DM-17
+  rationale:
+    en: Licensure, certification and responsible-charge rules govern who may sign.
+  evidenceLabel: E
+  sources:
+  - SL-055
+  - SL-085
+- mechanism: DM-14
+  rationale:
+    en: AI drafting raises the question of what a seal attests to.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+editorialNote:
+  en: 'WP-05 (A5 SC; SL candidate). Survivor: absorbs PS-C20 (certifying AI-drafted deliverables under professional liability). State classes are split by licensure (TX engineering specialists barred from engineering practice duties; geologic specialists under a licensed geologist; WI title restriction) [E: SL-055, SL-054, SL-085]. Credentials are gates (T-8): the Credential register (WP-07) supplies licence records for signOffAuthority links.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SL-047
+  - SL-054
+  - SL-055
+  - SL-085
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-MSTRXZJ
+  - emst:core/IND-W51937P
+- level: L2
+  indicators:
+  - emst:core/IND-QRQ8BEA
+  - emst:core/IND-42T8Z9X
+- level: L3
+  indicators:
+  - emst:core/IND-CJCQ3R0
+  - emst:core/IND-CWXSVXN
+- level: L4
+  indicators:
+  - emst:core/IND-SWSDVZ1
+  - emst:core/IND-KVP8JGX

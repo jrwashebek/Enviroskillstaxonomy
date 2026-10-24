@@ -1,0 +1,44 @@
+id: emst:core/TSK-E1YR3W5
+type: Task
+prefLabel:
+  en: Review an AI-drafted permit or fact sheet against the application record and permit template, correcting each condition that lacks a traceable basis
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Review an AI-drafted permit or fact sheet against the application record and permit template, correcting each condition that lacks a traceable basis
+textSha256: 7d82ed6fcebe6fee2d539da2def6bbecac1cf5496e3aa0ad4bf1cb8eb76c9a29
+supports:
+- competency: emst:core/CMP-Q09PM3S
+  strength: primary
+workFunction: WF-AUTHORIZE
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-REGPROGRAM
+editorialNote:
+  en: 'Review counterpart of the drafting task (G-2): drafting compresses, limit derivation and defensibility do not [E: SL-079; J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

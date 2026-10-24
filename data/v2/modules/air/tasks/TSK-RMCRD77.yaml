@@ -1,0 +1,42 @@
+id: emst:air/TSK-RMCRD77
+type: Task
+prefLabel:
+  en: Evaluate a burn request against forecast dispersion, current air quality and sensitive receptors before issuing a burn-day decision
+statement:
+  en: Evaluate a burn request against forecast dispersion, current air quality and sensitive receptors before issuing a burn-day decision
+textSha256: b772428d9eeef82964b6b8fc277df9f61885a3e9d838d286ceb3a58670cde00d
+supports:
+- competency: emst:air/CMP-3FB5XRW
+  strength: primary
+workFunction: WF-AUTHORIZE
+relationshipTypes:
+- intergovernmental
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: remote
+formationDependency: 'yes'
+homeModule: air
+subsectors:
+- P01
+- L07
+layer: L2
+module: air
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

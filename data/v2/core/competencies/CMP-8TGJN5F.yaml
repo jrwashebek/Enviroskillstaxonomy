@@ -1,0 +1,136 @@
+id: emst:core/CMP-8TGJN5F
+type: Competency
+prefLabel:
+  en: Set programme strategy and lead organizational and technological change in environmental programmes
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to assess an environmental programme's mandate, capacity and conditions, set its mission, goals and measurable objectives, turn them into an implementation strategy with resources, milestones and owners, and lead the organizational and technological change the strategy needs while protecting staff capacity and the work that forms new staff. Generic strategic-planning techniques are referenced, not covered; horizon scanning is a separate competency.
+statement:
+  en: Assesses a programme's mandate, capacity and conditions; sets mission, goals and measurable objectives with staff and partners; writes the implementation strategy with resources, milestones and owners; and leads organizational and technological change, including AI adoption, sequencing change to staff capacity and keeping the work that forms new staff.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L5
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - strategic planning
+  - implementation strategy
+  - change management
+  - organizational assessment
+  - vision and mission
+  - goal setting
+  - digital transformation leadership
+  - theory of change
+instrumentSensitivity:
+- mechanism: DM-16
+  rationale:
+    en: Staffing contraction and reorganization change what a strategy can resource and how much change staff can absorb.
+  evidenceLabel: E
+  sources:
+  - FH-008
+  - FH-030
+- mechanism: DM-14
+  rationale:
+    en: Agency AI-use and permitting-technology policy sets the conditions under which programmes adopt AI and automation.
+  evidenceLabel: E
+  sources:
+  - V2-08
+notation:
+- scheme: EMSTv1
+  value: 3.2.4
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.2'
+  label: Strategic Planning
+editorialNote:
+  en: 'S2 close-out A (A5 SC with SL; reviewer CM). Survivor for programme strategy and change leadership; absorbs 3.2.1 (organizational assessment), 3.2.2 (vision and mission), 3.2.3 (goal setting), 3.5.1 (leading digital and technological change) and 3.5.3 (resilience and change fatigue). Their 15 task seeds are rewritten here to environmental-programme context. Generic remainder referenced from O*NET/ESCO (G-8). Horizon scanning is FS-C15 (ADR-0025 §4); adaptive management is v1 3.2.5; formation consequences of AI adoption link to TX-D (v1 7.2.2). Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-MANAGE. Rationale: Survivor for programme strategy and change leadership (assessment, goals, implementation, organizational and technological change); absorbs 3.2.1-3.2.3, 3.5.1 and 3.5.3.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - FH-008
+  - FH-030
+  - V2-08
+  derivedFrom:
+  - v1Key: v1:3.2.4
+    v1Code: 3.2.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 85
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:3.2.4
+    v1Code: 3.2.4
+    v1Table: source_text/competencies
+    sourceTextLine: 5434
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:3.2.1
+    v1Code: 3.2.1
+    relation: merged-from
+    note: v1 3.2.1 (merge) → emst:core/CMP-8TGJN5F per v1_disposition.csv
+  - v1Key: v1:3.2.2
+    v1Code: 3.2.2
+    relation: merged-from
+    note: v1 3.2.2 (merge) → emst:core/CMP-8TGJN5F per v1_disposition.csv
+  - v1Key: v1:3.2.3
+    v1Code: 3.2.3
+    relation: merged-from
+    note: v1 3.2.3 (merge) → emst:core/CMP-8TGJN5F per v1_disposition.csv
+  - v1Key: v1:3.5.1
+    v1Code: 3.5.1
+    relation: merged-from
+    note: v1 3.5.1 (merge) → emst:core/CMP-8TGJN5F per v1_disposition.csv
+  - v1Key: v1:3.5.3
+    v1Code: 3.5.3
+    relation: merged-from
+    note: v1 3.5.3 (merge) → emst:core/CMP-8TGJN5F per v1_disposition.csv
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-9MWHDF4
+  - emst:core/IND-5FV7BRR
+- level: L3
+  indicators:
+  - emst:core/IND-A144HT2
+  - emst:core/IND-NJXJSQW
+  - emst:core/IND-4SJ70NY
+- level: L4
+  indicators:
+  - emst:core/IND-GKH2R1T
+  - emst:core/IND-EKAVAD6
+  - emst:core/IND-E0FCS1G
+- level: L5
+  indicators:
+  - emst:core/IND-P9889CZ
+  - emst:core/IND-H4QC2DW
+  - emst:core/IND-K5A9JKE

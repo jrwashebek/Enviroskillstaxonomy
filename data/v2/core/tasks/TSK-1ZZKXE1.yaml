@@ -1,0 +1,66 @@
+id: emst:core/TSK-1ZZKXE1
+type: Task
+prefLabel:
+  en: Mediate a dispute between parties over land use or project effects as a neutral, recording the agreement or impasse reached
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Mediate a dispute between parties over land use or project effects as a neutral, recording the agreement or impasse reached
+textSha256: a27514f7cf194b3c31a30c4cc93b4e890f858f79013f6ef2e5bd1f4861d89ef7
+supports:
+- competency: emst:core/CMP-DGDMKYC
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+homeModule: core
+modes:
+- MODE-RESOLVE
+relationshipTypes:
+- stakeholder
+notation:
+- scheme: EMSTv1
+  value: 5.2.4:T1
+v1Tier: T1
+v1Domain:
+  code: '5'
+  label: Communication & Engagement Skills
+v1SkillArea:
+  code: '5.2'
+  label: Stakeholder Engagement
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Mediate disputes between stakeholders over land use or project impacts" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:5.2.4:T1
+    v1Code: 5.2.4
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 155
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

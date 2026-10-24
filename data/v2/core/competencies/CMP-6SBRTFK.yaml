@@ -1,0 +1,84 @@
+id: emst:core/CMP-6SBRTFK
+type: Competency
+prefLabel:
+  en: Detect, treat and monitor invasive species in the field
+definition:
+  en: Running early-detection surveys at high-risk pathways, confirming detections in the field, and controlling invasive plants, animals and pathogens by mechanical, chemical and biological methods within integrated pest management, including rapid containment, non-target protection and treatment monitoring. Pesticide application is credential-gated. Excludes invasive-species policy and regulation.
+statement:
+  en: Survey high-risk pathways for new invasions, confirm detections in the field, and control established invasive plants, animals and pathogens with mechanical, chemical or biological methods within integrated pest management, protecting non-target species and adapting treatments from monitoring.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-N9JZPFM
+  - emst:core/IND-7F4ASWH
+  - emst:core/IND-MW82KP7
+- level: L2
+  indicators:
+  - emst:core/IND-ZF7EQAN
+  - emst:core/IND-S7VE7W2
+  - emst:core/IND-G02MB8A
+- level: L3
+  indicators:
+  - emst:core/IND-T90FJ6R
+  - emst:core/IND-W03XSP0
+  - emst:core/IND-S5466TJ
+- level: L4
+  indicators:
+  - emst:core/IND-PC1C04H
+  - emst:core/IND-ZQQ6BWB
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 4.2.2
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.2'
+  label: Land Management Implementation
+editorialNote:
+  en: 'WP-03 (FC) draft. Rewritten; absorbs FC-C10 (early detection and rapid response, the missing detection core). Applicator licensing is a Credential gate on treatment tasks (WP-07 register). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-BUILD (FC). Rationale: Adds early detection and rapid response (FC-C10), field biosecurity links (FC-C11), verification of AI/drone detections; applicator licence as Credential (FC verdict). Role verdicts considered: FC:change.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.2.2
+    v1Code: 4.2.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 118
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:4.2.2
+    v1Code: 4.2.2
+    v1Table: source_text/competencies
+    sourceTextLine: 7728
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - ADR-0011
+  - WP-03

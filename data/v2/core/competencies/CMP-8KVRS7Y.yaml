@@ -1,0 +1,82 @@
+id: emst:core/CMP-8KVRS7Y
+type: Competency
+prefLabel:
+  en: Design and manage environmental databases
+altLabel:
+  en:
+  - Database design and management
+definition:
+  en: 'The capability to design, populate, query and maintain databases for environmental data so that records stay consistent, secure, recoverable and usable: data models, keys and constraints, query logic, access control, backup and archiving. Database products are L4.'
+statement:
+  en: 'Designs, populates, queries and maintains databases for environmental monitoring and management data: builds data models with keys and constraints, writes queries, controls access, and runs backup, archiving and recovery procedures so that records stay consistent, secure and usable over the long term.'
+editorialNote:
+  en: 'Carried (wording rewritten) by WP-04; database products to L4. v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-OPERATE (DC). Rationale: Durable share high; DBMS products to L4 (DC disposition). Role verdicts considered: DC:carry.'
+notation:
+- scheme: EMSTv1
+  value: 2.2.1
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-CAS0Q0G
+  - emst:core/IND-PV4299G
+- level: L2
+  indicators:
+  - emst:core/IND-6T7XD3G
+  - emst:core/IND-7WYD2NV
+- level: L3
+  indicators:
+  - emst:core/IND-J14EFMM
+  - emst:core/IND-14F1DJM
+- level: L4
+  indicators:
+  - emst:core/IND-BH4CHG4
+  - emst:core/IND-FS24Z3F
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.2.1
+    v1Code: 2.2.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 47
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:2.2.1
+    v1Code: 2.2.1
+    v1Table: source_text/competencies
+    sourceTextLine: 3305
+    relation: reference-only
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  adr:
+  - ADR-0003
+  - ADR-0011
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.2'
+  label: Data Management & Analysis

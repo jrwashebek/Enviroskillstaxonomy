@@ -2,8 +2,8 @@
  "stamp": {
   "ruleId": "federal-series-profile",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/federal_series_profile.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
@@ -17,20 +17,20 @@
   "group": "0400 Natural Resources Management & Biological Sciences",
   "qualificationStandardVersion": "Professional & Scientific Positions group std + series IOR",
   "positiveEducationRequirement": true,
-  "educationNote": "FH judgment pending verification of the qualification standard",
-  "registerRecord": "seed:opm-series/0410",
+  "educationNote": "from EMST's series record; not yet checked against the OPM qualification standard, so confirm with the HR office",
+  "registerRecord": "emst:core/SER-KSXRKFV",
   "registerReviewBy": "2027-01-23",
   "events": [
-   "seed:evt/opm-series-realignment-proposal/proposed/2026-04-24"
+   "emst:core/EVT-CTV3BXR"
   ]
  },
  "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
  "roles": [
   {
-   "role": "seed:R20-ecologist",
+   "role": "emst:core/ROL-BMJ0VB9",
    "roleTitle": "Ecologist",
    "tier": "P2",
-   "variant": "seed:R20-ecologist/federal",
+   "variant": "emst:core/VAR-WSC2BMD",
    "functionStatement": "Explain how ecosystems are changing and what management can achieve, with stated evidence and uncertainty.",
    "authorityPosition": "advisor-researcher",
    "x4": {
@@ -56,389 +56,433 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:v1-1.1.2",
+       "competency": "emst:core/CMP-PYQADZP",
        "duty": "Assess and monitor biodiversity across species and habitats",
-       "pctTime": 22,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.1.2-T2",
-         "statement": "Analyze long-term biodiversity monitoring data to estimate change in occupancy or richness against conservation objectives, stating uncertainty",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 6.0
-        },
-        {
-         "task": "seed:v1-1.1.2-T1",
+         "task": "emst:core/TSK-4GR8N3R",
          "statement": "Implement a multi-taxon biodiversity monitoring protocol at assigned sites, coordinating crews, passive detectors and sample collection to schedule",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.1.2-T3",
+         "task": "emst:core/TSK-PAPS0P0",
+         "statement": "Analyze long-term biodiversity monitoring data to estimate change in occupancy or richness against conservation objectives, stating uncertainty",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-8V5GCQ0",
          "statement": "Report biodiversity monitoring findings to decision-makers with recommended protections, separating observed change from inference and stating its limits",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.8
+         "pctTime": null
         },
         {
-         "task": "seed:fc-biodiv-adapt",
+         "task": "emst:core/TSK-TSG1J71",
          "statement": "Adjust the monitoring schedule or method mix at a site when disturbance, access loss or detector failure threatens the time series, recording the change",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.8
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-2.2.2",
-       "duty": "Analyze environmental data statistically and interpret the results",
-       "pctTime": 13,
-       "tasks": [
-        {
-         "task": "seed:v1-2.2.2-T1",
-         "statement": "Estimate treatment effects on ecological response variables with a method suited to the design, reporting effect sizes and intervals.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.8
-        },
-        {
-         "task": "seed:v1-2.2.2-T2",
-         "statement": "Analyze trends in a long-term monitoring dataset, accounting for changes in methods, effort and detection over the record.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.8
-        },
-        {
-         "task": "seed:v1-2.2.2-T3",
-         "statement": "Prepare statistical graphics that show the main patterns and their uncertainty for a technical or decision audience.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.6
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-1.1.5",
+       "competency": "emst:core/CMP-WMHKDKF",
        "duty": "Assess species habitat requirements and habitat condition",
-       "pctTime": 8,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.1.5-T1",
+         "task": "emst:core/TSK-SC18RH3",
          "statement": "Measure habitat attributes such as cover, structure, water and forage at used and available sites following a habitat-use study protocol",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.1.5-T3",
+         "task": "emst:core/TSK-NXG8JKQ",
          "statement": "Integrate habitat findings into land-use or project plans as specific measures that avoid or reduce effects on species of concern",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.7.1",
+       "competency": "emst:core/CMP-X2Y7C07",
        "duty": "Recognize and assess ecosystems that have crossed into novel states",
-       "pctTime": 8,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.7.1-T2",
+         "task": "emst:core/TSK-9DPTA7T",
          "statement": "Assess ecological function and conservation value of a novel species assemblage at a site using field indicators of structure, process and habitat",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.7.1-T3",
+         "task": "emst:core/TSK-VGSHB6H",
          "statement": "Determine whether restoration to historical conditions is feasible at a site, documenting the thresholds, drivers and costs that limit recovery",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.7.4",
+       "competency": "emst:core/CMP-Q59N4DD",
        "duty": "Plan for ecological transformation with resist, accept or direct strategies",
-       "pctTime": 8,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.7.3-T1",
+         "task": "emst:core/TSK-MM7Z8HJ",
          "statement": "Map potential climate refugia from topographic, hydrologic and climate data, stating the assumptions and validation of the refugia model.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.7.3-T3",
+         "task": "emst:core/TSK-CBZ3KWD",
          "statement": "Integrate refugia into conservation prioritization and land protection plans, documenting how refugia rank against other criteria.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-03",
+       "competency": "emst:core/CMP-2358DGN",
        "duty": "Design monitoring and sampling for valid environmental inference",
-       "pctTime": 8,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:dc-03-method-mix",
+         "task": "emst:core/TSK-TA3SZPG",
          "statement": "Choose the mix of field, sensor, remote-sensing and community methods for a monitoring programme from cost, detection and comparability evidence.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.8
+         "pctTime": null
         },
         {
-         "task": "seed:dc-03-power",
+         "task": "emst:core/TSK-7XRXSSZ",
          "statement": "Estimate the power of a monitoring design to detect a specified change over a stated period, revising the design when power is insufficient.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.5.2",
+       "competency": "emst:core/CMP-A7R6301",
+       "duty": "Analyze environmental data statistically and interpret the results",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-0N9671Q",
+         "statement": "Estimate treatment effects on ecological response variables with a method suited to the design, reporting effect sizes and intervals.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-C6BW35Q",
+         "statement": "Analyze trends in a long-term monitoring dataset, accounting for changes in methods, effort and detection over the record.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-P60YX04",
+         "statement": "Prepare statistical graphics that show the main patterns and their uncertainty for a technical or decision audience.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-Q8EGZ6Z",
        "duty": "Assess climate vulnerability of species, ecosystems, infrastructure and communities",
-       "pctTime": 7,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.5.2-T1",
+         "task": "emst:core/TSK-TZAG0E0",
          "statement": "Conduct a vulnerability assessment for focal species or ecosystems with an established framework, stating the evidence and confidence for each rating.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.5.2-T2",
+         "task": "emst:core/TSK-KTY303E",
          "statement": "Rate climate exposure, sensitivity and adaptive capacity for each management unit from documented evidence, flagging ratings that rest on expert judgment alone.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-6.3.2",
+       "competency": "emst:core/CMP-JRTJ02T",
+       "duty": "Build, calibrate and validate predictive and simulation models of environmental systems",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-1EKP80V",
+         "statement": "Simulate ecosystem response to alternative land-use and climate scenarios, documenting scenario assumptions and the sensitivity of results to each.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-G0WT56E",
        "duty": "Assess ecosystem services with production-function models validated against observations",
-       "pctTime": 7,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.3.2-T1",
+         "task": "emst:core/TSK-9CBTJ1B",
          "statement": "Quantify ecosystem services such as flood mitigation, carbon storage or pollination for a planning area, stating the beneficiaries and assumptions.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         },
         {
-         "task": "seed:v1-6.3.2-T2",
+         "task": "emst:core/TSK-VSAS4KA",
          "statement": "Model ecosystem service supply and flow with a production-function model, validating its estimates against field or monitoring observations.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C22",
+       "competency": "emst:core/CMP-NP79M0H",
        "duty": "Read site history and reference conditions from landscape evidence",
-       "pctTime": 7,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-sitehist-handover",
+         "task": "emst:core/TSK-BR59WHE",
          "statement": "Document site-specific history and variability for a successor before a long-tenure practitioner leaves, walking key locations together where possible",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         },
         {
-         "task": "seed:fc-sitehist-predict",
+         "task": "emst:core/TSK-965N6P8",
          "statement": "Predict from site-history evidence where a planned treatment will meet legacy conditions, recording each prediction for comparison after treatment",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.4.3",
+       "competency": "emst:core/CMP-9FGSY1P",
        "duty": "Identify organisms from field characters, specimens, images and recordings",
-       "pctTime": 7,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.4.3-T1",
+         "task": "emst:core/TSK-YT60MTY",
          "statement": "Identify regional plants and animals to species with dichotomous keys and diagnostic features, collecting evidence for any record not identified with certainty",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.4.3-T2",
+         "task": "emst:core/TSK-H77HSAA",
          "statement": "Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-2.4.2",
-       "duty": "Build, calibrate and validate predictive and simulation models of environmental systems",
-       "pctTime": 4,
-       "tasks": [
-        {
-         "task": "seed:v1-2.4.2-T2",
-         "statement": "Simulate ecosystem response to alternative land-use and climate scenarios, documenting scenario assumptions and the sensitivity of results to each.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:v1-1.1.2-T1",
-      "seed:v1-1.1.2-T2",
-      "seed:v1-1.1.2-T3",
-      "seed:fc-biodiv-adapt",
-      "seed:v1-1.1.5-T1",
-      "seed:v1-1.1.5-T3",
-      "seed:v1-1.7.1-T2",
-      "seed:v1-1.7.1-T3",
-      "seed:v1-1.7.3-T1",
-      "seed:v1-1.7.3-T3",
-      "seed:dc-03-method-mix",
-      "seed:dc-03-power",
-      "seed:v1-2.2.2-T1",
-      "seed:v1-2.2.2-T2",
-      "seed:v1-2.2.2-T3"
-     ],
-     "criticalTasks": [
-      "seed:v1-1.1.2-T1",
-      "seed:v1-1.1.2-T2"
-     ],
-     "distinguishingCompetencies": [
-      "seed:v1-1.1.2"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:v1-1.1.2",
-       "statement": "Knowledge of and skill in: assess and monitor biodiversity across species and habitats (EMST target journey L2).",
+       "competency": "emst:core/CMP-PYQADZP",
+       "statement": "Knowledge of and skill in: assess and monitor biodiversity across species and habitats (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-03",
-       "statement": "Knowledge of and skill in: design monitoring and sampling for valid environmental inference (EMST target journey L2).",
+       "competency": "emst:core/CMP-WMHKDKF",
+       "statement": "Knowledge of and skill in: assess species habitat requirements and habitat condition (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.1.5",
-       "statement": "Knowledge of and skill in: assess species habitat requirements and habitat condition (EMST target journey L2).",
+       "competency": "emst:core/CMP-X2Y7C07",
+       "statement": "Knowledge of and skill in: recognize and assess ecosystems that have crossed into novel states (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.7.1",
-       "statement": "Knowledge of and skill in: recognize and assess ecosystems that have crossed into novel states (EMST target journey L2).",
+       "competency": "emst:core/CMP-Q59N4DD",
+       "statement": "Knowledge of and skill in: plan for ecological transformation with resist, accept or direct strategies (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.7.4",
-       "statement": "Knowledge of and skill in: plan for ecological transformation with resist, accept or direct strategies (EMST target journey L2).",
+       "competency": "emst:core/CMP-2358DGN",
+       "statement": "Knowledge of and skill in: design monitoring and sampling for valid environmental inference (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-2.2.2",
-       "statement": "Knowledge of and skill in: analyze environmental data statistically and interpret the results (EMST target journey L2).",
+       "competency": "emst:core/CMP-A7R6301",
+       "statement": "Knowledge of and skill in: analyze environmental data statistically and interpret the results (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-Q8EGZ6Z",
+       "statement": "Knowledge of and skill in: assess climate vulnerability of species, ecosystems, infrastructure and communities (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-JRTJ02T",
+       "statement": "Knowledge of and skill in: build, calibrate and validate predictive and simulation models of environmental systems (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-G0WT56E",
+       "statement": "Knowledge of and skill in: assess ecosystem services with production-function models validated against observations (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-NP79M0H",
+       "statement": "Knowledge of and skill in: read site history and reference conditions from landscape evidence (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-9FGSY1P",
+       "statement": "Knowledge of and skill in: identify organisms from field characters, specimens, images and recordings (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     },
@@ -451,439 +495,497 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:v1-1.1.2",
+       "competency": "emst:core/CMP-PYQADZP",
        "duty": "Assess and monitor biodiversity across species and habitats",
-       "pctTime": 18,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.1.2-T2",
-         "statement": "Analyze long-term biodiversity monitoring data to estimate change in occupancy or richness against conservation objectives, stating uncertainty",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.9
-        },
-        {
-         "task": "seed:v1-1.1.2-T1",
+         "task": "emst:core/TSK-4GR8N3R",
          "statement": "Implement a multi-taxon biodiversity monitoring protocol at assigned sites, coordinating crews, passive detectors and sample collection to schedule",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.1.2-T3",
+         "task": "emst:core/TSK-PAPS0P0",
+         "statement": "Analyze long-term biodiversity monitoring data to estimate change in occupancy or richness against conservation objectives, stating uncertainty",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-8V5GCQ0",
          "statement": "Report biodiversity monitoring findings to decision-makers with recommended protections, separating observed change from inference and stating its limits",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:fc-biodiv-adapt",
+         "task": "emst:core/TSK-TSG1J71",
          "statement": "Adjust the monitoring schedule or method mix at a site when disturbance, access loss or detector failure threatens the time series, recording the change",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.1.5",
+       "competency": "emst:core/CMP-WMHKDKF",
        "duty": "Assess species habitat requirements and habitat condition",
-       "pctTime": 11,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.1.5-T1",
+         "task": "emst:core/TSK-SC18RH3",
          "statement": "Measure habitat attributes such as cover, structure, water and forage at used and available sites following a habitat-use study protocol",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.1.5-T2",
+         "task": "emst:core/TSK-8J1G3CP",
          "statement": "Evaluate a habitat suitability map against field observations of use and condition, documenting where and why the model fails",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.1.5-T3",
+         "task": "emst:core/TSK-NXG8JKQ",
          "statement": "Integrate habitat findings into land-use or project plans as specific measures that avoid or reduce effects on species of concern",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.7.1",
+       "competency": "emst:core/CMP-X2Y7C07",
        "duty": "Recognize and assess ecosystems that have crossed into novel states",
-       "pctTime": 11,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.7.1-T1",
+         "task": "emst:core/TSK-1K392G0",
          "statement": "Evaluate whether a site's vegetation, soils and disturbance regime have moved beyond the historical range of variability, citing field and record evidence",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.7.1-T2",
+         "task": "emst:core/TSK-9DPTA7T",
          "statement": "Assess ecological function and conservation value of a novel species assemblage at a site using field indicators of structure, process and habitat",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.7.1-T3",
+         "task": "emst:core/TSK-VGSHB6H",
          "statement": "Determine whether restoration to historical conditions is feasible at a site, documenting the thresholds, drivers and costs that limit recovery",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.7.4",
+       "competency": "emst:core/CMP-Q59N4DD",
        "duty": "Plan for ecological transformation with resist, accept or direct strategies",
-       "pctTime": 11,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.7.3-T1",
+         "task": "emst:core/TSK-MM7Z8HJ",
          "statement": "Map potential climate refugia from topographic, hydrologic and climate data, stating the assumptions and validation of the refugia model.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.7.3-T2",
+         "task": "emst:core/TSK-XWDB05X",
          "statement": "Evaluate whether mapped refugia can support climate-sensitive species, using field and monitoring evidence of their current condition.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.7.3-T3",
+         "task": "emst:core/TSK-CBZ3KWD",
          "statement": "Integrate refugia into conservation prioritization and land protection plans, documenting how refugia rank against other criteria.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-03",
+       "competency": "emst:core/CMP-2358DGN",
        "duty": "Design monitoring and sampling for valid environmental inference",
-       "pctTime": 11,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:dc-03-detection",
+         "task": "emst:core/TSK-X5ZHRD5",
          "statement": "Plan for imperfect detection in a monitoring design, choosing repeat visits or detection models suited to the methods used.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:dc-03-method-mix",
+         "task": "emst:core/TSK-TA3SZPG",
          "statement": "Choose the mix of field, sensor, remote-sensing and community methods for a monitoring programme from cost, detection and comparability evidence.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:dc-03-power",
+         "task": "emst:core/TSK-7XRXSSZ",
          "statement": "Estimate the power of a monitoring design to detect a specified change over a stated period, revising the design when power is insufficient.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-2.2.2",
+       "competency": "emst:core/CMP-A7R6301",
        "duty": "Analyze environmental data statistically and interpret the results",
-       "pctTime": 11,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.2.2-T1",
+         "task": "emst:core/TSK-0N9671Q",
          "statement": "Estimate treatment effects on ecological response variables with a method suited to the design, reporting effect sizes and intervals.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.2.2-T2",
+         "task": "emst:core/TSK-C6BW35Q",
          "statement": "Analyze trends in a long-term monitoring dataset, accounting for changes in methods, effort and detection over the record.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.2.2-T3",
+         "task": "emst:core/TSK-P60YX04",
          "statement": "Prepare statistical graphics that show the main patterns and their uncertainty for a technical or decision audience.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.5.2",
+       "competency": "emst:core/CMP-Q8EGZ6Z",
        "duty": "Assess climate vulnerability of species, ecosystems, infrastructure and communities",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.5.2-T1",
+         "task": "emst:core/TSK-TZAG0E0",
          "statement": "Conduct a vulnerability assessment for focal species or ecosystems with an established framework, stating the evidence and confidence for each rating.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.5.2-T2",
+         "task": "emst:core/TSK-KTY303E",
          "statement": "Rate climate exposure, sensitivity and adaptive capacity for each management unit from documented evidence, flagging ratings that rest on expert judgment alone.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-2.4.2",
+       "competency": "emst:core/CMP-JRTJ02T",
        "duty": "Build, calibrate and validate predictive and simulation models of environmental systems",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.4.2-T2",
+         "task": "emst:core/TSK-1EKP80V",
          "statement": "Simulate ecosystem response to alternative land-use and climate scenarios, documenting scenario assumptions and the sensitivity of results to each.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.4.2-T3",
+         "task": "emst:core/TSK-SN9689D",
          "statement": "Present model outputs to stakeholders for an adaptive management decision, stating the conditions under which the projections should not be trusted.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-6.3.2",
+       "competency": "emst:core/CMP-G0WT56E",
        "duty": "Assess ecosystem services with production-function models validated against observations",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.3.2-T1",
+         "task": "emst:core/TSK-9CBTJ1B",
          "statement": "Quantify ecosystem services such as flood mitigation, carbon storage or pollination for a planning area, stating the beneficiaries and assumptions.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-6.3.2-T2",
+         "task": "emst:core/TSK-VSAS4KA",
          "statement": "Model ecosystem service supply and flow with a production-function model, validating its estimates against field or monitoring observations.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C22",
+       "competency": "emst:core/CMP-NP79M0H",
        "duty": "Read site history and reference conditions from landscape evidence",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-sitehist-handover",
+         "task": "emst:core/TSK-BR59WHE",
          "statement": "Document site-specific history and variability for a successor before a long-tenure practitioner leaves, walking key locations together where possible",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         },
         {
-         "task": "seed:fc-sitehist-predict",
+         "task": "emst:core/TSK-965N6P8",
          "statement": "Predict from site-history evidence where a planned treatment will meet legacy conditions, recording each prediction for comparison after treatment",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.4.3",
+       "competency": "emst:core/CMP-9FGSY1P",
        "duty": "Identify organisms from field characters, specimens, images and recordings",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.4.3-T1",
+         "task": "emst:core/TSK-YT60MTY",
          "statement": "Identify regional plants and animals to species with dichotomous keys and diagnostic features, collecting evidence for any record not identified with certainty",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.4.3-T2",
+         "task": "emst:core/TSK-H77HSAA",
          "statement": "Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.9
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:v1-1.1.2-T1",
-      "seed:v1-1.1.2-T2",
-      "seed:v1-1.1.2-T3",
-      "seed:fc-biodiv-adapt",
-      "seed:v1-1.1.5-T1",
-      "seed:v1-1.1.5-T3",
-      "seed:v1-1.7.1-T2",
-      "seed:v1-1.7.1-T3",
-      "seed:v1-1.7.3-T1",
-      "seed:v1-1.7.3-T3",
-      "seed:dc-03-method-mix",
-      "seed:dc-03-power",
-      "seed:v1-2.2.2-T1",
-      "seed:v1-2.2.2-T2",
-      "seed:v1-2.2.2-T3"
-     ],
-     "criticalTasks": [
-      "seed:v1-1.1.2-T1",
-      "seed:v1-1.1.2-T2"
-     ],
-     "distinguishingCompetencies": [
-      "seed:v1-1.1.2"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:v1-1.1.2",
-       "statement": "Knowledge of and skill in: assess and monitor biodiversity across species and habitats (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-PYQADZP",
+       "statement": "Knowledge of and skill in: assess and monitor biodiversity across species and habitats (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-03",
-       "statement": "Knowledge of and skill in: design monitoring and sampling for valid environmental inference (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-WMHKDKF",
+       "statement": "Knowledge of and skill in: assess species habitat requirements and habitat condition (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.1.5",
-       "statement": "Knowledge of and skill in: assess species habitat requirements and habitat condition (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-X2Y7C07",
+       "statement": "Knowledge of and skill in: recognize and assess ecosystems that have crossed into novel states (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.7.1",
-       "statement": "Knowledge of and skill in: recognize and assess ecosystems that have crossed into novel states (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-Q59N4DD",
+       "statement": "Knowledge of and skill in: plan for ecological transformation with resist, accept or direct strategies (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.7.4",
-       "statement": "Knowledge of and skill in: plan for ecological transformation with resist, accept or direct strategies (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-2358DGN",
+       "statement": "Knowledge of and skill in: design monitoring and sampling for valid environmental inference (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-2.2.2",
-       "statement": "Knowledge of and skill in: analyze environmental data statistically and interpret the results (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-A7R6301",
+       "statement": "Knowledge of and skill in: analyze environmental data statistically and interpret the results (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-Q8EGZ6Z",
+       "statement": "Knowledge of and skill in: assess climate vulnerability of species, ecosystems, infrastructure and communities (EMST target senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-JRTJ02T",
+       "statement": "Knowledge of and skill in: build, calibrate and validate predictive and simulation models of environmental systems (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-G0WT56E",
+       "statement": "Knowledge of and skill in: assess ecosystem services with production-function models validated against observations (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-NP79M0H",
+       "statement": "Knowledge of and skill in: read site history and reference conditions from landscape evidence (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-9FGSY1P",
+       "statement": "Knowledge of and skill in: identify organisms from field characters, specimens, images and recordings (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-Y5QCZ8T",
+       "statement": "Knowledge of and skill in: plan for non-analog ecological futures (EMST target senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-0ET1TVQ",
+       "statement": "Knowledge of and skill in: plan assisted migration and managed relocation of species and genotypes (EMST target senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     }

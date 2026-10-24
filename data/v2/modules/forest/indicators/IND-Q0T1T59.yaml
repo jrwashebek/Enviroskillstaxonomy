@@ -1,0 +1,45 @@
+id: emst:forest/IND-Q0T1T59
+type: Indicator
+prefLabel:
+  en: Evaluates treatment effectiveness after the first storms, recommending follow-up or…
+competency: emst:forest/CMP-46XW2KH
+level: L3
+statement:
+  en: Evaluates treatment effectiveness after the first storms, recommending follow-up or long-term restoration with the monitoring evidence behind each recommendation.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:forest/TSK-012N66Z
+distinguishingAttribute: ATT-CPX
+layer: L1
+module: forest
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.5:intermediate:I7
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  - v1Key: v1:4.3.5:advanced:I6
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

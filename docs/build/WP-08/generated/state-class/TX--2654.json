@@ -2,13 +2,13 @@
  "stamp": {
   "ruleId": "state-class-view",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/state_class_view.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
  "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
- "classRecord": "seed:class/TX/2654",
+ "classRecord": "emst:core/SCR-DDE0HT5",
  "class": {
   "jurisdiction": "Texas",
   "employerType": "state-agency",
@@ -44,10 +44,11 @@
  },
  "mappings": [
   {
-   "roleVariant": "seed:R11-environmental-permit-writer/state",
-   "role": "seed:R11-environmental-permit-writer",
+   "roleVariant": "emst:core/VAR-3KBNSG6",
+   "role": "emst:core/ROL-5Q1E37Y",
    "roleTitle": "Environmental permit writer",
    "tier": "P1",
+   "sectorActor": "state",
    "authorityPosition": "regulator",
    "roleLevels": [
     "lead"
@@ -58,277 +59,301 @@
    "crosswalkRecord": "emst-x5-tx:R11-environmental-permit-writer/state:2654",
    "competencyTargets": [
     {
-     "competency": "seed:SC-C16",
-     "label": "Draft enforceable, implementable binding instruments",
-     "targetLevels": {
-      "lead": "L4"
-     },
-     "importance": 5,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:SL-C02",
+     "competency": "emst:core/CMP-Q09PM3S",
      "label": "Issue environmental permits and resource-use authorizations as the deciding authority",
      "targetLevels": {
       "lead": "L4"
      },
-     "importance": 5,
-     "distinguishing": true,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-13",
-     "label": "Validate AI-generated work products before professional use",
+     "competency": "emst:core/CMP-AKXHXDR",
+     "label": "Draft enforceable, implementable binding instruments",
      "targetLevels": {
-      "lead": "L3"
+      "lead": "L4"
      },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-A"
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
     },
     {
-     "competency": "seed:SC-C01",
+     "competency": "emst:core/CMP-HF79RF2",
      "label": "Map the decision authority and procedural pathway for a proposed action",
      "targetLevels": {
       "lead": "L3"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:SC-C02",
+     "competency": "emst:core/CMP-M0JAW9R",
      "label": "Build and maintain a defensible administrative record",
      "targetLevels": {
       "lead": "L3"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:SC-C07",
+     "competency": "emst:core/CMP-26YRTPW",
      "label": "Negotiate permit conditions, mitigation and agreements using interest-based methods",
      "targetLevels": {
       "lead": "L4"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:SC-C12",
-     "label": "Track regulatory change and translate it into operating guidance",
-     "targetLevels": {
-      "lead": "L3"
-     },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:SC-C14",
-     "label": "Operate within, or oversee, delegated and assumed regulatory programs",
-     "targetLevels": {
-      "lead": "L4"
-     },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:v1-5.5.2",
+     "competency": "emst:core/CMP-HW3T9XT",
      "label": "Process permit applications and administer issued authorizations",
      "targetLevels": {
       "lead": "L3"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DB-C29",
-     "label": "Communicate environmental and health risks under uncertainty",
+     "competency": "emst:core/CMP-DFBQTY4",
+     "label": "Operate within, or oversee, delegated and assumed regulatory programs",
      "targetLevels": {
-      "lead": "L2"
+      "lead": "L4"
      },
-     "importance": 3,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-E"
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-02",
-     "label": "Use AI tools responsibly in everyday environmental work",
+     "competency": "emst:core/CMP-GQ0D6C9",
+     "label": "Track regulatory change and translate it into operating guidance",
      "targetLevels": {
-      "lead": "L1"
+      "lead": "L3"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-MS40XXX",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "lead": "L3"
+     },
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
      "transversalCluster": "TX-A"
     },
     {
-     "competency": "seed:PS-C18",
-     "label": "Maintain independence and manage conflicts of interest across the regulator-regulated boundary",
-     "targetLevels": {
-      "lead": "L3"
-     },
-     "importance": 3,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-B"
-    },
-    {
-     "competency": "seed:SL-C10",
+     "competency": "emst:core/CMP-BR5Q9TJ",
      "label": "Provide compliance and technical assistance to regulated entities and local governments",
      "targetLevels": {
       "lead": "L3"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:v1-7.1.3",
-     "label": "Maintain the integrity of regulatory and scientific findings under institutional pressure",
+     "competency": "emst:core/CMP-RPM63WZ",
+     "label": "Maintain independence and manage conflicts of interest across the regulator-regulated boundary",
      "targetLevels": {
       "lead": "L3"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
      "transversalCluster": "TX-B"
     },
     {
-     "competency": "seed:DC-CAND-01",
-     "label": "Interpret and question environmental data products in everyday work",
+     "competency": "emst:core/CMP-G1H42DS",
+     "label": "Maintain the integrity of regulatory and scientific findings under institutional pressure",
      "targetLevels": {
-      "lead": "L1"
+      "lead": "L3"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
-     "transversalCluster": "TX-A"
+     "transversalCluster": "TX-B"
     },
     {
-     "competency": "seed:DC-CAND-05",
-     "label": "Record provenance and AI involvement in work products",
+     "competency": "emst:core/CMP-XN9631Y",
+     "label": "Communicate environmental and health risks under uncertainty",
      "targetLevels": {
-      "lead": "L1"
+      "lead": "L2"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
-     "transversalCluster": "TX-A"
+     "transversalCluster": "TX-E"
     },
     {
-     "competency": "seed:SC-C17",
+     "competency": "emst:core/CMP-TVPV3Y2",
      "label": "Assess litigation exposure and design decisions for resilience on remand",
      "targetLevels": {
       "lead": "L3"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-FCXN4BQ",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-7JGQFKZ",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-8EAS8ZR",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "lead": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-ZCRS03R",
+     "label": "Supervise staff and volunteers in environmental work",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-5NFAM97",
+     "label": "Design accessible, inclusive public engagement and services",
+     "targetLevels": {
+      "lead": "L4"
+     },
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     }
    ],
+   "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "topTasks": [
     {
-     "task": "seed:sc-draft-permit-fact-sheet",
-     "statement": "Draft a permit and its fact sheet so that each condition is measurable, enforceable and traceable to its legal or technical basis",
-     "pctTime": 12.9,
-     "critical": true,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:sc-derive-permit-limits",
-     "statement": "Derive permit limits and conditions from the applicable technical standards and the facility's technical record, documenting the calculation basis for each limit",
-     "pctTime": 12.5,
-     "critical": true,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:sc-check-permit-completeness",
+     "task": "emst:core/TSK-BNP3DX6",
      "statement": "Review a permit application for administrative and technical completeness, issuing a deficiency notice that lists each missing element and its basis",
-     "pctTime": 8.6,
-     "critical": true,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:sc-review-ai-drafted-permit",
+     "task": "emst:core/TSK-6XW0JCS",
+     "statement": "Derive permit limits and conditions from the applicable technical standards and the facility's technical record, documenting the calculation basis for each limit",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-XRZYPE4",
+     "statement": "Draft a permit and its fact sheet so that each condition is measurable, enforceable and traceable to its legal or technical basis",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-E1YR3W5",
      "statement": "Review an AI-drafted permit or fact sheet against the application record and permit template, correcting each condition that lacks a traceable basis",
-     "pctTime": 8.6,
-     "critical": true,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:sc-respond-permit-comments",
+     "task": "emst:core/TSK-K96YBDK",
      "statement": "Respond to public comments on a draft permit, revising conditions where a comment shows an error and explaining each decision in the response document",
-     "pctTime": 4.3,
-     "critical": false,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-6.4.2-T1",
+     "task": "emst:core/TSK-07VEKAM",
      "statement": "Write policy or instrument language that states each obligation, obligated party, deadline and verification method so that compliance can be determined",
-     "pctTime": 4.3,
-     "critical": false,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:sc-test-terms-scenarios",
+     "task": "emst:core/TSK-4YSYEQC",
      "statement": "Test draft permit conditions or agreement terms against compliance-verification and legal-challenge scenarios, recording each term revised and why",
-     "pctTime": 4.3,
-     "critical": true,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-6.1.3-T2",
-     "statement": "Review a project proposal to identify every authorization, consultation and review it triggers, recording the governing procedure version for each",
-     "pctTime": 4.3,
-     "critical": false,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:sc-negotiate-permit-conditions",
-     "statement": "Negotiate permit conditions or mitigation with an applicant, generating options that meet the governing requirements and recording the agreed terms",
-     "pctTime": 4.3,
-     "critical": false,
-     "neededAtEntry": false
-    },
-    {
-     "task": "seed:sc-review-automated-permit-checks",
-     "statement": "Review automated eligibility and completeness checks on electronic permit applications, correcting misclassified applications before decisions are issued",
-     "pctTime": 4.3,
-     "critical": false,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:v1-5.5.2-T3",
-     "statement": "Maintain permit records and electronic case files, tracking holders' reporting and expiry dates and referring missed conditions for follow-up",
-     "pctTime": 4.3,
-     "critical": false,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:sc-verify-ai-draft-instrument",
+     "task": "emst:core/TSK-J65513C",
      "statement": "Verify each term of an AI-generated first draft of an instrument against the governing authority and record before the draft enters review",
-     "pctTime": 2.2,
-     "critical": false,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-ES5KS4J",
+     "statement": "Review a project proposal to identify every authorization, consultation and review it triggers, recording the governing procedure version for each",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-SYDX3KR",
+     "statement": "Prepare an authority map and pathway plan for a multi-permit project, sequencing concurrent and dependent decisions and identifying the critical path",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-CR6939P",
+     "statement": "Negotiate permit conditions or mitigation with an applicant, generating options that meet the governing requirements and recording the agreed terms",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-6XFP9GS",
+     "statement": "Prepare a negotiation brief stating own and counterpart interests, alternatives to agreement, the issue list and the limits of one's authority",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     }
    ],
    "credentialGates": {

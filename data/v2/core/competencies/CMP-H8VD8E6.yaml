@@ -1,0 +1,109 @@
+id: emst:core/CMP-H8VD8E6
+type: Competency
+prefLabel:
+  en: Run the adaptive management cycle and evaluate programme performance
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: 'The capability to run plan, monitor, evaluate and adjust cycles for environmental programmes and projects: set performance measures and decision triggers, use monitoring results to evaluate effectiveness, adjust plans and work plans when triggers are met, record what was learned and report results and spending transparently. Generic evaluation methods are referenced, not covered; private project delivery metrics are a separate competency.'
+statement:
+  en: Sets performance measures and decision triggers for a programme or project, uses monitoring results and new science or stakeholder input to evaluate effectiveness, adjusts plans and annual work plans when triggers are met, records lessons learned, and reports results and spending to funders and the public in a form they can check.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - adaptive management
+  - performance monitoring and evaluation
+  - programme evaluation
+  - Conservation Standards
+  - impact measurement
+  - results reporting
+  - lessons learned
+instrumentSensitivity:
+- mechanism: DM-19
+  rationale:
+    en: Grant and appropriation reporting terms set which performance measures a programme must report.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+notation:
+- scheme: EMSTv1
+  value: 3.2.5
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.2'
+  label: Strategic Planning
+editorialNote:
+  en: 'S2 close-out A (A5 SC with SL; reviewers A3 FC and A4 DC). Survivor of the adaptive management cycle (ADR-0030 §3.1 M4): absorbs v1 3.1.5 (performance monitoring and evaluation) and the durable remainder of 3.4.5 (results and spending transparency; its dashboards and platforms go to L4). Plan, monitor, evaluate and adjust is one cycle in environmental programmes, as in the Conservation Standards (altLabel). Generic programme evaluation referenced from O*NET/ESCO (G-8); private delivery metrics stay with PS-C03. The 3.1.5 task seeds re-pointed by DE are rewritten here. Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-LEARN. Rationale: Adaptive management planning is environmental-specific and cited in plans for decades.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-042
+  derivedFrom:
+  - v1Key: v1:3.2.5
+    v1Code: 3.2.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 86
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:3.2.5
+    v1Code: 3.2.5
+    v1Table: source_text/competencies
+    sourceTextLine: 5480
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:3.1.5
+    v1Code: 3.1.5
+    relation: merged-from
+    note: v1 3.1.5 (merge) → emst:core/CMP-H8VD8E6 per v1_disposition.csv
+  - v1Key: v1:3.4.5
+    v1Code: 3.4.5
+    relation: merged-from
+    note: v1 3.4.5 (move-to-tools) → emst:core/CMP-H8VD8E6 per v1_disposition.csv
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-Q21FHVY
+  - emst:core/IND-DN75P6N
+  - emst:core/IND-09N2D5Y
+- level: L3
+  indicators:
+  - emst:core/IND-0ZC4T67
+  - emst:core/IND-VG3WDD1
+  - emst:core/IND-E6CC0SF
+- level: L4
+  indicators:
+  - emst:core/IND-ZY0T1FG
+  - emst:core/IND-FEASCGB
+  - emst:core/IND-CJBV4ED

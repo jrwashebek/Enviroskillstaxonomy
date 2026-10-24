@@ -32,8 +32,9 @@ def main():
                       "positionsInverted": bool(a and b and a.get("authorityPosition") != b.get("authorityPosition"))})
     checks = []
     for x, y in REQUIRED:
-        ok = any(p["subject"].split(":", 1)[1].startswith(x + "/") and
-                 (p["object"].split(":", 1)[1] == y if "/" in y else p["object"].split(":", 1)[1].startswith(y + "/"))
+        sk = lambda rid: d.seed_of(rid).split(":", 1)[1] if d.seed_of(rid).startswith("seed:") else rid  # noqa: E731
+        ok = any(sk(p["subject"]).startswith(x + "/") and
+                 (sk(p["object"]) == y if "/" in y else sk(p["object"]).startswith(y + "/"))
                  for p in pairs)
         checks.append({"from": x, "to": y, "linked": ok})
     out = {"stamp": V.stamp("mirror-links", "0.1.0", GEN), "pairs": pairs, "acceptanceChecks": checks,

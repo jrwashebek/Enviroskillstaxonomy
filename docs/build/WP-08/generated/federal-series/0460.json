@@ -2,8 +2,8 @@
  "stamp": {
   "ruleId": "federal-series-profile",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/federal_series_profile.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
@@ -17,18 +17,18 @@
   "group": "0400 Natural Resources Management & Biological Sciences",
   "qualificationStandardVersion": "Professional & Scientific Positions group std + series IOR",
   "positiveEducationRequirement": true,
-  "educationNote": "FH judgment pending verification of the qualification standard",
-  "registerRecord": "seed:opm-series/0460",
+  "educationNote": "from EMST's series record; not yet checked against the OPM qualification standard, so confirm with the HR office",
+  "registerRecord": "emst:core/SER-FN75MSE",
   "registerReviewBy": "2027-01-23",
   "events": []
  },
  "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
  "roles": [
   {
-   "role": "seed:R14-forester",
+   "role": "emst:forest/ROL-G0WBAHH",
    "roleTitle": "Forester",
    "tier": "P2",
-   "variant": "seed:R14-forester/federal",
+   "variant": "emst:forest/VAR-N56826X",
    "functionStatement": "Manage forest stands and landscapes toward stated objectives through measured, prescribed and administered treatments.",
    "authorityPosition": "resource-manager",
    "x4": {
@@ -46,13 +46,13 @@
    "signOffAuthority": null,
    "instruments": [
     {
-     "id": "seed:ins/stewardship-contracting",
+     "id": "emst:core/INS-NC6C6SW",
      "label": "Stewardship contracting authority",
      "role": "enables"
     },
     {
-     "id": "seed:ins/good-neighbor-authority",
-     "label": "Good Neighbor Authority incl. EXPLORE Act amendments",
+     "id": "emst:core/INS-JCTA3J0",
+     "label": "Good Neighbor Authority",
      "role": "enables"
     }
    ],
@@ -66,438 +66,512 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:v1-1.3.1",
+       "competency": "emst:forest/CMP-B81RPSA",
        "duty": "Prescribe and implement silvicultural treatments for stand objectives",
-       "pctTime": 14,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.3.1-T1",
+         "task": "emst:forest/TSK-XAADCTA",
          "statement": "Write a silvicultural prescription for a stand from inventory data, site conditions and stated management objectives",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.2
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.1-T2",
+         "task": "emst:forest/TSK-P67QHQ8",
          "statement": "Mark trees for a thinning or regeneration harvest to the prescription's residual density, species and structure targets",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.0
+         "pctTime": null
         },
         {
-         "task": "seed:db-1.3.1-t4",
+         "task": "emst:forest/TSK-SN781BE",
          "statement": "Audit a marked stand against its prescription by sampling residual basal area, spacing and leave-tree selection",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.3.2",
+       "competency": "emst:forest/CMP-P9MQCDF",
        "duty": "Inventory forest resources to stated precision with field plots and remote sensing",
-       "pctTime": 13,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.3.2-T1",
+         "task": "emst:forest/TSK-R44CRM3",
          "statement": "Measure tree diameter, height, defect and age on inventory plots following the cruise or inventory protocol",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.0
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.2-T3",
+         "task": "emst:forest/TSK-S28HPE6",
          "statement": "Estimate stand attributes by combining field plots with airborne lidar, deciding where additional plots are needed to meet precision targets",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:db-1.3.2-t4",
+         "task": "emst:forest/TSK-JVHRAM2",
          "statement": "Check-cruise a crew's inventory plots by blind re-measurement, recording differences outside the protocol tolerance",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.3.5",
-       "duty": "Plan forest management and timber harvests to meet ecological and economic objectives",
-       "pctTime": 11,
-       "tasks": [
-        {
-         "task": "seed:v1-1.3.5-T1",
-         "statement": "Prepare a forest management plan that schedules harvests and treatments to meet ecological, economic and regeneration objectives",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.9
-        },
-        {
-         "task": "seed:v1-1.3.5-T2",
-         "statement": "Lay out harvest unit boundaries, leave areas and skid trails on the ground to the plan's specifications and best management practices",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.9
-        },
-        {
-         "task": "seed:v1-1.3.5-T3",
-         "statement": "Inspect active harvest operations for compliance with best management practices for water quality and soil protection",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.1
-        }
-       ]
-      },
-      {
-       "competency": "seed:FH-C02",
-       "duty": "Prepare and administer timber sale, stewardship and partner implementation agreements",
-       "pctTime": 11,
-       "tasks": [
-        {
-         "task": "seed:FH-C02-T1",
-         "statement": "Translate a silvicultural or restoration prescription into a sale layout and contract specifications that a purchaser can bid on",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.9
-        },
-        {
-         "task": "seed:FH-C02-T2",
-         "statement": "Appraise timber value for a sale or stewardship contract from cruise volume, product mix, logging costs and market data",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.9
-        },
-        {
-         "task": "seed:FH-C02-T3",
-         "statement": "Inspect contract operations against specifications, enforcing contract remedies when the purchaser does not comply",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.1
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-1.3.4",
+       "competency": "emst:forest/CMP-YA2Z045",
        "duty": "Assess forest health and diagnose biotic and abiotic stressors",
-       "pctTime": 8,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.3.4-T1",
+         "task": "emst:forest/TSK-J11RNMW",
          "statement": "Survey stands for insect, disease and abiotic damage, recording agent, severity and extent on survey plots",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.4-T2",
+         "task": "emst:forest/TSK-B9S4ZNR",
          "statement": "Diagnose the cause of tree decline from field symptoms, signs and site history, sending samples for laboratory confirmation",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.3.3",
+       "competency": "emst:forest/CMP-6DHWV8B",
+       "duty": "Plan forest management and timber harvests to meet ecological and economic objectives",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:forest/TSK-D5TJDJR",
+         "statement": "Prepare a forest management plan that schedules harvests and treatments to meet ecological, economic and regeneration objectives",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-094TVC2",
+         "statement": "Lay out harvest unit boundaries, leave areas and skid trails on the ground to the plan's specifications and best management practices",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-BYKJ7MG",
+         "statement": "Inspect active harvest operations for compliance with best management practices for water quality and soil protection",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:forest/CMP-7T6TAW6",
+       "duty": "Prepare and administer timber sale, stewardship and partner implementation agreements",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:forest/TSK-3HWYZ3W",
+         "statement": "Translate a silvicultural or restoration prescription into a sale layout and contract specifications that a purchaser can bid on",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-4N9H77G",
+         "statement": "Appraise timber value for a sale or stewardship contract from cruise volume, product mix, logging costs and market data",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-N5JP8JN",
+         "statement": "Inspect contract operations against specifications, enforcing contract remedies when the purchaser does not comply",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:forest/CMP-W6FMZVA",
        "duty": "Project stand development under alternative treatments with calibrated growth models",
-       "pctTime": 8,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.3.3-T1",
+         "task": "emst:forest/TSK-0NKDP1G",
          "statement": "Project stand development under alternative treatments with a growth model, reporting each projection's assumptions and uncertainty",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.3-T2",
+         "task": "emst:forest/TSK-ZTX65ZZ",
          "statement": "Classify a stand's development stage from field structure data to anticipate its response to treatment",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.4.3",
+       "competency": "emst:core/CMP-9FGSY1P",
        "duty": "Identify organisms from field characters, specimens, images and recordings",
-       "pctTime": 8,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.4.3-T1",
+         "task": "emst:core/TSK-YT60MTY",
          "statement": "Identify regional plants and animals to species with dichotomous keys and diagnostic features, collecting evidence for any record not identified with certainty",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.4.3-T2",
+         "task": "emst:core/TSK-H77HSAA",
          "statement": "Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C02",
+       "competency": "emst:core/CMP-QSAV0HJ",
        "duty": "Ground-truth remote-sensed, modelled and AI-generated outputs in the field",
-       "pctTime": 6,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-gt-calibration-plots",
+         "task": "emst:core/TSK-F9NT05B",
          "statement": "Decide where field calibration plots are still needed for a lidar or imagery-based inventory, targeting conditions where remote estimates fail",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:fc-gt-collect-blind",
+         "task": "emst:core/TSK-ZNT3BAQ",
          "statement": "Record reference observations at pre-selected validation points with the reference protocol, without access to the product's predicted value",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:SL-C08",
-       "duty": "Conduct environmental impact review of proposed actions",
-       "pctTime": 6,
-       "tasks": [
-        {
-         "task": "seed:v1-6.1.4-T1",
-         "statement": "Prepare an environmental assessment of a proposed action, analyzing the reasonably foreseeable effects of the action and its alternatives within the procedure's page and time limits",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.1
-        },
-        {
-         "task": "seed:v1-6.1.4-T2",
-         "statement": "Scope the review of a proposed action with cooperating agencies and the public, setting the purpose, alternatives and effects boundaries the analysis will cover",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": true,
-         "variantAdded": false,
-         "pctTime": 3.1
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-6.2.3",
-       "duty": "Prepare and revise management plans for publicly held lands",
-       "pctTime": 6,
-       "tasks": [
-        {
-         "task": "seed:v1-6.2.3-T1",
-         "statement": "Coordinate an interdisciplinary team drafting a forest, range or refuge management plan, assigning plan components and reconciling conflicting resource objectives",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.1
-        },
-        {
-         "task": "seed:v1-6.2.3-T2",
-         "statement": "Follow the agency's planning procedure and schedule for a plan revision or amendment, documenting each required step and its completion",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.1
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-4.3.3",
+       "competency": "emst:forest/CMP-50A7J3B",
        "duty": "Design fuels treatments that reduce wildfire hazard and verify their effects in the field",
-       "pctTime": 3,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.3.3-T1",
+         "task": "emst:forest/TSK-TA2WVD2",
          "statement": "Assess fuels in a planning area with standard fuel models and field sampling to set treatment priorities",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FH-C01",
+       "competency": "emst:core/CMP-J597H9A",
+       "duty": "Conduct environmental impact review of proposed actions",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-3JZ26RY",
+         "statement": "Prepare an environmental assessment of a proposed action, analyzing the reasonably foreseeable effects of the action and its alternatives within the procedure's page and time limits",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-XNK4KJ5",
+         "statement": "Scope the review of a proposed action with cooperating agencies and the public, setting the purpose, alternatives and effects boundaries the analysis will cover",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-T1175YK",
        "duty": "Assess effects on protected species and conduct interagency consultation on proposed actions",
-       "pctTime": 3,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:sc-compile-species-occurrence",
+         "task": "emst:core/TSK-F1RHMQH",
          "statement": "Compile species and habitat occurrence information for an action area, documenting the sources and survey dates used for each listed species",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C26",
-       "duty": "Assess tree risk and structural condition",
-       "pctTime": 3,
+       "competency": "emst:core/CMP-5BKBHEF",
+       "duty": "Prepare and revise management plans for publicly held lands",
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-tree-remote-verify",
-         "statement": "Verify remote-sensed or analytics-flagged tree risk scores on the ground, recording each override with the field reason",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:core/TSK-KV99YPG",
+         "statement": "Coordinate an interdisciplinary team drafting a forest, range or refuge management plan, assigning plan components and reconciling conflicting resource objectives",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-AF1VXX8",
+         "statement": "Follow the agency's planning procedure and schedule for a plan revision or amendment, documenting each required step and its completion",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-PGREAAQ",
+       "duty": "Assess tree risk and structural condition",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-XS7ACED",
+         "statement": "Verify remote-sensed or analytics-flagged tree risk scores on the ground, recording each override with the field reason",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:v1-1.3.1-T2",
-      "seed:db-1.3.1-t4",
-      "seed:v1-1.3.2-T1",
-      "seed:db-1.3.2-t4",
-      "seed:v1-1.3.4-T1",
-      "seed:v1-1.3.4-T2",
-      "seed:v1-1.3.5-T2",
-      "seed:v1-1.3.5-T3",
-      "seed:v1-1.3.3-T1",
-      "seed:v1-1.3.3-T2",
-      "seed:v1-1.4.3-T1",
-      "seed:v1-1.4.3-T2"
-     ],
-     "criticalTasks": [
-      "seed:v1-1.3.1-T1",
-      "seed:v1-1.3.1-T2",
-      "seed:v1-1.3.2-T1"
-     ],
-     "distinguishingCompetencies": [
-      "seed:v1-1.3.1"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:v1-1.3.1",
-       "statement": "Knowledge of and skill in: prescribe and implement silvicultural treatments for stand objectives (EMST target entry L1, journey L2).",
+       "competency": "emst:forest/CMP-B81RPSA",
+       "statement": "Knowledge of and skill in: prescribe and implement silvicultural treatments for stand objectives (EMST target entry L1, journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.3.2",
-       "statement": "Knowledge of and skill in: inventory forest resources to stated precision with field plots and remote sensing (EMST target entry L1, journey L2).",
+       "competency": "emst:forest/CMP-P9MQCDF",
+       "statement": "Knowledge of and skill in: inventory forest resources to stated precision with field plots and remote sensing (EMST target entry L1, journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FH-C02",
-       "statement": "Knowledge of and skill in: prepare and administer timber sale, stewardship and partner implementation agreements (EMST target journey L2).",
+       "competency": "emst:forest/CMP-YA2Z045",
+       "statement": "Knowledge of and skill in: assess forest health and diagnose biotic and abiotic stressors (EMST target entry L1, journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.3.3",
-       "statement": "Knowledge of and skill in: project stand development under alternative treatments with calibrated growth models (EMST target journey L2).",
+       "competency": "emst:forest/CMP-6DHWV8B",
+       "statement": "Knowledge of and skill in: plan forest management and timber harvests to meet ecological and economic objectives (EMST target entry L1, journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.3.4",
-       "statement": "Knowledge of and skill in: assess forest health and diagnose biotic and abiotic stressors (EMST target entry L1, journey L2).",
+       "competency": "emst:forest/CMP-7T6TAW6",
+       "statement": "Knowledge of and skill in: prepare and administer timber sale, stewardship and partner implementation agreements (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.3.5",
-       "statement": "Knowledge of and skill in: plan forest management and timber harvests to meet ecological and economic objectives (EMST target entry L1, journey L2).",
+       "competency": "emst:forest/CMP-W6FMZVA",
+       "statement": "Knowledge of and skill in: project stand development under alternative treatments with calibrated growth models (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.4.3",
-       "statement": "Knowledge of and skill in: identify organisms from field characters, specimens, images and recordings (EMST target entry L1, journey L2).",
+       "competency": "emst:core/CMP-9FGSY1P",
+       "statement": "Knowledge of and skill in: identify organisms from field characters, specimens, images and recordings (EMST target entry L1, journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-QSAV0HJ",
+       "statement": "Knowledge of and skill in: ground-truth remote-sensed, modelled and AI-generated outputs in the field (EMST target entry L1, journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:forest/CMP-50A7J3B",
+       "statement": "Knowledge of and skill in: design fuels treatments that reduce wildfire hazard and verify their effects in the field (EMST target entry L1, journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-J597H9A",
+       "statement": "Knowledge of and skill in: conduct environmental impact review of proposed actions (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-T1175YK",
+       "statement": "Knowledge of and skill in: assess effects on protected species and conduct interagency consultation on proposed actions (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-5BKBHEF",
+       "statement": "Knowledge of and skill in: prepare and revise management plans for publicly held lands (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-PGREAAQ",
+       "statement": "Knowledge of and skill in: assess tree risk and structural condition (EMST target entry L1, journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:forest/CMP-9GY18RX",
+       "statement": "Knowledge of and skill in: manage forests to certification-scheme standards (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target entry L1, journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target entry L1, journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target entry L1, journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target entry L1, journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-QWHKC1A",
+       "statement": "Knowledge of and skill in: negotiate and administer land rights, rights-of-way and realty actions (EMST target entry L1, journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-62TJKF6",
+       "statement": "Knowledge of and skill in: develop and compare policy and land-use scenarios for environmental decisions (EMST target entry L2, journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     },
@@ -510,519 +584,599 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:v1-1.3.1",
+       "competency": "emst:forest/CMP-B81RPSA",
        "duty": "Prescribe and implement silvicultural treatments for stand objectives",
-       "pctTime": 14,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.3.1-T1",
+         "task": "emst:forest/TSK-XAADCTA",
          "statement": "Write a silvicultural prescription for a stand from inventory data, site conditions and stated management objectives",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.1
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.1-T2",
+         "task": "emst:forest/TSK-P67QHQ8",
          "statement": "Mark trees for a thinning or regeneration harvest to the prescription's residual density, species and structure targets",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.1-T3",
+         "task": "emst:forest/TSK-QZV8G9X",
          "statement": "Evaluate treated stands on monitoring plots against the prescription's targets, recommending changes to future prescriptions",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:db-1.3.1-t4",
+         "task": "emst:forest/TSK-SN781BE",
          "statement": "Audit a marked stand against its prescription by sampling residual basal area, spacing and leave-tree selection",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.3.2",
+       "competency": "emst:forest/CMP-P9MQCDF",
        "duty": "Inventory forest resources to stated precision with field plots and remote sensing",
-       "pctTime": 14,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.3.2-T1",
+         "task": "emst:forest/TSK-R44CRM3",
          "statement": "Measure tree diameter, height, defect and age on inventory plots following the cruise or inventory protocol",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.2-T2",
+         "task": "emst:forest/TSK-7VCPAQG",
          "statement": "Design a forest inventory or timber cruise with the sampling intensity needed to meet a stated precision for volume and composition",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.9
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.2-T3",
+         "task": "emst:forest/TSK-S28HPE6",
          "statement": "Estimate stand attributes by combining field plots with airborne lidar, deciding where additional plots are needed to meet precision targets",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:db-1.3.2-t4",
+         "task": "emst:forest/TSK-JVHRAM2",
          "statement": "Check-cruise a crew's inventory plots by blind re-measurement, recording differences outside the protocol tolerance",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.3.4",
+       "competency": "emst:forest/CMP-YA2Z045",
        "duty": "Assess forest health and diagnose biotic and abiotic stressors",
-       "pctTime": 9,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.3.4-T1",
+         "task": "emst:forest/TSK-J11RNMW",
          "statement": "Survey stands for insect, disease and abiotic damage, recording agent, severity and extent on survey plots",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.4-T2",
+         "task": "emst:forest/TSK-B9S4ZNR",
          "statement": "Diagnose the cause of tree decline from field symptoms, signs and site history, sending samples for laboratory confirmation",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.4-T3",
+         "task": "emst:forest/TSK-ZDM1X3E",
          "statement": "Recommend management responses to a pest or disease outbreak, such as sanitation harvest or biological control, stating expected effects",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.3.5",
+       "competency": "emst:forest/CMP-6DHWV8B",
        "duty": "Plan forest management and timber harvests to meet ecological and economic objectives",
-       "pctTime": 9,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.3.5-T1",
+         "task": "emst:forest/TSK-D5TJDJR",
          "statement": "Prepare a forest management plan that schedules harvests and treatments to meet ecological, economic and regeneration objectives",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.5-T2",
+         "task": "emst:forest/TSK-094TVC2",
          "statement": "Lay out harvest unit boundaries, leave areas and skid trails on the ground to the plan's specifications and best management practices",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.5-T3",
+         "task": "emst:forest/TSK-BYKJ7MG",
          "statement": "Inspect active harvest operations for compliance with best management practices for water quality and soil protection",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FH-C02",
+       "competency": "emst:forest/CMP-7T6TAW6",
        "duty": "Prepare and administer timber sale, stewardship and partner implementation agreements",
-       "pctTime": 9,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:FH-C02-T1",
+         "task": "emst:forest/TSK-3HWYZ3W",
          "statement": "Translate a silvicultural or restoration prescription into a sale layout and contract specifications that a purchaser can bid on",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:FH-C02-T2",
+         "task": "emst:forest/TSK-4N9H77G",
          "statement": "Appraise timber value for a sale or stewardship contract from cruise volume, product mix, logging costs and market data",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:FH-C02-T3",
+         "task": "emst:forest/TSK-N5JP8JN",
          "statement": "Inspect contract operations against specifications, enforcing contract remedies when the purchaser does not comply",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.3.3",
+       "competency": "emst:forest/CMP-W6FMZVA",
        "duty": "Project stand development under alternative treatments with calibrated growth models",
-       "pctTime": 9,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.3.3-T1",
+         "task": "emst:forest/TSK-0NKDP1G",
          "statement": "Project stand development under alternative treatments with a growth model, reporting each projection's assumptions and uncertainty",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.3-T2",
+         "task": "emst:forest/TSK-ZTX65ZZ",
          "statement": "Classify a stand's development stage from field structure data to anticipate its response to treatment",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.3.3-T3",
+         "task": "emst:forest/TSK-JK4R6YF",
          "statement": "Recommend silvicultural interventions from growth projections that meet stated timber or habitat-structure targets",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-1.4.3",
+       "competency": "emst:core/CMP-9FGSY1P",
        "duty": "Identify organisms from field characters, specimens, images and recordings",
-       "pctTime": 9,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-1.4.3-T1",
+         "task": "emst:core/TSK-YT60MTY",
          "statement": "Identify regional plants and animals to species with dichotomous keys and diagnostic features, collecting evidence for any record not identified with certainty",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.4.3-T2",
+         "task": "emst:core/TSK-H77HSAA",
          "statement": "Verify species records submitted by crews or volunteers against attached photos, recordings or vouchers before they enter the program database",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.1
+         "pctTime": null
         },
         {
-         "task": "seed:v1-1.4.3-T3",
+         "task": "emst:core/TSK-WFEGQV9",
          "statement": "Teach staff and volunteers the diagnostic cues that separate common look-alike species, checking their identifications on a practical test",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C02",
+       "competency": "emst:core/CMP-QSAV0HJ",
        "duty": "Ground-truth remote-sensed, modelled and AI-generated outputs in the field",
-       "pctTime": 5,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-gt-calibration-plots",
+         "task": "emst:core/TSK-F9NT05B",
          "statement": "Decide where field calibration plots are still needed for a lidar or imagery-based inventory, targeting conditions where remote estimates fail",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         },
         {
-         "task": "seed:fc-gt-collect-blind",
+         "task": "emst:core/TSK-ZNT3BAQ",
          "statement": "Record reference observations at pre-selected validation points with the reference protocol, without access to the product's predicted value",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.3.3",
+       "competency": "emst:forest/CMP-50A7J3B",
        "duty": "Design fuels treatments that reduce wildfire hazard and verify their effects in the field",
-       "pctTime": 5,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.3.3-T1",
+         "task": "emst:forest/TSK-TA2WVD2",
          "statement": "Assess fuels in a planning area with standard fuel models and field sampling to set treatment priorities",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.3.3-T2",
+         "task": "emst:forest/TSK-4NBTVR5",
          "statement": "Supervise mechanical or hand fuels treatments to the prescription's residual fuel and canopy specifications",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:SL-C08",
+       "competency": "emst:core/CMP-J597H9A",
        "duty": "Conduct environmental impact review of proposed actions",
-       "pctTime": 5,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.1.4-T1",
+         "task": "emst:core/TSK-3JZ26RY",
          "statement": "Prepare an environmental assessment of a proposed action, analyzing the reasonably foreseeable effects of the action and its alternatives within the procedure's page and time limits",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         },
         {
-         "task": "seed:v1-6.1.4-T2",
+         "task": "emst:core/TSK-XNK4KJ5",
          "statement": "Scope the review of a proposed action with cooperating agencies and the public, setting the purpose, alternatives and effects boundaries the analysis will cover",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FH-C01",
+       "competency": "emst:core/CMP-T1175YK",
        "duty": "Assess effects on protected species and conduct interagency consultation on proposed actions",
-       "pctTime": 5,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:sc-compile-species-occurrence",
+         "task": "emst:core/TSK-F1RHMQH",
          "statement": "Compile species and habitat occurrence information for an action area, documenting the sources and survey dates used for each listed species",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         },
         {
-         "task": "seed:sc-negotiate-conservation-measures",
+         "task": "emst:core/TSK-KFAQKKW",
          "statement": "Negotiate conservation measures with the consulting wildlife agency, recording in the project description each agreed measure and the effect it avoids or reduces",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-6.2.3",
+       "competency": "emst:core/CMP-5BKBHEF",
        "duty": "Prepare and revise management plans for publicly held lands",
-       "pctTime": 5,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.2.3-T1",
+         "task": "emst:core/TSK-KV99YPG",
          "statement": "Coordinate an interdisciplinary team drafting a forest, range or refuge management plan, assigning plan components and reconciling conflicting resource objectives",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         },
         {
-         "task": "seed:v1-6.2.3-T2",
+         "task": "emst:core/TSK-AF1VXX8",
          "statement": "Follow the agency's planning procedure and schedule for a plan revision or amendment, documenting each required step and its completion",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C26",
+       "competency": "emst:core/CMP-PGREAAQ",
        "duty": "Assess tree risk and structural condition",
-       "pctTime": 5,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-tree-mitigate",
+         "task": "emst:core/TSK-BR7G9GJ",
          "statement": "Recommend mitigation for a high-risk tree, such as pruning, target relocation or removal, stating residual risk and timing",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         },
         {
-         "task": "seed:fc-tree-remote-verify",
+         "task": "emst:core/TSK-XS7ACED",
          "statement": "Verify remote-sensed or analytics-flagged tree risk scores on the ground, recording each override with the field reason",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:v1-1.3.1-T2",
-      "seed:db-1.3.1-t4",
-      "seed:v1-1.3.2-T1",
-      "seed:db-1.3.2-t4",
-      "seed:v1-1.3.4-T1",
-      "seed:v1-1.3.4-T2",
-      "seed:v1-1.3.5-T2",
-      "seed:v1-1.3.5-T3",
-      "seed:v1-1.3.3-T1",
-      "seed:v1-1.3.3-T2",
-      "seed:v1-1.4.3-T1",
-      "seed:v1-1.4.3-T2"
-     ],
-     "criticalTasks": [
-      "seed:v1-1.3.1-T1",
-      "seed:v1-1.3.1-T2",
-      "seed:v1-1.3.2-T1",
-      "seed:v1-1.3.2-T2"
-     ],
-     "distinguishingCompetencies": [
-      "seed:v1-1.3.1"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:v1-1.3.1",
-       "statement": "Knowledge of and skill in: prescribe and implement silvicultural treatments for stand objectives (EMST target senior L3, lead L4).",
+       "competency": "emst:forest/CMP-B81RPSA",
+       "statement": "Knowledge of and skill in: prescribe and implement silvicultural treatments for stand objectives (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.3.2",
-       "statement": "Knowledge of and skill in: inventory forest resources to stated precision with field plots and remote sensing (EMST target senior L3, lead L3).",
+       "competency": "emst:forest/CMP-P9MQCDF",
+       "statement": "Knowledge of and skill in: inventory forest resources to stated precision with field plots and remote sensing (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FH-C02",
-       "statement": "Knowledge of and skill in: prepare and administer timber sale, stewardship and partner implementation agreements (EMST target senior L3, lead L4).",
+       "competency": "emst:forest/CMP-YA2Z045",
+       "statement": "Knowledge of and skill in: assess forest health and diagnose biotic and abiotic stressors (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.3.3",
-       "statement": "Knowledge of and skill in: project stand development under alternative treatments with calibrated growth models (EMST target senior L3, lead L3).",
+       "competency": "emst:forest/CMP-6DHWV8B",
+       "statement": "Knowledge of and skill in: plan forest management and timber harvests to meet ecological and economic objectives (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.3.4",
-       "statement": "Knowledge of and skill in: assess forest health and diagnose biotic and abiotic stressors (EMST target senior L3, lead L3).",
+       "competency": "emst:forest/CMP-7T6TAW6",
+       "statement": "Knowledge of and skill in: prepare and administer timber sale, stewardship and partner implementation agreements (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.3.5",
-       "statement": "Knowledge of and skill in: plan forest management and timber harvests to meet ecological and economic objectives (EMST target senior L3, lead L4).",
+       "competency": "emst:forest/CMP-W6FMZVA",
+       "statement": "Knowledge of and skill in: project stand development under alternative treatments with calibrated growth models (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-1.4.3",
-       "statement": "Knowledge of and skill in: identify organisms from field characters, specimens, images and recordings (EMST target senior L2, lead L2).",
+       "competency": "emst:core/CMP-9FGSY1P",
+       "statement": "Knowledge of and skill in: identify organisms from field characters, specimens, images and recordings (EMST target senior L2, lead L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-QSAV0HJ",
+       "statement": "Knowledge of and skill in: ground-truth remote-sensed, modelled and AI-generated outputs in the field (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:forest/CMP-50A7J3B",
+       "statement": "Knowledge of and skill in: design fuels treatments that reduce wildfire hazard and verify their effects in the field (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-J597H9A",
+       "statement": "Knowledge of and skill in: conduct environmental impact review of proposed actions (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-T1175YK",
+       "statement": "Knowledge of and skill in: assess effects on protected species and conduct interagency consultation on proposed actions (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-5BKBHEF",
+       "statement": "Knowledge of and skill in: prepare and revise management plans for publicly held lands (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-PGREAAQ",
+       "statement": "Knowledge of and skill in: assess tree risk and structural condition (EMST target senior L2, lead L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-WZ4CQR1",
+       "statement": "Knowledge of and skill in: design and administer cross-jurisdictional stewardship agreements (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:forest/CMP-9GY18RX",
+       "statement": "Knowledge of and skill in: manage forests to certification-scheme standards (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-QWHKC1A",
+       "statement": "Knowledge of and skill in: negotiate and administer land rights, rights-of-way and realty actions (EMST target senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-62TJKF6",
+       "statement": "Knowledge of and skill in: develop and compare policy and land-use scenarios for environmental decisions (EMST target senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     }
@@ -1030,10 +1184,10 @@
    "changeView": null
   },
   {
-   "role": "seed:R07-fuels-prescribed-fire-specialist",
+   "role": "emst:forest/ROL-BS2AR2G",
    "roleTitle": "Fuels and prescribed fire specialist",
    "tier": "P1",
-   "variant": "seed:R07-fuels-prescribed-fire-specialist/federal",
+   "variant": "emst:forest/VAR-6V689TF",
    "functionStatement": "Reduce wildfire hazard and restore fire-adapted conditions through fuels treatments and prescribed fire executed within prescription and air-quality limits.",
    "authorityPosition": "resource-manager",
    "x4": {
@@ -1047,7 +1201,7 @@
    "credentialGates": {
     "shown": [
      {
-      "credential": "seed:crd-wildland-fire-position-qualification",
+      "credential": "emst:core/CRD-3N2G328",
       "label": "Wildland fire position qualifications under the interagency standard (e.g., firefighter, burn boss, incident commander types)",
       "kind": "required",
       "issuerVerifiedSources": [
@@ -1062,12 +1216,12 @@
    "signOffAuthority": {
     "kind": "position-qualification",
     "credentials": [
-     "seed:crd-wildland-fire-position-qualification"
+     "emst:core/CRD-3N2G328"
     ]
    },
    "instruments": [
     {
-     "id": "seed:ins/wildland-fire-quals-alignment",
+     "id": "emst:core/INS-14AE5SS",
      "label": "USWFS-USFS aligned federal wildland fire qualification standards (IQCS 2026 Transition Plan)",
      "role": "requires"
     },
@@ -1086,397 +1240,465 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:v1-4.3.2",
+       "competency": "emst:forest/CMP-8W0ZQTM",
        "duty": "Conduct prescribed fire from burn planning through ignition, holding and evaluation",
-       "pctTime": 37,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.3.2-T1",
+         "task": "emst:forest/TSK-SZ5NFSP",
          "statement": "Write a burn plan with objectives, prescription parameters, holding and contingency actions for a prescribed fire unit",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 13.6
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.2.3-T2",
-         "statement": "Monitor fire behaviour, weather and smoke during a burn against the prescription, reporting values outside it to the burn boss",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 9.3
-        },
-        {
-         "task": "seed:v1-4.2.3-T1",
+         "task": "emst:forest/TSK-G4C8713",
          "statement": "Ignite a prescribed fire unit with hand-held devices following the firing pattern and the firing boss's direction",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.2.3-T3",
+         "task": "emst:forest/TSK-C031H5M",
+         "statement": "Monitor fire behaviour, weather and smoke during a burn against the prescription, reporting values outside it to the burn boss",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-A23RKQW",
          "statement": "Check holding resources, equipment and crew briefing completion against the burn plan before ignition begins",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.3.2-T3",
+         "task": "emst:forest/TSK-BMCSA5S",
          "statement": "Evaluate fire effects on monitoring plots against burn objectives, recording outcomes that inform the next burn plan",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.3.3",
-       "duty": "Design fuels treatments that reduce wildfire hazard and verify their effects in the field",
-       "pctTime": 28,
+       "competency": "emst:core/CMP-BBSZYXE",
+       "duty": "Operate and supervise uncrewed and automated field systems",
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.3.3-T1",
+         "task": "emst:core/TSK-SPXDHSZ",
+         "statement": "Operate an uncrewed aerial ignition system under the firing boss's direction, changing ignition lines as fire behaviour and holding capacity change",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:forest/CMP-50A7J3B",
+       "duty": "Design fuels treatments that reduce wildfire hazard and verify their effects in the field",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:forest/TSK-TA2WVD2",
          "statement": "Assess fuels in a planning area with standard fuel models and field sampling to set treatment priorities",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 9.3
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.3.3-T2",
-         "statement": "Supervise mechanical or hand fuels treatments to the prescription's residual fuel and canopy specifications",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 9.3
-        },
-        {
-         "task": "seed:db-4.3.3-t4",
+         "task": "emst:forest/TSK-SKEY2DS",
          "statement": "Verify a remotely sensed fuels map in the field, correcting fuel-model assignments that misrepresent observed conditions",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.3.3-T3",
+         "task": "emst:forest/TSK-4NBTVR5",
+         "statement": "Supervise mechanical or hand fuels treatments to the prescription's residual fuel and canopy specifications",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-QFNGCPW",
          "statement": "Evaluate fuels treatment effectiveness by re-measuring fuels and modelling fire behaviour after treatment",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DB-C15",
-       "duty": "Plan smoke management for prescribed and managed fire within air quality requirements",
-       "pctTime": 7,
-       "tasks": [
-        {
-         "task": "seed:DB-C15-T2",
-         "statement": "Prepare the smoke management section of a burn plan, identifying sensitive receptors, dispersion limits and contingency actions",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.7
-        },
-        {
-         "task": "seed:DB-C15-T5",
-         "statement": "Compare a smoke dispersion forecast with monitor and observer data during a burn, recommending holding or stopping ignition when the forecast fails",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.3
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-4.3.4",
+       "competency": "emst:forest/CMP-MQJG1YC",
        "duty": "Predict fire behaviour from fuels, weather and topography for operations and planning",
-       "pctTime": 5,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.3.4-T2",
+         "task": "emst:forest/TSK-JM3R437",
          "statement": "Predict fire spread, intensity and spotting for an operational period from fuels, weather and topography, stating assumptions",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.1.1",
-       "duty": "Sample and assess vegetation using standardized field protocols",
-       "pctTime": 5,
+       "competency": "emst:air/CMP-3FB5XRW",
+       "duty": "Plan smoke management for prescribed and managed fire within air quality requirements",
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.1.1-T1",
-         "statement": "Establish vegetation monitoring plots to protocol and record species composition, cover and density within the program's measurement-quality objectives",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:air/TSK-27CAPKK",
+         "statement": "Prepare the smoke management section of a burn plan, identifying sensitive receptors, dispersion limits and contingency actions",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
-        }
-       ]
-      },
-      {
-       "competency": "seed:FC-C28",
-       "duty": "Plan and run field campaigns and remote logistics",
-       "pctTime": 5,
-       "tasks": [
-        {
-         "task": "seed:fc-camp-schedule",
-         "statement": "Schedule a field campaign against phenology, flow, tide or weather windows so that each protocol's sampling window is met",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         },
         {
-         "task": "seed:fc-camp-access",
-         "statement": "Secure access permissions for field sites from landowners and land managers before the season, recording the conditions of access for crews",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:air/TSK-QXE6HE7",
+         "statement": "Compare a smoke dispersion forecast with monitor and observer data during a burn, recommending holding or stopping ignition when the forecast fails",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C14",
-       "duty": "Operate and supervise uncrewed and automated field systems",
-       "pctTime": 2,
+       "competency": "emst:core/CMP-B5C0G9X",
+       "duty": "Sample and assess vegetation using standardized field protocols",
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-uas-ignition",
-         "statement": "Operate an uncrewed aerial ignition system under the firing boss's direction, changing ignition lines as fire behaviour and holding capacity change",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:core/TSK-S66F3HH",
+         "statement": "Establish vegetation monitoring plots to protocol and record species composition, cover and density within the program's measurement-quality objectives",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C22",
+       "competency": "emst:core/CMP-NP79M0H",
        "duty": "Read site history and reference conditions from landscape evidence",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-sitehist-read",
+         "task": "emst:core/TSK-N3G4631",
          "statement": "Interpret fire scars, stumps, soil horizons and legacy structures at a site to reconstruct its disturbance and land-use history",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.4.1-A",
+       "competency": "emst:core/CMP-508BGGC",
+       "duty": "Plan and run field campaigns and remote logistics",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-GPZZKZK",
+         "statement": "Schedule a field campaign against phenology, flow, tide or weather windows so that each protocol's sampling window is met",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-RDCJZV7",
+         "statement": "Secure access permissions for field sites from landowners and land managers before the season, recording the conditions of access for crews",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-WC5GQ9X",
        "duty": "Manage risk in uncontrolled field environments",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-risk-briefing",
+         "task": "emst:core/TSK-G1NPYCP",
          "statement": "Brief a field crew on the day's site hazards, escape routes, safety zones and communication plan before work begins",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C20",
+       "competency": "emst:core/CMP-H3HV38E",
        "duty": "Lead field crews and transfer field judgment to novices",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-lead-field-day",
+         "task": "emst:core/TSK-ZJ7HH7K",
          "statement": "Lead a small crew through a field day, matching tasks to skill and checking novice work early and often",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.5.2",
+       "competency": "emst:core/CMP-44JK8N8",
        "duty": "Operate chainsaws and other power equipment safely in field conditions",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.5.2-T1",
+         "task": "emst:core/TSK-BFC528F",
          "statement": "Fell trees with a chainsaw within the operator's certification limits, planning the face cut, hinge and escape route from the tree's size-up",
-         "importance": 4,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C02",
+       "competency": "emst:core/CMP-QSAV0HJ",
        "duty": "Ground-truth remote-sensed, modelled and AI-generated outputs in the field",
-       "pctTime": 1,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-gt-mismatch",
+         "task": "emst:core/TSK-65N7J3N",
          "statement": "Code the likely field cause of each mismatch between a remote product and field observation, such as timing, mixed pixels, hidden understory or location error",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.4.1-B",
+       "competency": "emst:core/CMP-CERKVPH",
        "duty": "Apply safety practices and stop-work authority across field, facility and incident settings",
-       "pctTime": 1,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:lc-txc-exercise-stop-work",
+         "task": "emst:core/TSK-22VWHXT",
          "statement": "Exercise stop-work authority when field, facility or incident conditions exceed the stated safety limits of the assignment",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 0.9
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:v1-4.2.3-T1",
-      "seed:v1-4.2.3-T2",
-      "seed:v1-4.3.3-T1",
-      "seed:db-4.3.3-t4",
-      "seed:v1-4.3.4-T2"
-     ],
-     "criticalTasks": [
-      "seed:v1-4.3.2-T1",
-      "seed:v1-4.2.3-T2",
-      "seed:v1-4.2.3-T3",
-      "seed:v1-4.3.3-T1",
-      "seed:DB-C15-T2",
-      "seed:fc-risk-briefing",
-      "seed:v1-4.5.2-T1",
-      "seed:lc-txc-exercise-stop-work"
-     ],
-     "distinguishingCompetencies": [
-      "seed:v1-4.3.2",
-      "seed:v1-4.3.3"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:v1-4.3.2",
-       "statement": "Knowledge of and skill in: conduct prescribed fire from burn planning through ignition, holding and evaluation (EMST target journey L2).",
+       "competency": "emst:forest/CMP-8W0ZQTM",
+       "statement": "Knowledge of and skill in: conduct prescribed fire from burn planning through ignition, holding and evaluation (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.3.3",
-       "statement": "Knowledge of and skill in: design fuels treatments that reduce wildfire hazard and verify their effects in the field (EMST target journey L2).",
+       "competency": "emst:forest/CMP-50A7J3B",
+       "statement": "Knowledge of and skill in: design fuels treatments that reduce wildfire hazard and verify their effects in the field (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.4.1-A",
-       "statement": "Knowledge of and skill in: manage risk in uncontrolled field environments (EMST target journey L2).",
+       "competency": "emst:forest/CMP-MQJG1YC",
+       "statement": "Knowledge of and skill in: predict fire behaviour from fuels, weather and topography for operations and planning (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C15",
-       "statement": "Knowledge of and skill in: plan smoke management for prescribed and managed fire within air quality requirements (EMST target journey L2).",
+       "competency": "emst:air/CMP-3FB5XRW",
+       "statement": "Knowledge of and skill in: plan smoke management for prescribed and managed fire within air quality requirements (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C29",
-       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target journey L2).",
+       "competency": "emst:core/CMP-WC5GQ9X",
+       "statement": "Knowledge of and skill in: manage risk in uncontrolled field environments (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FC-C20",
-       "statement": "Knowledge of and skill in: lead field crews and transfer field judgment to novices (EMST target journey L2).",
+       "competency": "emst:core/CMP-H3HV38E",
+       "statement": "Knowledge of and skill in: lead field crews and transfer field judgment to novices (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.3.4",
-       "statement": "Knowledge of and skill in: predict fire behaviour from fuels, weather and topography for operations and planning (EMST target journey L2).",
+       "competency": "emst:core/CMP-XN9631Y",
+       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.4.1-B",
-       "statement": "Knowledge of and skill in: apply safety practices and stop-work authority across field, facility and incident settings (EMST target journey L2).",
+       "competency": "emst:core/CMP-CERKVPH",
+       "statement": "Knowledge of and skill in: apply safety practices and stop-work authority across field, facility and incident settings (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [
-        "A no-blame incident review separates system and condition causes from individual error and sanctions only reckless or wilful acts, so that people keep reporting near misses.",
-        "Stop-work authority lets any worker halt a task they judge unsafe; the task resumes only after the hazard is assessed and the plan revised, and the person who stopped it is not penalized."
+        "Stop-work authority lets any worker halt a task they judge unsafe; the task resumes only after the hazard is assessed and the plan revised, and the person who stopped it is not penalized.",
+        "A no-blame incident review separates system and condition causes from individual error and sanctions only reckless or wilful acts, so that people keep reporting near misses."
        ],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-508BGGC",
+       "statement": "Knowledge of and skill in: plan and run field campaigns and remote logistics (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-QSAV0HJ",
+       "statement": "Knowledge of and skill in: ground-truth remote-sensed, modelled and AI-generated outputs in the field (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-B5C0G9X",
+       "statement": "Knowledge of and skill in: sample and assess vegetation using standardized field protocols (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-NP79M0H",
+       "statement": "Knowledge of and skill in: read site history and reference conditions from landscape evidence (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7TZABBG",
+       "statement": "Knowledge of and skill in: work alongside landowners, permittees, volunteers and communities on the land (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-BBSZYXE",
+       "statement": "Knowledge of and skill in: operate and supervise uncrewed and automated field systems (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-44JK8N8",
+       "statement": "Knowledge of and skill in: operate chainsaws and other power equipment safely in field conditions (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-35BT97W",
+       "statement": "Knowledge of and skill in: coordinate environmental response operations within incident command (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     },
@@ -1489,440 +1711,534 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:v1-4.3.2",
+       "competency": "emst:forest/CMP-8W0ZQTM",
        "duty": "Conduct prescribed fire from burn planning through ignition, holding and evaluation",
-       "pctTime": 39,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.3.2-T1",
+         "task": "emst:forest/TSK-SZ5NFSP",
          "statement": "Write a burn plan with objectives, prescription parameters, holding and contingency actions for a prescribed fire unit",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 13.5
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.2.3-T2",
-         "statement": "Monitor fire behaviour, weather and smoke during a burn against the prescription, reporting values outside it to the burn boss",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 9.3
-        },
-        {
-         "task": "seed:v1-4.3.2-T2",
+         "task": "emst:forest/TSK-12B3F4K",
          "statement": "Decide whether to proceed with ignition from a test fire, observed weather and fuel moisture against the burn plan's prescription",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.2.3-T3",
+         "task": "emst:forest/TSK-C031H5M",
+         "statement": "Monitor fire behaviour, weather and smoke during a burn against the prescription, reporting values outside it to the burn boss",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-A23RKQW",
          "statement": "Check holding resources, equipment and crew briefing completion against the burn plan before ignition begins",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.3.2-T3",
-         "statement": "Evaluate fire effects on monitoring plots against burn objectives, recording outcomes that inform the next burn plan",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.7
-        },
-        {
-         "task": "seed:db-4.3.2-t4",
+         "task": "emst:forest/TSK-PJ4J4Q9",
          "statement": "Supervise uncrewed-aircraft ignition over a burn unit, halting ignition when the firing pattern or fire behaviour departs from the plan",
-         "importance": 4,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-4.3.3",
-       "duty": "Design fuels treatments that reduce wildfire hazard and verify their effects in the field",
-       "pctTime": 23,
-       "tasks": [
-        {
-         "task": "seed:v1-4.3.3-T1",
-         "statement": "Assess fuels in a planning area with standard fuel models and field sampling to set treatment priorities",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 9.3
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.3.3-T2",
-         "statement": "Supervise mechanical or hand fuels treatments to the prescription's residual fuel and canopy specifications",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:forest/TSK-BMCSA5S",
+         "statement": "Evaluate fire effects on monitoring plots against burn objectives, recording outcomes that inform the next burn plan",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 9.3
-        },
-        {
-         "task": "seed:v1-4.3.3-T3",
-         "statement": "Evaluate fuels treatment effectiveness by re-measuring fuels and modelling fire behaviour after treatment",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DB-C15",
-       "duty": "Plan smoke management for prescribed and managed fire within air quality requirements",
-       "pctTime": 7,
-       "tasks": [
-        {
-         "task": "seed:DB-C15-T2",
-         "statement": "Prepare the smoke management section of a burn plan, identifying sensitive receptors, dispersion limits and contingency actions",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.7
-        },
-        {
-         "task": "seed:DB-C15-T5",
-         "statement": "Compare a smoke dispersion forecast with monitor and observer data during a burn, recommending holding or stopping ignition when the forecast fails",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.3
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-4.3.4",
-       "duty": "Predict fire behaviour from fuels, weather and topography for operations and planning",
-       "pctTime": 5,
-       "tasks": [
-        {
-         "task": "seed:v1-4.3.4-T2",
-         "statement": "Predict fire spread, intensity and spotting for an operational period from fuels, weather and topography, stating assumptions",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.7
-        }
-       ]
-      },
-      {
-       "competency": "seed:FC-C28",
-       "duty": "Plan and run field campaigns and remote logistics",
-       "pctTime": 5,
-       "tasks": [
-        {
-         "task": "seed:fc-camp-schedule",
-         "statement": "Schedule a field campaign against phenology, flow, tide or weather windows so that each protocol's sampling window is met",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.3
-        },
-        {
-         "task": "seed:fc-camp-access",
-         "statement": "Secure access permissions for field sites from landowners and land managers before the season, recording the conditions of access for crews",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.3
-        }
-       ]
-      },
-      {
-       "competency": "seed:DB-C29",
-       "duty": "Communicate environmental and health risks under uncertainty",
-       "pctTime": 4,
-       "tasks": [
-        {
-         "task": "seed:lc-txe-answer-public-questions",
-         "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.3
-        },
-        {
-         "task": "seed:lc-txe-draft-advisory",
-         "statement": "Draft a public advisory that states the hazard, the people affected, the uncertainty and the protective action in plain language",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.4
-        }
-       ]
-      },
-      {
-       "competency": "seed:FC-C14",
+       "competency": "emst:core/CMP-BBSZYXE",
        "duty": "Operate and supervise uncrewed and automated field systems",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-uas-ignition",
+         "task": "emst:core/TSK-SPXDHSZ",
          "statement": "Operate an uncrewed aerial ignition system under the firing boss's direction, changing ignition lines as fire behaviour and holding capacity change",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C22",
+       "competency": "emst:forest/CMP-50A7J3B",
+       "duty": "Design fuels treatments that reduce wildfire hazard and verify their effects in the field",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:forest/TSK-TA2WVD2",
+         "statement": "Assess fuels in a planning area with standard fuel models and field sampling to set treatment priorities",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-4NBTVR5",
+         "statement": "Supervise mechanical or hand fuels treatments to the prescription's residual fuel and canopy specifications",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:forest/TSK-QFNGCPW",
+         "statement": "Evaluate fuels treatment effectiveness by re-measuring fuels and modelling fire behaviour after treatment",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:forest/CMP-MQJG1YC",
+       "duty": "Predict fire behaviour from fuels, weather and topography for operations and planning",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:forest/TSK-JM3R437",
+         "statement": "Predict fire spread, intensity and spotting for an operational period from fuels, weather and topography, stating assumptions",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:air/CMP-3FB5XRW",
+       "duty": "Plan smoke management for prescribed and managed fire within air quality requirements",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:air/TSK-27CAPKK",
+         "statement": "Prepare the smoke management section of a burn plan, identifying sensitive receptors, dispersion limits and contingency actions",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:air/TSK-QXE6HE7",
+         "statement": "Compare a smoke dispersion forecast with monitor and observer data during a burn, recommending holding or stopping ignition when the forecast fails",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-NP79M0H",
        "duty": "Read site history and reference conditions from landscape evidence",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-sitehist-read",
+         "task": "emst:core/TSK-N3G4631",
          "statement": "Interpret fire scars, stumps, soil horizons and legacy structures at a site to reconstruct its disturbance and land-use history",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C21",
+       "competency": "emst:core/CMP-508BGGC",
+       "duty": "Plan and run field campaigns and remote logistics",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-GPZZKZK",
+         "statement": "Schedule a field campaign against phenology, flow, tide or weather windows so that each protocol's sampling window is met",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-RDCJZV7",
+         "statement": "Secure access permissions for field sites from landowners and land managers before the season, recording the conditions of access for crews",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-7TZABBG",
        "duty": "Work alongside landowners, permittees, volunteers and communities on the land",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-land-joint-visit",
+         "task": "emst:core/TSK-KW491FZ",
          "statement": "Conduct a joint field visit with a landowner or permittee, walking the site together and recording both parties' observations",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.4.1-A",
+       "competency": "emst:core/CMP-XN9631Y",
+       "duty": "Communicate environmental and health risks under uncertainty",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-MWZH0XP",
+         "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-SJT2MCR",
+         "statement": "Draft a public advisory that states the hazard, the people affected, the uncertainty and the protective action in plain language",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-WC5GQ9X",
        "duty": "Manage risk in uncontrolled field environments",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-risk-briefing",
+         "task": "emst:core/TSK-G1NPYCP",
          "statement": "Brief a field crew on the day's site hazards, escape routes, safety zones and communication plan before work begins",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C20",
+       "competency": "emst:core/CMP-H3HV38E",
        "duty": "Lead field crews and transfer field judgment to novices",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-lead-field-day",
+         "task": "emst:core/TSK-ZJ7HH7K",
          "statement": "Lead a small crew through a field day, matching tasks to skill and checking novice work early and often",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:PS-C03",
+       "competency": "emst:core/CMP-KKND657",
        "duty": "Deliver environmental projects to budget, schedule and quality",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-3.1.1-T3",
+         "task": "emst:core/TSK-34VW38E",
          "statement": "Sequence field work within seasonal, weather and regulatory windows when building the project schedule",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:IO-C01",
+       "competency": "emst:core/CMP-0N97D81",
        "duty": "Evaluate and certify others' task performance against position standards",
-       "pctTime": 1,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:lc-txd-rate-performance",
+         "task": "emst:core/TSK-XBBPSC4",
          "statement": "Rate a trainee's observed performance of position tasks on the entrustment-supervision scale in the evaluation context each task requires",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C02",
+       "competency": "emst:core/CMP-QSAV0HJ",
        "duty": "Ground-truth remote-sensed, modelled and AI-generated outputs in the field",
-       "pctTime": 1,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-gt-mismatch",
+         "task": "emst:core/TSK-65N7J3N",
          "statement": "Code the likely field cause of each mismatch between a remote product and field observation, such as timing, mixed pixels, hidden understory or location error",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.4.1-B",
+       "competency": "emst:core/CMP-CERKVPH",
        "duty": "Apply safety practices and stop-work authority across field, facility and incident settings",
-       "pctTime": 1,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:lc-txc-exercise-stop-work",
+         "task": "emst:core/TSK-22VWHXT",
          "statement": "Exercise stop-work authority when field, facility or incident conditions exceed the stated safety limits of the assignment",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 0.9
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:v1-4.2.3-T2",
-      "seed:v1-4.3.3-T1",
-      "seed:v1-4.3.4-T2"
-     ],
-     "criticalTasks": [
-      "seed:v1-4.3.2-T1",
-      "seed:v1-4.3.2-T2",
-      "seed:v1-4.2.3-T2",
-      "seed:v1-4.2.3-T3",
-      "seed:db-4.3.2-t4",
-      "seed:v1-4.3.3-T1",
-      "seed:DB-C15-T2",
-      "seed:fc-risk-briefing",
-      "seed:lc-txc-exercise-stop-work"
-     ],
-     "distinguishingCompetencies": [
-      "seed:v1-4.3.2",
-      "seed:v1-4.3.3"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:v1-4.3.2",
-       "statement": "Knowledge of and skill in: conduct prescribed fire from burn planning through ignition, holding and evaluation (EMST target senior L3, lead L4).",
+       "competency": "emst:forest/CMP-8W0ZQTM",
+       "statement": "Knowledge of and skill in: conduct prescribed fire from burn planning through ignition, holding and evaluation (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.3.3",
-       "statement": "Knowledge of and skill in: design fuels treatments that reduce wildfire hazard and verify their effects in the field (EMST target senior L3, lead L4).",
+       "competency": "emst:forest/CMP-50A7J3B",
+       "statement": "Knowledge of and skill in: design fuels treatments that reduce wildfire hazard and verify their effects in the field (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.4.1-A",
-       "statement": "Knowledge of and skill in: manage risk in uncontrolled field environments (EMST target senior L3, lead L4).",
+       "competency": "emst:forest/CMP-MQJG1YC",
+       "statement": "Knowledge of and skill in: predict fire behaviour from fuels, weather and topography for operations and planning (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C15",
-       "statement": "Knowledge of and skill in: plan smoke management for prescribed and managed fire within air quality requirements (EMST target senior L3, lead L3).",
+       "competency": "emst:air/CMP-3FB5XRW",
+       "statement": "Knowledge of and skill in: plan smoke management for prescribed and managed fire within air quality requirements (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C29",
-       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target senior L2, lead L3).",
+       "competency": "emst:core/CMP-WC5GQ9X",
+       "statement": "Knowledge of and skill in: manage risk in uncontrolled field environments (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FC-C20",
-       "statement": "Knowledge of and skill in: lead field crews and transfer field judgment to novices (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-H3HV38E",
+       "statement": "Knowledge of and skill in: lead field crews and transfer field judgment to novices (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.3.4",
-       "statement": "Knowledge of and skill in: predict fire behaviour from fuels, weather and topography for operations and planning (EMST target senior L3, lead L3).",
+       "competency": "emst:core/CMP-XN9631Y",
+       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target senior L2, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.4.1-B",
-       "statement": "Knowledge of and skill in: apply safety practices and stop-work authority across field, facility and incident settings (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-CERKVPH",
+       "statement": "Knowledge of and skill in: apply safety practices and stop-work authority across field, facility and incident settings (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [
-        "A no-blame incident review separates system and condition causes from individual error and sanctions only reckless or wilful acts, so that people keep reporting near misses.",
-        "Stop-work authority lets any worker halt a task they judge unsafe; the task resumes only after the hazard is assessed and the plan revised, and the person who stopped it is not penalized."
+        "Stop-work authority lets any worker halt a task they judge unsafe; the task resumes only after the hazard is assessed and the plan revised, and the person who stopped it is not penalized.",
+        "A no-blame incident review separates system and condition causes from individual error and sanctions only reckless or wilful acts, so that people keep reporting near misses."
        ],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-508BGGC",
+       "statement": "Knowledge of and skill in: plan and run field campaigns and remote logistics (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-QSAV0HJ",
+       "statement": "Knowledge of and skill in: ground-truth remote-sensed, modelled and AI-generated outputs in the field (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-B5C0G9X",
+       "statement": "Knowledge of and skill in: sample and assess vegetation using standardized field protocols (EMST target senior L2, lead L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-NP79M0H",
+       "statement": "Knowledge of and skill in: read site history and reference conditions from landscape evidence (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7TZABBG",
+       "statement": "Knowledge of and skill in: work alongside landowners, permittees, volunteers and communities on the land (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-BBSZYXE",
+       "statement": "Knowledge of and skill in: operate and supervise uncrewed and automated field systems (EMST target senior L2, lead L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-44JK8N8",
+       "statement": "Knowledge of and skill in: operate chainsaws and other power equipment safely in field conditions (EMST target senior L2, lead L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-KKND657",
+       "statement": "Knowledge of and skill in: deliver environmental projects to budget, schedule and quality (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [
+        "Estimate at completion equals actual cost to date plus the estimated cost of remaining work; a variance is the difference between it and the approved budget."
+       ],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-0N97D81",
+       "statement": "Knowledge of and skill in: evaluate and certify others' task performance against position standards (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [
+        "An entrustment-supervision scale rates the supervision a trainee still needs, from the assessor performing the task to no supervision needed, rather than rating the trainee against peers."
+       ],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-35BT97W",
+       "statement": "Knowledge of and skill in: coordinate environmental response operations within incident command (EMST target senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-ZCRS03R",
+       "statement": "Knowledge of and skill in: supervise staff and volunteers in environmental work (EMST target senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     }

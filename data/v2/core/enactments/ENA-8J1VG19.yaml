@@ -1,0 +1,56 @@
+id: emst:core/ENA-8J1VG19
+type: Enactment
+prefLabel:
+  en: Regulated party planning under two legal futures
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-N8FVCXE
+enactmentKind: actor
+actorType: firm
+authorityBasis:
+  en: Obligations under current rules plus exposure to their reversal or reinstatement.
+principal:
+  en: Executives and the board.
+accountabilityVenue:
+  en: Regulators; investors; courts.
+authorityPosition: regulated-party
+characteristicInstruments:
+- instrument: emst:core/INS-N1KD959
+  role: constrains
+- instrument: emst:core/INS-N7C3WBS
+  role: constrains
+- instrument: seed:ins/sec-climate-disclosure
+  role: constrains
+- instrument: emst:core/INS-HX0EWMK
+  role: constrains
+note:
+  en: 'Disclosure regimes enjoined, narrowed or starting in 2026 show why firms plan compliance under more than one legal future [E: V2-15].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - V2-15
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

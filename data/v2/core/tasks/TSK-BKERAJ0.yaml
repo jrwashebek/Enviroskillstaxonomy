@@ -1,0 +1,42 @@
+id: emst:core/TSK-BKERAJ0
+type: Task
+prefLabel:
+  en: Brief a decision-maker orally on a pending decision under time pressure, answering questions and stating where the evidence is uncertain
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Brief a decision-maker orally on a pending decision under time pressure, answering questions and stating where the evidence is uncertain
+textSha256: b2abc677ddb453ff9d22d70cac178198d75e49fefe0ece12c5200597fb2cc9e9
+supports:
+- competency: emst:core/CMP-0HTAC6Q
+  strength: primary
+workFunction: WF-MANAGE
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+homeModule: core
+modes:
+- MODE-ENGAGE
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

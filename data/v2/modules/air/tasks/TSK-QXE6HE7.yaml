@@ -1,0 +1,41 @@
+id: emst:air/TSK-QXE6HE7
+type: Task
+prefLabel:
+  en: Compare a smoke dispersion forecast with monitor and observer data during a burn, recommending holding or stopping ignition when the forecast fails
+statement:
+  en: Compare a smoke dispersion forecast with monitor and observer data during a burn, recommending holding or stopping ignition when the forecast fails
+textSha256: 5e7fd2584caab4af3eafe85309b99cfdae2f091387349b932aff266d9fa77671
+supports:
+- competency: emst:air/CMP-3FB5XRW
+  strength: primary
+workFunction: WF-MONITOR
+workflowProfiles:
+- WP-PROJECT
+- WP-INCIDENT
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+homeModule: air
+subsectors:
+- P01
+- L07
+layer: L2
+module: air
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

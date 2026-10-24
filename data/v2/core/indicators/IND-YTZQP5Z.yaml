@@ -1,0 +1,39 @@
+id: emst:core/IND-YTZQP5Z
+type: Indicator
+prefLabel:
+  en: Checks that an AI tool is approved for the data class before entering task…
+competency: emst:core/CMP-7JGQFKZ
+level: L1
+statement:
+  en: Checks that an AI tool is approved for the data class before entering task information, withholding sensitive items such as rare-species locations.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+- situational-judgment-test
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-MJ4P80E
+- emst:core/TSK-MQXKE35
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

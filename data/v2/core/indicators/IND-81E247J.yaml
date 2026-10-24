@@ -1,0 +1,43 @@
+id: emst:core/IND-81E247J
+type: Indicator
+prefLabel:
+  en: Reviews AI-drafted questions or benchmarks against the position's duties, logging each item revised or rejected before panel adoption.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-EG4C8YG
+level: L3
+statement:
+  en: Reviews AI-drafted questions or benchmarks against the position's duties, logging each item revised or rejected before panel adoption.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- review log
+servedTasks:
+- emst:core/TSK-9STVFKX
+distinguishingAttribute: ATT-AUG
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

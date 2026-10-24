@@ -1,0 +1,86 @@
+id: emst:core/VAR-3GYQHJS
+type: RoleVariant
+prefLabel:
+  en: Environmental permit writer (federal)
+variantOf: emst:core/ROL-5Q1E37Y
+sectorActor: federal
+authorityPosition: regulator
+layer: L3
+module: core
+status: candidate
+validationStatus: draft
+license: CC0-1.0
+definition:
+  en: 'Environmental permit writer in a federal setting: acts as regulator, deciding on or enforcing obligations of others. Issues permits where programmes are not delegated and oversees delegated state programmes.'
+lifecycleState: established
+useTier: develop
+sensitivity: public
+sectorActorSubtype: federal-regulator
+industry: public-administration
+ownership: public
+deliveryModel: in-house
+taskAdds:
+- task: emst:core/TSK-R55XEVS
+  importance: 4
+  timeShare: 0.03
+  critical: false
+  neededAtEntry: false
+  roleLevels:
+  - senior
+  - lead
+- task: emst:core/TSK-3M72DRB
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  roleLevels:
+  - senior
+  - lead
+taskDrops:
+- emst:core/TSK-J9APZPS
+instruments:
+- instrument: emst:core/INS-A7Z433R
+  role: requires
+- instrument: emst:core/INS-337YBTK
+  role: requires
+  note:
+    en: Outside assumed states.
+- instrument: emst:core/INS-BSF7C0S
+  role: requires
+- instrument: emst:core/INS-8CT98M3
+  role: requires
+- instrument: emst:core/INS-PC3SHGA
+  role: requires
+  note:
+    en: Where the federal regulator issues the permit.
+- instrument: emst:core/INS-C3WAH1B
+  role: requires
+  note:
+    en: Federal review of state-issued permits in delegated programmes.
+indicativeGradeOrBand:
+  scheme: GS
+  byRoleLevel:
+    journey: GS-9 to GS-11
+    senior: GS-12 to GS-13
+    lead: GS-13 to GS-14
+  label: not a classification criterion
+disclaimers:
+- Not a classification basis / not a job analysis / not for RIF or rating decisions.
+- 'Agent draft (raterType llm, validationStatus draft, evidence S): task importance, time share, critical and needed-at-entry flags and target levels are not job-analysis results.'
+editorialNote:
+  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8). indicativeGradeOrBand is FH judgment from the FH Phase 2 proficiency proposal (report section 6.2), never a classification criterion; indicativeGradeOrBand.byRoleLevel gives the band each role level is read against.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  - emstagent:fh-agent@s2-closeout-a
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0007
+  - ADR-0017
+  - ADR-0022

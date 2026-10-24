@@ -1,0 +1,46 @@
+id: emst:core/IND-E4PM4TJ
+type: Indicator
+prefLabel:
+  en: Adapts the language, format and pace of a meeting to the norms the community's advisers stated, with each requested adaptation confirmed in structured feedback from the community's representatives.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-2VQTX8E
+level: L2
+statement:
+  en: Adapts the language, format and pace of a meeting to the norms the community's advisers stated, with each requested adaptation confirmed in structured feedback from the community's representatives.
+augmentationMode: unaided
+assessmentMethods:
+- counterpart-360
+useClass: develop
+obs4: 2
+jurisdictionVariable: false
+evidencePlan:
+  en: Pilot the assessment method with two trained raters on synthetic cases before use; promote to obs4 3 only after IO double-coding.
+evidenceTypes:
+- structured feedback
+servedTasks:
+- emst:core/TSK-RCTCX6N
+distinguishingAttribute: ATT-AUT
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

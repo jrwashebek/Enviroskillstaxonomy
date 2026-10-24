@@ -1,0 +1,62 @@
+id: emst:core/TSK-W15P8RQ
+type: Task
+prefLabel:
+  en: Prepare a policy brief summarizing the legal and policy considerations for a decision, citing each source relied on
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Prepare a policy brief summarizing the legal and policy considerations for a decision, citing each source relied on
+textSha256: ed664e4b6c8781135ea18ebd34851250f98a0ac6600d645259868864b58e5318
+supports:
+- competency: emst:core/CMP-MJ41YKW
+  strength: primary
+workFunction: WF-RULE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 6.1.1:T3
+v1Tier: T3
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.1'
+  label: Environmental Law & Regulation
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Prepare memos or policy briefs summarizing legal considerations" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.1.1:T3
+    v1Code: 6.1.1
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 177
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

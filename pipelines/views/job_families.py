@@ -27,10 +27,12 @@ def main():
     assigned = set()
     for role in d.roles():
         tg = [t for t in role.get("competencyTargets") or [] if t["competency"] not in excl]
-        tot = sum(t.get("importance", 1) for t in tg) or 1
+        # display-gate@1.1.0 `rollups`: weights are 1 unless importance is job-analysis-confirmed (CR-CP-001 B4)
+        w = (lambda t: t.get("importance", 1)) if V.shows(role, "competencyTargets.importance", "federal-series-profile") else (lambda t: 1)
+        tot = sum(w(t) for t in tg) or 1
         for fid, spec in p["families"].items():
             anchors = set(spec["anchors"])
-            share = sum(t.get("importance", 1) for t in tg if t["competency"] in anchors) / tot
+            share = sum(w(t) for t in tg if t["competency"] in anchors) / tot
             in_mod = role.get("homeModule") in set(spec.get("modules") or [])
             basis = None
             if share >= p["minShare"]:
@@ -42,7 +44,7 @@ def main():
                                  "basis": basis, "whatsComing": role.get("lifecycleState") in ("proposed", "emerging")})
                 assigned.add(role["id"])
     res = {"stamp": V.stamp(RULE["ruleId"], RULE["version"], GEN),
-           "note": "Navigation only; not a classification or a career-ladder claim. Shares are over agent-draft target importances.",
+           "note": "Navigation only; not a classification or a career-ladder claim. Shares count competency targets (weight 1 each) until importance is job-analysis-confirmed.",
            "families": [{"family": fid, "label": d.label(fid), "members": sorted(m, key=lambda x: -x["share"])}
                         for fid, m in out.items()],
            "unassigned": sorted(r["id"] for r in d.roles() if r["id"] not in assigned)}

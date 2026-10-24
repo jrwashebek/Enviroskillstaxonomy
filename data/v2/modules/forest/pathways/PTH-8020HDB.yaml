@@ -1,0 +1,169 @@
+id: emst:forest/PTH-8020HDB
+type: Pathway
+prefLabel:
+  en: 'Exploratory pathway: conservation corps member to wildland fire operations (entry)'
+definition:
+  en: Moves a corps member into entry wildland fire operations through safety culture, fireline and saw work, fire behaviour basics and prescribed-fire crew work, evaluated on qualifying assignments. Position qualifications are gates, not levels (ADR-0003 T-8). Exploratory.
+notation:
+- scheme: mvp-corridor
+  value: COR-2
+fromVariant: emst:core/ROL-ZK41BZA
+toVariant: emst:forest/ROL-KB8K99D
+pathwayType: new-hire
+modes:
+- WBL
+- FD
+- SIM
+- CL
+- MEN
+emstRelease: 2.0.0-rc.1
+cloOutcomes:
+- competency: emst:core/CMP-CERKVPH
+  level: L1
+- competency: emst:core/CMP-WC5GQ9X
+  level: L1
+- competency: emst:core/CMP-V9DP16C
+  level: L1
+- competency: emst:core/CMP-32GRDN0
+  level: L1
+- competency: emst:forest/CMP-XBY22QT
+  level: L1
+- competency: emst:core/CMP-44JK8N8
+  level: L1
+- competency: emst:core/CMP-0CT0C9G
+  level: L1
+- competency: emst:forest/CMP-MQJG1YC
+  level: L1
+- competency: emst:forest/CMP-8W0ZQTM
+  level: L1
+- competency: emst:core/CMP-CERKVPH
+  level: L2
+- competency: emst:forest/CMP-XBY22QT
+  level: L2
+assessmentPlan:
+  en: 'Each CLO is assessed with the methods its indicators list; field-craft outcomes are assessed at least once in the field, statecraft outcomes in a live or simulated stakeholder or legal-administrative setting, data-craft outcomes on real data with a reproducible product (LC template R4-R5). Assisted-mode outcomes include a seeded-error validation drill. Supervisor formation plan required: the learner''s supervisor works to emst:core/CMP-ZPEFG5E at L2 or above and a named mentor or evaluator to emst:core/CMP-0N97D81 at L3 (ADR-0026 R7). Training use only; never a selection instrument (IO).'
+sequence:
+- step: 1
+  tasks:
+  - emst:core/TSK-22VWHXT
+  - emst:core/TSK-98VCJRH
+  - emst:core/TSK-PVX3WGK
+  - emst:core/TSK-Z5PWMDT
+  cloOutcomes:
+  - competency: emst:core/CMP-CERKVPH
+    level: L1
+  - competency: emst:core/CMP-WC5GQ9X
+    level: L1
+  - competency: emst:core/CMP-V9DP16C
+    level: L1
+  - competency: emst:core/CMP-32GRDN0
+    level: L1
+  roleLevel: entry
+  note:
+    en: 'Safety culture first: stop-work, heat and smoke illness, navigation and first aid.'
+- step: 2
+  tasks:
+  - emst:forest/TSK-25Z6W29
+  - emst:forest/TSK-AZWE8XW
+  - emst:core/TSK-BFC528F
+  - emst:core/TSK-8BE9CJH
+  cloOutcomes:
+  - competency: emst:forest/CMP-XBY22QT
+    level: L1
+  - competency: emst:core/CMP-44JK8N8
+    level: L1
+  - competency: emst:core/CMP-0CT0C9G
+    level: L1
+  formationProvisions:
+  - task: emst:forest/TSK-25Z6W29
+    responses:
+    - observed-wbl
+    releaseCriterion: evaluator sign-off in coded context
+    mentorRequired: true
+  - task: emst:core/TSK-BFC528F
+    responses:
+    - observed-wbl
+    releaseCriterion: evaluator sign-off
+    mentorRequired: true
+  roleLevel: entry
+  note:
+    en: 'Fireline, mop-up, saw work and emergency communication, evaluated only on the assignment type each task is coded for (R5) [E: LC-104].'
+- step: 3
+  tasks:
+  - emst:forest/TSK-8YY569V
+  - emst:forest/TSK-G4C8713
+  - emst:forest/TSK-C031H5M
+  cloOutcomes:
+  - competency: emst:forest/CMP-MQJG1YC
+    level: L1
+  - competency: emst:forest/CMP-8W0ZQTM
+    level: L1
+  formationProvisions:
+  - task: emst:forest/TSK-8YY569V
+    responses:
+    - supervised-repetitions
+    - validation-drill
+    quota:
+      count: 10
+      unit: hand calculations of fuel moisture and indices from on-site observations
+    releaseCriterion: within tolerance of the reference calculation
+    mentorRequired: true
+  - task: emst:forest/TSK-G4C8713
+    responses:
+    - observed-wbl
+    releaseCriterion: evaluator sign-off
+    mentorRequired: true
+  roleLevel: entry
+  note:
+    en: Fire weather and prescribed-fire crew work.
+- step: 4
+  tasks:
+  - emst:core/TSK-TMVX81X
+  - emst:forest/TSK-3BA6RR8
+  - emst:core/TSK-G1NPYCP
+  cloOutcomes:
+  - competency: emst:core/CMP-CERKVPH
+    level: L2
+  - competency: emst:forest/CMP-XBY22QT
+    level: L2
+  roleLevel: journey
+  note:
+    en: 'Journey step: briefings and directing a small crew''s tactical assignment, with turn-down practice (TX-C L2-L3).'
+recognitionOfPriorLearning:
+- emst:core/CRD-MNP0Y8X
+durationAndCost:
+  hours: 200
+  months: 12
+  costNote: '[J] Entry training plus one to two seasons of supervised assignments; aligned federal qualification standards take effect January 2027 [E: V3-13].'
+alternativeFormationRoutes:
+- Sand-table and scenario simulation for rare events (entrapment, escaped prescribed fire) only; never in place of graduated exposure on assignments (ADR-0026 FC vs LC trade-off).
+recommended: false
+layer: learning
+module: forest
+status: candidate
+lifecycleState: proposed
+reviewBy: '2027-04-23'
+useTier: exploratory
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'EXPLORATORY, not recommended: no pathway is labelled recommended until it passes CM''s M-03 validation gate (ADR-0023 §5; ADR-0027). Built from the role-profile delta (ADR-0026 R1); hours, months and quotas are LC judgment for pilot calibration. Role records are WP-08''s; frictions attach when CM''s friction register exists. Moved into data/v2 in S2 (CR-LC-001 #1-#3): outcomes are named as CLOs {competency, level} (generic CLO = levels[].indicators; enactment anchors are reached through the enactment CLO, never listed here, CR-LC-001 #4); formation provisions are typed (formationProvisions), and docs/build/WP-07/formation_provisions.csv stays WP-07''s audit copy; role references are planned targets until WP-08 writes the records. Homed in the forest module (MOD-11): its fire roles and fire competencies are MOD-11 records, and core records may not depend on module records (SPEC §3.2).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T14:20:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-pathways@1
+  sources:
+  - LC-104
+  - V3-13
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0026
+  - ADR-0023
+  - ADR-0027
+  - ADR-0004

@@ -1,0 +1,81 @@
+id: emst:core/CMP-47TQY9N
+type: Competency
+prefLabel:
+  en: Authorize ecological interventions with legitimate standing and precaution
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to establish, before a management intervention proceeds, that every party whose authority, consent or standing it requires has authorized it, that precautionary criteria for reversibility and uncertainty have been applied, and that monitoring and exit conditions are set and recorded.
+statement:
+  en: Before a management intervention proceeds, identifies every party whose authority, consent or standing it requires, tests the intervention against reversibility, uncertainty and precedent criteria, sets monitoring obligations and exit conditions, and records who authorized it and on what basis.
+competencyType: transversal
+transversalCluster: TX-B
+levelSpan:
+  min: L2
+  max: L4
+homeModule: core
+reusability: transversal
+altLabel:
+  en:
+  - intervention authorization
+  - ecological precaution
+  - authorization with standing
+notation:
+- scheme: EMSTv1
+  value: 7.1.2
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.1'
+  label: Professional Ethics Architecture
+editorialNote:
+  en: 'WP-05 (A5 SC). v1 7.1.2 rewrite moved to the transversal layer with observable indicators (ADR-0025). TN''s verdict that Tribal governments are authorities with standing is reserved for TN to draft as a held enactment under the Tribal hold (not authored here); this record is written actor-neutrally and names no Tribal content. Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | transversal | TX-B. Rationale: Treats Tribal governments as authorities with standing (TN carry); moved to the transversal layer with observable indicators (ADR-0025). Role verdicts considered: TN:carry|CA:change.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:7.1.2
+    v1Code: 7.1.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 218
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-DZTKZER
+  - emst:core/IND-JJQNSN3
+- level: L3
+  indicators:
+  - emst:core/IND-XFFDFVP
+  - emst:core/IND-64SQAY3
+- level: L4
+  indicators:
+  - emst:core/IND-8ZZRKDW
+  - emst:core/IND-X5847X7

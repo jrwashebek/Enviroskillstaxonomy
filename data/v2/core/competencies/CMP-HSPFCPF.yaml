@@ -1,0 +1,61 @@
+id: emst:core/CMP-HSPFCPF
+type: Competency
+prefLabel:
+  en: Record field observations with protocol fidelity and data integrity
+definition:
+  en: Recording complete, accurate and documented field observations in any medium; applying protocol rules and metadata under adverse conditions; flagging conditions that compromise data; designing field forms with their users; and recovering records when devices fail. Excludes database administration and data pipelines (data craft) and specific apps and devices (tools layer).
+statement:
+  en: Record complete, accurate and documented observations in any medium, applying protocol rules and metadata under adverse conditions; flag conditions that compromise data; check records before hand-off; and recover the record when a device fails.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-AVV3CHF
+  - emst:core/IND-JRCJFD3
+  - emst:core/IND-70C229N
+- level: L2
+  indicators:
+  - emst:core/IND-RBSTRDJ
+  - emst:core/IND-V8A6HM5
+  - emst:core/IND-27VP1CF
+- level: L3
+  indicators:
+  - emst:core/IND-25PK50J
+  - emst:core/IND-HGANKSK
+  - emst:core/IND-XMRNVD2
+homeModule: core
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: WP-03 (FC) draft. Survivor for field recording (candidate FC-C23); absorbs v1 4.1.5, 2.3.3 and the durable remainder of 2.3.4 (field apps and devices move to L4 per T-1; WP-04 re-pointed and rewrote the 2.3.4 tasks here as owner of the D2 row).
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.1.5
+    relation: merged-from
+  - v1Key: v1:2.3.3
+    relation: merged-from
+  - v1Key: v1:2.3.4
+    relation: merged-from
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - ADR-0011
+  - WP-03

@@ -1,0 +1,50 @@
+id: emst:core/ENA-NJZVJHV
+type: Enactment
+prefLabel:
+  en: State wildlife agency and state species law
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-T1175YK
+enactmentKind: actor
+actorType: state-agency
+authorityBasis:
+  en: State endangered-species statutes and permits; state agencies also act as non-federal applicants or designated representatives where a federal nexus exists.
+principal:
+  en: The state wildlife agency director or commission.
+accountabilityVenue:
+  en: State courts.
+characteristicInstruments:
+- instrument: emst:core/INS-202EF57
+  role: requires
+  note:
+    en: Example state only; other states' statutes are not yet registered.
+note:
+  en: 'SL review: state species laws can be broader or narrower than federal law and do not change when federal rules change [J].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sl-review@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

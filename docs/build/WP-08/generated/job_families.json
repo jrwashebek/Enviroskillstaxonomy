@@ -2,73 +2,250 @@
  "stamp": {
   "ruleId": "job-family-membership",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "ruleStatus": "registered rule, status active",
   "generator": "pipelines/views/job_families.py@0.1.0",
   "asOf": "2026-10-23"
  },
- "note": "Navigation only; not a classification or a career-ladder claim. Shares are over agent-draft target importances.",
+ "note": "Navigation only; not a classification or a career-ladder claim. Shares count competency targets (weight 1 each) until importance is job-analysis-confirmed.",
  "families": [
   {
-   "family": "seed:fh-family-f01-forest-management",
+   "family": "emst:core/FAM-VEQVEDK",
    "label": "Forest management",
    "members": [
     {
-     "role": "seed:R14-forester",
+     "role": "emst:forest/ROL-G0WBAHH",
      "roleTitle": "Forester",
-     "share": 0.596,
+     "share": 0.471,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R34-stewardship-agreement-manager",
+     "role": "emst:forest/ROL-G90XCWY",
      "roleTitle": "Intergovernmental stewardship agreement manager",
-     "share": 0.118,
+     "share": 0.1,
      "basis": "home module and anchor share",
      "whatsComing": true
     }
    ]
   },
   {
-   "family": "seed:fh-family-f02-fish-wildlife-management",
+   "family": "emst:core/FAM-5V7G5ZR",
    "label": "Fish and wildlife management",
    "members": [
     {
-     "role": "seed:R16-fisheries-aquatic-biologist",
+     "role": "emst:wildlife/ROL-DXYAYRQ",
      "roleTitle": "Fisheries and aquatic biologist",
-     "share": 0.432,
+     "share": 0.4,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R15-wildlife-biologist",
+     "role": "emst:wildlife/ROL-46NJRQF",
      "roleTitle": "Wildlife biologist",
-     "share": 0.381,
+     "share": 0.364,
      "basis": "anchor share",
      "whatsComing": false
     }
    ]
   },
   {
-   "family": "seed:fh-family-f03-ecological-restoration",
+   "family": "emst:core/FAM-RP6CX3T",
    "label": "Ecological restoration",
    "members": [
     {
-     "role": "seed:R01-conservation-corps-member",
+     "role": "emst:core/ROL-ZK41BZA",
      "roleTitle": "Conservation corps member",
-     "share": 0.316,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R09-restoration-project-lead",
-     "roleTitle": "Restoration and land stewardship project lead",
      "share": 0.286,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R20-ecologist",
+     "role": "emst:core/ROL-BMJ0VB9",
      "roleTitle": "Ecologist",
+     "share": 0.231,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:core/ROL-02B6BZV",
+     "roleTitle": "Restoration and land stewardship project lead",
+     "share": 0.227,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:worklands/ROL-3X72GZ8",
+     "roleTitle": "Soil conservationist",
+     "share": 0.2,
+     "basis": "anchor share",
+     "whatsComing": false
+    }
+   ]
+  },
+  {
+   "family": "emst:core/FAM-32H8QKT",
+   "label": "Watershed science and water resources",
+   "members": [
+    {
+     "role": "emst:waterq/ROL-CJW7T7X",
+     "roleTitle": "Hydrologist",
+     "share": 0.455,
+     "basis": "anchor share",
+     "whatsComing": false
+    }
+   ]
+  },
+  {
+   "family": "emst:core/FAM-HRDFVYV",
+   "label": "Water and wastewater utility operations",
+   "members": [
+    {
+     "role": "emst:water/ROL-Q49FT7J",
+     "roleTitle": "Water and wastewater treatment operator",
+     "share": 0.455,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:water/ROL-J624S6K",
+     "roleTitle": "Drinking water programme analyst",
+     "share": 0.1,
+     "basis": "home module and anchor share",
+     "whatsComing": false
+    }
+   ]
+  },
+  {
+   "family": "emst:core/FAM-5J36W8V",
+   "label": "Conservation science and ecology",
+   "members": [
+    {
+     "role": "emst:wildlife/ROL-46NJRQF",
+     "roleTitle": "Wildlife biologist",
+     "share": 0.545,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:core/ROL-BMJ0VB9",
+     "roleTitle": "Ecologist",
+     "share": 0.538,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:core/ROL-7DTPX8B",
+     "roleTitle": "Ground-truth and validation steward",
+     "share": 0.417,
+     "basis": "anchor share",
+     "whatsComing": true
+    },
+    {
+     "role": "emst:worklands/ROL-3X72GZ8",
+     "roleTitle": "Soil conservationist",
+     "share": 0.3,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:core/ROL-ZJFCC09",
+     "roleTitle": "Field resource technician",
+     "share": 0.25,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:wildlife/ROL-DXYAYRQ",
+     "roleTitle": "Fisheries and aquatic biologist",
+     "share": 0.2,
+     "basis": "anchor share",
+     "whatsComing": false
+    }
+   ]
+  },
+  {
+   "family": "emst:core/FAM-7EH73MJ",
+   "label": "Climate science and adaptation",
+   "members": [
+    {
+     "role": "emst:hazards/ROL-KWW98MN",
+     "roleTitle": "Hazard mitigation and floodplain manager",
+     "share": 0.2,
+     "basis": "anchor share",
+     "whatsComing": false
+    }
+   ]
+  },
+  {
+   "family": "emst:core/FAM-YVE7DPN",
+   "label": "Environmental data science and geospatial analysis",
+   "members": [
+    {
+     "role": "emst:core/ROL-1GQVAH3",
+     "roleTitle": "Geospatial and remote sensing analyst",
+     "share": 0.8,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:core/ROL-RTNR722",
+     "roleTitle": "Environmental AI assurance officer",
+     "share": 0.625,
+     "basis": "anchor share",
+     "whatsComing": true
+    },
+    {
+     "role": "emst:core/ROL-8V0NKZ4",
+     "roleTitle": "Permitting technology product owner",
+     "share": 0.556,
+     "basis": "anchor share",
+     "whatsComing": true
+    },
+    {
+     "role": "emst:forest/ROL-FSCZ00K",
+     "roleTitle": "Fire intelligence analyst (continuous operations)",
+     "share": 0.538,
+     "basis": "anchor share",
+     "whatsComing": true
+    },
+    {
+     "role": "emst:waterq/ROL-CJW7T7X",
+     "roleTitle": "Hydrologist",
+     "share": 0.455,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:core/ROL-AC7DRZ6",
+     "roleTitle": "AI-assisted environmental review lead",
+     "share": 0.429,
+     "basis": "anchor share",
+     "whatsComing": true
+    },
+    {
+     "role": "emst:core/ROL-XVN70QT",
+     "roleTitle": "GHG and nature data controller",
+     "share": 0.429,
+     "basis": "anchor share",
+     "whatsComing": true
+    },
+    {
+     "role": "emst:core/ROL-QP4Q27S",
+     "roleTitle": "Monitoring and data technician",
+     "share": 0.375,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:core/ROL-7DTPX8B",
+     "roleTitle": "Ground-truth and validation steward",
+     "share": 0.333,
+     "basis": "anchor share",
+     "whatsComing": true
+    },
+    {
+     "role": "emst:core/ROL-Y2VGWPS",
+     "roleTitle": "Environmental engineer",
      "share": 0.25,
      "basis": "anchor share",
      "whatsComing": false
@@ -76,405 +253,242 @@
    ]
   },
   {
-   "family": "seed:fh-family-f04a-watershed-water-resources",
-   "label": "Watershed science and water resources",
-   "members": [
-    {
-     "role": "seed:R17-hydrologist",
-     "roleTitle": "Hydrologist",
-     "share": 0.488,
-     "basis": "anchor share",
-     "whatsComing": false
-    }
-   ]
-  },
-  {
-   "family": "seed:fh-family-f04b-water-utility-operations",
-   "label": "Water and wastewater utility operations",
-   "members": [
-    {
-     "role": "seed:R25-water-wastewater-operator",
-     "roleTitle": "Water and wastewater treatment operator",
-     "share": 0.525,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R24-drinking-water-program-analyst",
-     "roleTitle": "Drinking water programme analyst",
-     "share": 0.135,
-     "basis": "home module and anchor share",
-     "whatsComing": false
-    }
-   ]
-  },
-  {
-   "family": "seed:fh-family-f05-conservation-science-ecology",
-   "label": "Conservation science and ecology",
-   "members": [
-    {
-     "role": "seed:R15-wildlife-biologist",
-     "roleTitle": "Wildlife biologist",
-     "share": 0.595,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R20-ecologist",
-     "roleTitle": "Ecologist",
-     "share": 0.568,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R05-ground-truth-validation-steward",
-     "roleTitle": "Ground-truth and validation steward",
-     "share": 0.405,
-     "basis": "anchor share",
-     "whatsComing": true
-    },
-    {
-     "role": "seed:R02-field-resource-technician",
-     "roleTitle": "Field resource technician",
-     "share": 0.333,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R19-soil-conservationist",
-     "roleTitle": "Soil conservationist",
-     "share": 0.289,
-     "basis": "anchor share",
-     "whatsComing": false
-    }
-   ]
-  },
-  {
-   "family": "seed:fh-family-f06-climate-adaptation",
-   "label": "Climate science and adaptation",
-   "members": [
-    {
-     "role": "seed:R30-hazard-mitigation-floodplain-manager",
-     "roleTitle": "Hazard mitigation and floodplain manager",
-     "share": 0.222,
-     "basis": "anchor share",
-     "whatsComing": false
-    }
-   ]
-  },
-  {
-   "family": "seed:fh-family-f07-environmental-data-geospatial",
-   "label": "Environmental data science and geospatial analysis",
-   "members": [
-    {
-     "role": "seed:R04-geospatial-remote-sensing-analyst",
-     "roleTitle": "Geospatial and remote sensing analyst",
-     "share": 0.885,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R32-environmental-ai-assurance-officer",
-     "roleTitle": "Environmental AI assurance officer",
-     "share": 0.688,
-     "basis": "anchor share",
-     "whatsComing": true
-    },
-    {
-     "role": "seed:R33-permitting-technology-product-owner",
-     "roleTitle": "Permitting technology product owner",
-     "share": 0.656,
-     "basis": "anchor share",
-     "whatsComing": true
-    },
-    {
-     "role": "seed:R08-fire-intelligence-analyst",
-     "roleTitle": "Fire intelligence analyst (continuous operations)",
-     "share": 0.61,
-     "basis": "anchor share",
-     "whatsComing": true
-    },
-    {
-     "role": "seed:R17-hydrologist",
-     "roleTitle": "Hydrologist",
-     "share": 0.442,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R05-ground-truth-validation-steward",
-     "roleTitle": "Ground-truth and validation steward",
-     "share": 0.429,
-     "basis": "anchor share",
-     "whatsComing": true
-    },
-    {
-     "role": "seed:R31-ai-assisted-review-lead",
-     "roleTitle": "AI-assisted environmental review lead",
-     "share": 0.429,
-     "basis": "anchor share",
-     "whatsComing": true
-    },
-    {
-     "role": "seed:R36-ghg-nature-data-controller",
-     "roleTitle": "GHG and nature data controller",
-     "share": 0.407,
-     "basis": "anchor share",
-     "whatsComing": true
-    },
-    {
-     "role": "seed:R03-monitoring-data-technician",
-     "roleTitle": "Monitoring and data technician",
-     "share": 0.404,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R22-environmental-engineer",
-     "roleTitle": "Environmental engineer",
-     "share": 0.233,
-     "basis": "anchor share",
-     "whatsComing": false
-    }
-   ]
-  },
-  {
-   "family": "seed:fh-family-f08-regulation-review-authorization",
+   "family": "emst:core/FAM-412PEFZ",
    "label": "Environmental review, authorization and compliance",
    "members": [
     {
-     "role": "seed:R11-environmental-permit-writer",
+     "role": "emst:core/ROL-5Q1E37Y",
      "roleTitle": "Environmental permit writer",
-     "share": 0.729,
+     "share": 0.6,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R23-enforcement-case-manager",
+     "role": "emst:core/ROL-M55JJCE",
      "roleTitle": "Enforcement case manager",
-     "share": 0.641,
+     "share": 0.6,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R10-environmental-review-specialist",
-     "roleTitle": "Environmental review specialist",
-     "share": 0.517,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R24-drinking-water-program-analyst",
+     "role": "emst:water/ROL-J624S6K",
      "roleTitle": "Drinking water programme analyst",
-     "share": 0.514,
+     "share": 0.5,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R31-ai-assisted-review-lead",
+     "role": "emst:core/ROL-AC7DRZ6",
      "roleTitle": "AI-assisted environmental review lead",
-     "share": 0.464,
+     "share": 0.429,
      "basis": "anchor share",
      "whatsComing": true
     },
     {
-     "role": "seed:R27-remediation-project-manager",
+     "role": "emst:waste/ROL-ZFX6CM5",
      "roleTitle": "Remediation project manager",
-     "share": 0.447,
+     "share": 0.4,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R28-air-quality-specialist",
+     "role": "emst:air/ROL-4WY94YJ",
      "roleTitle": "Air quality specialist",
-     "share": 0.39,
+     "share": 0.364,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R12-environmental-compliance-inspector",
-     "roleTitle": "Environmental compliance inspector",
-     "share": 0.37,
+     "role": "emst:core/ROL-V5FGFB6",
+     "roleTitle": "Environmental review specialist",
+     "share": 0.35,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R29-solid-waste-materials-specialist",
+     "role": "emst:waste/ROL-0014ZND",
      "roleTitle": "Solid waste and materials management specialist",
-     "share": 0.316,
+     "share": 0.3,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R26-environmental-health-specialist",
-     "roleTitle": "Environmental health specialist",
-     "share": 0.308,
+     "role": "emst:core/ROL-2W43QDA",
+     "roleTitle": "Environmental compliance inspector",
+     "share": 0.294,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R13-resource-program-manager",
-     "roleTitle": "Natural resource and environmental programme manager",
-     "share": 0.303,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R22-environmental-engineer",
-     "roleTitle": "Environmental engineer",
-     "share": 0.256,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R37-facility-environmental-compliance-specialist",
+     "role": "emst:core/ROL-JA00QMT",
      "roleTitle": "Facility environmental compliance specialist",
-     "share": 0.244,
+     "share": 0.273,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R33-permitting-technology-product-owner",
+     "role": "emst:envhealth/ROL-NTT889J",
+     "roleTitle": "Environmental health specialist",
+     "share": 0.267,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:core/ROL-Y2VGWPS",
+     "roleTitle": "Environmental engineer",
+     "share": 0.25,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:core/ROL-8V0NKZ4",
      "roleTitle": "Permitting technology product owner",
-     "share": 0.219,
+     "share": 0.222,
      "basis": "anchor share",
      "whatsComing": true
+    },
+    {
+     "role": "emst:hazards/ROL-KWW98MN",
+     "roleTitle": "Hazard mitigation and floodplain manager",
+     "share": 0.2,
+     "basis": "anchor share",
+     "whatsComing": false
     }
    ]
   },
   {
-   "family": "seed:fh-family-f09-land-use-resource-planning",
+   "family": "emst:core/FAM-W42MJX4",
    "label": "Land use and resource planning",
    "members": [
     {
-     "role": "seed:R30-hazard-mitigation-floodplain-manager",
+     "role": "emst:hazards/ROL-KWW98MN",
      "roleTitle": "Hazard mitigation and floodplain manager",
-     "share": 0.278,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R18-rangeland-management-specialist",
-     "roleTitle": "Rangeland management specialist",
-     "share": 0.211,
+     "share": 0.2,
      "basis": "anchor share",
      "whatsComing": false
     }
    ]
   },
   {
-   "family": "seed:fh-family-f10-working-lands",
+   "family": "emst:core/FAM-59QPT27",
    "label": "Working lands and agricultural conservation",
    "members": [
     {
-     "role": "seed:R18-rangeland-management-specialist",
+     "role": "emst:forest/ROL-QM9BY8K",
      "roleTitle": "Rangeland management specialist",
-     "share": 0.368,
+     "share": 0.273,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R19-soil-conservationist",
+     "role": "emst:worklands/ROL-3X72GZ8",
      "roleTitle": "Soil conservationist",
-     "share": 0.263,
+     "share": 0.2,
      "basis": "anchor share",
      "whatsComing": false
     }
    ]
   },
   {
-   "family": "seed:fh-family-f11-interpretation-communication",
+   "family": "emst:core/FAM-GW53VFK",
    "label": "Interpretation, engagement and risk communication",
    "members": [
     {
-     "role": "seed:R21-park-ranger-visitor-resource",
+     "role": "emst:parks/ROL-68N3AAH",
      "roleTitle": "Park ranger (visitor and resource management)",
-     "share": 0.205,
-     "basis": "anchor share",
-     "whatsComing": false
-    }
-   ]
-  },
-  {
-   "family": "seed:fh-family-f12-fire-management",
-   "label": "Wildland fire management",
-   "members": [
-    {
-     "role": "seed:R07-fuels-prescribed-fire-specialist",
-     "roleTitle": "Fuels and prescribed fire specialist",
-     "share": 0.295,
-     "basis": "anchor share",
-     "whatsComing": false
-    },
-    {
-     "role": "seed:R08-fire-intelligence-analyst",
-     "roleTitle": "Fire intelligence analyst (continuous operations)",
-     "share": 0.293,
-     "basis": "anchor share",
-     "whatsComing": true
-    },
-    {
-     "role": "seed:R06-wildland-fire-operations",
-     "roleTitle": "Wildland fire operations (crew to supervisor)",
-     "share": 0.197,
+     "share": 0.125,
      "basis": "home module and anchor share",
      "whatsComing": false
     }
    ]
   },
   {
-   "family": "seed:fh-family-f13a-environmental-public-health",
+   "family": "emst:core/FAM-FVYHS8G",
+   "label": "Wildland fire management",
+   "members": [
+    {
+     "role": "emst:forest/ROL-FSCZ00K",
+     "roleTitle": "Fire intelligence analyst (continuous operations)",
+     "share": 0.231,
+     "basis": "anchor share",
+     "whatsComing": true
+    },
+    {
+     "role": "emst:forest/ROL-BS2AR2G",
+     "roleTitle": "Fuels and prescribed fire specialist",
+     "share": 0.211,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:forest/ROL-KB8K99D",
+     "roleTitle": "Wildland fire operations (crew to supervisor)",
+     "share": 0.158,
+     "basis": "home module and anchor share",
+     "whatsComing": false
+    }
+   ]
+  },
+  {
+   "family": "emst:core/FAM-2ZYWA1W",
    "label": "Environmental public health services",
    "members": [
     {
-     "role": "seed:R26-environmental-health-specialist",
+     "role": "emst:envhealth/ROL-NTT889J",
      "roleTitle": "Environmental health specialist",
-     "share": 0.41,
+     "share": 0.267,
+     "basis": "anchor share",
+     "whatsComing": false
+    },
+    {
+     "role": "emst:waste/ROL-ZFX6CM5",
+     "roleTitle": "Remediation project manager",
+     "share": 0.2,
      "basis": "anchor share",
      "whatsComing": false
     }
    ]
   },
   {
-   "family": "seed:fh-family-f13b-cumulative-burden-analysis",
+   "family": "emst:core/FAM-5H96DT1",
    "label": "Cumulative-burden and distributional-effects analysis",
    "members": []
   },
   {
-   "family": "seed:fh-family-f14-corporate-compliance-disclosure",
+   "family": "emst:core/FAM-5P3Q397",
    "label": "Facility compliance, disclosure and sustainability reporting",
    "members": [
     {
-     "role": "seed:R36-ghg-nature-data-controller",
+     "role": "emst:core/ROL-XVN70QT",
      "roleTitle": "GHG and nature data controller",
-     "share": 0.519,
+     "share": 0.429,
      "basis": "anchor share",
      "whatsComing": true
     },
     {
-     "role": "seed:R27-remediation-project-manager",
+     "role": "emst:waste/ROL-ZFX6CM5",
      "roleTitle": "Remediation project manager",
-     "share": 0.342,
+     "share": 0.3,
      "basis": "anchor share",
      "whatsComing": false
     },
     {
-     "role": "seed:R37-facility-environmental-compliance-specialist",
+     "role": "emst:core/ROL-JA00QMT",
      "roleTitle": "Facility environmental compliance specialist",
-     "share": 0.293,
+     "share": 0.273,
      "basis": "anchor share",
      "whatsComing": false
     }
    ]
   },
   {
-   "family": "seed:fh-family-f15-environmental-finance-markets",
+   "family": "emst:core/FAM-QCWQ26R",
    "label": "Environmental finance and markets",
    "members": [
     {
-     "role": "seed:R34-stewardship-agreement-manager",
+     "role": "emst:forest/ROL-G90XCWY",
      "roleTitle": "Intergovernmental stewardship agreement manager",
-     "share": 0.235,
+     "share": 0.2,
      "basis": "anchor share",
      "whatsComing": true
     }
@@ -482,6 +496,7 @@
   }
  ],
  "unassigned": [
-  "seed:R35-knowledge-continuity-lead"
+  "emst:core/ROL-ETRR81A",
+  "emst:core/ROL-ZZNFGTA"
  ]
 }

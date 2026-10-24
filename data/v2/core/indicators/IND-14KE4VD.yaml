@@ -1,0 +1,45 @@
+id: emst:core/IND-14KE4VD
+type: Indicator
+prefLabel:
+  en: Evaluates staff record files against the organization's standard, returning each with the defects to correct before certification.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-M0JAW9R
+level: L4
+statement:
+  en: Evaluates staff record files against the organization's standard, returning each with the defects to correct before certification.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- review comments
+servedTasks:
+- emst:core/TSK-83WCPXD
+distinguishingAttribute: ATT-FOR
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

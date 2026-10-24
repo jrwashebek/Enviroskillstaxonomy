@@ -1,0 +1,43 @@
+id: emst:waste/TSK-ANBRACD
+type: Task
+prefLabel:
+  en: Evaluate remedial alternatives for a contaminated site against threshold and balancing criteria, documenting the comparison in a feasibility study
+statement:
+  en: Evaluate remedial alternatives for a contaminated site against threshold and balancing criteria, documenting the comparison in a feasibility study
+textSha256: 0cdad9634660812a31362374b73bace5a59d017e0f96e15c80c35e7972cefaa3
+supports:
+- competency: emst:waste/CMP-3NXMSN8
+  strength: primary
+workFunction: WF-PLAN
+workflowProfiles:
+- WP-PROJECT
+- WP-REGPROGRAM
+fieldDependency: remote
+formationDependency: 'yes'
+credentialGates:
+- credential: emst:core/CRD-DP5TWYK
+  kind: preferred
+homeModule: waste
+subsectors:
+- P04
+layer: L2
+module: waste
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

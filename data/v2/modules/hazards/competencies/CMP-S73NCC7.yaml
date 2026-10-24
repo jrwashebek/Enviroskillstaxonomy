@@ -1,0 +1,60 @@
+id: emst:hazards/CMP-S73NCC7
+type: Competency
+prefLabel:
+  en: Conduct rapid post-disaster field assessments
+altLabel:
+  en:
+  - Post-disaster rapid assessment
+  - Damage assessment
+  - Burned area and flood field verification
+definition:
+  en: 'Rapid, safe field assessment of burned, flooded, storm-damaged or landslide-affected areas: verifying remotely sensed damage and severity maps on the ground, identifying immediate hazards and prioritizing stabilization and protective actions for response and recovery. Excludes long-term rehabilitation (forest module v1 4.3.5) and structural engineering evaluation.'
+statement:
+  en: Assesses affected areas quickly and safely, verifies remote damage and severity maps at field plots, identifies immediate hazards such as debris-flow paths, hazard trees and spills, and prioritizes stabilization and protective actions, documenting geolocated findings that incident command and recovery planners can act on.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - emst:hazards/IND-8WGWK7N
+  - emst:hazards/IND-0Y7CJCT
+- level: L2
+  indicators:
+  - emst:hazards/IND-6K9PDZH
+  - emst:hazards/IND-XWJ11R4
+- level: L3
+  indicators:
+  - emst:hazards/IND-DPY3AXX
+  - emst:hazards/IND-88JXVAC
+homeModule: hazards
+subsectors:
+- C03
+reusability: subsector-specific
+layer: L1
+module: hazards
+status: candidate
+lifecycleState: emerging
+reviewBy: '2027-10-23'
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Rapid post-disaster field assessment generalizes the v1 4.3.5 ground-truth pattern (FC verdict); home C03. Lifecycle emerging (reviewBy set) pending ADR-0015 evidence. Field-craft primary; ICS participation is core DB-C42 (not yet authored). Basis [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - FC-027
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

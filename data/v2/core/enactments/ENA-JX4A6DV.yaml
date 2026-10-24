@@ -1,0 +1,42 @@
+id: emst:core/ENA-JX4A6DV
+type: Enactment
+prefLabel:
+  en: 'Data craft enactment of AI-output validation: sampling design and error estimation at volume'
+editorialNote:
+  en: ADR-0025 §2 layer 3 (DC enactment = sampling design and error estimation for validation at volume). DC is steward of record for the technical content of responsible-AI anchors.
+competency: emst:core/CMP-MS40XXX
+enactmentKind: craft
+craft: DC
+additionalTasks:
+- emst:core/TSK-E0Z73F4
+- emst:core/TSK-9AF8QM4
+indicatorVariants:
+- emst:core/IND-KVKGYE8
+- emst:core/IND-87HEFSV
+- emst:core/IND-P6X4RJW
+note:
+  en: 'The data-craft enactment carries the statistical side of validation: designing which AI outputs to check, estimating error rates and their uncertainty by condition, setting batch acceptance rules, and identifying conditions where a tool should not be used. It applies wherever outputs are too many to check one by one, such as comment sets, detections and classifications.'
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - DC-001
+  - DC-037
+  adr:
+  - ADR-0025
+  - ADR-0005

@@ -1,0 +1,37 @@
+id: emst:parks/IND-MECKWX6
+type: Indicator
+prefLabel:
+  en: Produces a viewshed analysis from key observation points, checking modelled visibility…
+competency: emst:parks/CMP-WMMXK7B
+level: L2
+statement:
+  en: Produces a viewshed analysis from key observation points, checking modelled visibility at field locations and recording each mismatch.
+augmentationMode: assisted
+assessmentMethods:
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:parks/TSK-Y4DK8W5
+layer: L1
+module: parks
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

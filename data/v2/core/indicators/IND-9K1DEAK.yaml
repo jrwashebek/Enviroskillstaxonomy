@@ -1,0 +1,45 @@
+id: emst:core/IND-9K1DEAK
+type: Indicator
+prefLabel:
+  en: Builds a translation guide for a recurring career move, recording the receiving employer's confirmation of each equivalence and the date it was last checked.
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-WJ60RG0
+level: L4
+statement:
+  en: Builds a translation guide for a recurring career move, recording the receiving employer's confirmation of each equivalence and the date it was last checked.
+augmentationMode: unaided
+assessmentMethods:
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- translation guide
+servedTasks:
+- emst:core/TSK-S4D8898
+distinguishingAttribute: ATT-GUI
+reviewBy: '2027-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  - emstagent:cm-code@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

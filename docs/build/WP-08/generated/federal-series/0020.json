@@ -2,8 +2,8 @@
  "stamp": {
   "ruleId": "federal-series-profile",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/federal_series_profile.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
@@ -17,18 +17,18 @@
   "group": "0000 Miscellaneous",
   "qualificationStandardVersion": "Professional & Scientific Positions group std + series IOR",
   "positiveEducationRequirement": true,
-  "educationNote": "FH judgment pending verification of the qualification standard",
-  "registerRecord": "seed:opm-series/0020",
+  "educationNote": "from EMST's series record; not yet checked against the OPM qualification standard, so confirm with the HR office",
+  "registerRecord": "emst:core/SER-G2D8QDY",
   "registerReviewBy": "2027-01-23",
   "events": []
  },
  "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
  "roles": [
   {
-   "role": "seed:R10-environmental-review-specialist",
+   "role": "emst:core/ROL-V5FGFB6",
    "roleTitle": "Environmental review specialist",
    "tier": "P1",
-   "variant": "seed:R10-environmental-review-specialist/federal",
+   "variant": "emst:core/VAR-JQBS17J",
    "functionStatement": "Establish, document and defend what a proposed action's effects are and which review it requires, so that the deciding official acts on a defensible record.",
    "authorityPosition": "resource-manager",
    "x4": {
@@ -46,27 +46,27 @@
    "signOffAuthority": null,
    "instruments": [
     {
-     "id": "seed:ins/nepa-fra-2023",
+     "id": "emst:core/INS-8EFNTAM",
      "label": "NEPA as amended by the Fiscal Responsibility Act of 2023",
      "role": "requires"
     },
     {
-     "id": "seed:ins/ceq-nepa-regs-removal",
+     "id": "emst:core/INS-RY63HWN",
      "label": "Removal of CEQ NEPA implementing regulations (40 CFR 1500-1508)",
      "role": "removed-requirement"
     },
     {
-     "id": "seed:ins/seven-county",
+     "id": "emst:core/INS-RPPAZ58",
      "label": "Seven County Infrastructure Coalition v. Eagle County",
      "role": "constrains"
     },
     {
-     "id": "seed:ins/doi-nepa-procedures",
+     "id": "emst:core/INS-3HFPZD5",
      "label": "Department of the Interior NEPA procedures and the DOI NEPA Handbook",
      "role": "requires"
     },
     {
-     "id": "seed:ins/usda-nepa-procedures",
+     "id": "emst:core/INS-854WGKT",
      "label": "USDA NEPA procedures (7 CFR part 1b); Forest Service 36 CFR part 220 rescinded",
      "role": "requires"
     },
@@ -81,7 +81,7 @@
      "role": "requires"
     },
     {
-     "id": "seed:ins/fast-41",
+     "id": "emst:core/INS-3JY4ZHG",
      "label": "FAST-41 (Title 41 of the FAST Act) and the Federal Permitting Improvement Steering Council",
      "role": "constrains"
     }
@@ -95,356 +95,435 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:SL-C08",
+       "competency": "emst:core/CMP-J597H9A",
        "duty": "Conduct environmental impact review of proposed actions",
-       "pctTime": 36,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.1.4-T1",
+         "task": "emst:core/TSK-3JZ26RY",
          "statement": "Prepare an environmental assessment of a proposed action, analyzing the reasonably foreseeable effects of the action and its alternatives within the procedure's page and time limits",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 17.7
+         "pctTime": null
         },
         {
-         "task": "seed:v1-6.1.4-T2",
+         "task": "emst:core/TSK-XNK4KJ5",
          "statement": "Scope the review of a proposed action with cooperating agencies and the public, setting the purpose, alternatives and effects boundaries the analysis will cover",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 9.3
+         "pctTime": null
         },
         {
-         "task": "seed:sc-review-ai-drafted-sections",
+         "task": "emst:core/TSK-K4YQ8P3",
          "statement": "Verify AI-drafted sections of an environmental document against the project record, correcting unsupported statements and recording which text was machine-drafted",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 9.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:SC-C03",
+       "competency": "emst:core/CMP-RKTGJKD",
        "duty": "Select, justify and document the appropriate level of environmental review",
-       "pctTime": 19,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:sc-screen-categorical-exclusion",
-         "statement": "Screen a proposed action against the agency's exclusion categories and extraordinary-circumstance criteria, recording the screening result and its basis for the official",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 9.3
-        },
-        {
-         "task": "seed:sc-determine-review-level",
+         "task": "emst:core/TSK-1CNQRH8",
          "statement": "Determine whether a proposed action requires an environmental assessment or a full impact statement, documenting the significance reasoning in the project record",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:sc-review-automated-screening",
+         "task": "emst:core/TSK-SXDPFAF",
+         "statement": "Screen a proposed action against the agency's exclusion categories and extraordinary-circumstance criteria, recording the screening result and its basis for the official",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-RFXHDW4",
          "statement": "Review automated exclusion-screening results for a batch of routine actions, confirming or overriding each flagged extraordinary circumstance",
-         "importance": 4,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FH-C01",
-       "duty": "Assess effects on protected species and conduct interagency consultation on proposed actions",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:sc-prepare-biological-assessment",
-         "statement": "Prepare a biological assessment for a proposed action, stating the effects determination for each listed species and critical habitat with supporting evidence",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.7
-        },
-        {
-         "task": "seed:sc-review-ai-effects-determination",
-         "statement": "Review an effects determination drafted with AI assistance against the species and project records, correcting each conclusion the records do not support",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.4
-        },
-        {
-         "task": "seed:sc-compile-species-occurrence",
-         "statement": "Compile species and habitat occurrence information for an action area, documenting the sources and survey dates used for each listed species",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.4
-        }
-       ]
-      },
-      {
-       "competency": "seed:SC-C02",
-       "duty": "Build and maintain a defensible administrative record",
-       "pctTime": 9,
-       "tasks": [
-        {
-         "task": "seed:sc-index-record-documents",
-         "statement": "Index documents into the administrative record with dates, authors and provenance labels, marking which content was produced with AI assistance",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.7
-        },
-        {
-         "task": "seed:sc-confirm-comment-responses",
-         "statement": "Confirm that every substantive comment in a docket has a reasoned response, sampling machine-grouped comments for unique points the grouping missed",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 4.7
-        }
-       ]
-      },
-      {
-       "competency": "seed:SC-C09",
+       "competency": "emst:core/CMP-X6624QT",
        "duty": "Coordinate lead, cooperating and participating agencies to a shared schedule",
-       "pctTime": 7,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.5.2-T1",
+         "task": "emst:core/TSK-Y6TMW5D",
          "statement": "Coordinate review steps with other agencies holding authority over the same action, so that duplicated analyses and conflicting requirements are identified early",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:sc-update-permitting-dashboard",
+         "task": "emst:core/TSK-QWD6RQG",
          "statement": "Update public milestone and dashboard entries for a covered project, reconciling each entry against agency source documents every reporting period",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-16",
-       "duty": "Analyze regulatory, planning and public-comment text at scale with traceable citations",
-       "pctTime": 7,
+       "competency": "emst:core/CMP-M0JAW9R",
+       "duty": "Build and maintain a defensible administrative record",
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.4.4-T2",
+         "task": "emst:core/TSK-SKB072A",
+         "statement": "Index documents into the administrative record with dates, authors and provenance labels, marking which content was produced with AI assistance",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-8NF6FAF",
+         "statement": "Confirm that every substantive comment in a docket has a reasoned response, sampling machine-grouped comments for unique points the grouping missed",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-F6ZC95V",
+       "duty": "Analyze regulatory, planning and public-comment text at scale with traceable citations",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-FA8XCEJ",
          "statement": "Code a public comment set into themes with machine assistance, tracing every coded statement to its source passage before summarizing for decision-makers.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:dc-16-extract-table",
+         "task": "emst:core/TSK-B61VPV4",
          "statement": "Extract requirements from a plan or permit into a table with machine assistance, verifying each row against the cited page and paragraph.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DB-C50",
-       "duty": "Review effects of proposed actions on historic properties and resolve them through consultation",
-       "pctTime": 5,
+       "competency": "emst:core/CMP-MS40XXX",
+       "duty": "Validate AI-generated work products before professional use",
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:sc-define-area-potential-effects",
-         "statement": "Define the area of potential effects for a proposed undertaking, documenting the direct and indirect effect pathways that justify its boundary",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:core/TSK-4TK90NQ",
+         "statement": "Sample machine-grouped public comments to confirm that substantive and unique comments were not merged away before responses are drafted.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-8QWCQ3R",
+       "duty": "Review effects of proposed actions on historic properties and resolve them through consultation",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-FHFCPR0",
+         "statement": "Define the area of potential effects for a proposed undertaking, documenting the direct and indirect effect pathways that justify its boundary",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
         },
         {
-         "task": "seed:sc-assess-historic-effects",
+         "task": "emst:core/TSK-KZDC8AD",
          "statement": "Assess whether a proposed action would adversely affect each eligible property, recording the criteria and evidence applied to each finding",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-13",
-       "duty": "Validate AI-generated work products before professional use",
-       "pctTime": 2,
+       "competency": "emst:core/CMP-T1175YK",
+       "duty": "Assess effects on protected species and conduct interagency consultation on proposed actions",
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:dc-13-check-comment-grouping",
-         "statement": "Sample machine-grouped public comments to confirm that substantive and unique comments were not merged away before responses are drafted.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:core/TSK-SBJSNEV",
+         "statement": "Prepare a biological assessment for a proposed action, stating the effects determination for each listed species and critical habitat with supporting evidence",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-3CP8YPM",
+         "statement": "Review an effects determination drafted with AI assistance against the species and project records, correcting each conclusion the records do not support",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-F1RHMQH",
+         "statement": "Compile species and habitat occurrence information for an action area, documenting the sources and survey dates used for each listed species",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DB-C52",
+       "competency": "emst:core/CMP-XWDR7XA",
        "duty": "Analyze cumulative burdens and distributional effects of environmental decisions",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.7.2-T1",
+         "task": "emst:core/TSK-9RHCM33",
          "statement": "Screen a proposed project's area for existing environmental and health burdens using screening indicators, recording each indicator's source, date and known limitations",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:SC-C06",
+       "competency": "emst:core/CMP-YZAD6ZT",
        "duty": "Design proportionate public engagement when participation is discretionary",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:sc-write-engagement-plan",
+         "task": "emst:core/TSK-ZEBXC83",
          "statement": "Write an engagement plan stating who will be engaged, by which methods and when, and why that scope fits the decision",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.4
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:v1-6.1.4-T1",
-      "seed:sc-review-ai-drafted-sections",
-      "seed:sc-screen-categorical-exclusion",
-      "seed:sc-index-record-documents",
-      "seed:sc-compile-species-occurrence"
-     ],
-     "criticalTasks": [
-      "seed:v1-6.1.4-T1",
-      "seed:v1-6.1.4-T2",
-      "seed:sc-review-ai-drafted-sections",
-      "seed:sc-determine-review-level",
-      "seed:sc-review-automated-screening"
-     ],
-     "distinguishingCompetencies": [
-      "seed:SL-C08"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:SC-C02",
-       "statement": "Knowledge of and skill in: build and maintain a defensible administrative record (EMST target journey L2).",
+       "competency": "emst:core/CMP-J597H9A",
+       "statement": "Knowledge of and skill in: conduct environmental impact review of proposed actions (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SC-C03",
-       "statement": "Knowledge of and skill in: select, justify and document the appropriate level of environmental review (EMST target journey L2).",
+       "competency": "emst:core/CMP-RKTGJKD",
+       "statement": "Knowledge of and skill in: select, justify and document the appropriate level of environmental review (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SL-C08",
-       "statement": "Knowledge of and skill in: conduct environmental impact review of proposed actions (EMST target journey L2).",
+       "competency": "emst:core/CMP-M0JAW9R",
+       "statement": "Knowledge of and skill in: build and maintain a defensible administrative record (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C50",
-       "statement": "Knowledge of and skill in: review effects of proposed actions on historic properties and resolve them through consultation (EMST target journey L2).",
+       "competency": "emst:core/CMP-JF7KQYE",
+       "statement": "Knowledge of and skill in: direct and evaluate applicant- or contractor-prepared environmental documents (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-13",
-       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target journey L2).",
+       "competency": "emst:core/CMP-X6624QT",
+       "statement": "Knowledge of and skill in: coordinate lead, cooperating and participating agencies to a shared schedule (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-16",
-       "statement": "Knowledge of and skill in: analyze regulatory, planning and public-comment text at scale with traceable citations (EMST target journey L2).",
+       "competency": "emst:core/CMP-T1175YK",
+       "statement": "Knowledge of and skill in: assess effects on protected species and conduct interagency consultation on proposed actions (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FH-C01",
-       "statement": "Knowledge of and skill in: assess effects on protected species and conduct interagency consultation on proposed actions (EMST target journey L2).",
+       "competency": "emst:core/CMP-8QWCQ3R",
+       "statement": "Knowledge of and skill in: review effects of proposed actions on historic properties and resolve them through consultation (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SC-C04",
-       "statement": "Knowledge of and skill in: direct and evaluate applicant- or contractor-prepared environmental documents (EMST target journey L2).",
+       "competency": "emst:core/CMP-F6ZC95V",
+       "statement": "Knowledge of and skill in: analyze regulatory, planning and public-comment text at scale with traceable citations (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SC-C09",
-       "statement": "Knowledge of and skill in: coordinate lead, cooperating and participating agencies to a shared schedule (EMST target journey L2).",
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-XWDR7XA",
+       "statement": "Knowledge of and skill in: analyze cumulative burdens and distributional effects of environmental decisions (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-YZAD6ZT",
+       "statement": "Knowledge of and skill in: design proportionate public engagement when participation is discretionary (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-0RN1567",
+       "statement": "Knowledge of and skill in: identify and analyze the parties affected by or interested in a decision (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-4ZX8Q5F",
+       "statement": "Knowledge of and skill in: quantify and communicate uncertainty for environmental decisions (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-XN9631Y",
+       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-RPM63WZ",
+       "statement": "Knowledge of and skill in: maintain independence and manage conflicts of interest across the regulator-regulated boundary (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-G1H42DS",
+       "statement": "Knowledge of and skill in: maintain the integrity of regulatory and scientific findings under institutional pressure (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-2VQTX8E",
+       "statement": "Knowledge of and skill in: practise cultural humility in community, field and team work (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-5NFAM97",
+       "statement": "Knowledge of and skill in: design accessible, inclusive public engagement and services (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-JHR1JC7",
+       "statement": "Knowledge of and skill in: build working partnerships with communities affected by environmental decisions (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     },
@@ -457,492 +536,573 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:SL-C08",
+       "competency": "emst:core/CMP-J597H9A",
        "duty": "Conduct environmental impact review of proposed actions",
-       "pctTime": 39,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.1.4-T1",
+         "task": "emst:core/TSK-3JZ26RY",
          "statement": "Prepare an environmental assessment of a proposed action, analyzing the reasonably foreseeable effects of the action and its alternatives within the procedure's page and time limits",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 12.5
+         "pctTime": null
         },
         {
-         "task": "seed:v1-6.1.4-T2",
+         "task": "emst:core/TSK-XNK4KJ5",
          "statement": "Scope the review of a proposed action with cooperating agencies and the public, setting the purpose, alternatives and effects boundaries the analysis will cover",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 6.6
+         "pctTime": null
         },
         {
-         "task": "seed:v1-6.1.4-T3",
+         "task": "emst:core/TSK-AYVKDCJ",
          "statement": "Lead an interdisciplinary team through an environmental review, assigning resource analyses and reconciling conflicting findings into one effects analysis",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 6.6
+         "pctTime": null
         },
         {
-         "task": "seed:sc-review-ai-drafted-sections",
+         "task": "emst:core/TSK-K4YQ8P3",
          "statement": "Verify AI-drafted sections of an environmental document against the project record, correcting unsupported statements and recording which text was machine-drafted",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 6.6
+         "pctTime": null
         },
         {
-         "task": "seed:sc-write-review-decision",
+         "task": "emst:core/TSK-GHT0C9N",
          "statement": "Write the decision document for a reviewed action, explaining how the analyzed effects, alternatives and public comments informed the choice made",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.3
+         "pctTime": null
         },
         {
-         "task": "seed:sc-joint-review-document",
+         "task": "emst:core/TSK-J2ER4SM",
          "statement": "Prepare a joint environmental review document that satisfies both state and federal review procedures for one action, mapping each procedural requirement to its section",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.3
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:SC-C03",
+       "competency": "emst:core/CMP-RKTGJKD",
        "duty": "Select, justify and document the appropriate level of environmental review",
-       "pctTime": 15,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:sc-screen-categorical-exclusion",
-         "statement": "Screen a proposed action against the agency's exclusion categories and extraordinary-circumstance criteria, recording the screening result and its basis for the official",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 6.6
-        },
-        {
-         "task": "seed:sc-determine-review-level",
+         "task": "emst:core/TSK-1CNQRH8",
          "statement": "Determine whether a proposed action requires an environmental assessment or a full impact statement, documenting the significance reasoning in the project record",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.3
+         "pctTime": null
         },
         {
-         "task": "seed:sc-review-automated-screening",
+         "task": "emst:core/TSK-SXDPFAF",
+         "statement": "Screen a proposed action against the agency's exclusion categories and extraordinary-circumstance criteria, recording the screening result and its basis for the official",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-RFXHDW4",
          "statement": "Review automated exclusion-screening results for a batch of routine actions, confirming or overriding each flagged extraordinary circumstance",
-         "importance": 4,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.3
+         "pctTime": null
         },
         {
-         "task": "seed:sc-adopt-other-agency-exclusion",
+         "task": "emst:core/TSK-AP96NSC",
          "statement": "Adopt another agency's exclusion category for a proposed action where procedures allow, documenting why the actions are comparable",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:SC-C02",
-       "duty": "Build and maintain a defensible administrative record",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:sc-index-record-documents",
-         "statement": "Index documents into the administrative record with dates, authors and provenance labels, marking which content was produced with AI assistance",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.3
-        },
-        {
-         "task": "seed:sc-write-reasoned-explanation",
-         "statement": "Write the reasoned explanation that links the evidence in the record to each choice made in a decision",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.3
-        },
-        {
-         "task": "seed:sc-confirm-comment-responses",
-         "statement": "Confirm that every substantive comment in a docket has a reasoned response, sampling machine-grouped comments for unique points the grouping missed",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.3
-        }
-       ]
-      },
-      {
-       "competency": "seed:SC-C04",
+       "competency": "emst:core/CMP-JF7KQYE",
        "duty": "Direct and evaluate applicant- or contractor-prepared environmental documents",
-       "pctTime": 8,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:sc-evaluate-sponsor-document",
+         "task": "emst:core/TSK-727Q90P",
          "statement": "Evaluate a sponsor-prepared environmental document for adequacy and objectivity, returning specific deficiencies the preparer must correct before adoption",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.3
+         "pctTime": null
         },
         {
-         "task": "seed:sc-document-independent-evaluation",
+         "task": "emst:core/TSK-5RM0MJX",
          "statement": "Document the agency's independent evaluation of a sponsor-prepared document before adoption, recording what was verified and what was changed",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.7
+         "pctTime": null
         },
         {
-         "task": "seed:sc-issue-preparer-standards",
+         "task": "emst:core/TSK-0F94Q6E",
          "statement": "Issue scope and content standards to a sponsor's contractor preparing an environmental document, specifying data, methods and the agency's review checkpoints",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.7
+         "pctTime": null
         },
         {
-         "task": "seed:sc-screen-preparer-conflicts",
+         "task": "emst:core/TSK-40ZZA1J",
          "statement": "Screen a contractor's disclosure statement for financial or other interest in the project outcome before the contractor begins preparing the document",
-         "importance": 4,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.0
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FH-C01",
-       "duty": "Assess effects on protected species and conduct interagency consultation on proposed actions",
-       "pctTime": 7,
-       "tasks": [
-        {
-         "task": "seed:sc-prepare-biological-assessment",
-         "statement": "Prepare a biological assessment for a proposed action, stating the effects determination for each listed species and critical habitat with supporting evidence",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.3
-        },
-        {
-         "task": "seed:sc-review-ai-effects-determination",
-         "statement": "Review an effects determination drafted with AI assistance against the species and project records, correcting each conclusion the records do not support",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.7
-        },
-        {
-         "task": "seed:sc-compile-species-occurrence",
-         "statement": "Compile species and habitat occurrence information for an action area, documenting the sources and survey dates used for each listed species",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.7
-        }
-       ]
-      },
-      {
-       "competency": "seed:SC-C09",
+       "competency": "emst:core/CMP-X6624QT",
        "duty": "Coordinate lead, cooperating and participating agencies to a shared schedule",
-       "pctTime": 5,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.5.2-T1",
+         "task": "emst:core/TSK-Y6TMW5D",
          "statement": "Coordinate review steps with other agencies holding authority over the same action, so that duplicated analyses and conflicting requirements are identified early",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.3
+         "pctTime": null
         },
         {
-         "task": "seed:sc-update-permitting-dashboard",
+         "task": "emst:core/TSK-QWD6RQG",
          "statement": "Update public milestone and dashboard entries for a covered project, reconciling each entry against agency source documents every reporting period",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-16",
-       "duty": "Analyze regulatory, planning and public-comment text at scale with traceable citations",
-       "pctTime": 5,
+       "competency": "emst:core/CMP-M0JAW9R",
+       "duty": "Build and maintain a defensible administrative record",
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.4.4-T2",
+         "task": "emst:core/TSK-SKB072A",
+         "statement": "Index documents into the administrative record with dates, authors and provenance labels, marking which content was produced with AI assistance",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-QQMQSC6",
+         "statement": "Write the reasoned explanation that links the evidence in the record to each choice made in a decision",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-8NF6FAF",
+         "statement": "Confirm that every substantive comment in a docket has a reasoned response, sampling machine-grouped comments for unique points the grouping missed",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-F6ZC95V",
+       "duty": "Analyze regulatory, planning and public-comment text at scale with traceable citations",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-FA8XCEJ",
          "statement": "Code a public comment set into themes with machine assistance, tracing every coded statement to its source passage before summarizing for decision-makers.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 3.3
+         "pctTime": null
         },
         {
-         "task": "seed:dc-16-extract-table",
+         "task": "emst:core/TSK-B61VPV4",
          "statement": "Extract requirements from a plan or permit into a table with machine assistance, verifying each row against the cited page and paragraph.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:SC-C17",
-       "duty": "Assess litigation exposure and design decisions for resilience on remand",
-       "pctTime": 3,
-       "tasks": [
-        {
-         "task": "seed:sc-identify-likely-claims",
-         "statement": "Identify the claims a proposed decision is likely to face, rating each claim's likelihood under current deference, standing and remedy doctrine",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.7
-        },
-        {
-         "task": "seed:sc-pre-issuance-record-review",
-         "statement": "Review a decision record with counsel before issuance, listing the record gaps that weaken the reasoned explanation and the fix for each",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.7
-        }
-       ]
-      },
-      {
-       "competency": "seed:DB-C50",
-       "duty": "Review effects of proposed actions on historic properties and resolve them through consultation",
-       "pctTime": 3,
-       "tasks": [
-        {
-         "task": "seed:sc-define-area-potential-effects",
-         "statement": "Define the area of potential effects for a proposed undertaking, documenting the direct and indirect effect pathways that justify its boundary",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.7
-        },
-        {
-         "task": "seed:sc-assess-historic-effects",
-         "statement": "Assess whether a proposed action would adversely affect each eligible property, recording the criteria and evidence applied to each finding",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.7
-        }
-       ]
-      },
-      {
-       "competency": "seed:DC-CAND-13",
+       "competency": "emst:core/CMP-MS40XXX",
        "duty": "Validate AI-generated work products before professional use",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:dc-13-check-comment-grouping",
+         "task": "emst:core/TSK-4TK90NQ",
          "statement": "Sample machine-grouped public comments to confirm that substantive and unique comments were not merged away before responses are drafted.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DB-C52",
+       "competency": "emst:core/CMP-TVPV3Y2",
+       "duty": "Assess litigation exposure and design decisions for resilience on remand",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-0PTQXEH",
+         "statement": "Identify the claims a proposed decision is likely to face, rating each claim's likelihood under current deference, standing and remedy doctrine",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-AAH2KB4",
+         "statement": "Review a decision record with counsel before issuance, listing the record gaps that weaken the reasoned explanation and the fix for each",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-8QWCQ3R",
+       "duty": "Review effects of proposed actions on historic properties and resolve them through consultation",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-FHFCPR0",
+         "statement": "Define the area of potential effects for a proposed undertaking, documenting the direct and indirect effect pathways that justify its boundary",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-KZDC8AD",
+         "statement": "Assess whether a proposed action would adversely affect each eligible property, recording the criteria and evidence applied to each finding",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-T1175YK",
+       "duty": "Assess effects on protected species and conduct interagency consultation on proposed actions",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-SBJSNEV",
+         "statement": "Prepare a biological assessment for a proposed action, stating the effects determination for each listed species and critical habitat with supporting evidence",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-3CP8YPM",
+         "statement": "Review an effects determination drafted with AI assistance against the species and project records, correcting each conclusion the records do not support",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-F1RHMQH",
+         "statement": "Compile species and habitat occurrence information for an action area, documenting the sources and survey dates used for each listed species",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-XWDR7XA",
        "duty": "Analyze cumulative burdens and distributional effects of environmental decisions",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-6.7.2-T1",
+         "task": "emst:core/TSK-9RHCM33",
          "statement": "Screen a proposed project's area for existing environmental and health burdens using screening indicators, recording each indicator's source, date and known limitations",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:SC-C06",
+       "competency": "emst:core/CMP-YZAD6ZT",
        "duty": "Design proportionate public engagement when participation is discretionary",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:sc-write-engagement-plan",
+         "task": "emst:core/TSK-ZEBXC83",
          "statement": "Write an engagement plan stating who will be engaged, by which methods and when, and why that scope fits the decision",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.7
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:v1-6.1.4-T1",
-      "seed:sc-review-ai-drafted-sections",
-      "seed:sc-screen-categorical-exclusion",
-      "seed:sc-index-record-documents",
-      "seed:sc-compile-species-occurrence"
-     ],
-     "criticalTasks": [
-      "seed:v1-6.1.4-T1",
-      "seed:v1-6.1.4-T2",
-      "seed:v1-6.1.4-T3",
-      "seed:sc-review-ai-drafted-sections",
-      "seed:sc-write-review-decision",
-      "seed:sc-determine-review-level",
-      "seed:sc-review-automated-screening",
-      "seed:sc-evaluate-sponsor-document",
-      "seed:sc-write-reasoned-explanation",
-      "seed:sc-screen-preparer-conflicts"
-     ],
-     "distinguishingCompetencies": [
-      "seed:SL-C08"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:SC-C02",
-       "statement": "Knowledge of and skill in: build and maintain a defensible administrative record (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-J597H9A",
+       "statement": "Knowledge of and skill in: conduct environmental impact review of proposed actions (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SC-C03",
-       "statement": "Knowledge of and skill in: select, justify and document the appropriate level of environmental review (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-RKTGJKD",
+       "statement": "Knowledge of and skill in: select, justify and document the appropriate level of environmental review (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SL-C08",
-       "statement": "Knowledge of and skill in: conduct environmental impact review of proposed actions (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-M0JAW9R",
+       "statement": "Knowledge of and skill in: build and maintain a defensible administrative record (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C50",
-       "statement": "Knowledge of and skill in: review effects of proposed actions on historic properties and resolve them through consultation (EMST target senior L3, lead L3).",
+       "competency": "emst:core/CMP-JF7KQYE",
+       "statement": "Knowledge of and skill in: direct and evaluate applicant- or contractor-prepared environmental documents (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-13",
-       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target senior L3, lead L3).",
+       "competency": "emst:core/CMP-X6624QT",
+       "statement": "Knowledge of and skill in: coordinate lead, cooperating and participating agencies to a shared schedule (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-16",
-       "statement": "Knowledge of and skill in: analyze regulatory, planning and public-comment text at scale with traceable citations (EMST target senior L3, lead L3).",
+       "competency": "emst:core/CMP-T1175YK",
+       "statement": "Knowledge of and skill in: assess effects on protected species and conduct interagency consultation on proposed actions (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FH-C01",
-       "statement": "Knowledge of and skill in: assess effects on protected species and conduct interagency consultation on proposed actions (EMST target senior L3, lead L3).",
+       "competency": "emst:core/CMP-8QWCQ3R",
+       "statement": "Knowledge of and skill in: review effects of proposed actions on historic properties and resolve them through consultation (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SC-C04",
-       "statement": "Knowledge of and skill in: direct and evaluate applicant- or contractor-prepared environmental documents (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-TVPV3Y2",
+       "statement": "Knowledge of and skill in: assess litigation exposure and design decisions for resilience on remand (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SC-C09",
-       "statement": "Knowledge of and skill in: coordinate lead, cooperating and participating agencies to a shared schedule (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-F6ZC95V",
+       "statement": "Knowledge of and skill in: analyze regulatory, planning and public-comment text at scale with traceable citations (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SC-C17",
-       "statement": "Knowledge of and skill in: assess litigation exposure and design decisions for resilience on remand (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-XWDR7XA",
+       "statement": "Knowledge of and skill in: analyze cumulative burdens and distributional effects of environmental decisions (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-YZAD6ZT",
+       "statement": "Knowledge of and skill in: design proportionate public engagement when participation is discretionary (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-0RN1567",
+       "statement": "Knowledge of and skill in: identify and analyze the parties affected by or interested in a decision (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-4ZX8Q5F",
+       "statement": "Knowledge of and skill in: quantify and communicate uncertainty for environmental decisions (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-XN9631Y",
+       "statement": "Knowledge of and skill in: communicate environmental and health risks under uncertainty (EMST target senior L2, lead L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-RPM63WZ",
+       "statement": "Knowledge of and skill in: maintain independence and manage conflicts of interest across the regulator-regulated boundary (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-G1H42DS",
+       "statement": "Knowledge of and skill in: maintain the integrity of regulatory and scientific findings under institutional pressure (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-ZCRS03R",
+       "statement": "Knowledge of and skill in: supervise staff and volunteers in environmental work (EMST target senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-2VQTX8E",
+       "statement": "Knowledge of and skill in: practise cultural humility in community, field and team work (EMST target senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-5NFAM97",
+       "statement": "Knowledge of and skill in: design accessible, inclusive public engagement and services (EMST target senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-JHR1JC7",
+       "statement": "Knowledge of and skill in: build working partnerships with communities affected by environmental decisions (EMST target senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     }

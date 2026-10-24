@@ -1,0 +1,75 @@
+id: emst:core/CMP-KHYG7RK
+type: Competency
+prefLabel:
+  en: 'Soil science: physics, chemistry, biology and classification'
+definition:
+  en: The body of knowledge on soil physical, chemical and biological properties, soil classification and mapping, and soil carbon dynamics, as used to interpret soil condition, plan land use and conservation, and estimate carbon stocks and change.
+statement:
+  en: Knowledge of soil physical, chemical and biological properties, soil formation, classification and mapping, nutrient and carbon dynamics, and contamination, as used to interpret soil condition, guide land use and conservation practice, and estimate soil carbon stocks and their change under management.
+editorialNote:
+  en: 'Rewritten by WP-04 as a knowledge area (no craft-primary tag; ADR-0003 consequences, P-DC-12). Broadened per v1_disposition 1.2.2; absorbs v1 1.2.1 (classification; split with v1 4.1.4) and v1 1.8.2 (soil carbon). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | knowledge-area (Soil science: physics, chemistry, biology, classification). Rationale: Broadened to a soil science knowledge area; absorbs 1.2.1 classification and 1.8.2 soil carbon dynamics. Role verdicts considered: none recorded.'
+notation:
+- scheme: EMSTv1
+  value: 1.2.2
+competencyType: knowledge-area
+levelSpan:
+  min: A
+  max: L4
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:1.2.2
+    v1Code: 1.2.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 8
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:1.2.2
+    v1Code: 1.2.2
+    v1Table: source_text/competencies
+    sourceTextLine: 773
+    relation: reference-only
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:1.2.1
+    v1Code: 1.2.1
+    relation: split-from
+    note: v1 1.2.1 (split) → emst:core/CMP-KHYG7RK per v1_disposition.csv
+  - v1Key: v1:1.8.2
+    v1Code: 1.8.2
+    relation: merged-from
+    note: v1 1.8.2 (merge) → emst:core/CMP-KHYG7RK per v1_disposition.csv
+  adr:
+  - ADR-0003
+  - ADR-0011
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.2'
+  label: Soil & Water Science
+knowledge:
+- emst:core/KNW-N2WBYV0
+- emst:core/KNW-CH5BQNM
+- emst:core/KNW-16F60JK
+- emst:core/KNW-Z843Q3A

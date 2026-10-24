@@ -1,0 +1,96 @@
+id: emst:core/SCR-6H9BPF4
+type: StateClassRecord
+prefLabel:
+  en: Natural Resources Specialist III
+notation:
+- scheme: class-TX
+  value: '2684'
+jurisdictionId:
+  stateFips: '48'
+  label: Texas
+employerType: state-agency
+agency: Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications
+classCode: '2684'
+classTitle: Natural Resources Specialist III
+seriesId: Natural Resources Specialist I-V
+levelIndex:
+  ordinal: 3
+  label: III
+supervisoryStatus: lead
+specEffectiveDate: '2026-07-01'
+workDescriptionText:
+  storage: hash-and-url
+  url: https://hr.sao.texas.gov/Compensation/JobDescriptions/1860.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+mqText:
+  storage: hash-and-url
+  url: https://hr.sao.texas.gov/Compensation/JobDescriptions/1860.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+  paraphrase: Same as NRS I.
+mqLocation: agency-policy
+degreeRule: agency-set
+licensesRequired: []
+payBasis: annual
+payMinMax:
+  min: 51158
+  max: 81351
+  currency: USD
+  basis: annual
+payGradeLabel: B20
+payEffectiveDate: '2026-07-01'
+militaryEquivalent:
+- source: SL-052
+  note: class listed in the Texas SAO military crosswalk (native crosswalk; candidate gold set for X5); codes not extracted
+emstMapping:
+- roleVariant: emst:wildlife/VAR-H3CMP8E
+  roleLevel: senior
+  matchType: skos:broadMatch
+  confidence: 0.45
+  reviewer: null
+  reviewDate: null
+  crosswalkRecord: emst-x5-tx:R15-wildlife-biologist/state:2684
+  note: competency targets with level are added when WP-08 authors the role profile
+- roleVariant: emst:wildlife/VAR-EVMFKXV
+  roleLevel: senior
+  matchType: skos:broadMatch
+  confidence: 0.5
+  reviewer: null
+  reviewDate: null
+  crosswalkRecord: emst-x5-tx:R16-fisheries-aquatic-biologist/state:2684
+  note: competency targets with level are added when WP-08 authors the role profile
+- roleVariant: emst:core/VAR-J23YGA6
+  roleLevel: journey|senior
+  matchType: skos:broadMatch
+  confidence: 0.4
+  reviewer: null
+  reviewDate: null
+  crosswalkRecord: emst-x5-tx:R09-restoration-project-lead/state:2684
+  note: competency targets with level are added when WP-08 authors the role profile
+editorialNote:
+  en: Dated record as of 2026-10-23; re-run each 1 July or on plan revision (ADR-0022 X5).
+layer: L6
+module: core
+status: candidate
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2027-07-01'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:ia-wp09@phase4
+  generatedAt: '2026-10-23T19:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp09-crosswalk@1
+  evidenceLabel: E
+  sources:
+  - SL-051
+  - WP09-007
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0022
+  - ADR-0006

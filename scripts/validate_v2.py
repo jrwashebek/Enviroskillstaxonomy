@@ -11,14 +11,14 @@ Checks (issue codes are stable; tests and authoring agents rely on them):
                E-LEVEL-DISTRIBUTION W-ROLE-KEY W-COMPUTED-FIELD-DEPRECATED
                (ADR-0030) E/W-MODULE-SUBSECTOR (enactments) E/W-INSTRUMENT-ROLE-MISSING E-INSTRUMENT-LINK-DUPLICATE
                E-ACTING-SELF E-EDGE-REVIEWBY W-EDGE-REVIEW-OVERDUE E-PROVISION-TASK
-  cross-record E-ID-DUPLICATE E-REF-DANGLING W-REF-PENDING E-REF-TYPE E-DEPENDENCY-DIRECTION E-TRIBAL-INHERIT
+  cross-record E-ID-DUPLICATE E-REF-DANGLING W-REF-PENDING W-REF-DEFERRED (strict) E-REF-TYPE E-DEPENDENCY-DIRECTION E-TRIBAL-INHERIT
                I-STALE-ASSESSMENT W-COMPETENCY-NO-TASK W-SUPERSEDED-TARGET E-PR2-ATTRIBUTE
                (ADR-0030) I-SUPERSEDED-TARGET-HELD W-EDGE-REDUNDANT E-MIRROR-TWICE E-MIRROR-SELF E-CLO-ENACTMENT-INDICATOR
                E/W-THREE-MODULE I-THREE-MODULE-RECURRENCE E-THREE-MODULE-EXCEPTION-FORMAT W-THREE-MODULE-EXCEPTION-EXPIRED
   waivers      E-WAIVER-FORMAT E-WAIVER-SIGNER I-WAIVER-VOID   (data/v2/governance/lint_waivers.csv; ADR-0029 §5)
   registry     E-REGISTRY-FORMAT E-REGISTRY-APPEND-ONLY E-REGISTRY-TRANSITION E-REGISTRY-MISSING E-REGISTRY-ORPHAN
   crosswalks   E-SSSOM-FORMAT E-SSSOM-VALUE E-SSSOM-THIRD-PARTY-TEXT E-X1-INCOMPLETE E-X1-DECISION E-X1-DUPLICATE
-               E-X1-STALE W-X1-PENDING I-SSSOM-1_1-EXTENSION W-SSSOM-REVIEW-PROVENANCE E-SSSOM-SELECTION-1_1
+               E-X1-STALE W-X1-PENDING W-X1-DEFERRED (strict) I-SSSOM-1_1-EXTENSION W-SSSOM-REVIEW-PROVENANCE E-SSSOM-SELECTION-1_1
   files        E-PERSONAL-DATA / E-CONFIDENTIAL also run over every other file under data/v2 (CSV, TSV, MD...)
 
 Usage:
@@ -423,6 +423,11 @@ class Validator:
         if not m or m.group(1) not in self.role_keys:
             return False
         return m.group(3) is None or m.group(3) in self.sector_actor_terms
+
+    @staticmethod
+    def releasable(rid, rec) -> bool:
+        """A record a release can carry: a minted ID and a release status (ADR-0010 §3; build_release.include)."""
+        return L.is_emst_id(rid) and rec.get("status") in RELEASABLE_STATUSES
 
     def planned_is_held(self, ref: str) -> bool:
         if ref in self.hold["keys"]:
@@ -909,6 +914,10 @@ class Validator:
                     planned = self.is_planned(ref)
                     if planned and not self.strict:
                         self.r.add("W-REF-PENDING", loc, f"{dotted} -> {ref} is a planned target (v1 disposition, v2.0 candidate or MVP role) not yet authored", rid)
+                    elif planned and not self.releasable(rid, rec):
+                        # ADR-0031 §5.7: in release mode a planned, unauthored target is an error only when a record that
+                        # a release can carry names it; unreleased drafts and seed-keyed stubs defer it (counted in notes)
+                        self.r.add("W-REF-DEFERRED", loc, f"{dotted} -> {ref} is a planned target deferred beyond this release; the referring record is not releasable", rid)
                     else:
                         self.r.add("E-REF-DANGLING", loc, f"{dotted} -> {ref} does not resolve to any record", rid)
                     if (planned or ref in self.hold["keys"]) and path[0] not in LINEAGE_KEYS and self.planned_is_held(ref) \
@@ -1323,7 +1332,10 @@ class Validator:
                 if obj == "sssom:NoTermFound" or not L.is_record_ref(obj):
                     continue
                 if obj not in self.records:
-                    if self.strict:
+                    if self.strict and self.is_planned(obj):
+                        # ADR-0031 §5.7: the release renders an unauthored or held successor as sssom:NoTermFound
+                        self.r.add("W-X1-DEFERRED", f"{x1}:{i}", f"X1 object {obj} for {key} is a planned target deferred beyond this release (released as NoTermFound)")
+                    elif self.strict:
                         self.r.add("E-REF-DANGLING", f"{x1}:{i}", f"X1 object {obj} for {key} does not resolve")
                     else:
                         self.r.add("W-X1-PENDING", f"{x1}:{i}", f"X1 object {obj} for {key} is not yet authored")

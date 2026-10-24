@@ -1,0 +1,56 @@
+id: emst:core/TSK-C6BW35Q
+type: Task
+prefLabel:
+  en: Analyze trends in a long-term monitoring dataset, accounting for changes in methods, effort and detection over the record.
+statement:
+  en: Analyze trends in a long-term monitoring dataset, accounting for changes in methods, effort and detection over the record.
+textSha256: a4767fc61a7a2884671f3cb04ba49b6b5f8561da4f7492144f543c26ffe2213a
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+notation:
+- scheme: EMSTv1
+  value: 2.2.2:T2
+supports:
+- competency: emst:core/CMP-A7R6301
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+v1Tier: T2
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.2'
+  label: Data Management & Analysis
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.2.2:T2
+    v1Code: 2.2.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 48
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0011

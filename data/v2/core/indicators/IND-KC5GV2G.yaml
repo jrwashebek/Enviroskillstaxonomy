@@ -1,0 +1,36 @@
+id: emst:core/IND-KC5GV2G
+type: Indicator
+prefLabel:
+  en: Keeps raw, flagged and corrected data versions separate, so that any released value can…
+competency: emst:core/CMP-BG5GMFW
+level: L2
+statement:
+  en: Keeps raw, flagged and corrected data versions separate, so that any released value can be traced to its raw record.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-3RW5EXX
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

@@ -10,6 +10,9 @@ already exists in the namespace × type is rejected and re-drawn. IDs are minted
 Commands
   promote <seed-key | record.yaml> --by AGENT   mint an ID for a draft record, set status candidate, rename the file,
                                                 rewrite every reference to the seed key under data/v2, log seed_map.csv
+  promote-batch KEYS.txt --by AGENT [--today YYYY-MM-DD]
+                                                promote many drafts in one registry transaction and one rewrite pass
+                                                (YAML and JSONL records; WP-16 integration, ADR-0031 §6)
   mint --type Competency --namespace core --by AGENT [--count N]   mint bare IDs (testing, bulk reservation)
   transition <ID> --to published [--release 2.0.0-rc.1] [--superseded-by ID] --by AGENT   registry status change
   verify                                         check every registry row (pattern, check symbol, uniqueness)
@@ -240,6 +243,112 @@ def promote(key_or_path: str, by: str, data_root: Path = L.DATA_V2, registry: Pa
     return new_id, new_path
 
 
+REWRITE_SUFFIXES = (".yaml", ".jsonl", ".tsv", ".csv", ".yml")
+rewrite_text = L.rewrite_seed_refs
+
+
+def _jsonl_style(line: str):
+    import json
+    obj = json.loads(line)
+    for f in (L.jsonl_line, lambda o: json.dumps(o, ensure_ascii=False, sort_keys=True), lambda o: json.dumps(o, ensure_ascii=False)):
+        if f(obj) == line:
+            return f
+    raise MintError(f"cannot reproduce the JSON style of a line: {line[:100]}")
+
+
+def promote_batch(keys: list[str], by: str, data_root: Path = L.DATA_V2, registry: Path | None = None,
+                  today: str | None = None) -> dict[str, str]:
+    """Promote many draft records to `candidate` in one registry transaction (ADR-0031 §6; SPEC §12.2).
+
+    The same rules as `promote` apply to every key (draft, not held, not seed-v1). IDs are drawn from the CSPRNG under
+    one registry lock; then one pass over data/v2 rewrites every whole-token reference (YAML, JSONL, TSV, CSV),
+    renames YAML record files, sets status candidate on the promoted records (YAML and JSONL), and appends the pairs
+    to data/v2/ids/seed_map.csv. JSONL lines keep the JSON style their file uses. Returns {seed key: new ID}."""
+    import json
+    registry = registry or (data_root / "ids" / "registry.csv")
+    if not AGENT_RE.match(by or ""):
+        raise MintError("--by must be a pseudonymous ID (pid:...) or software agent (emstagent:...)")
+    today = today or dt.date.today().isoformat()
+    want = list(dict.fromkeys(keys))
+    recs = {}
+    for loc, rec in L.iter_records(data_root):
+        if isinstance(rec, dict) and rec.get("id") in want:
+            recs.setdefault(rec["id"], (loc, rec))
+    missing = [k for k in want if k not in recs]
+    if missing:
+        raise MintError(f"{len(missing)} keys have no record, e.g. {missing[:3]}")
+    for k in want:
+        loc, rec = recs[k]
+        if not L.is_seed(k):
+            raise MintError(f"{k} already has a persistent ID")
+        if rec.get("status") != "draft":
+            raise MintError(f"{k}: only draft records are promoted (status is {rec.get('status')!r})")
+        if rec.get("indigenousDataFlag") is True and rec.get("approvalStatus") != "approved":
+            raise MintError(f"{k}: held Tribal-related content is never promoted (ADR-0007 §D)")
+        if rec.get("validationStatus") == "seed-v1":
+            raise MintError(f"{k}: v1 seed records must be authored before they become candidates")
+        if L.ENTITY.get(rec.get("type"), {}).get("prefix") is None:
+            raise MintError(f"{k}: type {rec.get('type')!r} has no ID prefix")
+        if not L.namespace_ok(rec.get("module") or ""):
+            raise MintError(f"{k}: namespace {rec.get('module')!r} is not registered")
+    mapping: dict[str, str] = {}
+    with registry_lock(registry):
+        ensure_registry(registry)
+        existing = {r["id"] for r in read_registry(registry)}
+        rows = []
+        for k in want:
+            rec = recs[k][1]
+            rid = draw(rec["module"], L.ENTITY[rec["type"]]["prefix"], existing)
+            existing.add(rid)
+            mapping[k] = rid
+            rows.append({"id": rid, "type": rec["type"], "namespace": rec["module"], "minted_on": today, "minted_by": by,
+                         "status": "candidate", "superseded_by": "", "first_release": ""})
+        _append_rows(registry, rows)
+    new_ids = set(mapping.values())
+    for p in sorted(data_root.rglob("*")):
+        if not p.is_file() or p.suffix not in REWRITE_SUFFIXES or "ids" in p.relative_to(data_root).parts[:1]:
+            continue
+        text = p.read_text(encoding="utf-8")
+        new = rewrite_text(text, mapping)
+        if p.suffix == ".jsonl":
+            out = []
+            for line in new.splitlines():
+                if line.strip():
+                    obj = json.loads(line)
+                    if obj.get("id") in new_ids and obj.get("status") == "draft":
+                        orig = text.splitlines()[len(out)]
+                        obj["status"] = "candidate"
+                        line = _jsonl_style(orig)(obj) if orig.strip() else L.jsonl_line(obj)
+                out.append(line)
+            new = "\n".join(out) + ("\n" if new.endswith("\n") else "")
+            if new != text:
+                p.write_text(new, encoding="utf-8")
+        elif p.suffix == ".yaml" and p.parts[len(data_root.parts)] in ("core", "modules", "registers"):
+            if new == text:
+                continue
+            rec = L.load_yaml_text(new)
+            if isinstance(rec, dict) and rec.get("id") in new_ids and rec.get("status") == "draft":
+                rec["status"] = "candidate"
+                dest = p.with_name(L.id_to_stem(rec["id"]) + ".yaml")
+                if dest.exists() and dest != p:
+                    raise MintError(f"{dest} already exists")
+                L.write_yaml(dest, rec)
+                if dest != p:
+                    p.unlink()
+            else:
+                p.write_text(L.dump_yaml(rec) if isinstance(rec, dict) else new, encoding="utf-8")
+        elif new != text:
+            p.write_text(new, encoding="utf-8")
+    seed_map = data_root / "ids" / "seed_map.csv"
+    if not seed_map.exists() or seed_map.stat().st_size == 0:
+        seed_map.write_text("seed_key,id,minted_on,minted_by\n", encoding="utf-8")
+    with open(seed_map, "a", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh, lineterminator="\n")
+        for k in want:
+            w.writerow([k, mapping[k], today, by])
+    return mapping
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--registry", type=Path)
@@ -249,6 +358,10 @@ def main(argv=None) -> int:
     p.add_argument("record")
     p.add_argument("--by", required=True)
     p.add_argument("--namespace")
+    pb = sub.add_parser("promote-batch")
+    pb.add_argument("keys_file", type=Path, help="text file, one seed key per line")
+    pb.add_argument("--by", required=True)
+    pb.add_argument("--today")
     m = sub.add_parser("mint")
     m.add_argument("--type", required=True)
     m.add_argument("--namespace", required=True)
@@ -270,6 +383,10 @@ def main(argv=None) -> int:
         elif args.cmd == "promote":
             rid, path = promote(args.record, args.by, args.data_root, registry, args.namespace)
             print(f"{rid}  {path}")
+        elif args.cmd == "promote-batch":
+            keys = [x.strip() for x in args.keys_file.read_text(encoding="utf-8").splitlines() if x.strip() and not x.startswith("#")]
+            mapping = promote_batch(keys, args.by, args.data_root, registry, args.today)
+            print(f"promoted {len(mapping)} records to candidate; pairs appended to {args.data_root / 'ids' / 'seed_map.csv'}")
         elif args.cmd == "transition":
             transition(args.id, args.to, args.by, registry, args.release, args.superseded_by)
             print(f"{args.id} -> {args.to}")

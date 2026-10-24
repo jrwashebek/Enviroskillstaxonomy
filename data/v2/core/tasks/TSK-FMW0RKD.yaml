@@ -1,0 +1,62 @@
+id: emst:core/TSK-FMW0RKD
+type: Task
+prefLabel:
+  en: Check facilities, trails and public materials against the applicable accessibility standards, recording each barrier found and the fix scheduled
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Check facilities, trails and public materials against the applicable accessibility standards, recording each barrier found and the fix scheduled
+textSha256: 3db6efbd0e291c0f2199fb13833d56b2e123a890475b45beec4e335b201ccc51
+supports:
+- competency: emst:core/CMP-5NFAM97
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: on-site-preferred
+formationDependency: partial
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 5.5.5:T1
+v1Tier: T1
+v1Domain:
+  code: '5'
+  label: Communication & Engagement Skills
+v1SkillArea:
+  code: '5.5'
+  label: Customer Service
+editorialNote:
+  en: 'S2 close-out A. Rewritten from the v1 task text: "Ensure facilities, trails, and materials meet accessibility standards (e.g., ADA)".'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:5.5.5:T1
+    v1Code: 5.5.5
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 171
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

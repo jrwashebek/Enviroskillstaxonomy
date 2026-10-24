@@ -1,0 +1,56 @@
+id: emst:core/TSK-BRF91E6
+type: Task
+prefLabel:
+  en: Interpret soil maps to guide land-use planning and conservation practice, accounting for map-unit inclusions and scale limits.
+statement:
+  en: Interpret soil maps to guide land-use planning and conservation practice, accounting for map-unit inclusions and scale limits.
+textSha256: 30ced476cfe9190b7a139b808ecdf9987d30446bc73d5da2542f79aa9e50f764
+editorialNote:
+  en: 'v1 competency 1.2.1 is split: reassign this task to one of [''emst:core/CMP-BG6ASMR'', ''emst:core/CMP-KHYG7RK''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
+notation:
+- scheme: EMSTv1
+  value: 1.2.1:T3
+supports:
+- competency: emst:core/CMP-KHYG7RK
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+v1Tier: T3
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.2'
+  label: Soil & Water Science
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:1.2.1:T3
+    v1Code: 1.2.1
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 7
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0011

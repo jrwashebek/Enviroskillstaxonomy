@@ -1,0 +1,48 @@
+id: emst:core/TSK-CJMX9WY
+type: Task
+prefLabel:
+  en: Prepare a periodic compliance report for the facility, checking reported values against source data before the responsible official certifies it
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Prepare a periodic compliance report for the facility, checking reported values against source data before the responsible official certifies it
+textSha256: 23f160f82cc069541c1923f60fa24b81f90f34bd6e2f4f1e0c75796ada7bf3f9
+supports:
+- competency: emst:core/CMP-CZZ31P2
+  strength: primary
+workFunction: WF-MONITOR.attest
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+workflowProfiles:
+- WP-COMPLIANCE
+signOffAuthority:
+  kind: legal-signatory
+accountabilityConstraint:
+  required: true
+  basis:
+    en: A designated responsible or certifying official signs the report and is legally accountable for its accuracy.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

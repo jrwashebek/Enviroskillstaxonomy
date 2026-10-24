@@ -1,0 +1,49 @@
+id: emst:core/TSK-7VNVWR9
+type: Task
+prefLabel:
+  en: Define override criteria and alarm limits for an automated process, documenting the process basis and who may act on them
+statement:
+  en: Define override criteria and alarm limits for an automated process, documenting the process basis and who may act on them
+textSha256: a11b3b91a2fc2ce52d98a8f9a275202e03b29e0487a1b6b4624535050192ac41
+supports:
+- competency: emst:core/CMP-Q825DY3
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: on-site-preferred
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: system-specific
+  credentialGate: licence
+  currencyDecay: L
+credentialGates:
+- credential: emst:core/CRD-MAJKW8K
+  kind: required
+- credential: emst:core/CRD-5VSXY66
+  kind: required
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: design or planning of the work. Credential gates link the WP-07 register (T-8); gates are inputs, never proficiency.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

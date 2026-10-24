@@ -4,8 +4,10 @@
 For each OPM series that X4 (data/v2/crosswalks/opm-series/<snapshot>.sssom.tsv) maps to a P1, P2 or P4 role with a
 positive, non-negated predicate, assemble a series-shaped profile from the role's federal variant: dated series status
 from the L6 register (never shown as realigned while only proposed), indicative grade bands from the variant, major
-duties with indicative % time per band, Factor 1 knowledge from the competency targets and knowledge statements,
-needed-at-entry and distinguishing flags, positive-education flag, credential gates, and the disclaimer.
+duties per band in role-record order, Factor 1 knowledge from the competency targets and knowledge statements,
+positive-education flag, credential gates, and the disclaimer. Display-gate@1.1.0 governs every bundle value (CR-FIX-B-001;
+ADR-0031 §4.4): % time and importance only from job-analysis-confirmed, critical / needed-at-entry / distinguishing only
+after a pid: reviewer, target levels labelled editorial drafts; otherwise the gate's label is printed and no value.
 P3 roles are excluded (they appear only in the what's-coming view, ADR-0006). Tribal variants are never read.
 
 Outputs  docs/build/WP-08/generated/federal-series/<code>.json and .md, index.json, federal_variant_index.json
@@ -19,7 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import viewlib as V  # noqa: E402
 
-GEN = "pipelines/views/federal_series_profile.py@0.1.0"
+GEN = "pipelines/views/federal_series_profile.py@0.2.0"
 X4 = V.L.DATA_V2 / "crosswalks" / "opm-series" / "2026-10-23.sssom.tsv"
 TIERS = {"P1", "P2", "P4"}
 STRENGTH = {"skos:exactMatch": 5, "skos:closeMatch": 4, "skos:broadMatch": 3, "skos:narrowMatch": 3, "skos:relatedMatch": 1}
@@ -61,24 +63,31 @@ def bands_for(variant, role):
              "roleLevels": levels}]
 
 
+CTX = "federal-series-profile"
+
+
 def role_block(d, role, variant, row):
     items = V.effective_bundle(role, variant)
+    imp_ok = V.shows(role, "competencyTargets.importance", CTX)
+    dist_ok = V.shows(role, "competencyTargets.distinguishing", CTX)
+    crit_ok = V.shows(role, "taskBundle.critical", CTX)
+    entry_ok = V.shows(role, "taskBundle.neededAtEntry", CTX)
     blocks = []
     for g in bands_for(variant, role):
         sel = V.at_levels(items, g["roleLevels"])
         tg = V.targets_at(d, role, g["roleLevels"])
         f1 = []
-        for t in tg:
-            if t["importance"] < 4 and not t["distinguishing"]:
-                continue
+        for t in tg:                 # every target at these levels, in record order (importance never selects)
             ks = [k["statement"]["en"] for k in d.ks_by_comp.get(t["competency"], [])][:3]
             lv = ", ".join(f"{k} {v}" for k, v in t["targetLevels"].items())
-            f1.append({"competency": t["competency"], "statement": f"Knowledge of and skill in: {t['label'][0].lower()}{t['label'][1:]} (EMST target {lv}).",
-                       "knowledgeStatements": ks, "importance": t["importance"], "distinguishing": t["distinguishing"]})
-        blocks.append({**g, "majorDuties": V.duties(d, role, sel),
-                       "neededAtEntryTasks": [i["task"] for i in sel if i.get("neededAtEntry")],
-                       "criticalTasks": [i["task"] for i in sel if i.get("critical")],
-                       "distinguishingCompetencies": [t["competency"] for t in tg if t["distinguishing"]],
+            f1.append({"competency": t["competency"], "statement": f"Knowledge of and skill in: {t['label'][0].lower()}{t['label'][1:]} (EMST target {lv}, editorial draft).",
+                       "knowledgeStatements": ks, "importance": t["importance"] if imp_ok else None,
+                       "distinguishing": t["distinguishing"] if dist_ok else None})
+        blocks.append({**g, "majorDuties": V.duties(d, role, sel, CTX), "pctTimeNotice": V.TIME_NOTICE,
+                       "neededAtEntryTasks": [i["task"] for i in sel if i.get("neededAtEntry")] if entry_ok else None,
+                       "criticalTasks": [i["task"] for i in sel if i.get("critical")] if crit_ok else None,
+                       "distinguishingCompetencies": [t["competency"] for t in tg if t["distinguishing"]] if dist_ok else None,
+                       "jobAnalysisValues": V.PENDING_JA if not (crit_ok and entry_ok) else None,
                        "factor1Knowledge": f1})
     other = V.parse_other(row.get("other"))
     return {"role": role["id"], "roleTitle": d.label(role["id"]), "tier": d.tier(role), "variant": variant["id"],
@@ -90,7 +99,7 @@ def role_block(d, role, variant, row):
             "signOffAuthority": variant.get("signOffAuthority"),
             "instruments": V.link_items(d, variant.get("instruments")),
             "bands": blocks,
-            "changeView": f"docs/build/WP-08/generated/change_view/{role['id'].split(':', 1)[1]}.json" if d.tier(role) == "P1" else None}
+            "changeView": f"docs/build/WP-08/generated/change_view/{d.role_key(role)}.json" if d.tier(role) == "P1" else None}
 
 
 def render_md(p):
@@ -114,14 +123,16 @@ def render_md(p):
             out.append("")
         for b in r["bands"]:
             out += [f"### {b['group'].capitalize()} — indicative band {b['indicativeBand']} (not a classification criterion)", "",
-                    "**Major duties (indicative % of time, agent draft)**", ""]
+                    "**Major duties (agent draft, in record order)**", "", f"*{b['pctTimeNotice']}*", ""]
+            if b.get("jobAnalysisValues"):
+                out += [f"*Critical and needed-at-entry tasks: {b['jobAnalysisValues']}*", ""]
             for du in b["majorDuties"]:
-                out.append(f"- **{du['duty']}** — {du['pctTime']}%")
+                out.append(f"- **{du['duty']}**" + (f" — {du['pctTime']}%" if du["pctTime"] is not None else ""))
                 for t in du["tasks"][:4]:
                     flags = ", ".join(x for x, on in (("critical", t["critical"]), ("needed at entry", t["neededAtEntry"]),
-                                                      ("formation task", t["formationTask"])) if on)
+                                                      ("formation task, editorial draft", t["formationTask"])) if on)
                     out.append(f"  - {t['statement']}" + (f" *({flags})*" if flags else ""))
-            out += ["", "**Factor 1 — knowledge required (draft language)**", ""]
+            out += ["", "**Factor 1 — knowledge required (draft language; target levels are editorial drafts)**", ""]
             for f in b["factor1Knowledge"]:
                 out.append(f"- {f['statement']}" + (" *Distinguishing.*" if f["distinguishing"] else ""))
                 for ks in f["knowledgeStatements"]:
@@ -154,7 +165,7 @@ def main():
         role = d.get(row["subject_id"])
         if not role or d.tier(role) not in TIERS:
             continue
-        variant = d.get(row["subject_id"] + "/federal")
+        variant = d.variant_for(role["id"], "federal")
         code = obj.split(":", 1)[1]
         applies = V.parse_other(row.get("other")).get("applies_to", "")
         if applies in FEEDER:
@@ -182,7 +193,7 @@ def main():
                            "group": (rec.get("scopeNote") or {}).get("en", "").replace("Occupational group: ", "").rstrip("."),
                            "qualificationStandardVersion": rec.get("qualificationStandardVersion"),
                            "positiveEducationRequirement": edu,
-                           "educationNote": "FH judgment pending verification of the qualification standard",
+                           "educationNote": "from EMST's series record; not yet checked against the OPM qualification standard, so confirm with the HR office",
                            "registerRecord": rec["id"], "registerReviewBy": rec.get("reviewBy"),
                            "events": rec.get("events") or []},
                 "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
@@ -200,7 +211,7 @@ def main():
     for r in d.roles():
         if d.tier(r) not in ("P1", "P2"):
             continue
-        v = d.get(r["id"] + "/federal")
+        v = d.variant_for(r["id"], "federal")
         if v and v["id"] not in fed_index:
             fed_index[v["id"]] = []
     for vid, series in sorted(fed_index.items()):
@@ -209,7 +220,7 @@ def main():
         lines = [f"# Federal Series Profile (variant index): {d.label(vid)}", "", f"> **{V.DISCLAIMER}**", "",
                  f"- **Role:** {d.label(role['id'])} (`{role['id']}`, {d.tier(role)}); authority position (editorial): {v.get('authorityPosition')}",
                  f"- **Indicative band:** {V.band_text(v.get('indicativeGradeOrBand'))} (not a classification criterion)",
-                 f"- **Generated:** {GEN}, rule federal-series-profile@0.1.0 (proposed), as of {V.AS_OF}", "", "## Series", ""]
+                 f"- **Generated:** {GEN}, rule federal-series-profile@0.1.0 ({V.stamp('federal-series-profile', '0.1.0', GEN)['ruleStatus']}), as of {V.AS_OF}", "", "## Series", ""]
         if series:
             for x in series:
                 rec = d.series.get(x["series"]) or {}

@@ -1,0 +1,64 @@
+id: emst:core/ENA-DXH5GN2
+type: Enactment
+prefLabel:
+  en: Federal land agency agreement manager
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-WZ4CQR1
+enactmentKind: actor
+actorType: federal-land-manager
+authorityBasis:
+  en: Good Neighbor Authority (with the 2025 amendments on revenue retention and recreation agreements), stewardship agreement and cooperative agreement authorities; limits on delegating inherently governmental functions.
+principal:
+  en: The forest supervisor or state director and the agreements officer.
+accountabilityVenue:
+  en: Agreement audits; inspectors general; Congress.
+authorityPosition: resource-manager
+characteristicInstruments:
+- instrument: emst:core/INS-JCTA3J0
+  role: enables
+- instrument: seed:ins/long-term-gna-act
+  role: enables
+  note:
+    en: Pending legislation.
+- instrument: seed:ins/fix-our-forests-act
+  role: enables
+  note:
+    en: Pending legislation.
+- instrument: emst:core/INS-NC6C6SW
+  role: enables
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+note:
+  en: 'Federal staff increasingly manage agreements rather than deliver work directly [E: SC-030].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SC-030
+  - SC-031
+  - SC-032
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

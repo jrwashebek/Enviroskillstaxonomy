@@ -1,0 +1,45 @@
+id: emst:hazards/TSK-RR60FKV
+type: Task
+prefLabel:
+  en: Identify immediate post-disaster hazards such as debris-flow paths, hazard trees and spills, marking exclusion areas for responders and the public
+statement:
+  en: Identify immediate post-disaster hazards such as debris-flow paths, hazard trees and spills, marking exclusion areas for responders and the public
+textSha256: 5fa93f56de378d160a54110001859373122b6a4c62b2ef5e887009277c0c0014
+supports:
+- competency: emst:hazards/CMP-S73NCC7
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-INCIDENT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: ecosystem-type
+  currencyDecay: H
+homeModule: hazards
+subsectors:
+- C03
+layer: L2
+module: hazards
+status: candidate
+lifecycleState: emerging
+reviewBy: '2027-10-23'
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -1,0 +1,41 @@
+id: emst:core/IND-AESC72Y
+type: Indicator
+prefLabel:
+  en: Resolves disputed identifications for a region or taxon group with documented diagnostic
+competency: emst:core/CMP-9FGSY1P
+level: L3
+statement:
+  en: Resolves disputed identifications for a region or taxon group with documented diagnostic evidence that another specialist can audit.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-YT60MTY
+- emst:core/TSK-H77HSAA
+distinguishingAttribute: ATT-AUT
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

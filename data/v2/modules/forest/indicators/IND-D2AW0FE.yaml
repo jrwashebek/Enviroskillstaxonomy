@@ -1,0 +1,47 @@
+id: emst:forest/IND-D2AW0FE
+type: Indicator
+prefLabel:
+  en: Briefs an incident management team on long-term fire behaviour outlooks, documenting…
+competency: emst:forest/CMP-MQJG1YC
+level: L4
+statement:
+  en: Briefs an incident management team on long-term fire behaviour outlooks, documenting assumptions and the triggers that would change the outlook.
+augmentationMode: unaided
+assessmentMethods:
+- simulation-role-play
+- prediction-log-calibration
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:forest/TSK-JM3R437
+- emst:forest/TSK-AB92B6W
+distinguishingAttribute: ATT-SCO
+layer: L1
+module: forest
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.4:advanced:I3
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  - v1Key: v1:4.3.4:advanced:I7
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

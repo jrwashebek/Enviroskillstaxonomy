@@ -1,0 +1,42 @@
+id: emst:core/TSK-2HA8J47
+type: Task
+prefLabel:
+  en: Update the facility compliance calendar when a permit, rule or reporting requirement changes, notifying each obligation owner of the change
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Update the facility compliance calendar when a permit, rule or reporting requirement changes, notifying each obligation owner of the change
+textSha256: 7032e20e61f8ed564ee30fa0636c33b5c262567a29f03d977a09aee3b7288389
+supports:
+- competency: emst:core/CMP-CZZ31P2
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+workflowProfiles:
+- WP-COMPLIANCE
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

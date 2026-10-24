@@ -1,0 +1,68 @@
+id: emst:core/CMP-F6ZC95V
+type: Competency
+prefLabel:
+  en: Analyze regulatory, planning and public-comment text at scale with traceable citations
+altLabel:
+  en:
+  - Analyze regulatory, planning and public-comment text with LLMs, with traceable citations
+  - LLM-assisted text analysis
+definition:
+  en: The capability to extract, classify and summarize content from plans, environmental documents, permits, consultation documents and public comments with machine assistance, so that every extracted statement traces to a source passage and omission and fabrication rates are measured. Legal sufficiency judgments stay with the responsible official (statecraft).
+statement:
+  en: Uses machine-assisted extraction, classification and summarization on plans, environmental documents, permits, consultation documents and public comments; requires every extracted statement to trace to a source passage; measures omission and fabrication rates on a sample; documents limits for the responsible official; and maintains reusable pipelines through model changes, leaving the legal sufficiency judgment with the official.
+editorialNote:
+  en: 'Candidate ID DC-CAND-16 (candidate_disposition.csv). DC specialist responsible-AI competency (ADR-0025 §2) with SC secondary: outputs enter an administrative record. Title made technology-neutral per G-5 (the candidate title named LLMs; kept as altLabel). Agency tools are supplemental with analyst verification [E: DC-001].'
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-P35S4BJ
+  - emst:core/IND-2DYKJDK
+- level: L2
+  indicators:
+  - emst:core/IND-8HQZ3X1
+  - emst:core/IND-MQH5MYH
+- level: L3
+  indicators:
+  - emst:core/IND-JJEMNNJ
+  - emst:core/IND-J3QMDZW
+- level: L4
+  indicators:
+  - emst:core/IND-TSPFRJ2
+  - emst:core/IND-XSP11CZ
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.4.4
+    relation: split-from
+    note: AI-assisted comment analysis with traceable citations
+  sources:
+  - DC-001
+  - DC-032
+  - DC-033
+  - DC-035
+  - DC-037
+  adr:
+  - ADR-0003
+  - ADR-0025

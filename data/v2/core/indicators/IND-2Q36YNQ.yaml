@@ -1,0 +1,46 @@
+id: emst:core/IND-2Q36YNQ
+type: Indicator
+prefLabel:
+  en: Negotiates the terms of a delegation or performance agreement with the overseeing agency, recording each obligation, metric and dispute-resolution step agreed.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-DFBQTY4
+level: L4
+statement:
+  en: Negotiates the terms of a delegation or performance agreement with the overseeing agency, recording each obligation, metric and dispute-resolution step agreed.
+augmentationMode: unaided
+assessmentMethods:
+- simulation-role-play
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- agreement
+servedTasks:
+- emst:core/TSK-J9APZPS
+distinguishingAttribute: ATT-SCO
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

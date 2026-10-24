@@ -1,0 +1,47 @@
+id: emst:water/TSK-FZAFW38
+type: Task
+prefLabel:
+  en: Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it
+statement:
+  en: Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it
+textSha256: fb341f5089208f5b59feb8dadd7d73cca5f61a0a9a87ceaadaf7ac4f748818a7
+supports:
+- competency: emst:water/CMP-M3KMNGM
+  strength: primary
+workFunction: WF-OPERATE
+workflowProfiles:
+- WP-OPERATIONS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: multi-year-or-rare-event
+  placeBoundness: system-specific
+  currencyDecay: M
+credentialGates:
+- credential: emst:core/CRD-5VSXY66
+  kind: required
+homeModule: water
+subsectors:
+- W02
+layer: L2
+module: water
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

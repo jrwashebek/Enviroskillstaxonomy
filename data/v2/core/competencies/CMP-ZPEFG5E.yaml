@@ -1,0 +1,150 @@
+id: emst:core/CMP-ZPEFG5E
+type: Competency
+prefLabel:
+  en: Design developmental work experiences that preserve the formation of professional judgment
+altLabel:
+  en:
+  - Designing workflows for tacit knowledge formation in AI-augmented practice
+  - Design AI-augmented apprenticeships
+  - Design performance-based qualification for field and technical work
+  - Design structured developmental field experiences
+definition:
+  en: Designs the sequence of supervised work, unaided practice, rotations, task-book assignments and qualification steps through which entry and developing staff form the judgment their role requires, including where AI or automation now performs tasks that once built it. Covers formation analysis of workflows, staged-exposure and by-hand rules, performance-based qualification design and evaluation of whether formation works. Excludes observing and certifying one person's performance (a separate TX-D competency) and leading a field crew.
+statement:
+  en: Analyzes which tasks in a workflow form judgment, then designs developmental experiences (supervised repetitions, unaided by-hand quotas, rotations, task books and qualification steps) so that entry and developing staff still form that judgment when AI or automation performs those tasks, and evaluates whether the design works.
+notation:
+- scheme: EMSTv1
+  value: 7.2.2
+competencyType: transversal
+transversalCluster: TX-D
+levelSpan:
+  min: L2
+  max: L5
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-EQQ3GFR
+  - emst:core/IND-WQ4MA7G
+  - emst:core/IND-HJNXXE1
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L3
+  indicators:
+  - emst:core/IND-4SK17ZE
+  - emst:core/IND-R1SECJ0
+  - emst:core/IND-8WXG21X
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L4
+  indicators:
+  - emst:core/IND-F12B8M6
+  - emst:core/IND-SCJQ19V
+  - emst:core/IND-CJPZ0T5
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L5
+  indicators:
+  - emst:core/IND-2FBY20P
+  - emst:core/IND-BKMWXRK
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+knowledge:
+- emst:core/KNW-NYAACH1
+- emst:core/KNW-4F93N98
+- emst:core/KNW-NE791R4
+homeModule: core
+learningDesign:
+  assessmentContext: desk-data | stakeholder (design products reviewed by a peer supervisor; field context for field roles)
+  recommendedModes:
+  - CL
+  - WS
+  - COP
+  - CAP
+  typicalHoursPerLevelStep: 16
+  prerequisites:
+  - emst:core/CMP-0N97D81
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.2'
+  label: Human-Ai Professional Practice
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | transversal | TX-D. Rationale: Survivor for formation design; absorbs FH-C06, FS-C13 and LC-C-01; required for supervisors and training officers (LC, FC, FS verdicts). Role verdicts considered: FC:carry|LC:carry|FS:change. | WP-07: Rewritten v1 7.2.2 (TX-D formation survivor; ADR-0025). Absorbs FH-C06 (developmental field experiences), FS-C13 (AI-augmented apprenticeships) and LC-C-01 (performance-based qualification design), per candidate_disposition.csv. v1 levels mapped by IO''s attribute test: v1 Foundational content (explaining formation loss) becomes knowledge statements, not an L1 level; v1 Expert ''Publishes/Recognized'' indicators are retired (B03, B04). L5 is drafted because the ATT-FOR L5 descriptor (''sets formation pathways and protects entry cohorts organization-wide'') is this competency''s core; it stays provisional until SME panels confirm strategic demand (ADR-0004 §4). Required for supervisors and training officers (v1_disposition.csv).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:05:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  derivedFrom:
+  - v1Key: v1:7.2.2
+    v1Code: 7.2.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 222
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  sources:
+  - LC-034
+  - LC-104
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003
+  - ADR-0011

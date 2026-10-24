@@ -1,0 +1,51 @@
+id: emst:core/ENA-H3NYG9N
+type: Enactment
+prefLabel:
+  en: State regulator using compliance analytics
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-1TY9TQH
+enactmentKind: actor
+actorType: state-agency
+authorityBasis:
+  en: State inspection-targeting discretion and electronic-reporting rules; federal compliance-monitoring commitments for delegated programmes.
+principal:
+  en: The compliance program manager.
+accountabilityVenue:
+  en: Administrative hearings where data support a case; legislative oversight of targeting fairness.
+authorityPosition: regulator
+characteristicInstruments:
+- instrument: emst:core/INS-D47NQF4
+  role: enables
+  note:
+    en: Electronic monitoring reports make data-driven targeting possible. Registered without dated events; basis linked, status not yet verified.
+note:
+  en: 'SL review: analytic targeting is adopted unevenly across states; where used, the human-review gate before enforcement is the regulatory safeguard [J].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sl-review@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

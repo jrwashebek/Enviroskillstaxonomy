@@ -1,0 +1,44 @@
+id: emst:core/TSK-NN02D55
+type: Task
+prefLabel:
+  en: Verify AI-generated lesson content or simulations against verified science and the learning objectives, correcting errors before use with learners
+statement:
+  en: Verify AI-generated lesson content or simulations against verified science and the learning objectives, correcting errors before use with learners
+textSha256: ce2e897f401cefda6575898bb279d6d38c9e229cd96d1d65692c103265c35d77
+supports:
+- competency: emst:core/CMP-PPCA1B6
+  strength: primary
+- competency: emst:core/CMP-MS40XXX
+  strength: contributing
+workFunction: WF-PLAN
+fieldDependency: remote
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split: verifying generated content alongside the lesson-design tasks.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0005

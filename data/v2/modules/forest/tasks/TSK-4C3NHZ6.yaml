@@ -1,0 +1,41 @@
+id: emst:forest/TSK-4C3NHZ6
+type: Task
+prefLabel:
+  en: Integrate satellite detections, camera feeds, weather and resource status into a continuously updated situation summary for dispatch
+statement:
+  en: Integrate satellite detections, camera feeds, weather and resource status into a continuously updated situation summary for dispatch
+textSha256: 9d3575c71273ea3880e6889a42cea4f51f87a932084a67d792d9538fd3a489bd
+supports:
+- competency: emst:forest/CMP-PE8PB46
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-INCIDENT
+- WP-OPERATIONS
+fieldDependency: remote
+formationDependency: partial
+homeModule: forest
+subsectors:
+- L07
+layer: L2
+module: forest
+status: candidate
+lifecycleState: emerging
+reviewBy: '2027-10-23'
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

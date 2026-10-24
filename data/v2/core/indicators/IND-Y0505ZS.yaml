@@ -1,0 +1,46 @@
+id: emst:core/IND-Y0505ZS
+type: Indicator
+prefLabel:
+  en: Refers a facility from assistance to enforcement when policy criteria are met, documenting the facts and the criterion applied.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-BR5Q9TJ
+level: L3
+statement:
+  en: Refers a facility from assistance to enforcement when policy criteria are met, documenting the facts and the criterion applied.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- situational-judgment-test
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- referral memo
+servedTasks:
+- emst:core/TSK-X9TPCGX
+distinguishingAttribute: ATT-GUI
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

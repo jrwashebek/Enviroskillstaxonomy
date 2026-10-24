@@ -1,0 +1,36 @@
+id: emst:core/FAM-412PEFZ
+type: JobFamily
+prefLabel:
+  en: Environmental review, authorization and compliance
+definition:
+  en: Reviewing effects of proposed actions, authorizing uses, inspecting and enforcing, and administering regulatory programmes.
+boundaryCriteria:
+  en: Core when the work sits on either side of a regulatory relationship; authority position is a variant attribute (v1 F8; ADR-0017).
+memberRule: job-family-membership@0.1.0
+notation:
+- scheme: EMSTv1family
+  value: F08
+layer: L3
+module: core
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: Navigation only; membership is computed (never stored) by pipelines/views/job_families.py under job-family-membership@0.1.0. Boundary criteria condensed from legacy/v1/docs/profession_family_definitions.md (v1 text dedicated CC0).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0016
+  - ADR-0020
+  - ADR-0021

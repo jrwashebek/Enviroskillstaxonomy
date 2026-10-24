@@ -1,0 +1,62 @@
+id: emst:core/TSK-PE9KDDQ
+type: Task
+prefLabel:
+  en: Evaluate a proposed ecological intervention against reversibility, precedent and uncertainty criteria, recording whether precautionary conditions apply and why
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Evaluate a proposed ecological intervention against reversibility, precedent and uncertainty criteria, recording whether precautionary conditions apply and why
+textSha256: 69f8fe6611e0b78804090da640820438b145e476b3890f8bec55a98e056b418c
+supports:
+- competency: emst:core/CMP-47TQY9N
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 7.1.2:T1
+v1Tier: T1
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.1'
+  label: Professional Ethics Architecture
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Evaluate proposed ecological interventions against reversibility, historical precedent, and scientific uncertainty criteria to determine whether precautionary triggers apply" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:7.1.2:T1
+    v1Code: 7.1.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 218
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

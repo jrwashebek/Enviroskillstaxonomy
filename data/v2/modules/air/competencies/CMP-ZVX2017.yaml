@@ -1,0 +1,64 @@
+id: emst:air/CMP-ZVX2017
+type: Competency
+prefLabel:
+  en: Build emissions inventories and air quality models for attainment planning
+altLabel:
+  en:
+  - Emissions inventory development
+  - Air quality modelling
+  - Attainment planning
+definition:
+  en: Compiling point, area, mobile and natural source emissions inventories, running or reviewing dispersion and photochemical models, and developing control strategies and attainment demonstrations for areas that do not meet air quality standards, including review of applicants' modelling in permits. Excludes ambient monitoring operation (DB-C13) and permit drafting (SL-C02 air enactment).
+statement:
+  en: Compiles emissions inventories with documented methods, runs or reviews dispersion and photochemical models, and develops control strategies and attainment demonstrations with stated assumptions and uncertainty, so that the plan shows how and when an area will meet air quality standards and withstands regulatory and public review.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:air/IND-2QHXE0N
+  - emst:air/IND-CZZVN8T
+- level: L3
+  indicators:
+  - emst:air/IND-R412ZC4
+  - emst:air/IND-66PTE1K
+- level: L4
+  indicators:
+  - emst:air/IND-8PEZ57B
+  - emst:air/IND-2RSRHBW
+homeModule: air
+subsectors:
+- P01
+- C01
+reusability: subsector-specific
+layer: L1
+module: air
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Emissions inventories and attainment modelling split out of v1 6.7.5 (DB, SL verdicts). Part of role R28. Model products (e.g. regulatory dispersion and photochemical models) are L4 tools, named nowhere in L1/L2 text. Basis [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:6.7.5
+    relation: split-from
+    note: inventories and modelling part of v1 6.7.5 (DB, SL verdicts)
+  sources:
+  - DB-023
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

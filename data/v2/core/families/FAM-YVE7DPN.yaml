@@ -1,0 +1,40 @@
+id: emst:core/FAM-YVE7DPN
+type: JobFamily
+prefLabel:
+  en: Environmental data science and geospatial analysis
+definition:
+  en: Building, validating and stewarding environmental data, spatial, remote-sensing and model products and their reference data.
+boundaryCriteria:
+  en: Core when the deliverable is a data, map or model product with stated accuracy (v1 F7).
+memberRule: job-family-membership@0.1.0
+notation:
+- scheme: EMSTv1family
+  value: F07
+layer: L3
+module: core
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: Navigation only; membership is computed (never stored) by pipelines/views/job_families.py under job-family-membership@0.1.0. Boundary criteria condensed from legacy/v1/docs/profession_family_definitions.md (v1 text dedicated CC0).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0016
+  - ADR-0020
+  - ADR-0021
+altLabel:
+  en:
+  - GIS
+  - remote sensing

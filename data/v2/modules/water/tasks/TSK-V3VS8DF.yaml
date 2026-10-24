@@ -1,0 +1,47 @@
+id: emst:water/TSK-V3VS8DF
+type: Task
+prefLabel:
+  en: Review automatically compiled discharge monitoring data against laboratory records and shift logs before the monthly discharge report is signed
+statement:
+  en: Review automatically compiled discharge monitoring data against laboratory records and shift logs before the monthly discharge report is signed
+textSha256: 617318f52198e8bade940b629283aee6a979014e513b69127d5cbfd7ee5f0b88
+supports:
+- competency: emst:water/CMP-M3KMNGM
+  strength: primary
+workFunction: WF-MONITOR.attest
+workflowProfiles:
+- WP-OPERATIONS
+- WP-COMPLIANCE
+fieldDependency: remote-capable
+formationDependency: partial
+credentialGates:
+- credential: emst:core/CRD-5VSXY66
+  kind: required
+signOffAuthority:
+  kind: licensure
+homeModule: water
+subsectors:
+- W02
+layer: L2
+module: water
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: Review-and-defence task split from report production (ADR-0003 G-2).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

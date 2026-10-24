@@ -1,0 +1,83 @@
+id: emst:core/CMP-273B1S3
+type: Competency
+prefLabel:
+  en: Install and maintain erosion control and watershed treatments
+definition:
+  en: Assessing erosion-prone areas in the field and installing, inspecting and maintaining erosion and sediment controls and watershed treatments (check dams, wattles, silt fences, vegetated buffers, bioengineered streambank stabilization, drainage structures), adapting treatments when they fail. Excludes engineering design of major structures and stormwater programme management (water module).
+statement:
+  en: Identify erosion-prone areas and active erosion in the field, install erosion and sediment controls and bioengineering treatments to specification, inspect them after storms, and repair or adapt treatments when they fail.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-XWMSSNZ
+  - emst:core/IND-82KTQA1
+- level: L2
+  indicators:
+  - emst:core/IND-R68TCP6
+  - emst:core/IND-WKNA274
+  - emst:core/IND-6VEH3EK
+- level: L3
+  indicators:
+  - emst:core/IND-0ZDN67N
+  - emst:core/IND-PJKJ1YF
+  - emst:core/IND-J50SNV5
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 4.2.4
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.2'
+  label: Land Management Implementation
+editorialNote:
+  en: 'WP-03 (FC) draft. Rewritten; absorbs v1 1.2.5 erosion processes and control (field assessment and effectiveness monitoring). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-BUILD (FC). Rationale: Survivor for erosion control and watershed treatment; absorbs 1.2.5 (FC verdict). Role verdicts considered: FC:change.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.2.4
+    v1Code: 4.2.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 120
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:4.2.4
+    v1Code: 4.2.4
+    v1Table: source_text/competencies
+    sourceTextLine: 7825
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:1.2.5
+    v1Code: 1.2.5
+    relation: merged-from
+    note: v1 1.2.5 (merge) → emst:core/CMP-273B1S3 per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - ADR-0011
+  - WP-03

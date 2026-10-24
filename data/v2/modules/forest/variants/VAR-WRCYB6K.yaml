@@ -1,0 +1,44 @@
+id: emst:forest/VAR-WRCYB6K
+type: RoleVariant
+prefLabel:
+  en: Wildland fire operations (crew to supervisor) (private)
+variantOf: emst:forest/ROL-KB8K99D
+sectorActor: private
+authorityPosition: service-provider
+layer: L3
+module: forest
+status: candidate
+validationStatus: draft
+license: CC0-1.0
+definition:
+  en: 'Wildland fire operations (crew to supervisor) in a private-sector setting: delivers the work for another party under contract or agreement. Contract crews and engines dispatched under agreements.'
+lifecycleState: established
+useTier: develop
+sensitivity: public
+sectorActorSubtype: firm
+industry: consulting-engineering
+ownership: private-closely-held
+deliveryModel: contracted
+credentialGates:
+- credential: emst:core/CRD-3N2G328
+  kind: required
+signOffAuthority:
+  kind: position-qualification
+  credentials:
+  - emst:core/CRD-3N2G328
+editorialNote:
+  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0007
+  - ADR-0017
+  - ADR-0022

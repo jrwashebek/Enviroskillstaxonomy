@@ -1,0 +1,79 @@
+id: emst:core/SCR-CWKK9A4
+type: StateClassRecord
+prefLabel:
+  en: Natural Resource Specialist 5
+notation:
+- scheme: class-WA
+  value: 523W
+jurisdictionId:
+  stateFips: '53'
+  label: Washington
+employerType: state-agency
+agency: Statewide classified service (Office of Financial Management State HR)
+classCode: 523W
+classTitle: Natural Resource Specialist 5
+seriesId: Natural Resource Specialist 1-6
+levelIndex:
+  ordinal: 5
+  label: '5'
+supervisoryStatus: supervisor
+specEffectiveDate: '2025-07-01'
+workDescriptionText:
+  storage: hash-and-url
+  url: https://ofm.wa.gov/state-human-resources/compensation-job-classes/ClassifiedJobListing/Specifications/849
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+mqText:
+  storage: hash-and-url
+  url: https://ofm.wa.gov/state-human-resources/compensation-job-classes/ClassifiedJobListing/Specifications/849
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+  paraphrase: 'Desirable: bachelor''s plus 4 years incl. 1 year senior; year-for-year substitution; graduate degree = 2 years.'
+mqLocation: spec
+degreeRule: substitutable
+licensesRequired: []
+payBasis: monthly
+payMinMax:
+  min: null
+  max: null
+  currency: USD
+  rangeLabel: Range 60
+  note: amounts not retrieved
+payGradeLabel: Range 60
+payEffectiveDate: '2025-07-01'
+bargainingUnit: a WPEA shadow class carries the same code (SL-043)
+emstMapping:
+- roleVariant: emst:core/VAR-AHB4XZ4
+  roleLevel: senior
+  matchType: skos:relatedMatch
+  confidence: 0.4
+  reviewer: null
+  reviewDate: null
+  crosswalkRecord: emst-x5-wa:R13-resource-program-manager/state:523W
+  note: competency targets with level are added when WP-08 authors the role profile
+editorialNote:
+  en: Dated record as of 2026-10-23; re-run each 1 July or on plan revision (ADR-0022 X5).
+layer: L6
+module: core
+status: candidate
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2027-07-01'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:ia-wp09@phase4
+  generatedAt: '2026-10-23T19:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp09-crosswalk@1
+  evidenceLabel: E
+  sources:
+  - SL-040
+  - SL-043
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0022
+  - ADR-0006

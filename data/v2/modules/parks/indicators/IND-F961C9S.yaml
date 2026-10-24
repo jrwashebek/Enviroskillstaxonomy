@@ -1,0 +1,46 @@
+id: emst:parks/IND-F961C9S
+type: Indicator
+prefLabel:
+  en: Recommends a route or activity matched to a visitor's stated plans, abilities and…
+competency: emst:parks/CMP-ZJ8688G
+level: L2
+statement:
+  en: Recommends a route or activity matched to a visitor's stated plans, abilities and current conditions, naming the hazards and turnaround points that apply.
+augmentationMode: unaided
+assessmentMethods:
+- simulation-role-play
+- task-book-observation
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:parks/TSK-FW8Z924
+distinguishingAttribute: ATT-AUT
+layer: L1
+module: parks
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:5.5.1:intermediate:I1
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  - v1Key: v1:5.5.1:intermediate:I2
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

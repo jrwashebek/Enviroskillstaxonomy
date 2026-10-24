@@ -1,0 +1,65 @@
+id: emst:waste/TSK-013BTQW
+type: Task
+prefLabel:
+  en: Design a source-separation campaign for a community or institution, testing messages with a pilot group before full rollout
+statement:
+  en: Design a source-separation campaign for a community or institution, testing messages with a pilot group before full rollout
+textSha256: 3821fbbab730b3e18c81f572af3cdceb41a731f7a28b6ce29e8e5ff34b35e3e5
+supports:
+- competency: emst:waste/CMP-0HYDZPS
+  strength: primary
+workFunction: WF-PLAN
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- public
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: waste
+subsectors:
+- P02
+layer: L2
+module: waste
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+notation:
+- scheme: EMSTv1
+  value: 3.7.2:T3
+v1Tier: T3
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.7'
+  label: Circular Economy & Waste Systems
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:3.7.2:T3
+    v1Code: 3.7.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 108
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

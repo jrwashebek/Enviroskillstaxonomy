@@ -1,0 +1,49 @@
+id: emst:core/TSK-AM7D2FC
+type: Task
+prefLabel:
+  en: Collect samples and photographs during an inspection under chain-of-custody procedures, so that the evidence is admissible in an enforcement proceeding
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Collect samples and photographs during an inspection under chain-of-custody procedures, so that the evidence is admissible in an enforcement proceeding
+textSha256: e643103d14b252de5da4301f65e9134d621ecf9c7f791ef05dc45fa59e8b67e7
+supports:
+- competency: emst:core/CMP-Z9BVC7K
+  strength: primary
+- competency: emst:core/CMP-72R1NBG
+  strength: contributing
+- competency: emst:core/CMP-G675QW3
+  strength: contributing
+workFunction: WF-ENFORCE
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-COMPLIANCE
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+editorialNote:
+  en: 'S2 (CR-FC-001 ruling): contributing links to FC-C24 (field custody and QC) and FC-C16 (trace-level sampling) added by FC.'

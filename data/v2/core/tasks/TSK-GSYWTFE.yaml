@@ -1,0 +1,68 @@
+id: emst:core/TSK-GSYWTFE
+type: Task
+prefLabel:
+  en: Lead a planning process spanning watershed or ecosystem boundaries, producing a shared work plan that each participating jurisdiction formally adopts
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Lead a planning process spanning watershed or ecosystem boundaries, producing a shared work plan that each participating jurisdiction formally adopts
+textSha256: 9794dd2f5de48857d7ed78b8f5273e44d59c6648276b15a3f0a135f19c9e809f
+supports:
+- competency: emst:core/CMP-WZ4CQR1
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- intergovernmental
+workflowProfiles:
+- WP-AGREEMENT
+notation:
+- scheme: EMSTv1
+  value: 6.5.4:T1
+v1Tier: T1
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.5'
+  label: Intergovernmental Relations
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Lead planning efforts that span watershed or ecosystem boundaries" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.5.4:T1
+    v1Code: 6.5.4
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 200
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

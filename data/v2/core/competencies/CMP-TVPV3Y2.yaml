@@ -1,0 +1,81 @@
+id: emst:core/CMP-TVPV3Y2
+type: Competency
+prefLabel:
+  en: Assess litigation exposure and design decisions for resilience on remand
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to anticipate the legal challenges a decision will face under current doctrine, to decide where added analysis, engagement or explanation reduces that risk, and to structure the decision and record so that a remand can be completed without restarting. Excludes legal representation, which counsel provides.
+statement:
+  en: Identifies the claims a decision is likely to face under current standards of deference, remedy and standing; decides where more analysis, engagement or explanation reduces that risk; and structures the record and decision so that a court remand can be completed without restarting the action.
+competencyType: practice
+levelSpan:
+  min: L3
+  max: L5
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - litigation risk assessment
+  - record defensibility
+  - remand planning
+instrumentSensitivity:
+- mechanism: DM-08
+  rationale:
+    en: Deference, standing, limitations periods and remedies are changing.
+  evidenceLabel: E
+  sources:
+  - V2-02
+  - V2-03
+- mechanism: DM-01
+  rationale:
+    en: Narrower review scope changes which claims are viable.
+  evidenceLabel: E
+  sources:
+  - V2-02
+editorialNote:
+  en: 'WP-05 (A5 SC). Deference and remedy doctrine changed in 2025 (a deficient analysis does not necessarily require vacatur), and pending legislation would mandate remand without vacatur and limit standing [E: V2-02, V2-03]. Works with counsel; never replaces legal advice. L5 indicators drafted per the disposition (L3-L5) and await SME confirmation.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-009
+  - SC-010
+  - SC-012
+  - V2-02
+  - V2-03
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L3
+  indicators:
+  - emst:core/IND-5XVE6SG
+  - emst:core/IND-9YS1V5T
+  - emst:core/IND-H0K4XFS
+- level: L4
+  indicators:
+  - emst:core/IND-5Z7T1E3
+  - emst:core/IND-72GR62A
+- level: L5
+  indicators:
+  - emst:core/IND-J54MBFE
+  - emst:core/IND-Q2Q86EW

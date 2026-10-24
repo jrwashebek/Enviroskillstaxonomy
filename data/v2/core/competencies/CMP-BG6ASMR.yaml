@@ -1,0 +1,92 @@
+id: emst:core/CMP-BG6ASMR
+type: Competency
+prefLabel:
+  en: Describe, test and sample soils in the field
+definition:
+  en: Describing soil profiles and horizons in standard terms, estimating properties by field tests (texture by feel, structure, colour, redoximorphic features, infiltration, compaction), collecting samples for laboratory analysis, and relating field evidence to hydrology, erosion risk, productivity and soil health. Excludes soil science as a knowledge area and digital soil mapping (data craft).
+statement:
+  en: Describe soil profiles in standard terms, estimate soil properties by field tests and collect samples for laboratory analysis; relate diagnostic features to hydrology, erosion and soil health, and move sampling locations or depths to capture real site variation.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-1D5E4V9
+  - emst:core/IND-FVZGW5M
+  - emst:core/IND-6Z1Y56C
+- level: L2
+  indicators:
+  - emst:core/IND-VGETTXC
+  - emst:core/IND-5QVMMQ5
+  - emst:core/IND-FM2V5WH
+- level: L3
+  indicators:
+  - emst:core/IND-4V0ZRP1
+  - emst:core/IND-3TGH291
+  - emst:core/IND-6K1YQ7G
+- level: L4
+  indicators:
+  - emst:core/IND-R6M7F35
+  - emst:core/IND-J79PVCQ
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 4.1.4
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.1'
+  label: Field Assessment & Monitoring
+editorialNote:
+  en: 'WP-03 (FC) draft. Rewritten; receives the field soil characterization part of split v1 1.2.1 and absorbs v1 4.6.5 soil health assessment (anchors FCA-SOIL-1..4). Texture by feel is made measurable against laboratory results. v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS (FC). Rationale: Strongest human-essential case (texture by feel checked against lab results); consolidates 1.2.1 field content and 4.6.5; title defect fixed (FC verdict). Role verdicts considered: FC:change|FC:carry. Title and description were merged in the v1 database and are split here from the source text.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.1.4
+    v1Code: 4.1.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 115
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:4.1.4
+    v1Code: 4.1.4
+    v1Table: source_text/competencies
+    sourceTextLine: 7578
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
+  - v1Key: v1:1.2.1
+    v1Code: 1.2.1
+    relation: split-from
+    note: v1 1.2.1 (split) → emst:core/CMP-BG6ASMR per v1_disposition.csv
+  - v1Key: v1:4.6.5
+    v1Code: 4.6.5
+    relation: merged-from
+    note: v1 4.6.5 (merge) → emst:core/CMP-BG6ASMR per v1_disposition.csv
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - ADR-0011
+  - WP-03

@@ -1,0 +1,61 @@
+id: emst:wildlife/TSK-S448DHV
+type: Task
+prefLabel:
+  en: Assess water quality and habitat conditions limiting a fish population, identifying the factors management can change
+statement:
+  en: Assess water quality and habitat conditions limiting a fish population, identifying the factors management can change
+textSha256: 42ffc3ade5020867df4ac7026d65f956c676519b620e4ef44150b54c3da7b1fb
+supports:
+- competency: emst:wildlife/CMP-0FWSASP
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: wildlife
+subsectors:
+- L03
+layer: L2
+module: wildlife
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+notation:
+- scheme: EMSTv1
+  value: 1.4.5:T3
+v1Tier: T3
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.4'
+  label: Wildlife & Fisheries Biology
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:1.4.5:T3
+    v1Code: 1.4.5
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 21
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

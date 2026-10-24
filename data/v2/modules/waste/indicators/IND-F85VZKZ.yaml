@@ -1,0 +1,44 @@
+id: emst:waste/IND-F85VZKZ
+type: Indicator
+prefLabel:
+  en: Designs a take-back route for a product line, specifying collection, sorting and…
+competency: emst:waste/CMP-BCC0MGW
+level: L2
+statement:
+  en: Designs a take-back route for a product line, specifying collection, sorting and end-of-life destinations with their expected recovery rates and costs.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:waste/TSK-T51WCET
+- emst:waste/TSK-AZES6M7
+distinguishingAttribute: ATT-AUT
+layer: L1
+module: waste
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:3.7.1:intermediate:I2
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

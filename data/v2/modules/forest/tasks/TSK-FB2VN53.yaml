@@ -1,0 +1,50 @@
+id: emst:forest/TSK-FB2VN53
+type: Task
+prefLabel:
+  en: Size up a new fire's fuels, weather, topography and values at risk to recommend initial attack tactics
+statement:
+  en: Size up a new fire's fuels, weather, topography and values at risk to recommend initial attack tactics
+textSha256: fb12e6a5322b784664f7cc5027daaad47f98d171ba0a75a91339c7ce8a0a15b3
+supports:
+- competency: emst:forest/CMP-XBY22QT
+  strength: primary
+workFunction: WF-RESPOND
+workflowProfiles:
+- WP-INCIDENT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: seasonal
+  placeBoundness: ecosystem-type
+  currencyDecay: H
+  credentialGate: internal-qualification
+credentialGates:
+- credential: emst:core/CRD-3N2G328
+  kind: required
+signOffAuthority:
+  kind: position-qualification
+homeModule: forest
+subsectors:
+- L07
+layer: L2
+module: forest
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

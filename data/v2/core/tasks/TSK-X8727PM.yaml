@@ -1,0 +1,57 @@
+id: emst:core/TSK-X8727PM
+type: Task
+prefLabel:
+  en: Map the reliability of an AI tool across operating conditions by comparing its outputs with independent evidence, recording where it fails.
+statement:
+  en: Map the reliability of an AI tool across operating conditions by comparing its outputs with independent evidence, recording where it fails.
+textSha256: fa11a888fe48eba66844065b8ce5a52c4d5dd72b5fa2ae3c5bdd1961f429d2e8
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+notation:
+- scheme: EMSTv1
+  value: 7.2.3:T1
+supports:
+- competency: emst:core/CMP-AY1JPJR
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+v1Tier: T1
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.2'
+  label: Human-Ai Professional Practice
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:7.2.3:T1
+    v1Code: 7.2.3
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 223
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0011

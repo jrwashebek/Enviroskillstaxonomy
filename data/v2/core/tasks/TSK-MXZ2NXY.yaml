@@ -1,0 +1,61 @@
+id: emst:core/TSK-MXZ2NXY
+type: Task
+prefLabel:
+  en: Evaluate AI-generated species identifications, habitat assessments or ecological predictions against field observations, accepting, correcting or rejecting each before use.
+statement:
+  en: Evaluate AI-generated species identifications, habitat assessments or ecological predictions against field observations, accepting, correcting or rejecting each before use.
+textSha256: e90b1acebb499cbe12b27b0e87096666edb46996f2ef524c3442c8efdb622d47
+editorialNote:
+  en: Supports re-pointed from v1 competency 7.2.1 to emst:core/CMP-MS40XXX by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+notation:
+- scheme: EMSTv1
+  value: 7.2.1:T1
+supports:
+- competency: emst:core/CMP-MS40XXX
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote-capable
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  placeBoundness: ecosystem-type
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+v1Tier: T1
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.2'
+  label: Human-Ai Professional Practice
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:7.2.1:T1
+    v1Code: 7.2.1
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 221
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0011

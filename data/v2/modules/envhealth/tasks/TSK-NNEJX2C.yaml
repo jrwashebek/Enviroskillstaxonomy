@@ -1,0 +1,47 @@
+id: emst:envhealth/TSK-NNEJX2C
+type: Task
+prefLabel:
+  en: Activate the heat response plan when forecast thresholds are met, coordinating cooling centers, alerts and outreach to high-risk residents
+statement:
+  en: Activate the heat response plan when forecast thresholds are met, coordinating cooling centers, alerts and outreach to high-risk residents
+textSha256: 24594df93a85c7e21360fafc45bce4783d4210e0a6ad30d59bd277d2a6d391f6
+supports:
+- competency: emst:envhealth/CMP-HDA7HQX
+  strength: primary
+workFunction: WF-RESPOND
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- public
+- intergovernmental
+workflowProfiles:
+- WP-INCIDENT
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: envhealth
+subsectors:
+- H01
+- C02
+- C03
+layer: L2
+module: envhealth
+status: candidate
+lifecycleState: emerging
+reviewBy: '2027-10-23'
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

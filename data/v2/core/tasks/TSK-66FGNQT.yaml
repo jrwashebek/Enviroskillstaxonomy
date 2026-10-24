@@ -1,0 +1,64 @@
+id: emst:core/TSK-66FGNQT
+type: Task
+prefLabel:
+  en: Identify signs of potential hazardous materials at a field site, such as drums, stained soil, odours or unusual debris, before disturbing them
+statement:
+  en: Identify signs of potential hazardous materials at a field site, such as drums, stained soil, odours or unusual debris, before disturbing them
+textSha256: 9f6ea9ac6a48aa644a7af839f15aa126fb74f58d5aa1ccf5121d5f3d5323f476
+supports:
+- competency: emst:core/CMP-T4GHAG0
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
+notation:
+- scheme: EMSTv1
+  value: 4.4.4:T1
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Tier: T1
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.4'
+  label: Safety & Emergency Response
+editorialNote:
+  en: 'G-2 split role: execution to protocol (production). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.4.4:T1
+    v1Code: 4.4.4
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 130
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

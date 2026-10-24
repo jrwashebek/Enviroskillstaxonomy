@@ -2,19 +2,19 @@
  "stamp": {
   "ruleId": "role-change-inputs",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "ruleStatus": "not registered",
   "generator": "pipelines/views/change_view.py@0.1.0",
   "asOf": "2026-10-23"
  },
- "role": "seed:R12-environmental-compliance-inspector",
+ "role": "emst:core/ROL-2W43QDA",
  "roleTitle": "Environmental compliance inspector",
  "summary": "Regulatory field role that plans and conducts compliance inspections, collects evidence under custody, writes findings of fact, selects the response the enforcement policy sets, supports cases and gives compliance assistance. Monitoring data and automated flags increasingly target inspections; on-site inspection and evidence stay human.",
  "evidenceNotice": "Reshaping claims are agent drafts (raterType llm, validationStatus draft, evidence S). No task has a v2 multi-rater assessment yet, so every task shows 'assessment pending'. Change indicators count active signals only (ADR-0028); all linked signals are at watch, so no change indicator moves. v1 values appear only as prior-evidence pointers.",
- "timeShareByClaim": {
-  "new": 0.04,
-  "no reshaping claim drafted": 0.624,
-  "stable": 0.156,
-  "transforming": 0.18
+ "taskCountByClaim": {
+  "new": 1,
+  "no reshaping claim drafted": 25,
+  "stable": 1,
+  "transforming": 3
  },
  "roleLevelChange": [
   {
@@ -27,7 +27,7 @@
    "instruments": [],
    "signals": [
     {
-     "id": "seed:sig/headcount/epa-12849-jan-2026",
+     "id": "emst:core/SIG-Z35ZKX9",
      "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
      "signalStatus": "watch",
      "signalFamily": "headcount",
@@ -48,113 +48,7 @@
  ],
  "contextSignals": [
   {
-   "id": "seed:sig/bls-ep-2025-35/13-1041/R12-environmental-compliance-inspector",
-   "label": "BLS projected employment change 2025-35 for Compliance officers (13-1041), attached to R12-environmental-compliance-inspector",
-   "signalStatus": "watch",
-   "signalFamily": "projection",
-   "direction": "grow",
-   "drivers": [
-    "other"
-   ],
-   "reliability": "A",
-   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/bls-ep-2025-35/19-4042/R12-environmental-compliance-inspector",
-   "label": "BLS projected employment change 2025-35 for Environmental science and protection technicians, including health (19-4042), attached to R12-environmental-compliance-inspector",
-   "signalStatus": "watch",
-   "signalFamily": "projection",
-   "direction": "grow",
-   "drivers": [
-    "other"
-   ],
-   "reliability": "A",
-   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
-   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform"
-   ],
-   "reliability": "B",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-14-epa-ai-strategy",
-   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "new",
-   "drivers": [
-    "AI",
-    "policy-reform"
-   ],
-   "reliability": "A",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-33-gao-opm-capacity",
-   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
-   "signalStatus": "watch",
-   "signalFamily": "headcount",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "workforce-capacity"
-   ],
-   "reliability": "A",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/headcount/epa-12849-jan-2026",
-   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
-   "signalStatus": "watch",
-   "signalFamily": "headcount",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "workforce-capacity",
-    "demographic"
-   ],
-   "reliability": "B",
-   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/headcount/epa-12849-jan-2026/R12-environmental-compliance-inspector",
-   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year), attached to R12-environmental-compliance-inspector",
-   "signalStatus": "watch",
-   "signalFamily": "headcount",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "workforce-capacity"
-   ],
-   "reliability": "B",
-   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/headcount/federal-civilian-minus-12pct",
+   "id": "emst:core/SIG-2KRAKB2",
    "label": "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -170,7 +64,38 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/federal-under-30-share",
+   "id": "emst:core/SIG-50E2ZYD",
+   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-5PZTGG9",
+   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "new",
+   "drivers": [
+    "AI",
+    "policy-reform"
+   ],
+   "reliability": "A",
+   "sourceRelease": "EPA AI Strategies for OMB Memorandum M-25-21 (U.S. EPA (Chief AI Officer), 2025-10)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-7A7C2VD",
    "label": "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -187,7 +112,80 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/nps-gt25pct-2024-09-to-2026-01",
+   "id": "emst:core/SIG-8BMNZTF",
+   "label": "BLS projected employment change 2025-35 for Compliance officers (13-1041) (role: Environmental compliance inspector)",
+   "signalStatus": "watch",
+   "signalFamily": "projection",
+   "direction": "grow",
+   "drivers": [
+    "other"
+   ],
+   "reliability": "A",
+   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-9BY0EHJ",
+   "label": "AI in inspection, compliance and enforcement: registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-FYJ48VV",
+   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year) (role: Environmental compliance inspector)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-N8YAZEE",
+   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "A",
+   "sourceRelease": "GAOverview: Recent Federal Workforce Changes at OPM (GAO-26-108916) (U.S. Government Accountability Office, 2026-07-20)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-WMC6BWZ",
+   "label": "BLS projected employment change 2025-35 for Environmental science and protection technicians, including health (19-4042) (role: Environmental compliance inspector)",
+   "signalStatus": "watch",
+   "signalFamily": "projection",
+   "direction": "grow",
+   "drivers": [
+    "other"
+   ],
+   "reliability": "A",
+   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-YM916J3",
    "label": "National Park Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -203,32 +201,34 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01",
-   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "id": "emst:core/SIG-Z35ZKX9",
+   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
    "direction": "decline",
    "drivers": [
     "fiscal",
     "policy-reform",
-    "workforce-capacity"
+    "workforce-capacity",
+    "demographic"
    ],
    "reliability": "B",
-   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/omb-ai-inventory-2025/inspection-compliance",
-   "label": "AI in inspection, compliance and enforcement: registered federal environmental-bureau use cases (2025 inventory)",
+   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
+   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
    "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "augment",
+   "signalFamily": "policy",
+   "direction": "decline",
    "drivers": [
-    "AI"
+    "fiscal",
+    "policy-reform"
    ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "reliability": "B",
+   "sourceRelease": "How OBBB impacts invasive species and forest resilience programs (North American Invasive Species Management Association, 2025-09-22)",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   }
@@ -327,16 +327,17 @@
  ],
  "tasks": [
   {
-   "task": "seed:sc-plan-inspection",
+   "task": "emst:core/TSK-QXZXEXB",
    "statement": "Plan a compliance inspection from the facility's permit, compliance history and monitoring reports, listing the conditions to verify and the evidence to collect",
-   "timeShare": 0.08,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -348,16 +349,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-6.1.2-T1",
+   "task": "emst:core/TSK-0BA9DD7",
    "statement": "Inspect a permitted facility or site against its permit conditions and applicable rules, recording observations, measurements and samples as evidence",
-   "timeShare": 0.156,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [
     {
@@ -369,16 +371,16 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-6.1.2-T1",
-     "seed:asm/s2a-x-pass2/seed-v1-6.1.2-T1",
-     "seed:asm/s2a-x-pass3/seed-v1-6.1.2-T1"
+     "emst:core/ASM-WZF3M2R",
+     "emst:core/ASM-99K2AZ5",
+     "emst:core/ASM-09D4MZ6"
     ],
     "namedSignals": [],
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/6.1.2-T1/copyB",
-      "seed:v1asm/6.1.2-T1/d6"
+      "emst:core/ASM-AHRBNEM",
+      "emst:core/ASM-T2WAWR5"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -386,16 +388,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-collect-inspection-evidence",
+   "task": "emst:core/TSK-AM7D2FC",
    "statement": "Collect samples and photographs during an inspection under chain-of-custody procedures, so that the evidence is admissible in an enforcement proceeding",
-   "timeShare": 0.08,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -407,16 +410,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-write-inspection-report",
+   "task": "emst:core/TSK-SF48W4H",
    "statement": "Write an inspection report stating findings of fact for each condition inspected, separating the inspector's observations from conclusions",
-   "timeShare": 0.12,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -430,9 +434,9 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-sc-write-inspection-report",
-     "seed:asm/s2a-x-pass2/seed-sc-write-inspection-report",
-     "seed:asm/s2a-x-pass3/seed-sc-write-inspection-report"
+     "emst:core/ASM-T2YQB50",
+     "emst:core/ASM-MPNXPKJ",
+     "emst:core/ASM-NFB4379"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -441,15 +445,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-select-enforcement-response",
+   "task": "emst:core/TSK-8M2B491",
    "statement": "Select the response the enforcement policy sets for each inspection finding, issuing a notice of violation, assistance letter or referral",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -461,30 +466,31 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-1.2.4-T1",
+   "task": "emst:core/TSK-31B4PGH",
    "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-1.2.4-T1",
-     "seed:asm/s2a-x-pass2/seed-v1-1.2.4-T1",
-     "seed:asm/s2a-x-pass3/seed-v1-1.2.4-T1"
+     "emst:core/ASM-0JAHHB7",
+     "emst:core/ASM-RPVBX45",
+     "emst:core/ASM-FD9PA87"
     ],
     "namedSignals": [],
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/1.2.4-T1/copyB",
-      "seed:v1asm/1.2.4-T1/d1_record"
+      "emst:core/ASM-TCB91AW",
+      "emst:core/ASM-9NH3T0V"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -492,16 +498,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-coc-complete",
+   "task": "emst:core/TSK-D6M2KZX",
    "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -513,16 +520,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-qc-collect",
+   "task": "emst:core/TSK-KJWMG91",
    "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -534,14 +542,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-qc-defend",
+   "task": "emst:core/TSK-8FMMWZ2",
    "statement": "Defend field sampling and custody procedures in declarations or testimony when sample results are challenged in enforcement or litigation",
-   "timeShare": 0.012,
+   "timeShare": null,
    "roleLevels": [
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -553,15 +562,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-6.1.5-T1",
+   "task": "emst:core/TSK-S9AGFKM",
    "statement": "Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -570,8 +580,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/6.1.5-T1/copyB",
-      "seed:v1asm/6.1.5-T1/d6"
+      "emst:core/ASM-WMQ7X5F",
+      "emst:core/ASM-JY0BK7T"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -579,15 +589,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-6.1.5-T2",
+   "task": "emst:core/TSK-D5Q6F2K",
    "statement": "Assemble the evidence file for an enforcement case, linking each alleged violation to the inspection findings, records and samples that prove it",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -596,8 +607,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/6.1.5-T2/copyB",
-      "seed:v1asm/6.1.5-T2/d6"
+      "emst:core/ASM-EDKEKVZ",
+      "emst:core/ASM-1V24AZN"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -605,14 +616,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-6.1.5-T3",
+   "task": "emst:core/TSK-CMJ28FF",
    "statement": "Testify as a fact or expert witness in an enforcement proceeding, explaining the evidence and methods behind each finding",
-   "timeShare": 0.012,
+   "timeShare": null,
    "roleLevels": [
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -621,8 +633,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/6.1.5-T3/copyB",
-      "seed:v1asm/6.1.5-T3/d6"
+      "emst:core/ASM-A4D6RGW",
+      "emst:core/ASM-TCPFKAK"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -630,14 +642,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-calculate-civil-penalty",
+   "task": "emst:core/TSK-5WS9Y89",
    "statement": "Calculate a proposed civil penalty under the program's penalty policy, documenting the gravity, economic benefit and adjustment factors applied",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -649,15 +662,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-review-anomaly-flags",
+   "task": "emst:core/TSK-W4CFC9M",
    "statement": "Review automated anomaly flags in facility monitoring reports, confirming or dismissing each flag against the underlying data before referral",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -672,13 +686,13 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-sc-review-anomaly-flags",
-     "seed:asm/s2a-x-pass2/seed-sc-review-anomaly-flags",
-     "seed:asm/s2a-x-pass3/seed-sc-review-anomaly-flags"
+     "emst:core/ASM-J6ANPZR",
+     "emst:core/ASM-TV4NBCX",
+     "emst:core/ASM-HGZTE44"
     ],
     "namedSignals": [
      {
-      "id": "seed:sig/omb-ai-inventory-2025/inspection-compliance",
+      "id": "emst:core/SIG-9BY0EHJ",
       "label": "AI in inspection, compliance and enforcement: registered federal environmental-bureau use cases (2025 inventory)",
       "signalStatus": "watch",
       "signalFamily": "deployment",
@@ -698,16 +712,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-verify-reported-values",
+   "task": "emst:core/TSK-163CESQ",
    "statement": "Verify a facility's self-reported emissions or discharge values against independent remote-sensing or ambient data, stating the discrepancy and its uncertainty",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -719,7 +734,7 @@
      "note": "Electronic reporting and continuous monitoring make independent checks of reported values routine.",
      "instruments": [
       {
-       "id": "seed:ins/npdes-ereporting-rule",
+       "id": "emst:core/INS-D47NQF4",
        "label": "NPDES electronic reporting rule"
       }
      ]
@@ -727,9 +742,9 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-sc-verify-reported-values",
-     "seed:asm/s2a-x-pass2/seed-sc-verify-reported-values",
-     "seed:asm/s2a-x-pass3/seed-sc-verify-reported-values"
+     "emst:core/ASM-PV1XTW4",
+     "emst:core/ASM-896ZNQX",
+     "emst:core/ASM-JRKG4BF"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -738,14 +753,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-rank-facilities-inspection",
+   "task": "emst:core/TSK-TR5VERT",
    "statement": "Rank regulated facilities for inspection using compliance history and monitoring data, documenting the risk factors and weights in the targeting method",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -759,9 +775,9 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-sc-rank-facilities-inspection",
-     "seed:asm/s2a-x-pass2/seed-sc-rank-facilities-inspection",
-     "seed:asm/s2a-x-pass3/seed-sc-rank-facilities-inspection"
+     "emst:core/ASM-TEH7AVA",
+     "emst:core/ASM-G7BBR25",
+     "emst:core/ASM-XBMZ10S"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -770,14 +786,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-evaluate-targeting-method",
+   "task": "emst:core/TSK-8M0AAKA",
    "statement": "Evaluate a targeting method after an inspection cycle, comparing predicted and found violations and recording the adjustments needed",
-   "timeShare": 0.012,
+   "timeShare": null,
    "roleLevels": [
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -789,16 +806,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-2.2.3-T2",
+   "task": "emst:core/TSK-CZNWEYW",
    "statement": "Audit an environmental dataset on a set schedule, identifying errors and anomalies and recording each correction with its basis.",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -807,8 +825,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/2.2.3-T2/copyB",
-      "seed:v1asm/2.2.3-T2/d2_record"
+      "emst:core/ASM-5PT294Z",
+      "emst:core/ASM-4F4X30W"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -816,15 +834,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-7.2.1-T2",
+   "task": "emst:core/TSK-6RMKRA2",
    "statement": "Check an AI-assisted regulatory analysis or compliance summary against the applicable legal text and source records before it enters a decision document.",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -833,8 +852,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/7.2.1-T2/copyB",
-      "seed:v1asm/7.2.1-T2/d7_record"
+      "emst:core/ASM-W86935F",
+      "emst:core/ASM-YS7QZR9"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -842,15 +861,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-assistance-site-visit",
+   "task": "emst:core/TSK-X9TPCGX",
    "statement": "Visit a small regulated facility on request to identify compliance gaps, recommending corrective steps without initiating enforcement where policy allows",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -862,16 +882,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-answer-compliance-questions",
+   "task": "emst:core/TSK-AWKDYAY",
    "statement": "Answer compliance questions from regulated entities through a help line or portal, recording each question and the guidance given for consistency review",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -883,16 +904,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.4.4-T1",
+   "task": "emst:core/TSK-66FGNQT",
    "statement": "Identify signs of potential hazardous materials at a field site, such as drums, stained soil, odours or unusual debris, before disturbing them",
-   "timeShare": 0.012,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -901,8 +923,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.4.4-T1/copyB",
-      "seed:v1asm/4.4.4-T1/d4_record"
+      "emst:core/ASM-B3XMXN1",
+      "emst:core/ASM-2MR2493"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -910,16 +932,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-haz-hasp",
+   "task": "emst:core/TSK-TF8A4TK",
    "statement": "Follow a site health and safety plan at a contaminated or industrial site, observing zone boundaries, air-monitoring action levels and decontamination steps",
-   "timeShare": 0.012,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -931,16 +954,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-haz-energized",
+   "task": "emst:core/TSK-4NTP117",
    "statement": "Keep required clearances from energized lines, confined spaces and operating machinery during field work at utility and industrial sites, stopping when clearance cannot be held",
-   "timeShare": 0.008,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -952,16 +976,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:lc-txc-exercise-stop-work",
+   "task": "emst:core/TSK-22VWHXT",
    "statement": "Exercise stop-work authority when field, facility or incident conditions exceed the stated safety limits of the assignment",
-   "timeShare": 0.008,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -973,16 +998,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-recuse-covered-matter",
+   "task": "emst:core/TSK-0YQMV08",
    "statement": "Recuse from a decision or review in which a former employer or client has an interest, documenting the recusal and the reassignment of the work",
-   "timeShare": 0.008,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -994,16 +1020,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-disclose-assignment-interests",
+   "task": "emst:core/TSK-NC7ANQM",
    "statement": "Disclose financial, employment or relationship interests that could affect an assignment before work begins, using the organization's conflict form",
-   "timeShare": 0.008,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1015,14 +1042,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:lc-txd-rate-performance",
+   "task": "emst:core/TSK-XBBPSC4",
    "statement": "Rate a trainee's observed performance of position tasks on the entrustment-supervision scale in the evaluation context each task requires",
-   "timeShare": 0.012,
+   "timeShare": null,
    "roleLevels": [
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1034,23 +1062,24 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-txa-field-check",
+   "task": "emst:core/TSK-ZZXHD85",
    "statement": "Verify an AI-generated field product, such as a condition map or drafted inspection note, against observations made at the site before it is relied on",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-fc-txa-field-check",
-     "seed:asm/s2a-x-pass2/seed-fc-txa-field-check",
-     "seed:asm/s2a-x-pass3/seed-fc-txa-field-check"
+     "emst:core/ASM-5Y6CMVN",
+     "emst:core/ASM-YZSF3AN",
+     "emst:core/ASM-HB882PJ"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -1059,16 +1088,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-index-record-documents",
+   "task": "emst:core/TSK-SKB072A",
    "statement": "Index documents into the administrative record with dates, authors and provenance labels, marking which content was produced with AI assistance",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {

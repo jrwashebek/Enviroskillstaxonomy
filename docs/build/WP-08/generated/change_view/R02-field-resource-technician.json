@@ -2,20 +2,20 @@
  "stamp": {
   "ruleId": "role-change-inputs",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "ruleStatus": "not registered",
   "generator": "pipelines/views/change_view.py@0.1.0",
   "asOf": "2026-10-23"
  },
- "role": "seed:R02-field-resource-technician",
+ "role": "emst:core/ROL-ZJFCC09",
  "roleTitle": "Field resource technician",
  "summary": "Entry and journey field role that collects vegetation, wildlife, water and soil data to protocol, identifies organisms, keeps sample custody and records with integrity, and checks remote and AI-generated products against the ground. It is the largest field entry role and the main formation step for identification and measurement judgment.",
  "evidenceNotice": "Reshaping claims are agent drafts (raterType llm, validationStatus draft, evidence S). No task has a v2 multi-rater assessment yet, so every task shows 'assessment pending'. Change indicators count active signals only (ADR-0028); all linked signals are at watch, so no change indicator moves. v1 values appear only as prior-evidence pointers.",
- "timeShareByClaim": {
-  "emerging": 0.026,
-  "new": 0.039,
-  "no reshaping claim drafted": 0.754,
-  "stable": 0.052,
-  "transforming": 0.129
+ "taskCountByClaim": {
+  "emerging": 1,
+  "new": 2,
+  "no reshaping claim drafted": 29,
+  "stable": 1,
+  "transforming": 2
  },
  "roleLevelChange": [
   {
@@ -28,7 +28,7 @@
    "instruments": [],
    "signals": [
     {
-     "id": "seed:sig/headcount/usfs-seasonal-hiring-2025-2026",
+     "id": "emst:core/SIG-84J3FBK",
      "label": "USFS hired no non-fire seasonal staff in 2025; committed to 2,000 seasonals for 2026",
      "signalStatus": "watch",
      "signalFamily": "headcount",
@@ -43,7 +43,7 @@
      "reviewBy": "2027-10-23"
     },
     {
-     "id": "seed:sig/postings/conservation-job-board-internships-2025",
+     "id": "emst:core/SIG-RNE5HKD",
      "label": "Paid conservation internship postings fell 43.8% year over year (Mar-Sep 2025, one board)",
      "signalStatus": "watch",
      "signalFamily": "postings-pds",
@@ -61,100 +61,22 @@
  ],
  "contextSignals": [
   {
-   "id": "seed:sig/deployment/agentic-use-cases-usda-doi-epa-2025",
-   "label": "Agentic AI use cases in the 2025 USDA, DOI and EPA inventories: 8 of 438, 2 deployed (both administrative)",
+   "id": "emst:core/SIG-0A7GQN2",
+   "label": "AI remote sensing, imagery and LiDAR analysis: registered federal environmental-bureau use cases (2025 inventory)",
    "signalStatus": "watch",
    "signalFamily": "deployment",
-   "direction": "new",
-   "drivers": [
-    "AI"
-   ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory (DC Phase 2 extract)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-08-disaster-database-discontinued",
-   "label": "Federal billion-dollar disaster database ended; revived by a nonprofit with its former federal lead",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "reshape",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "climate"
-   ],
-   "reliability": "B",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
-   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform"
-   ],
-   "reliability": "B",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-14-epa-ai-strategy",
-   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "new",
+   "direction": "augment",
    "drivers": [
     "AI",
-    "policy-reform"
+    "sensing-tech"
    ],
    "reliability": "A",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/foresight/ws-33-gao-opm-capacity",
-   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
-   "signalStatus": "watch",
-   "signalFamily": "headcount",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "workforce-capacity"
-   ],
-   "reliability": "A",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/headcount/epa-12849-jan-2026",
-   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
-   "signalStatus": "watch",
-   "signalFamily": "headcount",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "workforce-capacity",
-    "demographic"
-   ],
-   "reliability": "B",
-   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/headcount/federal-civilian-minus-12pct",
+   "id": "emst:core/SIG-2KRAKB2",
    "label": "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -170,7 +92,82 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/federal-under-30-share",
+   "id": "emst:core/SIG-50E2ZYD",
+   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-5DRB2TW",
+   "label": "Agentic AI use cases in the 2025 USDA, DOI and EPA inventories: 8 of 438, 2 deployed (both administrative)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "new",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory (DC Phase 2 extract)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-5H58QFE",
+   "label": "At-risk species and species-of-conservation-concern content in plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
+   "signalStatus": "watch",
+   "signalFamily": "plan-requirements",
+   "direction": "grow",
+   "drivers": [
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-5PZTGG9",
+   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "new",
+   "drivers": [
+    "AI",
+    "policy-reform"
+   ],
+   "reliability": "A",
+   "sourceRelease": "EPA AI Strategies for OMB Memorandum M-25-21 (U.S. EPA (Chief AI Officer), 2025-10)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-61BV2R3",
+   "label": "Federal billion-dollar disaster database ended; revived by a nonprofit with its former federal lead",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "reshape",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "climate"
+   ],
+   "reliability": "B",
+   "sourceRelease": "Climate Central revives the billion-dollar disaster database project (KUNR Public Radio, 2025-11-03)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-7A7C2VD",
    "label": "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -187,7 +184,95 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/nps-gt25pct-2024-09-to-2026-01",
+   "id": "emst:core/SIG-FJCTDJS",
+   "label": "Data and model dependence of plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
+   "signalStatus": "watch",
+   "signalFamily": "plan-requirements",
+   "direction": "grow",
+   "drivers": [
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-M2BRZAS",
+   "label": "All conservation postings fell 29.4% year over year (Mar-Sep 2025, one board)",
+   "signalStatus": "watch",
+   "signalFamily": "postings-pds",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "C",
+   "sourceRelease": "National Parks Traveler 2025-11-10",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-MH4HH1F",
+   "label": "AI species and wildlife detection (acoustic, camera, image): registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI",
+    "sensing-tech"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-N8YAZEE",
+   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "A",
+   "sourceRelease": "GAOverview: Recent Federal Workforce Changes at OPM (GAO-26-108916) (U.S. Government Accountability Office, 2026-07-20)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-NPTBXWR",
+   "label": "AI in weather and climate forecasting: registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-RNE5HKD",
+   "label": "Paid conservation internship postings fell 43.8% year over year (Mar-Sep 2025, one board)",
+   "signalStatus": "watch",
+   "signalFamily": "postings-pds",
+   "direction": "decline",
+   "drivers": [
+    "fiscal"
+   ],
+   "reliability": "C",
+   "sourceRelease": "National Parks Traveler 2025-11-10",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-YM916J3",
    "label": "National Park Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -203,119 +288,34 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01",
-   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "id": "emst:core/SIG-Z35ZKX9",
+   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
    "direction": "decline",
    "drivers": [
     "fiscal",
     "policy-reform",
-    "workforce-capacity"
+    "workforce-capacity",
+    "demographic"
    ],
    "reliability": "B",
-   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/omb-ai-inventory-2025/forecasting",
-   "label": "AI in weather and climate forecasting: registered federal environmental-bureau use cases (2025 inventory)",
+   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
+   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
    "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "augment",
-   "drivers": [
-    "AI"
-   ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/omb-ai-inventory-2025/remote-sensing",
-   "label": "AI remote sensing, imagery and LiDAR analysis: registered federal environmental-bureau use cases (2025 inventory)",
-   "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "augment",
-   "drivers": [
-    "AI",
-    "sensing-tech"
-   ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/omb-ai-inventory-2025/species-detection",
-   "label": "AI species and wildlife detection (acoustic, camera, image): registered federal environmental-bureau use cases (2025 inventory)",
-   "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "augment",
-   "drivers": [
-    "AI",
-    "sensing-tech"
-   ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/openlmp/term-at-risk-species-scc-2012-vs-1982",
-   "label": "At-risk species and species-of-conservation-concern content in plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
-   "signalStatus": "watch",
-   "signalFamily": "plan-requirements",
-   "direction": "grow",
-   "drivers": [
-    "policy-reform"
-   ],
-   "reliability": "B",
-   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/openlmp/term-data-or-models-2012-vs-1982",
-   "label": "Data and model dependence of plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
-   "signalStatus": "watch",
-   "signalFamily": "plan-requirements",
-   "direction": "grow",
-   "drivers": [
-    "policy-reform"
-   ],
-   "reliability": "B",
-   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/postings/conservation-job-board-all-2025",
-   "label": "All conservation postings fell 29.4% year over year (Mar-Sep 2025, one board)",
-   "signalStatus": "watch",
-   "signalFamily": "postings-pds",
+   "signalFamily": "policy",
    "direction": "decline",
    "drivers": [
     "fiscal",
     "policy-reform"
    ],
-   "reliability": "C",
-   "sourceRelease": "National Parks Traveler 2025-11-10",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/postings/conservation-job-board-internships-2025",
-   "label": "Paid conservation internship postings fell 43.8% year over year (Mar-Sep 2025, one board)",
-   "signalStatus": "watch",
-   "signalFamily": "postings-pds",
-   "direction": "decline",
-   "drivers": [
-    "fiscal"
-   ],
-   "reliability": "C",
-   "sourceRelease": "National Parks Traveler 2025-11-10",
+   "reliability": "B",
+   "sourceRelease": "How OBBB impacts invasive species and forest resilience programs (North American Invasive Species Management Association, 2025-09-22)",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   }
@@ -371,15 +371,16 @@
  ],
  "tasks": [
   {
-   "task": "seed:v1-4.1.1-T1",
+   "task": "emst:core/TSK-S66F3HH",
    "statement": "Establish vegetation monitoring plots to protocol and record species composition, cover and density within the program's measurement-quality objectives",
-   "timeShare": 0.07,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -388,8 +389,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.1-T1/copyB",
-      "seed:v1asm/4.1.1-T1/d4_record"
+      "emst:core/ASM-F8JQMBP",
+      "emst:core/ASM-2CQR4HQ"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -397,15 +398,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.1.1-T3",
+   "task": "emst:core/TSK-4Y3QF2T",
    "statement": "Identify plants on sample plots to the protocol's required taxonomic level, collecting labelled vouchers for any plant not identified with certainty",
-   "timeShare": 0.052,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -414,8 +416,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.1-T3/copyB",
-      "seed:v1asm/4.1.1-T3/d4_record"
+      "emst:core/ASM-E6MVBRZ",
+      "emst:core/ASM-59S8W8M"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -423,14 +425,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-veg-adapt-protocol",
+   "task": "emst:core/TSK-CY37G6A",
    "statement": "Adapt the vegetation sampling layout when burned, flooded or grazed site conditions depart from protocol assumptions, recording the deviation for comparability",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -442,15 +445,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.1.2-T1",
+   "task": "emst:core/TSK-KADBF07",
    "statement": "Conduct point-count, transect or call-playback wildlife surveys to protocol, recording detections, distance bands and survey conditions",
-   "timeShare": 0.077,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [
     {
@@ -465,16 +469,16 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-4.1.2-T1",
-     "seed:asm/s2a-x-pass2/seed-v1-4.1.2-T1",
-     "seed:asm/s2a-x-pass3/seed-v1-4.1.2-T1"
+     "emst:core/ASM-JEFY9HT",
+     "emst:core/ASM-AF8M8F1",
+     "emst:core/ASM-GRDPVJ5"
     ],
     "namedSignals": [],
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.2-T1/copyB",
-      "seed:v1asm/4.1.2-T1/d4_record"
+      "emst:core/ASM-13Q1SNW",
+      "emst:core/ASM-M7H4XJ3"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -482,15 +486,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.1.2-T2",
+   "task": "emst:core/TSK-670CXEV",
    "statement": "Identify wildlife sign such as tracks, scat, nests and feeding remains to species or group, recording a confidence level for each record",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -499,8 +504,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.2-T2/copyB",
-      "seed:v1asm/4.1.2-T2/d4_record"
+      "emst:core/ASM-SBX66X7",
+      "emst:core/ASM-DRY0XPT"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -508,15 +513,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-1.4.2-T1",
+   "task": "emst:core/TSK-DWMXGRA",
    "statement": "Deploy camera traps and acoustic recorders at survey stations to the protocol's height, orientation and settings, recording station metadata",
-   "timeShare": 0.052,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -531,13 +537,13 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-1.4.2-T1",
-     "seed:asm/s2a-x-pass2/seed-v1-1.4.2-T1",
-     "seed:asm/s2a-x-pass3/seed-v1-1.4.2-T1"
+     "emst:core/ASM-SVGJ2A5",
+     "emst:core/ASM-DND48TP",
+     "emst:core/ASM-TR8HZWJ"
     ],
     "namedSignals": [
      {
-      "id": "seed:sig/omb-ai-inventory-2025/species-detection",
+      "id": "emst:core/SIG-MH4HH1F",
       "label": "AI species and wildlife detection (acoustic, camera, image): registered federal environmental-bureau use cases (2025 inventory)",
       "signalStatus": "watch",
       "signalFamily": "deployment",
@@ -555,8 +561,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/1.4.2-T1/copyB",
-      "seed:v1asm/1.4.2-T1/d1_record"
+      "emst:core/ASM-5WSMQ9Q",
+      "emst:core/ASM-NAGFKGN"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -564,15 +570,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.1.3-T1",
+   "task": "emst:core/TSK-GPSBMKS",
    "statement": "Measure temperature, pH, dissolved oxygen, conductivity and turbidity in place with field meters calibrated before use and checked afterward",
-   "timeShare": 0.052,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -581,8 +588,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.3-T1/copyB",
-      "seed:v1asm/4.1.3-T1/d4_record"
+      "emst:core/ASM-G2B5CRT",
+      "emst:core/ASM-GPMKPN7"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -590,29 +597,30 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-1.2.4-T1",
+   "task": "emst:core/TSK-31B4PGH",
    "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
-   "timeShare": 0.052,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-1.2.4-T1",
-     "seed:asm/s2a-x-pass2/seed-v1-1.2.4-T1",
-     "seed:asm/s2a-x-pass3/seed-v1-1.2.4-T1"
+     "emst:core/ASM-0JAHHB7",
+     "emst:core/ASM-RPVBX45",
+     "emst:core/ASM-FD9PA87"
     ],
     "namedSignals": [],
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/1.2.4-T1/copyB",
-      "seed:v1asm/1.2.4-T1/d1_record"
+      "emst:core/ASM-TCB91AW",
+      "emst:core/ASM-9NH3T0V"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -620,15 +628,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.1.3-T2",
+   "task": "emst:core/TSK-WKATTRK",
    "statement": "Collect benthic macroinvertebrate, algae or fish community samples from a stream reach following the program's habitat-allocation protocol",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -637,8 +646,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.3-T2/copyB",
-      "seed:v1asm/4.1.3-T2/d4_record"
+      "emst:core/ASM-BRNDMJW",
+      "emst:core/ASM-RXHP79P"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -646,15 +655,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.1.4-T1",
+   "task": "emst:core/TSK-X0DVXY5",
    "statement": "Describe a soil profile's horizons, colour, texture, structure and coarse fragments in standard terminology on the program's description form",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -663,8 +673,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.4-T1/copyB",
-      "seed:v1asm/4.1.4-T1/d4_record"
+      "emst:core/ASM-TYPR0F4",
+      "emst:core/ASM-6WJ1V1G"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -672,15 +682,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.1.4-T2",
+   "task": "emst:core/TSK-Z2MBSW1",
    "statement": "Collect soil samples at specified depths and locations for laboratory analysis of texture, nutrients, carbon or contaminants",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -689,8 +700,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.4-T2/copyB",
-      "seed:v1asm/4.1.4-T2/d4_record"
+      "emst:core/ASM-10BJVWV",
+      "emst:core/ASM-FPKB6T0"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -698,15 +709,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-1.4.3-T1",
+   "task": "emst:core/TSK-YT60MTY",
    "statement": "Identify regional plants and animals to species with dichotomous keys and diagnostic features, collecting evidence for any record not identified with certainty",
-   "timeShare": 0.052,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [
     {
@@ -720,16 +732,16 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-1.4.3-T1",
-     "seed:asm/s2a-x-pass2/seed-v1-1.4.3-T1",
-     "seed:asm/s2a-x-pass3/seed-v1-1.4.3-T1"
+     "emst:core/ASM-VQM8PV5",
+     "emst:core/ASM-41D8B2E",
+     "emst:core/ASM-22VRPB2"
     ],
     "namedSignals": [],
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/1.4.3-T1/copyB",
-      "seed:v1asm/1.4.3-T1/d1_record"
+      "emst:core/ASM-5W2Z60V",
+      "emst:core/ASM-FCMZMKB"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -737,15 +749,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-id-adjudicate-ai",
+   "task": "emst:core/TSK-KF2WKW8",
    "statement": "Accept, correct or reject AI-suggested species identifications against the specimen, image or recording, recording the diagnostic reason for each change",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [
     {
@@ -759,9 +772,9 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-fc-id-adjudicate-ai",
-     "seed:asm/s2a-x-pass2/seed-fc-id-adjudicate-ai",
-     "seed:asm/s2a-x-pass3/seed-fc-id-adjudicate-ai"
+     "emst:core/ASM-4YY8VDW",
+     "emst:core/ASM-N8JY3AN",
+     "emst:core/ASM-658EQKE"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -770,29 +783,30 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.1.5-T1",
+   "task": "emst:core/TSK-4JH3BBZ",
    "statement": "Record field observations on a mobile form or paper data sheet at the time of observation, completing every protocol field and metadata element",
-   "timeShare": 0.052,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-4.1.5-T1",
-     "seed:asm/s2a-x-pass2/seed-v1-4.1.5-T1",
-     "seed:asm/s2a-x-pass3/seed-v1-4.1.5-T1"
+     "emst:core/ASM-ZTP4TKD",
+     "emst:core/ASM-VQEHDEW",
+     "emst:core/ASM-6SBR6NT"
     ],
     "namedSignals": [],
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.5-T1/copyB",
-      "seed:v1asm/4.1.5-T1/d4_record"
+      "emst:core/ASM-2P1770V",
+      "emst:core/ASM-Y3WV2YA"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -800,15 +814,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.1.5-T2",
+   "task": "emst:core/TSK-DZW3PB6",
    "statement": "Check location accuracy, photo documentation and required fields for each record before leaving the site, correcting errors while conditions can still be observed",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -817,8 +832,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.5-T2/copyB",
-      "seed:v1asm/4.1.5-T2/d4_record"
+      "emst:core/ASM-Q1K537S",
+      "emst:core/ASM-1H0DTJ3"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -826,15 +841,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.1.5-T3",
+   "task": "emst:core/TSK-QTEJ61S",
    "statement": "Transfer the day's field records to the program database, reconciling record counts against field logs and reporting any loss",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -843,8 +859,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.5-T3/copyB",
-      "seed:v1asm/4.1.5-T3/d4_record"
+      "emst:core/ASM-DSZPS8B",
+      "emst:core/ASM-82KYYJ1"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -852,15 +868,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-coc-complete",
+   "task": "emst:core/TSK-D6M2KZX",
    "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -872,15 +889,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-qc-collect",
+   "task": "emst:core/TSK-KJWMG91",
    "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -892,14 +910,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-clean-collect",
+   "task": "emst:core/TSK-0ZG7ZRK",
    "statement": "Collect trace-metal, emerging-contaminant or genetic samples using clean-hands procedures and the contaminant-free materials the method specifies",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -911,15 +930,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-nav-route-plan",
+   "task": "emst:core/TSK-8GPX3VC",
    "statement": "Plan a field route and travel times from maps and terrain, identifying water crossings, cliffs, weather exposure and bail-out points",
-   "timeShare": 0.013,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -931,15 +951,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.4.3-T2",
+   "task": "emst:core/TSK-PVX3WGK",
    "statement": "Navigate off trail to a remote plot or site by map and compass, using satellite positioning as a check rather than the only means",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -948,8 +969,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.4.3-T2/copyB",
-      "seed:v1asm/4.4.3-T2/d4_record"
+      "emst:core/ASM-636ZB8M",
+      "emst:core/ASM-XZT8ERV"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -957,15 +978,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-bio-decon",
+   "task": "emst:core/TSK-X7C0GGR",
    "statement": "Decontaminate boots, gear, boats and vehicles between field sites with the protocol's method and contact time for the target organisms",
-   "timeShare": 0.013,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -977,15 +999,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-boat-wading",
+   "task": "emst:core/TSK-887GRDE",
    "statement": "Wade streams and shorelines for sampling within safe depth-velocity limits, using a wading staff and a planned exit route",
-   "timeShare": 0.013,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -997,14 +1020,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-2.3.2-T2",
+   "task": "emst:core/TSK-Y87JVM2",
    "statement": "Capture imagery or thermal data that meet a mission's accuracy requirement by placing and surveying ground control and check points",
-   "timeShare": 0.021,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1013,8 +1037,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/2.3.2-T2/copyB",
-      "seed:v1asm/2.3.2-T2/d2_record"
+      "emst:core/ASM-Z2NQR9F",
+      "emst:core/ASM-DFKXNR1"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -1022,21 +1046,22 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-sensor-service",
+   "task": "emst:core/TSK-T6NP60J",
    "statement": "Service deployed field sensors on schedule, cleaning, recalibrating or replacing components and recording each action in the service log",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-fc-sensor-service",
-     "seed:asm/s2a-x-pass2/seed-fc-sensor-service",
-     "seed:asm/s2a-x-pass3/seed-fc-sensor-service"
+     "emst:core/ASM-3YHM7TA",
+     "emst:core/ASM-EBSXC9A",
+     "emst:core/ASM-CD4R19J"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -1045,14 +1070,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-gt-collect-blind",
+   "task": "emst:core/TSK-ZNT3BAQ",
    "statement": "Record reference observations at pre-selected validation points with the reference protocol, without access to the product's predicted value",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [
     {
@@ -1067,9 +1093,9 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-fc-gt-collect-blind",
-     "seed:asm/s2a-x-pass2/seed-fc-gt-collect-blind",
-     "seed:asm/s2a-x-pass3/seed-fc-gt-collect-blind"
+     "emst:core/ASM-KVD4RBK",
+     "emst:core/ASM-Q8M75YN",
+     "emst:core/ASM-3QNG476"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -1078,14 +1104,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-gt-mismatch",
+   "task": "emst:core/TSK-65N7J3N",
    "statement": "Code the likely field cause of each mismatch between a remote product and field observation, such as timing, mixed pixels, hidden understory or location error",
-   "timeShare": 0.013,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1097,15 +1124,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-txa-field-check",
+   "task": "emst:core/TSK-ZZXHD85",
    "statement": "Verify an AI-generated field product, such as a condition map or drafted inspection note, against observations made at the site before it is relied on",
-   "timeShare": 0.013,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [
     {
@@ -1119,9 +1147,9 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-fc-txa-field-check",
-     "seed:asm/s2a-x-pass2/seed-fc-txa-field-check",
-     "seed:asm/s2a-x-pass3/seed-fc-txa-field-check"
+     "emst:core/ASM-5Y6CMVN",
+     "emst:core/ASM-YZSF3AN",
+     "emst:core/ASM-HB882PJ"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -1130,14 +1158,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-lead-cue-explain",
+   "task": "emst:core/TSK-P0S8PXG",
    "statement": "Explain to a newer crew member the field cues behind a call, such as a look-alike plant or a gully head, so the novice can apply them",
-   "timeShare": 0.013,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1149,14 +1178,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-lead-field-day",
+   "task": "emst:core/TSK-ZJ7HH7K",
    "statement": "Lead a small crew through a field day, matching tasks to skill and checking novice work early and often",
-   "timeShare": 0.026,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1168,29 +1198,30 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.4.1-T1",
+   "task": "emst:core/TSK-TFRJMFS",
    "statement": "Conduct a job hazard analysis at the actual work site before field activity begins, naming each hazard present and its control",
-   "timeShare": 0.013,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-4.4.1-T1",
-     "seed:asm/s2a-x-pass2/seed-v1-4.4.1-T1",
-     "seed:asm/s2a-x-pass3/seed-v1-4.4.1-T1"
+     "emst:core/ASM-621J1P2",
+     "emst:core/ASM-5P86H6X",
+     "emst:core/ASM-69JPMHJ"
     ],
     "namedSignals": [],
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.4.1-T1/copyB",
-      "seed:v1asm/4.4.1-T1/d4_record"
+      "emst:core/ASM-Q7WNHJY",
+      "emst:core/ASM-45MS0EF"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -1198,15 +1229,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-risk-stopwork",
+   "task": "emst:core/TSK-4AK46CF",
    "statement": "Stop field work when hazards change beyond the controls in the job hazard analysis, re-briefing the crew before work resumes",
-   "timeShare": 0.005,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1218,15 +1250,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.4.2-T1",
+   "task": "emst:core/TSK-Z5PWMDT",
    "statement": "Assess an injured or ill person in a remote location with a structured patient assessment, giving first aid within the scope of training",
-   "timeShare": 0.008,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -1235,8 +1268,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.4.2-T1/copyB",
-      "seed:v1asm/4.4.2-T1/d4_record"
+      "emst:core/ASM-P5VC631",
+      "emst:core/ASM-3EXJY2X"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -1244,15 +1277,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.5.3-T2",
+   "task": "emst:core/TSK-97EQVTW",
    "statement": "Drive a four-wheel-drive vehicle on unpaved and off-road routes, selecting gear, speed and line for mud, sand, snow, rock and water crossings",
-   "timeShare": 0.013,
+   "timeShare": null,
    "roleLevels": [
     "entry",
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1261,8 +1295,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.5.3-T2/copyB",
-      "seed:v1asm/4.5.3-T2/d4_record"
+      "emst:core/ASM-MTXSM59",
+      "emst:core/ASM-N2X7JM1"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -1270,14 +1304,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-sitehist-read",
+   "task": "emst:core/TSK-N3G4631",
    "statement": "Interpret fire scars, stumps, soil horizons and legacy structures at a site to reconstruct its disturbance and land-use history",
-   "timeShare": 0.013,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {

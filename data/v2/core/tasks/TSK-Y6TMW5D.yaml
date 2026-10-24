@@ -1,0 +1,68 @@
+id: emst:core/TSK-Y6TMW5D
+type: Task
+prefLabel:
+  en: Coordinate review steps with other agencies holding authority over the same action, so that duplicated analyses and conflicting requirements are identified early
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Coordinate review steps with other agencies holding authority over the same action, so that duplicated analyses and conflicting requirements are identified early
+textSha256: c34378b1cc20dbf037ec9b48c5f973f892af9d0e6f315f80efb80966fe88979a
+supports:
+- competency: emst:core/CMP-X6624QT
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- intergovernmental
+workflowProfiles:
+- WP-PROJECT
+notation:
+- scheme: EMSTv1
+  value: 6.5.2:T1
+v1Tier: T1
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.5'
+  label: Intergovernmental Relations
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Coordinate environmental management activities with other agencies to avoid duplication and conflict" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.5.2:T1
+    v1Code: 6.5.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 198
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

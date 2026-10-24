@@ -1,0 +1,64 @@
+id: emst:core/TSK-S5Y49AT
+type: Task
+prefLabel:
+  en: Design a staged-exposure sequence for an entry role that sets the unaided repetitions required before AI-assisted performance is credited
+statement:
+  en: Design a staged-exposure sequence for an entry role that sets the unaided repetitions required before AI-assisted performance is credited
+textSha256: 577b73ccc6f9085d6db6bfe5bcbd2edbf2b5a8dac37a13b41bd1d44bd84bcaa0
+supports:
+- competency: emst:core/CMP-ZPEFG5E
+  strength: primary
+workFunction: WF-LEARN
+fieldDependency: remote-capable
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  currencyDecay: L
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 7.2.2:T2
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+v1Tier: T2
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.2'
+  label: Human-Ai Professional Practice
+editorialNote:
+  en: 'v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). | WP-07: rewritten to v2 task rules (one verb, 8-30 words, no product names; ADR-0003 G-2).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:05:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  derivedFrom:
+  - v1Key: v1:7.2.2:T2
+    v1Code: 7.2.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 222
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003
+  - ADR-0011

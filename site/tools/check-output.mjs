@@ -116,6 +116,8 @@ for (const d of dnp) wrongForms.push({ claim: d.claim, rx: new RegExp(d.rx, "i")
 const bundle = JSON.parse(readFileSync(join(meta.releaseDir, "emst.bundle.jsonld"), "utf-8"))["@graph"];
 const instrumentTitles = new Map(bundle.filter((r) => r.type === "Instrument").map((r) => [r.id, (r.prefLabel || {}).en || ""]));
 const mappedUnverified = [];      // [{claim, title}]
+const withheldPhrases = [];       // [{claim, phrase}] rows withheld from the bundle: the phrase must render nowhere (E2w)
+const bundleIds = new Set(bundle.map((r) => r.id));
 const judgedEventStrings = [];    // rendered "<date> <eventType>" strings that must not appear
 for (const r of register) {
   if (!["unverified", "held"].includes(r.status)) continue;
@@ -123,8 +125,13 @@ for (const r of register) {
   const usedHere = /WP-12|explorer|instrument registry|venue view/i.test(r.used_in || "");
   if (!m && usedHere) problems.push({ file: "claims/register_map.yaml", rule: "E1", msg: `register row ${r.claim_id} (${r.status}) is used by the explorer but not mapped` });
   if (!m) continue;
+  for (const ph of m.withheld_phrases || []) withheldPhrases.push({ claim: r.claim_id, phrase: ph });
+  for (const id of [...(m.instruments || []), ...(m.signals || [])]) if (m.withheld && bundleIds.has(id)) problems.push({ file: "claims/register_map.yaml", rule: "E1w", msg: `${r.claim_id} is withheld but ${id} is in the release` });
   for (const id of m.instruments || []) {
-    if (!instrumentTitles.has(id)) { problems.push({ file: "claims/register_map.yaml", rule: "E1", msg: `${r.claim_id} maps to ${id}, which is not in the release` }); continue; }
+    if (!instrumentTitles.has(id)) {
+      if (m.withheld) continue;           // withheld from the bundle (ADR-0031 §8): enforced by E2w on every page
+      problems.push({ file: "claims/register_map.yaml", rule: "E1", msg: `${r.claim_id} maps to ${id}, which is not in the release` }); continue;
+    }
     mappedUnverified.push({ claim: r.claim_id, title: instrumentTitles.get(id) });
   }
   for (const lab of m.events_with_evidence_label || []) for (const e of bundle) if (e.type === "DriverEvent" && (e.evidenceLabel || "S") === lab) judgedEventStrings.push({ claim: r.claim_id, s: `${e.eventDate} ${e.eventType}` });
@@ -246,6 +253,7 @@ for (const f of files) {
       }
     }
     for (const j of judgedEventStrings) if (visible.includes(j.s)) fail(f, "E3", `${j.claim}: judgment-dated event "${j.s}" rendered as a sourced date`);
+    for (const w of withheldPhrases) { const k = low.indexOf(w.phrase.toLowerCase()); if (k >= 0) fail(f, "E2w", `${w.claim} is withheld from the release but "${w.phrase}" renders: "…${visible.slice(Math.max(0, k - 50), k + 70)}…"`); }
     for (const w of wrongForms) {
       if (w.rx) {
         for (const m of visible.matchAll(new RegExp(w.rx.source, "gi"))) {
@@ -307,6 +315,7 @@ for (const f of files) {
 stats.registerRows = register.length; stats.wrongForms = wrongForms.length + dns.conflations.length;
 stats.deferredWrongForms = [...deferredHits.values()];   // not enforced (double-quoted in the register); reported only
  stats.unverifiedInstruments = mappedUnverified.length;
+stats.withheldPhrases = withheldPhrases.length;
 const report = { ok: problems.length === 0, release: releaseId, outDir: relative(SITE, OUT), stats, problems };
 mkdirSync(join(SITE, "reports"), { recursive: true });
 writeFileSync(join(SITE, "reports", "check-output.json"), JSON.stringify(report, null, 1));

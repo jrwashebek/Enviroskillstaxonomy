@@ -1,0 +1,44 @@
+id: emst:air/TSK-MMQ5SK2
+type: Task
+prefLabel:
+  en: Observe a stack emissions test against the approved protocol, recording deviations that affect whether the results are acceptable
+statement:
+  en: Observe a stack emissions test against the approved protocol, recording deviations that affect whether the results are acceptable
+textSha256: 14bfe9cc8cb43072fa9f22969ddba33dbda3aa2610b697bd241b5ed51fb298ca
+supports:
+- competency: emst:air/CMP-9XPRVR9
+  strength: primary
+workFunction: WF-ENFORCE.assure
+relationshipTypes:
+- stakeholder
+workflowProfiles:
+- WP-COMPLIANCE
+fieldDependency: on-site-required
+formationDependency: 'yes'
+credentialGates:
+- credential: emst:core/CRD-938B2DQ
+  kind: preferred
+homeModule: air
+subsectors:
+- P01
+layer: L2
+module: air
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

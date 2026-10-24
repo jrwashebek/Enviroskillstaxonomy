@@ -1,0 +1,44 @@
+id: emst:waterq/TSK-91Z35QW
+type: Task
+prefLabel:
+  en: Forecast water demand and supply under drought and climate scenarios for a utility or basin plan, stating assumptions and uncertainty
+statement:
+  en: Forecast water demand and supply under drought and climate scenarios for a utility or basin plan, stating assumptions and uncertainty
+textSha256: 7530921ab1a00324cc67e03e214fc620c387d88efd740fd54de7b58fe98bd1ce
+supports:
+- competency: emst:waterq/CMP-0DB7T83
+  strength: primary
+workFunction: WF-PLAN
+workflowProfiles:
+- WP-REGPROGRAM
+- WP-CAPITAL
+fieldDependency: remote
+formationDependency: partial
+credentialGates:
+- credential: emst:core/CRD-ECBKZ09
+  kind: preferred
+homeModule: waterq
+subsectors:
+- W04
+- W05
+layer: L2
+module: waterq
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

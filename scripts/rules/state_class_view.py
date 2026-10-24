@@ -27,6 +27,12 @@ def class_facts(c):
 
 
 def _jur_code(c):
+    """Jurisdiction part of the file stem, from the class notation scheme `class-<JUR>` (TX, WA, PA-PHL, WA-LEWIS): the stem
+    the WP-08 generator takes from the class seed key, so view file names stay stable across minting (ADR-0031 §2)."""
+    for n in c.get("notation") or []:
+        scheme = str((n or {}).get("scheme") or "") if isinstance(n, dict) else ""
+        if scheme.startswith("class-"):
+            return scheme[len("class-"):].replace("/", "-").replace(":", "-")
     jur = c.get("jurisdictionId")
     code = jur.get("code") if isinstance(jur, dict) else jur
     return str(code or "unknown").replace("/", "-").replace(":", "-")
@@ -65,7 +71,7 @@ def compute(released, stamp):
         if H.tier(role) not in ("P1", "P2"):
             continue
         for actor in ("state", "local"):
-            v = released.get(f"{role['id']}/{actor}")
+            v = H.variant_for(released, role["id"], actor)
             if v and not H.held(v):
                 by_variant.setdefault(v["id"], [])
     out["views/state_class_views/index.json"] = {

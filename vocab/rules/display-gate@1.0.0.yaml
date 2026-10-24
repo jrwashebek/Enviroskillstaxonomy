@@ -1,7 +1,8 @@
 # EMST computed-view rule (SPEC §10.5, §14.3; ADR-0024 §4, ADR-0017, ADR-0027; CR-IO-002). Normative definition.
 ruleId: display-gate
 version: 1.0.0
-status: active
+status: superseded
+supersededBy: display-gate@1.1.0
 steward: IO (parameters and implementation) · CP (only renderer) · DE (agreement results) · CA (definition)
 decidedIn: [ADR-0017, ADR-0024, ADR-0027, ADR-0029, CR-IO-002]
 computes: For each gated value a view might show, whether it renders and with which marker (production, tentative, editorial, pending).
@@ -32,3 +33,4 @@ parameters:
 implementation: validation/display_gate.py#decide (IO); views must render gated values only through it or an equivalent passing validation/tests/test_display_gates.py
 changeNote:
   - {date: '2026-10-23', note: "Ratifies IO's encoded semantics with CA clarifications (CR-IO-002; ADR-0029)."}
+  - {date: '2026-10-23', note: "Superseded by display-gate@1.1.0 at WP-16 (ADR-0031 §1). Kept so past builds stay reproducible."}

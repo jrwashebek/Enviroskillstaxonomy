@@ -1,0 +1,78 @@
+id: emst:core/CMP-B7P5TGC
+type: Competency
+prefLabel:
+  en: Assess human health risks from environmental exposures
+altLabel:
+  en:
+  - Environmental health risk assessment
+definition:
+  en: The capability to evaluate potential health effects of environmental exposures to chemicals, pollutants and other hazards through hazard identification, exposure assessment, dose-response and risk characterization, with stated uncertainty, and to communicate findings to affected communities and decision-makers. Jurisdiction-specific methods and screening levels are supplied by enactments.
+statement:
+  en: 'Evaluates potential health effects of environmental exposures to chemicals, pollutants and other hazards: identifies hazards and exposure pathways, estimates exposures, applies dose-response information, characterizes risk with stated uncertainty and sensitive populations, and communicates findings to affected communities and decision-makers.'
+editorialNote:
+  en: 'Rewritten by WP-04 (DC lane: v1 craft primary DC, used only to route the seed; v1 tags are prior evidence, not v2 values). Carried (wording rewritten); recurs in remediation, air, chemicals and environmental health (v1_disposition 6.7.1). Required methods vary by jurisdiction and programme (jurisdictionVariable indicators). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-ASSESS. Rationale: Human health risk assessment recurs in remediation, air, chemicals and environmental health (G-4). Role verdicts considered: none recorded.'
+notation:
+- scheme: EMSTv1
+  value: 6.7.1
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-53WMKE1
+  - emst:core/IND-M8J0B0Z
+- level: L3
+  indicators:
+  - emst:core/IND-BEP94FF
+  - emst:core/IND-E35FQVV
+- level: L4
+  indicators:
+  - emst:core/IND-C5S8EJE
+  - emst:core/IND-KG20H89
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.7.1
+    v1Code: 6.7.1
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 207
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:6.7.1
+    v1Code: 6.7.1
+    v1Table: source_text/competencies
+    sourceTextLine: 14644
+    relation: reference-only
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  adr:
+  - ADR-0003
+  - ADR-0011
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.7'
+  label: Environmental Health & Justice

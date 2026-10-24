@@ -1,0 +1,58 @@
+id: emst:core/ENA-YZRKPFG
+type: Enactment
+prefLabel:
+  en: Federal consulting wildlife or fisheries agency
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-T1175YK
+enactmentKind: actor
+actorType: federal-regulator
+authorityBasis:
+  en: The consulting agency's duty to issue concurrences, biological opinions and incidental take statements.
+principal:
+  en: The consulting agency's regional or field office head.
+accountabilityVenue:
+  en: Federal courts.
+authorityPosition: regulator
+characteristicInstruments:
+- instrument: emst:core/INS-1VCP3PZ
+  role: constrains
+- instrument: seed:ins/esa-s4-s7-regs-2025
+  role: constrains
+  note:
+    en: Proposed amendments to the consultation regulations.
+- instrument: emst:core/INS-99KGST3
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+note:
+  en: 'Mirror of the action-agency enactment: the same effects analysis is reviewed and answered with binding terms [J].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - V2-05
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

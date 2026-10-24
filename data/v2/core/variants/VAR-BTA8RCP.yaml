@@ -1,0 +1,49 @@
+id: emst:core/VAR-BTA8RCP
+type: RoleVariant
+prefLabel:
+  en: Restoration and land stewardship project lead (ngo)
+variantOf: emst:core/ROL-02B6BZV
+sectorActor: ngo
+authorityPosition: resource-manager
+layer: L3
+module: core
+status: candidate
+validationStatus: draft
+license: CC0-1.0
+definition:
+  en: 'Restoration and land stewardship project lead in a nonprofit setting: acts as resource manager for lands, waters or programmes the employer holds.'
+lifecycleState: established
+useTier: develop
+sensitivity: public
+sectorActorSubtype: watershed-group
+industry: nonprofit-services
+ownership: nonprofit
+deliveryModel: in-house
+taskAdds:
+- task: emst:core/TSK-NM5F33P
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  roleLevels:
+  - senior
+  - lead
+credentialGates:
+- credential: emst:core/CRD-66KDHSX
+  kind: preferred
+editorialNote:
+  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0007
+  - ADR-0017
+  - ADR-0022

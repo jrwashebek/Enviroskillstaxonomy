@@ -1,0 +1,60 @@
+id: emst:water/CMP-ZBJQPR3
+type: Competency
+prefLabel:
+  en: Assure public water system compliance with drinking water requirements
+altLabel:
+  en:
+  - Drinking water primacy compliance
+  - Public water system supervision
+  - Lead and copper compliance analysis
+definition:
+  en: Determining which drinking water requirements apply to each public water system, tracking monitoring and reporting, conducting sanitary surveys and directing corrective action and public notification, practised from the regulator side (primacy agency) or as a utility's compliance lead. Excludes treatment operation and plant design.
+statement:
+  en: Determines the monitoring, contaminant-limit and treatment-technique requirements that apply to a public water system, tracks its monitoring and reporting, conducts sanitary surveys, reviews service-line inventories and sampling plans, and directs corrective action and public notification when a system falls out of compliance.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:water/IND-ESWZ8T7
+  - emst:water/IND-S9G5DCP
+- level: L3
+  indicators:
+  - emst:water/IND-MAR76XH
+  - emst:water/IND-R5G72MN
+- level: L4
+  indicators:
+  - emst:water/IND-XEVDF4V
+  - emst:water/IND-XGDQFDX
+homeModule: water
+subsectors:
+- W01
+reusability: subsector-specific
+layer: L1
+module: water
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Survivor for public water system compliance; absorbs DB-C04 (same task core). Regulator and utility (regulated-party) variants share the task core; the authority position goes on the role variant (ADR-0017). Home of role R24 drinking water programme analyst. Delegated-programme oversight is core SC-C14, enacted in this module. Rule versions (lead and copper, PFAS) are L5 instruments, not named here (ADR-0003 T-4). Basis [E] for the function''s existence in state classes (SL-071); [J] for content.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - SL-071
+  - DB-021
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

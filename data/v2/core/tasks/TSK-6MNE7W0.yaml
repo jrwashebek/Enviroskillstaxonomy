@@ -1,0 +1,60 @@
+id: emst:core/TSK-6MNE7W0
+type: Task
+prefLabel:
+  en: Keep version control on documents that enter a decision record, so that each cited version can be retrieved with its date and author
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Keep version control on documents that enter a decision record, so that each cited version can be retrieved with its date and author
+textSha256: 0b3aea6259265587bc131a79128a69c319bc2dfdb484adb1e4e6448705849f0b
+supports:
+- competency: emst:core/CMP-M0JAW9R
+  strength: primary
+workFunction: WF-MANAGE
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 2.5.2:T1
+v1Tier: T1
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.5'
+  label: Digital Collaboration Tools
+editorialNote:
+  en: 'S2 close-out A. Rewritten from the v1 task text: "Manage shared cloud folders with version-controlled documents".'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.5.2:T1
+    v1Code: 2.5.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 63
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

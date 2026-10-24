@@ -1,0 +1,47 @@
+id: emst:water/TSK-0CC03MG
+type: Task
+prefLabel:
+  en: Route peak wet-weather flows through the plant to protect biological treatment, recording any bypass or overflow for required reporting
+statement:
+  en: Route peak wet-weather flows through the plant to protect biological treatment, recording any bypass or overflow for required reporting
+textSha256: 9f4f870d226857eb3e35844307f3328cdfa79f7169e6f7a19eaf917fe9e44113
+supports:
+- competency: emst:water/CMP-M3KMNGM
+  strength: primary
+workFunction: WF-RESPOND
+workflowProfiles:
+- WP-OPERATIONS
+- WP-INCIDENT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  credentialGate: licence
+credentialGates:
+- credential: emst:core/CRD-5VSXY66
+  kind: required
+signOffAuthority:
+  kind: licensure
+homeModule: water
+subsectors:
+- W02
+layer: L2
+module: water
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

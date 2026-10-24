@@ -1,0 +1,38 @@
+id: emst:core/IND-0MXKG4V
+type: Indicator
+prefLabel:
+  en: Checks automated condition scores against a sample of inspection records
+competency: emst:core/CMP-CD9P70X
+level: L2
+statement:
+  en: Checks automated condition scores against a sample of inspection records, correcting each score that the records do not support before it enters the renewal plan.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-NDANBHE
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

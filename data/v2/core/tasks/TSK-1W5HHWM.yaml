@@ -1,0 +1,42 @@
+id: emst:core/TSK-1W5HHWM
+type: Task
+prefLabel:
+  en: Record dated forecasts of instrument changes affecting the program, reviewing their accuracy against outcomes each quarter
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Record dated forecasts of instrument changes affecting the program, reviewing their accuracy against outcomes each quarter
+textSha256: 8c76d90e93cb372fcfcfab6be76d615cf6034f5102422ed6a2c1d9e6d4599e9b
+supports:
+- competency: emst:core/CMP-N8FVCXE
+  strength: primary
+workFunction: WF-RULE
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+editorialNote:
+  en: 'Prediction logs make judgment observable but are personnel data: adopter-held only (vocab assessment_methods).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

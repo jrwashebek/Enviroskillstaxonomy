@@ -1,0 +1,45 @@
+id: emst:core/ENA-D5M793R
+type: Enactment
+prefLabel:
+  en: State merit system
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-6035KC2
+enactmentKind: actor
+actorType: state-agency
+authorityBasis:
+  en: State civil service and merit-system laws; state statutes and orders on skills-based hiring, for example a 2025 Texas law limiting degree requirements in state hiring.
+principal:
+  en: The state personnel agency and the hiring unit.
+accountabilityVenue:
+  en: Civil service commissions; state courts.
+characteristicInstruments:
+- instrument: seed:ins/tx-hb-3923
+  role: requires
+  note:
+    en: Example state.
+note:
+  en: 'SL review: state merit systems already require job-related selection; skills-based hiring laws add the removal of unneeded degree requirements [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

@@ -1,0 +1,39 @@
+id: emst:air/IND-ZBDS1BM
+type: Indicator
+prefLabel:
+  en: Validates a quarter's monitoring data against quality-assurance criteria, flagging or…
+competency: emst:air/CMP-9XPRVR9
+level: L2
+statement:
+  en: Validates a quarter's monitoring data against quality-assurance criteria, flagging or invalidating each affected value with the criterion that applies.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:air/TSK-P77AGP4
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: air
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

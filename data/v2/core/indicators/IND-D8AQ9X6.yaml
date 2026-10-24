@@ -1,0 +1,40 @@
+id: emst:core/IND-D8AQ9X6
+type: Indicator
+prefLabel:
+  en: Estimates false-positive and false-negative rates by checking detections against a verified local
+competency: emst:core/CMP-VMK86P6
+level: L3
+statement:
+  en: Estimates false-positive and false-negative rates by checking detections against a verified local validation set, reporting rates by species with sample sizes.
+augmentationMode: assisted
+assessmentMethods:
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-04FCE9H
+distinguishingAttribute: ATT-KNO
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

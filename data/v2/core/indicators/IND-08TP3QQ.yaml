@@ -1,0 +1,37 @@
+id: emst:core/IND-08TP3QQ
+type: Indicator
+prefLabel:
+  en: Sets confidence thresholds for model outputs from a verified sample, stating the expected precision…
+competency: emst:core/CMP-ZJZ8VBW
+level: L2
+statement:
+  en: Sets confidence thresholds for model outputs from a verified sample, stating the expected precision and recall at each threshold.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-3WZC160
+- emst:core/TSK-MBVFZW5
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

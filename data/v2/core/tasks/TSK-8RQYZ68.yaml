@@ -1,0 +1,44 @@
+id: emst:core/TSK-8RQYZ68
+type: Task
+prefLabel:
+  en: Plan interpretation and translation for an engagement process from the languages spoken in the affected area, stating which materials will be translated
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Plan interpretation and translation for an engagement process from the languages spoken in the affected area, stating which materials will be translated
+textSha256: de123afcaa709cccd754e8350a11dcc0cf152dc9a4af428ee31aba4c2962aa4b
+supports:
+- competency: emst:core/CMP-5NFAM97
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

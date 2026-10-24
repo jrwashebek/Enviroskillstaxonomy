@@ -14,6 +14,7 @@ Outputs in --out (default dist/<version>/):
                               views/agreement/<study>.json (ADR-0030 adds the CLO nodes and the HR views)
   RELEASE_NOTES.md            generated counts; held items reported only as a count
   delta.json                  added/changed/superseded/withdrawn IDs vs --previous bundle
+  delta_v1.json               delta against the v1 baseline: every ID added; per v1 key, decision and rc.1 successors (X1)
   SHA256SUMS                  checksums of every file
 
 Release gate (always on): held Tribal-related records, and records attached to a held target, are excluded
@@ -67,6 +68,15 @@ TEXT_FIELDS_TO_LANG = {"rationale", "assessmentContext", "authorityBasis", "prin
 THIRD_PARTY_LICENSE = "LicenseRef-EMST-third-party-index-derived"
 EXCLUDE_THIRD_PARTY = "third-party index-derived licence (ADR-0013; ADR-0029 §9.6)"
 EXCLUDE_HELD = "held (Tribal content hold, ADR-0007 §D)"
+EXCLUDE_WITHHELD = "withheld: claim rests on an unverified claims-register row (WP-15 §2.1; ADR-0031 §8)"
+AUTHORSHIP = ("This release was researched and drafted by a team of AI agents (Anthropic's Claude), each given a specialist "
+              "role, working to a charter set by the EMST project lead. AI agents checked the facts against sources in October "
+              "2026. No independent human expert has reviewed the release yet. Role names such as \"Chief Taxonomy Architect\" "
+              "are AI agent roles, not people.")
+NOT_VALIDATED = ("Nothing in this release has been validated by human subject-matter experts. No Delphi panel, reliability "
+                 "study or job analysis has been run. Every rating and tag is an AI agent's draft (raterType llm, evidence label "
+                 "S) or v1 prior evidence; the display gate shows none of them as findings, and every published element is at "
+                 "describe or develop tier at most, never select.")
 DEPENDENT_FIELDS = ("task", "competency", "subject", "targetId", "variantOf")
 G9_RANGE = (120, 180)          # counts@1.0.0 coreCompetencies incl. held core (ADR-0030 §3.4; G-9)
 X1_HELD_COMMENT = "decision={decision}; ADR-0011; one or more successors held (ADR-0007 §D)"
@@ -103,6 +113,10 @@ class Builder:
         self.held_keys = set(self.hold.get("heldSeedKeys") or [])
         self.held_v1 = set(self.hold.get("heldV1Codes") or [])
         self.tac = bool(self.hold.get("tacConstituted"))
+        wh = L.load_yaml(gov / "release_withheld.yaml") if (gov / "release_withheld.yaml").exists() else {}
+        self.withheld = {k for row in (wh.get("withheld") or []) for k in row.get("records") or []}
+        self.included = None                       # ids that pass the gate; set by build() before records are cleaned
+        self.redacted = Counter()
         self.commit = build_commit or git_commit(L.ROOT)
         self.records = {}
         for loc, rec in L.iter_records(self.data):
@@ -175,6 +189,9 @@ class Builder:
         if rec.get("license") == THIRD_PARTY_LICENSE:
             self.excluded[EXCLUDE_THIRD_PARTY] += 1
             return False
+        if rid in self.withheld or (rec.get("type") == "DriverEvent" and rec.get("instrument") in self.withheld):
+            self.excluded[EXCLUDE_WITHHELD] += 1
+            return False
         if self.quarantined(rec):
             self.excluded["quarantined signal: careFlag or signpost SP-12 (ADR-0028 ER-0; ADR-0029 §8.2)"] += 1
             return False
@@ -218,21 +235,43 @@ class Builder:
         r = self.records.get(s)
         return r is not None and self.is_held(s, r)
 
+    def _gone(self, s):
+        """Why a record reference may not appear in a released record: held, withheld or not in this release
+        (draft, unminted, excluded or unauthored). None for anything that is not a record reference or is released."""
+        if not isinstance(s, str) or not L.is_record_ref(s):
+            return None
+        if self._held_ref(s):
+            return "held"
+        if s in self.withheld:
+            return "withheld"
+        if self.included is not None and s not in self.included:
+            return "not in this release"
+        return None
+
     def _redact(self, v):
-        """Remove references to held records from released records (ADR-0007 §D: held keys never leave the repo)."""
+        """Remove references to held records (ADR-0007 §D: held keys never leave the repo) and to any record that is
+        not in this release (ADR-0031 §6: a release is referentially closed; withheld and unminted records are never
+        named). An object that names such a record is dropped whole (a supports link, a typed instrument link, a bundle
+        item). Each removal is counted for the release notes."""
         if isinstance(v, str):
-            return _DROP if self._held_ref(v) else v
+            why = self._gone(v)
+            if why:
+                self.redacted[why] += 1
+                return _DROP
+            return v
         if isinstance(v, list):
             items = [self._redact(x) for x in v]
             return [x for x in items if x is not _DROP]
         if isinstance(v, dict):
+            whys = [w for w in (self._gone(x) for x in v.values() if isinstance(x, str)) if w]
+            if whys:
+                self.redacted[whys[0]] += 1
+                return _DROP          # an object that names held or unreleased content is dropped whole
             out = {}
             for k, x in v.items():
                 y = self._redact(x)
                 if y is not _DROP:
                     out[k] = y
-            if any(self._held_ref(x) for x in v.values() if isinstance(x, str)):
-                return _DROP          # an object that names held content is dropped whole (e.g. a supports link)
             return out
         return v
 
@@ -248,7 +287,8 @@ class Builder:
     # ---------------------------------------------------------------- build
     def build(self, out: Path):
         out = Path(out)
-        released = {rid: self.clean(rec) for rid, rec in sorted(self.records.items()) if self.include(rid, rec)}
+        self.included = {rid for rid, rec in sorted(self.records.items()) if self.include(rid, rec)}
+        released = {rid: self.clean(self.records[rid]) for rid in sorted(self.included)}
         self.released = released
         self.inverse = inverse_links.compute(released)
         files: dict[str, bytes] = {}
@@ -259,6 +299,8 @@ class Builder:
         files.update(self.views(released))
         delta = self.delta(released)
         files["delta.json"] = L.dump_json(delta).encode("utf-8")
+        self.v1delta = self.delta_v1(released)
+        files["delta_v1.json"] = L.dump_json(self.v1delta).encode("utf-8")
         files["csv/delta.csv"] = L.csv_text(["id", "change"], [{"id": i, "change": c} for c in ("added", "changed", "superseded", "withdrawn") for i in delta[c]]).encode()
         files["csv/datapackage.json"] = self.datapackage(files).encode("utf-8")
         files["RELEASE_NOTES.md"] = self.notes(released, delta).encode("utf-8")
@@ -504,9 +546,8 @@ class Builder:
                 if orec is not None and self.is_held(obj, orec) or obj in self.held_keys:
                     by_subject[subj].append(None)
                     continue
-                srec = self.records.get(subj)
-                if srec is not None and subj not in released:
-                    continue
+                if L.is_record_ref(subj) and subj not in released:
+                    continue              # subject not in this release (unreleased, unminted or unauthored; ADR-0031 §6)
                 r = dict(r)
                 if L.is_record_ref(obj) and obj not in released:
                     r["object_id"] = "sssom:NoTermFound"
@@ -621,6 +662,22 @@ class Builder:
                   "byLifecycle": dict(sorted(Counter(r.get("lifecycleState", "unset") for r in released.values() if r["type"] in ("Competency", "Task", "RoleProfile")).items())),
                   "coreCompetencies": sum(1 for r in released.values() if r["type"] == "Competency" and r.get("module") == "core" and r.get("status") not in ("superseded", "withdrawn")),
                   "excluded": dict(sorted(self.excluded.items()))}
+        if counts["ruleVersion"] != "1.0.0":                    # counts@1.1.0 (ADR-0031 §9)
+            comps = [r for r in released.values() if r["type"] == "Competency"]
+            counts.update({
+                "competenciesByModuleAndKind": {m: dict(sorted(Counter(r.get("competencyType", "unset") for r in comps if r.get("module") == m).items()))
+                                                for m in sorted({r.get("module") for r in comps})},
+                "competenciesByLifecycle": dict(sorted(Counter(r.get("lifecycleState", "unset") for r in comps).items())),
+                "rolesByTier": dict(sorted(Counter(self._tier(r) for r in released.values() if r["type"] == "RoleProfile").items())),
+                "variantsBySectorActor": dict(sorted(Counter(r.get("sectorActor", "unset") for r in released.values() if r["type"] == "RoleVariant").items())),
+                "heldRecords": self.excluded.get(EXCLUDE_HELD, 0),
+                "redactedReferences": dict(sorted(self.redacted.items())),
+                "deferredTargets": self.deferred_targets(released)})
+            counts = {k: counts[k] for k in ["ruleId", "ruleVersion", "buildCommit", "release", "byType", "competenciesByKind",
+                                             "competenciesByModule", "competenciesByModuleAndKind", "competenciesByLifecycle",
+                                             "byLifecycle", "rolesByTier", "variantsBySectorActor", "coreCompetencies",
+                                             "heldRecords", "excluded", "redactedReferences", "deferredTargets"]}
+        self.counts = counts
         files["views/counts.json"] = counts
         files["views/inverse_links.json"] = inverse_links.view_rows(self.inverse, st("inverse-links"))
         # effective-use-tier@1.0.0: header pins IO's tier requirements; lint caps from IO's linter with our waivers
@@ -681,15 +738,103 @@ class Builder:
                 out[key].append(rid)
         return out
 
+    @staticmethod
+    def _tier(role):
+        for n in role.get("notation") or []:
+            if isinstance(n, dict) and n.get("scheme") == "MVPtier":
+                return str(n.get("value"))
+        return "unset"
+
+    def seed_map(self):
+        p = self.data / "ids" / "seed_map.csv"
+        return {r["seed_key"]: r["id"] for r in L.read_csv(p)} if p.exists() else {}
+
+    def deferred_targets(self, released):
+        """Planned v2.0 targets (v1 disposition targets and candidates decided core-v2.0/module-v2.0) that are neither
+        released nor held nor merged away, counted by area (counts@1.1.0). Keys are never listed (held keys could be)."""
+        planned = {}
+        t = self.data / "migration" / "v1_targets.csv"
+        for r in (L.read_csv(t) if t.exists() else []):
+            if r.get("target_key") and r.get("target_kind") in ("v1-seed", "candidate", "split-new", "enactment"):
+                planned[r["target_key"]] = (r.get("area") or "core", r.get("held") == "true")
+        cands = L.ROOT / "docs" / "decisions" / "candidate_disposition.csv"
+        for r in (L.read_csv(cands) if cands.exists() else []):
+            if r.get("decision") in ("core-v2.0", "module-v2.0"):
+                tgt = r.get("target", "")
+                m = re.match(r"^MOD-\w+\s+([a-z]+)", tgt)
+                planned.setdefault(f"seed:{r['cand_id']}", ("core" if tgt.startswith("core") or not m else m.group(1), False))
+        smap = self.seed_map()
+        out = Counter()
+        for key, (area, held_flag) in planned.items():
+            rid = smap.get(key, key)
+            rec = self.records.get(rid)
+            if rid in released or held_flag or key in self.held_keys or (rec is not None and self.is_held(rid, rec)):
+                continue
+            if rec is not None and rec.get("status") in ("superseded", "withdrawn"):
+                continue
+            out[area] += 1
+        return dict(sorted(out.items()))
+
+    def delta_v1(self, released):
+        """Delta against the v1 baseline (SPEC §12.5): v1 had no persistent IDs, so every rc.1 ID is new. For each v1
+        competency and task, the X1 decision and the rc.1 successor IDs from the released X1 set (held successors appear
+        only as a count; unreleased successors as NoTermFound)."""
+        rows = (self._mapping_rows(released).get("emst-v1/emst-v1_to_v2") or [])
+        by = defaultdict(lambda: {"decision": None, "successors": [], "notInRelease": 0})
+        for r in rows:
+            subj = r.get("subject_id", "")
+            m = re.match(r"^decision=([a-z-]+)", r.get("comment", "") or "")
+            e = by[subj]
+            e["decision"] = e["decision"] or (m.group(1) if m else None)
+            obj = r.get("object_id", "")
+            if obj in released:
+                e["successors"].append(obj)
+            elif obj == "sssom:NoTermFound":
+                e["notInRelease"] += 0 if r.get("predicate_id") == "emst:retiredWithoutReplacement" else 1
+        items = [{"v1": k, "decision": v["decision"], "successors": sorted(set(v["successors"])), "successorsNotInRelease": v["notInRelease"]}
+                 for k, v in sorted(by.items())]
+        summary = Counter()
+        for it in items:
+            kind = "task" if re.search(r":T[1-3]$", it["v1"]) else "competency"
+            state = "successor in this release" if it["successors"] else ("retired" if it["decision"] == "retire" else "no successor in this release")
+            summary[f"{kind}: {state}"] += 1
+        return {"from": "EMST v1 (copyB baseline; data/v1_baseline)", "to": self.version,
+                "note": "v1 had no persistent IDs; every EMST ID in this release is added relative to v1. Per-key successors "
+                        "come from the released X1 mapping set (ADR-0022).",
+                "added": sorted(rid for rid in released if L.is_emst_id(rid)),
+                "summary": dict(sorted(summary.items())), "v1Keys": items}
+
     def notes(self, released, delta):
         c = Counter(r["type"] for r in released.values())
+        counts = getattr(self, "counts", {}) or {}
         lines = [f"# EMST {self.version} — release notes (generated)", "",
                  f"- Released: {self.date} · schema {L.SCHEMA_VERSION} · build {self.commit} · profile `{self.profile}`",
+                 f"- **Authorship.** {AUTHORSHIP}",
+                 f"- **Not validated.** {NOT_VALIDATED}",
                  f"- Licence: CC0-1.0 for data and standard text (ADR-0013). {NOTICE}",
                  f"- {INDIGENOUS_STATEMENT}", "", "## Contents (counted by the build)", "", "| Entity | Records |", "|---|---|"]
         lines += [f"| {t} | {n} |" for t, n in sorted(c.items())] or ["| (none) | 0 |"]
+        if counts.get("ruleVersion", "1.0.0") != "1.0.0":
+            def table(title, head, d):
+                return ["", f"### {title}", "", f"| {head} | Records |", "|---|---|"] + ([f"| {k} | {v} |" for k, v in d.items()] or ["| (none) | 0 |"])
+            lines += table("Competencies by kind", "Kind", counts.get("competenciesByKind", {}))
+            lines += table("Competencies by module", "Module", counts.get("competenciesByModule", {}))
+            mk = counts.get("competenciesByModuleAndKind", {})
+            kinds = sorted({k for d in mk.values() for k in d})
+            lines += ["", "### Competencies by module and kind", "", "| Module | " + " | ".join(kinds) + " |", "|---" * (len(kinds) + 1) + "|"]
+            lines += [f"| {m} | " + " | ".join(str(d.get(k, 0)) for k in kinds) + " |" for m, d in mk.items()]
+            lines += table("Competencies by lifecycle state", "Lifecycle state", counts.get("competenciesByLifecycle", {}))
+            lines += table("Roles by tier (MVP role set)", "Tier", counts.get("rolesByTier", {}))
+            lines += table("Role variants by sector actor", "Sector actor", counts.get("variantsBySectorActor", {}))
+            lines += ["", "### Held and deferred", "",
+                      f"- Held Tribal-related records (ADR-0007 §D), reported only as a count: {counts.get('heldRecords', 0)}.",
+                      f"- Planned v2.0 targets not in this release (deferred to rc.2 or a later wave), by area: "
+                      + (", ".join(f"{k} {v}" for k, v in counts.get("deferredTargets", {}).items()) or "none") + "."]
         lines += ["", "## Excluded by the release gate", "", "| Reason | Records |", "|---|---|"]
         lines += [f"| {k} | {v} |" for k, v in sorted(self.excluded.items())] or ["| (none) | 0 |"]
+        if self.redacted:
+            lines += ["", "References removed from released records because their target is not released (by reason): "
+                      + ", ".join(f"{k} {v}" for k, v in sorted(self.redacted.items())) + "."]
         waived = Counter(h.rule_id for h in getattr(self, "waived", []))
         lines += ["", "## Lint waivers applied (data/v2/governance/lint_waivers.csv)", "", "| Rule | Waived hits |", "|---|---|"]
         lines += [f"| {k} | {v} |" for k, v in sorted(waived.items())] or ["| (none) | 0 |"]
@@ -698,12 +843,18 @@ class Builder:
                   f"Core practice competencies recurring in fewer than three modules: {low} of {len(getattr(self, 'recurrence', {}))}."]
         core, held_core = self.core_size(released)
         lines += ["", "## Core size (G-9)", "", f"Core competencies: {core} released + held core reported as a count ({held_core}); "
-                  f"range {G9_RANGE[0]}-{G9_RANGE[1]} (counts@1.0.0)."]
+                  f"range {G9_RANGE[0]}-{G9_RANGE[1]} (counts@{self.rules['counts']['version']})."]
         lines += ["", "## Computed-view rules", "", "| Rule | Version |", "|---|---|"]
         lines += [f"| {r} | {v} |" for r, v in sorted(self.stamped)]
         lines += ["", "Held Tribal-related items are reported only as a count (ADR-0007 §D); nothing Tribal-related is published "
                   "before a Tribal Advisory Council approves.", "", "## Delta", "",
-                  f"added {len(delta['added'])} · changed {len(delta['changed'])} · superseded {len(delta['superseded'])} · withdrawn {len(delta['withdrawn'])}", ""]
+                  f"Against the previous release ({delta['from'] or 'none given'}): added {len(delta['added'])} · changed {len(delta['changed'])} · superseded {len(delta['superseded'])} · withdrawn {len(delta['withdrawn'])} (delta.json).", ""]
+        v1d = getattr(self, "v1delta", None)
+        if v1d:
+            lines += ["Against the v1 baseline (delta_v1.json; v1 had no persistent IDs, so every ID is added):", "",
+                      "| v1 key kind and outcome | v1 keys |", "|---|---|"]
+            lines += [f"| {k} | {v} |" for k, v in v1d["summary"].items()]
+            lines += [""]
         return "\n".join(lines)
 
     def core_size(self, released):
@@ -753,6 +904,14 @@ class Builder:
             print(f"I-CORE-SIZE core competencies {core} + held {held_core} = {total} (G-9 range {G9_RANGE[0]}-{G9_RANGE[1]})")
         if THIRD_PARTY_LICENSE in graph_text or THIRD_PARTY_LICENSE in others:
             problems.append(f"{THIRD_PARTY_LICENSE} record present in release output (ADR-0029 §9.6)")
+        for k in sorted(self.withheld):                    # ADR-0031 §8: withheld records are never named in a release
+            pat = re.compile(r"(?<![A-Za-z0-9._/:-])" + re.escape(k) + r"(?![A-Za-z0-9._/-])")
+            if pat.search(graph_text) or pat.search(others):
+                problems.append(f"withheld key {k} present in release output")
+        if self.profile == "release":                      # ADR-0031 §6: a release names minted IDs only
+            unminted = sorted({s for r in doc["@graph"] for _, s in L.iter_strings(r) if L.is_seed(s)})
+            if unminted:
+                problems.append(f"{len(unminted)} unminted seed: references in the release bundle, e.g. {unminted[:3]}")
         for r in doc["@graph"]:
             for f in self.inverse_fields.get(r.get("type"), set()) - {"tools", "enactments", "tasks", "mirroredBy"}:
                 if f in r:

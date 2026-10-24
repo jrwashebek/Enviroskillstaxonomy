@@ -1,0 +1,77 @@
+id: emst:core/CMP-V9DP16C
+type: Competency
+prefLabel:
+  en: Provide first aid and emergency medical care in remote field settings
+definition:
+  en: Assessing injuries and illnesses and giving first aid and wilderness emergency care where definitive care is distant; stabilizing and monitoring patients; deciding on and coordinating evacuation; and maintaining medical kits. First aid and wilderness medicine certifications are credential gates, not proficiency. Excludes clinical medicine.
+statement:
+  en: Assess injured or ill people in remote field settings, give first aid and wilderness emergency care within the scope of training, monitor and stabilize patients, decide whether and how to evacuate, and coordinate evacuation with responders.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-WYCH5GJ
+  - emst:core/IND-0R6NBFN
+- level: L2
+  indicators:
+  - emst:core/IND-7Y6CWNQ
+  - emst:core/IND-PTTHGRQ
+- level: L3
+  indicators:
+  - emst:core/IND-38K5BG4
+  - emst:core/IND-3GBA1HS
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 4.4.2
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.4'
+  label: Safety & Emergency Response
+editorialNote:
+  en: 'WP-03 (FC) draft. Rewritten: v1 levels defined by holding certificates; v2 levels are scenario performance, with certificates as credential gates (FC verdict; ADR-0003 T-8). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-RESPOND (FC). Rationale: Levels were defined by certification (CPR, WFR, EMT); certificates become Credentials and proficiency is anchored on scenario-based field evaluation (FC, LC verdicts; T-8). Role verdicts considered: FC:change|LC:change.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.4.2
+    v1Code: 4.4.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 128
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:4.4.2
+    v1Code: 4.4.2
+    v1Table: source_text/competencies
+    sourceTextLine: 8222
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - ADR-0011
+  - WP-03

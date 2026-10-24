@@ -2,18 +2,18 @@
  "stamp": {
   "ruleId": "role-change-inputs",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "ruleStatus": "not registered",
   "generator": "pipelines/views/change_view.py@0.1.0",
   "asOf": "2026-10-23"
  },
- "role": "seed:R10-environmental-review-specialist",
+ "role": "emst:core/ROL-V5FGFB6",
  "roleTitle": "Environmental review specialist",
  "summary": "Role that determines the level of environmental review for proposed actions, prepares or directs effects analyses, coordinates cooperating agencies and consultations, builds the administrative record and writes decision documents under the governing agency procedures. AI drafting compresses production; verification, record integrity and litigation resilience grow.",
  "evidenceNotice": "Reshaping claims are agent drafts (raterType llm, validationStatus draft, evidence S). No task has a v2 multi-rater assessment yet, so every task shows 'assessment pending'. Change indicators count active signals only (ADR-0028); all linked signals are at watch, so no change indicator moves. v1 values appear only as prior-evidence pointers.",
- "timeShareByClaim": {
-  "new": 0.116,
-  "no reshaping claim drafted": 0.693,
-  "transforming": 0.191
+ "taskCountByClaim": {
+  "new": 3,
+  "no reshaping claim drafted": 25,
+  "transforming": 3
  },
  "roleLevelChange": [
   {
@@ -24,19 +24,19 @@
    "note": "Review now runs under each agency's own procedures after CEQ's regulations were removed (effective Jan 8 2026) and after Seven County; the SPEED Act passed the House and is pending in the Senate.",
    "instruments": [
     {
-     "id": "seed:ins/ceq-nepa-regs-removal",
+     "id": "emst:core/INS-RY63HWN",
      "label": "Removal of CEQ NEPA implementing regulations (40 CFR 1500-1508)"
     },
     {
-     "id": "seed:ins/seven-county",
+     "id": "emst:core/INS-RPPAZ58",
      "label": "Seven County Infrastructure Coalition v. Eagle County"
     },
     {
-     "id": "seed:ins/speed-act",
+     "id": "emst:core/INS-12Y5SR9",
      "label": "SPEED Act (H.R. 4776)"
     },
     {
-     "id": "seed:ins/nepa-fra-2023",
+     "id": "emst:core/INS-8EFNTAM",
      "label": "NEPA as amended by the Fiscal Responsibility Act of 2023"
     }
    ],
@@ -45,8 +45,8 @@
  ],
  "contextSignals": [
   {
-   "id": "seed:sig/bls-ep-2025-35/19-2041/R10-environmental-review-specialist",
-   "label": "BLS projected employment change 2025-35 for Environmental scientists and specialists, including health (19-2041), attached to R10-environmental-review-specialist",
+   "id": "emst:core/SIG-0AC8N3N",
+   "label": "BLS projected employment change 2025-35 for Environmental scientists and specialists, including health (19-2041) (role: Environmental review specialist)",
    "signalStatus": "watch",
    "signalFamily": "projection",
    "direction": "grow",
@@ -59,127 +59,7 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/capability/draftnepabench-coding-agents",
-   "label": "Benchmark of AI agents drafting EIS sections (DraftNEPABench, PNNL with OpenAI)",
-   "signalStatus": "watch",
-   "signalFamily": "capability",
-   "direction": "automate",
-   "drivers": [
-    "AI"
-   ],
-   "reliability": "B",
-   "sourceRelease": "Presented 2026-05-27/29; PNNL release 2026-06-29",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/deployment/permitting-ai-shared-services",
-   "label": "PNNL PermitAI shared services: SearchNEPA available to federal NEPA reviewers; DraftNEPABench released",
-   "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "augment",
-   "drivers": [
-    "AI",
-    "policy-reform"
-   ],
-   "reliability": "B",
-   "sourceRelease": "PNNL PermitAI project page; news release 2026-06-29",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
-   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform"
-   ],
-   "reliability": "B",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-14-epa-ai-strategy",
-   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "new",
-   "drivers": [
-    "AI",
-    "policy-reform"
-   ],
-   "reliability": "A",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-26-carep-credential",
-   "label": "First AI-readiness credential for environmental review professionals launched (university with a training provider)",
-   "signalStatus": "watch",
-   "signalFamily": "postings-pds",
-   "direction": "new",
-   "drivers": [
-    "AI"
-   ],
-   "reliability": "B",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-29-mercor-agent-training",
-   "label": "AI-training marketplace recruits experienced agency and consulting environmental experts to build agent training environments",
-   "signalStatus": "watch",
-   "signalFamily": "postings-pds",
-   "direction": "automate",
-   "drivers": [
-    "AI"
-   ],
-   "reliability": "C",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-33-gao-opm-capacity",
-   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
-   "signalStatus": "watch",
-   "signalFamily": "headcount",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "workforce-capacity"
-   ],
-   "reliability": "A",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/headcount/epa-12849-jan-2026",
-   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
-   "signalStatus": "watch",
-   "signalFamily": "headcount",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "workforce-capacity",
-    "demographic"
-   ],
-   "reliability": "B",
-   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/headcount/federal-civilian-minus-12pct",
+   "id": "emst:core/SIG-2KRAKB2",
    "label": "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -195,7 +75,66 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/federal-under-30-share",
+   "id": "emst:core/SIG-50E2ZYD",
+   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-5PZTGG9",
+   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "new",
+   "drivers": [
+    "AI",
+    "policy-reform"
+   ],
+   "reliability": "A",
+   "sourceRelease": "EPA AI Strategies for OMB Memorandum M-25-21 (U.S. EPA (Chief AI Officer), 2025-10)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-6MK56GD",
+   "label": "First AI-readiness credential for environmental review professionals launched (university with a training provider)",
+   "signalStatus": "watch",
+   "signalFamily": "postings-pds",
+   "direction": "new",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "B",
+   "sourceRelease": "ILWA and The Shipley Group launch program to modernize environmental permitting in the age of AI (CAREP) (Utah State University, 2026-04-15)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-6X6SV43",
+   "label": "Generative AI drafting, summarization and chat (bureau-built): registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-7A7C2VD",
    "label": "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -212,7 +151,94 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/nps-gt25pct-2024-09-to-2026-01",
+   "id": "emst:core/SIG-EETP50A",
+   "label": "AI-training marketplace recruits experienced agency and consulting environmental experts to build agent training environments",
+   "signalStatus": "watch",
+   "signalFamily": "postings-pds",
+   "direction": "automate",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "C",
+   "sourceRelease": "Environmental Science Expert (Project Atlas) - Mercor listing (Mercor via AlignList, 2026-06-12)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-FEE2J65",
+   "label": "AI in NEPA, environmental review and permitting: registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "stable",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-N8YAZEE",
+   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "A",
+   "sourceRelease": "GAOverview: Recent Federal Workforce Changes at OPM (GAO-26-108916) (U.S. Government Accountability Office, 2026-07-20)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-NHFHG9M",
+   "label": "PNNL PermitAI shared services: SearchNEPA available to federal NEPA reviewers; DraftNEPABench released",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI",
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PNNL PermitAI project page; news release 2026-06-29",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-RCSC4C3",
+   "label": "Commercial generative-AI drafting and summarization tools licensed at workforce scale (EPA, DOI, USDA)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-RKPCJRG",
+   "label": "Benchmark of AI agents drafting EIS sections (DraftNEPABench, PNNL with OpenAI)",
+   "signalStatus": "watch",
+   "signalFamily": "capability",
+   "direction": "automate",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "B",
+   "sourceRelease": "Presented 2026-05-27/29; PNNL release 2026-06-29",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-YM916J3",
    "label": "National Park Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -228,60 +254,34 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01",
-   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "id": "emst:core/SIG-Z35ZKX9",
+   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
    "direction": "decline",
    "drivers": [
     "fiscal",
     "policy-reform",
-    "workforce-capacity"
+    "workforce-capacity",
+    "demographic"
    ],
    "reliability": "B",
-   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/omb-ai-inventory-2025/cots-genai-drafting-scale",
-   "label": "Commercial generative-AI drafting and summarization tools licensed at workforce scale (EPA, DOI, USDA)",
+   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
+   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
    "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "augment",
+   "signalFamily": "policy",
+   "direction": "decline",
    "drivers": [
-    "AI"
+    "fiscal",
+    "policy-reform"
    ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/omb-ai-inventory-2025/genai-drafting",
-   "label": "Generative AI drafting, summarization and chat (bureau-built): registered federal environmental-bureau use cases (2025 inventory)",
-   "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "augment",
-   "drivers": [
-    "AI"
-   ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/omb-ai-inventory-2025/nepa-permitting",
-   "label": "AI in NEPA, environmental review and permitting: registered federal environmental-bureau use cases (2025 inventory)",
-   "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "stable",
-   "drivers": [
-    "AI"
-   ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "reliability": "B",
+   "sourceRelease": "How OBBB impacts invasive species and forest resilience programs (North American Invasive Species Management Association, 2025-09-22)",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   }
@@ -380,16 +380,17 @@
  ],
  "tasks": [
   {
-   "task": "seed:v1-6.1.4-T1",
+   "task": "emst:core/TSK-3JZ26RY",
    "statement": "Prepare an environmental assessment of a proposed action, analyzing the reasonably foreseeable effects of the action and its alternatives within the procedure's page and time limits",
-   "timeShare": 0.125,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [
     {
@@ -404,13 +405,13 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-6.1.4-T1",
-     "seed:asm/s2a-x-pass2/seed-v1-6.1.4-T1",
-     "seed:asm/s2a-x-pass3/seed-v1-6.1.4-T1"
+     "emst:core/ASM-8PM4K8C",
+     "emst:core/ASM-7P5JNST",
+     "emst:core/ASM-AFS1XHX"
     ],
     "namedSignals": [
      {
-      "id": "seed:sig/omb-ai-inventory-2025/nepa-permitting",
+      "id": "emst:core/SIG-FEE2J65",
       "label": "AI in NEPA, environmental review and permitting: registered federal environmental-bureau use cases (2025 inventory)",
       "signalStatus": "watch",
       "signalFamily": "deployment",
@@ -424,7 +425,7 @@
       "reviewBy": "2027-10-23"
      },
      {
-      "id": "seed:sig/capability/draftnepabench-coding-agents",
+      "id": "emst:core/SIG-RKPCJRG",
       "label": "Benchmark of AI agents drafting EIS sections (DraftNEPABench, PNNL with OpenAI)",
       "signalStatus": "watch",
       "signalFamily": "capability",
@@ -438,7 +439,7 @@
       "reviewBy": "2027-10-23"
      },
      {
-      "id": "seed:sig/deployment/permitting-ai-shared-services",
+      "id": "emst:core/SIG-NHFHG9M",
       "label": "PNNL PermitAI shared services: SearchNEPA available to federal NEPA reviewers; DraftNEPABench released",
       "signalStatus": "watch",
       "signalFamily": "deployment",
@@ -456,8 +457,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/6.1.4-T1/copyB",
-      "seed:v1asm/6.1.4-T1/d6"
+      "emst:core/ASM-KRMQ089",
+      "emst:core/ASM-MHMV3C3"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -465,16 +466,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-6.1.4-T2",
+   "task": "emst:core/TSK-XNK4KJ5",
    "statement": "Scope the review of a proposed action with cooperating agencies and the public, setting the purpose, alternatives and effects boundaries the analysis will cover",
-   "timeShare": 0.066,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -483,8 +485,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/6.1.4-T2/copyB",
-      "seed:v1asm/6.1.4-T2/d6"
+      "emst:core/ASM-0VK4Y9Y",
+      "emst:core/ASM-RM8AH4A"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -492,15 +494,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-6.1.4-T3",
+   "task": "emst:core/TSK-AYVKDCJ",
    "statement": "Lead an interdisciplinary team through an environmental review, assigning resource analyses and reconciling conflicting findings into one effects analysis",
-   "timeShare": 0.066,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -509,8 +512,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/6.1.4-T3/copyB",
-      "seed:v1asm/6.1.4-T3/d6"
+      "emst:core/ASM-MW7DZ1H",
+      "emst:core/ASM-5E8QQVT"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -518,16 +521,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-review-ai-drafted-sections",
+   "task": "emst:core/TSK-K4YQ8P3",
    "statement": "Verify AI-drafted sections of an environmental document against the project record, correcting unsupported statements and recording which text was machine-drafted",
-   "timeShare": 0.066,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -541,9 +545,9 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-sc-review-ai-drafted-sections",
-     "seed:asm/s2a-x-pass2/seed-sc-review-ai-drafted-sections",
-     "seed:asm/s2a-x-pass3/seed-sc-review-ai-drafted-sections"
+     "emst:core/ASM-F0C1VWF",
+     "emst:core/ASM-N13EXM4",
+     "emst:core/ASM-00ERFP5"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -552,15 +556,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-write-review-decision",
+   "task": "emst:core/TSK-GHT0C9N",
    "statement": "Write the decision document for a reviewed action, explaining how the analyzed effects, alternatives and public comments informed the choice made",
-   "timeShare": 0.033,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -572,15 +577,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-joint-review-document",
+   "task": "emst:core/TSK-J2ER4SM",
    "statement": "Prepare a joint environmental review document that satisfies both state and federal review procedures for one action, mapping each procedural requirement to its section",
-   "timeShare": 0.033,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -592,16 +598,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-determine-review-level",
+   "task": "emst:core/TSK-1CNQRH8",
    "statement": "Determine whether a proposed action requires an environmental assessment or a full impact statement, documenting the significance reasoning in the project record",
-   "timeShare": 0.033,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -622,16 +629,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-screen-categorical-exclusion",
+   "task": "emst:core/TSK-SXDPFAF",
    "statement": "Screen a proposed action against the agency's exclusion categories and extraordinary-circumstance criteria, recording the screening result and its basis for the official",
-   "timeShare": 0.066,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -643,16 +651,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-review-automated-screening",
+   "task": "emst:core/TSK-RFXHDW4",
    "statement": "Review automated exclusion-screening results for a batch of routine actions, confirming or overriding each flagged extraordinary circumstance",
-   "timeShare": 0.033,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -666,9 +675,9 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-sc-review-automated-screening",
-     "seed:asm/s2a-x-pass2/seed-sc-review-automated-screening",
-     "seed:asm/s2a-x-pass3/seed-sc-review-automated-screening"
+     "emst:core/ASM-PXK48VN",
+     "emst:core/ASM-QVV4NS7",
+     "emst:core/ASM-A49CPYT"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -677,15 +686,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-adopt-other-agency-exclusion",
+   "task": "emst:core/TSK-AP96NSC",
    "statement": "Adopt another agency's exclusion category for a proposed action where procedures allow, documenting why the actions are comparable",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -697,15 +707,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-evaluate-sponsor-document",
+   "task": "emst:core/TSK-727Q90P",
    "statement": "Evaluate a sponsor-prepared environmental document for adequacy and objectivity, returning specific deficiencies the preparer must correct before adoption",
-   "timeShare": 0.033,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -717,15 +728,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-document-independent-evaluation",
+   "task": "emst:core/TSK-5RM0MJX",
    "statement": "Document the agency's independent evaluation of a sponsor-prepared document before adoption, recording what was verified and what was changed",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -737,15 +749,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-issue-preparer-standards",
+   "task": "emst:core/TSK-0F94Q6E",
    "statement": "Issue scope and content standards to a sponsor's contractor preparing an environmental document, specifying data, methods and the agency's review checkpoints",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -757,16 +770,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-6.5.2-T1",
+   "task": "emst:core/TSK-Y6TMW5D",
    "statement": "Coordinate review steps with other agencies holding authority over the same action, so that duplicated analyses and conflicting requirements are identified early",
-   "timeShare": 0.033,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -775,8 +789,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/6.5.2-T1/copyB",
-      "seed:v1asm/6.5.2-T1/d6"
+      "emst:core/ASM-9BVYHT3",
+      "emst:core/ASM-HRD26F9"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -784,16 +798,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-update-permitting-dashboard",
+   "task": "emst:core/TSK-QWD6RQG",
    "statement": "Update public milestone and dashboard entries for a covered project, reconciling each entry against agency source documents every reporting period",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -804,11 +819,11 @@
      "note": "Public milestone dashboards and the permitting data standard add reporting work.",
      "instruments": [
       {
-       "id": "seed:ins/ceq-permitting-data-standard",
+       "id": "emst:core/INS-GWC623Q",
        "label": "CEQ NEPA and Permitting Data and Technology Standard"
       },
       {
-       "id": "seed:ins/fast-41",
+       "id": "emst:core/INS-3JY4ZHG",
        "label": "FAST-41 (Title 41 of the FAST Act) and the Federal Permitting Improvement Steering Council"
       }
      ]
@@ -823,16 +838,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-index-record-documents",
+   "task": "emst:core/TSK-SKB072A",
    "statement": "Index documents into the administrative record with dates, authors and provenance labels, marking which content was produced with AI assistance",
-   "timeShare": 0.033,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -844,15 +860,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-write-reasoned-explanation",
+   "task": "emst:core/TSK-QQMQSC6",
    "statement": "Write the reasoned explanation that links the evidence in the record to each choice made in a decision",
-   "timeShare": 0.033,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -864,16 +881,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-confirm-comment-responses",
+   "task": "emst:core/TSK-8NF6FAF",
    "statement": "Confirm that every substantive comment in a docket has a reasoned response, sampling machine-grouped comments for unique points the grouping missed",
-   "timeShare": 0.033,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -885,16 +903,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-6.4.4-T2",
+   "task": "emst:core/TSK-FA8XCEJ",
    "statement": "Code a public comment set into themes with machine assistance, tracing every coded statement to its source passage before summarizing for decision-makers.",
-   "timeShare": 0.033,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [
     {
@@ -908,13 +927,13 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-6.4.4-T2",
-     "seed:asm/s2a-x-pass2/seed-v1-6.4.4-T2",
-     "seed:asm/s2a-x-pass3/seed-v1-6.4.4-T2"
+     "emst:core/ASM-2YMAR01",
+     "emst:core/ASM-YW1X2M2",
+     "emst:core/ASM-C9MVAK6"
     ],
     "namedSignals": [
      {
-      "id": "seed:sig/omb-ai-inventory-2025/public-comment",
+      "id": "emst:core/SIG-C4ATB5R",
       "label": "AI in public-comment analysis: registered federal environmental-bureau use cases (2025 inventory)",
       "signalStatus": "watch",
       "signalFamily": "deployment",
@@ -931,8 +950,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/6.4.4-T2/copyB",
-      "seed:v1asm/6.4.4-T2/d6"
+      "emst:core/ASM-6JCCG01",
+      "emst:core/ASM-F2GSBGY"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -940,16 +959,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:dc-13-check-comment-grouping",
+   "task": "emst:core/TSK-4TK90NQ",
    "statement": "Sample machine-grouped public comments to confirm that substantive and unique comments were not merged away before responses are drafted.",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -961,15 +981,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-identify-likely-claims",
+   "task": "emst:core/TSK-0PTQXEH",
    "statement": "Identify the claims a proposed decision is likely to face, rating each claim's likelihood under current deference, standing and remedy doctrine",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -981,14 +1002,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-pre-issuance-record-review",
+   "task": "emst:core/TSK-AAH2KB4",
    "statement": "Review a decision record with counsel before issuance, listing the record gaps that weaken the reasoned explanation and the fix for each",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1000,16 +1022,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-define-area-potential-effects",
+   "task": "emst:core/TSK-FHFCPR0",
    "statement": "Define the area of potential effects for a proposed undertaking, documenting the direct and indirect effect pathways that justify its boundary",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1021,16 +1044,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-assess-historic-effects",
+   "task": "emst:core/TSK-KZDC8AD",
    "statement": "Assess whether a proposed action would adversely affect each eligible property, recording the criteria and evidence applied to each finding",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1042,16 +1066,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-prepare-biological-assessment",
+   "task": "emst:core/TSK-SBJSNEV",
    "statement": "Prepare a biological assessment for a proposed action, stating the effects determination for each listed species and critical habitat with supporting evidence",
-   "timeShare": 0.033,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1063,16 +1088,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-review-ai-effects-determination",
+   "task": "emst:core/TSK-3CP8YPM",
    "statement": "Review an effects determination drafted with AI assistance against the species and project records, correcting each conclusion the records do not support",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1084,16 +1110,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-compile-species-occurrence",
+   "task": "emst:core/TSK-F1RHMQH",
    "statement": "Compile species and habitat occurrence information for an action area, documenting the sources and survey dates used for each listed species",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1105,16 +1132,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-6.7.2-T1",
+   "task": "emst:core/TSK-9RHCM33",
    "statement": "Screen a proposed project's area for existing environmental and health burdens using screening indicators, recording each indicator's source, date and known limitations",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1123,8 +1151,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/6.7.2-T1/copyB",
-      "seed:v1asm/6.7.2-T1/d6"
+      "emst:core/ASM-XCW95XX",
+      "emst:core/ASM-NRTZGSY"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -1132,16 +1160,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-write-engagement-plan",
+   "task": "emst:core/TSK-ZEBXC83",
    "statement": "Write an engagement plan stating who will be engaged, by which methods and when, and why that scope fits the decision",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1153,16 +1182,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:dc-16-extract-table",
+   "task": "emst:core/TSK-B61VPV4",
    "statement": "Extract requirements from a plan or permit into a table with machine assistance, verifying each row against the cited page and paragraph.",
-   "timeShare": 0.017,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1174,15 +1204,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:sc-screen-preparer-conflicts",
+   "task": "emst:core/TSK-40ZZA1J",
    "statement": "Screen a contractor's disclosure statement for financial or other interest in the project outcome before the contractor begins preparing the document",
-   "timeShare": 0.01,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {

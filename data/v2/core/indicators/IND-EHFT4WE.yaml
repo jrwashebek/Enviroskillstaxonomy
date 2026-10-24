@@ -1,0 +1,47 @@
+id: emst:core/IND-EHFT4WE
+type: Indicator
+prefLabel:
+  en: Drafts a routine permit and fact sheet in which every condition cites its legal or technical basis, accepted by the supervisor without substantive rework.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-Q09PM3S
+level: L2
+statement:
+  en: Drafts a routine permit and fact sheet in which every condition cites its legal or technical basis, accepted by the supervisor without substantive rework.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- portfolio-review
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- permit
+- fact sheet
+servedTasks:
+- emst:core/TSK-XRZYPE4
+distinguishingAttribute: ATT-AUT
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

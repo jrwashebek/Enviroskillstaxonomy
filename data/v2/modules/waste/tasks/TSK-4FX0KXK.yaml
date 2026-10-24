@@ -1,0 +1,42 @@
+id: emst:waste/TSK-4FX0KXK
+type: Task
+prefLabel:
+  en: Oversee a remediation contractor's field work against the approved design and health and safety plan, documenting deviations and corrective actions
+statement:
+  en: Oversee a remediation contractor's field work against the approved design and health and safety plan, documenting deviations and corrective actions
+textSha256: 059ef6d780c2e0a6a06054b3cea5f039a3465df233106be7d4d8bd7ee1ae4cf2
+supports:
+- competency: emst:waste/CMP-3NXMSN8
+  strength: primary
+workFunction: WF-BUILD
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+credentialGates:
+- credential: emst:core/CRD-VBY8TPT
+  kind: required
+homeModule: waste
+subsectors:
+- P04
+layer: L2
+module: waste
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

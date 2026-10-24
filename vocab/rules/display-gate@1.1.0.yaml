@@ -1,7 +1,7 @@
 # EMST computed-view rule (SPEC §10.5, §14.3; ADR-0024 §4, ADR-0017, ADR-0027; CR-IO-002). Normative definition.
 ruleId: display-gate
 version: 1.1.0
-status: draft
+status: active
 replaces: display-gate@1.0.0
 steward: IO (parameters and implementation) · CP (only renderer) · DE (agreement results) · CA (definition)
 decidedIn: [ADR-0017, ADR-0024, ADR-0027, ADR-0029, ADR-0030, CR-IO-002, CR-CP-001]
@@ -38,3 +38,4 @@ activation: "IO adds editorial_design_values and job_analysis_values to validati
 changeNote:
   - {date: '2026-10-23', note: "Ratifies IO's encoded semantics with CA clarifications (CR-IO-002; ADR-0029)."}
   - {date: '2026-10-23', note: "Adds role-profile bundle values: editorial design values vs gated job-analysis values (CR-CP-001 B4; ADR-0030). Draft until IO implements."}
+  - {date: '2026-10-23', note: "Activated by the CA at WP-16 (ADR-0031 §1; P-01): IO's implementation in validation/display_gates.yaml 1.1.0 and display_gate.py#decide_role_value accepted with IO's judgment calls (a) and (c); call (b) narrowed: editorial design values render at describe tier only until panel-retained, as definition.editorial_rule says, so the gates file's develop branch for pid:-reviewed values is not ratified. Views emit role-profile rows through decide() (scripts/rules/gated_values.py)."}

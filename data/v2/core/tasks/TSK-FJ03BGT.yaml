@@ -1,0 +1,67 @@
+id: emst:core/TSK-FJ03BGT
+type: Task
+prefLabel:
+  en: Identify every party whose authority, consent or standing a proposed intervention requires, documenting how each will authorize or be consulted
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Identify every party whose authority, consent or standing a proposed intervention requires, documenting how each will authorize or be consulted
+textSha256: d84f0d9e7cb8bfd102844eb666d804b546008921b90dd75187900663863ed0b1
+supports:
+- competency: emst:core/CMP-47TQY9N
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- intergovernmental
+- stakeholder
+notation:
+- scheme: EMSTv1
+  value: 7.1.2:T2
+v1Tier: T2
+v1Domain:
+  code: '7'
+  label: Cross-Cutting Professional Practice
+v1SkillArea:
+  code: '7.1'
+  label: Professional Ethics Architecture
+editorialNote:
+  en: Rewritten from the v1 task text (not quoted here because it names held content; see data/v1_baseline/tasks.csv) (WP-05).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:7.1.2:T2
+    v1Code: 7.1.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 218
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

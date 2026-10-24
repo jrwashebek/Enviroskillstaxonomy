@@ -1,0 +1,38 @@
+id: emst:envhealth/IND-QZBCBD2
+type: Indicator
+prefLabel:
+  en: Checks an automated plan-review or system-sizing output against code provisions and site data
+competency: emst:envhealth/CMP-AWSQ6EK
+level: L3
+statement:
+  en: Checks an automated plan-review or system-sizing output against code provisions and site data, correcting each error before permit conditions are issued.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:envhealth/TSK-MK9NPHR
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: envhealth
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

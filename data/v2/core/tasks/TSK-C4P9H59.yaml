@@ -1,0 +1,64 @@
+id: emst:core/TSK-C4P9H59
+type: Task
+prefLabel:
+  en: Verify the positional accuracy of uncrewed-aircraft survey products against independently surveyed check points before release to users
+statement:
+  en: Verify the positional accuracy of uncrewed-aircraft survey products against independently surveyed check points before release to users
+textSha256: ea928192bcf40b775182bce6afdc425f058fd233b45f470b484e49996e8f598b
+supports:
+- competency: emst:core/CMP-BBSZYXE
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote-capable
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: L
+notation:
+- scheme: EMSTv1
+  value: 2.3.2:T3
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Tier: T3
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.3'
+  label: Field Technology
+editorialNote:
+  en: 'G-2 split role: specification, review or defence of a product. Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.3.2:T3
+    v1Code: 2.3.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 53
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

@@ -1,0 +1,77 @@
+id: emst:core/ENA-133TTF9
+type: Enactment
+prefLabel:
+  en: Federal permitting authority
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-Q09PM3S
+enactmentKind: actor
+actorType: federal-regulator
+authorityBasis:
+  en: Federal permit programmes where no state is authorized, and federal programmes never delegated (such as the Corps dredge-and-fill programme outside assumed states); federal objection authority over state-issued permits in delegated programmes.
+principal:
+  en: The regional administrator or district engineer who signs the permit.
+accountabilityVenue:
+  en: Federal administrative appeals boards; federal courts.
+authorityPosition: regulator
+characteristicInstruments:
+- instrument: emst:core/INS-SV5R1GR
+  role: constrains
+  note:
+    en: Jurisdictional definition; limits scope, never a basis.
+- instrument: emst:core/INS-ERJTBTT
+  role: removed-requirement
+  note:
+    en: Rescission; never a basis (ADR-0030 §1, SL-C02 defect).
+- instrument: emst:core/INS-A7Z433R
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+- instrument: emst:core/INS-BSF7C0S
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+- instrument: emst:core/INS-8CT98M3
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+- instrument: emst:core/INS-PC3SHGA
+  role: requires
+  note:
+    en: Where the federal regulator issues the permit. Registered without dated events; basis linked, status not yet verified.
+- instrument: emst:core/INS-337YBTK
+  role: requires
+  note:
+    en: Outside assumed states. Registered without dated events; basis linked, status not yet verified.
+note:
+  en: Same permit-writing performance; the authority basis is federal and the oversight relationship runs the other way (mirror of the state delegated enactment of SC-C14) [J].
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - V2-06
+  - V2-07
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

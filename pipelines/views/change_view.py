@@ -38,7 +38,9 @@ def main():
     d = V.Data()
     atoms = V.L.load_yaml(ATOMS)["atoms"]
     by_role = defaultdict(list)
-    for a in atoms:
+    for a in atoms:                      # atoms name seed keys; promoted ones resolve to minted IDs (ADR-0031 §6)
+        a = dict(a, role=d.canon(a["role"]), target=a["target"] if a["target"] == "role" else d.canon(a["target"]),
+                 instruments=[d.canon(x) for x in a.get("instruments") or []], signals=[d.canon(x) for x in a.get("signals") or []])
         by_role[a["role"]].append(a)
     sigs = {s["id"]: s for s in d.signals if not V.held(s)}
     by_target = defaultdict(list)
@@ -48,7 +50,8 @@ def main():
     for role in d.roles():
         if d.tier(role) != "P1":
             continue
-        rk = role["id"].split(":", 1)[1]
+        rk = d.role_key(role)
+        ja = {f: V.shows(role, f"taskBundle.{f}", "role") for f in ("timeShare", "critical", "neededAtEntry", "formationTask")}
         actors = sorted({v["sectorActor"] for v in d.variants_of[role["id"]] if not V.held(v)})
         ctx = []
         for key in [f"mvp-role:{rk}", role["id"]] + [f"vocab:sector_actors#{a}" for a in actors] + \
@@ -65,12 +68,16 @@ def main():
             tid = i["task"]
             ats = task_atoms.get(tid, [])
             kinds = sorted({a["kind"] for a in ats})
-            share_by_kind[kinds[0] if kinds else "no reshaping claim drafted"] += i["timeShare"]
+            share_by_kind[kinds[0] if kinds else "no reshaping claim drafted"] += 1        # counts tasks, never time
             named = [sigs[s] for a in ats for s in a["signals"] if s in sigs]
             v2 = d.v1asm.get("__v2__" + tid, [])
-            tasks.append({"task": tid, "statement": d.statement(tid), "timeShare": i["timeShare"],
-                          "roleLevels": i.get("roleLevels"), "critical": i["critical"], "neededAtEntry": i["neededAtEntry"],
-                          "formationTask": i.get("formationTask", False),
+            tasks.append({"task": tid, "statement": d.statement(tid),
+                          "timeShare": i["timeShare"] if ja["timeShare"] else None,
+                          "roleLevels": i.get("roleLevels"),
+                          "critical": i["critical"] if ja["critical"] else None,
+                          "neededAtEntry": i["neededAtEntry"] if ja["neededAtEntry"] else None,
+                          "jobAnalysisValues": V.PENDING_JA if not ja["critical"] else None,
+                          "formationTask": i.get("formationTask", False) if ja["formationTask"] else None,
                           "change": [{"kind": a["kind"], "drivers": a["drivers"], "note": a["note"],
                                       "instruments": [{"id": x, "label": d.label(x)} for x in a["instruments"]]} for a in ats],
                           "evidence": {"v2Assessment": PENDING if not v2 else v2,
@@ -82,7 +89,7 @@ def main():
                           "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"})
             for a in ats:
                 rows.append({"role": role["id"], "task": tid, "kind": a["kind"], "drivers": " ".join(a["drivers"]),
-                             "timeShare": i["timeShare"], "namedSignals": len(named), "activeSignals": 0,
+                             "namedSignals": len(named), "activeSignals": 0,
                              "v2Assessment": "pending" if not v2 else "present"})
         ext = []
         for r in d.external.get(f"mvp-role:{rk}", []) + d.external.get(role["id"], []):
@@ -105,7 +112,7 @@ def main():
                                    "No task has a v2 multi-rater assessment yet, so every task shows 'assessment pending'. "
                                    "Change indicators count active signals only (ADR-0028); all linked signals are at "
                                    "watch, so no change indicator moves. v1 values appear only as prior-evidence pointers."),
-                "timeShareByClaim": {k: round(v, 3) for k, v in sorted(share_by_kind.items())},
+                "taskCountByClaim": {k: int(v) for k, v in sorted(share_by_kind.items())},
                 "roleLevelChange": role_level_signals,
                 "contextSignals": [sig_summary(s) for s in sorted(ctx, key=lambda s: s["id"])],
                 "changeIndicator": {"active": sum(1 for s in ctx if s.get("signalStatus") == "active"),
@@ -113,7 +120,7 @@ def main():
                 "externalContext": ext, "tasks": tasks}
         V.write_json(V.OUT / "change_view" / f"{rk}.json", view)
     with open(V.OUT / "change_view" / "summary.csv", "w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=["role", "task", "kind", "drivers", "timeShare", "namedSignals", "activeSignals", "v2Assessment"])
+        w = csv.DictWriter(fh, fieldnames=["role", "task", "kind", "drivers", "namedSignals", "activeSignals", "v2Assessment"])
         w.writeheader()
         w.writerows(rows)
     print(f"change views: {len({r['role'] for r in rows})} roles, {len(rows)} task claims")

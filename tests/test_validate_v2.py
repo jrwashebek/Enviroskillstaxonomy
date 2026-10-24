@@ -287,7 +287,20 @@ def test_planned_role_references_and_held_planned_refs(tmp_path):
     assert "W-REF-PENDING" in by["seed:fx-planned"]                 # candidate decided core-v2.0
     assert "W-REF-PENDING" in by["seed:fx-sig-role"] and "E-TRIBAL-INHERIT" not in by["seed:fx-sig-role"]
     assert "E-TRIBAL-INHERIT" in by["seed:fx-sig-tribal"]
-    assert "E-REF-DANGLING" in run(data, strict=True).codes()
+    # strict (release) mode, ADR-0031 §5 item 5: a planned target named only by records no release can carry (seed-keyed
+    # drafts) is deferred; the same target named by a releasable record (minted ID, release status) is an error.
+    strict = run(data, strict=True)
+    sby = {}
+    for i in strict.issues:
+        sby.setdefault(i.rid, set()).add(i.code)
+    assert "W-REF-DEFERRED" in sby["seed:fx-planned"] and "E-REF-DANGLING" not in sby["seed:fx-planned"]
+    tp = next((data / "core" / "tasks").glob("TSK-*.yaml"))
+    base = L.load_yaml(tp)
+    assert L.is_emst_id(base["id"]) and base["status"] == "candidate"
+    base["supports"] = list(base.get("supports") or []) + [{"competency": "seed:FC-C18", "strength": "secondary"}]
+    L.write_yaml(tp, base)
+    strict = run(data, strict=True)
+    assert any(i.code == "E-REF-DANGLING" and i.rid == base["id"] for i in strict.issues)
 
 
 def test_state_class_competency_targets_are_computed(tmp_path):

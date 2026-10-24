@@ -1,0 +1,61 @@
+id: emst:core/ENA-YZW8CJ6
+type: Enactment
+prefLabel:
+  en: Federal programme budgeting
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-3WFPTJ9
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: Annual appropriations acts and their conditions; appropriations law on purpose, time and amount; OMB budget formulation and apportionment; rescissions of prior appropriations.
+principal:
+  en: The agency budget office, OMB and congressional appropriations committees.
+accountabilityVenue:
+  en: GAO and inspector-general audits; appropriations hearings.
+characteristicInstruments:
+- instrument: emst:core/INS-0GZ18Q7
+  role: enables
+  note:
+    en: Funds the programme year and carries conditions.
+- instrument: seed:ins/obbba-ira-rescissions
+  role: constrains
+  note:
+    en: Rescinded unobligated balances; limits what can be obligated.
+- instrument: emst:core/INS-BYQMXRA
+  role: enables
+  note:
+    en: Fee revenue.
+- instrument: emst:core/INS-P1AD07P
+  role: requires
+  note:
+    en: Purpose, time and amount. Registered without dated events; basis linked, status not yet verified.
+note:
+  en: 'FY2026 Interior appropriations and the 2025 rescission of unobligated conservation and staffing funds set the current federal base [E: instrument registry seeds].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

@@ -1,0 +1,69 @@
+id: emst:core/TSK-PN74PMH
+type: Task
+prefLabel:
+  en: Record a partnership's roles and objectives in a written understanding that each partner's authorized official accepts
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Record a partnership's roles and objectives in a written understanding that each partner's authorized official accepts
+textSha256: 8dd1578b15eb30ebf9e9e7e8a26678862f9b4254d37f90d7354c3df7d8d5385c
+supports:
+- competency: emst:core/CMP-K9AX12H
+  strength: primary
+- competency: emst:core/CMP-WZ4CQR1
+  strength: contributing
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- stakeholder
+- intergovernmental
+notation:
+- scheme: EMSTv1
+  value: 5.2.5:T2
+v1Tier: T2
+v1Domain:
+  code: '5'
+  label: Communication & Engagement Skills
+v1SkillArea:
+  code: '5.2'
+  label: Stakeholder Engagement
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Develop MOUs or agreements that outline shared roles and objectives" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:5.2.5:T2
+    v1Code: 5.2.5
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 156
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

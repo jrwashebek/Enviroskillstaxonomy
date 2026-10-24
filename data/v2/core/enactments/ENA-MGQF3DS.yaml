@@ -1,0 +1,72 @@
+id: emst:core/ENA-MGQF3DS
+type: Enactment
+prefLabel:
+  en: Federal administrative record
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-M0JAW9R
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: Judicial review on the administrative record; the 2025 Supreme Court standard of substantial deference in environmental review; record-management requirements in federal permitting technology standards; federal AI-use policy for agencies.
+principal:
+  en: The deciding official, with agency counsel.
+accountabilityVenue:
+  en: Federal courts; inspectors general.
+characteristicInstruments:
+- instrument: emst:core/INS-RPPAZ58
+  role: constrains
+  note:
+    en: Deference standard that shapes how a reviewing court reads the record.
+- instrument: emst:core/INS-GWC623Q
+  role: constrains
+  note:
+    en: Sets record and data formats for permitting systems.
+- instrument: emst:core/INS-NEDFGP7
+  role: enables
+- instrument: emst:core/INS-3N7GE2R
+  role: constrains
+  note:
+    en: Conditions on agency AI use that the record must document.
+- instrument: emst:core/INS-12Y5SR9
+  role: constrains
+  note:
+    en: Pending legislation on limitations periods and standing.
+- instrument: emst:core/INS-3DT8P3X
+  role: requires
+  note:
+    en: Whole-record review. Registered without dated events; basis linked, status not yet verified.
+note:
+  en: 'Structured, provenance-tagged records (for example LLM-extracted, validated or unreviewed field tags) are a workable pattern for AI provenance [E: SC-009].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SC-009
+  - V2-02
+  - V2-03
+  - V2-08
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

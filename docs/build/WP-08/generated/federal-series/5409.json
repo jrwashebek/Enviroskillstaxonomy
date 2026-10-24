@@ -2,8 +2,8 @@
  "stamp": {
   "ruleId": "federal-series-profile",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/federal_series_profile.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
@@ -17,18 +17,18 @@
   "group": "Federal Wage System 5400 Industrial Equipment Operation",
   "qualificationStandardVersion": null,
   "positiveEducationRequirement": null,
-  "educationNote": "FH judgment pending verification of the qualification standard",
-  "registerRecord": "seed:opm-series/5409",
+  "educationNote": "from EMST's series record; not yet checked against the OPM qualification standard, so confirm with the HR office",
+  "registerRecord": "emst:core/SER-HF5N34P",
   "registerReviewBy": "2027-01-23",
   "events": []
  },
  "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
  "roles": [
   {
-   "role": "seed:R25-water-wastewater-operator",
+   "role": "emst:water/ROL-Q49FT7J",
    "roleTitle": "Water and wastewater treatment operator",
    "tier": "P2",
-   "variant": "seed:R25-water-wastewater-operator/federal",
+   "variant": "emst:water/VAR-8F1GCVN",
    "functionStatement": "Operate treatment processes in responsible charge so that delivered water and discharged effluent meet their limits.",
    "authorityPosition": "regulated-party",
    "x4": {
@@ -42,7 +42,7 @@
    "credentialGates": {
     "shown": [
      {
-      "credential": "seed:crd-drinking-water-treatment-operator",
+      "credential": "emst:core/CRD-MAJKW8K",
       "label": "Drinking water treatment operator certification (Grades I-IV / Class A-D, state-specific)",
       "kind": "required",
       "issuerVerifiedSources": [
@@ -51,7 +51,7 @@
       ]
      },
      {
-      "credential": "seed:crd-wastewater-treatment-operator",
+      "credential": "emst:core/CRD-5VSXY66",
       "label": "Wastewater treatment operator certification (Grades I-IV)",
       "kind": "required",
       "issuerVerifiedSources": [
@@ -65,8 +65,8 @@
    "signOffAuthority": {
     "kind": "licensure",
     "credentials": [
-     "seed:crd-drinking-water-treatment-operator",
-     "seed:crd-wastewater-treatment-operator"
+     "emst:core/CRD-MAJKW8K",
+     "emst:core/CRD-5VSXY66"
     ]
    },
    "instruments": [],
@@ -82,430 +82,452 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:DB-C01",
+       "competency": "emst:water/CMP-5VJ4XK6",
        "duty": "Operate drinking water treatment processes to meet water quality targets",
-       "pctTime": 17,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:DB-C01-T1",
+         "task": "emst:water/TSK-DNX7Q7R",
          "statement": "Adjust coagulant dosing from jar test results when raw-water turbidity, temperature or organic content changes",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.1
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C01-T2",
+         "task": "emst:water/TSK-Q7371DF",
          "statement": "Verify disinfection contact time against required inactivation values at each operating flow and correct shortfalls before water enters distribution",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C01-T3",
+         "task": "emst:water/TSK-H0A4ZE2",
          "statement": "Respond to a treatment upset by isolating the affected process unit, bringing backup treatment online and notifying the primacy agency",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.7
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C01-T4",
+         "task": "emst:water/TSK-32P7HG3",
          "statement": "Supervise automated process-control loops, overriding setpoints when analyzer readings conflict with bench tests or visual plant checks",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DB-C02",
+       "competency": "emst:water/CMP-M3KMNGM",
        "duty": "Operate wastewater treatment and resource-recovery processes to permit limits",
-       "pctTime": 17,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:DB-C02-T1",
+         "task": "emst:water/TSK-B0255BE",
          "statement": "Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C02-T2",
+         "task": "emst:water/TSK-FZAFW38",
          "statement": "Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C02-T3",
+         "task": "emst:water/TSK-0CC03MG",
          "statement": "Route peak wet-weather flows through the plant to protect biological treatment, recording any bypass or overflow for required reporting",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.7
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C02-T4",
+         "task": "emst:water/TSK-H65XCFS",
          "statement": "Operate anaerobic digestion and solids handling to meet biosolids pathogen-reduction and stability requirements while recovering digester gas",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DB-C03",
-       "duty": "Supervise automated and AI-assisted process control in environmental operations",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:db-c03-manual",
-         "statement": "Run a treatment process in safe manual operation when automation or communications fail, adapting the manual operating procedure to conditions",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:db-c03-monitor-loops",
-         "statement": "Monitor automated control loops and alarms on a treatment process, checking automated responses against field observations of process condition",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:db-c03-override",
-         "statement": "Override an automated control action when process indicators show it is driving the system toward a permit or safety limit, documenting the decision",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.8
-        }
-       ]
-      },
-      {
-       "competency": "seed:FC-C24",
-       "duty": "Manage field sample custody and field quality control",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:fc-coc-complete",
-         "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:fc-qc-collect",
-         "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:fc-qc-invalid",
-         "statement": "Report field conditions that invalidate samples, such as broken seals, temperature excursions or holding-time breaches, before results are used",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.8
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-4.4.4-A",
-       "duty": "Work safely on hazardous, industrial and energized field sites",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:v1-4.4.4-T1",
-         "statement": "Identify signs of potential hazardous materials at a field site, such as drums, stained soil, odours or unusual debris, before disturbing them",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:v1-4.4.4-T2",
-         "statement": "Isolate an incidentally discovered hazardous material, establishing a safe distance and notifying the designated responder before any further work",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:v1-4.4.4-T3",
-         "statement": "Wear the personal protective equipment the site health and safety plan specifies, checking its fit and function before entering the exclusion zone",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.8
-        }
-       ]
-      },
-      {
-       "competency": "seed:DB-C06",
-       "duty": "Protect operational technology at environmental utilities and facilities",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:dc-db06-asset-inventory",
-         "statement": "Maintain an inventory of connected control and monitoring assets with their network zone, remote-access paths and owner.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:dc-db06-fallback-drill",
-         "statement": "Run an incident-response drill that switches a plant or monitoring network to manual operation, recording the time to a safe state and the gaps found.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:dc-db06-remote-access",
-         "statement": "Review remote access to control and monitoring systems under the change procedure, removing access that is no longer needed.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.8
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-4.4.1-B",
-       "duty": "Apply safety practices and stop-work authority across field, facility and incident settings",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:v1-4.4.1-T3",
-         "statement": "Conduct a no-blame review of a near miss or incident with the people involved to identify contributing conditions and corrective actions",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:lc-txc-deliver-briefing",
-         "statement": "Deliver a pre-work safety briefing that covers site hazards, controls, communications and the stop-work procedure for the assigned work area",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:lc-txc-design-learning-process",
-         "statement": "Design a unit learning-from-incidents process that links reporting channels, review triggers and pre-work briefing content",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.8
-        }
-       ]
-      },
-      {
-       "competency": "seed:SL-C16",
+       "competency": "emst:core/CMP-YDXQC56",
        "duty": "Practice within licensure scope and responsible charge",
-       "pctTime": 9,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:sc-check-scope-of-practice",
+         "task": "emst:core/TSK-FZEDRWS",
          "statement": "Determine whether an assigned task falls within the scope of one's licence or certification, referring out-of-scope work to a qualified professional",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:sc-exercise-responsible-charge",
+         "task": "emst:core/TSK-FPEMY0F",
          "statement": "Exercise responsible charge over subordinates' professional work, directing and reviewing it so that the sealing professional can attest to it",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.7.3",
-       "duty": "Manage a municipal stormwater programme to meet permit conditions",
-       "pctTime": 6,
+       "competency": "emst:core/CMP-Q825DY3",
+       "duty": "Supervise automated and AI-assisted process control in environmental operations",
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.7.3-T1",
-         "statement": "Inspect catch basins, pipes and outfalls on a scheduled route, recording each structure that restricts flow for cleaning",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:core/TSK-R2H8W15",
+         "statement": "Run a treatment process in safe manual operation when automation or communications fail, adapting the manual operating procedure to conditions",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.7.3-T2",
-         "statement": "Trace an illicit discharge from a dry-weather outfall flow to its source using field screening and system maps",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:core/TSK-1YHT587",
+         "statement": "Monitor automated control loops and alarms on a treatment process, checking automated responses against field observations of process condition",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-K8ABKDG",
+         "statement": "Override an automated control action when process indicators show it is driving the system toward a permit or safety limit, documenting the decision",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-72R1NBG",
+       "duty": "Manage field sample custody and field quality control",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-D6M2KZX",
+         "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-KJWMG91",
+         "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-RY3SEEB",
+         "statement": "Report field conditions that invalidate samples, such as broken seals, temperature excursions or holding-time breaches, before results are used",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-T4GHAG0",
+       "duty": "Work safely on hazardous, industrial and energized field sites",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-66FGNQT",
+         "statement": "Identify signs of potential hazardous materials at a field site, such as drums, stained soil, odours or unusual debris, before disturbing them",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-H8EAX3T",
+         "statement": "Isolate an incidentally discovered hazardous material, establishing a safe distance and notifying the designated responder before any further work",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-HR5RDHR",
+         "statement": "Wear the personal protective equipment the site health and safety plan specifies, checking its fit and function before entering the exclusion zone",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-SNCR4KM",
+       "duty": "Protect operational technology at environmental utilities and facilities",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-YW0ZEW3",
+         "statement": "Maintain an inventory of connected control and monitoring assets with their network zone, remote-access paths and owner.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-Q7HHVTQ",
+         "statement": "Run an incident-response drill that switches a plant or monitoring network to manual operation, recording the time to a safe state and the gaps found.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-AEVB69H",
+         "statement": "Review remote access to control and monitoring systems under the change procedure, removing access that is no longer needed.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-CERKVPH",
+       "duty": "Apply safety practices and stop-work authority across field, facility and incident settings",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-7VRM23S",
+         "statement": "Conduct a no-blame review of a near miss or incident with the people involved to identify contributing conditions and corrective actions",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-TMVX81X",
+         "statement": "Deliver a pre-work safety briefing that covers site hazards, controls, communications and the stop-work procedure for the assigned work area",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-HN84VZT",
+         "statement": "Design a unit learning-from-incidents process that links reporting channels, review triggers and pre-work briefing content",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:water/CMP-X3FJ5PQ",
+       "duty": "Manage a municipal stormwater programme to meet permit conditions",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:water/TSK-V1JZY4C",
+         "statement": "Inspect catch basins, pipes and outfalls on a scheduled route, recording each structure that restricts flow for cleaning",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:water/TSK-1XR3N1F",
+         "statement": "Trace an illicit discharge from a dry-weather outfall flow to its source using field screening and system maps",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:DB-C01-T1",
-      "seed:DB-C01-T2",
-      "seed:DB-C01-T3",
-      "seed:DB-C02-T1",
-      "seed:DB-C02-T2",
-      "seed:DB-C02-T3",
-      "seed:DB-C02-T4",
-      "seed:db-c03-monitor-loops",
-      "seed:db-c03-override",
-      "seed:fc-coc-complete",
-      "seed:fc-qc-collect",
-      "seed:fc-qc-invalid",
-      "seed:v1-4.4.4-T1",
-      "seed:v1-4.4.4-T2",
-      "seed:v1-4.4.4-T3",
-      "seed:dc-db06-asset-inventory",
-      "seed:dc-db06-fallback-drill",
-      "seed:v1-4.4.1-T3",
-      "seed:lc-txc-deliver-briefing"
-     ],
-     "criticalTasks": [
-      "seed:DB-C01-T1",
-      "seed:DB-C01-T2",
-      "seed:DB-C02-T1",
-      "seed:DB-C02-T2",
-      "seed:sc-check-scope-of-practice",
-      "seed:sc-exercise-responsible-charge"
-     ],
-     "distinguishingCompetencies": [
-      "seed:DB-C01"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:DB-C01",
-       "statement": "Knowledge of and skill in: operate drinking water treatment processes to meet water quality targets (EMST target entry L1, journey L2, senior L3, lead L4).",
+       "competency": "emst:water/CMP-5VJ4XK6",
+       "statement": "Knowledge of and skill in: operate drinking water treatment processes to meet water quality targets (EMST target entry L1, journey L2, senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C02",
-       "statement": "Knowledge of and skill in: operate wastewater treatment and resource-recovery processes to permit limits (EMST target entry L1, journey L2, senior L3, lead L4).",
+       "competency": "emst:water/CMP-M3KMNGM",
+       "statement": "Knowledge of and skill in: operate wastewater treatment and resource-recovery processes to permit limits (EMST target entry L1, journey L2, senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SL-C16",
-       "statement": "Knowledge of and skill in: practice within licensure scope and responsible charge (EMST target entry L1, journey L2, senior L3, lead L4).",
+       "competency": "emst:core/CMP-Q825DY3",
+       "statement": "Knowledge of and skill in: supervise automated and AI-assisted process control in environmental operations (EMST target journey L2, senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C03",
-       "statement": "Knowledge of and skill in: supervise automated and AI-assisted process control in environmental operations (EMST target journey L2, senior L3, lead L4).",
+       "competency": "emst:core/CMP-YDXQC56",
+       "statement": "Knowledge of and skill in: practice within licensure scope and responsible charge (EMST target entry L1, journey L2, senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C06",
-       "statement": "Knowledge of and skill in: protect operational technology at environmental utilities and facilities (EMST target entry L1, journey L2, senior L3, lead L3).",
+       "competency": "emst:core/CMP-72R1NBG",
+       "statement": "Knowledge of and skill in: manage field sample custody and field quality control (EMST target entry L1, journey L2, senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FC-C24",
-       "statement": "Knowledge of and skill in: manage field sample custody and field quality control (EMST target entry L1, journey L2, senior L3, lead L3).",
+       "competency": "emst:core/CMP-T4GHAG0",
+       "statement": "Knowledge of and skill in: work safely on hazardous, industrial and energized field sites (EMST target entry L1, journey L2, senior L2, lead L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.4.1-B",
-       "statement": "Knowledge of and skill in: apply safety practices and stop-work authority across field, facility and incident settings (EMST target entry L1, journey L2, senior L3, lead L4).",
+       "competency": "emst:core/CMP-SNCR4KM",
+       "statement": "Knowledge of and skill in: protect operational technology at environmental utilities and facilities (EMST target entry L1, journey L2, senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-CERKVPH",
+       "statement": "Knowledge of and skill in: apply safety practices and stop-work authority across field, facility and incident settings (EMST target entry L1, journey L2, senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [
-        "A no-blame incident review separates system and condition causes from individual error and sanctions only reckless or wilful acts, so that people keep reporting near misses.",
-        "Stop-work authority lets any worker halt a task they judge unsafe; the task resumes only after the hazard is assessed and the plan revised, and the person who stopped it is not penalized."
+        "Stop-work authority lets any worker halt a task they judge unsafe; the task resumes only after the hazard is assessed and the plan revised, and the person who stopped it is not penalized.",
+        "A no-blame incident review separates system and condition causes from individual error and sanctions only reckless or wilful acts, so that people keep reporting near misses."
        ],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.4.4-A",
-       "statement": "Knowledge of and skill in: work safely on hazardous, industrial and energized field sites (EMST target entry L1, journey L2, senior L2, lead L2).",
+       "competency": "emst:water/CMP-X3FJ5PQ",
+       "statement": "Knowledge of and skill in: manage a municipal stormwater programme to meet permit conditions (EMST target entry L1, journey L2, senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-BG5GMFW",
+       "statement": "Knowledge of and skill in: engineer environmental sensor-network and streaming data pipelines (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target entry L1, journey L1, senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target entry L1, journey L1, senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target entry L1, journey L1, senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target entry L1, journey L1, senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-CD9P70X",
+       "statement": "Knowledge of and skill in: manage physical assets and capital plans with risk-based asset management (EMST target entry L1, journey L2, senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     },
@@ -520,430 +542,452 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:DB-C01",
+       "competency": "emst:water/CMP-5VJ4XK6",
        "duty": "Operate drinking water treatment processes to meet water quality targets",
-       "pctTime": 17,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:DB-C01-T1",
+         "task": "emst:water/TSK-DNX7Q7R",
          "statement": "Adjust coagulant dosing from jar test results when raw-water turbidity, temperature or organic content changes",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.1
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C01-T2",
+         "task": "emst:water/TSK-Q7371DF",
          "statement": "Verify disinfection contact time against required inactivation values at each operating flow and correct shortfalls before water enters distribution",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C01-T3",
+         "task": "emst:water/TSK-H0A4ZE2",
          "statement": "Respond to a treatment upset by isolating the affected process unit, bringing backup treatment online and notifying the primacy agency",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.7
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C01-T4",
+         "task": "emst:water/TSK-32P7HG3",
          "statement": "Supervise automated process-control loops, overriding setpoints when analyzer readings conflict with bench tests or visual plant checks",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DB-C02",
+       "competency": "emst:water/CMP-M3KMNGM",
        "duty": "Operate wastewater treatment and resource-recovery processes to permit limits",
-       "pctTime": 17,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:DB-C02-T1",
+         "task": "emst:water/TSK-B0255BE",
          "statement": "Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C02-T2",
+         "task": "emst:water/TSK-FZAFW38",
          "statement": "Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C02-T3",
+         "task": "emst:water/TSK-0CC03MG",
          "statement": "Route peak wet-weather flows through the plant to protect biological treatment, recording any bypass or overflow for required reporting",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.7
+         "pctTime": null
         },
         {
-         "task": "seed:DB-C02-T4",
+         "task": "emst:water/TSK-H65XCFS",
          "statement": "Operate anaerobic digestion and solids handling to meet biosolids pathogen-reduction and stability requirements while recovering digester gas",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DB-C03",
-       "duty": "Supervise automated and AI-assisted process control in environmental operations",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:db-c03-manual",
-         "statement": "Run a treatment process in safe manual operation when automation or communications fail, adapting the manual operating procedure to conditions",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:db-c03-monitor-loops",
-         "statement": "Monitor automated control loops and alarms on a treatment process, checking automated responses against field observations of process condition",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:db-c03-override",
-         "statement": "Override an automated control action when process indicators show it is driving the system toward a permit or safety limit, documenting the decision",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.8
-        }
-       ]
-      },
-      {
-       "competency": "seed:FC-C24",
-       "duty": "Manage field sample custody and field quality control",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:fc-coc-complete",
-         "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:fc-qc-collect",
-         "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:fc-qc-invalid",
-         "statement": "Report field conditions that invalidate samples, such as broken seals, temperature excursions or holding-time breaches, before results are used",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.8
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-4.4.4-A",
-       "duty": "Work safely on hazardous, industrial and energized field sites",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:v1-4.4.4-T1",
-         "statement": "Identify signs of potential hazardous materials at a field site, such as drums, stained soil, odours or unusual debris, before disturbing them",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:v1-4.4.4-T2",
-         "statement": "Isolate an incidentally discovered hazardous material, establishing a safe distance and notifying the designated responder before any further work",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:v1-4.4.4-T3",
-         "statement": "Wear the personal protective equipment the site health and safety plan specifies, checking its fit and function before entering the exclusion zone",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.8
-        }
-       ]
-      },
-      {
-       "competency": "seed:DB-C06",
-       "duty": "Protect operational technology at environmental utilities and facilities",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:dc-db06-asset-inventory",
-         "statement": "Maintain an inventory of connected control and monitoring assets with their network zone, remote-access paths and owner.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:dc-db06-fallback-drill",
-         "statement": "Run an incident-response drill that switches a plant or monitoring network to manual operation, recording the time to a safe state and the gaps found.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:dc-db06-remote-access",
-         "statement": "Review remote access to control and monitoring systems under the change procedure, removing access that is no longer needed.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.8
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-4.4.1-B",
-       "duty": "Apply safety practices and stop-work authority across field, facility and incident settings",
-       "pctTime": 10,
-       "tasks": [
-        {
-         "task": "seed:v1-4.4.1-T3",
-         "statement": "Conduct a no-blame review of a near miss or incident with the people involved to identify contributing conditions and corrective actions",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:lc-txc-deliver-briefing",
-         "statement": "Deliver a pre-work safety briefing that covers site hazards, controls, communications and the stop-work procedure for the assigned work area",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 3.7
-        },
-        {
-         "task": "seed:lc-txc-design-learning-process",
-         "statement": "Design a unit learning-from-incidents process that links reporting channels, review triggers and pre-work briefing content",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 2.8
-        }
-       ]
-      },
-      {
-       "competency": "seed:SL-C16",
+       "competency": "emst:core/CMP-YDXQC56",
        "duty": "Practice within licensure scope and responsible charge",
-       "pctTime": 9,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:sc-check-scope-of-practice",
+         "task": "emst:core/TSK-FZEDRWS",
          "statement": "Determine whether an assigned task falls within the scope of one's licence or certification, referring out-of-scope work to a qualified professional",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         },
         {
-         "task": "seed:sc-exercise-responsible-charge",
+         "task": "emst:core/TSK-FPEMY0F",
          "statement": "Exercise responsible charge over subordinates' professional work, directing and reviewing it so that the sealing professional can attest to it",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 4.7
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-4.7.3",
-       "duty": "Manage a municipal stormwater programme to meet permit conditions",
-       "pctTime": 6,
+       "competency": "emst:core/CMP-Q825DY3",
+       "duty": "Supervise automated and AI-assisted process control in environmental operations",
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-4.7.3-T1",
-         "statement": "Inspect catch basins, pipes and outfalls on a scheduled route, recording each structure that restricts flow for cleaning",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:core/TSK-R2H8W15",
+         "statement": "Run a treatment process in safe manual operation when automation or communications fail, adapting the manual operating procedure to conditions",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-4.7.3-T2",
-         "statement": "Trace an illicit discharge from a dry-weather outfall flow to its source using field screening and system maps",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:core/TSK-1YHT587",
+         "statement": "Monitor automated control loops and alarms on a treatment process, checking automated responses against field observations of process condition",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-K8ABKDG",
+         "statement": "Override an automated control action when process indicators show it is driving the system toward a permit or safety limit, documenting the decision",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-72R1NBG",
+       "duty": "Manage field sample custody and field quality control",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-D6M2KZX",
+         "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-KJWMG91",
+         "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-RY3SEEB",
+         "statement": "Report field conditions that invalidate samples, such as broken seals, temperature excursions or holding-time breaches, before results are used",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-T4GHAG0",
+       "duty": "Work safely on hazardous, industrial and energized field sites",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-66FGNQT",
+         "statement": "Identify signs of potential hazardous materials at a field site, such as drums, stained soil, odours or unusual debris, before disturbing them",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-H8EAX3T",
+         "statement": "Isolate an incidentally discovered hazardous material, establishing a safe distance and notifying the designated responder before any further work",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-HR5RDHR",
+         "statement": "Wear the personal protective equipment the site health and safety plan specifies, checking its fit and function before entering the exclusion zone",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-SNCR4KM",
+       "duty": "Protect operational technology at environmental utilities and facilities",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-YW0ZEW3",
+         "statement": "Maintain an inventory of connected control and monitoring assets with their network zone, remote-access paths and owner.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-Q7HHVTQ",
+         "statement": "Run an incident-response drill that switches a plant or monitoring network to manual operation, recording the time to a safe state and the gaps found.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-AEVB69H",
+         "statement": "Review remote access to control and monitoring systems under the change procedure, removing access that is no longer needed.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-CERKVPH",
+       "duty": "Apply safety practices and stop-work authority across field, facility and incident settings",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-7VRM23S",
+         "statement": "Conduct a no-blame review of a near miss or incident with the people involved to identify contributing conditions and corrective actions",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-TMVX81X",
+         "statement": "Deliver a pre-work safety briefing that covers site hazards, controls, communications and the stop-work procedure for the assigned work area",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-HN84VZT",
+         "statement": "Design a unit learning-from-incidents process that links reporting channels, review triggers and pre-work briefing content",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:water/CMP-X3FJ5PQ",
+       "duty": "Manage a municipal stormwater programme to meet permit conditions",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:water/TSK-V1JZY4C",
+         "statement": "Inspect catch basins, pipes and outfalls on a scheduled route, recording each structure that restricts flow for cleaning",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:water/TSK-1XR3N1F",
+         "statement": "Trace an illicit discharge from a dry-weather outfall flow to its source using field screening and system maps",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:DB-C01-T1",
-      "seed:DB-C01-T2",
-      "seed:DB-C01-T3",
-      "seed:DB-C02-T1",
-      "seed:DB-C02-T2",
-      "seed:DB-C02-T3",
-      "seed:DB-C02-T4",
-      "seed:db-c03-monitor-loops",
-      "seed:db-c03-override",
-      "seed:fc-coc-complete",
-      "seed:fc-qc-collect",
-      "seed:fc-qc-invalid",
-      "seed:v1-4.4.4-T1",
-      "seed:v1-4.4.4-T2",
-      "seed:v1-4.4.4-T3",
-      "seed:dc-db06-asset-inventory",
-      "seed:dc-db06-fallback-drill",
-      "seed:v1-4.4.1-T3",
-      "seed:lc-txc-deliver-briefing"
-     ],
-     "criticalTasks": [
-      "seed:DB-C01-T1",
-      "seed:DB-C01-T2",
-      "seed:DB-C02-T1",
-      "seed:DB-C02-T2",
-      "seed:sc-check-scope-of-practice",
-      "seed:sc-exercise-responsible-charge"
-     ],
-     "distinguishingCompetencies": [
-      "seed:DB-C01"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:DB-C01",
-       "statement": "Knowledge of and skill in: operate drinking water treatment processes to meet water quality targets (EMST target entry L1, journey L2, senior L3, lead L4).",
+       "competency": "emst:water/CMP-5VJ4XK6",
+       "statement": "Knowledge of and skill in: operate drinking water treatment processes to meet water quality targets (EMST target entry L1, journey L2, senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C02",
-       "statement": "Knowledge of and skill in: operate wastewater treatment and resource-recovery processes to permit limits (EMST target entry L1, journey L2, senior L3, lead L4).",
+       "competency": "emst:water/CMP-M3KMNGM",
+       "statement": "Knowledge of and skill in: operate wastewater treatment and resource-recovery processes to permit limits (EMST target entry L1, journey L2, senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:SL-C16",
-       "statement": "Knowledge of and skill in: practice within licensure scope and responsible charge (EMST target entry L1, journey L2, senior L3, lead L4).",
+       "competency": "emst:core/CMP-Q825DY3",
+       "statement": "Knowledge of and skill in: supervise automated and AI-assisted process control in environmental operations (EMST target journey L2, senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C03",
-       "statement": "Knowledge of and skill in: supervise automated and AI-assisted process control in environmental operations (EMST target journey L2, senior L3, lead L4).",
+       "competency": "emst:core/CMP-YDXQC56",
+       "statement": "Knowledge of and skill in: practice within licensure scope and responsible charge (EMST target entry L1, journey L2, senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DB-C06",
-       "statement": "Knowledge of and skill in: protect operational technology at environmental utilities and facilities (EMST target entry L1, journey L2, senior L3, lead L3).",
+       "competency": "emst:core/CMP-72R1NBG",
+       "statement": "Knowledge of and skill in: manage field sample custody and field quality control (EMST target entry L1, journey L2, senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FC-C24",
-       "statement": "Knowledge of and skill in: manage field sample custody and field quality control (EMST target entry L1, journey L2, senior L3, lead L3).",
+       "competency": "emst:core/CMP-T4GHAG0",
+       "statement": "Knowledge of and skill in: work safely on hazardous, industrial and energized field sites (EMST target entry L1, journey L2, senior L2, lead L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.4.1-B",
-       "statement": "Knowledge of and skill in: apply safety practices and stop-work authority across field, facility and incident settings (EMST target entry L1, journey L2, senior L3, lead L4).",
+       "competency": "emst:core/CMP-SNCR4KM",
+       "statement": "Knowledge of and skill in: protect operational technology at environmental utilities and facilities (EMST target entry L1, journey L2, senior L3, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-CERKVPH",
+       "statement": "Knowledge of and skill in: apply safety practices and stop-work authority across field, facility and incident settings (EMST target entry L1, journey L2, senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [
-        "A no-blame incident review separates system and condition causes from individual error and sanctions only reckless or wilful acts, so that people keep reporting near misses.",
-        "Stop-work authority lets any worker halt a task they judge unsafe; the task resumes only after the hazard is assessed and the plan revised, and the person who stopped it is not penalized."
+        "Stop-work authority lets any worker halt a task they judge unsafe; the task resumes only after the hazard is assessed and the plan revised, and the person who stopped it is not penalized.",
+        "A no-blame incident review separates system and condition causes from individual error and sanctions only reckless or wilful acts, so that people keep reporting near misses."
        ],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-4.4.4-A",
-       "statement": "Knowledge of and skill in: work safely on hazardous, industrial and energized field sites (EMST target entry L1, journey L2, senior L2, lead L2).",
+       "competency": "emst:water/CMP-X3FJ5PQ",
+       "statement": "Knowledge of and skill in: manage a municipal stormwater programme to meet permit conditions (EMST target entry L1, journey L2, senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-BG5GMFW",
+       "statement": "Knowledge of and skill in: engineer environmental sensor-network and streaming data pipelines (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target entry L1, journey L1, senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target entry L1, journey L1, senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target entry L1, journey L1, senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target entry L1, journey L1, senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-CD9P70X",
+       "statement": "Knowledge of and skill in: manage physical assets and capital plans with risk-based asset management (EMST target entry L1, journey L2, senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     }

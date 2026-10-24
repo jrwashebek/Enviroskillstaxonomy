@@ -1,0 +1,65 @@
+id: emst:core/ENA-X09CRTN
+type: Enactment
+prefLabel:
+  en: Federal lead agency coordination
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-X6624QT
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: NEPA section 107 lead, cooperating and participating agency rules (as amended 2023); FAST-41 coordination plans and the public dashboard for covered projects; department procedures allowing reasoned denials of cooperating-agency requests.
+principal:
+  en: The lead agency's responsible official; the Permitting Council for covered projects.
+accountabilityVenue:
+  en: Federal courts; Permitting Council dispute escalation; Congress.
+characteristicInstruments:
+- instrument: emst:core/INS-8EFNTAM
+  role: requires
+  note:
+    en: Section 107 lead, cooperating and participating agency rules.
+- instrument: emst:core/INS-3JY4ZHG
+  role: requires
+  note:
+    en: Coordination plans for covered projects.
+- instrument: emst:core/INS-GWC623Q
+  role: constrains
+- instrument: emst:core/INS-3HFPZD5
+  role: requires
+- instrument: emst:core/INS-12Y5SR9
+  role: constrains
+  note:
+    en: Pending legislation.
+note:
+  en: 'Schedule performance is now publicly visible, which makes milestone accuracy an assessable entry-level task [E: SC-010].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - V2-01
+  - V2-03
+  - V2-08
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

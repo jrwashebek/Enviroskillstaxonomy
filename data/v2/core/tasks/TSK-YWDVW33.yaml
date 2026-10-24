@@ -1,0 +1,67 @@
+id: emst:core/TSK-YWDVW33
+type: Task
+prefLabel:
+  en: Identify the investors, suppliers and community groups affected by a company's environmental commitments, recording each group's expectations
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Identify the investors, suppliers and community groups affected by a company's environmental commitments, recording each group's expectations
+textSha256: 78649c222ce5d0f4ac5432386f438373c5b9f90b8c61aadc1a8cd1488ef89f15
+supports:
+- competency: emst:core/CMP-0RN1567
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- stakeholder
+- client
+notation:
+- scheme: EMSTv1
+  value: 3.6.3:T3
+v1Tier: T3
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.6'
+  label: Corporate Sustainability & Esg Management
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Create multi-stakeholder partnerships using collaborative platforms and digital governance tools" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:3.6.3:T3
+    v1Code: 3.6.3
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 104
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

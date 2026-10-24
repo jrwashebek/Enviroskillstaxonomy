@@ -2,19 +2,19 @@
  "stamp": {
   "ruleId": "role-change-inputs",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "ruleStatus": "not registered",
   "generator": "pipelines/views/change_view.py@0.1.0",
   "asOf": "2026-10-23"
  },
- "role": "seed:R07-fuels-prescribed-fire-specialist",
+ "role": "emst:forest/ROL-BS2AR2G",
  "roleTitle": "Fuels and prescribed fire specialist",
  "summary": "Role that assesses fuels, designs and supervises fuels treatments, writes and executes burn plans, makes go/no-go decisions, plans smoke management with air regulators, evaluates fire effects and treatment effectiveness, and works with landowners and partners across ownerships.",
  "evidenceNotice": "Reshaping claims are agent drafts (raterType llm, validationStatus draft, evidence S). No task has a v2 multi-rater assessment yet, so every task shows 'assessment pending'. Change indicators count active signals only (ADR-0028); all linked signals are at watch, so no change indicator moves. v1 values appear only as prior-evidence pointers.",
- "timeShareByClaim": {
-  "emerging": 0.02,
-  "new": 0.04,
-  "no reshaping claim drafted": 0.704,
-  "transforming": 0.236
+ "taskCountByClaim": {
+  "emerging": 1,
+  "new": 1,
+  "no reshaping claim drafted": 24,
+  "transforming": 3
  },
  "roleLevelChange": [
   {
@@ -27,7 +27,7 @@
    "instruments": [],
    "signals": [
     {
-     "id": "seed:sig/foresight/ws-36-fire-season-2026",
+     "id": "emst:core/SIG-FQ2PGSG",
      "label": "2026 fire season at 63,884 fires and 9.0 million acres YTD (133% and 145% of the 10-year average) as of 2026-10-11",
      "signalStatus": "watch",
      "signalFamily": "workload",
@@ -36,12 +36,12 @@
       "climate"
      ],
      "reliability": "A",
-     "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+     "sourceRelease": "Incident Management Situation Report, 11 Oct 2026 (National Interagency Coordination Center (NIFC), 2026-10-11)",
      "evidenceLabel": "S",
      "reviewBy": "2027-10-23"
     },
     {
-     "id": "seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01",
+     "id": "emst:core/SIG-50E2ZYD",
      "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
      "signalStatus": "watch",
      "signalFamily": "headcount",
@@ -61,99 +61,7 @@
  ],
  "contextSignals": [
   {
-   "id": "seed:sig/bls-ep-2025-35/19-1031/R07-fuels-prescribed-fire-specialist",
-   "label": "BLS projected employment change 2025-35 for Conservation scientists (19-1031), attached to R07-fuels-prescribed-fire-specialist",
-   "signalStatus": "watch",
-   "signalFamily": "projection",
-   "direction": "grow",
-   "drivers": [
-    "other"
-   ],
-   "reliability": "A",
-   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
-   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform"
-   ],
-   "reliability": "B",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-14-epa-ai-strategy",
-   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "new",
-   "drivers": [
-    "AI",
-    "policy-reform"
-   ],
-   "reliability": "A",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-33-gao-opm-capacity",
-   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
-   "signalStatus": "watch",
-   "signalFamily": "headcount",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "workforce-capacity"
-   ],
-   "reliability": "A",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-36-fire-season-2026/R07-fuels-prescribed-fire-specialist",
-   "label": "2026 fire season at 63,884 fires and 9.0 million acres YTD (133% and 145% of the 10-year average) as of 2026-10-11, attached to R07-fuels-prescribed-fire-specialist",
-   "signalStatus": "watch",
-   "signalFamily": "workload",
-   "direction": "grow",
-   "drivers": [
-    "climate",
-    "workforce-capacity"
-   ],
-   "reliability": "A",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/headcount/epa-12849-jan-2026",
-   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
-   "signalStatus": "watch",
-   "signalFamily": "headcount",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "workforce-capacity",
-    "demographic"
-   ],
-   "reliability": "B",
-   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/headcount/federal-civilian-minus-12pct",
+   "id": "emst:core/SIG-2KRAKB2",
    "label": "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -169,7 +77,38 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/federal-under-30-share",
+   "id": "emst:core/SIG-50E2ZYD",
+   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-5PZTGG9",
+   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "new",
+   "drivers": [
+    "AI",
+    "policy-reform"
+   ],
+   "reliability": "A",
+   "sourceRelease": "EPA AI Strategies for OMB Memorandum M-25-21 (U.S. EPA (Chief AI Officer), 2025-10)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-7A7C2VD",
    "label": "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -186,7 +125,67 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/nps-gt25pct-2024-09-to-2026-01",
+   "id": "emst:core/SIG-C0VQR90",
+   "label": "2026 fire season at 63,884 fires and 9.0 million acres YTD (133% and 145% of the 10-year average) as of 2026-10-11 (role: Fuels and prescribed fire specialist)",
+   "signalStatus": "watch",
+   "signalFamily": "workload",
+   "direction": "grow",
+   "drivers": [
+    "climate",
+    "workforce-capacity"
+   ],
+   "reliability": "A",
+   "sourceRelease": "Incident Management Situation Report, 11 Oct 2026 (National Interagency Coordination Center (NIFC), 2026-10-11)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-JMY97ZF",
+   "label": "BLS projected employment change 2025-35 for Conservation scientists (19-1031) (role: Fuels and prescribed fire specialist)",
+   "signalStatus": "watch",
+   "signalFamily": "projection",
+   "direction": "grow",
+   "drivers": [
+    "other"
+   ],
+   "reliability": "A",
+   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-M2BRZAS",
+   "label": "All conservation postings fell 29.4% year over year (Mar-Sep 2025, one board)",
+   "signalStatus": "watch",
+   "signalFamily": "postings-pds",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform"
+   ],
+   "reliability": "C",
+   "sourceRelease": "National Parks Traveler 2025-11-10",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-N8YAZEE",
+   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "A",
+   "sourceRelease": "GAOverview: Recent Federal Workforce Changes at OPM (GAO-26-108916) (U.S. Government Accountability Office, 2026-07-20)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-YM916J3",
    "label": "National Park Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -202,33 +201,34 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01",
-   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "id": "emst:core/SIG-Z35ZKX9",
+   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
    "direction": "decline",
    "drivers": [
     "fiscal",
     "policy-reform",
-    "workforce-capacity"
+    "workforce-capacity",
+    "demographic"
    ],
    "reliability": "B",
-   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/postings/conservation-job-board-all-2025",
-   "label": "All conservation postings fell 29.4% year over year (Mar-Sep 2025, one board)",
+   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
+   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
    "signalStatus": "watch",
-   "signalFamily": "postings-pds",
+   "signalFamily": "policy",
    "direction": "decline",
    "drivers": [
     "fiscal",
     "policy-reform"
    ],
-   "reliability": "C",
-   "sourceRelease": "National Parks Traveler 2025-11-10",
+   "reliability": "B",
+   "sourceRelease": "How OBBB impacts invasive species and forest resilience programs (North American Invasive Species Management Association, 2025-09-22)",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   }
@@ -327,16 +327,17 @@
  ],
  "tasks": [
   {
-   "task": "seed:v1-4.3.2-T1",
+   "task": "emst:forest/TSK-SZ5NFSP",
    "statement": "Write a burn plan with objectives, prescription parameters, holding and contingency actions for a prescribed fire unit",
-   "timeShare": 0.116,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -350,16 +351,16 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-4.3.2-T1",
-     "seed:asm/s2a-x-pass2/seed-v1-4.3.2-T1",
-     "seed:asm/s2a-x-pass3/seed-v1-4.3.2-T1"
+     "emst:core/ASM-5CAC3B8",
+     "emst:core/ASM-F7K82W5",
+     "emst:core/ASM-5FMS7K8"
     ],
     "namedSignals": [],
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.3.2-T1/copyB",
-      "seed:v1asm/4.3.2-T1/d4_record"
+      "emst:core/ASM-W3BEZ4G",
+      "emst:core/ASM-3B5SHV7"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -367,15 +368,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.3.2-T2",
+   "task": "emst:forest/TSK-12B3F4K",
    "statement": "Decide whether to proceed with ignition from a test fire, observed weather and fuel moisture against the burn plan's prescription",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
@@ -384,8 +386,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.3.2-T2/copyB",
-      "seed:v1asm/4.3.2-T2/d4_record"
+      "emst:core/ASM-P2Z22HY",
+      "emst:core/ASM-MBSW7HT"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -393,14 +395,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.2.3-T1",
+   "task": "emst:forest/TSK-G4C8713",
    "statement": "Ignite a prescribed fire unit with hand-held devices following the firing pattern and the firing boss's direction",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -409,8 +412,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.2.3-T1/copyB",
-      "seed:v1asm/4.2.3-T1/d4_record"
+      "emst:core/ASM-3Z4GTY2",
+      "emst:core/ASM-H3FNH9C"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -418,16 +421,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.2.3-T2",
+   "task": "emst:forest/TSK-C031H5M",
    "statement": "Monitor fire behaviour, weather and smoke during a burn against the prescription, reporting values outside it to the burn boss",
-   "timeShare": 0.08,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -436,8 +440,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.2.3-T2/copyB",
-      "seed:v1asm/4.2.3-T2/d4_record"
+      "emst:core/ASM-H5ZY2QR",
+      "emst:core/ASM-8MJTBNJ"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -445,16 +449,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.2.3-T3",
+   "task": "emst:forest/TSK-A23RKQW",
    "statement": "Check holding resources, equipment and crew briefing completion against the burn plan before ignition begins",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -463,8 +468,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.2.3-T3/copyB",
-      "seed:v1asm/4.2.3-T3/d4_record"
+      "emst:core/ASM-NR5SQAQ",
+      "emst:core/ASM-TE8VGYY"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -472,15 +477,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:db-4.3.2-t4",
+   "task": "emst:forest/TSK-PJ4J4Q9",
    "statement": "Supervise uncrewed-aircraft ignition over a burn unit, halting ignition when the firing pattern or fire behaviour departs from the plan",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -492,7 +498,7 @@
      "note": "Aerial ignition by uncrewed aircraft is spreading; beyond-visual-line-of-sight rules are pending (watch).",
      "instruments": [
       {
-       "id": "seed:ins/faa-part-108",
+       "id": "emst:core/INS-WJ3QWM8",
        "label": "FAA Part 108 Normalizing Unmanned Aircraft Systems Beyond Visual Line of Sight Operations"
       }
      ]
@@ -500,13 +506,13 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-db-4.3.2-t4",
-     "seed:asm/s2a-x-pass2/seed-db-4.3.2-t4",
-     "seed:asm/s2a-x-pass3/seed-db-4.3.2-t4"
+     "emst:core/ASM-Y4GT184",
+     "emst:core/ASM-ZVW3F2N",
+     "emst:core/ASM-Y3PNFGB"
     ],
     "namedSignals": [
      {
-      "id": "seed:sig/policy/faa-part-108-final-at-oira",
+      "id": "emst:core/SIG-HK56BM3",
       "label": "FAA Part 108 BVLOS final rule at OIRA since 2026-07-10; unpublished as of 2026-10-21",
       "signalStatus": "watch",
       "signalFamily": "policy",
@@ -527,15 +533,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-uas-ignition",
+   "task": "emst:core/TSK-SPXDHSZ",
    "statement": "Operate an uncrewed aerial ignition system under the firing boss's direction, changing ignition lines as fire behaviour and holding capacity change",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -547,16 +554,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.3.2-T3",
+   "task": "emst:forest/TSK-BMCSA5S",
    "statement": "Evaluate fire effects on monitoring plots against burn objectives, recording outcomes that inform the next burn plan",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -565,8 +573,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.3.2-T3/copyB",
-      "seed:v1asm/4.3.2-T3/d4_record"
+      "emst:core/ASM-TQKJTZ6",
+      "emst:core/ASM-7J060H5"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -574,16 +582,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.3.3-T1",
+   "task": "emst:forest/TSK-TA2WVD2",
    "statement": "Assess fuels in a planning area with standard fuel models and field sampling to set treatment priorities",
-   "timeShare": 0.08,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -597,16 +606,16 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-4.3.3-T1",
-     "seed:asm/s2a-x-pass2/seed-v1-4.3.3-T1",
-     "seed:asm/s2a-x-pass3/seed-v1-4.3.3-T1"
+     "emst:core/ASM-9PSTSTE",
+     "emst:core/ASM-WR8JP3A",
+     "emst:core/ASM-NXS7R49"
     ],
     "namedSignals": [],
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.3.3-T1/copyB",
-      "seed:v1asm/4.3.3-T1/d4_record"
+      "emst:core/ASM-ZYM4QFK",
+      "emst:core/ASM-XJJNQ7W"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -614,14 +623,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:db-4.3.3-t4",
+   "task": "emst:forest/TSK-SKEY2DS",
    "statement": "Verify a remotely sensed fuels map in the field, correcting fuel-model assignments that misrepresent observed conditions",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [
     {
@@ -636,13 +646,13 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-db-4.3.3-t4",
-     "seed:asm/s2a-x-pass2/seed-db-4.3.3-t4",
-     "seed:asm/s2a-x-pass3/seed-db-4.3.3-t4"
+     "emst:core/ASM-XSJFTVF",
+     "emst:core/ASM-QSVHZKJ",
+     "emst:core/ASM-7Y4H89V"
     ],
     "namedSignals": [
      {
-      "id": "seed:sig/openlmp/term-remote-sensing-lidar-drone-2012-vs-1982",
+      "id": "emst:core/SIG-4G9Z4EK",
       "label": "Remote sensing, LiDAR and drone mentions in plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
       "signalStatus": "watch",
       "signalFamily": "plan-requirements",
@@ -663,16 +673,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.3.3-T2",
+   "task": "emst:forest/TSK-4NBTVR5",
    "statement": "Supervise mechanical or hand fuels treatments to the prescription's residual fuel and canopy specifications",
-   "timeShare": 0.08,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -681,8 +692,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.3.3-T2/copyB",
-      "seed:v1asm/4.3.3-T2/d4_record"
+      "emst:core/ASM-A9QWQY0",
+      "emst:core/ASM-NCP8DD6"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -690,16 +701,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.3.3-T3",
+   "task": "emst:forest/TSK-QFNGCPW",
    "statement": "Evaluate fuels treatment effectiveness by re-measuring fuels and modelling fire behaviour after treatment",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -708,8 +720,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.3.3-T3/copyB",
-      "seed:v1asm/4.3.3-T3/d4_record"
+      "emst:core/ASM-QQQJP40",
+      "emst:core/ASM-Y86B00P"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -717,30 +729,31 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.3.4-T2",
+   "task": "emst:forest/TSK-JM3R437",
    "statement": "Predict fire spread, intensity and spotting for an operational period from fuels, weather and topography, stating assumptions",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-4.3.4-T2",
-     "seed:asm/s2a-x-pass2/seed-v1-4.3.4-T2",
-     "seed:asm/s2a-x-pass3/seed-v1-4.3.4-T2"
+     "emst:core/ASM-V4XMF5Y",
+     "emst:core/ASM-D02Z3P2",
+     "emst:core/ASM-5T294RX"
     ],
     "namedSignals": [],
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.3.4-T2/copyB",
-      "seed:v1asm/4.3.4-T2/d4_record"
+      "emst:core/ASM-FZC1H91",
+      "emst:core/ASM-9BGAGXJ"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -748,16 +761,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:DB-C15-T2",
+   "task": "emst:air/TSK-27CAPKK",
    "statement": "Prepare the smoke management section of a burn plan, identifying sensitive receptors, dispersion limits and contingency actions",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -772,9 +786,9 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-DB-C15-T2",
-     "seed:asm/s2a-x-pass2/seed-DB-C15-T2",
-     "seed:asm/s2a-x-pass3/seed-DB-C15-T2"
+     "emst:core/ASM-B6QDQ8H",
+     "emst:core/ASM-1Z1ZNH8",
+     "emst:core/ASM-P38MF6R"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -783,16 +797,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:DB-C15-T5",
+   "task": "emst:air/TSK-QXE6HE7",
    "statement": "Compare a smoke dispersion forecast with monitor and observer data during a burn, recommending holding or stopping ignition when the forecast fails",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -804,14 +819,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.1.1-T1",
+   "task": "emst:core/TSK-S66F3HH",
    "statement": "Establish vegetation monitoring plots to protocol and record species composition, cover and density within the program's measurement-quality objectives",
-   "timeShare": 0.04,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -820,8 +836,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.1.1-T1/copyB",
-      "seed:v1asm/4.1.1-T1/d4_record"
+      "emst:core/ASM-F8JQMBP",
+      "emst:core/ASM-2CQR4HQ"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -829,16 +845,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-sitehist-read",
+   "task": "emst:core/TSK-N3G4631",
    "statement": "Interpret fire scars, stumps, soil horizons and legacy structures at a site to reconstruct its disturbance and land-use history",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -850,16 +867,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-camp-schedule",
+   "task": "emst:core/TSK-GPZZKZK",
    "statement": "Schedule a field campaign against phenology, flow, tide or weather windows so that each protocol's sampling window is met",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -871,16 +889,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-camp-access",
+   "task": "emst:core/TSK-RDCJZV7",
    "statement": "Secure access permissions for field sites from landowners and land managers before the season, recording the conditions of access for crews",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -892,15 +911,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-land-joint-visit",
+   "task": "emst:core/TSK-KW491FZ",
    "statement": "Conduct a joint field visit with a landowner or permittee, walking the site together and recording both parties' observations",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -912,15 +932,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:lc-txe-answer-public-questions",
+   "task": "emst:core/TSK-MWZH0XP",
    "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -932,15 +953,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:lc-txe-draft-advisory",
+   "task": "emst:core/TSK-SJT2MCR",
    "statement": "Draft a public advisory that states the hazard, the people affected, the uncertainty and the protective action in plain language",
-   "timeShare": 0.012,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -952,16 +974,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-risk-briefing",
+   "task": "emst:core/TSK-G1NPYCP",
    "statement": "Brief a field crew on the day's site hazards, escape routes, safety zones and communication plan before work begins",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -973,16 +996,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-lead-field-day",
+   "task": "emst:core/TSK-ZJ7HH7K",
    "statement": "Lead a small crew through a field day, matching tasks to skill and checking novice work early and often",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -994,14 +1018,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.5.2-T1",
+   "task": "emst:core/TSK-BFC528F",
    "statement": "Fell trees with a chainsaw within the operator's certification limits, planning the face cut, hinge and escape route from the tree's size-up",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1010,8 +1035,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.5.2-T1/copyB",
-      "seed:v1asm/4.5.2-T1/d4_record"
+      "emst:core/ASM-A47Z024",
+      "emst:core/ASM-P3VAMY4"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -1019,15 +1044,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-3.1.1-T3",
+   "task": "emst:core/TSK-34VW38E",
    "statement": "Sequence field work within seasonal, weather and regulatory windows when building the project schedule",
-   "timeShare": 0.02,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1036,8 +1062,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/3.1.1-T3/copyB",
-      "seed:v1asm/3.1.1-T3/d3_record"
+      "emst:core/ASM-QS23ETB",
+      "emst:core/ASM-3Q2AKG4"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -1045,14 +1071,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:lc-txd-rate-performance",
+   "task": "emst:core/TSK-XBBPSC4",
    "statement": "Rate a trainee's observed performance of position tasks on the entrustment-supervision scale in the evaluation context each task requires",
-   "timeShare": 0.012,
+   "timeShare": null,
    "roleLevels": [
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1064,16 +1091,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-gt-mismatch",
+   "task": "emst:core/TSK-65N7J3N",
    "statement": "Code the likely field cause of each mismatch between a remote product and field observation, such as timing, mixed pixels, hidden understory or location error",
-   "timeShare": 0.012,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -1085,16 +1113,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:lc-txc-exercise-stop-work",
+   "task": "emst:core/TSK-22VWHXT",
    "statement": "Exercise stop-work authority when field, facility or incident conditions exceed the stated safety limits of the assignment",
-   "timeShare": 0.008,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {

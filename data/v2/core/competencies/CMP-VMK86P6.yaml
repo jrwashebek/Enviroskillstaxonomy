@@ -1,0 +1,52 @@
+id: emst:core/CMP-VMK86P6
+type: Competency
+prefLabel:
+  en: Adjudicate automated species detections using field-formed identification expertise
+definition:
+  en: Reviewing identifications suggested by automated classifiers of images, audio and genetic detections at program volume; accepting, rejecting or escalating them; recognizing look-alikes and regional or seasonal implausibility; targeting field confirmation; and documenting decisions so models can be retrained. Excludes building and evaluating the classifier (data craft) and single-record identification (species identification).
+statement:
+  en: Review species identifications suggested by automated image, audio and genetic detection at program volume; accept, reject or escalate each using field-formed identification expertise; target field confirmation where needed; and document decisions in a form usable for model retraining.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-RWZNN1E
+  - emst:core/IND-6WVZEW0
+- level: L3
+  indicators:
+  - emst:core/IND-J4VRMJ1
+  - emst:core/IND-D8AQ9X6
+  - emst:core/IND-7JYKP2N
+- level: L4
+  indicators:
+  - emst:core/IND-YYJTYTB
+  - emst:core/IND-VRSTFHM
+homeModule: core
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'WP-03 (FC) draft. New core FC practice (candidate FC-C03, emerging; anchors FCA-ID-2/3). Pairs with rewritten v1 1.4.3. Work is usually on screen but formation-dependent (ADR-0005): the expertise must have been built in the field.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

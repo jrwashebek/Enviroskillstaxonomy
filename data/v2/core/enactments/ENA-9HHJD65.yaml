@@ -1,0 +1,54 @@
+id: emst:core/ENA-9HHJD65
+type: Enactment
+prefLabel:
+  en: Federal land manager issuing resource-use authorizations
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-Q09PM3S
+enactmentKind: actor
+actorType: federal-land-manager
+authorityBasis:
+  en: Land-management statutes and regulations authorizing special uses, grazing, mineral and right-of-way authorizations, decided within the governing land management plan.
+principal:
+  en: The authorized officer (district ranger, field manager or superintendent).
+accountabilityVenue:
+  en: Administrative appeals or objection processes; federal courts.
+authorityPosition: resource-manager
+characteristicInstruments:
+- instrument: emst:core/INS-K0M67F8
+  role: constrains
+- instrument: emst:core/INS-RKV5Q5V
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+additionalTasks:
+- emst:core/TSK-43XTJJD
+note:
+  en: 'Resource-manager variant: the authority decides over a resource it holds rather than over another party''s emissions; terms, fees and monitoring conditions replace effluent or emission limits [J].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

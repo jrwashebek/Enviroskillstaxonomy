@@ -1,0 +1,38 @@
+id: emst:core/IND-X0D3VBZ
+type: Indicator
+prefLabel:
+  en: Adjusts an assigned environmental task when field observations differ from the incident action plan
+competency: emst:core/CMP-35BT97W
+level: L2
+statement:
+  en: Adjusts an assigned environmental task when field observations differ from the incident action plan, notifying the supervisor and recording the change before the next briefing.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- simulation-role-play
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-HXDB3BR
+distinguishingAttribute: ATT-CPX
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

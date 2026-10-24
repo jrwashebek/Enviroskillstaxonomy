@@ -4,7 +4,7 @@
 
 - **Role:** Monitoring and data technician (`seed:R03-monitoring-data-technician`, P1); authority position (editorial): advisor-researcher
 - **Indicative band:** GS-3 to GS-5 [entry]; GS-6 to GS-7 [journey]; GS-8 to GS-9 [senior] (not a classification criterion)
-- **Generated:** pipelines/views/federal_series_profile.py@0.1.0, rule federal-series-profile@0.1.0 (proposed), as of 2026-10-23
+- **Generated:** pipelines/views/federal_series_profile.py@0.2.0, rule federal-series-profile@0.1.0 (registered rule, status active), as of 2026-10-23
 
 ## Series
 

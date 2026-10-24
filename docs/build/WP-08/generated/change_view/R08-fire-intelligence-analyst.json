@@ -2,18 +2,18 @@
  "stamp": {
   "ruleId": "role-change-inputs",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
+  "ruleStatus": "not registered",
   "generator": "pipelines/views/change_view.py@0.1.0",
   "asOf": "2026-10-23"
  },
- "role": "seed:R08-fire-intelligence-analyst",
+ "role": "emst:forest/ROL-FSCZ00K",
  "roleTitle": "Fire intelligence analyst (continuous operations)",
  "summary": "Emerging year-round role that fuses satellite, camera, sensor, weather and resource data into operational fire intelligence, adjudicates automated detections, predicts spread with stated confidence, tracks forecast skill and briefs duty officers and incident leaders.",
  "evidenceNotice": "Reshaping claims are agent drafts (raterType llm, validationStatus draft, evidence S). No task has a v2 multi-rater assessment yet, so every task shows 'assessment pending'. Change indicators count active signals only (ADR-0028); all linked signals are at watch, so no change indicator moves. v1 values appear only as prior-evidence pointers.",
- "timeShareByClaim": {
-  "new": 0.317,
-  "no reshaping claim drafted": 0.593,
-  "transforming": 0.09
+ "taskCountByClaim": {
+  "new": 3,
+  "no reshaping claim drafted": 18,
+  "transforming": 1
  },
  "roleLevelChange": [
   {
@@ -26,13 +26,13 @@
    "note": "Year-round fire intelligence is forming as satellite constellations and detection networks come online and federal fire is consolidated.",
    "instruments": [
     {
-     "id": "seed:ins/uswfs-so-3448",
+     "id": "emst:core/INS-TB2EVT2",
      "label": "Secretarial Order 3448 establishing the U.S. Wildland Fire Service"
     }
    ],
    "signals": [
     {
-     "id": "seed:sig/foresight/ws-31-firesat-operational",
+     "id": "emst:core/SIG-8S0JB1K",
      "label": "Three operational FireSat satellites launched; early-adopter data Q4 2026; global access 2028",
      "signalStatus": "watch",
      "signalFamily": "deployment",
@@ -42,7 +42,7 @@
       "AI"
      ],
      "reliability": "B",
-     "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+     "sourceRelease": "Earth Fire Alliance Launches Operational FireSat Satellites (Let's Data Science (news aggregator), 2026-07-09)",
      "evidenceLabel": "S",
      "reviewBy": "2027-10-23"
     }
@@ -51,129 +51,22 @@
  ],
  "contextSignals": [
   {
-   "id": "seed:sig/bls-ep-2025-35/15-1299/R08-fire-intelligence-analyst",
-   "label": "BLS projected employment change 2025-35 for Computer occupations, all other (15-1299), attached to R08-fire-intelligence-analyst",
-   "signalStatus": "watch",
-   "signalFamily": "projection",
-   "direction": "grow",
-   "drivers": [
-    "other"
-   ],
-   "reliability": "A",
-   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/deployment/agentic-use-cases-usda-doi-epa-2025",
-   "label": "Agentic AI use cases in the 2025 USDA, DOI and EPA inventories: 8 of 438, 2 deployed (both administrative)",
+   "id": "emst:core/SIG-0A7GQN2",
+   "label": "AI remote sensing, imagery and LiDAR analysis: registered federal environmental-bureau use cases (2025 inventory)",
    "signalStatus": "watch",
    "signalFamily": "deployment",
-   "direction": "new",
-   "drivers": [
-    "AI"
-   ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory (DC Phase 2 extract)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-08-disaster-database-discontinued",
-   "label": "Federal billion-dollar disaster database ended; revived by a nonprofit with its former federal lead",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "reshape",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "climate"
-   ],
-   "reliability": "B",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
-   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform"
-   ],
-   "reliability": "B",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-14-epa-ai-strategy",
-   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
-   "signalStatus": "watch",
-   "signalFamily": "policy",
-   "direction": "new",
+   "direction": "augment",
    "drivers": [
     "AI",
-    "policy-reform"
+    "sensing-tech"
    ],
    "reliability": "A",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/foresight/ws-31-firesat-operational",
-   "label": "Three operational FireSat satellites launched; early-adopter data Q4 2026; global access 2028",
-   "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "new",
-   "drivers": [
-    "sensing-tech",
-    "AI"
-   ],
-   "reliability": "B",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/foresight/ws-33-gao-opm-capacity",
-   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
-   "signalStatus": "watch",
-   "signalFamily": "headcount",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "workforce-capacity"
-   ],
-   "reliability": "A",
-   "sourceRelease": "docs/research/strategic-foresight/weak_signals.csv (2026-10-23)",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/headcount/epa-12849-jan-2026",
-   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
-   "signalStatus": "watch",
-   "signalFamily": "headcount",
-   "direction": "decline",
-   "drivers": [
-    "fiscal",
-    "policy-reform",
-    "workforce-capacity",
-    "demographic"
-   ],
-   "reliability": "B",
-   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/headcount/federal-civilian-minus-12pct",
+   "id": "emst:core/SIG-2KRAKB2",
    "label": "Federal civilian workforce fell from 2,313,216 to 2,035,344 (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -189,7 +82,82 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/federal-under-30-share",
+   "id": "emst:core/SIG-50E2ZYD",
+   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "B",
+   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-5DRB2TW",
+   "label": "Agentic AI use cases in the 2025 USDA, DOI and EPA inventories: 8 of 438, 2 deployed (both administrative)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "new",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory (DC Phase 2 extract)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-5H58QFE",
+   "label": "At-risk species and species-of-conservation-concern content in plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
+   "signalStatus": "watch",
+   "signalFamily": "plan-requirements",
+   "direction": "grow",
+   "drivers": [
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-5PZTGG9",
+   "label": "EPA AI strategy under M-25-21: AI literacy, AI competencies in recruitment, enterprise AI team, high-impact AI controls",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "new",
+   "drivers": [
+    "AI",
+    "policy-reform"
+   ],
+   "reliability": "A",
+   "sourceRelease": "EPA AI Strategies for OMB Memorandum M-25-21 (U.S. EPA (Chief AI Officer), 2025-10)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-61BV2R3",
+   "label": "Federal billion-dollar disaster database ended; revived by a nonprofit with its former federal lead",
+   "signalStatus": "watch",
+   "signalFamily": "policy",
+   "direction": "reshape",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "climate"
+   ],
+   "reliability": "B",
+   "sourceRelease": "Climate Central revives the billion-dollar disaster database project (KUNR Public Radio, 2025-11-03)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-7A7C2VD",
    "label": "Under-30 share of the federal civilian workforce fell from 8.9% to 7.9% (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -206,7 +174,95 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/nps-gt25pct-2024-09-to-2026-01",
+   "id": "emst:core/SIG-8S0JB1K",
+   "label": "Three operational FireSat satellites launched; early-adopter data Q4 2026; global access 2028",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "new",
+   "drivers": [
+    "sensing-tech",
+    "AI"
+   ],
+   "reliability": "B",
+   "sourceRelease": "Earth Fire Alliance Launches Operational FireSat Satellites (Let's Data Science (news aggregator), 2026-07-09)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-E8BJ3DN",
+   "label": "BLS projected employment change 2025-35 for Computer occupations, all other (15-1299) (role: Fire intelligence analyst (continuous operations))",
+   "signalStatus": "watch",
+   "signalFamily": "projection",
+   "direction": "grow",
+   "drivers": [
+    "other"
+   ],
+   "reliability": "A",
+   "sourceRelease": "BLS Employment Projections 2025-35 (released 2026-08-27)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-FJCTDJS",
+   "label": "Data and model dependence of plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
+   "signalStatus": "watch",
+   "signalFamily": "plan-requirements",
+   "direction": "grow",
+   "drivers": [
+    "policy-reform"
+   ],
+   "reliability": "B",
+   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-MH4HH1F",
+   "label": "AI species and wildlife detection (acoustic, camera, image): registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI",
+    "sensing-tech"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-N8YAZEE",
+   "label": "GAO: OPM headcount -35% since Dec 2024; HR Solutions -36%; Workforce Policy -45%",
+   "signalStatus": "watch",
+   "signalFamily": "headcount",
+   "direction": "decline",
+   "drivers": [
+    "fiscal",
+    "policy-reform",
+    "workforce-capacity"
+   ],
+   "reliability": "A",
+   "sourceRelease": "GAOverview: Recent Federal Workforce Changes at OPM (GAO-26-108916) (U.S. Government Accountability Office, 2026-07-20)",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-NPTBXWR",
+   "label": "AI in weather and climate forecasting: registered federal environmental-bureau use cases (2025 inventory)",
+   "signalStatus": "watch",
+   "signalFamily": "deployment",
+   "direction": "augment",
+   "drivers": [
+    "AI"
+   ],
+   "reliability": "A",
+   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
+   "evidenceLabel": "S",
+   "reviewBy": "2027-10-23"
+  },
+  {
+   "id": "emst:core/SIG-YM916J3",
    "label": "National Park Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
@@ -222,90 +278,34 @@
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/headcount/usfs-gt25pct-2024-09-to-2026-01",
-   "label": "U.S. Forest Service headcount fell by more than a quarter (Sep 2024 - Jan 2026)",
+   "id": "emst:core/SIG-Z35ZKX9",
+   "label": "EPA staffing at 12,849 at end of January 2026 (-24% in a year)",
    "signalStatus": "watch",
    "signalFamily": "headcount",
    "direction": "decline",
    "drivers": [
     "fiscal",
     "policy-reform",
-    "workforce-capacity"
+    "workforce-capacity",
+    "demographic"
    ],
    "reliability": "B",
-   "sourceRelease": "PPS analysis of OPM data to Jan 2026",
+   "sourceRelease": "Inside Climate News analysis of OPM data, 2026-03-06",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   },
   {
-   "id": "seed:sig/omb-ai-inventory-2025/forecasting",
-   "label": "AI in weather and climate forecasting: registered federal environmental-bureau use cases (2025 inventory)",
+   "id": "seed:sig/foresight/ws-10-obbba-ira-rescissions",
+   "label": "Unobligated IRA conservation, NPS hiring and USFS NEPA staffing funds rescinded",
    "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "augment",
+   "signalFamily": "policy",
+   "direction": "decline",
    "drivers": [
-    "AI"
-   ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/omb-ai-inventory-2025/remote-sensing",
-   "label": "AI remote sensing, imagery and LiDAR analysis: registered federal environmental-bureau use cases (2025 inventory)",
-   "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "augment",
-   "drivers": [
-    "AI",
-    "sensing-tech"
-   ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/omb-ai-inventory-2025/species-detection",
-   "label": "AI species and wildlife detection (acoustic, camera, image): registered federal environmental-bureau use cases (2025 inventory)",
-   "signalStatus": "watch",
-   "signalFamily": "deployment",
-   "direction": "augment",
-   "drivers": [
-    "AI",
-    "sensing-tech"
-   ],
-   "reliability": "A",
-   "sourceRelease": "2025 inventory; public 2026-01-28; README 2026-04-13",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/openlmp/term-at-risk-species-scc-2012-vs-1982",
-   "label": "At-risk species and species-of-conservation-concern content in plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
-   "signalStatus": "watch",
-   "signalFamily": "plan-requirements",
-   "direction": "grow",
-   "drivers": [
+    "fiscal",
     "policy-reform"
    ],
    "reliability": "B",
-   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
-   "evidenceLabel": "S",
-   "reviewBy": "2027-10-23"
-  },
-  {
-   "id": "seed:sig/openlmp/term-data-or-models-2012-vs-1982",
-   "label": "Data and model dependence of plan direction: mentions per 1,000 plan components, 2012-rule vs 1982-rule plans",
-   "signalStatus": "watch",
-   "signalFamily": "plan-requirements",
-   "direction": "grow",
-   "drivers": [
-    "policy-reform"
-   ],
-   "reliability": "B",
-   "sourceRelease": "OpenLMP 0.1.0; WP-10 derivation 2026-10-23",
+   "sourceRelease": "How OBBB impacts invasive species and forest resilience programs (North American Invasive Species Management Association, 2025-09-22)",
    "evidenceLabel": "S",
    "reviewBy": "2027-10-23"
   }
@@ -317,16 +317,17 @@
  "externalContext": [],
  "tasks": [
   {
-   "task": "seed:FS-C05-T1",
+   "task": "emst:forest/TSK-4C3NHZ6",
    "statement": "Integrate satellite detections, camera feeds, weather and resource status into a continuously updated situation summary for dispatch",
-   "timeShare": 0.182,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -341,9 +342,9 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-FS-C05-T1",
-     "seed:asm/s2a-x-pass2/seed-FS-C05-T1",
-     "seed:asm/s2a-x-pass3/seed-FS-C05-T1"
+     "emst:core/ASM-AN59Z0N",
+     "emst:core/ASM-6GP1ZF4",
+     "emst:core/ASM-X4S7PKQ"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -352,16 +353,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:FS-C05-T2",
+   "task": "emst:forest/TSK-8YBFYS1",
    "statement": "Adjudicate an automated fire detection against cameras, public reports and other sensors before resources are ordered",
-   "timeShare": 0.09,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [
     {
@@ -376,13 +378,13 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-FS-C05-T2",
-     "seed:asm/s2a-x-pass2/seed-FS-C05-T2",
-     "seed:asm/s2a-x-pass3/seed-FS-C05-T2"
+     "emst:core/ASM-1C9V1TH",
+     "emst:core/ASM-P0TK77M",
+     "emst:core/ASM-K51SVTZ"
     ],
     "namedSignals": [
      {
-      "id": "seed:sig/omb-ai-inventory-2025/fire-smoke",
+      "id": "emst:core/SIG-R2GVGDK",
       "label": "AI in fire and smoke detection, prediction and operations: registered federal environmental-bureau use cases (2025 inventory)",
       "signalStatus": "watch",
       "signalFamily": "deployment",
@@ -403,16 +405,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:FS-C05-T3",
+   "task": "emst:forest/TSK-VY4PB52",
    "statement": "Brief duty officers and incident commanders on fire activity, predicted growth and resource needs at each operational period",
-   "timeShare": 0.09,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -424,16 +427,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:FS-C05-T4",
+   "task": "emst:forest/TSK-VSQX5JP",
    "statement": "Track the accuracy of detections and spread predictions against observed outcomes, reporting systematic errors to programme managers",
-   "timeShare": 0.045,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -445,16 +449,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.3.4-T2",
+   "task": "emst:forest/TSK-JM3R437",
    "statement": "Predict fire spread, intensity and spotting for an operational period from fuels, weather and topography, stating assumptions",
-   "timeShare": 0.09,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [
     {
@@ -468,16 +473,16 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-v1-4.3.4-T2",
-     "seed:asm/s2a-x-pass2/seed-v1-4.3.4-T2",
-     "seed:asm/s2a-x-pass3/seed-v1-4.3.4-T2"
+     "emst:core/ASM-V4XMF5Y",
+     "emst:core/ASM-D02Z3P2",
+     "emst:core/ASM-5T294RX"
     ],
     "namedSignals": [],
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.3.4-T2/copyB",
-      "seed:v1asm/4.3.4-T2/d4_record"
+      "emst:core/ASM-FZC1H91",
+      "emst:core/ASM-9BGAGXJ"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -485,16 +490,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:db-4.3.4-t4",
+   "task": "emst:forest/TSK-XW8B2TN",
    "statement": "Compare modelled fire behaviour with observed behaviour during an incident, adjusting predictions and recording each discrepancy",
-   "timeShare": 0.045,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -506,15 +512,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-4.3.4-T3",
+   "task": "emst:forest/TSK-AB92B6W",
    "statement": "Brief incident personnel on expected fire behaviour and weather trends, highlighting watch-out situations for each division",
-   "timeShare": 0.045,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -523,8 +530,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/4.3.4-T3/copyB",
-      "seed:v1asm/4.3.4-T3/d4_record"
+      "emst:core/ASM-3VPJQ84",
+      "emst:core/ASM-SP4BRH5"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -532,15 +539,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:dc-12-skill-tracking",
+   "task": "emst:core/TSK-C47N1B3",
    "statement": "Track a forecast system's skill against observations over time, notifying users when skill falls below the level their decisions require.",
-   "timeShare": 0.045,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [
     {
@@ -554,9 +562,9 @@
    ],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-dc-12-skill-tracking",
-     "seed:asm/s2a-x-pass2/seed-dc-12-skill-tracking",
-     "seed:asm/s2a-x-pass3/seed-dc-12-skill-tracking"
+     "emst:core/ASM-T6N09B6",
+     "emst:core/ASM-5ECW676",
+     "emst:core/ASM-PB39Z7J"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -565,14 +573,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:dc-12-fitness-requirements",
+   "task": "emst:core/TSK-205VJM7",
    "statement": "Define the fitness requirements of a forecast system for the decisions it serves, including lead time, resolution and acceptable error.",
-   "timeShare": 0.022,
+   "timeShare": null,
    "roleLevels": [
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -584,14 +593,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:dc-12-restrict-retire",
+   "task": "emst:core/TSK-YRZFQA9",
    "statement": "Decide when an operational forecast or scenario system should be restricted or retired, documenting the evidence and informing its users.",
-   "timeShare": 0.022,
+   "timeShare": null,
    "roleLevels": [
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -603,16 +613,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-2.7.3-T3",
+   "task": "emst:core/TSK-4FPRQ4R",
    "statement": "Maintain an operational forecast system's data feeds and model versions, re-validating after each change before results are released.",
-   "timeShare": 0.045,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -621,8 +632,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/2.7.3-T3/copyB",
-      "seed:v1asm/2.7.3-T3/d2_record"
+      "emst:core/ASM-4JAHJEW",
+      "emst:core/ASM-YDJWQJ1"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -630,16 +641,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:dc-11-incident-confidence-briefing",
+   "task": "emst:core/TSK-VSG19S4",
    "statement": "Brief incident or programme leaders on the confidence of fire behaviour and weather projections, updating the briefing when observations diverge.",
-   "timeShare": 0.045,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -651,16 +663,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:dc-11-quantify-sources",
+   "task": "emst:core/TSK-ENA4KVB",
    "statement": "Quantify the dominant sources of uncertainty in an analysis, such as measurement, sampling, model and scenario, stating which result would change the recommendation.",
-   "timeShare": 0.022,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -672,21 +685,22 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-txa-field-check",
+   "task": "emst:core/TSK-ZZXHD85",
    "statement": "Verify an AI-generated field product, such as a condition map or drafted inspection note, against observations made at the site before it is relied on",
-   "timeShare": 0.022,
+   "timeShare": null,
    "roleLevels": [
     "journey"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": true,
    "change": [],
    "evidence": {
     "v2Assessment": [
-     "seed:asm/s2a-x-pass1/seed-fc-txa-field-check",
-     "seed:asm/s2a-x-pass2/seed-fc-txa-field-check",
-     "seed:asm/s2a-x-pass3/seed-fc-txa-field-check"
+     "emst:core/ASM-5Y6CMVN",
+     "emst:core/ASM-YZSF3AN",
+     "emst:core/ASM-HB882PJ"
     ],
     "namedSignals": [],
     "activeSignals": 0,
@@ -695,15 +709,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-gt-fitness",
+   "task": "emst:core/TSK-B8K407W",
    "statement": "Decide from field validation evidence whether a remote or AI product is fit for a stated management or regulatory use, documenting its limits",
-   "timeShare": 0.022,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -715,16 +730,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-2.1.2-T1",
+   "task": "emst:core/TSK-ZP4C468",
    "statement": "Interpret satellite and aerial imagery to detect changes in vegetation, soil or water condition across a management area between two dates.",
-   "timeShare": 0.045,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": true,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -733,8 +749,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/2.1.2-T1/copyB",
-      "seed:v1asm/2.1.2-T1/d2_record"
+      "emst:core/ASM-C6VEQKK",
+      "emst:core/ASM-QYAAZ63"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -742,16 +758,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:v1-2.1.4-T1",
+   "task": "emst:core/TSK-3PWPDQB",
    "statement": "Analyze terrain, habitat connectivity or resource distribution for a planning question, stating the data, projection and accuracy limits that bound the answer.",
-   "timeShare": 0.022,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -760,8 +777,8 @@
     "activeSignals": 0,
     "v1PriorEvidence": {
      "records": [
-      "seed:v1asm/2.1.4-T1/copyB",
-      "seed:v1asm/2.1.4-T1/d2_record"
+      "emst:core/ASM-K5PQA1J",
+      "emst:core/ASM-WGYD47S"
      ],
      "display": "evidence drawer only: v1 single-analyst prior, LLM-assisted, unvalidated - not for decisions"
     }
@@ -769,14 +786,15 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:dc-22-decision-map",
+   "task": "emst:core/TSK-N9ZVC87",
    "statement": "Map the decision a product must support, including who decides, when, under what authority and with which constraints, before design starts.",
-   "timeShare": 0.022,
+   "timeShare": null,
    "roleLevels": [
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -788,15 +806,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:lc-txe-prepare-message-map",
+   "task": "emst:core/TSK-SCV5042",
    "statement": "Prepare a shared message map with partner agencies for an emerging environmental or health incident",
-   "timeShare": 0.022,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -808,15 +827,16 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:DB-C15-T4",
+   "task": "emst:air/TSK-Y0PA9DN",
    "statement": "Issue public smoke advisories with health partners when monitored or forecast smoke exceeds advisory thresholds",
-   "timeShare": 0.022,
+   "timeShare": null,
    "roleLevels": [
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -828,16 +848,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:dc-09-envelope-check",
+   "task": "emst:core/TSK-92PE02X",
    "statement": "Check whether a planned use of a model output falls inside the model's intended purpose, data period and area before relying on it.",
-   "timeShare": 0.022,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": false,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {
@@ -849,16 +870,17 @@
    "workFunction": "Assessment pending (Task.workFunction is gated, ADR-0029 section 6)"
   },
   {
-   "task": "seed:fc-txa-escalate",
+   "task": "emst:core/TSK-YZNB91D",
    "statement": "Escalate an AI-generated output that conflicts with field evidence, recording the conflicting observation for the analyst and the decision-maker",
-   "timeShare": 0.013,
+   "timeShare": null,
    "roleLevels": [
     "journey",
     "senior",
     "lead"
    ],
-   "critical": true,
-   "neededAtEntry": false,
+   "critical": null,
+   "neededAtEntry": null,
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "formationTask": false,
    "change": [],
    "evidence": {

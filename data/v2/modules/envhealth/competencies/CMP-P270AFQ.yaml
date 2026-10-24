@@ -1,0 +1,65 @@
+id: emst:envhealth/CMP-P270AFQ
+type: Competency
+prefLabel:
+  en: Investigate outbreaks, complaints and emerging environmental health hazards to control exposure
+altLabel:
+  en:
+  - Environmental health investigation
+  - Foodborne and waterborne outbreak investigation
+  - Vector and zoonotic disease control
+definition:
+  en: Hypothesis-driven field investigation of environmental causes of illness and exposure (foodborne, waterborne, vector-borne and zoonotic disease, harmful algal blooms, mold and other emerging hazards) with epidemiologists and laboratories, and selection of control measures. Excludes routine code inspection (SL-C07) and population-level risk assessment (core v1 6.7.1).
+statement:
+  en: Investigates complaints, case clusters and outbreaks with epidemiologists and laboratories by collecting samples, interviewing staff and reviewing records to identify contributing factors; runs vector surveillance; selects and verifies control measures; and issues advisories when exposure thresholds are exceeded, documenting each step in the investigation record.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:envhealth/IND-K40HDYR
+  - emst:envhealth/IND-9XXBBF0
+- level: L2
+  indicators:
+  - emst:envhealth/IND-JN2PDG6
+  - emst:envhealth/IND-S9M7ZMB
+- level: L3
+  indicators:
+  - emst:envhealth/IND-87S6QZF
+  - emst:envhealth/IND-G1GV5AE
+- level: L4
+  indicators:
+  - emst:envhealth/IND-9HYSQ28
+  - emst:envhealth/IND-26YZTT6
+homeModule: envhealth
+subsectors:
+- H01
+- H02
+reusability: subsector-specific
+layer: L1
+module: envhealth
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Survivor for environmental public health hazard investigation (food, water, vectors, zoonoses); absorbs DB-C28 (complaints, outbreaks and emerging hazards incl. harmful algal blooms, heat and mold). Basis [E] for curricular gap (LC-005); [J] for content. Mosquito-control and pesticide-applicator licences are Credential gates.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - LC-005
+  - DB-044
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

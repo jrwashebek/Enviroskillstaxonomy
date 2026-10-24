@@ -1,0 +1,38 @@
+id: emst:waterq/IND-K0QA8GS
+type: Indicator
+prefLabel:
+  en: Accepts or rejects a watershed model calibration after comparing simulated and…
+competency: emst:waterq/CMP-P8XQ2RV
+level: L2
+statement:
+  en: Accepts or rejects a watershed model calibration after comparing simulated and observed flows and concentrations against the agreed performance criteria.
+augmentationMode: assisted
+assessmentMethods:
+- work-sample
+- seeded-error-work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:waterq/TSK-B3RXJNZ
+layer: L1
+module: waterq
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

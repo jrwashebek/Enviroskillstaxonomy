@@ -1,0 +1,44 @@
+id: emst:water/TSK-6007AKV
+type: Task
+prefLabel:
+  en: Adjudicate automatically coded pipe defects from a sewer inspection video before the condition scores enter the renewal model
+statement:
+  en: Adjudicate automatically coded pipe defects from a sewer inspection video before the condition scores enter the renewal model
+textSha256: 59cb90717ddc85268d53bef75e2a19732abf7c02b9b649d4f302ae989b8c1dd0
+supports:
+- competency: emst:core/CMP-CD9P70X
+  strength: primary
+workFunction: WF-MONITOR
+workflowProfiles:
+- WP-CAPITAL
+- WP-OPERATIONS
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: water
+subsectors:
+- W01
+- W02
+- W03
+layer: L2
+module: water
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: Verification of automated defect coding (DB report s.3.8).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

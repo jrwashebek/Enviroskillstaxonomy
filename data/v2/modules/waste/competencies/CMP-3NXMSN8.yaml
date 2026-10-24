@@ -1,0 +1,68 @@
+id: emst:waste/CMP-3NXMSN8
+type: Competency
+prefLabel:
+  en: Select remedies for contaminated sites and oversee cleanup through long-term stewardship
+altLabel:
+  en:
+  - Remedy selection and remedial design oversight
+  - Remediation project management
+  - Long-term stewardship of contaminated sites
+definition:
+  en: Evaluating remedial alternatives against cleanup criteria, selecting and specifying remedies, overseeing contractors during implementation and optimization, and managing institutional controls, periodic reviews and closure; in public programmes, also administering cleanup funds and cost recovery. Excludes site characterization (DB-C19) and emergency hazardous materials response.
+statement:
+  en: Compares remedial alternatives against cleanup criteria, cost and acceptance, selects and specifies the remedy, oversees contractors against the approved design and safety plan, uses performance data to optimize or transition the remedy, and manages institutional controls, periodic reviews, closure and cleanup-fund administration.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:waste/IND-Z7Q40JF
+  - emst:waste/IND-TFJNPFQ
+- level: L3
+  indicators:
+  - emst:waste/IND-6C8ZHQV
+  - emst:waste/IND-T5HNMN1
+- level: L4
+  indicators:
+  - emst:waste/IND-7WCV35G
+  - emst:waste/IND-TJ3ZX3W
+homeModule: waste
+subsectors:
+- P04
+reusability: subsector-specific
+layer: L1
+module: waste
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Survivor; absorbs FH-C12 (cleanup oversight) and SL-C09 (cleanup oversight and remediation funds) and receives the remediation-management part of v1 4.4.4. Home of role R27 remediation project manager. Licensed site professional opinions (state LSP/LSRP programmes) are recorded as regulatory-definition sign-off authority; HAZWOPER is an entry gate. Basis [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.4.4
+    relation: split-from
+    note: receives the remediation-management part of v1 4.4.4 (DB, FC, IO, PS, LC verdicts)
+  sources:
+  - DB-025
+  - DB-058
+  - FH-041
+  - SL-077
+  - SL-082
+  - SL-074
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

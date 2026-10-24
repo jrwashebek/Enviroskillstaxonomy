@@ -1,0 +1,76 @@
+id: emst:core/ENA-6SJMJXZ
+type: Enactment
+prefLabel:
+  en: Federal agency environmental review
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-J597H9A
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: NEPA as amended by the Fiscal Responsibility Act of 2023 (page and time limits, lead and cooperating agencies), implemented through each department's own procedures after CEQ's government-wide regulations were removed (final 2026-01-08); sponsor-paid acceleration under NEPA section 112.
+principal:
+  en: The lead agency's responsible official; department leadership.
+accountabilityVenue:
+  en: Federal courts under substantial deference (Seven County, 2025); inspectors general; Congress.
+characteristicInstruments:
+- instrument: emst:core/INS-8EFNTAM
+  role: requires
+- instrument: emst:core/INS-RY63HWN
+  role: removed-requirement
+  note:
+    en: 'Removed the government-wide regulations; never a basis (CR-SC-001 #2).'
+- instrument: emst:core/INS-F7HDHMY
+  role: constrains
+- instrument: emst:core/INS-3HFPZD5
+  role: requires
+- instrument: emst:core/INS-854WGKT
+  role: requires
+- instrument: seed:ins/dot-nepa-procedures
+  role: requires
+- instrument: seed:ins/epa-nepa-procedures
+  role: requires
+  note:
+    en: Proposed; decides nothing until in force.
+- instrument: emst:core/INS-BYQMXRA
+  role: enables
+- instrument: emst:core/INS-RPPAZ58
+  role: constrains
+- instrument: emst:core/INS-K0M67F8
+  role: constrains
+- instrument: emst:core/INS-GWC623Q
+  role: constrains
+note:
+  en: 'The same review skill is enacted against different, versioned department procedures (DOI handbook; USDA 7 CFR 1b; DOT; EPA proposed), so knowing which procedure and version governs each step is part of federal performance [E: V2-01].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - V2-01
+  - V2-02
+  - V2-04
+  - V2-08
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

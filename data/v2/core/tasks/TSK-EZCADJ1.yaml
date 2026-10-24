@@ -1,0 +1,40 @@
+id: emst:core/TSK-EZCADJ1
+type: Task
+prefLabel:
+  en: Determine which disclosure regimes apply to the organization by jurisdiction, size and activity, recording each applicability decision and its review date
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Determine which disclosure regimes apply to the organization by jurisdiction, size and activity, recording each applicability decision and its review date
+textSha256: 58b1ae94cf0bb8568ec3bf0fc95389fd4decf9b575807a984995ba176b1809d6
+supports:
+- competency: emst:core/CMP-33W8FV5
+  strength: primary
+workFunction: WF-MONITOR.attest
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

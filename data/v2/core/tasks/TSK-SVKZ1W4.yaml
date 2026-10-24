@@ -1,0 +1,56 @@
+id: emst:core/TSK-SVKZ1W4
+type: Task
+prefLabel:
+  en: Run spatial queries and overlays for an environmental assessment, checking that all layers share a coordinate reference system and compatible scales.
+statement:
+  en: Run spatial queries and overlays for an environmental assessment, checking that all layers share a coordinate reference system and compatible scales.
+textSha256: 675e76e904525e31b3211fb7ac25ea07f56e9c9de2f2ead14abcc4e6ff15e956
+editorialNote:
+  en: 'Re-pointed from superseded v1 2.1.1 (move-to-tools) to its durable remainder v1 2.1.4. v1 competency 2.1.1 is move-to-tools: reassign this task to one of [''emst:core/CMP-YV31ZCF'', ''emst:core/TL-DMZ48W2''] or retire it as tool fluency. v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).'
+notation:
+- scheme: EMSTv1
+  value: 2.1.1:T2
+supports:
+- competency: emst:core/CMP-YV31ZCF
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: remote
+formationDependency: 'no'
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+v1Tier: T2
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.1'
+  label: Geospatial Technologies
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.1.1:T2
+    v1Code: 2.1.1
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 42
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0011

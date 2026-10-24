@@ -1,0 +1,92 @@
+id: emst:core/CMP-X6624QT
+type: Competency
+prefLabel:
+  en: Coordinate lead, cooperating and participating agencies to a shared schedule
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to organize several agencies with authority over one action into agreed roles and one schedule, and to keep that schedule and its public record accurate. Covers role agreements, joint schedules, cooperating-agency decisions and jurisdiction disputes. Excludes oversight of delegated programs, which is a separate competency.
+statement:
+  en: Establishes and runs the roles, joint schedule and milestones among the lead, cooperating and participating agencies for a multi-agency action, resolves disputes about jurisdiction and timing, decides cooperating-agency requests with reasons, and keeps the shared schedule and public milestone data accurate.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - interagency coordination
+  - cooperating agency management
+  - permitting coordination plan
+instrumentSensitivity:
+- mechanism: DM-05
+  rationale:
+    en: Lead, cooperating and participating roles and joint schedules are now statutory.
+  evidenceLabel: E
+  sources:
+  - V2-01
+- mechanism: DM-02
+  rationale:
+    en: Deadlines and schedule enforcement shape coordination.
+  evidenceLabel: E
+  sources:
+  - V2-04
+- mechanism: DM-14
+  rationale:
+    en: Public permitting dashboards and the data standard make milestones auditable.
+  evidenceLabel: E
+  sources:
+  - V2-08
+editorialNote:
+  en: 'WP-05 (A5 SC). Successor of the coordination part of v1 6.5.2 (split with SC-C14). The 2023 amendments codified lead-agency and one-document rules; dashboard milestones make schedule performance observable [E: SC-010, V2-01]. Indicators adapted from SC-A-C09-1..4 [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-010
+  - SC-014
+  - V2-01
+  - V2-03
+  derivedFrom:
+  - v1Key: v1:6.5.2
+    relation: split-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-8EGSSC8
+  - emst:core/IND-B4762Q9
+- level: L2
+  indicators:
+  - emst:core/IND-1FA76Z4
+  - emst:core/IND-E2W7Z9K
+- level: L3
+  indicators:
+  - emst:core/IND-8FF16X8
+  - emst:core/IND-X44SG4C
+- level: L4
+  indicators:
+  - emst:core/IND-BTC4H4K
+  - emst:core/IND-TK3PSP9
+  - emst:core/IND-09SXQJY

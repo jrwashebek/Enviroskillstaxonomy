@@ -1,0 +1,64 @@
+id: emst:core/TSK-CMJ28FF
+type: Task
+prefLabel:
+  en: Testify as a fact or expert witness in an enforcement proceeding, explaining the evidence and methods behind each finding
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Testify as a fact or expert witness in an enforcement proceeding, explaining the evidence and methods behind each finding
+textSha256: 16e057b6ebfc9f76a0d9512939396cf478a66be0f17a6fa9ffd5dd123f00f428
+supports:
+- competency: emst:core/CMP-RDN7QER
+  strength: primary
+workFunction: WF-ENFORCE
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+modes:
+- MODE-RESOLVE
+notation:
+- scheme: EMSTv1
+  value: 6.1.5:T3
+v1Tier: T3
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.1'
+  label: Environmental Law & Regulation
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Support legal proceedings with accurate records and expert input" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.1.5:T3
+    v1Code: 6.1.5
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 181
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

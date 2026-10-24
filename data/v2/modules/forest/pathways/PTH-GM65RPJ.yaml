@@ -1,0 +1,179 @@
+id: emst:forest/PTH-GM65RPJ
+type: Pathway
+prefLabel:
+  en: 'Exploratory pathway: wildland fire operations to fire intelligence analyst'
+definition:
+  en: 'Reskills journey-level fire operations staff into continuous fire intelligence: predicting fire behaviour, fusing and adjudicating detections, producing maps and forecasts, ground-truthing automated products and briefing uncertainty to incident leaders (LC-PW-03 branch B). The target role is emerging (mvp_role_set.csv). Exploratory.'
+notation:
+- scheme: mvp-corridor
+  value: COR-2
+fromVariant: emst:forest/ROL-KB8K99D
+toVariant: emst:forest/ROL-FSCZ00K
+pathwayType: reskill
+modes:
+- WBL
+- SIM
+- CL
+- AIP
+- MEN
+- FD
+emstRelease: 2.0.0-rc.1
+cloOutcomes:
+- competency: emst:forest/CMP-MQJG1YC
+  level: L2
+- competency: emst:forest/CMP-MQJG1YC
+  level: L3
+- competency: emst:forest/CMP-PE8PB46
+  level: L2
+- competency: emst:core/CMP-MS40XXX
+  level: L2
+- competency: emst:core/CMP-YV31ZCF
+  level: L2
+- competency: emst:core/CMP-FTP78TV
+  level: L2
+- competency: emst:core/CMP-KEHNFZ7
+  level: L2
+- competency: emst:core/CMP-QSAV0HJ
+  level: L2
+- competency: emst:core/CMP-4ZX8Q5F
+  level: L2
+- competency: emst:core/CMP-XN9631Y
+  level: L2
+- competency: emst:core/CMP-XN9631Y
+  level: L3
+assessmentPlan:
+  en: 'Each CLO is assessed with the methods its indicators list; field-craft outcomes are assessed at least once in the field, statecraft outcomes in a live or simulated stakeholder or legal-administrative setting, data-craft outcomes on real data with a reproducible product (LC template R4-R5). Assisted-mode outcomes include a seeded-error validation drill. Supervisor formation plan required: the learner''s supervisor works to emst:core/CMP-ZPEFG5E at L2 or above and a named mentor or evaluator to emst:core/CMP-0N97D81 at L3 (ADR-0026 R7). Training use only; never a selection instrument (IO).'
+sequence:
+- step: 1
+  tasks:
+  - emst:forest/TSK-JM3R437
+  - emst:forest/TSK-XW8B2TN
+  - emst:forest/TSK-8YY569V
+  cloOutcomes:
+  - competency: emst:forest/CMP-MQJG1YC
+    level: L2
+  - competency: emst:forest/CMP-MQJG1YC
+    level: L3
+  formationProvisions:
+  - task: emst:forest/TSK-JM3R437
+    responses:
+    - supervised-repetitions
+    - validation-drill
+    quota:
+      count: 5
+      unit: hand-worked spread and intensity predictions checked against observed behaviour
+    releaseCriterion: prediction errors explained before modelled outputs are credited
+    mentorRequired: true
+  roleLevel: journey
+  note:
+    en: Fire behaviour prediction compared with observed behaviour.
+- step: 2
+  tasks:
+  - emst:forest/TSK-8YBFYS1
+  - emst:forest/TSK-4C3NHZ6
+  - emst:forest/TSK-VSQX5JP
+  cloOutcomes:
+  - competency: emst:forest/CMP-PE8PB46
+    level: L2
+  - competency: emst:core/CMP-MS40XXX
+    level: L2
+  formationProvisions:
+  - task: emst:forest/TSK-8YBFYS1
+    responses:
+    - validation-drill
+    quota:
+      count: 1
+      unit: seeded-error detection set
+    releaseCriterion: false alarms and misses both caught
+    mentorRequired: true
+  roleLevel: journey
+  note:
+    en: Fusing and adjudicating detections; accuracy tracking.
+- step: 3
+  tasks:
+  - emst:core/TSK-ADFACAS
+  - emst:core/TSK-C47N1B3
+  - emst:core/TSK-MTXZBEM
+  cloOutcomes:
+  - competency: emst:core/CMP-YV31ZCF
+    level: L2
+  - competency: emst:core/CMP-FTP78TV
+    level: L2
+  - competency: emst:core/CMP-KEHNFZ7
+    level: L2
+  roleLevel: journey
+  note:
+    en: Incident maps and forecast systems; tool modules expire (R8).
+- step: 4
+  tasks:
+  - emst:core/TSK-ZZXHD85
+  - emst:core/TSK-ZNT3BAQ
+  cloOutcomes:
+  - competency: emst:core/CMP-QSAV0HJ
+    level: L2
+  formationProvisions:
+  - task: emst:core/TSK-ZZXHD85
+    responses:
+    - observed-wbl
+    quota:
+      count: 3
+      unit: field checks on 3 incidents or burns
+    releaseCriterion: evaluator sign-off
+    mentorRequired: true
+  roleLevel: journey
+  note:
+    en: 'No pixel without plot (R6): field checks of automated perimeters and fuels products during the season.'
+- step: 5
+  tasks:
+  - emst:core/TSK-VSG19S4
+  - emst:forest/TSK-VY4PB52
+  - emst:forest/TSK-AB92B6W
+  - emst:core/TSK-MWZH0XP
+  cloOutcomes:
+  - competency: emst:core/CMP-4ZX8Q5F
+    level: L2
+  - competency: emst:core/CMP-XN9631Y
+    level: L2
+  - competency: emst:core/CMP-XN9631Y
+    level: L3
+  roleLevel: journey
+  note:
+    en: 'No model without a decision owner (R6): briefing confidence to incident leaders and the public.'
+recognitionOfPriorLearning:
+- emst:core/CRD-3N2G328
+- emst:core/CRD-S3NSKNV
+durationAndCost:
+  hours: 300
+  months: 18
+  costNote: '[J] Course work plus one to two fire seasons of duty-officer and incident assignments; detail slots are scarce after 2025-26 staffing losses [E: V1-02].'
+alternativeFormationRoutes:
+- Replayed historical incidents in simulation for rare large-fire events; duty-officer shadowing during the season [J].
+recommended: false
+layer: learning
+module: forest
+status: candidate
+lifecycleState: proposed
+reviewBy: '2027-04-23'
+useTier: exploratory
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'EXPLORATORY, not recommended: no pathway is labelled recommended until it passes CM''s M-03 validation gate (ADR-0023 §5; ADR-0027). Built from the role-profile delta (ADR-0026 R1); hours, months and quotas are LC judgment for pilot calibration. Role records are WP-08''s; frictions attach when CM''s friction register exists. Moved into data/v2 in S2 (CR-LC-001 #1-#3): outcomes are named as CLOs {competency, level} (generic CLO = levels[].indicators; enactment anchors are reached through the enactment CLO, never listed here, CR-LC-001 #4); formation provisions are typed (formationProvisions), and docs/build/WP-07/formation_provisions.csv stays WP-07''s audit copy; role references are planned targets until WP-08 writes the records. Homed in the forest module (MOD-11): its fire roles and fire competencies are MOD-11 records, and core records may not depend on module records (SPEC §3.2).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T14:20:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-pathways@1
+  sources:
+  - V1-02
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0026
+  - ADR-0023
+  - ADR-0027
+  - ADR-0004

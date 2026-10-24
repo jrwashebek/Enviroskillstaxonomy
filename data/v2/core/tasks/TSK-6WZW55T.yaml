@@ -1,0 +1,56 @@
+id: emst:core/TSK-6WZW55T
+type: Task
+prefLabel:
+  en: Assess the accuracy of a remotely sensed map against independent field reference data, reporting error by class and condition.
+statement:
+  en: Assess the accuracy of a remotely sensed map against independent field reference data, reporting error by class and condition.
+textSha256: 76ca9d836227821e92ebf08d40d41dca9042cdc7b7718bd3d03266f12a0f19b5
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+notation:
+- scheme: EMSTv1
+  value: 2.1.2:T3
+supports:
+- competency: emst:core/CMP-VSYR8YY
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+v1Tier: T3
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.1'
+  label: Geospatial Technologies
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.1.2:T3
+    v1Code: 2.1.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 43
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0011

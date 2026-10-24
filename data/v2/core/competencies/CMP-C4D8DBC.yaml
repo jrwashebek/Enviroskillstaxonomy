@@ -1,0 +1,68 @@
+id: emst:core/CMP-C4D8DBC
+type: Competency
+prefLabel:
+  en: Scan horizons and translate change signals into workforce decisions
+altLabel:
+  en:
+  - Strategic foresight for workforce planning
+  - Horizon scanning
+  - Weak-signal monitoring
+definition:
+  en: Monitoring technology, policy, labour-market and environmental change signals; maintaining scenarios and signposts; running structured foresight sessions with managers; and converting the results into dated workforce moves, both no-regret actions taken now and contingent actions with named triggers, each with an owner and a review date. Covers signal logging with source and independence, scenario maintenance and trigger monitoring. Excludes policy and land-use scenario analysis for a decision (v1 6.2.5), operational forecast and scenario systems (DC-CAND-12), planning for non-analog ecological futures (v1 1.7.5) and position-level staffing justification (FH-C14).
+statement:
+  en: 'Monitors technology, policy, labour-market and environmental change signals with their sources, maintains scenarios and signposts, runs foresight sessions with managers, and converts the results into workforce decisions: no-regret moves made now and contingent moves tied to named triggers, each with an owner and a review date, revisited when signposts move.'
+competencyType: practice
+levelSpan:
+  min: L3
+  max: L5
+levels:
+- level: L3
+  indicators:
+  - emst:core/IND-7N860S7
+  - emst:core/IND-EN17HYA
+  - emst:core/IND-0RZER6G
+- level: L4
+  indicators:
+  - emst:core/IND-SEX9JM1
+  - emst:core/IND-68HC2MP
+- level: L5
+  indicators:
+  - emst:core/IND-PFA52B0
+  - emst:core/IND-E07Y921
+homeModule: core
+reusability: transversal
+learningDesign:
+  assessmentContext:
+    en: Assess through signal logs, scenario and signpost records, session records and the contingent-action register, with prediction-log calibration over time.
+  recommendedModes:
+  - CL
+  - CAP
+  - COP
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'S2 close-out B (A9 LM with FS; ADR-0030 §4 core residue). Horizon scanning is its own core practice, not a floor requirement (ADR-0025 §4), and was considered and not merged into v1 6.2.5 (ADR-0030 §3.1). Boundary: 6.2.5 builds scenarios for one policy or land-use decision; DC-CAND-12 runs forecast systems; this competency turns signals into workforce moves. Spans L3-L5 (strategy cluster). The signal method mirrors EMST''s own change-signal layer (ADR-0028: source, independence, signposts). Needed by R13 at the strategic level (P1) and R35 (P3). Basis [J]: FS Phase 2 candidate and horizon-scanning protocol.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lm-agent@s2-closeout-b
+  - emstagent:fs-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lm-fs@1
+  sources:
+  - FS-032
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0030
+  - ADR-0025
+  - ADR-0028
+  - ADR-0004
+  - ADR-0003

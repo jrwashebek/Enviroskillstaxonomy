@@ -1,0 +1,42 @@
+id: emst:envhealth/IND-H1JP0YH
+type: Indicator
+prefLabel:
+  en: Measures food temperatures, sanitizer concentration and hot-water temperature with…
+competency: emst:core/CMP-Z9BVC7K
+level: L1
+statement:
+  en: Measures food temperatures, sanitizer concentration and hot-water temperature with calibrated instruments, recording values that match the trainer's readings within tolerance.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- blind-re-measurement
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:envhealth/TSK-D0H73FK
+- emst:envhealth/TSK-Q3S6P7T
+layer: L1
+module: envhealth
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
+editorialNote:
+  en: 'S2 (ADR-0030 §3.2): health-code indicator variant of the envhealth enactment of SL-C03 (emst:envhealth/ENA-59YSQRG); moved from SL-C07.'

@@ -1,0 +1,83 @@
+id: emst:core/SCR-CHC1RCK
+type: StateClassRecord
+prefLabel:
+  en: Environmental Protection Specialist I
+notation:
+- scheme: class-TX
+  value: '2651'
+jurisdictionId:
+  stateFips: '48'
+  label: Texas
+employerType: state-agency
+agency: Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications
+classCode: '2651'
+classTitle: Environmental Protection Specialist I
+seriesId: Environmental Protection Specialist I-V
+levelIndex:
+  ordinal: 1
+  label: I
+supervisoryStatus: non-supervisory
+specEffectiveDate: '2026-07-01'
+workDescriptionText:
+  storage: hash-and-url
+  url: https://hr.sao.texas.gov/Compensation/JobDescriptions/1835.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+mqText:
+  storage: hash-and-url
+  url: https://hr.sao.texas.gov/Compensation/JobDescriptions/1835.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+  paraphrase: Agencies set education, experience or certification requirements and may substitute experience, education, military service, apprenticeships or credentials where statute permits.
+mqLocation: agency-policy
+degreeRule: agency-set
+licensesRequired:
+- credential: specialty registration, certification or licensure
+  issuer: varies by specialty
+  timing: for-some-positions
+payBasis: annual
+payMinMax:
+  min: 40918
+  max: 61130
+  currency: USD
+  basis: annual
+payGradeLabel: B16
+payEffectiveDate: '2026-07-01'
+militaryEquivalent:
+- source: SL-052
+  note: class listed in the Texas SAO military crosswalk (native crosswalk; candidate gold set for X5); codes not extracted
+emstMapping:
+- roleVariant: emst:core/VAR-FKMHQ8C
+  roleLevel: entry
+  matchType: skos:broadMatch
+  confidence: 0.55
+  reviewer: null
+  reviewDate: null
+  crosswalkRecord: emst-x5-tx:R12-environmental-compliance-inspector/state:2651
+  note: competency targets with level are added when WP-08 authors the role profile
+editorialNote:
+  en: Dated record as of 2026-10-23; re-run each 1 July or on plan revision (ADR-0022 X5).
+layer: L6
+module: core
+status: candidate
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2027-07-01'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:ia-wp09@phase4
+  generatedAt: '2026-10-23T19:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp09-crosswalk@1
+  evidenceLabel: E
+  sources:
+  - SL-050
+  - WP09-006
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0022
+  - ADR-0006

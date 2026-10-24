@@ -1,0 +1,62 @@
+id: emst:wildlife/TSK-H1DHV10
+type: Task
+prefLabel:
+  en: Review an application to import or export a listed species against the trade agreement's non-detriment and legal-acquisition findings
+statement:
+  en: Review an application to import or export a listed species against the trade agreement's non-detriment and legal-acquisition findings
+textSha256: ad6c3b3c5378665bead85cdafd3b16d4b4b55749ded10195ebab4e0b8beba6a1
+supports:
+- competency: emst:wildlife/CMP-6S8JA64
+  strength: primary
+workFunction: WF-AUTHORIZE
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: remote
+formationDependency: 'yes'
+homeModule: wildlife
+subsectors:
+- L02
+- L03
+layer: L2
+module: wildlife
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+notation:
+- scheme: EMSTv1
+  value: 6.5.5:T3
+v1Tier: T3
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.5'
+  label: Intergovernmental Relations
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:6.5.5:T3
+    v1Code: 6.5.5
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 201
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -1,0 +1,64 @@
+id: emst:core/TSK-5MQYAVX
+type: Task
+prefLabel:
+  en: Restore dull or damaged hand tools to safe working condition by sharpening, rehafting or replacing parts to the tool standard
+statement:
+  en: Restore dull or damaged hand tools to safe working condition by sharpening, rehafting or replacing parts to the tool standard
+textSha256: 978c776a006125f4c881ec26451adfd2077b807eec5fa9a497090d53a389d4fd
+supports:
+- competency: emst:core/CMP-3AD7TVX
+  strength: primary
+workFunction: WF-OPERATE
+fieldDependency: on-site-preferred
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
+notation:
+- scheme: EMSTv1
+  value: 4.5.1:T2
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Tier: T2
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.5'
+  label: Equipment Operation
+editorialNote:
+  en: 'G-2 split role: execution to protocol (production). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.5.1:T2
+    v1Code: 4.5.1
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 132
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

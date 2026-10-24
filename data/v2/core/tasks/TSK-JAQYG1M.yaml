@@ -1,0 +1,45 @@
+id: emst:core/TSK-JAQYG1M
+type: Task
+prefLabel:
+  en: Decide from telemetry and field cues when a sensor site needs an unscheduled visit or manual sample, recording the trigger and the outcome
+statement:
+  en: Decide from telemetry and field cues when a sensor site needs an unscheduled visit or manual sample, recording the trigger and the outcome
+textSha256: 31104abf45267f9314da3bb36c87d0314819a1d537abb799d5ea373d24f43de4
+supports:
+- competency: emst:core/CMP-BQRDVKJ
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote-capable
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: seasonal
+  placeBoundness: system-specific
+  credentialGate: none
+  currencyDecay: M
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: adaptation or decision in place.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

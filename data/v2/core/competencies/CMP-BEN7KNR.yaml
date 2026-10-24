@@ -1,0 +1,65 @@
+id: emst:core/CMP-BEN7KNR
+type: Competency
+prefLabel:
+  en: Design human-in-the-loop review for AI-assisted environmental workflows
+altLabel:
+  en:
+  - Human oversight design for AI-assisted work
+definition:
+  en: The capability to specify where people review, approve or override AI outputs in a workflow and to show that the review is substantive. It covers review rates by risk, confidence thresholds, escalation triggers, reviewer qualifications and independence, audit logs and review-quality measures. It excludes doing the validation (transversal floor) and authorizing the design (statecraft).
+statement:
+  en: 'Specifies where people review, approve or override AI outputs in an environmental workflow: risk-based review rates, confidence thresholds and escalation triggers, reviewer qualifications, independence from the tool''s producer and audit logs; measures whether review is substantive rather than perfunctory; and redesigns the workflow when review quality degrades.'
+editorialNote:
+  en: Candidate ID DC-CAND-14 (candidate_disposition.csv). DC specialist responsible-AI competency (ADR-0025 §2 layer 2). Distinct from DC-CAND-13 (doing validation) and DC-CAND-19 (deciding risk tier). Authorization of the design is the SC enactment of DC-CAND-13 (emst:core/ENA-SMWHBCW).
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-688MGK2
+  - emst:core/IND-FM6PRY0
+- level: L3
+  indicators:
+  - emst:core/IND-GV3ARM1
+  - emst:core/IND-DMN02YP
+- level: L4
+  indicators:
+  - emst:core/IND-HKPCWQF
+  - emst:core/IND-AFM1D4D
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.5.5
+    relation: merged-from
+    note: process modelling with decision points and controls
+  - v1Key: v1:7.1.4
+    relation: split-from
+    note: oversight design (ADR-0025 §3)
+  sources:
+  - DC-001
+  - DC-007
+  - DC-020
+  - DC-045
+  adr:
+  - ADR-0003
+  - ADR-0025

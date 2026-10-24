@@ -9,7 +9,12 @@ produced); nothing here reads data/v2/ or docs/build/. Display constraints of di
 """
 from __future__ import annotations
 
+import sys
 from collections import defaultdict
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import emstlib as L  # noqa: E402
 
 DISCLAIMER = "Not a classification basis / not a job analysis / not for RIF or rating decisions."
 LEVEL_KEYS = ["entry", "journey", "senior", "lead", "strategic"]
@@ -56,7 +61,11 @@ def tier(role) -> str:
 
 
 def role_key(role_id: str) -> str:
-    return role_id.split(":", 1)[1] if ":" in role_id else role_id
+    """File-name stem for a role's view: the ID's local part (ROL-XXXXXXX once minted; seed-<role_key> for drafts)."""
+    try:
+        return L.id_to_stem(role_id)
+    except ValueError:
+        return role_id.split(":", 1)[1] if ":" in role_id else role_id
 
 
 def roles(released):
@@ -69,6 +78,15 @@ def variants_of(released):
         if v.get("type") == "RoleVariant" and not held(v):
             out[v.get("variantOf")].append(v)
     return out
+
+
+def variant_for(released, role_id, actor):
+    """The role's variant for a sector actor, found by variantOf and sectorActor (never by seed-key suffix, which minted
+    IDs do not carry; ADR-0031 §2). None if there is none. On 2026-10-23 every role has at most one federal, state and
+    local variant (only R37's private actor has two); ties resolve by ID so the view stays deterministic."""
+    hits = sorted((v for v in released.values() if v.get("type") == "RoleVariant" and v.get("variantOf") == role_id
+                   and v.get("sectorActor") == actor and not held(v)), key=lambda v: v["id"])
+    return hits[0] if hits else None
 
 
 def parse_other(s):

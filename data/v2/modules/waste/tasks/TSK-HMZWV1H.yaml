@@ -1,0 +1,45 @@
+id: emst:waste/TSK-HMZWV1H
+type: Task
+prefLabel:
+  en: Determine whether a waste stream is hazardous from process knowledge and laboratory data, documenting the listing and characteristic evaluation
+statement:
+  en: Determine whether a waste stream is hazardous from process knowledge and laboratory data, documenting the listing and characteristic evaluation
+textSha256: f207fb89e6ad2201a5fef74c320ae63bafee7f30c1981752cd8e2de95dc113bf
+supports:
+- competency: emst:waste/CMP-Q4HAQQP
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-COMPLIANCE
+fieldDependency: remote-capable
+formationDependency: 'yes'
+credentialGates:
+- credential: emst:core/CRD-3182146
+  kind: preferred
+signOffAuthority:
+  kind: legal-signatory
+homeModule: waste
+subsectors:
+- P03
+- P06
+layer: L2
+module: waste
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

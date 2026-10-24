@@ -1,0 +1,107 @@
+id: emst:core/CMP-X72VMYB
+type: Competency
+prefLabel:
+  en: Administer contracts, grants and intergovernmental agreements
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to prepare, monitor, amend and close out contracts, grants, cooperative and intergovernmental agreements and routine purchases so that deliverables, payments and changes comply with the instrument and the procurement and financial-assistance requirements that apply. Agreement design across jurisdictions is a separate competency.
+statement:
+  en: Prepares scopes of work and agreement documents for contracts, grants, cooperative agreements and intergovernmental instruments; selects the instrument type that fits the relationship; monitors deliverables, invoices and compliance with terms and cross-cutting requirements; and amends or closes out agreements with a complete file.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - contract and agreement administration
+  - contracting officer's representative
+  - grants management
+  - cooperative agreement administration
+  - procurement
+instrumentSensitivity:
+- mechanism: DM-15
+  rationale:
+    en: Fees and agreement revenue change what agreements must account for.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+- mechanism: DM-19
+  rationale:
+    en: Programme funding cuts and reinstatements change grant and agreement portfolios.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+notation:
+- scheme: EMSTv1
+  value: 3.1.4
+v1Domain:
+  code: '3'
+  label: Management & Administrative Skills
+v1SkillArea:
+  code: '3.1'
+  label: Project Management
+editorialNote:
+  en: 'WP-05 (A5 SC). v1 3.1.4 rewrite (title defect fixed); absorbs 3.3.4 (procurement). Intergovernmental instruments (cooperative agreements, stewardship agreements, personnel assignments, delegation agreements, grant work plans) added with SC-C08 for agreement design (SL, IO verdicts). Indicators adapted in part from IO exemplar rewrites for v1 3.1.4. Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-RESOURCE. Rationale: Contracts, grants and agreements; add intergovernmental instruments (cooperative agreements, GNA, IPA, delegation agreements, grant work plans) with SC-C08 for agreement design; absorbs 3.3.4; title defect fixed (SL, IO verdicts). Role verdicts considered: IO:change|SL:change.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:3.1.4
+    v1Code: 3.1.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 80
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:3.1.4
+    v1Code: 3.1.4
+    v1Table: source_text/competencies
+    sourceTextLine: 5198
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2); title/description split
+  - v1Key: v1:3.3.4
+    v1Code: 3.3.4
+    relation: merged-from
+    note: v1 3.3.4 (merge) → emst:core/CMP-X72VMYB per v1_disposition.csv
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-EHW5ZCJ
+  - emst:core/IND-B9XYKT1
+- level: L2
+  indicators:
+  - emst:core/IND-HDB1Q57
+  - emst:core/IND-MR0QQS2
+- level: L3
+  indicators:
+  - emst:core/IND-HF892YR
+  - emst:core/IND-6MYGGAE
+- level: L4
+  indicators:
+  - emst:core/IND-YY99VAV
+  - emst:core/IND-7APMZQR

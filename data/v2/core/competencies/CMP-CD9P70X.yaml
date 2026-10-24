@@ -1,0 +1,72 @@
+id: emst:core/CMP-CD9P70X
+type: Competency
+prefLabel:
+  en: Manage physical assets and capital plans with risk-based asset management
+altLabel:
+  en:
+  - Asset management
+  - Equipment and fleet management
+  - Facilities operations and maintenance
+  - Capital improvement planning
+definition:
+  en: 'Keeping physical assets (treatment plants and pipe networks, roads and trails, buildings and field stations, fleets and field equipment) able to deliver a stated level of service at the lowest defensible life-cycle cost: inventory, condition and criticality assessment, likelihood and consequence-of-failure scoring, maintenance planning, repair, renewal and replacement decisions, and long-term capital and financial plans. Covers facility operation and maintenance and equipment management as contexts. Excludes operating treatment processes (DB-C01, DB-C02), protecting operational technology (DB-C06) and executing public budgets (SC-C10).'
+statement:
+  en: Maintains an asset inventory with condition and criticality, scores likelihood and consequence of failure, plans maintenance and renewal against stated levels of service, and builds capital and financial plans that justify repair, renewal or replacement timing and funding, so that infrastructure, facilities and equipment keep delivering service at the lowest defensible life-cycle cost.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-MS8WVJR
+  - emst:core/IND-78MQD6D
+- level: L2
+  indicators:
+  - emst:core/IND-FWEQSCA
+  - emst:core/IND-G85497W
+  - emst:core/IND-0MXKG4V
+- level: L3
+  indicators:
+  - emst:core/IND-ZH5Z4CY
+  - emst:core/IND-X6KA0M7
+- level: L4
+  indicators:
+  - emst:core/IND-SAQQRT0
+  - emst:core/IND-0Z9ZVNK
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'S2 close-out B (A6 DB; ADR-0030 §4 core residue). Absorbs v1 3.3.2 (equipment and asset management) and 3.3.3 (facilities operations and maintenance), which are contexts of risk-based asset management (SC verdict: not Statecraft). Recurs in utilities, parks and facilities, roads and trails, and fleets (G-4); module enactments in water, forest and parks were written in WP-06. Technical, managerial and financial capacity is a main determinant of small-system compliance [J]. Asset-management and maintenance software is L4. Needed by R25 and R21 (P2). Basis [J]: DB Phase 2 candidate DB-C05 and sources.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  derivedFrom:
+  - v1Key: v1:3.3.2
+    relation: merged-from
+    note: equipment and asset management
+  - v1Key: v1:3.3.3
+    relation: merged-from
+    note: facilities operations and maintenance
+  sources:
+  - DB-041
+  - DB-042
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0030
+  - ADR-0003
+  - ADR-0004
+  - ADR-0018

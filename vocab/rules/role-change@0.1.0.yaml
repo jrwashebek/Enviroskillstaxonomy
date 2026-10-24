@@ -1,7 +1,7 @@
 # EMST computed-view rule (SPEC §14.2-§14.3; ADR-0027 §1-2, ADR-0028; CR-FH-001 #1-#2, CR-CP-001 A3, B6). Normative definition; code in `implementation`.
 ruleId: role-change
 version: 0.1.0
-status: interim
+status: active
 steward: FH (definition proposal, WP-08) · CP (summary, WP-12) · LM (signals) · DE (implementation) · CA (definition)
 decidedIn: [ADR-0008, ADR-0027, ADR-0028, ADR-0030, CR-FH-001, CR-CP-001]
 reference_implementation: "pipelines/views/change_view.py (FH, WP-08) and site/lib/model.mjs role-change summary (CP, WP-12); authoring tools, never run by CI"
@@ -20,6 +20,7 @@ outputs:
   view: "views/role_change/<role_key>.json; views/role_change/summary.json"
   fields: "role, variant, roleLevels[{level, tasks[{task, status}], counts{assessed, pending}}], signals[], instruments[{instrument, role, status, asOf}], ruleId, ruleVersion, buildCommit"
 parameters: {}
-implementation: scripts/build_release.py#Builder.views (to be ported by DE from the reference implementations; RULINGS_FOR_DE.md §19)
+implementation: scripts/rules/role_change.py#compute (called from scripts/build_release.py#Builder.views)
 changeNote:
   - {date: '2026-10-23', note: "Registered; merges FH's role-change-inputs and CP's role-change-summary into one rule for one view; counts, not time shares (CR-FH-001; CR-CP-001; ADR-0030)."}
+  - {date: '2026-10-23', note: "Activated by the CA at WP-16 (ADR-0031 §2; P-02). The release port in scripts/rules/role_change.py reads released records only, finds variants by variantOf and sectorActor (never by seed-key suffix), and applies display-gate@1.1.0; the WP-08 generator stays an authoring preview."}

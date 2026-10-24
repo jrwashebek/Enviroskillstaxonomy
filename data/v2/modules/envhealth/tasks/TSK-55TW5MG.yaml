@@ -1,0 +1,52 @@
+id: emst:envhealth/TSK-55TW5MG
+type: Task
+prefLabel:
+  en: Evaluate an onsite wastewater site's soils, separation distances and proposed design before issuing a construction permit
+statement:
+  en: Evaluate an onsite wastewater site's soils, separation distances and proposed design before issuing a construction permit
+textSha256: a7564f0d774db32cebe312337c4789a01a1d3065256018c316e085d2e0d3142f
+supports:
+- competency: emst:envhealth/CMP-AWSQ6EK
+  strength: primary
+workFunction: WF-AUTHORIZE
+relationshipTypes:
+- public
+workflowProfiles:
+- WP-REGPROGRAM
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: seasonal
+  placeBoundness: site-specific
+  currencyDecay: L
+  credentialGate: licence
+credentialGates:
+- credential: emst:core/CRD-T1G7FNC
+  kind: preferred
+- credential: emst:core/CRD-32J1RWM
+  kind: preferred
+homeModule: envhealth
+subsectors:
+- H01
+layer: L2
+module: envhealth
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

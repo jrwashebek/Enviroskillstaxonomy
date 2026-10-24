@@ -1,0 +1,50 @@
+id: emst:forest/TSK-PJ4J4Q9
+type: Task
+prefLabel:
+  en: Supervise uncrewed-aircraft ignition over a burn unit, halting ignition when the firing pattern or fire behaviour departs from the plan
+statement:
+  en: Supervise uncrewed-aircraft ignition over a burn unit, halting ignition when the firing pattern or fire behaviour departs from the plan
+textSha256: 5925297dabfacbf05c7ce94b85e1d6c4d2a553de620cd8ae1f235b8677dc3507
+supports:
+- competency: emst:forest/CMP-8W0ZQTM
+  strength: primary
+workFunction: WF-BUILD
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  credentialGate: internal-qualification
+credentialGates:
+- credential: emst:core/CRD-3N2G328
+  kind: required
+- credential: emst:core/CRD-X8CTZ91
+  kind: required
+signOffAuthority:
+  kind: position-qualification
+homeModule: forest
+subsectors:
+- L07
+- L01
+- L05
+layer: L2
+module: forest
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

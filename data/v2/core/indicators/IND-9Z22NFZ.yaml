@@ -1,0 +1,38 @@
+id: emst:core/IND-9Z22NFZ
+type: Indicator
+prefLabel:
+  en: Operates a sensor data pipeline from ingest to analysis-ready data, resolving gaps and timestamp…
+competency: emst:core/CMP-BG5GMFW
+level: L2
+statement:
+  en: Operates a sensor data pipeline from ingest to analysis-ready data, resolving gaps and timestamp errors against the deployment log.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-TRTTE2M
+- emst:core/TSK-VYE1E34
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

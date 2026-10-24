@@ -1,0 +1,43 @@
+id: emst:core/IND-PMQYVCT
+type: Indicator
+prefLabel:
+  en: Identifies the requirements in a draft vacancy announcement that the job analysis does not support, stating the job-related alternative for each.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-6035KC2
+level: L3
+statement:
+  en: Identifies the requirements in a draft vacancy announcement that the job analysis does not support, stating the job-related alternative for each.
+augmentationMode: unaided
+assessmentMethods:
+- seeded-error-work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- annotated announcement
+servedTasks:
+- emst:core/TSK-9M6M7KH
+distinguishingAttribute: ATT-KNO
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

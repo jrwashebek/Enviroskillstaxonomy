@@ -42,7 +42,7 @@ WCAG 2.2 AA (a superset of Section 508's WCAG 2.0 AA and the WCAG 2.1 AA require
 
 ### 5. The sector-facing package (Phase 4 deliverables)
 
-- **Flagship report "How environmental jobs are changing" (CC BY 4.0):** built from verified external evidence (LM, FS, FC, DC, SC, DB, PS, SL, TN syntheses), v2 structural findings and pre-registered pilot plans; every figure tier-labelled; v1 single-analyst statistics appear only as methodology history unless the project lead decides otherwise; the career-ladder finding is presented as a hypothesis with its mechanism and evidence status, co-published with a nonpartisan partner only after IO and LM validation (P-AS-14).
+- **Flagship report "How environmental jobs are changing" (CC BY 4.0):** built from verified external evidence (LM, FS, FC, DC, SC, DB, PS, SL, TN syntheses), v2 structural findings and pre-registered pilot plans; every figure tier-labelled; v1 single-analyst statistics appear only as methodology history unless the project lead decides otherwise; the career-ladder finding is presented as a hypothesis with its mechanism and evidence status. It is published as a finding only after named human reviewers (a qualified industrial-organizational psychologist and a labor economist) validate it, in addition to the IO and LM agent reviews, and it is then co-published with a nonpartisan partner (P-AS-14; amended by ADR-0031, CR-FIX-A-001).
 - **Briefing deck** for federal, state and NGO audiences (mandate-framed: merit, skills-based hiring, mission readiness, knowledge retention).
 - **Interactive explorer** = CP's Tier 1 static site with Views 1–4 for the P1 corridor roles.
 - **Role-change briefs** (two pages each) for the 13 corridor roles and the Forester PD regenerated in FES format.
@@ -58,3 +58,5 @@ WCAG 2.2 AA (a superset of Section 508's WCAG 2.0 AA and the WCAG 2.1 AA require
 - **2026-10-23 — CR-LM-002, CR-IO-002 / ADR-0029 §6, §9 (CA).**
   - **View 1's external context.** It shows occupation-level index values attached through X3, labelled "Occupation-level external index; not specific to this role's tasks", with dispersion, index release and match type. Values matched more broadly than `closeMatch` appear only in the evidence drawer, and values are never averaged across indices.
   - **Task work function.** In View 1 it is "Assessment pending" until the first reliability study reports.
+
+- **2026-10-23 — CR-FIX-A-001 / ADR-0031 §4 (CA, WP-16).** Agent validation (IO, LM) is not enough to publish the career-ladder hypothesis as a finding. Named human reviewers, a qualified industrial-organizational psychologist and a labor economist, must validate it first; co-publication with a nonpartisan partner follows. The rule binds the project lead's publications, and the report's §5 sentence changes to match (orchestrator package edit).

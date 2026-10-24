@@ -1,0 +1,40 @@
+id: emst:core/IND-XYWBE5W
+type: Indicator
+prefLabel:
+  en: Completes pre-launch checks
+competency: emst:core/CMP-A140WER
+level: L1
+statement:
+  en: Completes pre-launch checks, a float plan and a passenger briefing before every departure, with records checked by the boat supervisor.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+- task-book-observation
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-ADT9BCD
+safetyOrLegalCritical: true
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

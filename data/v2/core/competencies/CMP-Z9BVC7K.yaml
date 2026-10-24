@@ -1,0 +1,109 @@
+id: emst:core/CMP-Z9BVC7K
+type: Competency
+prefLabel:
+  en: Conduct regulatory compliance inspections
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability of a regulatory authority's inspector to plan and conduct inspections of facilities, sites or activities, gather evidence to an evidentiary standard, document findings of fact against permit conditions and rules, and start the response the enforcement policy sets. Excludes building the enforcement case, which is a separate competency.
+statement:
+  en: Plans and conducts announced or unannounced inspections of facilities, sites or activities against permit conditions and applicable rules; observes, measures and samples to evidentiary standard; documents findings of fact; and issues or recommends compliance assistance, notices of violation or referral as the program's enforcement response policy directs.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - compliance inspection
+  - environmental inspector
+  - facility inspection
+  - site inspection
+instrumentSensitivity:
+- mechanism: DM-09
+  rationale:
+    en: Jurisdictional scope decides which sites and waters are inspected under federal authority.
+  evidenceLabel: E
+  sources:
+  - V2-07
+- mechanism: DM-11
+  rationale:
+    en: Inspection authority follows delegated programme status.
+  evidenceLabel: E
+  sources:
+  - SC-021
+- mechanism: DM-14
+  rationale:
+    en: Remote sensing, continuous monitoring and electronic reporting change inspection targeting and evidence.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+- mechanism: DM-16
+  rationale:
+    en: Inspector staffing levels change inspection capacity without changing the skill.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+mirrors:
+- target: emst:core/CMP-CZZ31P2
+  relation: regulated-party-mirror
+learningDesign:
+  assessmentContext:
+    en: Assess through accompanied inspections recorded on a task book, report audits and moot testimony; chain-of-custody sampling is a safety- and legal-critical indicator.
+editorialNote:
+  en: 'WP-05 (A5 SC; SL reviewed). Survivor for regulatory inspection: absorbs FC-C04, DB-C24 (part), FH-C11 (part) and the authority half of v1 6.1.2. Inspection is the modal state and local environmental task (TX EPS and NRS, PA EPS, FL DEP) [E: SL-050, SL-078, SL-059]. Field craft and statecraft are both defining (findings of fact that must hold in an enforcement proceeding; codebook E4). Indicators adapted in part from IO exemplar rewrites for v1 6.1.2. Mirror: DB-C26 (facility compliance management, regulated party). S2 close-out A (A5 SC; CR-SC-001 #3): mirror links migrated from docs/build/WP-05/mirror_links.csv. | S2 (CR-FC-001 ruling; FC as WP-08 contributor, SC review pending): field-performance anchors of merged candidate FC-C04 added: adaptation-in-place task emst:core/TSK-WKBE5ZJ (G-2), L2 beyond-checklist indicator, L1 field-measurement integrity indicator, L2 assisted imagery check (links FC-C02 ground-truthing); contributing links from the sampling task to FC-C24 and FC-C16 and from the site inspection task to v1-4.4.4-A. FC-C04 lineage is recorded here because derivedFrom takes v1 keys only.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SL-050
+  - SL-059
+  - SL-078
+  - SL-083
+  - SL-088
+  derivedFrom:
+  - v1Key: v1:6.1.2
+    relation: split-from
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-XPV4QW3
+  - emst:core/IND-EY5BDCN
+  - emst:core/IND-H4X87JE
+- level: L2
+  indicators:
+  - emst:core/IND-N3ZER2E
+  - emst:core/IND-2TSER1T
+  - emst:core/IND-1C4ZRFE
+  - emst:core/IND-NXWYQY3
+- level: L3
+  indicators:
+  - emst:core/IND-5A93FZA
+  - emst:core/IND-TQ5E7JA
+  - emst:core/IND-R5FDV5G
+- level: L4
+  indicators:
+  - emst:core/IND-G0WP6AD
+  - emst:core/IND-P2C0AYK

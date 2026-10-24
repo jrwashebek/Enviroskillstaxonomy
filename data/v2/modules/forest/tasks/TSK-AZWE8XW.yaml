@@ -1,0 +1,64 @@
+id: emst:forest/TSK-AZWE8XW
+type: Task
+prefLabel:
+  en: Mop up heat along the control line until the perimeter meets the incident's containment standard
+statement:
+  en: Mop up heat along the control line until the perimeter meets the incident's containment standard
+textSha256: 51ff636e3e0388492de0df6a4ded2628463063dde2dbed712d0491e301422b62
+supports:
+- competency: emst:forest/CMP-XBY22QT
+  strength: primary
+workFunction: WF-RESPOND
+workflowProfiles:
+- WP-INCIDENT
+fieldDependency: on-site-required
+formationDependency: 'yes'
+credentialGates:
+- credential: emst:core/CRD-3N2G328
+  kind: required
+homeModule: forest
+subsectors:
+- L07
+layer: L2
+module: forest
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+notation:
+- scheme: EMSTv1
+  value: 4.3.1:T3
+v1Tier: T3
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.3'
+  label: Fire Management
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2). WP-06 rewrote the statement to v2 task rules and re-pointed it to its module successor.
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.1:T3
+    v1Code: 4.3.1
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 122
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

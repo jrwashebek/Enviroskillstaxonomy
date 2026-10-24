@@ -1,0 +1,86 @@
+id: emst:core/CMP-FTP78TV
+type: Competency
+prefLabel:
+  en: Design maps and visualizations that communicate environmental data and uncertainty
+altLabel:
+  en:
+  - Cartography and visualization
+definition:
+  en: The capability to design maps, charts and other visual products, including interactive and three-dimensional ones, whose scale, symbology, encoding and depiction of uncertainty fit the audience and the decision. Visualization and immersive platforms are L4.
+statement:
+  en: Designs maps, charts and other visual products, including interactive and three-dimensional ones, whose scale, symbology, colour, visual encoding and depiction of uncertainty fit the audience and the decision; tests products with intended users; and avoids encodings that mislead.
+editorialNote:
+  en: 'Rewritten by WP-04 around visual encoding and uncertainty depiction for the audience; absorbs the durable part of v1 2.7.4 (immersive platforms to L4 watch emst:core/TL-VT0GB12). v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | MODE-ENGAGE (DC). Rationale: Durable share high; rewritten around visual encoding and uncertainty depiction for the audience; absorbs the durable part of 2.7.4 (DC disposition). Role verdicts considered: DC:change.'
+notation:
+- scheme: EMSTv1
+  value: 2.1.5
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-VWV2A8K
+  - emst:core/IND-J3XEA21
+- level: L2
+  indicators:
+  - emst:core/IND-0GJJTEJ
+  - emst:core/IND-3N8RXGV
+- level: L3
+  indicators:
+  - emst:core/IND-5S1HHHG
+  - emst:core/IND-C641MFG
+- level: L4
+  indicators:
+  - emst:core/IND-0R38XKR
+  - emst:core/IND-299PNAD
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.1.5
+    v1Code: 2.1.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 46
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:2.1.5
+    v1Code: 2.1.5
+    v1Table: source_text/competencies
+    sourceTextLine: 3256
+    relation: reference-only
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:2.7.4
+    v1Code: 2.7.4
+    relation: merged-from
+    note: v1 2.7.4 (move-to-tools) → emst:core/CMP-FTP78TV per v1_disposition.csv
+  adr:
+  - ADR-0003
+  - ADR-0011
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.1'
+  label: Geospatial Technologies

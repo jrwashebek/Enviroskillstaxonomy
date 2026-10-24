@@ -1,0 +1,101 @@
+id: emst:core/CMP-6S4M26C
+type: Competency
+prefLabel:
+  en: Design and facilitate meetings among parties with differing views
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to design and facilitate meetings, workshops and working sessions among parties with differing views, in person or online, and to carry their outcomes into the decision. Meeting platforms are L4 tools.
+statement:
+  en: 'Designs and facilitates meetings, workshops and working sessions among parties with differing views, in person or online: sets purpose, agenda and ground rules, manages participation and group dynamics, records outcomes and commitments, and follows up so that the meeting''s results carry into the decision.'
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - meeting facilitation and design
+  - workshop facilitation
+  - virtual meeting facilitation
+instrumentSensitivity:
+- mechanism: DM-04
+  rationale:
+    en: Discretion over participation changes when and how meetings are convened.
+  evidenceLabel: E
+  sources:
+  - SC-038
+notation:
+- scheme: EMSTv1
+  value: 5.2.2
+v1Domain:
+  code: '5'
+  label: Communication & Engagement Skills
+v1SkillArea:
+  code: '5.2'
+  label: Stakeholder Engagement
+editorialNote:
+  en: 'WP-05 (A5 SC). v1 5.2.2 carried with v2 indicators; absorbs the facilitation remainder of v1 2.5.1 (platforms moved to L4; the 2.5.1 tasks were rewritten by WP-04 and already point here). Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | MODE-ENGAGE. Rationale: Relational core (SC carry); absorbs facilitation from 2.5.1. Role verdicts considered: none recorded.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:5.2.2
+    v1Code: 5.2.2
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 153
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:5.2.2
+    v1Code: 5.2.2
+    v1Table: source_text/competencies
+    sourceTextLine: 10412
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:2.5.1
+    v1Code: 2.5.1
+    relation: merged-from
+    note: v1 2.5.1 (move-to-tools) → emst:core/CMP-6S4M26C per v1_disposition.csv
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-8RYK17K
+  - emst:core/IND-8CHYNX2
+- level: L2
+  indicators:
+  - emst:core/IND-YQP1FTQ
+  - emst:core/IND-WGCJM1W
+- level: L3
+  indicators:
+  - emst:core/IND-S49GWJM
+  - emst:core/IND-9J9X1VP
+- level: L4
+  indicators:
+  - emst:core/IND-4RXSNVF
+  - emst:core/IND-ZX4QRGT

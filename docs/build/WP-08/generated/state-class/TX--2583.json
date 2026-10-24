@@ -2,13 +2,13 @@
  "stamp": {
   "ruleId": "state-class-view",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/state_class_view.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
  "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
- "classRecord": "seed:class/TX/2583",
+ "classRecord": "emst:core/SCR-NGGTX16",
  "class": {
   "jurisdiction": "Texas",
   "employerType": "state-agency",
@@ -44,10 +44,11 @@
  },
  "mappings": [
   {
-   "roleVariant": "seed:R26-environmental-health-specialist/state",
-   "role": "seed:R26-environmental-health-specialist",
+   "roleVariant": "emst:envhealth/VAR-39GZHWJ",
+   "role": "emst:envhealth/ROL-NTT889J",
    "roleTitle": "Environmental health specialist",
    "tier": "P2",
+   "sectorActor": "state",
    "authorityPosition": "regulator",
    "roleLevels": [
     "entry"
@@ -58,217 +59,263 @@
    "crosswalkRecord": "emst-x5-tx:R26-environmental-health-specialist/state:2583",
    "competencyTargets": [
     {
-     "competency": "seed:LC-C-07",
-     "label": "Investigate outbreaks, complaints and emerging environmental health hazards to control exposure",
-     "targetLevels": {
-      "entry": "L1"
-     },
-     "importance": 5,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:SL-C07",
+     "competency": "emst:envhealth/CMP-AWSQ6EK",
      "label": "Review plans and evaluate sites for environmental health permits",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 5,
-     "distinguishing": true,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DB-C29",
-     "label": "Communicate environmental and health risks under uncertainty",
+     "competency": "emst:envhealth/CMP-P270AFQ",
+     "label": "Investigate outbreaks, complaints and emerging environmental health hazards to control exposure",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-E"
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
     },
     {
-     "competency": "seed:FC-C16",
+     "competency": "emst:core/CMP-G675QW3",
      "label": "Collect trace-level and genetic environmental samples without contamination",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:FC-C24",
+     "competency": "emst:core/CMP-72R1NBG",
      "label": "Manage field sample custody and field quality control",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-02",
-     "label": "Use AI tools responsibly in everyday environmental work",
+     "competency": "emst:core/CMP-XN9631Y",
+     "label": "Communicate environmental and health risks under uncertainty",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
-     "transversalCluster": "TX-A"
+     "transversalCluster": "TX-E"
     },
     {
-     "competency": "seed:DC-CAND-13",
-     "label": "Validate AI-generated work products before professional use",
-     "targetLevels": {
-      "entry": "L1"
-     },
-     "importance": 3,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-A"
-    },
-    {
-     "competency": "seed:SL-C10",
+     "competency": "emst:core/CMP-BR5Q9TJ",
      "label": "Provide compliance and technical assistance to regulated entities and local governments",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-01",
-     "label": "Interpret and question environmental data products in everyday work",
-     "targetLevels": {
-      "entry": "L1"
-     },
-     "importance": 2,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-A"
-    },
-    {
-     "competency": "seed:DC-CAND-05",
-     "label": "Record provenance and AI involvement in work products",
-     "targetLevels": {
-      "entry": "L1"
-     },
-     "importance": 2,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-A"
-    },
-    {
-     "competency": "seed:v1-1.4.3",
+     "competency": "emst:core/CMP-9FGSY1P",
      "label": "Identify organisms from field characters, specimens, images and recordings",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-FCXN4BQ",
+     "label": "Interpret and question environmental data products in everyday work",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-7JGQFKZ",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-MS40XXX",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-8EAS8ZR",
+     "label": "Record provenance and AI involvement in work products",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-35BT97W",
+     "label": "Coordinate environmental response operations within incident command",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-JHR1JC7",
+     "label": "Build working partnerships with communities affected by environmental decisions",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-Q251V3X",
+     "label": "Conduct participatory and community-based environmental research",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-Z9BVC7K",
+     "label": "Conduct regulatory compliance inspections",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     }
    ],
+   "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "topTasks": [
     {
-     "task": "seed:LC-C-07-T1",
-     "statement": "Collect food, water and environmental samples during an outbreak investigation following chain-of-custody and laboratory submission requirements",
-     "pctTime": 8.1,
-     "critical": true,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:LC-C-07-T2",
-     "statement": "Identify contributing factors of a foodborne outbreak from interviews with an implicated establishment's staff and review of its records",
-     "pctTime": 8.1,
-     "critical": true,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:SL-C07-T1",
+     "task": "emst:envhealth/TSK-D0H73FK",
      "statement": "Inspect a retail food establishment for foodborne illness risk factors, ranking violations by public-health risk and recording required corrections",
-     "pctTime": 7.1,
-     "critical": true,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:SL-C07-T4",
+     "task": "emst:envhealth/TSK-Q3S6P7T",
      "statement": "Inspect a public swimming pool's water chemistry, circulation and safety equipment, closing the pool when an imminent health hazard exists",
-     "pctTime": 6.5,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:LC-C-07-T3",
+     "task": "emst:envhealth/TSK-MP06T4H",
+     "statement": "Collect food, water and environmental samples during an outbreak investigation following chain-of-custody and laboratory submission requirements",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:envhealth/TSK-NW50RXT",
+     "statement": "Identify contributing factors of a foodborne outbreak from interviews with an implicated establishment's staff and review of its records",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:envhealth/TSK-H8SDDAB",
      "statement": "Survey larval and adult mosquito populations at fixed and complaint sites following the vector programme's trapping protocol",
-     "pctTime": 6.5,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-6.1.5-T1",
+     "task": "emst:core/TSK-S9AGFKM",
      "statement": "Investigate a reported environmental violation, establishing the facts, responsible party and applicable requirement before recommending an enforcement response",
-     "pctTime": 6.5,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-6.1.5-T2",
+     "task": "emst:core/TSK-D5Q6F2K",
      "statement": "Assemble the evidence file for an enforcement case, linking each alleged violation to the inspection findings, records and samples that prove it",
-     "pctTime": 6.5,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:fc-clean-adapt",
+     "task": "emst:core/TSK-3Y3C3HZ",
      "statement": "Change sampling location, order or method on site when a likely contamination source is found, recording the source and the change",
-     "pctTime": 6.5,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:fc-coc-complete",
+     "task": "emst:core/TSK-D6M2KZX",
      "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
-     "pctTime": 6.5,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:fc-qc-collect",
+     "task": "emst:core/TSK-KJWMG91",
      "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
-     "pctTime": 6.5,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:lc-txe-answer-public-questions",
+     "task": "emst:core/TSK-MWZH0XP",
      "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
-     "pctTime": 6.5,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:DB-C39-T1",
+     "task": "emst:envhealth/TSK-7E13TRB",
      "statement": "Map heat vulnerability across a jurisdiction from temperature, health, housing and population data to target cooling resources and outreach",
-     "pctTime": 4.9,
-     "critical": false,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     }
    ],
    "credentialGates": {
     "shown": [
      {
-      "credential": "seed:crd-rehs-rs",
+      "credential": "emst:core/CRD-32J1RWM",
       "label": "Registered Environmental Health Specialist / Registered Sanitarian (REHS/RS)",
       "kind": "preferred",
       "issuerVerifiedSources": [

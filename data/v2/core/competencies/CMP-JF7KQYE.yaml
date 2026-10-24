@@ -1,0 +1,81 @@
+id: emst:core/CMP-JF7KQYE
+type: Competency
+prefLabel:
+  en: Direct and evaluate applicant- or contractor-prepared environmental documents
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability of the deciding agency to set the scope and standards for environmental documents that project sponsors or their contractors prepare, to evaluate their adequacy and objectivity, and to document its own independent evaluation before adopting them. Excludes preparing the document, which is the service-provider enactment of environmental impact review.
+statement:
+  en: Sets the scope, standards and independence safeguards for environmental documents prepared by project sponsors or their contractors, evaluates their adequacy and objectivity, requires corrections, and documents the agency's own independent evaluation before the agency adopts the document as its own.
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - applicant-prepared EA/EIS oversight
+  - third-party document oversight
+instrumentSensitivity:
+- mechanism: DM-02
+  rationale:
+    en: Sponsor-paid acceleration increases sponsor- and contractor-prepared documents.
+  evidenceLabel: E
+  sources:
+  - V2-04
+- mechanism: DM-15
+  rationale:
+    en: The acceleration fee is set at a share of preparation cost, so oversight is funded by the sponsor.
+  evidenceLabel: E
+  sources:
+  - V2-04
+mirrors:
+- target: emst:core/ENA-MV3KP69
+  relation: preparer-mirror
+editorialNote:
+  en: 'WP-05 (A5 SC). Agency staff shift from authoring to supervising under sponsor-prepared and sponsor-paid review [E: SC-014, SC-038, V2-04]. Mirror: the service-provider enactment of SL-C08 (preparer) [J]. S2 close-out A (A5 SC; CR-SC-001 #3): mirror links migrated from docs/build/WP-05/mirror_links.csv.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  sources:
+  - SC-014
+  - SC-038
+  - V2-04
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-M1TTXSB
+  - emst:core/IND-VRJGDER
+- level: L3
+  indicators:
+  - emst:core/IND-M4GNXYF
+  - emst:core/IND-4KJ93SV
+  - emst:core/IND-0CFWMN1
+- level: L4
+  indicators:
+  - emst:core/IND-CJN57SP
+  - emst:core/IND-27EEBEZ

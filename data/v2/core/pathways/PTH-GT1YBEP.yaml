@@ -1,0 +1,196 @@
+id: emst:core/PTH-GT1YBEP
+type: Pathway
+prefLabel:
+  en: 'Exploratory pathway: onboarding a new environmental compliance inspector to independent inspection'
+definition:
+  en: 'Takes a new hire from entry to journey level in the compliance inspector role over about twelve months: safety, independence, field sampling, shadowed then observed inspections, enforcement documentation, public contact and AI-output validation (LC-PW-01 adapted). Exploratory.'
+notation:
+- scheme: mvp-corridor
+  value: COR-3
+fromVariant: emst:core/ROL-2W43QDA
+toVariant: emst:core/ROL-2W43QDA
+pathwayType: new-hire
+modes:
+- WBL
+- FD
+- CL
+- OL
+- SIM
+- AIP
+- MEN
+- CAP
+emstRelease: 2.0.0-rc.1
+cloOutcomes:
+- competency: emst:core/CMP-CERKVPH
+  level: L1
+- competency: emst:core/CMP-Z9BVC7K
+  level: L1
+- competency: emst:core/CMP-RPM63WZ
+  level: L1
+- competency: emst:core/CMP-M17HJEJ
+  level: L1
+- competency: emst:core/CMP-72R1NBG
+  level: L1
+- competency: emst:core/CMP-Z9BVC7K
+  level: L2
+- competency: emst:core/CMP-BE3XH7W
+  level: L1
+- competency: emst:core/CMP-XN9631Y
+  level: L1
+- competency: emst:core/CMP-BR5Q9TJ
+  level: L1
+- competency: emst:core/CMP-MS40XXX
+  level: L1
+- competency: emst:core/CMP-G1H42DS
+  level: L1
+- competency: emst:core/CMP-RDN7QER
+  level: L2
+assessmentPlan:
+  en: 'Each CLO is assessed with the methods its indicators list; field-craft outcomes are assessed at least once in the field, statecraft outcomes in a live or simulated stakeholder or legal-administrative setting, data-craft outcomes on real data with a reproducible product (LC template R4-R5). Assisted-mode outcomes include a seeded-error validation drill. Supervisor formation plan required: the learner''s supervisor works to emst:core/CMP-ZPEFG5E at L2 or above and a named mentor or evaluator to emst:core/CMP-0N97D81 at L3 (ADR-0026 R7). Training use only; never a selection instrument (IO).'
+sequence:
+- step: 1
+  tasks:
+  - emst:core/TSK-HZHFQH7
+  - emst:core/TSK-QXZXEXB
+  - emst:core/TSK-NC7ANQM
+  cloOutcomes:
+  - competency: emst:core/CMP-CERKVPH
+    level: L1
+  - competency: emst:core/CMP-Z9BVC7K
+    level: L1
+  - competency: emst:core/CMP-RPM63WZ
+    level: L1
+  roleLevel: entry
+  note:
+    en: Facility safety, inspection planning and independence.
+- step: 2
+  tasks:
+  - emst:core/TSK-31B4PGH
+  - emst:core/TSK-GPSBMKS
+  - emst:core/TSK-D6M2KZX
+  cloOutcomes:
+  - competency: emst:core/CMP-M17HJEJ
+    level: L1
+  - competency: emst:core/CMP-72R1NBG
+    level: L1
+  formationProvisions:
+  - task: emst:core/TSK-31B4PGH
+    responses:
+    - observed-wbl
+    quota:
+      count: 5
+      unit: observed sampling events
+    releaseCriterion: zero custody defects
+    mentorRequired: true
+  roleLevel: entry
+  note:
+    en: Field sampling with custody; supervised repetitions before any automated QC is credited.
+- step: 3
+  tasks:
+  - emst:core/TSK-0BA9DD7
+  - emst:core/TSK-AM7D2FC
+  - emst:core/TSK-SF48W4H
+  - emst:core/TSK-CZNWEYW
+  cloOutcomes:
+  - competency: emst:core/CMP-Z9BVC7K
+    level: L2
+  - competency: emst:core/CMP-BE3XH7W
+    level: L1
+  formationProvisions:
+  - task: emst:core/TSK-0BA9DD7
+    responses:
+    - observed-wbl
+    quota:
+      count: 15
+      unit: 'inspections: 10 shadowed, then 5 observed'
+    releaseCriterion: evaluator sign-off (IO-C01 regulatory-inspector enactment)
+    mentorRequired: true
+  - task: emst:core/TSK-CZNWEYW
+    responses:
+    - by-hand-quota
+    quota:
+      count: 1
+      unit: manual audit of a facility's monitoring reports
+    releaseCriterion: audit reviewed before automated screening is credited
+    mentorRequired: true
+  roleLevel: entry
+  note:
+    en: Shadow 10 inspections, then lead 5 under observation; inspection reports reviewed by a senior inspector.
+- step: 4
+  tasks:
+  - emst:core/TSK-MWZH0XP
+  - emst:core/TSK-AWKDYAY
+  cloOutcomes:
+  - competency: emst:core/CMP-XN9631Y
+    level: L1
+  - competency: emst:core/CMP-BR5Q9TJ
+    level: L1
+  roleLevel: entry
+  note:
+    en: Public contact and compliance assistance.
+- step: 5
+  tasks:
+  - emst:core/TSK-6RMKRA2
+  - emst:core/TSK-JVE65HN
+  cloOutcomes:
+  - competency: emst:core/CMP-MS40XXX
+    level: L1
+  - competency: emst:core/CMP-G1H42DS
+    level: L1
+  formationProvisions:
+  - task: emst:core/TSK-6RMKRA2
+    responses:
+    - validation-drill
+    quota:
+      count: 1
+      unit: seeded-error AI compliance summary
+    releaseCriterion: every error that changes a compliance conclusion flagged
+    mentorRequired: true
+  roleLevel: journey
+  note:
+    en: 'TX-A floor: every role profile carries L1 on data interpretation, responsible AI use and AI-output validation (ADR-0025).'
+- step: 6
+  tasks:
+  - emst:core/TSK-D5Q6F2K
+  - emst:core/TSK-8M2B491
+  cloOutcomes:
+  - competency: emst:core/CMP-RDN7QER
+    level: L2
+  roleLevel: journey
+  note:
+    en: Enforcement documentation; capstone end-to-end inspection file at month 11.
+recognitionOfPriorLearning:
+- emst:core/CRD-VBY8TPT
+durationAndCost:
+  hours: 250
+  months: 12
+  costNote: '[J] 200-300 structured hours alongside productive work; the binding cost is evaluator time for observed inspections.'
+alternativeFormationRoutes:
+- Mock inspections at a training facility can stand in for scarce live inspections in the shadowing stage only [J].
+recommended: false
+layer: learning
+module: core
+status: candidate
+lifecycleState: proposed
+reviewBy: '2027-04-23'
+useTier: exploratory
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'EXPLORATORY, not recommended: no pathway is labelled recommended until it passes CM''s M-03 validation gate (ADR-0023 §5; ADR-0027). Built from the role-profile delta (ADR-0026 R1); hours, months and quotas are LC judgment for pilot calibration. Role records are WP-08''s; frictions attach when CM''s friction register exists. Moved into data/v2 in S2 (CR-LC-001 #1-#3): outcomes are named as CLOs {competency, level} (generic CLO = levels[].indicators; enactment anchors are reached through the enactment CLO, never listed here, CR-LC-001 #4); formation provisions are typed (formationProvisions), and docs/build/WP-07/formation_provisions.csv stays WP-07''s audit copy; role references are planned targets until WP-08 writes the records.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T14:20:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-pathways@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0026
+  - ADR-0023
+  - ADR-0027
+  - ADR-0004

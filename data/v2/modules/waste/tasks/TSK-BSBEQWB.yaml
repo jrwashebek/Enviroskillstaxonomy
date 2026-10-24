@@ -1,0 +1,39 @@
+id: emst:waste/TSK-BSBEQWB
+type: Task
+prefLabel:
+  en: Plan collection routes and service levels from tonnage, set-out and contamination data within crew safety and workload limits
+statement:
+  en: Plan collection routes and service levels from tonnage, set-out and contamination data within crew safety and workload limits
+textSha256: 539f10be45aba048cf21ef0c025c0a74b8b7d2809cc10ef7be3c55f097832f64
+supports:
+- competency: emst:waste/CMP-Y25PSEQ
+  strength: primary
+workFunction: WF-PLAN
+workflowProfiles:
+- WP-OPERATIONS
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: waste
+subsectors:
+- P02
+layer: L2
+module: waste
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

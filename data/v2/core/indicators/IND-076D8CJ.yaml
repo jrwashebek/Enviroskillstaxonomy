@@ -1,0 +1,39 @@
+id: emst:core/IND-076D8CJ
+type: Indicator
+prefLabel:
+  en: Checks an AI-drafted performance narrative against observed work records
+competency: emst:core/CMP-ZCRS03R
+level: L3
+statement:
+  en: Checks an AI-drafted performance narrative against observed work records, deleting each statement the records do not support before the review is signed.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-ZNYMNA6
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@s2-closeout-b
+  - emstagent:io-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

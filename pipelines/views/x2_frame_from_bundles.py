@@ -30,12 +30,12 @@ def main():
     for r in d.roles():
         if d.tier(r) != "P1":
             continue
-        code = r["id"].split(":", 1)[1][:3]
+        code = d.role_key(r)[:3]
         for i in r["taskBundle"]:
             t2r[i["task"]].add(code)
             for s in (d.get(i["task"]) or {}).get("supports") or []:
                 if s.get("strength") == "primary":
-                    c2r[s["competency"].split(":", 1)[1]].add(code)
+                    c2r[d.seed_of(s["competency"]).split(":", 1)[1]].add(code)     # keyed by the competency's seed key
     body = {"frameVersion": "0.2.0-wp08-bundles", "source": "data/v2/**/roles/ (P1 RoleProfiles, WP-08, 2026-10-23)",
             "competencyToP1Roles": {k: sorted(v) for k, v in sorted(c2r.items())},
             "taskToP1Roles": {k: sorted(v) for k, v in sorted(t2r.items())}}

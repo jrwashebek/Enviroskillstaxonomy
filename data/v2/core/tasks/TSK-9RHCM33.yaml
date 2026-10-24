@@ -1,0 +1,62 @@
+id: emst:core/TSK-9RHCM33
+type: Task
+prefLabel:
+  en: Screen a proposed project's area for existing environmental and health burdens using screening indicators, recording each indicator's source, date and known limitations
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Screen a proposed project's area for existing environmental and health burdens using screening indicators, recording each indicator's source, date and known limitations
+textSha256: 388031b5d2500cdcb9ebd50670b4f91d0652387447063fb47412131c1e516f41
+supports:
+- competency: emst:core/CMP-XWDR7XA
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 6.7.2:T1
+v1Tier: T1
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.7'
+  label: Environmental Health & Justice
+editorialNote:
+  en: 'v1 named two screening tools; tools move to L4 with availability dates (one federal tool''s availability changed in 2025). Rewritten from the v1 task text: "Use environmental justice screening tools (EJSCREEN, CalEnviroScreen) to identify overburdened communities" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.7.2:T1
+    v1Code: 6.7.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 208
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

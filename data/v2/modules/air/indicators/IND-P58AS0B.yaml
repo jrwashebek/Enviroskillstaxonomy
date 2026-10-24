@@ -1,0 +1,38 @@
+id: emst:air/IND-P58AS0B
+type: Indicator
+prefLabel:
+  en: Evaluates a routine burn request against forecast dispersion and current monitored…
+competency: emst:air/CMP-3FB5XRW
+level: L2
+statement:
+  en: Evaluates a routine burn request against forecast dispersion and current monitored values, issuing a decision consistent with the programme's criteria.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:air/TSK-RMCRD77
+layer: L1
+module: air
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

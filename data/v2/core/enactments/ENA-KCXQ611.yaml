@@ -1,0 +1,67 @@
+id: emst:core/ENA-KCXQ611
+type: Enactment
+prefLabel:
+  en: Company subject to several disclosure regimes
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-33W8FV5
+enactmentKind: actor
+actorType: firm
+authorityBasis:
+  en: State climate-disclosure statutes and regulations (California's emissions and climate-risk laws, the latter enjoined), the EU sustainability-reporting directive as narrowed in 2026, and federal reporting programmes under reconsideration.
+principal:
+  en: Executives, the board and investors.
+accountabilityVenue:
+  en: State regulators; EU national authorities; assurance providers; securities litigation.
+authorityPosition: regulated-party
+characteristicInstruments:
+- instrument: emst:core/INS-N1KD959
+  role: requires
+- instrument: emst:core/INS-N7C3WBS
+  role: requires
+  note:
+    en: Enjoined 2025-11-18.
+- instrument: emst:core/INS-HX0EWMK
+  role: constrains
+  note:
+    en: Narrowed the EU reporting scope.
+- instrument: seed:ins/sec-climate-disclosure
+  role: requires
+  note:
+    en: Stayed.
+- instrument: seed:ins/ghgrp-reconsideration
+  role: removed-requirement
+  note:
+    en: Proposed removal of federal reporting obligations; never a basis.
+note:
+  en: 'Jurisdictional judgment is now as much of the job as reporting [E: V2-15].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - V2-06
+  - V2-15
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

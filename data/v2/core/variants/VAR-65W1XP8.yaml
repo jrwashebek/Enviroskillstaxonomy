@@ -1,0 +1,87 @@
+id: emst:core/VAR-65W1XP8
+type: RoleVariant
+prefLabel:
+  en: Facility environmental compliance specialist (private, applicant-side permit preparer)
+variantOf: emst:core/ROL-JA00QMT
+sectorActor: private
+authorityPosition: service-provider
+layer: L3
+module: core
+status: candidate
+validationStatus: draft
+license: CC0-1.0
+definition:
+  en: 'Facility environmental compliance specialist in a private-sector setting: delivers the work for another party under contract or agreement. Applicant-side preparer: consultants who prepare permit applications and compliance submissions for facilities; the applicant variant in the permit-writer mirror triad (ADR-0017 section 4).'
+lifecycleState: established
+useTier: describe
+sensitivity: public
+sectorActorSubtype: firm
+industry: consulting-engineering
+ownership: private-closely-held
+deliveryModel: contracted
+taskAdds:
+- task: emst:core/TSK-ACZ7PGT
+  importance: 5
+  timeShare: 0.05
+  critical: true
+  neededAtEntry: false
+  roleLevels:
+  - journey
+  - senior
+  - lead
+- task: emst:core/TSK-SYDX3KR
+  importance: 4
+  timeShare: 0.03
+  critical: false
+  neededAtEntry: false
+  roleLevels:
+  - senior
+  - lead
+- task: emst:core/TSK-6XFP9GS
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  roleLevels:
+  - senior
+  - lead
+- task: emst:core/TSK-K95RTH8
+  importance: 3
+  timeShare: 0.02
+  critical: false
+  neededAtEntry: false
+  roleLevels:
+  - senior
+  - lead
+- task: emst:core/TSK-47BXY9R
+  importance: 4
+  timeShare: 0.01
+  critical: true
+  neededAtEntry: false
+  roleLevels:
+  - senior
+  - lead
+taskDrops:
+- emst:core/TSK-GM7MT7F
+- emst:core/TSK-3E17F11
+credentialGates:
+- credential: emst:core/CRD-VCSWY4N
+  kind: preferred
+- credential: emst:core/CRD-BY74QDR
+  kind: preferred
+editorialNote:
+  en: Variant attributes sectorActor, sectorActorSubtype and authorityPosition are editorial (SPEC section 10 rule 6). Credential gates and sign-off authority are verified facts only once an E-labelled source is attached; until then views do not show them (SPEC section 10 rule 8).
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@wp-08
+  generatedAt: '2026-10-23T17:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-08/prompts/wp08-role-profile.md@1
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0006
+  - ADR-0007
+  - ADR-0017
+  - ADR-0022

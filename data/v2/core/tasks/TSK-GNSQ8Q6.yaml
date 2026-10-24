@@ -1,0 +1,47 @@
+id: emst:core/TSK-GNSQ8Q6
+type: Task
+prefLabel:
+  en: Conduct a ground-based visual tree risk assessment, recording defects, likelihood of failure, targets and consequences on the standard form
+statement:
+  en: Conduct a ground-based visual tree risk assessment, recording defects, likelihood of failure, targets and consequences on the standard form
+textSha256: 74b425eff25c61d04fca82c68e4d551d1c8b57b63b418888b71ae59cfc933086
+supports:
+- competency: emst:core/CMP-PGREAAQ
+  strength: primary
+workFunction: WF-ASSESS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: seasonal
+  placeBoundness: ecosystem-type
+  credentialGate: external-certificate
+  currencyDecay: M
+credentialGates:
+- credential: emst:core/CRD-5E8NNNC
+  kind: preferred
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split role: execution to protocol (production). Credential gates link the WP-07 register (T-8); gates are inputs, never proficiency. The usual required gate (a tree risk assessment qualification) is not yet in the register; arborist certification linked as preferred.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

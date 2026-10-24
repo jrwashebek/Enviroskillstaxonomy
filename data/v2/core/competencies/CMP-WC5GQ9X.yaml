@@ -1,0 +1,61 @@
+id: emst:core/CMP-WC5GQ9X
+type: Competency
+prefLabel:
+  en: Manage risk in uncontrolled field environments
+definition:
+  en: 'Recognizing and controlling hazards at field work sites before and during work: job hazard analysis tied to the actual site; lookouts, communications, escape routes and safety zones; stop-work calls; heat, smoke and environmental-exposure illness; lone and pair work; and hazards from automated systems working near people. Excludes organization-wide safety culture (TX-C), safety programme administration and medical response.'
+statement:
+  en: Identify the actual hazards at a field site before and during work and control each, including terrain, weather, heat and smoke, wildlife, traffic, equipment and automated systems near people; set escape routes and stop-work criteria; brief crews on that day's hazards; and stop work when conditions change.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-YEYVJ3S
+  - emst:core/IND-BDQ4SAF
+  - emst:core/IND-ZD4MRBC
+- level: L2
+  indicators:
+  - emst:core/IND-1AEBSN3
+  - emst:core/IND-S0TW1VW
+  - emst:core/IND-PQVH8KE
+- level: L3
+  indicators:
+  - emst:core/IND-940AJK2
+  - emst:core/IND-VHE2ATH
+  - emst:core/IND-EPC9ZAM
+- level: L4
+  indicators:
+  - emst:core/IND-6W2HVJW
+  - emst:core/IND-P0V3JQ8
+homeModule: core
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: WP-03 (FC) draft. Field-risk successor of split v1 4.4.1 (position 1); absorbs FC-C19 (heat, smoke and exposure illness) and FC-C27 (risk where people work alongside automated systems). Safety culture and stop-work authority across settings is TX-C (emst:core/CMP-CERKVPH, WP-07); v1 4.4.1 T2 and T3 belong there (WP-07 re-points and rewrites them). Anchors FCA-RISK-1..4; certificates are inputs, never the level.
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.4.1
+    relation: split-from
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - ADR-0011
+  - WP-03

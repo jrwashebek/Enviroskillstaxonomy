@@ -2,13 +2,13 @@
  "stamp": {
   "ruleId": "state-class-view",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/state_class_view.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
  "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
- "classRecord": "seed:class/PA-PHL/7E45",
+ "classRecord": "emst:core/SCR-XQBKBKG",
  "class": {
   "jurisdiction": "City of Philadelphia, Pennsylvania",
   "employerType": "utility",
@@ -54,10 +54,11 @@
  },
  "mappings": [
   {
-   "roleVariant": "seed:R25-water-wastewater-operator/local",
-   "role": "seed:R25-water-wastewater-operator",
+   "roleVariant": "emst:water/VAR-FMNRNFF",
+   "role": "emst:water/ROL-Q49FT7J",
    "roleTitle": "Water and wastewater treatment operator",
    "tier": "P2",
+   "sectorActor": "local",
    "authorityPosition": "regulated-party",
    "roleLevels": [
     "journey"
@@ -68,239 +69,252 @@
    "crosswalkRecord": "emst-x5-pa-phl:R25-water-wastewater-operator/local:7E45",
    "competencyTargets": [
     {
-     "competency": "seed:DB-C01",
+     "competency": "emst:water/CMP-5VJ4XK6",
      "label": "Operate drinking water treatment processes to meet water quality targets",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 5,
-     "distinguishing": true,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DB-C02",
+     "competency": "emst:water/CMP-M3KMNGM",
      "label": "Operate wastewater treatment and resource-recovery processes to permit limits",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 5,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:SL-C16",
-     "label": "Practice within licensure scope and responsible charge",
-     "targetLevels": {
-      "journey": "L2"
-     },
-     "importance": 5,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-B"
-    },
-    {
-     "competency": "seed:DB-C03",
+     "competency": "emst:core/CMP-Q825DY3",
      "label": "Supervise automated and AI-assisted process control in environmental operations",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DB-C06",
-     "label": "Protect operational technology at environmental utilities and facilities",
+     "competency": "emst:core/CMP-YDXQC56",
+     "label": "Practice within licensure scope and responsible charge",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-B"
     },
     {
-     "competency": "seed:FC-C24",
+     "competency": "emst:core/CMP-72R1NBG",
      "label": "Manage field sample custody and field quality control",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:v1-4.4.1-B",
-     "label": "Apply safety practices and stop-work authority across field, facility and incident settings",
-     "targetLevels": {
-      "journey": "L2"
-     },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-C"
-    },
-    {
-     "competency": "seed:v1-4.4.4-A",
+     "competency": "emst:core/CMP-T4GHAG0",
      "label": "Work safely on hazardous, industrial and energized field sites",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-02",
-     "label": "Use AI tools responsibly in everyday environmental work",
+     "competency": "emst:core/CMP-SNCR4KM",
+     "label": "Protect operational technology at environmental utilities and facilities",
      "targetLevels": {
-      "journey": "L1"
+      "journey": "L2"
      },
-     "importance": 3,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-A"
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-13",
-     "label": "Validate AI-generated work products before professional use",
+     "competency": "emst:core/CMP-CERKVPH",
+     "label": "Apply safety practices and stop-work authority across field, facility and incident settings",
      "targetLevels": {
-      "journey": "L1"
+      "journey": "L2"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
-     "transversalCluster": "TX-A"
+     "transversalCluster": "TX-C"
     },
     {
-     "competency": "seed:v1-4.7.3",
+     "competency": "emst:water/CMP-X3FJ5PQ",
      "label": "Manage a municipal stormwater programme to meet permit conditions",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-01",
+     "competency": "emst:core/CMP-FCXN4BQ",
      "label": "Interpret and question environmental data products in everyday work",
      "targetLevels": {
       "journey": "L1"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
      "transversalCluster": "TX-A"
     },
     {
-     "competency": "seed:DC-CAND-05",
+     "competency": "emst:core/CMP-7JGQFKZ",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-MS40XXX",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-8EAS8ZR",
      "label": "Record provenance and AI involvement in work products",
      "targetLevels": {
       "journey": "L1"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
      "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-CD9P70X",
+     "label": "Manage physical assets and capital plans with risk-based asset management",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
     }
    ],
+   "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "topTasks": [
     {
-     "task": "seed:DB-C01-T1",
+     "task": "emst:water/TSK-DNX7Q7R",
      "statement": "Adjust coagulant dosing from jar test results when raw-water turbidity, temperature or organic content changes",
-     "pctTime": 5.7,
-     "critical": true,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:DB-C01-T2",
+     "task": "emst:water/TSK-Q7371DF",
      "statement": "Verify disinfection contact time against required inactivation values at each operating flow and correct shortfalls before water enters distribution",
-     "pctTime": 5.3,
-     "critical": true,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:DB-C02-T1",
-     "statement": "Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits",
-     "pctTime": 5.3,
-     "critical": true,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:DB-C02-T2",
-     "statement": "Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it",
-     "pctTime": 5.3,
-     "critical": true,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:sc-check-scope-of-practice",
-     "statement": "Determine whether an assigned task falls within the scope of one's licence or certification, referring out-of-scope work to a qualified professional",
-     "pctTime": 5.3,
-     "critical": true,
-     "neededAtEntry": false
-    },
-    {
-     "task": "seed:DB-C01-T3",
+     "task": "emst:water/TSK-H0A4ZE2",
      "statement": "Respond to a treatment upset by isolating the affected process unit, bringing backup treatment online and notifying the primacy agency",
-     "pctTime": 4.2,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:DB-C02-T3",
+     "task": "emst:water/TSK-B0255BE",
+     "statement": "Adjust aeration and sludge wasting rates using solids inventory, settleability and dissolved-oxygen trends to hold effluent within permit limits",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:water/TSK-FZAFW38",
+     "statement": "Diagnose a biological process upset from microscopic examination, foam, odor and settling behavior before laboratory results confirm it",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:water/TSK-0CC03MG",
      "statement": "Route peak wet-weather flows through the plant to protect biological treatment, recording any bypass or overflow for required reporting",
-     "pctTime": 4.2,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:DB-C02-T4",
+     "task": "emst:water/TSK-H65XCFS",
      "statement": "Operate anaerobic digestion and solids handling to meet biosolids pathogen-reduction and stability requirements while recovering digester gas",
-     "pctTime": 4.2,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:db-c03-manual",
+     "task": "emst:core/TSK-FZEDRWS",
+     "statement": "Determine whether an assigned task falls within the scope of one's licence or certification, referring out-of-scope work to a qualified professional",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-R2H8W15",
      "statement": "Run a treatment process in safe manual operation when automation or communications fail, adapting the manual operating procedure to conditions",
-     "pctTime": 4.2,
-     "critical": false,
-     "neededAtEntry": false
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:db-c03-monitor-loops",
+     "task": "emst:core/TSK-1YHT587",
      "statement": "Monitor automated control loops and alarms on a treatment process, checking automated responses against field observations of process condition",
-     "pctTime": 4.2,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:fc-coc-complete",
+     "task": "emst:core/TSK-K8ABKDG",
+     "statement": "Override an automated control action when process indicators show it is driving the system toward a permit or safety limit, documenting the decision",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-D6M2KZX",
      "statement": "Complete chain-of-custody records for every sample from collection to laboratory receipt, recording each transfer, seal and temperature check",
-     "pctTime": 4.2,
-     "critical": false,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:fc-qc-collect",
-     "statement": "Collect field duplicates, splits and blanks at the frequency the sampling plan specifies, labelling them so the laboratory cannot identify them",
-     "pctTime": 4.2,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     }
    ],
    "credentialGates": {
     "shown": [
      {
-      "credential": "seed:crd-drinking-water-treatment-operator",
+      "credential": "emst:core/CRD-MAJKW8K",
       "label": "Drinking water treatment operator certification (Grades I-IV / Class A-D, state-specific)",
       "kind": "required",
       "issuerVerifiedSources": [
@@ -309,7 +323,7 @@
       ]
      },
      {
-      "credential": "seed:crd-wastewater-treatment-operator",
+      "credential": "emst:core/CRD-5VSXY66",
       "label": "Wastewater treatment operator certification (Grades I-IV)",
       "kind": "required",
       "issuerVerifiedSources": [
@@ -318,7 +332,7 @@
       ]
      },
      {
-      "credential": "seed:crd-wastewater-collection-operator",
+      "credential": "emst:core/CRD-38ANRC8",
       "label": "Wastewater collection system operator certification",
       "kind": "preferred",
       "issuerVerifiedSources": [
@@ -327,7 +341,7 @@
       ]
      },
      {
-      "credential": "seed:crd-water-distribution-operator",
+      "credential": "emst:core/CRD-89NYNX4",
       "label": "Water distribution system operator certification",
       "kind": "preferred",
       "issuerVerifiedSources": [

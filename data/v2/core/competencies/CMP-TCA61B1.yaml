@@ -1,0 +1,108 @@
+id: emst:core/CMP-TCA61B1
+type: Competency
+prefLabel:
+  en: Analyze the economic effects of environmental decisions
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+definition:
+  en: The capability to estimate the economic effects of proposed projects, programs and rules, including regional economic impact, benefit-cost and regulatory impact analysis, with methods suited to the decision and stated uncertainty. Disciplinary knowledge sits in the economics knowledge area; this competency is the applied analysis.
+statement:
+  en: Estimates the economic effects of proposed projects, programs and rules (regional economic impact, benefit-cost and regulatory impact analysis), choosing methods suited to the decision, stating assumptions and uncertainty, and presenting results that decision-makers and reviewers can trace to data.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+homeModule: core
+reusability: cross-subsector
+altLabel:
+  en:
+  - economic impact analysis
+  - benefit-cost analysis
+  - regulatory impact analysis
+  - regulatory impact assessment
+instrumentSensitivity:
+- mechanism: DM-10
+  rationale:
+    en: Rule changes require new benefit-cost analyses.
+  evidenceLabel: J
+  reviewBy: '2027-01-31'
+- mechanism: DM-01
+  rationale:
+    en: Economic effects analyzed in reviews depend on review scope.
+  evidenceLabel: E
+  sources:
+  - V2-02
+notation:
+- scheme: EMSTv1
+  value: 6.3.4
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.3'
+  label: Resource Economics
+editorialNote:
+  en: 'WP-05 (A5 SC), because the WP-05 list names v1 6.4.3 and this record is its merge target; the defining craft of most tasks is data craft, so WP-04 (DC) is asked to co-review. v1 6.3.4 rewrite: economic analysis of environmental decisions; absorbs 6.4.3 (regulatory impact analysis), with rulemaking as an actor enactment. Valuation knowledge sits in the economics knowledge area (v1 6.3.1 successor). Seed note kept: v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): rewrite → core | practice | WF-ASSESS. Rationale: Rewritten as economic analysis of environmental decisions (economic impact, benefit-cost and regulatory impact analysis); absorbs 6.4.3, with rulemaking as an enactment. Role verdicts considered: none recorded.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.3.4
+    v1Code: 6.3.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 190
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:6.3.4
+    v1Code: 6.3.4
+    v1Table: source_text/competencies
+    sourceTextLine: 13532
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  - v1Key: v1:6.4.3
+    v1Code: 6.4.3
+    relation: merged-from
+    note: v1 6.4.3 (merge) → emst:core/CMP-TCA61B1 per v1_disposition.csv
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-6N0MM1G
+  - emst:core/IND-AHT2NRF
+- level: L2
+  indicators:
+  - emst:core/IND-5HP8VXW
+  - emst:core/IND-HMF6VJB
+- level: L3
+  indicators:
+  - emst:core/IND-VVRPHJK
+  - emst:core/IND-A03S15N
+  - emst:core/IND-M0AVK1P
+- level: L4
+  indicators:
+  - emst:core/IND-NSSK0B2
+  - emst:core/IND-YA3T61E

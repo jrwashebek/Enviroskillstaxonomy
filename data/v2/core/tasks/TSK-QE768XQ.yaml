@@ -1,0 +1,64 @@
+id: emst:core/TSK-QE768XQ
+type: Task
+prefLabel:
+  en: Collect paired soil samples before and after a management change at fixed points so that changes in soil organic matter can be detected
+statement:
+  en: Collect paired soil samples before and after a management change at fixed points so that changes in soil organic matter can be detected
+textSha256: ad717ae0a213964ce10ed9f5470c3ae0c181fdaccd0e092c4d0dda8874384f36
+supports:
+- competency: emst:core/CMP-BG6ASMR
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: on-site-required
+formationDependency: partial
+reproductionRegime:
+  mentorshipDependence: L
+  cycleDependence: none
+  placeBoundness: site-specific
+  credentialGate: none
+  currencyDecay: L
+notation:
+- scheme: EMSTv1
+  value: 4.6.5:T2
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Tier: T2
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.6'
+  label: Sustainable Agriculture Implementation
+editorialNote:
+  en: 'G-2 split role: execution to protocol (production). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.6.5:T2
+    v1Code: 4.6.5
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 141
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

@@ -1,0 +1,42 @@
+id: emst:core/TSK-0PTQXEH
+type: Task
+prefLabel:
+  en: Identify the claims a proposed decision is likely to face, rating each claim's likelihood under current deference, standing and remedy doctrine
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Identify the claims a proposed decision is likely to face, rating each claim's likelihood under current deference, standing and remedy doctrine
+textSha256: 4415c8dfb16968166689467846f8d0f1456e97bbeed5996e3d451faa1f81b43f
+supports:
+- competency: emst:core/CMP-TVPV3Y2
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+modes:
+- MODE-RESOLVE
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

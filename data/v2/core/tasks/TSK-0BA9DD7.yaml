@@ -1,0 +1,72 @@
+id: emst:core/TSK-0BA9DD7
+type: Task
+prefLabel:
+  en: Inspect a permitted facility or site against its permit conditions and applicable rules, recording observations, measurements and samples as evidence
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Inspect a permitted facility or site against its permit conditions and applicable rules, recording observations, measurements and samples as evidence
+textSha256: 034b3e0fbb1d6666aafc087469935d98ecf7a755aa8aa30820b2ad3029637300
+supports:
+- competency: emst:core/CMP-Z9BVC7K
+  strength: primary
+- competency: emst:core/CMP-T4GHAG0
+  strength: contributing
+workFunction: WF-ENFORCE
+fieldDependency: on-site-required
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-COMPLIANCE
+reproductionRegime:
+  mentorshipDependence: H
+  cycleDependence: none
+  placeBoundness: general
+  currencyDecay: M
+notation:
+- scheme: EMSTv1
+  value: 6.1.2:T1
+v1Tier: T1
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.1'
+  label: Environmental Law & Regulation
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Conduct field inspections and desktop reviews to ensure activities meet legal requirements" (WP-05). | S2 (CR-FC-001 ruling): contributing link to v1-4.4.4-A (hazardous, industrial and energized sites) added by FC.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.1.2:T1
+    v1Code: 6.1.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 178
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

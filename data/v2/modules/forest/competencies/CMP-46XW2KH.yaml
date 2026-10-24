@@ -1,0 +1,265 @@
+id: emst:forest/CMP-46XW2KH
+type: Competency
+prefLabel:
+  en: Stabilize burned areas after wildfire from field assessment of burn severity and values at risk
+altLabel:
+  en:
+  - Post-fire rehabilitation
+  - Burned area emergency response
+definition:
+  en: 'Post-fire emergency assessment and stabilization: field verification of soil burn severity, erosion and debris-flow risk to values, prescription and implementation of stabilization treatments and monitoring of their effectiveness after storms. Excludes long-term restoration (core v1 4.2.1) and rapid multi-hazard assessment (hazards module FC-C25).'
+statement:
+  en: Verifies satellite burn-severity maps at field plots, assesses soil burn severity, erosion and debris-flow risk to values, prescribes and implements stabilization treatments such as mulch, seeding and drainage, and monitors treatment effectiveness after storms, adapting follow-up work to what is observed.
+notation:
+- scheme: EMSTv1
+  value: 4.3.5
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L3
+levels:
+- level: L1
+  indicators:
+  - emst:forest/IND-MAT13YW
+  - emst:forest/IND-9R5DA2S
+- level: L2
+  indicators:
+  - emst:forest/IND-HN8K9WK
+  - emst:forest/IND-NT1MQA1
+- level: L3
+  indicators:
+  - emst:forest/IND-SGJPZDE
+  - emst:forest/IND-Q0T1T59
+homeModule: forest
+subsectors:
+- L07
+- L01
+reusability: subsector-specific
+layer: L1
+module: forest
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.3'
+  label: Fire Management
+editorialNote:
+  en: 'v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): move-to-module → MOD-11 forest. Rationale: Model ground-truth competency (field verification of satellite burn severity); pattern generalized into FC-C25 in MOD-09 (FC verdict). Role verdicts considered: FC:carry|TN:add. WP-06: Moved to MOD-11; model ground-truth competency (field verification of satellite burn severity); pattern generalized into FC-C25 in MOD-09 (FC verdict). Actor enactment notes requested by TN are held (ADR-0007), not authored here. Basis [J].'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.5
+    v1Code: 4.3.5
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 126
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+    note: v1 title and description rewritten to v2 rules by WP-06
+  - v1Key: v1:4.3.5
+    v1Code: 4.3.5
+    v1Table: source_text/competencies
+    sourceTextLine: 8119
+    relation: recovered
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004
+v1Seed:
+  v1Title: Post-fire rehabilitation
+  v1Description: Implementing treatments to reduce erosion, prevent invasive species establishment, and promote recovery after wildfire.
+  levels:
+  - v1Level: foundational
+    mapsTo: L1
+    v1Key: v1:4.3.5:foundational
+    knowledge: Understands post-fire processes and basic stabilization techniques
+    application: Implements post-fire treatments following plans
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.5:foundational:I1
+      n: 1
+      text: Assists with post-fire site assessments
+      origin: database
+    - v1Key: v1:4.3.5:foundational:I2
+      n: 2
+      text: Applies erosion control treatments (mulch, seed, barriers)
+      origin: database
+    - v1Key: v1:4.3.5:foundational:I3
+      n: 3
+      text: Installs check dams and sediment barriers
+      origin: database
+    - v1Key: v1:4.3.5:foundational:I4
+      n: 4
+      text: Removes hazard trees in safe situations
+      origin: database
+    - v1Key: v1:4.3.5:foundational:I5
+      n: 5
+      text: Monitors post-fire invasive species establishment
+      origin: database
+    - v1Key: v1:4.3.5:foundational:I6
+      n: 6
+      text: Documents treatment implementation
+      origin: database
+    - v1Key: v1:4.3.5:foundational:I7
+      n: 7
+      text: Understands urgency and timing of post-fire treatments
+      origin: restored-from-source-text
+  - v1Level: intermediate
+    mapsTo: L2
+    v1Key: v1:4.3.5:intermediate
+    knowledge: Applies BAER assessment methods; understands fire effects
+    application: Conducts BAER assessments and develops treatment plans
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.5:intermediate:I1
+      n: 1
+      text: Conducts Burned Area Emergency Response (BAER) assessments
+      origin: database
+    - v1Key: v1:4.3.5:intermediate:I2
+      n: 2
+      text: Evaluates soil burn severity and erosion risk
+      origin: database
+    - v1Key: v1:4.3.5:intermediate:I3
+      n: 3
+      text: Develops post-fire treatment prescriptions
+      origin: database
+    - v1Key: v1:4.3.5:intermediate:I4
+      n: 4
+      text: Designs erosion control strategies for burned watersheds
+      origin: database
+    - v1Key: v1:4.3.5:intermediate:I5
+      n: 5
+      text: Implements native seeding appropriate to burned areas
+      origin: database
+    - v1Key: v1:4.3.5:intermediate:I6
+      n: 6
+      text: Manages post-fire rehabilitation contractors
+      origin: database
+    - v1Key: v1:4.3.5:intermediate:I7
+      n: 7
+      text: Monitors treatment effectiveness after storms
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.5:intermediate:I8
+      n: 8
+      text: Coordinates post-fire treatments across multiple resources
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.5:intermediate:I9
+      n: 9
+      text: Uses burn severity maps and watershed models
+      origin: restored-from-source-text
+  - v1Level: advanced
+    mapsTo: L3
+    v1Key: v1:4.3.5:advanced
+    knowledge: Expert in post-fire ecology and watershed rehabilitation
+    application: Leads comprehensive post-fire recovery programs
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.5:advanced:I1
+      n: 1
+      text: Leads BAER teams for complex large fires
+      origin: database
+    - v1Key: v1:4.3.5:advanced:I2
+      n: 2
+      text: Develops landscape-scale post-fire rehabilitation strategies
+      origin: database
+    - v1Key: v1:4.3.5:advanced:I3
+      n: 3
+      text: Integrates post-fire recovery with long-term restoration
+      origin: database
+    - v1Key: v1:4.3.5:advanced:I4
+      n: 4
+      text: Uses modeling tools (ERMiT, WEPP) to predict post-fire erosion
+      origin: database
+    - v1Key: v1:4.3.5:advanced:I5
+      n: 5
+      text: Manages major post-fire rehabilitation projects
+      origin: database
+    - v1Key: v1:4.3.5:advanced:I6
+      n: 6
+      text: Evaluates long-term recovery trajectories
+      origin: database
+    - v1Key: v1:4.3.5:advanced:I7
+      n: 7
+      text: Addresses post-fire invasive species strategically
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.5:advanced:I8
+      n: 8
+      text: Trains BAER team members
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.5:advanced:I9
+      n: 9
+      text: Publishes or presents post-fire recovery outcomes
+      origin: restored-from-source-text
+    - v1Key: v1:4.3.5:advanced:I10
+      n: 10
+      text: Develops post-fire treatment guidance
+      origin: restored-from-source-text
+  - v1Level: expert
+    mapsTo: L4
+    v1Key: v1:4.3.5:expert
+    knowledge: Shapes post-fire rehabilitation practices nationally
+    application: Provides strategic leadership on post-fire recovery
+    knowledgeApplicationOrigin: database
+    indicators:
+    - v1Key: v1:4.3.5:expert:I1
+      n: 1
+      text: Directs post-fire recovery programs across regions
+      origin: database
+    - v1Key: v1:4.3.5:expert:I2
+      n: 2
+      text: Develops innovative post-fire rehabilitation approaches
+      origin: database
+    - v1Key: v1:4.3.5:expert:I3
+      n: 3
+      text: Influences post-fire policy and funding
+      origin: database
+    - v1Key: v1:4.3.5:expert:I4
+      n: 4
+      text: Provides expert consultation on complex post-fire challenges
+      origin: database
+    - v1Key: v1:4.3.5:expert:I5
+      n: 5
+      text: Publishes influential post-fire recovery research
+      origin: database
+    - v1Key: v1:4.3.5:expert:I6
+      n: 6
+      text: Achieves recognition for post-fire rehabilitation excellence
+      origin: database
+    - v1Key: v1:4.3.5:expert:I7
+      n: 7
+      text: Advances integration of emergency response with long-term restoration
+      origin: restored-from-source-text
+  sectorApplications:
+  - sector: public_agencies
+    v1Key: v1:4.3.5:sector:public_agencies
+    text: BAER teams, post-fire recovery programs, watershed protection
+  - sector: private_sector
+    v1Key: v1:4.3.5:sector:private_sector
+    text: Post-fire restoration services, watershed rehabilitation
+  - sector: ngos
+    v1Key: v1:4.3.5:sector:ngos
+    text: Post-fire recovery on preserves, volunteer rehabilitation projects
+  - sector: consulting
+    v1Key: v1:4.3.5:sector:consulting
+    text: BAER assessments, post-fire treatment planning
+  - sector: academia
+    v1Key: v1:4.3.5:sector:academia
+    text: Post-fire ecology research, fire effects studies
+  note: 'Reference-only v1 material (ADR-0011): v1 levels map to L1–L4 as four-level drafts (SPEC §8.3); indicators are draft seeds to rewrite to IO''s rules, never v2 indicators. Stripped from releases.'

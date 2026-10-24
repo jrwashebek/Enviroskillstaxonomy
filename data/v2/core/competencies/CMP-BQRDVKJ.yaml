@@ -1,0 +1,63 @@
+id: emst:core/CMP-BQRDVKJ
+type: Competency
+prefLabel:
+  en: Deploy, maintain and verify field sensor networks
+definition:
+  en: Siting, installing, powering, securing, servicing and verifying autonomous field instruments (acoustic recorders, camera traps, water-quality sondes, weather and soil stations, low-cost air sensors) so that continuous data stay valid at the point of measurement, and diagnosing drift, fouling, damage and siting bias in place. Excludes network data pipelines and streaming systems (data craft) and the instrument products themselves (tools layer).
+statement:
+  en: Site, install, service and verify autonomous field instruments so that continuous data stay valid at the point of measurement; diagnose drift, fouling, damage and siting bias in place, run side-by-side checks against reference measurements, and decide when a manual visit or sample is needed.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-Z8MDM63
+  - emst:core/IND-28E5YA4
+  - emst:core/IND-DGMRPXW
+- level: L2
+  indicators:
+  - emst:core/IND-2Y56GNN
+  - emst:core/IND-1SVAWW8
+  - emst:core/IND-JBTEW6T
+- level: L3
+  indicators:
+  - emst:core/IND-7RXCX94
+  - emst:core/IND-AK36KAS
+  - emst:core/IND-BQD1ZFT
+- level: L4
+  indicators:
+  - emst:core/IND-AZNJZNK
+  - emst:core/IND-WEAW06S
+  - emst:core/IND-SVNNTMD
+homeModule: core
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: WP-03 (FC) draft. New core FC practice (candidate FC-C01, emerging); receives the field part of split v1 2.3.1 (deployment, siting, calibration, failure detection), whose tasks WP-04 (DC, owner of the D2 row) re-pointed here; network design and data pipelines go to DC-CAND-04. Also served by v1 2.6.2 T1 (acoustic recorder deployment, re-pointed by WP-04). L4 includes formation-preserving manual checks at automated sites (P-FC-13).
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:2.3.1
+    relation: split-from
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - ADR-0011
+  - WP-03

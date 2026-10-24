@@ -1,0 +1,40 @@
+id: emst:core/IND-1YZQN4Q
+type: Indicator
+prefLabel:
+  en: Verifies an AI-drafted or machine-translated advisory against the source data and a
+competency: emst:core/CMP-XN9631Y
+level: L2
+statement:
+  en: Verifies an AI-drafted or machine-translated advisory against the source data and a fluent reviewer before release, correcting each change of meaning.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-T4Y20FY
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:05:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

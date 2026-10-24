@@ -1,0 +1,42 @@
+id: emst:core/TSK-QQMQSC6
+type: Task
+prefLabel:
+  en: Write the reasoned explanation that links the evidence in the record to each choice made in a decision
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Write the reasoned explanation that links the evidence in the record to each choice made in a decision
+textSha256: dbfa9f96053e1acad5a79e093ef69057adcf7c3f416b420f139296c493c1f3f7
+supports:
+- competency: emst:core/CMP-M0JAW9R
+  strength: primary
+workFunction: WF-REVIEW
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+workflowProfiles:
+- WP-PROJECT
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

@@ -1,0 +1,56 @@
+id: emst:core/ENA-CRAYKG8
+type: Enactment
+prefLabel:
+  en: Federal oversight of sponsor-prepared documents
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-JF7KQYE
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: NEPA section 107(f) (sponsor preparation with agency supervision and independent evaluation) and department procedures for applicant-prepared documents; sponsor-paid acceleration under section 112.
+principal:
+  en: The responsible official who adopts the document.
+accountabilityVenue:
+  en: Federal courts; agency legal review.
+characteristicInstruments:
+- instrument: emst:core/INS-8EFNTAM
+  role: requires
+  note:
+    en: Section 107(f) sponsor preparation under agency supervision.
+- instrument: emst:core/INS-3HFPZD5
+  role: requires
+- instrument: emst:core/INS-BYQMXRA
+  role: enables
+note:
+  en: 'Department procedures keep specific steps for applicant-prepared documents and require the bureau to document its evaluation [E: SC-038].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SC-038
+  - V2-04
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

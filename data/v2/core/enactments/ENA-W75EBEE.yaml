@@ -1,0 +1,68 @@
+id: emst:core/ENA-W75EBEE
+type: Enactment
+prefLabel:
+  en: State agency administering a delegated or primacy program
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-DFBQTY4
+enactmentKind: actor
+actorType: state-agency
+authorityBasis:
+  en: Federal approval, delegation or assumption of a state program (water discharge, air operating permit, hazardous waste, drinking water primacy, assumed dredge-and-fill).
+delegatedConstraints:
+  en: Equivalence or minimum-stringency requirements, federal review of program changes and permits, reporting and work-plan commitments tied to programme grants, withdrawal procedures.
+principal:
+  en: The state agency head; the federal regional office as overseer.
+accountabilityVenue:
+  en: Federal programme review and withdrawal proceedings; federal courts (the Florida assumption was vacated in 2026); state courts for state-law actions.
+authorityPosition: regulator
+characteristicInstruments:
+- instrument: seed:ins/florida-404-assumption
+  role: enables
+  note:
+    en: One state's assumption (vacated 2026-03-27); an example, not the basis.
+- instrument: emst:core/INS-SV5R1GR
+  role: constrains
+- instrument: emst:core/INS-C3WAH1B
+  role: requires
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+- instrument: emst:core/INS-7PS87GV
+  role: enables
+  note:
+    en: Registered without dated events; basis linked, status not yet verified.
+note:
+  en: 'SL review: most state environmental work is delegated or primacy programme delivery (MI EGLE lead and copper compliance; PA NPDES; TX programmes) [E: SL-071, SL-079, SL-050].'
+editorialNote:
+  en: 'S2 close-out A (A5 SC; CR-SC-001 #2, #5): instrument link roles set; only requires links decide venue applicability.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  - emstagent:a5-sl-review@wp-05
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - SC-021
+  - SL-071
+  - SL-079
+  - V2-07
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

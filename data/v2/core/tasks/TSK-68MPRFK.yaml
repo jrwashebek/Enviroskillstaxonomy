@@ -1,0 +1,42 @@
+id: emst:core/TSK-68MPRFK
+type: Task
+prefLabel:
+  en: Triage automated anomaly or intrusion alerts from control and monitoring networks against process data, closing or escalating each with the evidence recorded
+statement:
+  en: Triage automated anomaly or intrusion alerts from control and monitoring networks against process data, closing or escalating each with the evidence recorded
+textSha256: 31cc8d7093275bfe173af03a46d2eddf116c2a9eec8dd38efe7e9c304bf0c65a
+supports:
+- competency: emst:core/CMP-SNCR4KM
+  strength: primary
+workFunction: WF-OPERATE
+fieldDependency: remote-capable
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: none
+  placeBoundness: system-specific
+  credentialGate: none
+  currencyDecay: H
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+editorialNote:
+  en: 'G-2 split added at DB review: judging automated alerts, beside the production task seed:dc-db06-report-anomaly.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:dc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-dc@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0005

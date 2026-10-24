@@ -1,0 +1,44 @@
+id: emst:waste/TSK-7HZK4DJ
+type: Task
+prefLabel:
+  en: Determine which findings are recognized environmental conditions and state the basis for each determination in the assessment report
+statement:
+  en: Determine which findings are recognized environmental conditions and state the basis for each determination in the assessment report
+textSha256: 7b24760171c90285432d039acec8e2d9610cf2e33f781d060709aa7dd977ed15
+supports:
+- competency: emst:waste/CMP-8WQ7BK8
+  strength: primary
+workFunction: WF-ASSESS
+workflowProfiles:
+- WP-PROJECT
+fieldDependency: remote
+formationDependency: 'yes'
+credentialGates:
+- credential: emst:core/CRD-86HVHTY
+  kind: required
+signOffAuthority:
+  kind: regulatory-definition
+homeModule: waste
+subsectors:
+- P04
+layer: L2
+module: waste
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

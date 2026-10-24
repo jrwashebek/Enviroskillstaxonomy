@@ -4,7 +4,7 @@
 
 - **Role:** Conservation corps member (`seed:R01-conservation-corps-member`, P1); authority position (editorial): service-provider
 - **Indicative band:** not recorded (not a classification criterion)
-- **Generated:** pipelines/views/federal_series_profile.py@0.1.0, rule federal-series-profile@0.1.0 (proposed), as of 2026-10-23
+- **Generated:** pipelines/views/federal_series_profile.py@0.2.0, rule federal-series-profile@0.1.0 (registered rule, status active), as of 2026-10-23
 
 ## Series
 

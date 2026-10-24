@@ -1,0 +1,39 @@
+id: emst:water/IND-3Q95HRS
+type: Indicator
+prefLabel:
+  en: Records raw-water, process and finished-water readings on the shift log at the…
+competency: emst:water/CMP-5VJ4XK6
+level: L1
+statement:
+  en: Records raw-water, process and finished-water readings on the shift log at the required frequency, so that entries reconcile with analyzer data at supervisor review.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:water/TSK-DNX7Q7R
+- emst:water/TSK-NN4Q8AH
+layer: L1
+module: water
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -1,0 +1,58 @@
+id: emst:core/TSK-31D2026
+type: Task
+prefLabel:
+  en: Project future vegetation states on unmanaged lands from historical data, stating the assumptions and uncertainty of the projection.
+statement:
+  en: Project future vegetation states on unmanaged lands from historical data, stating the assumptions and uncertainty of the projection.
+textSha256: 18aab5ce46a08ac1caa804a3d1702094a43921eeb22a4dff490ecdbec1892024
+editorialNote:
+  en: Supports re-pointed from v1 competency 1.1.3 to emst:core/CMP-C2SQQ3B by the merge disposition (ADR-0011). v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+notation:
+- scheme: EMSTv1
+  value: 1.1.3:T2
+supports:
+- competency: emst:core/CMP-C2SQQ3B
+  strength: primary
+- competency: emst:core/CMP-JRTJ02T
+  strength: contributing
+workFunction: WF-ASSESS
+fieldDependency: remote
+formationDependency: partial
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+v1Tier: T2
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.1'
+  label: Ecosystem Science
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:1.1.3:T2
+    v1Code: 1.1.3
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 4
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0011

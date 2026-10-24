@@ -1,0 +1,56 @@
+id: emst:core/ENA-6FPR7BR
+type: Enactment
+prefLabel:
+  en: Federal merit-based hiring and supervision
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-6035KC2
+enactmentKind: actor
+actorType: federal-agency
+authorityBasis:
+  en: Merit system principles and federal examining law (job-related, position-specific assessment); the 2025 merit hiring plan; job analysis under 5 CFR 300.103 after the 2026 interim rule removed the uniform-guidelines references; reasonable-accommodation duties under federal disability law. Executive orders of January 2025 ended agency programmes under the DEI label and revoked the contractor affirmative-action order.
+principal:
+  en: The selecting official and the agency human capital office.
+accountabilityVenue:
+  en: OPM oversight; the Merit Systems Protection Board; equal employment opportunity complaint processes.
+characteristicInstruments:
+- instrument: emst:core/INS-9SHB0Y0
+  role: requires
+  note:
+    en: Merit-based, job-related assessment.
+- instrument: emst:core/INS-YWXXS3J
+  role: removed-requirement
+  note:
+    en: Removed the uniform-guidelines references; never a basis.
+- instrument: emst:core/INS-C7Q9GK6
+  role: removed-requirement
+  note:
+    en: Ended programmes under the DEI label and revoked the contractor affirmative-action order; never a basis.
+note:
+  en: 'ADR-0016: applicability is computed from typed links. Merit-based, job-related practice has a current federal basis; the removed programmes are linked only as removed-requirement.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fh-agent@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: E
+  reviewStatus: unreviewed
+  sources:
+  - FH-012
+  - IO-022
+  - IO-030
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0016
+  - ADR-0017
+  - ADR-0023
+  - ADR-0030

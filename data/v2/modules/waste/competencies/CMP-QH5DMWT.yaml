@@ -1,0 +1,68 @@
+id: emst:waste/CMP-QH5DMWT
+type: Competency
+prefLabel:
+  en: Conduct environmental site assessment and site characterization
+altLabel:
+  en:
+  - Phase I and Phase II environmental site assessment
+  - Site characterization
+  - Conceptual site model development
+definition:
+  en: 'Assessing whether and how a property is contaminated: records review, reconnaissance and interviews; design and execution of soil, groundwater, soil-gas and sediment sampling; and construction and updating of a conceptual site model across media, with judgment of whether data are usable for the decision. Excludes remedy selection (DB-C20) and transaction due diligence sign-off (PS-C13).'
+statement:
+  en: Identifies potential contamination from records, reconnaissance and interviews; designs sampling that tests the conceptual site model; logs and samples soils, groundwater and soil gas in the field; and updates the model with each data set, stating which gaps still prevent a remedy decision and whether the data are usable.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:waste/IND-MTTVT44
+  - emst:waste/IND-CCRTEPM
+- level: L2
+  indicators:
+  - emst:waste/IND-2D0C3CH
+  - emst:waste/IND-SX24N37
+  - emst:waste/IND-T85K4Z7
+- level: L3
+  indicators:
+  - emst:waste/IND-GM9VF2M
+  - emst:waste/IND-6ARF9DD
+- level: L4
+  indicators:
+  - emst:waste/IND-G8SRG7R
+  - emst:waste/IND-VWXPJM7
+homeModule: waste
+subsectors:
+- P04
+- W05
+reusability: subsector-specific
+layer: L1
+module: waste
+status: candidate
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+editorialNote:
+  en: 'WP-06: Survivor; absorbs FC-C05 (field investigation at contaminated sites). Site characterization home is P04; part of role R27. Professional geologist licensure for groundwater reports is a Credential gate in many states; HAZWOPER is an entry gate (emst:core/CRD-VBY8TPT, WP-07). Basis [J]. | S2 (CR-FC-002 #1 ruling): field content of merged FC-C05 added by DB: stop-and-upgrade task DB-C19-T6, soil-gas task DB-C19-T7, L2 halt indicator; contributing links to v1-4.4.4-A and FC-C24 (module to core). FC review pending.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T14:30:00Z'
+  sources:
+  - DB-025
+  - FC-038
+  - FC-044
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

@@ -1,0 +1,37 @@
+id: emst:core/IND-2M3EYA4
+type: Indicator
+prefLabel:
+  en: Issues a correction notice to every downstream product when an upstream error is found,…
+competency: emst:core/CMP-8EAS8ZR
+level: L3
+statement:
+  en: Issues a correction notice to every downstream product when an upstream error is found, listing the affected products and fixes.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-99AV3BB
+distinguishingAttribute: ATT-SCO
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

@@ -1,0 +1,113 @@
+id: emst:core/CMP-A8ECZD7
+type: Competency
+prefLabel:
+  en: Elicit, document and transfer tacit and institutional knowledge before people leave
+altLabel:
+  en:
+  - Capture and transfer critical institutional and place-based knowledge before staff separate
+  - Structured knowledge handover
+  - Cross-generational knowledge exchange
+  - Knowledge continuity
+definition:
+  en: Identifies knowledge held by one or a few people that the work depends on (site histories, decision rationales, relationships, local protocols, field cues), elicits it through structured interviews, field walk-throughs and annotated records, transfers it through paired work and planned handover, and verifies that successors can apply it, at separation, retirement, reassignment and when work moves between organizations. Excludes general records management and the curation of retrieval corpora for AI tools (a Data Craft practice competency).
+statement:
+  en: Identifies critical knowledge held by one or a few people, elicits it through structured interviews, field walk-throughs and annotated records, transfers it through paired work and planned handover, and verifies that successors can apply it before the holder leaves or the work moves to another organization.
+competencyType: transversal
+transversalCluster: TX-D
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-A528YE0
+  - emst:core/IND-VXMJK1W
+  - emst:core/IND-YAJMAJ4
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L3
+  indicators:
+  - emst:core/IND-6EGSH26
+  - emst:core/IND-SVE5V8D
+  - emst:core/IND-S6KTQC4
+  - emst:core/IND-YYRKWFC
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+- level: L4
+  indicators:
+  - emst:core/IND-0QKTTDN
+  - emst:core/IND-KNB55J3
+  - emst:core/IND-9S40D83
+  publicationRuleChecks:
+    existence:
+      result: pending
+    distinctness:
+      result: pass
+      evidence:
+      - 'agent self-check: lint B08a clean; distinguishingAttribute recorded on indicators above levelSpan.min'
+      checkedOn: '2026-10-23'
+    assessability:
+      result: pending
+    consensus:
+      result: pending
+homeModule: core
+learningDesign:
+  assessmentContext: field | stakeholder | desk-data (verified by observing the successor apply the knowledge)
+  recommendedModes:
+  - WBL
+  - MEN
+  - CL
+  - FD
+  typicalHoursPerLevelStep: 16
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'TX-D knowledge-continuity survivor (FH-C07; ADR-0025 §1). Absorbs IO-C03 (elicit tacit expertise), FS-C12, CC-CM-01 (structured handover) and C-LM-05 (institutional knowledge through attrition), and v1 3.5.4 (candidate_disposition.csv; v1_disposition.csv). Basis: 2025-26 federal departures and EPA departures with a 30.3-year median service [E: V1-01, V1-03]. Knowledge whose holders have not chosen to share it is out of scope; anything Tribal-related is held under ADR-0007 §D and handled by TN, not authored here.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:05:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  derivedFrom:
+  - v1Key: v1:3.5.4
+    relation: merged-from
+    note: v1 3.5.4 (cross-generational leadership) merged into FH-C07; cross-generational bridging is operationalized as knowledge continuity.
+  sources:
+  - V1-01
+  - V1-03
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003
+  - ADR-0011

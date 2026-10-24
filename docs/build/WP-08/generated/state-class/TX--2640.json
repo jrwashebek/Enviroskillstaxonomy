@@ -2,13 +2,13 @@
  "stamp": {
   "ruleId": "state-class-view",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/state_class_view.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
  "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
- "classRecord": "seed:class/TX/2640",
+ "classRecord": "emst:core/SCR-K88QH4D",
  "class": {
   "jurisdiction": "Texas",
   "employerType": "state-agency",
@@ -44,10 +44,11 @@
  },
  "mappings": [
   {
-   "roleVariant": "seed:R21-park-ranger-visitor-resource/state",
-   "role": "seed:R21-park-ranger-visitor-resource",
+   "roleVariant": "emst:parks/VAR-JNXPNJZ",
+   "role": "emst:parks/ROL-68N3AAH",
    "roleTitle": "Park ranger (visitor and resource management)",
    "tier": "P2",
+   "sectorActor": "state",
    "authorityPosition": "resource-manager",
    "roleLevels": [
     "entry"
@@ -58,222 +59,268 @@
    "crosswalkRecord": "emst-x5-tx:R21-park-ranger-visitor-resource/state:2640",
    "competencyTargets": [
     {
-     "competency": "seed:v1-5.5.1",
+     "competency": "emst:parks/CMP-ZJ8688G",
      "label": "Provide visitor information, orientation and safety messaging in parks and protected areas",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 5,
-     "distinguishing": true,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DB-C29",
-     "label": "Communicate environmental and health risks under uncertainty",
-     "targetLevels": {
-      "entry": "L1"
-     },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-E"
-    },
-    {
-     "competency": "seed:FC-C26",
-     "label": "Assess tree risk and structural condition",
-     "targetLevels": {
-      "entry": "L1"
-     },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:v1-4.4.1-A",
-     "label": "Manage risk in uncontrolled field environments",
-     "targetLevels": {
-      "entry": "L1"
-     },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:v1-4.4.2",
+     "competency": "emst:core/CMP-V9DP16C",
      "label": "Provide first aid and emergency medical care in remote field settings",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:v1-4.4.5",
+     "competency": "emst:core/CMP-0CT0C9G",
      "label": "Communicate during field emergencies and report incidents",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-02",
-     "label": "Use AI tools responsibly in everyday environmental work",
+     "competency": "emst:core/CMP-PGREAAQ",
+     "label": "Assess tree risk and structural condition",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 3,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-A"
-    },
-    {
-     "competency": "seed:DC-CAND-13",
-     "label": "Validate AI-generated work products before professional use",
-     "targetLevels": {
-      "entry": "L1"
-     },
-     "importance": 3,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-A"
-    },
-    {
-     "competency": "seed:FC-C18",
-     "label": "Navigate and travel safely in remote terrain with and without digital aids",
-     "targetLevels": {
-      "entry": "L1"
-     },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:v1-4.2.5",
+     "competency": "emst:core/CMP-XN9631Y",
+     "label": "Communicate environmental and health risks under uncertainty",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-E"
+    },
+    {
+     "competency": "emst:core/CMP-WC5GQ9X",
+     "label": "Manage risk in uncontrolled field environments",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-NYXVP3Y",
      "label": "Construct and maintain trails to sustainable design standards",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-01",
+     "competency": "emst:core/CMP-32GRDN0",
+     "label": "Navigate and travel safely in remote terrain with and without digital aids",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-FCXN4BQ",
      "label": "Interpret and question environmental data products in everyday work",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
      "transversalCluster": "TX-A"
     },
     {
-     "competency": "seed:DC-CAND-05",
+     "competency": "emst:core/CMP-7JGQFKZ",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-MS40XXX",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-8EAS8ZR",
      "label": "Record provenance and AI involvement in work products",
      "targetLevels": {
       "entry": "L1"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
      "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-CD9P70X",
+     "label": "Manage physical assets and capital plans with risk-based asset management",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-F7YNT9E",
+     "label": "Interpret natural and cultural resources for visitors and community audiences",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-2VQTX8E",
+     "label": "Practise cultural humility in community, field and team work",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-PPCA1B6",
+     "label": "Design and deliver environmental education programmes",
+     "targetLevels": {
+      "entry": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
     }
    ],
+   "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "topTasks": [
     {
-     "task": "seed:v1-5.5.1-T1",
+     "task": "emst:parks/TSK-KP524WT",
      "statement": "Orient visitors at a contact station to routes, conditions, regulations and hazards matched to their plans and abilities",
-     "pctTime": 7.6,
-     "critical": true,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-5.5.1-T2",
+     "task": "emst:parks/TSK-FW8Z924",
      "statement": "Give safety information and trip recommendations tailored to current conditions and each visitor's stated plans",
-     "pctTime": 6.7,
-     "critical": true,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-5.5.1-T3",
+     "task": "emst:parks/TSK-GPXJQ50",
      "statement": "Log visitor questions, incidents and concerns to identify information gaps and revise visitor messaging",
-     "pctTime": 5.3,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:db-5.5.1-t4",
+     "task": "emst:parks/TSK-CA6Z2JM",
      "statement": "Check visitor information from automated or online sources against current site conditions before it is posted or repeated to visitors",
-     "pctTime": 5.3,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:IA-CC-02-T1",
+     "task": "emst:parks/TSK-BEQXHGN",
      "statement": "Assign recreation opportunity classes to a planning area from setting characteristics, access and existing use",
-     "pctTime": 5.3,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-4.4.2-T2",
-     "statement": "Coordinate a medical evacuation from a remote site, passing patient condition, location and landing or access information to responders",
-     "pctTime": 5.3,
-     "critical": false,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:v1-2.3.5-T1",
-     "statement": "Test field radios and satellite devices for a work area before deployment, programming channels and confirming coverage at key locations",
-     "pctTime": 5.3,
-     "critical": false,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:fc-tree-remote-verify",
-     "statement": "Verify remote-sensed or analytics-flagged tree risk scores on the ground, recording each override with the field reason",
-     "pctTime": 5.3,
-     "critical": false,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:lc-txe-answer-public-questions",
-     "statement": "Answer public questions about an uncertain environmental risk at a meeting or by phone using the current message map",
-     "pctTime": 5.3,
-     "critical": false,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:v1-4.4.1-T1",
-     "statement": "Conduct a job hazard analysis at the actual work site before field activity begins, naming each hazard present and its control",
-     "pctTime": 5.3,
-     "critical": false,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:IA-CC-02-T3",
+     "task": "emst:parks/TSK-A09N7KM",
      "statement": "Designate motorized and non-motorized routes in a travel plan that separate conflicting uses and protect resources",
-     "pctTime": 3.9,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-4.4.2-T3",
+     "task": "emst:core/TSK-CY8BTSC",
+     "statement": "Coordinate a medical evacuation from a remote site, passing patient condition, location and landing or access information to responders",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-A4RYNPQ",
      "statement": "Inspect crew first aid and trauma kits on schedule, replacing expired or missing items and recording the check",
-     "pctTime": 3.9,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-ERD0MX5",
+     "statement": "Test field radios and satellite devices for a work area before deployment, programming channels and confirming coverage at key locations",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-TT9K1MQ",
+     "statement": "Troubleshoot field communication failures, switching to backup methods or relocating to restore contact within the check-in window",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-XS7ACED",
+     "statement": "Verify remote-sensed or analytics-flagged tree risk scores on the ground, recording each override with the field reason",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-GNSQ8Q6",
+     "statement": "Conduct a ground-based visual tree risk assessment, recording defects, likelihood of failure, targets and consequences on the standard form",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     }
    ],
    "credentialGates": {

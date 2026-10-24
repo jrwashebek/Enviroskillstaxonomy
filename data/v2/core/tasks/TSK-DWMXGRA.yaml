@@ -1,0 +1,66 @@
+id: emst:core/TSK-DWMXGRA
+type: Task
+prefLabel:
+  en: Deploy camera traps and acoustic recorders at survey stations to the protocol's height, orientation and settings, recording station metadata
+statement:
+  en: Deploy camera traps and acoustic recorders at survey stations to the protocol's height, orientation and settings, recording station metadata
+textSha256: 79f3428651812633953667acd6375e1a4500fbde638e4dbac007e6566f3bd221
+supports:
+- competency: emst:core/CMP-ENQM5AE
+  strength: primary
+- competency: emst:core/CMP-BQRDVKJ
+  strength: contributing
+workFunction: WF-ASSESS
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: seasonal
+  placeBoundness: ecosystem-type
+  credentialGate: none
+  currencyDecay: M
+notation:
+- scheme: EMSTv1
+  value: 1.4.2:T1
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Tier: T1
+v1Domain:
+  code: '1'
+  label: Ecological & Scientific Knowledge
+v1SkillArea:
+  code: '1.4'
+  label: Wildlife & Fisheries Biology
+editorialNote:
+  en: 'G-2 split role: execution to protocol (production). Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:1.4.2:T1
+    v1Code: 1.4.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 18
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

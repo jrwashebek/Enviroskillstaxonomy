@@ -727,6 +727,8 @@ def _actual(recs, v1key):
 def build_x1(inp: Inputs, plan: Plan, recs: dict) -> list[dict]:
     rows = []
     author = "emstagent:ca-v1-dispositions"
+    promoted = L.load_seed_map()                   # planned seed keys promoted at WP-16 are the same records (ADR-0031 §6)
+    canon = lambda k: promoted.get(k, k)           # noqa: E731
     for code in sorted(inp.disp, key=sort_code):
         d = inp.disp[code]
         dec = d["decision"]
@@ -738,7 +740,7 @@ def build_x1(inp: Inputs, plan: Plan, recs: dict) -> list[dict]:
         if dec == "retire":
             objs = [("emst:retiredWithoutReplacement", "sssom:NoTermFound")]
         elif dec in ("carry", "rewrite", "move-to-module"):
-            objs = [("emst:replacedBy", rid) for rid, _ in actual] or [("emst:replacedBy", planned[0]["key"])]
+            objs = [("emst:replacedBy", rid) for rid, _ in actual] or [("emst:replacedBy", canon(planned[0]["key"]))]
         else:
             keys = [rid for rid, _ in actual]
             types = dict(actual)
@@ -746,8 +748,8 @@ def build_x1(inp: Inputs, plan: Plan, recs: dict) -> list[dict]:
                 # planned targets not yet covered by a record citing this v1 key: unauthored ones are pending; an
                 # authored target that predates the disposition (e.g. a candidate a merge was re-targeted to,
                 # ADR-0030 §3.1) is still the object, so every v1 key stays accounted for (P-DE-08)
-                keys += [t["key"] for t in planned if t["key"] not in keys]
-            kinds = {t["key"]: t["kind"] for t in planned}
+                keys += [canon(t["key"]) for t in planned if canon(t["key"]) not in keys]
+            kinds = {canon(t["key"]): t["kind"] for t in planned}
             pred = {"merge": "emst:mergedInto", "split": "emst:splitInto", "hold-for-tribal-review": "emst:replacedBy",
                     "move-to-tools": "emst:replacedBy"}[dec]
             for k in keys:
@@ -767,7 +769,7 @@ def build_x1(inp: Inputs, plan: Plan, recs: dict) -> list[dict]:
             else:
                 act = [rid for rid, _ in _actual(recs, tkey)]
                 if not act:
-                    act = [f"seed:v1-{code}-T{n}"]
+                    act = [canon(f"seed:v1-{code}-T{n}")]
                 trows = [("emst:splitInto" if len(act) > 1 else "emst:replacedBy", a) for a in act]
             for p, o in trows:
                 rows.append({"subject_id": tsubj, "predicate_id": p, "object_id": o, "mapping_justification": "semapv:ManualMappingCuration",
@@ -891,6 +893,25 @@ def generate(inp: Inputs):
 LEDGER = L.DATA_V2 / "migration" / "seed_ledger.csv"
 
 
+def apply_promotions(text: str, promoted: dict, suffix: str) -> str:
+    """The generated text as it stands after scripts/mint_id.py promoted seeds (ADR-0031 §6): references rewritten
+    to minted IDs, and generated JSONL records that were promoted carry status candidate. Seed YAML records that were
+    promoted are not regenerated at all (main skips them)."""
+    text = L.rewrite_seed_refs(text, promoted)
+    if suffix != ".jsonl":
+        return text
+    minted = set(promoted.values())
+    out = []
+    for line in text.splitlines():
+        if line.strip():
+            obj = json.loads(line)
+            if obj.get("id") in minted and obj.get("status") == "draft":
+                obj["status"] = "candidate"
+                line = L.jsonl_line(obj)
+        out.append(line)
+    return "\n".join(out) + ("\n" if text.endswith("\n") else "")
+
+
 def read_ledger() -> dict[str, str]:
     """{seed id: sha256 of the file as the migration last wrote it}."""
     return {r["id"]: r["sha256"] for r in L.read_csv(LEDGER)} if LEDGER.exists() else {}
@@ -908,6 +929,7 @@ def main(argv=None) -> int:
     hold_keys = set(hold.get("heldSeedKeys") or [])
     outputs: dict[Path, str] = {}
     skipped, drift = [], []
+    promoted = L.load_seed_map()          # seeds promoted to candidate by scripts/mint_id.py (ADR-0031 §6)
     ledger = read_ledger()
     new_ledger = dict(ledger)
     existing = {}
@@ -916,6 +938,9 @@ def main(argv=None) -> int:
             if isinstance(rec, dict) and isinstance(rec.get("id"), str) and loc.line is None:
                 existing[rec["id"]] = (loc.path, rec)
         for path, rec in list(comps.values()) + list(tasks.values()):
+            if rec["id"] in promoted:
+                skipped.append(rec["id"])            # authored and promoted: the minted record is authoritative
+                continue
             have = existing.get(rec["id"])
             text = L.dump_yaml(rec)
             if have is None or args.force:
@@ -942,6 +967,8 @@ def main(argv=None) -> int:
     # X1 is computed against the records as they will be after this run
     recs = current_records(L.DATA_V2)
     for path, rec in list(comps.values()) + list(tasks.values()):
+        if rec["id"] in promoted:
+            continue
         have = recs.get(rec["id"])
         if have is None or (not args.x1_only and path in outputs):     # only seeds this run (re)writes
             recs[rec["id"]] = rec
@@ -977,6 +1004,8 @@ def main(argv=None) -> int:
                                                                  "foundational_professional_prep", "core_family_count", "supporting_family_count"],
         }
         outputs[L.DATA_V2 / "migration" / "MIGRATION_INFO.json"] = L.dump_json(info)
+    if promoted:
+        outputs = {p: apply_promotions(txt, promoted, p.suffix) for p, txt in outputs.items()}
     if args.check:
         bad = [str(p.relative_to(L.ROOT)) for p, txt in outputs.items() if not p.exists() or p.read_text(encoding="utf-8") != txt]
         for b in bad[:40]:

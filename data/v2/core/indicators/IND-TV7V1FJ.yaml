@@ -1,0 +1,43 @@
+id: emst:core/IND-TV7V1FJ
+type: Indicator
+prefLabel:
+  en: Reviews agents' case files against the procedure, returning each with the defects to correct before closing.
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+competency: emst:core/CMP-QWHKC1A
+level: L4
+statement:
+  en: Reviews agents' case files against the procedure, returning each with the defects to correct before closing.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+evidenceTypes:
+- review comments
+servedTasks:
+- emst:core/TSK-KYE2BBX
+distinguishingAttribute: ATT-FOR
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:ps-code@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0017
+  - ADR-0018
+  - ADR-0023
+  - ADR-0030

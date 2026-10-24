@@ -2,8 +2,8 @@
  "stamp": {
   "ruleId": "federal-series-profile",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/federal_series_profile.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/federal_series_profile.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
@@ -17,18 +17,18 @@
   "group": "1300 Physical Sciences",
   "qualificationStandardVersion": "Professional & Scientific Positions group std + series IOR",
   "positiveEducationRequirement": null,
-  "educationNote": "FH judgment pending verification of the qualification standard",
-  "registerRecord": "seed:opm-series/1370",
+  "educationNote": "from EMST's series record; not yet checked against the OPM qualification standard, so confirm with the HR office",
+  "registerRecord": "emst:core/SER-SXGSW37",
   "registerReviewBy": "2027-01-23",
   "events": []
  },
  "generalCompetencies": "not mapped in this release (X9 USA Hire and FWCI parts not built; WP-09 open item 6)",
  "roles": [
   {
-   "role": "seed:R04-geospatial-remote-sensing-analyst",
+   "role": "emst:core/ROL-1GQVAH3",
    "roleTitle": "Geospatial and remote sensing analyst",
    "tier": "P1",
-   "variant": "seed:R04-geospatial-remote-sensing-analyst/federal",
+   "variant": "emst:core/VAR-WKQQSB8",
    "functionStatement": "Turn spatial and remotely sensed data into validated map and model products whose accuracy and limits are stated for the decision they serve.",
    "authorityPosition": "resource-manager",
    "x4": {
@@ -54,383 +54,403 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:v1-2.1.2",
+       "competency": "emst:core/CMP-VSYR8YY",
        "duty": "Analyze remotely sensed data to map and monitor environmental conditions",
-       "pctTime": 40,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.1.2-T1",
-         "statement": "Interpret satellite and aerial imagery to detect changes in vegetation, soil or water condition across a management area between two dates.",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 11.0
-        },
-        {
-         "task": "seed:v1-2.1.2-T2",
-         "statement": "Classify preprocessed multispectral imagery into land-cover types using training data whose collection method and date are documented.",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
-         "formationTask": true,
-         "variantAdded": false,
-         "pctTime": 10.9
-        },
-        {
-         "task": "seed:dc-212-preprocess",
+         "task": "emst:core/TSK-9KESGTA",
          "statement": "Preprocess imagery for analysis by correcting geometry, radiometry and cloud or shadow contamination, documenting each step and its parameters.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 7.3
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.1.2-T3",
+         "task": "emst:core/TSK-ZP4C468",
+         "statement": "Interpret satellite and aerial imagery to detect changes in vegetation, soil or water condition across a management area between two dates.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-XJECATS",
+         "statement": "Classify preprocessed multispectral imagery into land-cover types using training data whose collection method and date are documented.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-6WZW55T",
          "statement": "Assess the accuracy of a remotely sensed map against independent field reference data, reporting error by class and condition.",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 7.3
+         "pctTime": null
         },
         {
-         "task": "seed:dc-212-circularity-check",
+         "task": "emst:core/TSK-BX55DC6",
          "statement": "Check whether a map product shares training data with the reference used to validate it, choosing an independent reference when it does.",
-         "importance": 4,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-2.1.4",
+       "competency": "emst:core/CMP-YV31ZCF",
        "duty": "Conduct spatial analysis and modelling of environmental data",
-       "pctTime": 26,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.1.1-T2",
+         "task": "emst:core/TSK-SVKZ1W4",
          "statement": "Run spatial queries and overlays for an environmental assessment, checking that all layers share a coordinate reference system and compatible scales.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 7.3
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.1.4-T1",
+         "task": "emst:core/TSK-3PWPDQB",
          "statement": "Analyze terrain, habitat connectivity or resource distribution for a planning question, stating the data, projection and accuracy limits that bound the answer.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 7.3
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.1.4-T2",
+         "task": "emst:core/TSK-61G7Z99",
          "statement": "Build a predictive spatial model for a conservation planning question, documenting its inputs, assumptions and validation against independent locations.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 7.3
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.1.1-T1",
+         "task": "emst:core/TSK-FY9SJQQ",
          "statement": "Maintain spatial layers of land use, vegetation and infrastructure with topology rules, attribute standards and update dates recorded.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-2.1.5",
+       "competency": "emst:core/CMP-FTP78TV",
        "duty": "Design maps and visualizations that communicate environmental data and uncertainty",
-       "pctTime": 14,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.1.5-T1",
+         "task": "emst:core/TSK-R2XEG7D",
          "statement": "Design a map for a stated audience and decision, choosing scale, extent, symbology and colour that the audience reads correctly.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 7.3
+         "pctTime": null
         },
         {
-         "task": "seed:dc-215-uncertainty-depiction",
+         "task": "emst:core/TSK-25HNTPH",
          "statement": "Depict the uncertainty of a mapped or charted estimate with an encoding that intended users read correctly in a comprehension check.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.1.1-T3",
+         "task": "emst:core/TSK-ADFACAS",
          "statement": "Produce maps for reports, briefings and field crews at the scale, extent and legibility each use requires.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-08",
-       "duty": "Conduct reproducible, auditable environmental analysis, including AI-assisted code",
-       "pctTime": 7,
-       "tasks": [
-        {
-         "task": "seed:v1-2.2.4-T1",
-         "statement": "Write a script that automates a repetitive data-processing step, with tests that confirm it reproduces the manual result on sample data.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": true,
-         "variantAdded": false,
-         "pctTime": 3.6
-        },
-        {
-         "task": "seed:dc-08-record-environment",
-         "statement": "Record the software environment, package versions and inputs of an analysis so that it can be re-run years later.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.9
-        },
-        {
-         "task": "seed:dc-08-review-ai-code",
-         "statement": "Review AI-generated analysis code line by line against the analysis plan, testing it on cases with known answers before use.",
-         "importance": 4,
-         "critical": true,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.9
-        }
-       ]
-      },
-      {
-       "competency": "seed:v1-2.4.1",
+       "competency": "emst:core/CMP-ZJZ8VBW",
        "duty": "Build and validate automated detection and classification models for environmental observations",
-       "pctTime": 4,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.6.1-T3",
+         "task": "emst:core/TSK-2WVTQB8",
          "statement": "Validate a detection model against field ground-truth data, reporting error by habitat, season and image condition.",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 3.6
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-11",
-       "duty": "Quantify and communicate uncertainty for environmental decisions",
-       "pctTime": 2,
+       "competency": "emst:core/CMP-AYQ8XA1",
+       "duty": "Conduct reproducible, auditable environmental analysis, including AI-assisted code",
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:dc-11-retain-uncertainty",
-         "statement": "Report results with the uncertainty the method provides, such as intervals or confidence classes, keeping it in every summary of the result.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:core/TSK-G11MNP2",
+         "statement": "Record the software environment, package versions and inputs of an analysis so that it can be re-run years later.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.9
-        }
-       ]
-      },
-      {
-       "competency": "seed:DC-CAND-06",
-       "duty": "Steward and publish environmental data for reuse",
-       "pctTime": 2,
-       "tasks": [
+         "pctTime": null
+        },
         {
-         "task": "seed:v1-2.2.5-T1",
-         "statement": "Document a dataset's sources, methods, formats and fitness for use in a metadata record that meets the applicable standard.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.9
-        }
-       ]
-      },
-      {
-       "competency": "seed:DC-CAND-07",
-       "duty": "Protect sensitive ecological, cultural and personal information in data products",
-       "pctTime": 2,
-       "tasks": [
-        {
-         "task": "seed:dc-07-generalize-copy",
-         "statement": "Generalize sensitive fields in the distributed copy of a dataset, or withhold them, while leaving the stored record unaltered and explaining each withheld field.",
-         "importance": 4,
-         "critical": true,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.9
-        }
-       ]
-      },
-      {
-       "competency": "seed:FC-C14",
-       "duty": "Operate and supervise uncrewed and automated field systems",
-       "pctTime": 2,
-       "tasks": [
-        {
-         "task": "seed:v1-2.3.2-T3",
-         "statement": "Verify the positional accuracy of uncrewed-aircraft survey products against independently surveyed check points before release to users",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 1.9
-        }
-       ]
-      },
-      {
-       "competency": "seed:DC-CAND-13",
-       "duty": "Validate AI-generated work products before professional use",
-       "pctTime": 2,
-       "tasks": [
-        {
-         "task": "seed:dc-13-sample-validate",
-         "statement": "Validate a large batch of AI detections or comment codes by drawing a defined sample, reviewing it and estimating the batch error rate.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "task": "emst:core/TSK-CEXHYB4",
+         "statement": "Write a script that automates a repetitive data-processing step, with tests that confirm it reproduces the manual result on sample data.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 1.9
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-G9P1TCM",
+         "statement": "Review AI-generated analysis code line by line against the analysis plan, testing it on cases with known answers before use.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-4ZX8Q5F",
+       "duty": "Quantify and communicate uncertainty for environmental decisions",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-2HNFE1R",
+         "statement": "Report results with the uncertainty the method provides, such as intervals or confidence classes, keeping it in every summary of the result.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-PP8RSRT",
+       "duty": "Steward and publish environmental data for reuse",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-FQEM28S",
+         "statement": "Document a dataset's sources, methods, formats and fitness for use in a metadata record that meets the applicable standard.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-62YG1FR",
+       "duty": "Protect sensitive ecological, cultural and personal information in data products",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-YQGD231",
+         "statement": "Generalize sensitive fields in the distributed copy of a dataset, or withhold them, while leaving the stored record unaltered and explaining each withheld field.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-BBSZYXE",
+       "duty": "Operate and supervise uncrewed and automated field systems",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-C4P9H59",
+         "statement": "Verify the positional accuracy of uncrewed-aircraft survey products against independently surveyed check points before release to users",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        }
+       ]
+      },
+      {
+       "competency": "emst:core/CMP-MS40XXX",
+       "duty": "Validate AI-generated work products before professional use",
+       "pctTime": null,
+       "tasks": [
+        {
+         "task": "emst:core/TSK-E0Z73F4",
+         "statement": "Validate a large batch of AI detections or comment codes by drawing a defined sample, reviewing it and estimating the batch error rate.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": true,
+         "variantAdded": false,
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:dc-212-preprocess",
-      "seed:v1-2.1.2-T1",
-      "seed:v1-2.1.2-T2",
-      "seed:v1-2.1.2-T3",
-      "seed:v1-2.1.1-T2",
-      "seed:v1-2.1.4-T1",
-      "seed:v1-2.1.1-T1",
-      "seed:v1-2.1.5-T1",
-      "seed:v1-2.1.1-T3",
-      "seed:dc-08-record-environment",
-      "seed:v1-2.2.4-T1",
-      "seed:v1-2.2.5-T1"
-     ],
-     "criticalTasks": [
-      "seed:v1-2.1.2-T1",
-      "seed:v1-2.1.2-T2",
-      "seed:v1-2.1.2-T3",
-      "seed:dc-212-circularity-check",
-      "seed:v1-2.6.1-T3",
-      "seed:dc-08-review-ai-code",
-      "seed:dc-07-generalize-copy"
-     ],
-     "distinguishingCompetencies": [
-      "seed:v1-2.1.2",
-      "seed:DC-CAND-09"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:v1-2.1.2",
-       "statement": "Knowledge of and skill in: analyze remotely sensed data to map and monitor environmental conditions (EMST target journey L2).",
+       "competency": "emst:core/CMP-VSYR8YY",
+       "statement": "Knowledge of and skill in: analyze remotely sensed data to map and monitor environmental conditions (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-2.1.4",
-       "statement": "Knowledge of and skill in: conduct spatial analysis and modelling of environmental data (EMST target journey L2).",
+       "competency": "emst:core/CMP-YV31ZCF",
+       "statement": "Knowledge of and skill in: conduct spatial analysis and modelling of environmental data (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-07",
-       "statement": "Knowledge of and skill in: protect sensitive ecological, cultural and personal information in data products (EMST target journey L2).",
+       "competency": "emst:core/CMP-FTP78TV",
+       "statement": "Knowledge of and skill in: design maps and visualizations that communicate environmental data and uncertainty (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-08",
-       "statement": "Knowledge of and skill in: conduct reproducible, auditable environmental analysis, including AI-assisted code (EMST target journey L2).",
+       "competency": "emst:core/CMP-ZJZ8VBW",
+       "statement": "Knowledge of and skill in: build and validate automated detection and classification models for environmental observations (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-09",
-       "statement": "Knowledge of and skill in: evaluate model fitness-for-purpose and validate against independent evidence (EMST target journey L2).",
+       "competency": "emst:core/CMP-GKAFZ9G",
+       "statement": "Knowledge of and skill in: evaluate model fitness-for-purpose and validate against independent evidence (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-11",
-       "statement": "Knowledge of and skill in: quantify and communicate uncertainty for environmental decisions (EMST target journey L2).",
+       "competency": "emst:core/CMP-AYQ8XA1",
+       "statement": "Knowledge of and skill in: conduct reproducible, auditable environmental analysis, including AI-assisted code (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-13",
-       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target journey L2).",
+       "competency": "emst:core/CMP-4ZX8Q5F",
+       "statement": "Knowledge of and skill in: quantify and communicate uncertainty for environmental decisions (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FC-C02",
-       "statement": "Knowledge of and skill in: ground-truth remote-sensed, modelled and AI-generated outputs in the field (EMST target journey L1).",
+       "competency": "emst:core/CMP-QSAV0HJ",
+       "statement": "Knowledge of and skill in: ground-truth remote-sensed, modelled and AI-generated outputs in the field (EMST target journey L1, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-2.1.5",
-       "statement": "Knowledge of and skill in: design maps and visualizations that communicate environmental data and uncertainty (EMST target journey L2).",
+       "competency": "emst:core/CMP-62YG1FR",
+       "statement": "Knowledge of and skill in: protect sensitive ecological, cultural and personal information in data products (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-2.4.1",
-       "statement": "Knowledge of and skill in: build and validate automated detection and classification models for environmental observations (EMST target journey L2).",
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target journey L2, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-PP8RSRT",
+       "statement": "Knowledge of and skill in: steward and publish environmental data for reuse (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8KVRS7Y",
+       "statement": "Knowledge of and skill in: design and manage environmental databases (EMST target journey L2, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-BBSZYXE",
+       "statement": "Knowledge of and skill in: operate and supervise uncrewed and automated field systems (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target journey L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     },
@@ -443,487 +463,528 @@
      ],
      "majorDuties": [
       {
-       "competency": "seed:v1-2.1.2",
+       "competency": "emst:core/CMP-VSYR8YY",
        "duty": "Analyze remotely sensed data to map and monitor environmental conditions",
-       "pctTime": 40,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.1.2-T1",
-         "statement": "Interpret satellite and aerial imagery to detect changes in vegetation, soil or water condition across a management area between two dates.",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "task": "emst:core/TSK-9KESGTA",
+         "statement": "Preprocess imagery for analysis by correcting geometry, radiometry and cloud or shadow contamination, documenting each step and its parameters.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 8.7
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.1.2-T2",
+         "task": "emst:core/TSK-ZP4C468",
+         "statement": "Interpret satellite and aerial imagery to detect changes in vegetation, soil or water condition across a management area between two dates.",
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
+         "formationTask": false,
+         "variantAdded": false,
+         "pctTime": null
+        },
+        {
+         "task": "emst:core/TSK-XJECATS",
          "statement": "Classify preprocessed multispectral imagery into land-cover types using training data whose collection method and date are documented.",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": true,
          "variantAdded": false,
-         "pctTime": 8.6
+         "pctTime": null
         },
         {
-         "task": "seed:dc-212-preprocess",
-         "statement": "Preprocess imagery for analysis by correcting geometry, radiometry and cloud or shadow contamination, documenting each step and its parameters.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
-         "formationTask": false,
-         "variantAdded": false,
-         "pctTime": 5.7
-        },
-        {
-         "task": "seed:v1-2.1.2-T3",
+         "task": "emst:core/TSK-6WZW55T",
          "statement": "Assess the accuracy of a remotely sensed map against independent field reference data, reporting error by class and condition.",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.7
+         "pctTime": null
         },
         {
-         "task": "seed:dc-212-reference-design",
+         "task": "emst:core/TSK-8HVKG4V",
          "statement": "Design the sample of independent reference sites for a map accuracy assessment so that every class and condition of interest is represented.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         },
         {
-         "task": "seed:dc-212-circularity-check",
+         "task": "emst:core/TSK-BX55DC6",
          "statement": "Check whether a map product shares training data with the reference used to validate it, choosing an independent reference when it does.",
-         "importance": 4,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         },
         {
-         "task": "seed:dc-212-transfer-test",
+         "task": "emst:core/TSK-5DKG7VF",
          "statement": "Test the transfer of a pretrained Earth-observation model or embedding to a local ecosystem against independent reference data before using its outputs.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         },
         {
-         "task": "seed:dc-212-specify-product",
+         "task": "emst:core/TSK-PR9ZRQA",
          "statement": "Specify a remote-sensing product for a programme decision, stating its classes, minimum mapping unit, accuracy targets and update frequency.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-2.1.4",
+       "competency": "emst:core/CMP-YV31ZCF",
        "duty": "Conduct spatial analysis and modelling of environmental data",
-       "pctTime": 24,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.1.1-T2",
+         "task": "emst:core/TSK-SVKZ1W4",
          "statement": "Run spatial queries and overlays for an environmental assessment, checking that all layers share a coordinate reference system and compatible scales.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.7
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.1.4-T1",
+         "task": "emst:core/TSK-3PWPDQB",
          "statement": "Analyze terrain, habitat connectivity or resource distribution for a planning question, stating the data, projection and accuracy limits that bound the answer.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.7
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.1.4-T2",
+         "task": "emst:core/TSK-61G7Z99",
          "statement": "Build a predictive spatial model for a conservation planning question, documenting its inputs, assumptions and validation against independent locations.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.7
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.1.4-T3",
+         "task": "emst:core/TSK-T542J02",
          "statement": "Evaluate alternative management scenarios with overlay and suitability analysis, documenting weights and criteria so that reviewers can test them.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.1.1-T1",
+         "task": "emst:core/TSK-FY9SJQQ",
          "statement": "Maintain spatial layers of land use, vegetation and infrastructure with topology rules, attribute standards and update dates recorded.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         },
         {
-         "task": "seed:dc-214-spatial-standards",
+         "task": "emst:core/TSK-A83MA1E",
          "statement": "Set spatial-data standards for a programme covering reference systems, topology rules, accuracy reporting and update cycles.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.5
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-2.1.5",
+       "competency": "emst:core/CMP-FTP78TV",
        "duty": "Design maps and visualizations that communicate environmental data and uncertainty",
-       "pctTime": 11,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.1.5-T1",
+         "task": "emst:core/TSK-R2XEG7D",
          "statement": "Design a map for a stated audience and decision, choosing scale, extent, symbology and colour that the audience reads correctly.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 5.7
+         "pctTime": null
         },
         {
-         "task": "seed:dc-215-uncertainty-depiction",
+         "task": "emst:core/TSK-25HNTPH",
          "statement": "Depict the uncertainty of a mapped or charted estimate with an encoding that intended users read correctly in a comprehension check.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.1.1-T3",
+         "task": "emst:core/TSK-ADFACAS",
          "statement": "Produce maps for reports, briefings and field crews at the scale, extent and legibility each use requires.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:v1-2.4.1",
+       "competency": "emst:core/CMP-ZJZ8VBW",
        "duty": "Build and validate automated detection and classification models for environmental observations",
-       "pctTime": 8,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.4.1-T1",
+         "task": "emst:core/TSK-E8AMWFN",
          "statement": "Train a classification model to detect an invasive species in aerial imagery, documenting training data sources, dates and label quality.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         },
         {
-         "task": "seed:dc-241-diagnose-failure",
+         "task": "emst:core/TSK-VK921FJ",
          "statement": "Diagnose why a detection model fails at a new site or season, choosing between retraining and a documented restriction on its use.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         },
         {
-         "task": "seed:v1-2.6.1-T3",
+         "task": "emst:core/TSK-2WVTQB8",
          "statement": "Validate a detection model against field ground-truth data, reporting error by habitat, season and image condition.",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-09",
+       "competency": "emst:core/CMP-GKAFZ9G",
        "duty": "Evaluate model fitness-for-purpose and validate against independent evidence",
-       "pctTime": 4,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:dc-09-independent-validation",
+         "task": "emst:core/TSK-52FVXR3",
          "statement": "Validate a model against independent evidence with spatially or temporally blocked hold-outs or field reference data, reporting error by condition.",
-         "importance": 5,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 2.8
+         "pctTime": null
         },
         {
-         "task": "seed:dc-09-envelope-check",
+         "task": "emst:core/TSK-92PE02X",
          "statement": "Check whether a planned use of a model output falls inside the model's intended purpose, data period and area before relying on it.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.5
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-08",
+       "competency": "emst:core/CMP-AYQ8XA1",
        "duty": "Conduct reproducible, auditable environmental analysis, including AI-assisted code",
-       "pctTime": 3,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:dc-08-record-environment",
+         "task": "emst:core/TSK-G11MNP2",
          "statement": "Record the software environment, package versions and inputs of an analysis so that it can be re-run years later.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.5
+         "pctTime": null
         },
         {
-         "task": "seed:dc-08-review-ai-code",
+         "task": "emst:core/TSK-G9P1TCM",
          "statement": "Review AI-generated analysis code line by line against the analysis plan, testing it on cases with known answers before use.",
-         "importance": 4,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.5
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-11",
+       "competency": "emst:core/CMP-4ZX8Q5F",
        "duty": "Quantify and communicate uncertainty for environmental decisions",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:dc-11-retain-uncertainty",
+         "task": "emst:core/TSK-2HNFE1R",
          "statement": "Report results with the uncertainty the method provides, such as intervals or confidence classes, keeping it in every summary of the result.",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.5
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-06",
+       "competency": "emst:core/CMP-PP8RSRT",
        "duty": "Steward and publish environmental data for reuse",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.2.5-T1",
+         "task": "emst:core/TSK-FQEM28S",
          "statement": "Document a dataset's sources, methods, formats and fitness for use in a metadata record that meets the applicable standard.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": true,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.5
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-07",
+       "competency": "emst:core/CMP-62YG1FR",
        "duty": "Protect sensitive ecological, cultural and personal information in data products",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:dc-07-generalize-copy",
+         "task": "emst:core/TSK-YQGD231",
          "statement": "Generalize sensitive fields in the distributed copy of a dataset, or withhold them, while leaving the stored record unaltered and explaining each withheld field.",
-         "importance": 4,
-         "critical": true,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.5
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C02",
+       "competency": "emst:core/CMP-QSAV0HJ",
        "duty": "Ground-truth remote-sensed, modelled and AI-generated outputs in the field",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:fc-gt-design-sample",
+         "task": "emst:core/TSK-8AQZX65",
          "statement": "Design a field validation sample with an analyst, setting strata, sample size and access limits for a remote-sensed or AI product",
-         "importance": 4,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.5
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:FC-C14",
+       "competency": "emst:core/CMP-BBSZYXE",
        "duty": "Operate and supervise uncrewed and automated field systems",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:v1-2.3.2-T3",
+         "task": "emst:core/TSK-C4P9H59",
          "statement": "Verify the positional accuracy of uncrewed-aircraft survey products against independently surveyed check points before release to users",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.5
+         "pctTime": null
         }
        ]
       },
       {
-       "competency": "seed:DC-CAND-22",
+       "competency": "emst:core/CMP-XNAG8SJ",
        "duty": "Design decision-support products for actual decision contexts",
-       "pctTime": 2,
+       "pctTime": null,
        "tasks": [
         {
-         "task": "seed:dc-22-decision-map",
+         "task": "emst:core/TSK-N9ZVC87",
          "statement": "Map the decision a product must support, including who decides, when, under what authority and with which constraints, before design starts.",
-         "importance": 3,
-         "critical": false,
-         "neededAtEntry": false,
+         "importance": null,
+         "critical": null,
+         "neededAtEntry": null,
          "formationTask": false,
          "variantAdded": false,
-         "pctTime": 1.5
+         "pctTime": null
         }
        ]
       }
      ],
-     "neededAtEntryTasks": [
-      "seed:dc-212-preprocess",
-      "seed:v1-2.1.2-T1",
-      "seed:v1-2.1.2-T2",
-      "seed:v1-2.1.2-T3",
-      "seed:v1-2.1.1-T2",
-      "seed:v1-2.1.4-T1",
-      "seed:v1-2.1.1-T1",
-      "seed:v1-2.1.5-T1",
-      "seed:v1-2.1.1-T3",
-      "seed:dc-08-record-environment",
-      "seed:v1-2.2.5-T1"
-     ],
-     "criticalTasks": [
-      "seed:v1-2.1.2-T1",
-      "seed:v1-2.1.2-T2",
-      "seed:v1-2.1.2-T3",
-      "seed:dc-212-circularity-check",
-      "seed:v1-2.6.1-T3",
-      "seed:dc-09-independent-validation",
-      "seed:dc-08-review-ai-code",
-      "seed:dc-07-generalize-copy"
-     ],
-     "distinguishingCompetencies": [
-      "seed:v1-2.1.2",
-      "seed:DC-CAND-09"
-     ],
+     "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+     "neededAtEntryTasks": null,
+     "criticalTasks": null,
+     "distinguishingCompetencies": null,
+     "jobAnalysisValues": "Assessment pending (job analysis).",
      "factor1Knowledge": [
       {
-       "competency": "seed:v1-2.1.2",
-       "statement": "Knowledge of and skill in: analyze remotely sensed data to map and monitor environmental conditions (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-VSYR8YY",
+       "statement": "Knowledge of and skill in: analyze remotely sensed data to map and monitor environmental conditions (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-2.1.4",
-       "statement": "Knowledge of and skill in: conduct spatial analysis and modelling of environmental data (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-YV31ZCF",
+       "statement": "Knowledge of and skill in: conduct spatial analysis and modelling of environmental data (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 5,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-07",
-       "statement": "Knowledge of and skill in: protect sensitive ecological, cultural and personal information in data products (EMST target senior L2, lead L3).",
+       "competency": "emst:core/CMP-FTP78TV",
+       "statement": "Knowledge of and skill in: design maps and visualizations that communicate environmental data and uncertainty (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-08",
-       "statement": "Knowledge of and skill in: conduct reproducible, auditable environmental analysis, including AI-assisted code (EMST target senior L3, lead L3).",
+       "competency": "emst:core/CMP-ZJZ8VBW",
+       "statement": "Knowledge of and skill in: build and validate automated detection and classification models for environmental observations (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-09",
-       "statement": "Knowledge of and skill in: evaluate model fitness-for-purpose and validate against independent evidence (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-GKAFZ9G",
+       "statement": "Knowledge of and skill in: evaluate model fitness-for-purpose and validate against independent evidence (EMST target senior L3, lead L4, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": true
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-11",
-       "statement": "Knowledge of and skill in: quantify and communicate uncertainty for environmental decisions (EMST target senior L3, lead L3).",
+       "competency": "emst:core/CMP-AYQ8XA1",
+       "statement": "Knowledge of and skill in: conduct reproducible, auditable environmental analysis, including AI-assisted code (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:DC-CAND-13",
-       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target senior L3, lead L3).",
+       "competency": "emst:core/CMP-4ZX8Q5F",
+       "statement": "Knowledge of and skill in: quantify and communicate uncertainty for environmental decisions (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:FC-C02",
-       "statement": "Knowledge of and skill in: ground-truth remote-sensed, modelled and AI-generated outputs in the field (EMST target senior L2, lead L3).",
+       "competency": "emst:core/CMP-QSAV0HJ",
+       "statement": "Knowledge of and skill in: ground-truth remote-sensed, modelled and AI-generated outputs in the field (EMST target senior L2, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-2.1.5",
-       "statement": "Knowledge of and skill in: design maps and visualizations that communicate environmental data and uncertainty (EMST target senior L3, lead L3).",
+       "competency": "emst:core/CMP-62YG1FR",
+       "statement": "Knowledge of and skill in: protect sensitive ecological, cultural and personal information in data products (EMST target senior L2, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
       },
       {
-       "competency": "seed:v1-2.4.1",
-       "statement": "Knowledge of and skill in: build and validate automated detection and classification models for environmental observations (EMST target senior L3, lead L4).",
+       "competency": "emst:core/CMP-MS40XXX",
+       "statement": "Knowledge of and skill in: validate AI-generated work products before professional use (EMST target senior L3, lead L3, editorial draft).",
        "knowledgeStatements": [],
-       "importance": 4,
-       "distinguishing": false
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-PP8RSRT",
+       "statement": "Knowledge of and skill in: steward and publish environmental data for reuse (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-KXG302R",
+       "statement": "Knowledge of and skill in: design and steward field reference data for Earth-observation and AI models (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-XNAG8SJ",
+       "statement": "Knowledge of and skill in: design decision-support products for actual decision contexts (EMST target lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8KVRS7Y",
+       "statement": "Knowledge of and skill in: design and manage environmental databases (EMST target senior L2, lead L3, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-BBSZYXE",
+       "statement": "Knowledge of and skill in: operate and supervise uncrewed and automated field systems (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-FCXN4BQ",
+       "statement": "Knowledge of and skill in: interpret and question environmental data products in everyday work (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-7JGQFKZ",
+       "statement": "Knowledge of and skill in: use AI tools responsibly in everyday environmental work (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-8EAS8ZR",
+       "statement": "Knowledge of and skill in: record provenance and AI involvement in work products (EMST target senior L1, lead L1, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
+      },
+      {
+       "competency": "emst:core/CMP-ZCRS03R",
+       "statement": "Knowledge of and skill in: supervise staff and volunteers in environmental work (EMST target senior L3, lead L4, editorial draft).",
+       "knowledgeStatements": [],
+       "importance": null,
+       "distinguishing": null
       }
      ]
     }

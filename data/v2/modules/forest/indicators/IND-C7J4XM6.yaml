@@ -1,0 +1,39 @@
+id: emst:forest/IND-C7J4XM6
+type: Indicator
+prefLabel:
+  en: Reviews trainee analysts' predictions against observed outcomes, using prediction logs…
+competency: emst:forest/CMP-MQJG1YC
+level: L4
+statement:
+  en: Reviews trainee analysts' predictions against observed outcomes, using prediction logs to decide position task-book sign-off.
+augmentationMode: unaided
+assessmentMethods:
+- prediction-log-calibration
+- task-book-observation
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:forest/TSK-XW8B2TN
+distinguishingAttribute: ATT-FOR
+layer: L1
+module: forest
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

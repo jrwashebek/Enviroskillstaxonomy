@@ -1,0 +1,38 @@
+id: emst:core/IND-TG1WVVS
+type: Indicator
+prefLabel:
+  en: Reviews a template- or AI-drafted incident action plan section against current field reports
+competency: emst:core/CMP-35BT97W
+level: L3
+statement:
+  en: Reviews a template- or AI-drafted incident action plan section against current field reports, correcting or rejecting each item that conflicts with observed conditions before approval.
+augmentationMode: assisted
+assessmentMethods:
+- seeded-error-work-sample
+- task-book-observation
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-FQ0M8WR
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

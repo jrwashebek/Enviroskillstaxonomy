@@ -1,0 +1,39 @@
+id: emst:core/IND-HCCY58S
+type: Indicator
+prefLabel:
+  en: Validates a batch of AI outputs by drawing a defined sample and estimating the…
+competency: emst:core/CMP-MS40XXX
+level: L2
+statement:
+  en: Validates a batch of AI outputs by drawing a defined sample and estimating the batch error rate within a stated tolerance.
+augmentationMode: assisted
+assessmentMethods:
+- work-sample
+- seeded-error-work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-E0Z73F4
+distinguishingAttribute: ATT-CPX
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2028-10-23'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0025

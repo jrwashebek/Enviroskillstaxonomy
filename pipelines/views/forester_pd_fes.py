@@ -96,8 +96,9 @@ def main():
     def home_module(cid):
         return (d.get(cid) or {}).get("homeModule")
 
-    grouped = {c for _, cs in DUTY_GROUPS for c in cs}
-    major = [(title, [c for c in cs if c in by_comp]) for title, cs in DUTY_GROUPS]
+    duty_groups = [(title, [d.canon(c) for c in cs]) for title, cs in DUTY_GROUPS]   # seed keys -> minted IDs (WP-16)
+    grouped = {c for _, cs in duty_groups for c in cs}
+    major = [(title, [c for c in cs if c in by_comp]) for title, cs in duty_groups]
     major = [(t, cs) for t, cs in major if cs]
     major += [(d.label(c), [c]) for c in comp_order if home_module(c) == home and c not in grouped]
     major_comps = {c for _, cs in major for c in cs}

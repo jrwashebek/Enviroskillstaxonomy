@@ -2,13 +2,13 @@
  "stamp": {
   "ruleId": "state-class-view",
   "ruleVersion": "0.1.0",
-  "ruleStatus": "proposed (CR-FH-001; not yet in vocab/rules/)",
-  "generator": "pipelines/views/state_class_view.py@0.1.0",
+  "ruleStatus": "registered rule, status active",
+  "generator": "pipelines/views/state_class_view.py@0.2.0",
   "asOf": "2026-10-23"
  },
  "disclaimer": "Not a classification basis / not a job analysis / not for RIF or rating decisions.",
  "evidenceNotice": "Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).",
- "classRecord": "seed:class/TX/2460",
+ "classRecord": "emst:core/SCR-NRJE2QV",
  "class": {
   "jurisdiction": "Texas",
   "employerType": "state-agency",
@@ -38,10 +38,11 @@
  },
  "mappings": [
   {
-   "roleVariant": "seed:R17-hydrologist/state",
-   "role": "seed:R17-hydrologist",
+   "roleVariant": "emst:waterq/VAR-W9YWB56",
+   "role": "emst:waterq/ROL-CJW7T7X",
    "roleTitle": "Hydrologist",
    "tier": "P2",
+   "sectorActor": "state",
    "authorityPosition": "resource-manager",
    "roleLevels": [
     "journey"
@@ -52,255 +53,257 @@
    "crosswalkRecord": "emst-x5-tx:R17-hydrologist/state:2460",
    "competencyTargets": [
     {
-     "competency": "seed:DB-C10",
+     "competency": "emst:waterq/CMP-0DB7T83",
      "label": "Plan water supply and allocation under hydrologic uncertainty",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 5,
-     "distinguishing": true,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DB-C11",
+     "competency": "emst:waterq/CMP-SD9J9P9",
      "label": "Characterize groundwater systems and protect drinking water sources",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 5,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:v1-2.4.2",
-     "label": "Build, calibrate and validate predictive and simulation models of environmental systems",
-     "targetLevels": {
-      "journey": "L2"
-     },
-     "importance": 5,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:DC-CAND-11",
-     "label": "Quantify and communicate uncertainty for environmental decisions",
-     "targetLevels": {
-      "journey": "L2"
-     },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:FC-C07",
+     "competency": "emst:waterq/CMP-Y1VNBZG",
      "label": "Assess stream channel form and function in the field",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:v1-2.2.2",
-     "label": "Analyze environmental data statistically and interpret the results",
-     "targetLevels": {
-      "journey": "L2"
-     },
-     "importance": 4,
-     "distinguishing": false,
-     "competencyType": "practice",
-     "transversalCluster": null
-    },
-    {
-     "competency": "seed:v1-4.1.3",
+     "competency": "emst:core/CMP-M17HJEJ",
      "label": "Measure water quality and survey aquatic communities in the field",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 4,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DB-C08",
-     "label": "Develop pollutant load allocations and watershed restoration plans for impaired waters",
+     "competency": "emst:core/CMP-JRTJ02T",
+     "label": "Build, calibrate and validate predictive and simulation models of environmental systems",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-02",
-     "label": "Use AI tools responsibly in everyday environmental work",
-     "targetLevels": {
-      "journey": "L1"
-     },
-     "importance": 3,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-A"
-    },
-    {
-     "competency": "seed:DC-CAND-09",
-     "label": "Evaluate model fitness-for-purpose and validate against independent evidence",
+     "competency": "emst:core/CMP-4ZX8Q5F",
+     "label": "Quantify and communicate uncertainty for environmental decisions",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-13",
-     "label": "Validate AI-generated work products before professional use",
+     "competency": "emst:core/CMP-A7R6301",
+     "label": "Analyze environmental data statistically and interpret the results",
      "targetLevels": {
-      "journey": "L1"
+      "journey": "L2"
      },
-     "importance": 3,
-     "distinguishing": false,
-     "competencyType": "transversal",
-     "transversalCluster": "TX-A"
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
     },
     {
-     "competency": "seed:FC-C01",
+     "competency": "emst:core/CMP-BQRDVKJ",
      "label": "Deploy, maintain and verify field sensor networks",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:v1-1.5.1",
+     "competency": "emst:waterq/CMP-P8XQ2RV",
+     "label": "Develop pollutant load allocations and watershed restoration plans for impaired waters",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-HMJ6TEJ",
      "label": "Analyze and interpret climate observations and projections for management decisions",
      "targetLevels": {
       "journey": "L2"
      },
-     "importance": 3,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "practice",
      "transversalCluster": null
     },
     {
-     "competency": "seed:DC-CAND-01",
+     "competency": "emst:core/CMP-GKAFZ9G",
+     "label": "Evaluate model fitness-for-purpose and validate against independent evidence",
+     "targetLevels": {
+      "journey": "L2"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "practice",
+     "transversalCluster": null
+    },
+    {
+     "competency": "emst:core/CMP-FCXN4BQ",
      "label": "Interpret and question environmental data products in everyday work",
      "targetLevels": {
       "journey": "L1"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
      "transversalCluster": "TX-A"
     },
     {
-     "competency": "seed:DC-CAND-05",
+     "competency": "emst:core/CMP-7JGQFKZ",
+     "label": "Use AI tools responsibly in everyday environmental work",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-MS40XXX",
+     "label": "Validate AI-generated work products before professional use",
+     "targetLevels": {
+      "journey": "L1"
+     },
+     "importance": null,
+     "distinguishing": null,
+     "competencyType": "transversal",
+     "transversalCluster": "TX-A"
+    },
+    {
+     "competency": "emst:core/CMP-8EAS8ZR",
      "label": "Record provenance and AI involvement in work products",
      "targetLevels": {
       "journey": "L1"
      },
-     "importance": 2,
-     "distinguishing": false,
+     "importance": null,
+     "distinguishing": null,
      "competencyType": "transversal",
      "transversalCluster": "TX-A"
     }
    ],
+   "pctTimeNotice": "% time: set by the supervisor; EMST supplies none before job analysis.",
+   "jobAnalysisValues": "Assessment pending (job analysis).",
    "topTasks": [
     {
-     "task": "seed:DB-C10-T2",
-     "statement": "Prepare a drought contingency plan with triggers, stages and response actions tied to supply indicators",
-     "pctTime": 5.1,
-     "critical": true,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:DB-C11-T1",
-     "statement": "Run an aquifer test on a supply well or wellfield to estimate transmissivity and storage from drawdown and recovery data",
-     "pctTime": 5.1,
-     "critical": true,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:DB-C11-T2",
-     "statement": "Delineate a wellhead or source-water protection area from hydrogeologic data and time-of-travel criteria",
-     "pctTime": 5.1,
-     "critical": true,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:v1-2.4.2-T2",
-     "statement": "Simulate ecosystem response to alternative land-use and climate scenarios, documenting scenario assumptions and the sensitivity of results to each.",
-     "pctTime": 5.1,
-     "critical": true,
-     "neededAtEntry": true
-    },
-    {
-     "task": "seed:DB-C10-T1",
+     "task": "emst:waterq/TSK-91Z35QW",
      "statement": "Forecast water demand and supply under drought and climate scenarios for a utility or basin plan, stating assumptions and uncertainty",
-     "pctTime": 4.1,
-     "critical": true,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:DB-C10-T4",
+     "task": "emst:waterq/TSK-F9YXM90",
+     "statement": "Prepare a drought contingency plan with triggers, stages and response actions tied to supply indicators",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:waterq/TSK-RG41JK8",
      "statement": "Compare conjunctive-use, reuse and storage options by yield, cost and reliability for an integrated resource plan",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:DB-C11-T3",
+     "task": "emst:waterq/TSK-SVSD2A7",
+     "statement": "Run an aquifer test on a supply well or wellfield to estimate transmissivity and storage from drawdown and recovery data",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:waterq/TSK-6QJW4X1",
+     "statement": "Delineate a wellhead or source-water protection area from hydrogeologic data and time-of-travel criteria",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:waterq/TSK-571PW4V",
      "statement": "Review a well construction or injection well application against construction and protection standards before approval",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-2.6.3-T1",
+     "task": "emst:core/TSK-1EKP80V",
+     "statement": "Simulate ecosystem response to alternative land-use and climate scenarios, documenting scenario assumptions and the sensitivity of results to each.",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
+    },
+    {
+     "task": "emst:core/TSK-49ZHZTM",
      "statement": "Build a predictive model of fire risk, pest outbreak or water availability, validating it on years or areas withheld from fitting.",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-2.6.3-T2",
+     "task": "emst:core/TSK-VNPWC9D",
      "statement": "Forecast resource management needs from a validated predictive model, stating the horizon and interval for each estimate.",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:FC-C07-T1",
+     "task": "emst:waterq/TSK-3AM7AGW",
      "statement": "Survey channel cross-sections, longitudinal profile and substrate at a reach following the geomorphic assessment protocol",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:FC-C07-T2",
+     "task": "emst:waterq/TSK-WSB4X5Q",
      "statement": "Identify bankfull indicators and channel evolution stage at a reach from field evidence",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     },
     {
-     "task": "seed:v1-1.2.4-T1",
-     "statement": "Collect grab water samples at locations and depths that represent the condition of interest, recording flow and site conditions at collection",
-     "pctTime": 4.1,
-     "critical": false,
-     "neededAtEntry": true
+     "task": "emst:waterq/TSK-93E6N10",
+     "statement": "Classify habitat units and riparian condition along a reach to identify the processes driving channel change",
+     "pctTime": null,
+     "critical": null,
+     "neededAtEntry": null
     }
    ],
    "credentialGates": {

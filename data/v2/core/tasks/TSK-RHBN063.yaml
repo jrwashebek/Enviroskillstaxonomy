@@ -1,0 +1,70 @@
+id: emst:core/TSK-RHBN063
+type: Task
+prefLabel:
+  en: Lead volunteer restoration work days, briefing hazards and technique and checking the quality of volunteers' planting and removal work
+statement:
+  en: Lead volunteer restoration work days, briefing hazards and technique and checking the quality of volunteers' planting and removal work
+textSha256: ce1c44a8fdd057b28ed905a0daceef3013b9eecedd72ba361a692eccdc857f08
+supports:
+- competency: emst:core/CMP-6AF83AG
+  strength: primary
+- competency: emst:core/CMP-7TZABBG
+  strength: contributing
+workFunction: WF-BUILD
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- public
+fieldDependency: on-site-required
+formationDependency: 'yes'
+reproductionRegime:
+  mentorshipDependence: M
+  cycleDependence: seasonal
+  placeBoundness: general
+  credentialGate: none
+  currencyDecay: M
+notation:
+- scheme: EMSTv1
+  value: 4.7.4:T3
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+v1Tier: T3
+v1Domain:
+  code: '4'
+  label: Field Operations Skills
+v1SkillArea:
+  code: '4.7'
+  label: Urban Environmental Infrastructure
+editorialNote:
+  en: 'G-2 split role: formation of others in the practice. Rewritten by WP-03 from the v1 seed task; v1 task order is kept as v1Tier for provenance only (ADR-0003 G-2).'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  derivedFrom:
+  - v1Key: v1:4.7.4:T3
+    v1Code: 4.7.4
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 145
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

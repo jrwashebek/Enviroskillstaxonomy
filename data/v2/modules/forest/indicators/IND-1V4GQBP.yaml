@@ -1,0 +1,39 @@
+id: emst:forest/IND-1V4GQBP
+type: Indicator
+prefLabel:
+  en: Adjusts a modelled fire spread prediction after comparing it with observed behaviour,…
+competency: emst:forest/CMP-MQJG1YC
+level: L3
+statement:
+  en: Adjusts a modelled fire spread prediction after comparing it with observed behaviour, and records the discrepancy and its likely cause.
+augmentationMode: assisted
+assessmentMethods:
+- prediction-log-calibration
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:forest/TSK-XW8B2TN
+distinguishingAttribute: ATT-AUG
+layer: L1
+module: forest
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

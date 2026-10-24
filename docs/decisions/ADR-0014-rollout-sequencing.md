@@ -14,7 +14,7 @@ The charter says: "Rollout runs NGO pilot group, then federal and state agencies
 |---|---|
 | OPM consolidates 115 series, standards and PD templates through Sep 2027 | The Apr 24 2026 Phase One list is **proposed**; agency feedback was due May 11 2026; no final decision memo found [E: V1-10] |
 | Natural Resources Management is a Tier 2 Chance-to-Compete group with full implementation by FY2028 | NRM is **Tier 2 with no Tier 2 date**; FY2028 is the governmentwide full-implementation target [E: V1-17] |
-| Aligned wildland fire qualifications take effect Jan 2027 (NWCG and USWFS) | **USWFS–USFS** aligned federal qualification standards effective Jan 2027; **NWCG is not a party**; NWCG updated PMS 310-1 on Jan 23 2026 [E: V3-13] |
+| Aligned wildland fire qualifications take effect Jan 2027 (NWCG and USWFS) | **USWFS–USFS** aligned federal qualification standards effective Jan 2027; the alignment is between USWFS and USFS standards (the plan does not name NWCG; claims register WF-10, amended by ADR-0031); NWCG updated PMS 310-1 on Jan 23 2026 [E: V3-13] |
 | Workforce Pell programs approved by state boards | Approved by **governors working with state workforce boards**, then ED review [E: V3-03] |
 | AmeriCorps cuts of ~$400M | Largely reinstated in plaintiff jurisdictions by injunction; Sep 11 2026 settlement covers **FY2026 only**; stay to Feb 1 2027 [E: V1-05] |
 
@@ -46,3 +46,7 @@ The charter says: "Rollout runs NGO pilot group, then federal and state agencies
 - **Strict sequence** (literal charter) gives cleaner learning and less reputational risk with federal partners; **parallel** catches the policy windows and gets incumbent validation data (AS disagreement 1). Parallel chosen, framed as artifact co-production.
 - **IO:** adopter-recruited panels risk bias; IO's composition rules apply (ADR-0009).
 - **Condition:** if OPM finalizes a different consolidation, or NRM is re-tiered, the 0400 Kit contents are re-sequenced but the track continues.
+
+## Amendments
+
+- **2026-10-23 — ADR-0031 §5 item 1 (CA, WP-16).** The corrected-facts row on the January 2027 wildland fire qualifications is reworded to the claims register's WF-10 form: the alignment is between USWFS and USFS standards, and the plan does not name NWCG. The earlier wording asserted more than the plan says. The decision is unchanged.

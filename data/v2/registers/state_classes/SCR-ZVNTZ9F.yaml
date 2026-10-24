@@ -1,0 +1,79 @@
+id: emst:core/SCR-ZVNTZ9F
+type: StateClassRecord
+prefLabel:
+  en: Hydrologist V
+notation:
+- scheme: class-TX
+  value: '2466'
+jurisdictionId:
+  stateFips: '48'
+  label: Texas
+employerType: state-agency
+agency: Statewide classification plan (Texas State Auditor's Office); agencies overlay their own qualifications
+classCode: '2466'
+classTitle: Hydrologist V
+seriesId: Hydrologist I-V
+levelIndex:
+  ordinal: 5
+  label: V
+supervisoryStatus: supervisor
+specEffectiveDate: '2019-09-01'
+workDescriptionText:
+  storage: hash-and-url
+  url: https://hr.sao.texas.gov/Compensation/JobDescriptions/R2465.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+mqText:
+  storage: hash-and-url
+  url: https://hr.sao.texas.gov/Compensation/JobDescriptions/R2465.pdf
+  retrieved: '2026-10-23'
+  sha256: null
+  note: Verbatim text not stored in CC0 files (reuse terms unverified); fetch and hash into a restricted store.
+  paraphrase: Same as Hydrologist I.
+mqLocation: agency-policy
+degreeRule: substitutable
+licensesRequired: []
+payBasis: annual
+payMinMax:
+  min: 63104
+  max: 103491
+  currency: USD
+  basis: annual
+payGradeLabel: B25
+payEffectiveDate: '2019-09-01'
+militaryEquivalent:
+- source: SL-052
+  note: class listed in the Texas SAO military crosswalk (native crosswalk; candidate gold set for X5); codes not extracted
+emstMapping:
+- roleVariant: emst:waterq/VAR-W9YWB56
+  roleLevel: lead
+  matchType: skos:closeMatch
+  confidence: 0.55
+  reviewer: null
+  reviewDate: null
+  crosswalkRecord: emst-x5-tx:R17-hydrologist/state:2466
+  note: competency targets with level are added when WP-08 authors the role profile
+editorialNote:
+  en: Dated record as of 2026-10-23; re-run each 1 July or on plan revision (ADR-0022 X5). 2019 description and pay; current range not retrieved.
+layer: L6
+module: core
+status: candidate
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+reviewBy: '2027-07-01'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:ia-wp09@phase4
+  generatedAt: '2026-10-23T19:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp09-crosswalk@1
+  evidenceLabel: E
+  sources:
+  - WP09-005
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0022
+  - ADR-0006

@@ -1,0 +1,41 @@
+id: emst:core/IND-FWEQSCA
+type: Indicator
+prefLabel:
+  en: Schedules preventive maintenance for an asset class from manufacturer intervals and failure history
+competency: emst:core/CMP-CD9P70X
+level: L2
+statement:
+  en: Schedules preventive maintenance for an asset class from manufacturer intervals and failure history, revising intervals when work-order records show repeat failures.
+augmentationMode: unaided
+assessmentMethods:
+- work-sample
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-N884ZK5
+distinguishingAttribute: ATT-AUT
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  derivedFrom:
+  - v1Key: v1:3.3.2:intermediate:I2
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

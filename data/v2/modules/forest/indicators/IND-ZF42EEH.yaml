@@ -1,0 +1,46 @@
+id: emst:forest/IND-ZF42EEH
+type: Indicator
+prefLabel:
+  en: Briefs a crew on expected fire behaviour from the spot forecast, naming the watch-out…
+competency: emst:forest/CMP-MQJG1YC
+level: L2
+statement:
+  en: Briefs a crew on expected fire behaviour from the spot forecast, naming the watch-out situations that apply to the assignment.
+augmentationMode: unaided
+assessmentMethods:
+- task-book-observation
+- simulation-role-play
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:forest/TSK-AB92B6W
+distinguishingAttribute: ATT-AUT
+layer: L1
+module: forest
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.4:intermediate:I5
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  - v1Key: v1:4.3.4:intermediate:I3
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

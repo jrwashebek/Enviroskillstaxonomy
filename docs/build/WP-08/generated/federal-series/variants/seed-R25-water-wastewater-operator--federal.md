@@ -4,7 +4,7 @@
 
 - **Role:** Water and wastewater treatment operator (`seed:R25-water-wastewater-operator`, P2); authority position (editorial): regulated-party
 - **Indicative band:** WG grade set by the federal wage system job grading standard [entry|journey|senior|lead] (not a classification criterion)
-- **Generated:** pipelines/views/federal_series_profile.py@0.1.0, rule federal-series-profile@0.1.0 (proposed), as of 2026-10-23
+- **Generated:** pipelines/views/federal_series_profile.py@0.2.0, rule federal-series-profile@0.1.0 (registered rule, status active), as of 2026-10-23
 
 ## Series
 

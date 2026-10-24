@@ -1,0 +1,39 @@
+id: emst:core/IND-6MNXF66
+type: Indicator
+prefLabel:
+  en: Checks a draft notice against the approved message map and flags every
+competency: emst:core/CMP-XN9631Y
+level: L1
+statement:
+  en: Checks a draft notice against the approved message map and flags every statement of fact, uncertainty or protective action that differs from it.
+augmentationMode: unaided
+assessmentMethods:
+- seeded-error-work-sample
+- work-sample
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-SJT2MCR
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@wp-07
+  generatedAt: '2026-10-23T14:05:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp07-transversal-learning@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0025
+  - ADR-0026
+  - ADR-0004
+  - ADR-0003

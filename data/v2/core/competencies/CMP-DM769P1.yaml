@@ -1,0 +1,78 @@
+id: emst:core/CMP-DM769P1
+type: Competency
+prefLabel:
+  en: Analyze ecological and social-ecological networks with graph methods
+altLabel:
+  en:
+  - Network analysis
+definition:
+  en: 'The capability to represent connectivity and spread as networks and to analyze them with graph methods: habitat corridors and connectivity, spread of pests, disease or fire, and social-ecological and institutional networks, with attention to how nodes and links are defined.'
+statement:
+  en: 'Represents environmental connectivity and spread as networks and analyzes them with graph methods: habitat corridors and connectivity, spread of pests, disease or fire, and social-ecological and institutional networks; tests how results depend on how nodes and links are defined; and states what the network does and does not capture.'
+editorialNote:
+  en: 'Carried (wording rewritten) by WP-04 as a DC specialist competency. v1 disposition (ADR-0011; docs/decisions/v1_disposition.csv): carry → core | practice | WF-ASSESS (DC specialist). Rationale: Durable share high; graph methods for connectivity and spread; carried as a specialist competency (DC disposition). Role verdicts considered: DC:carry.'
+notation:
+- scheme: EMSTv1
+  value: 2.4.4
+competencyType: practice
+levelSpan:
+  min: L2
+  max: L4
+levels:
+- level: L2
+  indicators:
+  - emst:core/IND-W8XF4BZ
+  - emst:core/IND-KBXSNAY
+- level: L3
+  indicators:
+  - emst:core/IND-M51AJ99
+  - emst:core/IND-WD6PR9D
+- level: L4
+  indicators:
+  - emst:core/IND-V0VB3SY
+  - emst:core/IND-XTNRNWT
+homeModule: core
+reusability: cross-subsector
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.4.4
+    v1Code: 2.4.4
+    v1Table: competencies
+    v1Sheet: Competencies
+    v1Row: 60
+    v1Fields:
+    - title
+    - description
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  - v1Key: v1:2.4.4
+    v1Code: 2.4.4
+    v1Table: source_text/competencies
+    sourceTextLine: 3931
+    relation: reference-only
+    note: v1Seed levels and indicators taken from the source competency text (ADR-0011 rule 2)
+  adr:
+  - ADR-0003
+  - ADR-0011
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.4'
+  label: Advanced Analytics

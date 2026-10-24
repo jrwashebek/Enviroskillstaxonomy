@@ -1,0 +1,43 @@
+id: emst:forest/IND-E18N3T5
+type: Indicator
+prefLabel:
+  en: Predicts fire behaviour for a non-routine incident's operational period, such as…
+competency: emst:forest/CMP-MQJG1YC
+level: L3
+statement:
+  en: Predicts fire behaviour for a non-routine incident's operational period, such as plume-dominated fire, identifying weather windows for burnout or suppression with stated confidence.
+augmentationMode: unaided
+assessmentMethods:
+- prediction-log-calibration
+- structured-interview-bars
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:forest/TSK-JM3R437
+distinguishingAttribute: ATT-CPX
+layer: L1
+module: forest
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@wp-06
+  generatedAt: '2026-10-23T14:30:00Z'
+  derivedFrom:
+  - v1Key: v1:4.3.4:advanced:I5
+    relation: rewritten
+    note: v1 indicator rewritten to v2 indicator rules
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp06-module-authoring@1
+  adr:
+  - ADR-0018
+  - ADR-0003
+  - ADR-0004

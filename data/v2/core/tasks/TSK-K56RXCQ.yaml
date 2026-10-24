@@ -1,0 +1,62 @@
+id: emst:core/TSK-K56RXCQ
+type: Task
+prefLabel:
+  en: Review policy literature and case studies to inform a management strategy, stating the quality of the evidence behind each finding
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Review policy literature and case studies to inform a management strategy, stating the quality of the evidence behind each finding
+textSha256: 1726a700ee3eea88fd542a8e9b7df53ceb823fd73d2ce99e21a683fa081da73e
+supports:
+- competency: emst:core/CMP-MJ41YKW
+  strength: primary
+workFunction: WF-RULE
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 6.4.1:T1
+v1Tier: T1
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.4'
+  label: Policy Development
+editorialNote:
+  en: 'Rewritten from the v1 task text: "Review policy literature and case studies to inform management strategies" (WP-05).'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@wp-05
+  generatedAt: '2026-10-23T14:30:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/WP-05/build_wp05.py + content_*.py @wp05-sc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.4.1:T1
+    v1Code: 6.4.1
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 192
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0028
+  - WP-05

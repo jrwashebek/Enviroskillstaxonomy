@@ -1,0 +1,66 @@
+id: emst:core/TSK-TFHCQTK
+type: Task
+prefLabel:
+  en: Engage affected communities before a decision is framed, recording the priorities they raise and how each was considered
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Engage affected communities before a decision is framed, recording the priorities they raise and how each was considered
+textSha256: d697da08cef212e470e0bc737697c03e0aa1a53e2140bc6be0f71c45e108446d
+supports:
+- competency: emst:core/CMP-JHR1JC7
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: 'yes'
+homeModule: core
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- public
+notation:
+- scheme: EMSTv1
+  value: 5.3.5:T2
+v1Tier: T2
+v1Domain:
+  code: '5'
+  label: Communication & Engagement Skills
+v1SkillArea:
+  code: '5.3'
+  label: Cultural Competency
+editorialNote:
+  en: 'S2 close-out A. Rewritten from the v1 task text: "Engage frontline communities early in planning and decision-making".'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  - emstagent:a5-sl-review@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:5.3.5:T2
+    v1Code: 5.3.5
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 161
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

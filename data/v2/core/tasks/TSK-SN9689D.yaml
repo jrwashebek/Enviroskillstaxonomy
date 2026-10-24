@@ -1,0 +1,62 @@
+id: emst:core/TSK-SN9689D
+type: Task
+prefLabel:
+  en: Present model outputs to stakeholders for an adaptive management decision, stating the conditions under which the projections should not be trusted.
+statement:
+  en: Present model outputs to stakeholders for an adaptive management decision, stating the conditions under which the projections should not be trusted.
+textSha256: 62058d57953e9eef79e336c292da32e269d91704631eab29f5b4a459bc90de48
+editorialNote:
+  en: v1 task order (T1 foundational … T3 advanced) is kept as v1Tier for provenance only (ADR-0003 G-2).
+notation:
+- scheme: EMSTv1
+  value: 2.4.2:T3
+supports:
+- competency: emst:core/CMP-JRTJ02T
+  strength: primary
+- competency: emst:core/CMP-4ZX8Q5F
+  strength: contributing
+workFunction: WF-LEARN
+modes:
+- MODE-ENGAGE
+relationshipTypes:
+- stakeholder
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+v1Tier: T3
+v1Domain:
+  code: '2'
+  label: Technical & Technological Skills
+v1SkillArea:
+  code: '2.4'
+  label: Advanced Analytics
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:A4-DC@wp-04
+  generatedAt: '2026-10-23T14:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: wp04-dc-authoring@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:2.4.2:T3
+    v1Code: 2.4.2
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 58
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0011

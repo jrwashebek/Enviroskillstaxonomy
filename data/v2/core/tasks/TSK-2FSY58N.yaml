@@ -1,0 +1,61 @@
+id: emst:core/TSK-2FSY58N
+type: Task
+prefLabel:
+  en: Present scenario results in maps and comparison tables that show each alternative's outcomes under every scenario
+layer: L2
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Present scenario results in maps and comparison tables that show each alternative's outcomes under every scenario
+textSha256: 5c2b906f2a0c21e5173ec58bfde0978d376d416b8de82d12430eb282a4674c0f
+supports:
+- competency: emst:core/CMP-62TJKF6
+  strength: primary
+workFunction: WF-PLAN
+fieldDependency: remote-capable
+formationDependency: 'no'
+homeModule: core
+notation:
+- scheme: EMSTv1
+  value: 6.2.5:T3
+v1Tier: T3
+v1Domain:
+  code: '6'
+  label: Policy & Regulatory Skills
+v1SkillArea:
+  code: '6.2'
+  label: Land Use Planning
+editorialNote:
+  en: 'S2 close-out A. Rewritten from the v1 task text: "Visualize scenario impacts with maps or decision-support tools".'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:a5-sc@s2-closeout-a
+  generatedAt: '2026-10-23T17:15:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/S2-closeout-A/build_s2a.py + content_*.py @s2-closeout-a@1
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  derivedFrom:
+  - v1Key: v1:6.2.5:T3
+    v1Code: 6.2.5
+    v1Table: tasks
+    v1Sheet: Competencies
+    v1Row: 186
+    v1Fields:
+    - Job Tasks
+    workbookSha256: 6085795e0ec06c001fa29244ff8eb64e9a677ad6c5d297319dc570b459ce9080
+    relation: rewritten
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0007
+  - ADR-0016
+  - ADR-0017
+  - ADR-0025
+  - ADR-0030

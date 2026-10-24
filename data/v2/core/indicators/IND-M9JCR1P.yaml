@@ -1,0 +1,42 @@
+id: emst:core/IND-M9JCR1P
+type: Indicator
+prefLabel:
+  en: Answers a journalist's questions on a technical finding within the cleared facts
+competency: emst:core/CMP-67EHPKY
+level: L3
+statement:
+  en: Answers a journalist's questions on a technical finding within the cleared facts, correcting any misreported figure in writing after publication.
+augmentationMode: unaided
+assessmentMethods:
+- simulation-role-play
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-82V2VB4
+- emst:core/TSK-DPYPB72
+distinguishingAttribute: ATT-SCO
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:lc-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-lc@1
+  derivedFrom:
+  - v1Key: v1:5.5.4:advanced:I3
+    relation: rewritten
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0004
+  - ADR-0003

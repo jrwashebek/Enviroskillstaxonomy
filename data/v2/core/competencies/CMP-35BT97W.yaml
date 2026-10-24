@@ -1,0 +1,86 @@
+id: emst:core/CMP-35BT97W
+type: Competency
+prefLabel:
+  en: Coordinate environmental response operations within incident command
+altLabel:
+  en:
+  - Environmental emergency response
+  - Incident command system (ICS) roles
+  - Serve in incident roles as a collateral duty
+definition:
+  en: 'Performing an assigned environmental, technical-specialist, unit or command role inside a standardized incident command structure during wildfire, spill, flood, drinking water or public-health emergencies: taking a position, working to incident objectives by operational period, supplying environmental inputs to the incident action plan, keeping the unit log and resource status, building unified command across agencies, and handing over or demobilizing. Covers collateral-duty service by staff whose primary job is not response. Excludes suppression tactics (v1 4.3.1), field emergency communication and incident reporting (v1 4.4.5), public risk communication (DB-C29) and position qualifications, which are credential gates.'
+statement:
+  en: Takes an assigned position in an incident command structure during environmental emergencies, works to the incident objectives for each operational period, supplies environmental inputs to the incident action plan, keeps the unit log and resource status current, and hands the position over or demobilizes without loss of commitments, coordinating with cooperating agencies under unified command.
+competencyType: practice
+levelSpan:
+  min: L1
+  max: L4
+levels:
+- level: L1
+  indicators:
+  - emst:core/IND-332VQVG
+  - emst:core/IND-KNS60X2
+- level: L2
+  indicators:
+  - emst:core/IND-K10XT1M
+  - emst:core/IND-X0D3VBZ
+  - emst:core/IND-4R2CXFP
+- level: L3
+  indicators:
+  - emst:core/IND-MB4Q5HV
+  - emst:core/IND-TG1WVVS
+  - emst:core/IND-WKPJ5PG
+- level: L4
+  indicators:
+  - emst:core/IND-44RPY0H
+  - emst:core/IND-9CHFT78
+homeModule: core
+reusability: cross-subsector
+learningDesign:
+  assessmentContext:
+    en: Assess on incident assignments or functional exercises with a position task book and a qualified evaluator; rare-event skill, so simulation and exercises carry most of the formation.
+  recommendedModes:
+  - SIM
+  - WBL
+  - MEN
+  prerequisites:
+  - emst:core/CMP-0CT0C9G
+layer: L1
+module: core
+status: candidate
+lifecycleState: established
+useTier: develop
+validationStatus: draft
+editorialNote:
+  en: 'S2 close-out B (A6 DB; ADR-0030 §4 core residue). Survivor of DG-DB-C42: absorbs FH-C09 (incident roles as a collateral duty; the qualifications themselves are Credential gates, ADR-0003 T-8) and the incident command part of v1 4.3.1 (wildland firefighting stays in MOD-11). Operating within a standardized incident command structure is shared by fire, spill, flood and public-health response, so the task core recurs across modules; module enactments in hazards, forest and envhealth. Needed by R06-R08 (P1) and R26, R30 (P2). The position-qualification systems and their alignment dates are L5 instruments and Credential records, not text here. Basis [J]: DB and FH Phase 2 candidates and sources.'
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:db-agent@s2-closeout-b
+  generatedAt: '2026-10-23T16:40:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: s2b-db@1
+  derivedFrom:
+  - v1Key: v1:4.3.1
+    relation: split-from
+    note: 'incident command system part of v1 4.3.1 (v1_disposition.csv: ICS participation goes to core DB-C42)'
+  - v1Key: v1:4.3.1:advanced:I9
+    relation: rewritten
+  - v1Key: v1:4.3.1:advanced:I7
+    relation: rewritten
+  - v1Key: v1:4.3.1:intermediate:I8
+    relation: rewritten
+  sources:
+  - DB-030
+  - DB-053
+  - FH-025
+  - FH-035
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0030
+  - ADR-0003
+  - ADR-0004
+  - ADR-0018

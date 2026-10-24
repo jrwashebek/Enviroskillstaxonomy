@@ -1,0 +1,39 @@
+id: emst:core/IND-NDB4DWR
+type: Indicator
+prefLabel:
+  en: Ships samples within holding-time and temperature limits
+competency: emst:core/CMP-G675QW3
+level: L1
+statement:
+  en: Ships samples within holding-time and temperature limits, with preservation and every transfer documented on the custody record.
+augmentationMode: unaided
+assessmentMethods:
+- record-audit
+useClass: develop
+obs4: 3
+jurisdictionVariable: false
+servedTasks:
+- emst:core/TSK-DD8R4S9
+layer: L1
+module: core
+status: candidate
+lifecycleState: emerging
+reviewBy: '2028-10-23'
+useTier: develop
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:fc-agent@wp-03
+  generatedAt: '2026-10-23T14:00:00Z'
+  evidenceLabel: J
+  reviewStatus: unreviewed
+  toolVersion: claude-opus-5-5
+  promptVersion: wp03-authoring@1
+  adr:
+  - ADR-0003
+  - ADR-0004
+  - ADR-0005
+  - WP-03

@@ -1,7 +1,8 @@
 # EMST computed-view rule (SPEC §14.3; ADR-0021; CR-DE-003). Normative definition; code in `implementation`.
 ruleId: counts
 version: 1.0.0
-status: active
+status: superseded
+supersededBy: counts@1.1.0
 steward: DE (implementation) · CA (definition)
 decidedIn: [ADR-0021, ADR-0029, CR-DE-003]
 computes: Release counts. Every count in release notes, README status and dashboards comes from this view (P-DE-13); none is typed by hand.
@@ -18,3 +19,4 @@ parameters: {}
 implementation: scripts/build_release.py#Builder.views
 changeNote:
   - {date: '2026-10-23', note: "Registered from the implementation (CR-DE-003)."}
+  - {date: '2026-10-23', note: "Superseded by counts@1.1.0 at WP-16 (ADR-0031 §9)."}
