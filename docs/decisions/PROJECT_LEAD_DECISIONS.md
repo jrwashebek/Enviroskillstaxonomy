@@ -8,6 +8,13 @@ Answers from the project lead to `questions_for_project_lead.md`. Each answer su
 | Q2 | CC0 1.0 dedication of the v1 text the project lead authored (competency titles, descriptions, tasks, indicators, source text), so v2 records derived from it ship in the CC0 data files | **Accepted — CC0** (narrative publications CC BY 4.0; code Apache-2.0 per ADR-0013) | 2026-10-23 | Project lead, working session |
 | Q5 | Rollout: Stage 1a NGO pilot and Stage 1b federal/state design-partner track run in parallel from 2027; nothing used in selection before selection-grade evidence | **Accepted — parallel tracks** | 2026-10-23 | Project lead, working session |
 | Q7 | Sector-facing publications may cite v1 statistics | **Methodology history only** until re-derived under the v2 instrument with multiple raters (observability figures only after human double-coding with α ≥ .80) | 2026-10-23 | Project lead, working session |
+| — | Repository history containing private working-session details | **Rewrite history** (private details and bulk build files removed; force-pushed) | 2026-10-23 | Project lead, working session |
+| — | Package call to action | **GitHub Issues** on the repository | 2026-10-23 | Project lead, working session |
+| — | How the package credits the human lead | **"EMST project lead" only**; no personal name in the package | 2026-10-23 | Project lead, working session |
+| Q12 | Career-ladder hypothesis publication rule (ADR-0031, CR-FIX-A-001) | **Confirmed**: published as a finding only after named human reviewers (a qualified industrial-organizational psychologist and a labor economist) validate it, in addition to AI agent reviews; then co-published with a nonpartisan partner. Until then always presented as a hypothesis with its evidence status | 2026-10-24 | Project lead, working session |
+| Q13 | Sign-off before any package material goes public beyond the pilot cohort | **The project lead signs, after at least one named human subject-matter reviewer has read the report and briefs.** AI agent checks (including the adoption-lead role) are advisory only | 2026-10-24 | Project lead, working session |
+| Q14 | Role profiles fitted to each pilot organization (CR-FIX-B-002) | **Not added**; the pilot offer stays as designed (design §6, MOU Article 3) | 2026-10-24 | Project lead, working session |
+| Q15 | Move the repository to an organization account before external release (package re-check NH11) | **Decide later**, when a host organization is chosen; the repository stays where it is for the pilot preview | 2026-10-24 | Project lead, working session |
 
 ## Still open (defaults apply until answered)
 
