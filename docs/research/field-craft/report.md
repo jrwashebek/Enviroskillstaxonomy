@@ -4,6 +4,14 @@
 
 **Labels.** [E] means evidence from a source I read; the source ID resolves in `sources.csv`. [J] means my professional judgment, and I say what it rests on. [S] means speculation, and I say what would confirm or refute it.
 
+> **Correction note (2026-10-24).** This research record stays as written on 2026-10-23, except for the passages marked "corrected 2026-10-24". Those now follow the corrected drone rows of the claims register (`docs/methods/claims_register.csv`), under ADR-0031 (CR-FIX-A-003 item 6):
+>
+> 1. **Collateral-duty pilots** (Summary finding 3; §2.1 pattern 2; register RPT-14). The source (FC-009) says that 99% of the Forest Service's trained pilots fly as a collateral duty, alongside another primary job. It does not say what those jobs are, and it counts pilots, not flight hours. The earlier text described the pilots as field staff, read the 99% as a share of flight hours and drew a conclusion about field roles from it. Those readings are withdrawn.
+> 2. **Part 108** (Summary finding 4; register UAS-01). The final rule has been under OIRA review since 10 July 2026. Trade press reported it unpublished as of 21 October 2026, and the OIRA record still showed "Pending Review" on 23 October 2026.
+> 3. **Interior's drone restrictions** (Summary finding 3; §2.2 "Policy shocks"; §2.4; register RPT-15). GAO cautions that the changes it reports, in flights and in monitoring, do not necessarily reflect the policies' precise effect. The flight figures are therefore not a measured effect of the restrictions. Those passages are otherwise unchanged.
+>
+> Applied by the rc.1 alignment editor (an AI agent) holding the FC code for this edit. FC has not re-reviewed the corrected text.
+
 ---
 
 ## Summary
@@ -23,12 +31,12 @@
    - under DC-primary parents, 6% were;
    - the same task text, "Collect water samples…", is H/Hi under 1.2.4 but A/Med under 4.1.3 [E: FC-029; `scripts/h_artifact_check.py`].
 3. **Field technology changes task bundles more than it removes field work.** Evidence is strongest for drones:
-   - The USFS flew about 4,500 UAS hours in FY24, 99% of them by collateral-duty pilots, i.e. field staff who also fly [E: FC-002, FC-009].
+   - The USFS flew about 4,500 UAS hours in FY24 [E: FC-002]. Flying is mostly a secondary duty: the agency's national UAS program manager has said that 99% of its trained pilots are collateral-duty pilots, whose primary job is something else [E: FC-009]. *(Corrected 2026-10-24; see the correction note.)*
    - UAS aerial ignition treated 188,986 acres and is replacing helicopters for ignition [E: FC-002, FC-010]. v1 coded fire as having "zero robotics vectors" [E: FC-027].
-   - When Interior restricted drones, work went back to people on foot covering smaller areas [E: FC-001].
+   - When Interior restricted drones, work went back to people on foot covering smaller areas [E: FC-001]. *(GAO caveat added 2026-10-24; see the correction note.)*
 4. **Adoption is limited mainly by policy and money, not by what the technology can do** [E: FC-001, FC-003, FC-005, FC-008]. Three examples:
    - Federal drone restrictions: the American Security Drone Act from December 2025, the FCC Covered List from December 2025, and a 2026 FCC proposal reaching drones already in service.
-   - Part 108 (BVLOS) was still not published as of July 2026.
+   - The Part 108 (BVLOS) final rule has been under OIRA review since 10 July 2026 and was unpublished as of 21 October 2026, per trade press. *(Corrected 2026-10-24; see the correction note.)*
    - Compliant aircraft cost several times more than the ones they replace.
 5. **Entry paths are being cut now, by fiscal and policy shocks rather than by automation.**
    - In 2025 the USFS hired no non-fire seasonals and lost about a quarter of its non-fire workforce.
@@ -206,7 +214,7 @@ The full technology-by-technology table is in `field_tech_change_matrix.csv` (18
 1. **The field moves; it does not vanish.**
    - Observation shifts to *instrument stewardship* (siting, servicing, verifying sensors, recorders and cameras) and to *validation* (ground-truthing automated outputs) [J; E for drones: FC-002].
    - When the tools were taken away, field programs fell back on people on foot. Karner blue butterfly monitoring "shifted to on-foot staff covering a much smaller area" [E: FC-001].
-2. **Technology is absorbed into field roles more than it creates separate roles.** 99% of USFS trained pilots are collateral-duty [E: FC-009]. The drone pilot is usually the botanist, fuels tech or hydrologist. This supports field-craft-primary treatment of UAS operation.
+2. **Technology is added to existing jobs more than it creates separate roles.** 99% of USFS trained pilots fly as a collateral duty alongside another primary job [E: FC-009]. The source does not name those primary jobs, so it does not show that the pilots are field staff, and on its own it does not settle whether UAS operation is field-craft-primary. *(Corrected 2026-10-24; see the correction note.)*
 3. **Every automated monitoring system carries a calibration cost.** Lidar inventories need calibration plots. Classifiers need verified labels. Burn-severity maps need field checks [E for BAER practice in v1 notes: FC-027; J generally]. This creates *ground-truth work*. It is a natural learning role if designed as one (§3).
 4. **Fewer, more skilled field visits.** Continuous sensors and remote targeting reduce routine visits. Remaining visits are for problems, calibration and judgment [J]. This raises the proficiency needed per visit and removes the easy repetitions novices learn on [J].
 5. **Automation hits the primary-learning tasks first.** v1's CLD idea is right for data handling (FC-027, FC-028). In field work, though, the larger loss so far is whole entry jobs cut for fiscal and policy reasons (§3) [E: FC-014].

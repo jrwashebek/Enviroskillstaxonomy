@@ -145,10 +145,12 @@ license terms are recorded [67].
 
 ### Slide 6. Rules changed substantially in 2025–26 ⟳
 
-**Headline:** In 2025–26, EMST recorded 50 dated policy actions that changed or settled rules for review, authorization,
+**Headline:** In 2025–26, EMST recorded 49 dated policy actions that changed or settled rules for review, authorization,
 hiring, disclosure and entry pathways, and 6 more are scheduled for 2027. *Re-checked on: [date before presenting].*
 
-**Body:** Chart **F09**: timeline by domain; recorded, scheduled and pending items marked in text.
+**Body:** Chart **F09**: timeline by domain; recorded, scheduled and pending items marked in text. Two further events
+whose day is not recorded (the AmeriCorps notices of July 2025 and the New Jersey Supreme Court's grant of review of
+July 2026) are shown by month only and are not counted in the headline.
 - **Review:** CEQ's NEPA regulations removed (final, effective 8 January 2026), so each department follows its own
   procedures [11]. *Seven County* (8–0 judgment; five-justice majority) requires substantial deference to agency scope
   choices [12]
@@ -440,11 +442,14 @@ EMST v2 cannot yet claim and how it would earn each claim.
 - **NGO pilot (March 2027 – February 2028):** about 12 organizations (range 10–14) across the three corridors, for
   describing and developing work only; a go/no-go decision on wider rollout in March 2028. **Not yet funded:** pilot
   funding is being sought through January 2027, and participation is unfunded unless it is secured
-- **What participants would give and get (current design):** a named lead with about 0.1 FTE of time (the design asks
-  for ten months of it within the pilot year); in return, a kickoff workshop, monthly cohort calls, weekly office hours,
-  peer pairing, a route to request roles EMST has not yet profiled, and a tiered stipend if funding is secured.
-  A three-person panel would score applicants against the criteria in the pilot design, through an open call planned
-  for November 2026 – January 2027
+- **What participants would give and get (current design):** a named lead with about 0.1 FTE of time over the ten
+  months from kickoff (March 2027) to the end of embedding (December 2027); January and February 2028 are close-out
+  only (an interview and the evidence pack). In return: the release and kits free of charge; a named coordinator and
+  weekly office hours; a kickoff workshop, with travel paid for small organizations; monthly cohort calls; a peer pair; a
+  route to request roles EMST has not yet profiled; a tiered stipend if funding is secured; the pilot's aggregate
+  findings before publication; and continued ownership of their own artifacts. A three-person panel would score
+  applicants against the criteria in the pilot design, through an open call planned for November 2026 – January 2027;
+  eligibility and a reply-by date are to be stated in the call
 - **Design-partner track (January – December 2027):** potential federal and state partners would co-produce the 0400
   Kit, the Job-Analysis Starter Pack, a federal-to-state crosswalk and a fire crosswalk. None is committed
 - **Not yet claimed:** every task value is an agent draft; every change is "assessment pending"; no change indicator has
@@ -472,7 +477,8 @@ move and helps agencies keep what they know.
   classification staff review the 0400 Kit)
 - **States and workforce boards:** test a federal-to-state or class-specification crosswalk, and share aggregate
   placement counts (five or more people per cell)
-- **NGOs, corps and educators:** a pilot agreement with a named lead (about 0.1 FTE); map one curriculum or season plan
+- **NGOs, corps and educators:** a pilot agreement with a named lead (about 0.1 FTE, March to December 2027, then a
+  two-month close-out); map one curriculum or season plan
 - **Everyone:** correct the drafts. Practitioners are needed for expert panels, reliability studies and the Delphi
 
 **Speaker notes:** EMST's own targets, not commitments: a federal design-partner letter by February 2027; three state

@@ -130,26 +130,63 @@ def openlmp_signals():
             "plan equally (share or rate computed within plan, then averaged; ci95 = mean +/- 1.96 SE across plans); "
             "component-weighted value kept as the ADR-0028 sensitivity check. Keyword and OpenLMP coordination-tag "
             "definitions reused from LM Phase 2 (lmp_demand_signals.py). Mentions measure what plans name, not obligation.")
+    # CR-FIX-A-003 item 2 (ADR-0031 §4): non-held signals carry the plan-level percentile bootstrap from Fix-A's seeded
+    # build (report figures F05 and F06), computed in wp10_lmp.compute(). The held Tribal touchpoint keeps `meth`.
+    boot = wp10_lmp.BOOT_METHOD
+    meth_f06 = meth.replace("ci95 = mean +/- 1.96 SE across plans", "ci95 = %s (Fix-A, report figure F06)" % boot)
+    b82, b12 = e82["bootstrap"], e12["bootstrap"]
+    ovl = wp10_lmp.overlap
+
+    def f06_note(a12, a82):
+        o_all = ovl(a12["all"]["ci95"], a82["all"]["ci95"])
+        o_po = ovl(a12["plans_only"]["ci95"], a82["plans_only"]["ci95"])
+        return o_all, ("Plan-equal bootstrap intervals %s across all documents; among plan documents only they %s "
+                       "(report figure F06)." % ("overlap" if o_all else "do not overlap", "overlap" if o_po else "do not overlap"))
 
     def ratio(a, b):
         return round(a / b, 2) if b else None
 
     out = []
-    # 1 monitoring workload
-    m12, m82 = e12["monitoring_share_plan_equal"], e82["monitoring_share_plan_equal"]
+    # 1 monitoring workload. CR-FIX-A-003 item 1 (ADR-0031 §4): renamed "Components typed as monitoring ...", with the
+    # document-type sensitivity in the method and note; directionConfidence is low because the plan-documents-only
+    # intervals overlap.
+    m12, m82 = b12["monitoring_share"]["all"], b82["monitoring_share"]["all"]
+    p12, p82 = b12["monitoring_share"]["plans_only"], b82["monitoring_share"]["plans_only"]
+    head_overlap = ovl(m12["ci95"], m82["ci95"])
+    plans_overlap = ovl(p12["ci95"], p82["ci95"])
+    mon_note = (
+        "Headline (all documents, plan-equal): bootstrap intervals %s. %s: %d of the %d 2012-rule documents are "
+        "monitoring evaluation reports or stand-alone monitoring plans; among plan documents only the shares are "
+        "%s (%d plans) vs %s (%d plans) and the intervals %s (claims register PLAN-01; "
+        "docs/package/report/figures/f05_plan_monitoring_share_by_rule.csv). Components typed as monitoring "
+        "measure what plans name, not funded workload."
+        % ("overlap" if head_overlap else "do not overlap",
+           "Not robust to document type" if plans_overlap else "Robust to document type",
+           m12["n"] - p12["n"], m12["n"], "{:.1%}".format(p12["value"]), p12["n"], "{:.1%}".format(p82["value"]), p82["n"],
+           "overlap" if plans_overlap else "do not overlap"))
+    mon_meth = (
+        "Cross-era comparison of plan components (not a time series of the same plans). Headline weights each document "
+        "equally (share computed within document, then averaged); ci95 = %s (Fix-A, report figure F05); "
+        "component-weighted value kept as the ADR-0028 sensitivity check. Sensitivity by document type: among plan "
+        "documents only (excluding monitoring evaluation reports and stand-alone monitoring plans) the 2012-rule share is "
+        "%s (ci95 %s-%s, n %d) vs %s (ci95 %s-%s, n %d); the intervals %s. "
+        "Scope: western national forests (about 95%% of components are USFS plans)."
+        % (boot, p12["value"], p12["ci95"][0], p12["ci95"][1], p12["n"], p82["value"], p82["ci95"][0], p82["ci95"][1], p82["n"],
+           "overlap, so the direction is not robust to document type" if plans_overlap
+           else "do not overlap, so the direction is robust to document type"))
     out.append(sig("openlmp/monitoring-share-2012-vs-1982",
-                   "Monitoring requirements as a share of plan components: 2012-rule vs 1982-rule land management plans",
+                   "Components typed as monitoring as a share of plan components: 2012-rule vs 1982-rule land management "
+                   "plans (western national forests)",
                    targetId=wf("WF-MONITOR"),
                    measure={"name": "monitoring_component_share_plan_equal", "value": m12["value"], "unit": "share of plan components",
                             "ci95": m12["ci95"], "n": m12["n"], "denominator": "plans (each weighted equally)",
                             "baseline": {"value": m82["value"], "ci95": m82["ci95"], "n": m82["n"]},
                             "sensitivity": {"weighting": "component", "value": e12["monitoring_share_component_weighted"],
                                             "baselineValue": e82["monitoring_share_component_weighted"]}},
-                   method=meth, crosswalkPath="OpenLMP component_type=monitoring -> work function WF-MONITOR (definitional)",
-                   matchType="close", direction="grow", dconf="med", drivers=["policy-reform"], novelty=1, reliability="B",
-                   corroboration=1, impact=2,
-                   note="Robust to weighting: CIs do not overlap under plan-equal weighting. Plans name indicators and reporting, not field methods (remote sensing in 3 of 1,506 monitoring questions; LM Phase 2), so this is demand for indicator design, evaluation and reporting.",
-                   **common))
+                   method=mon_meth, crosswalkPath="OpenLMP component_type=monitoring -> work function WF-MONITOR (definitional)",
+                   matchType="close", direction="grow", dconf="low" if (plans_overlap or head_overlap) else "med",
+                   drivers=["policy-reform"], novelty=1, reliability="B", corroboration=1, impact=2,
+                   note=mon_note, **common))
     # 2 term mention rates
     terms = [
         ("climate_change", "Climate-change content in plan direction", wf("WF-PLAN"), ["climate", "policy-reform"], "environmental"),
@@ -160,8 +197,8 @@ def openlmp_signals():
         ("partnership_collaboration", "Partnership and collaboration language in plan direction", "vocab:work_functions#MODE-ENGAGE", ["policy-reform"], "political"),
     ]
     for k, label, target, drivers, steep in terms:
-        a, b = e12["terms_per_1000_plan_equal"][k], e82["terms_per_1000_plan_equal"][k]
-        overlap = (a["ci95"] and b["ci95"] and a["ci95"][0] <= b["ci95"][1])
+        a, b = b12["terms_per_1000"][k]["all"], b82["terms_per_1000"][k]["all"]
+        overlap, note = f06_note(b12["terms_per_1000"][k], b82["terms_per_1000"][k])
         c = dict(common)
         c["steep"] = steep
         out.append(sig("openlmp/term-%s-2012-vs-1982" % k.replace("_", "-"),
@@ -172,20 +209,19 @@ def openlmp_signals():
                                 "baseline": {"value": b["value"], "ci95": b["ci95"], "n": b["n"]},
                                 "sensitivity": {"weighting": "component", "value": e12["terms_per_1000_component_weighted"][k],
                                                 "baselineValue": e82["terms_per_1000_component_weighted"][k]}},
-                       method=meth, crosswalkPath="keyword family '%s' in plan component text -> %s (topical; mention not obligation)" % (k, target),
+                       method=meth_f06, crosswalkPath="keyword family '%s' in plan component text -> %s (topical; mention not obligation)" % (k, target),
                        matchType="related", direction="grow", dconf="low" if overlap else "med", drivers=drivers, novelty=1,
                        reliability="B", corroboration=1, impact=1 if k in ("carbon", "remote_sensing_lidar_drone") else 2,
-                       note=("Plan-equal and component-weighted CIs overlap or base is small: treat as weak." if overlap else
-                             "Direction robust to weighting (non-overlapping plan-equal CIs)."), **c))
+                       note=note, **c))
     # 3 coordination touchpoints (non-Tribal), with the weighting finding
     tps = [("partnership", "Partnership coordination touchpoints", "stakeholder"),
            ("cross_boundary", "Cross-boundary coordination touchpoints", "intergovernmental"),
            ("state_agency", "State-agency coordination touchpoints", "intergovernmental")]
     for k, label, rel in tps:
-        a, b = e12["touchpoints_per_1000_plan_equal"][k], e82["touchpoints_per_1000_plan_equal"][k]
+        a, b = b12["touchpoints_per_1000"][k]["all"], b82["touchpoints_per_1000"][k]["all"]
         cw12, cw82 = e12["touchpoints_per_1000_component_weighted"][k], e82["touchpoints_per_1000_component_weighted"][k]
         pe_ratio, cw_ratio = ratio(a["value"], b["value"]), ratio(cw12, cw82)
-        overlap = a["ci95"][0] <= b["ci95"][1] and b["ci95"][0] <= a["ci95"][1]
+        _, note = f06_note(b12["touchpoints_per_1000"][k], b82["touchpoints_per_1000"][k])
         direction = "grow" if (pe_ratio and pe_ratio > 1.25 and cw_ratio and cw_ratio > 1.25) else "stable"
         out.append(sig("openlmp/touchpoint-%s-2012-vs-1982" % k.replace("_", "-"),
                        "%s per 1,000 plan components, 2012-rule vs 1982-rule plans" % label,
@@ -194,14 +230,11 @@ def openlmp_signals():
                                 "ci95": a["ci95"], "n": a["n"], "denominator": "plans (each weighted equally)",
                                 "baseline": {"value": b["value"], "ci95": b["ci95"], "n": b["n"]},
                                 "sensitivity": {"weighting": "component", "value": cw12, "baselineValue": cw82}},
-                       method=meth + " relationshipType=" + rel + ".",
+                       method=meth_f06 + " relationshipType=" + rel + ".",
                        crosswalkPath="OpenLMP coordination tag '%s' -> MODE-ENGAGE (relationshipType %s)" % (k, rel),
                        matchType="related", direction=direction, dconf="low", drivers=["policy-reform"], novelty=1,
                        reliability="B", corroboration=1, impact=2,
-                       note=("Weighting matters: plan-equal ratio %s vs component-weighted ratio %s; plan-equal CIs %s. "
-                             "LM Phase 2's 'coordination about tripled' is component-weighted and partly reflects a few large plans."
-                             % (pe_ratio, cw_ratio, "overlap" if overlap else "do not overlap")),
-                       **common))
+                       note=note, **common))
     # 4 Tribal touchpoints: computed, quarantined (careFlag) - TN decides any representation
     a, b = e12["touchpoints_per_1000_plan_equal"]["tribal"], e82["touchpoints_per_1000_plan_equal"]["tribal"]
     out.append(sig("openlmp/touchpoint-tribal-2012-vs-1982", "Tribal coordination touchpoints in plan components (held)",

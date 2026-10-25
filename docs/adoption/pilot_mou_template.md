@@ -20,7 +20,7 @@ This Memorandum of Understanding ("MOU") is made on `[date]` between **`[EMST si
 
 ## Article 2. What the Pilot Organization will do
 
-2.1 Name a **pilot lead** (`[role title]`) with about 0.1 FTE for ten months.
+2.1 Name a **pilot lead** (`[role title]`) with about 0.1 FTE over the ten months from kickoff (`[March 2027]`) to the end of embedding (`[December 2027]`). The close-out months (`[January – February 2028]`) ask only for an interview and a contribution to the evidence pack.
 
 2.2 Carry out at least two use cases from the pilot design, at least one of which produces a real gate artifact: `[UC2 posting or JD | UC3 member portfolio or IDP | UC4 training plan]` and `[second use case]`, with the target artifact `[name]` by `[date]`.
 
@@ -41,6 +41,8 @@ This Memorandum of Understanding ("MOU") is made on `[date]` between **`[EMST si
 3.4 Share the pilot's aggregate findings with the Pilot Organization before publication and give it ten business days to review any passage that describes it.
 
 3.5 Enter this MOU in the EMST commitment register and describe the Pilot Organization as a pilot organization **only** after both signatures are recorded (charter Art. 12).
+
+3.6 **What the Pilot Organization receives, in summary** (nothing else is offered): the release and kits free of charge, a named coordinator and office hours (3.1); the kickoff workshop, with travel paid for small organizations, monthly cohort calls and a peer pair (pilot design §6); a route to request roles EMST has not yet profiled (3.3); a stipend if pilot funding is secured (3.2); the pilot's aggregate findings before publication (3.4); and continued ownership of its own artifacts (6.1). <!-- PENDING project lead (ADR-0031 §4, §10; CR-FIX-B-002): role profiles fitted to the organization are not part of the offer unless the lead adds them. -->
 
 ## Article 4. Use limits (standard terms)
 

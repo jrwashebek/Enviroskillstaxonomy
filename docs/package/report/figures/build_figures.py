@@ -28,6 +28,14 @@ Rules this script enforces (WP-14 acceptance; ADR-0027; PROJECT_LEAD_DECISIONS Q
     from openlmp_plan_level_extract.csv (written by extract_openlmp_plans.py); the build
     fails unless that extract reproduces the plan-equal means stored in the L5 signals.
   * Deterministic: same inputs, same outputs.
+  * Persistent IDs (rc.1 alignment, 2026-10-24; ADR-0031 §6): data/v2 records now carry minted IDs. The script
+    names its inputs by their seed keys and resolves them through data/v2/ids/seed_map.csv, so every ID written to
+    a figure is the minted one.
+  * F09 reads every event from data/v2/events (ADR-0031, CR-FIX-A-003 item 4; no hard-coded event rows). An event
+    whose day is judgment (evidence label J; claims register REG-08) never shows its day, as in the views. It is shown
+    at month precision only when a usable claims-register row that cites the event's source states that month and
+    year (checked by needle); otherwise it is left out. Events of withheld records (release_withheld.yaml) are
+    left out.
 """
 import csv
 import glob
@@ -67,6 +75,21 @@ def write_csv(name, header, rows):
                 r = dict(r, source_ids=cite(r["source_ids"], name))
             w.writerow([r.get(h, "") for h in header])
     return path
+
+
+# Seed key -> minted ID (and back), written once by scripts/mint_id.py (ADR-0031 §6).
+SEED_MAP = {r["seed_key"]: r["id"] for r in read_csv(os.path.join(ROOT, "data", "v2", "ids", "seed_map.csv"))}
+SEED_OF = {v: k for k, v in SEED_MAP.items()}
+
+
+def mid(seed_key):
+    """The record ID for a seed key: the minted ID if the record was promoted, else the seed key itself."""
+    return SEED_MAP.get(seed_key, seed_key)
+
+
+def seed_of(record_id):
+    """The seed key a minted ID was promoted from (identity for records that kept their seed key)."""
+    return SEED_OF.get(record_id, record_id)
 
 
 KEY_FACTS = {r["fact_id"]: r for r in read_csv(os.path.join(VER, "ALL_key_facts.csv"))}
@@ -167,7 +190,7 @@ def f1():
     sig = {d["id"]: d for d in read_jsonl(os.path.join(SIG, "opm-headcount.jsonl"))}
     for d in sig.values():
         assert no_tribal(d)
-    fed = sig["seed:sig/headcount/federal-civilian-minus-12pct"]["measure"]
+    fed = sig[mid("seed:sig/headcount/federal-civilian-minus-12pct")]["measure"]
     check("V1-01", "2,313,216", "2,035,344", "12%")
     check("V1-02", "more than a quarter", "34.1%")
     check("V1-03", "12,849", "(24%)")
@@ -441,8 +464,8 @@ def f7():
         "15-2051": (None, "15 Computer and mathematical"),
     }
     seen = {}
-    for d in recs:
-        soc = d["id"].split("/")[2]
+    for d in sorted(recs, key=lambda d: seed_of(d["id"])):  # seed-key order: the base signal precedes role-attached copies
+        soc = seed_of(d["id"]).split("/")[2]
         if soc in wanted and soc not in seen:
             seen[soc] = d
     out = []
@@ -486,15 +509,15 @@ def f8():
     for key, lab in [("seed:sig/postings/conservation-job-board-all-2025", "All postings"),
                      ("seed:sig/postings/conservation-job-board-internships-2025", "Paid internship postings"),
                      ("seed:sig/postings/conservation-job-board-americorps-2025", "AmeriCorps position postings")]:
-        m = cjb[key]["measure"]
+        m = cjb[mid(key)]["measure"]
         rows.append({"indicator": f"Conservation Job Board: {lab}", "value": round(100 * m["value"], 1), "unit": "% change year over year",
                      "period": "Mar 1-Sep 30 2025 vs same months 2024", "scope": "one job board (not the whole conservation labour market)",
                      "source_ids": "V1-14;WF-05"})
-    u30 = hc["seed:sig/headcount/federal-under-30-share"]["measure"]
+    u30 = hc[mid("seed:sig/headcount/federal-under-30-share")]["measure"]
     rows.append({"indicator": "Federal civilian workforce: share of employees under 30", "value": round(100 * u30["value"], 1),
                  "unit": "percent of employees (was {:.1f} in Sep 2024)".format(100 * u30["baseline"]["value"]),
                  "period": "Jan 2026", "scope": "all federal civilian employees", "source_ids": "V1-02;WF-02"})
-    sh = hc["seed:sig/headcount/usfs-seasonal-hiring-2025-2026"]["measure"]
+    sh = hc[mid("seed:sig/headcount/usfs-seasonal-hiring-2025-2026")]["measure"]
     rows.append({"indicator": "USDA Forest Service: non-fire seasonal hires", "value": sh["baseline"]["value"], "unit": "hires in 2025",
                  "period": "2025 hiring season", "scope": "USFS non-fire seasonal positions (congressional letter relaying agency statements)",
                  "source_ids": "V1-04;WF-04"})
@@ -546,25 +569,55 @@ def f9():
         "usfs-objection": "Environmental review",
     }
     def dom(iid):
-        k = iid.replace("seed:ins/", "")
+        k = seed_of(iid).replace("seed:ins/", "")
         for pre, lab in domain.items():
             if k.startswith(pre):
                 return lab
         return None
+    withheld_path = os.path.join(ROOT, "data", "v2", "governance", "release_withheld.yaml")
+    withheld = set()
+    if os.path.exists(withheld_path):
+        for line in open(withheld_path, encoding="utf-8"):
+            if not line.lstrip().startswith("#"):
+                withheld.update(x for x in (s.strip("'\" ") for s in line.split("[", 1)[-1].split("]", 1)[0].split(",")) if x.startswith("seed:"))
+    MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+    def month_row(d):
+        """REG-08: a J-labelled event never shows its day. Its month may be shown only if a usable claims-register row
+        that cites one of the event's sources states that month and year. Returns that row's ID, or None."""
+        needle = f"{MONTHS[int(d['eventDate'][5:7]) - 1]} {d['eventDate'][:4]}"
+        srcs = set(d.get("sources") or [])
+        hits = sorted(cid for cid, c in CLAIMS.items()
+                      if srcs & set(c["source_ids"].split("|")) and c["status"] in USABLE and needle in c["claim"])
+        for cid in hits:
+            check(cid, needle)
+        return hits[0] if hits else None
     rows = []
     for f in sorted(glob.glob(os.path.join(ROOT, "data", "v2", "events", "*.jsonl"))):
         for d in read_jsonl(f):
             if not ("2025-01-01" <= d["eventDate"] <= "2027-12-31"):
                 continue
             i = ins.get(d["instrument"], {})
-            if not no_tribal(d) or not no_tribal(i) or "tribal" in d["instrument"] or (d["instrument"] in hold_text and hold_text):
+            ikey = seed_of(d["instrument"])
+            if not no_tribal(d) or not no_tribal(i) or "tribal" in ikey or (hold_text and (d["instrument"] in hold_text or ikey in hold_text)):
                 continue
-            srcs = d.get("sources") or []
-            ok = bool(srcs) and (all(is_verified_source(x) for x in srcs) or any(x in WP15_IDS for x in srcs))
-            if d.get("evidenceLabel") != "E" or not ok:
-                continue
+            if d["instrument"] in withheld or ikey in withheld or seed_of(d["id"]) in withheld:
+                continue  # ADR-0031 §8: events of a withheld instrument are withheld with it
             lab = dom(d["instrument"])
             if lab is None:
+                continue
+            srcs = d.get("sources") or []
+            if d.get("evidenceLabel") == "J":
+                reg = month_row(d)
+                if reg is None or d["eventDate"] > AS_OF:
+                    continue  # REG-08: the date is judgment and no register row states the month, so the event is not placed
+                rows.append({"date": d["eventDate"][:7], "kind": "recorded event (month only; day not recorded)",
+                             "event_type": d["eventType"], "status_after": d["statusAfter"],
+                             "domain": lab, "jurisdiction": i.get("jurisdiction", "") or d.get("jurisdiction", ""),
+                             "label": d["prefLabel"]["en"], "instrument_id": d["instrument"], "source_ids": ";".join([reg] + srcs)})
+                continue
+            ok = bool(srcs) and (all(is_verified_source(x) for x in srcs) or any(x in WP15_IDS for x in srcs))
+            if d.get("evidenceLabel") != "E" or not ok:
                 continue
             kind = "recorded event" if d["eventDate"] <= AS_OF else "scheduled (published date)"
             rows.append({"date": d["eventDate"], "kind": kind, "event_type": d["eventType"], "status_after": d["statusAfter"],
@@ -585,20 +638,8 @@ def f9():
         check(cid, needle)
         rows.append({"date": date, "kind": "scheduled (published date)", "event_type": "scheduled", "status_after": "",
                      "domain": lab, "jurisdiction": jur, "label": label, "instrument_id": "", "source_ids": src})
-    # Recorded events published in corrected register rows but not yet DriverEvents in data/v2/events
-    # (evidence review R15 and R33; data change requested in CR-FIX-A-003). Month precision as published.
-    recorded = [
-        ("2025-07", "notice", "reinstatement offered", "Entry pathways", "US",
-         "AmeriCorps tells grantees whose grants were terminated on 25 Apr 2025, including programs in states outside the litigation, that they are eligible for reinstatement (uptake undocumented)",
-         "WF-06", ("WF-06", "July 2025")),
-        ("2026-07", "certification granted", "in effect pending appeal", "Cumulative-burden analysis (state basis)", "US-NJ",
-         "New Jersey Supreme Court grants certification to review the NJDEP environmental justice rules; the rules remain in effect while the appeal is pending",
-         "EJ-02", ("EJ-02", "certification in July 2026")),
-    ]
-    for date, etype, after, lab, jur, label, src, (cid, needle) in recorded:
-        check(cid, needle)
-        rows.append({"date": date, "kind": "recorded event", "event_type": etype, "status_after": after,
-                     "domain": lab, "jurisdiction": jur, "label": label, "instrument_id": "", "source_ids": src})
+    # The two events that Fix-A hard-coded here (AmeriCorps notices, July 2025; NJ Supreme Court certification,
+    # July 2026) are now DriverEvents in data/v2/events (ADR-0031, CR-FIX-A-003 item 4) and are read above.
     # Pending actions recorded only as watch signals (no event type exists for pre-publication actions).
     check("V2-14", "Jul 24, 2026")
     check("V2-17", "Jul 10, 2026")
@@ -612,15 +653,33 @@ def f9():
     rows.sort(key=lambda r: (r["date"], r["domain"], r["label"]))
     write_csv("f09_policy_instrument_timeline_2025_2027.csv",
               ["date", "kind", "event_type", "status_after", "domain", "jurisdiction", "label", "instrument_id", "source_ids"], rows)
-    changes = {"final", "effective", "enacted", "rescinded", "enjoined", "decided", "interim", "notice"}
+    changes = {"final", "effective", "enacted", "rescinded", "enjoined", "decided", "interim"}
+    others = {"proposed", "introduced", "passed-chamber"}
     in_window = [r for r in rows if r["kind"] == "recorded event" and r["date"][:4] in ("2025", "2026")]
     n_change = sum(1 for r in in_window if r["event_type"] in changes)
     n_other = len(in_window) - n_change
+    assert all(r["event_type"] in changes | others for r in in_window), sorted({r["event_type"] for r in in_window} - changes - others)
+    month_only = [r for r in rows if r["kind"].startswith("recorded event (month only") and r["date"][:4] in ("2025", "2026")]
+    n_month = len(month_only)
+    # The source note below describes these events in words; fail rather than let the words go stale.
+    if ({seed_of(r["instrument_id"]) for r in month_only} != {"seed:ins/americorps-grant-terminations", "seed:ins/nj-ej-law"}
+            or {r["event_type"] for r in month_only} != {"decided"}):
+        sys.exit("build_figures: F09 month-only events changed; re-check the F09 source note before rebuilding")
+    month_regs = ", ".join(sorted({r["source_ids"].split(";")[0] for r in month_only}))
     n_2027 = sum(1 for r in rows if r["kind"].startswith("scheduled") and r["date"][:4] == "2027")
+    WORDS = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five"}
+    month_head = (f", and {n_month} recorded events dated to the month only, because their day is not recorded" if n_month else "")
+    month_note = (f"{WORDS.get(n_month, str(n_month))} recorded events have no recorded day (evidence label J; claims register REG-08), so their day is never shown. "
+                  f"They are placed at month precision because a corrected claims-register row that cites the event's source states the month ({month_regs}), "
+                  "and they are counted apart from the dated actions. Their recorded event type is 'decided', the event vocabulary's nearest term; "
+                  "neither is a ruling on the merits (one is an agency's notice, the other a court's grant of review), so read each row's label. "
+                  if n_month else "")
     register("F09", "f09_policy_instrument_timeline_2025_2027.csv",
-             f"EMST's registry records {n_change} dated policy actions in 2025-26 that changed or settled rules for review, authorization, hiring, disclosure or entry pathways (finalized, took effect, enacted, rescinded, enjoined, decided by a court, or a reinstatement offer), plus {n_other} other dated steps (proposals, bills, a court's grant of review); {n_2027} more dated changes are scheduled for 2027. The timeline holds no technology-adoption data, so it cannot by itself show that policy moved faster than technology.",
-             "Horizontal timeline with one swimlane per domain; recorded events as filled markers, scheduled dates as hollow markers, pending actions as dashed markers; status labels in text, not color alone; table beside the chart.",
-             "EMST L5 instrument registry and driver events (data/v2/instruments, data/v2/events; agent-recorded, unreviewed) filtered to events whose dates rest on verification records (V1-V4 key facts, the corrections register and the WP-15 re-checks of 2026-10-23). Filter rule: an event is admitted if all its sources are verification records, or if any source is a WP-15 re-check; some admitted events also cite a role source row that no verification pass re-checked (for example the objection-rule event cites SC-009). Two recorded events (AmeriCorps, July 2025; New Jersey Supreme Court, July 2026) come from corrected claims-register rows and are not yet in data/v2/events. Scheduled and pending items come from the same records; future dates are as of 2026-10-23 and must be re-checked. Superseded verification records are replaced by their current register rows (see SUPERSEDED_SUCCESSORS in the script). Bills are shown at their recorded stage only; none is law. Litigation outcomes after the dates shown were not checked. Held (Tribal-related) instruments excluded.",
+             f"EMST's registry records {n_change} dated policy actions in 2025-26 that changed or settled rules for review, authorization, hiring, disclosure or entry pathways (finalized, took effect, enacted, rescinded, enjoined or decided by a court), plus {n_other} other dated steps (proposals and bills){month_head}; {n_2027} more dated changes are scheduled for 2027. The timeline holds no technology-adoption data, so it cannot by itself show that policy moved faster than technology.",
+             "Horizontal timeline with one swimlane per domain; recorded events as filled markers, month-only events as a month-wide band (never a point on a day), scheduled dates as hollow markers, pending actions as dashed markers; status labels in text, not color alone; table beside the chart.",
+             "EMST L5 instrument registry and driver events (data/v2/instruments, data/v2/events; agent-recorded, unreviewed) filtered to events whose dates rest on verification records (V1-V4 key facts, the corrections register and the WP-15 re-checks of 2026-10-23). Filter rule: an event is admitted if all its sources are verification records, or if any source is a WP-15 re-check; some admitted events also cite a role source row that no verification pass re-checked (for example the objection-rule event cites SC-009). "
+             + month_note +
+             "Scheduled and pending items come from the same records; future dates are as of 2026-10-23 and must be re-checked. Superseded verification records are replaced by their current register rows (see SUPERSEDED_SUCCESSORS in the script). Bills are shown at their recorded stage only; none is law. Litigation outcomes after the dates shown were not checked. Held (Tribal-related) and withheld instruments excluded.",
              evidence="EMST record of external events (agent-recorded); dates checked against verification records and the claims register")
 
 

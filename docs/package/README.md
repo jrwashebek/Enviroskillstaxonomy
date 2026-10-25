@@ -33,8 +33,11 @@ practices that EMST's foresight analysis judged to hold under every scenario it 
 
 **Not in the package.** `docs/adoption/theory_of_change_one_pager.md` is an internal working document. Until the project
 lead decides on its release, external materials quote only the charter sentence: "If those blends are visible and
-portable, mobility follows." The underlying records, generated HR views and crosswalks live in `data/v2/` and
-`docs/build/WP-08/generated/` and ship in the release bundle under CC0 1.0.
+portable, mobility follows." The underlying records and crosswalks live in `data/v2/`. The release bundle (EMST
+2.0.0-rc.1, CC0 1.0; release notes and counts in `docs/release/2.0.0-rc.1/`) ships the records that passed the release
+gate, their crosswalk mappings and the gated release views, including the Federal Series Profiles and State Class Views,
+which apply EMST's display rule. The files under `docs/build/WP-08/generated/` are authoring previews of those HR views; they
+are not the bundle and do not ship in it.
 
 ## Rules every package item follows
 

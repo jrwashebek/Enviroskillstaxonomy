@@ -21,7 +21,7 @@
 | AI-drafted PD language | OPM's Aug 27 2026 memo treats AI-assisted drafting of PDs as generally **not** high-impact when the responsible official independently reviews, revises and adopts the draft; rating, ranking and scoring are presumed high-impact. | [E: V1-13] |
 | Executive Core Qualifications | The five-ECQ framework (Oct 1 2025) no longer contains Political Savvy, Partnering or Influencing/Negotiating; no package cites the ECQs as the warrant for statecraft content. | [E: V2 SC-058; ADR-0027 §3] |
 | Pennsylvania | Pennsylvania counts federal experience as equivalent (EO 2025-01), writes federal titles into minimum-qualification text, matched titles with generative AI, and reports 1,350 hires with federal experience by Aug 2026. | [E: SL-031, SL-080] |
-| Fire qualifications | USWFS–USFS aligned federal qualification standards take effect Jan 2027; NWCG is not a party; NWCG updated PMS 310-1 on Jan 23 2026. | [E: V3-13] |
+| Fire qualifications | USWFS–USFS aligned federal qualification standards take effect Jan 2027; the alignment is between USWFS and USFS standards (the plan does not name NWCG); NWCG separately updated PMS 310-1 on Jan 23 2026. | [E: V3-13] |
 | Accessibility | Packages meet WCAG 2.2 AA (a superset of Section 508's WCAG 2.0 AA and the WCAG 2.1 AA required by ADA Title II, whose compliance dates are Apr 26 2027 / Apr 26 2028). | [E: V2-11, V2-12] |
 
 ## 1. Elements common to every package
