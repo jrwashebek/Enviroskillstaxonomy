@@ -10,7 +10,14 @@ augmentationMode: unaided
 assessmentMethods:
 - record-audit
 useClass: develop
-obs4: 3
+obs4: null
+obs4Draft:
+  value: 3
+  raterType: llm
+  raterId: emstagent:fc-agent@wp-03
+  codedOn: '2026-10-23'
+  note:
+    en: Self-coded by the authoring agent; IO human double-coding pending (ADR-0032; review m8). Never read as obs4.
 jurisdictionVariable: false
 servedTasks:
 - emst:core/TSK-2EFCKK1
@@ -18,8 +25,25 @@ distinguishingAttribute: ATT-FOR
 layer: L1
 module: core
 status: candidate
-lifecycleState: emerging
-reviewBy: '2028-10-23'
+lifecycleState: watch
+lifecycleBasis:
+  testedFor: emerging
+  test: vocab/lifecycle_states.yaml#emerging.entry_test
+  result: not-met
+  evidence: []
+  counts:
+    signals: 0
+    distinctObservations: 0
+    independentSignals: 0
+    signalFamilies: 0
+    sectorActors: 0
+    postingsOrPds: 0
+    actorTypes: 0
+  assessedOn: '2026-10-25'
+  assessedBy: emstagent:d-data-rc1-fix@claude-opus-5-5
+  note:
+    en: 'Entry test of `emerging` applied to 0 evidence signal(s) (0 distinct observation(s); 0 independent; 0 family(ies); 0 sector actor(s); 0 postings or PDs): not-met. The proposed entry test is not met either (0 independent signal(s), 0 signal family(ies), 0 sector actor(s)).'
+reviewBy: '2027-10-25'
 useTier: develop
 validationStatus: draft
 license: CC0-1.0
@@ -38,3 +62,7 @@ provenance:
   - ADR-0004
   - ADR-0005
   - WP-03
+changeNote:
+- release: 2.0.0-rc.1
+  note:
+    en: 'lifecycleState emerging -> watch: the vocabulary''s entry test is not met (lifecycleBasis; ADR-0032, CR-CA-001; review M7).'

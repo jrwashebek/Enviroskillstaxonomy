@@ -1,0 +1,18 @@
+# EMST 2.0.0-rc.1: publication sign-off record (build plan §5 item 7; project lead decision Q13, 2026-10-24).
+#
+# Rule (docs/decisions/PROJECT_LEAD_DECISIONS.md, Q13): external publication beyond the pilot cohort is signed by the
+# EMST project lead, after at least one named human subject-matter reviewer has read the report and briefs. AI agent
+# checks, including the adoption-lead (AS) role, are advisory only.
+#
+# How to fill it in (people only; no generator or AI agent ever adds an entry):
+#   - humanReviewers: one entry per human subject-matter reviewer who has actually read the report and briefs, as a
+#     pseudonymous ID (pid:...). The name-to-pid key is kept outside the repository (ADR-0012: no personal data).
+#   - projectLeadSignature: added by the project lead when they sign, dated on or after a reviewer's date.
+# scripts/release_gate.py and scripts/build_release.py read this file: the release notes and the gate report say
+# "not cleared for external publication" until a valid signature is recorded here.
+release: 2.0.0-rc.1
+rule: docs/decisions/PROJECT_LEAD_DECISIONS.md#Q13
+humanReviewers: []          # e.g. {reviewer: "pid:…", role: subject-matter reviewer, read: [flagship report, role-change briefs], date: YYYY-MM-DD}
+projectLeadSignature: null  # e.g. {date: YYYY-MM-DD, scope: external publication of 2.0.0-rc.1, after: ["pid:…"]}
+advisoryAgentChecks:        # recorded for completeness; none of these is a sign-off
+  - {check: "WP-15 verification pass, first pass plus flagship-report check (docs/methods/WP15_SIGNOFF.md)", by: "LM (A9), an AI agent role", date: "2026-10-23", effect: advisory}

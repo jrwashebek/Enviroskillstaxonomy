@@ -114,8 +114,8 @@ def main():
             "emst:mirrorRole marks pairs with inverted authority position (regulator <-> regulated party or consultant "
             "preparer). Friction fields in `other`: friction_posture_change, friction_licensure_gap, "
             "friction_pay_direction ('not assessed' where PS gave no pay evidence). TR rows outside the MVP role set "
-            "(e.g. TR-13 safety, TR-14 cultural resources, TR-15 realty) are not seeded; TR-14 touches "
-            "government-to-government consultation and is left for TN review. see_also names the TR row."),
+            "(e.g. TR-13 safety, TR-14 cultural resources, TR-15 realty) are not seeded; TR-14 is left for review. "
+            "see_also names the TR row."),
         "subject_source": "emstsrc:emst-v2-role-variants", "subject_source_version": "2.0.0-draft",
         "object_source": "emstsrc:emst-v2-role-variants", "object_source_version": "2.0.0-draft; PS translation 2026-10-23",
         "mapping_tool": TOOL,

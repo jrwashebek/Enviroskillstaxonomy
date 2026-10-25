@@ -5,12 +5,11 @@
 > Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).
 
 - **Role:** Air quality specialist (`emst:air/ROL-4WY94YJ`, P2); authority position (editorial): regulator
-- **Generated:** pipelines/views/state_class_view.py@0.2.0, rule state-class-view@0.1.0 (registered rule, status active), as of 2026-10-23
+- **Generated:** pipelines/views/state_class_view.py@0.3.0, rule state-class-view@0.2.0 (registered rule, status active), as of 2026-10-23
 
 ## Mapped classes
 
-- Environmental Protection Specialist V (`emst:core/SCR-2FE0VV0`), lead level, `skos:broadMatch` — see `state-class/TX--2655.md`
-- Environmental Protection Specialist III (`emst:core/SCR-XKM7A1E`), journey/senior level, `skos:relatedMatch` — see `state-class/TX--2653.md`
+No class is mapped at skos:closeMatch or stronger in the pilot jurisdictions (TX, WA and PA (state), Lewis County WA (county environmental health), Philadelphia Water Department (municipal utility)). The role's targets below are what a jurisdiction would crosswalk its own class specification against.
 
 ## Competency targets by role level (editorial draft target levels, agent-drafted)
 

@@ -1,0 +1,41 @@
+# EMST computed-view rule (SPEC §10.4, §14.3; ADR-0015, ADR-0024; CR-DE-003, CR-IO-001, CR-IO-002). Normative definition.
+ruleId: effective-use-tier
+version: 1.1.0
+status: active
+replaces: effective-use-tier@1.0.0
+steward: DE (implementation) · IO (evidence inputs) · CA (definition)
+decidedIn: [ADR-0015, ADR-0024, ADR-0029, CR-DE-003, CR-IO-001, CR-IO-002, ADR-0032, CR-CA-001]
+computes: Effective use tier = the minimum of the caps below (ADR-0015), for Competency, Task, Indicator, RoleProfile, RoleVariant, KnowledgeStatement, Enactment and Pathway.
+inputs: [released records, validation/indicator_lint_rules.yaml#publication_rules.tier_requirements, the display-gate@1.0.0 view]
+tier_order: [exploratory, describe, develop, select]
+definition:
+  declared_ceiling: "`useTier` as stored (default exploratory)."
+  lifecycle_cap: >
+    None (1.1.0; ADR-0032, CR-CA-001, review M7). Lifecycle describes the work in the sector and validationStatus the
+    record, so lifecycle state neither caps nor raises the tier; `caps.lifecycle` is always null. Withdrawn, lapsed and
+    merged records still have no tier (bindingCap notCurrent): the record is not current.
+  evidence_cap: >
+    seed-v1 → exploratory; draft, reviewed → describe; panel-retained → develop; job-analysis-confirmed,
+    criterion-supported → select. For Competency, select additionally requires ≥ 1 linked task with critical = true in
+    a role variant whose validationStatus ≥ job-analysis-confirmed (SPEC §5.2; ADR-0001).
+  level_rule_cap: >
+    Competency only: the highest tier whose tier_requirements (PR-1…PR-4 results and the OBS-4 minimum) are met at
+    EVERY published level (SPEC §8.2, ratified in CR-IO-001); a competency with no published level is capped at describe.
+    1.1.0: OBS-4 is read from `obs4` only; null (not yet human-coded; the agent self-code in obs4Draft is never read)
+    does not meet any minimum (ADR-0032, review m8).
+    Indicator: its own useClass, and no higher than its competency's level_rule_cap.
+  indicator_lint_cap: "An Indicator with an unwaived lint flag is capped at develop (select requires no flags; waivers in data/v2/governance/lint_waivers.csv)."
+  reliability: >
+    Tags are not capped here record by record: display-gate@1.0.0 decides, per value, whether a gated tag renders and
+    whether it is production or tentative; select views admit production values only. The effective tier never rises
+    because a tag is shown.
+  pathway: "Pathway: capped at exploratory until it passes the M-03 validation gate (ADR-0023); recommended stays false until then (SPEC §5.10)."
+outputs:
+  view: views/effective_use_tier.json
+  fields: "id, effectiveUseTier, declaredCeiling, caps{lifecycle (always null from 1.1.0), evidence, levelRule, indicatorLint}, bindingCap (incl. notCurrent), ruleId, ruleVersion, buildCommit"
+parameters:
+  tier_requirements: {path: validation/indicator_lint_rules.yaml, key: publication_rules.tier_requirements, pin: "sha256 of the file at build, recorded in the view header"}
+implementation: scripts/rules/effective_use_tier.py
+changeNote:
+  - {date: '2026-10-23', note: "Adds the evidence, level-rule and indicator-lint caps; states how the reliability gate applies (ADR-0029)."}
+  - {date: '2026-10-25', note: "1.1.0: lifecycle no longer caps the tier (only validationStatus, IO level rules, lint and the display gate do); obs4 null meets no OBS-4 minimum (ADR-0032; reviews M7, m8)."}

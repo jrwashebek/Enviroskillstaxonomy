@@ -1,4 +1,4 @@
-"""change-indicator@1.0.0 evidence rule (ADR-0028 §2; ADR-0029 §8.3-8.4). Moved from docs/methods/ci/ (LM, WP-10).
+"""change-indicator@1.1.0 evidence rule (1.0.0 until the rc.1 fix pass, ADR-0032) (ADR-0028 §2; ADR-0029 §8.3-8.4). Moved from docs/methods/ci/ (LM, WP-10).
 
 1. Every synthetic case in tests/fixtures/evidence_rule_cases.yaml yields its expected decision and reason code.
 2. Regression on the real seed: no agent-seeded ChangeSignal under data/v2/signals/ moves any indicator, even if its
@@ -36,11 +36,18 @@ def _fill(defaults, partial):
     return rec
 
 
+def _cfg(doc):
+    """The vocabulary configuration plus the fixture's synthetic keys (1.1.0: unlisted keys never pair)."""
+    cfg = ER.load_config()
+    cfg.providers.update({k: set(v) for k, v in (doc.get("synthetic_providers") or {}).items()})
+    return cfg
+
+
 @pytest.mark.parametrize("case", _doc()["cases"], ids=lambda c: c["id"])
 def test_synthetic_case(case):
     doc = _doc()
     ind = case.get("indicator", doc["indicator"])
-    res = ER.evaluate(ind, [_fill(doc["defaults"], s) for s in case["signals"]])
+    res = ER.evaluate(ind, [_fill(doc["defaults"], s) for s in case["signals"]], _cfg(doc))
     assert res["decision"] == case["expect"], res
     if case.get("reason"):
         assert case["reason"] in res["reasons"], res
@@ -50,7 +57,7 @@ def test_every_reason_code_the_port_can_emit_is_in_the_rule_file():
     """ADR-0030 §1.2 (CR-DE-004): the rule file lists every reason code, including ER-0-NOT-ACTIVE and
     ER-0-ORGANIZATION-TARGET."""
     import re
-    rule = L.load_yaml(ROOT / "vocab" / "rules" / "change-indicator@1.0.0.yaml")
+    rule = L.load_yaml(ROOT / "vocab" / "rules" / f"change-indicator@{ER.RULE_VERSION}.yaml")
     src = (ROOT / "scripts" / "rules" / "change_indicator.py").read_text(encoding="utf-8")
     emitted = set(re.findall(r'"(ER-\d-[A-Z0-9-]+)"', src))
     assert emitted and emitted <= set(rule["reason_codes"]), sorted(emitted - set(rule["reason_codes"]))

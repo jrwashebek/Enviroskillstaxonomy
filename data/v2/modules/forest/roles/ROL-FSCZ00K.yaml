@@ -361,7 +361,27 @@ homeModule: forest
 layer: L3
 module: forest
 status: candidate
-lifecycleState: emerging
+lifecycleState: watch
+lifecycleBasis:
+  testedFor: emerging
+  test: vocab/lifecycle_states.yaml#emerging.entry_test
+  result: not-met
+  evidence:
+  - emst:core/SIG-E8BJ3DN
+  - emst:core/SIG-8S0JB1K
+  counts:
+    signals: 2
+    distinctObservations: 2
+    independentSignals: 1
+    signalFamilies: 2
+    sectorActors: 1
+    postingsOrPds: 0
+    actorTypes: 0
+    feederRoles: 2
+  assessedOn: '2026-10-25'
+  assessedBy: emstagent:d-data-rc1-fix@claude-opus-5-5
+  note:
+    en: 'Entry test of `emerging` applied to 2 evidence signal(s) (2 distinct observation(s); 1 independent; 2 family(ies); 1 sector actor(s); 0 postings or PDs): not-met. The proposed entry test is not met either (1 independent signal(s), 2 signal family(ies), 1 sector actor(s)).'
 useTier: develop
 validationStatus: draft
 license: CC0-1.0
@@ -425,3 +445,7 @@ provenance:
   - ADR-0024
   - ADR-0025
   - ADR-0029
+changeNote:
+- release: 2.0.0-rc.1
+  note:
+    en: 'lifecycleState emerging -> watch: the vocabulary''s entry test is not met (lifecycleBasis; ADR-0032, CR-CA-001; review M7).'

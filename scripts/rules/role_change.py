@@ -1,9 +1,12 @@
-"""role-change@0.1.0 (vocab/rules/role-change@0.1.0.yaml; RULINGS_FOR_DE §19.1).
+"""role-change@0.2.0 (vocab/rules/role-change@0.2.0.yaml; RULINGS_FOR_DE §19.1; ADR-0032).
+
+0.2.0 (rc.1 fix pass, review m9): a signal's Admiralty grade is shown as `sourceGrade` (the source's grade, A-D),
+never as `reliability`, which reads as a statistical property; indeterminate directions are shown as such.
 
 Port of pipelines/views/change_view.py (WP-08) and the role-change summary in site/lib/model.mjs (CP) onto released
 records and the computed display-gate view. View 1 "How is this role changing?" for each released P1 role and its
 variants. It never reads docs/build/WP-08/change_view_inputs.yaml; v1 values and third-party index context never
-appear; summaries count tasks, never time. Indicators move only under change-indicator@1.0.0, never here.
+appear; summaries count tasks, never time. Indicators move only under change-indicator@1.1.0, never here.
 """
 from __future__ import annotations
 
@@ -23,7 +26,8 @@ def _assessed_tasks(display_gate_doc):
 
 def _signal(s):
     return {"id": s["id"], "signalStatus": s.get("signalStatus"), "signalFamily": s.get("signalFamily"),
-            "direction": s.get("direction"), "drivers": s.get("drivers"), "reliability": s.get("reliability")}
+            "direction": s.get("direction"), "drivers": s.get("drivers"), "sourceGrade": s.get("sourceGrade"),
+            "observationId": s.get("observationId")}
 
 
 def compute(released, display_gate_doc, as_of, stamp):
@@ -73,7 +77,7 @@ def compute(released, display_gate_doc, as_of, stamp):
             ins = [{**lk, "status": H.instrument_status(events, iid, as_of), "asOf": as_of} for iid, lk in sorted(links.items())]
             docs.append({"variant": (v or {}).get("id"), "roleLevels": levels, "instruments": ins})
         out[f"views/role_change/{rk}.json"] = {"role": role["id"], "variants": docs, "signals": sig,
-                                               "note": "Counts tasks, never time; indicators move only under change-indicator@1.0.0.", **stamp}
+                                               "note": "Counts tasks, never time; indicators move only under change-indicator@1.1.0. sourceGrade is the source's Admiralty grade (A-D), not a statistical reliability.", **stamp}
         base = docs[0]
         summary.append({"role": role["id"], "levels": [{"level": lv["level"], **lv["counts"],
                                                         "label": f"{lv['counts']['assessed']} of {len(lv['tasks'])} tasks assessed"}

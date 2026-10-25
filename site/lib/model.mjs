@@ -166,6 +166,10 @@ export function buildModel({ root, releaseDir, meta }) {
   const counts = loadJson(join(views, "counts.json"), {});
   const agreementIndex = loadJson(join(views, "agreement", "index.json"), { studies: [] });
 
+  // lifecycle states of work that may be forming (ADR-0032 / review M7: unmet entry thresholds are `watch`)
+  const FORMING = ["watch", "emerging", "proposed"];
+  const CLOSE_OR_BETTER = ["skos:exactMatch", "skos:closeMatch"];
+  const AGENT_CONFIDENCE = "agentConfidence (uncalibrated)";
   // ---------------------------------------------------------------- venue / federal applicability (computed view)
   const venue = { source: meta?.venue?.source || "unavailable", asOf: meta?.venue?.asOf || null, rows: [], rule: null };
   if (venue.source === "release-view" || venue.source === "rule-over-release") {
@@ -193,7 +197,7 @@ export function buildModel({ root, releaseDir, meta }) {
     if (r.sectorActor === "tribal" || !records.has(r.competency)) continue;   // held content never enters a view
     if (!venueBy.has(r.competency)) venueBy.set(r.competency, []);
     venueBy.get(r.competency).push({ actor: r.sectorActor, value: r.venueApplicability, asOf: r.asOf, basisLinked: !!r.basisLinked,
-      basisVerified: r.basisVerified !== false, requires: (r.deciding || []).map((x) => x.instrument) });
+      basisVerified: r.basisVerified !== false, basisWithheld: !!r.basisWithheld, requires: (r.deciding || []).map((x) => x.instrument) });
   }
 
   // ---------------------------------------------------------------- shared helpers
@@ -246,7 +250,9 @@ export function buildModel({ root, releaseDir, meta }) {
     const o = parseOther(m.other);
     return {
       set: m.mapping_set_id, predicate: m.predicate_id, object: m.object_id, objectLabel: m.object_label || "",
-      justification: m.mapping_justification, confidence: m.confidence || "", date: m.mapping_date || "",
+      justification: m.mapping_justification, confidence: m.confidence ?? "", date: m.mapping_date || "",
+      // M10: only exactMatch/closeMatch rows read as a crosswalk; the model's number is an uncalibrated agent confidence
+      closeOrBetter: CLOSE_OR_BETTER.includes(m.predicate_id) && m.predicate_modifier !== "Not" && m.object_id !== "sssom:NoTermFound",
       reviewStatus: o.review_status || o.review || "unreviewed", raterType: o.rater_type || (String(m.mapping_justification).includes("LLM") ? "llm" : ""),
       evidence: o.evidence || o.evidence_label || "", comment: m.comment || "", noTerm: m.object_id === "sssom:NoTermFound",
       reviewed: /MappingReview|ManualMappingCuration/.test(m.mapping_justification || "") && !/candidate|unreviewed/.test(o.review_status || ""),
@@ -540,7 +546,7 @@ export function buildModel({ root, releaseDir, meta }) {
         { key: "pending", label: "Assessment pending (no v2 multi-rater assessment)", share: v.bundle.filter((b) => !b.task.exposure.renders).reduce((s, b) => s + (b.timeShare || 0), 0), n: v.bundle.length - assessed.length },
         { key: "assessed", label: "Assessed by a v2 multi-rater study", share: assessed.reduce((s, b) => s + (b.timeShare || 0), 0), n: assessed.length },
       ],
-      emerging: v.role.competencyTargets.filter((t) => ["emerging", "proposed"].includes(t.competency.lifecycleState)).map((t) => t.competency),
+      emerging: v.role.competencyTargets.filter((t) => FORMING.includes(t.competency.lifecycleState)).map((t) => t.competency),
       formation: v.bundle.filter((b) => b.formationTask || b.task.formationDependency === "yes"),
       // Signals about this role, this variant or the role's primary work function. Signals about a whole employer
       // type (e.g. every federal headcount figure) are not specific to the role: they are counted here and listed in
@@ -634,7 +640,7 @@ export function buildModel({ root, releaseDir, meta }) {
     const unv = claims.bySignal.get(s.id) || [];
     return {
       id: s.id, title: unv.length ? "" : en(s.prefLabel), family: fam || "unknown", status: s.signalStatus || "watch", direction: s.direction || "", directionConfidence: s.directionConfidence || "",
-      drivers: s.drivers || [], reliability: s.reliability || "", reliabilityText: labels.reliability[s.reliability] || "",
+      drivers: s.drivers || [], sourceGrade: s.sourceGrade || "", sourceGradeText: labels.reliability[s.sourceGrade] || "",   // m9: Admiralty source grade, not a reliability statistic
       measure: s.measure || null, period: s.observedPeriod || null, sourceRelease: s.sourceRelease || "", source: s.source || "",
       sectorActor: s.sectorActor || "", geography: s.geography || "", method: s.method || "", reviewBy: s.reviewBy || "",
       target, targetLabel, signposts: sps, evidence: evidenceOf(s), steep: s.steepCategory || "",
@@ -746,7 +752,8 @@ export function buildModel({ root, releaseDir, meta }) {
     const code = s.classCode || (s.notation || [])[0]?.value || "";
     const jur = scheme.startsWith("class-") ? scheme.slice("class-".length) : s.id.replace(/^seed:class\//, "").split("/")[0];
     const rows = classSets.filter((m) => String(m.object_id).endsWith(`:${code}`) && m.mapping_set_id.includes(jur.toLowerCase().split("-")[0])).map((m) => ({ ...crosswalkRow(m), subject: m.subject_id, subjectLabel: m.subject_label, variant: variantById.get(m.subject_id) || null }));
-    const pending = (s.emstMapping || []).map((x) => ({ key: x.roleVariantKey || x.roleVariant || "", level: x.roleLevel || "", match: x.matchType || "", confidence: x.confidence ?? "", pending: x.pending || "", variant: variantById.get(`seed:${x.roleVariantKey}`) || variantById.get(x.roleVariant) || null }));
+    const pending = (s.emstMapping || []).map((x) => ({ key: x.roleVariantKey || x.roleVariant || "", level: x.roleLevel || "", match: x.matchType || "", confidence: x[AGENT_CONFIDENCE] ?? x.confidence ?? "",
+      closeOrBetter: CLOSE_OR_BETTER.includes(x.matchType), pending: x.pending || "", variant: variantById.get(`seed:${x.roleVariantKey}`) || variantById.get(x.roleVariant) || null }));
     return {
       id: s.id, slug: slugOf(`${jur}/${code}`), url: `/state-classes/${slugOf(`${jur}/${code}`)}/`, jurisdiction: s.jurisdictionId?.label || jur, jurisdictionCode: jur,
       code, scheme, title: s.classTitle || en(s.prefLabel), agency: s.agency || "", employerType: s.employerType || "", seriesName: s.seriesId || "",
@@ -804,13 +811,18 @@ export function buildModel({ root, releaseDir, meta }) {
     const g = gatesOf(list.filter((x) => x && x.credential).map((x) => ({ credential: x.credential, kind: x.kind })));
     return { shown: g.shown, pending: g.pending + withheld };
   };
+  const fspIndex = readHr("federal-series/index.json");
+  const fspCurrent = fspIndex ? new Set((fspIndex.series || []).map((s) => (typeof s === "string" ? s : s.series || s.code))) : null;
+  const scvIndex = readHr("state-class/variant_index.json");
+  const scvCurrent = scvIndex ? new Set(Object.values(scvIndex.variants || {}).flat().map((c) => c.classRecord)) : null;
   function fedProfile(code) {
+    if (fspCurrent && !fspCurrent.has(code)) return null;       // not generated in the current run (e.g. no closeMatch row)
     const d = readHr(`federal-series/${code}.json`);
     if (!d) return null;
     hr.stamp = hr.stamp || ruleStamp(d.stamp);
     const roles = (d.roles || []).filter((r) => inRelease(r.role) && (!r.variant || inRelease(r.variant)) && !roleById.get(r.role)?.whatsComingOnly).map((r) => (setHrContext(r.role), {
       role: roleById.get(r.role) || null, variant: variantById.get(r.variant) || null, depth: DEPTH_TEXT[r.tier] || "depth not recorded", functionStatement: r.functionStatement || "",
-      x4: r.x4 || null, credentialGates: hrGates(r.credentialGates),
+      x4: r.x4 ? { ...r.x4, agentConfidence: r.x4[AGENT_CONFIDENCE] ?? r.x4.confidence ?? "" } : null, credentialGates: hrGates(r.credentialGates),
       instruments: (r.instruments || []).map((i) => (typeof i === "string" ? { id: i } : i || {})).filter((i) => instrumentById.has(i.id))
         .map((i) => ({ ...instrumentById.get(i.id), linkRole: i.role || "", linkRoleText: i.role ? linkRoleText(i.role) : "" })),
       ja: hrJa, homeModule: hrHome, homeModuleLabel: labels.module[hrHome] || hrHome,
@@ -832,6 +844,7 @@ export function buildModel({ root, releaseDir, meta }) {
     return { stamp: ruleStamp(d.stamp), evidenceNotice: d.evidenceNotice || "", generalCompetencies: d.generalCompetencies || "", roles, withoutFed, feeders };
   }
   function classView(recordId) {
+    if (scvCurrent && !scvCurrent.has(recordId)) return null;   // not generated in the current run
     const rec = records.get(recordId) || {};
     const sch = (rec.notation || [])[0]?.scheme || "";
     const stem = sch.startsWith("class-") ? `${sch.slice("class-".length)}--${rec.classCode}` : String(recordId).replace(/^seed:class\//, "").replace(/\//g, "--");
@@ -842,7 +855,7 @@ export function buildModel({ root, releaseDir, meta }) {
       stamp: ruleStamp(d.stamp), evidenceNotice: d.evidenceNotice || "",
       mappings: (d.mappings || []).filter((m) => inRelease(m.roleVariant) && !roleById.get(m.role)?.whatsComingOnly).map((m) => (setHrContext(m.role), {
         variant: variantById.get(m.roleVariant) || null, roleTitle: m.roleTitle || "", depth: DEPTH_TEXT[m.tier] || "depth not recorded", roleLevels: m.roleLevels || [],
-        matchType: m.matchType || "", confidence: m.confidence ?? "", review: m.review || "", authorityPosition: labels.authorityPosition[m.authorityPosition] || m.authorityPosition || "",
+        matchType: m.matchType || "", confidence: m[AGENT_CONFIDENCE] ?? m.confidence ?? "", review: m.review || "", authorityPosition: labels.authorityPosition[m.authorityPosition] || m.authorityPosition || "",
         targets: (m.competencyTargets || []).map(hrTarget).filter(Boolean), tasks: (m.topTasks || []).map(hrTask).filter(Boolean), credentialGates: hrGates(m.credentialGates),
         ja: hrJa, homeModuleLabel: labels.module[hrHome] || hrHome,
       })),
@@ -858,8 +871,8 @@ export function buildModel({ root, releaseDir, meta }) {
   }));
 
   // ---------------------------------------------------------------- what's coming
-  const emergingCompetencies = competencies.filter((c) => ["emerging", "proposed"].includes(c.lifecycleState));
-  const emergingRoles = roles.filter((r) => ["emerging", "proposed"].includes(r.lifecycleState));
+  const emergingCompetencies = competencies.filter((c) => FORMING.includes(c.lifecycleState));
+  const emergingRoles = roles.filter((r) => FORMING.includes(r.lifecycleState));
 
   // ---------------------------------------------------------------- search index (one file, loaded before typing)
   const search = [

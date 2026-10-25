@@ -10,7 +10,14 @@ augmentationMode: unaided
 assessmentMethods:
 - task-book-observation
 useClass: develop
-obs4: 3
+obs4: null
+obs4Draft:
+  value: 3
+  raterType: llm
+  raterId: emstagent:fc-agent@wp-03
+  codedOn: '2026-10-23'
+  note:
+    en: Self-coded by the authoring agent; IO human double-coding pending (ADR-0032; review m8). Never read as obs4.
 jurisdictionVariable: false
 servedTasks:
 - emst:core/TSK-31B4PGH

@@ -10,12 +10,12 @@
 - **Minimum qualifications:** Twelfth grade plus 1 year operating computer-controlled water, wastewater or sludge processing equipment; operator licence or approved coursework may substitute. (binding text lives in: spec; degree rule: not-required)
 - **Licences:** PA motor vehicle operator licence (at-hire); HAZMAT emergency response technician (24-hour) (within-6-months (if assignment requires)); PA DEP water or wastewater operator licence (C-level or higher) (alternative to the experience requirement)
 - **Pay:** Pay range 14 (amounts not retrieved) annual, effective 2023-07-01
-- **Spec text:** stored by URL and hash only (https://www.phila.gov/departments/office-of-human-resources/job-specs/7E45.htm)
-- **Generated:** pipelines/views/state_class_view.py@0.2.0, rule state-class-view@0.1.0 (registered rule, status active), as of 2026-10-23
+- **Spec text:** stored by URL only; not hashed, so no version is pinned (https://www.phila.gov/departments/office-of-human-resources/job-specs/7E45.htm)
+- **Generated:** pipelines/views/state_class_view.py@0.3.0, rule state-class-view@0.2.0 (registered rule, status active), as of 2026-10-23
 
 ## EMST role: Water and wastewater treatment operator (local variant, journey level; P2)
 
-*Match:* `skos:closeMatch`, confidence 0.7, unreviewed agent draft (`emst-x5-pa-phl:R25-water-wastewater-operator/local:7E45`). *Authority position (editorial):* regulated-party.
+*Match:* `skos:closeMatch`, agentConfidence (uncalibrated) 0.7, unreviewed agent candidate (not reviewed by a person) (`emst-x5-pa-phl:R25-water-wastewater-operator/local:7E45`). *Authority position (editorial):* regulated-party.
 
 **Competency targets at this level (editorial draft target levels, agent-drafted)**
 

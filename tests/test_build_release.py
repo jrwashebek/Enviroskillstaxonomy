@@ -86,7 +86,10 @@ def test_base_tree_release_contents_and_exports_parse(tmp_path):
     assert lib[0].startswith("skill_id,uri,case_uuid,ctid") and len(lib) == 2
     assert "not a selection instrument" in lib[1]
     eut = json.loads(files["views/effective_use_tier.json"])
-    assert {r["ruleId"] for r in eut["rows"]} == {"effective-use-tier"} and eut["header"]["ruleVersion"] == "1.0.0"
+    from rules import registry
+    active = registry.active_rules()
+    assert {r["ruleId"] for r in eut["rows"]} == {"effective-use-tier"}
+    assert eut["header"]["ruleVersion"] == str(active["effective-use-tier"]["version"])
 
 
 def test_gate_refuses_tribal_text_in_released_record(tmp_path):
@@ -150,7 +153,9 @@ def test_gate_excludes_third_party_quarantined_placeholder_and_small_n(tmp_path)
     blob = b"".join(files.values())
     assert b"LicenseRef-EMST-third-party-index-derived" not in blob
     notes = files["RELEASE_NOTES.md"].decode()
-    assert "third-party index-derived licence" in notes and "| change-indicator | 1.0.0 |" in notes
+    from rules import registry
+    ci = registry.active_rules()["change-indicator"]["version"]
+    assert "third-party index-derived licence" in notes and f"| change-indicator | {ci} |" in notes
 
 
 def test_records_on_held_targets_inherit_the_hold(tmp_path):
@@ -239,3 +244,207 @@ def test_agreement_emitter_against_synthetic_human_ratings():
         assert k in res, k
     assert res["raterTypesCounted"] == ["sme"] and res["nUnits"] == 130 and res["ruleVersion"] == "1.0.0"
     assert res["ciLower"] > 0.8
+
+
+# ---------------------------------------------------------------- rc.1 fix pass (docs/review/DATA_FIX_BRIEF.md)
+def test_b1_language_maps_only_where_the_schema_types_text(tmp_path):
+    data = overlay_tree(tmp_path / "src")
+    p = next((data / "core" / "competencies").glob("CMP-*.yaml"))
+    rec = L.load_yaml(p)
+    rec["provenance"]["derivedFrom"] = [{"v1Key": "v1:1.1.1", "relation": "rewritten", "note": "plain nested note"}]
+    rec["changeNote"] = [{"release": "2.0.0", "note": "a Text-typed note"}]
+    L.write_yaml(p, rec)
+    b, files = build(data, tmp_path / "out", version="2.0.0-rc.0")
+    node = next(r for r in json.loads(files["emst.bundle.jsonld"])["@graph"] if r.get("id") == rec["id"])
+    assert node["provenance"]["derivedFrom"][0]["note"] == "plain nested note"          # schema: string
+    assert node["changeNote"][0]["note"] == {"en": "a Text-typed note"}                 # schema: Text
+    paths = build_release.schema_text_paths(b.schema())
+    assert ("changeNote", "[]", "note") in paths["Competency"] and ("provenance", "derivedFrom", "[]", "note") not in paths["Competency"]
+
+
+def test_b1_self_check_validates_every_bundle_node(tmp_path):
+    data = overlay_tree(tmp_path / "src")
+    b, files = build(data, tmp_path / "out", version="2.0.0-rc.0")
+    doc = json.loads(files["emst.bundle.jsonld"])
+    assert b.schema_check(doc) == []
+    doc["@graph"][1]["useTier"] = "not-a-tier"
+    doc["@graph"].append({"type": "Mapping", "subject_id": "a", "predicate_id": "skos:closeMatch", "object_id": "b",
+                          "mapping_justification": "semapv:LLMBasedMatching", "confidence": "0.6"})
+    doc["@graph"][0]["unexpected"] = 1                                                  # the Release manifest
+    problems = b.schema_check(doc)
+    assert problems[0].startswith("schema: 3 bundle nodes fail")
+    assert any("Mapping" in p and "0.6" in p for p in problems) and any("Release" in p for p in problems)
+
+
+def test_b1_redaction_never_empties_a_required_field(tmp_path):
+    data = overlay_tree(tmp_path / "src")
+    tool = _valid("Tool", id="seed:fx-tool-orphan", servesCompetencies=["seed:fx-never-authored"])
+    tool.pop("servesTasks", None)
+    (data / "tools").mkdir(exist_ok=True)
+    (data / "tools" / "tools.jsonl").write_text(L.jsonl_line(tool) + "\n")
+    b, files = build(data, tmp_path / "out", profile="preview", version="2.0.0-dev")
+    assert b.held_back == ["seed:fx-tool-orphan"] and b.excluded[build_release.EXCLUDE_REDACTION] == 1
+    assert b"seed:fx-tool-orphan" not in files["emst.bundle.jsonld"]
+    assert "held back" in files["RELEASE_NOTES.md"].decode()
+
+
+def test_m4_withheld_basis_makes_the_venue_value_indeterminate(tmp_path):
+    data = overlay_tree(tmp_path / "src")
+    b = build_release.Builder(data, profile="preview", version="2.0.0-dev", build_commit="test")
+    b.included = set(b.records)
+    ena = _valid("Enactment", id="seed:fx-ena-v", characteristicInstruments=[
+        {"instrument": "seed:fx-ins-not-released", "role": "requires"}, {"instrument": "seed:fx-ins-2", "role": "removed-requirement"}])
+    b.clean(ena)
+    assert b.basis_withheld == {"seed:fx-ena-v"}
+    b.clean(_valid("Enactment", id="seed:fx-ena-w", characteristicInstruments=[{"instrument": "seed:fx-ins-2", "role": "removed-requirement"}]))
+    assert b.basis_withheld == {"seed:fx-ena-v"}                                        # removed-requirement never decides
+    view = {"header": {}, "rows": [{"competency": "c", "sectorActor": "federal", "venueApplicability": "permitted", "enactments": ["seed:fx-ena-v"]},
+                                   {"competency": "d", "sectorActor": "state", "venueApplicability": "permitted", "enactments": ["x"]}],
+            "federal": {"c": {"federalApplicability": "permitted", "note": "n"}}}
+    out = b.venue_overlay(view)
+    assert out["rows"][0]["venueApplicability"] == build_release.VENUE_WITHHELD and out["rows"][0]["basisWithheld"]
+    assert out["rows"][1]["venueApplicability"] == "permitted"
+    assert out["federal"]["c"]["federalApplicability"] == build_release.VENUE_WITHHELD and "1 rows" in out["header"]["basisWithheldOverlay"]
+
+
+def test_m14_trigger_scan_covers_every_file_and_field(tmp_path):
+    data = overlay_tree(tmp_path / "src")
+    b = build_release.Builder(data, profile="preview", version="2.0.0-dev", build_commit="test")
+    bundle = {"@graph": [{"id": "r", "type": "Release", "indigenousKnowledgeStatement": build_release.INDIGENOUS_STATEMENT},
+                         {"type": "Mapping", "subject_id": "EMSTv1:9.9.9", "comment": "successor withheld for Tribal review"},
+                         {"id": "emst:core/TSK-X", "type": "Task", "provenance": {"note": "drafted with treaty rights in view"}}]}
+    files = {
+        "emst.bundle.jsonld": json.dumps(bundle).encode(),
+        "emst.skos.ttl": (f'<{L.IRI_BASE}vocab/sector_actors/x> skos:definition "Tribal government"@en .\n'
+                          f'<{L.IRI_BASE}core/CMP-X> skos:scopeNote "Consult Tribal nations"@en .\n').encode(),
+        "sssom/x/1.sssom.yml": b"comment: Tribal role variants are not mapped\n",
+        "sssom/x/1.sssom.tsv": b"subject_id\tother\na\theld_variants=tribal\n",
+        "csv/mappings.csv": b"a,b,c\n",
+        "views/v.json": json.dumps({"rows": [{"recordId": "x", "Tribal programmes": 1}]}).encode(),
+        "views/counts.json": json.dumps({"excluded": {build_release.EXCLUDE_HELD: 3}}).encode(),
+        "RELEASE_NOTES.md": "\n".join([f"- {build_release.HOLD_COUNT_LINE}: 3.", build_release.HOLD_POLICY_LINE,
+                                       f"- {build_release.INDIGENOUS_STATEMENT}"]).encode(),
+    }
+    hits = b.trigger_scan(files)
+    where = sorted(h.split(" in ", 1)[1].split(" ")[0] for h in hits)
+    assert where == ["emst.bundle.jsonld", "emst.bundle.jsonld", "emst.skos.ttl", "sssom/x/1.sssom.tsv",
+                     "sssom/x/1.sssom.yml", "views/v.json"], hits
+    assert any("line 2" in h for h in hits if "skos" in h) and any("provenance/note" in h for h in hits)
+
+
+def test_m14_x1_rows_carry_no_hold_marker(tmp_path):
+    data = overlay_tree(tmp_path / "src")
+    tsk = L.load_yaml(next((data / "core" / "tasks").glob("TSK-*.yaml")))
+    d = data / "crosswalks" / "emst-v1"
+    d.mkdir(parents=True)
+    hdr = "subject_id\tpredicate_id\tobject_id\tmapping_justification\tother\tcomment\n"
+    (d / "x.sssom.tsv").write_text(hdr
+        + "EMSTv1:9.1.1\temst:replacedBy\tseed:TN-C02\tsemapv:LLMBasedMatching\t\tdecision=hold-for-tribal-review; target=TN-C02 (held)\n"
+        + f"EMSTv1:9.1.2\temst:splitInto\t{tsk['id']}\tsemapv:LLMBasedMatching\t\tdecision=split; target=X|TN-C02 (held: Tribal)\n"
+        + "EMSTv1:9.1.2\temst:splitInto\tseed:TN-C02\tsemapv:LLMBasedMatching\t\tdecision=split; target=X|TN-C02 (held: Tribal)\n")
+    x3 = data / "crosswalks" / "soc"
+    x3.mkdir(parents=True)
+    (x3 / "2018.sssom.tsv").write_text("subject_id\tpredicate_id\tobject_id\tmapping_justification\tother\n"
+                                       f"{tsk['id']}\tskos:relatedMatch\tSOC:19-1031\tsemapv:LLMBasedMatching\trater_type=llm;held_variants=tribal\n")
+    b, files = build(data, tmp_path / "out", profile="preview", version="2.0.0-dev")
+    rows = b._mapping_rows(b.released)["emst-v1/x"]
+    x1 = {r["subject_id"]: r["comment"] for r in rows}
+    assert x1["EMSTv1:9.1.1"] == build_release.X1_NOT_RELEASED
+    held_row = next(r for r in rows if r["subject_id"] == "EMSTv1:9.1.1")
+    assert held_row["object_id"] == "sssom:NoTermFound" and held_row["predicate_id"] == "emst:successorNotReleased"   # M9, m5
+    assert x1["EMSTv1:9.1.2"] == "decision=split; ADR-0011; one or more successors not in this release"
+    blob = b"".join(files.values()).decode("utf-8", "replace")
+    assert "held_variants" not in blob and "TN-C02" not in blob
+    assert "Tribal Advisory Council review" not in blob
+
+
+def test_m1_build_stamp_must_identify_its_inputs(monkeypatch):
+    head = "a" * 40
+    monkeypatch.setattr(build_release, "git_state", lambda root: (head, True))
+    chk = build_release.check_build_commit
+    assert "refusing" in chk(head + "+uncommitted", "release") and "refusing" in chk("uncommitted", "release")
+    assert "differ from HEAD" in chk(head, "release")                                   # claims a clean tree it is not
+    assert "HEAD is" in chk("b" * 40, "release")
+    assert chk(head + build_release.PENDING_COMMIT_SUFFIX, "release") is None
+    assert chk(head + "+uncommitted", "preview") is None
+    monkeypatch.setattr(build_release, "git_state", lambda root: (head, False))
+    assert chk(head, "release") is None
+    with pytest.raises(SystemExit, match="refusing"):
+        build_release.Builder(FIXTURES / "trees" / "base" / "data" / "v2", profile="release", version="2.0.0-rc.0",
+                              build_commit=head + "+uncommitted")
+
+
+def test_m1_release_date_ignores_source_date_epoch(tmp_path, monkeypatch):
+    data = overlay_tree(tmp_path / "src")
+    monkeypatch.setenv("SOURCE_DATE_EPOCH", "1893456000")                                # 2030-01-01
+    rel = build_release.Builder(data, profile="release", version="2.0.0-rc.0", build_commit="test")
+    pre = build_release.Builder(data, profile="preview", version="2.0.0-dev", build_commit="test")
+    assert rel.date == "2026-10-23" and pre.date == "2030-01-01"
+
+
+def test_m2_datapackage_created_is_a_datetime(tmp_path):
+    import re
+    data = overlay_tree(tmp_path / "src")
+    _, files = build(data, tmp_path / "out", version="2.0.0-rc.0")
+    pkg = json.loads(files["csv/datapackage.json"])
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}T00:00:00Z", pkg["created"])
+
+
+def test_notes_state_status_ids_omissions_and_rater_breakdown(tmp_path):
+    data = overlay_tree(tmp_path / "src")
+    tsk = L.load_yaml(next((data / "core" / "tasks").glob("TSK-*.yaml")))
+    d = data / "assessments" / "fx"
+    d.mkdir(parents=True)
+    rows = [_valid("CraftRating", id=f"seed:fx-cr-{i}", task=tsk["id"], taskTextSha256=tsk["textSha256"], raterType="llm",
+                   raterId="emstagent:fx-rater@1", passIndex=i + 1, sessionId=f"fx-session-{i + 1}", validationStatus="draft",
+                   provenance=dict(_valid("CraftRating")["provenance"], method="llm-assisted", toolVersion="fx-model",
+                                   promptVersion="fx-prompt@1"))
+            for i in range(3)]
+    (d / "b.jsonl").write_text("".join(L.jsonl_line(r) + "\n" for r in rows))
+    b, files = build(data, tmp_path / "out", profile="preview", version="2.0.0-dev")
+    notes = files["RELEASE_NOTES.md"].decode()
+    assert "Publication status: not cleared for external publication; items 6 and 7 fail" in notes          # m15
+    assert "IDs are candidate; they become stable from 2.0.0" in notes                                        # m11
+    assert "## Not in this release (SPEC §12.5, §17.2)" in notes and "CTDL-ASN" in notes and "CASE 1.1" in notes   # m3
+    assert "| CraftRating | llm | 3 | 1 | 1 |" in notes                                                        # m12
+    assert "IDs are candidate" in files["csv/hcm_skills_library.csv"].decode()
+    assert b.publication["line"] == "not cleared for external publication; items 6 and 7 fail"
+
+
+def test_m8_stale_ratings_are_marked_in_the_bundle(tmp_path):
+    data = overlay_tree(tmp_path / "src")
+    tsk = L.load_yaml(next((data / "core" / "tasks").glob("TSK-*.yaml")))
+    d = data / "assessments" / "fx"
+    d.mkdir(parents=True)
+    fresh = _valid("CraftRating", id="seed:fx-fresh", task=tsk["id"], taskTextSha256=tsk["textSha256"], validationStatus="draft")
+    stale = _valid("CraftRating", id="seed:fx-stale", task=tsk["id"], taskTextSha256="0" * 64, validationStatus="draft")
+    (d / "b.jsonl").write_text(L.jsonl_line(fresh) + "\n" + L.jsonl_line(stale) + "\n")
+    b, files = build(data, tmp_path / "out", profile="preview", version="2.0.0-dev")
+    graph = {r.get("id"): r for r in json.loads(files["emst.bundle.jsonld"])["@graph"]}
+    assert graph["seed:fx-stale"]["stale"] is True and "stale" not in graph["seed:fx-fresh"]
+    view = json.loads(files["views/assessment_staleness.json"])
+    rows = view if isinstance(view, list) else view.get("rows", [])
+    assert {r["assessment"] for r in rows if r.get("stale")} == {"seed:fx-stale"}
+    assert "stale" in L.load_yaml(L.LINT_DIR / "computed_fields.yaml")["fields"]
+
+
+def test_m9_unreleased_successor_is_never_a_positive_no_term_found(tmp_path):
+    data = overlay_tree(tmp_path / "src")
+    d = data / "crosswalks" / "emst-v1"
+    d.mkdir(parents=True)
+    (d / "emst-v1_to_v2.sssom.tsv").write_text("subject_id\tpredicate_id\tobject_id\tmapping_justification\tcomment\n"
+                                   "EMSTv1:9.2.1\temst:replacedBy\tseed:fx-unauthored\tsemapv:LLMBasedMatching\tdecision=carry; ADR-0011\n"
+                                   "EMSTv1:9.2.2\temst:retiredWithoutReplacement\tsssom:NoTermFound\tsemapv:LLMBasedMatching\tdecision=retire\n")
+    x = data / "crosswalks" / "esco"
+    x.mkdir(parents=True)
+    (x / "1.sssom.tsv").write_text("subject_id\tpredicate_id\tobject_id\tmapping_justification\n"
+                                   "seed:fx-unauthored\tskos:closeMatch\tESCO:1\tsemapv:LLMBasedMatching\n"
+                                   "EMSTv1:1.1.1\tskos:closeMatch\tseed:fx-unauthored\tsemapv:LLMBasedMatching\n")
+    b, files = build(data, tmp_path / "out", profile="preview", version="2.0.0-dev")
+    sets = b._mapping_rows(b.released)
+    rows = {r["subject_id"]: r for r in sets["emst-v1/emst-v1_to_v2"]}
+    assert rows["EMSTv1:9.2.1"]["predicate_id"] == "emst:successorNotReleased" and rows["EMSTv1:9.2.1"]["object_id"] == "sssom:NoTermFound"
+    assert rows["EMSTv1:9.2.2"]["predicate_id"] == "emst:retiredWithoutReplacement"
+    assert sets["esco/1"] == []                                   # mappings to or from unreleased content are not released
+    v1 = {k["v1"]: k for k in json.loads(files["delta_v1.json"])["v1Keys"]}
+    assert v1["EMSTv1:9.2.1"]["decision"] == "carry" and v1["EMSTv1:9.2.1"]["successorsNotInRelease"] == 1

@@ -89,7 +89,7 @@ eleventyComputed:
 {% if c.actorWide %}<p class="emst-muted">{{ c.actorWide }} further signal{{ "s" if c.actorWide != 1 }} describe{{ "s" if c.actorWide == 1 }} {{ v.actorLabel | lower if v.actor == "federal" or v.actor == "state" else "this kind of" }} employers as a whole (for example agency headcounts), not this role, so {{ "they are" if c.actorWide != 1 else "it is" }} listed only in <a href="{{ '/whats-coming/' | url }}">What's coming</a>.</p>{% endif %}
 {% if c.withheld %}<p class="emst-muted">{{ c.withheld }} signal{{ "s" if c.withheld != 1 }} withheld: {{ "they rest" if c.withheld != 1 else "it rests" }} on a claim the verification pass has not re-checked.</p>{% endif %}
 
-<h2>Emerging in this role</h2>
+<h2>Forming in this role (watch, emerging or proposed)</h2>
 {% if c.emerging.length %}
 <ul class="usa-list">{% for e in c.emerging %}<li><a href="{{ e.url | url }}">{{ e.title }}</a> {{ m.lifecycleTag(e.lifecycleState) }}{% if e.reviewBy %} review by {{ e.reviewBy }}{% endif %}</li>{% endfor %}</ul>
 {% else %}<p>No competency this role targets is marked emerging or proposed.</p>{% endif %}
@@ -108,7 +108,7 @@ eleventyComputed:
   {% for t in v.role.competencyTargets %}
   <tr><td><a href="{{ t.competency.url | url }}">{{ t.competency.title }}</a> {{ m.moduleTag(t.competency) }} {{ m.lifecycleTag(t.competency.lifecycleState) if t.competency.lifecycleState != "established" }}</td>
   {% for l in v.role.roleLevels %}<td>{{ t.targetLevels[l.key] or "–" }}</td>{% endfor %}
-  {% if v.actor == "federal" %}<td>{% if t.competency.federal %}{% if t.competency.federal.value == "basis-not-yet-linked" %}basis not yet linked{% elif t.competency.federal.value == "not-shown-unverified" %}not shown (unverified instrument){% else %}{{ t.competency.federal.value | replace("-", " ") }}{% if not t.competency.federal.basisLinked %}, basis not yet linked{% elif not t.competency.federal.basisVerified %}, basis status not yet verified{% endif %}{% endif %}{% else %}not computed (no federal enactment linked){% endif %}</td>{% endif %}</tr>
+  {% if v.actor == "federal" %}<td>{% if t.competency.federal %}{% if t.competency.federal.value == "basis-not-yet-linked" %}basis not yet linked{% elif t.competency.federal.value == "not-shown-unverified" %}not shown (unverified instrument){% elif t.competency.federal.basisWithheld %}indeterminate (a linked instrument is withheld from this release){% else %}{{ t.competency.federal.value | replace("-", " ") }}{% if not t.competency.federal.basisLinked %}, basis not yet linked{% elif not t.competency.federal.basisVerified %}, basis status not yet verified{% endif %}{% endif %}{% else %}not computed (no federal enactment linked){% endif %}</td>{% endif %}</tr>
   {% endfor %}
   </tbody>
 </table>

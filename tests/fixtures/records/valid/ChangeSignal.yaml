@@ -14,6 +14,10 @@ measure:
   name: posting share
   value: 0.1
   unit: share
+  ci95:
+  - 0.05
+  - 0.15
+  n: 100
   denominator: synthetic postings
 observedPeriod:
   start: '2026-01-01'
@@ -36,7 +40,7 @@ drivers:
 - other
 steepCategory: economic
 novelty: new
-reliability: D
+sourceGrade: D
 corroboration: 0
 careFlag: false
 tribalPrograms: false
@@ -45,6 +49,11 @@ evidenceLabel: S
 reviewStatus: unreviewed
 reviewBy: '2027-10-23'
 signalStatus: watch
+independenceKey: conservation-job-board
+upstreamSource: DE-022
+processingChain:
+- coder:pid:fx-coder-01
+observationId: obs-000000000001
 editorialNote:
   en: Synthetic test fixture; not EMST content.
 provenance:

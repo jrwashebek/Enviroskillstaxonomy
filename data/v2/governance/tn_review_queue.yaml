@@ -1,0 +1,63 @@
+queue: TN review queue (gate G-TN)
+description: Records routed to the TN gate reviewer. Each is held (approvalStatus pending-tribal-review) and excluded from every release until a recorded TN review, and later the Tribal Advisory Council, decides (ADR-0007 §D; docs/governance/tribal_gate_procedures.md §5). IDs only, never content. Changes to this file are change type T.
+decidedIn:
+- ADR-0032
+- DATA_FIX_BRIEF §12 (data-method review m14)
+items:
+- id: emst:core/CMP-2VQTX8E
+  approval_status: pending-tribal-review
+  routedOn: '2026-10-25'
+  routedBy: emstagent:d-data-rc1-fix@claude-opus-5-5
+  reason: 'data-method review m14: actor-neutral wording close to cultural-protocol content; no TN sign-off on record'
+- id: emst:core/TSK-11X9525
+  approval_status: pending-tribal-review
+  routedOn: '2026-10-25'
+  routedBy: emstagent:d-data-rc1-fix@claude-opus-5-5
+  reason: 'data-method review m14: actor-neutral wording close to cultural-protocol content; no TN sign-off on record'
+- id: emst:core/TSK-5ZRM1W1
+  approval_status: pending-tribal-review
+  routedOn: '2026-10-25'
+  routedBy: emstagent:d-data-rc1-fix@claude-opus-5-5
+  reason: 'data-method review m14: actor-neutral wording close to cultural-protocol content; no TN sign-off on record'
+heldByInheritance:
+  basis: dependent links to a routed record (scripts/validate_v2.py DEPENDENT_LINKS)
+  count: 38
+  ids:
+  - emst:core/ASM-14EVVEV
+  - emst:core/ASM-3DSQJ25
+  - emst:core/ASM-72DDWQ3
+  - emst:core/ASM-7F31AQX
+  - emst:core/ASM-837GXN2
+  - emst:core/ASM-85QGBEF
+  - emst:core/ASM-8WEA33M
+  - emst:core/ASM-AZEXG4P
+  - emst:core/ASM-EHQXXRF
+  - emst:core/ASM-G4GX85B
+  - emst:core/ASM-GFBYYQX
+  - emst:core/ASM-HM49NV4
+  - emst:core/ASM-HVXJRT9
+  - emst:core/ASM-J3SHRXS
+  - emst:core/ASM-MRBVMVE
+  - emst:core/ASM-NAP1Z5P
+  - emst:core/ASM-NWXXX3Q
+  - emst:core/ASM-PYYJ1H6
+  - emst:core/ASM-QY4A12F
+  - emst:core/ASM-R8DRPY7
+  - emst:core/ASM-RQS9NMG
+  - emst:core/ASM-SX6VR95
+  - emst:core/ASM-TWY74W4
+  - emst:core/ASM-V9FGG1H
+  - emst:core/ASM-VAK2ZHR
+  - emst:core/ASM-VM50F8R
+  - emst:core/ASM-W8THDJ5
+  - emst:core/ASM-WEM77X4
+  - emst:core/ASM-XBJJQ6K
+  - emst:core/IND-2PNDZSG
+  - emst:core/IND-CGYJFF3
+  - emst:core/IND-E4PM4TJ
+  - emst:core/IND-K8NQ0W0
+  - emst:core/IND-K9YHDBQ
+  - emst:core/IND-XTN1CVM
+  - emst:core/IND-YR5Q61N
+  - emst:core/TSK-828PMBN
+  - emst:core/TSK-RCTCX6N

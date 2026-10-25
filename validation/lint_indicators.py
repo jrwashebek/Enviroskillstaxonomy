@@ -302,11 +302,15 @@ class Linter:
         n_words = len(t.split())
         if n_words > 30:
             add("PUB-02", "error", f"PUB-02 length: {n_words} words (max 30).")
+        # obs4 null with an agent self-code in obs4Draft = not yet human-coded (ADR-0032, review m8): PR-3 pending
+        uncoded = d.get("obs4") is None and isinstance(d.get("obs4Draft"), dict)
         missing = [f for f in ["competency", "level", "augmentationMode", "assessmentMethods", "useClass", "obs4",
                                "jurisdictionVariable", "validationStatus"]
-                   if d.get(f) in (None, "", [])]
+                   if d.get(f) in (None, "", []) and not (f == "obs4" and uncoded)]
         if missing:
             add("PUB-03", "error", "PUB-03 required metadata missing: " + ", ".join(missing))
+        if uncoded:
+            add("PUB-03", "info", "PUB-03 obs4 not yet human-coded; the agent self-code in obs4Draft is never read as obs4.")
         for f in ["augmentationMode", "useClass", "level", "validationStatus"]:
             v = d.get(f)
             if v not in (None, "") and str(v) not in voc[f]:
@@ -402,6 +406,10 @@ class Linter:
                     if n3 < 2:
                         published = str(comp.get("status") or "draft") in ("candidate", "published")
                         sev = "error" if (self.mode == "release" and published) else "warn"
+                        # every indicator at the level uncoded (obs4 null, ADR-0032 m8): PR-3 is pending, and
+                        # effective-use-tier@1.1.0 already caps the level; reported as info, not as a defect
+                        if all(r.data.get("obs4") is None and isinstance(r.data.get("obs4Draft"), dict) for r in rs):
+                            sev = "info"
                         hits.append(Hit(c, "Competency", "PUB-12", sev, f"PUB-12 assessability (PR-3): level {lv} has {n3} indicators at OBS-4 = 3 (2 required for develop/select).", source=comps[c].source))
                 checks = declared.get(lv, {}).get("publicationRuleChecks") or {}
                 statuses = [str(r.data.get("validationStatus") or "draft") for r in rs]

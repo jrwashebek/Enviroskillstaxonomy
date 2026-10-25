@@ -1,7 +1,8 @@
 # EMST computed-view rule (SPEC §14.2-§14.3; ADR-0027 §1-2, ADR-0028; CR-FH-001 #1-#2, CR-CP-001 A3, B6). Normative definition; code in `implementation`.
 ruleId: role-change
 version: 0.1.0
-status: active
+status: superseded
+supersededBy: role-change@0.2.0
 steward: FH (definition proposal, WP-08) · CP (summary, WP-12) · LM (signals) · DE (implementation) · CA (definition)
 decidedIn: [ADR-0008, ADR-0027, ADR-0028, ADR-0030, CR-FH-001, CR-CP-001]
 reference_implementation: "pipelines/views/change_view.py (FH, WP-08) and site/lib/model.mjs role-change summary (CP, WP-12); authoring tools, never run by CI"

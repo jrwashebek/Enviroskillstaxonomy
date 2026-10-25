@@ -12,7 +12,26 @@ validationStatus: draft
 license: CC0-1.0
 definition:
   en: 'Ground-truth and validation steward in a private-sector setting: delivers the work for another party under contract or agreement. Earth-observation and monitoring-technology firms and carbon measurement services.'
-lifecycleState: emerging
+lifecycleState: watch
+lifecycleBasis:
+  testedFor: emerging
+  test: vocab/lifecycle_states.yaml#emerging.entry_test
+  result: not-met
+  evidence:
+  - emst:core/SIG-ZZGBG52
+  - emst:core/SIG-ADCB4NB
+  counts:
+    signals: 2
+    distinctObservations: 2
+    independentSignals: 1
+    signalFamilies: 1
+    sectorActors: 0
+    postingsOrPds: 0
+    actorTypes: 0
+  assessedOn: '2026-10-25'
+  assessedBy: emstagent:d-data-rc1-fix@claude-opus-5-5
+  note:
+    en: 'Entry test of `emerging` applied to 2 evidence signal(s) (2 distinct observation(s); 1 independent; 1 family(ies); 0 sector actor(s); 0 postings or PDs): not-met. The proposed entry test is not met either (1 independent signal(s), 1 signal family(ies), 0 sector actor(s)).'
 useTier: develop
 sensitivity: public
 reviewBy: '2027-10-23'
@@ -44,3 +63,7 @@ provenance:
   - ADR-0007
   - ADR-0017
   - ADR-0022
+changeNote:
+- release: 2.0.0-rc.1
+  note:
+    en: 'lifecycleState emerging -> watch: the vocabulary''s entry test is not met (lifecycleBasis; ADR-0032, CR-CA-001; review M7).'

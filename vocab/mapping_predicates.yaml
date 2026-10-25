@@ -3,8 +3,8 @@ scheme: mapping_predicates
 title: Mapping predicates for EMST crosswalks
 schemeVersion: 1.0.0-draft
 status: draft
-lastReviewed: 2026-10-23
-decidedIn: [ADR-0022, ADR-0010, ADR-0011, ADR-0029]
+lastReviewed: 2026-10-25
+decidedIn: [ADR-0022, ADR-0010, ADR-0011, ADR-0029, ADR-0032]
 steward: IA with DE
 license: CC0-1.0
 description: >
@@ -25,6 +25,7 @@ emst_relations:
   - {notation: "emst:splitInto", definition: "Subject split into several objects."}
   - {notation: "emst:mergedInto", definition: "Several subjects merged into one object."}
   - {notation: "emst:retiredWithoutReplacement", definition: "Subject retired; object is sssom:NoTermFound."}
+  - {notation: "emst:successorNotReleased", definition: "Subject has a successor that this release does not carry (held, deferred or withheld); object is sssom:NoTermFound. Never means retired (rc.1 fix pass, ADR-0032; review m5).", decidedIn: ADR-0032}
   - {notation: "emst:movedToTools", definition: "Subject's tool-fluency content moved to the L4 object."}
   - {notation: "emst:evidencesTask", definition: "A text-to-competency link whose best-supported task is the object (NLP evidence)."}
   - {notation: "emst:variantOf", definition: "Role variant of a role profile."}
@@ -34,6 +35,20 @@ emst_relations:
 modifiers_and_special_values:
   negation: "predicate_modifier: Not"
   no_match: "sssom:NoTermFound"
+  no_match_convention: >
+    One documented convention for rows whose object is sssom:NoTermFound (rc.1 fix pass, ADR-0032; reviews M9, m5):
+    such a row never asserts a positive predicate. Its predicate is either an EMST relation that means "no object"
+    (emst:retiredWithoutReplacement, emst:successorNotReleased) or the SKOS predicate that was searched for WITH
+    predicate_modifier Not ("no closeMatch was found"). A SKOS predicate without Not, or emst:replacedBy, splitInto,
+    mergedInto or movedToTools, on a NoTermFound row is an error (E-SSSOM-NOTERM-POSITIVE). Counts of matches therefore
+    exclude every row with predicate_modifier Not; coverage counts use `weakest_match_type` in `other`.
+review_statuses:
+  description: Values of review_status in a row's `other` field.
+  values:
+    - {notation: single-coder-candidate, definition: "One coder (an agent) proposed the row; not reviewed."}
+    - {notation: two-llm-coders-agreed-target, definition: "Two LLM coders chose the same object. LLM-vs-LLM agreement, not human inter-coder agreement; the set's kappa is recorded in its metadata (rc.1 fix pass; was two-coder-agreed-target)."}
+    - {notation: needs-adjudication, definition: "The coders chose different objects; the row keeps coder A's object."}
+    - {notation: unreviewed, definition: "Agent-drafted row; no review."}
 
 justifications:
   - "semapv:ManualMappingCuration"

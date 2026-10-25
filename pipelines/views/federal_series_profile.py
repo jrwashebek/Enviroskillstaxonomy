@@ -9,6 +9,9 @@ positive-education flag, credential gates, and the disclaimer. Display-gate@1.1.
 ADR-0031 §4.4): % time and importance only from job-analysis-confirmed, critical / needed-at-entry / distinguishing only
 after a pid: reviewer, target levels labelled editorial drafts; otherwise the gate's label is printed and no value.
 P3 roles are excluded (they appear only in the what's-coming view, ADR-0006). Tribal variants are never read.
+Rule federal-series-profile@0.2.0 (rc.1 fix pass, ADR-0032; review M10): X4 rows below skos:closeMatch are left out
+(never an alignment), the model's number is `agentConfidence (uncalibrated)`, and every row is labelled an unreviewed
+agent candidate.
 
 Outputs  docs/build/WP-08/generated/federal-series/<code>.json and .md, index.json, federal_variant_index.json
 Licence: Apache-2.0.
@@ -21,7 +24,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import viewlib as V  # noqa: E402
 
-GEN = "pipelines/views/federal_series_profile.py@0.2.0"
+GEN = "pipelines/views/federal_series_profile.py@0.3.0"
+RULE_VERSION = "0.2.0"
+AGENT_CONFIDENCE = "agentConfidence (uncalibrated)"
+UNREVIEWED = "unreviewed agent candidate (not reviewed by a person)"
 X4 = V.L.DATA_V2 / "crosswalks" / "opm-series" / "2026-10-23.sssom.tsv"
 TIERS = {"P1", "P2", "P4"}
 STRENGTH = {"skos:exactMatch": 5, "skos:closeMatch": 4, "skos:broadMatch": 3, "skos:narrowMatch": 3, "skos:relatedMatch": 1}
@@ -92,8 +98,8 @@ def role_block(d, role, variant, row):
     other = V.parse_other(row.get("other"))
     return {"role": role["id"], "roleTitle": d.label(role["id"]), "tier": d.tier(role), "variant": variant["id"],
             "functionStatement": role["functionStatement"]["en"], "authorityPosition": variant.get("authorityPosition"),
-            "x4": {"record": row["record_id"], "predicate": row["predicate_id"], "confidence": float(row["confidence"] or 0),
-                   "appliesTo": other.get("applies_to"), "reviewStatus": other.get("review_status"),
+            "x4": {"record": row["record_id"], "predicate": row["predicate_id"], AGENT_CONFIDENCE: float(row["confidence"] or 0),
+                   "appliesTo": other.get("applies_to"), "reviewStatus": UNREVIEWED if not row.get("reviewer_id") else other.get("review_status"),
                    "evidence": other.get("evidence")},
             "credentialGates": V.gate_view(d, variant.get("credentialGates")),
             "signOffAuthority": variant.get("signOffAuthority"),
@@ -116,8 +122,8 @@ def render_md(p):
     for r in p["roles"]:
         out += [f"## {r['roleTitle']} — federal variant ({r['tier']})", "",
                 f"*Function:* {r['functionStatement']}", "",
-                f"*X4 match:* `{r['x4']['predicate']}` (confidence {r['x4']['confidence']}, applies to: {r['x4']['appliesTo']}; "
-                f"{r['x4']['reviewStatus']} agent draft, evidence {r['x4']['evidence']}). *Authority position (editorial):* {r['authorityPosition']}.", ""]
+                f"*X4 match:* `{r['x4']['predicate']}` (agentConfidence (uncalibrated) {r['x4'][AGENT_CONFIDENCE]}, applies to: {r['x4']['appliesTo']}; "
+                f"{r['x4']['reviewStatus']}, evidence {r['x4']['evidence']}). *Authority position (editorial):* {r['authorityPosition']}.", ""]
         if r["credentialGates"]["shown"] or r["credentialGates"]["notShownUntilIssuerVerified"]:
             out.append("*Credential gates (issuer verified):* " + V.gate_text(r["credentialGates"]))
             out.append("")
@@ -158,9 +164,13 @@ def main():
     rows = V.read_set(X4)
     by_series = {}
     fed_index = {}
+    below = 0
     for row in rows:
         obj = row["object_id"]
         if not obj.startswith("OPMseries:") or row.get("predicate_modifier") == "Not":
+            continue
+        if STRENGTH.get(row["predicate_id"], 0) < STRENGTH["skos:closeMatch"]:
+            below += 1                     # rule 0.2.0: below closeMatch is not an alignment; never shown (ADR-0032, M10)
             continue
         role = d.get(row["subject_id"])
         if not role or d.tier(role) not in TIERS:
@@ -177,7 +187,7 @@ def main():
             continue
         by_series.setdefault(code, {"rows": [], "noVariant": [], "feeder": []})["rows"].append((role, variant, row))
         fed_index.setdefault(variant["id"], []).append({"series": code, "predicate": row["predicate_id"],
-                                                        "confidence": float(row["confidence"] or 0)})
+                                                        AGENT_CONFIDENCE: float(row["confidence"] or 0)})
     index = []
     for code in sorted(by_series):
         rec = d.series.get(code)
@@ -185,7 +195,7 @@ def main():
             continue
         ent = by_series[code]
         edu = rec.get("positiveEducationRequirement")
-        prof = {"stamp": V.stamp("federal-series-profile", "0.1.0", GEN), "disclaimer": V.DISCLAIMER,
+        prof = {"stamp": V.stamp("federal-series-profile", RULE_VERSION, GEN), "disclaimer": V.DISCLAIMER,
                 "evidenceNotice": V.EVIDENCE_NOTICE,
                 "series": {"code": code, "title": rec["prefLabel"]["en"], "seriesStatus": rec.get("seriesStatus"),
                            "statusStatement": status_statement(rec), "successorSeriesProposed": rec.get("successorSeries")
@@ -220,21 +230,24 @@ def main():
         lines = [f"# Federal Series Profile (variant index): {d.label(vid)}", "", f"> **{V.DISCLAIMER}**", "",
                  f"- **Role:** {d.label(role['id'])} (`{role['id']}`, {d.tier(role)}); authority position (editorial): {v.get('authorityPosition')}",
                  f"- **Indicative band:** {V.band_text(v.get('indicativeGradeOrBand'))} (not a classification criterion)",
-                 f"- **Generated:** {GEN}, rule federal-series-profile@0.1.0 ({V.stamp('federal-series-profile', '0.1.0', GEN)['ruleStatus']}), as of {V.AS_OF}", "", "## Series", ""]
+                 f"- **Generated:** {GEN}, rule federal-series-profile@{RULE_VERSION} ({V.stamp('federal-series-profile', RULE_VERSION, GEN)['ruleStatus']}), as of {V.AS_OF}", "", "## Series", ""]
         if series:
             for x in series:
                 rec = d.series.get(x["series"]) or {}
-                lines.append(f"- {x['series']} {(rec.get('prefLabel') or {}).get('en', '')} — `{x['predicate']}` (confidence {x['confidence']}); "
+                lines.append(f"- {x['series']} {(rec.get('prefLabel') or {}).get('en', '')} — `{x['predicate']}` (agentConfidence (uncalibrated) {x[AGENT_CONFIDENCE]}; unreviewed agent candidate); "
                              f"status: {status_statement(rec) if rec else 'not in register'} See `federal-series/{x['series']}.md`.")
         else:
-            lines.append("No federal series: X4 records NoTermFound for this role (for corps members, the series listed in X4 "
+            lines.append("No federal series at skos:closeMatch or stronger: X4 records NoTermFound or only broader or partial "
+                         "candidates for this role, which are not an alignment (for corps members, the series listed in X4 "
                          "are destinations after corps hiring authorities, not the role's own series).")
         lines += ["", "---", V.DISCLAIMER, ""]
         V.write_text(V.OUT / "federal-series" / "variants" / f"{V.L.id_to_stem(vid)}.md", "\n".join(lines))
-    V.write_json(V.OUT / "federal-series" / "index.json", {"stamp": V.stamp("federal-series-profile", "0.1.0", GEN),
-                                                           "disclaimer": V.DISCLAIMER, "series": index})
+    V.write_json(V.OUT / "federal-series" / "index.json", {"stamp": V.stamp("federal-series-profile", RULE_VERSION, GEN),
+                                                           "disclaimer": V.DISCLAIMER, "series": index,
+                                                           "excludedBelowCloseMatch": below,
+                                                           "note": "Only X4 rows at skos:closeMatch or stronger are shown; every row is an unreviewed agent candidate."})
     V.write_json(V.OUT / "federal-series" / "federal_variant_index.json",
-                 {"stamp": V.stamp("federal-series-profile", "0.1.0", GEN), "disclaimer": V.DISCLAIMER,
+                 {"stamp": V.stamp("federal-series-profile", RULE_VERSION, GEN), "disclaimer": V.DISCLAIMER,
                   "note": "Every P1-P2 federal variant with the series X4 maps it to; an empty list means X4 records NoTermFound for the role.",
                   "variants": dict(sorted(fed_index.items()))})
     print(f"federal series profiles: {len(index)}; federal variants indexed: {len(fed_index)}")

@@ -20,6 +20,15 @@ defaults:
   signalStatus: active
   observedPeriod: {start: '2026-01', end: '2026-03'}
 indicator: {targetId: mvp-role:R99-synthetic-role, direction: augment, driver: AI, kind: role-change}
+# change-indicator@1.1.0 (ADR-0032): an unlisted key has no providers and never pairs, so the synthetic keys are
+# registered for the test only (tests/test_evidence_rule.py adds them to the loaded configuration).
+synthetic_providers:
+  synthetic-board: [synthetic-board-operator]
+  synthetic-plans: [synthetic-plan-corpus]
+  synthetic-plans-2: [synthetic-plan-corpus-2]
+  synthetic-survey: [synthetic-survey-panel]
+  synthetic-hr: [synthetic-hr-system]
+  synthetic-state-order: [synthetic-state-register]
 
 cases:
   - id: C01-two-families-two-periods
@@ -175,3 +184,50 @@ cases:
     signals:
       - {id: 'seed:asm/synthetic/c21-x', type: ExposureAssessment, raterType: external-index, instrument: aei-task-usage}
       - {id: 'seed:asm/synthetic/c21-y', type: ExposureAssessment, raterType: external-index, instrument: aei-robot-exposure, observedPeriod: {start: '2026-04', end: '2026-06'}}
+  # ---- change-indicator@1.1.0 (rc.1 fix pass, ADR-0032; data-method review M5, M6)
+  - id: C22-same-upstream-source-is-not-independent
+    description: Two families with disjoint providers but one upstream document (the PNNL case, LM-110) cannot pair.
+    expect: watch
+    reason: ER-1-NOT-INDEPENDENT
+    signals:
+      - {id: 'seed:sig/synthetic/c22-a', signalFamily: postings-pds, independenceKey: synthetic-board, upstreamSource: SYN-001, measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c22-b', signalFamily: postings-pds, independenceKey: synthetic-board, upstreamSource: SYN-001, measure: {name: m-postings}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+      - {id: 'seed:sig/synthetic/c22-c', signalFamily: plan-requirements, independenceKey: synthetic-plans, upstreamSource: SYN-001, measure: {name: m-plans}}
+  - id: C23-shared-llm-coder-is-not-independent
+    description: Two families from different providers coded by the same LLM agent share a processing step.
+    expect: watch
+    reason: ER-1-NOT-INDEPENDENT
+    signals:
+      - {id: 'seed:sig/synthetic/c23-a', signalFamily: postings-pds, independenceKey: synthetic-board, processingChain: ['coder:emstagent:synthetic-llm@model'], measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c23-b', signalFamily: postings-pds, independenceKey: synthetic-board, processingChain: ['coder:emstagent:synthetic-llm@model'], measure: {name: m-postings}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+      - {id: 'seed:sig/synthetic/c23-c', signalFamily: plan-requirements, independenceKey: synthetic-plans, processingChain: ['coder:emstagent:synthetic-llm@model'], measure: {name: m-plans}}
+  - id: C24-disjoint-chains-move
+    description: The C23 evidence with a different, human coder on the plan signal moves the indicator.
+    expect: moves
+    signals:
+      - {id: 'seed:sig/synthetic/c24-a', signalFamily: postings-pds, independenceKey: synthetic-board, processingChain: ['coder:emstagent:synthetic-llm@model'], measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c24-b', signalFamily: postings-pds, independenceKey: synthetic-board, processingChain: ['coder:emstagent:synthetic-llm@model'], measure: {name: m-postings}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+      - {id: 'seed:sig/synthetic/c24-c', signalFamily: plan-requirements, independenceKey: synthetic-plans, processingChain: ['coder:pid:synthetic-coder-01'], measure: {name: m-plans}}
+  - id: C25-indeterminate-never-counts
+    description: A signal whose direction is indeterminate (its difference interval includes 0) never counts.
+    expect: watch
+    reason: ER-0-INDETERMINATE
+    signals:
+      - {id: 'seed:sig/synthetic/c25-a', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c25-b', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+      - {id: 'seed:sig/synthetic/c25-c', direction: indeterminate, signalFamily: plan-requirements, independenceKey: synthetic-plans, measure: {name: m-plans}}
+  - id: C26-unlisted-key-never-pairs
+    description: An independence key that is not listed has no providers; it is never its own provider (1.0.0 fallback removed).
+    expect: watch
+    reason: ER-1-SAME-VENDOR
+    signals:
+      - {id: 'seed:sig/synthetic/c26-a', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}}
+      - {id: 'seed:sig/synthetic/c26-b', signalFamily: postings-pds, independenceKey: synthetic-board, measure: {name: m-postings}, observedPeriod: {start: '2026-04', end: '2026-06'}}
+      - {id: 'seed:sig/synthetic/c26-c', signalFamily: plan-requirements, independenceKey: not-a-listed-key, measure: {name: m-plans}}
+  - id: C27-one-observation-two-targets-counts-once
+    description: C08's evidence where both records are readings of one observation (same observationId) stays watch.
+    expect: watch
+    reason: ER-1-NOT-INDEPENDENT
+    signals:
+      - {id: 'seed:sig/synthetic/c27-a', signalFamily: deployment, independenceKey: ombegov-ai-inventory, registeredDeployment: true, observationId: obs-000000000001, measure: {name: m-deploy}}
+      - {id: 'seed:sig/synthetic/c27-b', signalFamily: worker-report, independenceKey: synthetic-survey, observationId: obs-000000000001, measure: {name: m-survey}}

@@ -44,7 +44,7 @@ def main():
             extra["coder_b"] = f"{rb['object_id']}|{rb['predicate']}"
             extra["coder_b_id"] = rb["coder_id"]
             if rb["object_id"] == ra["object_id"]:
-                status = "two-coder-agreed-target"
+                status = "two-llm-coders-agreed-target"            # LLM-vs-LLM, not human agreement (ADR-0032, M9)
                 pred = S.weakest(ra["predicate"], rb["predicate"]) if obj != "NoTermFound" else "skos:closeMatch"
                 conf = str(round(min(float(ra["confidence"]), float(rb["confidence"])), 2))
             else:
@@ -67,10 +67,22 @@ def main():
                                 text_sha256=uu["textSha256"], competency=uu["competency"], p1_roles=uu["roles"],
                                 pool=uu["pool_socs"], found_by=ra["found_by"], **extra),
             comment=("no-term reason: no O*NET task in the role family's occupations describes this work ("
-                     + ("coders A and B" if status == "two-coder-agreed-target" else "coder A") + "). "
+                     + ("coders A and B" if status == "two-llm-coders-agreed-target" else "coder A") + "). "
                      if objid == S.NO_TERM else "") + "Agent-coded candidate; second blind LLM coder "
                      + ("present (LLM-vs-LLM)." if rb else "pending.") + " Not for exposure joins until adjudicated (CODING_PROTOCOL.md §4)."))
+    # kappa and the honest coverage numbers on the set (ADR-0032, review M9); kappa.py writes x2_kappa.json
+    kp = HERE / "work" / "x2_kappa.json"
+    kap = json.loads(kp.read_text()) if kp.exists() else {}
+    real = [r for r in rows if r["object_id"] != S.NO_TERM]
+    agreed = [r for r in real if "review_status=two-llm-coders-agreed-target" in r["other"]]
+    good = sum(1 for r in agreed if r["predicate_id"] in ("skos:exactMatch", "skos:closeMatch"))
+    set_other = (f"kappa_match_type={kap.get('kappa_match_type')};kappa_ci95={'-'.join(map(str, kap.get('kappa_match_type_ci95') or []))};"
+                 f"target_kappa=0.6;kappa_source=pipelines/x2/work/x2_kappa.json;coders=two LLM coders (LLM-vs-LLM "
+                 f"agreement, not human inter-coder reliability);rows={len(rows)};with_onet_object={len(real)};"
+                 f"agreed={len(agreed)};agreed_close_or_better={good};"
+                 f"gate={'pass' if (kap.get('kappa_match_type') or 0) >= 0.6 else 'fail'}")
     S.write_set("onet-task", a.release, {
+        "other": set_other,
         "mapping_set_version": "0.2.0-draft",
         "mapping_set_title": f"X2 EMST P1-corridor tasks to O*NET {a.release} task statements",
         "mapping_set_description": (
@@ -78,7 +90,7 @@ def main():
             "statements of the role family's O*NET-SOC pool (from X3), per pipelines/x2/CODING_PROTOCOL.md. "
             f"Release {a.release}: the Eloundou-labelled task set ADR-0022 requires; O*NET 31.0 (target) was not "
             "downloadable on 2026-10-23 and will be produced by the upstream diff. DWAs pending (Tasks-to-DWAs file "
-            "not available offline). review_status: single-coder-candidate | two-coder-agreed-target | "
+            "not available offline). review_status: single-coder-candidate | two-llm-coders-agreed-target | "
             "needs-adjudication (row keeps coder A's object; weakest_match_type is the weaker of both codes). "
             "Coder agreement in pipelines/x2/work/x2_kappa.json (generated); with two LLM coders it is LLM-vs-LLM "
             "agreement, not human inter-coder reliability."),

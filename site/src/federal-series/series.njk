@@ -22,21 +22,38 @@ eleventyComputed:
 {{ m.meta(s.tier, s.evidence) }}
 
 <h2>Role variants crosswalked to this series</h2>
-{% if s.roleRows.length %}
+{% set close = s.roleRows | where("closeOrBetter", true) %}{% set weak = s.roleRows | where("closeOrBetter", false) %}
+{% if close.length %}
 <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Role crosswalk">
 <table class="usa-table usa-table--compact" data-figure data-use-tier="exploratory" data-evidence="S">
   <caption>Draft role-to-series crosswalk. <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>agent-drafted mapping, {{ (s.roleRows | first).reviewStatus }}</span></caption>
   <thead><tr><th scope="col">EMST role</th><th scope="col">Match</th><th scope="col">Applies to</th><th scope="col">Note</th></tr></thead>
   <tbody>
-  {% for r in s.roleRows %}
+  {% for r in close %}
   <tr><td>{% if r.variant %}<a href="{{ r.variant.url | url }}">{{ r.subjectLabel }}</a>{% elif r.role %}<a href="{{ r.role.url | url }}">{{ r.subjectLabel }}</a>{% else %}{{ r.subjectLabel }} <span class="emst-muted">(role profile not yet in this build)</span>{% endif %}</td>
-  <td>{{ r.predicate | match("series") }}, confidence {{ r.confidence }}</td><td>{{ r.other.applies_to or "all levels" }}</td><td>{{ r.comment | truncate(200) }}</td></tr>
+  <td>{{ r.predicate | match("series") }}, agent confidence (uncalibrated) {{ r.confidence }}</td><td>{{ r.other.applies_to or "all levels" }}</td><td>{{ r.comment | truncate(200) }}</td></tr>
   {% endfor %}
   </tbody>
 </table>
 </div>
-<p class="emst-muted">A crosswalk row says the role's work is found in positions of this series. It is not a classification determination and claims no alignment with OPM standards.</p>
-{% else %}<p>No EMST role is crosswalked to this series in this build.</p>{% endif %}
+<p class="emst-muted">A crosswalk row says the role's work is found in positions of this series. It is not a classification determination and claims no alignment with OPM standards. Only rows at closeMatch or stronger are listed here; the agent confidence is the drafting model's own number and is not calibrated.</p>
+{% else %}<p>No EMST role is crosswalked to this series at closeMatch or stronger in this build.</p>{% endif %}
+{% if weak.length %}
+<details class="emst-disclosure"><summary>Unreviewed agent candidates (not an alignment): {{ weak.length }} row{{ "s" if weak.length != 1 }} below closeMatch</summary>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Unreviewed agent candidates">
+<table class="usa-table usa-table--compact" data-figure data-use-tier="exploratory" data-evidence="S">
+  <caption>Unreviewed agent candidates (not an alignment): related, broader or narrower matches an AI agent drafted. <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>agent-drafted mapping, unreviewed</span></caption>
+  <thead><tr><th scope="col">EMST role</th><th scope="col">Match</th><th scope="col">Applies to</th><th scope="col">Note</th></tr></thead>
+  <tbody>
+  {% for r in weak %}
+  <tr><td>{% if r.variant %}<a href="{{ r.variant.url | url }}">{{ r.subjectLabel }}</a>{% elif r.role %}<a href="{{ r.role.url | url }}">{{ r.subjectLabel }}</a>{% else %}{{ r.subjectLabel }} <span class="emst-muted">(role profile not yet in this build)</span>{% endif %}</td>
+  <td>{{ r.predicate | match("series") }}, agent confidence (uncalibrated) {{ r.confidence }}</td><td>{{ r.other.applies_to or "all levels" }}</td><td>{{ r.comment | truncate(200) }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+</details>
+{% endif %}
 
 <h2>Major duties and competencies by federal variant</h2>
 {% if s.profile and s.profile.roles.length %}
@@ -46,7 +63,7 @@ eleventyComputed:
 <section class="emst-card" aria-labelledby="fr-{{ loop.index }}">
   <h3 id="fr-{{ loop.index }}">{% if r.variant %}<a href="{{ r.variant.url | url }}">{{ r.role.title }} (federal)</a>{% else %}{{ r.role.title }}{% endif %}</h3>
   <p>{{ r.functionStatement }}</p>
-  <p>Crosswalk to this series: {{ r.x4.predicate | match("series") }}, confidence {{ r.x4.confidence }}{% if r.x4.appliesTo %}, applies to {{ r.x4.appliesTo }}{% endif %} ({{ r.x4.reviewStatus }}, agent draft). Profile depth: {{ r.depth }}.</p>
+  <p>Crosswalk to this series: {{ r.x4.predicate | match("series") }}, agent confidence (uncalibrated) {{ r.x4.agentConfidence }}{% if r.x4.appliesTo %}, applies to {{ r.x4.appliesTo }}{% endif %} ({{ r.x4.reviewStatus }}, agent draft). Profile depth: {{ r.depth }}.</p>
   {% if r.credentialGates.shown.length %}<p>Credentials that may be involved (agent-drafted link, not a requirement; the credential's issuer was checked against a cited source): {% for g in r.credentialGates.shown %}{{ g.title }} (drafted as {{ g.kind }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
   {% if r.credentialGates.pending %}<p class="emst-muted">{{ r.credentialGates.pending }} credential gate{{ "s" if r.credentialGates.pending != 1 }} not shown until the issuer is verified.</p>{% endif %}
   {% if r.instruments.length %}<p>Policy instruments that shape this work (agent-drafted links; status as of {{ emst.release.date }}): {% for i in r.instruments %}{{ i.title }} ({% if i.linkRoleText %}{{ i.linkRoleText }}; {% endif %}{{ m.instrumentState(i) }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
@@ -97,7 +114,7 @@ eleventyComputed:
 <h2>Competencies EMST's federal HR agent associated with this series</h2>
 {% if s.coreComps.length %}
 <p>Navigation aid: an earlier judgment by EMST's federal HR agent (an AI agent), re-pointed to the current records. Draft mapping, not reviewed by a person. Established core competencies only.</p>
-<ul class="usa-list">{% for r in s.coreComps %}<li><a href="{{ r.competency.url | url }}">{{ r.competency.title }}</a> <span class="emst-muted">({{ r.other.fh_relationship or r.predicate | match("series") }}; {{ r.reviewStatus }})</span>{% if r.competency.federal %} · federal applicability: {{ r.competency.federal.value | replace("-", " ") }}{% if not r.competency.federal.basisLinked %} (basis not yet linked){% elif not r.competency.federal.basisVerified %} (basis status not yet verified){% endif %}{% endif %}</li>{% endfor %}</ul>
+<ul class="usa-list">{% for r in s.coreComps %}<li><a href="{{ r.competency.url | url }}">{{ r.competency.title }}</a> <span class="emst-muted">({{ r.other.fh_relationship or r.predicate | match("series") }}; {{ r.reviewStatus }})</span>{% if r.competency.federal %} · federal applicability: {% if r.competency.federal.basisWithheld %}indeterminate (a linked instrument is withheld from this release){% elif r.competency.federal.value == "not-shown-unverified" %}not shown (unverified instrument){% else %}{{ r.competency.federal.value | replace("-", " ") }}{% if not r.competency.federal.basisLinked %} (basis not yet linked){% elif not r.competency.federal.basisVerified %} (basis status not yet verified){% endif %}{% endif %}{% endif %}</li>{% endfor %}</ul>
 {% else %}<p>No established core competency is associated with this series in this build.</p>{% endif %}
 {% if s.omittedModule or s.omittedNotEstablished %}<p class="emst-muted">Left out of this HR view: {{ s.omittedModule }} module editorial records and {{ s.omittedNotEstablished }} competencies that are not yet established.</p>{% endif %}
 <p class="emst-muted">Federal applicability is read from the computed view ({{ "prototype computation, pending a change request" if emst.venue.source == "wp05-prototype" else ("rule " + emst.venue.rule + " over the release records") }}) and shown with no exclusions (the EMST project lead's default).</p>

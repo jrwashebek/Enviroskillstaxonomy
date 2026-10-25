@@ -123,12 +123,13 @@ def test_change_signal_warnings(tmp_path):
     by = {}
     for i in run(data).issues:
         by.setdefault(i.rid, set()).add(i.code)
-    assert "W-INDEPENDENCE-KEY-UNLISTED" in by["seed:fx-w-key"]
+    assert "E-INDEPENDENCE-KEY-UNLISTED" in by["seed:fx-w-key"]       # ADR-0032 (M5): an enumeration, rejected at every status
     assert "W-ORG-SMALL-N" in by["seed:fx-w-org"] and "E-ORG-TARGET-TRIBAL" not in by["seed:fx-w-org"]
     assert "W-MVP-ROLE-TARGET" in by["seed:fx-w-mvp"]
     assert "I-SP12-QUARANTINE" in by["seed:fx-w-sp12"]
     assert "W-NOTATION-INTERIM" in by["seed:fx-w-nota"]
-    assert not [i for i in run(data).errors if i.rid and i.rid.startswith("seed:fx-w-") and i.code != "E-REF-DANGLING"]
+    assert not [i for i in run(data).errors if i.rid and i.rid.startswith("seed:fx-w-") and i.code != "E-REF-DANGLING"
+                and not (i.rid == "seed:fx-w-key" and i.code in ("E-INDEPENDENCE-KEY-UNLISTED", "E-SCHEMA"))]
 
 
 def test_enactments_are_transitional_on_drafts_only(tmp_path):

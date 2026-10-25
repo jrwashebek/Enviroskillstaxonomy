@@ -38,7 +38,7 @@ X1_YML = X1_DIR / "emst-v1_to_v2.sssom.yml"
 DISPOSITION = ROOT / "docs" / "decisions" / "v1_disposition.csv"
 CANDIDATES = ROOT / "docs" / "decisions" / "candidate_disposition.csv"
 
-SCHEMA_VERSION = "2.0.0-draft.3"
+SCHEMA_VERSION = "2.0.0-draft.4"
 IRI_BASE = "https://w3id.org/emst/"
 
 # ---------------------------------------------------------------------------------------------------------------

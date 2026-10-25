@@ -1,0 +1,17 @@
+# Lexicon for the production-versus-review lint (scripts/validate_v2.py W-LINT-PRODUCTION-REVIEW).
+# Basis: SPEC §5.5 ("production tasks SHOULD be split from specification, review and defence tasks"); ADR-0003 G-2;
+# the S1 authoring brief; data-method review m7 and its §4 sample rule. Added in the rc.1 fix pass (ADR-0032).
+# Owner: IO (lint), with the content leads. Licence: CC0-1.0.
+#
+# A competency is flagged when at least one of its live tasks begins with a production verb whose object names a
+# deliverable that current AI can draft or compute, and none of its tasks begins with a review verb. A check folded
+# into the production task itself does not count. The lint is a WARNING: it asks the content owner to add the
+# review step, it never blocks a release.
+production_verbs: [prepare, draft, write, produce, develop, model, estimate, quantify, analyze, analyse, compute,
+  calculate, map, summarize, summarise, compile, report, create, design, forecast, document, generate, translate,
+  track, code]
+review_verbs: [review, verify, validate, audit, approve, certify, defend, check, specify, quality-assure]
+draftable_deliverables: [document, summary, summaries, analysis, analyses, estimate, model, map, dataset, code, report,
+  plan, note, guidance, testimony, briefing, brief, assessment, inventory, strategy, strategies, design, budget,
+  forecast, projection, memo, application, permit, record, notice, response, comment, statement, specification,
+  scenario, index, chart, dashboard, translation, materials, bill, ordinance, measure, provision, criteria]

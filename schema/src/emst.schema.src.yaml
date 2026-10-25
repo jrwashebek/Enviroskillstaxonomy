@@ -162,6 +162,44 @@ $defs:
   DecisionRef:
     type: string
     pattern: '^(ADR-\d{4}|DP-\d+|CR-[A-Z]{2}-\d{3}|WP-\d{2}|P-[A-Z]{2,3}-\d{2})'
+  LifecycleBasis:
+    type: object
+    description: >-
+      The evidence and the entry test behind a lifecycle state (rc.1 fix pass, ADR-0032; review M7). Required on L1-L4
+      records that are proposed or emerging; also kept on records moved to watch because the test was not met.
+      scripts/validate_v2.py recomputes `counts` from `evidence` and re-applies the vocabulary's entry_test
+      (vocab/lifecycle_states.yaml#<testedFor>.entry_test): E-LIFECYCLE-BASIS.
+    additionalProperties: false
+    required: [testedFor, test, result, evidence, counts, assessedOn, assessedBy]
+    properties:
+      testedFor: {enum: [proposed, emerging], description: The state whose entry_test was applied.}
+      test: {type: string, pattern: '^vocab/lifecycle_states\.yaml#(proposed|emerging)\.entry_test$'}
+      result: {enum: [met, not-met]}
+      evidence: {type: array, uniqueItems: true, items: {$ref: '#/$defs/RecordRef'}, description: 'Signals (and a mandate Instrument) the test read; may be empty.'}
+      mandate: {$ref: '#/$defs/RecordRef', description: 'Instrument with an effective event (proposed: mandate branch).'}
+      operatingProgramme:
+        type: object
+        additionalProperties: false
+        required: [label, sources]
+        properties:
+          label: {$ref: '#/$defs/Text'}
+          sources: {type: array, minItems: 1, uniqueItems: true, items: {$ref: '#/$defs/SourceId'}}
+      counts:
+        type: object
+        additionalProperties: false
+        required: [signals, distinctObservations, independentSignals, signalFamilies, sectorActors, postingsOrPds, actorTypes]
+        properties:
+          signals: {type: integer, minimum: 0}
+          distinctObservations: {type: integer, minimum: 0}
+          independentSignals: {type: integer, minimum: 0}
+          signalFamilies: {type: integer, minimum: 0}
+          sectorActors: {type: integer, minimum: 0}
+          postingsOrPds: {type: integer, minimum: 0}
+          actorTypes: {type: integer, minimum: 0}
+          feederRoles: {type: integer, minimum: 0}
+      assessedOn: {$ref: '#/$defs/Date'}
+      assessedBy: {$ref: '#/$defs/AgentId'}
+      note: {$ref: '#/$defs/Text'}
   # ------------------------------------------------------------------------------------------------ provenance
   DerivedFrom:
     type: object
@@ -245,7 +283,8 @@ $defs:
       layer: {enum: [L0, L1, L2, L3, L4, L5, L6, learning, provenance]}
       module: {$ref: '#/$defs/ModuleNs'}
       status: {$ref: '#/$defs/v_editorialStatus'}
-      lifecycleState: {$ref: '#/$defs/v_lifecycleState'}
+      lifecycleState: {$ref: '#/$defs/v_lifecycleState', description: 'How established the WORK is in the sector (never the validation of the record; ADR-0032).'}
+      lifecycleBasis: {$ref: '#/$defs/LifecycleBasis'}
       useTier: {$ref: '#/$defs/v_useTier', description: Declared ceiling; the effective tier is computed.}
       validationStatus: {$ref: '#/$defs/v_validationStatus'}
       versionIntroduced: {$ref: '#/$defs/SemVer'}
@@ -308,6 +347,13 @@ $defs:
         then: {required: [versionIntroduced, lastChangedIn]}
       - if: {required: [lifecycleState], properties: {lifecycleState: {enum: [watch, proposed, emerging]}}}
         then: {required: [reviewBy]}
+      # ADR-0032 (review M7): proposed and emerging need the evidence and the entry test from candidate on
+      - if:
+          required: [lifecycleState, status]
+          properties:
+            lifecycleState: {enum: [proposed, emerging]}
+            status: {enum: [candidate, published, deprecated]}
+        then: {required: [lifecycleBasis]}
       # v1 seeds never become candidates (ADR-0029 §1.3); seed-keyed superseded/withdrawn seeds are lineage stubs
       - if: {required: [status], properties: {status: {enum: [candidate, published, deprecated]}}}
         then: {properties: {validationStatus: {not: {const: seed-v1}}}}
@@ -407,6 +453,12 @@ $defs:
         properties:
           min: {$ref: '#/$defs/v_proficiencyLevel'}
           max: {$ref: '#/$defs/v_proficiencyLevel'}
+      levelSpanBasis:
+        enum: [anchored, declared]
+        description: >-
+          anchored: every level in levelSpan (other than A) has indicators in levels[]; declared: the span states where
+          the competency applies and is not (yet) anchored by indicators, as for knowledge areas. Checked by
+          E-LEVELSPAN-BASIS (rc.1 fix pass, ADR-0032; review m6).
       levels:
         type: array
         items:
@@ -503,7 +555,24 @@ $defs:
       augmentationMode: {$ref: '#/$defs/v_augmentationMode'}
       assessmentMethods: {type: array, minItems: 1, uniqueItems: true, items: {$ref: '#/$defs/v_assessmentMethod'}}
       useClass: {$ref: '#/$defs/v_indicatorUseClass'}
-      obs4: {type: integer, minimum: 0, maximum: 3}
+      obs4:
+        type: [integer, 'null']
+        minimum: 0
+        maximum: 3
+        description: >-
+          OBS-4 observability code from human coding (double-coded by two humans for select). null until humans code it;
+          an agent's self-code is kept in obs4Draft and is never read as obs4 (rc.1 fix pass, ADR-0032; review m8).
+      obs4Draft:
+        type: object
+        description: 'An agent self-code of OBS-4, kept as draft evidence for the human coders; never an input to a tier or a view.'
+        additionalProperties: false
+        required: [value, raterType, raterId, codedOn]
+        properties:
+          value: {type: integer, minimum: 0, maximum: 3}
+          raterType: {$ref: '#/$defs/v_raterType'}
+          raterId: {$ref: '#/$defs/AgentId'}
+          codedOn: {$ref: '#/$defs/Date'}
+          note: {$ref: '#/$defs/Text'}
       obs4Flags: {type: array, uniqueItems: true, items: {enum: [P, C, O, T]}}
       evidenceTypes: {type: array, items: {type: string}}
       evidencePlan: {$ref: '#/$defs/Text'}
@@ -893,10 +962,18 @@ $defs:
   RatingBase:
     type: object
     description: Fields shared by every per-rater atomic judgment (SPEC §5.12–§5.13; ADR-0008 §1).
-    required: [raterType, raterId, assessedAt, method, confidence, instrument, codebookVersion, evidenceLabel, sources]
+    required: [raterType, raterId, assessedAt, method, confidence, instrument, codebookVersion, evidenceLabel, sources, validationStatus]
     properties:
       raterType: {$ref: '#/$defs/v_raterType'}
-      raterId: {$ref: '#/$defs/AgentId'}
+      raterId:
+        $ref: '#/$defs/AgentId'
+        description: >-
+          One rater per model and prompt family: repeated passes of one model with one prompt family share one raterId
+          (emstagent:llm-rater@<model>/<prompt family>) and are told apart by passIndex and sessionId (rc.1 fix pass,
+          ADR-0032; review M4). They are run-to-run consistency of one model, not independent raters.
+      passIndex: {type: integer, minimum: 1, maximum: 9, description: 'Pass number of a repeated LLM coding (1-3 in rc.1).'}
+      sessionId: {type: string, pattern: '^[A-Za-z0-9][A-Za-z0-9._/@-]{1,80}$', description: 'Label of the model session (batch) that produced the pass.'}
+      sampleFrame: {$ref: '#/$defs/Text', description: 'How the rated units were chosen, e.g. selected on the outcome (ADR-0032; review M8).'}
       assessedAt: {anyOf: [{$ref: '#/$defs/Date'}, {$ref: '#/$defs/PartialDate'}], description: 'YYYY-MM-DD; external-index records may give YYYY or YYYY-MM (CR-LM-002; ADR-0029 §9).'}
       method: {type: string, minLength: 1}
       confidence: {$ref: '#/$defs/Confidence'}
@@ -919,6 +996,19 @@ $defs:
           properties:
             raterId: {const: v1-analyst-01}
             confidence: {const: low}
+            # ADR-0032 (review M2): v1 tags are LLM-assisted single-analyst classifications, never expert judgment
+            evidenceLabel: {const: S}
+            validationStatus: {const: draft}
+            provenance:
+              required: [toolVersion, promptVersion]
+              properties:
+                method: {const: llm-assisted}
+                evidenceLabel: {const: S}
+                toolVersion: {const: unknown (v1 sessions)}
+                promptVersion: {const: legacy/v1 working records}
+      # ADR-0032 (review M4): repeated passes of one model are one rater, told apart by pass and session
+      - if: {required: [raterType], properties: {raterType: {const: llm}}}
+        then: {required: [passIndex, sessionId]}
       - if:
           required: [raterType]
           properties:
@@ -948,6 +1038,24 @@ $defs:
         then: {required: [externalSource]}
       - if: {required: [deploymentMode], properties: {deploymentMode: {enum: [supervises-system, system-executes]}}}
         then: {required: [deploymentEvidence]}
+      # ADR-0032 (review M8): v1 codes live only in v1Values; a v1-analyst record carries no v2 construct field
+      - if: {required: [raterType], properties: {raterType: {const: v1-analyst}}}
+        then:
+          not:
+            anyOf:
+              - {required: [technicalExposure]}
+              - {required: [deploymentMode]}
+              - {required: [deploymentStage]}
+              - {required: [deploymentEvidence]}
+              - {required: [sWatch]}
+              - {required: [tacitExperienceRequirement]}
+              - {required: [strategy]}
+              - {required: [contentChangeType]}
+              - {required: [noDeployedToolPerformsCore]}
+              - {required: [shouldRemainHumanReason]}
+              - {required: [scenario]}
+              - {required: [demandDirection]}
+              - {required: [reproductionRisk]}
       # grain (CR-LM-002; ADR-0029 §9): occupation-grain external-index records target a role; all others a task
       - if:
           required: [raterType, externalSource]
@@ -1018,7 +1126,6 @@ $defs:
       demandDirection: {$ref: '#/$defs/v_demandDirection'}
       reproductionRisk: {$ref: '#/$defs/v_reproductionRisk'}
       contentChangeType: {$ref: '#/$defs/v_contentChangeType', description: 'CR-FH-001 (ADR-0030); no drivers field.'}
-      mappingRule: {type: string, description: 'For v1-analyst records: the codebook rule that mapped v1 codes to v2 construct-b fields.'}
       externalSource:
         type: object
         additionalProperties: false
@@ -1136,7 +1243,7 @@ $defs:
             targetId: {type: string, pattern: '^(opm-agency|census-gov):[A-Za-z0-9-]+$'}
             tribalPrograms: {const: false}
             sectorActor: {not: {$ref: '#/$defs/v_tribalActor'}}
-    required: [targetType, targetId, measure, observedPeriod, geography, source, sourceRelease, corpus, method, toolVersion, crosswalkPath, crosswalkMinMatchType, direction, directionConfidence, drivers, steepCategory, novelty, reliability, corroboration, careFlag, tribalPrograms, personalData, evidenceLabel, reviewStatus, reviewBy, signalStatus]
+    required: [targetType, targetId, measure, observedPeriod, geography, source, sourceRelease, corpus, method, toolVersion, crosswalkPath, crosswalkMinMatchType, direction, directionConfidence, drivers, steepCategory, novelty, sourceGrade, corroboration, careFlag, tribalPrograms, personalData, evidenceLabel, reviewStatus, reviewBy, signalStatus, upstreamSource, processingChain, observationId, independenceKey]
     properties:
       type: {const: ChangeSignal}
       layer: {const: L5}
@@ -1144,7 +1251,15 @@ $defs:
       targetType: {anyOf: [{$ref: '#/$defs/v_entityType'}, {const: organization}]}
       targetId: {$ref: '#/$defs/AnyRef'}
       signalFamily: {$ref: '#/$defs/v_signalFamily'}
-      independenceKey: {type: string, pattern: '^[a-z0-9][a-z0-9-]{1,60}$', description: 'Upstream-provider key; active signals must use a key listed in vocab/change_types.yaml#independence_keys.'}
+      independenceKey: {$ref: '#/$defs/v_independenceKey', description: 'Upstream-provider key: an enumeration generated from vocab/change_types.yaml#independence_keys (unlisted keys are rejected at every status; the validator also reports E-INDEPENDENCE-KEY-UNLISTED; ADR-0032, review M5).'}
+      upstreamSource: {$ref: '#/$defs/SourceId', description: 'The primary upstream dataset or document the value comes from (the same ID for every reading of one dataset, whatever document `source` cites). ER-1 requires disjoint upstreamSource (ADR-0032; review M5).'}
+      processingChain:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        description: 'Judgment-bearing steps between the upstream source and the value (vocab/change_types.yaml#processing_chain_steps); ER-1 requires disjoint chains (ADR-0032; review M5).'
+        items: {type: string, pattern: '^(coder|crosswalk|classifier|linker|transcription):\S{2,160}$'}
+      observationId: {type: string, pattern: '^obs-[0-9a-f]{12}$', description: 'One observation attached to several targets shares one observationId; counts report distinct observations (vocab/change_types.yaml#observations; ADR-0032; review M5).'}
       registeredDeployment: {type: boolean, description: 'Only with signalFamily deployment (ER-2).'}
       impact: {type: integer, minimum: 1, maximum: 3}
       scenarioSignposts: {type: array, uniqueItems: true, items: {$ref: '#/$defs/SignpostRef'}}
@@ -1175,6 +1290,33 @@ $defs:
               weighting: {type: string}
               value: {type: number}
               baselineValue: {type: number}
+          difference:
+            type: object
+            description: 'The observed-minus-comparison difference and its interval; direction must be indeterminate when ci95, or the sensitivity ci95, includes 0 (E-DIRECTION-INDETERMINATE; ADR-0032; review M6).'
+            additionalProperties: false
+            required: [value, ci95, method]
+            properties:
+              value: {type: number}
+              ci95: {type: array, minItems: 2, maxItems: 2, items: {type: number}}
+              method: {type: string, minLength: 3}
+              sensitivity:
+                type: object
+                additionalProperties: false
+                required: [variant, value, ci95]
+                properties:
+                  variant: {type: string}
+                  value: {type: number}
+                  ci95: {type: array, minItems: 2, maxItems: 2, items: {type: number}}
+                  n: {type: integer, minimum: 0}
+                  baselineN: {type: integer, minimum: 0}
+          nullReason:
+            type: object
+            description: 'Why a Required measure field (SPEC §5.14) is null: ci95 or n (E-MEASURE-NULL-REASON; ADR-0032; review M5).'
+            additionalProperties: false
+            minProperties: 1
+            properties:
+              ci95: {type: string, minLength: 3}
+              n: {type: string, minLength: 3}
       observedPeriod: {$ref: '#/$defs/Period'}
       comparisonPeriod: {$ref: '#/$defs/Period'}
       geography: {type: string}
@@ -1207,7 +1349,7 @@ $defs:
       drivers: {type: array, minItems: 1, uniqueItems: true, items: {$ref: '#/$defs/v_driverTag'}}
       steepCategory: {$ref: '#/$defs/v_steepCategory'}
       novelty: {anyOf: [{type: integer, minimum: 0, maximum: 5}, {type: string, minLength: 1}], description: No L0 vocabulary yet; FS/LM score or label.}
-      reliability: {$ref: '#/$defs/v_signalReliability'}
+      sourceGrade: {$ref: '#/$defs/v_signalReliability', description: 'Admiralty-style grade (A-D) of the source, renamed from `reliability` (ADR-0032; review m9). Not a statistical reliability.'}
       corroboration: {type: integer, minimum: 0, description: Number of independent corroborating signal families.}
       careFlag: {type: boolean}
       tribalPrograms: {type: boolean}

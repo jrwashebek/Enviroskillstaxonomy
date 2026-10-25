@@ -10,12 +10,12 @@
 - **Minimum qualifications:** Bachelor's in public health, biological science, chemistry or related science plus 2 years professional public health or environmental regulatory experience. (binding text lives in: spec; degree rule: required)
 - **Licences:** registered sanitarian (Washington) or Registered Environmental Health Specialist (NEHA) (not-stated); driver licence (at-hire); HAZWOPER certification (for-some-positions)
 - **Pay:** Grade 122 USD 47.33–63.63 hourly, effective 2026-01-01
-- **Spec text:** stored by URL and hash only (https://jobs.lewiscountywa.gov/media/attachments/job_617/Environmental_Health_Specialist_II_SN313.pdf)
-- **Generated:** pipelines/views/state_class_view.py@0.2.0, rule state-class-view@0.1.0 (registered rule, status active), as of 2026-10-23
+- **Spec text:** stored by URL only; not hashed, so no version is pinned (https://jobs.lewiscountywa.gov/media/attachments/job_617/Environmental_Health_Specialist_II_SN313.pdf)
+- **Generated:** pipelines/views/state_class_view.py@0.3.0, rule state-class-view@0.2.0 (registered rule, status active), as of 2026-10-23
 
 ## EMST role: Environmental health specialist (local variant, journey level; P2)
 
-*Match:* `skos:closeMatch`, confidence 0.7, unreviewed agent draft (`emst-x5-wa-lewis:R26-environmental-health-specialist/local:SN313`). *Authority position (editorial):* regulator.
+*Match:* `skos:closeMatch`, agentConfidence (uncalibrated) 0.7, unreviewed agent candidate (not reviewed by a person) (`emst-x5-wa-lewis:R26-environmental-health-specialist/local:SN313`). *Authority position (editorial):* regulator.
 
 **Competency targets at this level (editorial draft target levels, agent-drafted)**
 

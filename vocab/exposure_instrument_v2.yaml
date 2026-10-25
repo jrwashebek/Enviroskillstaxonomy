@@ -4,8 +4,8 @@ title: EMST exposure and change instrument — codebook v2
 schemeVersion: 2.0.0-draft
 instrument_id: emst-exposure@2.0
 status: draft
-lastReviewed: 2026-10-23
-decidedIn: [ADR-0008, ADR-0028, ADR-0007, ADR-0029]
+lastReviewed: 2026-10-25
+decidedIn: [ADR-0008, ADR-0028, ADR-0007, ADR-0029, ADR-0032]
 steward: CA with LM, FS, FC, DC, IO
 license: CC0-1.0
 description: >
@@ -26,15 +26,20 @@ constructs:
       - {notation: sensing, definition: "Instruments, imagery, acoustic arrays, camera traps, eDNA and sensor networks replacing in-person observation."}
       - {notation: convergent, definition: "Operationally inseparable combination of the above (v1 Cv rule retained)."}
     levels:
-      - {notation: E0, definition: "No meaningful reduction in time at equal quality."}
-      - {notation: E1, definition: "Time cut by at least half at equal quality with the technology alone (aligns with Eloundou E1)."}
-      - {notation: E2, definition: "Time cut by at least half only with complementary software or system integration built on the technology."}
-      - {notation: E3, definition: "Technology can perform the full task end to end at equal quality under current conditions."}
+      - {notation: E0, intensityRank: 0, definition: "No meaningful reduction in time at equal quality."}
+      - {notation: E1, intensityRank: 2, definition: "Time cut by at least half at equal quality with the technology alone (aligns with Eloundou E1)."}
+      - {notation: E2, intensityRank: 1, definition: "Time cut by at least half only with complementary software or system integration built on the technology (close to Eloundou E2)."}
+      - {notation: E3, intensityRank: 3, definition: "Technology can perform the full task end to end at equal quality under current conditions.",
+         note: "EMST E3 is NOT Eloundou et al.'s E3 (their E3 is exposure through image capabilities). Do not join EMST E3 to Eloundou E3 labels."}
     ordinal_order: [E0, E2, E1, E3]
     ordinal_order_note: >
       Intensity order (CR-IO-003, ADR-0029): E1 (time halved with the technology alone) is more direct exposure than
       E2 (halved only with complementary software or systems). Codes are labels, not ranks: ordinal alpha and every
       sorted display or computed distribution use this order, with nominal alpha reported alongside.
+    intensity_rank_note: >
+      `intensityRank` (0-3) gives each code's position in ordinal_order, so a consumer sorts or compares by rank and
+      never by the code's digit (rc.1 fix pass, ADR-0032; review M8). Only E1 aligns with an Eloundou level by
+      definition; E2 is close to Eloundou E2; EMST E3 has no Eloundou counterpart.
   deployment_mode:
     construct: b
     unit: task × sector actor
@@ -91,6 +96,12 @@ external_measures:
   triangulation_rule: "No change indicator may rest on a single vendor's data."
 
 v1_migration_mapping:
+  status: documentation only
+  note: >
+    Since the rc.1 fix pass (ADR-0032; review M8) this mapping is NOT applied to records: v1-analyst ExposureAssessments
+    keep v1 codes only in `v1Values` and carry no construct (a), (b) or (c) field (no deploymentMode, sWatch or
+    tacitExperienceRequirement). v1 auto_type was an automation-type judgment that records no deployment, so mapping it
+    onto construct (b) would present it as observed deployment. The table says how a reader may relate the codes.
   automation_type: {A: "deploymentMode=assisted (split by vector: physical tool-assisted work vs LLM-assisted desk work)", Ac: "deploymentMode=compressive", H: "fieldDependency + deploymentMode=human-executes + shouldRemainHumanReason (where normative)", V: "deploymentMode=supervises-system if deployment evidence, else compressive + sWatch", S: "deploymentMode=compressive + sWatch (XR-04)"}
   tacit_density: "tacitExperienceRequirement (prior evidence)"
   career_ladder_position: "not migrated as a task property; derived from role profiles (prior evidence kept)"

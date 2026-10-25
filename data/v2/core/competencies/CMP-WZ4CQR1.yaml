@@ -17,7 +17,8 @@ statement:
 competencyType: practice
 levelSpan:
   min: L1
-  max: L5
+  max: L4
+levelSpanBasis: anchored
 homeModule: core
 reusability: cross-subsector
 altLabel:
@@ -88,3 +89,7 @@ levels:
   indicators:
   - emst:core/IND-CRDW8BZ
   - emst:core/IND-NDS3Y4C
+changeNote:
+- release: 2.0.0-rc.1
+  note:
+    en: 'levelSpan.max L5 -> L4: L5 is defined only where SME panels confirm strategic demand (SPEC §8.2 rule 2; ADR-0032; review m6).'

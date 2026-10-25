@@ -136,6 +136,11 @@ def check_rows(rows: list[dict], preds: set, justs: set) -> list[str]:
             errs.append(f"{where}: weakest_match_type {o['weakest_match_type']} not a SKOS predicate or NoTermFound")
         if r.get("object_id") == NO_TERM and not re.search(r"no[- ]term reason:", r.get("comment", ""), re.I):
             errs.append(f"{where}: NoTermFound rows must state 'no-term reason:' in comment")
+        # one NoTermFound convention (vocab/mapping_predicates.yaml#no_match_convention; ADR-0032, review M9)
+        if r.get("object_id") == NO_TERM and r.get("predicate_id") in STRENGTH and r.get("predicate_modifier") != "Not":
+            errs.append(f"{where}: a NoTermFound row never asserts a positive predicate: set predicate_modifier Not")
+        if "held_variants" in o:
+            errs.append(f"{where}: `other` must not mark held variants (ADR-0032, review m14)")
         for c in ("confidence", "similarity_score", "reviewer_agreement"):
             v = r.get(c)
             if v not in (None, ""):
@@ -159,6 +164,9 @@ def check_rows(rows: list[dict], preds: set, justs: set) -> list[str]:
 def write_set(target: str, version: str, meta: dict, rows: list[dict], curies: dict) -> Path:
     """Validate and write `<target>/<version>.sssom.tsv` + `.sssom.yml`. Returns the TSV path."""
     preds, justs = vocab_terms()
+    for r in rows:                         # NoTermFound convention applied on write (ADR-0032, review M9)
+        if r.get("object_id") == NO_TERM and r.get("predicate_id") in STRENGTH:
+            r["predicate_modifier"] = "Not"
     errs = check_rows(rows, preds, justs)
     if errs:
         raise SetError("\n".join(errs[:50]) + (f"\n... {len(errs)} errors" if len(errs) > 50 else ""))

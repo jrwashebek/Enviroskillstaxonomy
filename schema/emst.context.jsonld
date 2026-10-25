@@ -78,6 +78,10 @@
   "actorType": {
    "@id": "emstv:actorType"
   },
+  "actorTypes": {
+   "@id": "emstv:actorTypes",
+   "@type": "xsd:integer"
+  },
   "additionalTasks": {
    "@id": "emstv:additionalTasks",
    "@type": "@id",
@@ -97,6 +101,10 @@
   "agent": {
    "@id": "prov:wasAttributedTo",
    "@container": "@set"
+  },
+  "agentDraft": {
+   "@id": "emstv:agentDraft",
+   "@type": "@json"
   },
   "aggregation": {
    "@id": "emstv:aggregation"
@@ -136,6 +144,13 @@
   },
   "assessedAt": {
    "@id": "emstv:assessedAt"
+  },
+  "assessedBy": {
+   "@id": "emstv:assessedBy"
+  },
+  "assessedOn": {
+   "@id": "emstv:assessedOn",
+   "@type": "xsd:date"
   },
   "assessmentContext": {
    "@id": "emstv:assessmentContext",
@@ -177,6 +192,10 @@
   "baseline": {
    "@id": "emstv:baseline"
   },
+  "baselineN": {
+   "@id": "emstv:baselineN",
+   "@type": "xsd:integer"
+  },
   "baselineValue": {
    "@id": "emstv:baselineValue",
    "@type": "xsd:double"
@@ -194,12 +213,18 @@
    "@type": "@id",
    "@container": "@set"
   },
+  "buildCommit": {
+   "@id": "emstv:buildCommit"
+  },
   "byRoleLevel": {
    "@id": "emstv:byRoleLevel"
   },
   "careFlag": {
    "@id": "emstv:careFlag",
    "@type": "xsd:boolean"
+  },
+  "caseUuid": {
+   "@id": "emstv:caseUuid"
   },
   "category": {
    "@id": "emstv:category"
@@ -246,6 +271,10 @@
   },
   "codebookVersion": {
    "@id": "emstv:codebookVersion"
+  },
+  "codedOn": {
+   "@id": "emstv:codedOn",
+   "@type": "xsd:date"
   },
   "comparisonPeriod": {
    "@id": "emstv:comparisonPeriod",
@@ -301,6 +330,9 @@
   "counterSignal": {
    "@id": "emstv:counterSignal",
    "@container": "@language"
+  },
+  "counts": {
+   "@id": "emstv:counts"
   },
   "craft": {
    "@id": "emstv:craft"
@@ -414,6 +446,9 @@
    "@id": "emstv:description",
    "@container": "@language"
   },
+  "difference": {
+   "@id": "emstv:difference"
+  },
   "direction": {
    "@id": "emstv:direction"
   },
@@ -425,6 +460,13 @@
   },
   "dispersion": {
    "@id": "emstv:dispersion"
+  },
+  "displayGate": {
+   "@id": "emstv:displayGate"
+  },
+  "distinctObservations": {
+   "@id": "emstv:distinctObservations",
+   "@type": "xsd:integer"
   },
   "distinctness": {
    "@id": "emstv:distinctness"
@@ -463,6 +505,10 @@
   },
   "enactedInModule": {
    "@id": "emstv:enactedInModule"
+  },
+  "enactment": {
+   "@id": "emstv:enactment",
+   "@type": "@id"
   },
   "enactmentKind": {
    "@id": "emstv:enactmentKind"
@@ -534,8 +580,7 @@
    "@id": "emstv:federalEquivalent"
   },
   "feederRoles": {
-   "@id": "emstv:feederRoles",
-   "@container": "@set"
+   "@id": "emstv:feederRoles"
   },
   "fieldDependency": {
    "@id": "emstv:fieldDependency"
@@ -617,6 +662,10 @@
   "independenceKey": {
    "@id": "emstv:independenceKey"
   },
+  "independentSignals": {
+   "@id": "emstv:independentSignals",
+   "@type": "xsd:integer"
+  },
   "index": {
    "@id": "emstv:index"
   },
@@ -634,6 +683,9 @@
   },
   "indigenousDataFlag": {
    "@id": "emstv:indigenousDataFlag"
+  },
+  "indigenousKnowledgeStatement": {
+   "@id": "emstv:indigenousKnowledgeStatement"
   },
   "industry": {
    "@id": "emstv:industry"
@@ -733,6 +785,9 @@
    "@id": "emstv:levelSpan",
    "@type": "@json"
   },
+  "levelSpanBasis": {
+   "@id": "emstv:levelSpanBasis"
+  },
   "levels": {
    "@id": "emstv:levels",
    "@container": "@set"
@@ -745,6 +800,9 @@
    "@id": "emstv:licensesRequired",
    "@container": "@set"
   },
+  "lifecycleBasis": {
+   "@id": "emstv:lifecycleBasis"
+  },
   "lifecycleState": {
    "@id": "emstv:lifecycleState"
   },
@@ -755,8 +813,9 @@
   "lowestLevel": {
    "@id": "emstv:lowestLevel"
   },
-  "mappingRule": {
-   "@id": "emstv:mappingRule"
+  "mandate": {
+   "@id": "emstv:mandate",
+   "@type": "@id"
   },
   "mapsTo": {
    "@id": "emstv:mapsTo"
@@ -863,8 +922,14 @@
    "@id": "skos:note",
    "@container": "@language"
   },
+  "notice": {
+   "@id": "emstv:notice"
+  },
   "novelty": {
    "@id": "emstv:novelty"
+  },
+  "nullReason": {
+   "@id": "emstv:nullReason"
   },
   "object": {
    "@id": "emstv:object",
@@ -876,12 +941,21 @@
   "obs4": {
    "@id": "emstv:obs4"
   },
+  "obs4Draft": {
+   "@id": "emstv:obs4Draft"
+  },
   "obs4Flags": {
    "@id": "emstv:obs4Flags"
+  },
+  "observationId": {
+   "@id": "emstv:observationId"
   },
   "observedPeriod": {
    "@id": "dct:temporal",
    "@type": "@json"
+  },
+  "operatingProgramme": {
+   "@id": "emstv:operatingProgramme"
   },
   "ordinal": {
    "@id": "emstv:ordinal",
@@ -900,6 +974,10 @@
   },
   "ownership": {
    "@id": "emstv:ownership"
+  },
+  "passIndex": {
+   "@id": "emstv:passIndex",
+   "@type": "xsd:integer"
   },
   "pathwayType": {
    "@id": "emstv:pathwayType"
@@ -932,6 +1010,10 @@
    "@id": "emstv:positiveEducationRequirement",
    "@type": "xsd:boolean"
   },
+  "postingsOrPds": {
+   "@id": "emstv:postingsOrPds",
+   "@type": "xsd:integer"
+  },
   "precisionAt1": {
    "@id": "emstv:precisionAt1",
    "@type": "xsd:double"
@@ -951,6 +1033,10 @@
   "principal": {
    "@id": "emstv:principal",
    "@container": "@language"
+  },
+  "processingChain": {
+   "@id": "emstv:processingChain",
+   "@container": "@set"
   },
   "productExamples": {
    "@id": "emstv:productExamples",
@@ -1041,11 +1127,12 @@
    "@id": "emstv:releaseCriterion",
    "@container": "@language"
   },
+  "released": {
+   "@id": "dct:issued",
+   "@type": "xsd:date"
+  },
   "relevance": {
    "@id": "emstv:relevance"
-  },
-  "reliability": {
-   "@id": "emstv:reliability"
   },
   "renewal": {
    "@id": "emstv:renewal"
@@ -1137,6 +1224,10 @@
    "@id": "emstv:safetyOrLegalCritical",
    "@type": "xsd:boolean"
   },
+  "sampleFrame": {
+   "@id": "emstv:sampleFrame",
+   "@container": "@language"
+  },
   "scale": {
    "@id": "emstv:scale"
   },
@@ -1150,6 +1241,9 @@
   "scenarioSignposts": {
    "@id": "emstv:scenarioSignposts",
    "@container": "@set"
+  },
+  "schemaVersion": {
+   "@id": "dct:conformsTo"
   },
   "scheme": {
    "@id": "emstv:notationScheme"
@@ -1174,6 +1268,10 @@
   },
   "sectorActorSubtype": {
    "@id": "emstv:sectorActorSubtype"
+  },
+  "sectorActors": {
+   "@id": "emstv:sectorActors",
+   "@type": "xsd:integer"
   },
   "sectorApplications": {
    "@id": "emstv:sectorApplications",
@@ -1209,6 +1307,9 @@
   "servesTasks": {
    "@id": "emstv:servesTasks"
   },
+  "sessionId": {
+   "@id": "emstv:sessionId"
+  },
   "severity": {
    "@id": "emstv:severity"
   },
@@ -1223,6 +1324,10 @@
    "@id": "emstv:signOffAuthority",
    "@type": "@json"
   },
+  "signalFamilies": {
+   "@id": "emstv:signalFamilies",
+   "@type": "xsd:integer"
+  },
   "signalFamily": {
    "@id": "emstv:signalFamily"
   },
@@ -1233,15 +1338,16 @@
    "@id": "emstv:signalType"
   },
   "signals": {
-   "@id": "emstv:signals",
-   "@type": "@id",
-   "@container": "@set"
+   "@id": "emstv:signals"
   },
   "socCode": {
    "@id": "emstv:socCode"
   },
   "source": {
    "@id": "emstv:source"
+  },
+  "sourceGrade": {
+   "@id": "emstv:sourceGrade"
   },
   "sourceId": {
    "@id": "emstv:sourceId"
@@ -1265,6 +1371,9 @@
   "specEffectiveDate": {
    "@id": "emstv:specEffectiveDate",
    "@type": "xsd:date"
+  },
+  "stale": {
+   "@id": "emstv:stale"
   },
   "start": {
    "@id": "emstv:start"
@@ -1385,6 +1494,12 @@
    "@id": "emstv:technicalExposure",
    "@container": "@set"
   },
+  "test": {
+   "@id": "emstv:test"
+  },
+  "testedFor": {
+   "@id": "emstv:testedFor"
+  },
   "text": {
    "@id": "emstv:text"
   },
@@ -1443,6 +1558,9 @@
   "unit": {
    "@id": "emstv:unit",
    "@container": "@language"
+  },
+  "upstreamSource": {
+   "@id": "emstv:upstreamSource"
   },
   "url": {
    "@id": "schema:url"
@@ -1521,6 +1639,9 @@
   "values": {
    "@id": "emstv:values",
    "@type": "@json"
+  },
+  "variant": {
+   "@id": "emstv:variant"
   },
   "variantOf": {
    "@id": "emstv:variantOf",
@@ -1630,23 +1751,60 @@
   "comment": {
    "@id": "rdfs:comment"
   },
-  "schemaVersion": {
-   "@id": "dct:conformsTo"
+  "mapping_tool": {
+   "@id": "sssom:mapping_tool"
   },
-  "released": {
-   "@id": "dct:issued",
-   "@type": "xsd:date"
+  "mapping_tool_version": {
+   "@id": "sssom:mapping_tool_version"
+  },
+  "creator_id": {
+   "@id": "sssom:creator_id",
+   "@container": "@set"
+  },
+  "see_also": {
+   "@id": "sssom:see_also",
+   "@container": "@set"
+  },
+  "other": {
+   "@id": "sssom:other"
+  },
+  "storage": {
+   "@id": "emstv:textStorage"
+  },
+  "retrieved": {
+   "@id": "emstv:retrieved"
+  },
+  "paraphrase": {
+   "@id": "emstv:paraphrase"
+  },
+  "currency": {
+   "@id": "schema:currency"
+  },
+  "rangeLabel": {
+   "@id": "emstv:rangeLabel"
+  },
+  "stateFips": {
+   "@id": "emstv:stateFips"
+  },
+  "countyFips": {
+   "@id": "emstv:countyFips"
+  },
+  "matchType": {
+   "@id": "emstv:matchType"
+  },
+  "reviewDate": {
+   "@id": "emstv:reviewDate"
+  },
+  "crosswalkRecord": {
+   "@id": "emstv:crosswalkRecord"
+  },
+  "roleVariantKey": {
+   "@id": "emstv:roleVariantKey"
+  },
+  "timing": {
+   "@id": "emstv:timing"
   },
   "Release": "emstv:Release",
-  "notice": {
-   "@id": "emstv:notice"
-  },
-  "indigenousKnowledgeStatement": {
-   "@id": "emstv:indigenousKnowledgeStatement"
-  },
-  "buildCommit": {
-   "@id": "emstv:buildCommit"
-  },
   "tools": {
    "@id": "emstv:tools",
    "@type": "@id",
@@ -1657,13 +1815,6 @@
    "@type": "@id",
    "@container": "@set"
   },
-  "CompetencyLevelOutcome": "emstv:CompetencyLevelOutcome",
-  "caseUuid": {
-   "@id": "emstv:caseUuid"
-  },
-  "enactment": {
-   "@id": "emstv:enactment",
-   "@type": "@id"
-  }
+  "CompetencyLevelOutcome": "emstv:CompetencyLevelOutcome"
  }
 }

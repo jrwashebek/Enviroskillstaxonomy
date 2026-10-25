@@ -72,7 +72,24 @@ def build_md(version, dist):
         f"- SHA-256 of `emst.bundle.jsonld`: `{bsha}`",
         f"- Files listed in `SHA256SUMS`: {len(sums.decode('utf-8').splitlines())}", "",
         "The release build is deterministic: two builds of the same tree are byte-identical (`diff -r`). A build made "
-        "after the orchestrator commits will carry that commit in its build line, so its hashes differ from these.", ""])
+        "after the orchestrator commits will carry that commit in its build line, so its hashes differ from these.", "",
+        "## Rebuilding this release", "",
+        "One command re-cuts the release from the repository: it checks the schema, builds twice and compares the two "
+        "builds byte for byte, regenerates the WP-08 views and the explorer, rewrites this folder and re-runs the release "
+        "gate with every CI check. It never commits or tags.", "",
+        "```",
+        f"python3 scripts/recut_release.py --version {version}            # from the clean, committed tree (the tagging run)",
+        f"python3 scripts/recut_release.py --version {version} --pending  # before the commit exists",
+        "```", "",
+        "- **Build stamp** (review m1). From a clean tree the stamp is the HEAD commit, and `scripts/build_release.py` "
+        "refuses a release build whose inputs (`data/`, `vocab/`, `schema/`, `scripts/`, `validation/`, the candidate "
+        "dispositions, `PUBLICATION_SIGNOFF.yaml`) differ from HEAD. It also refuses a `+uncommitted` stamp. Before the "
+        "commit, `--pending` stamps `<HEAD>+recut-pending-commit`, which claims no clean commit; such a build is a "
+        "candidate only, and the tagged build is the one made from the clean commit.",
+        "- **Release date.** `--date`, else the latest `generatedAt` among the released records. `SOURCE_DATE_EPOCH` is "
+        "ignored under `--profile release`, so a CI build of the tag and a local re-cut give the same bytes.",
+        "- **The single build** is `python3 scripts/build_release.py --profile release --version "
+        f"{version}` (add `--build-commit \"<HEAD>+recut-pending-commit\"` before the commit).", ""])
 
 
 def render(version, dist):

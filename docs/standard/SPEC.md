@@ -2,8 +2,9 @@
 
 **Environmental Management Skills Taxonomy, version 2 — normative specification**
 
-- **Specification version:** 2.0.0-draft.3 · **Date:** 2026-10-23 · **Status:** Draft for Phase 4 implementation
-- **Editor:** Chief Taxonomy Architect (CA) · **Decision basis:** ADR-0001 … ADR-0030 in `docs/decisions/`
+- **Specification version:** 2.0.0-draft.4 · **Date:** 2026-10-25 · **Status:** Draft for Phase 4 implementation
+- **Editor:** Chief Taxonomy Architect (CA) · **Decision basis:** ADR-0001 … ADR-0032 in `docs/decisions/`
+- **draft.4 changes:** the data and methods fixes of the 2.0.0-rc.1 re-cut (ADR-0032; CR-CA-001; findings M2–M10, m5–m10, m13, m14 of `docs/review/data_method_review.md`). The changed sections are §4, §5.2, §5.3, §5.7, §5.12–§5.14, §5.21, §7.2, §10.2, §10.4, §11.3, §11.5, §11.6, §13.2, §14.2 and §15; see "Changes since draft.3" below.
 - **draft.3 changes:** the CA rulings at S1 close on CR-DB-001, CR-DC-001, CR-DE-004, CR-FC-001, CR-FC-002, CR-LC-001 and CR-SC-001 (ADR-0030). Also CR-CP-001 and CR-FH-001, which arrived during the session. The changed sections are §4, §5.2–§5.5, §5.8, §5.10, §5.12, §5.16, §5.19, §5.21, §10.5, §11.6, §12.3, §14.2, §16.1 and §18.2.
 - **draft.2 changes:** the CA rulings on change requests CR-DE-001…003, CR-IO-001…003, CR-LM-001…003 and CR-IA-001…002 (ADR-0029). The changed sections are §4, §5.1–§5.5, §5.12–§5.17, §5.19–§5.20, §5.24, §8.2, §10.5, §11.3–§11.4, §12.1–§12.2, §14.3, §15 and §17.1.
 - **Licence:** CC0 1.0 (ADR-0013)
@@ -12,6 +13,18 @@
 The key words MUST, MUST NOT, SHOULD, SHOULD NOT and MAY are used as in RFC 2119. Where this specification and an ADR disagree, the ADR governs until this document is corrected by a change record.
 
 ---
+
+## Changes since draft.3
+
+All are decided in ADR-0032 (rc.1 re-cut, data and methods); the lifecycle change is CR-CA-001. Each line names the finding of `docs/review/data_method_review.md` it answers.
+
+1. **Lifecycle describes the work, not the record** (M7; §4, §10.2, §10.4). `established` means long-standing work in the sector; how far EMST has validated a record is `validationStatus`. `watch` may now label L1–L4 records whose work is hypothesized. `proposed` and `emerging` require a stored `lifecycleBasis` whose machine-readable entry test (`vocab/lifecycle_states.yaml`) is met; the validator recomputes it. Lifecycle no longer caps the effective use tier (effective-use-tier@1.1.0). 440 records moved from proposed or emerging to watch.
+2. **Ratings** (M2, M4, M8; §5.12, §5.13, §7.2). Every rating carries `validationStatus`. Repeated passes of one model and one prompt family are one rater: one `raterId`, with `passIndex` and `sessionId`; their agreement is run-to-run consistency, not reliability. v1 ratings are labelled `S`, `llm-assisted`, and carry no v2 construct field; `mappingRule` is removed. The 2.0 exposure batch states its `sampleFrame`. E-levels carry `intensityRank`, and EMST's E3 is not Eloundou's E3 (§11.3).
+3. **Change signals** (M5, M6, m9; §5.14, §11.6). `independenceKey` is an enumeration and required; `upstreamSource`, `processingChain` and `observationId` are required; `reliability` is renamed `sourceGrade`; `measure.difference` and `measure.nullReason` are added; direction `indeterminate` is required where the difference interval includes 0; projection signals attached more broadly than closeMatch are capped at low confidence and read against the all-occupation baseline. ER-1 independence (change-indicator@1.1.0) requires disjoint providers, upstream sources and processing chains, and counts an observation once.
+4. **Indicators and competencies** (m6, m8; §5.2, §5.3, §8.2). `obs4` is human-coded or null; agent codes go in `obs4Draft`. `levelSpanBasis` (`anchored | declared`) is required from candidate; L5 needs an L5 anchor.
+5. **Crosswalks** (M3, M9, m14; §15). Agent-made rows are `semapv:LLMBasedMatching`. A `sssom:NoTermFound` row never asserts a positive predicate. Two LLM coders agreeing is `two-llm-coders-agreed-target`, not reviewer agreement. Mapping sets do not mark held records.
+6. **Views and registers** (M10, m10; §5.21, §14.2). The Federal Series Profile and State Class View exclude rows matched below `skos:closeMatch` (federal-series-profile@0.2.0, state-class-view@0.2.0) and label agent confidence as uncalibrated. A state class record without a hash is `url-only`. Assessment staleness is a computed bundle flag.
+7. **Governance** (m14; §16.1). Records routed to TN for review are listed in `data/v2/governance/tn_review_queue.yaml` and held, with their dependants, until a recorded review.
 
 ## Contents
 
@@ -133,7 +146,8 @@ Every stored record (except mapping rows, which follow SSSOM, §15) MUST carry t
 | `layer` | `L0`…`L6`, `learning` | MUST | |
 | `module` | module namespace or `core` | MUST | where the record currently lives (distinct from the ID's minting namespace) |
 | `status` | editorial status (§10.1) | MUST | |
-| `lifecycleState` | lifecycle state (§10.2) | MUST for L1–L4 | |
+| `lifecycleState` | lifecycle state (§10.2) | MUST for L1–L4 | describes the work in the sector, not the record's validation (CR-CA-001) |
+| `lifecycleBasis` | `{testedFor, test, result, evidence[], mandate, operatingProgramme, counts{}, assessedOn, assessedBy, note}` | MUST when `lifecycleState ∈ {proposed, emerging}` at `candidate`, `published` or `deprecated` | the entry test applied (§10.2); `result = met` is required for the state, and the validator recomputes `counts` (ADR-0032) |
 | `useTier` | use tier (§10.4) | MUST for L1–L3 | stored as the *declared ceiling*; the effective tier is computed |
 | `validationStatus` | validation status (§10.5) | MUST for L1–L3 | |
 | `versionIntroduced`, `lastChangedIn` | taxonomy SemVer | MUST once published | |
@@ -168,7 +182,8 @@ Field names are the terms of `schema/emst.context.jsonld`. "Req." gives MUST (M)
 |---|---|---|
 | `competencyType` | M | `practice | knowledge-area | transversal` (`vocab/competency_types.yaml`) |
 | `statement` | M | ≤ 60 words; practice/transversal titles are verb + object (+ context); knowledge areas are noun phrases |
-| `levelSpan` | M | `{min, max}` in L1–L5 (and `A` for an Awareness bundle) |
+| `levelSpan` | M | `{min, max}` in L1–L5 (and `A` for an Awareness bundle); `max = L5` only with L5 indicators (§8.2 rule 2) |
+| `levelSpanBasis` | M from `candidate` | `anchored` (every level of the span has indicators in `levels[]`) or `declared` (the span is an editorial claim; knowledge areas are `declared`); ADR-0032 |
 | `levels[]` | M for each level in span that is published | `{level, indicators[] (2–5 Indicator IDs), publicationRuleChecks{existence, distinctness, assessability, consensus}}`; each check is `{result ∈ pass \| fail \| pending \| not-applicable, evidence[], checkedOn}`, with `evidence[]` M when `existence` or `consensus` is `pass` (§8.2; CR-IO-001) |
 | `transversalCluster` | M when `competencyType = transversal` | `TX-A`…`TX-F` (`vocab/competency_types.yaml`) |
 | `awarenessBundle` | O | KnowledgeStatement IDs tagged `A` |
@@ -195,7 +210,8 @@ Constraints: a competency MUST be linked from at least one Task (`Task.supports`
 | `augmentationMode` | M | `unaided | assisted | supervisory` |
 | `assessmentMethods[]` | M | from `vocab/friction_types.yaml#assessment_methods` (work sample, seeded-error work sample, structured interview with BARS, simulation, task-book observation, check ride, blind re-measurement, portfolio, knowledge test, record audit, 360 counterpart input) |
 | `useClass` | M | `describe`, `develop` or `select` (`vocab/lifecycle_states.yaml#use_tiers.indicator_use_classes`) |
-| `obs4` | M | 0–3 observability code; release thresholds: select requires 3 with no lint flags; develop requires ≥ 2 with an evidence plan; 0–1 never released as indicators |
+| `obs4` | M (integer or null) | 0–3 observability code assigned by IO's human coders, or `null` until coded (ADR-0032); release thresholds: select requires 3 with no lint flags; develop requires ≥ 2 with an evidence plan; 0–1 never released as indicators; an uncoded OBS-4 leaves PR-3 `pending` |
+| `obs4Draft` | O | `{value, raterType, raterId, codedOn, note}`: an agent's self-code, kept for the IO coders and never read as `obs4`. A record whose `obs4` is an integer MUST name a human coder (`pid:` or `panel:`) in `provenance.reviewers` (`E-OBS4-SELF-CODED` from `candidate`, a warning on drafts) |
 | `evidenceTypes[]` | S | work products an assessor examines |
 | `jurisdictionVariable` | M | boolean; if true, the standard is supplied by an enactment |
 | `servedTasks[]` | S | Task IDs this indicator evidences |
@@ -250,7 +266,7 @@ Production tasks SHOULD be split from specification, review and defence tasks, a
 | `entryFrom[]`, `progressesTo[]` | S | RoleProfile or RoleVariant IDs |
 | `homeModule` | M | |
 | `jobFamily` | O | JobFamily ID (membership is computed; this field records an editorial override) |
-| `lifecycleState` | M | `proposed`/`emerging` roles additionally MUST carry `evidenceSignals[]` (SIG IDs), `feederRoles[]` with competency deltas, `horizon`, `scenarioSensitivity`, `reviewBy`, `counterSignal` (FS §7) |
+| `lifecycleState` | M | `proposed`/`emerging` roles additionally MUST carry `evidenceSignals[]` (SIG IDs), `feederRoles[]` with competency deltas, `horizon`, `scenarioSensitivity`, `reviewBy`, `counterSignal` (FS §7), and a `lifecycleBasis` that meets the entry test (§4, §10.2); a hypothesized role is `watch` |
 | `v1Seeds` | O | v1 example-position text with provenance |
 
 ### 5.8 `RoleVariant` (L3)
@@ -296,12 +312,15 @@ Typing rules T-1…T-7 (ADR-0003) decide L1/L2 vs L4: substitution invariance; j
 | `roleVariant`, `sectorActor` | O | context |
 | `instrument`, `codebookVersion` | M | e.g. `emst-exposure@2.0` |
 | `raterType` | M | `expert-panel | sme | analyst | llm | external-index | v1-analyst` |
-| `raterId` | M | pseudonymous |
+| `raterId` | M | pseudonymous; for `raterType = llm`, `emstagent:llm-rater@<model>/<prompt family>`, one ID for every repeated pass of that model and prompt family (ADR-0032) |
+| `passIndex`, `sessionId` | M when `raterType = llm` | which repeated pass (1, 2, 3…) and which batch; agreement across passes is run-to-run consistency of one model, and `method` says so |
+| `validationStatus` | M | §10.5; `draft` for every agent or v1 rating |
+| `sampleFrame` | S | `{population, selection, n, note}`: how the units were chosen, so a distribution is not read as the population's |
 | `assessedAt`, `method`, `confidence` | M | `assessedAt` MAY be a partial date (year or year-month) only for `external-index`, where it is the date of the index release; EMST's ingestion date is `provenance.generatedAt` |
 | `technicalExposure[]` | M (construct a), except external-index records whose index has no E-level construct | `{vector ∈ {llm-cognitive, robotics, sensing, convergent}, level ∈ {E0, E1, E2, E3}}`; external-index records MAY give `levelDistribution {E0, E1, E2, E3}` (shares summing to 1 ± 0.01) with `basis` (how the index's labels map to EMST levels) instead of `level` |
-| `sWatch` | O | XR-04: true when a supervises-system or system-executes claim lacks deployment evidence and is coded compressive |
-| `tacitExperienceRequirement` | O | `Hi`, `Med` or `Lo` (codebook supporting attribute) |
-| `deploymentMode` | S (construct b) | `human-executes | assisted | compressive | supervises-system | system-executes`; `deploymentStage ∈ {none, pilot, deployed-limited, deployed-scaled}`; `deploymentEvidence[]` (M if mode is `supervises-system` or `system-executes`) |
+| `sWatch` | O; forbidden when `raterType = v1-analyst` | XR-04: true when a supervises-system or system-executes claim lacks deployment evidence and is coded compressive |
+| `tacitExperienceRequirement` | O; forbidden when `raterType = v1-analyst` | `Hi`, `Med` or `Lo` (codebook supporting attribute) |
+| `deploymentMode` | S (construct b); forbidden when `raterType = v1-analyst` | `human-executes | assisted | compressive | supervises-system | system-executes`; `deploymentStage ∈ {none, pilot, deployed-limited, deployed-scaled}`; `deploymentEvidence[]` (M if mode is `supervises-system` or `system-executes`) |
 | `contentChangeType` | O (construct b) | how the task is changing, from `vocab/change_types.yaml#content_change_types`; the driver is given by `technicalExposure[].vector`, so there is no separate drivers field (CR-FH-001 #2) |
 | `strategy` | O | `substitution | augmentation | augmentation-for-formation` |
 | `noDeployedToolPerformsCore` | O | descriptive boolean |
@@ -310,23 +329,27 @@ Typing rules T-1…T-7 (ADR-0003) decide L1/L2 vs L4: substitution invariance; j
 | `rationale` | S | |
 | `externalSource` | M when `raterType = external-index` | `{index, release, unit ∈ {onet-task, dwa, iwa, occupation}, matchedOnetTasks[] (may be empty only when unit = occupation), aggregation, values{} (the index's own published numbers), dispersion (number or object), noExternalAnalogue}`; an external-index record carries `technicalExposure` or `externalSource.values`, or both |
 | `v1Flags[]` | M when `raterType = v1-analyst` | e.g. `text_misaligned`, `reconstructed_d2`, `d2_divergent`, `reconciled_d6_2026_03`, `normative_h` |
-| `v1Values`, `mappingRule` | M (`v1Values`), O (`mappingRule`) when `raterType = v1-analyst` | v1 codes verbatim (snake_case); the codebook rule that mapped them |
+| `v1Values` | M when `raterType = v1-analyst` | v1 codes verbatim (snake_case). v1 codes are never mapped into v2 fields; `mappingRule` is removed and `vocab/exposure_instrument_v2.yaml#v1_migration_mapping` is documentation only (ADR-0032) |
 | `evidenceLabel`, `sources[]` | M | |
 
 Codebook rules XR-01…XR-07 apply (§11.3). External-index values derived from datasets whose licence is unverified carry `license: LicenseRef-EMST-third-party-index-derived` and are excluded from the CC0 files and from every release bundle until the index's terms are entered in the third-party licence register (ADR-0013; CR-LM-002).
 
 ### 5.13 `CraftRating`, `FunctionRating`, `RelevanceRating` (L5)
 
-Per-rater atomic ratings of a task (craft; work function; authority-relevant attributes) or of a competency–role relation (relevance), with the same rater, date, method, confidence and text-hash fields as §5.12. `CraftRating.scale ∈ {ordinal-0-2, constant-sum-100, nominal-defining}`; values `{FC, DC, SC}`. The representation is swappable without migration (ADR-0005). `RelevanceRating.objectScheme` comes from `vocab/evidence_labels.yaml#rating_object_schemes`. **v1 competency-level tags** (craft, workflow stage, family, reform flags, lenses, CLD) use `competency` + `competencyTextSha256` (and `subject` + `subjectTextSha256` on RelevanceRating), with the legacy `objectScheme` values `v1-family | v1-reform-flags | v1-ethical-lens | v1-cld`, **only when `raterType = v1-analyst`**. They are prior evidence, never v2 values (ADR-0008 §5; CR-DE-001).
+Per-rater atomic ratings of a task (craft; work function; authority-relevant attributes) or of a competency–role relation (relevance), with the same rater, date, method, confidence and text-hash fields as §5.12. `CraftRating.scale ∈ {ordinal-0-2, constant-sum-100, nominal-defining}`; values `{FC, DC, SC}`. The representation is swappable without migration (ADR-0005). `RelevanceRating.objectScheme` comes from `vocab/evidence_labels.yaml#rating_object_schemes`. **v1 competency-level tags** (craft, workflow stage, family, reform flags, lenses, CLD) use `competency` + `competencyTextSha256` (and `subject` + `subjectTextSha256` on RelevanceRating), with the legacy `objectScheme` values `v1-family | v1-reform-flags | v1-ethical-lens | v1-cld`, **only when `raterType = v1-analyst`**. They are prior evidence, never v2 values (ADR-0008 §5; CR-DE-001). Every rating carries `validationStatus`; `llm` ratings carry `passIndex` and `sessionId` (§5.12); v1-analyst ratings carry `evidenceLabel = S`, `provenance.method = llm-assisted`, `toolVersion = "unknown (v1 sessions)"` and `promptVersion = "legacy/v1 working records"` (§11.5).
 
 ### 5.14 `ChangeSignal` (L5)
 
-Required: `targetType`, `targetId`, `measure{name, value, unit, ci95, n, denominator, baseline{value, ci95, n, note} (O), sensitivity{weighting, value, baselineValue} (O)}`, `observedPeriod`, `comparisonPeriod` (S), `geography`, `sectorActor` (S), `source`, `sourceRelease`, `corpus{version, sha256, license}`, `method`, `toolVersion`, `promptVersion` (if LLM), `crosswalkPath`, `crosswalkMinMatchType`, `linkerQuality{goldSet, precisionAt1, ci95}` (M if derived from automated linking), `direction`, `directionConfidence`, `drivers[]`, `steepCategory`, `novelty`, `reliability (A–D)`, `corroboration`, `priorityScore` (computed), `careFlag`, `tribalPrograms`, `personalData` (MUST be false), `evidenceLabel` (S until reviewed), `reviewStatus`, `reviewer`, `reviewBy`, `signalStatus ∈ {watch, active, retired}` (`vocab/change_types.yaml#signal_statuses`; renamed from `status`).
+Required: `targetType`, `targetId`, `measure{name, value, unit, ci95, n, denominator, baseline{value, ci95, n, note} (O), sensitivity{weighting, value, baselineValue} (O), difference{value, ci95, method, sensitivity{variant, value, ci95, n, baselineN}} (M where the direction rests on a comparison of two periods or of target and baseline from one stream), nullReason{ci95, n} (M for each of `ci95` and `n` that is null)}`, `observedPeriod`, `comparisonPeriod` (S), `geography`, `sectorActor` (S), `source`, `sourceRelease`, `corpus{version, sha256, license}`, `method`, `toolVersion`, `promptVersion` (if LLM), `crosswalkPath`, `crosswalkMinMatchType`, `linkerQuality{goldSet, precisionAt1, ci95}` (M if derived from automated linking), `direction` (incl. `indeterminate`), `directionConfidence`, `drivers[]`, `steepCategory`, `novelty`, `sourceGrade (A–D; Admiralty source grade, renamed from `reliability`, which it never measured)`, `corroboration`, `priorityScore` (computed), `careFlag`, `tribalPrograms`, `personalData` (MUST be false), `evidenceLabel` (S until reviewed), `reviewStatus`, `reviewer`, `reviewBy`, `signalStatus ∈ {watch, active, retired}` (`vocab/change_types.yaml#signal_statuses`; renamed from `status`).
 
 Evidence-rule fields (CR-LM-001):
 - `signalFamily`: from `vocab/change_types.yaml#signal_families`.
-- `independenceKey`: a slug naming the upstream dataset; its providers are listed in `vocab/change_types.yaml#independence_keys`.
-- Both are M when `signalStatus = active`, and an active signal's key MUST be listed.
+- `independenceKey` (M): an enumerated key of `vocab/change_types.yaml#independence_keys`, which lists its providers; an unlisted key is an error at every status (ADR-0032).
+- `upstreamSource` (M): the Source of the primary dataset the reading rests on; every reading of one dataset names the same source, so a dataset reached through two intermediaries counts once.
+- `processingChain[]` (M; may be empty): the shared processing steps, each `<step>:<id>` with `step ∈ {coder, crosswalk, classifier, linker, transcription}` (`vocab/change_types.yaml#processing_chain_steps`).
+- `observationId` (M): `obs-` + 12 hex digits; signals that attach one observation to several targets share it, and the evidence rule counts it once (`vocab/change_types.yaml#observations`).
+- `signalFamily` is M when `signalStatus = active`.
+- **Direction.** `indeterminate` is REQUIRED when `measure.difference.ci95` (or its sensitivity interval) includes 0. A projection signal attached more broadly than `skos:closeMatch` has `directionConfidence = low` and reads `grow` or `decline` against the all-occupation baseline, never against zero (`vocab/change_types.yaml#signal_families.projection`).
 - `registeredDeployment`: boolean; only when `signalFamily = deployment`.
 - `impact`: integer 1–3, the input to `priorityScore`.
 - `scenarioSignposts[]`: `vocab:scenarios#SP-NN`.
@@ -370,7 +393,7 @@ Stored as `ExposureAssessment` construct (c) fields with `scenario` set to an L0
 
 ### 5.21 `StateClassRecord` (L6)
 
-SL's minimal common fields (`vocab/state_class_fields.yaml`): MUST — jurisdiction and employer type; agency; class code, title and series; level index and supervisory status; spec effective date; work-description text (or a hash and URL where reuse is restricted); MQ text and MQ location; degree rule; licences with issuer and timing; pay basis, range and effective date; provenance; and the EMST mapping record (role variant, mapped role level(s), match type, confidence, reviewer, review date; competency targets are computed by the State Class View and never stored, CR-FH-001 #5). SHOULD — SOC code, EEO-4 category, bargaining unit, appointment route, substitution formula, residency, exam type, broad-class flag, position overrides, native crosswalk references. Records are dated and re-run each 1 July or on state-plan revision.
+SL's minimal common fields (`vocab/state_class_fields.yaml`): MUST — jurisdiction and employer type; agency; class code, title and series; level index and supervisory status; spec effective date; work-description text (or, where reuse is restricted, `storage: hash-and-url` with the SHA-256 of the text read, or `storage: url-only` when no hash was taken; a record never claims a hash it does not carry, ADR-0032); MQ text and MQ location; degree rule; licences with issuer and timing; pay basis, range and effective date; provenance; and the EMST mapping record (role variant, mapped role level(s), match type, confidence, reviewer, review date; competency targets are computed by the State Class View and never stored, CR-FH-001 #5). SHOULD — SOC code, EEO-4 category, bargaining unit, appointment route, substitution formula, residency, exam type, broad-class flag, position overrides, native crosswalk references. Records are dated and re-run each 1 July or on state-plan revision.
 
 ### 5.22 `LearningResource` (learning)
 
@@ -442,7 +465,7 @@ Each task is rated per craft **0 (none) / 1 (supporting) / 2 (defining)**:
 - **SC = 2** if the deliverable is a commitment needing authority, legitimacy or agreement from another institution or the public that must hold over time.
 - Several crafts may be 2; a task may have none at 2 (general professional practice).
 
-Raters MUST code blind to parent competency, domain and any prior craft label; production values require ≥ 3 raters; agreement is Krippendorff's ordinal α with bootstrap CI (§10.5). The scale is provisional until the IO pilot reports; the schema accepts `ordinal-0-2`, `constant-sum-100` and `nominal-defining`.
+Raters MUST code blind to parent competency, domain and any prior craft label; production values require ≥ 3 raters, and repeated passes of one model and prompt family count as **one** rater (§5.12; ADR-0032); agreement is Krippendorff's ordinal α with bootstrap CI (§10.5). The scale is provisional until the IO pilot reports; the schema accepts `ordinal-0-2`, `constant-sum-100` and `nominal-defining`.
 
 ### 7.3 Field and formation dependency
 
@@ -515,7 +538,13 @@ First-class `FrictionRecord`s (§5.17) on actor pairs and variant pairs; minimum
 
 ### 10.2 Lifecycle state (`vocab/lifecycle_states.yaml`)
 
-`watch` (L5 only) → `proposed` → `emerging` → `established` → `declining` → `withdrawn`; plus `lapsed` (watch expired) and `merged`. Entry thresholds and review-by intervals are defined in the vocabulary (ADR-0015). Every `proposed` or `emerging` record MUST carry `reviewBy`.
+`watch` → `proposed` → `emerging` → `established` → `declining` → `withdrawn`; plus `lapsed` (watch expired) and `merged`. The lifecycle state describes **the work in the sector**, not the record: `established` is long-standing work, and how far EMST has validated the record is `validationStatus` (§10.5; CR-CA-001). `watch` labels L5 WatchItems and L1–L4 records whose work is hypothesized.
+
+Entry tests (`vocab/lifecycle_states.yaml#lifecycle_states.<state>.entry_test`; ADR-0015 as amended by ADR-0032):
+- **proposed**: ≥ 3 independent signals (ER-1 of change-indicator@1.1.0; one observation counts once) from ≥ 2 signal families and ≥ 2 sector actors; or a mandate (an Instrument with an `effective` DriverEvent on or before the test date).
+- **emerging**: ≥ 10 postings or PDs in 12 months across ≥ 2 actor types (postings-pds signals; `measure.n` summed over distinct observations); or a named operating programme with a resolving E-labelled source; roles also need ≥ 1 `feederRoles[]` entry.
+
+A `proposed` or `emerging` record MUST carry `reviewBy` and, from `candidate`, a `lifecycleBasis` (§4) with `result = met`. The validator recomputes the counts from the cited evidence (`E-LIFECYCLE-BASIS`; a warning on drafts). A record that does not meet the test is `watch`.
 
 ### 10.3 Protect overlay
 
@@ -523,7 +552,7 @@ A stored governance decision on L1–L3 records (and L2 where useful), made when
 
 ### 10.4 Use tiers (`vocab/lifecycle_states.yaml#use_tiers`)
 
-`exploratory | describe | develop | select`. **Effective use tier** (computed) = the minimum of the lifecycle cap (watch/proposed → exploratory; emerging → develop; established → select), the evidence met under ADR-0024, and the reliability gate for any tag shown.
+`exploratory | describe | develop | select`. **Effective use tier** (computed; effective-use-tier@1.1.0) = the minimum of the evidence met under ADR-0024 and the reliability gate for any tag shown. Lifecycle no longer caps it (ADR-0032; CR-CA-001): only `withdrawn`, `lapsed` and `merged` records, which are not current, have no use tier.
 
 ### 10.5 Validation status and reliability gates (`vocab/lifecycle_states.yaml#validation_statuses`)
 
@@ -571,7 +600,7 @@ SC1 Assured Augmentation; SC2 Human Premium; SC3 Platform Stewardship; SC4 Patch
 
 XR-01 blind coding; XR-02 descriptive and normative fields separate; XR-03 Ac is time compression, never headcount; XR-04 system-executes and supervises-system claims require deployment evidence, else compressive with `sWatch`; XR-05 governed-data conditionality; XR-06 aggregate external matches and show dispersion; XR-07 module tasks assessed before sector-wide conclusions.
 
-E-level codes are labels, not ranks. Their intensity order is `ordinal_order: [E0, E2, E1, E3]`, used for ordinal α (with nominal α reported alongside) and for every sorted display. Scenario rows apply to tasks with any vector at E1, E2 or E3, or with deployment mode compressive or higher, or to flagged formation tasks (CR-IO-003).
+E-level codes are labels, not ranks. Their intensity order is `ordinal_order: [E0, E2, E1, E3]`, carried on each level as `intensityRank` (E0 0, E2 1, E1 2, E3 3), used for ordinal α (with nominal α reported alongside) and for every sorted display. EMST's E3 (convergent exposure) is **not** Eloundou et al.'s E3, and the two are never compared code to code (ADR-0032). Scenario rows apply to tasks with any vector at E1, E2 or E3, or with deployment mode compressive or higher, or to flagged formation tasks (CR-IO-003).
 
 ### 11.4 External measures
 
@@ -581,11 +610,11 @@ Until X2 task matches exist, occupation-level index values attach to RoleProfile
 
 ### 11.5 v1 values
 
-Migrated as `raterType = v1-analyst`, `raterId = v1-analyst-01`, low confidence, with misalignment flags; prior evidence only; never displayed as v2 values or aggregated into public numbers.
+Migrated as `raterType = v1-analyst`, `raterId = v1-analyst-01`, low confidence, with misalignment flags; prior evidence only; never displayed as v2 values or aggregated into public numbers. v1 tags were single-analyst, LLM-assisted classifications: they carry `evidenceLabel = S`, `provenance.method = llm-assisted` and `validationStatus = draft`, keep their codes only in `v1Values`, and carry no v2 construct field (ADR-0032).
 
 ### 11.6 Signals, instruments and the evidence rule
 
-Change signals (§5.14) move a computed change indicator only under the two-family, two-period, close-match, driver-tagged, human-reviewed rule (ADR-0028); otherwise they remain `watch`. Instruments and dated driver events, joined to L0 mechanisms through sensitivity edges, replace v1's reform flags; competency and role sensitivity and **venue applicability** (incl. `federalApplicability ∈ {required-basis, permitted, no-current-basis}` with `asOf`) are computed. Venue applicability follows `vocab/rules/venue-applicability@1.0.0.yaml`: only `requires` links decide (required-basis if one is active; no-current-basis if all are inactive; permitted otherwise); `enables`, `constrains` and `removed-requirement` links are reported as context and never create or remove a basis; views show `basisLinked`, `basisVerified` and `untypedLinks` (CR-SC-001 #4).
+Change signals (§5.14) move a computed change indicator only under the two-family, two-period, close-match, driver-tagged, human-reviewed rule (ADR-0028); otherwise they remain `watch`. Under change-indicator@1.1.0 (ADR-0032), two signals are independent (ER-1) only when their providers, `upstreamSource` and `processingChain` steps are pairwise disjoint and they are different observations; an unlisted key has no providers and cannot be shown independent; an `indeterminate` signal never moves a direction (ER-0). Instruments and dated driver events, joined to L0 mechanisms through sensitivity edges, replace v1's reform flags; competency and role sensitivity and **venue applicability** (incl. `federalApplicability ∈ {required-basis, permitted, no-current-basis}` with `asOf`) are computed. Venue applicability follows `vocab/rules/venue-applicability@1.0.0.yaml`: only `requires` links decide (required-basis if one is active; no-current-basis if all are inactive; permitted otherwise); `enables`, `constrains` and `removed-requirement` links are reported as context and never create or remove a basis; views show `basisLinked`, `basisVerified` and `untypedLinks` (CR-SC-001 #4).
 
 ### 11.7 Computed indicators
 
@@ -651,7 +680,7 @@ Clarifying wording without changing meaning keeps the ID (PATCH with reviewer at
 
 ### 13.2 Evidence standard
 
-Every substantive claim is labelled **E** (supported by a cited source actually read), **J** (expert judgment with its basis), or **S** (speculation with what would confirm or refute it). An `E` label without a resolvable source is invalid. LLM-assisted content is labelled as such and passes IO's gate before it can carry a selection-relevant value.
+Every substantive claim is labelled **E** (supported by a cited source actually read), **J** (expert judgment with its basis), or **S** (speculation with what would confirm or refute it). An `E` label without a resolvable source is invalid. LLM-assisted content is labelled as such and passes IO's gate before it can carry a selection-relevant value. Repeated passes of one model are one source of judgment, never independent raters or reviewers; two LLM coders agreeing is not review (ADR-0032).
 
 ---
 
@@ -663,7 +692,7 @@ Authored text; per-rater atomic ratings with instrument version, date, rationale
 
 ### 14.2 Computed (build only; never in source)
 
-Per-task consensus values; competency and role exposure distributions; craft blends and dominant craft; competency roll-ups of work function and subsector; reusability suggestions; family relevance, breadth and job-family membership; CLD (task, role, pathway) with driver attribution; entry-path health; robustness class and scenario sensitivity; instrument sensitivity and venue/federal applicability; Federal Series Profiles and State Class Views; pathway edges, directional coverage, pathway scores and formation coverage (from typed `formationProvisions`); bundle contents and currency; CLO nodes; role-change views and mirror links (rules for these views and for the Federal Series Profiles, State Class Views, job-family membership and pathway edges are registered as `federal-series-profile`, `state-class-view`, `job-family-membership`, `role-change`, `mirror-links` and `pathway-edges`; CR-FH-001, CR-CP-001); effective use tier; agreement statistics; priority scores; inverse links (incl. `mirroredBy`); tasks' inherited sensitivity edges and subsectors; three-module recurrence; all dashboard, README, release-note and documentation counts; the data dictionary.
+Per-task consensus values; competency and role exposure distributions; craft blends and dominant craft; competency roll-ups of work function and subsector; reusability suggestions; family relevance, breadth and job-family membership; CLD (task, role, pathway) with driver attribution; entry-path health; robustness class and scenario sensitivity; instrument sensitivity and venue/federal applicability; Federal Series Profiles and State Class Views; pathway edges, directional coverage, pathway scores and formation coverage (from typed `formationProvisions`); bundle contents and currency; CLO nodes; role-change views and mirror links (rules for these views and for the Federal Series Profiles, State Class Views, job-family membership and pathway edges are registered as `federal-series-profile`, `state-class-view`, `job-family-membership`, `role-change`, `mirror-links` and `pathway-edges`; CR-FH-001, CR-CP-001); effective use tier; assessment staleness (`stale` on a rating whose text hash no longer matches its subject); agreement statistics; priority scores; inverse links (incl. `mirroredBy`); tasks' inherited sensitivity edges and subsectors; three-module recurrence; all dashboard, README, release-note and documentation counts; the data dictionary.
 
 ### 14.3 Rules
 
@@ -681,7 +710,9 @@ Each computed view is produced by a versioned rule (`vocab/rules/<rule-id>@<vers
 ## 15. Crosswalks
 
 - **Format:** SSSOM 1.0 mapping sets (1.1 slots, and the 1.1 justification `semapv:LLMBasedMatching` for unreviewed agent-drafted rows, as declared extensions; a human-reviewed row takes `semapv:MappingReview` and keeps `original_justification` in `other`; CR-IA-002), one per upstream version, TSV plus YAML metadata, with SKOS predicates, `predicate_modifier: Not`, `sssom:NoTermFound`, `semapv` justifications, calibrated `confidence` separate from raw `similarity_score`, author and reviewer IDs, and `object_source_version`. A flattened CSV is shipped for HR users.
-- **EMST relation predicates** (`vocab/mapping_predicates.yaml`): `emst:replacedBy`, `emst:retiredWithoutReplacement`, `emst:splitInto`, `emst:mergedInto`, `emst:evidencesTask`, `emst:variantOf`, `emst:equivalentEvidence` (credential ↔ CLO).
+- **EMST relation predicates** (`vocab/mapping_predicates.yaml`): `emst:replacedBy`, `emst:retiredWithoutReplacement`, `emst:successorNotReleased` (the successor exists but is withheld from the release), `emst:splitInto`, `emst:mergedInto`, `emst:evidencesTask`, `emst:variantOf`, `emst:equivalentEvidence` (credential ↔ CLO).
+- **No-match rows** (`vocab/mapping_predicates.yaml#no_match_convention`; ADR-0032): a `sssom:NoTermFound` row MUST NOT assert a positive predicate. It carries the SKOS predicate that was searched for with `predicate_modifier: Not`, or `emst:retiredWithoutReplacement`, or `emst:successorNotReleased`.
+- **Agent rows and agreement** (ADR-0032): an agent-made row is `semapv:LLMBasedMatching`; `semapv:ManualMappingCuration` requires a `pid:` reviewer. Agreement of two LLM coders is recorded as `review_status=two-llm-coders-agreed-target` and its κ in the set's `other`; it is not reviewer agreement. Mapping sets never mark held records: the release gate withholds them.
 - **Required sets** (ADR-0022): X1 v1 → v2 (complete; CI-enforced); X2 task → O*NET 31.0 task/DWA (+ 27.x for Eloundou); X3 role variant → O*NET-SOC 2019/SOC 2018; X4 OPM series register; X5 state class records; X6 CIP and accreditation; X7 ESCO v1.2.1; X8 private reference job architecture; X9 OPM FWCI and USA Hire; X10 credential ↔ CLO equivalence; X11 public ↔ private translation; X12 TX-A floor and AI practice → DOL AI Literacy Framework (TEN 07-25, Feb 13 2026; official area names such as "Direct AI Effectively").
 - **Upstream tracking:** on each upstream release (O*NET, ESCO, OPM issuances, SOC 2028, CIP), a CI job sorts rows into carry / needs-review / deprecated / new-candidate.
 - **Thresholds by use:** selection contexts — two independent human reviewers and ≥ `closeMatch`; analytics — published coverage, predicate mix, κ and staleness; navigation — single-reviewed candidates labelled as such.

@@ -46,8 +46,14 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import emstlib as L  # noqa: E402
 
-VERSION = "1.0.0"
-AGENT = f"emstagent:migrate_v1@{VERSION}"
+VERSION = "1.1.0"
+# Seed competency and task records are unchanged since 1.0.0; they keep that agent stamp so untouched seeds stay
+# byte-identical. Prior-evidence ratings and X1 carry the 1.1.0 labels (rc.1 fix pass, ADR-0032).
+AGENT = "emstagent:migrate_v1@1.0.0"
+RATING_AGENT = f"emstagent:migrate_v1@{VERSION}"
+V1_TOOL_VERSION = "unknown (v1 sessions)"          # ADR-0032 (review M2): v1 tags were LLM-assisted; model not recorded
+V1_PROMPT_VERSION = "legacy/v1 working records"
+X1_DECISION_SOURCE = "decision_source=docs/decisions/v1_disposition.csv (CA agent)"
 REVIEW_AGENT = "emstagent:de-a1@wp-02"
 MIGRATION_TS = "2026-10-23T12:00:00Z"      # fixed so reruns are byte-identical
 MIGRATION_DATE = "2026-10-23"
@@ -467,20 +473,25 @@ TACIT_MAP = {"Hi": "Hi", "Med": "Med", "Lo": "Lo"}
 
 def _rating_base(rid, typ, label, held):
     rec = {"id": rid, "type": typ, "prefLabel": {"en": label}, "layer": "L5", "module": "core", "status": "draft",
-           "license": V1_LICENSE, "sensitivity": "public"}
+           "validationStatus": "draft", "license": V1_LICENSE, "sensitivity": "public"}
     if held:
         held_fields(rec)
     return rec
 
 
 def _rater(method, instrument, codebook):
-    return {"raterType": "v1-analyst", "raterId": "v1-analyst-01", "assessedAt": ASSESSED_AT, "method": method,
-            "confidence": "low", "instrument": instrument, "codebookVersion": codebook, "evidenceLabel": "J", "sources": []}
+    # ADR-0032 (review M2): a v1 tag is a single-analyst, LLM-assisted classification (vocab/evidence_labels.yaml
+    # #rater_types; ADR-0008), so it carries evidence label S, never J (expert judgment)
+    return {"raterType": "v1-analyst", "raterId": "v1-analyst-01", "assessedAt": ASSESSED_AT,
+            "method": f"{method}; v1 single-analyst, LLM-assisted classification (prior evidence only)",
+            "confidence": "low", "instrument": instrument, "codebookVersion": codebook, "evidenceLabel": "S", "sources": []}
 
 
 def _prov(derived):
-    return {"method": "v1-migration", "agent": [AGENT], "generatedAt": MIGRATION_TS, "derivedFrom": derived,
-            "evidenceLabel": "J", "confidence": "low", "reviewStatus": "unreviewed", "adr": ["ADR-0008", "ADR-0011", "ADR-0013"]}
+    return {"method": "llm-assisted", "agent": [RATING_AGENT], "generatedAt": MIGRATION_TS, "derivedFrom": derived,
+            "toolVersion": V1_TOOL_VERSION, "promptVersion": V1_PROMPT_VERSION,
+            "evidenceLabel": "S", "confidence": "low", "reviewStatus": "unreviewed",
+            "adr": ["ADR-0008", "ADR-0011", "ADR-0013", "ADR-0032"]}
 
 
 def exposure_records(inp: Inputs, plan: Plan):
@@ -514,7 +525,6 @@ def exposure_records(inp: Inputs, plan: Plan):
         rec["v1Values"] = {"auto_type": t["auto_type"], "tacit_density": t["tacit_density"],
                            "career_ladder": t["career_ladder"], "vector": t["vector"], "horizon": t["horizon"],
                            "exposure_provenance": t["exposure_provenance"]}
-        _map_v2(rec, t["auto_type"], t["tacit_density"])
         rec["provenance"] = _prov([{"v1Key": key, "v1Code": code, "v1Table": "tasks", "v1Sheet": "Dimension Tags",
                                     "v1Row": int(t["source_row_exposure"]), "v1Fields": ["auto_type", "tacit_density", "career_ladder", "vector", "horizon"],
                                     "workbookSha256": inp.copyb, "v1ProvenanceCode": t["exposure_provenance"], "relation": "prior-evidence"}])
@@ -544,7 +554,6 @@ def exposure_records(inp: Inputs, plan: Plan):
                                   "matches_baseline", "task_text_similarity") if r.get(k) not in (None, "")}
         vals["source_task_text"] = L.normalize_text(r["source_task_text"])
         rec["v1Values"] = vals
-        _map_v2(rec, r["auto_type"], r["tacit_density"])
         d = {"v1Key": r["key"], "v1Code": code, "v1Table": "exposure_sources", "v1ProvenanceCode": r["source"],
              "relation": "prior-evidence", "note": r["source_file"]}
         if r["source_row"].isdigit():
@@ -555,14 +564,10 @@ def exposure_records(inp: Inputs, plan: Plan):
 
 
 def _map_v2(rec, auto, tacit):
-    mode, swatch = MODE_MAP.get(auto, (None, False))
-    if mode:
-        rec["deploymentMode"] = mode
-        if swatch:
-            rec["sWatch"] = True
-        rec["mappingRule"] = "vocab/exposure_instrument_v2.yaml#v1_migration_mapping (XR-04 for V and S)"
-    if tacit in TACIT_MAP:
-        rec["tacitExperienceRequirement"] = TACIT_MAP[tacit]
+    """Retired in 1.1.0 (ADR-0032; review M8): v1 auto_type is an automation-type judgment that records no deployment,
+    so it is never mapped onto construct (b). v1 codes stay in v1Values only; MODE_MAP documents the codebook's
+    v1_migration_mapping table for readers and is not applied to records."""
+    raise RuntimeError("v1 codes are kept in v1Values only (ADR-0032)")
 
 
 def _comp_hash(inp, code):
@@ -701,7 +706,10 @@ def _d7_lenses():
 # X1 crosswalk (ADR-0022 X1; P-DE-08) and the target worklist
 # ---------------------------------------------------------------------------------------------------------------
 
-X1_COLUMNS = ["subject_id", "predicate_id", "object_id", "mapping_justification", "author_id", "mapping_date", "mapping_tool", "comment"]
+X1_COLUMNS = ["subject_id", "predicate_id", "object_id", "mapping_justification", "author_id", "mapping_date", "mapping_tool", "other", "comment"]
+# ADR-0032 (review M3): the CA agent decided the dispositions and this script applied them, so no human curated X1;
+# SEMAPV 1.1 semapv:LLMBasedMatching (a declared extension, CR-IA-002), never semapv:ManualMappingCuration
+X1_JUSTIFICATION = "semapv:LLMBasedMatching"
 
 
 def current_records(data_root: Path):
@@ -735,7 +743,10 @@ def build_x1(inp: Inputs, plan: Plan, recs: dict) -> list[dict]:
         subj = f"EMSTv1:{code}"
         planned = plan.targets[code]
         actual = _actual(recs, f"v1:{code}")
-        comment = f"decision={dec}; target={d['target']}; ADR-0011"
+        # target keys only (descriptions stay in v1_disposition.csv, named by decision_source): IDs only in mapping rows,
+        # and no descriptive text that the release's governed-content scan reads as held content (ADR-0032, m14)
+        target_keys = re.sub(r"\s*\([^)]*\)", "", d["target"]).strip()
+        comment = f"decision={dec}; target={target_keys}; ADR-0011"
         objs: list[tuple[str, str]] = []
         if dec == "retire":
             objs = [("emst:retiredWithoutReplacement", "sssom:NoTermFound")]
@@ -756,9 +767,9 @@ def build_x1(inp: Inputs, plan: Plan, recs: dict) -> list[dict]:
                 p = "emst:movedToTools" if (kinds.get(k) == "tool" or types.get(k) == "Tool") else pred
                 objs.append((p, k))
         for p, o in objs:
-            rows.append({"subject_id": subj, "predicate_id": p, "object_id": o, "mapping_justification": "semapv:ManualMappingCuration",
+            rows.append({"subject_id": subj, "predicate_id": p, "object_id": o, "mapping_justification": X1_JUSTIFICATION,
                          "author_id": author, "mapping_date": MIGRATION_DATE, "mapping_tool": f"scripts/migrate_v1.py@{VERSION}",
-                         "comment": comment})
+                         "other": X1_DECISION_SOURCE, "comment": comment})
         for n in (1, 2, 3):
             tkey = f"v1:{code}:T{n}"
             tsubj = f"EMSTv1:{code}:T{n}"
@@ -772,9 +783,9 @@ def build_x1(inp: Inputs, plan: Plan, recs: dict) -> list[dict]:
                     act = [canon(f"seed:v1-{code}-T{n}")]
                 trows = [("emst:splitInto" if len(act) > 1 else "emst:replacedBy", a) for a in act]
             for p, o in trows:
-                rows.append({"subject_id": tsubj, "predicate_id": p, "object_id": o, "mapping_justification": "semapv:ManualMappingCuration",
+                rows.append({"subject_id": tsubj, "predicate_id": p, "object_id": o, "mapping_justification": X1_JUSTIFICATION,
                              "author_id": author, "mapping_date": MIGRATION_DATE, "mapping_tool": f"scripts/migrate_v1.py@{VERSION}",
-                             "comment": tcomment})
+                             "other": X1_DECISION_SOURCE, "comment": tcomment})
     return rows
 
 
@@ -784,7 +795,10 @@ def x1_metadata(inp: Inputs) -> dict:
         "mapping_set_version": "0.1.0",
         "mapping_set_title": "EMST v1 to v2 (X1): every v1 competency and task with its recorded decision",
         "mapping_set_description": ("Generated by scripts/migrate_v1.py from docs/decisions/v1_disposition.csv and the "
-                                    "current v2 records. Objects are seed: keys until IDs are minted. IDs only (ADR-0013)."),
+                                    "current v2 records. Objects are seed: keys until IDs are minted. IDs only (ADR-0013). "
+                                    "Agent-drafted: the CA agent (an AI) decided the dispositions and the script applied them; "
+                                    "no person has curated or reviewed this set (justification semapv:LLMBasedMatching, a "
+                                    "declared SSSOM 1.1 extension; ADR-0032)."),
         "license": "https://creativecommons.org/publicdomain/zero/1.0/",
         "subject_source": "https://w3id.org/emst/v1/",
         "subject_source_version": f"copyB sha256:{inp.copyb}",
@@ -796,8 +810,9 @@ def x1_metadata(inp: Inputs) -> dict:
                       "sssom": "https://w3id.org/sssom/", "semapv": "https://w3id.org/semapv/vocab/",
                       "skos": "http://www.w3.org/2004/02/skos/core#", "emstagent": "https://w3id.org/emst/agent/"},
         "extension_definitions": [],
-        "comment": "Decision vocabulary: ADR-0011 (carry, rewrite, split, merge, retire, move-to-tools, move-to-module, hold-for-tribal-review). "
-                   "Held successors appear as keys only; build_release.py redacts them in release artifacts (ADR-0007 §D).",
+        "comment": "Decision vocabulary: ADR-0011 (carry, rewrite, split, merge, retire, move-to-tools, move-to-module, hold). "
+                   "Target keys only; their descriptions are in docs/decisions/v1_disposition.csv. Held successors appear as "
+                   "keys only; build_release.py redacts them in release artifacts (ADR-0007 §D).",
     }
 
 
@@ -912,6 +927,29 @@ def apply_promotions(text: str, promoted: dict, suffix: str) -> str:
     return "\n".join(out) + ("\n" if text.endswith("\n") else "")
 
 
+def held_targets(recs: dict) -> set:
+    """IDs of current records under the Tribal hold (flagged, not approved), e.g. those routed to the TN review queue
+    (data/v2/governance/tn_review_queue.yaml; ADR-0032, review m14)."""
+    return {rid for rid, r in recs.items() if r.get("indigenousDataFlag") is True and r.get("approvalStatus") != "approved"}
+
+
+def apply_holds(text: str, suffix: str, held: set) -> str:
+    """A generated prior-evidence rating whose rated task, competency or subject is held is held too (hold inheritance,
+    ADR-0007 §D; validator E-TRIBAL-INHERIT)."""
+    if suffix != ".jsonl" or not held:
+        return text
+    out = []
+    for line in text.splitlines():
+        if line.strip():
+            obj = json.loads(line)
+            if obj.get("type") in L.RATING_TYPES and not obj.get("indigenousDataFlag") \
+                    and any(obj.get(k) in held for k in ("task", "competency", "subject")):
+                held_fields(obj)
+                line = L.jsonl_line(obj)
+        out.append(line)
+    return "\n".join(out) + ("\n" if text.endswith("\n") else "")
+
+
 def read_ledger() -> dict[str, str]:
     """{seed id: sha256 of the file as the migration last wrote it}."""
     return {r["id"]: r["sha256"] for r in L.read_csv(LEDGER)} if LEDGER.exists() else {}
@@ -1006,6 +1044,7 @@ def main(argv=None) -> int:
         outputs[L.DATA_V2 / "migration" / "MIGRATION_INFO.json"] = L.dump_json(info)
     if promoted:
         outputs = {p: apply_promotions(txt, promoted, p.suffix) for p, txt in outputs.items()}
+    outputs = {p: apply_holds(txt, p.suffix, held_targets(recs)) for p, txt in outputs.items()}
     if args.check:
         bad = [str(p.relative_to(L.ROOT)) for p, txt in outputs.items() if not p.exists() or p.read_text(encoding="utf-8") != txt]
         for b in bad[:40]:

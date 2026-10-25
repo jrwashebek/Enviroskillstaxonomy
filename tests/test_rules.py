@@ -53,7 +53,8 @@ def test_implementation_path_exists_and_symbol_resolves(path):
 def test_one_active_or_interim_version_per_rule():
     active = registry.active_rules()
     assert set(active) == {d["ruleId"] for d in DOCS.values()}
-    assert active["effective-use-tier"]["version"] == "1.0.0"
+    assert active["effective-use-tier"]["version"] == "1.1.0"      # ADR-0032: lifecycle no longer caps the tier
+    assert active["change-indicator"]["version"] == "1.1.0"        # ADR-0032: ER-1 independence on three axes
     assert active["inverse-links"]["version"] == "1.2.0"          # ADR-0030: mirrored_by landed with its test
 
 

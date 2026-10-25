@@ -36,3 +36,13 @@ def compute(released: dict, stamp: dict) -> list[dict]:
             if r.get("type") == "ExposureAssessment" and r.get("targetId") and not r.get("task"):
                 rows.append({"assessment": rid, "target": r["targetId"], "stale": False, "basis": "index-release", **stamp})
     return rows
+
+
+def stale_ids(released: dict) -> set[str]:
+    """IDs of the released ratings that are stale under this rule (ADR-0032; review M8).
+
+    For the bundle: D-BUILD sets the computed flag `stale: true` on these rating nodes (REQUESTS_FOR_BUILD R-03), so a
+    v1 or v2 assessment whose rated text no longer matches its subject is marked where it is read, not only in
+    views/assessment_staleness.json. Staleness stays computed: it is never stored in a source record (SPEC §14).
+    """
+    return {row["assessment"] for row in compute(released, {}) if row.get("stale")}

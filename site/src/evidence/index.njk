@@ -15,7 +15,7 @@ crumbs: [[null, "Evidence"]]
   <tbody>{% for k, d in emst.labels.useTier %}<tr><td>{{ k }}</td><td>{{ d }}</td></tr>{% endfor %}</tbody>
 </table>
 </div>
-<p>The explorer shows each record's <em>effective</em> use tier, computed by the build ({{ emst.release.eutRule }}) as the lowest of its lifecycle cap, the validation evidence met and the reliability gate. Nothing in this release is at <code>select</code>. Emerging content can be used for training, never for selection.</p>
+<p>The explorer shows each record's <em>effective</em> use tier, computed by the build ({{ emst.release.eutRule }}) as the lowest of the caps its rule sets: the validation status of the record, the evidence each published level meets and the reliability gate of any tag shown. Lifecycle state describes the work in the sector, not the record, so it no longer caps the tier. Nothing in this release is at <code>select</code>, and content at <em>watch</em> can be used for training, never for selection.</p>
 
 <h2>Evidence label: what it rests on</h2>
 <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Evidence labels">
@@ -36,7 +36,7 @@ crumbs: [[null, "Evidence"]]
 <p>EMST v1 coded every task for AI and robotics exposure. One analyst did that with an AI assistant, without a second rater. Those codes are kept as <strong>prior evidence</strong> in a drawer under each task, labelled "{{ emst.gateLabels.v1_prior }}". They are never shown as a value, never counted or averaged and never used in a headline. Where v1 sources disagree, or v1 itself flagged a problem, the drawer marks the task <span class="emst-tag emst-tag--contested">Contested</span>. If comprehension testing shows that people misread the drawer, it will be removed.</p>
 
 <h2>Signals and change indicators</h2>
-<p>Change signals (postings, deployments, plans, policy events) are recorded with their source release, period and reliability (A to D). A signal is at <em>watch</em> until a named person reviews it. A change indicator moves only when two independent families of active signals point the same way over two periods ({{ emst.release.changeRule }}). Counts below 30 are shown as counts, not percentages; below 10 the explorer says "too few to say".</p>
+<p>Change signals (postings, deployments, plans, policy events) are recorded with their source release, period and source grade (Admiralty A to D; a grade of the source, not a statistic). A signal is at <em>watch</em> until a named person reviews it. A change indicator moves only when two independent families of active signals point the same way over two periods ({{ emst.release.changeRule }}). Counts below 30 are shown as counts, not percentages; below 10 the explorer says "too few to say".</p>
 
 <h2>Where a competency has a legal basis</h2>
 <p>For work that depends on contested policy instruments, the explorer shows a <em>computed</em> applicability per employer type (required basis, permitted, no current basis) from the status of linked instruments on the release date, with the note "basis not yet linked" where no instrument is linked yet. Nothing is excluded from federal views on that basis (the EMST project lead's default).{% if emst.venue.source == "wp05-prototype" %} In this build the computation is a prototype, pending a change request, and "required basis" is never shown from it.{% elif emst.venue.source == "rule-over-release" %} In this build the registered rule {{ emst.venue.rule }} is applied to the release records; only instruments linked as requiring the work decide the value.{% endif %}</p>

@@ -52,9 +52,9 @@ def main():
             ssrc, stype = "emstsrc:emst-v2-roles", "owl class"
             label = roles[subj_key]["title"]
         pred, mod = c["predicate"], c["modifier"]
-        held_note = "tribal" if "tribal(held)" in roles.get(subj_key, {}).get("sector_actor_variants", "") else ""
+        # held variants are never marked in `other` (ADR-0032, review m14): held content is counted, never named
         base_other = dict(applies_to=c["applies_to"], review_status="candidate", evidence=c["evidence"],
-                          rater_type="llm", model=S.MODEL, prompt=S.PROMPT, held_variants=held_note)
+                          rater_type="llm", model=S.MODEL, prompt=S.PROMPT)
         if c["code"] == "NoTermFound":
             for scheme in ("onet", "soc"):
                 n[scheme] += 1
@@ -154,8 +154,8 @@ def main():
         "IDs when WP-08 authors them (CR-IA-001); `applies_to` in `other` names the variant or level slice. Predicate "
         "rules: closeMatch = core work largely interchangeable for statistics and navigation; broadMatch = the role is "
         "a specialisation of a broader occupation; narrowMatch = the occupation is one slice of the role; relatedMatch = "
-        "partial overlap or feeder/destination; skos:closeMatch sssom:NoTermFound = no SOC occupation adequately covers "
-        "the role (reason in comment). Tribal role variants are held (ADR-0007 §D) and not mapped. v1 family rows "
+        "partial overlap or feeder/destination; skos:closeMatch with predicate_modifier Not and object sssom:NoTermFound = no SOC occupation adequately "
+        "covers the role (no NoTermFound row asserts a positive predicate; ADR-0032) (reason in comment). Held variants are not mapped (ADR-0007 §D). v1 family rows "
         "(EMSTv1fam) record the verified v1 errors as predicate_modifier Not and the ADR-0022 §5 additions; the "
         "family sheet is retired as an anchor. Not for classification, selection or RIF decisions."
     )

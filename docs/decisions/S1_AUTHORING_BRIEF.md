@@ -20,7 +20,7 @@ Read this, then your WP section of `PHASE4_BUILD_PLAN.md`. Where they differ, th
 ## Content rules (summary — ADR-0003, ADR-0004, ADR-0005, ADR-0016, ADR-0025)
 - Competency titles: function-based, durable, no product/tool/instrument names (tools go to L4; laws and programmes go to the L5 instrument registry); programme labels only as `altLabel`.
 - Descriptions ≤ 60 words. Indicators: 2–5 per level, only at the levels where the competency is practised, observable (condition / behaviour / standard), with `augmentationMode` and `useClass`; pass `validation/lint_indicators.py` when it exists (IO is building it now; re-run when it appears).
-- Tasks: production vs specification/review/defence split where AI compresses the work (G-2); craft ratings 0/1/2 recorded as **three independent llm-rater passes**; field- and formation-dependency attributes where relevant.
+- Tasks: production vs specification/review/defence split where AI compresses the work (G-2); craft ratings 0/1/2 recorded as **three repeated llm-rater passes** (one model and prompt family = one `raterId`, `passIndex` 1–3; run-to-run consistency, not reliability; ADR-0032); field- and formation-dependency attributes where relevant.
 - Every value you rate is `raterType: llm` with model and prompt version, `validationStatus: draft`, evidence label `S` unless you cite evidence (`E` with source IDs) — **never** present agent ratings as SME agreement.
 - **Tribal hold (ADR-0007 §D):** anything Tribal-related is authored only as an internal draft with `approval_status: pending-tribal-review`, or not at all. No agent writes as if it speaks for any Tribal nation.
 - **No personal data**; examples are synthetic and labelled.

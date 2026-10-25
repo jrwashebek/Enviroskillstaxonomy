@@ -9,16 +9,22 @@ Checks (issue codes are stable; tests and authoring agents rely on them):
                E-MODULE-SUBSECTOR E-SEED-CANDIDATE E/W-NOTATION-INTERIM E/W-INDEPENDENCE-KEY-UNLISTED
                E-ORG-TARGET-TRIBAL W-ORG-SMALL-N W-MVP-ROLE-TARGET I-SP12-QUARANTINE E-REVIEW-EVENT-STATUS
                E-LEVEL-DISTRIBUTION W-ROLE-KEY W-COMPUTED-FIELD-DEPRECATED
+               (ADR-0032, rc.1 fix pass) E-INDEPENDENCE-KEY-UNLISTED (every status) E-PROCESSING-CHAIN-STEP
+               E-DIRECTION-INDETERMINATE E-PROJECTION-CONFIDENCE E-PROJECTION-DIRECTION E-MEASURE-NULL-REASON
+               E-LLM-RATER E-LLM-PASS-METHOD E/W-LIFECYCLE-BASIS E-LEVELSPAN-BASIS E/W-OBS4-SELF-CODED E-SCR-HASH
                (ADR-0030) E/W-MODULE-SUBSECTOR (enactments) E/W-INSTRUMENT-ROLE-MISSING E-INSTRUMENT-LINK-DUPLICATE
                E-ACTING-SELF E-EDGE-REVIEWBY W-EDGE-REVIEW-OVERDUE E-PROVISION-TASK
   cross-record E-ID-DUPLICATE E-REF-DANGLING W-REF-PENDING W-REF-DEFERRED (strict) E-REF-TYPE E-DEPENDENCY-DIRECTION E-TRIBAL-INHERIT
                I-STALE-ASSESSMENT W-COMPETENCY-NO-TASK W-SUPERSEDED-TARGET E-PR2-ATTRIBUTE
                (ADR-0030) I-SUPERSEDED-TARGET-HELD W-EDGE-REDUNDANT E-MIRROR-TWICE E-MIRROR-SELF E-CLO-ENACTMENT-INDICATOR
                E/W-THREE-MODULE I-THREE-MODULE-RECURRENCE E-THREE-MODULE-EXCEPTION-FORMAT W-THREE-MODULE-EXCEPTION-EXPIRED
+               (ADR-0032) E-OBSERVATION-INCONSISTENT W-OBSERVATION-SPLIT E-LLM-PASS-DUPLICATE W-LINT-PRODUCTION-REVIEW
+               E-TN-QUEUE
   waivers      E-WAIVER-FORMAT E-WAIVER-SIGNER I-WAIVER-VOID   (data/v2/governance/lint_waivers.csv; ADR-0029 §5)
   registry     E-REGISTRY-FORMAT E-REGISTRY-APPEND-ONLY E-REGISTRY-TRANSITION E-REGISTRY-MISSING E-REGISTRY-ORPHAN
   crosswalks   E-SSSOM-FORMAT E-SSSOM-VALUE E-SSSOM-THIRD-PARTY-TEXT E-X1-INCOMPLETE E-X1-DECISION E-X1-DUPLICATE
                E-X1-STALE W-X1-PENDING W-X1-DEFERRED (strict) I-SSSOM-1_1-EXTENSION W-SSSOM-REVIEW-PROVENANCE E-SSSOM-SELECTION-1_1
+               (ADR-0032) E-SSSOM-NOTERM-POSITIVE E-SSSOM-HELD-MARKER E-SSSOM-MANUAL-AGENT E-SSSOM-AGREEMENT-LABEL
   files        E-PERSONAL-DATA / E-CONFIDENTIAL also run over every other file under data/v2 (CSV, TSV, MD...)
 
 Usage:
@@ -117,6 +123,15 @@ WAIVERS_REL = Path("governance") / "lint_waivers.csv"
 THREE_MODULE_REL = Path("governance") / "three_module_exceptions.yaml"
 ROLE_REF_RE = re.compile(r"^seed:(R\d{2}-[a-z0-9-]+)(/([a-z-]+)(/[a-z0-9-]+)?)?$")
 SELECTION_FLAGS = {("use", "selection"), ("use_class", "selection"), ("useClass", "selection"), ("selection_use", "true")}
+# ADR-0032 (rc.1 fix pass; data-method review)
+LLM_PASS_CAVEAT = "run-to-run consistency of one model; not independent raters; not reliability"       # M4
+LLM_RATER_RE = re.compile(r"^emstagent:llm-rater@([^/]+)/([A-Za-z0-9][A-Za-z0-9._-]*@\d+)$")
+GOOD_MATCH = {"skos:exactMatch", "skos:closeMatch"}
+SKOS_PREDICATES = {"skos:exactMatch", "skos:closeMatch", "skos:broadMatch", "skos:narrowMatch", "skos:relatedMatch"}
+NO_OBJECT_PREDICATES = {"emst:retiredWithoutReplacement", "emst:successorNotReleased"}                   # M9, m5
+LEVEL_ORDER = ["A", "L1", "L2", "L3", "L4", "L5"]
+TN_QUEUE_REL = Path("governance") / "tn_review_queue.yaml"
+PRODUCTION_REVIEW_LEXICON = Path("validation") / "production_review_lexicon.yaml"                          # m7
 
 
 class Issue:
@@ -386,6 +401,9 @@ class Validator:
     def _load_change_vocab(self):
         ct = L.load_yaml(self.repo / "vocab" / "change_types.yaml")
         self.independence_keys = {k["key"] for k in (ct.get("independence_keys") or {}).get("keys", [])}
+        self.chain_steps = {v["notation"] for v in (ct.get("processing_chain_steps") or {}).get("values", [])}
+        self.projection_families = {v["notation"] for v in (ct.get("signal_families") or {}).get("values", [])
+                                    if isinstance(v, dict) and v.get("confidence_cap")}
         self.tribal_actors = set(self.schema["$defs"]["v_tribalActor"]["enum"])
         self.sector_actor_terms = set(self.schema["$defs"]["v_sectorActor"]["enum"]) | set(self.schema["$defs"]["v_sectorActorSubtype"]["enum"])
         roles = self.repo / "docs" / "decisions" / "mvp_role_set.csv"
@@ -577,6 +595,8 @@ class Validator:
         if interim:
             code = "E-NOTATION-INTERIM" if status in AT_OR_AFTER_CANDIDATE else "W-NOTATION-INTERIM"
             self.r.add(code, loc, f"interim notation scheme(s) {', '.join(interim)}: move each value to its typed field (ADR-0029 §8; AUTHORING_GUIDE §12)", rid)
+        if typ in L.RATING_TYPES:
+            self._check_rating(loc, rec)
         if typ == "ChangeSignal":
             self._check_signal(loc, rec)
         elif typ == "ExposureAssessment":
@@ -605,12 +625,53 @@ class Validator:
                     self.r.add("E-EDGE-REVIEWBY", loc, f"instrumentSensitivity[{i}] ({e.get('mechanism')}) is labelled {e.get('evidenceLabel')} and needs reviewBy (ADR-0030)", rid)
                 if e.get("reviewBy") and str(e["reviewBy"]) < self.today:
                     self.r.add("W-EDGE-REVIEW-OVERDUE", loc, f"instrumentSensitivity[{i}] ({e.get('mechanism')}) review was due {e['reviewBy']}", rid)
+        if typ == "Competency":
+            self._check_level_span(loc, rec)
+        if typ == "Indicator":
+            self._check_obs4(loc, rec)
+        if typ == "StateClassRecord":
+            for k in ("workDescriptionText", "mqText"):
+                v = rec.get(k)
+                if isinstance(v, dict) and v.get("storage") == "hash-and-url" and not v.get("sha256"):
+                    self.r.add("E-SCR-HASH", loc, f"{k}.storage is hash-and-url but sha256 is empty: fetch and hash the document, or set storage url-only (ADR-0032; review m10)", rid)
         if typ == "Pathway":
             for j, stp in enumerate(rec.get("sequence") or []):
                 tasks = set(stp.get("tasks") or []) if isinstance(stp, dict) else set()
                 for prov in (stp.get("formationProvisions") or []) if isinstance(stp, dict) else []:
                     if isinstance(prov, dict) and prov.get("task") not in tasks:
                         self.r.add("E-PROVISION-TASK", loc, f"sequence[{j}] formation provision for {prov.get('task')} is not one of that step's tasks", rid)
+
+    def _check_level_span(self, loc, rec):
+        """E-LEVELSPAN-BASIS (ADR-0032; review m6): a stated basis matches levels[]; L5 needs an anchor (SPEC §8.2 rule 2)."""
+        rid, status = rec.get("id"), rec.get("status")
+        if rec.get("validationStatus") == "seed-v1" or status in LIVE_EXCLUDED_STATUSES:
+            return
+        span = rec.get("levelSpan") or {}
+        if span.get("min") not in LEVEL_ORDER or span.get("max") not in LEVEL_ORDER:
+            return
+        anchored = {lv.get("level") for lv in rec.get("levels") or [] if isinstance(lv, dict) and lv.get("indicators")}
+        need = [x for x in LEVEL_ORDER[LEVEL_ORDER.index(span["min"]):LEVEL_ORDER.index(span["max"]) + 1] if x != "A"]
+        basis = rec.get("levelSpanBasis")
+        sev = "E" if status in AT_OR_AFTER_CANDIDATE else "W"
+        if basis is None:
+            self.r.add(f"{sev}-LEVELSPAN-BASIS", loc, "levelSpanBasis (anchored | declared) is required from candidate on (ADR-0032; review m6)", rid)
+        elif basis == "anchored" and not all(x in anchored for x in need):
+            self.r.add(f"{sev}-LEVELSPAN-BASIS", loc, f"levelSpanBasis anchored, but levels {[x for x in need if x not in anchored]} of the span have no indicators", rid)
+        elif basis == "declared" and rec.get("competencyType") != "knowledge-area" and need and all(x in anchored for x in need):
+            self.r.add("W-LEVELSPAN-BASIS", loc, "levelSpanBasis declared, but every level of the span is anchored: use anchored", rid)
+        if rec.get("competencyType") in ("practice", "transversal") and span.get("max") == "L5" and "L5" not in anchored:
+            self.r.add(f"{sev}-LEVELSPAN-BASIS", loc, "levelSpan reaches L5 with no L5 indicators: L5 is defined only where SME panels confirm strategic demand (SPEC §8.2 rule 2)", rid)
+
+    def _check_obs4(self, loc, rec):
+        """E-OBS4-SELF-CODED (ADR-0032; review m8): obs4 holds human codes only; an agent's self-code goes in obs4Draft."""
+        rid = rec.get("id")
+        if rec.get("validationStatus") == "seed-v1" or not isinstance(rec.get("obs4"), int):
+            return
+        prov = rec.get("provenance") or {}
+        humans = [x for x in prov.get("reviewers") or [] if str(x).startswith(("pid:", "panel:"))]
+        if not humans:
+            code = "E-OBS4-SELF-CODED" if rec.get("status") in AT_OR_AFTER_CANDIDATE else "W-OBS4-SELF-CODED"
+            self.r.add(code, loc, "obs4 is set but no human coder is recorded (provenance.reviewers pid:): keep the agent's code in obs4Draft and set obs4 null until IO humans code it", rid)
 
     def _check_instrument_links(self, loc, rec):
         rid, status = rec.get("id"), rec.get("status")
@@ -636,9 +697,10 @@ class Validator:
         key = rec.get("independenceKey")
         if key is None:
             key = next((n.get("value") for n in rec.get("notation") or [] if isinstance(n, dict) and n.get("scheme") == "EMST-independenceKey"), None)
-        if st in ("active", "watch") and key and key not in self.independence_keys:
-            code = "E-INDEPENDENCE-KEY-UNLISTED" if st == "active" else "W-INDEPENDENCE-KEY-UNLISTED"
-            self.r.add(code, loc, f"independenceKey {key!r} is not listed in vocab/change_types.yaml#independence_keys (file a CR to LM/CA)", rid)
+        if key and key not in self.independence_keys:
+            # ADR-0032 (review M5): an enumeration, rejected at every status; an unlisted key is never its own provider
+            self.r.add("E-INDEPENDENCE-KEY-UNLISTED", loc, f"independenceKey {key!r} is not listed in vocab/change_types.yaml#independence_keys (file a CR to LM/CA)", rid)
+        self._check_signal_evidence(loc, rec)
         if rec.get("targetType") == "organization":
             actor = rec.get("sectorActor")
             tid = str(rec.get("targetId", ""))
@@ -654,6 +716,51 @@ class Validator:
                                                          if isinstance(n, dict) and n.get("scheme") == "EMST-signpost"}
         if sps & {"vocab:scenarios#SP-12", "SP-12"}:
             self.r.add("I-SP12-QUARANTINE", loc, "reads signpost SP-12 (Tribal Council only): quarantined like careFlag, excluded from releases and never counted (ER-0)", rid)
+
+    def _check_signal_evidence(self, loc, rec):
+        """ADR-0032 (data-method review M5, M6): processing chain steps, null reasons, and directions that follow from
+        the stored data."""
+        rid = rec.get("id")
+        for step in rec.get("processingChain") or []:
+            kind = str(step).split(":", 1)[0]
+            if self.chain_steps and kind not in self.chain_steps:
+                self.r.add("E-PROCESSING-CHAIN-STEP", loc, f"processingChain step {step!r}: {kind!r} is not in vocab/change_types.yaml#processing_chain_steps", rid)
+        m = rec.get("measure") if isinstance(rec.get("measure"), dict) else {}
+        nr = m.get("nullReason") or {}
+        for f in ("ci95", "n"):
+            if m.get(f) is None and not nr.get(f):
+                self.r.add("E-MEASURE-NULL-REASON", loc, f"measure.{f} is null or missing: state why in measure.nullReason.{f} (SPEC §5.14 Required; ADR-0032)", rid)
+        d = rec.get("direction")
+        diff = m.get("difference") if isinstance(m.get("difference"), dict) else None
+        if diff:
+            spans = [("difference", diff.get("ci95"))]
+            if isinstance(diff.get("sensitivity"), dict):
+                spans.append(("difference.sensitivity", diff["sensitivity"].get("ci95")))
+            for name, ci in spans:
+                if isinstance(ci, list) and len(ci) == 2 and all(isinstance(x, (int, float)) for x in ci) \
+                        and ci[0] <= 0 <= ci[1] and d != "indeterminate":
+                    self.r.add("E-DIRECTION-INDETERMINATE", loc, f"measure.{name}.ci95 {ci} includes 0, so direction must be indeterminate, not {d!r} (ADR-0032; review M6)", rid)
+        if rec.get("signalFamily") in self.projection_families:
+            if rec.get("crosswalkMinMatchType") not in GOOD_MATCH and rec.get("directionConfidence") != "low":
+                self.r.add("E-PROJECTION-CONFIDENCE", loc, f"projection signal attached through {rec.get('crosswalkMinMatchType')} (broader than skos:closeMatch) must have directionConfidence low (ADR-0032; review M6)", rid)
+            base = (m.get("baseline") or {}).get("value") if isinstance(m.get("baseline"), dict) else None
+            v = m.get("value")
+            if isinstance(base, (int, float)) and isinstance(v, (int, float)):
+                want = "grow" if (v > 0 and v > base) else ("decline" if (v < 0 and v < base) else "indeterminate")
+                if d != want:
+                    self.r.add("E-PROJECTION-DIRECTION", loc, f"projected change {v} against the all-occupation baseline {base} gives direction {want!r}, not {d!r} (vocab/change_types.yaml#signal_families.projection.direction_rule)", rid)
+
+    def _check_rating(self, loc, rec):
+        """ADR-0032 (review M4): repeated passes of one model and prompt family are one rater."""
+        rid = rec.get("id")
+        if rec.get("raterType") != "llm":
+            return
+        prov = rec.get("provenance") or {}
+        m = LLM_RATER_RE.match(str(rec.get("raterId", "")))
+        if not m or m.group(1) != prov.get("toolVersion"):
+            self.r.add("E-LLM-RATER", loc, f"raterId {rec.get('raterId')!r} must be emstagent:llm-rater@<provenance.toolVersion>/<prompt family>: passes of one model and prompt family are one rater, told apart by passIndex and sessionId", rid)
+        if LLM_PASS_CAVEAT not in str(rec.get("method", "")):
+            self.r.add("E-LLM-PASS-METHOD", loc, f"method must state: {LLM_PASS_CAVEAT!r}", rid)
 
     def _check_role_key(self, loc, rid, typ):
         body = rid[len("seed:"):]
@@ -850,7 +957,8 @@ class Validator:
                 self.r.add("E-LLM-DRAFT", loc, f"LLM-assisted, unreviewed content cannot claim validationStatus {rec.get('validationStatus')!r}", rid)
         if rec.get("raterType") == "llm" and rec.get("evidenceLabel") != "S" and prov.get("reviewStatus") in ("unreviewed", "spot-checked", None):
             self.r.add("E-LLM-DRAFT", loc, "raterType llm values carry evidence label S until reviewed", rid)
-        for sid in sorted(set(prov.get("sources") or []) | set(rec.get("sources") or [])):
+        sig_src = {rec.get(k) for k in ("source", "upstreamSource") if typ == "ChangeSignal" and isinstance(rec.get(k), str)}
+        for sid in sorted(set(prov.get("sources") or []) | set(rec.get("sources") or []) | sig_src):
             if isinstance(sid, str) and not L.is_record_ref(sid) and sid not in self.source_ids:
                 self.r.add("E-SOURCE-UNRESOLVED", loc, f"source {sid!r} does not resolve to any docs/**/sources.csv or key-facts row", rid)
         v1_text = False
@@ -960,6 +1068,118 @@ class Validator:
         self.check_mirrors()
         self.check_clo_variants()
         self.check_three_module()
+        self.check_observations()
+        self.check_llm_passes()
+        self.check_lifecycle_basis()
+        self.check_production_review()
+        self.check_tn_queue()
+
+    # ------------------------------------------------------------------ ADR-0032 (rc.1 fix pass) cross-record rules
+    def check_observations(self):
+        """M5: records of one observationId agree on the observation; identical observations share one ID."""
+        by_obs, by_key = defaultdict(list), defaultdict(set)
+        for rid in self.by_type.get("ChangeSignal", []):
+            loc, r = self.records[rid]
+            m = r.get("measure") if isinstance(r.get("measure"), dict) else {}
+            if r.get("observationId"):
+                by_obs[r["observationId"]].append((loc, rid, r.get("upstreamSource"), m.get("value")))
+            key = (r.get("upstreamSource"), m.get("name"), json.dumps(m.get("value")), json.dumps(r.get("observedPeriod"), sort_keys=True),
+                   m.get("denominator"), (r.get("crosswalkPath") or [""])[0])
+            by_key[key].add(r.get("observationId"))
+        for oid, items in sorted(by_obs.items()):
+            if len({(u, json.dumps(v)) for _, _, u, v in items}) > 1:
+                loc, rid = items[0][0], items[0][1]
+                self.r.add("E-OBSERVATION-INCONSISTENT", loc, f"observationId {oid} is shared by records with different upstreamSource or measure.value: {sorted(i[1] for i in items)}", rid)
+        for key, oids in sorted(by_key.items(), key=lambda kv: str(kv[0])):
+            if len(oids) > 1:
+                self.r.add("W-OBSERVATION-SPLIT", "data/v2/signals", f"one observation (upstreamSource {key[0]}, measure {key[1]} = {key[2]}) carries {len(oids)} observationIds {sorted(map(str, oids))}: count it once")
+
+    def check_llm_passes(self):
+        """M4: one pass per (rater, instrument, unit, passIndex)."""
+        seen = {}
+        for typ in L.RATING_TYPES:
+            for rid in self.by_type.get(typ, []):
+                loc, r = self.records[rid]
+                if r.get("raterType") != "llm":
+                    continue
+                unit = r.get("task") or r.get("competency") or r.get("subject") or r.get("targetId")
+                k = (r.get("raterId"), r.get("instrument"), unit, r.get("passIndex"))
+                if k in seen:
+                    self.r.add("E-LLM-PASS-DUPLICATE", loc, f"{k[0]} pass {k[3]} of {unit} under {k[1]} is recorded twice ({seen[k]} and {rid})", rid)
+                else:
+                    seen[k] = rid
+
+    def check_lifecycle_basis(self):
+        """M7 (E-LIFECYCLE-BASIS): proposed/emerging only with a met entry test; stored counts match the evidence."""
+        from rules import lifecycle_basis as LB
+        recs = {rid: rec for rid, (_, rec) in self.records.items()}
+        tests = LB.entry_tests(self.repo)
+        for typ in sorted(LB.L1_L4_TYPES):
+            for rid in self.by_type.get(typ, []):
+                loc, r = self.records[rid]
+                state, basis = r.get("lifecycleState"), r.get("lifecycleBasis")
+                if r.get("validationStatus") == "seed-v1" or r.get("status") in LIVE_EXCLUDED_STATUSES:
+                    continue
+                at_cand = r.get("status") in AT_OR_AFTER_CANDIDATE
+                if state in LB.TESTED_STATES and not isinstance(basis, dict):
+                    self.r.add("E-LIFECYCLE-BASIS" if at_cand else "W-LIFECYCLE-BASIS", loc, f"lifecycleState {state} needs a lifecycleBasis meeting vocab/lifecycle_states.yaml#{state}.entry_test; otherwise watch (ADR-0032; review M7)", rid)
+                    continue
+                if not isinstance(basis, dict):
+                    continue
+                try:
+                    got = LB.evaluate(r, recs, basis.get("testedFor"), str(basis.get("assessedOn") or self.today), tests, self.source_ids)
+                except Exception as e:  # noqa: BLE001
+                    self.r.add("E-LIFECYCLE-BASIS", loc, f"lifecycleBasis cannot be evaluated ({type(e).__name__}: {e})", rid)
+                    continue
+                if got["counts"] != basis.get("counts"):
+                    self.r.add("E-LIFECYCLE-BASIS", loc, f"lifecycleBasis.counts {basis.get('counts')} do not match the evidence {got['counts']}", rid)
+                if got["result"] != basis.get("result"):
+                    self.r.add("E-LIFECYCLE-BASIS", loc, f"lifecycleBasis.result {basis.get('result')!r} but the entry test gives {got['result']!r}", rid)
+                if state in LB.TESTED_STATES and (basis.get("testedFor") != state or got["result"] != "met"):
+                    self.r.add("E-LIFECYCLE-BASIS" if at_cand else "W-LIFECYCLE-BASIS", loc, f"lifecycleState {state} but the {basis.get('testedFor')} entry test is {got['result']}: the record is watch (ADR-0032; review M7)", rid)
+
+    def check_production_review(self):
+        """m7 (W-LINT-PRODUCTION-REVIEW): a competency whose tasks produce an AI-draftable deliverable has a separate
+        specify, review, verify or defend task (SPEC §5.5; ADR-0003 G-2)."""
+        p = self.repo / PRODUCTION_REVIEW_LEXICON
+        if not p.exists():
+            return
+        lex = L.load_yaml(p)
+        prod, review = set(lex["production_verbs"]), set(lex["review_verbs"])
+        nouns = re.compile(r"\b(" + "|".join(re.escape(x) for x in lex["draftable_deliverables"]) + r")s?\b", re.I)
+        by_comp = defaultdict(list)
+        for tid in self.by_type.get("Task", []):
+            _, t = self.records[tid]
+            if t.get("status") in LIVE_EXCLUDED_STATUSES or t.get("validationStatus") == "seed-v1":
+                continue
+            for s in t.get("supports") or []:
+                if isinstance(s, dict):
+                    by_comp[s.get("competency")].append(t)
+        for cid in self.by_type.get("Competency", []):
+            loc, c = self.records[cid]
+            if c.get("status") in LIVE_EXCLUDED_STATUSES or c.get("validationStatus") == "seed-v1" or self.is_held(cid, c):
+                continue
+            first = [((t.get("statement") or {}).get("en") or "").split(" ", 1) for t in by_comp.get(cid, [])]
+            producing = [f for f in first if f and f[0].lower() in prod and len(f) > 1 and nouns.search(f[1])]
+            reviewing = [f for f in first if f and f[0].lower() in review]
+            if producing and not reviewing:
+                self.r.add("W-LINT-PRODUCTION-REVIEW", loc, f"{len(producing)} task(s) produce an AI-draftable deliverable and no task specifies, reviews, verifies, validates, audits, approves, certifies or defends it (SPEC §5.5; review m7)", cid)
+
+    def check_tn_queue(self):
+        """m14 (E-TN-QUEUE): every record routed to the TN review queue exists and is held."""
+        p = self.data / TN_QUEUE_REL
+        if not p.exists():
+            return
+        q = L.load_yaml(p) or {}
+        for i, item in enumerate(q.get("items") or []):
+            rid = (item or {}).get("id")
+            where = f"{p}:items[{i}]"
+            if (item or {}).get("approval_status") != "pending-tribal-review":
+                self.r.add("E-TN-QUEUE", where, f"{rid}: approval_status must be pending-tribal-review until a recorded TN review")
+            if rid not in self.records:
+                self.r.add("E-TN-QUEUE", where, f"{rid} does not resolve to a record")
+            elif not self.is_held(rid):
+                self.r.add("E-TN-QUEUE", where, f"{rid} is in the TN review queue but is not held (indigenousDataFlag true, approvalStatus pending-tribal-review)", rid)
 
     def check_edges_redundant(self):
         """W-EDGE-REDUNDANT (CR-SC-001 #1): a Task edge already carried by a competency the task supports as primary,
@@ -1289,8 +1509,19 @@ class Validator:
                             raise ValueError
                     except ValueError:
                         self.r.add("E-SSSOM-VALUE", where, f"{c} must be a number in [0,1]")
-            if row.get("object_id") == "sssom:NoTermFound" and row.get("predicate_id") not in ("emst:retiredWithoutReplacement", "emst:replacedBy", "skos:exactMatch", "skos:closeMatch", "skos:broadMatch", "skos:narrowMatch", "skos:relatedMatch"):
-                self.r.add("E-SSSOM-VALUE", where, "sssom:NoTermFound used with an unsupported predicate")
+            if row.get("object_id") == "sssom:NoTermFound":
+                pred, neg = row.get("predicate_id"), row.get("predicate_modifier") == "Not"
+                # ADR-0032 (review M9, m5): one convention; a NoTermFound row never asserts a positive predicate
+                if not (pred in NO_OBJECT_PREDICATES or (pred in SKOS_PREDICATES and neg)):
+                    self.r.add("E-SSSOM-NOTERM-POSITIVE", where, f"sssom:NoTermFound with {'Not ' if neg else ''}{pred}: use emst:retiredWithoutReplacement, emst:successorNotReleased, or the searched SKOS predicate with predicate_modifier Not (vocab/mapping_predicates.yaml#no_match_convention)")
+            if "held_variants" in other:
+                self.r.add("E-SSSOM-HELD-MARKER", where, "`other` marks held variants: held content is counted, never named (ADR-0007 §D; ADR-0032, review m14)")
+            reviewers = [x for x in re.split(r"[|;, ]+", row.get("reviewer_id") or "") if x]
+            if just == "semapv:ManualMappingCuration" and not any(x.startswith("pid:") for x in reviewers) \
+                    and (str(row.get("author_id", "")).startswith("emstagent:") or agent_set):
+                self.r.add("E-SSSOM-MANUAL-AGENT", where, "semapv:ManualMappingCuration means a human curator: an agent-made row takes semapv:LLMBasedMatching (or a pid: reviewer with semapv:MappingReview) (ADR-0032; review M3)")
+            if other.get("review_status") == "two-coder-agreed-target" and other.get("rater_type") == "llm":
+                self.r.add("E-SSSOM-AGREEMENT-LABEL", where, "two LLM coders agreeing is two-llm-coders-agreed-target, not two-coder-agreed-target (ADR-0032; review M9)")
             if third_party and meta.get("license", "").startswith("CC0") and row.get("object_label"):
                 self.r.add("E-SSSOM-THIRD-PARTY-TEXT", where, "CC0 mapping sets store external IDs only; move upstream labels to external/ (ADR-0013 §5)")
         if n_ext:

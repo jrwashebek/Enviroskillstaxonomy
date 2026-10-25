@@ -5,7 +5,7 @@
 > Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).
 
 - **Role:** Park ranger (visitor and resource management) (`emst:parks/ROL-68N3AAH`, P2); authority position (editorial): resource-manager
-- **Generated:** pipelines/views/state_class_view.py@0.2.0, rule state-class-view@0.1.0 (registered rule, status active), as of 2026-10-23
+- **Generated:** pipelines/views/state_class_view.py@0.3.0, rule state-class-view@0.2.0 (registered rule, status active), as of 2026-10-23
 
 ## Mapped classes
 

@@ -1,7 +1,9 @@
-"""effective-use-tier@1.0.0 (vocab/rules/effective-use-tier@1.0.0.yaml; ADR-0015, ADR-0024, ADR-0029 §4.5).
+"""effective-use-tier@1.1.0 (vocab/rules/effective-use-tier@1.1.0.yaml; ADR-0015, ADR-0024, ADR-0029 §4.5, ADR-0032).
 
 Effective tier = the minimum of the declared ceiling and the caps:
-  lifecycle     watch/proposed → exploratory; emerging → develop; established/declining → select; withdrawn/lapsed/merged → none
+  lifecycle     1.1.0: NOT a cap (lifecycle describes the work, validationStatus the record; ADR-0032, review M7).
+                withdrawn/lapsed/merged records still have no tier (the record is not current); `caps.lifecycle` is
+                reported as null for every other state
   evidence      validationStatus ladder; a Competency at select also needs ≥ 1 linked critical task in a role variant
                 at ≥ job-analysis-confirmed
   levelRule     Competency: highest tier whose IO tier_requirements hold at EVERY published level (none → describe);
@@ -16,7 +18,8 @@ from __future__ import annotations
 TYPES = ("Competency", "Task", "Indicator", "RoleProfile", "RoleVariant", "KnowledgeStatement", "Enactment", "Pathway")
 TIER_ORDER = ["exploratory", "describe", "develop", "select"]
 LIFECYCLE_CAP = {"watch": "exploratory", "proposed": "exploratory", "emerging": "develop", "established": "select",
-                 "declining": "select", "withdrawn": None, "lapsed": None, "merged": None}
+                 "declining": "select", "withdrawn": None, "lapsed": None, "merged": None}    # 1.0.0, kept for reference
+NOT_CURRENT = {"withdrawn", "lapsed", "merged"}                                          # 1.1.0: no tier
 NO_TIER = object()
 EVIDENCE_CAP = {"seed-v1": "exploratory", "draft": "describe", "reviewed": "describe", "panel-retained": "develop",
                 "job-analysis-confirmed": "select", "criterion-supported": "select"}
@@ -105,8 +108,8 @@ def compute(released: dict, tier_requirements: dict, lint: dict | None, stamp: d
         declared = r.get("useTier") or "exploratory"
         caps = {}
         lc = r.get("lifecycleState")
-        caps["lifecycle"] = LIFECYCLE_CAP.get(lc, "exploratory") if lc in LIFECYCLE_CAP else "exploratory"
-        no_tier = lc in LIFECYCLE_CAP and LIFECYCLE_CAP[lc] is None
+        caps["lifecycle"] = None                       # 1.1.0: lifecycle never caps the tier (ADR-0032)
+        no_tier = lc in NOT_CURRENT
         ev = EVIDENCE_CAP.get(r.get("validationStatus"), "exploratory")
         if typ == "Competency" and ev == "select" and rid not in comp_has_critical:
             ev = "develop"
@@ -120,8 +123,7 @@ def compute(released: dict, tier_requirements: dict, lint: dict | None, stamp: d
         if typ == "Pathway":
             caps["pathway"] = "exploratory"
         if no_tier:
-            eff, binding = None, "lifecycle"
-            caps["lifecycle"] = None
+            eff, binding = None, "notCurrent"
         else:
             values = {"declaredCeiling": declared, **{k: v for k, v in caps.items() if v is not None}}
             eff = _min(values.values())

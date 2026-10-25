@@ -1,0 +1,36 @@
+id: seed:rc1-m7-legislative-product-verify
+type: Task
+prefLabel:
+  en: Verify a bill summary, fiscal note or testimony draft against the bill text and program data before release, recording each correction and its source.
+layer: L2
+module: core
+status: draft
+lifecycleState: established
+useTier: describe
+validationStatus: draft
+license: CC0-1.0
+sensitivity: public
+statement:
+  en: Verify a bill summary, fiscal note or testimony draft against the bill text and program data before release, recording each correction and its source.
+textSha256: 6df94fe1c4815a27631c9dbadab1fd79486461f5ea29ab591c3f3b7563a88061
+supports:
+- competency: emst:core/CMP-7JXTB4F
+  strength: primary
+workFunction: WF-MONITOR
+fieldDependency: remote-capable
+formationDependency: partial
+homeModule: core
+editorialNote:
+  en: 'Added in the rc.1 fix pass (data-method review m7; ADR-0032): the review or verification step that the competency''s production tasks lacked. Agent draft; needs owner review.'
+provenance:
+  method: llm-assisted
+  agent:
+  - emstagent:d-data-rc1-fix@claude-opus-5-5
+  generatedAt: '2026-10-25T12:00:00Z'
+  toolVersion: claude-opus-5-5
+  promptVersion: docs/build/rc1-fix/add_review_tasks.py@rc1-m7
+  evidenceLabel: S
+  reviewStatus: unreviewed
+  adr:
+  - ADR-0003
+  - ADR-0032

@@ -10,12 +10,12 @@
 - **Minimum qualifications:** Twelfth grade, formal treatment plant operations training, 3 years operating treatment equipment and 2 years crew-chief-level supervision, or equivalent. (binding text lives in: spec; degree rule: not-required)
 - **Licences:** PA motor vehicle operator licence (if-assignment-requires)
 - **Pay:** Pay range N18 (amounts not retrieved) annual, effective 2023-12-01
-- **Spec text:** stored by URL and hash only (https://www.phila.gov/departments/office-of-human-resources/job-specs/7E49.htm)
-- **Generated:** pipelines/views/state_class_view.py@0.2.0, rule state-class-view@0.1.0 (registered rule, status active), as of 2026-10-23
+- **Spec text:** stored by URL only; not hashed, so no version is pinned (https://www.phila.gov/departments/office-of-human-resources/job-specs/7E49.htm)
+- **Generated:** pipelines/views/state_class_view.py@0.3.0, rule state-class-view@0.2.0 (registered rule, status active), as of 2026-10-23
 
 ## EMST role: Water and wastewater treatment operator (local variant, lead level; P2)
 
-*Match:* `skos:closeMatch`, confidence 0.6, unreviewed agent draft (`emst-x5-pa-phl:R25-water-wastewater-operator/local:7E49`). *Authority position (editorial):* regulated-party.
+*Match:* `skos:closeMatch`, agentConfidence (uncalibrated) 0.6, unreviewed agent candidate (not reviewed by a person) (`emst-x5-pa-phl:R25-water-wastewater-operator/local:7E49`). *Authority position (editorial):* regulated-party.
 
 **Competency targets at this level (editorial draft target levels, agent-drafted)**
 

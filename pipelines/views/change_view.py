@@ -5,7 +5,7 @@ Joins WP-08's authored change atoms (docs/build/WP-08/change_view_inputs.yaml: w
 which driver, agent drafts) with the evidence the explorer must show beside them:
 - v2 assessment status per task: "assessment pending" unless a v2 multi-rater ExposureAssessment exists;
 - change signals (L5): those named on the atom, plus signals targeting the role, its variants' sector actors and its
-  editorial primary work function; status (watch/active), family, drivers, reliability. Change indicators count
+  editorial primary work function; status (watch/active), family, drivers, sourceGrade (Admiralty grade of the source; m9). Change indicators count
   active signals only (ADR-0028); none are active, so no indicator moves;
 - external occupation-level context attached through X3 (labelled, never task-level; licence excludes it from release);
 - v1 prior evidence pointers (evidence drawer only, never a value).
@@ -30,7 +30,7 @@ PENDING = "assessment pending (no v2 multi-rater assessment for this task)"
 def sig_summary(s):
     return {"id": s["id"], "label": s["prefLabel"]["en"], "signalStatus": s.get("signalStatus"),
             "signalFamily": s.get("signalFamily"), "direction": s.get("direction"), "drivers": s.get("drivers"),
-            "reliability": s.get("reliability"), "sourceRelease": s.get("sourceRelease"), "evidenceLabel": s.get("evidenceLabel"),
+            "sourceGrade": s.get("sourceGrade"), "sourceRelease": s.get("sourceRelease"), "evidenceLabel": s.get("evidenceLabel"),
             "reviewBy": s.get("reviewBy")}
 
 

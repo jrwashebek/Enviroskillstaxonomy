@@ -3,57 +3,68 @@ scheme: lifecycle_states
 title: Lifecycle and status vocabularies
 schemeVersion: 1.0.0-draft
 status: draft
-lastReviewed: 2026-10-23
-decidedIn: [ADR-0015, ADR-0010, ADR-0024, ADR-0029]
+lastReviewed: 2026-10-25
+decidedIn: [ADR-0015, ADR-0010, ADR-0024, ADR-0029, ADR-0032]
 steward: CA with FS, IO, DE
 license: CC0-1.0
 description: >
   Editorial status (is the record released and its ID stable?) and lifecycle state (how established is this work in
-  the world?) are independent. Thresholds are FS starting values, recalibrated after the first annual Signals Review.
+  the world?) are independent. Lifecycle describes the WORK in the sector; validationStatus describes the EMST RECORD
+  (rc.1 fix pass, ADR-0032, change request CR-CA-001; review M7). Lifecycle state never caps or raises a use tier: the
+  effective tier is capped by validationStatus, IO's level rules and the display gate (effective-use-tier@1.1.0).
+  Thresholds are FS starting values, recalibrated after the first annual Signals Review. A record in L1-L4 may be
+  `proposed` or `emerging` only with a `lifecycleBasis` that meets the state's entry_test (E-LIFECYCLE-BASIS);
+  otherwise it is `watch`.
 
 lifecycle_states:
   - notation: watch
     prefLabel: Watch
-    lives_in: L5 only (WatchItem = signal cluster + hypothesized entity)
-    meaning: Something may be forming.
-    max_use_tier: exploratory
+    lives_in: "L5 WatchItems (signal cluster + hypothesized entity), and L1-L4 records drafted ahead of the evidence: a role, competency or other record whose work is hypothesized but does not meet the `proposed` entry test (ADR-0032)."
+    meaning: Something may be forming; the work is not yet shown to exist in the sector.
     review_by_months: 12
     lapses_without_new_evidence: true
     entry_threshold: "≥ 2 signals, or one high-priority signal."
   - notation: proposed
     prefLabel: Proposed
     lives_in: L1–L4 (persistent ID; non-normative flag)
-    meaning: A draft definition exists, composed from L2 tasks.
-    max_use_tier: exploratory
+    meaning: A draft definition exists, composed from L2 tasks, and the entry test is met.
     review_by_months: 12
     entry_threshold: "≥ 3 independent signals of ≥ 2 types from ≥ 2 sector actors, or one mandate with an effective date."
+    entry_test:
+      any_of:
+        - {test: signals, min_independent_signals: 3, min_signal_families: 2, min_sector_actors: 2,
+           independence: "pairwise disjoint providers, upstreamSource and processingChain (change-indicator@1.1.0 ER-1); signals of one observationId count once"}
+        - {test: mandate, requires: "an Instrument whose DriverEvents include an `effective` event dated on or before the test date"}
     required_fields_for_roles: [evidenceSignals, feederRoles, horizon, scenarioSensitivity, reviewBy, counterSignal]
   - notation: emerging
     prefLabel: Emerging
     lives_in: L1–L4
-    meaning: Observable in work.
-    max_use_tier: develop
+    meaning: Observable in work, and the entry test is met.
     review_by_months: 24
     entry_threshold: "≥ 10 postings or PDs across ≥ 2 actor types in 12 months, or a named operating programme; feeder roles identified."
+    entry_test:
+      any_of:
+        - {test: postings-pds, min_postings_or_pds: 10, min_actor_types: 2, window_months: 12,
+           counts_from: "evidence signals with signalFamily postings-pds: measure.n summed over distinct observations, sectorActor distinct"}
+        - {test: operating-programme, requires: "a named operating programme with at least one E-labelled source that resolves"}
+      also_for_roles: "feederRoles[] has at least one entry"
   - notation: established
     prefLabel: Established
     lives_in: L1–L4
-    meaning: Validated and stable.
-    max_use_tier: select
+    meaning: "Long-standing work in the sector; EMST content validation is tracked separately in validationStatus."
+    meaning_before_2026_10_25: "Validated and stable (withdrawn by CR-CA-001: it conflated the work with the record; ADR-0032)."
     review_by_months: 36
-    entry_threshold: "≥ 30 postings or PDs across ≥ 3 actor types over 12 months, or a major employer's classification or PD standard; plus SME validation to IO's standard and assessable indicators."
+    entry_threshold: "Long-standing work: ≥ 30 postings or PDs across ≥ 3 actor types over 12 months, or a major employer's classification or PD standard, or v1 content carried from established practice. No validation requirement: validation is validationStatus."
   - notation: declining
     prefLabel: Declining
     lives_in: L1–L4
-    meaning: Demand falling or the task substituted.
-    max_use_tier: select (flagged; development de-prioritized)
+    meaning: Demand falling or the task substituted (flagged; development de-prioritized).
     review_by_months: 24
     entry_threshold: "Demand share down ≥ 30% over 24 months, or the substitution-confirmation checklist met. Protect check mandatory."
   - notation: withdrawn
     prefLabel: Withdrawn
     lives_in: L1–L4 (ID and crosswalks kept; never reused)
-    meaning: No longer current.
-    max_use_tier: none
+    meaning: "No longer current (no use tier: the record is not for use)."
     entry_threshold: "Below threshold for 36 months, no protect flag, and Editorial Board (CA during Phase 4) approval."
   - notation: lapsed
     prefLabel: Lapsed
@@ -91,7 +102,7 @@ editorial_statuses:
   - {notation: withdrawn, definition: "Removed without successor; resolves to a tombstone with explanation."}
 
 use_tiers:
-  description: Effective use tier = min(lifecycle cap, IO evidence met, reliability gate for any tag shown).
+  description: "Effective use tier = min(declared ceiling, validationStatus evidence cap, IO level rules, display gate for any tag shown). Lifecycle state does not cap the tier (effective-use-tier@1.1.0; ADR-0032); withdrawn, lapsed and merged records have no tier."
   values:
     - {notation: exploratory, definition: "Foresight, 'what's coming', curriculum exploration; not for decisions.", aliases: [AS exploratory]}
     - {notation: describe, definition: "Workforce analytics, planning, curriculum mapping.", aliases: [IO describe/plan]}
@@ -113,3 +124,12 @@ reliability_gate:
   production: ">= 0.80"
   tentative: "0.667 – 0.80 (shown with a tentative marker)"
   not_shown: "< 0.667"
+
+changeNote:
+  - date: '2026-10-25'
+    change: CR-CA-001
+    note: >
+      `established` redefined as long-standing work in the sector (validation is validationStatus); `watch` may label
+      L1-L4 records whose work does not meet the `proposed` entry test; max_use_tier removed from every state
+      (lifecycle no longer caps the use tier); machine-readable entry_test added for proposed and emerging, checked by
+      scripts/validate_v2.py (E-LIFECYCLE-BASIS). Decided in ADR-0032 (rc.1 fix pass; review M7).

@@ -52,6 +52,9 @@ fields:
   - federalSeriesProfile
   - stateClassView
   - inverseLinks
+  # release-bundle envelope for display-gated agent drafts (rc.1 fix pass M1; scripts/agent_draft.py)
+  - agentDraft
+  - stale                 # rating staleness flag in release bundles (review M8; REQUESTS_FOR_BUILD R-03)
 # Inverse links are computed in bundles; storing them on the "one" side would let the two sides drift (IA §3).
 inverse_fields_by_type:
   Task: [tools]                                        # inverse of Tool.servesTasks (ADR-0029 §1.2)

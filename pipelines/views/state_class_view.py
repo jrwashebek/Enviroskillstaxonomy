@@ -7,6 +7,8 @@ copied into the register), the variant's tasks at those levels in role-record or
 disclaimer. Display-gate@1.1.0 governs every bundle value (CR-FIX-B-001; ADR-0031 §4.4): no % time or importance before
 job-analysis-confirmed, no critical / needed-at-entry / distinguishing flag before a pid: reviewer. Also writes an index over every P1-P2 state and local variant, with its mapped classes or the statement that
 no class is mapped in the pilot jurisdictions. Held records are never read.
+Rule state-class-view@0.2.0 (rc.1 fix pass, ADR-0032; review M10): mappings below skos:closeMatch are left out (never an
+alignment); the model's own number is `agentConfidence (uncalibrated)`; every mapping is an unreviewed agent candidate.
 
 Outputs  docs/build/WP-08/generated/state-class/<jur>--<code>.json and .md, variant_index.json
 Licence: Apache-2.0.
@@ -19,7 +21,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import viewlib as V  # noqa: E402
 
-GEN = "pipelines/views/state_class_view.py@0.2.0"
+GEN = "pipelines/views/state_class_view.py@0.3.0"
+RULE_VERSION = "0.2.0"
+AGENT_CONFIDENCE = "agentConfidence (uncalibrated)"
+STRENGTH = {"skos:exactMatch": 5, "skos:closeMatch": 4, "skos:broadMatch": 3, "skos:narrowMatch": 3, "skos:relatedMatch": 1}
 PILOTS = "TX, WA and PA (state), Lewis County WA (county environmental health), Philadelphia Water Department (municipal utility)"
 
 
@@ -52,6 +57,8 @@ def mapping_block(d, m):
     role = d.get(variant["variantOf"]) if variant else None
     if not variant or not role or V.held(variant):
         return None
+    if STRENGTH.get(m.get("matchType"), 0) < STRENGTH["skos:closeMatch"]:
+        return None                      # rule 0.2.0: below closeMatch is not an alignment; never shown (ADR-0032, M10)
     levels = [x for x in (m.get("roleLevel") or "").split("|") if x]
     items = V.at_levels(V.effective_bundle(role, variant), levels)
     tasks = items[:12]                       # role-record order; time share never orders a view (gate `rollups`)
@@ -63,8 +70,8 @@ def mapping_block(d, m):
     return {"roleVariant": vid, "role": role["id"], "roleTitle": d.label(role["id"]), "tier": d.tier(role),
             "sectorActor": variant.get("sectorActor"),
             "authorityPosition": variant.get("authorityPosition"), "roleLevels": levels,
-            "matchType": m.get("matchType"), "confidence": m.get("confidence"),
-            "review": "unreviewed agent draft" if not m.get("reviewer") else f"reviewed by {m['reviewer']} on {m.get('reviewDate')}",
+            "matchType": m.get("matchType"), AGENT_CONFIDENCE: m.get("confidence"),
+            "review": "unreviewed agent candidate (not reviewed by a person)" if not m.get("reviewer") else f"reviewed by {m['reviewer']} on {m.get('reviewDate')}",
             "crosswalkRecord": m.get("crosswalkRecord"),
             "competencyTargets": targets, "pctTimeNotice": V.TIME_NOTICE,
             "jobAnalysisValues": V.PENDING_JA if not (crit_ok and entry_ok) else None,
@@ -85,11 +92,11 @@ def render_md(v):
            f"- **Minimum qualifications:** {f['mqParaphrase'] or 'see spec'} (binding text lives in: {f['mqLocation']}; degree rule: {f['degreeRule']})",
            f"- **Licences:** " + ("; ".join(f"{x.get('credential')} ({x.get('timing')})" for x in f["licensesRequired"]) or "none recorded"),
            f"- **Pay:** {f['pay']['label'] or ''} {('USD ' + str(f['pay']['min']) + '–' + str(f['pay']['max'])) if f['pay']['min'] else '(amounts not retrieved)'} {f['pay']['basis'] or ''}, effective {f['pay']['effective']}",
-           f"- **Spec text:** stored by URL and hash only ({f['specUrl']})",
+           f"- **Spec text:** stored by URL only; not hashed, so no version is pinned ({f['specUrl']})",
            f"- **Generated:** {v['stamp']['generator']}, rule {v['stamp']['ruleId']}@{v['stamp']['ruleVersion']} ({v['stamp']['ruleStatus']}), as of {v['stamp']['asOf']}", ""]
     for m in v["mappings"]:
         out += [f"## EMST role: {m['roleTitle']} ({m['sectorActor']} variant, {'/'.join(m['roleLevels'])} level; {m['tier']})", "",
-                f"*Match:* `{m['matchType']}`, confidence {m['confidence']}, {m['review']} (`{m['crosswalkRecord']}`). "
+                f"*Match:* `{m['matchType']}`, agentConfidence (uncalibrated) {m[AGENT_CONFIDENCE]}, {m['review']} (`{m['crosswalkRecord']}`). "
                 f"*Authority position (editorial):* {m['authorityPosition']}.", "",
                 "**Competency targets at this level (editorial draft target levels, agent-drafted)**", ""]
         for t in m["competencyTargets"]:
@@ -119,7 +126,7 @@ def main():
         maps = [mb for mb in (mapping_block(d, m) for m in c.get("emstMapping") or [] if m.get("roleVariant")) if mb]
         if not maps:
             continue
-        view = {"stamp": V.stamp("state-class-view", "0.1.0", GEN), "disclaimer": V.DISCLAIMER,
+        view = {"stamp": V.stamp("state-class-view", RULE_VERSION, GEN), "disclaimer": V.DISCLAIMER,
                 "evidenceNotice": V.EVIDENCE_NOTICE, "classRecord": cid, "class": class_facts(c), "mappings": maps}
         stem = class_stem(d, c)
         V.write_json(V.OUT / "state-class" / f"{stem}.json", view)
@@ -142,11 +149,11 @@ def main():
         lv = [r["key"] for r in role["roleLevels"]]
         lines = [f"# State Class View (variant): {d.label(vid)}", "", f"> **{V.DISCLAIMER}**", ">", f"> {V.EVIDENCE_NOTICE}", "",
                  f"- **Role:** {d.label(role['id'])} (`{role['id']}`, {d.tier(role)}); authority position (editorial): {v.get('authorityPosition')}",
-                 f"- **Generated:** {GEN}, rule state-class-view@0.1.0 ({V.stamp('state-class-view', '0.1.0', GEN)['ruleStatus']}), as of {V.AS_OF}", "", "## Mapped classes", ""]
+                 f"- **Generated:** {GEN}, rule state-class-view@{RULE_VERSION} ({V.stamp('state-class-view', RULE_VERSION, GEN)['ruleStatus']}), as of {V.AS_OF}", "", "## Mapped classes", ""]
         if classes:
             lines += [f"- {c['classTitle']} (`{c['classRecord']}`), {'/'.join(c['roleLevels'])} level, `{c['matchType']}` — see `{c['view']}`" for c in classes]
         else:
-            lines.append(f"No class is mapped in the pilot jurisdictions ({PILOTS}). The role's targets below are what a "
+            lines.append(f"No class is mapped at skos:closeMatch or stronger in the pilot jurisdictions ({PILOTS}). The role's targets below are what a "
                          "jurisdiction would crosswalk its own class specification against.")
         lines += ["", "## Competency targets by role level (editorial draft target levels, agent-drafted)", ""]
         for t in V.targets_at(d, role, lv):
@@ -154,7 +161,7 @@ def main():
         lines += ["", "---", V.DISCLAIMER, ""]
         V.write_text(V.OUT / "state-class" / "variants" / f"{V.L.id_to_stem(vid)}.md", "\n".join(lines))
     V.write_json(V.OUT / "state-class" / "variant_index.json",
-                 {"stamp": V.stamp("state-class-view", "0.1.0", GEN), "disclaimer": V.DISCLAIMER,
+                 {"stamp": V.stamp("state-class-view", RULE_VERSION, GEN), "disclaimer": V.DISCLAIMER,
                   "note": f"Every P1-P2 state and local variant with its mapped class records; an empty list means no class is mapped in the pilot jurisdictions ({PILOTS}).",
                   "variants": dict(sorted(by_variant.items()))})
     print(f"state class views: {n}; state/local variants indexed: {len(by_variant)}; "

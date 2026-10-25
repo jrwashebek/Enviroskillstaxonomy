@@ -27,6 +27,12 @@ Rules this script enforces (WP-14 acceptance; ADR-0027; PROJECT_LEAD_DECISIONS Q
   * F05 and F06 use plan-level bootstrap intervals (seeded) and sensitivity checks computed
     from openlmp_plan_level_extract.csv (written by extract_openlmp_plans.py); the build
     fails unless that extract reproduces the plan-equal means stored in the L5 signals.
+  * "Not distinguishable" is decided on the 95% interval of the DIFFERENCE (2012 minus 1982, paired resample
+    means of the same seeded stream), never on whether the two era intervals overlap: overlapping intervals can
+    hide a difference whose interval excludes 0 (rc.1 fix pass, data-method review m13; ADR-0032). The
+    difference interval uses linear interpolation between order statistics, as the signal records' stored
+    measure.difference does (docs/build/rc1-fix/openlmp_difference.py); the per-era intervals keep the
+    order-statistic convention the signal records' ci95 were built with, so figure and record stay identical.
   * Deterministic: same inputs, same outputs.
   * Persistent IDs (rc.1 alignment, 2026-10-24; ADR-0031 §6): data/v2 records now carry minted IDs. The script
     names its inputs by their seed keys and resolves them through data/v2/ids/seed_map.csv, so every ID written to
@@ -158,6 +164,22 @@ def boot_ci(values, idx_sets):
     means = sorted(sum(values[i] for i in s) / len(s) for s in idx_sets)
     b = len(means)
     return means[int(0.025 * b)], means[int(0.975 * b) - 1]
+
+
+def pctl(sorted_vals, p):
+    """Percentile with linear interpolation between closest ranks (numpy 'linear')."""
+    k = (len(sorted_vals) - 1) * p
+    f = int(k)
+    c = min(f + 1, len(sorted_vals) - 1)
+    return sorted_vals[f] + (sorted_vals[c] - sorted_vals[f]) * (k - f)
+
+
+def diff_ci(v12, idx12, v82, idx82):
+    """95% interval of the 2012-minus-1982 difference of means: resample b of one era minus resample b of the other."""
+    m12 = [sum(v12[i] for i in s) / len(s) for s in idx12]
+    m82 = [sum(v82[i] for i in s) / len(s) for s in idx82]
+    d = sorted(a - b for a, b in zip(m12, m82))
+    return pctl(d, 0.025), pctl(d, 0.975)
 
 
 def resamples(n, rng, b=10000):
@@ -370,6 +392,14 @@ def f5_f6():
     def overlap(a, b):
         return "yes" if max(a[1], b[1]) <= min(a[2], b[2]) else "no"
 
+    def difference(vid, col):
+        """(difference, ci low, ci high, distinguishable) for one variant; distinguishable = the interval excludes 0."""
+        v82, v12 = vals(sub[(vid, "1982-rule")], col), vals(sub[(vid, "2012-rule")], col)
+        lo, hi = diff_ci(v12, idx[(vid, "2012-rule")], v82, idx[(vid, "1982-rule")])
+        nd = 4 if col == "n_monitoring" else 2
+        sig = lambda x: float(f"{x:.4g}")  # noqa: E731 - four significant digits, so a bound just below 0 keeps its sign
+        return round(statistics.fmean(v12) - statistics.fmean(v82), nd), sig(lo), sig(hi), "no" if lo <= 0 <= hi else "yes"
+
     f5rows, f6rows = [], []
     for d in recs:
         if not no_tribal(d):
@@ -391,15 +421,20 @@ def f5_f6():
                 cw12 = sum(int(p["n_monitoring"]) for p in sub[(vid, "2012-rule")]) / sum(int(p["n_components"]) for p in sub[(vid, "2012-rule")])
                 if vid == "all":
                     assert (round(cw82, 4), round(cw12, 4)) == (sens["baselineValue"], sens["value"])
+                dv = difference(vid, col)
                 f5rows.append({"measure": "components typed as monitoring (share of document components)", "variant": vid, "documents_included": vlabel,
                                "unit": "share of document components",
                                "rule_1982_plan_equal": s82[0], "rule_1982_ci95_low": s82[1], "rule_1982_ci95_high": s82[2], "rule_1982_n_documents": s82[3],
                                "rule_2012_plan_equal": s12[0], "rule_2012_ci95_low": s12[1], "rule_2012_ci95_high": s12[2], "rule_2012_n_documents": s12[3],
                                "rule_1982_component_weighted": round(cw82, 4), "rule_2012_component_weighted": round(cw12, 4),
-                               "plan_equal_cis_overlap": overlap(s82, s12), "ci_method": "percentile bootstrap over documents, 10,000 resamples, seed 20261023",
+                               "plan_equal_cis_overlap": overlap(s82, s12),
+                               "difference_2012_minus_1982": dv[0], "difference_ci95_low": dv[1], "difference_ci95_high": dv[2],
+                               "distinguishable": dv[3],
+                               "ci_method": "percentile bootstrap over documents, 10,000 resamples, seed 20261023; difference interval from paired resample means",
                                "signal_id": d["id"] if vid == "all" else ""})
         else:
             p82, p12 = stats("plans_only", "1982-rule", col), stats("plans_only", "2012-rule", col)
+            da, dp = difference("all", col), difference("plans_only", col)
             f6rows.append({"measure": label, "unit": m["unit"],
                            "rule_1982_plan_equal": a82[0], "rule_1982_ci95_low": a82[1], "rule_1982_ci95_high": a82[2], "rule_1982_n_documents": a82[3],
                            "rule_2012_plan_equal": a12[0], "rule_2012_ci95_low": a12[1], "rule_2012_ci95_high": a12[2], "rule_2012_n_documents": a12[3],
@@ -408,7 +443,12 @@ def f5_f6():
                            "plans_only_1982": p82[0], "plans_only_1982_ci95_low": p82[1], "plans_only_1982_ci95_high": p82[2], "plans_only_1982_n": p82[3],
                            "plans_only_2012": p12[0], "plans_only_2012_ci95_low": p12[1], "plans_only_2012_ci95_high": p12[2], "plans_only_2012_n": p12[3],
                            "plans_only_cis_overlap": overlap(p82, p12),
-                           "ci_method": "percentile bootstrap over documents, 10,000 resamples, seed 20261023", "signal_id": d["id"]})
+                           "difference_2012_minus_1982": da[0], "difference_ci95_low": da[1], "difference_ci95_high": da[2],
+                           "distinguishable": da[3],
+                           "plans_only_difference": dp[0], "plans_only_difference_ci95_low": dp[1], "plans_only_difference_ci95_high": dp[2],
+                           "plans_only_distinguishable": dp[3],
+                           "ci_method": "percentile bootstrap over documents, 10,000 resamples, seed 20261023; difference interval from paired resample means",
+                           "signal_id": d["id"]})
     assert len(f5rows) == len(variants) and len(f6rows) == 9
     kinds = {k: sum(1 for p in eras["2012-rule"] if p["doc_kind"] == k) for k in ("monitoring_report", "monitoring_plan", "plan")}
     any82 = sum(1 for p in eras["1982-rule"] if int(p["n_monitoring"]) > 0)
@@ -416,7 +456,8 @@ def f5_f6():
     po = [r for r in f5rows if r["variant"] == "plans_only"][0]
     hdr5 = ["measure", "variant", "documents_included", "unit", "rule_1982_plan_equal", "rule_1982_ci95_low", "rule_1982_ci95_high", "rule_1982_n_documents",
             "rule_2012_plan_equal", "rule_2012_ci95_low", "rule_2012_ci95_high", "rule_2012_n_documents",
-            "rule_1982_component_weighted", "rule_2012_component_weighted", "plan_equal_cis_overlap", "ci_method", "signal_id"]
+            "rule_1982_component_weighted", "rule_2012_component_weighted", "plan_equal_cis_overlap",
+            "difference_2012_minus_1982", "difference_ci95_low", "difference_ci95_high", "distinguishable", "ci_method", "signal_id"]
     write_csv("f05_plan_monitoring_share_by_rule.csv", hdr5, f5rows)
     f6rows.sort(key=lambda x: x["measure"])
     hdr6 = ["measure", "unit", "rule_1982_plan_equal", "rule_1982_ci95_low", "rule_1982_ci95_high", "rule_1982_n_documents",
@@ -424,6 +465,8 @@ def f5_f6():
             "rule_1982_component_weighted", "rule_2012_component_weighted", "plan_equal_cis_overlap",
             "plans_only_1982", "plans_only_1982_ci95_low", "plans_only_1982_ci95_high", "plans_only_1982_n",
             "plans_only_2012", "plans_only_2012_ci95_low", "plans_only_2012_ci95_high", "plans_only_2012_n", "plans_only_cis_overlap",
+            "difference_2012_minus_1982", "difference_ci95_low", "difference_ci95_high", "distinguishable",
+            "plans_only_difference", "plans_only_difference_ci95_low", "plans_only_difference_ci95_high", "plans_only_distinguishable",
             "ci_method", "signal_id"]
     write_csv("f06_plan_content_rates_by_rule.csv", hdr6, f6rows)
     note = ("OpenLMP 0.1.0 documents (catalog 2026-10-21, CC0), derived by EMST (docs/methods/scripts/wp10_lmp.py for the signal records; "
@@ -435,12 +478,12 @@ def f5_f6():
             "Components are as typed or extracted by OpenLMP, whose extraction method differs by era; mentions measure what documents name, not obligations or funded work. "
             "Tribal touchpoints are excluded pending Tribal Advisory Council review.")
     register("F05", "f05_plan_monitoring_share_by_rule.csv",
-             f"In western national-forest documents, components typed as monitoring make up about 31% of each 2012-rule document against about 3% of each 1982-rule plan, but the gap mostly reflects document type: {kinds['monitoring_report']} of the 36 2012-rule documents are monitoring evaluation reports and {kinds['monitoring_plan']} are stand-alone monitoring plans. Among plan documents alone the shares are about {round(100 * po['rule_2012_plan_equal'])}% and {round(100 * po['rule_1982_plan_equal'])}%, with overlapping intervals; only {any82} of the 84 older plans have any component typed as monitoring, so the older baseline is probably partly an extraction artifact.",
-             "Paired dot plot (1982 rule vs 2012 rule) with 95% bootstrap whiskers, one row per variant, headline row first and labeled as such; component-weighted values as hollow markers; rows whose intervals overlap labeled 'not distinguishable'; table beside the chart.",
+             f"In western national-forest documents, components typed as monitoring make up about 31% of each 2012-rule document against about 3% of each 1982-rule plan, but the gap mostly reflects document type: {kinds['monitoring_report']} of the 36 2012-rule documents are monitoring evaluation reports and {kinds['monitoring_plan']} are stand-alone monitoring plans. Among plan documents alone the shares are about {round(100 * po['rule_2012_plan_equal'])}% and {round(100 * po['rule_1982_plan_equal'])}%, and the interval of their difference {'includes' if po['distinguishable'] == 'no' else 'excludes'} 0; only {any82} of the 84 older plans have any component typed as monitoring, so the older baseline is probably partly an extraction artifact.",
+             "Paired dot plot (1982 rule vs 2012 rule) with 95% bootstrap whiskers, one row per variant, headline row first and labeled as such; component-weighted values as hollow markers; rows whose DIFFERENCE interval includes 0 (column distinguishable = no) labeled 'not distinguishable' (never decided by overlapping whiskers); table beside the chart.",
              note, evidence="EMST derivation from OpenLMP (CC0); document-type classification and sensitivity checks by EMST; not reviewed by a human")
     register("F06", "f06_plan_content_rates_by_rule.csv",
              "In western national-forest documents, 2012-rule documents name climate change, data and models, and carbon far more often than 1982-rule plans, and the difference holds among plan documents alone. The apparent tripling of coordination is mostly a weighting artifact: partnership touchpoints rise, but distinguishably so only among plan documents.",
-             "Small multiples, one panel per measure: 1982 vs 2012 plan-equal means with bootstrap whiskers for all documents and for plan documents only; component-weighted as hollow markers; panels where intervals overlap labeled 'not distinguishable'; table beside the chart.",
+             "Small multiples, one panel per measure: 1982 vs 2012 plan-equal means with bootstrap whiskers for all documents and for plan documents only; component-weighted as hollow markers; panels whose DIFFERENCE interval includes 0 (columns distinguishable / plans_only_distinguishable = no) labeled 'not distinguishable' (never decided by overlapping whiskers); table beside the chart.",
              note, evidence="EMST derivation from OpenLMP (CC0); document-type classification by EMST; not reviewed by a human")
 
 

@@ -64,7 +64,7 @@ Critical path: WP-01 → WP-02 → (WP-03…WP-07) → WP-08 → WP-12 → WP-14
 ### WP-03 Competency authoring — Field Craft (owner A3 FC)
 
 - **Inputs:** `candidate_disposition.csv` rows with FC targets; `v1_disposition.csv` rows targeting FC practices (D4 carries and rewrites, field-risk split of 4.4.1, 4.4.4 core part, 4.5.3 core part, 1.4.3, 4.1.x); ADR-0003, ADR-0004, ADR-0005, ADR-0025 (FC enactment of TX-A); FC report.
-- **Outputs:** core FC practice competency records with tasks (production vs adaptation-in-place split, G-2), indicators at each level in span (2–5 per level, `augmentationMode`, `useClass`, `obs4`), credential gates (T-8), field and formation dependency attributes, draft craft ratings (0/1/2) from three independent agent passes recorded as `llm` raters; FC enactment indicators for DC-CAND-13; field enactments for wave-1 modules handed to WP-06.
+- **Outputs:** core FC practice competency records with tasks (production vs adaptation-in-place split, G-2), indicators at each level in span (2–5 per level, `augmentationMode`, `useClass`, `obs4`), credential gates (T-8), field and formation dependency attributes, draft craft ratings (0/1/2) from three repeated agent passes of one model, recorded as one `llm` rater (one `raterId`, `passIndex` 1–3; run-to-run consistency, not reliability; ADR-0032); FC enactment indicators for DC-CAND-13; field enactments for wave-1 modules handed to WP-06.
 - **Acceptance:** every FC disposition row maps to a record or a documented merge; typing and indicator lint clean; every competency links ≥ 1 task (≥ 3 for P1 role targets); description ≤ 60 words; formation tasks flagged for every entry-level role in COR-1 and COR-2; protect suggestions (e.g. 1.3.2, 1.4.3, 4.1.3, 4.3.2) listed for Editorial Board decision, not set.
 
 ### WP-04 Competency authoring — Data Craft and the responsible-AI layer (owner A4 DC)
@@ -137,7 +137,7 @@ Critical path: WP-01 → WP-02 → (WP-03…WP-07) → WP-08 → WP-12 → WP-14
 - **Outputs:** flagship report "How environmental jobs are changing" (CC BY 4.0); briefing deck for federal, state and NGO audiences (mandate-framed: merit, skills-based hiring, mission readiness, knowledge retention); the interactive explorer (WP-12) as the companion; two-page role-change briefs for the 13 P1 roles; the Forester PD regenerated in FES format and labelled "subject to classification review".
 - **Acceptance:** every figure and claim cites a verified source with tier label; career-ladder finding presented as a hypothesis with mechanism and evidence status; no v1 single-analyst statistic except as methodology history unless the lead decides otherwise (Q7); no Tribal content; nonpartisan posture (ADR-0016 §6); WP-15 sign-off on every date-sensitive statement.
 
-### WP-15 Verification pass and claims register (owner A9 LM; AS co-signs)
+### WP-15 Verification pass and claims register (owner A9 LM; external publication signed by the project lead after a named human subject-matter reviewer, Q13; AI agent checks advisory)
 
 - **Inputs:** `docs/research/_verification/`; every claim used in WP-08 kits, WP-12 views, WP-13 and WP-14.
 - **Outputs:** claims register (claim, source, verification date, status, owner, re-check date); re-verification of remaining `[J]` claims used externally; watch list of moving facts (OPM series realignment, SPEED Act in Senate EPW, WOTUS, Section 106 NPRM, FAA Part 108, Colorado SB 26-189 effective Jan 1 2027, ADA Title II dates, ESCO language count).
@@ -157,7 +157,7 @@ Critical path: WP-01 → WP-02 → (WP-03…WP-07) → WP-08 → WP-12 → WP-14
 4. All wave-1 module sections present; wave-2 and wave-3 content absent except the early drafts named in the dispositions.
 5. 37 role profiles at their tier depth; Federal Series Profile and State Class View generated for every federal and state variant in P1–P2.
 6. X1 complete; X2 for P1 tasks; X3, X4, X5 (pilot states), X7 and X12 at reviewed-subset level.
-7. WP-15 sign-off on every external claim; ACR and security packet attached.
+7. WP-15 verification of every external claim (no `unverified` or `held` claims-register row in a released artifact; each moving fact re-checked on or after its date); ACR and security packet attached; and external publication signed by the EMST project lead after at least one named human subject-matter reviewer has read the report and briefs (project lead decision Q13, 2026-10-24). AI agent checks, including the adoption-lead role, are advisory. The record is `docs/release/<version>/PUBLICATION_SIGNOFF.yaml`; only people add entries to it, and `scripts/release_gate.py` reads it.
 8. The lead's answers to `questions_for_project_lead.md` Q1–Q2 recorded (TAC authority; CC0 dedication); without Q2, rc.1 ships with v1-derived text excluded from the CC0 data files.
 
 ## 6. Risks the plan carries

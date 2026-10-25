@@ -28,19 +28,37 @@ eleventyComputed:
 {{ m.meta(s.tier, s.evidence) }}
 
 <h2>EMST role variants drafted against this class</h2>
-{% set all = s.rows %}
-{% if s.rows.length or s.pending.length %}
+{% set closeRows = s.rows | where("closeOrBetter", true) %}{% set weakRows = s.rows | where("closeOrBetter", false) %}
+{% set closePend = s.pending | where("closeOrBetter", true) %}{% set weakPend = s.pending | where("closeOrBetter", false) %}
+{% if closeRows.length or (not s.rows.length and closePend.length) %}
 <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Role variant mappings">
 <table class="usa-table usa-table--compact" data-figure data-use-tier="exploratory" data-evidence="S">
   <caption>Draft class-to-variant mappings. <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>agent-drafted mapping, unreviewed</span></caption>
   <thead><tr><th scope="col">EMST role variant</th><th scope="col">Role level</th><th scope="col">Match</th><th scope="col">Status</th></tr></thead>
   <tbody>
-  {% for r in s.rows %}<tr><td>{% if r.variant %}<a href="{{ r.variant.url | url }}">{{ r.subjectLabel }}</a>{% else %}{{ r.subjectLabel }}{% endif %}</td><td>{{ r.other.role_level or "not set" }}</td><td>{{ r.predicate | match("class") }}, confidence {{ r.confidence }}</td><td>{{ r.reviewStatus }}{% if not r.variant %}; role variant not yet in this build{% endif %}</td></tr>{% endfor %}
-  {% if not s.rows.length %}{% for p in s.pending %}<tr><td>{% if p.variant %}<a href="{{ p.variant.url | url }}">{{ p.variant.title }}</a>{% else %}{{ p.key }}{% endif %}</td><td>{{ p.level }}</td><td>{{ p.match | match("class") }}, confidence {{ p.confidence }}</td><td>{% if p.variant %}linked{% else %}role variant not yet in this build{% endif %}</td></tr>{% endfor %}{% endif %}
+  {% set rows = closeRows %}{% set pend = closePend %}
+  {% for r in rows %}<tr><td>{% if r.variant %}<a href="{{ r.variant.url | url }}">{{ r.subjectLabel }}</a>{% else %}{{ r.subjectLabel }}{% endif %}</td><td>{{ r.other.role_level or "not set" }}</td><td>{{ r.predicate | match("class") }}, agent confidence (uncalibrated) {{ r.confidence }}</td><td>{{ r.reviewStatus }}{% if not r.variant %}; role variant not yet in this build{% endif %}</td></tr>{% endfor %}
+  {% if not s.rows.length %}{% for p in pend %}<tr><td>{% if p.variant %}<a href="{{ p.variant.url | url }}">{{ p.variant.title }}</a>{% else %}{{ p.key }}{% endif %}</td><td>{{ p.level }}</td><td>{{ p.match | match("class") }}, agent confidence (uncalibrated) {{ p.confidence }}</td><td>{% if p.variant %}linked{% else %}role variant not yet in this build{% endif %}</td></tr>{% endfor %}{% endif %}
   </tbody>
 </table>
 </div>
-{% else %}<p>No EMST role variant is mapped to this class in this build.</p>{% endif %}
+<p class="emst-muted">Only mappings at closeMatch or stronger are listed here; the agent confidence is the drafting model's own number and is not calibrated.</p>
+{% else %}<p>No EMST role variant is mapped to this class at closeMatch or stronger in this build.</p>{% endif %}
+{% if weakRows.length or (not s.rows.length and weakPend.length) %}
+<details class="emst-disclosure"><summary>Unreviewed agent candidates (not an alignment): mappings below closeMatch</summary>
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Unreviewed agent candidates">
+<table class="usa-table usa-table--compact" data-figure data-use-tier="exploratory" data-evidence="S">
+  <caption>Unreviewed agent candidates (not an alignment): related, broader or narrower matches an AI agent drafted. <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> <span class="emst-badge emst-badge--ev" data-badge="evidence"><span class="emst-badge__k">Evidence:</span>agent-drafted mapping, unreviewed</span></caption>
+  <thead><tr><th scope="col">EMST role variant</th><th scope="col">Role level</th><th scope="col">Match</th><th scope="col">Status</th></tr></thead>
+  <tbody>
+  {% set rows = weakRows %}{% set pend = weakPend %}
+  {% for r in rows %}<tr><td>{% if r.variant %}<a href="{{ r.variant.url | url }}">{{ r.subjectLabel }}</a>{% else %}{{ r.subjectLabel }}{% endif %}</td><td>{{ r.other.role_level or "not set" }}</td><td>{{ r.predicate | match("class") }}, agent confidence (uncalibrated) {{ r.confidence }}</td><td>{{ r.reviewStatus }}{% if not r.variant %}; role variant not yet in this build{% endif %}</td></tr>{% endfor %}
+  {% if not s.rows.length %}{% for p in pend %}<tr><td>{% if p.variant %}<a href="{{ p.variant.url | url }}">{{ p.variant.title }}</a>{% else %}{{ p.key }}{% endif %}</td><td>{{ p.level }}</td><td>{{ p.match | match("class") }}, agent confidence (uncalibrated) {{ p.confidence }}</td><td>{% if p.variant %}linked{% else %}role variant not yet in this build{% endif %}</td></tr>{% endfor %}{% endif %}
+  </tbody>
+</table>
+</div>
+</details>
+{% endif %}
 
 {% if s.view and s.view.mappings.length %}
 <h2>Role variant profiles at this class</h2>
@@ -49,7 +67,7 @@ eleventyComputed:
 {% for mp in s.view.mappings %}
 <section class="emst-card" aria-labelledby="cv-{{ loop.index }}">
   <h3 id="cv-{{ loop.index }}">{% if mp.variant %}<a href="{{ mp.variant.url | url }}">{{ mp.roleTitle }} ({{ mp.variant.actorLabel }})</a>{% else %}{{ mp.roleTitle }}{% endif %}</h3>
-  <p>Role level{{ "s" if mp.roleLevels.length != 1 }} read against this class: {{ mp.roleLevels | join(", ") }} · {{ mp.matchType | match("class") }}, confidence {{ mp.confidence }} ({{ mp.review }}) · authority position {{ mp.authorityPosition }} · profile depth: {{ mp.depth }}.</p>
+  <p>Role level{{ "s" if mp.roleLevels.length != 1 }} read against this class: {{ mp.roleLevels | join(", ") }} · {{ mp.matchType | match("class") }}, agent confidence (uncalibrated) {{ mp.confidence }} ({{ mp.review }}) · authority position {{ mp.authorityPosition }} · profile depth: {{ mp.depth }}.</p>
   {% set dflt = mp.targets | where("isDefault", true) %}{% set other = mp.targets | where("isDefault", false) %}
   <div class="emst-table-wrap" tabindex="0" role="region" aria-label="Competency targets for {{ mp.roleTitle }}">
   <table class="usa-table usa-table--compact" data-figure data-use-tier="{{ mp.variant.tier.tier if mp.variant else 'exploratory' }}" data-evidence="S">

@@ -1,7 +1,7 @@
 mapping_set_id: https://w3id.org/emst/crosswalks/onet-task/27.2
 mapping_set_version: 0.2.0-draft
 mapping_set_title: X2 EMST P1-corridor tasks to O*NET 27.2 task statements
-mapping_set_description: 'EMST v2 tasks in the P1 frame (pipelines/x2/p1_frame.yaml#taskToP1Roles, from WP-08''s P1 bundles) coded against O*NET task statements of the role family''s O*NET-SOC pool (from X3), per pipelines/x2/CODING_PROTOCOL.md. Release 27.2: the Eloundou-labelled task set ADR-0022 requires; O*NET 31.0 (target) was not downloadable on 2026-10-23 and will be produced by the upstream diff. DWAs pending (Tasks-to-DWAs file not available offline). review_status: single-coder-candidate | two-coder-agreed-target | needs-adjudication (row keeps coder A''s object; weakest_match_type is the weaker of both codes). Coder agreement in pipelines/x2/work/x2_kappa.json (generated); with two LLM coders it is LLM-vs-LLM agreement, not human inter-coder reliability.'
+mapping_set_description: 'EMST v2 tasks in the P1 frame (pipelines/x2/p1_frame.yaml#taskToP1Roles, from WP-08''s P1 bundles) coded against O*NET task statements of the role family''s O*NET-SOC pool (from X3), per pipelines/x2/CODING_PROTOCOL.md. Release 27.2: the Eloundou-labelled task set ADR-0022 requires; O*NET 31.0 (target) was not downloadable on 2026-10-23 and will be produced by the upstream diff. DWAs pending (Tasks-to-DWAs file not available offline). review_status: single-coder-candidate | two-llm-coders-agreed-target | needs-adjudication (row keeps coder A''s object; weakest_match_type is the weaker of both codes). Coder agreement in pipelines/x2/work/x2_kappa.json (generated); with two LLM coders it is LLM-vs-LLM agreement, not human inter-coder reliability. Honest coverage (ADR-0032; review M9): rows 316; with an O*NET object 202; agreed by both LLM coders 153; agreed at closeMatch or better 16; NoTermFound 114 (predicate_modifier Not). Coder agreement on match type kappa 0.465 (95% CI 0.388-0.541), below the ADR-0022 target 0.6: the X2 gate fails. Not for exposure joins.'
 subject_source: emstsrc:emst-v2-tasks
 subject_source_version: 2.0.0-draft (frame 0.2.0-wp08-bundles, sha256 b9bc997cf635)
 object_source: emstsrc:onet-tasks
@@ -31,3 +31,4 @@ extension_definitions:
 - slot_name: reviewer_agreement
   property: https://w3id.org/sssom/reviewer_agreement
   type_hint: xsd:double
+other: kappa_match_type=0.465;kappa_ci95=0.388-0.541;target_kappa=0.6;kappa_source=pipelines/x2/work/x2_kappa.json;coders=two LLM coders (LLM-vs-LLM agreement, not human inter-coder reliability);rows=316;with_onet_object=202;agreed=153;agreed_close_or_better=16;gate=fail

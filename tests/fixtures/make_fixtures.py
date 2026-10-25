@@ -33,7 +33,8 @@ def l13(**kw):
 
 
 def rating(**kw):
-    d = {"raterType": "analyst", "raterId": "pid:fx-rater-01", "assessedAt": "2026-10-23", "method": "fixture",
+    # validationStatus is required on every rating (rc.1 fix pass, ADR-0032; review M2)
+    d = {"validationStatus": "draft", "raterType": "analyst", "raterId": "pid:fx-rater-01", "assessedAt": "2026-10-23", "method": "fixture",
          "confidence": "med", "instrument": "emst-craft@0.1", "codebookVersion": "fixture", "evidenceLabel": "S", "sources": []}
     d.update(kw)
     return d
@@ -45,10 +46,11 @@ VALID = {
                            notation=[{"scheme": "work_functions", "value": "WF-ASSESS"}], definition={"en": "Inventory and observe conditions."}),
     "Competency": base("seed:fx-cmp", "Competency", "L1", "Collect defensible environmental samples",
                        definition={"en": "Synthetic competency for tests."}, statement={"en": "Collect environmental samples so that results are defensible."},
-                       competencyType="practice", levelSpan={"min": "L1", "max": "L3"}, homeModule="core", **l13()),
+                       competencyType="practice", levelSpan={"min": "L1", "max": "L3"}, levelSpanBasis="declared", homeModule="core", **l13()),
     "Indicator": base("seed:fx-ind", "Indicator", "L1", "Records chain of custody", competency="seed:fx-cmp", level="L1",
                       statement={"en": "Records chain-of-custody entries for each sample under a qualified sampler's direction so that every transfer is traceable."},
-                      augmentationMode="unaided", assessmentMethods=["record-audit"], useClass="develop", obs4=3,
+                      augmentationMode="unaided", assessmentMethods=["record-audit"], useClass="develop", obs4=None,
+                      obs4Draft={"value": 3, "raterType": "llm", "raterId": "emstagent:fixture@1", "codedOn": "2026-10-23"},
                       jurisdictionVariable=False, **l13(useTier="develop")),
     "Enactment": base("seed:fx-ena", "Enactment", "L1", "State regulator enactment", competency="seed:fx-cmp", enactmentKind="actor",
                       actorType="state", authorityBasis={"en": "State delegated programme authority."}, principal={"en": "The public."},
@@ -82,13 +84,15 @@ VALID = {
                             subjectTextSha256=L.competency_text_sha256("Collect defensible environmental samples", "Collect environmental samples so that results are defensible."),
                             object="seed:fx-rol", objectScheme="role-profile", relevance={"importance": 4}, **rating(instrument="emst-relevance@0.1")),
     "ChangeSignal": base("seed:fx-sig", "ChangeSignal", "L5", "Synthetic posting-demand signal", targetType="Task", targetId="seed:fx-tsk",
-                         measure={"name": "posting share", "value": 0.1, "unit": "share", "denominator": "synthetic postings"},
+                         measure={"name": "posting share", "value": 0.1, "unit": "share", "ci95": [0.05, 0.15], "n": 100,
+                                  "denominator": "synthetic postings"},
                          observedPeriod={"start": "2026-01-01", "end": "2026-06-30"}, geography="US", source="DE-022", sourceRelease="fixture",
                          corpus={"version": "fixture", "sha256": "0" * 64, "license": "CC0-1.0"}, method="fixture", toolVersion="fixture",
                          crosswalkPath=["fixture"], crosswalkMinMatchType="skos:closeMatch", direction="grow", directionConfidence="low",
-                         drivers=["other"], steepCategory="economic", novelty="new", reliability="D", corroboration=0, careFlag=False,
+                         drivers=["other"], steepCategory="economic", novelty="new", sourceGrade="D", corroboration=0, careFlag=False,
                          tribalPrograms=False, personalData=False, evidenceLabel="S", reviewStatus="unreviewed", reviewBy="2027-10-23",
-                         signalStatus="watch"),
+                         signalStatus="watch", independenceKey="conservation-job-board", upstreamSource="DE-022",
+                         processingChain=["coder:pid:fx-coder-01"], observationId="obs-000000000001"),
     "WatchItem": base("seed:fx-wat", "WatchItem", "L5", "Synthetic watch item", signals=["seed:fx-sig"], highPriority=True,
                       hypothesizedEntity={"type": "Competency", "label": {"en": "Hypothetical"}, "functionStatement": {"en": "Hypothetical function."}},
                       reviewBy="2027-10-23", outcome="open"),

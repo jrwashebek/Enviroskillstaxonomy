@@ -149,7 +149,6 @@ def role_rows(recs):
         rk = c["subject"]
         if rk not in roles:
             raise SystemExit(f"unknown role {rk}")
-        held = "tribal" if "tribal(held)" in roles[rk]["sector_actor_variants"] else ""
         if c["series"] == "NoTermFound":
             obj, wk, status = S.NO_TERM, S.NO_TERM, ""
             rid = f"emst-x4:{rk}:NoTermFound"
@@ -175,7 +174,7 @@ def role_rows(recs):
             mapping_date=S.TODAY, mapping_tool=TOOL,
             other=S.other_field(weakest_match_type=wk, applies_to=c["applies_to"], review_status="candidate",
                                 evidence=c["evidence"], rater_type="llm", model=S.MODEL, prompt=S.PROMPT,
-                                variant="federal", held_variants=held, **extra),
+                                variant="federal", **extra),          # no held marker (ADR-0032, review m14)
             comment=c["rationale"] + " Requires human SME confirmation; not a classification basis."))
     return out, roles
 
@@ -257,7 +256,7 @@ def main():
         "mapping_set_description": (
             "FH's Phase 2 series-to-v1-competency judgments (docs/research/federal-human-capital/opm_series_to_emst_crosswalk.csv) "
             "re-pointed to v2 records through X1 (semapv:MappingChaining). fh_relationship=core|supporting. Rows whose v1 "
-            "competency is held for Tribal review, retired or moved to tools are omitted (counts in the WP-09 worklog). "
+            "competency is held, retired or moved to tools are omitted (counts in the WP-09 worklog). "
             "Navigation-grade input for the Federal Series Profile generator (WP-08), not a classification criterion."),
         "subject_source": "emstsrc:emst-v2-competencies", "subject_source_version": "2.0.0-draft",
         "object_source": "emstsrc:opm-series-register", "object_source_version": f"snapshot {SNAPSHOT}",

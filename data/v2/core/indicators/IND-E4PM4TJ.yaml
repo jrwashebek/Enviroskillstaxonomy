@@ -9,7 +9,10 @@ lifecycleState: established
 useTier: develop
 validationStatus: draft
 license: CC0-1.0
-sensitivity: public
+sensitivity: restricted-governed
+indigenousDataFlag: true
+approvalStatus: pending-tribal-review
+aiUsePermitted: false
 competency: emst:core/CMP-2VQTX8E
 level: L2
 statement:
@@ -18,7 +21,14 @@ augmentationMode: unaided
 assessmentMethods:
 - counterpart-360
 useClass: develop
-obs4: 2
+obs4: null
+obs4Draft:
+  value: 2
+  raterType: llm
+  raterId: emstagent:a5-sc@s2-closeout-a
+  codedOn: '2026-10-23'
+  note:
+    en: Self-coded by the authoring agent; IO human double-coding pending (ADR-0032; review m8). Never read as obs4.
 jurisdictionVariable: false
 evidencePlan:
   en: Pilot the assessment method with two trained raters on synthetic cases before use; promote to obs4 3 only after IO double-coding.

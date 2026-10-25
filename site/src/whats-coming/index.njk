@@ -12,14 +12,14 @@ crumbs: [[null, "What's coming"]]
   "ER-5-NO-NAMED-REVIEW": "no named human review"
 } %}
 <h1>What's coming</h1>
-<p class="emst-lede">Things that may be forming in environmental work: watch items, emerging competencies and roles, the signals behind them, policy instruments with dated events, and the signposts that would tell us which future is arriving.</p>
+<p class="emst-lede">Things that may be forming in environmental work: watch items, competencies and roles that may be forming, the signals behind them, policy instruments with dated events, and the signposts that would tell us which future is arriving.</p>
 <div class="emst-callout emst-callout--warn" role="note">
   <p><strong>Exploratory content.</strong> Everything on this page is for foresight and curriculum exploration. None of it is a basis for decisions about jobs or people. Each watch item names what would show it is <em>not</em> forming, and lapses if no new evidence appears by its review date.</p>
 </div>
 
 <div class="emst-stats">
   {{ m.statFigure(emst.watchItems.length, "Watch items", emst.figures.watchItems) }}
-  {{ m.statFigure(emst.emergingCompetencies.length, "Emerging or proposed competencies", emst.figures.emergingCompetencies) }}
+  {{ m.statFigure(emst.emergingCompetencies.length, "Competencies at watch, emerging or proposed", emst.figures.emergingCompetencies) }}
   {{ m.statFigure(emst.signals.length, "Change signals (all at watch)", emst.figures.signals, (emst.signalsWithheld.n + " more withheld until re-verified") if emst.signalsWithheld.n else "") }}
   {{ m.statFigure(emst.instruments.length, "Policy instruments tracked", emst.figures.instruments) }}
 </div>
@@ -37,9 +37,9 @@ crumbs: [[null, "What's coming"]]
 </section>
 {% else %}<p>No watch items in this build.</p>{% endfor %}
 
-<h2>Emerging and proposed roles</h2>
+<h2>Roles that may be forming (watch, emerging or proposed)</h2>
 {% if emst.emergingRoles.length %}
-<p>Roles that may be forming. Each names what would show it is <em>not</em> forming and a date by which it is reviewed. Roles still at the foresight stage appear only here, with no role-change page or gap check.</p>
+<p>Roles that may be forming. Those at <em>watch</em> rest on signals that do not yet meet the entry thresholds for proposed or emerging; each record stores that test (its lifecycle basis). Each names what would show it is <em>not</em> forming and a date by which it is reviewed. Roles still at the foresight stage appear only here, with no role-change page or gap check.</p>
 {% for r in emst.emergingRoles %}
 <section class="emst-card" id="{{ r.slug }}" aria-labelledby="h-{{ r.slug }}">
   <h3 id="h-{{ r.slug }}">{% if r.whatsComingOnly %}{{ r.title }}{% else %}<a href="{{ r.url | url }}">{{ r.title }}</a>{% endif %} {{ m.lifecycleTag(r.lifecycleState) }}</h3>
@@ -57,14 +57,14 @@ crumbs: [[null, "What's coming"]]
 </section>
 {% endfor %}
 {% else %}
-<div class="emst-callout emst-callout--empty" role="status"><p>No emerging or proposed role profiles in this build yet.</p></div>
+<div class="emst-callout emst-callout--empty" role="status"><p>No role profiles at watch, emerging or proposed in this build yet.</p></div>
 {% endif %}
 
-<h2>Emerging and proposed competencies</h2>
+<h2>Competencies that may be forming (watch, emerging or proposed)</h2>
 {% if emst.emergingCompetencies.length %}
-<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Emerging competencies">
+<div class="emst-table-wrap" tabindex="0" role="region" aria-label="Competencies that may be forming">
 <table class="usa-table usa-table--compact usa-table--striped">
-  <caption>Competencies whose lifecycle state is emerging or proposed. Emerging content may be used for training (develop), never for selection.</caption>
+  <caption>Competencies whose lifecycle state is watch, emerging or proposed. Lifecycle describes the work, not the record: these may be used for training, never for selection.</caption>
   <thead><tr><th scope="col">Competency</th><th scope="col">State</th><th scope="col">Review by</th><th scope="col">Use tier</th><th scope="col">Evidence</th></tr></thead>
   <tbody>
   {% for c in emst.emergingCompetencies %}
@@ -76,7 +76,7 @@ crumbs: [[null, "What's coming"]]
 {% else %}<p>None in this build.</p>{% endif %}
 
 <h2>Change signals</h2>
-<p>Every signal below is at <strong>watch</strong>: it is recorded and dated, but it moves no change indicator. A change indicator moves only when two independent signal families point the same way, over two periods, through close crosswalk matches, with a named human reviewer. The direction and driver tags attached to each signal are agent drafts and are not shown as findings. Reliability grades (A to D) were set by the AI agent that entered each signal and have not yet been re-graded from the underlying source.</p>
+<p>Every signal below is at <strong>watch</strong>: it is recorded and dated, but it moves no change indicator. A change indicator moves only when two independent signal families point the same way, over two periods, through close crosswalk matches, with a named human reviewer. The direction and driver tags attached to each signal are agent drafts and are not shown as findings. Source grades (Admiralty A to D; a grade of the source, not a statistic) were set by the AI agent that entered each signal and have not yet been re-graded from the underlying source.</p>
 {% if emst.signalsWithheld.n %}<p><strong>{{ emst.signalsWithheld.n }} unverified signal{{ "s" if emst.signalsWithheld.n != 1 }} withheld</strong> (claims register {{ emst.signalsWithheld.rows | join(", ") }}): a signal's headline is itself the claim, so it is not shown until the verification pass re-checks it.</p>{% endif %}
 {% for grp in emst.signals | groupBy("family") %}
 <details class="emst-disclosure">
@@ -85,12 +85,12 @@ crumbs: [[null, "What's coming"]]
   <div class="emst-table-wrap" tabindex="0" role="region" aria-label="{{ grp.key }} signals">
   <table class="usa-table usa-table--compact" data-figure data-use-tier="exploratory" data-evidence="{{ (grp.items | fig).ev.label }}">
     <caption>{{ grp.key | titlecase }} signals. <span class="emst-badge emst-badge--tier" data-badge="tier"><span class="emst-badge__k">Use tier:</span>exploratory</span> {{ m.evBadge((grp.items | fig).ev) }}</caption>
-    <thead><tr><th scope="col">Signal</th><th scope="col">About</th><th scope="col">Measure (as reported by the source)</th><th scope="col">Reliability</th><th scope="col">Source release</th><th scope="col">Review by</th></tr></thead>
+    <thead><tr><th scope="col">Signal</th><th scope="col">About</th><th scope="col">Measure (as reported by the source)</th><th scope="col">Source grade (A–D)</th><th scope="col">Source release</th><th scope="col">Review by</th></tr></thead>
     <tbody>
     {% for s in grp.items %}
     <tr><td>{{ s.title }}</td><td>{{ s.targetLabel }}</td>
     {% if s.unverified.length %}<td colspan="4"><strong>Unverified — not for citation</strong> (claims register {{ s.unverified | join(", ") }})</td>{% else %}    <td>{% if s.measure %}{% if s.measure.value != null %}{{ s.measure.value }} {{ s.measure.unit }}{% endif %}{% if s.measure.n != null %} (n = {{ s.measure.n }}){% endif %}{% if s.measure.n != null and s.measure.n < 10 %}; too few to say{% endif %}{% else %}not measured{% endif %}</td>
-    <td>{{ s.reliability }}</td><td>{{ s.sourceRelease or s.source }}</td><td>{{ s.reviewBy }}</td>{% endif %}</tr>
+    <td>{{ s.sourceGrade }}</td><td>{{ s.sourceRelease or s.source }}</td><td>{{ s.reviewBy }}</td>{% endif %}</tr>
     {% endfor %}
     </tbody>
   </table>

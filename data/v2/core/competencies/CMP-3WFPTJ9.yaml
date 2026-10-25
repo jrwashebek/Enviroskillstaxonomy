@@ -17,7 +17,8 @@ statement:
 competencyType: practice
 levelSpan:
   min: L1
-  max: L5
+  max: L4
+levelSpanBasis: anchored
 homeModule: core
 reusability: cross-subsector
 altLabel:
@@ -63,6 +64,14 @@ provenance:
   derivedFrom:
   - v1Key: v1:3.1.2
     relation: split-from
+  - v1Key: v1:3.4.1
+    v1Code: 3.4.1
+    relation: merged-from
+    note: successor named by the v1 disposition; lineage added in the rc.1 fix pass (ADR-0032; review m5)
+  - v1Key: v1:3.4.4
+    v1Code: 3.4.4
+    relation: merged-from
+    note: successor named by the v1 disposition; lineage added in the rc.1 fix pass (ADR-0032; review m5)
   adr:
   - ADR-0003
   - ADR-0004
@@ -89,3 +98,7 @@ levels:
   indicators:
   - emst:core/IND-D4VT4YT
   - emst:core/IND-RAWT83N
+changeNote:
+- release: 2.0.0-rc.1
+  note:
+    en: 'levelSpan.max L5 -> L4: L5 is defined only where SME panels confirm strategic demand (SPEC §8.2 rule 2; ADR-0032; review m6).'

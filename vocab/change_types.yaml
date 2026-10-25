@@ -3,8 +3,8 @@ scheme: change_types
 title: Change vocabularies
 schemeVersion: 1.0.0-draft
 status: draft
-lastReviewed: 2026-10-23
-decidedIn: [ADR-0028, ADR-0015, ADR-0009, ADR-0008, ADR-0029]
+lastReviewed: 2026-10-25
+decidedIn: [ADR-0028, ADR-0015, ADR-0009, ADR-0008, ADR-0029, ADR-0032]
 steward: CA with LM, FS, IA
 license: CC0-1.0
 description: >
@@ -32,8 +32,16 @@ role_signal_types:
     - {notation: entry-path-at-risk, definition: "The entry roles or formation tasks that feed a role are disappearing (career-ladder destruction or fiscal/policy contraction)."}
 
 signal_directions:
-  values: [augment, automate, new, grow, decline, stable, reshape]
+  values: [augment, automate, new, grow, decline, stable, reshape, indeterminate]
   direction_confidence: [low, med, high]
+  definitions:
+    indeterminate: >
+      The stored data do not establish a direction (rc.1 fix pass, ADR-0032; data-method review M6). REQUIRED when the
+      interval of the difference (measure.difference.ci95) includes 0, when a stated sensitivity check erases or
+      reverses the effect (measure.difference.sensitivity.ci95 includes 0, or the method says so), when the measure
+      points against the stated direction, or, for projection-family signals, when the absolute and the
+      all-occupation-relative directions disagree. An indeterminate signal never counts toward a change indicator.
+    stable: "The data show no material change and the interval of the difference excludes a material change; an interval that merely includes 0 is indeterminate, not stable."
 
 driver_tags:
   description: Every signal and change indicator carries driver attribution so fiscal and policy shocks do not masquerade as AI effects.
@@ -55,6 +63,9 @@ horizons:
 steep_v_categories: [social, technological, economic, environmental, political, values]
 
 signal_reliability:
+  description: >
+    ChangeSignal.sourceGrade (renamed from `reliability` in the rc.1 fix pass, ADR-0032; review m9): an Admiralty-style
+    grade of the SOURCE (A-D). It is not a statistical reliability and says nothing about rater agreement.
   values:
     - {notation: A, definition: "Primary official or peer-reviewed source; directly observed."}
     - {notation: B, definition: "Credible secondary source with traceable primary basis."}
@@ -88,16 +99,27 @@ signal_families:
     - {notation: plan-requirements, counts_toward: [role-change, skill-change], definition: "Requirements written into plans, permits and programmes (e.g. monitoring components)."}
     - {notation: worker-report, counts_toward: [role-change, skill-change], definition: "Structured reports from practitioners (sentinels, surveys)."}
     - {notation: policy, counts_toward: [role-change], definition: "Policy and state HR events; counts toward role-change indicators only, never toward skill-change indicators (ADR-0028 §3)."}
-    - {notation: projection, counts_toward: [], definition: "Official or third-party projections; context only."}
+    - notation: projection
+      counts_toward: []
+      definition: "Official or third-party projections; context only."
+      confidence_cap: {when: "crosswalkMinMatchType broader than skos:closeMatch (broadMatch, narrowMatch, relatedMatch)", cap: low, decidedIn: ADR-0032}
+      direction_rule: >
+        Direction is read against the all-occupation baseline stored in measure.baseline: grow when the projected change
+        exceeds the baseline, decline when it is negative and below the baseline, indeterminate when the absolute and
+        the relative readings disagree (0 <= change < baseline) (ADR-0032; review M6).
     - {notation: workload, counts_toward: [], definition: "Workload measures (e.g. fire acres, case backlogs); context only."}
 
 independence_keys:
   description: >
-    Upstream data providers behind each ChangeSignal.independenceKey (CR-LM-001 #2; steward LM). Two counted signals are
-    independent only if their provider sets are disjoint, so no indicator rests on a single vendor's data (ADR-0008 §4).
-    independenceKey is a slug, not a generated enumeration. An ACTIVE signal's key MUST be listed here; a WATCH signal's
-    unlisted key is treated as its own provider and raises a warning. Carried verbatim from
-    docs/methods/ci/evidence_rule.py#PROVIDERS on 2026-10-23 [J: LM; BLS lineage E: V4-07].
+    Upstream data providers behind each ChangeSignal.independenceKey (CR-LM-001 #2; steward LM). ChangeSignal.independenceKey
+    is an ENUMERATION generated from the `key` values below (rc.1 fix pass, ADR-0032; review M5): a key not listed here
+    is rejected at every signal status (E-INDEPENDENCE-KEY-UNLISTED); there is no "own provider" fallback. Providers
+    alone do not establish independence: change-indicator@1.1.0 ER-1 also requires disjoint `upstreamSource` and
+    disjoint `processingChain` (below). The first twelve keys were carried from docs/methods/ci/evidence_rule.py#PROVIDERS
+    on 2026-10-23 [J: LM; BLS lineage E: V4-07]; the keys added on 2026-10-25 name the provider of the source each
+    signal cites [J: LM code held by the D-DATA agent; sources in docs/**/sources.csv]. Agency self-reports share the
+    provider federal-agency-self-report, and readings of enacted appropriations share congress-appropriations, so they
+    never count as independent of each other.
   keys:
     - {key: anthropic-economic-index, providers: [anthropic]}
     - {key: anthropic-labor-market-impacts, providers: [anthropic]}
@@ -107,10 +129,53 @@ independence_keys:
     - {key: bls-ai-exposure-theoretical, providers: [felten-raj-seamans, openai-eloundou, eisfeldt]}
     - {key: bls-ai-exposure-observed, providers: [anthropic, microsoft]}
     - {key: pnnl-openai-draftnepabench, providers: [pnnl, openai]}
-    - {key: ombegov-ai-inventory, providers: [omb-agency-self-report]}
+    - {key: ombegov-ai-inventory, providers: [omb-agency-self-report, federal-agency-self-report]}
     - {key: opm-ehri-fwd, providers: [opm-ehri]}
     - {key: gao-opm, providers: [opm-ehri]}
     - {key: openlmp-usfs-western-plans, providers: [openlmp]}
+    # added 2026-10-25 (rc.1 fix pass; ADR-0032): every key a stored signal uses
+    - {key: bls-ep-2025-35, providers: [bls-employment-projections], note: "BLS Employment Projections 2025-35, Table 1.2 (LM-145)"}
+    - {key: conservation-job-board, providers: [conservation-job-board], note: "Postings counts reported from the Conservation Job Board (LM-130; V1-14)"}
+    - {key: agency-ai-strategy, providers: [federal-agency-self-report], note: "An agency's own AI strategy under OMB M-25-21 (FS-031)"}
+    - {key: credential-launch, providers: [credential-provider-announcement], note: "A provider's announcement of a new credential or programme (FS-027)"}
+    - {key: earth-fire-alliance, providers: [earth-fire-alliance], note: "Operator announcements as reported in news (FS-011)"}
+    - {key: federal-register-pipeline, providers: [federal-rulemaking-record], note: "Federal issuances and rulemaking stages (LM-111, LM-112, LM-116)"}
+    - {key: fs-data-discontinuity, providers: [noaa, climate-central], note: "Discontinued federal dataset and its non-federal revival (FS-037)"}
+    - {key: mercor-listing, providers: [mercor], note: "A single vendor listing (FS-038)"}
+    - {key: nifc-imsr, providers: [nifc], note: "NIFC Incident Management Situation Report (FS-034)"}
+    - {key: trade-press-consulting, providers: [trade-press], note: "Trade-press reports of firm activity (FS-008)"}
+    - {key: fs-fiscal, providers: [congress-appropriations, naisma], note: "Grey-literature reading of enacted rescissions (FS-036)"}
+    - {key: crs-appropriations, providers: [congress-appropriations, crs], note: "CRS overview of enacted appropriations (LM-126)"}
+    - {key: pnnl-permitai, providers: [pnnl], note: "PNNL PermitAI tools (LM-110; SC-009); shares provider pnnl with pnnl-openai-draftnepabench"}
+
+processing_chain_steps:
+  description: >
+    ChangeSignal.processingChain lists the judgment-bearing steps between the upstream source and the stored value or
+    target (rc.1 fix pass, ADR-0032; review M5): who coded or transcribed it, which crosswalk set attached it to its
+    target, which classifier or lexicon produced a count. Each entry is `<step>:<id>`. Two signals that share any entry
+    are NOT independent under change-indicator@1.1.0 ER-1, whatever their providers: one LLM coder, one unreviewed
+    crosswalk or one keyword classifier gives correlated errors. Deterministic arithmetic (a bootstrap script) is not a
+    step. When a human verifies a step, the verifier's pid: replaces the agent in that entry.
+  values:
+    - {notation: coder, definition: "The person or agent that coded, transcribed or attached the value (an emstagent: model agent or a pid:)."}
+    - {notation: crosswalk, definition: "The mapping set and version that attached the observation to its target (e.g. crosswalk:emst-x3-soc@0.1.0)."}
+    - {notation: classifier, definition: "A keyword lexicon, typing scheme or classifier that produced the counted category (e.g. classifier:wp10-omb-keyword-families@0.2.0)."}
+    - {notation: linker, definition: "An automated text-to-taxonomy linker (lexical-linker provenance)."}
+    - {notation: transcription, definition: "Manual or agent transcription of a published figure, when separate from the coder."}
+
+observations:
+  description: >
+    One observation (the same source, release, measure, value and periods) may be attached to several targets. Every
+    ChangeSignal carries `observationId`; records that share it share every observation field (E-OBSERVATION-INCONSISTENT),
+    and counts of evidence report DISTINCT observations, never records (rc.1 fix pass, ADR-0032; review M5).
+  id_form: >
+    obs-<12 lowercase hex>: the first 12 hex digits of the SHA-256 of the canonical JSON of {upstreamSource,
+    measure.value, measure.denominator (measure.name for OpenLMP derivations), observedPeriod.end, and the observed
+    subject where the value alone does not identify it (SOC code, keyword family or coordination tag)}, as minted by
+    docs/build/rc1-fix/fix_signals.py; readings encoded twice under different names are folded by an inspected alias
+    list there. Stored as an identity: the validator checks that records of one observationId share upstreamSource and
+    measure.value (E-OBSERVATION-INCONSISTENT) and warns when identical readings carry two IDs (W-OBSERVATION-SPLIT); it
+    does not recompute the hash.
 
 signal_external_targets:
   description: >

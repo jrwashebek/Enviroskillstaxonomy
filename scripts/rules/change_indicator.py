@@ -1,4 +1,9 @@
-"""change-indicator@1.0.0: the ADR-0028 §2 two-family evidence rule (vocab/rules/change-indicator@1.0.0.yaml).
+"""change-indicator@1.1.0: the ADR-0028 §2 two-family evidence rule (vocab/rules/change-indicator@1.1.0.yaml).
+
+1.1.0 (rc.1 fix pass, ADR-0032; data-method review M5, M6): two counted records are independent only when their
+provider sets, their upstreamSource and their processingChain are all disjoint (`independent()`); an unlisted
+independence key has no providers and never pairs (it is also a validation error); records of one observationId
+count once; a signal whose direction is `indeterminate` never counts (ER-0-INDETERMINATE).
 
 Port of LM's reference implementation (docs/methods/ci/evidence_rule.py, 2026-10-23; ADR-0029 §8.3). Differences from
 the reference, all required by the rulings:
@@ -23,7 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import emstlib as L  # noqa: E402
 
 RULE_ID = "change-indicator"
-RULE_VERSION = "1.0.0"
+RULE_VERSION = "1.1.0"
 GOOD_MATCH = {"skos:exactMatch", "skos:closeMatch"}
 REVIEWED = {"reviewed", "validated", "gold"}
 QUARANTINED_SIGNPOSTS = {"vocab:scenarios#SP-12", "SP-12"}
@@ -93,9 +98,77 @@ def independence_key(rec, cfg: Config | None = None):
 
 
 def providers(rec, cfg: Config | None = None):
+    """Provider set of the record's key. 1.1.0: an unlisted key yields no providers (never independent)."""
     cfg = cfg or default_config()
     k = independence_key(rec, cfg)
-    return cfg.providers.get(k, {k})
+    return set(cfg.providers.get(k, set()))
+
+
+def upstream_sources(rec) -> set:
+    """The upstream dataset(s) behind a record: upstreamSource and the cited source (ChangeSignal); the index for an
+    external-index assessment."""
+    if is_external(rec):
+        idx = (rec.get("externalSource") or {}).get("index") or rec.get("instrument")
+        return {f"index:{idx}"} if idx else set()
+    return {s for s in (rec.get("upstreamSource"), rec.get("source")) if s}
+
+
+def processing_chain(rec) -> set:
+    """Judgment-bearing processing steps (vocab/change_types.yaml#processing_chain_steps). For an external-index
+    assessment, its crosswalk path."""
+    if is_external(rec):
+        return {f"crosswalk:{p}" for p in rec.get("crosswalkPath") or []}
+    return set(rec.get("processingChain") or [])
+
+
+def independent(a, b, cfg: Config | None = None) -> bool:
+    """ER-1 independence (1.1.0): disjoint providers (both listed), upstream sources and processing chains, and not
+    the same observation."""
+    cfg = cfg or default_config()
+    pa, pb = providers(a, cfg), providers(b, cfg)
+    if not pa or not pb or (pa & pb):
+        return False
+    if upstream_sources(a) & upstream_sources(b):
+        return False
+    if processing_chain(a) & processing_chain(b):
+        return False
+    oa, ob = a.get("observationId"), b.get("observationId")
+    return not (oa and oa == ob)
+
+
+def max_independent(records, cfg: Config | None = None) -> list:
+    """A largest set of pairwise-independent records (exact for small sets, greedy beyond 16), deterministic."""
+    cfg = cfg or default_config()
+    recs = sorted(records, key=lambda r: str(r.get("id")))
+    # one record per observation
+    seen, uniq = set(), []
+    for r in recs:
+        o = r.get("observationId") or r.get("id")
+        if o not in seen:
+            seen.add(o)
+            uniq.append(r)
+    if len(uniq) <= 16:
+        best = []
+
+        def grow(i, cur):
+            nonlocal best
+            if len(cur) + (len(uniq) - i) <= len(best):
+                return
+            if i == len(uniq):
+                if len(cur) > len(best):
+                    best = list(cur)
+                return
+            r = uniq[i]
+            if all(independent(r, c, cfg) for c in cur):
+                grow(i + 1, cur + [r])
+            grow(i + 1, cur)
+        grow(0, [])
+        return best
+    out = []
+    for r in uniq:
+        if all(independent(r, c, cfg) for c in out):
+            out.append(r)
+    return out
 
 
 def registered(rec, cfg: Config | None = None):
@@ -164,6 +237,9 @@ def evaluate(indicator: dict, records: list, cfg: Config | None = None, include_
             if st != "active" and not (include_watch and st == "watch"):
                 reasons.append("ER-0-NOT-ACTIVE")
                 continue
+            if r.get("direction") == "indeterminate":
+                reasons.append("ER-0-INDETERMINATE")
+                continue
             if r.get("direction") != indicator["direction"]:
                 reasons.append("ER-0-DIRECTION")
                 continue
@@ -204,12 +280,15 @@ def evaluate(indicator: dict, records: list, cfg: Config | None = None, include_
     for r in reviewed:
         fams.setdefault(family(r, cfg), []).append(r)
     keys = sorted(fams)
-    pair = None
+    pair, vendor_ok = None, False
     for i, a in enumerate(keys):
         for b in keys[i + 1:]:
             for ra in fams[a]:
                 for rb in fams[b]:
-                    if not (providers(ra, cfg) & providers(rb, cfg)):
+                    pa, pb = providers(ra, cfg), providers(rb, cfg)
+                    if pa and pb and not (pa & pb):
+                        vendor_ok = True
+                    if independent(ra, rb, cfg):
                         pair = (ra, rb)
                         break
                 if pair:
@@ -219,7 +298,9 @@ def evaluate(indicator: dict, records: list, cfg: Config | None = None, include_
         if pair:
             break
     if not pair:
-        reasons.append("ER-1-ONE-FAMILY" if len(keys) < 2 else "ER-1-SAME-VENDOR")
+        # ER-1-SAME-VENDOR: no cross-family pair with disjoint listed providers; ER-1-NOT-INDEPENDENT (1.1.0): such a
+        # pair exists but shares its upstream source, a processing step or the observation itself
+        reasons.append("ER-1-ONE-FAMILY" if len(keys) < 2 else ("ER-1-NOT-INDEPENDENT" if vendor_ok else "ER-1-SAME-VENDOR"))
         return {"decision": "watch", "reasons": sorted(set(reasons)), "counted": []}
 
     by_measure: dict = {}                                          # ER-2

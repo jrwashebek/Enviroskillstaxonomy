@@ -1,0 +1,32 @@
+# EMST computed-view rule (SPEC §5.21, §14.2-§14.3; ADR-0006 §4; CR-FH-001 #1, #5). Normative definition; code in `implementation`.
+ruleId: state-class-view
+version: 0.2.0
+status: active
+replaces: state-class-view@0.1.0
+steward: FH with SL (definition proposal, WP-08) · DE (implementation) · CA (definition)
+decidedIn: [ADR-0006, ADR-0017, ADR-0027, ADR-0030, CR-FH-001, CR-CP-001, ADR-0032]
+reference_implementation: pipelines/views/state_class_view.py (FH with SL, WP-08; authoring tool, never run by CI)
+computes: >
+  One State Class View per dated StateClassRecord whose emstMapping names a released role variant at skos:closeMatch
+  or stronger; the file lists every such mapped variant (`variants[]`). It renders the class
+  facts beside the variant at the mapped role level(s). It also gives an index of every P1-P2 state and local variant,
+  with its mapped classes or the statement that no class is mapped in the pilot jurisdictions.
+inputs: [released StateClassRecord, RoleProfile, RoleVariant, Competency, Task and Credential records; X5 mapping sets]
+definition:
+  targets: "Competency targets at the mapped role level are computed from the role (editorial design values), never copied into the register (CR-FH-001 #5)."
+  tasks: "The variant's bundle tasks at those levels. timeShare is shown only from job-analysis-confirmed (display-gate@1.1.0 job_analysis_rule)."
+  gates: "Credential gates only where the Credential is issuerVerified with sources."
+  module_rule: "As federal-series-profile@0.1.0#module_rule."
+  disclaimer: "Not a classification basis / not a job analysis / not for RIF or rating decisions."
+  held: "Held records, Tribal variants and Tribal-employer class records are never read."
+  match_threshold: "0.2.0 (ADR-0032; review M10): mappings below skos:closeMatch are left out (never an alignment) and counted in the index (excludedBelowCloseMatch). The mapping's confidence is shown as `agentConfidence (uncalibrated)`; review reads 'unreviewed agent candidate (not reviewed by a person)' until a reviewer is recorded."
+  variants: "0.2.0: one file per class; a class mapped to several variants lists each in variants[{variant, role, roleLevels, match, targets, tasks, gates, collapsed}] (0.1.0 kept only the last one written)."
+outputs:
+  view: "views/state_class_views/<jurisdiction>--<class code>.json; views/state_class_views/index.json"
+  fields: "jurisdiction, classCode, classRecord, classFacts{...}, variants[{variant, role, roleLevels[], match{type, agentConfidence (uncalibrated), review}, targets[], tasks[], gates[], collapsed[]}], disclaimers[], ruleId, ruleVersion, buildCommit; index: variants{}, excludedBelowCloseMatch, note"
+parameters: {}
+implementation: scripts/rules/state_class_view.py#compute (called from scripts/build_release.py#Builder.views)
+changeNote:
+  - {date: '2026-10-23', note: "Registered from WP-08's proposed generator, with computed competency targets and display constraints (CR-FH-001 #5; CR-CP-001 B4-B5; ADR-0030)."}
+  - {date: '2026-10-23', note: "Activated by the CA at WP-16 (ADR-0031 §2; P-02). The release port in scripts/rules/state_class_view.py reads released records only, finds variants by variantOf and sectorActor (never by seed-key suffix), and applies display-gate@1.1.0; the WP-08 generator stays an authoring preview."}
+  - {date: '2026-10-25', note: "0.2.0 (rc.1 fix pass, review M10): mappings below closeMatch left out; agentConfidence (uncalibrated); every mapped variant listed."}

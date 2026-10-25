@@ -1,4 +1,8 @@
-"""federal-series-profile@0.1.0 (vocab/rules/federal-series-profile@0.1.0.yaml; RULINGS_FOR_DE §19.1).
+"""federal-series-profile@0.2.0 (vocab/rules/federal-series-profile@0.2.0.yaml; RULINGS_FOR_DE §19.1; ADR-0032).
+
+0.2.0 (rc.1 fix pass, review M10; DATA_FIX_BRIEF §5): rows below skos:closeMatch (broad, narrow, related) are left
+out; they are never an alignment. The drafting model's own number is shown as `agentConfidence (uncalibrated)`, and
+every row says it is an unreviewed agent candidate until a pid: reviewer is recorded.
 
 Port of pipelines/views/federal_series_profile.py (WP-08) onto released records and the released X4 mapping rows.
 One profile per OPM series that X4 maps, with a positive non-negated predicate, to a released P1, P2 or P4 role,
@@ -10,6 +14,9 @@ from rules import hr_common as H
 
 TIERS = {"P1", "P2", "P4"}
 STRENGTH = {"skos:exactMatch": 5, "skos:closeMatch": 4, "skos:broadMatch": 3, "skos:narrowMatch": 3, "skos:relatedMatch": 1}
+MIN_STRENGTH = STRENGTH["skos:closeMatch"]           # 0.2.0: nothing below closeMatch enters a profile
+AGENT_CONFIDENCE = "agentConfidence (uncalibrated)"
+UNREVIEWED = "unreviewed agent candidate (not reviewed by a person)"
 FEEDER = {"destination after corps hiring authority", "technician feeder"}
 X4_PREFIX = "opm-series/"
 
@@ -71,10 +78,12 @@ def role_block(released, role, variant, row, ks_by_comp):
         entry = {**t, "knowledgeStatements": [k for k in ks_by_comp.get(t["competency"], [])][:3]}
         (knowledge if H.in_main_section(released, t["competency"], home) else collapsed).append(entry)
     other = H.parse_other(row.get("other"))
+    reviewed = any(str(x).startswith("pid:") for x in (row.get("reviewer_id") or "").split("|") if x)
     return {"role": role["id"], "roleTitle": H.label(released, role["id"]), "tier": H.tier(role), "variant": variant["id"],
             "homeModule": home, "authorityPosition": variant.get("authorityPosition"), "authorityPositionLabel": "editorial",
-            "x4": {"record": row.get("record_id"), "predicate": row.get("predicate_id"), "confidence": row.get("confidence"),
-                   "appliesTo": other.get("applies_to"), "reviewStatus": other.get("review_status")},
+            "x4": {"record": row.get("record_id"), "predicate": row.get("predicate_id"), AGENT_CONFIDENCE: row.get("confidence"),
+                   "appliesTo": other.get("applies_to"),
+                   "reviewStatus": other.get("review_status") if reviewed else UNREVIEWED},
             "bands": bands(variant, role), "duties": duties, "knowledge": knowledge,
             "gates": H.credential_gates(released, variant), "collapsed": collapsed}
 
@@ -90,10 +99,13 @@ def compute(released, mappings, stamp, as_of):
                 c = c.get("competency") if isinstance(c, dict) else c
                 ks_by_comp.setdefault(c, []).append((k.get("statement") or {}).get("en", ""))
     rows = [r for name, rs in mappings.items() if name.startswith(X4_PREFIX) for r in rs]
-    by_series = {}
+    by_series, below = {}, 0
     for row in rows:
         obj = row.get("object_id", "")
         if not obj.startswith("OPMseries:") or row.get("predicate_modifier") == "Not":
+            continue
+        if STRENGTH.get(row.get("predicate_id"), 0) < MIN_STRENGTH:
+            below += 1                                  # 0.2.0: not an alignment; never shown (ADR-0032, M10)
             continue
         role = released.get(row.get("subject_id"))
         if not role or role.get("type") != "RoleProfile" or H.held(role) or H.tier(role) not in TIERS:
@@ -115,5 +127,10 @@ def compute(released, mappings, stamp, as_of):
                "disclaimers": [H.DISCLAIMER], **stamp}
         out[f"views/federal_series_profiles/{code}.json"] = doc
         index.append({"seriesCode": code, "seriesStatus": doc["seriesStatus"]["value"], "roles": [r["role"] for r in doc["roles"]]})
-    out["views/federal_series_profiles/index.json"] = {"series": index, "disclaimers": [H.DISCLAIMER], **stamp}
+    out["views/federal_series_profiles/index.json"] = {
+        "series": index, "disclaimers": [H.DISCLAIMER],
+        "excludedBelowCloseMatch": below,
+        "note": ("Only X4 rows at skos:closeMatch or stronger are shown; broader or partial rows are not an alignment and are "
+                 "left out. Every row is an unreviewed agent candidate; agentConfidence (uncalibrated) is the drafting "
+                 "model's own number."), **stamp}
     return out

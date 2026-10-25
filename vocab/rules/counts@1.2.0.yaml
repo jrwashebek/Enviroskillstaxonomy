@@ -1,0 +1,31 @@
+# EMST computed-view rule (SPEC §14.3; ADR-0021; CR-DE-003; ADR-0031 §9). Normative definition; code in `implementation`.
+ruleId: counts
+version: 1.2.0
+status: active
+replaces: counts@1.1.0
+steward: DE (implementation) · CA (definition)
+decidedIn: [ADR-0021, ADR-0029, ADR-0031, CR-DE-003, ADR-0032]
+computes: Release counts. Every count in release notes, README status and dashboards comes from this view (P-DE-13); none is typed by hand.
+inputs: [released records (after the release gate), release-gate exclusions, references removed from released records, docs/decisions dispositions and data/v2/ids/seed_map.csv (planned targets)]
+definition: >
+  Over the records that pass the release gate: count by `type`; Competency by `competencyType` (unset counted as
+  'unset'), by `module`, by `module` x `competencyType` and by `lifecycleState`; Competency, Task and RoleProfile by
+  `lifecycleState`; RoleProfile by MVP tier (notation scheme MVPtier) and RoleVariant by `sectorActor`;
+  `coreCompetencies` = Competency records with `module = core` whose `status` is neither superseded nor withdrawn;
+  `excluded` = records removed by the release gate, by reason (held Tribal-related records reported only as a count,
+  ADR-0007 §D); `heldRecords` = that held count; `redactedReferences` = references removed from released records
+  because their target is held, withheld or not in this release, by reason; `deferredTargets` = planned v2.0 targets
+  (v1 disposition targets and candidates decided core-v2.0 or module-v2.0) that are neither released nor held, by
+  area (core or module namespace). 1.2.0 (m12; DATA_FIX_BRIEF §10; ADR-0032): ratings (ExposureAssessment,
+  CraftRating, FunctionRating, RelevanceRating) by `type` and `raterType` (`ratingsByRaterType`), with distinct rated
+  units (task, competency, or subject x object) and distinct `raterId`s per type and rater type
+  (`ratingUnitsByRaterType`; repeated passes of one model share one raterId, ADR-0032 M4); ChangeSignal records and
+  distinct observations (`changeSignalObservations`: by `observationId`, or the record when none is stored).
+outputs:
+  view: views/counts.json
+  fields: "ruleId, ruleVersion, buildCommit, release, byType, competenciesByKind, competenciesByModule, competenciesByModuleAndKind, competenciesByLifecycle, byLifecycle, rolesByTier, variantsBySectorActor, coreCompetencies, heldRecords, excluded, redactedReferences, deferredTargets, ratingsByRaterType, ratingUnitsByRaterType, changeSignalObservations"
+parameters: {}
+implementation: scripts/build_release.py#Builder.views
+changeNote:
+  - {date: '2026-10-23', note: "Adds the WP-16 release-note counts (roles by tier, competencies by module and kind and by lifecycle, held as a count, redacted references, deferred targets) (ADR-0031 §9)."}
+  - {date: '2026-10-25', note: "1.2.0 (rc.1 fix pass, m12): ratings by rater type with distinct units and raterIds; distinct ChangeSignal observations."}

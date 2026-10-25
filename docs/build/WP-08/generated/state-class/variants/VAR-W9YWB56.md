@@ -5,11 +5,10 @@
 > Task importance, time share, critical and needed-at-entry values are agent drafts (raterType llm, validationStatus draft, evidence S): assessment pending (job analysis). They are not job-analysis results and no human has reviewed them. Target levels are editorial design drafts. A credential gate is shown only when its issuer is verified with a cited source; the other gates are counted, not shown, until the issuer is verified (CR-CP-001 C7).
 
 - **Role:** Hydrologist (`emst:waterq/ROL-CJW7T7X`, P2); authority position (editorial): resource-manager
-- **Generated:** pipelines/views/state_class_view.py@0.2.0, rule state-class-view@0.1.0 (registered rule, status active), as of 2026-10-23
+- **Generated:** pipelines/views/state_class_view.py@0.3.0, rule state-class-view@0.2.0 (registered rule, status active), as of 2026-10-23
 
 ## Mapped classes
 
-- Natural Resource Scientist 2 (`emst:core/SCR-0BA1SDB`), journey level, `skos:relatedMatch` — see `state-class/WA--516L.md`
 - Hydrologist III (`emst:core/SCR-BP8NQB8`), senior level, `skos:closeMatch` — see `state-class/TX--2464.md`
 - Hydrologist IV (`emst:core/SCR-CX2SK0H`), senior/lead level, `skos:closeMatch` — see `state-class/TX--2465.md`
 - Hydrologist II (`emst:core/SCR-NRJE2QV`), journey level, `skos:closeMatch` — see `state-class/TX--2460.md`

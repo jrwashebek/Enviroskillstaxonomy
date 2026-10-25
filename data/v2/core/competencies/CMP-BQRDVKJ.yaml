@@ -10,6 +10,7 @@ competencyType: practice
 levelSpan:
   min: L1
   max: L4
+levelSpanBasis: anchored
 levels:
 - level: L1
   indicators:
@@ -35,8 +36,25 @@ homeModule: core
 layer: L1
 module: core
 status: candidate
-lifecycleState: emerging
-reviewBy: '2028-10-23'
+lifecycleState: watch
+lifecycleBasis:
+  testedFor: emerging
+  test: vocab/lifecycle_states.yaml#emerging.entry_test
+  result: not-met
+  evidence: []
+  counts:
+    signals: 0
+    distinctObservations: 0
+    independentSignals: 0
+    signalFamilies: 0
+    sectorActors: 0
+    postingsOrPds: 0
+    actorTypes: 0
+  assessedOn: '2026-10-25'
+  assessedBy: emstagent:d-data-rc1-fix@claude-opus-5-5
+  note:
+    en: 'Entry test of `emerging` applied to 0 evidence signal(s) (0 distinct observation(s); 0 independent; 0 family(ies); 0 sector actor(s); 0 postings or PDs): not-met. The proposed entry test is not met either (0 independent signal(s), 0 signal family(ies), 0 sector actor(s)).'
+reviewBy: '2027-10-25'
 useTier: develop
 validationStatus: draft
 editorialNote:
@@ -61,3 +79,7 @@ provenance:
   - ADR-0005
   - ADR-0011
   - WP-03
+changeNote:
+- release: 2.0.0-rc.1
+  note:
+    en: 'lifecycleState emerging -> watch: the vocabulary''s entry test is not met (lifecycleBasis; ADR-0032, CR-CA-001; review M7).'

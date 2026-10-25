@@ -190,8 +190,13 @@ def test_v1_tags_are_prior_evidence_only():
     flags = Counter(f for r in v1 for f in r.get("v1Flags", []))
     for f in ("text_misaligned", "reconstructed_d2", "d2_divergent", "reconciled_d6_2026_03", "normative_h", "pre15a_hybrid"):
         assert flags[f] > 0, f
+    # ADR-0032 (review M2, M8): v1 tags are single-analyst LLM-assisted prior evidence; v1 codes stay in v1Values only
     s_calls = [r for r in v1 if r["type"] == "ExposureAssessment" and r["v1Values"].get("auto_type") in ("S", "V")]
-    assert s_calls and all(r["deploymentMode"] == "compressive" and r["sWatch"] for r in s_calls)   # XR-04
+    assert s_calls
+    for r in v1:
+        assert not {"deploymentMode", "sWatch", "tacitExperienceRequirement", "mappingRule"} & set(r), r["id"]
+        assert r["evidenceLabel"] == "S" and r["validationStatus"] == "draft", r["id"]
+        assert r["provenance"]["method"] == "llm-assisted" and r["provenance"]["toolVersion"] == "unknown (v1 sessions)"
     dual = RECS[L.load_seed_map().get("seed:v1stage/4.3.2", "seed:v1stage/4.3.2")][1]["v1Values"]   # minted at WP-16
     assert dual["stage_primary_2"] == "S1" and dual["dual_primary_exception"] is True
 
