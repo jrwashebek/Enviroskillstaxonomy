@@ -1,8 +1,8 @@
 # EMST Explorer: Accessibility Conformance Report (WCAG 2.2 Level AA)
 
 - **Product:** EMST Explorer (Tier 1 static site), `site/` in the EMST repository
-- **Version evaluated:** explorer 0.1.0, built from EMST release `2.0.0-dev`, preview profile. The release ID is stamped on every page.
-- **Date:** 2026-10-23
+- **Version evaluated:** explorer 0.1.0, built from EMST release `2.0.0-rc.1` (release profile, the rc.1 re-cut of 2026-10-25). The release ID is stamped on every page. The first issue (2026-10-23) evaluated the `2.0.0-dev` preview build.
+- **Date:** 2026-10-25 (re-issued for the rc.1 re-cut; first issued 2026-10-23)
 - **Prepared by:** CP (Security, Privacy & Compliance Lead and Product & UX Lead), WP-12. ADR-0027 §4 assigns ACR sign-off to CP in Phase 4 and to the Steward thereafter.
 - **Authorship:** prepared by an AI agent (Anthropic's Claude) in the role "CP", working to a charter set by the EMST project lead. No independent human accessibility or security reviewer has checked this document yet.
 - **Standard:** WCAG 2.2, Levels A and AA (W3C Recommendation; ISO/IEC 40500:2025). WCAG 2.2 AA is a superset of WCAG 2.0 AA, which Section 508 incorporates, and of WCAG 2.1 AA, which the ADA Title II rule requires. The Title II compliance dates are now 26 April 2027 and 26 April 2028. [E: CP-025, CP-012, CP-013]
@@ -13,7 +13,7 @@
 1. **Automated rules.** axe-core 4.14.0 ran with the tags `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa` and `wcag22aa`.
    - Each sampled page was tested twice: as loaded, and with every `<details>` disclosure open, so hidden content was tested too.
    - The sample covers every template plus heavier instances: role-change, gap-check and pathways pages for several roles, federal series and state class pages, competency and module pages. The list is in `reports/browser-checks.json`.
-   - Result: **0 violations** on 71 sampled pages (run of 2026-10-23, after the CR-CP-001 and WP-15 changes). The scripted reflow, text-spacing, target-size, focus and network checks also passed on every sampled page.
+   - Result: **0 violations** on 71 sampled pages (run of 2026-10-25 on the rc.1 re-cut; the run of 2026-10-23 on the preview build also found 0). The scripted reflow, text-spacing, target-size, focus and network checks also passed on every sampled page.
    - axe also returned "needs review" (incomplete) results for colour contrast, where it could not compute a background. Causes: text in grid-laid definition lists, a `<select>` with a background image, and SVG chart text. Those were checked by hand (1.4.3 below).
    - One best-practice item (`landmark-unique`) is reported; it does not count toward conformance.
 2. **Scripted checks** (`tools/browser-checks.mjs`) on each sampled page:

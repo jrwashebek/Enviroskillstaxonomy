@@ -2,7 +2,7 @@
 
 - **Prepared by:** CP (Security, Privacy & Government Compliance Lead), WP-12. Phase 4 draft, 2026-10-23.
 - **Authorship:** prepared by an AI agent (Anthropic's Claude) in the role "CP", working to a charter set by the EMST project lead. No independent human accessibility or security reviewer has checked this document yet.
-- **Release covered:** whatever release the explorer was built from. The current build uses `2.0.0-dev` with the internal preview profile. The release ID is stamped on every page.
+- **Release covered:** whatever release the explorer was built from. This issue covers `2.0.0-rc.1` built with the release profile (the rc.1 re-cut of 2026-10-25; no draft records). The release ID is stamped on every page.
 - **Status:** draft for the security reviews of pilot states and federal units. CP signs during Phase 4; the Steward signs thereafter (ADR-0027 §4).
 - **Evidence labels:** [E] means a source I read, with IDs from `docs/research/compliance-product/sources.csv`. [J] means my judgment. [S] means speculation.
 
@@ -138,10 +138,6 @@ These are design-excluded (ADR-0012), and the output checks in `tools/check-outp
    - SHA-pinned GitHub Actions for a site build workflow. No workflow for the site exists yet.
    - A published SECURITY.md disclosure route.
    - The voluntary CISA attestation form.
-5. **Stop-gap inputs** (CR-CP-001). Two computed views come from scripts outside the release build:
-   - federal applicability (DE's registered rule `scripts/rules/venue_applicability.py`, run by `site/tools/venue_view.py` over the release bundle; the WP-05 prototype is only a fallback);
-   - the HR views (WP-08 generators).
-
-   The explorer re-checks every ID against the release bundle, so held or excluded records cannot appear. The data still bypass `build_release.py`'s own gate until those views are emitted by the release. The CA accepted CR-CP-001 A1–A3, and DE ports these views into the release; the explorer switches automatically when `views/venue_applicability.json` and `views/federal-series/` appear.
-7. **Unverified external claims.** The WP-15 sign-off covers internal drafts and the NGO-pilot preview only. Instruments tied to unverified register rows render as "Unverified — not for citation"; signals tied to them are withheld and only counted. `check-output.mjs` section E fails the build on any `do_not_say` wrong form (a "mixing …" entry only where its figures share a sentence); double-quoted register phrases are reported, not enforced, until the data stops using them.
-6. **Preview profile.** The current build includes draft records, by design for the pilot preview, and every page says so. A distribution build should use a tagged release (`EMST_RELEASE_DIR`).
+5. **Stop-gap inputs** (CR-CP-001). Federal applicability now comes from the release itself (`views/venue_applicability.json`, the registered rule with the build's withheld-basis overlay). The HR views still come from scripts outside the release build (the WP-08 generators); the explorer reads only the files their indexes list. The explorer re-checks every ID against the release bundle, so held or excluded records cannot appear. The HR data still bypass `build_release.py`'s own gate until those views are emitted by the release; switching is an rc.2 item (ADR-0031).
+7. **Unverified external claims.** The WP-15 check covers internal drafts and the NGO-pilot preview only, and it is advisory: external publication is signed by the EMST project lead after at least one named human subject-matter reviewer (project lead decision Q13; `docs/release/2.0.0-rc.1/PUBLICATION_SIGNOFF.yaml`, no entry yet). Records whose claim rests on an unverified register row are withheld from the release itself (ADR-0031 §8) and only counted; a venue value whose basis instrument is withheld reads "indeterminate". `check-output.mjs` section E fails the build on any `do_not_say` wrong form (a "mixing …" entry only where its figures share a sentence); double-quoted register phrases are reported, not enforced, until the data stops using them.
+6. **Preview profile.** A build without `EMST_RELEASE_DIR` uses the preview profile, which includes draft records, and every page says so. The rc.1 build covered here uses the release profile (`EMST_RELEASE_DIR=dist/2.0.0-rc.1`); a distribution build should use the tagged release.

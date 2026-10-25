@@ -235,12 +235,14 @@ def collect_ci(root: Path, version: str) -> dict:
         jp = tmp / (mode.replace(" ", "_").replace("-", "") + ".json")
         code, text = _run([py, "scripts/validate_v2.py", *extra, "--no-git-base", "--quiet", "--json", str(jp)], root)
         rep = json.loads(jp.read_text(encoding="utf-8")) if jp.exists() else {}
-        issues = rep.get("issues") or {}
+        listed = rep.get("issues") if isinstance(rep.get("issues"), list) else []
+        codes = (rep.get("stats") or {}).get("issues") or Counter(i.get("code") for i in listed)
         out[mode] = {"command": f"python scripts/validate_v2.py {' '.join(extra + ['--no-git-base'])}".replace("  ", " "),
                      "exit": code, "summary": _last(text, r"errors?,"),
-                     "errors": sum(v for k, v in issues.items() if k.startswith("E-")),
-                     "warnings": {k: v for k, v in sorted(issues.items()) if k.startswith("W-")}}
-    code, text = _run([py, "-m", "pytest", "-q", "tests", "-p", "no:cacheprovider"], root, timeout=7200)
+                     "errors": sum(1 for i in listed if i.get("severity") == "error"),
+                     "warnings": {k: v for k, v in sorted(codes.items()) if str(k).startswith("W-")}}
+    # pyproject addopts already adds -q; reset it so exactly one -q prints the "N passed" summary line
+    code, text = _run([py, "-m", "pytest", "-q", "-o", "addopts=", "tests", "-p", "no:cacheprovider"], root, timeout=7200)
     summ = _last(text, r"\b(passed|failed|error)")
     counts = {k: int(n) for n, k in re.findall(r"(\d+) (passed|failed|skipped|errors?|xfailed|xpassed)", summ)}
     failed = sorted(set(re.findall(r"^FAILED (\S+)", text, re.M)))
@@ -349,12 +351,20 @@ def collect(version: str, as_of: str, root: Path = L.ROOT, ci: dict | None = Non
                    "signoff": signoff_state(signoff),
                    "wp15StatusLine": next((ln for ln in (root / "docs" / "methods" / "WP15_SIGNOFF.md").read_text(encoding="utf-8").splitlines()
                                            if ln.startswith("- **Owner:**")), None),
-                   "acr": (root / "site" / "ACR.md").exists(), "securityPacket": (root / "site" / "SECURITY_PACKET.md").exists()}
+                   "acr": (root / "site" / "ACR.md").exists(), "securityPacket": (root / "site" / "SECURITY_PACKET.md").exists(),
+                   "acrVersionLine": _line(root / "site" / "ACR.md", "- **Version evaluated:**"),
+                   "packetReleaseLine": _line(root / "site" / "SECURITY_PACKET.md", "- **Release covered:**")}
     # item 8
     pld = (root / "docs" / "decisions" / "PROJECT_LEAD_DECISIONS.md").read_text(encoding="utf-8")
     rows = {m.group(1): m.group(0) for m in re.finditer(r"^\| (Q\d+) \|.*$", pld, re.M)}
     ev["item8"] = {q: bool(rows.get(q)) and bool(re.search(r"\| \d{4}-\d{2}-\d{2} \|", rows.get(q, ""))) for q in ("Q1", "Q2", "Q13")}
     return ev
+
+
+def _line(path: Path, prefix: str):
+    if not path.exists():
+        return None
+    return next((ln.strip() for ln in path.read_text(encoding="utf-8").splitlines() if ln.startswith(prefix)), None)
 
 
 def _has_agent_draft(node) -> bool:
@@ -438,7 +448,7 @@ def render(ev: dict) -> str:
     if det:
         out += [f"**Determinism.** Two consecutive builds (`dist/{ev['version']}/` and `{det['twin']}/`) are "
                 + ("**byte-identical**" if det["identical"] else f"**different** ({', '.join(det['differ'])})")
-                + f" over {det['files']} files. SHA-256 of `SHA256SUMS`: `{ev['sha256SUMS']}`; of the bundle: `{ev['bundleSha256']}`.", ""]
+                + f" over all {det['files']} files (`SHA256SUMS` lists the other {ev['files']}). SHA-256 of `SHA256SUMS`: `{ev['sha256SUMS']}`; of the bundle: `{ev['bundleSha256']}`.", ""]
     out += ["---", "", f"## 1. {ITEM_TITLES['1']}", "", f"**Result: {v['1']}.**", "", "| Command | Exit | Output |", "|---|---|---|"]
     for name, c in (ev.get("ci") or {}).items():
         if name == "pytest":
@@ -487,7 +497,12 @@ def render(ev: dict) -> str:
             f"P1–P2 state variants are in the index, {i5['p1p2StateVariantsWithAClassView']} with at least one class view.",
             "- **Why conditional.** \"Critical competencies\" are job-analysis values and appear only as agent drafts (in "
             "`agentDraft`, hidden by the gate); every series and class mapping behind these views is an unreviewed agent "
-            "candidate (item 6).", ""]
+            "candidate (item 6)."
+            + (f" Since review M10 a profile or class view is built only from crosswalk rows at closeMatch or stronger, so "
+               f"{len(i5['p1p2FederalVariantsWithoutFsp'])} P1–P2 federal variants have no series profile and "
+               f"{i5['p1p2StateVariants'] - i5['p1p2StateVariantsWithAClassView']} state variants no class view until a "
+               "person reviews their crosswalk rows; the index lists every variant." if i5["p1p2FederalVariantsWithoutFsp"] else ""),
+            ""]
     out += [f"## 6. {ITEM_TITLES['6']}", "", f"**Result: {v['6']}.**", "",
             "| Crosswalk | Rows | Review status | Rater type | Justification | Human reviewer |", "|---|---|---|---|---|---|"]
     for code, x in i6.items():
@@ -527,10 +542,14 @@ def render(ev: dict) -> str:
             + (("; other: " + ", ".join(f"{d} ({n})" for d, n in i7["recheckOther"].items())) if i7["recheckOther"] else "") + ".",
             f"- **ACR** (`site/ACR.md`): {'present' if i7['acr'] else 'missing'}; **security packet** (`site/SECURITY_PACKET.md`): "
             f"{'present' if i7['securityPacket'] else 'missing'}. Both were prepared by CP, an AI agent, and describe the explorer; "
-            "no human has reviewed either.",
+            "no human has reviewed either."
+            + (f" ACR: “{i7['acrVersionLine'].lstrip('- ')}”" if i7.get("acrVersionLine") else "")
+            + (f" Packet: “{i7['packetReleaseLine'].lstrip('- ')}”" if i7.get("packetReleaseLine") else ""),
             "- **Missing:** a named human subject-matter reviewer's reading of the report and briefs, then the project lead's "
-            "signature (Q13); LM's re-check of each moving fact on or after its date; the ACR and security packet re-issued "
-            "for the tagged build.", ""]
+            "signature (Q13); LM's re-check of each moving fact on or after its date"
+            + ("" if ev["version"] in (i7.get("acrVersionLine") or "") and ev["version"] in (i7.get("packetReleaseLine") or "")
+               else "; the ACR and security packet re-issued for this release")
+            + "; a human accessibility and security review of both.", ""]
     out += [f"## 8. {ITEM_TITLES['8']}", "", f"**Result: {v['8']}.**", "",
             "`docs/decisions/PROJECT_LEAD_DECISIONS.md` records, with dates: "
             + ", ".join(f"{q} {'yes' if ok else 'no'}" for q, ok in ev["item8"].items()) + ".", ""]

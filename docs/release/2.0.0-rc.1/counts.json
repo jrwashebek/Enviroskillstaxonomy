@@ -1,39 +1,39 @@
 {
  "ruleId": "counts",
- "ruleVersion": "1.1.0",
- "buildCommit": "f68e5af41e43c8faacae789462a71fcf06ac85c0+uncommitted",
+ "ruleVersion": "1.2.0",
+ "buildCommit": "be7760153baa688366b83f5d0bdfc6a722029c53+recut-pending-commit",
  "release": "2.0.0-rc.1",
  "byType": {
   "ChangeSignal": 107,
-  "Competency": 224,
-  "CraftRating": 4026,
+  "Competency": 223,
+  "CraftRating": 4013,
   "Credential": 96,
   "DriverEvent": 78,
   "Enactment": 260,
-  "ExposureAssessment": 1367,
-  "FunctionRating": 90,
-  "Indicator": 1706,
+  "ExposureAssessment": 1358,
+  "FunctionRating": 89,
+  "Indicator": 1699,
   "Instrument": 87,
   "JobFamily": 17,
   "KnowledgeStatement": 51,
   "Pathway": 11,
-  "RelevanceRating": 641,
+  "RelevanceRating": 635,
   "RoleProfile": 37,
   "RoleVariant": 140,
   "SeriesRecord": 79,
   "StateClassRecord": 38,
-  "Task": 1313,
-  "Tool": 101,
-  "WatchItem": 3
+  "Task": 1317,
+  "Tool": 99,
+  "WatchItem": 2
  },
  "competenciesByKind": {
   "knowledge-area": 9,
-  "practice": 197,
+  "practice": 196,
   "transversal": 18
  },
  "competenciesByModule": {
   "air": 3,
-  "core": 164,
+  "core": 163,
   "envhealth": 3,
   "extract": 1,
   "forest": 16,
@@ -51,7 +51,7 @@
   },
   "core": {
    "knowledge-area": 9,
-   "practice": 137,
+   "practice": 136,
    "transversal": 18
   },
   "envhealth": {
@@ -86,13 +86,12 @@
   }
  },
  "competenciesByLifecycle": {
-  "emerging": 26,
-  "established": 198
+  "established": 197,
+  "watch": 26
  },
  "byLifecycle": {
-  "emerging": 179,
-  "established": 1393,
-  "proposed": 2
+  "established": 1396,
+  "watch": 181
  },
  "rolesByTier": {
   "P1": 13,
@@ -108,18 +107,20 @@
   "private": 25,
   "state": 35
  },
- "coreCompetencies": 164,
- "heldRecords": 122,
+ "coreCompetencies": 163,
+ "heldRecords": 163,
  "excluded": {
   "draft (not in a release)": 1372,
-  "held (Tribal content hold, ADR-0007 §D)": 122,
+  "held (Tribal content hold, ADR-0007 §D)": 163,
+  "held back: removing references to records not in this release would empty a required field (B1)": 3,
   "no minted ID": 130,
   "third-party index-derived licence (ADR-0013; ADR-0029 §9.6)": 102,
   "withheld: claim rests on an unverified claims-register row (WP-15 §2.1; ADR-0031 §8)": 31
  },
  "redactedReferences": {
-  "not in this release": 3,
-  "withheld": 34
+  "held": 3,
+  "not in this release": 1,
+  "withheld": 33
  },
  "deferredTargets": {
   "built": 3,
@@ -132,5 +133,60 @@
   "marine": 1,
   "markets": 14,
   "worklands": 6
+ },
+ "ratingsByRaterType": {
+  "CraftRating": {
+   "llm": 3924,
+   "v1-analyst": 89
+  },
+  "ExposureAssessment": {
+   "llm": 171,
+   "v1-analyst": 1187
+  },
+  "FunctionRating": {
+   "v1-analyst": 89
+  },
+  "RelevanceRating": {
+   "v1-analyst": 635
+  }
+ },
+ "ratingUnitsByRaterType": {
+  "CraftRating": {
+   "llm": {
+    "units": 1308,
+    "raterIds": 7
+   },
+   "v1-analyst": {
+    "units": 89,
+    "raterIds": 1
+   }
+  },
+  "ExposureAssessment": {
+   "llm": {
+    "units": 57,
+    "raterIds": 1
+   },
+   "v1-analyst": {
+    "units": 550,
+    "raterIds": 1
+   }
+  },
+  "FunctionRating": {
+   "v1-analyst": {
+    "units": 89,
+    "raterIds": 1
+   }
+  },
+  "RelevanceRating": {
+   "v1-analyst": {
+    "units": 635,
+    "raterIds": 1
+   }
+  }
+ },
+ "changeSignalObservations": {
+  "records": 107,
+  "distinctObservations": 68,
+  "observationIdRecorded": 107
  }
 }

@@ -70,3 +70,36 @@ gate item 7 text in `docs/decisions/PHASE4_BUILD_PLAN.md` §5.
   reads only the HR view files the generators' indexes list (23 FSP and 17 SCV files are stale leftovers; R7 to
   D-DATA). Build: 764 pages, 0 problems.
 - Candidates disclosure uses the existing `emst-disclosure` style (24 px target); `npm test` OK (71 pages, 0 axe violations).
+
+## Phase 2 (after DATA_DONE.md)
+
+- `python3 scripts/build_schema.py`: regenerated; `--check` current.
+- Minted the eight m7 review tasks with the single writer (`mint_id.py promote-batch
+  docs/build/rc1-fix/generated/promote_keys_build.txt --by emstagent:de-build-rc1-fix@claude-opus-5-5 --today 2026-10-25`):
+  core TSK-43K3RCD, TSK-R34PM4N, TSK-SBZYHH1, TSK-K1JC1NN, TSK-RZ8F70W, TSK-EGRFG19; parks TSK-PZQBN33; wildlife
+  TSK-201M258. New IDs only; none reused or re-pointed (ADR-0010). `mint_id.py verify`: OK, 10,480 rows.
+- `validate_v2.py --strict --no-git-base`: 0 errors, 128 warnings. `migrate_v1.py --check`: OK.
+- `update_readme_status.py`: README status block regenerated (schema draft.4, new counts); generated block only.
+- CP re-issue: `site/ACR.md` (version evaluated: 2.0.0-rc.1 release profile) and `site/SECURITY_PACKET.md` (release
+  covered, stop-gap inputs, point 7 under Q13 and withholding, point 6 profile).
+- Running the one-command re-cut: `python3 scripts/recut_release.py --version 2.0.0-rc.1 --pending --as-of 2026-10-25`.
+- Re-cut run 1 (`--pending`): schema check OK; two release builds byte-identical (123 files in SHA256SUMS, 10,436
+  records, released 2026-10-25, stamp `be77601…+recut-pending-commit`); views regenerated; explorer 764 pages, 0
+  problems; release docs written. The gate step stopped on a parsing bug (validator `--json` keeps counts in
+  `stats.issues`); fixed in `release_gate.collect_ci`, gate re-run on its own.
+- Reviewer scripts over the new dist: c1/c1b 0 schema failures after the documented inverse fields; 0 dangling refs;
+  c1c registry OK (41 held candidate IDs, none released); c2b round trip loses only null-valued keys; c2c 438,035
+  quads, every id a subject; c2d SKOS 1,628 concepts, 0 mapping triples (no human-reviewed row); c2e every SSSOM set
+  parses with no row loss, strict renderings valid; c3 counts match; c4 triggers only in the exempt build statements
+  and vocabulary SKOS; c4b recomputation without the overlay still differs for CMP-6035KC2 state, and the shipped view
+  says `indeterminate (basis withheld)`; c8 0 positive NoTermFound rows; Frictionless VALID.
+- Gate re-run (`release_gate.py --run-ci --twin`): items 1-4 and 8 pass, 5 conditional (M10 leaves 16 of 28 P1-P2
+  federal variants without a series profile and 26 of 30 state variants without a class view), 6 and 7 fail.
+  pytest 472 passed; validator 0 errors (128 warnings) in both modes; `npm test` OK (764 pages, 0 problems; 71
+  pages, 0 axe violations). `GATE_REPORT.md`, `gate_evidence.json`, `RELEASE_NOTES.md`, `counts.json` (counts@1.2.0),
+  `delta_v1.json`, `BUILD.md` regenerated; `release_docs.py --check` current.
+- `site/tools/sbom.mjs` keeps the committed SBOM when only npm's random serial and timestamp change, so a rebuild of
+  the same tree leaves it clean.
+- For the orchestrator: commit, then run `python3 scripts/recut_release.py --version 2.0.0-rc.1` from the clean
+  commit (stamp = HEAD), then commit the regenerated `docs/release/2.0.0-rc.1/` before tagging. Nothing committed or
+  tagged by D-BUILD.

@@ -1,0 +1,545 @@
+{
+ "asOf": "2026-10-25",
+ "buildCommit": "be7760153baa688366b83f5d0bdfc6a722029c53+recut-pending-commit",
+ "bundleSha256": "ba9b1453b391a60654600b14ff2117f5362222ab1793622b2d19468899d1c839",
+ "ci": {
+  "build_schema --check": {
+   "command": "python scripts/build_schema.py --check",
+   "exit": 0,
+   "summary": "schema and context are current with vocab/"
+  },
+  "convert_instrument_links --check": {
+   "command": "python scripts/convert_instrument_links.py --check",
+   "exit": 0,
+   "summary": "would convert 0 links in 0 files"
+  },
+  "extract_v1 --check": {
+   "command": "python scripts/extract_v1.py --check",
+   "exit": 0,
+   "summary": "v1 baseline is up to date"
+  },
+  "migrate_v1 --check": {
+   "command": "python scripts/migrate_v1.py --check",
+   "exit": 0,
+   "summary": "OK: 0 generated files differ; 775 authored seeds left untouched (119 still seed-v1 but edited by authors)"
+  },
+  "mint_id verify": {
+   "command": "python scripts/mint_id.py verify",
+   "exit": 0,
+   "summary": "OK: 10480 registry rows"
+  },
+  "pytest": {
+   "command": "python -m pytest -q tests",
+   "counts": {
+    "passed": 472
+   },
+   "exit": 0,
+   "failed": []
+  },
+  "site npm test": {
+   "command": "cd site && npm test",
+   "exit": 0,
+   "summary": [
+    "[test-checks] OK: 21 seeded violations detected; 4 near-misses pass; clean page passes",
+    "[check] OK: 764 pages, 834 files, 932 figures with badges, 2098 v1 drawers, 803 outbound links (navigation only), 0 problems",
+    "[browser] 71 pages; axe (WCAG 2.2 A/AA, axe-core 4.14.0) violations on 0 pages []; needs-review [\"color-contrast\"]; external requests 0; reflow failures 0",
+    "[browser] OK"
+   ]
+  },
+  "update_readme_status --check": {
+   "command": "python scripts/update_readme_status.py --check",
+   "exit": 0,
+   "summary": "README status block is current"
+  },
+  "validate_v2": {
+   "command": "python scripts/validate_v2.py --no-git-base",
+   "errors": 0,
+   "exit": 0,
+   "summary": "OK: 0 errors, 128 warnings",
+   "warnings": {
+    "W-LINT-INDICATOR": 5,
+    "W-LINT-LENGTH": 35,
+    "W-LINT-PRODUCTION-REVIEW": 46,
+    "W-LINT-TYPING": 8,
+    "W-REF-PENDING": 19,
+    "W-SUPERSEDED-TARGET": 3,
+    "W-X1-PENDING": 12
+   }
+  },
+  "validate_v2 --strict": {
+   "command": "python scripts/validate_v2.py --strict --no-git-base",
+   "errors": 0,
+   "exit": 0,
+   "summary": "OK: 0 errors, 128 warnings",
+   "warnings": {
+    "W-LINT-INDICATOR": 5,
+    "W-LINT-LENGTH": 35,
+    "W-LINT-PRODUCTION-REVIEW": 46,
+    "W-LINT-TYPING": 8,
+    "W-REF-DEFERRED": 19,
+    "W-SUPERSEDED-TARGET": 3,
+    "W-X1-DEFERRED": 12
+   }
+  }
+ },
+ "counts": {
+  "byType": {
+   "ChangeSignal": 107,
+   "Competency": 223,
+   "CraftRating": 4013,
+   "Credential": 96,
+   "DriverEvent": 78,
+   "Enactment": 260,
+   "ExposureAssessment": 1358,
+   "FunctionRating": 89,
+   "Indicator": 1699,
+   "Instrument": 87,
+   "JobFamily": 17,
+   "KnowledgeStatement": 51,
+   "Pathway": 11,
+   "RelevanceRating": 635,
+   "RoleProfile": 37,
+   "RoleVariant": 140,
+   "SeriesRecord": 79,
+   "StateClassRecord": 38,
+   "Task": 1317,
+   "Tool": 99,
+   "WatchItem": 2
+  },
+  "changeSignalObservations": {
+   "distinctObservations": 68,
+   "observationIdRecorded": 107,
+   "records": 107
+  },
+  "coreCompetencies": 163,
+  "deferredTargets": {
+   "built": 3,
+   "climate": 1,
+   "culture": 1,
+   "ehs": 2,
+   "energy": 5,
+   "extract": 4,
+   "lab": 1,
+   "marine": 1,
+   "markets": 14,
+   "worklands": 6
+  },
+  "excluded": {
+   "draft (not in a release)": 1372,
+   "held (Tribal content hold, ADR-0007 §D)": 163,
+   "held back: removing references to records not in this release would empty a required field (B1)": 3,
+   "no minted ID": 130,
+   "third-party index-derived licence (ADR-0013; ADR-0029 §9.6)": 102,
+   "withheld: claim rests on an unverified claims-register row (WP-15 §2.1; ADR-0031 §8)": 31
+  },
+  "heldRecords": 163,
+  "ratingUnitsByRaterType": {
+   "CraftRating": {
+    "llm": {
+     "raterIds": 7,
+     "units": 1308
+    },
+    "v1-analyst": {
+     "raterIds": 1,
+     "units": 89
+    }
+   },
+   "ExposureAssessment": {
+    "llm": {
+     "raterIds": 1,
+     "units": 57
+    },
+    "v1-analyst": {
+     "raterIds": 1,
+     "units": 550
+    }
+   },
+   "FunctionRating": {
+    "v1-analyst": {
+     "raterIds": 1,
+     "units": 89
+    }
+   },
+   "RelevanceRating": {
+    "v1-analyst": {
+     "raterIds": 1,
+     "units": 635
+    }
+   }
+  },
+  "ratingsByRaterType": {
+   "CraftRating": {
+    "llm": 3924,
+    "v1-analyst": 89
+   },
+   "ExposureAssessment": {
+    "llm": 171,
+    "v1-analyst": 1187
+   },
+   "FunctionRating": {
+    "v1-analyst": 89
+   },
+   "RelevanceRating": {
+    "v1-analyst": 635
+   }
+  },
+  "redactedReferences": {
+   "held": 3,
+   "not in this release": 1,
+   "withheld": 33
+  }
+ },
+ "determinism": {
+  "differ": [],
+  "files": 124,
+  "identical": true,
+  "twin": "dist/2.0.0-rc.1-twin"
+ },
+ "files": 123,
+ "item2": {
+  "coreSizeLine": "Core competencies: 163 released + held core reported as a count (12); range 120-180 (counts@1.2.0)."
+ },
+ "item3": {
+  "agentDraftNodes": 3053,
+  "displayGateDecisions": {
+   "editorial": 3095,
+   "hidden": 1184,
+   "pending": 3977
+  },
+  "displayGateRows": 8256,
+  "displayGateRule": "1.1.0",
+  "effectiveUseTier": {
+   "describe": 1789,
+   "exploratory": 1949
+  },
+  "effectiveUseTierRows": 3738,
+  "elementsWithoutEffectiveTier": [],
+  "selectAnywhere": 0
+ },
+ "item4": {
+  "otherModules": {
+   "extract": 5,
+   "worklands": 28
+  },
+  "wave1Present": {
+   "air": 147,
+   "envhealth": 127,
+   "forest": 468,
+   "hazards": 122,
+   "parks": 100,
+   "waste": 304,
+   "water": 189,
+   "waterq": 177,
+   "wildlife": 175
+  }
+ },
+ "item5": {
+  "byTier": {
+   "P1": 13,
+   "P2": 17,
+   "P3": 6,
+   "P4": 1
+  },
+  "depthRange": {
+   "P1": {
+    "targets": [
+     16,
+     31
+    ],
+    "tasks": [
+     22,
+     35
+    ]
+   },
+   "P2": {
+    "targets": [
+     14,
+     21
+    ],
+    "tasks": [
+     26,
+     35
+    ]
+   },
+   "P3": {
+    "targets": [
+     11,
+     14
+    ],
+    "tasks": [
+     22,
+     25
+    ]
+   },
+   "P4": {
+    "targets": [
+     15,
+     15
+    ],
+    "tasks": [
+     26,
+     26
+    ]
+   }
+  },
+  "fspFiles": 13,
+  "lifecycleByTier": {
+   "P1": {
+    "established": 11,
+    "watch": 2
+   },
+   "P2": {
+    "established": 17
+   },
+   "P3": {
+    "watch": 6
+   },
+   "P4": {
+    "established": 1
+   }
+  },
+  "p1p2FederalVariants": 28,
+  "p1p2FederalVariantsInAnFsp": 12,
+  "p1p2FederalVariantsWithoutFsp": [
+   "emst:air/ROL-4WY94YJ",
+   "emst:core/ROL-02B6BZV",
+   "emst:core/ROL-1GQVAH3",
+   "emst:core/ROL-2W43QDA",
+   "emst:core/ROL-5Q1E37Y",
+   "emst:core/ROL-7DTPX8B",
+   "emst:core/ROL-M55JJCE",
+   "emst:core/ROL-QP4Q27S",
+   "emst:core/ROL-V5FGFB6",
+   "emst:core/ROL-ZJFCC09",
+   "emst:core/ROL-ZK41BZA",
+   "emst:forest/ROL-BS2AR2G",
+   "emst:forest/ROL-FSCZ00K",
+   "emst:hazards/ROL-KWW98MN",
+   "emst:waste/ROL-ZFX6CM5",
+   "emst:water/ROL-J624S6K"
+  ],
+  "p1p2StateVariants": 30,
+  "p1p2StateVariantsIndexed": 30,
+  "p1p2StateVariantsWithAClassView": 4,
+  "roles": 37,
+  "scvFiles": 20
+ },
+ "item6": {
+  "X1": {
+   "humanReviewed": 0,
+   "justification": {
+    "semapv:LLMBasedMatching": 926
+   },
+   "raterType": {
+    "(none)": 926
+   },
+   "reviewStatus": {
+    "(none)": 926
+   },
+   "rows": 926,
+   "subjects": 888
+  },
+  "X12": {
+   "humanReviewed": 0,
+   "justification": {
+    "semapv:LLMBasedMatching": 49
+   },
+   "raterType": {
+    "llm": 49
+   },
+   "reviewStatus": {
+    "candidate": 49
+   },
+   "rows": 49,
+   "subjects": 19
+  },
+  "X2": {
+   "humanReviewed": 0,
+   "justification": {
+    "semapv:LLMBasedMatching": 316
+   },
+   "raterType": {
+    "llm": 316
+   },
+   "reviewStatus": {
+    "needs-adjudication": 118,
+    "two-llm-coders-agreed-target": 198
+   },
+   "rows": 316,
+   "subjects": 316
+  },
+  "X3": {
+   "humanReviewed": 0,
+   "justification": {
+    "semapv:LLMBasedMatching": 175,
+    "semapv:MappingChaining": 22
+   },
+   "raterType": {
+    "llm": 197
+   },
+   "reviewStatus": {
+    "candidate": 197
+   },
+   "rows": 197,
+   "subjects": 47
+  },
+  "X4": {
+   "humanReviewed": 0,
+   "justification": {
+    "semapv:LLMBasedMatching": 113
+   },
+   "raterType": {
+    "llm": 113
+   },
+   "reviewStatus": {
+    "candidate": 113
+   },
+   "rows": 113,
+   "subjects": 37
+  },
+  "X5": {
+   "humanReviewed": 0,
+   "justification": {
+    "semapv:LLMBasedMatching": 58
+   },
+   "raterType": {
+    "llm": 58
+   },
+   "reviewStatus": {
+    "candidate": 58
+   },
+   "rows": 58,
+   "subjects": 22
+  },
+  "X7": {
+   "humanReviewed": 0,
+   "justification": {
+    "semapv:LLMBasedMatching": 338
+   },
+   "raterType": {
+    "llm": 338
+   },
+   "reviewStatus": {
+    "llm-reviewed-candidate": 338
+   },
+   "rows": 338,
+   "subjects": 113
+  }
+ },
+ "item7": {
+  "acr": true,
+  "acrVersionLine": "- **Version evaluated:** explorer 0.1.0, built from EMST release `2.0.0-rc.1` (release profile, the rc.1 re-cut of 2026-10-25). The release ID is stamped on every page. The first issue (2026-10-23) evaluated the `2.0.0-dev` preview build.",
+  "byStatus": {
+   "corrected": 19,
+   "derived": 6,
+   "held": 1,
+   "illustrative-unverified": 1,
+   "unverified": 14,
+   "verified": 70,
+   "verified-partial": 13
+  },
+  "packetReleaseLine": "- **Release covered:** whatever release the explorer was built from. This issue covers `2.0.0-rc.1` built with the release profile (the rc.1 re-cut of 2026-10-25; no draft records). The release ID is stamped on every page.",
+  "recheckDates": {
+   "2026-10-27": 2,
+   "2026-11-12": 1,
+   "2026-11-13": 1,
+   "2026-11-15": 2,
+   "2026-11-30": 2,
+   "2026-12-15": 49,
+   "2027-01-23": 1,
+   "2027-01-31": 7,
+   "2027-02-15": 41,
+   "2027-02-28": 1,
+   "2027-04-30": 2,
+   "2027-05-31": 1,
+   "2027-06-30": 8,
+   "2027-08-15": 3
+  },
+  "recheckOnOrBeforeAsOf": [],
+  "recheckOther": {
+   "on next OpenLMP release": 3
+  },
+  "registerRows": 124,
+  "securityPacket": true,
+  "signoff": {
+   "advisoryAgentChecks": 1,
+   "humanReviewers": 0,
+   "humanReviewersBeforeSignature": 0,
+   "projectLeadSigned": false,
+   "valid": false
+  },
+  "signoffRecord": "docs/release/2.0.0-rc.1/PUBLICATION_SIGNOFF.yaml",
+  "signoffRecordExists": true,
+  "unverifiedOrHeld": [
+   "CWA-02",
+   "DISC-03",
+   "ESA-02",
+   "ESA-03",
+   "NEPA-09",
+   "REG-01",
+   "REG-02",
+   "REG-03",
+   "REG-04",
+   "REG-05",
+   "REG-06",
+   "REG-07",
+   "REG-08",
+   "REG-09",
+   "TRB-01"
+  ],
+  "wp15StatusLine": "- **Owner:** LM (A9) · **Publication sign-off:** EMST project lead, after at least one named human subject-matter reviewer (Q13; not given) · **Date:** 2026-10-23 · **Status:** first pass plus a flagship-report check (§4); no human review or signature recorded (§5). Each moving fact must be re-signed before the rc.1 build and before 2.0.0."
+ },
+ "item8": {
+  "Q1": true,
+  "Q13": true,
+  "Q2": true
+ },
+ "publication": {
+  "cleared": false,
+  "item6": {
+   "pass": false,
+   "withoutHumanReviewedSubset": [
+    "X2",
+    "X3",
+    "X4",
+    "X5",
+    "X7",
+    "X12"
+   ],
+   "x1Subjects": 888
+  },
+  "item7": {
+   "acr": true,
+   "pass": false,
+   "securityPacket": true,
+   "signoff": {
+    "advisoryAgentChecks": 1,
+    "humanReviewers": 0,
+    "humanReviewersBeforeSignature": 0,
+    "projectLeadSigned": false,
+    "valid": false
+   }
+  },
+  "line": "not cleared for external publication; items 6 and 7 fail"
+ },
+ "released": "2026-10-25",
+ "schemaVersion": "2.0.0-draft.4",
+ "sha256SUMS": "54847021d8c9cb2ab3e1c2de4631304d7dc1edf10358e541b3372b7f34734749",
+ "statusLine": "not cleared for external publication; items 6 and 7 fail",
+ "version": "2.0.0-rc.1",
+ "x2Detail": {
+  "agreed": 153,
+  "agreedAtCloseMatchOrBetter": 16,
+  "agreedIncludingNoTermFound": 198,
+  "kappaMatchType": {
+   "ci95": "0.388-0.541",
+   "source": "data/v2/crosswalks/onet-task/27.2.sssom.yml#other",
+   "target": "0.6",
+   "value": 0.465
+  },
+  "noTermFound": 114,
+  "noTermFoundWithPositivePredicate": 0,
+  "rows": 316,
+  "withAnOnetObject": 202
+ }
+}
