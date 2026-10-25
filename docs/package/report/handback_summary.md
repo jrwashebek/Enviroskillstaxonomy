@@ -1,12 +1,12 @@
-> **Superseded (2026-10-23).** This is the WP-14 handback for draft 0.9. Draft 0.9.1 applies the evidence review, the package review and the WP-15 corrections: several headline findings below were reworded, the claims list now has 280 rows (none awaiting a register row) and F05/F06 were rebuilt with sensitivity checks. See `docs/review/fixlog_A.md`. Kept for the record only.
+> **Superseded (2026-10-23).** This is the WP-14 handback for draft 0.9. Draft 0.9.1 applies the evidence review, the package review and the WP-15 corrections: several headline findings below were reworded, the claims list now has 280 rows (none awaiting a register row) and F05/F06 were rebuilt with sensitivity checks. See `docs/review/fixlog_A.md`. Kept for the record only. **Note (2026-10-25, rc.1 package sync):** the current draft is 0.9.2, and its claims list has 283 rows (`docs/review/fixlog_rc1_package_sync.md`). The sign-off path this handback named is replaced by project lead decision Q13 (2026-10-24): external publication is signed by the EMST project lead, after at least one named human subject-matter reviewer has read the report and briefs; AI agent checks, including the adoption-lead role, are advisory. One draft 0.9 headline below used wording the claims register forbids (RPT-01); it is not repeated here.
 
-I wrote `figures/` and `claims_used.csv`. The harness refused the write of `flagship_report.md` ("subagents should return findings as text"), so its full text follows below. LM's WP-15 sign-off clears it for internal drafts and the NGO-pilot preview only; external release needs AS co-sign and the moving-fact re-checks.
+I wrote `figures/` and `claims_used.csv`. The harness refused the write of `flagship_report.md` ("subagents should return findings as text"), so its full text follows below. LM's WP-15 sign-off clears it for internal drafts and the NGO-pilot preview only; external release needs the project lead's signature under Q13 (see the note above) and the moving-fact re-checks.
 
 The coordinator's updates are in: S. 5653, the Colorado draft rules, the USFS objection rule, NIFC figures, and the `do_not_say` wording.
 
 **Five headline findings, as written:**
 1. The biggest force on public environmental jobs right now is a capacity shock, not AI.
-2. AI splits environmental work in two, and the evidence on actual use is still thin.
+2. [Draft 0.9 wording withdrawn: claims register RPT-01 forbids it. Draft 0.9.1 and later read "AI exposure varies widely across environmental work, and the evidence on actual use is still thin."]
 3. Roles are being re-bundled, not deleted, and policy is moving faster than technology.
 4. The entry path is the risk to watch. It is a hypothesis with a mechanism, not yet a finding.
 5. Some moves are right in every plausible future, and they can start now.

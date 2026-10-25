@@ -45,7 +45,7 @@ illness, remote first aid and emergency radio calls.
 
 | Work | Expected change (agent draft) | Driver | Outside signal (every task change: assessment pending) |
 |---|---|---|---|
-| **The role as an entry path** | **Entry path at risk.** Corps capacity depends on grants, and 2025 grant and hiring decisions removed openings (see "Entry paths" below) | grant and hiring decisions | AmeriCorps conservation positions posted fell 42% year over year, March–September 2025, on one job board (reliability C) [2] |
+| **The role as an entry path** | **Entry path at risk.** Corps capacity depends on grants, and 2025 grant and hiring decisions removed openings (see "Entry paths" below) | grant and hiring decisions | AmeriCorps conservation positions posted fell 42% year over year, March–September 2025, on one job board (source grade C) [2] |
 | Survey trailheads, launches and road corridors for new invasive species | Transforming, adding evidence: imagery and environmental DNA detections could increasingly nominate where to survey | sensing technology, AI | none yet |
 | Job hazard analysis at the work site | Transforming: template and AI-drafted hazard analyses would shift the crew's task to checking them against the actual site | AI | none yet |
 | Record field observations | Transforming: mobile forms replace paper, and completeness rules move into the form | sensing technology | none yet |
@@ -73,9 +73,11 @@ finding).
 | Detect, treat and monitor invasive species in the field | Detection may move to imagery and eDNA; confirmation and treatment stay in the field |
 | Record field observations with protocol fidelity and data integrity | Mobile forms change how records are made |
 | Interpret and question environmental data products in everyday work | Part of the basic data and AI skills every EMST role includes |
-| Use AI tools responsibly in everyday environmental work *(emerging)* | Basic data and AI skills |
-| Validate AI-generated work products before professional use *(emerging)* | Basic data and AI skills, including field-checking an AI-generated product |
+| Use AI tools responsibly in everyday environmental work *(watch)* | Basic data and AI skills |
+| Validate AI-generated work products before professional use *(watch)* | Basic data and AI skills, including field-checking an AI-generated product |
 | Implement restoration treatments and adapt them to site response; build and maintain trails to sustainable design standards | The role's core field work |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 
@@ -124,9 +126,11 @@ Neither pathway has been tested against observed career moves.
 - **NGO program lead.** Cite EMST role and competency identifiers in your next grant report and in each member's exit
   portfolio, so a state or federal hiring office can read what members did. Check whether your state is in the
   AmeriCorps settlement coalition, and remember that the settlement covers FY2026 only.
-- **HR specialist at a destination employer.** Use the explorer's field technician and wildland fire Federal Series
-  Profiles and State Class Views to see which corps tasks match your entry work. Treat them as a starting point for your
-  own crediting plan, not a qualification determination. For federal hiring: since 30 September 2025, under OPM's Merit
+- **HR specialist at a destination employer.** Use the explorer's 0456 Wildland Fire Management Federal Series Profile
+  (built from the wildland fire operations role) and its Texas Fish and Wildlife Technician I–III State Class Views
+  (built from the field resource technician role) to see which corps tasks match your entry work; these are the only
+  close-fit views for the destination roles in this release. Treat them as a starting point for your own crediting
+  plan, not a qualification determination. For federal hiring: since 30 September 2025, under OPM's Merit
   Hiring Plan, self-assessment questionnaires may be used only to screen for minimum qualifications, not to rate and
   rank, except for seasonal positions, positions at GS-4 and below and other OPM-authorized cases. OPM's plan targets
   full governmentwide use of technical assessments by the end of FY2028; natural resources management is in a later

@@ -1,6 +1,7 @@
-# How this role is changing: Ground-truth and validation steward (emerging role)
+# How this role is changing: Ground-truth and validation steward (watch role)
 
-*EMST v2 role-change brief · field and data corridor · emerging role, to be reviewed by 23 October 2027 · as of 23 October
+*EMST v2 role-change brief · field and data corridor · watch role (hypothesized work, not yet observed in postings or
+position descriptions), to be reviewed by 23 October 2027 · as of 23 October 2026; lifecycle wording updated 25 October
 2026 · CC BY 4.0*
 
 > **Status: draft for NGO-pilot preview (2026-10-23).** AI agents checked facts against sources, and some claims await
@@ -13,7 +14,8 @@
 
 ## Who does this work
 
-This is a role EMST expects to be **forming**, not one that is established. Ground-truth and validation stewards design
+This is a **watch** role: hypothesized work, not yet observed in postings or position descriptions. EMST expects it to
+form, but its evidence did not meet the test for a stronger state. Ground-truth and validation stewards design
 and look after the field reference data and validation samples that remote, modeled and AI-generated products are tested
 against. They code the field causes of mismatch, calibrate observers, and state whether a product is fit for a stated
 use. Today the work is usually spread across technicians, analysts and program scientists rather than held by one post.
@@ -43,7 +45,7 @@ Main tasks, in rough work order. This is a selection; EMST shows no time shares.
 | Work | Expected change (agent draft) | Driver | Outside signal (every task change: assessment pending) |
 |---|---|---|---|
 | **The role itself** | **New role forming (expected):** validating remote and AI products could become a distinct responsibility, and no dedicated federal series exists | AI, sensing technology | none yet: EMST has no posting baseline to test whether the role is appearing |
-| Blind reference collection | Emerging: would grow with product use | AI, sensing technology | none yet |
+| Blind reference collection | Expected to grow with product use | AI, sensing technology | none yet |
 | **Plan regional reference networks for Earth-observation models** | **New** | AI | none yet |
 | **Label reference sets without seeing tool outputs** | **New** | AI | none yet |
 | Review classifier-labeled camera, acoustic or genetic detections | Transforming, compressing manual screening: review queues would replace it | AI | none yet |
@@ -69,13 +71,15 @@ Draft targets (agent draft; design statements to test, not findings): **Independ
 
 | Competency | Why now |
 |---|---|
-| Design and steward field reference data for Earth-observation and AI models *(emerging)* | The role's core product |
-| Ground-truth remote-sensed, modeled and AI-generated outputs in the field *(emerging)* | Blind collection and mismatch coding |
-| Adjudicate automated species detections using field-formed identification expertise *(emerging)* | Review queues |
-| Build task-specific evaluation sets and benchmark AI tools before adoption *(emerging)* | Reference sets labeled blind |
+| Design and steward field reference data for Earth-observation and AI models *(watch)* | The role's core product |
+| Ground-truth remote-sensed, modeled and AI-generated outputs in the field *(watch)* | Blind collection and mismatch coding |
+| Adjudicate automated species detections using field-formed identification expertise *(watch)* | Review queues |
+| Build task-specific evaluation sets and benchmark AI tools before adoption *(watch)* | Reference sets labeled blind |
 | Calibrate field observers and run field measurement quality assurance | Observer agreement against tolerances |
 | Evaluate model fitness for purpose and validate against independent evidence | Fitness-for-use decisions |
 | Design monitoring and sampling for valid environmental inference | Sample design |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 
@@ -133,6 +137,7 @@ people.
 **Comment or correct.** To comment, correct an error or ask about the pilot, open an issue at
 [github.com/jrwashebek/Enviroskillstaxonomy/issues](https://github.com/jrwashebek/Enviroskillstaxonomy/issues).
 
-*Technical note.* Role key `R05-ground-truth-validation-steward` (lifecycle: emerging) in the EMST v2 data release.
+*Technical note.* Role key `R05-ground-truth-validation-steward` (lifecycle: watch, since the 2.0.0-rc.1 re-cut of 25
+October 2026; ADR-0032) in the EMST v2 data release.
 Claims-register rows behind the sources: [1] WF-04; [2] WF-05. Pathway: the field-technician-to-ground-truth-steward
 record (exploratory).

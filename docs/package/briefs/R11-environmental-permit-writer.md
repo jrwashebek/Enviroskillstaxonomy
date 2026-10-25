@@ -72,11 +72,13 @@ Draft targets by level, journey / senior / lead (agent draft; design statements 
 |---|---|---|
 | Issue environmental permits and resource-use authorizations as the deciding authority | Independent / Senior / Lead | Core |
 | Draft enforceable, implementable binding instruments | Independent / Senior / Lead | Writers may specify and check more than they draft from scratch |
-| Validate AI-generated work products before professional use *(emerging)* | Independent / Senior / Senior | AI-drafted permits and analyses |
+| Validate AI-generated work products before professional use *(watch)* | Independent / Senior / Senior | AI-drafted permits and analyses |
 | Track regulatory change and translate it into operating guidance | Independent / Senior / Senior | Proposed and litigated rules; procedure versions per pending action |
 | Operate within, or oversee, delegated and assumed regulatory programs | Independent / Senior / Lead | Delegated programs and oversight objections |
 | Build and maintain a defensible administrative record | Independent / Senior / Senior | AI provenance labels in the record |
 | Maintain independence and manage conflicts of interest across the regulator–regulated boundary | Independent / Senior / Senior | Movement between regulator and consultant roles |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 
@@ -109,11 +111,15 @@ None of these has been tested against observed career moves.
   permits.
 - **Training officer.** Use retired permits as practice cases. Add seeded-error drafts to training. Teach how to track
   which pending actions follow old and new procedure versions.
-- **HR specialist (state).** Compare your permit-writer class specification with the explorer's State Class View for
-  this role. Pennsylvania's Office of Administration, for example, has identified federal job titles whose experience
+- **HR specialist (state).** The explorer has no State Class View for this role in this release: the Texas classes above
+  are broader or partial fits, which the class views leave out, so the class pages list the role only among unreviewed
+  agent candidates (not an alignment). Compare your permit-writer class specification with the draft task list and
+  targets instead. Pennsylvania's Office of Administration, for example, has identified federal job titles whose experience
   may count as equivalent for certain Commonwealth titles, and reports 1,350 hires with federal work experience since
-  Executive Order 2025-01 (March 2025): one model for crediting federal permit experience [6]. **Federal:** use the
-  explorer's 0819 and 0028 Federal Series Profiles, subject to classification review.
+  Executive Order 2025-01 (March 2025): one model for crediting federal permit experience [6]. **Federal:** the explorer has
+  no Federal Series Profile for this role either; its 0819 and 0028 rows are broader-series matches. The 0819 profile is
+  built from the environmental engineer role, not this one. Take duty language from the role's draft task list in the
+  explorer, subject to classification review.
 - **Educator.** Use retired permits as practice cases, and require two permits' conditions and fact sheets drafted
   unaided, each condition traced to its basis, before students review an AI-drafted permit.
 

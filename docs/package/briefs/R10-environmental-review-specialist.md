@@ -89,9 +89,11 @@ Draft targets by level, journey / senior / lead (agent draft; design statements 
 | Select, justify and document the appropriate level of review | Independent / Senior / Lead | Exclusions and procedures changed |
 | Build and maintain a defensible administrative record | Independent / Senior / Lead | Now includes AI provenance |
 | Direct and evaluate applicant- or contractor-prepared documents | Independent / Senior / Lead | Sponsor-prepared documents and fee-based deadlines |
-| Analyze regulatory, planning and public-comment text at scale with traceable citations *(emerging)* | Independent / Senior / Senior | Machine-assisted coding |
-| Validate AI-generated work products before professional use *(emerging)* | Independent / Senior / Senior | AI-drafted sections and effects determinations |
+| Analyze regulatory, planning and public-comment text at scale with traceable citations *(watch)* | Independent / Senior / Senior | Machine-assisted coding |
+| Validate AI-generated work products before professional use *(watch)* | Independent / Senior / Senior | AI-drafted sections and effects determinations |
 | Assess litigation exposure and design decisions for resilience on remand | senior: Senior; lead: Lead | Deference and remedy doctrine |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 **Legal basis now varies by place.** Analyzing the cumulative burdens and distributional effects of decisions has a
 different legal basis in federal and state venues. EO 12898 (Federal Actions to Address Environmental Justice in
@@ -133,8 +135,10 @@ None of these has been tested against observed career moves.
 - **Training officer.** Rebuild review training around your agency's current procedures, not the removed CEQ
   regulations [1]. Add moot defenses and record-gap reviews with counsel. Treat the SPEED Act and S. 5653 as separate
   pending bills, not law, until Congress acts [3, 4].
-- **HR specialist.** Use the explorer's 0028 and 0401 Federal Series Profiles for duty language, labeled subject to
-  classification review, and check with your labor-relations office before changing position descriptions on the basis
+- **HR specialist.** The explorer has no Federal Series Profile for this role in this release: its 0028 and 0401 rows
+  are broader-series matches, which the profiles leave out, so those series pages list the role only among unreviewed
+  agent candidates (not an alignment). Take duty language from the role's draft task list in the explorer, labeled
+  subject to classification review, and check with your labor-relations office before changing position descriptions on the basis
   of EMST drafts. OPM's 27 August 2026 memo treats AI drafting of position descriptions as generally not high-impact
   when the official independently reviews, revises and adopts the draft; adopting a draft without substantive,
   documented review is to be treated as high-impact [14]. Selection uses still need a job analysis under 5 CFR 300.103

@@ -17,7 +17,7 @@ CC BY 4.0*
 chart reference) and **speaker notes** with sources. Charts use the flagship report's datasets (F01–F10, described in
 the report's figures index). Every chart carries its evidence label, its denominator and a data table; no information is
 shown by hover or color alone. **Citations in square brackets are the flagship report's reference numbers** (draft
-0.9.1), where each source is listed with its URL and check status; [D1] and [D2] are listed at the end of this file.
+0.9.2), where each source is listed with its URL and check status; [D1] and [D2] are listed at the end of this file.
 Anything EMST itself drafted (tasks, expected changes, targets, scenarios) is labeled "agent draft" on screen. No slide
 shows time shares, importance ratings, critical or needed-at-entry flags, target levels as findings, or AI-drafted craft
 ratings.
@@ -188,7 +188,7 @@ job.
 - Slower or declining: foresters +2.2%, forest and conservation workers −2%, water and wastewater operators −6% [61]
 - In western national-forest documents, components typed as monitoring average 30.7% per 2012-rule document against
   2.7% per 1982-rule plan. Most of that gap comes from monitoring reports and stand-alone monitoring plans: among plan
-  documents alone the shares are about 10% and 3%, and the intervals overlap [86]
+  documents alone the shares are about 10% and 3%, and the interval of their difference includes zero [86]
 - Whether agencies fund and staff the work plans call for is the open question [J]
 
 **Speaker notes:** The plan data compare different documents written under different rules; they are not a time series.
@@ -198,7 +198,9 @@ documents are monitoring evaluation reports and 5 are stand-alone monitoring pla
 any component typed as monitoring, although the 1982 rule required monitoring, so the older baseline probably reflects
 how monitoring was documented and extracted. And because the 2012 rule requires a monitoring program, a larger share
 would partly restate the rule [86; J]. The claim that coordination "tripled" is a weighting artifact; with each plan
-weighted equally only partnership touchpoints rise [86]. The faster/slower groups are EMST's convention (within one
+weighted equally only partnership touchpoints rise, and distinguishably so only among plan documents [86]. A difference
+counts only when the 95% interval of the 2012-rule minus 1982-rule difference excludes zero, not when the two rules'
+intervals merely fail to overlap. The faster/slower groups are EMST's convention (within one
 point of the 3.5% average counts as average), not BLS categories. Projections are context, not evidence of skill
 change, and BLS does not attribute these occupation projections to AI. Wildland firefighters are not counted separately
 in the +4% firefighter projection [61].
@@ -212,19 +214,22 @@ in the +4% firefighter projection [61].
 **Headline:** EMST v2's first 13 role profiles sit on three corridors. Each starts in field or NGO work, is designed to
 cross field craft, data craft and statecraft, and ends in state and federal roles.
 
-**Body:** Chart **F10**: three swimlanes; emerging roles outlined dashed; footer "change indicator: none active".
+**Body:** Chart **F10**: three swimlanes; watch roles outlined dashed and labeled "watch"; footer "change indicator: none
+active".
 - **Field and data corridor:** corps member → field technician → monitoring and data technician, geospatial analyst,
-  ground-truth and validation steward (emerging)
-- **Fire corridor:** fire operations → fuels and prescribed fire specialist, fire intelligence analyst (emerging)
+  ground-truth and validation steward (watch)
+- **Fire corridor:** fire operations → fuels and prescribed fire specialist, fire intelligence analyst (watch)
 - **Stewardship and regulation corridor:** restoration project lead → environmental review, permit writing, compliance
   inspection → program manager
 - Each role has a short brief. The explorer also holds earlier, lower-depth drafts of 18 more roles (among them forester,
-  hydrologist and air-quality, drinking-water, wastewater, environmental-health and solid-waste roles) and six emerging
+  hydrologist and air-quality, drinking-water, wastewater, environmental-health and solid-waste roles) and six watch
   roles [88]
 
-**Speaker notes:** EMST's architect role (an AI agent) chose the corridors because they are designed to cross all three
-crafts and end in recognizable state and federal positions, so the pilot can test whether pathways carry across
-employers [88]. Role content is an agent draft: no person has reviewed the tasks or the draft targets. Tribal content is
+**Speaker notes:** "Watch" means hypothesized work, not yet observed in postings or position descriptions: no signal
+behind these roles met the evidence test for a stronger state. "Established" means long-standing work in the sector,
+not validated content [119]. EMST's architect role (an AI agent) chose the corridors because they are designed to cross
+all three crafts and end in recognizable state and federal positions, so the pilot can test whether pathways carry
+across employers [88]. Role content is an agent draft: no person has reviewed the tasks or the draft targets. Tribal content is
 held and not shown. No craft-blend or exposure ratings are charted, because all are agent drafts awaiting assessment by
 several independent human raters. Air, water, wastewater, drinking-water, waste and environmental-health roles have no
 briefs yet.
@@ -361,8 +366,9 @@ the documents that gate hiring and development, not to sit on a shelf.
 - **Roles and variants** by employer type (federal, state, local, NGO, private, academic), with tasks and competencies,
   all agent drafts until people review them. Fields for time share, criticality and entry needs stay empty in public
   views until a job analysis supplies them
-- **Generated HR views:** a Federal Series Profile per OPM series and a State Class View per mapped class, each labeled
-  "not a classification basis / not a job analysis / not for RIF or rating decisions"
+- **Generated HR views:** Federal Series Profiles and State Class Views, each labeled "not a classification basis / not a
+  job analysis / not for RIF or rating decisions" and built only from agent crosswalk rows at close match or stronger;
+  weaker rows are left out and counted. The 2.0.0-rc.1 release has 13 profiles and 20 class views [120]
 - **Change and pathway views:** what is expected to change, with evidence status, and exploratory pathways with
   formation provisions
 - **Open and private by design:** CC0 data, a static explorer that stores no personal data, an accessibility target of
@@ -376,7 +382,9 @@ removed degree requirements, about 37% of those firms accounted for nearly all o
 change reached fewer than 1 in 700 hires in 2023 [97]. Colorado officials say about 80% of state job classifications now
 emphasize skills over degrees, yet about 25% of 2024 hires in those classifications were people without degrees,
 roughly the same share as in 2023; 2023 is the first year of data, after the reforms began, so this cannot show whether
-reclassification had an effect [98]. WCAG 2.2 AA covers the Section 508 (WCAG 2.0 AA) and ADA Title II (WCAG 2.1 AA)
+reclassification had an effect [98]. In the data download, agent-drafted values that the views hide (time shares,
+importance, critical and needed-at-entry flags and similar) sit only in a labeled `agentDraft` sub-object; the CSV and HR
+import files carry none of them [120]. WCAG 2.2 AA covers the Section 508 (WCAG 2.0 AA) and ADA Title II (WCAG 2.1 AA)
 standards; Title II compliance dates are 26 April 2027 and 26 April 2028 [D1, D2].
 
 ### Slide 15. Federal HR: tomorrow morning
@@ -386,7 +394,8 @@ blank page, without using EMST to select anyone.
 
 **Body:**
 - **0400 Kit (0401 and 0404 first):** Federal Series Profiles, competency models, position description language by grade
-  band, and task-level crosswalks from series **proposed** for realignment [102]
+  band, and task-level crosswalks from series **proposed** for realignment [102]. The 2.0.0-rc.1 release has no
+  generated profile for 0401 or 0404 yet: no agent crosswalk row to either series reaches close match [120]
 - **Job-Analysis Starter Pack:** a task inventory and a matrix-sampled expert survey for one Tier 2 natural-resources
   series, run by your talent team on 3–5 vacancies
 - **Forester PD in FES format:** an example regenerated from EMST data, labeled "DRAFT — SUBJECT TO CLASSIFICATION
@@ -410,8 +419,9 @@ title and date only [117].
 teams use, so experience can be recognized when people change employers.
 
 **Body:**
-- **States:** State Class Views for classes in the sample of state class plans EMST read (no agency has been involved);
-  a federal-to-state crosswalk EMST proposes to test with a state partner. Pennsylvania's Office of Administration, for
+- **States:** State Class Views for classes in the sample of state class plans EMST read (no agency has been involved),
+  built only from agent matches at close match or stronger (20 classes in 2.0.0-rc.1) [120]; a federal-to-state
+  crosswalk EMST proposes to test with a state partner. Pennsylvania's Office of Administration, for
   example, has identified federal job titles whose experience may count as equivalent for certain Commonwealth titles,
   and reports 1,350 hires with federal work experience since March 2025 [37]
 - **Not yet covered:** air, water, wastewater, drinking-water, waste and environmental-health roles have only
@@ -452,10 +462,12 @@ EMST v2 cannot yet claim and how it would earn each claim.
   eligibility and a reply-by date are to be stated in the call
 - **Design-partner track (January – December 2027):** potential federal and state partners would co-produce the 0400
   Kit, the Job-Analysis Starter Pack, a federal-to-state crosswalk and a fire crosswalk. None is committed
-- **Not yet claimed:** every task value is an agent draft; every change is "assessment pending"; no change indicator has
-  moved; pathways stay exploratory until they predict real career moves clearly better than simple guesses; values that
+- **Not yet claimed:** every task value is an agent draft, and repeated passes of one model count as one rater
+  (run-to-run consistency, not reliability); every change is "assessment pending"; no change indicator has moved;
+  pathways stay exploratory until they predict real career moves clearly better than simple guesses; values that
   raters do not agree on are never shown
-- **Not used:** EMST v1 single-analyst statistics (methodology history only); occupation exposure index values (license
+- **Not used:** EMST v1 statistics, which are single-analyst, LLM-assisted and labeled evidence S (methodology history
+  only); occupation exposure index values (license
   pending); Tribal content (held until a Tribal Advisory Council constituted by Tribal governments exists and approves)
 
 **Speaker notes:** No organization has committed. EMST's commitment register is the only source of committed status,

@@ -42,9 +42,9 @@ a project role.
 
 | Work | Expected change (agent draft) | Driver | Outside signal (every task change: assessment pending) |
 |---|---|---|---|
-| **How restoration is delivered** | **Transforming:** reduced federal capacity could shift delivery toward partners and contracts | workforce capacity, policy | The Forest Service and the National Park Service each lost more than a quarter of their employees, September 2024 – January 2026 (reliability B) [2]. Appropriations fell far less than staffing: FY2026 Interior–Environment funding, enacted in January 2026 after most of the decline, was 1.9% below FY2025 [3] |
+| **How restoration is delivered** | **Transforming:** reduced federal capacity could shift delivery toward partners and contracts | workforce capacity, policy | The Forest Service and the National Park Service each lost more than a quarter of their employees, September 2024 – January 2026 (source grade B) [2]. Appropriations fell far less than staffing: FY2026 Interior–Environment funding, enacted in January 2026 after most of the decline, was 1.9% below FY2025 [3] |
 | Read site response | Transforming, adding evidence: drone and satellite imagery could add response evidence between visits, while reading the site stays with people | sensing technology | none yet |
-| **Decide whether restoration to historical conditions is feasible** | **Emerging:** expected to become routine as sites shift state | climate | none yet |
+| **Decide whether restoration to historical conditions is feasible** | **Expected to grow:** could become routine as sites shift state | climate | none yet |
 | Write technical approaches for solicitations | Transforming, compressing drafting: proposal sections can be AI-drafted, so review against the solicitation and the organization's real capacity would grow | AI | none yet |
 | Adapt treatments from site response | Stable: current tools do not compress it | — | none yet |
 
@@ -66,12 +66,14 @@ Draft targets by level, journey / senior / lead (agent draft; design statements 
 | Competency | Draft targets | Why now |
 |---|---|---|
 | Implement ecological restoration treatments and adapt them to site response | Independent / Senior / Lead | Core |
-| Recognize and assess ecosystems that have crossed into novel states *(emerging)* | Independent / Senior / Senior | Feasibility decisions expected to become routine |
+| Recognize and assess ecosystems that have crossed into novel states *(watch)* | Independent / Senior / Senior | Feasibility decisions expected to become routine |
 | Design monitoring and sampling for valid environmental inference | Independent / Senior / Senior | Monitoring that answers management questions |
 | Administer contracts, grants and intergovernmental agreements | Independent / Senior / Senior | Delivery may shift to partners and contracts |
 | Map the decision authority and procedural pathway for a proposed action | Independent / Independent / Senior | Multi-permit projects |
 | Develop proposals and grant applications for environmental work | Independent at every level | AI-drafted proposals need review against real capacity |
-| Validate AI-generated work products before professional use *(emerging)* | Supervised at every level | Basic data and AI skills every EMST role includes |
+| Validate AI-generated work products before professional use *(watch)* | Supervised at every level | Basic data and AI skills every EMST role includes |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 
@@ -104,8 +106,10 @@ None of these has been tested against observed career moves.
   by-hand drafting quota. Add contract and agreement administration training, since delivery may move to partners.
 - **NGO program lead.** Describe your crews' restoration, monitoring-design and partner work in grant reports and
   staff portfolios using EMST role and competency identifiers, so public employers can read what your staff can do.
-- **HR specialist.** Read the explorer's 0401 Federal Series Profile for duty language, subject to classification
-  review. For partner-delivered work, describe in position descriptions the contract-oversight duties that remain
+- **HR specialist.** The explorer has no Federal Series Profile for this role in this release: its 0401 row is a
+  broader-series match and its other rows partial fits, which the profiles leave out, so the series pages list the role
+  only among unreviewed agent candidates (not an alignment). Take duty language from the role's draft task list in the
+  explorer, subject to classification review. For partner-delivered work, describe in position descriptions the contract-oversight duties that remain
   in-house, and keep acceptance-criteria authority with a named role.
 - **Educator.** Use the field-to-review bridge as a capstone design: two effects sections drafted unaided from a project
   record, and a comment set coded by hand, before any machine-assisted work counts.

@@ -75,9 +75,11 @@ Draft targets by level, journey / senior / lead (agent draft; design statements 
 | Analyze remotely sensed data to map and monitor environmental conditions | Independent / Senior / Lead | The core, with production expected to compress |
 | Conduct reproducible, auditable environmental analysis, including AI-assisted code | Independent / Senior / Senior | Line-by-line review of generated code |
 | Quantify and communicate uncertainty for environmental decisions | Independent / Senior / Senior | Uncertainty kept in every summary |
-| Validate AI-generated work products before professional use *(emerging)* | Independent / Senior / Senior | Basic data and AI skills, at a higher level for this role |
-| Ground-truth remote-sensed, modeled and AI-generated outputs in the field *(emerging)* | Supervised / Independent / Senior | Field reference data |
-| Design and steward field reference data for Earth-observation and AI models *(emerging)* | — / Independent / Senior | Reference design at senior level |
+| Validate AI-generated work products before professional use *(watch)* | Independent / Senior / Senior | Basic data and AI skills, at a higher level for this role |
+| Ground-truth remote-sensed, modeled and AI-generated outputs in the field *(watch)* | Supervised / Independent / Senior | Field reference data |
+| Design and steward field reference data for Earth-observation and AI models *(watch)* | — / Independent / Senior | Reference design at senior level |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 
@@ -109,8 +111,10 @@ None of these has been tested against observed career moves.
 - **Training officer.** Build by-hand quotas into onboarding (hand-digitized tiles, one manual processing step) and
   seeded-error validation drills. Give modules on specific tools an expiry date, because methods are moving fastest
   here.
-- **HR specialist.** No federal series fits closely, so read the four related Federal Series Profiles in the explorer as
-  context for writing duties, subject to classification review. For state and local positions, compare your class with
+- **HR specialist.** No federal series fits closely, so the explorer has no Federal Series Profile for this role in this
+  release; the pages for the four related series list it only among unreviewed agent candidates (not an alignment).
+  Write duties from the role's draft task list in the explorer, subject to classification review. For state and local
+  positions, compare your class with
   the draft targets. Any selection use needs your own job analysis under 5 CFR 300.103 [4].
 - **Educator.** Put the by-hand quotas into remote-sensing courses (one processing step by hand before scripting it; two
   reference tiles digitized by hand before automated classification counts) and keep field reference work in every

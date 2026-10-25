@@ -1,6 +1,7 @@
-# How this role is changing: Fire intelligence analyst (continuous operations; emerging role)
+# How this role is changing: Fire intelligence analyst (continuous operations; watch role)
 
-*EMST v2 role-change brief · fire corridor · emerging role, to be reviewed by 23 October 2027 · as of 23 October 2026 ·
+*EMST v2 role-change brief · fire corridor · watch role (hypothesized work, not yet observed in postings or position
+descriptions), to be reviewed by 23 October 2027 · as of 23 October 2026; lifecycle wording updated 25 October 2026 ·
 CC BY 4.0*
 
 > **Status: draft for NGO-pilot preview (2026-10-23).** AI agents checked facts against sources, and some claims await
@@ -13,7 +14,8 @@ CC BY 4.0*
 
 ## Who does this work
 
-EMST expects this to become a **year-round role**. Fire intelligence analysts fuse satellite, camera, sensor, weather and
+EMST expects this to become a **year-round role**, but it is a **watch** role: hypothesized work, not yet observed in
+postings or position descriptions. Fire intelligence analysts fuse satellite, camera, sensor, weather and
 resource data into operational fire intelligence. They adjudicate automated detections, predict spread with stated
 confidence, track forecast skill, and brief duty officers and incident leaders so that resources are ordered on
 evidence. Much of this work is done today inside incident positions, such as fire behavior and long-term analysts, and
@@ -71,13 +73,15 @@ Draft targets by level, journey / senior / lead (agent draft; design statements 
 
 | Competency | Draft targets | Why now |
 |---|---|---|
-| Fuse multi-source fire intelligence into operational decision support *(emerging)* | Independent / Senior / Lead | The role's core new work |
-| Build, run and validate environmental forecast and scenario systems *(emerging)* | Independent / Senior / Lead | Skill tracking; restrict or retire decisions |
+| Fuse multi-source fire intelligence into operational decision support *(watch)* | Independent / Senior / Lead | The role's core new work |
+| Build, run and validate environmental forecast and scenario systems *(watch)* | Independent / Senior / Lead | Skill tracking; restrict or retire decisions |
 | Predict fire behavior from fuels, weather and topography | Independent / Senior / Lead | Hand-worked check on models |
 | Quantify and communicate uncertainty for environmental decisions | Independent / Senior / Lead | Confidence briefings |
-| Validate AI-generated work products before professional use *(emerging)* | Independent / Senior / Senior | Detection adjudication |
-| Ground-truth remote-sensed, modeled and AI-generated outputs in the field *(emerging)* | Independent / Independent / Senior | Field checks of automated perimeters |
+| Validate AI-generated work products before professional use *(watch)* | Independent / Senior / Senior | Detection adjudication |
+| Ground-truth remote-sensed, modeled and AI-generated outputs in the field *(watch)* | Independent / Independent / Senior | Field checks of automated perimeters |
 | Communicate environmental and health risks under uncertainty | Independent / Senior / Senior | Public smoke advisories |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 
@@ -139,6 +143,6 @@ people.
 **Comment or correct.** To comment, correct an error or ask about the pilot, open an issue at
 [github.com/jrwashebek/Enviroskillstaxonomy/issues](https://github.com/jrwashebek/Enviroskillstaxonomy/issues).
 
-*Technical note.* Role key `R08-fire-intelligence-analyst` (forest module; lifecycle: emerging) in the EMST v2 data
-release. Claims-register rows behind the sources: [1] WF-07; [2] FIRE-02 (verified in part: secondary sources only);
+*Technical note.* Role key `R08-fire-intelligence-analyst` (forest module; lifecycle: watch, since the 2.0.0-rc.1 re-cut
+of 25 October 2026; ADR-0032) in the EMST v2 data release. Claims-register rows behind the sources: [1] WF-07; [2] FIRE-02 (verified in part: secondary sources only);
 [3] OMB-02, RPT-28; [4] WF-02. Pathway: the fire-operations-to-fire-intelligence record (exploratory).

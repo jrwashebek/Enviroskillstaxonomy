@@ -43,8 +43,8 @@ Main tasks, in rough work order. This is a selection; EMST shows no time shares.
 |---|---|---|---|
 | Service deployed sensors | Transforming: as networked sensors multiply, field time would move from manual collection to servicing and verifying instruments | sensing technology | Water and hydrology: 36 registered AI use cases in eleven federal environmental units, 10 deployed (2025 inventory; family counts are EMST's keyword classification of official data, not OMB's) [2] |
 | Review automated flags | Transforming, compressing first-pass quality control: automated checks would apply the first flags, and the technician would adjudicate them against field and instrument records | AI, automation | none yet |
-| **Audit automated flags: measure false-flag and missed-error rates** | **Emerging** | AI | none yet |
-| **Configure automated quality control on streaming feeds** (senior) | **Emerging:** expected to move to senior technicians | sensing technology | none yet |
+| **Audit automated flags: measure false-flag and missed-error rates** | **Expected to grow** | AI | none yet |
+| **Configure automated quality control on streaming feeds** (senior) | **Expected to grow,** moving to senior technicians | sensing technology | none yet |
 | Manual data entry | **Declining:** telemetry and mobile capture reduce it | sensing technology, automation | none yet |
 | Grab sampling under custody | Stable: not compressed, and kept as a formation task | — | none yet |
 
@@ -67,13 +67,15 @@ Draft targets by level, entry / journey / senior (agent draft; design statements
 
 | Competency | Draft targets | Why now |
 |---|---|---|
-| Deploy, maintain and verify field sensor networks *(emerging)* | Supervised / Independent / Senior | Field time is expected to shift toward instruments (agent draft) |
+| Deploy, maintain and verify field sensor networks *(watch)* | Supervised / Independent / Senior | Field time is expected to shift toward instruments (agent draft) |
 | Assure the quality of environmental data from collection to release | Supervised / Independent / Senior | Flag adjudication and audits |
 | Engineer environmental sensor-network and streaming data pipelines | — / Independent / Senior | Streaming quality-control configuration |
-| Validate AI-generated work products before professional use *(emerging)* | Supervised / Independent / Independent | Basic data and AI skills every EMST role includes |
+| Validate AI-generated work products before professional use *(watch)* | Supervised / Independent / Independent | Basic data and AI skills every EMST role includes |
 | Record provenance and AI involvement in work products | Supervised / Independent / Independent | Raw, flagged and corrected data kept as separate versions |
-| Collect trace-level and genetic samples without contamination *(emerging)* | Supervised / Independent / Senior | Emerging-contaminant and eDNA work |
+| Collect trace-level and genetic samples without contamination *(watch)* | Supervised / Independent / Senior | Emerging-contaminant and eDNA work |
 | Calibrate field observers and run field measurement quality assurance | senior: Senior | Hot checks alongside crews |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 
@@ -104,7 +106,9 @@ None of these has been tested against observed career moves.
   an unscheduled visit explicit, and record the trigger.
 - **Training officer.** Sequence training as installation, then servicing, then flag review, then quality-control
   configuration. Hold automated-flagging credit until the by-hand review is done. Use seeded-error batches as drills.
-- **HR specialist.** For federal positions, compare duties with the explorer's 1316 and 1311 Federal Series Profiles.
+- **HR specialist.** For federal positions, the explorer has no Federal Series Profile for this role in this release:
+  its 1316 and 1311 rows are more specific series, which the profiles leave out, so the series pages list the role only
+  among unreviewed agent candidates (not an alignment). Compare duties with the role's draft task list in the explorer.
   Treat 0029 as its current series, because realignment to 0303 is proposed, not decided [1]. For state and local
   positions, compare your class specification with the draft targets, since no sample-state class is mapped yet. Any
   selection use needs your own job analysis under 5 CFR 300.103 [4].

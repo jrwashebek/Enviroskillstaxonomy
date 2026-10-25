@@ -42,7 +42,7 @@ Main tasks, in rough work order. This is a selection; EMST shows no time shares.
 
 | Work | Expected change (agent draft) | Driver | Outside signal (every task change: assessment pending) |
 |---|---|---|---|
-| **Where inspection capacity sits** | **Transforming role.** Most inspections are already done by delegated state and local programs [J]. With EPA staffing down 24% in a year, federal oversight, training and backstop capacity for those programs is thinner [1; J] | workforce capacity | EPA had 12,849 employees at the end of January 2026, 24% fewer than a year earlier (reliability B) [1] |
+| **Where inspection capacity sits** | **Transforming role.** Most inspections are already done by delegated state and local programs [J]. With EPA staffing down 24% in a year, federal oversight, training and backstop capacity for those programs is thinner [1; J] | workforce capacity | EPA had 12,849 employees at the end of January 2026, 24% fewer than a year earlier (source grade B) [1] |
 | Write inspection reports | Transforming, compressing drafting: drafted inspection notes could compress report production, while findings of fact stay the inspector's | AI | none yet |
 | **Review automated anomaly flags before inspection or referral** | **New** | AI, sensing technology | Inspection, compliance and enforcement use cases appear among the registered AI of federal environmental units (2025 inventory; family counts are EMST's keyword classification of official data, not OMB's) [2] |
 | Verify self-reported values | Transforming: electronic reporting and continuous monitoring could make independent checks routine | sensing technology, policy | none yet |
@@ -70,12 +70,14 @@ Draft targets by level, entry / journey / senior (agent draft; design statements
 | Competency | Draft targets | Why now |
 |---|---|---|
 | Conduct regulatory compliance inspections | Supervised / Independent / Senior | Core |
-| Target inspections and verify compliance using monitoring data and analytics *(emerging)* | — / Independent / Senior | Anomaly flags, reported-value checks, targeting methods |
-| Validate AI-generated work products before professional use *(emerging)* | Supervised / Independent / Senior | Drafted inspection notes and compliance summaries |
+| Target inspections and verify compliance using monitoring data and analytics *(watch)* | — / Independent / Senior | Anomaly flags, reported-value checks, targeting methods |
+| Validate AI-generated work products before professional use *(watch)* | Supervised / Independent / Senior | Drafted inspection notes and compliance summaries |
 | Manage field sample custody and field quality control | Supervised / Independent / Senior | Admissible evidence |
 | Build and maintain a defensible administrative record | Supervised / Independent / Senior | AI provenance in the record |
 | Develop and resolve environmental enforcement cases | — / Independent / Senior | Evidence files, penalties, testimony |
 | Maintain independence and manage conflicts of interest across the regulator–regulated boundary | Supervised / Independent / Senior | Recusal and disclosure |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 
@@ -111,10 +113,13 @@ None of these has been tested against observed career moves.
   After each inspection cycle, compare predicted with found violations for any targeting method.
 - **Training officer.** Use the onboarding sequence as a draft. Budget evaluator time first. Add a seeded-error
   compliance summary drill.
-- **HR specialist.** Compare your inspector class specification with the explorer's State Class View (Texas classes are
-  mapped). If you hire former federal staff, Pennsylvania's Office of Administration, for example, has identified federal
-  job titles whose experience may count as equivalent for certain Commonwealth titles [5]. **Federal:** use the
-  explorer's 0028 Federal Series Profile, subject to classification review. EMST content is not a selection instrument;
+- **HR specialist.** The explorer has no State Class View for this role in this release: the Texas classes above are
+  broader-class matches, which the class views leave out, so the class pages list the role only among unreviewed agent
+  candidates (not an alignment). Compare your inspector class specification with the draft task list and targets
+  instead. If you hire former federal staff, Pennsylvania's Office of Administration, for example, has identified federal
+  job titles whose experience may count as equivalent for certain Commonwealth titles [5]. **Federal:** the explorer
+  has no Federal Series Profile for this role either (its 0028 row is a broader-series match), so take duty language from
+  the role's draft task list in the explorer, subject to classification review. EMST content is not a selection instrument;
   selection needs your own job analysis under 5 CFR 300.103 [6].
 - **Educator.** Build observed practice into inspector courses: sampling events checked for custody defects, shadowing
   before leading, and a seeded-error AI compliance summary in which every conclusion-changing error must be found.

@@ -40,10 +40,10 @@ Main tasks, in rough work order. This is a selection; EMST shows no time shares.
 
 | Work | Expected change (agent draft) | Driver | Outside signal (every task change: assessment pending) |
 |---|---|---|---|
-| **Keeping the program's knowledge** | **Transforming role:** knowledge continuity becomes program work | workforce capacity, demographic | The federal civilian workforce fell from 2,313,216 (September 2024) to 2,035,344 (January 2026), about 12% [1]. The roughly 2,000 EPA employees who left at the end of 2025, mostly through deferred-resignation retirements, had a median 30.3 years of service, against 10.8 years for those who stayed [2] (reliability B) |
+| **Keeping the program's knowledge** | **Transforming role:** knowledge continuity becomes program work | workforce capacity, demographic | The federal civilian workforce fell from 2,313,216 (September 2024) to 2,035,344 (January 2026), about 12% [1]. The roughly 2,000 EPA employees who left at the end of 2025, mostly through deferred-resignation retirements, had a median 30.3 years of service, against 10.8 years for those who stayed [2] (source grade B) |
 | **Identify single-incumbent knowledge before departures** | **New** routine work | demographic, workforce capacity | none yet |
 | Funding-lapse contingency planning | Transforming: expected to become recurrent | fiscal | Context: FY2026 Interior–Environment appropriations were enacted on 23 January 2026 [3]. Federal vacancies now need Strategic Hiring Committee approval, and agencies file annual staffing plans with quarterly updates [4] |
-| **Assess the reversal risk of the program's key instruments** | **Emerging** | policy | none yet |
+| **Assess the reversal risk of the program's key instruments** | **Expected to grow** | policy | none yet |
 | Decision memos | Transforming, compressing drafting: drafting tools could compress memo production, while accountability stays | AI | none yet |
 | **Set rules that keep consequential AI-assisted decisions with accountable people** | **New** | AI, policy | Context: OMB memos M-25-21 and M-25-22 (3 April 2025) govern federal AI use and acquisition [5] |
 
@@ -69,9 +69,11 @@ Draft targets by level, senior / lead / strategic (agent draft; design statement
 | Elicit, document and transfer tacit and institutional knowledge before people leave | Senior / Senior / Lead | Long-service departures |
 | Design developmental work experiences that preserve the formation of professional judgment | Senior / Lead / Lead | AI drafting tools are now available for entry tasks that form judgment |
 | Assess the durability and reversal risk of policy choices and time actions to policy windows | Senior / Lead / Strategic | Instruments swing between administrations |
-| Govern enterprise environmental data and AI portfolios *(emerging)* | — / Lead / Strategic | AI governance rules |
-| Specify, evaluate and accept AI and analytics services in procurement *(emerging)* | Senior at every level | Acceptance tests tied to local evaluation sets |
-| Design human-in-the-loop review for AI-assisted environmental workflows *(emerging)* | — / Senior / Senior | Keep consequential decisions with people |
+| Govern enterprise environmental data and AI portfolios *(watch)* | — / Lead / Strategic | AI governance rules |
+| Specify, evaluate and accept AI and analytics services in procurement *(watch)* | Senior at every level | Acceptance tests tied to local evaluation sets |
+| Design human-in-the-loop review for AI-assisted environmental workflows *(watch)* | — / Senior / Senior | Keep consequential decisions with people |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 

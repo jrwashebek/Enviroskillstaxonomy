@@ -42,12 +42,12 @@ Main tasks, in rough work order. This is a selection; EMST shows no time shares.
 
 | Work | Expected change (agent draft) | Driver | Outside signal (every task change: assessment pending) |
 |---|---|---|---|
-| **Role workload** | **Skill shift:** fuels and prescribed-fire workload would grow with fire activity while federal capacity falls | climate, workforce capacity | Forest Service headcount fell by more than a quarter, September 2024 – January 2026 (reliability B) [1]; as of 11 October 2026 the season had reached 63,884 fires and 9.0 million acres year to date, 133% and 145% of the 2016–2025 average [2] |
+| **Role workload** | **Skill shift:** fuels and prescribed-fire workload would grow with fire activity while federal capacity falls | climate, workforce capacity | Forest Service headcount fell by more than a quarter, September 2024 – January 2026 (source grade B) [1]; as of 11 October 2026 the season had reached 63,884 fires and 9.0 million acres year to date, 133% and 145% of the 2016–2025 average [2] |
 | Write burn plans | Transforming, compressing drafting: sections could increasingly be drafted from templates or AI, while prescription judgment stays | AI | none yet |
 | Assess fuels | Transforming: assessment would shift from plots toward verifying mapped fuels | sensing technology | none yet |
 | **Verify remotely sensed fuels maps in the field** | **New routine work:** remotely sensed fuel maps could replace much plot sampling | sensing technology, AI | Weak: western national-forest plans rarely name remote sensing, because they name outcomes rather than methods (EMST analysis of plan text) [3] |
 | Smoke management section | Transforming: dispersion forecasts improve, while judgment about sensitive receptors stays | sensing technology, AI | none yet |
-| Supervise uncrewed-aircraft ignition (senior, lead) | **Emerging:** aerial ignition by drone is spreading, and federal rules for flights beyond visual line of sight are pending | automation, policy | In FY2024 Forest Service drones flew 4,536 hours, and drone aerial ignition treated 188,986 acres (reliability A) [4]. Signpost: the FAA's Part 108 final rule has been under review at OIRA since 10 July 2026 and was still pending there as of 23 October 2026 (to be re-checked before release) [5] |
+| Supervise uncrewed-aircraft ignition (senior, lead) | **Expected to grow:** aerial ignition by drone is spreading, and federal rules for flights beyond visual line of sight are pending | automation, policy | In FY2024 Forest Service drones flew 4,536 hours, and drone aerial ignition treated 188,986 acres (source grade A) [4]. Signpost: the FAA's Part 108 final rule has been under review at OIRA since 10 July 2026 and was still pending there as of 23 October 2026 (to be re-checked before release) [5] |
 
 Of the role's 29 draft tasks, the other 24 carry no drafted change claim.
 
@@ -68,11 +68,13 @@ Draft targets by level, journey / senior / lead (agent draft; design statements 
 |---|---|---|
 | Conduct prescribed fire from burn planning through ignition, holding and evaluation | Independent / Senior / Lead | Templates and AI can draft burn plans; the specialist judges the prescription |
 | Design fuels treatments that reduce wildfire hazard and verify their effects in the field | Independent / Senior / Lead | Fuels maps may replace plots |
-| Ground-truth remote-sensed, modeled and AI-generated outputs in the field *(emerging)* | Independent / Independent / Senior | Fuels-map verification |
+| Ground-truth remote-sensed, modeled and AI-generated outputs in the field *(watch)* | Independent / Independent / Senior | Fuels-map verification |
 | Plan smoke management for prescribed and managed fire within air quality requirements | Independent / Senior / Senior | Better forecasts, same accountability |
 | Operate and supervise uncrewed and automated field systems | Supervised / Independent / Independent | Aerial ignition; rule pending |
 | Communicate environmental and health risks under uncertainty | Independent / Independent / Senior | Public smoke messaging |
 | Evaluate and certify others' task performance against position standards | senior and lead: Senior | Burn crew trainees |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 
@@ -103,8 +105,10 @@ None of these has been tested against observed career moves.
   differences. Make field verification of fuels maps part of every unit's preparation.
 - **Training officer.** Count qualifying burns per trainee per season and plan tabletop go/no-go exercises to cover
   shortfalls, without crediting them as burns. Add smoke-forecast-versus-monitor comparisons to after-action reviews.
-- **HR specialist.** No series fits closely, so draft duties from the explorer's 0401 and 0456 Federal Series Profiles,
-  subject to classification review. Do not present qualification or licensure gates from EMST as fact until they are
+- **HR specialist.** No series fits closely, so the explorer has no Federal Series Profile for this role in this
+  release; the 0401, 0456, 0460 and 0462 series pages list it only among unreviewed agent candidates (not an alignment).
+  Draft duties from the role's draft task list in the explorer; the 0456 profile, which is built from the wildland fire
+  operations role, can help with shared fire duties. Both are subject to classification review. Do not present qualification or licensure gates from EMST as fact until they are
   checked against current standards. Aligned U.S. Wildland Fire Service and Forest Service qualification standards take
   effect in January 2027 [6].
 - **Educator.** Have students write a prescription and contingency triggers from a unit's own fuels data before they

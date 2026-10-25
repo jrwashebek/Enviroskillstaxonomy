@@ -42,6 +42,9 @@ Rules this script enforces (WP-14 acceptance; ADR-0027; PROJECT_LEAD_DECISIONS Q
     at month precision only when a usable claims-register row that cites the event's source states that month and
     year (checked by needle); otherwise it is left out. Events of withheld records (release_withheld.yaml) are
     left out.
+  * F10 reads each corridor role's lifecycle state from its data/v2 role record, not from mvp_role_set.csv
+    (rc.1 package sync, 2026-10-25; ADR-0032 §2): no record is `proposed` or `emerging` after the re-cut, and
+    `watch` marks hypothesized work, not yet observed in postings or position descriptions.
 """
 import csv
 import glob
@@ -474,6 +477,8 @@ def f5_f6():
             "the comparison uses 120 USDA Forest Service documents (84 under the 1982 rule, 36 under the 2012 rule), and about 95% of all corpus components are Forest Service plans in western states. "
             "Cross-era comparison of different documents, not a time series. Each document is weighted equally (component-weighted values are a second check); "
             "95% intervals are percentile bootstrap intervals over documents (seeded), which replace the earlier normal approximation. "
+            "Rows are labeled by the 95% interval of the 2012-rule minus 1982-rule difference (columns distinguishable and, for F06, plans_only_distinguishable): "
+            "a difference whose interval includes 0 is 'not distinguishable', whether or not the two era intervals overlap. "
             "Document type (plan, monitoring evaluation report, stand-alone monitoring plan) is classified by EMST from catalog titles. "
             "Components are as typed or extracted by OpenLMP, whose extraction method differs by era; mentions measure what documents name, not obligations or funded work. "
             "Tribal touchpoints are excluded pending Tribal Advisory Council review.")
@@ -735,30 +740,44 @@ def f10():
         "COR-2": "Fire corridor: fire operations -> fuels and prescribed fire -> fire intelligence",
         "COR-3": "Stewardship and regulation corridor: restoration and land stewardship -> review, permitting and compliance -> program management",
     }
+    def role_lifecycle(role_id):
+        """lifecycleState of a role record in data/v2 (top-level key; the script reads YAML as text, as for F09)."""
+        stem = role_id.split("/")[-1]
+        paths = glob.glob(os.path.join(ROOT, "data", "v2", "**", "roles", stem + ".yaml"), recursive=True)
+        if len(paths) != 1:
+            sys.exit(f"build_figures: F10 role record for {role_id} not found exactly once: {paths}")
+        for line in open(paths[0], encoding="utf-8"):
+            if line.startswith("lifecycleState:"):
+                return line.split(":", 1)[1].strip().strip("'\"")
+        sys.exit(f"build_figures: F10 role record {role_id} has no lifecycleState")
+
     out = []
     seq = {}
     for r in roles:
         cv_path = os.path.join(ROOT, "docs", "build", "WP-08", "generated", "change_view", r["role_key"] + ".json")
         cv = json.load(open(cv_path, encoding="utf-8"))
+        if cv["role"] != mid("seed:" + r["role_key"]):
+            sys.exit(f"build_figures: F10 change view {r['role_key']} names {cv['role']}, not {mid('seed:' + r['role_key'])}")
         seq[r["corridor"]] = seq.get(r["corridor"], 0) + 1
         variants = [v for v in r["sector_actor_variants"].split("|") if "held" not in v]
         out.append({
             "corridor": r["corridor"], "corridor_name": corridor_name[r["corridor"]], "step": seq[r["corridor"]],
             "role_key": r["role_key"], "role_title": r["title"], "work_function": r["function"].replace("WF-", "").title(),
-            "role_levels": r["levels"].replace("|", "; "), "lifecycle_state": r["lifecycle_state"],
+            "role_levels": r["levels"].replace("|", "; "), "lifecycle_state": role_lifecycle(cv["role"]),
             "sector_actor_variants_released": "; ".join(variants),
             "change_indicator_active": cv["changeIndicator"]["active"],
             "context_signals_attached_watch": len(cv["contextSignals"]),
             "v2_multi_rater_assessment": "pending",
         })
     assert all(x["change_indicator_active"] == 0 for x in out)
+    assert not any(x["lifecycle_state"] in ("proposed", "emerging") for x in out)  # ADR-0032 §2: no record met an entry test
     write_csv("f10_p1_corridors_and_roles.csv",
               ["corridor", "corridor_name", "step", "role_key", "role_title", "work_function", "role_levels", "lifecycle_state",
                "sector_actor_variants_released", "change_indicator_active", "context_signals_attached_watch", "v2_multi_rater_assessment"], out)
     register("F10", "f10_p1_corridors_and_roles.csv",
              "EMST v2's first 13 role profiles form three corridors that are designed to cross all three crafts and end in state and federal role variants; no role yet has a change indicator that has passed EMST's evidence rule.",
-             "Three horizontal swimlanes (one per corridor) of role boxes in step order, with levels as a band inside each box and 'emerging' roles outlined dashed; a footer row per box shows 'change indicator: none active' and the count of watch signals. No craft blends or change ratings are drawn: those are agent drafts awaiting multi-rater assessment.",
-             "EMST mvp_role_set.csv (ADR-0006, a decision record drafted by EMST's AI agents) and the generated role change views (docs/build/WP-08/generated/change_view/). 'Designed to cross all three crafts' describes the corridor design; the craft ratings that would show it are agent drafts and are deliberately not charted. Indicator status is computed by the ADR-0028 evidence rule (two independent signal families, two periods, named human review); every attached signal is at watch status. Tribal variants are held and not shown.",
+             "Three horizontal swimlanes (one per corridor) of role boxes in step order, with levels as a band inside each box and 'watch' roles (hypothesized work, not yet observed in postings or position descriptions) outlined dashed and labeled 'watch' in text; a footer row per box shows 'change indicator: none active' and the count of watch signals. No craft blends or change ratings are drawn: those are agent drafts awaiting multi-rater assessment.",
+             "EMST mvp_role_set.csv (ADR-0006, a decision record drafted by EMST's AI agents), the role records' lifecycle state (data/v2; ADR-0032) and the generated role change views (docs/build/WP-08/generated/change_view/). 'Designed to cross all three crafts' describes the corridor design; the craft ratings that would show it are agent drafts and are deliberately not charted. Lifecycle describes the work, not the record: 'established' means long-standing work in the sector, not validated content, and 'watch' means hypothesized work not yet observed in postings or position descriptions. Indicator status is computed by the ADR-0028 evidence rule (two independent signal families, two periods, named human review); every attached signal is at watch status. Tribal variants are held and not shown.",
              tier="describe", evidence="Structure: EMST decision record (ADR-0006). Indicator status: computed. No agent ratings shown.")
 
 

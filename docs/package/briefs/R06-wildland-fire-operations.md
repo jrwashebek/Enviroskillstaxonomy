@@ -73,8 +73,10 @@ Draft targets by level, entry / journey / senior / lead (agent draft; design sta
 | Predict fire behavior from fuels, weather and topography | Supervised / Independent / Senior / Senior | Comparing modeled with observed behavior |
 | Lead field crews and transfer field judgment to novices | — / Independent / Senior / Lead | Crew development and readiness decisions |
 | Evaluate and certify others' task performance against position standards | senior and lead: Senior | Task-book evaluation |
-| Validate AI-generated work products before professional use *(emerging)* | Supervised at every level | Generated hazard briefings |
+| Validate AI-generated work products before professional use *(watch)* | Supervised at every level | Generated hazard briefings |
 | Communicate environmental and health risks under uncertainty | senior and lead: Independent | Public questions during incidents |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 

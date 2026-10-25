@@ -42,12 +42,12 @@ Main tasks, in rough work order. This is a selection; EMST shows no time shares.
 
 | Work | Expected change (agent draft) | Driver | Outside signal (every task change: assessment pending) |
 |---|---|---|---|
-| **The role as an entry path** | **Entry path at risk.** Seasonal and internship routes contracted in 2025, and the formation tasks seasonal crews do are also tasks automation could compress | hiring decisions, workforce capacity | Forest Service hired no non-fire seasonal staff in 2025 and committed to 2,000 seasonals for 2026, per a congressional letter relaying agency statements (reliability B) [2]; paid conservation internship postings fell 43.8% on one board, March–September 2025 (reliability C) [3] |
+| **The role as an entry path** | **Entry path at risk.** Seasonal and internship routes contracted in 2025, and the formation tasks seasonal crews do are also tasks automation could compress | hiring decisions, workforce capacity | Forest Service hired no non-fire seasonal staff in 2025 and committed to 2,000 seasonals for 2026, per a congressional letter relaying agency statements (source grade B) [2]; paid conservation internship postings fell 43.8% on one board, March–September 2025 (source grade C) [3] |
 | Deploy camera traps and acoustic recorders | Transforming: automated classifiers would move effort from detecting animals in the field to deploying and servicing stations and reviewing detections | sensing technology, AI | Species and wildlife detection is the largest family of registered AI in eleven federal environmental units: 89 use cases, 11 deployed (2025 inventory; family counts are EMST's keyword classification of official data, not OMB's) [4] |
 | Wildlife point-count and transect surveys | Transforming, adding evidence: passive acoustic and image surveys could add to observer counts, while observers remain where detection depends on trained people | sensing technology, AI | none yet |
 | **Accept, correct or reject AI-suggested species identifications** | **New:** only an observer whose identification skill is already formed can do this | AI | none yet |
 | **Field-check an AI-generated condition map or drafted note** | **New** | AI | none yet |
-| Record reference observations blind to the product's predicted value | Emerging as satellite and drone products grow | sensing technology, AI | none yet |
+| Record reference observations blind to the product's predicted value | Expected to grow as satellite and drone products spread | sensing technology, AI | none yet |
 | Identify organisms unaided | Stable: identification aids are growing, but unaided identification is kept as a formation task with a by-hand quota | AI | none yet |
 
 Of the role's 35 draft tasks, the other 29 carry no drafted change claim.
@@ -69,12 +69,14 @@ journey, unless noted.
 | Competency | Why now |
 |---|---|
 | Identify organisms from field characters, specimens, images and recordings | The prerequisite for judging AI identifications |
-| Ground-truth remote-sensed, modeled and AI-generated outputs in the field *(emerging)* | New field-check and blind-reference tasks |
-| Deploy, maintain and verify field sensor networks *(emerging)* | Detection is shifting to stations and recorders |
-| Collect trace-level and genetic environmental samples without contamination *(emerging)* | eDNA and emerging-contaminant sampling at journey level |
-| Validate AI-generated work products before professional use *(emerging)* | Basic data and AI skills every EMST role includes |
+| Ground-truth remote-sensed, modeled and AI-generated outputs in the field *(watch)* | New field-check and blind-reference tasks |
+| Deploy, maintain and verify field sensor networks *(watch)* | Detection is shifting to stations and recorders |
+| Collect trace-level and genetic environmental samples without contamination *(watch)* | eDNA and emerging-contaminant sampling at journey level |
+| Validate AI-generated work products before professional use *(watch)* | Basic data and AI skills every EMST role includes |
 | Manage field sample custody and field quality control | Defensibility of every sample |
 | Lead field crews and transfer field judgment to novices (journey: Independent) | Keeps formation alive as crews shrink |
+
+*(watch)*: hypothesized work, not yet observed in postings or position descriptions.
 
 ## Entry paths and formation
 
@@ -99,7 +101,8 @@ produce and field-check their own work, holds up in all four of its scenarios [J
   classification is credited. About 320 hours over 9 months. A community-college certificate may fit Workforce Pell
   where a governor-identified in-demand occupation applies [5; J]. The pathway notes that it "must not be used to stop
   hiring field entrants".
-- **Out, upskill → ground-truth and validation steward (emerging):** reference-data design, observer calibration,
+- **Out, upskill → ground-truth and validation steward (a watch role: hypothesized work, not yet observed in postings
+  or position descriptions):** reference-data design, observer calibration,
   fitness-for-use decisions. About 200 hours over 12 months [J].
 
 None of these has been tested against observed career moves.
@@ -115,8 +118,12 @@ None of these has been tested against observed career moves.
 - **NGO program lead.** Write season plans, grant reports and members' exit portfolios that cite EMST role and
   competency identifiers, so a state or federal employer can read the identification and plot work a technician has
   done.
-- **HR specialist.** Compare your class specification or position description with the explorer's State Class View or
-  Federal Series Profile for this role, as a starting point subject to classification review. For 0455 positions, plan
+- **HR specialist.** For state positions, compare your class specification with the explorer's State Class Views for
+  Texas Fish and Wildlife Technician I–III, the close-fit classes for this role, as a starting point subject to
+  classification review. The explorer has no Federal Series Profile for this role in this release: its federal series
+  rows are more specific series, which the profiles leave out, so the series pages list the role only among unreviewed
+  agent candidates (not an alignment). Write federal duties from the role's draft task list in the explorer. For 0455
+  positions, plan
   around the series as it stands: realignment to 0404 is proposed, not decided [1]. Any selection use needs your own
   job analysis under 5 CFR 300.103 [6].
 - **Educator.** Build the by-hand quotas into field courses: unaided identifications and supervised plots before
