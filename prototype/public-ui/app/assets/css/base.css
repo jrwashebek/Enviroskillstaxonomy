@@ -1,0 +1,101 @@
+/* EMST base: reset, typography, links, focus, layout primitives, accessibility media queries. */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: var(--sp-2); }
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: var(--lh-body);
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
+}
+img, svg, video { display: block; max-width: 100%; }
+input, button, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+[hidden] { display: none !important; }
+
+/* Headings: serif for page and section titles, sans for everything inside a section */
+h1, h2, h3, h4, h5, h6 { line-height: var(--lh-head); text-wrap: balance; }
+h1 { font-family: var(--font-serif); font-weight: 400; font-size: var(--step-4); letter-spacing: -0.01em; line-height: 1.15; }
+h2 { font-family: var(--font-serif); font-weight: 400; font-size: var(--step-3); letter-spacing: -0.005em; }
+h3 { font-size: var(--step-2); font-weight: 600; }
+h4 { font-size: var(--step-1); font-weight: 600; line-height: var(--lh-snug); }
+h5, h6 { font-size: var(--step-0); font-weight: 600; }
+p, ul, ol, dl, blockquote, pre, table, figure { margin-block-end: var(--sp-2); }
+:is(p, ul, ol, dl, figure):last-child { margin-block-end: 0; }
+ul, ol { padding-inline-start: 1.25em; }
+li + li { margin-block-start: var(--sp-h); }
+strong, b { font-weight: 600; }
+small { font-size: var(--step--1); }
+hr { border: 0; border-block-start: var(--bw-hair) solid var(--deco-rule); margin-block: var(--sp-4); }
+code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; background: var(--bg-wash); padding: 0.05em 0.3em; border-radius: var(--r-tag); }
+abbr[title] { text-decoration: underline dotted; text-underline-offset: 0.2em; }
+::selection { background: var(--bg-tint); color: var(--fg); }
+
+/* Links: always underlined in running text */
+a { color: var(--fg-link); text-decoration-line: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { color: var(--fg); text-decoration-thickness: 2px; }
+
+/* Focus: 3px ring with 2px offset; links also get a highlighter wash so focus is obvious in sunlight */
+:focus-visible { outline: var(--focus-w) solid var(--ui-focus); outline-offset: 2px; }
+a:focus-visible { background: var(--focus-bg); color: var(--focus-fg); text-decoration-thickness: 2px; border-radius: 1px; }
+:focus:not(:focus-visible) { outline: none; }
+
+/* Figures, record IDs and codes align in columns */
+.num, .id, time { font-variant-numeric: tabular-nums lining-nums; }
+.id { letter-spacing: 0.02em; }
+
+/* Icons from assets/icons.svg */
+.icon { width: 1.25rem; height: 1.25rem; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icon--sm { width: 1rem; height: 1rem; }
+.icon--lg { width: 1.5rem; height: 1.5rem; }
+
+/* Layout primitives */
+.container { width: 100%; max-width: var(--page-max); margin-inline: auto; padding-inline: var(--gutter); }
+.stack > * + * { margin-block-start: var(--sp-2); }
+.stack-lg > * + * { margin-block-start: var(--sp-4); }
+.cluster { display: flex; flex-wrap: wrap; gap: var(--sp-1); align-items: center; }
+.prose { max-width: var(--measure); }
+.prose > * + h2 { margin-block-start: var(--sp-5); }
+.prose > * + h3 { margin-block-start: var(--sp-4); }
+.prose h2, .prose h3 { margin-block-end: var(--sp-1); }
+.lede { font-size: var(--step-1); line-height: 1.5; color: var(--fg); max-width: 60ch; }
+.muted { color: var(--fg-muted); }
+.meta { font-size: var(--step--1); color: var(--fg-muted); line-height: var(--lh-snug); }
+
+/* The notebook layout: a margin column (nav, record facts) beside a reading column, split by a ruled line */
+.page-body { padding-block: var(--sp-4) var(--sp-8); }
+.with-margin { display: grid; gap: var(--sp-3); }
+.with-margin__main { min-width: 0; }
+@media (min-width: 64rem) {
+  .with-margin { grid-template-columns: var(--margin-col) minmax(0, 1fr); gap: 0; }
+  .with-margin__side { padding-inline-end: var(--sp-4); border-inline-end: var(--bw-hair) solid var(--deco-margin); }
+  .with-margin__main { padding-inline-start: var(--sp-5); }
+}
+
+/* Section: a heading set on a hairline, like a ruled notebook page */
+.section { padding-block-start: var(--sp-3); border-block-start: var(--bw-hair) solid var(--deco-rule); }
+.section + .section { margin-block-start: var(--sp-6); }
+.section__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--sp-1) var(--sp-3); margin-block-end: var(--sp-3); }
+.section__head > :is(h2, h3) { margin: 0; }
+
+/* Accessibility helpers */
+.vh { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+.skip-link { position: absolute; inset-inline-start: var(--sp-1); inset-block-start: var(--sp-1); z-index: 100; padding: var(--sp-1) var(--sp-2); background: var(--focus-bg); color: var(--focus-fg); font-weight: 600; transform: translateY(-200%); }
+.skip-link:focus { transform: none; outline: var(--focus-w) solid var(--focus-fg); outline-offset: 0; }
+.print-only { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+@media (forced-colors: active) {
+  :focus-visible { outline-color: Highlight; }
+  a:focus-visible { background: Highlight; color: HighlightText; }
+  .icon { stroke: currentColor; }
+}

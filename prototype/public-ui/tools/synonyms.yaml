@@ -1,0 +1,88 @@
+# Curated search synonyms for the EMST public-interface prototype (search.js, key `syn`).
+#
+# Every row is editorial vocabulary chosen by the prototype's data engineer (an AI agent), not EMST release data and
+# not reviewed by a practitioner. Each row says what a person might type (`term`) and what the search should also
+# look for (`expansions`). Expansions are one-way: add a second row for the other direction where it helps.
+#
+#   source:     always "editorial (prototype)".
+#   kind:       abbreviation | opm-series-nickname.
+#   confidence: omitted when the usage is ordinary and well established; "low" when usage varies by agency or era.
+#   note:       why a row is low confidence, or what it is for.
+#
+# For OPM series rows the build adds the series title from the EMST OPM series register (SeriesRecord) to the
+# expansions, so official titles are never typed by hand here. A series code that is not in the register fails
+# the build.
+# Licence: CC0-1.0.
+version: 1
+rows:
+  # ---------------------------------------------------------------- abbreviations and field shorthand
+  - {term: Rx burn, expansions: [prescribed fire, prescribed burn, prescribed burning], kind: abbreviation, source: editorial (prototype)}
+  - {term: Rx fire, expansions: [prescribed fire, prescribed burn], kind: abbreviation, source: editorial (prototype)}
+  - {term: range con, expansions: [rangeland management specialist, range conservationist, rangeland management, "0454"], kind: abbreviation, source: editorial (prototype)}
+  - {term: GIS, expansions: [geographic information system, geospatial, spatial data, mapping], kind: abbreviation, source: editorial (prototype)}
+  - {term: NEPA, expansions: [National Environmental Policy Act, environmental review, environmental assessment, environmental impact statement], kind: abbreviation, source: editorial (prototype)}
+  - {term: EA, expansions: [environmental assessment], kind: abbreviation, source: editorial (prototype)}
+  - {term: EIS, expansions: [environmental impact statement], kind: abbreviation, source: editorial (prototype)}
+  - {term: EA/EIS, expansions: [environmental assessment, environmental impact statement, environmental review], kind: abbreviation, source: editorial (prototype)}
+  - {term: WQ, expansions: [water quality], kind: abbreviation, source: editorial (prototype)}
+  - {term: UAS, expansions: [uncrewed aircraft system, unmanned aircraft system, drone], kind: abbreviation, source: editorial (prototype)}
+  - {term: sUAS, expansions: [small uncrewed aircraft system, drone], kind: abbreviation, source: editorial (prototype)}
+  - {term: drone, expansions: [UAS, uncrewed aircraft, unmanned aircraft, remote sensing], kind: abbreviation, source: editorial (prototype)}
+  - {term: tech, expansions: [technician], kind: abbreviation, source: editorial (prototype)}
+  - {term: bio, expansions: [biologist, biology, biological], kind: abbreviation, source: editorial (prototype)}
+  - {term: LE, expansions: [law enforcement], kind: abbreviation, source: editorial (prototype)}
+  - {term: FMO, expansions: [fire management officer, fire management], kind: abbreviation, source: editorial (prototype)}
+  - {term: IC, expansions: [incident commander, incident command], kind: abbreviation, source: editorial (prototype)}
+  - {term: ICS, expansions: [incident command system, incident command], kind: abbreviation, source: editorial (prototype)}
+  - {term: AmeriCorps, expansions: [national service, conservation corps, service corps, corps member], kind: abbreviation, source: editorial (prototype), note: "AmeriCorps is the federal national service programme that funds many conservation and service corps."}
+  - {term: corpsmember, expansions: [corps member, conservation corps member, crew member], kind: abbreviation, source: editorial (prototype)}
+  - {term: WUI, expansions: [wildland-urban interface], kind: abbreviation, source: editorial (prototype)}
+  - {term: T&E, expansions: [threatened and endangered species, endangered species], kind: abbreviation, source: editorial (prototype)}
+  - {term: ESA, expansions: [Endangered Species Act, endangered species], kind: abbreviation, source: editorial (prototype)}
+  - {term: CWA, expansions: [Clean Water Act], kind: abbreviation, source: editorial (prototype)}
+  - {term: NPDES, expansions: [National Pollutant Discharge Elimination System, discharge permit], kind: abbreviation, source: editorial (prototype)}
+  - {term: SWPPP, expansions: [stormwater pollution prevention plan, stormwater], kind: abbreviation, source: editorial (prototype)}
+  - {term: HAZWOPER, expansions: [hazardous waste operations and emergency response, hazardous waste], kind: abbreviation, source: editorial (prototype)}
+  - {term: QA/QC, expansions: [quality assurance, quality control], kind: abbreviation, source: editorial (prototype)}
+  - {term: REHS, expansions: [registered environmental health specialist, sanitarian, environmental health], kind: abbreviation, source: editorial (prototype)}
+  - {term: PD, expansions: [position description], kind: abbreviation, source: editorial (prototype), note: "Federal and state HR shorthand."}
+  - {term: IDP, expansions: [individual development plan], kind: abbreviation, source: editorial (prototype)}
+  - {term: KSA, expansions: [knowledge, skills and abilities], kind: abbreviation, source: editorial (prototype)}
+  - {term: fuels, expansions: [hazardous fuels, fuels reduction, fuel treatment], kind: abbreviation, source: editorial (prototype)}
+  - {term: hotshot, expansions: [interagency hotshot crew, wildland firefighter, hand crew], kind: abbreviation, source: editorial (prototype)}
+  - {term: WLFF, expansions: [wildland firefighter], kind: abbreviation, source: editorial (prototype)}
+  - {term: enviro, expansions: [environmental], kind: abbreviation, source: editorial (prototype)}
+
+  # ---------------------------------------------------------------- OPM series nicknames (the build adds the register title)
+  - {term: "0401", expansions: [natural resource specialist, natural resource management specialist, general biologist, GS-401, GS-0401], kind: opm-series-nickname, series: "0401", source: editorial (prototype)}
+  - {term: "0401 fire", expansions: [fire management specialist, fire management officer, FMO, fire ecologist, "0401"], kind: opm-series-nickname, series: "0401", source: editorial (prototype), confidence: low, note: "Professional fire positions classified in 0401; practice varies by agency, and some of this work is now classified in the 0456 Wildland Fire Management series."}
+  - {term: "0403", expansions: [microbiologist, GS-403, GS-0403], kind: opm-series-nickname, series: "0403", source: editorial (prototype)}
+  - {term: "0404", expansions: [bio tech, biotech, biological science technician, biological technician, GS-404, GS-0404], kind: opm-series-nickname, series: "0404", source: editorial (prototype)}
+  - {term: bio tech, expansions: [biological science technician, "0404"], kind: opm-series-nickname, series: "0404", source: editorial (prototype)}
+  - {term: "0408", expansions: [ecologist, GS-408, GS-0408], kind: opm-series-nickname, series: "0408", source: editorial (prototype)}
+  - {term: "0454", expansions: [range con, range conservationist, rangeland management specialist, GS-454, GS-0454], kind: opm-series-nickname, series: "0454", source: editorial (prototype)}
+  - {term: "0455", expansions: [range tech, range technician, GS-455, GS-0455], kind: opm-series-nickname, series: "0455", source: editorial (prototype)}
+  - {term: range tech, expansions: [range technician, "0455"], kind: opm-series-nickname, series: "0455", source: editorial (prototype)}
+  - {term: "0456", expansions: [wildland firefighter, WLFF, wildland fire, GS-456, GS-0456], kind: opm-series-nickname, series: "0456", source: editorial (prototype)}
+  - {term: "0457", expansions: [soil con, soil conservationist, GS-457, GS-0457], kind: opm-series-nickname, series: "0457", source: editorial (prototype)}
+  - {term: soil con, expansions: [soil conservationist, soil conservation, "0457"], kind: opm-series-nickname, series: "0457", source: editorial (prototype)}
+  - {term: "0458", expansions: [soil con tech, soil conservation technician, GS-458, GS-0458], kind: opm-series-nickname, series: "0458", source: editorial (prototype)}
+  - {term: "0460", expansions: [forester, GS-460, GS-0460], kind: opm-series-nickname, series: "0460", source: editorial (prototype)}
+  - {term: "0462", expansions: [forestry tech, forestry technician, GS-462, GS-0462], kind: opm-series-nickname, series: "0462", source: editorial (prototype)}
+  - {term: "0462 forestry technician", expansions: [forestry technician, forestry tech, "0462"], kind: opm-series-nickname, series: "0462", source: editorial (prototype)}
+  - {term: "0462 fire", expansions: [wildland firefighter, engine crew, hand crew, "0456"], kind: opm-series-nickname, series: "0462", source: editorial (prototype), confidence: low, note: "Before the 0456 Wildland Fire Management series, many federal wildland firefighters were classified as 0462 forestry technicians; usage is in transition."}
+  - {term: forestry tech, expansions: [forestry technician, "0462"], kind: opm-series-nickname, series: "0462", source: editorial (prototype)}
+  - {term: "0482", expansions: [fish bio, fisheries biologist, fish biologist, GS-482, GS-0482], kind: opm-series-nickname, series: "0482", source: editorial (prototype)}
+  - {term: fish bio, expansions: [fisheries biologist, fish biology, "0482"], kind: opm-series-nickname, series: "0482", source: editorial (prototype)}
+  - {term: "0486", expansions: [wildlife bio, wildlife biologist, GS-486, GS-0486], kind: opm-series-nickname, series: "0486", source: editorial (prototype)}
+  - {term: wildlife bio, expansions: [wildlife biologist, wildlife biology, "0486"], kind: opm-series-nickname, series: "0486", source: editorial (prototype)}
+  - {term: "0819", expansions: [environmental engineer, enviro engineer, GS-819, GS-0819], kind: opm-series-nickname, series: "0819", source: editorial (prototype)}
+  - {term: "1315", expansions: [hydrologist, GS-1315], kind: opm-series-nickname, series: "1315", source: editorial (prototype)}
+  - {term: "1316", expansions: [hydro tech, hydrologic technician, GS-1316], kind: opm-series-nickname, series: "1316", source: editorial (prototype)}
+  - {term: hydro tech, expansions: [hydrologic technician, "1316"], kind: opm-series-nickname, series: "1316", source: editorial (prototype)}
+  - {term: "1350", expansions: [geologist, GS-1350], kind: opm-series-nickname, series: "1350", source: editorial (prototype)}
+  - {term: "0025", expansions: [park ranger, ranger, interpretive ranger, interp ranger, GS-025, GS-0025], kind: opm-series-nickname, series: "0025", source: editorial (prototype)}
+  - {term: LE ranger, expansions: [law enforcement ranger, park ranger, "0025"], kind: opm-series-nickname, series: "0025", source: editorial (prototype), confidence: low, note: "Commissioned park rangers are in 0025 at some agencies; other land agencies use criminal investigating or other law enforcement series."}
+  - {term: "0028", expansions: [EPS, environmental protection specialist, GS-028, GS-0028], kind: opm-series-nickname, series: "0028", source: editorial (prototype)}
+  - {term: EPS, expansions: [environmental protection specialist, "0028"], kind: opm-series-nickname, series: "0028", source: editorial (prototype)}
+  - {term: "0081", expansions: [structural firefighter, fire protection, fire prevention, GS-081, GS-0081], kind: opm-series-nickname, series: "0081", source: editorial (prototype)}
