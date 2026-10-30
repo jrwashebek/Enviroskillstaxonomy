@@ -27,7 +27,9 @@ export function stem(w) {
 }
 
 const words = (s) => normalize(s).split(/\s+/).flatMap((w) => (/^[a-z]+-[a-z]+$/.test(w) ? [w, ...w.split("-")] : [w])).filter((w) => w && !STOP.has(w));
-const codeKey = (s) => String(s || "").toLowerCase().replace(/^gs[\s-]*/, "").replace(/[^a-z0-9]/g, "");
+const codeKey = (s) => String(s || "").toLowerCase().replace(/^emst:[a-z]+\//, "").replace(/^gs[\s-]*/, "").replace(/[^a-z0-9]/g, "");
+/** Words never "corrected" by fuzzy matching: codes and acronyms people type on purpose. */
+const PROTECT = new Set(["onet", "esco", "opm", "soc", "uas", "gis", "nepa", "wui", "ics", "fes", "ksa", "idp", "pd", "rif", "osha", "epa", "blm", "usfs", "nps", "fws", "usgs", "noaa", "nrcs"]);
 
 function editDistance(a, b, max) {
   // Damerau-Levenshtein (optimal string alignment) with an early exit above max
@@ -71,6 +73,7 @@ export class SearchIndex {
         }
       };
       add(d.t, "t");
+      if (d.s && /^(rol|cmp|tsk|tl|ind)-/.test(d.s)) { const k = codeKey(d.s); if (!this.codes.has(k)) this.codes.set(k, []); this.codes.get(k).push(i); }
       for (const a of d.a || []) add(a, "a");
       add(d.x, "x");
       for (const c of d.c || []) {
@@ -187,6 +190,7 @@ export class SearchIndex {
       }
       if (!found) {
         for (const w of words(g.terms[0])) {
+          if (PROTECT.has(w)) continue;
           for (const [v, d] of this.fuzzy(w)) {
             if (!corrections.some((c) => c.from === w)) corrections.push({ from: w, to: v });
             for (const [i, fw] of this.post.get(v)) bump(i, gi, fw * (d === 1 ? 0.6 : 0.4), true);
@@ -198,6 +202,7 @@ export class SearchIndex {
 
     const need = groups.length;
     const nq = normalize(q);
+    const synGroup = new Set(groups.map((g, i) => (g.syn ? i : -1)).filter((i) => i >= 0));
     let results = [];
     for (const [i, e] of scores) {
       const d = this.docs[i];
@@ -208,14 +213,17 @@ export class SearchIndex {
       const coverage = need ? matched / need : 1;
       if (!codeHit && coverage < 1) s *= coverage * coverage * 0.6;
       const nt = normalize(d.t);
+      const altExact = (d.a || []).some((a) => normalize(a) === nq);
       if (nt === nq) s += 40; else if (nt.startsWith(nq)) s += 15; else if (nq.includes(" ") && (" " + nt + " ").includes(" " + nq + " ")) s += 14;
-      if ((d.a || []).some((a) => normalize(a) === nq)) s += 30;
+      if (altExact) s += 30;
       s *= (KIND_BOOST[d.k] || 1) * (d.w || 1);
-      results.push({ doc: d, score: s, complete: codeHit || coverage === 1, fuzzy: e.fuzzy });
+      // Best match: the title or an alternative title is what was typed, a code matched, or a whole synonym phrase
+      // matched the title (e.g. "range con" -> "Rangeland management specialist").
+      const synTitle = [...synGroup].some((gi) => e.hits.has(gi) && groups[gi].syn.some((x) => (" " + nt + " ").includes(" " + x + " ") || (d.a || []).some((a) => normalize(a) === x)));
+      const best = codeHit || nt === nq || altExact || (synTitle && coverage === 1) || (["role", "series", "class"].includes(d.k) && nq.length > 3 && (" " + nt + " ").includes(" " + nq + " "));
+      results.push({ doc: d, score: s + (best ? 100 : 0), complete: best || coverage === 1, best, fuzzy: e.fuzzy });
     }
-    results.sort((a, b) => (b.complete - a.complete) || (b.score - a.score) || a.doc.t.localeCompare(b.doc.t));
-    const complete = results.filter((r) => r.complete);
-    if (complete.length >= 3) results = complete; // partial matches only fill thin result sets
+    results.sort((a, b) => (b.best - a.best) || (b.complete - a.complete) || (b.score - a.score) || a.doc.t.localeCompare(b.doc.t));
     const byKind = {};
     for (const r of results) byKind[r.doc.k] = (byKind[r.doc.k] || 0) + 1;
     return { results: results.slice(0, limit), total: results.length, byKind, notes };

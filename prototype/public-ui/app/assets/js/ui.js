@@ -133,9 +133,10 @@ export function section(id, title, children, { meta, level = 2, cls } = {}) {
 
 /** Two-column page body with "On this page" in the margin. sections: [{id, title}] */
 export function withMargin(sections, main) {
+  // The aside follows the main column in the DOM so keyboard users reach the content first; CSS puts it in the margin.
   return h("div", { class: "with-margin page-body" },
-    h("aside", { class: "with-margin__side" }, onThisPage(sections)),
-    h("div", { class: "with-margin__main" }, main));
+    h("div", { class: "with-margin__main" }, main),
+    h("aside", { class: "with-margin__side", "aria-label": COPY.site?.onThisPage || "On this page" }, onThisPage(sections)));
 }
 
 function sectionClick(e) {
@@ -314,6 +315,7 @@ export function recordActions(core, { title, kind, id, exports = [] }) {
     h("div", { class: "btn-row" }, corrBtn,
       h("a", { class: "btn btn--secondary btn--small", href: ISSUES_URL, rel: "noopener" }, icon("flag"), COPY.actions?.correct || "Suggest a correction", h("span", { class: "vh" }, " (opens GitHub Issues)"), icon("external")), corrStatus),
     h("p", { class: "meta" }, COPY.actions?.githubNote || "Opens GitHub Issues. You need a free GitHub account. Please do not include personal information."),
+    h("p", { class: "print-only" }, `Report a problem: ${ISSUES_URL}`),
     h("div", { class: "btn-row no-print" },
       restrictedHost() ? null : h("button", { class: "btn btn--secondary btn--small", type: "button", on: { click: () => window.print() } }, icon("print"), COPY.actions?.print || "Print"),
       exports.map((x) => {
@@ -333,7 +335,7 @@ export function recordActions(core, { title, kind, id, exports = [] }) {
 export function levelChip(code, core) {
   if (!code) return null;
   const name = core?.labels?.level?.[code] || (code === "A" ? "Awareness" : "");
-  return h("span", { class: "badge level-chip" }, h("span", { class: "level-chip__code" }, code), name);
+  return h("span", { class: "badge level-chip" }, h("span", { class: "vh" }, "Proficiency level "), h("span", { class: "level-chip__code" }, code), name);
 }
 /** levels: [{level, label, indicators[]}]; span: [min,max]; target: {level, text} */
 export function levelLadder(levels, { span, target, core, titleId } = {}) {
@@ -363,13 +365,17 @@ export function levelLadder(levels, { span, target, core, titleId } = {}) {
 const NOTICE = { info: ["notice--info", "info"], caution: ["notice--warn", "alert"], hr: ["notice--use", "scales"], use: ["notice--use", "scales"], exploratory: ["notice--draft", "route"], draft: ["notice--draft", "draft"], held: ["notice--hold", null] };
 export function notice(kind, title, ...body) {
   const [cls, ic] = NOTICE[kind] || NOTICE.info;
+  // Notice titles are not headings by default (they sat between H1 and H2 and broke the outline). Pass {heading: "h3"} as
+  // the title to opt in: notice(kind, {text, heading}, …).
+  const t = title && typeof title === "object" && !(title instanceof Node) ? title : { text: title };
   return h("div", { class: ["notice", cls], role: "note" }, ic ? h("span", { class: "notice__icon" }, icon(ic)) : null,
-    h("div", { class: "notice__body" }, title ? h("h3", { class: "notice__title" }, title) : null,
+    h("div", { class: "notice__body" }, t.text ? (t.heading ? h(t.heading, { class: "notice__title" }, t.text) : h("p", { class: "notice__title" }, h("strong", t.text))) : null,
       body.flat().map((b) => (typeof b === "string" ? h("p", b) : b))));
 }
+function chev() { const i = icon("chevron-down"); i.classList.add("drawer__chev"); return i; }
 export function disclosure(summary, body, { open = false, badge = null, small = false } = {}) {
   return h("details", { class: ["drawer", small && "drawer--small"], open },
-    h("summary", { class: "drawer__summary" }, icon("chevron-down"), h("span", { class: "drawer__title" }, summary), badge),
+    h("summary", { class: "drawer__summary" }, chev(), h("span", { class: "drawer__title" }, summary), badge),
     h("div", { class: "drawer__body" }, body));
 }
 
@@ -427,8 +433,9 @@ export function chipGroup({ legend, name, options, multi = true, checked = [], o
 }
 export function liveCount() {
   const el = h("p", { class: "result-bar__count", role: "status", "aria-live": "polite" });
-  let t;
-  return { node: el, set: (text) => { clearTimeout(t); t = setTimeout(() => { el.textContent = text; }, 250); } };
+  let t, first = true;
+  // The first value is written at once (before the region is announced) so a page load does not read out "37 of 37".
+  return { node: el, set: (text) => { clearTimeout(t); if (first) { first = false; el.textContent = text; return; } t = setTimeout(() => { el.textContent = text; }, 250); } };
 }
 
 // ------------------------------------------------------------------ cards, empty, figures
@@ -459,7 +466,7 @@ export function table({ caption, hint, columns, rows, sticky = true, sortBy = nu
   const thead = h("thead");
   const headRow = h("tr");
   let sortKey = sortBy, sortDir = dir, showAll = !limit;
-  const hintEl = h("span", { class: "data-table__hint" });
+  const hintEl = h("p", { class: "table-hint" });
   const ths = columns.map((c) => {
     if (!c.sort) return h("th", { scope: "col", class: c.num ? "num" : null }, c.label);
     const ic = icon("sort");
@@ -491,10 +498,14 @@ export function table({ caption, hint, columns, rows, sticky = true, sortBy = nu
     if (more) { more.textContent = showAll ? (COPY.actions?.showFewer || "Show fewer") : `${COPY.actions?.showAll || "Show all"} ${fmt(rows.length)}`; more.hidden = rows.length <= limit; }
   }
   draw();
-  return h("div", { class: "stack" },
-    h("div", { class: "table-scroll", role: "region", "aria-labelledby": capId, tabindex: "0" },
-      h("table", { class: ["data-table", sticky && "data-table--sticky"] }, h("caption", { id: capId }, caption, hintEl), thead, tbody)),
-    more);
+  const hintId = nextId("hint");
+  hintEl.id = hintId; hintEl.className = "table-hint";
+  const scroller = h("div", { class: "table-scroll", role: "region", "aria-labelledby": capId, "aria-describedby": hintId },
+    h("table", { class: ["data-table", sticky && "data-table--sticky"], "aria-describedby": hintId }, h("caption", { id: capId }, caption), thead, tbody));
+  // Focusable only when it actually scrolls sideways, so keyboard users can scroll it and nobody meets a dead stop.
+  const sync = () => { if (scroller.scrollWidth > scroller.clientWidth + 1) scroller.setAttribute("tabindex", "0"); else scroller.removeAttribute("tabindex"); };
+  if ("ResizeObserver" in window) new ResizeObserver(sync).observe(scroller); else requestAnimationFrame(sync);
+  return h("div", { class: "stack" }, hintEl, scroller, more);
 }
 
 // ------------------------------------------------------------------ jargon

@@ -7,6 +7,7 @@ import { NotFound } from "./data.js";
 const routes = [];
 let current = { path: null, section: null };
 const scrollMemory = new Map(); // in-memory only; lost on reload by design
+const focusMemory = new Map();  // path -> href (or #id) of the element that had focus when the user left
 let renderToken = 0;
 let hooks = { notFound: null, error: null, afterRender: null };
 
@@ -56,17 +57,22 @@ export function focusSection(id) {
 }
 
 async function render() {
-  const { path, section, anchor } = parseHash();
-  if (path === null) { // a plain in-page anchor such as #main: never re-render
-    if (anchor) focusSection(anchor);
-    return;
+  let { path, section, anchor } = parseHash();
+  if (path === null) { // a plain in-page anchor such as #main: never re-render, except on first load
+    if (current.path !== null || refreshing) { if (anchor) focusSection(anchor); return; }
+    path = "/";
   }
   if (path === current.path) { // same page, different section
     current.section = section;
     if (section) focusSection(section);
     return;
   }
-  if (current.path) scrollMemory.set(current.path, window.scrollY);
+  if (current.path) {
+    scrollMemory.set(current.path, window.scrollY);
+    const act = document.activeElement;
+    const key = act && act.closest && (act.closest("[href]")?.getAttribute("href") || (act.id ? "#" + act.id : null));
+    if (key) focusMemory.set(current.path, key);
+  }
   const token = ++renderToken;
   const main = $("#main");
   main.setAttribute("aria-busy", "true");
@@ -99,12 +105,16 @@ async function render() {
     const back = stack.length >= 2 && stack[stack.length - 2] === path;
     if (back) stack.pop(); else stack.push(path);
     const remembered = scrollMemory.get(path);
-    if (back && remembered !== undefined) window.scrollTo(0, remembered);
-    else window.scrollTo(0, 0);
     const h1 = main.querySelector("h1");
-    if (h1) { h1.setAttribute("tabindex", "-1"); if (prevPath) h1.focus({ preventScroll: true }); }
+    const fkey = back ? focusMemory.get(path) : null;
+    const target = fkey ? (fkey.startsWith("#") && !fkey.startsWith("#/") ? document.getElementById(fkey.slice(1)) : main.querySelector(`[href="${CSS.escape(fkey)}"]`)) : null;
+    if (back && remembered !== undefined && target) { window.scrollTo(0, remembered); target.focus({ preventScroll: true }); }
+    else {
+      window.scrollTo(0, 0);
+      if (h1) { h1.setAttribute("tabindex", "-1"); if (prevPath) h1.focus({ preventScroll: true }); }
+    }
   }
-  if (prevPath) announce(`${out.title || "Page"} loaded`);
+  if (prevPath) announce(out.announce || `${out.title || "Page"} loaded`);
 }
 
 const stack = []; // in-memory visit stack, used only to restore scroll position on Back

@@ -42,5 +42,21 @@ h1[tabindex="-1"]:focus,section[tabindex="-1"]:focus,h2[tabindex="-1"]:focus,mai
 /* Respect device safe areas when the page is shown edge to edge. */
 .container{padding-left:max(var(--gutter),env(safe-area-inset-left));padding-right:max(var(--gutter),env(safe-area-inset-right))}
 /* Lists whose items are links (tasks, groups): keep an underline for affordance, but quiet, so a page of tasks reads as text. */
-.b-task__link,.b-group__title a,.task-list a{color:var(--fg);text-decoration-line:underline;text-decoration-color:var(--ui-border);text-decoration-thickness:1px;text-underline-offset:.25em}
-.b-task__link:hover,.b-group__title a:hover,.task-list a:hover{color:var(--fg-link);text-decoration-color:currentColor;text-decoration-thickness:2px}
+:where(.b-task__link,.b-group__title a,.task-list a){color:var(--fg);text-decoration-line:underline;text-decoration-color:var(--ui-border);text-decoration-thickness:1px;text-underline-offset:.25em}
+:where(.b-task__link,.b-group__title a,.task-list a):hover{color:var(--fg-link);text-decoration-color:currentColor;text-decoration-thickness:2px}
+:where(.b-task__link,.b-group__title a,.task-list a):focus-visible{color:var(--focus-fg)}
+/* "On this page" comes after the main column in the DOM (fewer tab stops before content) but still shows in the margin. */
+@media (min-width:64rem){.with-margin>.with-margin__side{grid-column:1;grid-row:1}.with-margin>.with-margin__main{grid-column:2;grid-row:1}}
+/* Forced colours: search suggestions stay readable; the selected option is marked by an outline and a bar. */
+@media (forced-colors:active){
+  .listbox__option[aria-selected="true"]{forced-color-adjust:auto;outline:3px solid Highlight;outline-offset:-3px;border-inline-start:6px solid Highlight}
+  .listbox mark,.listbox__title mark{background:transparent;color:inherit;font-weight:700;text-decoration:underline}
+  .overlap__seg--b{fill:Canvas;stroke:CanvasText;stroke-width:2px}
+}
+/* Search suggestions at high zoom: span the whole form, hide context lines. */
+@media (max-width:30rem){.listbox__ctx{display:none}.listbox{max-height:calc(100dvh - 6rem);overflow-y:auto}}
+/* Data tables: hint lives outside the caption; keep focused cells clear of the sticky first column. */
+.table-hint{margin:0 0 var(--sp-1,8px);font-size:var(--step--1,.875rem);color:var(--fg-muted)}
+.table-scroll{scroll-padding-inline-start:40%}
+.drawer[open]>.drawer__summary .drawer__chev{transform:rotate(180deg)}
+@media (prefers-reduced-motion:no-preference){.drawer__chev{transition:transform .15s}}

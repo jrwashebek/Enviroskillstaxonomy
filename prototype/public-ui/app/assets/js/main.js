@@ -1,8 +1,8 @@
 // Boot: site chrome (release strip, header with search, navigation, footer) and routes. Licence: Apache-2.0.
 import { h, icon, clear, $ } from "./lib/dom.js";
-import { route, start, configure, refresh } from "./lib/router.js";
+import { route, start, configure, refresh, focusSection } from "./lib/router.js";
 import * as data from "./lib/data.js";
-import { baseIndex, fullIndex, KIND_LABEL, KIND_ORDER, hrefFor } from "./lib/searchsvc.js";
+import { baseIndex, fullIndex, KIND_LABEL, KIND_ONE, KIND_ORDER, hrefFor } from "./lib/searchsvc.js";
 import { segments } from "./lib/search.js";
 import { state } from "./lib/state.js";
 import { COPY } from "./content.js";
@@ -34,7 +34,7 @@ const NAV = [
 // ------------------------------------------------------------------ chrome
 function releaseStrip(core) {
   const r = COPY.site?.ribbon || {};
-  return h("div", { class: "release-strip" }, h("div", { class: "container release-strip__inner" }, icon("draft", null),
+  return h("section", { class: "release-strip", "aria-label": "Release status" }, h("div", { class: "container release-strip__inner" }, icon("draft", null),
     h("p", h("strong", COPY.site?.independent || "Independent open project, not a government website."), " ", (r.release || "Draft release {id}").replace("{id}", core.release.id), ". ", r.ai || "Drafted by AI agents and not yet reviewed by people. Not for hiring, classification or performance decisions.", ". ",
       h("a", { href: "#/about/read" }, r.link || "What this means"))));
 }
@@ -108,7 +108,7 @@ function combobox({ input, list, status, form, allLink }) {
     if (o.dataset.all) return goAll();
     state.query = input.value.trim();
     close();
-    const href = o.querySelector("a")?.getAttribute("href");
+    const href = o.dataset.href;
     if (href) { allLink.setAttribute("href", href); allLink.click(); allLink.setAttribute("href", "#/search"); }
   };
   const mark = (text, q) => segments(text, q).map((s) => (s.mark ? h("mark", s.text) : s.text));
@@ -116,10 +116,10 @@ function combobox({ input, list, status, form, allLink }) {
     const q = input.value.trim();
     if (q === lastQ) return;
     lastQ = q;
-    if (q.length < 2) { close(); clear(list); status.textContent = ""; return; }
+    if (q.length < 2) { close(); clear(list); opts = []; setActive(-1); status.textContent = ""; return; }
     const ix = await baseIndex();
     const res = ix.search(q, { limit: 8 });
-    clear(list); opts = [];
+    clear(list); opts = []; setActive(-1);
     if (res.held) res.results = [{ doc: { k: "policy", s: "held", t: "Held records", x: "The project's statement on records it does not publish", held: true } }];
     if (!res.results.length) {
       close();
@@ -133,11 +133,11 @@ function combobox({ input, list, status, form, allLink }) {
       const g = groups.get(k);
       if (!g) continue;
       const gid = `q-g-${k}`;
-      const ul = h("ul", { role: "group", "aria-labelledby": gid }, h("li", { role: "none", class: "listbox__group-label", id: gid }, KIND_LABEL[k]));
+      const ul = h("ul", { role: "group", "aria-labelledby": gid }, h("li", { role: "none", class: "listbox__group-label", id: gid, "aria-hidden": "true" }, KIND_LABEL[k]));
       for (const r of g) {
-        const li = h("li", { class: "listbox__option", id: `q-opt-${n++}`, role: "option", "aria-selected": "false" },
-          h("a", { href: r.doc.held ? "#/about/held" : hrefFor(r.doc), tabindex: "-1", class: "listbox__title" }, mark(r.doc.t, q)),
-          r.doc.x ? h("span", { class: "listbox__ctx" }, r.doc.x) : null);
+        const li = h("li", { class: "listbox__option", id: `q-opt-${n++}`, role: "option", "aria-selected": "false", "aria-label": `${r.doc.t}, ${KIND_ONE[k] || k}`, "data-href": r.doc.held ? "#/about/held" : hrefFor(r.doc) },
+          h("span", { class: "listbox__title" }, mark(r.doc.t, q)),
+          r.doc.x ? h("span", { class: "listbox__ctx", "aria-hidden": "true" }, r.doc.x) : null);
         li.addEventListener("mousedown", (e) => e.preventDefault());
         li.addEventListener("click", (e) => { e.preventDefault(); activate(opts.indexOf(li)); });
         ul.appendChild(li); opts.push(li);
@@ -150,13 +150,13 @@ function combobox({ input, list, status, form, allLink }) {
     list.appendChild(all); opts.push(all);
     list.hidden = false; input.setAttribute("aria-expanded", "true"); active = -1;
     clearTimeout(announce);
-    announce = setTimeout(() => { status.textContent = `${opts.length - 1} suggestions. Press Enter for all results.`; }, 500);
+    announce = setTimeout(() => { const n = opts.length - 1; status.textContent = `${n} ${n === 1 ? "suggestion" : "suggestions"}. Press Enter for all results.`; }, 500);
   }
   input.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(suggest, 120); });
   input.addEventListener("focus", () => { baseIndex(); fullIndex(); }, { once: true });
   input.addEventListener("keydown", (e) => {
     if (e.key === "ArrowDown") { e.preventDefault(); if (list.hidden) { lastQ = ""; suggest(); } else setActive(Math.min(active + 1, opts.length - 1)); }
-    else if (e.key === "ArrowUp") { e.preventDefault(); if (!list.hidden) setActive(Math.max(active - 1, 0)); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); if (!list.hidden) setActive(active <= 0 ? opts.length - 1 : active - 1); }
     else if (e.key === "Enter") { e.preventDefault(); if (!list.hidden && active >= 0) activate(active); else if (input.value.trim()) goAll(); }
     else if (e.key === "Escape") { if (!list.hidden) { e.preventDefault(); close(); } else if (input.value) { e.preventDefault(); input.value = ""; lastQ = ""; } }
     else if (e.key === "Tab") close();
@@ -196,6 +196,13 @@ async function boot() {
   r("/tool/:slug", misc, "renderTool"); r("/credential/:slug", misc, "renderCredential");
   r("/about", about); r("/about/:page", about);
   configure({ notFound, error: errorView, afterRender: ({ path }) => markNav(path) });
+  // In-page anchors (the skip link, "#main", "#tasks") must never change the address: they would replace the route.
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest('a[href^="#"]:not([href^="#/"])');
+    if (!a || e.defaultPrevented) return;
+    const id = a.getAttribute("href").slice(1);
+    if (id && document.getElementById(id)) { e.preventDefault(); focusSection(id); }
+  });
   window.addEventListener("beforeprint", () => document.querySelectorAll("details:not([open])").forEach((d) => { d.dataset.printOpened = "1"; d.open = true; }));
   window.addEventListener("afterprint", () => document.querySelectorAll("details[data-print-opened]").forEach((d) => { d.open = false; delete d.dataset.printOpened; }));
   await start();
