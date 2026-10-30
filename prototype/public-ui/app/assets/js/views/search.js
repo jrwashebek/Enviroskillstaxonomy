@@ -260,6 +260,14 @@ export async function render() {
   }
 
   const res = ix.search(q, { limit: 10000 });
+  if (res.held) {
+    // Content-hold terms get one fixed answer: the project's statement. No respelling, no "not covered yet", no invitation to submit.
+    return { title: "Search results", node: h("div", head, h("div", { class: "page-body stack-lg search-page" }, pageSearch(q),
+      h("p", { class: "search-summary", id: "search-summary", tabindex: "-1" }, "1 result"),
+      h("ul", { class: "result-list" }, h("li", { class: "result" },
+        h("p", { class: "result__title" }, h("a", { href: "#/about/held" }, "Held records")),
+        h("p", { class: "result__ctx" }, "The project's statement on records it does not publish in this release."))))) };
+  }
   const plan = ix.plan(q);
   const spelling = (res.notes || []).filter((n) => n.type === "spelling").flatMap((n) => n.items || [])
     .map((s) => ({ ...s, all: [s.to, ...ix.fuzzy(s.from).map(([v]) => v).filter((v) => v !== s.to)] }));

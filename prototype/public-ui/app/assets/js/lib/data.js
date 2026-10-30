@@ -38,6 +38,7 @@ export const searchTasks = () => load("search-tasks", "search:tasks");
 export const change = () => load("change", "change");
 export const hr = () => load("hr", "hr");
 export const paths = () => load("paths", "paths");
+export const sources = () => load("sources", "sources");
 
 const pad = (n) => String(n).padStart(2, "0");
 function shardFile(kind, n) {

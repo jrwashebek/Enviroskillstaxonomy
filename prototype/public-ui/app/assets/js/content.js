@@ -491,7 +491,7 @@ export const COPY = {
     },
     notGov: "An independent open project. Not a government website.",
     footer: {
-      authorship: "AI agents researched and drafted these pages and records, working to rules set by the EMST project lead. No independent expert has reviewed them yet.",
+      authorship: "AI agents researched and drafted these pages and records, working to rules set by the EMST project lead. No person has reviewed them yet.",
       licence: "Data: CC0 1.0, free to reuse. Code: Apache 2.0.",
       issues: "Report a problem on GitHub (free account needed)",
     },
@@ -503,7 +503,7 @@ export const COPY = {
     line: "Drafted by AI agents. Not yet reviewed by people.",
     lineDated: "Drafted by AI agents on {date}. Not yet reviewed by people.",
     v1: "Wording carried over from EMST version 1, where one analyst wrote it with an AI assistant. Not yet rewritten or reviewed by people.",
-    detail: "AI agents wrote this record from sources and checked it with automated tests, following rules set by the EMST project lead. No one who does this work has reviewed it, and no study has tested it. Next on the review path: review by practitioners.",
+    detail: "AI agents drafted this record, following rules set by the EMST project lead, and automated tests checked its format and links. Any sources it cites are listed below; many records cite none. No one who does this work has reviewed it, and no study has tested it. Next on the review path: review by practitioners.",
   },
 
   review,

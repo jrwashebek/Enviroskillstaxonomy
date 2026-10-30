@@ -31,8 +31,8 @@ export function fullIndex() {
   if (!buildingFull) buildingFull = Promise.all([data.search(), data.searchTasks()]).then(async ([s, t]) => { await tidy(s.docs); return (full = new SearchIndex([...s.docs, ...t.docs], s.syn)); });
   return buildingFull;
 }
-export const KIND_LABEL = { role: "Roles", series: "OPM series", class: "State and local classes", comp: "Competencies", task: "Tasks", module: "Modules", tool: "Tools", credential: "Credentials", signal: "Change signals" };
-export const KIND_ORDER = ["role", "series", "class", "comp", "task", "module", "tool", "credential", "signal"];
+export const KIND_LABEL = { policy: "About EMST", role: "Roles", series: "OPM series", class: "State and local classes", comp: "Competencies", task: "Tasks", module: "Modules", tool: "Tools", credential: "Credentials", signal: "Change signals" };
+export const KIND_ORDER = ["policy", "role", "series", "class", "comp", "task", "module", "tool", "credential", "signal"];
 export function hrefFor(doc) {
   switch (doc.k) {
     case "role": return p3.has(doc.s) ? `#/changing@${doc.s}` : `#/role/${doc.s}`;

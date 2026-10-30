@@ -49,6 +49,9 @@ function editDistance(a, b, max) {
   return prev[b.length];
 }
 
+/** Words tied to the project's Tribal content hold. Never respelled, never answered with "not covered yet". */
+export const HOLD_RX = /\b(trib(e|es|al)|indigenous|native american|native hawaiian|alaska native|first nations|traditional (ecological )?knowledge)\b/i;
+
 export class SearchIndex {
   /** docs: [{k, s, t, a?, c?, x?, w?}], syn: {term: [expansion, …]} */
   constructor(docs, syn = {}) {
@@ -138,6 +141,7 @@ export class SearchIndex {
   search(query, { limit = 50, kinds = null } = {}) {
     const q = String(query || "").trim();
     if (!q) return { results: [], notes: [], total: 0, byKind: {} };
+    if (HOLD_RX.test(q)) return { results: [], notes: [], total: 0, byKind: {}, held: true };
     const { groups, notes } = this.plan(q);
     const scores = new Map(); // docIdx -> {score, hits:Set(groupIndex), fuzzy:boolean}
     const bump = (i, g, s, fz) => {

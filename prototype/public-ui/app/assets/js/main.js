@@ -35,7 +35,7 @@ const NAV = [
 function releaseStrip(core) {
   const r = COPY.site?.ribbon || {};
   return h("div", { class: "release-strip" }, h("div", { class: "container release-strip__inner" }, icon("draft", null),
-    h("p", (r.release || "Draft release {id}").replace("{id}", core.release.id), ". ", r.ai || "Drafted by AI agents and not yet reviewed by people. Not for hiring, classification or performance decisions.", " ",
+    h("p", h("strong", COPY.site?.independent || "Independent open project, not a government website."), " ", (r.release || "Draft release {id}").replace("{id}", core.release.id), ". ", r.ai || "Drafted by AI agents and not yet reviewed by people. Not for hiring, classification or performance decisions.", ". ",
       h("a", { href: "#/about/read" }, r.link || "What this means"))));
 }
 
@@ -120,6 +120,7 @@ function combobox({ input, list, status, form, allLink }) {
     const ix = await baseIndex();
     const res = ix.search(q, { limit: 8 });
     clear(list); opts = [];
+    if (res.held) res.results = [{ doc: { k: "policy", s: "held", t: "Held records", x: "The project's statement on records it does not publish", held: true } }];
     if (!res.results.length) {
       close();
       status.textContent = `No suggestions for "${q}". Press Enter to search tasks too.`;
@@ -135,7 +136,7 @@ function combobox({ input, list, status, form, allLink }) {
       const ul = h("ul", { role: "group", "aria-labelledby": gid }, h("li", { role: "none", class: "listbox__group-label", id: gid }, KIND_LABEL[k]));
       for (const r of g) {
         const li = h("li", { class: "listbox__option", id: `q-opt-${n++}`, role: "option", "aria-selected": "false" },
-          h("a", { href: hrefFor(r.doc), tabindex: "-1", class: "listbox__title" }, mark(r.doc.t, q)),
+          h("a", { href: r.doc.held ? "#/about/held" : hrefFor(r.doc), tabindex: "-1", class: "listbox__title" }, mark(r.doc.t, q)),
           r.doc.x ? h("span", { class: "listbox__ctx" }, r.doc.x) : null);
         li.addEventListener("mousedown", (e) => e.preventDefault());
         li.addEventListener("click", (e) => { e.preventDefault(); activate(opts.indexOf(li)); });

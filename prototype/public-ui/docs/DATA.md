@@ -488,22 +488,22 @@ Result: **PASS** (0 problems). Release 2.0.0-rc.1; verified 2026-10-30 by `tools
 
 | Check | Result |
 |---|---|
-| 1. Parse and register | 69 files; each registers exactly one key; pure JSON; `<` escaped |
+| 1. Parse and register | 70 files; each registers exactly one key; pure JSON; `<` escaped |
 | 2. Size budget | core.js 59.4 KB gz / 258.7 KB raw (≤ 150 / 600); largest other file 88.6 KB gz (≤ 120) |
 | 3. Counts | roles 37/37; competencies 223/223; tasks 1317/1317; variants 121/121; series 79/79 (13 generated profiles); classes 38/38 (20 generated views); signals 107/107 (0 withheld); held records 163 |
 | 4. References resolve | 29891 references checked |
-| 5. Forbidden content | 219906 strings and 57724 objects scanned (34231 distinct texts); 655 dated events checked; rules: gated keys, agentDraft, craft/exposure scores, 17 Tribal-hold triggers, 17 held seed keys, 3 held v1 codes, e-mail/phone, 16 retired-claim rules, 85 register and do-not-publish wrong forms, 2 conflation rules, 13 withheld phrases, 6 judgment-dated events, 0 unverified instrument titles |
+| 5. Forbidden content | 220821 strings and 57963 objects scanned (35146 distinct texts); 655 dated events checked; rules: gated keys, agentDraft, craft/exposure scores, 17 Tribal-hold triggers, 17 held seed keys, 3 held v1 codes, e-mail/phone, 16 retired-claim rules, 85 register and do-not-publish wrong forms, 2 conflation rules, 13 withheld phrases, 6 judgment-dated events, 0 unverified instrument titles |
 
 | File | Raw KB | Gzipped KB |
 |---|---:|---:|
 | core.js | 258.7 | 59.4 |
-| role-*.js (37 files; largest 11.7 KB gz) | 2031.1 | 261.0 |
-| comp-NN.js (12 files; largest 35.7 KB gz) | 1896.4 | 350.6 |
+| role-*.js (37 files; largest 11.7 KB gz) | 2030.9 | 260.9 |
+| comp-NN.js (12 files; largest 35.6 KB gz) | 1895.6 | 350.4 |
 | task-NN.js (14 files; largest 17.1 KB gz) | 1901.5 | 221.9 |
 | search.js | 210.6 | 43.6 |
 | search-tasks.js | 338.3 | 88.6 |
-| change.js | 180.0 | 22.9 |
-| hr.js | 450.0 | 41.7 |
+| change.js | 179.9 | 22.9 |
+| hr.js | 449.5 | 41.7 |
 | paths.js | 675.5 | 25.1 |
-| **Total (69 files)** | **7942.0** | **1114.9** |
+| **Total (70 files)** | **7992.6** | **1131.9** |
 <!-- verification:end -->

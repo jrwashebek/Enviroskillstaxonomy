@@ -5,6 +5,7 @@ import { focusSection } from "./lib/router.js";
 import { COPY, GLOSSARY, fill } from "./content.js";
 import { fmt, dateLong, plural } from "./lib/format.js";
 import { copyText, citation, correctionTemplate, pageUrl, restrictedHost } from "./export.js";
+import * as data from "./lib/data.js";
 
 export const ISSUES_URL = "https://github.com/jrwashebek/Enviroskillstaxonomy/issues/new/choose";
 export const REPO_URL = "https://github.com/jrwashebek/Enviroskillstaxonomy";
@@ -174,7 +175,8 @@ export function pendingSummary({ what = PENDING_WHAT, assessed = 0, total, unit 
     h("div", { class: "pending__label" }, icon("hourglass"),
       h("div", { class: "pending__content stack-sm" },
         h("p", { class: "pending__title" }, p.title || "Assessment pending"),
-        h("p", { class: "pending__text" }, `${lead} ${list}.`),
+        h("p", { class: "pending__text" }, lead),
+        h("ul", { class: "pending__list" }, names.map((n) => h("li", n))),
         p.why ? h("p", { class: "pending__text" }, p.why) : null,
         p.next ? h("p", { class: "pending__text" }, p.next) : null,
         h("a", { href: KEY("pending") }, p.link || "Why some values are held back"))));
@@ -190,13 +192,17 @@ export function evidenceLadder(rec) {
     { key: "drafted", label: "Drafted by AI agents" }, { key: "checked", label: "Automated checks passed" },
     { key: "reviewed", label: "Reviewed by practitioners" }, { key: "tested", label: "Reliability-tested" }, { key: "validated", label: "Validated for use" }];
   const ev = rec?.ev || {};
+  const sourced = !!(ev.src && ev.src.length);
+  const label = (s) => s.key === "draft" ? { ...s, plain: sourced ? "AI agents wrote the first version from the sources listed below." : "AI agents wrote the first version from their own judgment. It cites no source." }
+    : s.key === "ai-checked" ? { ...s, label: sourced ? s.label : "Checked by scripts", plain: sourced ? s.plain : "Automated tests checked its format and links. There was no source to check it against." }
+    : s.key === "validated" ? { ...s, label: "Cleared for training or hiring input" } : s;
   const reviewed = ev.r && ev.r !== "unreviewed";
   const validated = ev.v === "validated";
   const doneUpTo = validated ? 4 : reviewed ? 2 : 1; // index of last done step
   const id = nextId("evl");
   return h("div", { class: "ev-ladder" },
     h("h3", { class: "ev-ladder__title", id }, lad.title || "Review path for this record"),
-    h("ol", { class: "ev-ladder__steps", "aria-labelledby": id }, steps.map((s, i) => {
+    h("ol", { class: "ev-ladder__steps", "aria-labelledby": id }, steps.map(label).map((s, i) => {
       const done = i <= doneUpTo, cur = i === doneUpTo + 1;
       return h("li", { class: ["ev-ladder__step", done && "is-done", cur && "is-current"], "aria-current": cur ? "step" : null },
         h("span", { class: "ev-ladder__node", "aria-hidden": "true" }, done ? icon("check") : null),
@@ -225,7 +231,7 @@ export function useTierPath(t) {
     })));
 }
 
-const AGENT = { ca: "chief architect", de: "data engineering", lm: "labour market", fs: "foresight", fc: "field craft", dc: "data craft", sc: "statecraft", db: "domain bench", fh: "federal human capital", sl: "state and local", ps: "private sector", io: "job analysis and validation", lc: "learning and curriculum", cm: "career mobility", ia: "interoperability", cp: "product and compliance", as: "adoption", tn: "Tribal advisory (simulated)", d: "data", wp10: "change signals" };
+const AGENT = { ca: "chief architect", de: "data engineering", lm: "labour market", fs: "foresight", fc: "field craft", dc: "data craft", sc: "statecraft", db: "domain bench", fh: "federal human capital", sl: "state and local", ps: "private sector", io: "job analysis and validation", lc: "learning and curriculum", cm: "career mobility", ia: "interoperability", cp: "product and compliance", as: "adoption", d: "data", wp10: "change signals" };
 export function agentNames(by) {
   const ids = (Array.isArray(by) ? by : String(by || "").split(/[,;\s]+/)).filter(Boolean);
   const names = new Set();
@@ -253,11 +259,26 @@ export function provenance(rec, core) {
     [COPY.prov?.date || "Drafted on", ev.d ? dateLong(ev.d) : "—"],
     [COPY.prov?.evidence || "Evidence label", h("span", badgeEvidence(ev.l || "S"), " ", COPY.evidence?.[ev.l || "S"]?.plain || "")],
     [COPY.prov?.review || "Review", COPY.review?.[ev.r || "unreviewed"]?.label || "Not yet reviewed by people"],
-    [COPY.prov?.sources || "Sources", ev.src && ev.src.length ? clean(ev.src.join(", ")) : (COPY.prov?.noSources || "No source cited; this is the drafting agents' judgment")],
+    [COPY.prov?.sources || "Sources", ev.src && ev.src.length ? sourceList(ev.src) : "None cited. This record is the drafting agents' own judgment."],
     [COPY.prov?.id || "Record ID", h("span", { class: "id" }, rec?.id || "—")],
     [COPY.prov?.release || "Release", `${core.release.id} (${dateLong(core.release.date)})`],
   ];
   return h("dl", { class: "facts" }, rows.flatMap(([k, v]) => [h("dt", k), h("dd", v)]));
+}
+
+/** Source IDs with their titles and links, filled in once data/sources.js has loaded. */
+export function sourceList(ids) {
+  const ul = h("ul", { class: "src-list" }, ids.map((id) => h("li", { "data-src": id }, h("span", { class: "id" }, id))));
+  data.sources().then((S) => {
+    for (const li of ul.querySelectorAll("li[data-src]")) {
+      const s = S.src?.[li.dataset.src] || {};
+      if (!s.t) continue;
+      const bits = [s.p, s.d].filter(Boolean).join(", ");
+      li.replaceChildren(s.u ? a(s.u, s.t) : h("span", s.t), bits ? h("span", { class: "meta" }, ` (${bits})`) : null,
+        s.v ? h("span", { class: "meta" }, ` · checked in the verification pass: ${s.v}`) : null, " ", h("span", { class: "id" }, li.dataset.src));
+    }
+  }).catch(() => {});
+  return ul;
 }
 
 /** "About this record" section body: ladder, use path, provenance, actions. */

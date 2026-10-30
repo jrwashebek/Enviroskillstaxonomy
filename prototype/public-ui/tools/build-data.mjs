@@ -676,14 +676,51 @@ const search = {
   credentials: Object.fromEntries([...credRefs].map(([id, x]) => [id, { title: x.title, kinds: [...x.kinds], tasks: [...x.tasks], variants: [...x.variants] }])),
 };
 
+function parseCsvText(text) {
+  const rows = []; let row = []; let cur = ""; let q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += c; continue; }
+    if (c === '"') q = true; else if (c === ",") { row.push(cur); cur = ""; } else if (c === "\n") { row.push(cur); rows.push(row); row = []; cur = ""; } else if (c !== "\r") cur += c;
+  }
+  if (cur || row.length) { row.push(cur); rows.push(row); }
+  const [hd, ...rest] = rows;
+  return rest.filter((r) => r.length > 1).map((r) => Object.fromEntries(hd.map((k, i) => [k, r[i] ?? ""])));
+}
+// ---------------------------------------------------------------- display sanitizer (added by the HCD lead after evaluation round 1)
+// Policy texts pass through untouched. Everything else: no sentence may describe held content (the policy says pages
+// "neither show nor describe it"), and internal decision or work-package references are removed from free text.
+const POLICY = new Set([m.release.indigenousStatement, core?.status?.held?.policy].filter(Boolean));
+const HELD_CLAUSE = /[;,]?\s*(?:consultation content held under ADR-0007[^.;]*|agreement types covered by the ADR-0007 hold[^.;]*)/gi;
+const sourceIdsUsed = new Set();
+function scrub(str) {
+  if (POLICY.has(str)) return str;
+  let t = str.replace(HELD_CLAUSE, "");
+  // The explorer's HR disclaimer says "for development and planning", but no record reaches the develop use tier in rc.1.
+  // Display override (reported to the explorer's owner): keep the meaning, drop the development claim.
+  t = t.replace("This view describes work for development and planning.", "This view describes work. It is not ready for training or development plans.");
+  t = t.replace(/\s*\[(?:[^\]]*\b(?:ADR-\d{4}|CR-[A-Z]+-\d+)\b[^\]]*)\]/g, "");
+  t = t.replace(/\s*\((?:[^()]*\b(?:ADR-\d{4}|IA-CC-\d+|CR-[A-Z]+-[A-Z0-9-]+)\b[^()]*)\)/g, "");
+  t = t.replace(/^ADR-\d{4}:\s*/, "").replace(/\bWP-\d+ derivation\b/g, "derived").replace(/\bdevelopment_stage=(\w+)/g, "development stage: $1");
+  t = t.replace(/\s+([.;,])/g, "$1").replace(/^[;,]\s*/, "").replace(/\s{2,}/g, " ").trim();
+  if (t && !/[.!?)]$/.test(t) && /[.!?]$/.test(str)) t += ".";
+  return t;
+}
+function sanitize(v, k = "") {
+  if (typeof v === "string") return k === "id" || k === "slug" ? v : scrub(v);
+  if (Array.isArray(v)) { if (k === "src") v.forEach((x) => typeof x === "string" && sourceIdsUsed.add(x)); return v.map((x) => sanitize(x, k)); }
+  if (v && typeof v === "object") { const o = {}; for (const [kk, vv] of Object.entries(v)) o[kk] = sanitize(vv, kk); return o; }
+  return v;
+}
+
 // ---------------------------------------------------------------- write
 const toJs = (key, value) => {
-  const json = JSON.stringify(prune(value)).replace(/</g, "\\u003c");
+  const json = JSON.stringify(prune(sanitize(value))).replace(/</g, "\\u003c");
   return `(window.EMSTDATA = window.EMSTDATA || {})[${JSON.stringify(key)}] = ${json};\n`;
 };
 mkdirSync(OUT, { recursive: true });
 // Remove only files this script generates; app/data holds nothing else.
-for (const f of readdirSync(OUT)) if (/^(core|search|search-tasks|change|hr|paths|role-.+|comp-\d+|task-\d+)\.js$/.test(f) || f === "manifest.json") rmSync(join(OUT, f));
+for (const f of readdirSync(OUT)) if (/^(core|search|search-tasks|change|hr|paths|sources|role-.+|comp-\d+|task-\d+)\.js$/.test(f) || f === "manifest.json") rmSync(join(OUT, f));
 const written = [];
 const write = (name, key, value) => {
   const body = toJs(key, value);
@@ -699,6 +736,34 @@ write("search-tasks.js", "search:tasks", { docs: taskDocs });
 write("change.js", "change", change);
 write("hr.js", "hr", hr);
 write("paths.js", "paths", paths);
+// Source titles for every source ID cited in the exported records, so "About this record" can name and link sources.
+{
+  const srcRows = new Map();
+  const readCsv = (p) => (existsSync(p) ? parseCsvText(readFileSync(p, "utf-8")) : []);
+  for (const dir of readdirSync(join(ROOT, "docs", "research"))) for (const r of readCsv(join(ROOT, "docs", "research", dir, "sources.csv"))) if (r.source_id && !srcRows.has(r.source_id)) srcRows.set(r.source_id, { t: r.title, p: r.author_or_publisher, d: r.date_published, u: r.url });
+  for (const r of readCsv(join(ROOT, "docs", "research", "_verification", "ALL_key_facts.csv"))) if (r.fact_id) srcRows.set(r.fact_id, { t: r.source_title, p: r.source_publisher, d: r.source_date, u: r.source_url, v: r.verification_status });
+  const status = new Map(readCsv(join(ROOT, "docs", "research", "_verification", "ALL_queue_results.csv")).map((r) => [r.item_id, r.verification_status]));
+  const claimsLib = await import(pathToFileURL(join(ROOT, "site", "lib", "claims.mjs")).href);
+  const rules = claimsLib.parseRegister(claimsLib.parseCsv(readFileSync(join(ROOT, "docs", "methods", "claims_register.csv"), "utf-8")));
+  // Same claim rules the verifier applies: withheld phrases of unverified or held register rows, do-not-publish patterns, wrong forms.
+  const regRows = claimsLib.parseCsv(readFileSync(join(ROOT, "docs", "methods", "claims_register.csv"), "utf-8"));
+  const regMap = yaml.load(readFileSync(join(ROOT, "site", "claims", "register_map.yaml"), "utf-8")).rows || {};
+  const withheldPh = regRows.filter((r) => ["unverified", "held"].includes(r.status)).flatMap((r) => (regMap[r.claim_id]?.withheld_phrases || []).map((x) => String(x).toLowerCase()));
+  const dnpRx = (yaml.load(readFileSync(join(ROOT, "site", "claims", "do_not_publish.yaml"), "utf-8")).patterns || []).filter((d) => !d.unless_before).map((d) => new RegExp(d.rx, "i"));
+  const strictRx = rules.strict.map((w) => new RegExp(claimsLib.phraseRx(w.phrase).source, "i"));
+  const out = {};
+  for (const id of [...sourceIdsUsed].sort()) {
+    const r = srcRows.get(id);
+    if (!r) { out[id] = {}; continue; }
+    const text = [r.t, r.p].join(" ");
+    if (!releasable(text)) { out[id] = { held: 1 }; continue; } // never print a title that trips the content hold
+    const all = [r.t, r.p, r.u].join(" ");
+    const low = all.toLowerCase();
+    if (claimsLib.textViolates(all, rules) || withheldPh.some((w) => low.includes(w)) || dnpRx.some((rx) => rx.test(all)) || strictRx.some((rx) => rx.test(all))) { out[id] = { withheld: 1 }; continue; }
+    out[id] = { t: r.t, p: r.p, d: r.d, u: /^https:\/\/[^\s?]+$/.test(r.u || "") ? r.u : undefined, v: r.v || status.get(id) };
+  }
+  write("sources.js", "sources", { note: "Titles from the repository's research source registers; verification status from the V-pass files where present.", src: out });
+}
 // The manifest lists the files, keys and sizes in bytes (raw and gzip -9); the verifier reads it; pages do not load it.
 writeFileSync(join(OUT, "manifest.json"), JSON.stringify({ release: m.release.id, builtFrom: "site/lib/model.mjs buildModel", files: written.map(({ name, key, raw, gz }) => ({ name, key, raw, gz })) }, null, 1) + "\n");
 
