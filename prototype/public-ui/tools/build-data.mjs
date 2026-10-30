@@ -701,6 +701,13 @@ function scrub(str) {
   t = t.replace("This view describes work for development and planning.", "This view describes work. It is not ready for training or development plans.");
   t = t.replace(/\s*\[(?:[^\]]*\b(?:ADR-\d{4}|CR-[A-Z]+-\d+)\b[^\]]*)\]/g, "");
   t = t.replace(/\s*\((?:[^()]*\b(?:ADR-\d{4}|IA-CC-\d+|CR-[A-Z]+-[A-Z0-9-]+)\b[^()]*)\)/g, "");
+  // Internal work-item codes of the drafting agents, e.g. "(DB-C49)", "(SL-056)", "core SL-C08".
+  t = t.replace(/\s*\((?:core\s+)?(?:CA|DE|LM|FS|FC|DC|SC|DB|FH|SL|PS|IO|LC|CM|IA|CP|AS)-C?\d{2,3}[a-z]?(?:[;,]\s*(?:core\s+)?(?:CA|DE|LM|FS|FC|DC|SC|DB|FH|SL|PS|IO|LC|CM|IA|CP|AS)-C?\d{2,3}[a-z]?)*\)/g, "");
+  t = t.replace(/\(core (?:CA|DE|LM|FS|FC|DC|SC|DB|FH|SL|PS|IO|LC|CM|IA|CP|AS)-C\d{2,3}\)/g, "");
+  // Lineage pointers inside definitions, e.g. "(v1 1.4.5, DB-C49)", and work-package or translation IDs in brackets.
+  t = t.replace(/\s*\(v1 [\d.]+(?:,\s*[A-Z]{2}-C?\d{2,3}[a-z]?)*\)/g, "").replace(/,\s*(?:CA|DE|LM|FS|FC|DC|SC|DB|FH|SL|PS|IO|LC|CM|IA|CP|AS)-C\d{2,3}[a-z]?\b/g, "");
+  t = t.replace(/\s*\((?:WP-\d{2}|TR-\d{2})\)/g, "");
+  t = t.replace(/\bAbsorbs (?:[A-Z]{2}-C\d{2,3}[a-z]?(?:\s*\([^)]*\))?(?:,\s*|\s+and\s+)?)+\.\s*/g, "");
   t = t.replace(/^ADR-\d{4}:\s*/, "").replace(/\bWP-\d+ derivation\b/g, "derived").replace(/\bdevelopment_stage=(\w+)/g, "development stage: $1");
   t = t.replace(/\s+([.;,])/g, "$1").replace(/^[;,]\s*/, "").replace(/\s{2,}/g, " ").trim();
   if (t && !/[.!?)]$/.test(t) && /[.!?]$/.test(str)) t += ".";

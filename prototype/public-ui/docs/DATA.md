@@ -497,13 +497,13 @@ Result: **PASS** (0 problems). Release 2.0.0-rc.1; verified 2026-10-30 by `tools
 | File | Raw KB | Gzipped KB |
 |---|---:|---:|
 | core.js | 258.7 | 59.4 |
-| role-*.js (37 files; largest 11.7 KB gz) | 2030.9 | 260.9 |
-| comp-NN.js (12 files; largest 35.6 KB gz) | 1895.6 | 350.4 |
+| role-*.js (37 files; largest 11.7 KB gz) | 2030.8 | 260.9 |
+| comp-NN.js (12 files; largest 35.5 KB gz) | 1894.7 | 349.7 |
 | task-NN.js (14 files; largest 17.1 KB gz) | 1901.5 | 221.9 |
 | search.js | 210.6 | 43.6 |
 | search-tasks.js | 338.3 | 88.6 |
 | change.js | 179.9 | 22.9 |
 | hr.js | 449.5 | 41.7 |
 | paths.js | 675.5 | 25.1 |
-| **Total (70 files)** | **7992.6** | **1131.9** |
+| **Total (70 files)** | **7991.5** | **1131.2** |
 <!-- verification:end -->

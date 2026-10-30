@@ -274,8 +274,8 @@ export function sourceList(ids) {
       const s = S.src?.[li.dataset.src] || {};
       if (!s.t) continue;
       const bits = [s.p, s.d].filter(Boolean).join(", ");
-      li.replaceChildren(s.u ? a(s.u, s.t) : h("span", s.t), bits ? h("span", { class: "meta" }, ` (${bits})`) : null,
-        s.v ? h("span", { class: "meta" }, ` · checked in the verification pass: ${s.v}`) : null, " ", h("span", { class: "id" }, li.dataset.src));
+      li.replaceChildren(...[s.u ? a(s.u, s.t) : h("span", s.t), bits ? h("span", { class: "meta" }, ` (${bits})`) : null,
+        s.v ? h("span", { class: "meta" }, ` · checked in the verification pass: ${s.v}`) : null, " ", h("span", { class: "id" }, li.dataset.src)].filter((x) => x !== null && x !== undefined));
     }
   }).catch(() => {});
   return ul;
