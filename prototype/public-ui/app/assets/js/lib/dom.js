@@ -49,7 +49,7 @@ export function icon(name, label) {
   if (label) { svg.setAttribute("role", "img"); svg.setAttribute("aria-label", label); }
   else svg.setAttribute("aria-hidden", "true");
   const use = document.createElementNS(ns, "use");
-  use.setAttribute("href", `assets/icons.svg#i-${name}`);
+  use.setAttribute("href", `assets/icons.svg#${name}`);
   svg.appendChild(use);
   return svg;
 }

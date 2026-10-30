@@ -11,7 +11,10 @@
   /* ---------- Theme switch (gallery only; the site follows the device unless data-theme is set) ---------- */
   function paintSwatches() {
     var cs = getComputedStyle(root);
-    $all("[data-token]").forEach(function (el) { el.style.background = "var(" + el.getAttribute("data-token") + ")"; });
+    $all("[data-token]").forEach(function (el) {
+      el.style.background = "var(" + el.getAttribute("data-token") + ")";
+      el.style.width = el.style.height = "1.5rem"; el.style.margin = "0"; el.style.border = "1px solid var(--ui-border)";
+    });
     $all("[data-token-value]").forEach(function (el) { el.textContent = cs.getPropertyValue(el.getAttribute("data-token-value")).trim(); });
   }
   $all('#theme-switch input[name="theme"]').forEach(function (input) {
@@ -88,7 +91,7 @@
       return SUGGEST.filter(function (s) {
         var hay = (s.t + " " + s.a + " " + s.k).toLowerCase();
         return w.every(function (x) { return hay.indexOf(x) !== -1; });
-      }).slice(0, 6);
+      }).slice(0, 8);
     }
     function highlight(el, text, q) {
       var w = words(q).filter(function (x) { return x.length > 1; });
@@ -99,51 +102,76 @@
         else if (part) el.appendChild(doc.createTextNode(part));
       });
     }
+    function options() { return $all('[role="option"]', lb); }
     function setActive(i) {
       active = i;
-      $all('[role="option"]', lb).forEach(function (o, j) { o.setAttribute("aria-selected", String(j === i)); });
+      var opts = options();
+      opts.forEach(function (o, j) { o.setAttribute("aria-selected", String(j === i)); });
       if (i >= 0) {
-        var opt = lb.children[i];
-        input.setAttribute("aria-activedescendant", opt.id);
-        opt.scrollIntoView({ block: "nearest" });
+        input.setAttribute("aria-activedescendant", opts[i].id);
+        opts[i].scrollIntoView({ block: "nearest" });
       } else input.removeAttribute("aria-activedescendant");
     }
     function close() {
       lb.hidden = true; input.setAttribute("aria-expanded", "false"); setActive(-1);
     }
+    function option(id, onPick) {
+      var li = doc.createElement("li");
+      li.className = "listbox__option"; li.id = id; li.setAttribute("role", "option"); li.setAttribute("aria-selected", "false");
+      li.addEventListener("mousedown", function (e) { e.preventDefault(); });
+      li.addEventListener("click", onPick);
+      return li;
+    }
+    /* Suggestions after 2 characters, grouped by kind, "See all results" last (DESIGN_SPEC 3.3). */
     function render() {
       var q = input.value.trim();
-      items = matches(q);
+      items = q.length < 2 ? [] : matches(q);
       lb.textContent = "";
-      items.forEach(function (s, i) {
-        var li = doc.createElement("li");
-        li.className = "listbox__option"; li.id = "q-opt-" + i; li.setAttribute("role", "option"); li.setAttribute("aria-selected", "false");
-        var t = doc.createElement("span"); t.className = "listbox__title"; highlight(t, s.t, q);
-        var k = doc.createElement("span"); k.className = "listbox__kind"; k.textContent = s.k;
-        var x = doc.createElement("span"); x.className = "listbox__ctx"; x.textContent = s.x;
-        li.appendChild(t); li.appendChild(k); li.appendChild(x);
-        li.addEventListener("mousedown", function (e) { e.preventDefault(); });
-        li.addEventListener("click", function () { choose(i); });
-        lb.appendChild(li);
+      var kinds = [];
+      items.forEach(function (s) { var k = s.k.indexOf("OPM") === 0 ? "OPM series" : s.k; if (kinds.indexOf(k) === -1) kinds.push(k); s.g = k; });
+      var order = [];
+      kinds.forEach(function (k, gi) {
+        var wrap = doc.createElement("li"); wrap.setAttribute("role", "none");
+        var ul = doc.createElement("ul"); ul.setAttribute("role", "group"); ul.setAttribute("aria-labelledby", "q-g" + gi);
+        var lab = doc.createElement("li"); lab.setAttribute("role", "none"); lab.className = "listbox__group-label"; lab.id = "q-g" + gi; lab.textContent = k === "Role" ? "Roles" : k === "Competency" ? "Competencies" : k;
+        ul.appendChild(lab);
+        items.forEach(function (s) {
+          if (s.g !== k) return;
+          var idx = order.length; order.push(s);
+          var li = option("q-opt-" + idx, function () { choose(idx); });
+          var t = doc.createElement("span"); t.className = "listbox__title"; highlight(t, s.t, q);
+          var x = doc.createElement("span"); x.className = "listbox__ctx"; x.textContent = s.x;
+          li.appendChild(t); li.appendChild(x); ul.appendChild(li);
+        });
+        wrap.appendChild(ul); lb.appendChild(wrap);
       });
+      items = order;
+      if (items.length) {
+        var all = option("q-opt-all", function () { choose(items.length); });
+        all.className += " listbox__all";
+        all.textContent = 'See all results for "' + q + '"';
+        lb.appendChild(all);
+      }
       var open = items.length > 0;
       lb.hidden = !open; input.setAttribute("aria-expanded", String(open)); setActive(-1);
       clearTimeout(announceTimer);
       announceTimer = setTimeout(function () {
-        status.textContent = !q ? "" : open ? items.length + (items.length === 1 ? " suggestion." : " suggestions.") : "No suggestions. Press Enter to search all records.";
+        status.textContent = q.length < 2 ? "" : open ? items.length + (items.length === 1 ? " suggestion." : " suggestions.") : "No suggestions. Press Enter to search all records.";
       }, 500);
     }
     function choose(i) {
       var s = items[i];
-      if (!s) return;
-      input.value = s.t; close();
+      close();
+      if (!s) { status.textContent = "In the site this opens all results. The query is never put in the address."; return; }
+      input.value = s.t;
       status.textContent = s.k + ": " + s.t + ". In the site this opens the record page.";
     }
     input.addEventListener("input", render);
     input.addEventListener("keydown", function (e) {
-      var open = !lb.hidden, n = items.length;
-      if (e.key === "ArrowDown") { e.preventDefault(); if (!open) render(); if (items.length) setActive(active < items.length - 1 ? active + 1 : 0); }
-      else if (e.key === "ArrowUp") { e.preventDefault(); if (open && n) setActive(active > 0 ? active - 1 : n - 1); }
+      var open = !lb.hidden;
+      var total = options().length;
+      if (e.key === "ArrowDown") { e.preventDefault(); if (!open) { render(); total = options().length; } if (total) setActive(active < total - 1 ? active + 1 : 0); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); if (open && total) setActive(active > 0 ? active - 1 : total - 1); }
       else if (e.key === "Enter" && open && active >= 0) { e.preventDefault(); choose(active); }
       else if (e.key === "Escape") { if (open) { e.preventDefault(); close(); } else input.value = ""; }
       else if (e.key === "Tab") close();

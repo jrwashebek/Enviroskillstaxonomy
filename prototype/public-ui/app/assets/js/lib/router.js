@@ -88,7 +88,7 @@ async function render() {
   if (token !== renderToken) return; // a newer navigation won
   const prevPath = current.path;
   current = { path, section };
-  clear(main).appendChild(out.node);
+  clear(main).appendChild(h("div", { class: "container" }, out.node));
   main.removeAttribute("aria-busy");
   document.title = out.title ? `${out.title} · EMST` : "EMST · Environmental Management Skills Taxonomy";
   hooks.afterRender?.({ path, out });

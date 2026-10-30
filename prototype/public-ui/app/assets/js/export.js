@@ -1,6 +1,7 @@
 // Copy, print and download helpers. Everything is built in the browser from the loaded data; nothing is sent anywhere.
 // Exports always carry the release, date, page address, AI-drafting status and the use limits, so caveats travel with the text.
 // Licence: Apache-2.0.
+import { COPY, fill } from "./content.js";
 
 export function pageUrl() { return String(location.href); }
 
@@ -43,19 +44,11 @@ export const toCsv = (rows) => rows.map((r) => r.map(csvCell).join(",")).join("\
 
 export const safeName = (s) => String(s || "emst").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
 
-/** Header and footer lines shared by every export. */
+/** Header and footer text shared by every export (wording from content.js). */
 export function exportFrame(core, title) {
-  const r = core.release;
-  const head = [
-    `${title}`,
-    `Environmental Management Skills Taxonomy (EMST), draft release ${r.id} (${r.date}).`,
-    `Source page: ${pageUrl()}`,
-    `Drafted by AI agents. Not yet reviewed by people. Describes work only: not a job analysis, classification basis, assessment, or input to hiring, performance or reduction-in-force decisions.`,
-  ];
-  const foot = [
-    `Data licence: CC0 1.0 (public domain dedication). Cite: EMST project lead (${String(r.date).slice(0, 4)}). Environmental Management Skills Taxonomy, release ${r.id}.`,
-    `Report a problem: ${core.text?.issuesUrl || "https://github.com/jrwashebek/Enviroskillstaxonomy/issues"}`,
-  ];
+  const today = new Date().toISOString().slice(0, 10);
+  const head = fill(COPY.actions?.exportHeader || "{title}\nEMST draft release {release}.\nTaken from {url} on {date}.", { title, release: core.release.id, url: pageUrl(), date: today }).split("\n");
+  const foot = String(COPY.actions?.exportFooter || "Data: CC0 1.0.").split("\n");
   return { head, foot };
 }
 

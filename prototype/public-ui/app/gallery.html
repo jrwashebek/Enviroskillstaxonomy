@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'; frame-src 'none'">
 <title>Interface components | EMST</title>
 <meta name="description" content="The EMST design system: tokens, type and every interface component, in light and dark.">
 <link rel="preload" href="assets/fonts/public-sans-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -61,7 +61,7 @@
 <main id="main" tabindex="-1">
   <div class="container">
     <div class="print-only print-meta">
-      <p>EMST release 2.0.0-rc.1 (25 October 2026). Printed from the EMST design system gallery: <a href="https://github.com/jrwashebek/Enviroskillstaxonomy">github.com/jrwashebek/Enviroskillstaxonomy</a></p>
+      <p>EMST release 2.0.0-rc.1 (25 October 2026). Printed from the design system gallery of the <a href="https://github.com/jrwashebek/Enviroskillstaxonomy">EMST repository</a>.</p>
       <p>Drafted by AI agents and not yet reviewed by a person. Not for selection, classification or performance decisions.</p>
     </div>
 
@@ -77,11 +77,13 @@
       <h1>Interface components</h1>
       <p class="lede">The parts EMST's public pages are built from. The examples use real records from release 2.0.0-rc.1, so you can see each part with the length and awkwardness of real content.</p>
       <div class="page-head__status cluster">
-        <fieldset class="segmented" id="theme-switch">
-          <legend class="vh">Theme</legend>
-          <label><input type="radio" name="theme" value="system" checked><span>Match device</span></label>
-          <label><input type="radio" name="theme" value="light"><span>Light</span></label>
-          <label><input type="radio" name="theme" value="dark"><span>Dark</span></label>
+        <fieldset class="facet" id="theme-switch">
+          <legend class="facet__legend">Theme for this gallery</legend>
+          <div class="chips">
+            <label class="chip"><input class="chip__input" type="radio" name="theme" value="system" checked><span class="chip__face"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#check"/></svg>Match device</span></label>
+            <label class="chip"><input class="chip__input" type="radio" name="theme" value="light"><span class="chip__face"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#check"/></svg>Light</span></label>
+            <label class="chip"><input class="chip__input" type="radio" name="theme" value="dark"><span class="chip__face"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#check"/></svg>Dark</span></label>
+          </div>
         </fieldset>
       </div>
     </div>
@@ -177,7 +179,7 @@
           <p class="prose">Search uses the ARIA 1.2 combobox pattern with a list of suggestions. Each suggestion names its kind (role, competency, task, series) so that two items with the same words can be told apart. These are the states, drawn statically.</p>
           <div class="stack-lg">
             <div class="panel">
-              <p class="meta">Expanded, second suggestion active</p>
+              <p class="meta">Expanded and grouped by kind, second suggestion active</p>
               <div class="search search--page">
                 <label class="search__label" for="q-demo1">Search roles, tasks, competencies and series codes</label>
                 <div class="search__row">
@@ -187,10 +189,14 @@
                   <button class="search__btn" type="button"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#search"/></svg><span>Search</span></button>
                 </div>
                 <ul class="listbox listbox--static" id="q-demo1-list" role="listbox" aria-label="Search suggestions">
-                  <li class="listbox__option" id="q-demo1-o1" role="option" aria-selected="false"><span class="listbox__title">Fuels and <mark>prescribed fire</mark> specialist</span><span class="listbox__kind">Role</span><span class="listbox__ctx">Forest module</span></li>
-                  <li class="listbox__option" id="q-demo1-o2" role="option" aria-selected="true"><span class="listbox__title">Plan smoke management for <mark>prescribed</mark> and managed <mark>fire</mark> within air quality requirements</span><span class="listbox__kind">Competency</span><span class="listbox__ctx">Air module, levels L2 to L4</span></li>
-                  <li class="listbox__option" id="q-demo1-o3" role="option" aria-selected="false"><span class="listbox__title">Wildland <mark>fire</mark> operations (crew to supervisor)</span><span class="listbox__kind">Role</span><span class="listbox__ctx">Also called: "Rx burn" crew</span></li>
-                  <li class="listbox__option listbox__all" id="q-demo1-o4" role="option" aria-selected="false"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#search"/></svg><span>See all results for "prescribed fire"</span></li>
+                  <li role="none"><ul role="group" aria-labelledby="q-demo1-g1"><li role="none" class="listbox__group-label" id="q-demo1-g1">Roles</li>
+                    <li class="listbox__option" id="q-demo1-o1" role="option" aria-selected="false"><span class="listbox__title">Fuels and <mark>prescribed fire</mark> specialist</span><span class="listbox__ctx">Forest module</span></li>
+                    <li class="listbox__option" id="q-demo1-o2" role="option" aria-selected="true"><span class="listbox__title">Wildland <mark>fire</mark> operations (crew to supervisor)</span><span class="listbox__ctx">Forest module</span></li>
+                  </ul></li>
+                  <li role="none"><ul role="group" aria-labelledby="q-demo1-g2"><li role="none" class="listbox__group-label" id="q-demo1-g2">Competencies</li>
+                    <li class="listbox__option" id="q-demo1-o3" role="option" aria-selected="false"><span class="listbox__title">Plan smoke management for <mark>prescribed</mark> and managed <mark>fire</mark> within air quality requirements</span><span class="listbox__ctx">Air module, levels L2 to L4</span></li>
+                  </ul></li>
+                  <li class="listbox__option listbox__all" id="q-demo1-o4" role="option" aria-selected="false"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#search"/></svg><span>See all results for "prescribed fire"</span></li>
                 </ul>
               </div>
             </div>
@@ -224,21 +230,29 @@
             <p class="page-head__kind"><span>Role profile, core module</span><span class="id">ROL-ZJFCC09</span></p>
             <p class="h1">Field resource technician</p>
             <p class="lede">Collects vegetation, wildlife, water and soil data to protocol, keeps samples and records trustworthy, and checks remote and AI-generated products against what is on the ground.</p>
-            <div class="page-head__status cluster">
-              <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
-              <span class="badge badge--ok"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#established"/></svg>Established</span>
+            <div class="page-head__status status-line">
+              <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
+              <p><strong>Use for</strong> describing work, workforce planning and curriculum mapping. <strong>Not for</strong> hiring, classification or performance decisions.</p>
               <span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#draft"/></svg>AI-drafted, not yet reviewed</span>
+              <a href="#ladder">About this record</a>
             </div>
           </div>
         </section>
 
         <section class="section" id="cards" aria-labelledby="h-cards">
           <div class="section__head"><h2 id="h-cards">Cards</h2><p class="meta">The whole card is one link target.</p></div>
+          <h3 class="h4">Figures</h3>
+          <ul class="cluster">
+            <li class="panel fig"><p class="fig__n num">37</p><p class="fig__label">role profiles</p><span class="badge badge--compact ev ev--e"><span class="ev__mark" aria-hidden="true">E</span><span><span class="vh">Evidence label E: </span>Sourced</span></span></li>
+            <li class="panel fig"><p class="fig__n num">223</p><p class="fig__label">competencies</p><span class="badge badge--compact ev ev--e"><span class="ev__mark" aria-hidden="true">E</span><span><span class="vh">Evidence label E: </span>Sourced</span></span></li>
+            <li class="panel fig"><p class="fig__n num">1,317</p><p class="fig__label">tasks</p><span class="badge badge--compact ev ev--e"><span class="ev__mark" aria-hidden="true">E</span><span><span class="vh">Evidence label E: </span>Sourced</span></span></li>
+          </ul>
+          <h3 class="h4">Role and competency cards</h3>
           <ul class="card-list">
             <li>
               <article class="card">
                 <p class="card__kind"><span>Role</span><span class="id">ROL-ZJFCC09</span></p>
-                <h3 class="card__title"><a class="card__link" href="#cards">Field resource technician</a></h3>
+                <h3 class="card__title h4"><a class="card__link" href="#cards">Field resource technician</a></h3>
                 <p class="card__summary">Collects and records field observations and samples to protocol, and checks automated and remote products against the ground.</p>
                 <dl class="card__meta">
                   <div><dt>Tasks</dt><dd>35</dd></div>
@@ -246,7 +260,7 @@
                   <div><dt>Levels</dt><dd>Entry, journey</dd></div>
                 </dl>
                 <div class="card__badges cluster">
-                  <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
+                  <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
                   <span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#draft"/></svg>AI-drafted</span>
                 </div>
               </article>
@@ -254,7 +268,7 @@
             <li>
               <article class="card">
                 <p class="card__kind"><span>Role</span><span class="id">ROL-ZK41BZA</span></p>
-                <h3 class="card__title"><a class="card__link" href="#cards">Conservation corps member</a></h3>
+                <h3 class="card__title h4"><a class="card__link" href="#cards">Conservation corps member</a></h3>
                 <p class="card__summary">Carries out crew-based land treatment work safely to specification, and learns field judgment through supervised repetition.</p>
                 <dl class="card__meta">
                   <div><dt>Tasks</dt><dd>29</dd></div>
@@ -262,7 +276,7 @@
                   <div><dt>Levels</dt><dd>Entry</dd></div>
                 </dl>
                 <div class="card__badges cluster">
-                  <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
+                  <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
                   <span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#draft"/></svg>AI-drafted</span>
                 </div>
               </article>
@@ -270,7 +284,7 @@
             <li>
               <article class="card card--comp">
                 <p class="card__kind"><span>Competency, practice</span><span class="id">CMP-QSAV0HJ</span></p>
-                <h3 class="card__title"><a class="card__link" href="#levels">Ground-truth remote-sensed, modelled and AI-generated outputs in the field</a></h3>
+                <h3 class="card__title h4"><a class="card__link" href="#levels">Ground-truth remote-sensed, modelled and AI-generated outputs in the field</a></h3>
                 <p class="card__summary">Plan and collect field reference data, blind to predictions, to test maps, model outputs and automated classifications.</p>
                 <dl class="card__meta">
                   <div><dt>Levels</dt><dd><span class="span"><span class="span__cells" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>L1 to L4</span></dd></div>
@@ -278,7 +292,7 @@
                   <div><dt>Roles</dt><dd>7</dd></div>
                 </dl>
                 <div class="card__badges cluster">
-                  <span class="badge tier tier--exploratory"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Exploratory</span></span>
+                  <span class="badge tier tier--exploratory"><span class="tier__steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Exploratory</span></span>
                   <span class="badge badge--warn"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#eye"/></svg>Watch</span>
                 </div>
               </article>
@@ -286,7 +300,7 @@
             <li>
               <article class="card card--comp">
                 <p class="card__kind"><span>Competency, practice</span><span class="id">CMP-0CT0C9G</span></p>
-                <h3 class="card__title"><a class="card__link" href="#cards">Communicate during field emergencies and report incidents</a></h3>
+                <h3 class="card__title h4"><a class="card__link" href="#cards">Communicate during field emergencies and report incidents</a></h3>
                 <p class="card__summary">Keep reliable communication where there is no coverage, report emergencies to dispatch accurately, and document incidents and near misses.</p>
                 <dl class="card__meta">
                   <div><dt>Levels</dt><dd><span class="span"><span class="span__cells" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>L1 to L3</span></dd></div>
@@ -294,7 +308,7 @@
                   <div><dt>Roles</dt><dd>3</dd></div>
                 </dl>
                 <div class="card__badges cluster">
-                  <span class="badge tier tier--exploratory"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Exploratory</span></span>
+                  <span class="badge tier tier--exploratory"><span class="tier__steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Exploratory</span></span>
                   <span class="badge badge--ok"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#established"/></svg>Established</span>
                 </div>
               </article>
@@ -309,19 +323,19 @@
               <h3 class="h4">Use tier</h3>
               <p class="meta">Four steps, filled to the tier. Develop and select are not reached in this release.</p>
               <div class="cluster">
-                <span class="badge tier tier--exploratory"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Exploratory</span></span>
-                <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
+                <span class="badge tier tier--exploratory"><span class="tier__steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Exploratory</span></span>
+                <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
                 <span class="badge tier tier--locked"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#lock"/></svg><span>Develop: not yet available</span></span>
                 <span class="badge tier tier--locked"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#lock"/></svg><span>Select: not yet available</span></span>
               </div>
             </div>
-            <div>
-              <h3 class="h4" id="h-tierscale">What this record may be used for</h3>
-              <ol class="tier-scale" aria-labelledby="h-tierscale">
-                <li class="tier-scale__step"><span class="tier-scale__name">Exploratory</span><span>Foresight and curriculum exploration.</span></li>
-                <li class="tier-scale__step is-current" aria-current="true"><span class="tier-scale__name">Describe</span><span>Workforce analytics, planning and curriculum mapping.</span><span class="tier-scale__here">This record</span></li>
-                <li class="tier-scale__step is-locked"><span class="tier-scale__name"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#lock"/></svg>Develop</span><span>Training, task books, development plans and self-assessment.</span><span class="tier-scale__lock">Not yet available in this release</span></li>
-                <li class="tier-scale__step is-locked"><span class="tier-scale__name"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#lock"/></svg>Select</span><span>Hiring, and only as input to an employer's own job analysis.</span><span class="tier-scale__lock">Not yet available in this release</span></li>
+            <div class="ev-ladder">
+              <h3 class="ev-ladder__title" id="h-tierscale">What this record may be used for</h3>
+              <ol class="ev-ladder__steps" aria-labelledby="h-tierscale">
+                <li class="ev-ladder__step is-done"><span class="ev-ladder__node" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#check"/></svg></span><span class="ev-ladder__label">Exploratory<span class="vh">: allowed</span></span><span class="ev-ladder__desc">Foresight and curriculum exploration.</span></li>
+                <li class="ev-ladder__step is-current" aria-current="step"><span class="ev-ladder__node" aria-hidden="true"></span><span class="ev-ladder__label">Describe</span><span class="ev-ladder__here">This record</span><span class="ev-ladder__desc">Workforce analytics, planning and curriculum mapping.</span></li>
+                <li class="ev-ladder__step is-locked"><span class="ev-ladder__node" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#lock"/></svg></span><span class="ev-ladder__label">Develop</span><span class="ev-ladder__desc">Training, task books, development plans and self-assessment. <b>Not yet available in this release.</b></span></li>
+                <li class="ev-ladder__step is-locked"><span class="ev-ladder__node" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#lock"/></svg></span><span class="ev-ladder__label">Select</span><span class="ev-ladder__desc">Hiring, and only as input to an employer's own job analysis. <b>Not yet available in this release.</b></span></li>
               </ol>
             </div>
             <div>
@@ -364,11 +378,11 @@
 
         <section class="section" id="pending" aria-labelledby="h-pending">
           <div class="section__head"><h2 id="h-pending">Assessment pending</h2></div>
-          <p class="prose">Importance, time share, critical, needed at entry, craft, work function and exposure are held until a reliability study passes. In a sentence or a table cell the pending mark sits where the value would be: <span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span>. Where a chart would be, the whole area is hatched.</p>
+          <p class="prose">Importance, time share, critical, needed at entry, craft, work function and exposure are held until a reliability study passes. For one value on its own, such as a fact on a task page, the mark sits where the value would be: <span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span>. For a list or table, never mark each row: show one hatched summary for the section, as below and under the task table.</p>
           <div class="pending pending--block">
             <div class="pending__label">
               <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>
-              <p class="pending__title">Time share by task: assessment pending</p>
+              <p class="pending__title">Time share by task: not yet assessed</p>
               <p class="pending__text">No multi-rater v2 assessment of this value yet. We show nothing rather than a draft number, and never a zero.</p>
               <a href="#notices">Why some values are held back</a>
             </div>
@@ -396,6 +410,7 @@
           <div class="section__head"><h2 id="h-levels">Proficiency levels</h2><p class="meta">CMP-QSAV0HJ, target for Field resource technician</p></div>
           <h3 class="h4" id="h-levels-comp">Ground-truth remote-sensed, modelled and AI-generated outputs in the field</h3>
           <p class="meta">Defined at L1 to L4. Indicators are AI-drafted and placed at levels only provisionally.</p>
+          <p class="cluster"><span class="badge level-chip"><span class="level-chip__code">L1</span>Supervised</span><span class="badge level-chip"><span class="level-chip__code">L2</span>Independent</span><span class="badge level-chip"><span class="level-chip__code">L3</span>Senior</span><span class="badge level-chip"><span class="level-chip__code">L4</span>Lead / Expert</span><span class="badge level-chip"><span class="level-chip__code">L5</span>Strategic</span></p>
           <ol class="levels" aria-labelledby="h-levels-comp">
             <li class="level">
               <div class="level__rung" aria-hidden="true">L1</div>
@@ -517,22 +532,28 @@
                   <th scope="col" class="is-sortable" aria-sort="ascending"><button class="sort" type="button" data-col="0">Task<svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#sort-asc"/></svg></button></th>
                   <th scope="col" class="is-sortable num"><button class="sort" type="button" data-col="1" data-type="num">Competencies<svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#sort"/></svg></button></th>
                   <th scope="col">Role levels</th>
-                  <th scope="col">Importance</th>
-                  <th scope="col">Time share</th>
-                  <th scope="col">Use tier</th>
+                                    <th scope="col">Use tier</th>
                   <th scope="col">Evidence</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><th scope="row">Adapt the vegetation sampling layout when burned, flooded or grazed site conditions depart from protocol assumptions</th><td class="num">1</td><td>Journey</td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td>Describe</td><td>J, unreviewed</td></tr>
-                <tr><th scope="row">Conduct point-count, transect or call-playback wildlife surveys to protocol</th><td class="num">1</td><td>Entry, journey</td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td>Describe</td><td>J, unreviewed</td></tr>
-                <tr><th scope="row">Establish vegetation monitoring plots to protocol and record species composition, cover and density</th><td class="num">1</td><td>Entry, journey</td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td>Describe</td><td>J, unreviewed</td></tr>
-                <tr><th scope="row">Identify plants on sample plots to the protocol's required taxonomic level, collecting labelled vouchers</th><td class="num">2</td><td>Entry, journey</td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td>Describe</td><td>J, unreviewed</td></tr>
-                <tr><th scope="row">Identify wildlife sign such as tracks, scat, nests and feeding remains, recording a confidence level for each record</th><td class="num">1</td><td>Entry, journey</td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td>Describe</td><td>J, unreviewed</td></tr>
+                <tr><th scope="row">Adapt the vegetation sampling layout when burned, flooded or grazed site conditions depart from protocol assumptions</th><td class="num">1</td><td>Journey</td><td>Describe</td><td><span class="badge badge--compact ev ev--j"><span class="ev__mark" aria-hidden="true">J</span><span><span class="vh">Evidence label J: </span>Judgment</span></span></td></tr>
+                <tr><th scope="row">Conduct point-count, transect or call-playback wildlife surveys to protocol</th><td class="num">1</td><td>Entry, journey</td><td>Describe</td><td><span class="badge badge--compact ev ev--j"><span class="ev__mark" aria-hidden="true">J</span><span><span class="vh">Evidence label J: </span>Judgment</span></span></td></tr>
+                <tr><th scope="row">Establish vegetation monitoring plots to protocol and record species composition, cover and density</th><td class="num">1</td><td>Entry, journey</td><td>Describe</td><td><span class="badge badge--compact ev ev--j"><span class="ev__mark" aria-hidden="true">J</span><span><span class="vh">Evidence label J: </span>Judgment</span></span></td></tr>
+                <tr><th scope="row">Identify plants on sample plots to the protocol's required taxonomic level, collecting labelled vouchers</th><td class="num">2</td><td>Entry, journey</td><td>Describe</td><td><span class="badge badge--compact ev ev--j"><span class="ev__mark" aria-hidden="true">J</span><span><span class="vh">Evidence label J: </span>Judgment</span></span></td></tr>
+                <tr><th scope="row">Identify wildlife sign such as tracks, scat, nests and feeding remains, recording a confidence level for each record</th><td class="num">1</td><td>Entry, journey</td><td>Describe</td><td><span class="badge badge--compact ev ev--j"><span class="ev__mark" aria-hidden="true">J</span><span><span class="vh">Evidence label J: </span>Judgment</span></span></td></tr>
               </tbody>
             </table>
           </div>
 
+          <div class="pending pending--block">
+            <div class="pending__label">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>
+              <p class="pending__title">Not yet assessed: importance, time share, critical, needed at entry, craft blend and exposure to automation</p>
+              <p class="pending__text">0 of 35 tasks assessed. These values appear only after a multi-rater reliability study passes. Until then nothing is shown, not even a zero.</p>
+              <a href="#pending">Why some values are held back</a>
+            </div>
+          </div>
           <div class="table-scroll" role="region" aria-labelledby="cap-xw" tabindex="0">
             <table class="data-table data-table--sticky">
               <caption id="cap-xw">Crosswalk candidates for Field resource technician<span class="data-table__hint">All rows are unreviewed AI matches. None is a classification basis.</span></caption>
@@ -551,8 +572,8 @@
           <div class="section__head"><h2 id="h-compare">Comparison</h2></div>
           <div class="compare">
             <div class="compare__roles">
-              <div class="compare__role"><span class="key" aria-hidden="true"></span><div><p class="meta">First role</p><h3><a href="#cards">Field resource technician</a></h3><p class="meta">24 competencies</p></div></div>
-              <div class="compare__role compare__role--b"><span class="key key--b" aria-hidden="true"></span><div><p class="meta">Second role</p><h3><a href="#cards">Conservation corps member</a></h3><p class="meta">18 competencies</p></div></div>
+              <div class="compare__role"><span class="key" aria-hidden="true"></span><div><p class="meta">First role</p><h3 class="h4"><a href="#cards">Field resource technician</a></h3><p class="meta">24 competencies</p></div></div>
+              <div class="compare__role compare__role--b"><span class="key key--b" aria-hidden="true"></span><div><p class="meta">Second role</p><h3 class="h4"><a href="#cards">Conservation corps member</a></h3><p class="meta">18 competencies</p></div></div>
             </div>
             <figure class="overlap">
               <figcaption class="overlap__caption">How their competencies overlap</figcaption>
@@ -672,7 +693,7 @@
             </figure>
             <div>
               <a class="btn btn--secondary" href="https://github.com/jrwashebek/Enviroskillstaxonomy/issues/new/choose" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#flag"/></svg>Suggest a correction<span class="vh"> (opens GitHub Issues)</span><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#external"/></svg></a>
-              <p class="ext-hint">Opens GitHub Issues. You need a free GitHub account. Please do not include personal information.</p>
+              <p class="meta">Opens GitHub Issues. You need a free GitHub account. Please do not include personal information.</p>
             </div>
           </div>
         </section>
@@ -714,12 +735,12 @@
           <div class="stack-lg">
             <div class="empty">
               <span class="empty__icon" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#filter"/></svg></span>
-              <h3 class="empty__title">No roles match these filters</h3>
+              <h3 class="empty__title h4">No roles match these filters</h3>
               <p>Remove a filter, or search for a task instead. Some roles are described for only a few employer types.</p>
               <div class="btn-row"><button class="btn btn--secondary" type="button">Clear all filters</button></div>
             </div>
             <div class="panel" aria-busy="true">
-              <p class="loading" role="status"><span class="loading__bar" aria-hidden="true"></span>Loading competencies</p>
+              <p class="loading" role="status">Loading competencies</p>
               <div class="skeleton" aria-hidden="true"><span class="skeleton__line"></span><span class="skeleton__line"></span><span class="skeleton__line"></span></div>
             </div>
           </div>

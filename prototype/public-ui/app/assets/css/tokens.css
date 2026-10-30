@@ -1,152 +1,69 @@
-/* EMST design tokens. Colour tokens are hex only so tools/check-contrast.mjs can verify them.
-   Naming: --bg-* page surfaces; --fg-* text on any --bg-*; --ui-* non-text marks (3:1 on any --bg-*);
-   --<group>-fg* / --<group>-bg* text pairs checked within the group; --st-* status groups are also
-   checked against every --bg-*; --deco-* and --cat-* are exempt (decorative / validated as a chart palette). */
+/* EMST tokens. Colours are hex so tools/check-contrast.mjs can test every pair; naming rules in docs/DESIGN_SYSTEM.md. */
+@font-face{font-family:"Public Sans";src:url("../fonts/public-sans-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Public Sans";src:url("../fonts/public-sans-400-italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Public Sans";src:url("../fonts/public-sans-600.woff2") format("woff2");font-weight:600 700;font-display:swap}
+@font-face{font-family:"Merriweather";src:url("../fonts/Latin-Merriweather-Regular.woff2") format("woff2");font-weight:400 700;font-display:swap}
 
-@font-face { font-family: "Public Sans"; src: url("../fonts/public-sans-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0000-017F, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2190-2193, U+2212, U+2264-2265, U+FEFF, U+FFFD; }
-@font-face { font-family: "Public Sans"; src: url("../fonts/public-sans-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0000-017F, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2190-2193, U+2212, U+2264-2265, U+FEFF, U+FFFD; }
-@font-face { font-family: "Public Sans"; src: url("../fonts/public-sans-600.woff2") format("woff2"); font-weight: 600 700; font-style: normal; font-display: swap; unicode-range: U+0000-017F, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2190-2193, U+2212, U+2264-2265, U+FEFF, U+FFFD; }
-@font-face { font-family: "Merriweather"; src: url("../fonts/Latin-Merriweather-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "Merriweather"; src: url("../fonts/Latin-Merriweather-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
-
-:root {
-  color-scheme: light;
-
-  /* Surfaces */
-  --bg: #F5F3EC;          /* paper: the page */
-  --bg-surface: #FFFFFF;  /* cards, tables, inputs, reading panels */
-  --bg-wash: #ECEAE1;     /* wells, footer, table header */
-  --bg-tint: #E4EFE8;     /* selected or current, from light green */
-  --bg-hatch: #DEDACD;    /* hatch lines of "assessment pending"; text sits on it */
-
-  /* Text on any surface */
-  --fg: #16241E;          /* forest ink */
-  --fg-muted: #4E5A54;    /* brand muted #5B6660, darkened for sunlight */
-  --fg-link: #22573E;
-
-  /* Non-text marks: 3:1 on any surface */
-  --ui-border: #6B766F;   /* inputs, checkboxes, secondary buttons, pending outline */
-  --ui-primary: #2E6B50;  /* primary fills, current markers, rails */
-  --ui-focus: #16241E;    /* focus ring */
-  --ui-strong: #16241E;   /* heavy rules, done steps */
-
-  /* Groups (text pairs) */
-  --header-bg: #16241E; --header-fg: #F5F3EC; --header-fg-muted: #B8C4BD; --header-ui: #FFC85C;
-  --hbtn-bg: #8FC2A6; --hbtn-bg-hover: #A9D3BC; --hbtn-fg: #16241E;
-  --btn-primary-bg: #2E6B50; --btn-primary-bg-hover: #245A42; --btn-primary-fg: #FFFFFF;
-  --sel-bg: #2E6B50; --sel-fg: #FFFFFF;
-  --focus-bg: #FFD873; --focus-fg: #16241E;
-
-  /* Status groups */
-  --st-ok-bg: #E3F0E7; --st-ok-fg: #1F5A3E;
-  --st-info-bg: #E3EEF3; --st-info-fg: #1D5873;
-  --st-warn-bg: #FAEFD2; --st-warn-fg: #7A4D00;
-  --st-danger-bg: #F8E4DE; --st-danger-fg: #9B2C1F;
-  --st-draft-bg: #FFFFFF; --st-draft-fg: #474D53;
-
-  /* Decorative only (never carries meaning) */
-  --deco-rule: #D6DBD2;
-  --deco-rule-strong: #16241E;
-  --deco-margin: #8FC2A6;
-  --deco-shadow: rgba(22, 36, 30, 0.22);
-
-  /* Categorical chart slots (validated with validate_palette.js, light on #FFFFFF and #F5F3EC).
-     Slot 5 is 2.7:1 on white: ship direct labels or the table. All-pairs forms: first two slots only. */
-  --cat-1: #067D4D; --cat-2: #2365A8; --cat-3: #C25430; --cat-4: #5E499D; --cat-5: #C89522; --cat-6: #A64C88;
-
-  /* Type */
-  --font-sans: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
-  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --step--1: 0.875rem;                                   /* 14px: meta, badges */
-  --step-0: clamp(1rem, 0.979rem + 0.104vw, 1.0625rem);  /* 16-17: body */
-  --step-1: clamp(1.125rem, 1.083rem + 0.208vw, 1.25rem);/* 18-20: lede, h4 */
-  --step-2: clamp(1.25rem, 1.167rem + 0.417vw, 1.5rem);  /* 20-24: h3 */
-  --step-3: clamp(1.5rem, 1.333rem + 0.833vw, 2rem);     /* 24-32: h2 */
-  --step-4: clamp(1.875rem, 1.583rem + 1.458vw, 2.75rem);/* 30-44: h1 */
-  --step-5: clamp(2.25rem, 1.833rem + 2.083vw, 3.5rem);  /* 36-56: display */
-  --lh-body: 1.6; --lh-snug: 1.35; --lh-head: 1.2;
-  --measure: 68ch; --measure-narrow: 52ch;
-
-  /* Space: 8px grid (--sp-h is the 4px half step for tight internals) */
-  --sp-h: 0.25rem; --sp-1: 0.5rem; --sp-2: 1rem; --sp-3: 1.5rem; --sp-4: 2rem; --sp-5: 2.5rem; --sp-6: 3rem; --sp-8: 4rem; --sp-10: 5rem;
-
-  /* Shape */
-  --r-tag: 2px; --r-ctl: 4px; --r-pill: 999px;
-  --bw-hair: 1px; --bw-ui: 2px; --focus-w: 3px;
-  --target-min: 1.5rem;   /* 24px */
-  --target-touch: 2.75rem;/* 44px */
-
-  /* Layout */
-  --page-max: 76rem;
-  --gutter: clamp(1rem, 0.667rem + 1.667vw, 2rem);
-  --margin-col: 15rem;
-
-  /* Motion */
-  --dur-1: 120ms; --dur-2: 220ms; --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
-  --shadow-pop: 0 10px 28px -10px var(--deco-shadow), 0 1px 2px var(--deco-shadow);
+:root{
+color-scheme:light;
+--bg:#F5F3EC;--bg-surface:#FFFFFF;--bg-wash:#ECEAE1;--bg-tint:#E4EFE8;--bg-hatch:#DEDACD;
+--fg:#16241E;--fg-muted:#4E5A54;--fg-link:#22573E;
+--ui-border:#6B766F;--ui-primary:#2E6B50;--ui-focus:#16241E;--ui-strong:#16241E;
+--header-bg:#16241E;--header-fg:#F5F3EC;--header-fg-muted:#B8C4BD;--header-ui:#FFC85C;
+--hbtn-bg:#8FC2A6;--hbtn-bg-hover:#A9D3BC;--hbtn-fg:#16241E;
+--btn-primary-bg:#2E6B50;--btn-primary-bg-hover:#245A42;--btn-primary-fg:#FFFFFF;
+--sel-bg:#2E6B50;--sel-fg:#FFFFFF;--focus-bg:#FFD873;--focus-fg:#16241E;
+--st-ok-bg:#E3F0E7;--st-ok-fg:#1F5A3E;--st-info-bg:#E3EEF3;--st-info-fg:#1D5873;
+--st-warn-bg:#FAEFD2;--st-warn-fg:#7A4D00;--st-danger-bg:#F8E4DE;--st-danger-fg:#9B2C1F;
+--st-draft-bg:#FFFFFF;--st-draft-fg:#474D53;
+--deco-rule:#D6DBD2;--deco-rule-strong:#16241E;--deco-margin:#8FC2A6;--deco-shadow:rgba(22,36,30,.22);
+--cat-1:#067D4D;--cat-2:#2365A8;--cat-3:#C25430;--cat-4:#5E499D;--cat-5:#C89522;--cat-6:#A64C88;
+--font-sans:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+--font-serif:Merriweather,Georgia,"Times New Roman",serif;
+--font-mono:ui-monospace,Menlo,Consolas,monospace;
+--step--1:.875rem;
+--step-0:clamp(1rem,.979rem + .104vw,1.0625rem);
+--step-1:clamp(1.125rem,1.083rem + .208vw,1.25rem);
+--step-2:clamp(1.25rem,1.167rem + .417vw,1.5rem);
+--step-3:clamp(1.5rem,1.333rem + .833vw,2rem);
+--step-4:clamp(1.875rem,1.583rem + 1.458vw,2.75rem);
+--step-5:clamp(2.25rem,1.833rem + 2.083vw,3.5rem);
+--lh-body:1.6;--lh-snug:1.35;--lh-head:1.2;--measure:68ch;
+--sp-h:.25rem;--sp-1:.5rem;--sp-2:1rem;--sp-3:1.5rem;--sp-4:2rem;--sp-5:2.5rem;--sp-6:3rem;--sp-8:4rem;
+--r-tag:2px;--r-ctl:4px;--r-pill:999px;--focus-w:3px;--target-min:1.5rem;--target-touch:2.75rem;
+--page-max:76rem;--gutter:clamp(1rem,.667rem + 1.667vw,2rem);--margin-col:15rem;
+--dur-2:220ms;--ease:cubic-bezier(.2,.6,.2,1);
+--shadow-pop:0 10px 28px -10px var(--deco-shadow),0 1px 2px var(--deco-shadow);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #0E1713;
-    --bg-surface: #16241E;
-    --bg-wash: #1B2B24;
-    --bg-tint: #1F3A2E;
-    --bg-hatch: #2B4136;
-    --fg: #EEF1EA;
-    --fg-muted: #AEB9B2;
-    --fg-link: #9FCDB3;
-    --ui-border: #85938B;
-    --ui-primary: #8FC2A6;
-    --ui-focus: #FFC85C;
-    --ui-strong: #EEF1EA;
-    --header-bg: #16241E; --header-fg: #EEF1EA; --header-fg-muted: #AEB9B2; --header-ui: #FFC85C;
-    --hbtn-bg: #8FC2A6; --hbtn-bg-hover: #A9D3BC; --hbtn-fg: #0E1713;
-    --btn-primary-bg: #8FC2A6; --btn-primary-bg-hover: #A9D3BC; --btn-primary-fg: #0E1713;
-    --sel-bg: #8FC2A6; --sel-fg: #0E1713;
-    --focus-bg: #FFC85C; --focus-fg: #0E1713;
-    --st-ok-bg: #173326; --st-ok-fg: #9FD3B4;
-    --st-info-bg: #142A35; --st-info-fg: #9CCBE3;
-    --st-warn-bg: #2D2410; --st-warn-fg: #F0C46A;
-    --st-danger-bg: #351B16; --st-danger-fg: #F4A99A;
-    --st-draft-bg: #16241E; --st-draft-fg: #C5CBD0;
-    --deco-rule: #2E3F37;
-  --deco-rule-strong: #4F7A64;
-    --deco-rule-strong: #4F7A64;
-    --deco-margin: #3B6B53;
-    --deco-shadow: rgba(0, 0, 0, 0.55);
-    --cat-1: #3FA270; --cat-2: #5890CD; --cat-3: #D26A49; --cat-4: #8271C2; --cat-5: #B78A2C; --cat-6: #BA649C;
-  }
-}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+color-scheme:dark;
+--bg:#0E1713;--bg-surface:#16241E;--bg-wash:#1B2B24;--bg-tint:#1F3A2E;--bg-hatch:#2B4136;
+--fg:#EEF1EA;--fg-muted:#AEB9B2;--fg-link:#9FCDB3;
+--ui-border:#85938B;--ui-primary:#8FC2A6;--ui-focus:#FFC85C;--ui-strong:#EEF1EA;
+--header-bg:#16241E;--header-fg:#EEF1EA;--header-fg-muted:#AEB9B2;--header-ui:#FFC85C;
+--hbtn-bg:#8FC2A6;--hbtn-bg-hover:#A9D3BC;--hbtn-fg:#0E1713;
+--btn-primary-bg:#8FC2A6;--btn-primary-bg-hover:#A9D3BC;--btn-primary-fg:#0E1713;
+--sel-bg:#8FC2A6;--sel-fg:#0E1713;--focus-bg:#FFC85C;--focus-fg:#0E1713;
+--st-ok-bg:#173326;--st-ok-fg:#9FD3B4;--st-info-bg:#142A35;--st-info-fg:#9CCBE3;
+--st-warn-bg:#2D2410;--st-warn-fg:#F0C46A;--st-danger-bg:#351B16;--st-danger-fg:#F4A99A;
+--st-draft-bg:#16241E;--st-draft-fg:#C5CBD0;
+--deco-rule:#2E3F37;--deco-rule-strong:#4F7A64;--deco-margin:#3B6B53;--deco-shadow:rgba(0,0,0,.55);
+--cat-1:#3FA270;--cat-2:#5890CD;--cat-3:#D26A49;--cat-4:#8271C2;--cat-5:#B78A2C;--cat-6:#BA649C;
+}}
 
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #0E1713;
-  --bg-surface: #16241E;
-  --bg-wash: #1B2B24;
-  --bg-tint: #1F3A2E;
-  --bg-hatch: #2B4136;
-  --fg: #EEF1EA;
-  --fg-muted: #AEB9B2;
-  --fg-link: #9FCDB3;
-  --ui-border: #85938B;
-  --ui-primary: #8FC2A6;
-  --ui-focus: #FFC85C;
-  --ui-strong: #EEF1EA;
-  --header-bg: #16241E; --header-fg: #EEF1EA; --header-fg-muted: #AEB9B2; --header-ui: #FFC85C;
-  --hbtn-bg: #8FC2A6; --hbtn-bg-hover: #A9D3BC; --hbtn-fg: #0E1713;
-  --btn-primary-bg: #8FC2A6; --btn-primary-bg-hover: #A9D3BC; --btn-primary-fg: #0E1713;
-  --sel-bg: #8FC2A6; --sel-fg: #0E1713;
-  --focus-bg: #FFC85C; --focus-fg: #0E1713;
-  --st-ok-bg: #173326; --st-ok-fg: #9FD3B4;
-  --st-info-bg: #142A35; --st-info-fg: #9CCBE3;
-  --st-warn-bg: #2D2410; --st-warn-fg: #F0C46A;
-  --st-danger-bg: #351B16; --st-danger-fg: #F4A99A;
-  --st-draft-bg: #16241E; --st-draft-fg: #C5CBD0;
-  --deco-rule: #2E3F37;
-  --deco-margin: #3B6B53;
-  --deco-shadow: rgba(0, 0, 0, 0.55);
-  --cat-1: #3FA270; --cat-2: #5890CD; --cat-3: #D26A49; --cat-4: #8271C2; --cat-5: #B78A2C; --cat-6: #BA649C;
+:root[data-theme="dark"]{
+color-scheme:dark;
+--bg:#0E1713;--bg-surface:#16241E;--bg-wash:#1B2B24;--bg-tint:#1F3A2E;--bg-hatch:#2B4136;
+--fg:#EEF1EA;--fg-muted:#AEB9B2;--fg-link:#9FCDB3;
+--ui-border:#85938B;--ui-primary:#8FC2A6;--ui-focus:#FFC85C;--ui-strong:#EEF1EA;
+--header-bg:#16241E;--header-fg:#EEF1EA;--header-fg-muted:#AEB9B2;--header-ui:#FFC85C;
+--hbtn-bg:#8FC2A6;--hbtn-bg-hover:#A9D3BC;--hbtn-fg:#0E1713;
+--btn-primary-bg:#8FC2A6;--btn-primary-bg-hover:#A9D3BC;--btn-primary-fg:#0E1713;
+--sel-bg:#8FC2A6;--sel-fg:#0E1713;--focus-bg:#FFC85C;--focus-fg:#0E1713;
+--st-ok-bg:#173326;--st-ok-fg:#9FD3B4;--st-info-bg:#142A35;--st-info-fg:#9CCBE3;
+--st-warn-bg:#2D2410;--st-warn-fg:#F0C46A;--st-danger-bg:#351B16;--st-danger-fg:#F4A99A;
+--st-draft-bg:#16241E;--st-draft-fg:#C5CBD0;
+--deco-rule:#2E3F37;--deco-rule-strong:#4F7A64;--deco-margin:#3B6B53;--deco-shadow:rgba(0,0,0,.55);
+--cat-1:#3FA270;--cat-2:#5890CD;--cat-3:#D26A49;--cat-4:#8271C2;--cat-5:#B78A2C;--cat-6:#BA649C;
 }
