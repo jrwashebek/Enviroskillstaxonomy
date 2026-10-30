@@ -38,7 +38,7 @@ for (let i = 0; i + 1 < p1.length; i += 3) routes.push(`/compare/${p1[i].slug}/$
 const list = LIMIT ? routes.slice(0, LIMIT) : routes;
 
 // ---------------------------------------------------------------- rules
-const JARGON = /effective-use-tier@|closeMatch|relatedMatch|broadMatch|narrowMatch|exactMatch|agentDraft|raterType|OBS-4|SSSOM|\bLLM\b|skos:|semapv:|\bundefined\b(?! terms?\b)|\[object Object\]|\bNaN\b/;
+const JARGON = /effective-use-tier@|closeMatch|relatedMatch|broadMatch|narrowMatch|exactMatch|agentDraft|raterType|OBS-4|SSSOM|skos:|semapv:|\bLLM\b(?! \[large language model\])|\bundefined\b(?! terms?\b)|\[object Object\]|\bNaN\b/;
 const gc = yaml.load(readFileSync(join(ROOT, "schema", "lint", "governed_content.yaml"), "utf8"));
 const TRIBAL = gc.tribal_hold.triggers.map((p) => (typeof p === "string" ? new RegExp(p, "i") : new RegExp(p.pattern, p.cs ? "" : "i")));
 const allowedHeld = [core.status?.held?.policy, core.release?.indigenousStatement].filter(Boolean);
@@ -90,7 +90,7 @@ for (const r of list) {
   const info = await page.evaluate(() => {
     const main = document.querySelector("#main");
     const text = main.innerText.replace(/\s+/g, " ").trim();
-    const focusables = [...main.querySelectorAll("a[href], button:not([disabled]), input, select, textarea, summary, [tabindex]:not([tabindex='-1'])")].filter((e) => e.offsetParent !== null);
+    const focusables = [...main.querySelectorAll("a[href], button:not([disabled]), input, select, textarea, summary, [tabindex]:not([tabindex='-1'])")].filter((e) => e.offsetParent !== null && !(e.closest("details:not([open])") && !e.matches("details > summary")));
     return { text, h1: (main.querySelector("h1") || {}).innerText || "", words: text.split(" ").length, tabStops: focusables.length, height: document.documentElement.scrollHeight, title: document.title, sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth };
   });
   if (/could not find|did not load/i.test(info.h1)) findings.push([r, "error-page", info.h1, ""]);
@@ -112,7 +112,7 @@ const agg = {};
 for (const m of metrics) { const k = kind(m.r); (agg[k] = agg[k] || []).push(m); }
 const med = (xs) => { const s = xs.slice().sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
 const summary = Object.fromEntries(Object.entries(agg).map(([k, ms]) => [k, { pages: ms.length, medianWords: med(ms.map((m) => m.words)), medianTabStops: med(ms.map((m) => m.tabStops)), medianHeight390: med(ms.map((m) => m.height)), maxHeight390: Math.max(...ms.map((m) => m.height)) }]));
-const outDir = join(HERE, "..", "docs", "qa");
+const outDir = process.env.RC_OUT_DIR ? resolve(process.env.RC_OUT_DIR) : join(HERE, "..", "docs", "qa"); // RC_OUT_DIR lets a developer keep the lead's report
 mkdirSync(outDir, { recursive: true });
 writeFileSync(join(outDir, "rendered-check.json"), JSON.stringify({ base: BASE, routes: list.length, byRule, errors, external: [...new Set(external)], summary, findings: findings.slice(0, 400) }, null, 1));
 console.log(JSON.stringify({ routes: list.length, byRule, errors: errors.length, external: [...new Set(external)].length, summary }, null, 1));

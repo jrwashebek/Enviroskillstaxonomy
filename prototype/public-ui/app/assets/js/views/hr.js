@@ -6,7 +6,7 @@ import { NotFound } from "../lib/data.js";
 import * as ui from "../ui.js";
 import { COPY } from "../content.js";
 import { fmt, dateLong } from "../lib/format.js";
-import { hrNotice, plain, scrub, plural, p3Slugs, variantHref, credSlug, humanize, cap, timingWords, ROLE_LEVELS, roleLevelLabel, exportBar } from "./misc.js";
+import { hrNotice, plain, scrub, plural, p3Slugs, variantHref, credSlug, humanize, cap, timingWords, ROLE_LEVELS, roleLevelLabel, exportBar, tidySources } from "./misc.js";
 import { copyText, download, toCsv, exportFrame, safeName, pageUrl } from "../export.js";
 
 const HR_CRUMB = { href: "#/hr", text: "For HR and classifiers" };
@@ -285,7 +285,7 @@ export async function renderSeries({ params }) {
       meta: frag(notOpm(), disclaimer(hr)),
       status: ui.statusLine(s, { aboutHref: "#about" }),
     }),
-    h("div", { class: "page-body c-single" }, sections));
+    tidySources(h("div", { class: "page-body c-single" }, sections)));
   return { title: `${name} (EMST draft notes)`, node };
 }
 
@@ -394,6 +394,6 @@ export async function renderClass({ params }) {
       meta: frag(notJur(c), disclaimer(hr)),
       status: ui.statusLine(c, { aboutHref: "#about" }),
     }),
-    h("div", { class: "page-body c-single" }, sections));
+    tidySources(h("div", { class: "page-body c-single" }, sections)));
   return { title: c.title, node };
 }

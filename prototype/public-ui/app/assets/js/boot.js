@@ -1,10 +1,16 @@
-// Runs before first paint, before the app bundle. No storage, no fetch, no inline code. Licence: Apache-2.0.
+// Runs before first paint, before the app bundle: index.html lists it last in <head>, after every file the page fetches
+// (with a CSP <meta>, Chrome does not fetch ahead of a parser-blocking script). No storage, no fetch, no inline code.
+// Licence: Apache-2.0.
 // 1. Marks that scripts are on (the menu collapses on small screens).
 // 2. On a deep link, marks the page so app.css hides the home page that index.html carries prerendered; it never flashes.
 // 3. Starts the route's data file now, beside the app bundle, from the map tools/build-app.mjs writes into
 //    <meta name="emst-early-data">. Data still loads as <script src>; lib/data.js waits for a data script that is in
 //    flight instead of adding a second one, and this file marks each data script when it has loaded or failed.
-// 4. Until main.js replaces the prerendered chrome and home page (marked data-prerender) with live, identical markup, it
+// 4. Fonts: index.html links the @font-face rules as their own stylesheet with media="print", so they fetch nothing at
+//    first. On the home page they apply at once. On a deep link they apply once the route's H1 has rendered, because on a
+//    slow connection the three font files would share the bandwidth the bundle and data need for that first view. Text
+//    shows in the fallback font until then (font-display: swap); fonts never block a paint.
+// 5. Until main.js replaces the prerendered chrome and home page (marked data-prerender) with live, identical markup, it
 //    keeps them usable: the menu button works, and a search sent early is sent again once the app is ready. When the
 //    markup is replaced, focus, typed text, an open menu and the scroll position on the home page carry over.
 (function () {
@@ -21,6 +27,21 @@
   var path = routeOf(location.hash);
   function markRoute(p) { root.classList.toggle("route-deep", p !== null && p !== "/"); }
   markRoute(path);
+
+  // ---------------------------------------------------------------- fonts (index.html only)
+  var fonts = doc.getElementById("emst-fonts");
+  function fontsOn() { if (fonts) { fonts.media = "all"; fonts = null; } }
+  function routeShown() { return !doc.querySelector("#main [data-prerender]") && !!doc.querySelector("#main h1"); }
+  if (!root.classList.contains("route-deep")) fontsOn();
+  else if (fonts) {
+    doc.addEventListener("DOMContentLoaded", function () {
+      var main = doc.getElementById("main");
+      if (routeShown() || !main || !window.MutationObserver) return fontsOn();
+      var mo = new MutationObserver(function () { if (routeShown()) { mo.disconnect(); fontsOn(); } });
+      mo.observe(main, { childList: true });
+    });
+    window.addEventListener("load", fontsOn); // safety net
+  }
 
   // ---------------------------------------------------------------- data scripts
   function markDone(e) { var t = e.target; if (t && t.tagName === "SCRIPT") t.setAttribute("data-done", e.type); }
@@ -127,7 +148,7 @@
   });
   window.addEventListener("hashchange", function () { // a prerendered link followed before the app is ready
     var p = routeOf(location.hash);
-    if (p !== null && doc.querySelector('[data-prerender="home"]')) markRoute(p);
+    if (p !== null && doc.querySelector('[data-prerender="home"]')) { markRoute(p); if (p === "/") fontsOn(); }
   });
   window.addEventListener("scroll", function () {
     if (!root.classList.contains("route-deep") && doc.querySelector('[data-prerender="home"]')) { homeY = window.scrollY; watch(); }

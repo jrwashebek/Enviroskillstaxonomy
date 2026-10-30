@@ -20,7 +20,7 @@ import { gzipSync } from "node:zlib";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const UI = resolve(HERE, "..");
 const ROOT = resolve(UI, "..", "..");
-const OUT = join(UI, "app", "data");
+const OUT = process.env.EMST_DATA_OUT ? resolve(process.env.EMST_DATA_OUT) : join(UI, "app", "data"); // EMST_DATA_OUT: build somewhere else for a dry run
 const require = createRequire(join(ROOT, "site", "package.json"));
 const yaml = require("js-yaml");
 const { buildModel, slugOf } = await import(pathToFileURL(join(ROOT, "site", "lib", "model.mjs")).href);
@@ -693,7 +693,23 @@ function parseCsvText(text) {
 const POLICY = new Set([m.release.indigenousStatement, core?.status?.held?.policy].filter(Boolean));
 const HELD_CLAUSE = /[;,]?\s*(?:consultation content held under ADR-0007[^.;]*|agreement types covered by the ADR-0007 hold[^.;]*)/gi;
 const sourceIdsUsed = new Set();
-function scrub(str) {
+const AGENT_CODE = /\b(?:SL|FH|LM|DC|FS|CM|CP|PS|IO|LC|SC|WP|ADR|REG|DISC|TR|V\d)-(?:CAND-)?\d[\w/-]*/g;
+// Drafting-agent competency codes in prose ("see PS-C18", "mirror of SL-C03") name a competency the reader can't look up.
+// data/v2/ids/seed_map.csv maps each code to its published ID; show the competency's title instead. A code that does
+// not resolve to a published competency (merged, retired or not public) becomes "a related competency".
+const compTitleById = new Map(m.competencies.map((c) => [c.id, c.title]));
+const WORK_CODE_TITLE = new Map();
+{
+  const seedPath = join(ROOT, "data", "v2", "ids", "seed_map.csv");
+  if (existsSync(seedPath)) for (const line of readFileSync(seedPath, "utf-8").split(/\r?\n/).slice(1)) {
+    const [key, id] = line.split(",");
+    const mm = /^seed:([A-Z]{2}-C\d{2,3}[a-z]?)$/.exec(key || "");
+    if (mm && compTitleById.has(id)) WORK_CODE_TITLE.set(mm[1], compTitleById.get(id));
+  }
+}
+const workCodeTitles = (t) => t.replace(/\b([A-Z]{2}-C\d{2,3}[a-z]?)\b/g, (code) => (WORK_CODE_TITLE.has(code) ? `\u201c${WORK_CODE_TITLE.get(code)}\u201d` : "a related competency"));
+const CODE_KEYS = new Set(["c", "code", "codes", "s", "src", "u", "id", "slug", "ns", "jur", "actor", "k"]);
+function scrub(str, key = "") {
   if (POLICY.has(str)) return str;
   let t = str.replace(HELD_CLAUSE, "");
   // The explorer's HR disclaimer says "for development and planning", but no record reaches the develop use tier in rc.1.
@@ -709,12 +725,33 @@ function scrub(str) {
   t = t.replace(/\s*\((?:WP-\d{2}|TR-\d{2})\)/g, "");
   t = t.replace(/\bAbsorbs (?:[A-Z]{2}-C\d{2,3}[a-z]?(?:\s*\([^)]*\))?(?:,\s*|\s+and\s+)?)+\.\s*/g, "");
   t = t.replace(/^ADR-\d{4}:\s*/, "").replace(/\bWP-\d+ derivation\b/g, "derived").replace(/\bdevelopment_stage=(\w+)/g, "development stage: $1");
+  // Round 2 (patterns found by developer C): evidence tags such as "[E: SC-009]", agent-team prefixes such as
+  // "SL review:", review notes such as "(LC to review; WP-07 record)", "per V2-17" and "(DC Phase 2 extract)".
+  t = t.replace(/\s*\(DC Phase \d+ extract\)/g, "").replace(/\s*\([A-Z]{2,3} to review\b[^)]*\)/g, "")
+    // Evidence brackets: drop the codes; keep any remaining remark of five words or more, in parentheses.
+    .replace(/\s*\[[EJS](?=[;:\]])([^\]]*)\]/g, (_, body = "") => {
+      const rest = body.replace(/^\s*;\s*[EJS](?=[:\s]|$)/, "").replace(/^\s*:/, "").replace(AGENT_CODE, "").replace(/\b[A-Z]{2}-C\d{2,3}[a-z]?\b/g, "")
+        .replace(/\bWP\d{2}-\d+\b/g, "").replace(/\b[EJS]\b(?=\s*(?:for|;|$))/g, "")
+        .replace(/^[\s;,]+|[\s;,]+$/g, "").replace(/\s*[;,]\s*[;,]\s*/g, "; ").replace(/\s{2,}/g, " ");
+      return rest.split(/\s+/).filter(Boolean).length >= 5 ? ` (${rest})` : "";
+    })
+    
+    .replace(/^As TR-\d+ for /, "Adapted for ").replace(/\(TR-\d+ names /g, "(its translation rows name ")
+    .replace(/\bthe PS reference job architecture\b/g, "the private-sector reference job architecture").replace(/\bRequires PS confirmation\./g, "Requires private-sector review.")
+    .replace(/\bcomposed from (?:[A-Z]{2}-(?:CAND-)?C?\d+[a-z]?\s*)+\)/g, "composed from several existing competencies)")
+    .replace(/\bmvp_role_set(?: example)?\b/g, "").replace(/\bX9 USA Hire\b/g, "USA Hire").replace(/;\s*WP-\d+ open item \d+/g, "")
+    .replace(/(^|\.\s+)(?:SL|FH|SC|PS|LM|FS|CM|CP|IO|LC|IA|DC|FC) review:\s*(\w)/g, (_, pre, c) => pre + c.toUpperCase())
+    .replace(/\s*\bper\s+V\d+-\d+\b/g, "");
+  // Bare agent work-item codes ("SL-053") in prose only: never in code fields, and never in a value without a space
+  // (a state class code could look like one).
+  if (/\s/.test(t) && !CODE_KEYS.has(key)) t = workCodeTitles(t).replace(new RegExp("\\s*" + AGENT_CODE.source, "g"), "");
+  t = t.replace(/\(\s*[;,]\s*/g, "(").replace(/\s*[;,]\s*\)/g, ")").replace(/\s*\(\s*\)/g, "");
   t = t.replace(/\s+([.;,])/g, "$1").replace(/^[;,]\s*/, "").replace(/\s{2,}/g, " ").trim();
   if (t && !/[.!?)]$/.test(t) && /[.!?]$/.test(str)) t += ".";
   return t;
 }
 function sanitize(v, k = "") {
-  if (typeof v === "string") return k === "id" || k === "slug" ? v : scrub(v);
+  if (typeof v === "string") return k === "id" || k === "slug" ? v : scrub(v, k);
   if (Array.isArray(v)) { if (k === "src") v.forEach((x) => typeof x === "string" && sourceIdsUsed.add(x)); return v.map((x) => sanitize(x, k)); }
   if (v && typeof v === "object") { const o = {}; for (const [kk, vv] of Object.entries(v)) o[kk] = sanitize(vv, kk); return o; }
   return v;

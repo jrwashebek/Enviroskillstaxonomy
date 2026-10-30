@@ -8,8 +8,9 @@
 <meta name="description" content="EMST describes environmental management work: tasks, competencies and roles. An independent open project; drafted by AI agents and not yet reviewed by people.">
 <title>EMST · Environmental Management Skills Taxonomy</title>
 <!-- @@build: tools/build-app.mjs writes app/index.html (production) and app/dev.html (development) from this file. Edit this file, not those. -->
-<link rel="preload" href="assets/fonts/public-sans-400.woff2" as="font" type="font/woff2" crossorigin>
-<!-- @@styles: development links each file in order; production links one minified bundle of the same files, in the same order -->
+<!-- @@note: keep every file the page fetches above boot.js, the one parser-blocking script. With a CSP <meta>, Chrome does
+     not fetch ahead of a blocking script, so anything listed after it waits a full round trip (2 s on Slow 3G). -->
+<!-- @@styles: development links each file in order; production links one minified bundle of the same files, in the same order, with the @font-face rules moved to fonts.bundle.css -->
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
@@ -18,11 +19,12 @@
 <link rel="stylesheet" href="assets/css/views-b.css">
 <link rel="stylesheet" href="assets/css/views-c.css">
 <!-- @@/styles -->
+<!-- @@fonts -->
 <link rel="stylesheet" href="assets/css/print.css" media="print">
 <!-- @@early-data -->
-<script src="assets/js/boot.js"></script>
 <script src="data/core.js" defer fetchpriority="high"></script>
 <script type="module" src="assets/js/main.js"></script>
+<script src="assets/js/boot.js"></script>
 </head>
 <body>
 <div id="app">

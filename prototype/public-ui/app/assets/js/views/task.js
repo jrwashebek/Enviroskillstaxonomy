@@ -4,7 +4,7 @@ import * as data from "../lib/data.js";
 import * as ui from "../ui.js";
 import { COPY, fill } from "../content.js";
 import { fmt, dateLong } from "../lib/format.js";
-import { plain, plural, credSlug, humanize, cap, draftNote } from "./misc.js";
+import { plain, plural, credSlug, humanize, cap, draftNote, tidySources } from "./misc.js";
 
 const NOUN = "O*NET task";
 
@@ -67,7 +67,7 @@ function v1Drawer(task, core) {
         p.flags?.length ? `Notes: ${p.flags.map((f) => V1_FLAG[f] || "a v1 note on this record").join("; ")}.` : null,
         p.stale ? "Marked as out of date." : null,
       ].filter(Boolean).join(" ")))),
-    v1.contested ? h("p", h("strong", "Contested. "), cap((v1.reasons || []).map(v1Reason).join("; ")), ".") : null,
+    v1.contested ? h("p", h("strong", "Contested: "), (v1.reasons || []).map(v1Reason).join("; "), ".") : null,
     core.text.v1DrawerChange ? h("p", { class: "meta" }, core.text.v1DrawerChange) : null,
     ui.disclosure("Technical source", [
       h("p", { class: "meta" }, "Where these values came from, as recorded in the v1 files. For people tracing the data."),
@@ -140,6 +140,6 @@ export async function render({ params }) {
   });
   header.querySelector("h1")?.classList.add("c-task-h1");
 
-  const node = frag(ui.printMeta(core, `Task: ${short}`), header, h("div", { class: "page-body c-single" }, sections));
+  const node = frag(ui.printMeta(core, `Task: ${short}`), header, tidySources(h("div", { class: "page-body c-single" }, sections)));
   return { title: `Task: ${short}`, node };
 }

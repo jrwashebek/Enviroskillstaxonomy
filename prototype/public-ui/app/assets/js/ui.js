@@ -275,7 +275,9 @@ export function sourceList(ids) {
       const s = S.src?.[li.dataset.src] || {};
       if (!s.t) continue;
       const bits = [s.p, s.d].filter(Boolean).join(", ");
-      li.replaceChildren(...[s.u ? a(s.u, s.t) : h("span", s.t), bits ? h("span", { class: "meta" }, ` (${bits})`) : null,
+      // A source title is quoted as published; an abbreviation it uses is explained in square brackets, not reworded.
+      const title = s.t.replace(/\bLLM(s?)\b/g, "LLM$1 [large language model$1]");
+      li.replaceChildren(...[s.u ? a(s.u, title) : h("span", title), bits ? h("span", { class: "meta" }, ` (${bits})`) : null,
         s.v ? h("span", { class: "meta" }, ` · checked in the verification pass: ${s.v}`) : null, " ", h("span", { class: "id" }, li.dataset.src)].filter((x) => x !== null && x !== undefined));
     }
   }).catch(() => {});
@@ -338,7 +340,7 @@ export function levelChip(code, core) {
   return h("span", { class: "badge level-chip" }, h("span", { class: "vh" }, "Proficiency level "), h("span", { class: "level-chip__code" }, code), name);
 }
 /** levels: [{level, label, indicators[]}]; span: [min,max]; target: {level, text} */
-export function levelLadder(levels, { span, target, core, titleId } = {}) {
+export function levelLadder(levels, { span, target, core, titleId, heading = "h3" } = {}) {
   const all = ["L1", "L2", "L3", "L4", "L5"];
   const lo = span ? all.indexOf(span[0]) : 0, hi = span ? all.indexOf(span[1]) : 4;
   const by = Object.fromEntries((levels || []).map((l) => [l.level, l]));
@@ -354,7 +356,7 @@ export function levelLadder(levels, { span, target, core, titleId } = {}) {
       h("div", { class: "level__rung", "aria-hidden": "true" }, code),
       h("div", { class: "level__body" },
         isTarget ? h("p", { class: "level__target" }, icon("target"), target.text) : null,
-        h("h4", { class: "level__name" }, h("span", { class: "vh" }, `Level ${i + 1}: `), name),
+        h(heading, { class: "h4 level__name" }, h("span", { class: "vh" }, `Level ${i + 1}: `), name),
         inSpan && dtext ? h("p", { class: "level__desc" }, dtext) : null,
         !inSpan ? h("p", { class: "level__none" }, COPY.levels?.none || "Not defined for this competency.") :
           l && l.indicators?.length ? h("ul", { class: "level__indicators" }, l.indicators.map((ind) => h("li", ind.stmt, ind.attr ? h("span", { class: "meta" }, ` (${COPY.levels?.distinguished || "distinguished by"} ${ind.attr})`) : null))) : null));

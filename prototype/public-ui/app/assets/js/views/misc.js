@@ -27,11 +27,26 @@ export function plain(s) {
 export function scrub(s) {
   return plain(s)
     .replace(/\s*\(DC Phase \d+ extract\)/g, "")
+    .replace(/\s*\([A-Z]{2,3} to review\b[^)]*\)/g, "")
+    .replace(/\s*\[(?:[EJS](?:;\s*[EJS])?)(?::[^\]]*)?\]/g, "") // bracketed evidence tags that cite internal source codes
+    .replace(/(^|\.\s+)(?:SL|FH|SC|PS|LM|FS|CM|CP|IO|LC|IA|DC|FC) review:\s*(\w)/g, (_, pre, c) => pre + c.toUpperCase()) // agent-team prefixes
     .replace(/\bper\s+V\d+-\d+\b/g, "")
     .replace(/\b(?:SL|FH|LM|DC|FS|CM|CP|PS|IO|LC|IA|SC|WP|WP09|ADR|REG|DISC|TR|V\d)-(?:CAND-)?\d[\w/-]*(?:\s*§\s*[A-Z0-9]+)?/g, "")
     .replace(/\bmvp_role_set(?: example)?\b/g, "")
     .replace(/\(\s*[;,]\s*/g, "(").replace(/\s*[;,]\s*\)/g, ")").replace(/\(\s*\)/g, "")
     .replace(/\s{2,}/g, " ").replace(/\s+([.,;)])/g, "$1").trim();
+}
+
+/** ui.sourceList fills source titles in after data/sources.js loads, without plain-word cleanup; one title in rc.1
+ *  carries "LLM". Tidy those titles on this page once they are in. (Reported to the lead: fix belongs in ui.js.) */
+export function tidySources(root) {
+  data.sources().then(() => setTimeout(() => {
+    for (const li of root.querySelectorAll(".src-list li")) {
+      const w = document.createTreeWalker(li, NodeFilter.SHOW_TEXT);
+      for (let n = w.nextNode(); n; n = w.nextNode()) { const t = plain(n.nodeValue); if (t !== n.nodeValue) n.nodeValue = t; }
+    }
+  }, 0)).catch(() => {});
+  return root;
 }
 
 /** Export buttons with a status line, for a toolbar near the content they export (not only at the foot of the page).
@@ -94,7 +109,11 @@ export function moreList(list, n, { more, less }) {
     btn.textContent = open ? less : more;
     btn.setAttribute("aria-expanded", String(open));
   };
-  btn.addEventListener("click", () => { open = !open; draw(); });
+  btn.addEventListener("click", () => {
+    open = !open; draw();
+    // "Show all" moves focus to the first newly shown item (accessibility review, round 1 → round 2 view work).
+    if (open && items[n]) { if (!items[n].hasAttribute("tabindex")) items[n].setAttribute("tabindex", "-1"); items[n].focus(); }
+  });
   draw();
   return frag(list, h("p", { class: "c-more no-print" }, btn));
 }

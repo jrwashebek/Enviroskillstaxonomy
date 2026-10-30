@@ -4,7 +4,7 @@ import * as data from "../lib/data.js";
 import * as ui from "../ui.js";
 import { COPY } from "../content.js";
 import { fmt } from "../lib/format.js";
-import { plain, scrub, ROLE_LEVELS, roleLevelLabel, levelRank, levelTag, humanize, jump, moreList, plural, draftNote, exportBar } from "./misc.js";
+import { plain, scrub, ROLE_LEVELS, roleLevelLabel, levelRank, levelTag, humanize, jump, moreList, plural, draftNote, exportBar, tidySources } from "./misc.js";
 import { copyText, exportFrame } from "../export.js";
 
 const LEVELS_NOTICE = "These levels are AI drafts for exploring ideas only. Don't use them to set training goals or to rate anyone.";
@@ -42,7 +42,7 @@ function seriesName(core) {
 
 function crosswalks(comp, core) {
   // Reference versions are shown once per system instead of on every row.
-  const rows = (comp.crosswalks || []).map((r) => ({ ...r, note: r.note ? plain(r.note) : r.note, ver: undefined, _ver: r.ver }));
+  const rows = (comp.crosswalks || []).map((r) => ({ ...r, note: r.note ? scrub(r.note) : r.note, ver: undefined, _ver: r.ver }));
   if (!rows.length) return null;
   const parts = [];
   const used = new Set();
@@ -119,8 +119,8 @@ function enactments(comp, core) {
         who ? h("p", { class: "meta" }, who) : null,
         e.note ? h("p", ui.jargon(scrub(e.note), seen)) : null,
         e.basis || e.principal ? h("dl", { class: "facts" },
-          e.basis ? [h("dt", "Basis for the work"), h("dd", plain(e.basis))] : null,
-          e.principal ? [h("dt", "Answers to"), h("dd", plain(e.principal))] : null) : null);
+          e.basis ? [h("dt", "Basis for the work"), h("dd", scrub(e.basis))] : null,
+          e.principal ? [h("dt", "Answers to"), h("dd", scrub(e.principal))] : null) : null);
     })));
   }
   return out;
@@ -244,6 +244,6 @@ export async function render({ params }) {
       meta: frag(meta, comp.def && comp.def !== comp.stmt ? ui.disclosure("Full definition", h("p", { class: "prose" }, ui.jargon(plain(comp.def), seen)), { small: true }) : null),
       status: ui.statusLine(comp, { aboutHref: "#about" }),
     }),
-    ui.withMargin(sections, main));
+    tidySources(ui.withMargin(sections, main)));
   return { title: comp.title, node };
 }
