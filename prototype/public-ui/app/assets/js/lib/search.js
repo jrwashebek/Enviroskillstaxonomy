@@ -204,7 +204,7 @@ export class SearchIndex {
       const coverage = need ? matched / need : 1;
       if (!codeHit && coverage < 1) s *= coverage * coverage * 0.6;
       const nt = normalize(d.t);
-      if (nt === nq) s += 40; else if (nt.startsWith(nq)) s += 15;
+      if (nt === nq) s += 40; else if (nt.startsWith(nq)) s += 15; else if (nq.includes(" ") && (" " + nt + " ").includes(" " + nq + " ")) s += 14;
       if ((d.a || []).some((a) => normalize(a) === nq)) s += 30;
       s *= (KIND_BOOST[d.k] || 1) * (d.w || 1);
       results.push({ doc: d, score: s, complete: codeHit || coverage === 1, fuzzy: e.fuzzy });

@@ -1,0 +1,89 @@
+/* EMST print: letter paper, black on white, no navigation, link URLs and the release ID shown.
+   Link with media="print". Pages must contain a .print-meta block (release ID and page URL). */
+
+@page { size: letter; margin: 0.6in 0.65in 0.7in; }
+@page { @bottom-right { content: "Page " counter(page) " of " counter(pages); font: 8pt "Public Sans", Arial, sans-serif; color: #444; } }
+
+:root, :root[data-theme="dark"] {
+  color-scheme: light;
+  --bg: #FFFFFF; --bg-surface: #FFFFFF; --bg-wash: #FFFFFF; --bg-tint: #FFFFFF; --bg-hatch: #FFFFFF;
+  --fg: #000000; --fg-muted: #333333; --fg-link: #000000;
+  --ui-border: #555555; --ui-primary: #000000; --ui-strong: #000000; --ui-focus: #000000;
+  --btn-primary-bg: #000000; --btn-primary-fg: #FFFFFF;
+  --st-ok-bg: #FFFFFF; --st-ok-fg: #000000; --st-info-bg: #FFFFFF; --st-info-fg: #000000;
+  --st-warn-bg: #FFFFFF; --st-warn-fg: #000000; --st-draft-bg: #FFFFFF; --st-draft-fg: #000000;
+  --deco-rule: #999999; --deco-margin: #999999;
+}
+html { font-size: 10.5pt; }
+body { background: #FFFFFF; color: #000000; line-height: 1.45; }
+
+/* Hide what only makes sense on screen */
+.skip-link, .release-strip, .site-nav, .search, .site-footer nav, .toc, .with-margin__side .toc,
+.btn, .btn-row, .chips, .facet, .result-bar, .tabs__list, .sort .icon, .loading, .skeleton,
+.drawer__chev, .no-print, [data-no-print] { display: none !important; }
+.print-only { display: block !important; }
+
+/* Header becomes a one-line masthead */
+.site-header { background: none; color: #000000; border-block-end: 1.5pt solid #000000; }
+.site-header__bar { display: block; padding: 0 0 4pt; }
+.brand { min-height: 0; color: #000000; }
+.brand__mark { width: 18pt; height: 18pt; color: #000000; }
+.brand__full { color: #000000; }
+
+/* Release and source block, required on every printed page set */
+.print-meta { margin-block: 6pt 12pt; padding: 6pt 8pt; border: 0.75pt solid #000000; font-size: 8.5pt; line-height: 1.35; }
+.print-meta p { margin: 0; }
+
+/* Layout: single column, full width */
+.container { max-width: none; padding: 0; }
+.with-margin { display: block; }
+.with-margin__main { padding: 0; }
+.with-margin__side { border: 0; padding: 0; }
+.page-head { padding-block: 0 8pt; }
+.page-head h1 { max-width: none; font-size: 20pt; }
+.lede { font-size: 11.5pt; max-width: none; }
+h2 { font-size: 15pt; break-after: avoid; }
+h3 { font-size: 12.5pt; break-after: avoid; }
+h4 { font-size: 11pt; break-after: avoid; }
+.prose, .notice, .overlap__text, .level__body { max-width: none; }
+.section { break-inside: auto; padding-block-start: 8pt; }
+.section + .section { margin-block-start: 14pt; }
+p, li { orphans: 3; widows: 3; }
+
+/* Links: print the destination after the text */
+a { color: #000000; text-decoration: underline; }
+.with-margin__main a[href]:not([href^="#"]):not(.card__link)::after,
+.print-meta a[href]::after { content: " <" attr(href) ">"; font-size: 8pt; font-weight: 400; overflow-wrap: anywhere; text-decoration: none; }
+.card__link::after { display: none; }
+
+/* Tables: unscroll, keep rows whole, repeat headers */
+.table-scroll { overflow: visible; border: 0; background: none; }
+.data-table { font-size: 9pt; }
+.data-table thead { display: table-header-group; }
+.data-table tr { break-inside: avoid; }
+.data-table :is(thead th, tbody th):first-child { position: static; box-shadow: none; min-width: 0; }
+.data-table th, .data-table td { padding: 4pt 6pt; }
+.data-table th.is-sortable { padding: 4pt 6pt; }
+.sort { min-height: 0; padding: 0; }
+
+/* Cards, levels and lists print as plain blocks */
+.card-list { display: block; }
+.card-list > li + li { margin-block-start: 6pt; }
+.card { border: 0.75pt solid #000000; border-block-start-width: 2pt; break-inside: avoid; padding: 6pt 8pt; }
+.level { break-inside: avoid; padding-block-end: 8pt; }
+.level.is-target .level__body { border-inline-start: 3pt solid #000000; }
+.level.is-target .level__rung { box-shadow: none; }
+.compare__roles, .compare__lists { display: block; }
+.compare__col { break-inside: avoid; margin-block-start: 8pt; }
+.drawer { border: 0; }
+.drawer__body { padding-inline-start: 0; }
+.notice, .citation, .empty, .panel { break-inside: avoid; border-color: #000000; }
+.tabs__panel { border: 0; padding: 0; }
+
+/* Status marks keep their shapes; background graphics are usually off in print */
+.badge, .pending, .chip__face { background: none !important; border-color: #000000; color: #000000; }
+.pending { border-style: dashed; }
+.ev-ladder__node { background: #FFFFFF; }
+.is-done > .ev-ladder__node { background: #000000; }
+.ev--e .ev__mark { background: #000000; color: #FFFFFF; }
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }

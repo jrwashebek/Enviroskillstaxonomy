@@ -21,11 +21,12 @@ button { cursor: pointer; }
 
 /* Headings: serif for page and section titles, sans for everything inside a section */
 h1, h2, h3, h4, h5, h6 { line-height: var(--lh-head); text-wrap: balance; }
-h1 { font-family: var(--font-serif); font-weight: 400; font-size: var(--step-4); letter-spacing: -0.01em; line-height: 1.15; }
-h2 { font-family: var(--font-serif); font-weight: 400; font-size: var(--step-3); letter-spacing: -0.005em; }
-h3 { font-size: var(--step-2); font-weight: 600; }
-h4 { font-size: var(--step-1); font-weight: 600; line-height: var(--lh-snug); }
+h1, .h1 { font-family: var(--font-serif); font-weight: 400; font-size: var(--step-4); letter-spacing: -0.01em; line-height: 1.15; }
+h2, .h2 { font-family: var(--font-serif); font-weight: 400; font-size: var(--step-3); letter-spacing: -0.005em; line-height: var(--lh-head); }
+h3, .h3 { font-family: var(--font-sans); font-size: var(--step-2); font-weight: 600; line-height: var(--lh-head); }
+h4, .h4 { font-family: var(--font-sans); font-size: var(--step-1); font-weight: 600; line-height: var(--lh-snug); }
 h5, h6 { font-size: var(--step-0); font-weight: 600; }
+.display { font-family: var(--font-serif); font-weight: 400; font-size: var(--step-5); line-height: 1.1; letter-spacing: -0.015em; }
 p, ul, ol, dl, blockquote, pre, table, figure { margin-block-end: var(--sp-2); }
 :is(p, ul, ol, dl, figure):last-child { margin-block-end: 0; }
 ul, ol { padding-inline-start: 1.25em; }
@@ -66,7 +67,7 @@ a:focus-visible { background: var(--focus-bg); color: var(--focus-fg); text-deco
 .prose h2, .prose h3 { margin-block-end: var(--sp-1); }
 .lede { font-size: var(--step-1); line-height: 1.5; color: var(--fg); max-width: 60ch; }
 .muted { color: var(--fg-muted); }
-.meta { font-size: var(--step--1); color: var(--fg-muted); line-height: var(--lh-snug); }
+.meta { font-family: var(--font-sans); font-size: var(--step--1); font-weight: 400; color: var(--fg-muted); line-height: var(--lh-snug); letter-spacing: 0; }
 
 /* The notebook layout: a margin column (nav, record facts) beside a reading column, split by a ruled line */
 .page-body { padding-block: var(--sp-4) var(--sp-8); }
@@ -81,7 +82,11 @@ a:focus-visible { background: var(--focus-bg); color: var(--focus-fg); text-deco
 /* Section: a heading set on a hairline, like a ruled notebook page */
 .section { padding-block-start: var(--sp-3); border-block-start: var(--bw-hair) solid var(--deco-rule); }
 .section + .section { margin-block-start: var(--sp-6); }
-.section__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--sp-1) var(--sp-3); margin-block-end: var(--sp-3); }
+.with-margin__main > .section:first-child { padding-block-start: 0; border-block-start: 0; }
+.section > * + * { margin-block-start: var(--sp-3); }
+.section > * + :is(h3, h4, .h3, .h4) { margin-block-start: var(--sp-5); }
+.section > :is(h3, h4, .h3, .h4) + * { margin-block-start: var(--sp-1); }
+.section__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--sp-1) var(--sp-3); }
 .section__head > :is(h2, h3) { margin: 0; }
 
 /* Accessibility helpers */

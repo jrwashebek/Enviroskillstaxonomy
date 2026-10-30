@@ -34,6 +34,7 @@ export class NotFound extends Error {}
 // ------------------------------------------------------------------ typed accessors
 export const core = () => load("core", "core");
 export const search = () => load("search", "search");
+export const searchTasks = () => load("search-tasks", "search:tasks");
 export const change = () => load("change", "change");
 export const hr = () => load("hr", "hr");
 export const paths = () => load("paths", "paths");
@@ -65,7 +66,8 @@ async function sharded(kind, slug) {
       if (shard === undefined) throw e;
     }
   }
-  const rec = Array.isArray(shard) ? shard.find((x) => x.slug === slug) : shard[slug];
+  const list = Array.isArray(shard) ? shard : shard[kind + "s"] || shard.items || null;
+  const rec = list ? list.find((x) => x.slug === slug) : shard[slug];
   if (!rec) throw new NotFound(`No ${kind} "${slug}" in shard ${n}`);
   return rec;
 }

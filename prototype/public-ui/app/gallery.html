@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en" data-release="2.0.0-rc.1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'">
+<title>Interface components | EMST</title>
+<meta name="description" content="The EMST design system: tokens, type and every interface component, in light and dark.">
+<link rel="preload" href="assets/fonts/public-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/print.css" media="print">
+<script src="assets/js/gallery.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<div class="release-strip">
+  <div class="container release-strip__inner">
+    <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#draft"/></svg>
+    <p>Release <span class="id">2.0.0-rc.1</span> is drafted by AI agents and not yet reviewed by a person. Not for hiring, classification or performance decisions. <a href="#notices">What this means</a></p>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="gallery.html">
+      <svg class="brand__mark" aria-hidden="true" focusable="false"><use href="assets/icons.svg#emst-mark"/></svg>
+      <span><span class="brand__name">EMST</span><span class="brand__full">Environmental Management Skills Taxonomy</span></span>
+    </a>
+    <form class="search" role="search" id="site-search" novalidate>
+      <label class="search__label" for="q">Search roles, tasks, competencies and series codes</label>
+      <div class="search__row">
+        <div class="combobox">
+          <input class="search__input" id="q" type="search" name="q" role="combobox" aria-expanded="false" aria-controls="q-list" aria-autocomplete="list" aria-describedby="q-help" autocomplete="off" spellcheck="false" placeholder="Try: prescribed fire, 0462">
+          <ul class="listbox" id="q-list" role="listbox" aria-label="Search suggestions" hidden></ul>
+        </div>
+        <button class="search__btn" type="submit"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#search"/></svg><span>Search</span></button>
+      </div>
+      <p class="vh" id="q-help">Suggestions appear as you type. Use the up and down arrow keys to move through them and Enter to open one.</p>
+      <p class="vh" role="status" aria-live="polite" id="q-status"></p>
+    </form>
+  </div>
+</header>
+<nav class="site-nav" aria-label="Main">
+  <div class="container site-nav__inner">
+    <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="nav-list"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#menu"/></svg>Menu</button>
+    <ul class="site-nav__list" id="nav-list">
+      <li><a class="site-nav__link" href="#cards">Roles</a></li>
+      <li><a class="site-nav__link" href="#cards">Competencies</a></li>
+      <li><a class="site-nav__link" href="#compare">Compare roles</a></li>
+      <li><a class="site-nav__link" href="#badges">How work is changing</a></li>
+      <li><a class="site-nav__link" href="#table">For HR and classifiers</a></li>
+      <li><a class="site-nav__link" href="#buttons">Download</a></li>
+      <li><a class="site-nav__link" href="gallery.html" aria-current="page">About EMST</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main" tabindex="-1">
+  <div class="container">
+    <div class="print-only print-meta">
+      <p>EMST release 2.0.0-rc.1 (25 October 2026). Printed from the EMST design system gallery: <a href="https://github.com/jrwashebek/Enviroskillstaxonomy">github.com/jrwashebek/Enviroskillstaxonomy</a></p>
+      <p>Drafted by AI agents and not yet reviewed by a person. Not for selection, classification or performance decisions.</p>
+    </div>
+
+    <div class="page-head">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="gallery.html">Home</a></li>
+          <li><a href="gallery.html">About EMST</a></li>
+          <li><span aria-current="page">Interface components</span></li>
+        </ol>
+      </nav>
+      <p class="page-head__kind"><span>Design system</span><span class="id">Tokens v1, release 2.0.0-rc.1</span></p>
+      <h1>Interface components</h1>
+      <p class="lede">The parts EMST's public pages are built from. The examples use real records from release 2.0.0-rc.1, so you can see each part with the length and awkwardness of real content.</p>
+      <div class="page-head__status cluster">
+        <fieldset class="segmented" id="theme-switch">
+          <legend class="vh">Theme</legend>
+          <label><input type="radio" name="theme" value="system" checked><span>Match device</span></label>
+          <label><input type="radio" name="theme" value="light"><span>Light</span></label>
+          <label><input type="radio" name="theme" value="dark"><span>Dark</span></label>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="with-margin page-body">
+      <aside class="with-margin__side">
+        <nav class="toc" aria-labelledby="toc-title">
+          <h2 class="toc__title" id="toc-title">On this page</h2>
+          <ol class="toc__list">
+            <li><a class="toc__link" href="#principles" aria-current="true">Principles</a></li>
+            <li><a class="toc__link" href="#tokens">Colour and type</a></li>
+            <li><a class="toc__link" href="#search">Search</a></li>
+            <li><a class="toc__link" href="#page-head">Page header</a></li>
+            <li><a class="toc__link" href="#cards">Cards</a></li>
+            <li><a class="toc__link" href="#badges">Badges and status</a></li>
+            <li><a class="toc__link" href="#pending">Assessment pending</a></li>
+            <li><a class="toc__link" href="#ladder">Evidence ladder</a></li>
+            <li><a class="toc__link" href="#levels">Proficiency levels</a></li>
+            <li><a class="toc__link" href="#tabs">Tabs and drawers</a></li>
+            <li><a class="toc__link" href="#table">Data table</a></li>
+            <li><a class="toc__link" href="#compare">Comparison</a></li>
+            <li><a class="toc__link" href="#notices">Notices</a></li>
+            <li><a class="toc__link" href="#buttons">Buttons and links</a></li>
+            <li><a class="toc__link" href="#filters">Filters</a></li>
+            <li><a class="toc__link" href="#states">Empty and loading</a></li>
+            <li><a class="toc__link" href="#print">Print</a></li>
+          </ol>
+        </nav>
+      </aside>
+
+      <div class="with-margin__main">
+
+        <section class="section" id="principles" aria-labelledby="h-principles">
+          <div class="section__head"><h2 id="h-principles">Principles</h2></div>
+          <div class="prose">
+            <p>EMST is a field notebook for a whole sector, written in pencil. The interface has one job beyond being clear: to show, without fuss, how sure we are about each thing on the page.</p>
+            <ul>
+              <li><strong>Pencil before ink.</strong> Anything drafted by AI agents and not yet reviewed wears a dotted outline and a pen mark. Reviewed work, when it exists, will be drawn in solid line.</li>
+              <li><strong>Unsurveyed ground is hatched.</strong> A value that has not passed a reliability study is never shown as a number, a blank or a zero. It is a hatched area with an hourglass and the words "Assessment pending".</li>
+              <li><strong>Closed doors are dashed.</strong> Uses that this release does not support, such as selection, have a dashed outline and a lock.</li>
+              <li><strong>Shape and words carry meaning; colour only helps.</strong> Every status reads correctly in greyscale, in print and in Windows high contrast.</li>
+              <li><strong>A ruled margin.</strong> Wide pages keep a margin column for navigation and record facts, split from the reading column by a single green line.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="tokens" aria-labelledby="h-tokens">
+          <div class="section__head"><h2 id="h-tokens">Colour and type</h2><p class="meta">Values update when you switch theme.</p></div>
+          <div class="table-scroll" role="region" aria-labelledby="cap-tokens" tabindex="0">
+            <table class="data-table data-table--sticky">
+              <caption id="cap-tokens">Colour tokens<span class="data-table__hint">Text tokens pass 4.5:1 and UI tokens pass 3:1 on every surface, in both themes (tools/check-contrast.mjs).</span></caption>
+              <thead><tr><th scope="col">Token</th><th scope="col">Swatch</th><th scope="col">Value</th><th scope="col">Use</th></tr></thead>
+              <tbody>
+                <tr><th scope="row"><code>--bg</code></th><td><span class="key key--swatch" data-token="--bg"></span></td><td class="id" data-token-value="--bg"></td><td>Page (paper)</td></tr>
+                <tr><th scope="row"><code>--bg-surface</code></th><td><span class="key key--swatch" data-token="--bg-surface"></span></td><td class="id" data-token-value="--bg-surface"></td><td>Cards, tables, inputs</td></tr>
+                <tr><th scope="row"><code>--bg-wash</code></th><td><span class="key key--swatch" data-token="--bg-wash"></span></td><td class="id" data-token-value="--bg-wash"></td><td>Wells, footer</td></tr>
+                <tr><th scope="row"><code>--bg-tint</code></th><td><span class="key key--swatch" data-token="--bg-tint"></span></td><td class="id" data-token-value="--bg-tint"></td><td>Selected, current</td></tr>
+                <tr><th scope="row"><code>--fg</code></th><td><span class="key key--swatch" data-token="--fg"></span></td><td class="id" data-token-value="--fg"></td><td>Text (forest ink)</td></tr>
+                <tr><th scope="row"><code>--fg-muted</code></th><td><span class="key key--swatch" data-token="--fg-muted"></span></td><td class="id" data-token-value="--fg-muted"></td><td>Secondary text</td></tr>
+                <tr><th scope="row"><code>--fg-link</code></th><td><span class="key key--swatch" data-token="--fg-link"></span></td><td class="id" data-token-value="--fg-link"></td><td>Links</td></tr>
+                <tr><th scope="row"><code>--ui-primary</code></th><td><span class="key key--swatch" data-token="--ui-primary"></span></td><td class="id" data-token-value="--ui-primary"></td><td>Primary fills, current markers</td></tr>
+                <tr><th scope="row"><code>--ui-border</code></th><td><span class="key key--swatch" data-token="--ui-border"></span></td><td class="id" data-token-value="--ui-border"></td><td>Control outlines</td></tr>
+                <tr><th scope="row"><code>--ui-focus</code></th><td><span class="key key--swatch" data-token="--ui-focus"></span></td><td class="id" data-token-value="--ui-focus"></td><td>Focus ring</td></tr>
+                <tr><th scope="row"><code>--deco-margin</code></th><td><span class="key key--swatch" data-token="--deco-margin"></span></td><td class="id" data-token-value="--deco-margin"></td><td>Margin rule (decorative)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3 class="h4" id="h-cat">Chart colours, for six employer types</h3>
+          <p class="meta">Validated with the data-viz palette validator for adjacent series in both themes. Slot 5 is below 3:1 on white, so charts must carry direct labels or a table.</p>
+          <ul class="overlap__legend" aria-labelledby="h-cat">
+            <li><span class="key key--swatch" data-token="--cat-1"></span>1 Federal</li>
+            <li><span class="key key--swatch" data-token="--cat-2"></span>2 State</li>
+            <li><span class="key key--swatch" data-token="--cat-3"></span>3 Local</li>
+            <li><span class="key key--swatch" data-token="--cat-4"></span>4 NGO</li>
+            <li><span class="key key--swatch" data-token="--cat-5"></span>5 Private</li>
+            <li><span class="key key--swatch" data-token="--cat-6"></span>6 Academic</li>
+          </ul>
+          <h3 class="h4">Type scale</h3>
+          <div class="panel stack">
+            <p class="display">Field resource technician</p>
+            <p class="h1">Field resource technician <span class="meta">h1, Merriweather</span></p>
+            <p class="h2">Tasks and competencies <span class="meta">h2, Merriweather</span></p>
+            <p class="h3">Collect data to protocol <span class="meta">h3, Public Sans 600</span></p>
+            <p class="h4">Journey level <span class="meta">h4, Public Sans 600</span></p>
+            <p class="lede">Collects vegetation, wildlife, water and soil data to protocol and checks remote and AI-generated products against the ground. <span class="meta">lede</span></p>
+            <p>Body text is set at 16 to 17 pixels with a 1.6 line height and a 68-character measure. Figures in tables use tabular numerals: <span class="num">1,317 tasks, 223 competencies, 0462</span>.</p>
+            <p class="meta">Meta text is 14 pixels and never lighter than the muted token.</p>
+          </div>
+        </section>
+
+        <section class="section" id="search" aria-labelledby="h-search">
+          <div class="section__head"><h2 id="h-search">Search</h2><p class="meta">The header search above is live. Try "fire" or "0462".</p></div>
+          <p class="prose">Search uses the ARIA 1.2 combobox pattern with a list of suggestions. Each suggestion names its kind (role, competency, task, series) so that two items with the same words can be told apart. These are the states, drawn statically.</p>
+          <div class="stack-lg">
+            <div class="panel">
+              <p class="meta">Expanded, second suggestion active</p>
+              <div class="search search--page">
+                <label class="search__label" for="q-demo1">Search roles, tasks, competencies and series codes</label>
+                <div class="search__row">
+                  <div class="combobox">
+                    <input class="search__input" id="q-demo1" type="search" role="combobox" aria-expanded="true" aria-controls="q-demo1-list" aria-autocomplete="list" aria-activedescendant="q-demo1-o2" autocomplete="off" value="prescribed fire">
+                  </div>
+                  <button class="search__btn" type="button"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#search"/></svg><span>Search</span></button>
+                </div>
+                <ul class="listbox listbox--static" id="q-demo1-list" role="listbox" aria-label="Search suggestions">
+                  <li class="listbox__option" id="q-demo1-o1" role="option" aria-selected="false"><span class="listbox__title">Fuels and <mark>prescribed fire</mark> specialist</span><span class="listbox__kind">Role</span><span class="listbox__ctx">Forest module</span></li>
+                  <li class="listbox__option" id="q-demo1-o2" role="option" aria-selected="true"><span class="listbox__title">Plan smoke management for <mark>prescribed</mark> and managed <mark>fire</mark> within air quality requirements</span><span class="listbox__kind">Competency</span><span class="listbox__ctx">Air module, levels L2 to L4</span></li>
+                  <li class="listbox__option" id="q-demo1-o3" role="option" aria-selected="false"><span class="listbox__title">Wildland <mark>fire</mark> operations (crew to supervisor)</span><span class="listbox__kind">Role</span><span class="listbox__ctx">Also called: "Rx burn" crew</span></li>
+                  <li class="listbox__option listbox__all" id="q-demo1-o4" role="option" aria-selected="false"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#search"/></svg><span>See all results for "prescribed fire"</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel">
+              <p class="meta">No matches</p>
+              <div class="search search--page">
+                <label class="search__label" for="q-demo2">Search roles, tasks, competencies and series codes</label>
+                <div class="search__row">
+                  <div class="combobox">
+                    <input class="search__input" id="q-demo2" type="search" role="combobox" aria-expanded="false" aria-controls="q-demo2-list" aria-autocomplete="list" aria-describedby="q-demo2-empty" autocomplete="off" value="arborist apprentice">
+                    <ul class="listbox" id="q-demo2-list" role="listbox" aria-label="Search suggestions" hidden></ul>
+                  </div>
+                  <button class="search__btn" type="button"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#search"/></svg><span>Search</span></button>
+                </div>
+                <div class="listbox listbox--static listbox__empty" id="q-demo2-empty" role="status"><p>No matches for "arborist apprentice".</p><p>Try fewer words, a task such as "collect water samples", or a series code such as 0462.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="page-head" aria-labelledby="h-pagehead">
+          <div class="section__head"><h2 id="h-pagehead">Page header</h2></div>
+          <div class="panel">
+            <nav class="breadcrumb" aria-label="Breadcrumb, example">
+              <ol>
+                <li><a href="#page-head">Home</a></li>
+                <li><a href="#page-head">Roles</a></li>
+                <li><span aria-current="page">Field resource technician</span></li>
+              </ol>
+            </nav>
+            <p class="page-head__kind"><span>Role profile, core module</span><span class="id">ROL-ZJFCC09</span></p>
+            <p class="h1">Field resource technician</p>
+            <p class="lede">Collects vegetation, wildlife, water and soil data to protocol, keeps samples and records trustworthy, and checks remote and AI-generated products against what is on the ground.</p>
+            <div class="page-head__status cluster">
+              <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
+              <span class="badge badge--ok"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#established"/></svg>Established</span>
+              <span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#draft"/></svg>AI-drafted, not yet reviewed</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="cards" aria-labelledby="h-cards">
+          <div class="section__head"><h2 id="h-cards">Cards</h2><p class="meta">The whole card is one link target.</p></div>
+          <ul class="card-list">
+            <li>
+              <article class="card">
+                <p class="card__kind"><span>Role</span><span class="id">ROL-ZJFCC09</span></p>
+                <h3 class="card__title"><a class="card__link" href="#cards">Field resource technician</a></h3>
+                <p class="card__summary">Collects and records field observations and samples to protocol, and checks automated and remote products against the ground.</p>
+                <dl class="card__meta">
+                  <div><dt>Tasks</dt><dd>35</dd></div>
+                  <div><dt>Competencies</dt><dd>24</dd></div>
+                  <div><dt>Levels</dt><dd>Entry, journey</dd></div>
+                </dl>
+                <div class="card__badges cluster">
+                  <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
+                  <span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#draft"/></svg>AI-drafted</span>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card">
+                <p class="card__kind"><span>Role</span><span class="id">ROL-ZK41BZA</span></p>
+                <h3 class="card__title"><a class="card__link" href="#cards">Conservation corps member</a></h3>
+                <p class="card__summary">Carries out crew-based land treatment work safely to specification, and learns field judgment through supervised repetition.</p>
+                <dl class="card__meta">
+                  <div><dt>Tasks</dt><dd>29</dd></div>
+                  <div><dt>Competencies</dt><dd>18</dd></div>
+                  <div><dt>Levels</dt><dd>Entry</dd></div>
+                </dl>
+                <div class="card__badges cluster">
+                  <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
+                  <span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#draft"/></svg>AI-drafted</span>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card card--comp">
+                <p class="card__kind"><span>Competency, practice</span><span class="id">CMP-QSAV0HJ</span></p>
+                <h3 class="card__title"><a class="card__link" href="#levels">Ground-truth remote-sensed, modelled and AI-generated outputs in the field</a></h3>
+                <p class="card__summary">Plan and collect field reference data, blind to predictions, to test maps, model outputs and automated classifications.</p>
+                <dl class="card__meta">
+                  <div><dt>Levels</dt><dd><span class="span"><span class="span__cells" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>L1 to L4</span></dd></div>
+                  <div><dt>Tasks</dt><dd>11</dd></div>
+                  <div><dt>Roles</dt><dd>7</dd></div>
+                </dl>
+                <div class="card__badges cluster">
+                  <span class="badge tier tier--exploratory"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Exploratory</span></span>
+                  <span class="badge badge--warn"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#eye"/></svg>Watch</span>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card card--comp">
+                <p class="card__kind"><span>Competency, practice</span><span class="id">CMP-0CT0C9G</span></p>
+                <h3 class="card__title"><a class="card__link" href="#cards">Communicate during field emergencies and report incidents</a></h3>
+                <p class="card__summary">Keep reliable communication where there is no coverage, report emergencies to dispatch accurately, and document incidents and near misses.</p>
+                <dl class="card__meta">
+                  <div><dt>Levels</dt><dd><span class="span"><span class="span__cells" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>L1 to L3</span></dd></div>
+                  <div><dt>Tasks</dt><dd>6</dd></div>
+                  <div><dt>Roles</dt><dd>3</dd></div>
+                </dl>
+                <div class="card__badges cluster">
+                  <span class="badge tier tier--exploratory"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Exploratory</span></span>
+                  <span class="badge badge--ok"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#established"/></svg>Established</span>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section" id="badges" aria-labelledby="h-badges">
+          <div class="section__head"><h2 id="h-badges">Badges and status</h2><p class="meta">Square corners: a label. Round: something you can press.</p></div>
+          <div class="stack-lg">
+            <div>
+              <h3 class="h4">Use tier</h3>
+              <p class="meta">Four steps, filled to the tier. Develop and select are not reached in this release.</p>
+              <div class="cluster">
+                <span class="badge tier tier--exploratory"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Exploratory</span></span>
+                <span class="badge tier tier--describe"><span class="tier__steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span class="badge__pre">Use tier </span>Describe</span></span>
+                <span class="badge tier tier--locked"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#lock"/></svg><span>Develop: not yet available</span></span>
+                <span class="badge tier tier--locked"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#lock"/></svg><span>Select: not yet available</span></span>
+              </div>
+            </div>
+            <div>
+              <h3 class="h4" id="h-tierscale">What this record may be used for</h3>
+              <ol class="tier-scale" aria-labelledby="h-tierscale">
+                <li class="tier-scale__step"><span class="tier-scale__name">Exploratory</span><span>Foresight and curriculum exploration.</span></li>
+                <li class="tier-scale__step is-current" aria-current="true"><span class="tier-scale__name">Describe</span><span>Workforce analytics, planning and curriculum mapping.</span><span class="tier-scale__here">This record</span></li>
+                <li class="tier-scale__step is-locked"><span class="tier-scale__name"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#lock"/></svg>Develop</span><span>Training, task books, development plans and self-assessment.</span><span class="tier-scale__lock">Not yet available in this release</span></li>
+                <li class="tier-scale__step is-locked"><span class="tier-scale__name"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#lock"/></svg>Select</span><span>Hiring, and only as input to an employer's own job analysis.</span><span class="tier-scale__lock">Not yet available in this release</span></li>
+              </ol>
+            </div>
+            <div>
+              <h3 class="h4">Evidence label</h3>
+              <div class="cluster">
+                <span class="badge ev ev--e"><span class="ev__mark" aria-hidden="true">E</span><span><span class="vh">Evidence label E: </span>Sourced</span></span>
+                <span class="badge ev ev--j"><span class="ev__mark" aria-hidden="true">J</span><span><span class="vh">Evidence label J: </span>Judgment</span></span>
+                <span class="badge ev ev--s"><span class="ev__mark" aria-hidden="true">S</span><span><span class="vh">Evidence label S: </span>Speculation</span></span>
+              </div>
+            </div>
+            <div>
+              <h3 class="h4">Lifecycle of the work</h3>
+              <div class="cluster">
+                <span class="badge badge--ok"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#established"/></svg>Established</span>
+                <span class="badge badge--info"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#emerging"/></svg>Emerging</span>
+                <span class="badge badge--warn"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#eye"/></svg>Watch</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="h4">Provenance</h3>
+              <div class="cluster">
+                <span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#draft"/></svg>AI-drafted, not yet reviewed</span>
+                <span class="badge badge--nfd"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#scales"/></svg>Not for decisions</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="h4">Crosswalk match</h3>
+              <p class="meta">The glyph shows how much the two concepts overlap. Every crosswalk row in this release is also an unreviewed AI match.</p>
+              <div class="cluster">
+                <span class="badge match"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#match-close"/></svg>Close match</span>
+                <span class="badge match"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#match-nested"/></svg>Broad match</span>
+                <span class="badge match"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#match-nested"/></svg>Narrow match</span>
+                <span class="badge match"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#match-related"/></svg>Related match</span>
+                <span class="badge match"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#match-none"/></svg>No match</span>
+                <span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#unreviewed"/></svg>Unreviewed AI match</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="pending" aria-labelledby="h-pending">
+          <div class="section__head"><h2 id="h-pending">Assessment pending</h2></div>
+          <p class="prose">Importance, time share, critical, needed at entry, craft, work function and exposure are held until a reliability study passes. In a sentence or a table cell the pending mark sits where the value would be: <span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span>. Where a chart would be, the whole area is hatched.</p>
+          <div class="pending pending--block">
+            <div class="pending__label">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>
+              <p class="pending__title">Time share by task: assessment pending</p>
+              <p class="pending__text">No multi-rater v2 assessment of this value yet. We show nothing rather than a draft number, and never a zero.</p>
+              <a href="#notices">Why some values are held back</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="ladder" aria-labelledby="h-ladder">
+          <div class="section__head"><h2 id="h-ladder">Evidence ladder</h2></div>
+          <div class="panel stack-lg">
+            <div class="ev-ladder">
+              <h3 class="ev-ladder__title" id="evl-1">Review path for this record</h3>
+              <ol class="ev-ladder__steps" aria-labelledby="evl-1">
+                <li class="ev-ladder__step is-done"><span class="ev-ladder__node" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#check"/></svg></span><span class="ev-ladder__label">Drafted by AI agents<span class="vh">: done</span></span></li>
+                <li class="ev-ladder__step is-current" aria-current="step"><span class="ev-ladder__node" aria-hidden="true"></span><span class="ev-ladder__label">AI-checked</span><span class="ev-ladder__here">Current step</span></li>
+                <li class="ev-ladder__step"><span class="ev-ladder__node" aria-hidden="true"></span><span class="ev-ladder__label">Human-reviewed<span class="vh">: not yet</span></span></li>
+                <li class="ev-ladder__step"><span class="ev-ladder__node" aria-hidden="true"></span><span class="ev-ladder__label">Validated<span class="vh">: not yet</span></span></li>
+                <li class="ev-ladder__step"><span class="ev-ladder__node" aria-hidden="true"></span><span class="ev-ladder__label">In production<span class="vh">: not yet</span></span></li>
+              </ol>
+              <p class="ev-ladder__note meta">Automated checks have run on this record. No person has reviewed it yet.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="levels" aria-labelledby="h-levels">
+          <div class="section__head"><h2 id="h-levels">Proficiency levels</h2><p class="meta">CMP-QSAV0HJ, target for Field resource technician</p></div>
+          <h3 class="h4" id="h-levels-comp">Ground-truth remote-sensed, modelled and AI-generated outputs in the field</h3>
+          <p class="meta">Defined at L1 to L4. Indicators are AI-drafted and placed at levels only provisionally.</p>
+          <ol class="levels" aria-labelledby="h-levels-comp">
+            <li class="level">
+              <div class="level__rung" aria-hidden="true">L1</div>
+              <div class="level__body">
+                <h4 class="level__name"><span class="vh">Level 1: </span>Supervised</h4>
+                <p class="level__desc">Works under direct or close direction; work is checked.</p>
+                <ul class="level__indicators">
+                  <li>Records the attribute at each pre-selected validation point with the reference protocol, with predicted values withheld until the field record is complete.</li>
+                  <li>Photographs site conditions at each validation point in the required directions, so that a second observer's QA re-check can confirm the call.</li>
+                </ul>
+              </div>
+            </li>
+            <li class="level is-target">
+              <div class="level__rung" aria-hidden="true">L2</div>
+              <div class="level__body">
+                <p class="level__target"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#target"/></svg>Target level for Field resource technician, journey level</p>
+                <h4 class="level__name"><span class="vh">Level 2: </span>Independent</h4>
+                <p class="level__desc">Completes standard assignments without step-by-step direction; reviewed for results.</p>
+                <ul class="level__indicators">
+                  <li>Codes the likely cause of each product-field mismatch, such as timing, mixed pixels, hidden understory or location error, with an assessor confirming a sample by revisit.</li>
+                  <li>Reports coded mismatches to the analyst with photos and locations in the agreed format, so that each can be traced to a product correction or a documented exception.</li>
+                </ul>
+              </div>
+            </li>
+            <li class="level">
+              <div class="level__rung" aria-hidden="true">L3</div>
+              <div class="level__body">
+                <h4 class="level__name"><span class="vh">Level 3: </span>Senior</h4>
+                <p class="level__desc">Plans own approach to non-routine work; review is for policy fit, not method.</p>
+                <ul class="level__indicators">
+                  <li>Designs a field validation sample with an analyst, setting strata, sample size and access limits so that agreement can be reported with stated uncertainty.</li>
+                  <li>Decides where calibration plots are still needed for a remote-sensed inventory, naming the stand or site conditions where remote estimates fail.</li>
+                  <li>Explains to product users the field conditions under which a remote or AI product is unreliable, citing coded mismatches from validation work.</li>
+                </ul>
+              </div>
+            </li>
+            <li class="level">
+              <div class="level__rung" aria-hidden="true">L4</div>
+              <div class="level__body">
+                <h4 class="level__name"><span class="vh">Level 4: </span>Lead / Expert</h4>
+                <p class="level__desc">Sets the technical approach for a programme or team; work is accepted as technically authoritative.</p>
+                <ul class="level__indicators">
+                  <li>Defines field reference standards for a product line, documenting acceptance criteria that state the evidence required before management or regulatory use.</li>
+                  <li>Decides from field validation evidence whether a product is fit for a stated use, documenting the decision, its limits and the evidence a reviewer can audit.</li>
+                </ul>
+              </div>
+            </li>
+            <li class="level is-undefined">
+              <div class="level__rung" aria-hidden="true">L5</div>
+              <div class="level__body">
+                <h4 class="level__name"><span class="vh">Level 5: </span>Strategic</h4>
+                <p class="level__none">Not defined for this competency.</p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="section" id="tabs" aria-labelledby="h-tabs">
+          <div class="section__head"><h2 id="h-tabs">Tabs and drawers</h2><p class="meta">Arrow keys move between tabs.</p></div>
+          <h3 class="h4" id="h-variants">How this role differs by employer</h3>
+          <div class="tabs" data-tabs>
+            <div class="tabs__list" role="tablist" aria-labelledby="h-variants">
+              <button class="tabs__tab" type="button" role="tab" id="tab-fed" aria-selected="true" aria-controls="panel-fed">Federal</button>
+              <button class="tabs__tab" type="button" role="tab" id="tab-state" aria-selected="false" aria-controls="panel-state" tabindex="-1">State</button>
+              <button class="tabs__tab" type="button" role="tab" id="tab-local" aria-selected="false" aria-controls="panel-local" tabindex="-1">Local</button>
+              <button class="tabs__tab" type="button" role="tab" id="tab-ngo" aria-selected="false" aria-controls="panel-ngo" tabindex="-1">NGO</button>
+              <button class="tabs__tab" type="button" role="tab" id="tab-private" aria-selected="false" aria-controls="panel-private" tabindex="-1">Private</button>
+              <button class="tabs__tab" type="button" role="tab" id="tab-academic" aria-selected="false" aria-controls="panel-academic" tabindex="-1">Academic</button>
+            </div>
+            <section class="tabs__panel" role="tabpanel" id="panel-fed" aria-labelledby="tab-fed" tabindex="0">
+              <p>In federal land management agencies this work is usually done by forestry, range, soil conservation and biological science technicians. Crosswalk candidates are listed in the table below.</p>
+              <p class="meta">Indicative pay bands appear on variants only, labelled "not a classification criterion".</p>
+            </section>
+            <section class="tabs__panel" role="tabpanel" id="panel-state" aria-labelledby="tab-state" tabindex="0" hidden><p>State agency variant: the same task bundle, with state class specifications as crosswalk candidates.</p></section>
+            <section class="tabs__panel" role="tabpanel" id="panel-local" aria-labelledby="tab-local" tabindex="0" hidden><p>Local government variant, for counties, special districts and conservation districts.</p></section>
+            <section class="tabs__panel" role="tabpanel" id="panel-ngo" aria-labelledby="tab-ngo" tabindex="0" hidden><p>Nonprofit variant, including land trusts, watershed groups and science NGOs.</p></section>
+            <section class="tabs__panel" role="tabpanel" id="panel-private" aria-labelledby="tab-private" tabindex="0" hidden><p>Private sector variant, mostly consulting firms working under contract.</p></section>
+            <section class="tabs__panel" role="tabpanel" id="panel-academic" aria-labelledby="tab-academic" tabindex="0" hidden><p>Academic variant, for field crews on university research projects.</p></section>
+          </div>
+
+          <div class="stack" id="drawers">
+            <details class="drawer">
+              <summary class="drawer__summary"><svg class="icon drawer__chev" aria-hidden="true" focusable="false"><use href="assets/icons.svg#chevron-down"/></svg><span class="drawer__title">Evidence for this task</span><span class="badge ev ev--j"><span class="ev__mark" aria-hidden="true">J</span><span><span class="vh">Evidence label J: </span>Judgment</span></span></summary>
+              <div class="drawer__body">
+                <dl class="facts facts--grid">
+                  <dt>Task ID</dt><dd class="id">TSK-0E2H1D4</dd>
+                  <dt>Drafted by</dt><dd>AI agents (LLM-assisted)</dd>
+                  <dt>Review</dt><dd>Not yet reviewed by a person</dd>
+                  <dt>Use tier</dt><dd>Describe, computed by effective-use-tier 1.1.0</dd>
+                </dl>
+              </div>
+            </details>
+            <details class="drawer" open>
+              <summary class="drawer__summary"><svg class="icon drawer__chev" aria-hidden="true" focusable="false"><use href="assets/icons.svg#chevron-down"/></svg><span class="drawer__title">v1 prior evidence (2 records)</span><span class="badge badge--nfd"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#scales"/></svg>Not for decisions</span></summary>
+              <div class="drawer__body">
+                <p class="prose">These codes were assigned in EMST v1 by one analyst working with an AI assistant. They are prior evidence only: not a v2 assessment, never counted or averaged, and not shown anywhere else.</p>
+                <div class="table-scroll" role="region" aria-labelledby="cap-v1" tabindex="0">
+                  <table class="data-table">
+                    <caption id="cap-v1">v1 prior codes for "Coordinate on-scene actions with arriving emergency responders"</caption>
+                    <thead><tr><th scope="col">v1 source</th><th scope="col">Dated</th><th scope="col">Codes</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">v1 database, per-task dimensions</th><td><time datetime="2026-02-23">23 Feb 2026</time></td><td>Automation type: H (human-essential). Tacit knowledge density: high. Career-ladder position: C (contributing, 3 to 8 years).</td></tr>
+                      <tr><th scope="row">v1 working record, domain 4</th><td><time datetime="2026-02-23">23 Feb 2026</time></td><td>Automation type: H (human-essential). Tacit knowledge density: high.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="section" id="table" aria-labelledby="h-table">
+          <div class="section__head"><h2 id="h-table">Data table</h2><p class="meta">Scrolls sideways inside its frame; the first column stays put.</p></div>
+          <div class="table-scroll" role="region" aria-labelledby="cap-tasks" tabindex="0">
+            <table class="data-table data-table--sticky" data-sortable>
+              <caption id="cap-tasks">Tasks for Field resource technician<span class="data-table__hint">First 5 of 35 tasks. Select a column heading to sort.</span></caption>
+              <thead>
+                <tr>
+                  <th scope="col" class="is-sortable" aria-sort="ascending"><button class="sort" type="button" data-col="0">Task<svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#sort-asc"/></svg></button></th>
+                  <th scope="col" class="is-sortable num"><button class="sort" type="button" data-col="1" data-type="num">Competencies<svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#sort"/></svg></button></th>
+                  <th scope="col">Role levels</th>
+                  <th scope="col">Importance</th>
+                  <th scope="col">Time share</th>
+                  <th scope="col">Use tier</th>
+                  <th scope="col">Evidence</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Adapt the vegetation sampling layout when burned, flooded or grazed site conditions depart from protocol assumptions</th><td class="num">1</td><td>Journey</td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td>Describe</td><td>J, unreviewed</td></tr>
+                <tr><th scope="row">Conduct point-count, transect or call-playback wildlife surveys to protocol</th><td class="num">1</td><td>Entry, journey</td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td>Describe</td><td>J, unreviewed</td></tr>
+                <tr><th scope="row">Establish vegetation monitoring plots to protocol and record species composition, cover and density</th><td class="num">1</td><td>Entry, journey</td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td>Describe</td><td>J, unreviewed</td></tr>
+                <tr><th scope="row">Identify plants on sample plots to the protocol's required taxonomic level, collecting labelled vouchers</th><td class="num">2</td><td>Entry, journey</td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td>Describe</td><td>J, unreviewed</td></tr>
+                <tr><th scope="row">Identify wildlife sign such as tracks, scat, nests and feeding remains, recording a confidence level for each record</th><td class="num">1</td><td>Entry, journey</td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td><span class="pending"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#hourglass"/></svg>Assessment pending</span></td><td>Describe</td><td>J, unreviewed</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-scroll" role="region" aria-labelledby="cap-xw" tabindex="0">
+            <table class="data-table data-table--sticky">
+              <caption id="cap-xw">Crosswalk candidates for Field resource technician<span class="data-table__hint">All rows are unreviewed AI matches. None is a classification basis.</span></caption>
+              <thead><tr><th scope="col">External concept</th><th scope="col">Scheme</th><th scope="col">Match</th><th scope="col">Review</th></tr></thead>
+              <tbody>
+                <tr><th scope="row"><span class="id">19-4071.00</span> Forest and Conservation Technicians</th><td>O*NET-SOC 2019</td><td><span class="badge match"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#match-close"/></svg>Close match</span></td><td><span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#unreviewed"/></svg>Unreviewed AI match</span></td></tr>
+                <tr><th scope="row"><span class="id">19-4021.00</span> Biological Technicians</th><td>O*NET-SOC 2019</td><td><span class="badge match"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#match-nested"/></svg>Broad match</span></td><td><span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#unreviewed"/></svg>Unreviewed AI match</span></td></tr>
+                <tr><th scope="row"><span class="id">0462</span> Forestry Technician</th><td>OPM series</td><td><span class="badge match"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#match-nested"/></svg>Narrow match</span></td><td><span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#unreviewed"/></svg>Unreviewed AI match</span></td></tr>
+                <tr><th scope="row"><span class="id">0404</span> Biological Science Technician</th><td>OPM series</td><td><span class="badge match"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#match-nested"/></svg>Narrow match</span></td><td><span class="badge badge--draft"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#unreviewed"/></svg>Unreviewed AI match</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section" id="compare" aria-labelledby="h-compare">
+          <div class="section__head"><h2 id="h-compare">Comparison</h2></div>
+          <div class="compare">
+            <div class="compare__roles">
+              <div class="compare__role"><span class="key" aria-hidden="true"></span><div><p class="meta">First role</p><h3><a href="#cards">Field resource technician</a></h3><p class="meta">24 competencies</p></div></div>
+              <div class="compare__role compare__role--b"><span class="key key--b" aria-hidden="true"></span><div><p class="meta">Second role</p><h3><a href="#cards">Conservation corps member</a></h3><p class="meta">18 competencies</p></div></div>
+            </div>
+            <figure class="overlap">
+              <figcaption class="overlap__caption">How their competencies overlap</figcaption>
+              <svg class="overlap__bar" viewBox="0 0 31 1" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <rect class="overlap__seg overlap__seg--a" x="0" y="0" width="13" height="1"/>
+                <rect class="overlap__seg overlap__seg--shared" x="13" y="0" width="11" height="1"/>
+                <rect class="overlap__seg overlap__seg--b" x="24" y="0" width="7" height="1"/>
+              </svg>
+              <ul class="overlap__legend">
+                <li><span class="key" aria-hidden="true"></span><span>Only Field resource technician: <strong class="num">13</strong></span></li>
+                <li><span class="key key--shared" aria-hidden="true"></span><span>Shared: <strong class="num">11</strong></span></li>
+                <li><span class="key key--b" aria-hidden="true"></span><span>Only Conservation corps member: <strong class="num">7</strong></span></li>
+              </ul>
+              <p class="overlap__text">11 of the 31 competencies across both roles are shared. 13 are only in Field resource technician and 7 are only in Conservation corps member.</p>
+            </figure>
+            <div class="compare__lists">
+              <section class="compare__col" aria-labelledby="cmp-a">
+                <h4 id="cmp-a"><span class="key" aria-hidden="true"></span>Only Field resource technician<span class="count">13</span></h4>
+                <ul>
+                  <li>Collect trace-level and genetic environmental samples without contamination</li>
+                  <li>Deploy, maintain and verify field sensor networks</li>
+                  <li>Ground-truth remote-sensed, modelled and AI-generated outputs in the field</li>
+                  <li>Lead field crews and transfer field judgment to novices</li>
+                  <li><a href="#compare">Show 9 more</a></li>
+                </ul>
+              </section>
+              <section class="compare__col" aria-labelledby="cmp-s">
+                <h4 id="cmp-s"><span class="key key--shared" aria-hidden="true"></span>Shared<span class="count">11</span></h4>
+                <ul>
+                  <li>Apply safety practices and stop-work authority across field, facility and incident settings</li>
+                  <li>Navigate and travel safely in remote terrain with and without digital aids</li>
+                  <li>Record field observations with protocol fidelity and data integrity</li>
+                  <li>Validate AI-generated work products before professional use</li>
+                  <li><a href="#compare">Show 7 more</a></li>
+                </ul>
+              </section>
+              <section class="compare__col" aria-labelledby="cmp-b">
+                <h4 id="cmp-b"><span class="key key--b" aria-hidden="true"></span>Only Conservation corps member<span class="count">7</span></h4>
+                <ul>
+                  <li>Communicate during field emergencies and report incidents</li>
+                  <li>Construct and maintain trails to sustainable design standards</li>
+                  <li>Detect, treat and monitor invasive species in the field</li>
+                  <li>Operate chainsaws and other power equipment safely in field conditions</li>
+                  <li><a href="#compare">Show 3 more</a></li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="notices" aria-labelledby="h-notices">
+          <div class="section__head"><h2 id="h-notices">Notices</h2></div>
+          <div class="stack">
+            <div class="notice notice--use" role="note">
+              <svg class="icon notice__icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#scales"/></svg>
+              <div class="notice__body">
+                <h3 class="notice__title">Not for selection, classification or performance decisions</h3>
+                <p>EMST describes work. It is not a selection instrument, not a classification basis, not a job analysis, and not for reduction-in-force, adverse action or performance-rating decisions.</p>
+              </div>
+            </div>
+            <div class="notice notice--draft" role="note">
+              <svg class="icon notice__icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#draft"/></svg>
+              <div class="notice__body">
+                <h3 class="notice__title">Drafted by AI agents</h3>
+                <p>Every record and rating in this release was drafted by AI agents or carried over from a single analyst's v1 work. No person has reviewed them yet. <a href="#ladder">See the review path</a>.</p>
+              </div>
+            </div>
+            <div class="notice notice--info" role="note">
+              <svg class="icon notice__icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#info"/></svg>
+              <div class="notice__body">
+                <h3 class="notice__title">Crosswalks are candidates</h3>
+                <p>Links to O*NET, ESCO, OPM series and state class specifications were proposed by AI agents. None has been reviewed, so EMST makes no claim of alignment with those frameworks.</p>
+              </div>
+            </div>
+            <div class="notice notice--warn" role="note">
+              <svg class="icon notice__icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#alert"/></svg>
+              <div class="notice__body">
+                <h3 class="notice__title">This role is on watch</h3>
+                <p>The work may be forming but is not yet shown to exist across the sector. It will be reviewed by October 2027 and dropped if no new evidence appears.</p>
+              </div>
+            </div>
+            <div class="notice notice--hold" role="note" data-emst-policy="indigenous-statement">
+              <div class="notice__body">
+                <h3 class="notice__title">Records held for Tribal consent</h3>
+                <p>Indigenous knowledge is a distinct body of environmental expertise held and governed by Indigenous nations. It is out of scope of EMST by design.</p>
+                <p><span class="num">163</span> records related to Tribal employers are held until a Tribal Advisory Council approves them. These pages neither show nor describe them.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="buttons" aria-labelledby="h-buttons">
+          <div class="section__head"><h2 id="h-buttons">Buttons and links</h2></div>
+          <div class="stack-lg">
+            <div class="btn-row">
+              <button class="btn btn--primary" type="button"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#compare"/></svg>Compare roles</button>
+              <button class="btn btn--secondary" type="button"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#route"/></svg>See where this role leads</button>
+              <button class="btn btn--tertiary" type="button">Clear all filters</button>
+              <button class="btn btn--secondary btn--icon" type="button" aria-label="Print this page" data-print><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#print"/></svg></button>
+              <button class="btn btn--secondary btn--small" type="button">Small</button>
+              <button class="btn btn--primary" type="button" aria-disabled="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#lock"/></svg>Self-assessment: not yet available</button>
+            </div>
+            <div>
+              <h3 class="h4">Downloads</h3>
+              <ul class="dl-list">
+                <li><a class="dl-link" href="#buttons" download><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#download"/></svg><span><span class="dl-link__text">Competencies</span><span class="dl-link__meta">CSV, 126 KB</span></span></a></li>
+                <li><a class="dl-link" href="#buttons" download><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#download"/></svg><span><span class="dl-link__text">Tasks</span><span class="dl-link__meta">CSV, 848 KB</span></span></a></li>
+                <li><a class="dl-link" href="#buttons" download><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#download"/></svg><span><span class="dl-link__text">Full release bundle</span><span class="dl-link__meta">JSON-LD, 21.1 MB</span></span></a></li>
+              </ul>
+            </div>
+            <figure class="citation">
+              <blockquote class="citation__text" id="cite-1">EMST project lead (2026). Environmental Management Skills Taxonomy, release 2.0.0-rc.1 [Data set]. https://github.com/jrwashebek/Enviroskillstaxonomy</blockquote>
+              <figcaption class="btn-row">
+                <button class="btn btn--secondary btn--small" type="button" data-copy="cite-1"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#copy"/></svg><span>Copy citation</span></button>
+                <span class="meta" role="status" aria-live="polite" data-copy-status></span>
+              </figcaption>
+            </figure>
+            <div>
+              <a class="btn btn--secondary" href="https://github.com/jrwashebek/Enviroskillstaxonomy/issues/new/choose" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#flag"/></svg>Suggest a correction<span class="vh"> (opens GitHub Issues)</span><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#external"/></svg></a>
+              <p class="ext-hint">Opens GitHub Issues. You need a free GitHub account. Please do not include personal information.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="filters" aria-labelledby="h-filters">
+          <div class="section__head"><h2 id="h-filters">Filters</h2></div>
+          <div class="panel">
+            <form class="stack" id="filter-demo" aria-labelledby="h-filters">
+              <fieldset class="facet">
+                <legend class="facet__legend">Employer type</legend>
+                <div class="chips">
+                  <label class="chip"><input class="chip__input" type="checkbox" name="actor" value="federal" checked><span class="chip__face"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#check"/></svg>Federal</span></label>
+                  <label class="chip"><input class="chip__input" type="checkbox" name="actor" value="state"><span class="chip__face"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#check"/></svg>State</span></label>
+                  <label class="chip"><input class="chip__input" type="checkbox" name="actor" value="local"><span class="chip__face"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#check"/></svg>Local</span></label>
+                  <label class="chip"><input class="chip__input" type="checkbox" name="actor" value="ngo" checked><span class="chip__face"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#check"/></svg>NGO</span></label>
+                  <label class="chip"><input class="chip__input" type="checkbox" name="actor" value="private"><span class="chip__face"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#check"/></svg>Private</span></label>
+                  <label class="chip"><input class="chip__input" type="checkbox" name="actor" value="academic"><span class="chip__face"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#check"/></svg>Academic</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="facet">
+                <legend class="facet__legend">Lifecycle of the work</legend>
+                <ul class="checklist">
+                  <li><label class="check"><input class="check__input" type="checkbox" name="lc" value="established" checked><span>Established</span><span class="check__count">30</span></label></li>
+                  <li><label class="check"><input class="check__input" type="checkbox" name="lc" value="watch"><span>Watch</span><span class="check__count">7</span></label></li>
+                </ul>
+              </fieldset>
+              <div class="result-bar">
+                <p class="result-bar__count" role="status" aria-live="polite" id="filter-count">3 filters selected</p>
+                <button class="chip-remove" type="button"><span class="vh">Remove filter: </span>Federal<svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#close"/></svg></button>
+                <button class="chip-remove" type="button"><span class="vh">Remove filter: </span>NGO<svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#close"/></svg></button>
+                <button class="btn btn--tertiary btn--small" type="reset">Clear all</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="section" id="states" aria-labelledby="h-states">
+          <div class="section__head"><h2 id="h-states">Empty and loading</h2><p class="meta">Empty is a solid frame; pending is hatched. They must never look alike.</p></div>
+          <div class="stack-lg">
+            <div class="empty">
+              <span class="empty__icon" aria-hidden="true"><svg class="icon" focusable="false"><use href="assets/icons.svg#filter"/></svg></span>
+              <h3 class="empty__title">No roles match these filters</h3>
+              <p>Remove a filter, or search for a task instead. Some roles are described for only a few employer types.</p>
+              <div class="btn-row"><button class="btn btn--secondary" type="button">Clear all filters</button></div>
+            </div>
+            <div class="panel" aria-busy="true">
+              <p class="loading" role="status"><span class="loading__bar" aria-hidden="true"></span>Loading competencies</p>
+              <div class="skeleton" aria-hidden="true"><span class="skeleton__line"></span><span class="skeleton__line"></span><span class="skeleton__line"></span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="print" aria-labelledby="h-print">
+          <div class="section__head"><h2 id="h-print">Print</h2></div>
+          <div class="prose">
+            <p>Printing hides navigation, search, filters and buttons, prints link addresses after the link text, opens evidence drawers, and puts the release ID and page address at the top of the first page. Tables lose their scroll frame and repeat their header row on each page.</p>
+            <p><button class="btn btn--secondary" type="button" data-print><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#print"/></svg>Print this page</button></p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__about">
+      <p class="site-footer__brand"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#emst-mark"/></svg>EMST</p>
+      <p>The Environmental Management Skills Taxonomy is an independent, open project. It is not a government website, and no agency has endorsed it.</p>
+      <p>Release <span class="id">2.0.0-rc.1</span>, 25 October 2026. Data: CC0 1.0. Credit: EMST project lead.</p>
+      <p>No cookies, no tracking and no accounts. Anything you enter stays in your browser.</p>
+    </div>
+    <nav aria-labelledby="ft-project">
+      <h2 class="site-footer__h" id="ft-project">Project</h2>
+      <ul>
+        <li><a href="https://github.com/jrwashebek/Enviroskillstaxonomy" rel="noopener">Source and data on GitHub<span class="vh"> (external)</span></a></li>
+        <li><a href="https://github.com/jrwashebek/Enviroskillstaxonomy/issues/new/choose" rel="noopener">Suggest a correction<span class="vh"> (opens GitHub Issues)</span></a></li>
+        <li><a href="#buttons">Download the release</a></li>
+        <li><a href="#buttons">How to cite EMST</a></li>
+      </ul>
+    </nav>
+    <nav aria-labelledby="ft-policy">
+      <h2 class="site-footer__h" id="ft-policy">Use and policy</h2>
+      <ul>
+        <li><a href="#notices">What EMST may be used for</a></li>
+        <li><a href="#pending">Why some values are held back</a></li>
+        <li><a href="#notices">Tribal content hold</a></li>
+        <li><a href="gallery.html">Accessibility</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
