@@ -38,7 +38,7 @@ for (let i = 0; i + 1 < p1.length; i += 3) routes.push(`/compare/${p1[i].slug}/$
 const list = LIMIT ? routes.slice(0, LIMIT) : routes;
 
 // ---------------------------------------------------------------- rules
-const JARGON = /effective-use-tier@|closeMatch|relatedMatch|broadMatch|narrowMatch|exactMatch|agentDraft|raterType|OBS-4|SSSOM|\bLLM\b|skos:|semapv:|undefined|\[object Object\]|NaN/;
+const JARGON = /effective-use-tier@|closeMatch|relatedMatch|broadMatch|narrowMatch|exactMatch|agentDraft|raterType|OBS-4|SSSOM|\bLLM\b|skos:|semapv:|\bundefined\b(?! terms?\b)|\[object Object\]|\bNaN\b/;
 const gc = yaml.load(readFileSync(join(ROOT, "schema", "lint", "governed_content.yaml"), "utf8"));
 const TRIBAL = gc.tribal_hold.triggers.map((p) => (typeof p === "string" ? new RegExp(p, "i") : new RegExp(p.pattern, p.cs ? "" : "i")));
 const allowedHeld = [core.status?.held?.policy, core.release?.indigenousStatement].filter(Boolean);
@@ -56,8 +56,12 @@ function checkText(route, text) {
   for (const rx of TRIBAL) { const t = stripped.match(rx); if (t && route !== "/about/held") out.push(["tribal-trigger", t[0], stripped.slice(Math.max(0, t.index - 80), t.index + 80)]); }
   for (const rule of register.strict) { const t = new RegExp(phraseRx(rule.phrase).source, "i").exec(text); if (t) out.push(["retired-claim", `${rule.claim}: ${t[0]}`, text.slice(Math.max(0, t.index - 60), t.index + 60)]); }
   for (const s of sentencesOf(text)) for (const rule of register.conflations) if (conflates(s, rule)) out.push(["conflation", rule.claim || "", s.slice(0, 160)]);
-  const rec = /\brecommend(ed|s|ation)?\b/i.exec(text);
-  if (rec && !/\b(never|not|no)\b[^.]{0,40}$/i.test(text.slice(Math.max(0, rec.index - 50), rec.index))) out.push(["recommend", rec[0], text.slice(Math.max(0, rec.index - 60), rec.index + 60)]);
+  // EMST must never recommend a pathway, role or move. Task statements may describe recommending as part of the work.
+  for (const sent of sentencesOf(text)) {
+    if (!/\brecommend(ed|s|ation)?\b/i.test(sent) || !/\b(pathways?|paths?|next (role|step|move)|career|move to|you should)\b/i.test(sent)) continue;
+    if (/\b(never|not|no|none)\b[^.]{0,60}\brecommend/i.test(sent) || /successional pathway|consultation findings/i.test(sent)) continue;
+    out.push(["recommend", "", sent.slice(0, 200)]);
+  }
   const q = /\byou (qualify|are qualified|are eligible)\b/i.exec(text);
   if (q && !/(doesn.t|does not|never|not) (mean|say)[^.]{0,20}$/i.test(text.slice(Math.max(0, q.index - 40), q.index))) out.push(["qualify", q[0], text.slice(Math.max(0, q.index - 60), q.index + 60)]);
   for (const t of text.matchAll(/(\d+(?:\.\d+)?)\s?%/g)) out.push(["percent (review)", t[0], text.slice(Math.max(0, t.index - 60), t.index + 40)]);

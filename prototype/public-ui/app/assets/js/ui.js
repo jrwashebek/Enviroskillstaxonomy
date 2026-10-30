@@ -78,7 +78,7 @@ export function badgeUnreviewed(row) {
 }
 
 /** Crosswalk rows as a plain list. linkFn(row) may return {href, text} for the external object. */
-export function crosswalkList(rows, { linkFn, label, empty, noun = "term" } = {}) {
+export function crosswalkList(rows, { linkFn, label, empty, noun = "term", note = true } = {}) {
   if (!rows || !rows.length) return empty ? h("p", { class: "meta" }, empty) : null;
   const ul = h("ul", { class: "xw-list stack" });
   const versions = [...new Set(rows.map((r) => r.ver).filter(Boolean))];
@@ -91,8 +91,8 @@ export function crosswalkList(rows, { linkFn, label, empty, noun = "term" } = {}
       r.note ? disclosure(COPY.match?.why || "Why the AI agents suggested this", h("p", clean(r.note)), { small: true }) : null));
   }
   return frag(label ? h("h3", { class: "h4" }, label) : null, ul,
-    versions.length ? h("p", { class: "meta" }, `${COPY.match?.asOf || "Reference version"}: ${versions.map(clean).join("; ")}`) : null,
-    COPY.match?.note ? h("p", { class: "meta" }, COPY.match.note) : null);
+    versions.length ? h("p", { class: "meta" }, `${COPY.match?.asOf || "Version of the other list"}: ${versions.map(clean).join("; ")}`) : null,
+    note && COPY.match?.note ? h("p", { class: "meta" }, COPY.match.note) : null);
 }
 
 // ------------------------------------------------------------------ status line
@@ -100,7 +100,7 @@ export function statusLine(rec, { compact = false, aboutHref = null } = {}) {
   const t = rec?.tier?.t || rec?.tier || "exploratory";
   const ev = rec?.ev || {};
   const use = COPY.use?.[t] || {};
-  const kids = [badgeTier(t, { linked: true }), compact ? null : h("p", { class: "status-line__use" }, use.short || "",
+  const kids = [compact ? badgeTier(t, { linked: true }) : badgeTier(t), compact ? null : h("p", { class: "status-line__use" }, use.short || "",
     " ", h("a", { href: KEY(`use-${t}`) }, COPY.use?.examples || "What this allows")),
   h("a", { href: KEY("ai-drafted"), class: "badge-link" }, badgeDraft({ v1: !!ev.v1 })),
   rec?.lc && rec.lc !== "established" ? h("a", { href: KEY("lifecycle"), class: "badge-link" }, badgeLifecycle(rec.lc)) : null,
@@ -243,7 +243,8 @@ export function clean(text) {
     .replace(/\bLLM-vs-LLM\b/g, "AI-to-AI").replace(/\bLLM[- ]assisted\b/gi, "AI-assisted").replace(/\bLLMs?\b/g, "AI")
     .replace(/\bskos:(exact|close|broad|narrow|related)Match\b/g, (_, m) => ({ exact: "exact match", close: "close match", broad: "broader match", narrow: "narrower match", related: "related match" })[m])
     .replace(/\b(close|broad|narrow|related|exact)Match\b/g, "$1 match").replace(/\braterType\b/g, "rater type").replace(/\bagentDraft\b/g, "AI draft")
-    .replace(/\bsemapv:\w+/g, "").replace(/\bsssom:NoTermFound\b/g, "no matching term");
+    .replace(/\bsemapv:\w+/g, "").replace(/\bsssom:NoTermFound\b/g, "no matching term")
+    .replace(/\bONETSOC:/g, "O*NET-SOC ").replace(/\bONETtask:/gi, "O*NET task ").replace(/\bOPMseries:/g, "OPM series ").replace(/\bESCO:/g, "ESCO ");
 }
 export function provenance(rec, core) {
   const ev = rec?.ev || {};
