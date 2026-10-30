@@ -8,7 +8,7 @@ import { refresh } from "../lib/router.js";
 import { fullIndex, KIND_LABEL, KIND_ORDER, hrefFor } from "../lib/searchsvc.js";
 import { normalize, stem, segments } from "../lib/search.js";
 import { COPY, fill } from "../content.js";
-import { pageHeader, notice, onThisPage, jargon, fmt } from "../ui.js";
+import { pageHeader, notice, onThisPage, jargon, clean, fmt } from "../ui.js";
 import { truncate, cap } from "../lib/format.js";
 
 const EXAMPLES = ["forestry technician", "Rx burn", "0460"];
@@ -16,8 +16,8 @@ const EXAMPLES = ["forestry technician", "Rx burn", "0460"];
 const STOP = new Set("a an and are as at be by for from in into is it its my of on or our that the their this to with we you your i me what how do does job jobs work".split(" "));
 const words = (s) => normalize(s).split(/\s+/).flatMap((w) => (/^[a-z]+-[a-z]+$/.test(w) ? [w, ...w.split("-")] : [w])).filter((w) => w && !STOP.has(w));
 const codeKey = (s) => String(s || "").toLowerCase().replace(/^gs[\s-]*/, "").replace(/[^a-z0-9]/g, "");
-// Record text is generated; this only spells out one acronym that must not appear unexplained on screen.
-const plain = (s) => String(s ?? "").replace(/\bLLMs\b/g, "large language models").replace(/\bLLM\b/g, "large language model");
+// Record text is generated; the shared clean() rewrites internal words that must not appear on screen.
+const plain = (s) => clean(s);
 
 const ONE = { role: "Role", series: "OPM series", class: "State or local job class", comp: "Competency", task: "Task", module: "Module", tool: "Tool", credential: "Credential that may be involved", signal: "Change signal, on watch", emerging: "Emerging role" };
 const MANY = { role: "roles", series: "OPM series", class: "state and local classes", comp: "competencies", task: "tasks", module: "modules", tool: "tools", credential: "credentials", signal: "change signals", emerging: "emerging roles" };
@@ -125,7 +125,7 @@ function whyMatched(r, q, plan, spelling) {
   if (ctxWords.length) add(`Words in ${where}: ${tidy(ctxWords).join(", ")}`);
   if (!r.complete && !code) reasons.unshift(matchedGroups ? "Matches only some of your words" : "Close to your words");
   if (!reasons.length) reasons.push("Close to your words");
-  const spell = (x) => x.replace(/\bllms\b/gi, "large language models").replace(/\bllm\b/gi, "large language model");
+  const spell = (x) => clean(x).replace(/\bllms?\b/gi, "AI");
   return { reasons: reasons.map(spell), marks: marks.map(spell) };
 }
 

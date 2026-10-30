@@ -57,6 +57,7 @@ export function noMatches(title, body, onClear) {
 // ------------------------------------------------------------------ view state (memory only)
 let F = { families: new Set(), actors: new Set(), depth: new Set() };
 let groupBy = "family";
+const openGroups = new Map(); // family groups the person opened or closed, kept in memory
 
 function roleCard(r, headingLevel = 3) {
   const actors = ACTOR_ORDER.filter((a) => actorsOf(r).has(a));
@@ -138,21 +139,29 @@ export async function render() {
       results.replaceChildren(h("h2", { class: "vh" }, "Roles A to Z"), h("ul", { class: "card-list" }, shown.map((r) => h("li", roleCard(r)))));
       return;
     }
-    const out = [h("p", { class: "meta" }, "A role can be in more than one job family, so it may appear more than once.")];
-    const fams = F.families.size ? families.filter((f) => F.families.has(f.slug)) : families;
-    for (const f of fams) {
-      const rs = shown.filter((r) => famOf.get(r.slug).has(f.slug));
-      if (rs.length) out.push(group(`fam-${f.slug}`, f.title, rs));
-    }
-    if (!F.families.size) {
-      const other = shown.filter((r) => !famOf.get(r.slug).size);
-      if (other.length) out.push(group("fam-none", "Not yet in a job family", other));
-    }
-    results.replaceChildren(...out);
+    // Each family is a disclosure (a heading that holds a button), so phones get a short, scannable list of families.
+    const fams = (F.families.size ? families.filter((f) => F.families.has(f.slug)) : families)
+      .map((f) => ({ id: `fam-${f.slug}`, title: f.title, rs: shown.filter((r) => famOf.get(r.slug).has(f.slug)) })).filter((g) => g.rs.length);
+    const other = F.families.size ? [] : shown.filter((r) => !famOf.get(r.slug).size);
+    if (other.length) fams.push({ id: "fam-none", title: "Not yet in a job family", rs: other });
+    const wide = typeof matchMedia === "function" && matchMedia("(min-width: 64rem)").matches;
+    const openByDefault = wide || fams.length === 1 || shown.length <= 6;
+    results.replaceChildren(
+      h("p", { class: "meta" }, "A role can be in more than one job family, so it may appear more than once."),
+      ...fams.map((g) => group(g.id, g.title, g.rs, openGroups.has(g.id) ? openGroups.get(g.id) : openByDefault)));
   }
-  const group = (id, title, rs) => h("section", { class: "role-group", "aria-labelledby": `h-${id}` },
-    h("div", { class: "section__head" }, h("h2", { class: "h3", id: `h-${id}` }, title), h("p", { class: "meta" }, `${fmt(rs.length)} ${rs.length === 1 ? "role" : "roles"}`)),
-    h("ul", { class: "card-list" }, rs.map((r) => h("li", roleCard(r)))));
+  function group(id, title, rs, open) {
+    const panel = h("div", { class: "role-group__panel", id: `p-${id}`, hidden: !open }, h("ul", { class: "card-list" }, rs.map((r) => h("li", roleCard(r)))));
+    const btn = h("button", { class: "group-toggle", type: "button", "aria-expanded": String(open), "aria-controls": `p-${id}` },
+      icon("chevron-down"), h("span", { class: "group-toggle__title" }, title), h("span", { class: "group-toggle__count" }, `${fmt(rs.length)} ${rs.length === 1 ? "role" : "roles"}`));
+    btn.addEventListener("click", () => {
+      const o = btn.getAttribute("aria-expanded") !== "true";
+      btn.setAttribute("aria-expanded", String(o));
+      panel.hidden = !o;
+      openGroups.set(id, o);
+    });
+    return h("section", { class: "role-group", "aria-labelledby": `h-${id}` }, h("h2", { class: "role-group__h h3", id: `h-${id}` }, btn), panel);
+  }
 
   update();
   count.node.textContent = `Showing ${fmt(roles.filter((r) => pass(r)).length)} of ${fmt(roles.length)} roles`;

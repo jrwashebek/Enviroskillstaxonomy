@@ -68,11 +68,11 @@
 .b-export-status:empty{display:none}
 
 /* What's coming only (P3) */
-.b-watch{padding-block:var(--sp-4) var(--sp-8)}
+.b-watch{padding-block:0 var(--sp-8)}
 .b-watch .facts{max-width:var(--measure)}
 
 @media (forced-colors:active){.b-flag{color:CanvasText}}
-@media print{.b-role :is(.is-extra,.is-more1,.is-more2){display:revert!important}.b-viewlink,.b-controls{display:none}.b-dest,.b-xw,.b-task{break-inside:avoid}}
+@media print{.b-role :is(.is-extra,.is-more1,.is-more2){display:revert!important}.b-viewlink,.b-controls,.b-toc-drawer{display:none}.b-dest,.b-xw,.b-task{break-inside:avoid}}
 .b-dest__named{color:var(--fg)}
 .b-ai{max-width:var(--measure)}
 .b-task{line-height:var(--lh-snug)}
@@ -87,3 +87,6 @@
 .b-role .page-body{padding-block:var(--sp-3) var(--sp-5)}
 .b-group+.b-group{margin-top:var(--sp-2)}
 .b-head-extra>p{max-width:var(--measure)}
+.b-toc-drawer .toc__title{display:none}
+.b-toc-drawer .drawer__body{padding-block:0 var(--sp-2)}
+.b-role .page-head{border-bottom:0}

@@ -300,7 +300,7 @@ export function recordActions(core, { title, kind, id, exports = [] }) {
 // ------------------------------------------------------------------ levels
 export function levelChip(code, core) {
   if (!code) return null;
-  const name = core?.labels?.level?.[code] || "";
+  const name = core?.labels?.level?.[code] || (code === "A" ? "Awareness" : "");
   return h("span", { class: "badge level-chip" }, h("span", { class: "level-chip__code" }, code), name);
 }
 /** levels: [{level, label, indicators[]}]; span: [min,max]; target: {level, text} */

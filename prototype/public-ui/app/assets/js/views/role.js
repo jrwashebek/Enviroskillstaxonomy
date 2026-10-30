@@ -152,6 +152,23 @@ function aboutParts(fr) {
   const moved = [...ladders, facts];
   return frag(h("p", { class: "b-ai" }, COPY.ai?.detail || ""), ui.disclosure(T.aboutMore, moved), kids.filter((n) => !moved.includes(n)));
 }
+/** Below 64rem "On this page" sits above the content, so it folds into a closed disclosure there: one tab stop
+ *  instead of seven before the first task (spec §2.5 AC). From 64rem it stays open in the margin. */
+function compactToc(layout) {
+  const side = layout.querySelector(".with-margin__side"), nav = side?.querySelector(".toc");
+  if (!nav) return;
+  const drawer = ui.disclosure(COPY.site?.onThisPage || "On this page", null);
+  drawer.classList.add("b-toc-drawer");
+  const body = drawer.querySelector(".drawer__body");
+  const mq = window.matchMedia("(max-width: 63.99rem)");
+  const place = () => {
+    if (!layout.isConnected && drawer.dataset.placed) { mq.removeEventListener("change", place); return; }
+    drawer.dataset.placed = "1";
+    if (mq.matches) { body.appendChild(nav); side.appendChild(drawer); } else { side.appendChild(nav); drawer.remove(); }
+  };
+  mq.addEventListener("change", place);
+  place();
+}
 function sortVariants(list) {
   return list.slice().sort((a, b) => (ORDER.indexOf(a.actor) - ORDER.indexOf(b.actor)) || String(a.authorityLabel || "").localeCompare(String(b.authorityLabel || "")));
 }
@@ -580,7 +597,7 @@ function rolePage(core, role, actorParam) {
     const list = st.ordered;
     const { head: top, foot } = exportFrame(core, `${role.title}: tasks`);
     const lines = [...top, "", `Role: ${role.title}`];
-    if (v) lines.push(`Employer type: ${variantName(v, isDup(v))}`);
+    if (v) lines.push(`Employer type: ${variantName(v, isDup(v))}`, `Link to this version: ${variantUrl(v)}`);
     if (st.level !== "all") lines.push(`Role level: ${cap(st.level)}`);
     lines.push("", `Tasks (${list.length}):`);
     list.forEach((x, i) => {
@@ -631,10 +648,12 @@ function rolePage(core, role, actorParam) {
     { id: "connections", title: T.s.connections }, { id: "paths", title: T.s.paths },
     { id: "changing", title: T.s.changing }, { id: "about", title: T.s.about }].filter(Boolean);
   const title = actorParam && chosen ? `${role.title} (${variantName(chosen, isDup(chosen))})` : role.title;
+  const layout = ui.withMargin(sections, [work.node, comps, employers, connections, pathsSection, changing, about]);
+  compactToc(layout);
   const node = h("div", { class: "b-role" },
     h("div", { id: "overview", class: "b-overview" }, head),
     ui.printMeta(core, role.title),
-    ui.withMargin(sections, [work.node, comps, employers, connections, pathsSection, changing, about]));
+    layout);
   return { title, node };
 }
 
@@ -649,7 +668,7 @@ function watchPage(core, role) {
   fact(T.horizon, role.horizon ? horizonWords(role.horizon) : null);
   fact(T.reviewBy, role.reviewBy ? dateLong(role.reviewBy) : null);
   fact(T.counter, role.counterSignal ? ui.jargon(role.counterSignal, seen) : null);
-  fact(T.sectors, (role.sectors || []).length ? joinAnd(role.sectors.map((s) => cleanLabel(s.actorLabel))) : null);
+  fact(T.sectors, (role.sectors || []).length ? cap(joinAnd(role.sectors.map((s) => cleanLabel(s.actorLabel).toLowerCase()))) : null);
   fact(T.signals, role.nSignals !== undefined ? `${fmt(role.nSignals)} (all listed under What's changing)` : null);
   fact(T.feeders, (role.feeders || []).filter((f) => !f.wc).length ? role.feeders.filter((f) => !f.wc).map((f, i) => [i ? "; " : "", h("a", { href: ui.link.role(f.slug) }, f.title)]) : null);
   const body = h("div", { class: "b-watch stack-lg" },

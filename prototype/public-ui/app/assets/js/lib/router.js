@@ -86,7 +86,8 @@ async function render() {
   }
   clearTimeout(slow);
   if (token !== renderToken) return; // a newer navigation won
-  const prevPath = current.path;
+  const prevPath = current.path || refreshing;
+  refreshing = null;
   current = { path, section };
   clear(main).appendChild(h("div", { class: "container" }, out.node));
   main.removeAttribute("aria-busy");
@@ -113,4 +114,5 @@ export function start() {
 }
 
 /** Re-render the current page (used after data that a view depends on changes in memory). */
-export function refresh() { current.path = null; return render(); }
+let refreshing = null;
+export function refresh() { refreshing = current.path; current.path = null; return render(); }
