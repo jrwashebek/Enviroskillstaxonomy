@@ -492,18 +492,18 @@ Result: **PASS** (0 problems). Release 2.0.0-rc.1; verified 2026-10-30 by `tools
 | 2. Size budget | core.js 59.4 KB gz / 258.7 KB raw (≤ 150 / 600); largest other file 88.6 KB gz (≤ 120) |
 | 3. Counts | roles 37/37; competencies 223/223; tasks 1317/1317; variants 121/121; series 79/79 (13 generated profiles); classes 38/38 (20 generated views); signals 107/107 (0 withheld); held records 163 |
 | 4. References resolve | 29891 references checked |
-| 5. Forbidden content | 220836 strings and 57963 objects scanned (35157 distinct texts); 655 dated events checked; rules: gated keys, agentDraft, craft/exposure scores, 17 Tribal-hold triggers, 17 held seed keys, 3 held v1 codes, e-mail/phone, 16 retired-claim rules, 85 register and do-not-publish wrong forms, 2 conflation rules, 13 withheld phrases, 6 judgment-dated events, 0 unverified instrument titles |
+| 5. Forbidden content | 220839 strings and 57963 objects scanned (35158 distinct texts); 655 dated events checked; rules: gated keys, agentDraft, craft/exposure scores, 17 Tribal-hold triggers, 17 held seed keys, 3 held v1 codes, e-mail/phone, 16 retired-claim rules, 85 register and do-not-publish wrong forms, 2 conflation rules, 13 withheld phrases, 6 judgment-dated events, 0 unverified instrument titles |
 
 | File | Raw KB | Gzipped KB |
 |---|---:|---:|
 | core.js | 258.7 | 59.4 |
-| role-*.js (37 files; largest 11.7 KB gz) | 2030.8 | 260.9 |
-| comp-NN.js (12 files; largest 35.5 KB gz) | 1894.7 | 349.7 |
+| role-*.js (37 files; largest 11.7 KB gz) | 2030.7 | 260.6 |
+| comp-NN.js (12 files; largest 35.6 KB gz) | 1895.7 | 350.0 |
 | task-NN.js (14 files; largest 17.1 KB gz) | 1901.5 | 221.9 |
-| search.js | 211.0 | 43.6 |
+| search.js | 211.1 | 43.6 |
 | search-tasks.js | 338.3 | 88.6 |
 | change.js | 179.9 | 22.9 |
-| hr.js | 449.5 | 41.7 |
+| hr.js | 449.0 | 41.7 |
 | paths.js | 675.5 | 25.1 |
-| **Total (70 files)** | **7991.9** | **1131.3** |
+| **Total (70 files)** | **7992.4** | **1131.1** |
 <!-- verification:end -->
