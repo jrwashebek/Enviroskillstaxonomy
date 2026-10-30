@@ -41,3 +41,6 @@
 h1[tabindex="-1"]:focus,section[tabindex="-1"]:focus,h2[tabindex="-1"]:focus,main[tabindex="-1"]:focus{outline:none;box-shadow:none}
 /* Respect device safe areas when the page is shown edge to edge. */
 .container{padding-left:max(var(--gutter),env(safe-area-inset-left));padding-right:max(var(--gutter),env(safe-area-inset-right))}
+/* Lists whose items are links (tasks, groups): keep an underline for affordance, but quiet, so a page of tasks reads as text. */
+.b-task__link,.b-group__title a,.task-list a{color:var(--fg);text-decoration-line:underline;text-decoration-color:var(--ui-border);text-decoration-thickness:1px;text-underline-offset:.25em}
+.b-task__link:hover,.b-group__title a:hover,.task-list a:hover{color:var(--fg-link);text-decoration-color:currentColor;text-decoration-thickness:2px}

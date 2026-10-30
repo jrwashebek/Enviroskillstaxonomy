@@ -22,8 +22,13 @@ export async function copyText(text) {
   return ok;
 }
 
-/** Save a text file the user asked for. A local object URL; no request leaves the browser. */
+/** True when the page runs inside a host that blocks downloads and printing (set by the host's boot script). */
+export const restrictedHost = () => document.documentElement.classList.contains("host-artifact");
+
+/** Save a text file the user asked for. A local object URL; no request leaves the browser.
+ *  Where the host blocks downloads, the text is copied to the clipboard instead and the promise resolves "copied". */
 export function download(filename, text, mime = "text/plain") {
+  if (restrictedHost()) return copyText(text).then((ok) => (ok ? "copied" : "failed"));
   const blob = new Blob([text], { type: `${mime};charset=utf-8` });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -33,6 +38,7 @@ export function download(filename, text, mime = "text/plain") {
   document.body.appendChild(a);
   a.click();
   setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  return Promise.resolve("saved");
 }
 
 const csvCell = (v) => {

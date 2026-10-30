@@ -4,7 +4,7 @@ import { h, icon, nextId, frag } from "./lib/dom.js";
 import { focusSection } from "./lib/router.js";
 import { COPY, GLOSSARY, fill } from "./content.js";
 import { fmt, dateLong, plural } from "./lib/format.js";
-import { copyText, citation, correctionTemplate, pageUrl } from "./export.js";
+import { copyText, citation, correctionTemplate, pageUrl, restrictedHost } from "./export.js";
 
 export const ISSUES_URL = "https://github.com/jrwashebek/Enviroskillstaxonomy/issues/new/choose";
 export const REPO_URL = "https://github.com/jrwashebek/Enviroskillstaxonomy";
@@ -294,8 +294,18 @@ export function recordActions(core, { title, kind, id, exports = [] }) {
       h("a", { class: "btn btn--secondary btn--small", href: ISSUES_URL, rel: "noopener" }, icon("flag"), COPY.actions?.correct || "Suggest a correction", h("span", { class: "vh" }, " (opens GitHub Issues)"), icon("external")), corrStatus),
     h("p", { class: "meta" }, COPY.actions?.githubNote || "Opens GitHub Issues. You need a free GitHub account. Please do not include personal information."),
     h("div", { class: "btn-row no-print" },
-      h("button", { class: "btn btn--secondary btn--small", type: "button", on: { click: () => window.print() } }, icon("print"), COPY.actions?.print || "Print"),
-      exports.map((x) => h("button", { class: "btn btn--secondary btn--small", type: "button", on: { click: x.onClick } }, icon(x.icon || "download"), x.label))));
+      restrictedHost() ? null : h("button", { class: "btn btn--secondary btn--small", type: "button", on: { click: () => window.print() } }, icon("print"), COPY.actions?.print || "Print"),
+      exports.map((x) => {
+        const blocked = restrictedHost() && (x.icon || "download") === "download";
+        const label = blocked ? String(x.label).replace(/^Download\s+/i, "Copy ") + " to the clipboard" : x.label;
+        const st = h("span", { class: "meta", role: "status", "aria-live": "polite" });
+        const btn = h("button", { class: "btn btn--secondary btn--small", type: "button", on: { click: async (ev) => {
+          const r = await x.onClick(ev);
+          if (blocked) st.textContent = r === "failed" ? (COPY.actions?.copyFailed || "Could not copy.") : (COPY.actions?.copied || "Copied") + ". Paste it into a spreadsheet or text file.";
+        } } }, icon(blocked ? "copy" : (x.icon || "download")), label);
+        return [btn, st];
+      })),
+    restrictedHost() ? h("p", { class: "meta" }, "In this preview, files and printing are turned off by the host, so exports copy to your clipboard.") : null);
 }
 
 // ------------------------------------------------------------------ levels
