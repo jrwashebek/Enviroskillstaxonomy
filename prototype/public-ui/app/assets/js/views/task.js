@@ -4,7 +4,7 @@ import * as data from "../lib/data.js";
 import * as ui from "../ui.js";
 import { COPY, fill } from "../content.js";
 import { fmt, dateLong } from "../lib/format.js";
-import { plain, plural, credSlug, humanize, draftNote } from "./misc.js";
+import { plain, plural, credSlug, humanize, cap, draftNote } from "./misc.js";
 
 const NOUN = "O*NET task";
 
@@ -32,22 +32,51 @@ function onetRows(rows) {
   return [list, ver.length ? h("p", { class: "meta" }, `Compared with: ${ver.join("; ")}.`) : null, h("p", { class: "meta" }, COPY.match.note)];
 }
 
+// v1 evidence drawer in plain words. File paths, field names and flag codes go into a nested "Technical source"
+// disclosure (trust review U5). Meanings of the flags come from scripts/migrate_v1.py in the repository.
+const V1_FIELD = {
+  "v1 automation type": "Type of automation", "v1 tacit knowledge density": "Know-how that is hard to write down",
+  "v1 career-ladder position": "Career stage", "v1 vector": "Kind of technology", "v1 horizon": "When it might happen",
+};
+const V1_WORD = { Lo: "Low", Med: "Medium", Hi: "High", "none (?)": "None recorded" };
+const V1_FLAG = {
+  text_misaligned: "the v1 record's task wording differs noticeably from this task",
+  reconstructed_d2: "the values were rebuilt from another v1 working record",
+  d2_divergent: "another v1 working record gives different values",
+  reconciled_d6_2026_03: "the values come from a v1 file that was reconciled in March 2026",
+  pre15a_hybrid: "the values come from an earlier v1 reclassification pass",
+  normative_h: "“human-essential” here is a judgment about what should stay human, not a finding",
+};
+/** "C (Contributing (3–8 yr))" → "Contributing (3–8 yr)"; "Med" → "Medium". */
+const v1Value = (v) => V1_WORD[v] || String(v ?? "").replace(/^[A-Za-z0-9]{1,4} \((.*)\)$/, "$1");
+const v1Source = (src) => (/^v1 database/i.test(src || "") ? "The v1 database" : /^v1 working record/i.test(src || "") ? "A v1 working record" : "A v1 record");
+const v1Reason = (r) => { const m = /^v1 flag: (\w+)$/.exec(r); return m ? (V1_FLAG[m[1]] ? `v1 note: ${V1_FLAG[m[1]]}` : "a v1 note on this record") : plain(r); };
+
 function v1Drawer(task, core) {
   const v1 = task.v1;
   if (!v1) return null;
+  const prior = v1.prior || [];
   const body = [
     h("p", core.text.v1DrawerBody),
-    (v1.prior || []).map((p) => h("div", { class: "c-prior" },
-      h("h4", { class: "c-prior__title" }, p.d ? `Coded on ${dateLong(p.d)}` : "Earlier coding"),
-      h("dl", { class: "facts" }, (p.vals || []).flatMap(([k, v]) => [h("dt", k), h("dd", v)])),
+    prior.map((p, i) => h("div", { class: "c-prior" },
+      h("h3", { class: "h4 c-prior__title" }, prior.length > 1 ? `Earlier coding ${i + 1} of ${prior.length}` : "Earlier coding", p.d ? h("span", { class: "meta" }, ` (${dateLong(p.d)})`) : null),
+      h("dl", { class: "facts" }, (p.vals || []).flatMap(([k, v]) => [h("dt", V1_FIELD[k] || cap(String(k).replace(/^v1\s+/, ""))), h("dd", v1Value(v))])),
       h("p", { class: "meta" }, [
-        p.conf ? `Analyst's own confidence: ${p.conf}.` : null,
-        p.flags?.length ? `Flags: ${p.flags.map(humanize).join(", ").toLowerCase()}.` : null,
+        `${v1Source(p.src)}, coded by one analyst working with an AI assistant.`,
+        p.conf ? `The analyst's own confidence: ${p.conf}.` : null,
+        p.flags?.length ? `Notes: ${p.flags.map((f) => V1_FLAG[f] || "a v1 note on this record").join("; ")}.` : null,
         p.stale ? "Marked as out of date." : null,
-      ].filter(Boolean).join(" ")),
-      p.src ? h("p", { class: "meta" }, `Source: ${plain(p.src)}`) : null)),
-    v1.contested ? h("p", h("strong", "Contested. "), (v1.reasons || []).map((r) => plain(r).replace(/_/g, " ")).join("; "), ".") : null,
+      ].filter(Boolean).join(" ")))),
+    v1.contested ? h("p", h("strong", "Contested. "), cap((v1.reasons || []).map(v1Reason).join("; ")), ".") : null,
     core.text.v1DrawerChange ? h("p", { class: "meta" }, core.text.v1DrawerChange) : null,
+    ui.disclosure("Technical source", [
+      h("p", { class: "meta" }, "Where these values came from, as recorded in the v1 files. For people tracing the data."),
+      prior.map((p, i) => h("dl", { class: "facts c-tech" },
+        h("dt", "Record"), h("dd", h("span", { class: "id" }, p.id || `v1 record ${i + 1}`)),
+        p.src ? [h("dt", "Source as recorded"), h("dd", h("span", { class: "c-path" }, plain(p.src)))] : null,
+        (p.vals || []).length ? [h("dt", "Fields and codes"), h("dd", (p.vals || []).map(([k, v]) => `${k}: ${v}`).join("; "))] : null,
+        p.flags?.length ? [h("dt", "Flags as recorded"), h("dd", h("span", { class: "c-path" }, p.flags.join(", ")))] : null)),
+    ], { small: true }),
   ];
   return ui.disclosure(plain(v1.lab), body, { badge: ui.badgeNfd() });
 }

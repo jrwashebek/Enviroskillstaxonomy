@@ -53,6 +53,11 @@ function editDistance(a, b, max) {
 
 /** Words tied to the project's Tribal content hold. Never respelled, never answered with "not covered yet". */
 export const HOLD_RX = /\b(trib(e|es|al)|indigenous|native american|native hawaiian|alaska native|first nations|traditional (ecological )?knowledge)\b/i;
+// Misspellings of the hold words ("tribel", "indigenus") are treated the same way, so they never reach the
+// "may not cover this work yet / suggest a role" copy. A word the index knows, or a common word on the list
+// below, is never treated as a misspelling.
+const HOLD_WORDS = ["tribal", "tribe", "tribes", "indigenous"];
+const NEAR_HOLD_OK = new Set(["trial", "trials", "tribune", "tripe", "triple", "bridal", "tribute"]);
 
 export class SearchIndex {
   /** docs: [{k, s, t, a?, c?, x?, w?}], syn: {term: [expansion, …]} */
@@ -102,6 +107,18 @@ export class SearchIndex {
     return out;
   }
 
+  /** True when a query word looks like a misspelled hold word and is not a word the index knows. */
+  nearHold(q) {
+    for (const w of normalize(q).split(/\s+/)) {
+      if (w.length < 5 || NEAR_HOLD_OK.has(w) || this.post.has(w) || this.post.has(stem(w))) continue;
+      for (const hw of HOLD_WORDS) {
+        const max = hw.length >= 8 ? 2 : 1;
+        if (w[0] === hw[0] && editDistance(w, hw, max) <= max) return true;
+      }
+    }
+    return false;
+  }
+
   fuzzy(w) {
     const max = w.length >= 8 ? 2 : w.length >= 4 ? 1 : 0;
     if (!max) return [];
@@ -144,7 +161,7 @@ export class SearchIndex {
   search(query, { limit = 50, kinds = null } = {}) {
     const q = String(query || "").trim();
     if (!q) return { results: [], notes: [], total: 0, byKind: {} };
-    if (HOLD_RX.test(q)) return { results: [], notes: [], total: 0, byKind: {}, held: true };
+    if (HOLD_RX.test(q) || this.nearHold(q)) return { results: [], notes: [], total: 0, byKind: {}, held: true };
     const { groups, notes } = this.plan(q);
     const scores = new Map(); // docIdx -> {score, hits:Set(groupIndex), fuzzy:boolean}
     const bump = (i, g, s, fz) => {

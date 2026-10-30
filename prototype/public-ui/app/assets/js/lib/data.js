@@ -12,19 +12,31 @@ export function load(file, key) {
   const have = store()[key];
   if (have !== undefined) return Promise.resolve(have);
   if (pending.has(file)) return pending.get(file).then(() => store()[key]);
-  const p = new Promise((resolve, reject) => {
-    const s = document.createElement("script");
-    s.src = `${BASE}${file}.js`;
-    s.async = true;
-    s.onload = () => resolve();
-    s.onerror = () => reject(new DataError(`Could not load ${file}.js`));
-    document.head.appendChild(s);
-  });
+  const src = `${BASE}${file}.js`;
+  // index.html loads core.js with <script defer>, and boot.js may start the route's data file early. If that script is
+  // still in flight, wait for it rather than add a second one; boot.js marks data scripts with data-done when they finish.
+  const early = document.querySelector(`script[src="${src}"]`);
+  const inFlight = early && !early.hasAttribute("data-done") && document.readyState !== "complete";
+  const p = (inFlight ? settled(early) : Promise.resolve()).then(() => (store()[key] !== undefined ? undefined : inject(src, file)));
   pending.set(file, p);
   return p.then(() => {
     const v = store()[key];
     if (v === undefined) throw new DataError(`${file}.js did not register "${key}"`);
     return v;
+  });
+}
+
+function settled(el) {
+  return new Promise((resolve) => { el.addEventListener("load", resolve, { once: true }); el.addEventListener("error", resolve, { once: true }); });
+}
+function inject(src, file) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = src;
+    s.async = true;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new DataError(`Could not load ${file}.js`));
+    document.head.appendChild(s);
   });
 }
 

@@ -144,11 +144,12 @@ export async function render({ params = {} } = {}) {
 
   const node = h("div",
     pageHeader({ crumbs: [{ href: "#/", text: "Home" }, { text: "Competencies" }], title: "Competencies",
-      lede: "A competency is an area of skill that a role needs. Each one is described at up to five levels. Use the filters to find competencies for a course or a training plan." }),
+      lede: "A competency is an area of skill that a role needs. Each one is described at up to five levels. Use the filters to explore competencies for a new course." }),
     h("div", { class: "page-body stack filter-page" },
+      // One line, before the filters: what the levels may be used for (trust review O2).
+      notice("draft", null, h("p", "Competency levels are AI drafts for exploring ideas. Not for training plans or for rating anyone. ",
+        h("a", { href: "#/about/read@use-exploratory" }, "What “explore only” means"))),
       unknownModule ? notice("info", null, "This release has no module with that name, so all modules are shown.") : null,
-      h("p", { class: "meta" }, "AI agents drafted these competencies and their levels. No person has reviewed them yet. ",
-        h("a", { href: "#/about/read@ai-drafted" }, "What this means")),
       h("div", { class: "filter-box" }, panel, wordBox),
       h("div", { class: "result-bar" }, count.node, chipsSlot),
       h("h2", { class: "vh" }, "Matching competencies"),

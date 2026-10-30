@@ -4,7 +4,7 @@ import { h, icon } from "../lib/dom.js";
 import * as data from "../lib/data.js";
 import { state } from "../lib/state.js";
 import { COPY } from "../content.js";
-import { figure, fmt, dateLong } from "../ui.js";
+import { badgeTier, badgeEvidence, fmt, dateLong } from "../ui.js";
 import { ACTOR_ORDER, listedRoles, rolesByActor } from "./roles.js";
 
 const EXAMPLES = ["forestry technician", "Rx burn", "0460"];
@@ -12,10 +12,19 @@ const EXAMPLES = ["forestry technician", "Rx burn", "0460"];
 const TASKS = [
   ["#/roles", "Look up what a role involves", "Tasks, competencies and how the work differs by employer."],
   ["#/compare", "Compare two roles", "What two roles share, and what to check with an employer."],
-  ["#/competencies", "Find competencies and levels for a course or training plan", "Skill areas described at up to five levels."],
+  ["#/competencies", "Explore competencies and levels for a new course", "Draft levels for exploring ideas. Not ready for training plans."],
   ["#/changing", "See what's changing", "Early signals about how the work may change, all still on watch."],
   ["#/about/data", "Download or cite the data", "How to get the data, cite it and keep its caveats."],
 ];
+
+/** A headline number with its noun in one element ("37 roles" is read as one phrase), then its compact badges. */
+function figure(n, noun, fig) {
+  return h("li", { class: "panel fig" }, h("p", { class: "fig__line" }, h("span", { class: "fig__n num" }, fmt(n)), " ", noun),
+    fig ? h("p", { class: "cluster" }, fig.tier?.t ? badgeTier(fig.tier.t, { compact: true }) : null, fig.ev?.l ? badgeEvidence(fig.ev.l, { compact: true }) : null) : null);
+}
+/** "Wildland fire management" -> "wildland fire management" (sentence case inside a phrase); acronyms stay. */
+const lcFirst = (s) => (/^[A-Z][a-z]/.test(s) ? s[0].toLowerCase() + s.slice(1) : s);
+const EMPLOYER_PHRASE = { private: "the private sector" };
 
 /** The weakest of several figure badges: lowest use tier, weakest evidence label. */
 function weakest(...figs) {
@@ -30,6 +39,15 @@ function weakest(...figs) {
 export async function render() {
   const core = await data.core();
   const go = h("a", { href: "#/search", class: "vh", tabindex: "-1", "aria-hidden": "true" }, "Search results");
+  const navTo = (href) => { go.setAttribute("href", href); go.click(); go.setAttribute("href", "#/search"); };
+  // Browse cards: a plain click sets the roles filter in memory and opens #/roles. Opened in a new tab or window, the
+  // link itself is followed instead (no filter can travel that way); the link text says where it leads either way.
+  const filterLink = (href, text, filters) => h("a", { class: "card__link", href, on: { click: (e) => {
+    if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    state.roleFilters = filters;
+    navTo("#/roles");
+  } } }, text);
   const search = (q) => {
     q = String(q || "").trim();
     if (!q) return false;
@@ -61,13 +79,14 @@ export async function render() {
     h("ul", { class: "task-links" }, TASKS.map(([href, label, hint]) => h("li",
       h("a", { class: "task-link", href }, h("span", { class: "task-link__text" }, h("span", { class: "task-link__label" }, label), h("span", { class: "task-link__hint" }, hint)), icon("arrow-right"))))));
 
-  // 5. Browse by job family (filter passed to the roles page in memory, never in the URL)
+  // 5. Browse by job family (filter passed to the roles page in memory, never in the URL). In a new tab the link opens
+  //    the roles page at that family's group (#/roles@<family>), which lists the same roles.
   const listed = new Set(listedRoles(core).map((r) => r.slug));
   const fams = core.jobFamilies.map((f) => ({ ...f, n: (f.roles || []).filter((r) => listed.has(r.slug)).length }))
     .sort((a, b) => (b.n > 0) - (a.n > 0) || a.title.localeCompare(b.title));
   const famCards = h("ul", { class: "card-list card-list--compact" }, fams.map((f) => h("li", f.n
     ? h("article", { class: "card card--compact" },
-      h("h3", { class: "card__title h4" }, h("a", { class: "card__link", href: "#/roles", on: { click: () => { state.roleFilters = { families: new Set([f.slug]) }; } } }, f.title)),
+      h("h3", { class: "card__title h4" }, filterLink(`#/roles@${f.slug}`, `Roles in ${lcFirst(f.title)}`, { families: new Set([f.slug]) })),
       h("p", { class: "card__count meta" }, `${fmt(f.n)} ${f.n === 1 ? "role" : "roles"}`))
     : h("article", { class: "card card--compact card--none" },
       h("h3", { class: "card__title h4" }, f.title),
@@ -83,7 +102,7 @@ export async function render() {
     h("ul", { class: "card-list card-list--compact" }, actors.map((a) => {
       const n = byActor[a.code] || 0;
       return h("li", h("article", { class: "card card--compact" },
-        h("h3", { class: "card__title h4" }, h("a", { class: "card__link", href: "#/roles", on: { click: () => { state.roleFilters = { actors: new Set([a.code]) }; } } }, a.label)),
+        h("h3", { class: "card__title h4" }, filterLink("#/roles", `Roles in ${EMPLOYER_PHRASE[a.code] || lcFirst(a.label)}`, { actors: new Set([a.code]) })),
         h("p", { class: "card__count meta" }, `${fmt(n)} ${n === 1 ? "role" : "roles"} described for this employer type`)));
     }))]);
 
@@ -99,11 +118,20 @@ export async function render() {
   const r = core.release;
   const gate = core.status?.gate || {};
   const notCleared = (gate.items || []).some((i) => i.result === "fail");
+  // The roles figure carries the weakest tier among all roles (core.figs.roles). Say how the roles split, from the data.
+  const tierOf = (x) => x.tier?.t || "exploratory";
+  const nDescribe = core.roles.filter((x) => tierOf(x) === "describe").length;
+  const explore = core.roles.filter((x) => tierOf(x) === "exploratory");
+  const exploreAreEmerging = explore.length > 0 && explore.every((x) => x.whatsComingOnly);
+  const roleSplit = nDescribe && explore.length ? h("p", { class: "home-split" },
+    `${fmt(nDescribe)} of ${fmt(core.roles.length)} role profiles can be used for describing work and planning; `,
+    exploreAreEmerging ? `the ${fmt(explore.length)} emerging ${explore.length === 1 ? "role is" : "roles are"} explore only.` : `${fmt(explore.length)} ${explore.length === 1 ? "is" : "are"} explore only.`) : null;
   const facts = sec("home-release", "About this release", [
     h("ul", { class: "cluster figs" },
       figure(core.roles.length, "roles", core.figs.roles),
       figure(core.comps.length, "competencies", weakest(core.figs.coreCompetencies, core.figs.moduleCompetencies)),
       figure(core.stats.tasks, "tasks", core.figs.tasks)),
+    roleSplit,
     h("p", { class: "meta" }, "Each number shows what the records it counts may be used for, and the weakest evidence among them. ",
       h("a", { href: "#/about/read@evidence" }, "What these labels mean")),
     h("p", "Draft release ", h("span", { class: "id" }, r.id), `, ${dateLong(r.date)}.`),

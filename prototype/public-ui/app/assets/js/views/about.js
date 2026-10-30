@@ -103,11 +103,15 @@ export async function render({ params = {} } = {}) {
     // Data: no download links yet (dist/ is not published), so say how to get the files and point to role exports.
     if (page === "data" && b.t === "p" && /Copy tasks as text/.test(b.text)) {
       nodes.push(blocks([
-        { t: "p", text: "Every role page can copy its tasks as text or save them as a CSV file. [Browse roles](#/roles)" },
+        { t: "p", text: "[Browse roles](#/roles) to find a role page." },
         { t: "p", text: `You can also ask for the release files on [GitHub Issues](${ISSUES_URL.replace(/\/new\/choose$/, "")}). You need a free GitHub account.` },
       ]));
     }
-    if (page === "data" && b.t === "example") nodes.push(copyRow("Copy citation", () => b.text, COPY.actions?.citeDone || "Citation copied"));
+    if (page === "data" && b.t === "example") {
+      nodes.push(copyRow("Copy citation", () => b.text, COPY.actions?.citeDone || "Citation copied"));
+      // Next to the citation, because people cite record IDs: they can still change before version 2.0.0.
+      nodes.push(h("p", { class: "about-note" }, icon("info"), h("span", "Record IDs are candidates until version 2.0.0, so they may still change. Always cite the release with the ID.")));
+    }
     // Corrections: show the words from the last search so people can copy them into a suggestion.
     if (page === "corrections" && b.t === "p" && filled[i - 1]?.id === "corr-missing" && String(state.query || "").trim()) {
       const q = String(state.query).trim();

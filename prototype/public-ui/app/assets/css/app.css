@@ -60,3 +60,7 @@ h1[tabindex="-1"]:focus,section[tabindex="-1"]:focus,h2[tabindex="-1"]:focus,mai
 .table-scroll{scroll-padding-inline-start:40%}
 .drawer[open]>.drawer__summary .drawer__chev{transform:rotate(180deg)}
 @media (prefers-reduced-motion:no-preference){.drawer__chev{transition:transform .15s}}
+/* index.html carries the home page prerendered (tools/build-app.mjs): show it only on the home route with scripts on, and show a loading line instead on deep links until the route renders. boot.js sets html.route-deep. */
+html:not(.js) [data-prerender="home"],html.route-deep [data-prerender="home"],html:not(.route-deep) [data-prerender="loading"]{display:none}
+/* base.css makes every svg a block; the external-link icon sits inline at the end of a link in running text */
+a>.icon-external{display:inline-block;width:1em;height:1em;margin-left:.2em;vertical-align:-.125em}

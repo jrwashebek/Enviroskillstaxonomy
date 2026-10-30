@@ -100,10 +100,12 @@ async function render() {
   document.title = out.title ? `${out.title} · EMST` : "EMST · Environmental Management Skills Taxonomy";
   hooks.afterRender?.({ path, out });
 
+  // Every page change goes on the visit stack, including deep links to a section, so Back from a section link
+  // returns focus to the link the person left from.
+  const back = stack.length >= 2 && stack[stack.length - 2] === path;
+  if (back) stack.pop(); else stack.push(path);
   if (section && focusSection(section)) { /* deep link to a section */ }
   else {
-    const back = stack.length >= 2 && stack[stack.length - 2] === path;
-    if (back) stack.pop(); else stack.push(path);
     const remembered = scrollMemory.get(path);
     const h1 = main.querySelector("h1");
     const fkey = back ? focusMemory.get(path) : null;

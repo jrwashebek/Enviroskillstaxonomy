@@ -1,37 +1,44 @@
 // Search results (#/search). Owner: developer A. Spec: docs/DESIGN_SPEC.md §2.3. Licence: Apache-2.0.
-// The query lives only in memory (state.query); it never enters the URL. Results are grouped by kind and each one
-// says why it matched. Zero and near-zero answers are honest and offer next steps.
+// The query lives only in memory (state.query); it never enters the URL. Best matches come first, then results that
+// match every word grouped by kind, then results that match only some words. Each result says why it matched.
+// "No results" appears only when nothing matches every word. Zero and near-zero answers offer next steps.
 import { h, icon } from "../lib/dom.js";
 import * as data from "../lib/data.js";
 import { state } from "../lib/state.js";
 import { refresh } from "../lib/router.js";
 import { fullIndex, KIND_LABEL, KIND_ORDER, hrefFor } from "../lib/searchsvc.js";
-import { normalize, stem, segments } from "../lib/search.js";
+import { normalize, stem, segments, HOLD_RX } from "../lib/search.js";
 import { COPY, fill } from "../content.js";
-import { pageHeader, notice, onThisPage, jargon, clean, fmt } from "../ui.js";
+import { pageHeader, notice, withMargin, jargon, clean, fmt } from "../ui.js";
 import { truncate, cap } from "../lib/format.js";
 
 const EXAMPLES = ["forestry technician", "Rx burn", "0460"];
-// Same stop words and tokenizer as lib/search.js, so "why this matched" agrees with the ranking.
+// Same stop words, tokenizer and code key as lib/search.js, so "why it matched" agrees with the ranking.
 const STOP = new Set("a an and are as at be by for from in into is it its my of on or our that the their this to with we you your i me what how do does job jobs work".split(" "));
 const words = (s) => normalize(s).split(/\s+/).flatMap((w) => (/^[a-z]+-[a-z]+$/.test(w) ? [w, ...w.split("-")] : [w])).filter((w) => w && !STOP.has(w));
-const codeKey = (s) => String(s || "").toLowerCase().replace(/^gs[\s-]*/, "").replace(/[^a-z0-9]/g, "");
+const codeKey = (s) => String(s || "").toLowerCase().replace(/^emst:[a-z]+\//, "").replace(/^gs[\s-]*/, "").replace(/[^a-z0-9]/g, "");
+const ID_SLUG = /^(rol|cmp|tsk|tl|ind)-/;
 // Record text is generated; the shared clean() rewrites internal words that must not appear on screen.
 const plain = (s) => clean(s);
+// Words never offered as "try these instead": eligibility words imply EMST judges people, and hold words must
+// never be answered with "not covered yet" or an invitation to search on.
+const NEVER_SUGGEST = /^(un|in)?(qualif|eligib|recommend)/;
 
-const ONE = { role: "Role", series: "OPM series", class: "State or local job class", comp: "Competency", task: "Task", module: "Module", tool: "Tool", credential: "Credential that may be involved", signal: "Change signal, on watch", emerging: "Emerging role" };
-const MANY = { role: "roles", series: "OPM series", class: "state and local classes", comp: "competencies", task: "tasks", module: "modules", tool: "tools", credential: "credentials", signal: "change signals", emerging: "emerging roles" };
+const ONE = { help: "How to read EMST", role: "Role", series: "OPM series", class: "State or local job class", comp: "Competency", task: "Task", module: "Module", tool: "Tool", credential: "Credential that may be involved", signal: "Change signal, on watch", emerging: "Emerging role" };
+const MANY = { best: "best matches", help: "help topics", role: "roles", series: "OPM series", class: "state and local classes", comp: "competencies", task: "tasks", module: "modules", tool: "tools", credential: "credentials", signal: "change signals", emerging: "emerging roles" };
 const GROUP_ORDER = [...KIND_ORDER, "emerging"];
-const GROUP_LABEL = { ...KIND_LABEL, emerging: "Emerging roles (in What's changing)" };
-const LIMIT = { role: 8 };
+const GROUP_LABEL = { ...KIND_LABEL, help: KIND_LABEL.help || "How to read EMST", best: "Best matches", emerging: "Emerging roles (in What's changing)" };
+const LIMIT = { role: 8, best: 8 };
 
 // ------------------------------------------------------------------ running a search (memory only)
+let lastQuery = null; // the query of the last render, to tell a new search on this page from a re-render
+let lastNode = null;  // the last rendered page, to tell a re-render in place from arriving from another page
 async function runSearch(q) {
   state.query = q;
   const header = document.getElementById("q");
   if (header) header.value = q;
   await refresh();
-  // refresh() re-renders without moving focus; put it on the result summary so the new count is read out.
+  // A new search on this page puts focus on the result summary so the new count is read out (render does this too).
   document.getElementById("search-summary")?.focus();
 }
 const searchButton = (term, cls = "chip-btn") => h("button", { class: cls, type: "button", on: { click: () => runSearch(term) } }, icon("search"), term);
@@ -76,8 +83,23 @@ function codeReason(d, code) {
   return `Code ${code}`;
 }
 
+/** Why a best match is best: its record ID, a code, its title or an alternative title is what was typed, or its
+ *  title holds the whole phrase. Returns null for best matches made through a synonym (whyMatched names those). */
+function bestReason(r, q) {
+  const d = r.doc, nq = normalize(q), qk = codeKey(q), nt = normalize(d.t);
+  if (ID_SLUG.test(d.s || "") && qk.length >= 3 && codeKey(d.s) === qk) return { reasons: ["Record ID"], marks: [] };
+  const code = qk.length >= 3 && /\d/.test(qk) ? (d.c || []).find((c) => codeKey(c) === qk) : null;
+  if (code) return { reasons: [codeReason(d, code)], marks: [] };
+  if (nt === nq) return { reasons: ["Title"], marks: words(q) };
+  const alt = (d.a || []).find((a) => normalize(a) === nq);
+  if (alt) return { reasons: [`Also called: ${plain(alt)}`], marks: [] };
+  if (nq.length > 3 && (" " + nt + " ").includes(" " + nq + " ")) return { reasons: ["Title"], marks: words(q) };
+  return null;
+}
+
 /** Reasons a document matched, and the title words to mark. */
 function whyMatched(r, q, plan, spelling) {
+  if (r.best) { const b = bestReason(r, q); if (b) return b; }
   const d = r.doc, reasons = [], marks = [], titleWords = [], ctxWords = [];
   const where = d.k === "task" ? "its competency" : "the summary";
   const add = (s) => { if (s && !reasons.includes(s)) reasons.push(s); };
@@ -93,10 +115,11 @@ function whyMatched(r, q, plan, spelling) {
       const tw = termIn(term, d.t);
       if (tw) { hit = true; marks.push(...tw); if (syn) add(syn); else titleWords.push(...tw); return; }
       const alt = (d.a || []).find((a) => termIn(term, a));
-      if (alt) { hit = true; add(`Also called: ${plain(alt)}`); add(syn); return; }
+      // The synonym comes first: it is the step from what was typed to the alternative title or code.
+      if (alt) { hit = true; add(syn); add(`Also called: ${plain(alt)}`); return; }
       const tk = codeKey(term);
       const cd = (d.c || []).find((c) => (tk && /\d/.test(tk) && codeKey(c) === tk) || termIn(term, c));
-      if (cd) { hit = true; add(codeReason(d, cd)); add(syn); return; }
+      if (cd) { hit = true; add(syn); add(codeReason(d, cd)); return; }
       const xw = termIn(term, d.x);
       if (xw) { hit = true; if (syn) add(`${syn} (in ${where})`); else ctxWords.push(...xw); return; }
       // The index matches a phrase across fields (one word in the title, another in the summary).
@@ -148,6 +171,7 @@ function context(kind, d, core, roleBy, compBy) {
     case "credential": return x.replace(/^Credential that may be involved\s*/, "").replace(/^\((.*?)\)\s*·?\s*/, (m, a) => `${cap(a)}. `);
     case "signal": return x.replace(/^Watch signal\s*·\s*/, "");
     case "module": return x.replace(/^Module editorial section\s*·\s*/, "");
+    case "help": return "Explains a label you will see on EMST records.";
     default: return x;
   }
 }
@@ -164,10 +188,11 @@ function resultItem(kind, r, ctx) {
     h("p", { class: "result__why" }, h("span", { class: "result__why-label" }, "Why it matched: "), reasons.slice(0, 2).join(" · ")));
 }
 
-function groupNode(kind, items, ctx, prefix = "") {
-  const id = `res-${prefix}${kind}`, n = items.length, lim = LIMIT[kind] || 5;
+/** One group of results. key is a kind, or "best" (mixed kinds, each item labelled with its own kind). */
+function groupNode(key, items, ctx, prefix = "") {
+  const kind = key, id = `res-${prefix}${key}`, n = items.length, lim = LIMIT[key] || 5;
   const ul = h("ul", { class: "result-list" });
-  const addRange = (from, to) => items.slice(from, to).forEach((r) => ul.appendChild(resultItem(kind, r, ctx)));
+  const addRange = (from, to) => items.slice(from, to).forEach((r) => ul.appendChild(resultItem(key === "best" ? ctx.kindOf(r) : key, r, ctx)));
   addRange(0, lim);
   const meta = h("p", { class: "meta" }, n > lim ? `${fmt(lim)} of ${fmt(n)} shown` : `${fmt(n)} ${n === 1 ? "result" : "results"}`);
   let more = null;
@@ -180,8 +205,9 @@ function groupNode(kind, items, ctx, prefix = "") {
       ul.children[first]?.querySelector("a")?.focus();
     } } }, `Show all ${fmt(n)} ${MANY[kind]}`);
   }
-  return h("section", { class: "result-group", id, "aria-labelledby": `h-${id}`, tabindex: "-1" },
-    h("div", { class: "section__head" }, h(prefix ? "h3" : "h2", { class: "h3", id: `h-${id}` }, GROUP_LABEL[kind]), meta), ul, more);
+  // A kind can appear twice (all words, some words); the second region's name says which, so landmark names stay unique.
+  return h("section", { class: "result-group", id, "aria-labelledby": prefix ? `h-${id} h-res-part` : `h-${id}`, tabindex: "-1" },
+    h("div", { class: "section__head" }, h(prefix ? "h3" : "h2", { class: prefix ? "h4" : "h3", id: `h-${id}` }, GROUP_LABEL[kind]), meta), ul, more);
 }
 
 // ------------------------------------------------------------------ notes, zero results
@@ -221,7 +247,7 @@ function related(ix, q) {
   const out = [], stems = new Set();
   for (const [t] of [...cand].sort((a, b) => b[1] - a[1])) {
     if (out.length >= 5) break;
-    if (stems.has(stem(t)) || normalize(q) === t) continue;
+    if (stems.has(stem(t)) || normalize(q) === t || NEVER_SUGGEST.test(t) || HOLD_RX.test(t)) continue;
     if (!ix.search(t, { limit: 3 }).results.some((r) => r.complete)) continue;
     stems.add(stem(t)); out.push(t);
   }
@@ -245,61 +271,75 @@ function zeroNode(q, ix, partial) {
 }
 
 // ------------------------------------------------------------------ view
+const plural = (n, one = "result", many = "results") => `${fmt(n)} ${n === 1 ? one : many}`;
+
 export async function render() {
+  // Captured before the first await: a re-render in place (main.js calls refresh() when the header search runs on
+  // this page) still has the previous page attached; arriving from another page does not.
+  const inPlace = !!(lastNode && lastNode.isConnected);
   const [core, ix] = await Promise.all([data.core(), fullIndex()]);
   const q = String(state.query || "").trim();
   const header = document.getElementById("q");
   if (header && document.activeElement !== header && header.value.trim() !== q) header.value = q;
+  // A new query on this page: once the router has placed the page (it focuses the H1), focus the result summary so
+  // the new count is read out. Arriving from another page keeps the usual focus on the H1.
+  if (inPlace && q && q !== lastQuery) setTimeout(() => document.getElementById("search-summary")?.focus(), 0);
+  lastQuery = q;
+  const done = (node, announce) => { lastNode = node; return { title: "Search results", node, announce }; };
   const head = pageHeader({ crumbs: [{ href: "#/", text: "Home" }, { text: "Search results" }], title: "Search results" });
 
   if (!q) {
-    return { title: "Search results", node: h("div", head, h("div", { class: "page-body stack search-page" }, pageSearch(""),
+    return done(h("div", head, h("div", { class: "page-body stack search-page" }, pageSearch(""),
       h("p", "Type a job title, a task, a skill or a code such as 0460. What you type stays on your device and is never added to the page address."),
       h("p", { class: "meta", id: "ex-label" }, "Or try an example:"),
-      h("ul", { class: "example-chips", "aria-labelledby": "ex-label" }, EXAMPLES.map((t) => h("li", searchButton(t)))))) };
+      h("ul", { class: "example-chips", "aria-labelledby": "ex-label" }, EXAMPLES.map((t) => h("li", searchButton(t)))))));
   }
 
   const res = ix.search(q, { limit: 10000 });
   if (res.held) {
     // Content-hold terms get one fixed answer: the project's statement. No respelling, no "not covered yet", no invitation to submit.
-    return { title: "Search results", node: h("div", head, h("div", { class: "page-body stack-lg search-page" }, pageSearch(q),
+    return done(h("div", head, h("div", { class: "page-body stack-lg search-page" }, pageSearch(q),
       h("p", { class: "search-summary", id: "search-summary", tabindex: "-1" }, "1 result"),
       h("ul", { class: "result-list" }, h("li", { class: "result" },
         h("p", { class: "result__title" }, h("a", { href: "#/about/held" }, "Held records")),
-        h("p", { class: "result__ctx" }, "The project's statement on records it does not publish in this release."))))) };
+        h("p", { class: "result__ctx" }, "The project's statement on records it does not publish in this release."))))), "1 result");
   }
   const plan = ix.plan(q);
   const spelling = (res.notes || []).filter((n) => n.type === "spelling").flatMap((n) => n.items || [])
     .map((s) => ({ ...s, all: [s.to, ...ix.fuzzy(s.from).map(([v]) => v).filter((v) => v !== s.to)] }));
   const roleBy = new Map(core.roles.map((r) => [r.slug, r]));
   const compBy = new Map(core.comps.map((c) => [c.slug, c]));
-  const ctx = { q, plan, spelling, core, roleBy, compBy };
-
-  // Results that match every word come first, grouped by kind. Results that match only some words follow in their
-  // own section, so a partial match never sits above a full one.
   const kindOf = (r) => (r.doc.k === "role" && roleBy.get(r.doc.s)?.whatsComingOnly ? "emerging" : r.doc.k);
+  const ctx = { q, plan, spelling, core, roleBy, compBy, kindOf };
+
+  // One ranking (lib/search.js): best matches first, in their own group; then the other results that match every
+  // word, grouped by kind; then results that match only some words, in their own section.
   const groupBy = (rs) => { const m = new Map(); for (const r of rs) { const k = kindOf(r); if (!m.has(k)) m.set(k, []); m.get(k).push(r); } return m; };
-  const full = groupBy(res.results.filter((r) => r.complete));
+  const best = res.results.filter((r) => r.best);
+  const full = groupBy(res.results.filter((r) => r.complete && !r.best));
   const part = groupBy(res.results.filter((r) => !r.complete));
   const fullKinds = GROUP_ORDER.filter((k) => full.has(k)), partKinds = GROUP_ORDER.filter((k) => part.has(k));
-  const nFull = res.results.filter((r) => r.complete).length, nPart = res.results.length - nFull;
+  const nFull = res.results.filter((r) => r.complete || r.best).length, nPart = res.results.length - nFull;
 
+  // The HR notice appears once, before the first group that holds a federal series or a state or local class.
   let hrShown = false;
-  const hrNotice = (k) => {
-    if ((k !== "series" && k !== "class") || hrShown) return null;
+  const hrNotice = (kinds) => {
+    if (hrShown || !kinds.some((k) => k === "series" || k === "class")) return null;
     hrShown = true;
     const seen = new Set();
     return notice("hr", "About federal series and state classes", (core.text.hrDisclaimer || []).map((t) => h("p", jargon(t, seen))));
   };
-  const groupsOf = (map, kinds, prefix) => kinds.flatMap((k) => [hrNotice(k), groupNode(k, map.get(k), ctx, prefix)]);
+  const groupsOf = (map, kinds, prefix) => kinds.flatMap((k) => [hrNotice([k]), groupNode(k, map.get(k), ctx, prefix)]);
+  const bestGroup = best.length ? [hrNotice(best.map(kindOf)), groupNode("best", best, ctx)] : [];
 
-  // The summary takes focus after a new search. With no full matches, the zero-results heading is the summary.
+  // The summary takes focus after a new search. With nothing that matches every word, the zero-results heading is the summary.
+  const shownGroups = [...(best.length ? [["best", best.length]] : []), ...fullKinds.map((k) => [k, full.get(k).length])];
   const summary = nFull ? h("p", { class: "search-summary", id: "search-summary", tabindex: "-1" },
-    `${fmt(nFull)} ${nFull === 1 ? "result" : "results"} for “${q}”`,
-    fullKinds.length > 1 ? h("span", { class: "meta" }, ` (${fullKinds.map((k) => `${MANY[k]} ${fmt(full.get(k).length)}`).join(", ")})`) : null) : null;
+    `${plural(nFull)} for “${q}”`,
+    shownGroups.length > 1 ? h("span", { class: "meta" }, ` (${shownGroups.map(([k, n]) => `${MANY[k]} ${fmt(n)}`).join(", ")})`) : null) : null;
 
   const partSection = nPart ? h("section", { class: "result-part", id: "res-part", "aria-labelledby": "h-res-part", tabindex: "-1" },
-    nFull ? h("div", { class: "section__head" }, h("h2", { id: "h-res-part" }, "Matching only some of your words"), h("p", { class: "meta" }, `${fmt(nPart)} ${nPart === 1 ? "result" : "results"}`))
+    nFull ? h("div", { class: "section__head result-part__head" }, h("h2", { class: "h3", id: "h-res-part" }, "Matching only some of your words"), h("p", { class: "meta" }, plural(nPart)))
       : h("h2", { class: "vh", id: "h-res-part" }, "Results that match some of your words"),
     h("div", { class: "result-groups" }, groupsOf(part, partKinds, "part-"))) : null;
 
@@ -307,14 +347,16 @@ export async function render() {
     pageSearch(q),
     notesNode(res.notes, spelling),
     summary,
-    !res.total ? zeroNode(q, ix, 0) : !nFull ? zeroNode(q, ix, nPart) : null,
-    nFull ? h("div", { class: "result-groups" }, groupsOf(full, fullKinds, "")) : null,
+    nFull ? null : zeroNode(q, ix, nPart),
+    nFull ? h("div", { class: "result-groups" }, bestGroup, groupsOf(full, fullKinds, "")) : null,
     partSection);
 
-  const toc = [...fullKinds.map((k) => ({ id: `res-${k}`, title: `${GROUP_LABEL[k]} (${fmt(full.get(k).length)})` })),
+  const toc = [...shownGroups.map(([k, n]) => ({ id: `res-${k}`, title: `${GROUP_LABEL[k]} (${fmt(n)})` })),
     ...(nPart && nFull ? [{ id: "res-part", title: `Matching only some of your words (${fmt(nPart)})` }] : !nFull ? partKinds.map((k) => ({ id: `res-part-${k}`, title: `${GROUP_LABEL[k]} (${fmt(part.get(k).length)})` })) : [])];
-  const body = toc.length > 1 ? h("div", { class: "with-margin page-body" },
-    h("aside", { class: "with-margin__side" }, onThisPage(toc)), h("div", { class: "with-margin__main" }, main))
-    : h("div", { class: "page-body" }, main);
-  return { title: "Search results", node: h("div", head, body) };
+  const body = toc.length > 1 ? withMargin(toc, main) : h("div", { class: "page-body" }, main);
+  // The route announcement says what the summary says (local only; the query never goes in the URL).
+  const announce = nFull ? `${plural(nFull)} for “${q}”${nPart ? `. ${plural(nPart, "other result matches", "other results match")} only some of your words` : ""}`
+    : nPart ? `No results match all the words in “${q}”. ${plural(nPart, "result matches", "results match")} some of them`
+      : fill(COPY.zero.title, { q });
+  return done(h("div", head, body), announce);
 }

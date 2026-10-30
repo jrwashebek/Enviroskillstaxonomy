@@ -66,14 +66,13 @@ function roleCard(r, headingLevel = 3) {
     h(`h${headingLevel}`, { class: "card__title h4" }, h("a", { class: "card__link", href: `#/role/${r.slug}` }, r.title)),
     r.alt && r.alt.length ? h("p", { class: "card__alt meta" }, `${COPY.site?.alsoCalled || "Also called"}: ${r.alt.slice(0, 2).join("; ")}`) : null,
     r.fn ? h("p", { class: "card__summary" }, r.fn) : null,
-    actors.length ? h("div", { class: "card__emp" }, h("p", { class: "meta" }, "Employers"),
-      h("ul", { class: "tags" }, actors.map((a) => h("li", { class: "tag" }, ACTOR_SHORT[a])))) : null,
+    actors.length ? h("p", { class: "card__emp" }, h("span", { class: "card__emp-label" }, "Employers: "), actors.map((a) => ACTOR_SHORT[a]).join(" · ")) : null,
     h("dl", { class: "card__meta" }, h("div", h("dt", "Tasks"), h("dd", fmt(r.nTasks))), h("div", h("dt", "Competencies"), h("dd", fmt(r.nComps)))),
     h("div", { class: "card__badges cluster" }, badgeTier(r.tier?.t || "exploratory", { compact: true }), badgeDraft({ compact: true }),
       r.lc && r.lc !== "established" ? badgeLifecycle(r.lc, { compact: true }) : null));
 }
 
-export async function render() {
+export async function render({ section } = {}) {
   const core = await data.core();
   if (state.roleFilters) {
     const rf = state.roleFilters;
@@ -86,6 +85,10 @@ export async function render() {
   for (const f of core.jobFamilies) for (const m of f.roles || []) famOf.get(m.slug)?.add(f.slug);
   const families = core.jobFamilies.filter((f) => roles.some((r) => famOf.get(r.slug).has(f.slug))).sort((a, b) => a.title.localeCompare(b.title));
   const famTitle = Object.fromEntries(core.jobFamilies.map((f) => [f.slug, f.title]));
+  // A link to one family's group (#/roles@<family>, used by the home page's cards when opened in a new tab): show
+  // roles by family with that group open. The router then moves focus to it. No filter is set from the address.
+  const famSection = section && families.some((f) => f.slug === section) ? section : null;
+  if (famSection) { groupBy = "family"; openGroups.set(famSection, true); }
 
   const has = {
     families: (r, v) => famOf.get(r.slug).has(v),
@@ -141,7 +144,7 @@ export async function render() {
     }
     // Each family is a disclosure (a heading that holds a button), so phones get a short, scannable list of families.
     const fams = (F.families.size ? families.filter((f) => F.families.has(f.slug)) : families)
-      .map((f) => ({ id: `fam-${f.slug}`, title: f.title, rs: shown.filter((r) => famOf.get(r.slug).has(f.slug)) })).filter((g) => g.rs.length);
+      .map((f) => ({ id: f.slug, title: f.title, rs: shown.filter((r) => famOf.get(r.slug).has(f.slug)) })).filter((g) => g.rs.length);
     const other = F.families.size ? [] : shown.filter((r) => !famOf.get(r.slug).size);
     if (other.length) fams.push({ id: "fam-none", title: "Not yet in a job family", rs: other });
     const wide = typeof matchMedia === "function" && matchMedia("(min-width: 64rem)").matches;
@@ -160,7 +163,7 @@ export async function render() {
       panel.hidden = !o;
       openGroups.set(id, o);
     });
-    return h("section", { class: "role-group", "aria-labelledby": `h-${id}` }, h("h2", { class: "role-group__h h3", id: `h-${id}` }, btn), panel);
+    return h("section", { class: "role-group", id, "aria-labelledby": `h-${id}` }, h("h2", { class: "role-group__h h3", id: `h-${id}` }, btn), panel);
   }
 
   update();

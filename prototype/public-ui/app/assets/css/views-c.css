@@ -83,6 +83,29 @@
 .c-inst__title{font-weight:600}
 .c-inst__events{margin:0;padding-left:1.1em}
 .c-noregret li+li{margin-top:var(--sp-h)}
+.c-headline__line{font-family:var(--font-serif);font-size:var(--step-1);font-weight:700;line-height:var(--lh-snug);margin:0}
+.c-headline>*+*{margin-top:var(--sp-1)}
+.c-hub{margin-top:var(--sp-3)}
+.c-howto{margin:0;padding-left:1.1em;max-width:var(--measure)}
+.c-howto li+li{margin-top:var(--sp-1)}
+.c-secbody{margin-top:var(--sp-2)}
+.c-filters{display:grid;gap:var(--sp-2);margin-top:var(--sp-2)}
+.c-filters .c-field{max-width:28rem}
+.c-fam{margin-top:var(--sp-4)}
+.c-fam__title{margin:0}
+.c-fam__count{margin-top:var(--sp-h)}
+.c-sigs{list-style:none;margin:var(--sp-1) 0 0;padding:0}
+.c-sig{padding:var(--sp-2) 0;border-top:1px solid var(--deco-rule)}
+.c-sig:first-child{border-top:0}
+.c-sig>*+*{margin-top:var(--sp-h)}
+.c-sig__title{font-weight:600;margin:0;max-width:var(--measure)}
+.c-sig__about{margin:0;font-size:var(--step--1);max-width:var(--measure)}
+.c-sig__k{color:var(--fg-muted)}
+.c-sig .drawer{border-block:0}
+.c-sig .drawer__summary{min-height:2.25rem}
+.c-sig:focus-visible,.c-inst:focus-visible,.task-list>li:focus-visible{outline-offset:2px}
+.c-export{margin-top:var(--sp-2)}
+.c-export__status:empty{display:none}
 
 /* HR */
 .c-can h3,.c-cant h3{display:flex;align-items:center;gap:var(--sp-1)}
@@ -96,3 +119,26 @@
 .c-band__title{font-size:var(--step-0)}
 .c-band__h{font-size:var(--step--1);margin-top:var(--sp-2)}
 @media (forced-colors:active){.c-card,.c-edge,.c-band{border-color:CanvasText}}
+
+/* Compare, round 2: hatch on role B's bar segment and keys (pattern as well as colour) */
+.c-defs{position:absolute;width:0;height:0;overflow:hidden}
+.c-hatch__line{fill:var(--bg)}
+.overlap__bar .c-hatch-over{stroke:var(--bg);stroke-width:3px;vector-effect:non-scaling-stroke}
+svg.key{display:inline-block;overflow:hidden}
+.compare__col .c-col__h{display:flex;gap:.5rem;align-items:baseline;margin:0;padding-bottom:.5rem;border-bottom:2px solid var(--ui-strong);font-size:var(--step-0)}
+.compare__col .c-col__h .key{align-self:center;margin:0}
+.c-edge__title{margin:0}
+.c-edge__tag{display:flex;flex-wrap:wrap;gap:var(--sp-1);align-items:baseline;font-size:var(--step--1)}
+.c-edge__stmt{font-weight:600}
+@media (forced-colors:active){.c-defs,.c-key{forced-color-adjust:none}.c-hatch__line{fill:CanvasText}.overlap__bar .c-hatch-over{stroke:Canvas}}
+
+/* HR, round 2: duty areas with their task statements */
+.c-duties{margin:var(--sp-1) 0 0;padding-left:1.4em}
+.c-duty{padding:var(--sp-1) 0}
+.c-duty+.c-duty{border-top:1px solid var(--deco-rule)}
+.c-duty__title{font-weight:600;margin:0}
+.c-duty__tasks{margin:var(--sp-h) 0 0;padding-left:1.1em;font-size:var(--step--1)}
+.c-duty__tasks li+li{margin-top:var(--sp-h)}
+.c-band .c-export{margin-top:0}
+.c-tech+.c-tech{margin-top:var(--sp-2);padding-top:var(--sp-2);border-top:1px solid var(--deco-rule)}
+.c-path{overflow-wrap:anywhere}

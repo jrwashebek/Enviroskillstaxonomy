@@ -22,6 +22,37 @@ export function plain(s) {
     .replace(/\bbroadMatch\b/g, "broader match").replace(/\bnarrowMatch\b/g, "narrower match").replace(/\bexactMatch\b/g, "exact fit");
 }
 
+/** plain() plus removal of internal working codes that still sit inside some free-text fields ("SL-053",
+ *  "DC-CAND-01/-13", "per V2-17", "mvp_role_set example", "(DC Phase 2 extract)"). Display only; data is untouched. */
+export function scrub(s) {
+  return plain(s)
+    .replace(/\s*\(DC Phase \d+ extract\)/g, "")
+    .replace(/\bper\s+V\d+-\d+\b/g, "")
+    .replace(/\b(?:SL|FH|LM|DC|FS|CM|CP|PS|IO|LC|IA|SC|WP|WP09|ADR|REG|DISC|TR|V\d)-(?:CAND-)?\d[\w/-]*(?:\s*§\s*[A-Z0-9]+)?/g, "")
+    .replace(/\bmvp_role_set(?: example)?\b/g, "")
+    .replace(/\(\s*[;,]\s*/g, "(").replace(/\s*[;,]\s*\)/g, ")").replace(/\(\s*\)/g, "")
+    .replace(/\s{2,}/g, " ").replace(/\s+([.,;)])/g, "$1").trim();
+}
+
+/** Export buttons with a status line, for a toolbar near the content they export (not only at the foot of the page).
+ *  items: [{label, icon: "copy"|"download", run: async () => "copied"|"saved"|"failed"|boolean}]. Where the host blocks
+ *  downloads, export.download() copies instead, and the label says so. */
+export function exportBar(items, { label = "Export" } = {}) {
+  const status = h("p", { class: "meta c-export__status", role: "status", "aria-live": "polite" });
+  const restricted = document.documentElement.classList.contains("host-artifact");
+  const btns = items.map((x) => {
+    const dl = (x.icon || "download") === "download";
+    const text = restricted && dl ? String(x.label).replace(/^Download\s+/i, "Copy ") + " to the clipboard" : x.label;
+    return h("button", { class: "btn btn--secondary btn--small", type: "button", on: { click: async () => {
+      const r = await x.run();
+      status.textContent = r === "failed" || r === false ? (COPY.actions?.copyFailed || "Could not copy. Select the text and copy it yourself.")
+        : r === "copied" || r === true ? `${COPY.actions?.copied || "Copied"}. ${x.done || "Paste it where you need it."}` : x.saved || "File saved to your downloads.";
+      setTimeout(() => { status.textContent = ""; }, 5000);
+    } } }, icon(restricted && dl ? "copy" : (x.icon || "download")), text);
+  });
+  return h("div", { class: "c-export no-print", role: "group", "aria-label": label }, h("div", { class: "btn-row" }, btns), status);
+}
+
 export const ROLE_LEVELS = ["entry", "journey", "senior", "lead", "strategic"];
 const ROLE_LEVEL_LABEL = { entry: "Entry", journey: "Journey", senior: "Senior", lead: "Lead", strategic: "Strategic" };
 export const roleLevelLabel = (k) => ROLE_LEVEL_LABEL[k] || cap(String(k || "").replace(/-/g, " "));

@@ -4,7 +4,10 @@ import * as data from "../lib/data.js";
 import * as ui from "../ui.js";
 import { COPY } from "../content.js";
 import { fmt } from "../lib/format.js";
-import { plain, ROLE_LEVELS, roleLevelLabel, levelRank, levelTag, humanize, jump, moreList, plural, draftNote } from "./misc.js";
+import { plain, scrub, ROLE_LEVELS, roleLevelLabel, levelRank, levelTag, humanize, jump, moreList, plural, draftNote, exportBar } from "./misc.js";
+import { copyText, exportFrame } from "../export.js";
+
+const LEVELS_NOTICE = "These levels are AI drafts for exploring ideas only. Don't use them to set training goals or to rate anyone.";
 
 const V1_RELATION = {
   "merged-from": "Merged into this competency",
@@ -112,9 +115,9 @@ function enactments(comp, core) {
         e.module && e.module !== "core" ? `Area: ${L.module?.[e.module] || humanize(e.module)}` : null,
         e.ck ? `Craft: ${L.craft?.[e.ck] || e.ck}` : null].filter(Boolean).join(" · ");
       return h("li", { class: "c-enact__item" },
-        h("p", { class: "c-enact__title" }, plain(e.title)),
+        h("p", { class: "c-enact__title" }, scrub(e.title)),
         who ? h("p", { class: "meta" }, who) : null,
-        e.note ? h("p", ui.jargon(plain(e.note), seen)) : null,
+        e.note ? h("p", ui.jargon(scrub(e.note), seen)) : null,
         e.basis || e.principal ? h("dl", { class: "facts" },
           e.basis ? [h("dt", "Basis for the work"), h("dd", plain(e.basis))] : null,
           e.principal ? [h("dt", "Answers to"), h("dd", plain(e.principal))] : null) : null);
@@ -138,6 +141,39 @@ function v1Lineage(comp) {
     codes.length ? h("dl", { class: "facts" }, h("dt", "v1 codes"), h("dd", h("span", { class: "id" }, codes.join(", ")))) : null,
     from.length ? h("ul", { class: "c-v1from" }, from.map((x) => h("li", h("span", { class: "id" }, String(x.key).replace(/^v1:/, "v1 item ")), ": ", V1_RELATION[x.relation] || humanize(x.relation)))) : null,
   ]);
+}
+
+/** ui.levelLadder names each level with an h4, which follows the section's h2 directly. Make them h3 (same look). */
+function ladder(levels, opts) {
+  const ol = ui.levelLadder(levels, opts);
+  for (const h4 of [...ol.querySelectorAll("h4.level__name")]) {
+    const h3 = h("h3", { class: "h4 level__name" }, ...h4.childNodes);
+    h4.replaceWith(h3);
+  }
+  return ol;
+}
+
+/** Levels and indicators as plain text, with the export frame (release, date, page, AI-draft status, use limits). */
+function levelsText(comp, core, span) {
+  const { head, foot } = exportFrame(core, `${comp.title}: proficiency levels and indicators (AI drafts)`);
+  const all = ["L1", "L2", "L3", "L4", "L5"];
+  const lo = all.indexOf(span?.[0] === "A" ? "L1" : span?.[0] || "L1"), hi = all.indexOf(span?.[1] || "L5");
+  const by = Object.fromEntries((comp.levels || []).map((l) => [l.level, l]));
+  const desc = core.labels?.levelDescriptors || {};
+  const dtext = (d) => (Array.isArray(d) ? d.join(" ") : typeof d === "object" && d ? Object.values(d).join(" ") : d || "");
+  const L = [...head, "", LEVELS_NOTICE, "", `Competency: ${comp.title}`];
+  if (comp.stmt) L.push(plain(comp.stmt));
+  all.forEach((code, i) => {
+    const l = by[code];
+    const name = l?.label || core.labels?.level?.[code] || code;
+    L.push("", `${code} ${name}`);
+    if (i < lo || i > hi) { L.push(COPY.levels?.none || "Not defined for this competency."); return; }
+    if (dtext(desc[code])) L.push(dtext(desc[code]));
+    for (const ind of l?.indicators || []) L.push(`  - ${ind.stmt}${ind.attr ? ` (${COPY.levels?.distinguished || "distinguished by"} ${ind.attr})` : ""}`);
+  });
+  if (core.text.indicatorPlacement) L.push("", core.text.indicatorPlacement);
+  L.push("", ...foot);
+  return L.join("\n");
 }
 
 function spanText(span, core) {
@@ -173,9 +209,13 @@ export async function render({ params }) {
   ].filter(Boolean);
   const title = (id) => sections.find((s) => s.id === id)?.title;
 
+  const lspan = comp.span?.[0] === "A" ? ["L1", comp.span[1]] : comp.span;
   const levelsBody = hasLevels ? [
-    ui.notice("draft", "Draft indicators, not assessment criteria", "AI agents drafted these indicators to show what each level can look like. They are for exploring and planning. They are not assessment criteria yet, so do not rate people against them."),
-    ui.levelLadder(comp.levels, { span: comp.span?.[0] === "A" ? ["L1", comp.span[1]] : comp.span, core, titleId: "h-levels" }),
+    // One notice, above the levels (trust review O2: explore-only content must not be offered for planning).
+    ui.notice("draft", null, LEVELS_NOTICE),
+    exportBar([{ label: "Copy levels as text", icon: "copy", run: async () => ((await copyText(levelsText(comp, core, lspan))) ? "copied" : "failed"),
+      done: "The text includes the release, the page address and the notice above." }], { label: "Export the levels" }),
+    ladder(comp.levels, { span: lspan, core, titleId: "h-levels" }),
     h("p", { class: "meta" }, ui.jargon(core.text.indicatorPlacement, seen)),
   ] : [
     h("p", "This is a knowledge area. It is described by knowledge statements, each with the lowest level where it applies, not by levels of practice."),
