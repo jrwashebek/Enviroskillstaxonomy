@@ -1,1 +1,98 @@
-/* Styles for views owned by developer c. Licence: Apache-2.0. */
+/* Styles for views owned by developer c (competency, task, compare, changing, hr, misc). Tokens only. Licence: Apache-2.0. */
+.c-single{max-width:60rem}
+.c-single>*+*{margin-top:var(--sp-5)}
+.page-head .c-task-h1{font-size:var(--step-3);max-width:40ch}
+.c-single>.section:first-child{border-top:0;padding-top:0}
+/* ui.pendingSummary adds "why" and "next" lines; keep every text line in the second column (shared CSS assumes three). */
+.c-pending .pending__label>:not(.icon){grid-column:2}
+.c-headmeta{margin-top:var(--sp-2)}
+.c-headmeta>*+*{margin-top:var(--sp-h)}
+.c-headmeta__jump{font-weight:600}
+.page-head .drawer{margin-top:var(--sp-2);max-width:var(--measure)}
+.page-head .notice{margin-top:var(--sp-3)}
+.c-more{margin-top:var(--sp-1)}
+.c-draftline{display:flex;gap:var(--sp-1);align-items:flex-start}
+.c-draftline .icon{width:1rem;height:1rem;margin-top:.1rem;color:var(--st-draft-fg)}
+.c-plain{margin:0;padding-left:1.1em}
+.section>.levels{margin-top:var(--sp-3)}
+.section .xw .drawer{border-block:0}
+.section .xw .drawer__summary{min-height:2.25rem}
+
+/* Used in roles, target levels by role level */
+.c-rolelist{list-style:none;margin:0;padding:0}
+.c-rolelist__item{display:grid;gap:var(--sp-1);padding:var(--sp-2) 0;border-top:1px solid var(--deco-rule)}
+.c-rolelist__item:first-child{border-top:0}
+.c-rolelist__title{margin:0;font-size:var(--step-0)}
+.c-bylevel{display:flex;flex-wrap:wrap;gap:var(--sp-1) var(--sp-2);margin:0;padding:0;list-style:none}
+.c-bylevel li{display:inline-flex;align-items:center;gap:var(--sp-h)}
+.c-bylevel__k{font-size:var(--step--1);color:var(--fg-muted)}
+@media (min-width:48rem){.c-rolelist__item{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);align-items:center}}
+
+/* Knowledge, enactments, v1 lineage */
+.c-ks{display:flex;flex-wrap:wrap;gap:var(--sp-1) var(--sp-2);justify-content:space-between;align-items:baseline}
+.c-ks>span:first-child{flex:1 1 20rem}
+.c-enact{list-style:none;margin:0;padding:0}
+.c-enact__item{padding:var(--sp-2) 0;border-top:1px solid var(--deco-rule)}
+.c-enact__item>*+*{margin-top:var(--sp-1)}
+.c-enact__title{font-weight:600;margin:0}
+.c-v1from{margin:0}
+
+/* Task page */
+.c-disagree{color:var(--st-warn-fg);font-weight:600}
+.c-prior{padding:var(--sp-2);border:1px solid var(--deco-rule);border-radius:var(--r-ctl);background:var(--bg-surface)}
+.c-prior>*+*{margin-top:var(--sp-1)}
+.c-prior__title{font-size:var(--step-0)}
+
+/* Compare */
+.c-choose{display:grid;gap:var(--sp-2)}
+.c-choose__fields{display:grid;gap:var(--sp-2)}
+@media (min-width:48rem){.c-choose__fields{grid-template-columns:1fr 1fr}}
+.c-field{display:grid;gap:var(--sp-h);align-content:start;min-width:0}
+.c-field__label{font-weight:600}
+.c-select{width:100%;min-height:var(--target-touch);padding:.5rem .75rem;border:2px solid var(--ui-border);border-radius:var(--r-ctl);background:var(--bg-surface);color:var(--fg)}
+.c-select:hover{border-color:var(--ui-strong)}
+.c-choose__status:empty{display:none}
+.c-summary{margin-bottom:0}
+.c-lv{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-h) var(--sp-1);margin:var(--sp-h) 0 0}
+.c-lv__arrow{font-weight:600;color:var(--fg-muted)}
+.c-lv__note{font-size:var(--step--1);font-weight:600;color:var(--fg-muted)}
+.compare__col li>a{font-weight:600}
+.c-fric{list-style:none;margin:0;padding:0}
+.c-fric>li{padding:var(--sp-2) 0;border-top:1px solid var(--deco-rule)}
+.c-fric__title{font-weight:600;margin-bottom:var(--sp-1)}
+.c-edge{padding:var(--sp-2);border:2px dotted var(--st-draft-fg);border-radius:var(--r-ctl);background:var(--bg-surface)}
+.c-edge>*+*{margin-top:var(--sp-1)}
+.c-edge+.c-edge{margin-top:var(--sp-2)}
+.c-edge__h{font-size:var(--step-0);margin-top:var(--sp-2)}
+
+/* What's changing */
+.c-summaryline{margin-top:var(--sp-3)}
+.c-summaryline>*+*{margin-top:var(--sp-1)}
+.c-cards{display:grid;gap:var(--sp-2);grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr));margin:0;padding:0;list-style:none}
+@media (min-width:48rem){.c-cards--2{grid-template-columns:1fr 1fr}}
+.c-card{display:flex;flex-direction:column;gap:var(--sp-1);height:100%;padding:var(--sp-2);background:var(--bg-surface);border:1px solid var(--deco-rule);border-top:3px solid var(--st-draft-fg);border-radius:var(--r-ctl)}
+.c-card:focus-visible{outline-offset:2px}
+.c-card__kind{margin:0;font-size:var(--step--1);color:var(--fg-muted)}
+.c-card__title{margin:0;font-size:var(--step-0)}
+.c-card .facts{margin-top:auto;padding-top:var(--sp-1)}
+@media (min-width:30rem){.c-card .facts{grid-template-columns:minmax(0,7.5rem) minmax(0,1fr);column-gap:var(--sp-2)}}
+.c-insts{list-style:none;margin:0;padding:0}
+.c-inst{padding:var(--sp-2) 0;border-top:1px solid var(--deco-rule)}
+.c-inst:first-child{border-top:0;padding-top:0}
+.c-inst>*+*{margin-top:var(--sp-h)}
+.c-inst__title{font-weight:600}
+.c-inst__events{margin:0;padding-left:1.1em}
+.c-noregret li+li{margin-top:var(--sp-h)}
+
+/* HR */
+.c-can h3,.c-cant h3{display:flex;align-items:center;gap:var(--sp-1)}
+.c-can,.c-cant{padding:var(--sp-2);background:var(--bg-surface);border:1px solid var(--deco-rule);border-radius:var(--r-ctl)}
+.c-cant{border:2px solid var(--ui-strong)}
+.c-can ul,.c-cant ul{margin-top:var(--sp-1)}
+.c-can li+li,.c-cant li+li{margin-top:var(--sp-h)}
+.c-profile__role{margin-top:var(--sp-5)}
+.c-band{margin-top:var(--sp-3);padding:var(--sp-2);border-left:4px solid var(--ui-primary);background:var(--bg-surface)}
+.c-band>*+*{margin-top:var(--sp-1)}
+.c-band__title{font-size:var(--step-0)}
+.c-band__h{font-size:var(--step--1);margin-top:var(--sp-2)}
+@media (forced-colors:active){.c-card,.c-edge,.c-band{border-color:CanvasText}}

@@ -34,3 +34,10 @@
 .result__ctx{margin:4px 0 0}
 .search-notes{margin:16px 0}
 .no-print{}
+.pending__content{display:grid;gap:4px}
+.stack-sm>*+*{margin-top:4px}
+@media (forced-colors:active){.key{background:CanvasText}.key--shared{background:GrayText}.key--b{background:Canvas;border:2px solid CanvasText}}
+/* Programmatic focus targets (route H1, sections reached from "On this page") are not controls: no focus ring. */
+h1[tabindex="-1"]:focus,section[tabindex="-1"]:focus,h2[tabindex="-1"]:focus,main[tabindex="-1"]:focus{outline:none;box-shadow:none}
+/* Respect device safe areas when the page is shown edge to edge. */
+.container{padding-left:max(var(--gutter),env(safe-area-inset-left));padding-right:max(var(--gutter),env(safe-area-inset-right))}

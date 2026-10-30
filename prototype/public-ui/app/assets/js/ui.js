@@ -72,7 +72,7 @@ export function badgeMatch(row, noun) {
 }
 export function badgeUnreviewed(row) {
   const st = row?.st || "";
-  const text = /two-llm/.test(st) ? `${COPY.match?.twoCoders || "Two AI coders agreed"}; ${String(COPY.match?.unreviewed || "not reviewed").toLowerCase()}`
+  const text = /two-llm/.test(st) ? `${COPY.match?.twoCoders || "Two AI coders agreed"}; not reviewed by a person`
     : /adjudication/.test(st) ? (COPY.match?.disagree || "AI coders disagreed; a person needs to decide") : (COPY.match?.unreviewed || "AI-suggested, not reviewed");
   return h("span", { class: "badge badge--draft" }, icon("unreviewed"), text);
 }
@@ -81,16 +81,18 @@ export function badgeUnreviewed(row) {
 export function crosswalkList(rows, { linkFn, label, empty, noun = "term" } = {}) {
   if (!rows || !rows.length) return empty ? h("p", { class: "meta" }, empty) : null;
   const ul = h("ul", { class: "xw-list stack" });
+  const versions = [...new Set(rows.map((r) => r.ver).filter(Boolean))];
   for (const r of rows) {
     const target = linkFn ? linkFn(r) : null;
     const name = target ? (target.href ? a(target.href, target.text) : target.text) : (r.lab || r.obj || "");
     ul.appendChild(h("li", { class: "xw" },
       h("p", { class: "xw__name" }, name, r.lab && target && target.code ? h("span", { class: "id" }, " ", target.code) : null),
       h("p", { class: "cluster xw__badges" }, badgeMatch(r, noun), r.rev ? null : badgeUnreviewed(r)),
-      r.ver ? h("p", { class: "meta" }, `${COPY.match?.asOf || "Reference version"}: ${r.ver}`) : null,
-      r.note ? disclosure(COPY.match?.why || "Why the AI agents suggested this", h("p", r.note), { small: true }) : null));
+      r.note ? disclosure(COPY.match?.why || "Why the AI agents suggested this", h("p", clean(r.note)), { small: true }) : null));
   }
-  return frag(label ? h("h3", { class: "h4" }, label) : null, ul, COPY.match?.note ? h("p", { class: "meta" }, COPY.match.note) : null);
+  return frag(label ? h("h3", { class: "h4" }, label) : null, ul,
+    versions.length ? h("p", { class: "meta" }, `${COPY.match?.asOf || "Reference version"}: ${versions.map(clean).join("; ")}`) : null,
+    COPY.match?.note ? h("p", { class: "meta" }, COPY.match.note) : null);
 }
 
 // ------------------------------------------------------------------ status line
@@ -170,11 +172,12 @@ export function pendingSummary({ what = PENDING_WHAT, assessed = 0, total, unit 
   const lead = total !== undefined ? fill(p.body || "{assessed} of {total} {unit} assessed so far. Not shown yet:", { assessed: fmt(assessed), total: fmt(total), unit }) : (p.notShown || "Not shown yet:");
   return h("div", { class: "pending pending--block" },
     h("div", { class: "pending__label" }, icon("hourglass"),
-      h("p", { class: "pending__title" }, p.title || "Assessment pending"),
-      h("p", { class: "pending__text" }, `${lead} ${list}.`),
-      p.why ? h("p", { class: "pending__text" }, p.why) : null,
-      p.next ? h("p", { class: "pending__text" }, p.next) : null,
-      h("a", { href: KEY("pending") }, p.link || "Why some values are held back")));
+      h("div", { class: "pending__content stack-sm" },
+        h("p", { class: "pending__title" }, p.title || "Assessment pending"),
+        h("p", { class: "pending__text" }, `${lead} ${list}.`),
+        p.why ? h("p", { class: "pending__text" }, p.why) : null,
+        p.next ? h("p", { class: "pending__text" }, p.next) : null,
+        h("a", { href: KEY("pending") }, p.link || "Why some values are held back"))));
 }
 export function pendingInline(text) {
   return h("span", { class: "pending" }, icon("hourglass"), text || COPY.pending?.inline || "Assessment pending");
@@ -224,14 +227,23 @@ export function useTierPath(t) {
 
 const AGENT = { ca: "chief architect", de: "data engineering", lm: "labour market", fs: "foresight", fc: "field craft", dc: "data craft", sc: "statecraft", db: "domain bench", fh: "federal human capital", sl: "state and local", ps: "private sector", io: "job analysis and validation", lc: "learning and curriculum", cm: "career mobility", ia: "interoperability", cp: "product and compliance", as: "adoption", tn: "Tribal advisory (simulated)", d: "data", wp10: "change signals" };
 export function agentNames(by) {
-  const ids = String(by || "").split(/[,;\s]+/).filter(Boolean);
+  const ids = (Array.isArray(by) ? by : String(by || "").split(/[,;\s]+/)).filter(Boolean);
   const names = new Set();
   for (const raw of ids) {
-    const s = raw.replace(/^emstagent:/, "").replace(/@.*/, "");
-    const k = s.split("-")[0].replace(/^a5$/, s.split("-")[1] || "a5");
-    names.add(AGENT[k] || AGENT[s.split("-")[1]] || "EMST");
+    const parts = String(raw).toLowerCase().replace(/^emstagent:/, "").replace(/@.*/, "").split(/[-_]/);
+    const hit = parts.find((x) => AGENT[x]);
+    names.add(hit ? AGENT[hit] : null);
   }
-  return [...names].map((n) => `AI agent (${n})`).join(", ") || "AI agents";
+  const known = [...names].filter(Boolean);
+  return known.length ? `AI agents (${known.join(", ")})` : "AI agents";
+}
+/** Display-only cleanup of internal words that leak through free-text notes in the data. */
+export function clean(text) {
+  return String(text ?? "")
+    .replace(/\bLLM-vs-LLM\b/g, "AI-to-AI").replace(/\bLLM[- ]assisted\b/gi, "AI-assisted").replace(/\bLLMs?\b/g, "AI")
+    .replace(/\bskos:(exact|close|broad|narrow|related)Match\b/g, (_, m) => ({ exact: "exact match", close: "close match", broad: "broader match", narrow: "narrower match", related: "related match" })[m])
+    .replace(/\b(close|broad|narrow|related|exact)Match\b/g, "$1 match").replace(/\braterType\b/g, "rater type").replace(/\bagentDraft\b/g, "AI draft")
+    .replace(/\bsemapv:\w+/g, "").replace(/\bsssom:NoTermFound\b/g, "no matching term");
 }
 export function provenance(rec, core) {
   const ev = rec?.ev || {};
@@ -240,7 +252,7 @@ export function provenance(rec, core) {
     [COPY.prov?.date || "Drafted on", ev.d ? dateLong(ev.d) : "—"],
     [COPY.prov?.evidence || "Evidence label", h("span", badgeEvidence(ev.l || "S"), " ", COPY.evidence?.[ev.l || "S"]?.plain || "")],
     [COPY.prov?.review || "Review", COPY.review?.[ev.r || "unreviewed"]?.label || "Not yet reviewed by people"],
-    [COPY.prov?.sources || "Sources", ev.src && ev.src.length ? ev.src.join(", ") : (COPY.prov?.noSources || "No source cited; this is the drafting agents' judgment")],
+    [COPY.prov?.sources || "Sources", ev.src && ev.src.length ? clean(ev.src.join(", ")) : (COPY.prov?.noSources || "No source cited; this is the drafting agents' judgment")],
     [COPY.prov?.id || "Record ID", h("span", { class: "id" }, rec?.id || "—")],
     [COPY.prov?.release || "Release", `${core.release.id} (${dateLong(core.release.date)})`],
   ];
