@@ -33,7 +33,7 @@ Each file is plain JavaScript that registers one JSON value. There is no fetch, 
 ```
 
 - **Format.** Minified JSON, UTF-8. `<` inside strings is escaped as `<`. No functions.
-- **Manifest.** `app/data/manifest.json` lists every file and its key. Pages do not load it; the verifier and build tools read it.
+- **Manifest.** `app/data/manifest.json` lists every file, its key and its size in bytes (`raw`, and `gz` at gzip -9). Pages do not load it; the verifier and build tools read it.
 
 | File | Key | Load when |
 |---|---|---|

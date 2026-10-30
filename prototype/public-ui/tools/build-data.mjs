@@ -699,8 +699,8 @@ write("search-tasks.js", "search:tasks", { docs: taskDocs });
 write("change.js", "change", change);
 write("hr.js", "hr", hr);
 write("paths.js", "paths", paths);
-// The manifest lists the files and keys (the verifier and the front end read it; it is not loaded by pages).
-writeFileSync(join(OUT, "manifest.json"), JSON.stringify({ release: m.release.id, builtFrom: "site/lib/model.mjs buildModel", files: written.map(({ name, key }) => ({ name, key })) }, null, 1) + "\n");
+// The manifest lists the files, keys and sizes in bytes (raw and gzip -9); the verifier reads it; pages do not load it.
+writeFileSync(join(OUT, "manifest.json"), JSON.stringify({ release: m.release.id, builtFrom: "site/lib/model.mjs buildModel", files: written.map(({ name, key, raw, gz }) => ({ name, key, raw, gz })) }, null, 1) + "\n");
 
 const tot = written.reduce((s, f) => ({ raw: s.raw + f.raw, gz: s.gz + f.gz }), { raw: 0, gz: 0 });
 const report = {
