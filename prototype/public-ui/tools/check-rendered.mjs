@@ -47,7 +47,9 @@ const register = parseRegister(regRows);
 const hrFirst = String(hr.disclaimer || core.text?.hrDisclaimer || "").split(/\n+/)[0].slice(0, 60);
 const pathsNotice = String(core.text?.pathwaysNotice || "").slice(0, 50);
 
-function checkText(route, text) {
+function checkText(route, text, lines = text) {
+  // Sentence-level rules run per rendered line: list items and table cells have no full stop between them.
+  const sents = lines.split(/\n+/).flatMap((l) => sentencesOf(l));
   const out = [];
   const m = text.match(JARGON);
   if (m) out.push(["jargon", m[0], text.slice(Math.max(0, m.index - 60), m.index + 60)]);
@@ -55,9 +57,9 @@ function checkText(route, text) {
   for (const a of allowedHeld) stripped = stripped.split(a).join(" ");
   for (const rx of TRIBAL) { const t = stripped.match(rx); if (t && route !== "/about/held") out.push(["tribal-trigger", t[0], stripped.slice(Math.max(0, t.index - 80), t.index + 80)]); }
   for (const rule of register.strict) { const t = new RegExp(phraseRx(rule.phrase).source, "i").exec(text); if (t) out.push(["retired-claim", `${rule.claim}: ${t[0]}`, text.slice(Math.max(0, t.index - 60), t.index + 60)]); }
-  for (const s of sentencesOf(text)) for (const rule of register.conflations) if (conflates(s, rule)) out.push(["conflation", rule.claim || "", s.slice(0, 160)]);
+  for (const s of sents) for (const rule of register.conflations) if (conflates(s, rule)) out.push(["conflation", rule.claim || "", s.slice(0, 160)]);
   // EMST must never recommend a pathway, role or move. Task statements may describe recommending as part of the work.
-  for (const sent of sentencesOf(text)) {
+  for (const sent of sents) {
     if (!/\brecommend(ed|s|ation)?\b/i.test(sent) || !/\b(pathways?|paths?|next (role|step|move)|career|move to|you should)\b/i.test(sent)) continue;
     if (/\b(never|not|no|none)\b[^.]{0,60}\brecommend/i.test(sent) || /successional pathway|consultation findings/i.test(sent)) continue;
     out.push(["recommend", "", sent.slice(0, 200)]);
@@ -89,13 +91,15 @@ for (const r of list) {
   await page.waitForTimeout(30);
   const info = await page.evaluate(() => {
     const main = document.querySelector("#main");
-    const text = main.innerText.replace(/\s+/g, " ").trim();
+    const raw = main.innerText;
+    const text = raw.replace(/\s+/g, " ").trim();
+    const lines = raw.replace(/[ \t]+/g, " ");
     const focusables = [...main.querySelectorAll("a[href], button:not([disabled]), input, select, textarea, summary, [tabindex]:not([tabindex='-1'])")].filter((e) => e.offsetParent !== null && !(e.closest("details:not([open])") && !e.matches("details > summary")));
-    return { text, h1: (main.querySelector("h1") || {}).innerText || "", words: text.split(" ").length, tabStops: focusables.length, height: document.documentElement.scrollHeight, title: document.title, sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth };
+    return { text, lines, h1: (main.querySelector("h1") || {}).innerText || "", words: text.split(" ").length, tabStops: focusables.length, height: document.documentElement.scrollHeight, title: document.title, sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth };
   });
   if (/could not find|did not load/i.test(info.h1)) findings.push([r, "error-page", info.h1, ""]);
   if (info.sw > info.cw + 1) findings.push([r, "horizontal-scroll", `${info.sw} > ${info.cw}`, ""]);
-  for (const f of checkText(r, info.text)) findings.push([r, ...f]);
+  for (const f of checkText(r, info.text, info.lines)) findings.push([r, ...f]);
   if ((r.startsWith("/series/") || r.startsWith("/class/")) && hrFirst && !info.text.includes(hrFirst.slice(0, 40))) findings.push([r, "hr-disclaimer-missing", "", ""]);
   if (r.startsWith("/compare/") && pathsNotice && !info.text.includes(pathsNotice.slice(0, 30))) findings.push([r, "paths-notice-missing", "", ""]);
   metrics.push({ r, words: info.words, tabStops: info.tabStops, height: info.height, title: info.title });
