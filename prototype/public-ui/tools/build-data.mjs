@@ -708,9 +708,35 @@ const WORK_CODE_TITLE = new Map();
   }
 }
 const workCodeTitles = (t) => t.replace(/\b([A-Z]{2}-C\d{2,3}[a-z]?)\b/g, (code) => (WORK_CODE_TITLE.has(code) ? `\u201c${WORK_CODE_TITLE.get(code)}\u201d` : "a related competency"));
+// Vocabulary labels cut at a comma (release data bug, reported to the data owner): in vocab/*.yaml, an unquoted label
+// inside a YAML flow mapping such as {notation: x, prefLabel: City, town or municipality} parses as "City", and the
+// rest of the label becomes keys with null values. Rebuild the full label from those keys for display.
+const LABEL_FULL = new Map(); // short label -> full label
+const LABEL_FULL_BY_NOTATION = new Map(); // notation -> [short, full]
+{
+  const walk = (o) => {
+    if (Array.isArray(o)) return o.forEach(walk);
+    if (!o || typeof o !== "object") return;
+    const tail = Object.entries(o).filter(([, v]) => v === null).map(([k]) => k);
+    if (typeof o.prefLabel === "string" && tail.length) {
+      const full = [o.prefLabel, ...tail].join(", ");
+      LABEL_FULL.set(o.prefLabel, full);
+      if (o.notation) LABEL_FULL_BY_NOTATION.set(String(o.notation), [o.prefLabel, full]);
+    }
+    Object.values(o).forEach(walk);
+  };
+  const vdir = join(ROOT, "vocab");
+  if (existsSync(vdir)) for (const f of readdirSync(vdir).filter((x) => x.endsWith(".yaml"))) walk(loadYaml(join(vdir, f)));
+}
+const fullLabel = (str, key) => {
+  if ((key === "label" || key === "subtypeLabel" || key === "actorLabel") && LABEL_FULL.has(str)) return LABEL_FULL.get(str);
+  const byN = LABEL_FULL_BY_NOTATION.get(key);
+  return byN && byN[0] === str ? byN[1] : str;
+};
 const CODE_KEYS = new Set(["c", "code", "codes", "s", "src", "u", "id", "slug", "ns", "jur", "actor", "k"]);
 function scrub(str, key = "") {
   if (POLICY.has(str)) return str;
+  str = fullLabel(str, key);
   let t = str.replace(HELD_CLAUSE, "");
   // The explorer's HR disclaimer says "for development and planning", but no record reaches the develop use tier in rc.1.
   // Display override (reported to the explorer's owner): keep the meaning, drop the development claim.

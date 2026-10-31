@@ -4,15 +4,21 @@
 .b-meta{margin:0;font-size:var(--step--1);color:var(--fg-muted)}
 .b-meta>li{display:flex;flex-wrap:wrap;gap:var(--sp-1);align-items:center}
 .b-meta__depth{font-weight:600;color:var(--fg)}
-.b-meta ul{margin:0}
+.b-meta__label{color:var(--fg-muted)}
+.b-actbar{margin-top:var(--sp-2)}
 
 /* The work */
 .b-variant-note{max-width:var(--measure);padding-left:var(--sp-2);border-left:3px solid var(--deco-margin)}
 .b-controls{display:grid;gap:0 var(--sp-4)}
 .b-controls .facet{padding-bottom:var(--sp-2)}
-@media (min-width:40rem){.b-controls{grid-template-columns:repeat(auto-fit,minmax(14rem,max-content))}.b-controls .facet+.facet{padding-top:0;border-top:0}}
+@media (min-width:40rem){.b-controls{display:flex;flex-wrap:wrap;align-items:flex-start}.b-controls .facet+.facet{padding-top:0;border-top:0}}
 .b-def{display:flex;flex-wrap:wrap;gap:var(--sp-h) var(--sp-1);align-items:center;max-width:var(--measure)}
-.b-count{margin:0;font-weight:600;font-size:var(--step--1)}
+.b-count{margin-bottom:0;font-weight:600;font-size:var(--step--1)}
+.b-showing{display:flex;flex-wrap:wrap;gap:var(--sp-h) var(--sp-2);align-items:baseline}
+.b-showing .b-count{margin:0;font-size:var(--step-0)}
+.b-select{width:100%;min-height:var(--target-touch);padding:.5rem .75rem;border:2px solid var(--ui-border);border-radius:var(--r-ctl);background:var(--bg-surface);color:var(--fg);font:inherit}
+.b-select:hover{border-color:var(--ui-strong)}
+.b-hr:empty{display:none}
 .b-tag{font-weight:400}
 .b-task .b-tag{margin-top:var(--sp-h)}
 .b-group+.b-group{margin-top:var(--sp-3)}
@@ -65,7 +71,7 @@
 .b-signals{list-style:none;padding:0}
 .b-signals p{margin:0}
 .b-signal__title{font-weight:600}
-.b-export-status:empty{display:none}
+.b-export-status:empty{margin:0}
 
 /* What's coming only (P3) */
 .b-watch{padding-block:0 var(--sp-8)}
@@ -81,6 +87,7 @@
 @media (min-width:64rem){.b-role .section+.section{margin-top:var(--sp-6)}}
 @media (max-width:39.99rem){.b-pending .pending--block{padding:var(--sp-1)}}
 .b-grows{margin:0}
+.b-conn>*+:is(h3,h4){margin-top:var(--sp-4)}
 .b-grows dt{font-weight:600;font-size:var(--step--1);color:var(--fg-muted)}
 .b-grows dd{margin:0 0 var(--sp-1)}
 .b-role .page-head{padding-bottom:var(--sp-3)}
