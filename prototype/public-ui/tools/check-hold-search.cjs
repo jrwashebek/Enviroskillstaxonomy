@@ -4,8 +4,8 @@
 // Licence: Apache-2.0.
 
 const { chromium } = require("playwright");
-const Q = ['tribe', 'tribes', 'tribal', 'Indigenous', 'Native American', 'Native Hawaiian', 'Alaska Native', 'First Nations', 'traditional knowledge', 'traditional ecological knowledge', 'TEK', 'THPO', 'THPOs', 'treaty', 'treaties', 'treaty rights', 'sovereign nations', 'sovereign government', 'tribal sovereignty', 'indigenous data sovereignty', 'government-to-government', 'Indian preference', 'Indian country', 'Indian self-determination', 'trust responsibility', 'CARE principles', 'ANCSA', 'tribel', 'indigenus', 'triibal', 'treety', 'sovereignity'];
-const CONTROL = ['prescribed fire', 'trial', 'treatment', 'water treatment', 'tek', 'care', 'trust', 'native plants', 'sovereign'];
+const Q = ['tribe', 'tribes', 'tribal', 'Indigenous', 'Native American', 'Native Hawaiian', 'Alaska Native', 'First Nations', 'traditional knowledge', 'traditional ecological knowledge', 'TEK', 'THPO', 'THPOs', 'treaty', 'treaties', 'treaty rights', 'sovereign nations', 'sovereign government', 'tribal sovereignty', 'indigenous data sovereignty', 'government-to-government', 'Indian preference', 'Indian country', 'Indian self-determination', 'trust responsibility', 'CARE principles', 'ANCSA', 'tribel', 'indigenus', 'triibal', 'treety', 'sovereignity', 'tribally', 'intertribal', 'first nation', 'native amercian', 'nativeamerican', 'alaska natve', 'traditonal knowledge'];
+const CONTROL = ['prescribed fire', 'trial', 'treatment', 'water treatment', 'tek', 'care', 'trust', 'native plants', 'sovereign', 'ecological knowledge', 'first national', 'distribution', 'attribute', 'native seed'];
 (async () => {
   const b = await chromium.launch(); const p = await b.newPage();
   await p.goto(process.argv[2] + "/index.html#/"); await p.waitForSelector("#main h1");

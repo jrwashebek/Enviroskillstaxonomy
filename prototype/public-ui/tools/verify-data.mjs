@@ -131,8 +131,14 @@ const each = (arr, fn) => (arr || []).forEach(fn);
 each(core.roles, (r) => { need(R, r.slug, "core.roles", "role"); each(r.variants, (v) => need(V, v.slug, "core.roles", "variant")); });
 each(core.comps, (c) => { need(C, c.slug, "core.comps", "competency"); const cc = compAll.find((x) => x.slug === c.slug); if (cc && cc._shard !== c.shard) fail("4", "core.comps", `${c.slug} shard ${c.shard} but found in ${cc._shard}`); });
 for (const [s, n] of Object.entries(core.shards?.comp || {})) { need(C, s, "core.shards.comp", "competency"); if (compAll.find((x) => x.slug === s)?._shard !== n) fail("4", "core.shards.comp", `${s} not in comp:${n}`); }
-for (const [s, n] of Object.entries(core.shards?.task || {})) { need(T, s, "core.shards.task", "task"); if (taskAll.find((x) => x.slug === s)?._shard !== n) fail("4", "core.shards.task", `${s} not in task:${n}`); }
-if (Object.keys(core.shards?.task || {}).length !== T.size) fail("4", "core.shards.task", "does not list every task");
+// Task shards are found from the first slug of each shard (core.shards.taskStarts), in code-point order, as lib/data.js does.
+{
+  const starts = core.shards?.taskStarts || [];
+  const shardOf = (slug) => { let lo = 0, hi = starts.length; while (lo < hi) { const mid = (lo + hi) >> 1; if (starts[mid] <= slug) lo = mid + 1; else hi = mid; } return lo - 1; };
+  if (!starts.length) fail("4", "core.shards.taskStarts", "missing");
+  for (const t of taskAll) { refsChecked++; if (shardOf(t.slug) !== t._shard) fail("4", "core.shards.taskStarts", `${t.slug} is in task:${t._shard} but the boundaries point to ${shardOf(t.slug)}`); }
+  if (taskAll.length !== T.size) fail("4", "task shards", "do not hold every task");
+}
 each(core.series, (s) => need(S, s.code, "core.series", "series"));
 each(core.stateClasses, (c) => need(K, c.slug, "core.stateClasses", "class"));
 each(core.jobFamilies, (f) => each(f.roles, (r) => need(R, r.slug, `core.jobFamilies ${f.slug}`, "role")));

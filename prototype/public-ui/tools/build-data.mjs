@@ -193,9 +193,9 @@ const DEPTH_TEXT = { P1: "full profile (corridor role)", P2: "earlier draft at l
 
 // ---------------------------------------------------------------- shard plan
 const compsSorted = m.competencies;                                  // A to Z, as the explorer lists them
-const COMP_SHARD = 20, TASK_SHARD = 100;
+const COMP_SHARD = 5, TASK_SHARD = 100; // 5 competencies per file keeps a competency page's data near 8 KB gzip (20 per file was about 32 KB)
 const compShard = new Map(compsSorted.map((c, i) => [c.slug, Math.floor(i / COMP_SHARD)]));
-const tasksSorted = [...taskById.values()].sort((a, b) => a.slug.localeCompare(b.slug));
+const tasksSorted = [...taskById.values()].sort((a, b) => (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0)); // code-point order (see shards.taskStarts)
 const taskShard = new Map(tasksSorted.map((t, i) => [t.slug, Math.floor(i / TASK_SHARD)]));
 const pad = (n) => String(n).padStart(2, "0");
 
@@ -456,7 +456,7 @@ const core = {
   figs: Object.fromEntries(Object.entries(m.figures).map(([k, f]) => [k, { tier: tierC(f.tier), ev: { l: f.ev.label, ai: f.ev.isAgentDraft, r: f.ev.reviewStatus } }])),
   labels: labelsOut, gateLabels: m.gateLabels,
   roles: roleIndex,
-  comps: compsSorted.map((c) => ({ id: c.id, slug: c.slug, title: c.title, stmt: clip(c.statement || c.definition, 200), type: c.type, typeLabel: c.typeLabel,
+  comps: compsSorted.map((c) => ({ id: c.id, slug: c.slug, title: c.title, stmt: clip(c.statement || c.definition, 150), type: c.type, typeLabel: c.typeLabel,
     module: c.module, isModule: c.isModule, span: c.levelSpan ? [c.levelSpan.min, c.levelSpan.max] : null, tier: tierC(c.tier), lc: c.lifecycleState,
     ev: { l: c.evidence.label, ai: c.evidence.isAgentDraft, v1: c.evidence.isV1Seed, r: c.evidence.reviewStatus }, v1Codes: c.v1Codes,
     nTasks: c.tasks.length, nRoles: (compRoles.get(c.id) || []).length, gap: m.gapCompetencies.some((g) => g.id === c.id), shard: compShard.get(c.slug) })),
@@ -469,7 +469,9 @@ const core = {
     nRoles: new Set(s.roleRows.map((r) => (r.role || r.variant?.role)?.id).filter(Boolean)).size, nFed: s.fedVariants.length, generated: !!s.profile })),
   stateClasses: m.stateClasses.map((c) => ({ slug: c.slug, title: c.title, state: c.jurisdiction, jurCode: c.jurisdictionCode, code: c.code,
     nRoles: new Set([...c.rows.map((r) => r.variant?.role.id), ...(c.view?.mappings || []).map((x) => x.variant?.role.id)].filter(Boolean)).size, generated: !!c.view })),
-  shards: { comp: Object.fromEntries(compShard), task: Object.fromEntries(taskShard), compSize: COMP_SHARD, taskSize: TASK_SHARD,
+  // Tasks are sharded in code-point order of their slugs, so a page finds a task's shard from the first slug of each
+  // shard (taskStarts, 14 entries) instead of a 1,317-entry map: about 8 KB gzip off every first load.
+  shards: { comp: Object.fromEntries(compShard), taskStarts: tasksSorted.filter((_, i) => i % TASK_SHARD === 0).map((t) => t.slug), compSize: COMP_SHARD, taskSize: TASK_SHARD,
     nComp: Math.ceil(compsSorted.length / COMP_SHARD), nTask: Math.ceil(tasksSorted.length / TASK_SHARD) },
 };
 

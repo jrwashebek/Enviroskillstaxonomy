@@ -47,6 +47,47 @@ function announce(msg) {
   setTimeout(() => { live.textContent = msg; }, 60);
 }
 
+/** The element to give focus back to on Back: the first visible match for the remembered link. A match inside closed
+ *  disclosures is revealed by opening them (they were open when the person left); a match that stays hidden is skipped. */
+function findTarget(main, fkey, openClosed = false) {
+  if (fkey.startsWith("#") && !fkey.startsWith("#/")) return document.getElementById(fkey.slice(1));
+  const all = [...main.querySelectorAll(`[href="${CSS.escape(fkey)}"]`)];
+  // Content of a closed <details> keeps layout boxes in Chrome (content-visibility: hidden) but cannot take focus.
+  const shown = (e) => !e.closest("details:not([open]) > :not(summary)") && (e.checkVisibility ? e.checkVisibility() : e.getClientRects().length > 0);
+  const visible = all.find(shown);
+  if (visible || !openClosed) return visible || null;
+  const inClosed = all.find((e) => e.closest("details:not([open])") && !e.closest("[hidden]"));
+  if (!inClosed) return null;
+  for (let d = inClosed.closest("details:not([open])"); d; d = d.parentElement?.closest("details:not([open])")) d.open = true;
+  return shown(inClosed) ? inClosed : null;
+}
+/** Wait up to 1.5 s for the link to appear (sections that fill in after the H1), then fall back to a copy of it inside a
+ *  closed disclosure. Focus moves only if the person has not moved it in the meantime. For 3 s, if a view re-renders the
+ *  section and the focused link is replaced, focus follows to the new copy instead of dropping to the page body. */
+function awaitTarget(main, fkey, h1, y, token, landed = null) {
+  let cur = landed, first = !landed;
+  const idle = () => document.activeElement === h1 || document.activeElement === document.body || document.activeElement === null;
+  const land = (t) => {
+    cur = t;
+    if (first) { window.scrollTo(0, y); first = false; }
+    t.focus({ preventScroll: true });
+    const r = t.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) t.scrollIntoView({ block: "center" });
+  };
+  const check = (openClosed = false) => {
+    if (token !== renderToken) return stop();
+    if (cur && cur.isConnected) return;
+    if (!idle()) return stop(); // the person moved focus themselves
+    const t = findTarget(main, fkey, openClosed);
+    if (t) land(t);
+  };
+  const obs = new MutationObserver(() => check());
+  const stop = () => { obs.disconnect(); clearTimeout(t1); clearTimeout(t2); };
+  obs.observe(main, { childList: true, subtree: true });
+  const t1 = setTimeout(() => { if (!cur) check(true); }, 1500);
+  const t2 = setTimeout(stop, 3000);
+}
+
 export function focusSection(id) {
   const el = id && document.getElementById(id);
   if (!el) return false;
@@ -109,11 +150,14 @@ async function render() {
     const remembered = scrollMemory.get(path);
     const h1 = main.querySelector("h1");
     const fkey = back ? focusMemory.get(path) : null;
-    const target = fkey ? (fkey.startsWith("#") && !fkey.startsWith("#/") ? document.getElementById(fkey.slice(1)) : main.querySelector(`[href="${CSS.escape(fkey)}"]`)) : null;
-    if (back && remembered !== undefined && target) { window.scrollTo(0, remembered); target.focus({ preventScroll: true }); }
+    const target = fkey ? findTarget(main, fkey) : null;
+    if (back && remembered !== undefined && target) { window.scrollTo(0, remembered); target.focus({ preventScroll: true }); awaitTarget(main, fkey, h1, remembered, token, target); }
     else {
       window.scrollTo(0, 0);
       if (h1) { h1.setAttribute("tabindex", "-1"); if (prevPath) h1.focus({ preventScroll: true }); }
+      // The link may be in a section that fills in after the H1 (e.g. "Where it can lead"): wait briefly for it, and
+      // move focus there only if the person has not moved focus themselves in the meantime.
+      if (back && fkey && remembered !== undefined) awaitTarget(main, fkey, h1, remembered, token);
     }
   }
   if (prevPath) announce(out.announce || `${out.title || "Page"} loaded`);

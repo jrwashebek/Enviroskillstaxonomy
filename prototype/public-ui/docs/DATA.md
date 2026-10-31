@@ -507,22 +507,22 @@ Result: **PASS** (0 problems). Release 2.0.0-rc.1; verified 2026-10-31 by `tools
 
 | Check | Result |
 |---|---|
-| 1. Parse and register | 70 files; each registers exactly one key; pure JSON; `<` escaped |
-| 2. Size budget | core.js 59.3 KB gz / 258.4 KB raw (≤ 150 / 600); largest other file 88.6 KB gz (≤ 120) |
+| 1. Parse and register | 103 files; each registers exactly one key; pure JSON; `<` escaped |
+| 2. Size budget | core.js 49.3 KB gz / 227.2 KB raw (≤ 150 / 600); largest other file 88.6 KB gz (≤ 120) |
 | 3. Counts | roles 37/37; competencies 223/223; tasks 1317/1317; variants 121/121; series 79/79 (13 generated profiles); classes 38/38 (20 generated views); signals 107/107 (0 withheld); held records 163 |
 | 4. References resolve | 29891 references checked |
-| 5. Forbidden content | 220854 strings and 57980 objects scanned (35172 distinct texts); 655 dated events checked; rules: gated keys, agentDraft, craft/exposure scores, 17 Tribal-hold triggers, 17 held seed keys, 3 held v1 codes, e-mail/phone, 16 retired-claim rules, 85 register and do-not-publish wrong forms, 2 conflation rules, 13 withheld phrases, 6 judgment-dated events, 0 unverified instrument titles |
+| 5. Forbidden content | 220868 strings and 58012 objects scanned (35203 distinct texts); 655 dated events checked; rules: gated keys, agentDraft, craft/exposure scores, 17 Tribal-hold triggers, 17 held seed keys, 3 held v1 codes, e-mail/phone, 16 retired-claim rules, 85 register and do-not-publish wrong forms, 2 conflation rules, 13 withheld phrases, 6 judgment-dated events, 0 unverified instrument titles |
 
 | File | Raw KB | Gzipped KB |
 |---|---:|---:|
-| core.js | 258.4 | 59.3 |
+| core.js | 227.2 | 49.3 |
 | role-*.js (37 files; largest 11.7 KB gz) | 2032.1 | 261.1 |
-| comp-NN.js (12 files; largest 35.7 KB gz) | 1904.3 | 351.2 |
+| comp-NN.js (45 files; largest 13.1 KB gz) | 1906.8 | 397.8 |
 | task-NN.js (14 files; largest 17.1 KB gz) | 1901.5 | 221.9 |
 | search.js | 211.7 | 43.9 |
 | search-tasks.js | 338.3 | 88.6 |
 | change.js | 179.8 | 22.9 |
 | hr.js | 449.0 | 41.7 |
 | paths.js | 675.5 | 25.1 |
-| **Total (70 files)** | **8002.5** | **1133.0** |
+| **Total (103 files)** | **7973.8** | **1169.6** |
 <!-- verification:end -->

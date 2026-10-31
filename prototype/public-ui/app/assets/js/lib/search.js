@@ -52,7 +52,17 @@ function editDistance(a, b, max) {
 }
 
 /** Words tied to the project's Tribal content hold. Never respelled, never answered with "not covered yet". */
-export const HOLD_RX = /\b(trib(e|es|al)|indigenous|native american|native hawaiian|alaska native|first nations|traditional (ecological )?knowledge)\b/i;
+export const HOLD_RX = /\b(trib(e|es|al)|\w*tribal\w*|tribally|indigenous|native ?americans?|native hawaiians?|alaska natives?|first nations?|traditional (ecological )?knowledge)\b/i;
+// Two-word hold phrases, matched word by word with small typos ("native amercian", "traditonal knowledge") or run together.
+const HOLD_PHRASES = [["native", "american"], ["native", "hawaiian"], ["alaska", "native"], ["first", "nations"], ["traditional", "knowledge"], ["treaty", "rights"], ["tribal", "sovereignty"]];
+const near = (a, b) => { const max = b.length >= 8 ? 2 : b.length >= 4 ? 1 : 0; return a[0] === b[0] && editDistance(a, b, max) <= max; };
+function nearHoldPhrase(ws) {
+  for (const [p1, p2] of HOLD_PHRASES) {
+    for (let i = 0; i + 1 < ws.length; i++) if (near(ws[i], p1) && near(ws[i + 1], p2)) return true;
+    for (const w of ws) if (w.length >= 10 && editDistance(w, p1 + p2, 2) <= 2) return true;
+  }
+  return false;
+}
 // Misspellings of the hold words ("tribel", "indigenus") are treated the same way, so they never reach the
 // "may not cover this work yet / suggest a role" copy. A word the index knows, or a common word on the list
 // below, is never treated as a misspelling.
@@ -118,6 +128,7 @@ export class SearchIndex {
 
   /** True when a query word looks like a misspelled hold word and is not a word the index knows. */
   nearHold(q) {
+    if (nearHoldPhrase(normalize(q).split(/\s+/).filter(Boolean))) return true;
     for (const w of normalize(q).split(/\s+/)) {
       if (w.length < 5 || NEAR_HOLD_OK.has(w) || this.post.has(w) || this.post.has(stem(w))) continue;
       for (const hw of HOLD_WORDS) {

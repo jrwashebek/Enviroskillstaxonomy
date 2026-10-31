@@ -158,3 +158,22 @@ node prototype/public-ui/tools/build-app.mjs --no-prerender  # without Chromium:
   - **Without gzip,** 676 KB raw costs 13.5 s of transfer on Slow 3G.
   - **Who must change what:** Compare needs the edges in both directions, so it would load two files, or keep the whole file. That is a change to `compare.js` (developer C), so the split was not made in this round. The data build is also being changed by others right now.
   - **Suggested shape:** `build-data.mjs` writes `paths-<role>.js` registering `paths:<role>` and keeps `paths.js` until Compare moves. `lib/data.js` gains `pathsFrom(slug)`, and `role.js` changes one line.
+
+## Round 2.5 addendum (lead, 31 October 2026)
+
+The round 2 evaluation measured the competency page (8.23 s) and What's changing (8.09 s) over the 8 s Slow 3G budget. Two data-layout changes in `tools/build-data.mjs` bring every measured route under it:
+
+- **Task shard lookup by boundaries.** `core.shards.task`, a map of 1,317 task slugs to shard numbers, is replaced by `core.shards.taskStarts`: the first slug of each of the 14 task shards, in code-point order. `lib/data.js` finds a task's shard by binary search, and `verify-data.mjs` checks that every task resolves. The competency statement in `core.comps` is also clipped to 150 characters; the views showed only 150 anyway. Together, `core.js` goes from 59.3 to 50.3 KB gzip, which every first load saves.
+- **Five competencies per shard instead of 20.** A competency page now loads about 8 KB gzip of competency data instead of about 32 KB. There are 45 files instead of 12.
+
+Same method and script (`tools/perf-first-load.cjs`), gzip, mean of 2 runs:
+
+| Page | Round 2 (evaluator) | **Round 2.5** | Fast 3G, round 2.5 |
+|---|---|---|---|
+| Home | 4.88 s | **4.87 s** | 1.42 s |
+| Role, field resource technician | 7.81 s | **7.66 s** | 2.21 s |
+| Role, forester federal | 7.80 s | **7.61 s** | 2.21 s |
+| Competency | 8.23 s | **7.62 s** | about 2.0 s |
+| What's changing | 8.09 s | **7.91 s** | 2.28 s |
+
+What's changing has the least headroom, about 0.1 s. Its first view waits for `change.js` (23 KB gzip). If the page grows, the next steps are to split `change.js` by hub section and, as before, to split the views (dynamic `import()` with `modulepreload` started by `boot.js`). The second step needs a DESIGN_SPEC §0 change.

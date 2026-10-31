@@ -29,7 +29,8 @@ for (const r of core.roles) {
 }
 for (const c of core.comps) routes.push(`/competency/${c.slug}`);
 for (const m of core.modules) routes.push(`/competencies/${m.ns}`);
-for (const slug of Object.keys(core.shards.task)) routes.push(`/task/${slug}`);
+vm.runInThisContext(readFileSync(join(HERE, "..", "app", "data", "search-tasks.js"), "utf8"));
+for (const d of window.EMSTDATA["search:tasks"].docs) if (d.k === "task") routes.push(`/task/${d.s}`);
 for (const s of hr.series) routes.push(`/series/${s.slug || s.code}`);
 for (const c of hr.classes) routes.push(`/class/${c.slug}`);
 for (const d of search.docs.filter((d) => d.k === "tool" || d.k === "credential")) routes.push(`/${d.k}/${d.s}`);

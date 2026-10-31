@@ -67,7 +67,14 @@ export async function role(slug) {
 
 async function sharded(kind, slug) {
   const c = await core();
-  const n = c.shards?.[kind]?.[slug];
+  let n = c.shards?.[kind]?.[slug];
+  const starts = c.shards?.[kind + "Starts"];
+  if (n === undefined && starts?.length && /^[a-z]{3}-[a-z0-9]+$/.test(slug)) {
+    // shard i holds the slugs from starts[i] up to (not including) starts[i + 1], in code-point order
+    let lo = 0, hi = starts.length;
+    while (lo < hi) { const mid = (lo + hi) >> 1; if (starts[mid] <= slug) lo = mid + 1; else hi = mid; }
+    if (lo > 0) n = lo - 1;
+  }
   if (n === undefined) throw new NotFound(`No ${kind} "${slug}"`);
   const file = c.files?.[kind]?.[n] || shardFile(kind, n);
   const key = c.keys?.[kind]?.[n] || `${kind}:${pad(n)}`;
