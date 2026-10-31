@@ -146,8 +146,9 @@ const gatesC = (gs) => (gs || []).map((g) => ({ kind: g.kind, title: g.title }))
 
 // Explorer wording that must travel with the data (from site/src templates and macros; reused verbatim).
 const TEXT = {
-  useNotice: "For development and planning only; not a selection instrument.",
-  authorship: "This explorer and its records were researched and drafted by a team of AI agents (Anthropic's Claude), each given a specialist role, working to a charter set by the EMST project lead. AI agents checked the facts against sources in October 2026. No independent human expert has reviewed it yet. Role names such as \"Chief Taxonomy Architect\", or \"EMST's federal HR agent\" on these pages, are AI agent roles, not people.",
+  // The explorer's use notice ("For development and planning only") and authorship line ("AI agents checked the facts
+  // against sources…") over-claim for rc.1 (no record reaches the develop tier; most records cite no source). They are
+  // not shipped; the prototype's own wording is in app/assets/js/content.js. Reported to the explorer's owner.
   credit: "EMST project lead",
   callToAction: "To comment, correct an error or ask about the pilot, open an issue on the project's GitHub Issues page.",
   issuesUrl: "https://github.com/jrwashebek/Enviroskillstaxonomy/issues",
@@ -674,6 +675,9 @@ const search = {
   synNote: "Expansions are one-way and lower-case-keyed. Automatic entries come from alt labels and from OPM series and state or local class titles linked at closeMatch or better; curated entries are editorial (prototype) vocabulary from tools/synonyms.yaml, not EMST release data.",
   tools: Object.fromEntries([...toolRefs].map(([id, x]) => [id, { title: x.title, lc: x.lc, cat: x.cat, comps: [...x.comps], tasks: [...x.tasks], variants: [...x.variants] }])),
   credentials: Object.fromEntries([...credRefs].map(([id, x]) => [id, { title: x.title, kinds: [...x.kinds], tasks: [...x.tasks], variants: [...x.variants] }])),
+  // The project's hold trigger patterns (schema/lint/governed_content.yaml, a public file), so that search answers every
+  // one of them with the held-records statement and never with "not covered yet" (evaluation round 2, T2).
+  hold: gc.tribal_hold.triggers.map((x) => (typeof x === "string" ? { p: x } : { p: x.pattern, cs: !!x.cs })),
 };
 
 function parseCsvText(text) {
@@ -703,11 +707,11 @@ const WORK_CODE_TITLE = new Map();
   const seedPath = join(ROOT, "data", "v2", "ids", "seed_map.csv");
   if (existsSync(seedPath)) for (const line of readFileSync(seedPath, "utf-8").split(/\r?\n/).slice(1)) {
     const [key, id] = line.split(",");
-    const mm = /^seed:([A-Z]{2}-C\d{2,3}[a-z]?)$/.exec(key || "");
+    const mm = /^seed:([A-Z]{2}-(?:CC-|CAND-|C-|C)\d{2,3}[a-z]?)$/.exec(key || "");
     if (mm && compTitleById.has(id)) WORK_CODE_TITLE.set(mm[1], compTitleById.get(id));
   }
 }
-const workCodeTitles = (t) => t.replace(/\b([A-Z]{2}-C\d{2,3}[a-z]?)\b/g, (code) => (WORK_CODE_TITLE.has(code) ? `\u201c${WORK_CODE_TITLE.get(code)}\u201d` : "a related competency"));
+const workCodeTitles = (t) => t.replace(/\b([A-Z]{2}-(?:CC-|CAND-|C-|C)\d{2,3}[a-z]?)\b/g, (code) => (WORK_CODE_TITLE.has(code) ? `\u201c${WORK_CODE_TITLE.get(code)}\u201d` : "a related competency"));
 // Vocabulary labels cut at a comma (release data bug, reported to the data owner): in vocab/*.yaml, an unquoted label
 // inside a YAML flow mapping such as {notation: x, prefLabel: City, town or municipality} parses as "City", and the
 // rest of the label becomes keys with null values. Rebuild the full label from those keys for display.
@@ -733,7 +737,40 @@ const fullLabel = (str, key) => {
   const byN = LABEL_FULL_BY_NOTATION.get(key);
   return byN && byN[0] === str ? byN[1] : str;
 };
-const CODE_KEYS = new Set(["c", "code", "codes", "s", "src", "u", "id", "slug", "ns", "jur", "actor", "k"]);
+const cap = (x) => (x ? x[0].toUpperCase() + x.slice(1) : x);
+const TEAM = { CA: "chief architect", DE: "data engineering", LM: "labour market", FS: "foresight", FC: "field craft", DC: "data craft", SC: "statecraft", DB: "domain bench", FH: "federal human capital", SL: "state and local", PS: "private sector", IO: "job analysis and validation", LC: "learning and curriculum", CM: "career mobility", IA: "interoperability", CP: "product and compliance", AS: "adoption" };
+const EV_WORD = { E: "sourced", J: "AI agent's judgment", S: "speculation, not supported" };
+/** "[E: V2-03 for status; J for effect]" -> " (sourced for status; AI agent's judgment for effect)". Codes go; labels,
+ *  their qualifiers and any longer remark stay. */
+function evidenceNote(inner) {
+  const parts = [];
+  for (const seg0 of inner.split(";")) {
+    const seg = seg0.trim();
+    const m = /^([EJS])(?![\w-])\s*:?\s*(.*)$/.exec(seg);
+    const label = m ? EV_WORD[m[1]] : null;
+    let rest = (m ? m[2] : seg).replace(AGENT_CODE, "").replace(/\b[A-Z]{2}-(?:CC-|C-|C)\d{2,3}[a-z]?\b/g, "").replace(/\bWP\d{2}-\d+\b/g, "")
+      .replace(/\b(SL|FH|SC|PS|LM|FS|CM|CP|IO|LC|IA|DC|FC)\b(?= (?:verdict|review|judgment))/g, (tm) => `${TEAM[tm]} agent's`)
+      .replace(/^[\s,]+|[\s,]+$/g, "").replace(/\s*,\s*(?=,)/g, "").replace(/\s{2,}/g, " ");
+    if (label) parts.push(rest ? (/^for\b/.test(rest) ? `${label} ${rest}` : `${label}: ${rest}`) : label);
+    else if (rest) parts.push(rest);
+  }
+  return parts.length ? ` (${parts.join("; ")})` : "";
+}
+// Module namespaces and vocabulary notations used inside prose ("waterq enactment", "a TX-B obligation", "MOD-01").
+const MODULE_NAME = new Map();
+const NOTATION_LABEL = new Map();
+{
+  const vdir = join(ROOT, "vocab");
+  const walk = (o) => {
+    if (Array.isArray(o)) return o.forEach(walk);
+    if (!o || typeof o !== "object") return;
+    if (o.notation && typeof o.prefLabel === "string") NOTATION_LABEL.set(String(o.notation), LABEL_FULL.get(o.prefLabel) || o.prefLabel);
+    if (o.namespace && typeof o.prefLabel === "string") MODULE_NAME.set(String(o.namespace), o.prefLabel.toLowerCase());
+    Object.values(o).forEach(walk);
+  };
+  if (existsSync(vdir)) for (const f of readdirSync(vdir).filter((x) => x.endsWith(".yaml"))) walk(loadYaml(join(vdir, f)));
+}
+const CODE_KEYS = new Set(["p", "c", "code", "codes", "s", "src", "u", "id", "slug", "ns", "jur", "actor", "k"]);
 function scrub(str, key = "") {
   if (POLICY.has(str)) return str;
   str = fullLabel(str, key);
@@ -747,37 +784,44 @@ function scrub(str, key = "") {
   t = t.replace(/\s*\((?:core\s+)?(?:CA|DE|LM|FS|FC|DC|SC|DB|FH|SL|PS|IO|LC|CM|IA|CP|AS)-C?\d{2,3}[a-z]?(?:[;,]\s*(?:core\s+)?(?:CA|DE|LM|FS|FC|DC|SC|DB|FH|SL|PS|IO|LC|CM|IA|CP|AS)-C?\d{2,3}[a-z]?)*\)/g, "");
   t = t.replace(/\(core (?:CA|DE|LM|FS|FC|DC|SC|DB|FH|SL|PS|IO|LC|CM|IA|CP|AS)-C\d{2,3}\)/g, "");
   // Lineage pointers inside definitions, e.g. "(v1 1.4.5, DB-C49)", and work-package or translation IDs in brackets.
-  t = t.replace(/\s*\(v1 [\d.]+(?:,\s*[A-Z]{2}-C?\d{2,3}[a-z]?)*\)/g, "").replace(/,\s*(?:CA|DE|LM|FS|FC|DC|SC|DB|FH|SL|PS|IO|LC|CM|IA|CP|AS)-C\d{2,3}[a-z]?\b/g, "");
+  t = t.replace(/\s*\(v1 [\d.]+(?:,\s*[A-Z]{2}-C?\d{2,3}[a-z]?)*\)/g, "");
   t = t.replace(/\s*\((?:WP-\d{2}|TR-\d{2})\)/g, "");
   t = t.replace(/\bAbsorbs (?:[A-Z]{2}-C\d{2,3}[a-z]?(?:\s*\([^)]*\))?(?:,\s*|\s+and\s+)?)+\.\s*/g, "");
-  t = t.replace(/^ADR-\d{4}:\s*/, "").replace(/\bWP-\d+ derivation\b/g, "derived").replace(/\bdevelopment_stage=(\w+)/g, "development stage: $1");
-  // Round 2 (patterns found by developer C): evidence tags such as "[E: SC-009]", agent-team prefixes such as
-  // "SL review:", review notes such as "(LC to review; WP-07 record)", "per V2-17" and "(DC Phase 2 extract)".
+  t = t.replace(/^ADR-\d{4}:\s*/, "").replace(/\bWP-\d+ derivation\b/g, "derived").replace(/\bat development_stage=(\w+)/g, "at the $1 stage").replace(/\bdevelopment_stage=(\w+)/g, "development stage: $1");
+  // Round 2 (patterns found by developer C and the round 2 trust review): evidence tags such as "[E: SC-009]" and
+  // "[J]" are translated, not deleted, so the line between an agent's judgement and a sourced statement stays visible.
   t = t.replace(/\s*\(DC Phase \d+ extract\)/g, "").replace(/\s*\([A-Z]{2,3} to review\b[^)]*\)/g, "")
-    // Evidence brackets: drop the codes; keep any remaining remark of five words or more, in parentheses.
-    .replace(/\s*\[[EJS](?=[;:\]])([^\]]*)\]/g, (_, body = "") => {
-      const rest = body.replace(/^\s*;\s*[EJS](?=[:\s]|$)/, "").replace(/^\s*:/, "").replace(AGENT_CODE, "").replace(/\b[A-Z]{2}-C\d{2,3}[a-z]?\b/g, "")
-        .replace(/\bWP\d{2}-\d+\b/g, "").replace(/\b[EJS]\b(?=\s*(?:for|;|$))/g, "")
-        .replace(/^[\s;,]+|[\s;,]+$/g, "").replace(/\s*[;,]\s*[;,]\s*/g, "; ").replace(/\s{2,}/g, " ");
-      return rest.split(/\s+/).filter(Boolean).length >= 5 ? ` (${rest})` : "";
-    })
-    
+    .replace(/\s*\[[EJS](?=[;:\]])([^\]]*)\]/g, (whole) => evidenceNote(whole.trim().slice(1, -1)))
     .replace(/^As TR-\d+ for /, "Adapted for ").replace(/\(TR-\d+ names /g, "(its translation rows name ")
-    .replace(/\bthe PS reference job architecture\b/g, "the private-sector reference job architecture").replace(/\bRequires PS confirmation\./g, "Requires private-sector review.")
+    .replace(/\bthe PS reference job architecture\b/g, "the private-sector reference job architecture").replace(/\bRequires PS confirmation\./g, "Requires private-sector confirmation.")
     .replace(/\bcomposed from (?:[A-Z]{2}-(?:CAND-)?C?\d+[a-z]?\s*)+\)/g, "composed from several existing competencies)")
     .replace(/\bmvp_role_set(?: example)?\b/g, "").replace(/\bX9 USA Hire\b/g, "USA Hire").replace(/;\s*WP-\d+ open item \d+/g, "")
-    .replace(/(^|\.\s+)(?:SL|FH|SC|PS|LM|FS|CM|CP|IO|LC|IA|DC|FC) review:\s*(\w)/g, (_, pre, c) => pre + c.toUpperCase())
-    .replace(/\s*\bper\s+V\d+-\d+\b/g, "");
-  // Bare agent work-item codes ("SL-053") in prose only: never in code fields, and never in a value without a space
-  // (a state class code could look like one).
-  if (/\s/.test(t) && !CODE_KEYS.has(key)) t = workCodeTitles(t).replace(new RegExp("\\s*" + AGENT_CODE.source, "g"), "");
+    // Agent-team review prefixes keep their attribution: "SL review: …" -> "State and local review (AI agent): …"
+    .replace(/(^|\.\s+)(SL|FH|SC|PS|LM|FS|CM|CP|IO|LC|IA|DC|FC) review:\s*(\w)/g, (_, pre, team, c) => `${pre}${cap(TEAM[team] || "Agent")} review (AI agent): ${c}`)
+    .replace(/\s*\bper\s+V\d+-\d+\b/g, "")
+    // Series-link lineage notes
+    .replace(/^FH Phase 2 judgment that (.+?), re-pointed from v1 ([\d.]+) to its v2 successor through X1\./, "An AI agent (federal human capital) judged that $1. The link was carried over from v1 competency $2.")
+    .replace(/,\s*role R\d{2}\)/g, ")").replace(/\s*\(mobility test R\d{2}[^)]*\)/g, "")
+    .replace(/\bat development stage: (\w+)/g, "at the $1 stage")
+    .replace(/\(agent-drafted hypothesis, S; not a finding\)/g, "(an AI agent's hypothesis; speculation, not a finding)");
+  if (/\s/.test(t) && !CODE_KEYS.has(key)) {
+    // Parentheses that hold only work codes are lineage pointers: drop them. Codes in running text name a competency:
+    // show its title. "(SL-C01 air enactment)" -> "(the air quality enactment of “…”)".
+    t = t.replace(/\s*\((?:\s*[A-Z]{2}-(?:CC-|CAND-|C-|C)?\d{2,3}[a-z]?(?:\/-\d+)?\s*[;,]?)+\)/g, "")
+      .replace(/\b([A-Z]{2}-(?:CC-|C-|C)\d{2,3}[a-z]?) ([a-z]+) enactment\b/g, (_, code, ns) => `the ${MODULE_NAME.get(ns) || ns} enactment of ${code}`)
+      .replace(/\b(waterq|envhealth|air|water|forest|fire|wildlife) enactment of\b/g, (_, ns) => `${MODULE_NAME.get(ns) || ns} enactment of`)
+      .replace(/\b(TX-[A-F]|MOD-\d{2})\b/g, (code) => (NOTATION_LABEL.has(code) ? `“${NOTATION_LABEL.get(code)}”` : code));
+    t = workCodeTitles(t).replace(new RegExp("\\s*" + AGENT_CODE.source, "g"), "");
+  }
   t = t.replace(/\(\s*[;,]\s*/g, "(").replace(/\s*[;,]\s*\)/g, ")").replace(/\s*\(\s*\)/g, "");
-  t = t.replace(/\s+([.;,])/g, "$1").replace(/^[;,]\s*/, "").replace(/\s{2,}/g, " ").trim();
+  t = t.replace(/\s+([.;,])/g, "$1").replace(/^[;,]\s*/, "").replace(/\.{2,}(?=\s|$)/g, ".").replace(/\s{2,}/g, " ").trim();
+  t = t.replace(/\s+via\)/g, ")");
+  if (/^ADR-\d{4}:/.test(str) && t) t = cap(t); // a sentence that began with a decision reference starts with a capital
   if (t && !/[.!?)]$/.test(t) && /[.!?]$/.test(str)) t += ".";
   return t;
 }
 function sanitize(v, k = "") {
-  if (typeof v === "string") return k === "id" || k === "slug" ? v : scrub(v, k);
+  if (typeof v === "string") return k === "id" || k === "slug" || k === "p" ? v : scrub(v, k);
   if (Array.isArray(v)) { if (k === "src") v.forEach((x) => typeof x === "string" && sourceIdsUsed.add(x)); return v.map((x) => sanitize(x, k)); }
   if (v && typeof v === "object") { const o = {}; for (const [kk, vv] of Object.entries(v)) o[kk] = sanitize(vv, kk); return o; }
   return v;
@@ -822,6 +866,12 @@ write("paths.js", "paths", paths);
   const dnpRx = (yaml.load(readFileSync(join(ROOT, "site", "claims", "do_not_publish.yaml"), "utf-8")).patterns || []).filter((d) => !d.unless_before).map((d) => new RegExp(d.rx, "i"));
   const strictRx = rules.strict.map((w) => new RegExp(claimsLib.phraseRx(w.phrase).source, "i"));
   const out = {};
+  // Source names never show build-machine paths or internal file names (round 2 trust review, N4).
+  const srcPublisher = (x) => String(x || "").replace(/,?\s*\/home\/[^\s)]*/g, "").replace(/\(\s*\)/g, "").replace(/\s{2,}/g, " ").trim() || undefined;
+  const srcTitle = (x) => String(x || "")
+    .replace(/^v1 legacy:\s*deep-research-report \(\d+\)\.md\s*\(([^)]+)\)/, "EMST v1 research report ($1)")
+    .replace(/^v1 legacy:\s*/, "EMST v1 research report: ").replace(/\bEMST v1 ([a-z_]+)\.md\b/, (_, f) => `EMST v1 ${f.replace(/_/g, " ")}`)
+    .replace(/\.md\b/g, "").trim();
   for (const id of [...sourceIdsUsed].sort()) {
     const r = srcRows.get(id);
     if (!r) { out[id] = {}; continue; }
@@ -830,7 +880,7 @@ write("paths.js", "paths", paths);
     const all = [r.t, r.p, r.u].join(" ");
     const low = all.toLowerCase();
     if (claimsLib.textViolates(all, rules) || withheldPh.some((w) => low.includes(w)) || dnpRx.some((rx) => rx.test(all)) || strictRx.some((rx) => rx.test(all))) { out[id] = { withheld: 1 }; continue; }
-    out[id] = { t: r.t, p: r.p, d: r.d, u: /^https:\/\/[^\s?]+$/.test(r.u || "") ? r.u : undefined, v: r.v || status.get(id) };
+    out[id] = { t: srcTitle(r.t), p: srcPublisher(r.p), d: r.d, u: /^https:\/\/[^\s?]+$/.test(r.u || "") ? r.u : undefined, v: r.v || status.get(id) };
   }
   write("sources.js", "sources", { note: "Titles from the repository's research source registers; verification status from the V-pass files where present.", src: out });
 }

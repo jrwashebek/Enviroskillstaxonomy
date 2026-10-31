@@ -228,9 +228,9 @@ function edgeBlock(A, B, paths, mapA, mapB, core, summary) {
     return h("div", { class: "c-edge" },
       h("h3", { class: "h4 c-edge__title" }, `From ${A.title} (${who(from, A)}) to ${B.title} (${who(to, B)})`),
       tag(e),
-      N !== undefined ? h("p", { class: "c-edge__stmt" }, `At ${lvl(e.fromLevel)} level, ${A.title} has ${fmt(N)} of the ${fmt(M)} competencies ${B.title}'s draft profile lists for ${lvl(e.toLevel)} level.`)
+      N !== undefined ? h("p", { class: "c-edge__stmt" }, `At ${lvl(e.fromLevel)} level, ${A.title} has ${fmt(N)} of the ${fmt(M)} competencies listed for ${lvl(e.toLevel)} level in the draft profile for ${B.title}.`)
         : h("p", `${A.title} ${plain(e.statement)}.`),
-      i === 0 && N !== undefined ? h("p", { class: "meta" }, `Why this differs from the ${summary.shared} of ${summary.total} above: that count includes every competency in ${B.title}'s profile at any level. This one uses only the competencies listed for ${B.title}'s ${lvl(e.toLevel)} level, and counts one only if ${A.title}'s ${lvl(e.fromLevel)}-level target is as high or higher.`) : null,
+      i === 0 && N !== undefined ? h("p", { class: "meta" }, `Why this differs from the ${summary.shared} of ${summary.total} above: that count takes every competency in the other profile, at any level. This one takes only those it lists for ${lvl(e.toLevel)} level. It counts one only when this role's ${lvl(e.fromLevel)}-level target is as high or higher.`) : null,
       e.gap?.length ? [h("h4", { class: "c-edge__h" }, `Not yet at that level (${fmt(e.gap.length)})`),
         h("p", { class: "meta" }, `Competencies ${B.title}'s profile lists at a higher level than ${A.title} targets, or that ${A.title} does not target.`),
         h("ul", { class: "task-list" }, e.gap.map((g) => h("li", h("a", { href: ui.link.comp(g.slug) }, titleOf(g.slug)),

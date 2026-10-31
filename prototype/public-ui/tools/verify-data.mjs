@@ -301,8 +301,14 @@ function allowNearCheck(text, path, context) {
 }
 function tribalCheck(text, path) {
   if (POLICY_PATHS.has(path)) return;
+  if (/^search\.hold\[\d+\]\.p$/.test(path)) return; // the trigger patterns themselves, so search can answer them with the held-records statement
   for (const rx of tribal) { const mt = text.match(rx); if (mt) { fail("5-tribal", path, `Tribal-hold trigger "${mt[0]}": "…${text.slice(Math.max(0, mt.index - 50), mt.index + 50)}…"`); return; } }
+  // Sentences that describe held content without a trigger word (round 1 T1: "content held under …", "agreement types
+  // covered by the … hold route through held competencies"). The policy says pages neither show nor describe it.
+  const hd = HELD_DESCRIPTION.exec(text);
+  if (hd) fail("5-held-description", path, `Describes held content: "…${text.slice(Math.max(0, hd.index - 50), hd.index + 70)}…"`);
 }
+const HELD_DESCRIPTION = /\b(?:held (?:competenc\w*|content|enactments?|tasks?|roles?|records? (?:on|about|for|cover))|content (?:is )?held under|hold (?:routes?|covers?|applies to)|(?:routed?|route) through (?:the )?held|covered by the [^.]{0,30}\bhold\b)/i;
 const v1Label = D.core?.gateLabels?.v1_prior;
 function walk(v, path, fileKey, inV1, context = "") {
   if (typeof v === "string") {

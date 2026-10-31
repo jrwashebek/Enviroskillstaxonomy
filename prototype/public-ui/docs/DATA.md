@@ -115,7 +115,7 @@ Each file is plain JavaScript that registers one JSON value. There is no fetch, 
 - **`status.held`.** `{n, source, policy}` is the Tribal hold. `n` is 163, from `views/counts.json` `heldRecords`; the build checks it against `RELEASE_NOTES.md`. `policy` is the explorer's policy sentence. Show only the count and this text.
 - **`status.gate`.** `{source, asOf, items: [{n, item, result}], overall}` is the release gate from `docs/release/2.0.0-rc.1/GATE_REPORT.md`, read-only. Items 6 and 7 fail, so rc.1 is not cleared for external publication.
 - **`text`.** Explorer wording that must travel with the data, reused verbatim from the templates. Use these strings rather than rewriting them:
-  - `useNotice`, `authorship`, `credit`, `callToAction`, `issuesUrl`;
+  - `credit`, `callToAction`, `issuesUrl` (the explorer's `useNotice` and `authorship` lines are not shipped: both over-claim for rc.1);
   - `hrDisclaimer` (two paragraphs; the first is the three-part disclaimer);
   - `crosswalkNote`, `negativeMapping`, `agentConfidence`, `unverified`;
   - `jaPending`, `jaNote`, `targetsNote`, `pctTimeNote`;
@@ -446,6 +446,25 @@ The build never invents a label. When no label exists, it exports the code and l
   - private job architecture `EMSTpja` (46);
   - 4 PA position records and 2 TX class records without a released class record.
 
+## Display wording (how `app/data` text differs from the release files)
+
+`tools/build-data.mjs` passes every free-text string through a display sanitizer (`scrub()`), so that record notes can be read without the drafting agents' internal codes. Titles (`title`), task statements (`stmt`), IDs, codes and numbers are never changed, and the held-records policy and the Indigenous statement pass through untouched. Everything else may differ from the release files. The About › Data page and each record's provenance say so.
+
+| Release text | Shown as |
+|---|---|
+| Held-content clauses in enactment notes | Removed (the policy says pages neither show nor describe held content) |
+| `[J]`, `[E: SC-009]`, `[E: V2-03 for status; J for effect]` | "(AI agent's judgment)", "(sourced)", "(sourced for status; AI agent's judgment for effect)"; source codes go, qualifiers and longer remarks stay |
+| "SL review: …" and other agent-team prefixes | "State and local review (AI agent): …" |
+| Competency work codes in running text ("see PS-C18", "mirror of SL-C03") | The competency's title, via `data/v2/ids/seed_map.csv`; "a related competency" if the code does not resolve to a published competency |
+| Parentheses that hold only work codes, decision records (ADR), change requests or work packages | Removed |
+| Vocabulary labels the YAML cuts at a comma ("Special district (water") | The full label |
+| Vocabulary notations in prose ("a TX-B obligation", "MOD-01") | The notation's label |
+| Series-link lineage notes ("FH Phase 2 judgment … re-pointed from v1 6.7.5 … through X1") | "An AI agent (federal human capital) judged that … The link was carried over from v1 competency 6.7.5." |
+| The explorer's HR notice ("for development and planning") | "This view describes work. It is not ready for training or development plans." |
+| Source publishers and titles with local paths or `.md` file names | The path and file extension removed |
+
+The round 2 trust review sampled the changes by hand (`docs/qa/eval-round2-trust.md`); round 2.5 replaced the deletion of evidence labels and attributions with the translations above. To audit, run the build with a copy of `scrub()` that logs each change.
+
 ## Not exported
 
 | What | Why |
@@ -489,21 +508,21 @@ Result: **PASS** (0 problems). Release 2.0.0-rc.1; verified 2026-10-31 by `tools
 | Check | Result |
 |---|---|
 | 1. Parse and register | 70 files; each registers exactly one key; pure JSON; `<` escaped |
-| 2. Size budget | core.js 59.5 KB gz / 258.9 KB raw (≤ 150 / 600); largest other file 88.6 KB gz (≤ 120) |
+| 2. Size budget | core.js 59.3 KB gz / 258.4 KB raw (≤ 150 / 600); largest other file 88.6 KB gz (≤ 120) |
 | 3. Counts | roles 37/37; competencies 223/223; tasks 1317/1317; variants 121/121; series 79/79 (13 generated profiles); classes 38/38 (20 generated views); signals 107/107 (0 withheld); held records 163 |
 | 4. References resolve | 29891 references checked |
-| 5. Forbidden content | 220839 strings and 57963 objects scanned (35158 distinct texts); 655 dated events checked; rules: gated keys, agentDraft, craft/exposure scores, 17 Tribal-hold triggers, 17 held seed keys, 3 held v1 codes, e-mail/phone, 16 retired-claim rules, 85 register and do-not-publish wrong forms, 2 conflation rules, 13 withheld phrases, 6 judgment-dated events, 0 unverified instrument titles |
+| 5. Forbidden content | 220854 strings and 57980 objects scanned (35172 distinct texts); 655 dated events checked; rules: gated keys, agentDraft, craft/exposure scores, 17 Tribal-hold triggers, 17 held seed keys, 3 held v1 codes, e-mail/phone, 16 retired-claim rules, 85 register and do-not-publish wrong forms, 2 conflation rules, 13 withheld phrases, 6 judgment-dated events, 0 unverified instrument titles |
 
 | File | Raw KB | Gzipped KB |
 |---|---:|---:|
-| core.js | 258.9 | 59.5 |
-| role-*.js (37 files; largest 11.7 KB gz) | 2032.1 | 261.2 |
-| comp-NN.js (12 files; largest 35.6 KB gz) | 1895.7 | 350.0 |
+| core.js | 258.4 | 59.3 |
+| role-*.js (37 files; largest 11.7 KB gz) | 2032.1 | 261.1 |
+| comp-NN.js (12 files; largest 35.7 KB gz) | 1904.3 | 351.2 |
 | task-NN.js (14 files; largest 17.1 KB gz) | 1901.5 | 221.9 |
-| search.js | 211.1 | 43.6 |
+| search.js | 211.7 | 43.9 |
 | search-tasks.js | 338.3 | 88.6 |
-| change.js | 179.9 | 22.9 |
+| change.js | 179.8 | 22.9 |
 | hr.js | 449.0 | 41.7 |
 | paths.js | 675.5 | 25.1 |
-| **Total (70 files)** | **7994.1** | **1131.8** |
+| **Total (70 files)** | **8002.5** | **1133.0** |
 <!-- verification:end -->

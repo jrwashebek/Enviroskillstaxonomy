@@ -263,6 +263,7 @@ export function provenance(rec, core) {
     [COPY.prov?.sources || "Sources", ev.src && ev.src.length ? sourceList(ev.src) : "None cited. This record is the drafting agents' own judgment."],
     [COPY.prov?.id || "Record ID", h("span", { class: "id" }, rec?.id || "—")],
     [COPY.prov?.release || "Release", `${core.release.id} (${dateLong(core.release.date)})`],
+    [COPY.prov?.wording || "Wording", h("span", "Notes on this page are tidied for reading; the release files keep the original wording. ", h("a", { href: "#/about/data@data-wording" }, "What changes"))],
   ];
   return h("dl", { class: "facts" }, rows.flatMap(([k, v]) => [h("dt", k), h("dd", v)]));
 }

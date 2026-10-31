@@ -7,7 +7,7 @@ import * as data from "../lib/data.js";
 import { state } from "../lib/state.js";
 import { refresh } from "../lib/router.js";
 import { fullIndex, KIND_LABEL, KIND_ORDER, hrefFor } from "../lib/searchsvc.js";
-import { normalize, stem, segments, HOLD_RX } from "../lib/search.js";
+import { normalize, stem, segments, isHoldTerm } from "../lib/search.js";
 import { COPY, fill } from "../content.js";
 import { pageHeader, notice, withMargin, jargon, clean, fmt } from "../ui.js";
 import { truncate, cap } from "../lib/format.js";
@@ -247,7 +247,7 @@ function related(ix, q) {
   const out = [], stems = new Set();
   for (const [t] of [...cand].sort((a, b) => b[1] - a[1])) {
     if (out.length >= 5) break;
-    if (stems.has(stem(t)) || normalize(q) === t || NEVER_SUGGEST.test(t) || HOLD_RX.test(t)) continue;
+    if (stems.has(stem(t)) || normalize(q) === t || NEVER_SUGGEST.test(t) || isHoldTerm(t)) continue;
     if (!ix.search(t, { limit: 3 }).results.some((r) => r.complete)) continue;
     stems.add(stem(t)); out.push(t);
   }

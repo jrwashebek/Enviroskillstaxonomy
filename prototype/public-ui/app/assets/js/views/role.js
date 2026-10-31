@@ -31,7 +31,7 @@ const T = {
   exploreSome: "Some competency levels on this page are explore only. Don't use those for training plans or decisions.",
   exploreLink: "What “explore only” means",
   empDetails: (n) => (n === 1 ? "Details for this employer type" : `Details for each of the ${fmt(n)} employer types`),
-  lead: (from, n, m, dest, to) => `At ${from} level, this role has ${fmt(n)} of the ${fmt(m)} competencies ${dest}'s draft profile lists for ${to} level.`,
+  lead: (from, n, m, dest, to) => `At ${from} level, this role has ${fmt(n)} of the ${fmt(m)} competencies listed for ${to} level in the draft profile for ${dest}.`,
   noQualify: "Sharing competencies doesn't mean you qualify.",
   entryTag: "Entry level",
   lower: (n) => `${fmt(n)} other ${n === 1 ? "role shares" : "roles share"} competencies with this one but ${n === 1 ? "stops" : "stop"} at a lower level. ${n === 1 ? "It is" : "They are"} not listed here as a next step.`,
@@ -688,14 +688,21 @@ function rolePage(core, role, actorParam) {
     const useCell = (t) => { const u = COPY.use?.[t] || {}; return u.short ? `${u.label}: ${u.short}` : t; };
     const reviewCell = (r) => `Drafted by AI agents; ${String(COPY.review?.[r || "unreviewed"]?.label || "not yet reviewed by people").toLowerCase()}`;
     const evCell = (l) => (l ? `${l}: ${COPY.evidence?.[l]?.label || ""}` : "");
-    const rows = [["record_id", "kind", "text", "competency", "role_levels", "formation", "use_tier", "evidence_label", "review_status", "release", "source_page", "notes"]];
+    // Same caveats as the series CSV (round 2 trust review, U1): the four gated values are pending, not zero, and the
+    // file is not a job analysis or classification basis.
+    const pending = "Assessment pending (not zero)";
+    const notes = `${T.notes}. Not a job analysis, selection instrument or classification basis.${v?.hr ? " " + ([].concat(core.text?.hrDisclaimer || [])[0] || "") : ""}`;
+    const rows = [["record_id", "kind", "text", "competency", "role_levels", "formation", "use_tier", "evidence_label", "review_status",
+      "importance", "time_share", "critical", "needed_at_entry", "release", "source_page", "notes"]];
     for (const x of itemsFor(v)) {
       const t = x.t, p = primaryOf(t);
-      rows.push([recordId(t.module, t.slug), "task", t.stmt, p ? p.title : "", x.roleLevels, x.formation ? "yes" : "no", useCell(t.tier?.t || role.tier?.t), evCell(t.ev?.l), reviewCell(t.ev?.r), core.release.id, src, T.notes]);
+      rows.push([recordId(t.module, t.slug), "task", t.stmt, p ? p.title : "", x.roleLevels, x.formation ? "yes" : "no", useCell(t.tier?.t || role.tier?.t), evCell(t.ev?.l), reviewCell(t.ev?.r),
+        pending, pending, pending, pending, core.release.id, src, notes]);
     }
     for (const t of targets) {
       const c = compBy.get(t.slug);
-      rows.push([c?.id || recordId(t.module, t.slug), "competency_target", t.title, t.title, levels.filter((l) => t.levels?.[l.key]).map((l) => `${l.key}: ${t.levels[l.key]}`), "", useCell(t.tier?.t), evCell(c?.ev?.l), reviewCell(c?.ev?.r), core.release.id, src, T.notes]);
+      rows.push([c?.id || recordId(t.module, t.slug), "competency_target", t.title, t.title, levels.filter((l) => t.levels?.[l.key]).map((l) => `${l.key}: ${t.levels[l.key]}`), "", useCell(t.tier?.t), evCell(c?.ev?.l), reviewCell(c?.ev?.r),
+        "", "", "", "", core.release.id, src, `${notes} Competency levels are explore only.`]);
     }
     return toCsv(rows);
   }

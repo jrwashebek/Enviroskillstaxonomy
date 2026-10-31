@@ -34,13 +34,13 @@ export async function baseIndex() {
   if (base) return base;
   const s = await data.search();
   await tidy(s.docs);
-  base = new SearchIndex([...s.docs, ...helpDocs()], s.syn);
+  base = new SearchIndex([...s.docs, ...helpDocs()], s.syn, s.hold);
   return base;
 }
 /** Full index including 1,317 tasks, used for the results page. */
 export function fullIndex() {
   if (full) return Promise.resolve(full);
-  if (!buildingFull) buildingFull = Promise.all([data.search(), data.searchTasks()]).then(async ([s, t]) => { await tidy(s.docs); return (full = new SearchIndex([...s.docs, ...helpDocs(), ...t.docs], s.syn)); });
+  if (!buildingFull) buildingFull = Promise.all([data.search(), data.searchTasks()]).then(async ([s, t]) => { await tidy(s.docs); return (full = new SearchIndex([...s.docs, ...helpDocs(), ...t.docs], s.syn, s.hold)); });
   return buildingFull;
 }
 export const KIND_LABEL = { policy: "About EMST", help: "How to read EMST", role: "Roles", series: "OPM series", class: "State and local classes", comp: "Competencies", task: "Tasks", module: "Modules", tool: "Tools", credential: "Credentials", signal: "Change signals" };

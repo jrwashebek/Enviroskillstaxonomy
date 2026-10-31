@@ -56,12 +56,21 @@ export const HOLD_RX = /\b(trib(e|es|al)|indigenous|native american|native hawai
 // Misspellings of the hold words ("tribel", "indigenus") are treated the same way, so they never reach the
 // "may not cover this work yet / suggest a role" copy. A word the index knows, or a common word on the list
 // below, is never treated as a misspelling.
-const HOLD_WORDS = ["tribal", "tribe", "tribes", "indigenous"];
-const NEAR_HOLD_OK = new Set(["trial", "trials", "tribune", "tripe", "triple", "bridal", "tribute"]);
+const HOLD_WORDS = ["tribal", "tribe", "tribes", "indigenous", "treaty", "treaties", "sovereignty"];
+// The full trigger list comes with the search data (search.hold, from schema/lint/governed_content.yaml).
+let HOLD_LIST = [HOLD_RX];
+export function setHoldPatterns(list) {
+  const rx = (list || []).map((x) => { try { return new RegExp(x.p, x.cs ? "" : "i"); } catch { return null; } }).filter(Boolean);
+  if (rx.length) HOLD_LIST = [HOLD_RX, ...rx];
+}
+/** True when the text contains a hold trigger word or phrase. */
+export function isHoldTerm(text) { return HOLD_LIST.some((rx) => rx.test(String(text || ""))); }
+const NEAR_HOLD_OK = new Set(["trial", "trials", "tribune", "tripe", "triple", "bridal", "tribute", "sovereign", "treat", "treats", "treated"]);
 
 export class SearchIndex {
   /** docs: [{k, s, t, a?, c?, x?, w?}], syn: {term: [expansion, …]} */
-  constructor(docs, syn = {}) {
+  constructor(docs, syn = {}, hold = null) {
+    if (hold) setHoldPatterns(hold);
     this.docs = docs;
     this.post = new Map();          // token -> Map(docIdx -> best field weight)
     this.codes = new Map();         // normalized code -> [docIdx]
@@ -161,7 +170,7 @@ export class SearchIndex {
   search(query, { limit = 50, kinds = null } = {}) {
     const q = String(query || "").trim();
     if (!q) return { results: [], notes: [], total: 0, byKind: {} };
-    if (HOLD_RX.test(q) || this.nearHold(q)) return { results: [], notes: [], total: 0, byKind: {}, held: true };
+    if (isHoldTerm(q) || this.nearHold(q)) return { results: [], notes: [], total: 0, byKind: {}, held: true };
     const { groups, notes } = this.plan(q);
     const scores = new Map(); // docIdx -> {score, hits:Set(groupIndex), fuzzy:boolean}
     const bump = (i, g, s, fz) => {

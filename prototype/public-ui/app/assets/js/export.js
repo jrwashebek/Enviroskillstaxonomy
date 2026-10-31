@@ -35,6 +35,8 @@ export function download(filename, text, mime = "text/plain") {
   a.href = url;
   a.download = filename;
   a.className = "vh";
+  a.tabIndex = -1;
+  a.setAttribute("aria-hidden", "true"); // a helper link for the second it exists; never part of the page
   document.body.appendChild(a);
   a.click();
   setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);

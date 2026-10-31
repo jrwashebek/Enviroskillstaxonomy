@@ -168,7 +168,7 @@ const pending = {
     exposure: "exposure to AI and automation",
     workFunction: "type of work",
   },
-  why: "No group of practitioners has rated these yet. We show nothing rather than a guess, so the order of this list says nothing about importance.",
+  why: "No group of practitioners has rated these yet. We show nothing rather than a guess, so the order of the task list says nothing about importance.",
   next: "These values will appear after a study with practitioners checks them. No study has reported yet.",
 };
 
@@ -388,6 +388,10 @@ const data = [
 
   h2("data-ids", "Record IDs"),
   p("Each record has an ID, such as emst:core/ROL-ZJFCC09. IDs are candidates until version 2.0.0, so they may still change. Always cite the release with the ID."),
+
+  h2("data-wording", "Pages and release files can differ in wording"),
+  p("These pages tidy record notes so they can be read. They remove the AI agents' internal work codes. Where a note names another competency by its code, the page shows that competency's title. Evidence tags are written out: “[J]” becomes “AI agent's judgment” and “[E]” becomes “sourced”. A few labels the release files cut short are shown in full."),
+  p("Titles, task statements and every number are shown exactly as released. If you quote a note, check it against the release files, which keep the original wording."),
 
   h2("data-caveats", "Keep the caveats with the data"),
   p("If you reuse or share EMST, keep “Drafted by AI agents. Not yet reviewed by people.” with it, and keep each record's use label. Leave “Assessment pending” as it is. Never turn it into a zero or a blank."),
