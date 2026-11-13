@@ -126,42 +126,30 @@
 /* What EMST covers */
 .cov-intro{max-width:60ch}
 .cov-intro>p{margin:.75rem 0 0}
-.cov-body>.section{scroll-margin-top:1rem}
-.cov-totals,.cov-areas,.cov-cards,.cov-rolelist{padding:0;list-style:none}
-.cov-cards,.cov-rolelist{margin:0}
-.cov-totals{display:grid;gap:.5rem}
-.cov-totals li{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
-.cov-areas{display:grid;gap:.375rem}
-.cov-areas a{font-weight:600}
-.cov-kinds{display:grid;gap:.25rem}
-.cov-kinds dt{font-weight:600}
-.cov-kinds dd{max-width:64ch;margin:0 0 .75rem}
-.cov-draft{display:flex;gap:.5rem;align-items:flex-start;font-size:var(--step--1);color:var(--fg-muted)}
-.cov-draft .icon{flex:none;margin-top:.15rem;color:var(--st-draft-fg)}
+.cov-totals,.cov-cards,.cov-rolelist{padding:0;list-style:none}
+.cov-totals li{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-top:.5rem}
+.cov-draft{display:flex;gap:.5rem;font-size:var(--step--1);color:var(--fg-muted)}
+.cov-draft .icon{flex:none;margin-top:.15rem}
 .cov-key{display:grid;gap:.5rem 1rem;align-items:baseline}
-.cov-key dd{margin:0 0 .5rem}
-@media (min-width:40rem){.cov-key{grid-template-columns:max-content minmax(0,1fr)}.cov-key dd{margin:0}}
+.cov-key dd{margin:0}
+@media (min-width:40rem){.cov-key{grid-template-columns:max-content minmax(0,1fr)}}
 .cov-badge-none{border-style:dashed}
 .cov-area{margin-top:var(--sp-5)}
-.cov-area:focus{outline:none}
-.cov-area:focus-visible{outline:var(--focus-w) solid var(--ui-focus);outline-offset:4px}
 .cov-area>*+*{margin-top:var(--sp-2)}
 .cov-area>h3{margin:0;padding-bottom:.25rem;border-bottom:2px solid var(--ui-strong)}
-.cov-wave{display:block;font-size:var(--step--1);color:var(--fg-muted)}
+.cov-sub{display:block;font-size:var(--step--1);color:var(--fg-muted)}
 .cov-comps{margin:.25rem 0 0;padding-left:1.125rem}
-.cov-comps li+li{margin-top:.25rem}
-.cov-cards{border-top:1px solid var(--deco-rule)}
+.cov-cards{margin:0;border-top:1px solid var(--deco-rule)}
 .cov-card{display:grid;gap:.5rem;padding:.875rem 0;border-bottom:1px solid var(--deco-rule)}
 .cov-card>*{margin:0}
-.cov-card__title{font-size:var(--step-0);line-height:var(--lh-snug)}
+.cov-card__title{font-size:var(--step-0)}
+.cov-card .facts{grid-template-columns:minmax(0,8.5rem) minmax(0,1fr);gap:.25rem .75rem}
 .cov-mods h4{margin:0 0 .5rem;font-size:var(--step-0)}
-.cov-mods dl{margin:0}
 .cov-mods dt{font-weight:600}
 .cov-mods dd{margin:.25rem 0 1rem}
-.cov-rolelist{display:grid;gap:.25rem}
-@media (forced-colors:active){.cov-badge-none{border-color:CanvasText}}
+.cov-rolelist{margin:0}
 .cov-wrap .data-table .badge{white-space:normal}
 .cov-wrap .data-table .cov-comps{min-width:11rem}
 .cov-wrap .data-table :is(th,td){padding-inline:.75rem}
-.cov-areas .meta{display:block}
-.cov-card .facts{grid-template-columns:minmax(0,8.5rem) minmax(0,1fr);gap:.25rem .75rem}
+.cov-body .section>.facts{font-size:var(--step-0)}
+.cov-body .section>.facts dt{color:var(--fg);font-weight:600}

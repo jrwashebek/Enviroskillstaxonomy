@@ -148,6 +148,20 @@ else {
   const depth = { full: 0, lower: 0, emerging: 0 };
   for (const r of core.roles || []) depth[r.whatsComingOnly ? "emerging" : r.depth === "P1" ? "full" : "lower"]++;
   if (JSON.stringify(depth) !== JSON.stringify(m.stats.depth)) fail("3", "coverage", `depth groups ${JSON.stringify(depth)} != model ${JSON.stringify(m.stats.depth)}`);
+  // The page's rows: each subsector once, with the status and counts recomputed here.
+  const rows = (cov.sections || []).flatMap((x) => x.blocks || []).filter((b) => b.t === "area").flatMap((b) => b.rows || []);
+  if (rows.length !== subs.length || !eqSet(new Set(rows.map((r) => r.code)), new Set(subs.map((x) => x.code)))) fail("3", "coverage rows", "the page's rows and the subsectors differ");
+  const listedNs = new Set(m.rolesMain.map((r) => r.homeModule));
+  const fmtN = (x) => (x ? x.toLocaleString("en-US") : "None");
+  for (const r of rows) {
+    const x = subs.find((y) => y.code === r.code); if (!x) continue;
+    const core_ = x.module === coreNs, nc = core_ ? coreM?.nComps : (x.comps || []).length, nt = core_ ? coreM?.nTasks : x.nTasks || 0;
+    const st = listedNs.has(x.module) ? "roles" : nc ? (nt ? "comps" : "compsOnly") : "none";
+    if (r.st !== st) fail("3", `coverage row ${r.code}`, `status ${r.st}, recomputed ${st}`);
+    if (r.comps !== fmtN(nc) || r.tasks !== fmtN(nt)) fail("3", `coverage row ${r.code}`, `counts ${r.comps}/${r.tasks}, recomputed ${fmtN(nc)}/${fmtN(nt)}`);
+    const rs = m.roles.filter((y) => y.homeModule === x.module).length;
+    if ((r.roles === "None") !== (rs === 0)) fail("3", `coverage row ${r.code}`, "roles text disagrees with the model");
+  }
   // The roles index counts subject modules from core.labels.module; it must agree with the scope map.
   const labelMods = Object.keys(core.labels?.module || {}).filter((ns) => ns !== coreNs);
   if (labelMods.length !== covCheck.modules || labelMods.some((ns) => !covNs.has(ns))) fail("3", "coverage", "core.labels.module and the scope map list different modules");
@@ -243,7 +257,14 @@ each(pa.pathways, (p) => { need(V, p.from, "paths.pathways", "from"); need(R, p.
 const cv = D.coverage || {};
 each(cv.subsectors, (x) => each(x.comps, (c) => need(C, c, `coverage ${x.code}`, "competency")));
 each(cv.permitting?.roles, (r) => { need(R, r, "coverage.permitting", "role"); if (roleFiles.find((x) => x.slug === r)?.whatsComingOnly) fail("4", "coverage.permitting", `${r} is a What's-coming-only role`); });
-for (const k of ["biotechTasks", "bioengineering", "edna"]) each(cv.outside?.[k], (t) => { need(T, t.slug, `coverage.outside.${k}`, "task"); if (t.comp?.slug) need(C, t.comp.slug, `coverage.outside.${k}`, "competency"); });
+for (const k of ["biotechTasks", "bioengineering", "edna"]) each(cv.outside?.[k], (t) => need(T, t, `coverage.outside.${k}`, "task"));
+// links inside the composed page text: [text](#/role/…), (#/competency/…), (#/task/…), (#/changing@…)
+for (const s of cv.sections || []) for (const [, kind, slug] of JSON.stringify(s).matchAll(/\]\(#\/(role|competency|task|changing)[\/@]([a-z0-9-]+)\)/g)) {
+  if (kind === "role") { need(R, slug, `coverage ${s.id}`, "role"); if (roleFiles.find((x) => x.slug === slug)?.whatsComingOnly) fail("4", `coverage ${s.id}`, `${slug} is a What's-coming-only role with a role-page link`); }
+  else if (kind === "competency") need(C, slug, `coverage ${s.id}`, "competency");
+  else if (kind === "task") need(T, slug, `coverage ${s.id}`, "task");
+  else if (slug !== "emerging-roles") { need(R, slug, `coverage ${s.id}`, "emerging role"); if (!roleFiles.find((x) => x.slug === slug)?.whatsComingOnly) fail("4", `coverage ${s.id}`, `${slug} links to What's changing but is not an emerging role`); }
+}
 
 // ---------------------------------------------------------------- 5. forbidden content
 const gc = yaml.load(readFileSync(join(ROOT, "schema", "lint", "governed_content.yaml"), "utf-8"));

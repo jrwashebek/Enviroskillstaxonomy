@@ -683,48 +683,183 @@ const search = {
 };
 
 // ---------------------------------------------------------------- coverage.js (the "What EMST covers" page, #/coverage)
-// The scope map (vocab/subsectors.yaml and vocab/modules.yaml: draft vocabularies, labels, clusters and waves only) joined
-// with what the view model holds. Roles carry no subsector in the model, so the page places them by home module, from
-// core.roles. Competencies are placed by their own subsector tags (Competency.subsectors); tasks by the competencies they
-// support. Core competencies carry no subsector tag, so the core practice areas share core's counts.
+// The scope map (vocab/subsectors.yaml and vocab/modules.yaml: draft vocabularies; labels, clusters and waves only) joined
+// with what the view model holds. Roles carry no subsector in the model, so they are placed by home module. Competencies
+// are placed by their own subsector tags (Competency.subsectors); tasks through the competencies they support. Core
+// competencies carry no subsector tag, so the core practice areas share core's counts.
+// The page's text is composed here, with every number filled from the data, so the app bundle carries only a small
+// renderer (views/coverage.js): What's changing and competency pages sit close to the 8 s Slow 3G first-load budget.
+// Copy follows docs/CONTENT_GUIDE.md; verify-data.mjs scans it with every other data text and recomputes the counts.
+const COV_TEXT = {
+  status: { roles: "Roles drafted", comps: "Competencies and tasks only", compsOnly: "Competencies only", none: "Not started in this release" },
+  statusDef: {
+    roles: "Its module has at least one role profile.",
+    comps: "No roles in its module, but some competencies are tagged with it, and tasks are linked to them.",
+    compsOnly: "No roles in its module, and no tasks yet, but some competencies are tagged with it.",
+    none: "No roles in its module, and no competencies tagged with it. Related core work may still be in EMST.",
+  },
+  cols: { sub: "Subsector", module: "Module", roles: "Roles in its module", comps: "Competencies", tasks: "Tasks", status: "Status" },
+  tableHint: "Roles are counted for the whole module.",
+  rolesBy: "Roles by module",
+  s: { summary: "At a glance", kinds: "Kinds of role profile", map: "The scope map", permitting: "Where permitting work is", waves: "Waves", outside: "Not on the scope map", missing: "Tell us what's missing" },
+};
 const coverage = (() => {
   const subsVocab = loadYaml(join(ROOT, "vocab", "subsectors.yaml"));
   const modVocab = loadYaml(join(ROOT, "vocab", "modules.yaml"));
   const coreNs = modVocab.core.namespace;
   const nsOf = new Map([[modVocab.core.notation, coreNs], ...modVocab.terms.map((t) => [t.notation, t.namespace])]);
   const shown = (s, where) => { if (releasable(s)) return true; dropped.push({ where, why: "text matches a Tribal-hold trigger" }); return false; };
+  const n = (x) => Number(x).toLocaleString("en-US");
+  const pl = (x, one, many = one + "s") => `${n(x)} ${x === 1 ? one : many}`;
+  const and = (xs) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}` : xs[0] || "");
+  const md = (text, href) => `[${String(text).replace(/[[\]]/g, "")}](${href})`;
   const tasksOf = (cs) => new Set(cs.flatMap((c) => c.tasks.map((t) => t.slug)));
+  const T = COV_TEXT;
+
+  // ---- scope map and counts
+  const clusters = subsVocab.clusters.map((c) => ({ code: c.notation, label: String(c.prefLabel).replace(/\s*\([^)]*\)\s*$/, "") }));
+  const modules = [
+    { ns: coreNs, label: m.labels.module[coreNs], core: true, nComps: m.coreCompetencies.length, nTasks: tasksOf(m.coreCompetencies).size },
+    ...modVocab.terms.map((t) => ({ ns: t.namespace, label: m.labels.module[t.namespace] || t.prefLabel, wave: t.wave, subsectors: t.subsectors })),
+  ];
+  const mod = new Map(modules.map((x) => [x.ns, x]));
   const terms = subsVocab.terms.filter((t) => shown(`${t.prefLabel} ${m.labels.subsector[t.notation] || ""}`, `coverage.subsectors.${t.notation}`));
   for (const t of terms) if (!nsOf.has(t.module)) throw new Error(`coverage: subsector ${t.notation} names unknown module ${t.module}`);
-  const tagged = (code) => m.competencies.filter((c) => c.subsectors.some((s) => s.code === code));
-  // Editorial anchors for the permitting note (DEV_COVERAGE brief), looked up by title so that the build fails closed if
-  // a record is renamed or removed. Subsectors: energy projects (E01), transmission lines (E02) and mines (E04).
-  const byTitle = (title, list) => { const r = list.find((x) => x.title === title); if (!r) throw new Error(`coverage: no role "${title}"`); return r.slug; };
-  const PERMIT_ROLES = ["Environmental permit writer", "Environmental review specialist", "Environmental compliance inspector", "Enforcement case manager"];
-  const PERMIT_SUBSECTORS = ["E01", "E02", "E04"];
-  // Work outside the scope map: phrases searched in the scope map itself and in task statements, so the page states only what
-  // the data shows.
+  const subsectors = terms.map((t) => {
+    const cs = m.competencies.filter((c) => c.subsectors.some((s) => s.code === t.notation));
+    return { code: t.notation, label: m.labels.subsector[t.notation] || t.prefLabel, cluster: t.cluster, module: nsOf.get(t.module), comps: cs.map((c) => c.slug), nTasks: tasksOf(cs).size };
+  });
+  const DEPTHS = ["full", "lower", "emerging"];
+  const depthOf = (r) => (r.whatsComingOnly ? "emerging" : r.depthTier === "P1" ? "full" : "lower");
+  const SHORT = { full: ["full profile", "full profiles"], lower: ["earlier draft", "earlier drafts"], emerging: ["emerging", "emerging"] };
+  const rolesIn = (ns) => m.roles.filter((r) => (mod.has(r.homeModule) ? r.homeModule : coreNs) === ns)
+    .sort((a, b) => DEPTHS.indexOf(depthOf(a)) - DEPTHS.indexOf(depthOf(b)) || a.title.localeCompare(b.title));
+  const listedIn = (ns) => rolesIn(ns).filter((r) => !r.whatsComingOnly);
+  const isCore = (s) => !!mod.get(s.module)?.core;
+  const nComps = (s) => (isCore(s) ? mod.get(coreNs).nComps : s.comps.length);
+  const nTasks = (s) => (isCore(s) ? mod.get(coreNs).nTasks : s.nTasks);
+  const statusOf = (s) => (listedIn(s.module).length ? "roles" : nComps(s) ? (nTasks(s) ? "comps" : "compsOnly") : "none");
+  const ORDER = Object.keys(T.status);
+  const used = ORDER.filter((st) => subsectors.some((s) => statusOf(s) === st));
+  const tally = (list) => used.map((st) => [st, list.filter((s) => statusOf(s) === st).length]).filter(([, k]) => k);
+  const tallyText = (list) => tally(list).map(([st, k]) => `${T.status[st]}: ${n(k)}.`).join(" ");
+  const subjectMods = modules.filter((x) => !x.core);
+  const compTitle = (slug) => compById.get(m.competencies.find((c) => c.slug === slug)?.id)?.title || slug;
+  const roleLink = (r) => (r.whatsComingOnly ? null : md(r.title, `#/role/${r.slug}`));
+  const cid = (code) => `cov-${code.toLowerCase()}`;
+  const areaClusters = clusters.filter((c) => subsectors.some((s) => s.cluster === c.code));
+
+  // ---- one block per area: rows for the table (or cards on phones) and the roles by module
+  const areaBlock = (cl) => {
+    const list = subsectors.filter((s) => s.cluster === cl.code);
+    const nss = [...new Set(list.map((s) => s.module))].filter((ns) => rolesIn(ns).length);
+    return {
+      t: "area", id: cid(cl.code), label: cl.label, summary: `${pl(list.length, "subsector")}. ${tallyText(list)}`,
+      caption: `${cl.label}: ${pl(list.length, "subsector")}`, rolesHead: list.every(isCore) ? "Roles in core" : T.cols.roles,
+      rows: list.map((s) => {
+        const x = mod.get(s.module), rs = rolesIn(s.module), st = statusOf(s);
+        return {
+          code: s.code, st, label: s.label,
+          module: x.core ? "Core work, shared by every module" : x.label, wave: x.core ? "" : `Wave ${x.wave}`,
+          roles: rs.length ? DEPTHS.map((d) => [d, rs.filter((r) => depthOf(r) === d).length]).filter(([, k]) => k).map(([d, k]) => `${n(k)} ${SHORT[d][k === 1 ? 0 : 1]}`).join(", ") : "None",
+          comps: nComps(s) ? n(nComps(s)) : "None", tasks: nTasks(s) ? n(nTasks(s)) : "None", shared: x.core ? "All core, shared" : "",
+          links: !x.core && st !== "roles" ? s.comps.map((slug) => md(compTitle(slug), `#/competency/${slug}`)) : [],
+        };
+      }),
+      roles: nss.map((ns) => {
+        const rs = rolesIn(ns), em = rs.filter((r) => r.whatsComingOnly);
+        return [mod.get(ns).core ? "Core work, shared by every module" : mod.get(ns).label, [
+          ...rs.filter((r) => !r.whatsComingOnly).map((r) => `${roleLink(r)} (${SHORT[depthOf(r)][0]})`),
+          ...(em.length ? [`${md(pl(em.length, "emerging role"), em.length === 1 ? `#/changing@${em[0].slug}` : "#/changing@emerging-roles")} (in What's changing)`] : [])]];
+      }),
+      noRoles: nss.length ? "" : "No module in this area has roles in this release.",
+    };
+  };
+
+  // ---- permitting: editorial anchors (DEV_COVERAGE brief), looked up by title so the build fails closed if a record is
+  // renamed or removed. Subsectors: energy projects (E01), transmission lines (E02) and mines (E04).
+  const byTitle = (title) => { const r = rolesMain.find((x) => x.title === title); if (!r) throw new Error(`coverage: no role "${title}"`); return r; };
+  const pRoles = ["Environmental permit writer", "Environmental review specialist", "Environmental compliance inspector", "Enforcement case manager"].map(byTitle);
+  const fam = jobFamilies.find((f) => pRoles.every((r) => f.roles.some((x) => x.slug === r.slug)));
+  const pMods = [...new Set(["E01", "E02", "E04"].map((c) => subsectors.find((s) => s.code === c)?.module).filter(Boolean))].map((ns) => mod.get(ns)).filter((x) => !x.core && !listedIn(x.ns).length);
+  const pComps = m.competencies.filter((c) => pMods.some((x) => x.ns === c.module));
+  const permitting = [
+    `Permitting work is in ${n(pRoles.length)} roles: ${and(pRoles.map(roleLink))}.`,
+    fam ? `They are in the job family “${fam.title}”.` : "",
+    pMods.length ? `Permitting for energy projects, transmission lines and mines belongs to modules with no roles in this release: ${and(pMods.map((x) => `“${x.label}”`))}.` : "",
+    pComps.length ? `Between them, these modules have ${pl(pComps.length, "competency", "competencies")}: ${and(pComps.map((c) => md(c.title, `#/competency/${c.slug}`)))}.` : "",
+  ].filter(Boolean).join(" ");
+
+  // ---- waves (from the vocabulary only; no plans or dates)
+  const waves = [...new Set(subjectMods.map((x) => x.wave).filter((w) => w != null))].sort((a, b) => a - b);
+  const waveLine = (w) => {
+    const ms = subjectMods.filter((x) => x.wave === w), wr = ms.filter((x) => listedIn(x.ns).length);
+    const k = !wr.length ? "none" : wr.length === ms.length ? `all ${n(wr.length)}` : n(wr.length);
+    return `Wave ${w}: ${pl(ms.length, "module")}, ${k} with roles${wr.length && wr.length < ms.length ? ` (${wr.map((x) => `“${x.label}”`).join(", ")})` : ""}.`;
+  };
+
+  // ---- outside the scope map: phrases searched in the scope map itself and in task statements
   const BIOTECH = /\bbiotech\w*|\bbioremed\w*|\bsynthetic biolog\w*/i;
-  const taskRef = (t) => ({ slug: t.slug, stmt: t.statement, comp: t.supports[0] ? { slug: compById.get(t.supports[0].competency)?.slug || "", title: t.supports[0].title } : null });
-  const findTasks = (rx) => tasksSorted.filter((t) => rx.test(t.statement)).map(taskRef);
+  const findTasks = (rx) => tasksSorted.filter((t) => rx.test(t.statement));
+  const biotechOnMap = subsVocab.terms.some((t) => BIOTECH.test(`${t.prefLabel} ${t.definition || ""}`));
+  const biotechTasks = findTasks(BIOTECH), bioeng = findTasks(/\bbioengineer\w*/i), edna = findTasks(/\benvironmental DNA\b|\beDNA\b/i);
+  const ednaComps = [...new Map(edna.map((t) => compById.get(t.supports[0]?.competency)).filter(Boolean).map((c) => [c.slug, c])).values()];
+
+  const byDepth = Object.fromEntries(DEPTHS.map((d) => [d, m.roles.filter((r) => depthOf(r) === d).length]));
+  const KINDS = {
+    full: ["Full profiles", "The roles drafted in most depth. Each lists its tasks, the competencies it needs with draft target levels, and how the work differs by employer."],
+    lower: ["Earlier drafts at lower depth", "The same parts, drafted in less depth. The Roles page calls them starter profiles."],
+    emerging: ["Emerging roles", "Ideas about work that may be forming. They appear only in What's changing, without tasks or competencies, because the work is not yet shown to exist. [See them in What's changing](#/changing@emerging-roles)"],
+  };
+  const p = (text) => ({ t: "p", text });
+  const sections = [
+    { id: "cov-summary", title: T.s.summary, blocks: [
+      p(`EMST's scope map splits environmental work into ${pl(subsectors.length, "subsector")}, in ${pl(areaClusters.length, "area")}. A subsector is one kind of work, such as drinking water or wildland fire.`),
+      p(`Of the ${pl(subsectors.length, "subsector")}:`),
+      { t: "totals", items: tally(subsectors).map(([st, k]) => [st, pl(k, "subsector")]) },
+      p("By area:"),
+      { t: "ul", items: areaClusters.map((cl) => { const list = subsectors.filter((s) => s.cluster === cl.code); return `${md(cl.label, `#${cid(cl.code)}`)}: ${pl(list.length, "subsector")}. ${tallyText(list)}`; }) },
+    ] },
+    { id: "cov-kinds", title: T.s.kinds, blocks: [
+      p("Each role profile has one of these depths. The Roles page lists every role except the emerging ones."),
+      { t: "dl", items: DEPTHS.filter((d) => byDepth[d]).map((d) => [`${KINDS[d][0]}: ${n(byDepth[d])}`, KINDS[d][1]]) },
+      p(md("Browse the roles", "#/roles")),
+    ] },
+    { id: "cov-map", title: T.s.map, blocks: [
+      p(`Each subsector belongs to a subject module, a group of related subsectors such as air quality. The rest are core practice areas, such as environmental review, which every module shares. There are ${n(subsectors.filter(isCore).length)} of them.`),
+      { t: "draft", text: "AI agents drafted the scope map and the tags. No person has reviewed them yet." },
+      { t: "h3", text: "How to read the counts" },
+      { t: "ul", items: [
+        "Roles: every role in the subsector's module. Roles are not tagged by subsector, so a role may not cover every subsector in its module.",
+        "Competencies: those tagged with the subsector, from any module. Core competencies are not tagged by subsector, so each core area shows all of them.",
+        "Tasks: the tasks linked to those competencies."] },
+      { t: "h3", text: "What each status means" },
+      { t: "key", items: used.map((st) => [st, T.statusDef[st]]) },
+      ...areaClusters.map(areaBlock),
+    ] },
+    pRoles.length ? { id: "cov-permitting", title: T.s.permitting, blocks: [{ t: "notice", kind: "info", text: permitting }] } : null,
+    { id: "cov-waves", title: T.s.waves, blocks: [
+      p(`Wave ${waves[0]} modules were built first, for this release.${waves.length > 1 ? ` Waves ${and(waves.slice(1).map(String))} are planned. This release gives no dates for them.` : ""}`),
+      { t: "ul", items: waves.map(waveLine) },
+    ] },
+    { id: "cov-outside", title: T.s.outside, blocks: [
+      p("Some environmental work is outside the scope map entirely."),
+      biotechOnMap ? null : p(`Environmental biotechnology, such as bioremediation or synthetic biology, is one example. It is not one of the ${pl(subsectors.length, "subsector")}.${biotechTasks.length ? "" : " No task in this release mentions it."}`),
+      ...(bioeng.length ? [p(`Soil bioengineering appears only inside restoration and erosion-control work, in ${pl(bioeng.length, "task")}:`), { t: "ul", items: bioeng.map((t) => md(t.statement, `#/task/${t.slug}`)) }] : []),
+      edna.length && ednaComps.length ? p(`Environmental DNA (eDNA) appears in ${pl(edna.length, "task")}, under ${and(ednaComps.map((c) => md(c.title, `#/competency/${c.slug}`)))}.`) : null,
+    ].filter(Boolean) },
+    { id: "cov-missing", title: T.s.missing, blocks: [
+      p("If you know environmental work that EMST does not describe, you can tell us. Describe it in your own words: the job title, the main tasks and the kind of employer."),
+      p("Suggestions go to the project's GitHub Issues, where the EMST project lead decides on changes. A suggestion does not mean the work will be added."),
+      { t: "suggest", text: "Suggest a role or task we're missing", href: "#/about/corrections@corr-missing" },
+    ] },
+  ].filter(Boolean);
+
   return {
-    note: "Scope map from vocab/subsectors.yaml and vocab/modules.yaml (draft vocabularies). Roles are placed by home module (core.roles); competencies by their subsector tags; tasks through the competencies they support.",
-    clusters: subsVocab.clusters.map((c) => ({ code: c.notation, label: String(c.prefLabel).replace(/\s*\([^)]*\)\s*$/, "") })),
-    modules: [
-      { ns: coreNs, label: m.labels.module[coreNs], core: true, nComps: m.coreCompetencies.length, nTasks: tasksOf(m.coreCompetencies).size },
-      ...modVocab.terms.map((t) => ({ ns: t.namespace, label: m.labels.module[t.namespace] || t.prefLabel, wave: t.wave, subsectors: t.subsectors })),
-    ],
-    subsectors: terms.map((t) => {
-      const cs = tagged(t.notation);
-      return { code: t.notation, label: m.labels.subsector[t.notation] || t.prefLabel, cluster: t.cluster, module: nsOf.get(t.module), comps: cs.map((c) => c.slug), nTasks: tasksOf(cs).size };
-    }),
-    permitting: { roles: PERMIT_ROLES.map((x) => byTitle(x, rolesMain)), subsectors: PERMIT_SUBSECTORS },
-    outside: {
-      biotechOnMap: subsVocab.terms.some((t) => BIOTECH.test(`${t.prefLabel} ${t.definition || ""}`)),
-      biotechTasks: findTasks(BIOTECH),
-      bioengineering: findTasks(/\bbioengineer\w*/i),
-      edna: findTasks(/\benvironmental DNA\b|\beDNA\b/i),
-    },
+    note: "Scope map from vocab/subsectors.yaml and vocab/modules.yaml (draft vocabularies). Roles are placed by home module; competencies by their subsector tags; tasks through the competencies they support. The page text in `sections` is composed from these by tools/build-data.mjs.",
+    clusters, modules, subsectors, permitting: { roles: pRoles.map((r) => r.slug), subsectors: ["E01", "E02", "E04"] },
+    outside: { biotechOnMap, biotechTasks: biotechTasks.map((t) => t.slug), bioengineering: bioeng.map((t) => t.slug), edna: edna.map((t) => t.slug) },
+    status: T.status, cols: T.cols, tableHint: T.tableHint, rolesBy: T.rolesBy, sections,
   };
 })();
 

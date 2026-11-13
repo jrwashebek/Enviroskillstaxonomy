@@ -13,7 +13,7 @@ const HELP_ALT = {
 // Help pages: whole pages that answer a question about EMST itself. `u` is the page's route.
 const HELP_PAGES = [
   { s: "coverage", u: "#/coverage", t: COPY.coverage?.title || "What EMST covers", x: COPY.coverage?.helpLine || "",
-    a: ["coverage", "scope", "scope map", "missing roles", "missing work", "what's not covered", "not covered", "what's missing", "bioengineering", "subsector", "subsectors"] },
+    a: ["coverage", "scope", "missing roles", "what's not covered", "not covered", "bioengineering"] },
 ];
 function helpDocs() {
   return [...(COPY.about?.read || []).filter((b) => b.t === "h2" && b.id && HELP_ALT[b.id]).map((b) => ({ k: "help", s: b.id, t: b.text, a: HELP_ALT[b.id], x: "How to read EMST", w: 0.9 })),

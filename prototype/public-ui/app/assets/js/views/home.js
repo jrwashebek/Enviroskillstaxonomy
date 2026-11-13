@@ -132,7 +132,7 @@ export async function render() {
       figure(core.comps.length, "competencies", weakest(core.figs.coreCompetencies, core.figs.moduleCompetencies)),
       figure(core.stats.tasks, "tasks", core.figs.tasks)),
     roleSplit,
-    h("p", COPY.coverage.homeLine, " ", h("a", { href: "#/coverage" }, COPY.coverage.link)),
+    h("p", COPY.coverage.lede, " ", h("a", { href: "#/coverage" }, COPY.coverage.link)),
     h("p", { class: "meta" }, "Each number shows what the records it counts may be used for, and the weakest evidence among them. ",
       h("a", { href: "#/about/read@evidence" }, "What these labels mean")),
     h("p", "Draft release ", h("span", { class: "id" }, r.id), `, ${dateLong(r.date)}.`),

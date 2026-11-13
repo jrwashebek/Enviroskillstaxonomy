@@ -510,8 +510,8 @@ Result: **PASS** (0 problems). Release 2.0.0-rc.1; verified 2026-11-13 by `tools
 | 1. Parse and register | 104 files; each registers exactly one key; pure JSON; `<` escaped |
 | 2. Size budget | core.js 49.3 KB gz / 227.2 KB raw (≤ 150 / 600); largest other file 88.6 KB gz (≤ 120) |
 | 3. Counts | roles 37/37; competencies 223/223; tasks 1317/1317; variants 121/121; series 79/79 (13 generated profiles); classes 38/38 (20 generated views); signals 107/107 (0 withheld); held records 163; scope map 44 subsectors, 19 modules (10 with listed roles) |
-| 4. References resolve | 29995 references checked |
-| 5. Forbidden content | 221262 strings and 58094 objects scanned (35310 distinct texts); 655 dated events checked; rules: gated keys, agentDraft, craft/exposure scores, 17 Tribal-hold triggers, 17 held seed keys, 3 held v1 codes, e-mail/phone, 16 retired-claim rules, 85 register and do-not-publish wrong forms, 2 conflation rules, 13 withheld phrases, 6 judgment-dated events, 0 unverified instrument titles |
+| 4. References resolve | 30046 references checked |
+| 5. Forbidden content | 221826 strings and 58175 objects scanned (35582 distinct texts); 655 dated events checked; rules: gated keys, agentDraft, craft/exposure scores, 17 Tribal-hold triggers, 17 held seed keys, 3 held v1 codes, e-mail/phone, 16 retired-claim rules, 85 register and do-not-publish wrong forms, 2 conflation rules, 13 withheld phrases, 6 judgment-dated events, 0 unverified instrument titles |
 
 | File | Raw KB | Gzipped KB |
 |---|---:|---:|
@@ -524,6 +524,6 @@ Result: **PASS** (0 problems). Release 2.0.0-rc.1; verified 2026-11-13 by `tools
 | change.js | 179.8 | 22.9 |
 | hr.js | 449.0 | 41.7 |
 | paths.js | 675.5 | 25.1 |
-| coverage.js | 10.0 | 3.0 |
-| **Total (104 files)** | **7984.1** | **1172.6** |
+| coverage.js | 30.7 | 6.8 |
+| **Total (104 files)** | **8004.8** | **1176.4** |
 <!-- verification:end -->

@@ -24,7 +24,7 @@ const plain = (s) => clean(s);
 // never be answered with "not covered yet" or an invitation to search on.
 const NEVER_SUGGEST = /^(un|in)?(qualif|eligib|recommend)/;
 
-const ONE = { help: "How to read EMST", role: "Role", series: "OPM series", class: "State or local job class", comp: "Competency", task: "Task", module: "Module", tool: "Tool", credential: "Credential that may be involved", signal: "Change signal, on watch", emerging: "Emerging role" };
+const ONE = { help: "Help page", role: "Role", series: "OPM series", class: "State or local job class", comp: "Competency", task: "Task", module: "Module", tool: "Tool", credential: "Credential that may be involved", signal: "Change signal, on watch", emerging: "Emerging role" };
 const MANY = { best: "best matches", help: "help topics", role: "roles", series: "OPM series", class: "state and local classes", comp: "competencies", task: "tasks", module: "modules", tool: "tools", credential: "credentials", signal: "change signals", emerging: "emerging roles" };
 const GROUP_ORDER = [...KIND_ORDER, "emerging"];
 const GROUP_LABEL = { ...KIND_LABEL, help: KIND_LABEL.help || "How to read EMST", best: "Best matches", emerging: "Emerging roles (in What's changing)" };
@@ -171,7 +171,7 @@ function context(kind, d, core, roleBy, compBy) {
     case "credential": return x.replace(/^Credential that may be involved\s*/, "").replace(/^\((.*?)\)\s*·?\s*/, (m, a) => `${cap(a)}. `);
     case "signal": return x.replace(/^Watch signal\s*·\s*/, "");
     case "module": return x.replace(/^Module editorial section\s*·\s*/, "");
-    case "help": return "Explains a label you will see on EMST records.";
+    case "help": return x && x !== "How to read EMST" ? x : "Explains a label you will see on EMST records.";
     default: return x;
   }
 }

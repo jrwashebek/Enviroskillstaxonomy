@@ -257,7 +257,9 @@ export class SearchIndex {
       // Best match: the title or an alternative title is what was typed, a code matched, or a whole synonym phrase
       // matched the title (e.g. "range con" -> "Rangeland management specialist").
       const synTitle = [...synGroup].some((gi) => e.hits.has(gi) && groups[gi].syn.some((x) => (" " + nt + " ").includes(" " + x + " ") || (d.a || []).some((a) => normalize(a) === x)));
-      const best = codeHit || nt === nq || altExact || (synTitle && coverage === 1) || (["role", "series", "class"].includes(d.k) && nq.length > 3 && (" " + nt + " ").includes(" " + nq + " "));
+      // A synonym makes a best match only for records named by their title (not signals or tasks, whose long titles can
+      // contain a role's name).
+      const best = codeHit || nt === nq || altExact || (synTitle && coverage === 1 && d.k !== "signal" && d.k !== "task") || (["role", "series", "class"].includes(d.k) && nq.length > 3 && (" " + nt + " ").includes(" " + nq + " "));
       results.push({ doc: d, score: s + (best ? 100 : 0), complete: best || coverage === 1, best, fuzzy: e.fuzzy });
     }
     // Emerging roles (documents marked `wc` by searchsvc.js: shown only in What's changing) rank after every other role
