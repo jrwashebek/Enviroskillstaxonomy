@@ -27,6 +27,8 @@ Answers from the project lead to `questions_for_project_lead.md`. Each answer su
 | Q9 Funding the floor and compensation | Degradation ladder applies (sentinels at the year-five floor of 30; smaller panels reported as such; no Tribal outreach) |
 | Q10 Retire task sequence v7; update project instructions | Repo follows the ADRs; companion-project descriptions flagged as v1 history |
 | Q11 Lead-signed invitation to inter-Tribal organizations to help form a Tribal Advisory Council (added 2026-10-23) | No invitation drafted for sending; no contact; content hold stays; WP-13 formation procedure internal only |
+| Q16 Role-change expectations on role pages (added 2026-11-13) | Withheld: role pages show outside signals, watch tasks and forming competencies only; the 13 role-change briefs stay in the pilot package |
+| Q17 GitBook reading layer (added 2026-11-13) | GitBook stays retired (ADR-0020 item 17, ADR-0011); the vision "EMST on GitBook" is a design proposal only |
 
 ## Note on the CC0 dedication (Q2)
 

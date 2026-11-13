@@ -114,3 +114,77 @@
   - The ADR-0007 §D content hold stays in force, and Tribal-related records remain internal drafts excluded from every release.
   - WP-13 may describe a formation procedure only as an internal document marked "for the project lead; not for distribution".
 - **Needed by:** before WP-13 finalizes the governance charter (sprint S3), and in any case not before the compensation line is secured.
+
+## Q16. Showing the role-change expectations on role pages
+
+- **Added:** 2026-11-13, from the public-interface prototype (branch `design/public-interface-prototype`). The project lead asked why nothing shows how roles are changing because of technology.
+- **What exists now:**
+  - **Briefs.** The 13 role-change briefs in `docs/package/briefs/` hold 72 rows of drafted expectations: compressing, transforming, stable or new work, with the driver and the outside signal for each. 22 of the rows are new tasks, for example "Review AI-drafted permits against the record".
+  - **Coverage.** The briefs cover 5 to 7 of each role's 22 to 35 draft tasks. The other 18 roles and the 6 emerging roles have no drafted change view.
+  - **What is withheld.**
+    - No role has an active change indicator: none has met the rule (two independent evidence families over two periods, plus a named human review).
+    - Task-level exposure ratings show "assessment pending". Three AI-rater passes exist for 57 tasks, with no human raters.
+  - **What the interfaces show.** Neither the current explorer nor the prototype shows the briefs. A role page shows its outside signals (all "on watch"), its tasks marked "watch" (89 across all roles) and its forming competencies.
+- **Decision needed:** what may role pages say about expected change?
+  - **(a)** Keep it withheld, and leave the briefs in the pilot package.
+  - **(b)** On each of the 13 corridor role pages, add a closed section headed "What AI agents expect to change (not a finding)", made from the brief's rows. Each row shows:
+    - the work;
+    - the expected change;
+    - the driver;
+    - the outside signal, or "none yet";
+    - the rule, "assessment pending".
+
+    The section says how many of the role's tasks have no drafted expectation, and links to the full brief.
+  - **(c)** Show only the structured parts: the new tasks, flagged "watch: may be forming", plus a link to the brief as a document.
+  - **(d)** Add a factual "technology in the work" view, alone or with (b). It lists the draft tasks whose statements name a technology, and makes no claim about change: 168 of 1,317 tasks name a technology (AI, automation, drones, sensors, remote sensing) and 95 name AI. The permit writer's tasks, for example, already include "Review an AI-drafted permit or fact sheet against the application record…", marked established. The view shows where technology already appears in EMST's drafts, which is not a change finding.
+- **Found while preparing this question:** some release role definitions state change as fact. The permit writer's definition ends "Drafting software compresses production; review of drafted conditions grows." That conflicts with the rule that no role-level change is a finding. It is listed in `prototype/public-ui/docs/qa/issues-for-release-and-explorer.md`.
+- **Why it is yours:**
+  - It changes what EMST publicly says about how roles change.
+  - Under Q13, package material goes public beyond the pilot cohort only after you sign, once at least one named human subject-matter reviewer has read the report and briefs.
+  - The briefs also still carry the provenance over-claim "AI agents checked facts against sources", which the interface has retired.
+- **Recommendation:** (b) and (d) in the prototype now, for testing. Public release of (b) only after:
+  1. Q13 sign-off for the briefs;
+  2. the briefs' provenance line is corrected to "drafted by AI agents; sourced rows cite their sources";
+  3. each row is checked against the claims register by `tools/check-rendered.mjs`, with no "is changing" wording, no forecast and no "recommended".
+
+  Option (b) keeps the rule that no role-level change is stated as a finding. It shows expectations as expectations, with their evidence status, and says where expectations are missing.
+- **Default if unanswered:** (a). The prototype keeps the signals and watch items only, and the briefs stay in the pilot package.
+- **Needed by:** before the prototype's next round of testing with real people.
+
+## Q17. A GitBook reading layer for the taxonomy
+
+- **Added:** 2026-11-13, at the project lead's request to "create a GitBook display / interaction with the taxonomy".
+- **Context:**
+  - ADR-0020 (item 17) and ADR-0011 retired GitBook as the public interface. The compliance-product research gave three reasons:
+    - third-party hosting and scripts;
+    - little control over accessibility conformance and over computed views such as Compare or employer variants;
+    - navigation that started from domains.
+  - ADR-0009 also notes that v1's GitBook organization account was suspended during setup.
+  - The static explorer, which the prototype redesigns, replaced GitBook.
+  - The vision document for this question is "EMST on GitBook: a vision" (an artifact). It proposes GitBook as a *reading layer*, not a replacement:
+    - a guidebook (start by what you need to do, how to read EMST, methods, governance, coverage, contributing);
+    - optionally, a generated reference for roles, competencies and modules;
+    - both built from the same release build and the same display gates as the explorer, and synced one way from the repository.
+- **Decision needed:**
+  - **(a)** Keep GitBook retired.
+  - **(b)** Guidebook only: about 40 written pages.
+  - **(c)** Guidebook plus a generated reference: about 300 pages for roles, competencies, modules and, if Q16 allows, role-change expectations. Tasks stay in the explorer.
+  - **(d)** GitBook replaces the explorer. Not recommended: it can't compute Compare, employer variants or exports, and its accessibility can't be controlled.
+- **Why it is yours:**
+  - It reverses part of a recorded architecture decision.
+  - It puts public EMST content on a third-party platform, under an account someone must own (Q15).
+  - It may mean applying for GitBook's free Community plan on the project's behalf. That plan is for eligible non-profit or open-source organizations and includes the Ultimate features: site sections, the AI Assistant and adaptive content.
+  - It commits to accessibility obligations that EMST can only partly control.
+- **Recommendation:** (c), in phases:
+  1. guidebook and coverage pages;
+  2. generated reference;
+  3. the AI Assistant, only after it passes a red-team question set and with custom instructions. GitBook's own guardrails can't be overridden, so the set must include questions about qualifying, recommendations and held topics.
+
+  Conditions:
+  - generated pages are read-only and rebuilt from releases;
+  - the claims-register, hold and held-description checks run on the generated Markdown before every sync;
+  - the explorer stays the complete, accessible path to every record;
+  - the GitBook site is accessibility-tested before launch;
+  - the account is owned by the host organization, not a person.
+- **Default if unanswered:** (a). GitBook stays retired, and the vision stays a design proposal.
+- **Needed by:** before any GitBook account is created or a Community plan application is sent.
