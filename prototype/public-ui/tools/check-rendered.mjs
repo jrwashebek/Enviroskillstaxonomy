@@ -22,7 +22,7 @@ for (const f of ["core", "search", "hr"]) vm.runInThisContext(readFileSync(join(
 const core = window.EMSTDATA.core, search = window.EMSTDATA.search, hr = window.EMSTDATA.hr;
 
 const routes = ["/", "/roles", "/competencies", "/compare", "/changing", "/hr", "/series", "/classes", "/about",
-  ...["read", "made", "status", "data", "corrections", "held", "accessibility", "privacy"].map((p) => `/about/${p}`)];
+  ...["read", "made", "status", "data", "corrections", "held", "accessibility", "privacy"].map((p) => `/about/${p}`), "/coverage"];
 for (const r of core.roles) {
   routes.push(`/role/${r.slug}`);
   for (const v of r.variants || []) routes.push(`/role/${r.slug}/${v.actor}`);

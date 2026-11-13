@@ -10,14 +10,21 @@ const HELP_ALT = {
   review: ["reviewed", "not reviewed", "review status"], evidence: ["evidence label", "sourced", "judgment", "speculation"], pending: ["assessment pending", "not yet assessed", "pending"],
   lifecycle: ["watch", "on watch", "established", "emerging"], matches: ["crosswalk", "close match", "related match", "match type"], "source-grades": ["source grade"], formation: ["formation task"],
 };
+// Help pages: whole pages that answer a question about EMST itself. `u` is the page's route.
+const HELP_PAGES = [
+  { s: "coverage", u: "#/coverage", t: COPY.coverage?.title || "What EMST covers", x: COPY.coverage?.helpLine || "",
+    a: ["coverage", "scope", "scope map", "missing roles", "missing work", "what's not covered", "not covered", "what's missing", "bioengineering", "subsector", "subsectors"] },
+];
 function helpDocs() {
-  return (COPY.about?.read || []).filter((b) => b.t === "h2" && b.id && HELP_ALT[b.id]).map((b) => ({ k: "help", s: b.id, t: b.text, a: HELP_ALT[b.id], x: "How to read EMST", w: 0.9 }));
+  return [...(COPY.about?.read || []).filter((b) => b.t === "h2" && b.id && HELP_ALT[b.id]).map((b) => ({ k: "help", s: b.id, t: b.text, a: HELP_ALT[b.id], x: "How to read EMST", w: 0.9 })),
+    ...HELP_PAGES.map((p) => ({ k: "help", w: 0.9, ...p }))];
 }
 
 let base = null, full = null, buildingFull = null;
 let p3 = new Set();
 
-/** Replace internal depth labels in role context lines with the role's function statement; remember P3 roles. */
+/** Replace internal depth labels in role context lines with the role's function statement; remember P3 roles and mark
+ *  their documents (`wc`), so lib/search.js ranks them after other roles that match equally well. */
 async function tidy(docs) {
   const c = await data.core();
   const roles = new Map(c.roles.map((r) => [r.slug, r]));
@@ -25,6 +32,7 @@ async function tidy(docs) {
   for (const d of docs) if (d.k === "role" && roles.has(d.s)) {
     const r = roles.get(d.s);
     d.x = (p3.has(d.s) ? "Role that may be forming (in What's changing). " : "") + (r.fn || "");
+    if (p3.has(d.s)) d.wc = true;
   }
   return docs;
 }
@@ -56,7 +64,7 @@ export function hrefFor(doc) {
     case "signal": return `#/changing@${doc.s}`;
     case "module": return `#/competencies/${doc.s}`;
     case "tool": return `#/tool/${doc.s}`;
-    case "help": return `#/about/read@${doc.s}`;
+    case "help": return doc.u || `#/about/read@${doc.s}`;
     case "credential": return `#/credential/${doc.s}`;
     default: return doc.u || `#/search`;
   }

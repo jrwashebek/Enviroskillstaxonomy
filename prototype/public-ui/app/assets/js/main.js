@@ -21,6 +21,7 @@ import * as compare from "./views/compare.js";
 import * as changing from "./views/changing.js";
 import * as hr from "./views/hr.js";
 import * as misc from "./views/misc.js";
+import * as coverage from "./views/coverage.js";
 
 const NAV = [
   ["#/roles", "Roles", ["/roles", "/role/"]],
@@ -195,6 +196,7 @@ async function boot() {
   r("/hr", hr, "renderHub"); r("/series", hr, "renderSeriesIndex"); r("/series/:code", hr, "renderSeries"); r("/classes", hr, "renderClassIndex"); r("/class/:slug", hr, "renderClass");
   r("/tool/:slug", misc, "renderTool"); r("/credential/:slug", misc, "renderCredential");
   r("/about", about); r("/about/:page", about);
+  r("/coverage", coverage);
   configure({ notFound, error: errorView, afterRender: ({ path }) => markNav(path) });
   // In-page anchors (the skip link, "#main", "#tasks") must never change the address: they would replace the route.
   document.addEventListener("click", (e) => {

@@ -4,7 +4,7 @@
 import { h, icon } from "../lib/dom.js";
 import * as data from "../lib/data.js";
 import { state } from "../lib/state.js";
-import { COPY } from "../content.js";
+import { COPY, fill } from "../content.js";
 import { pageHeader, chipGroup, liveCount, badgeTier, badgeDraft, badgeLifecycle, shortId, fmt, disclosure } from "../ui.js";
 
 export const ACTOR_ORDER = ["federal", "state", "local", "ngo", "private", "academic"];
@@ -144,18 +144,21 @@ export async function render({ section } = {}) {
     }
     // Each family is a disclosure (a heading that holds a button), so phones get a short, scannable list of families.
     const fams = (F.families.size ? families.filter((f) => F.families.has(f.slug)) : families)
-      .map((f) => ({ id: f.slug, title: f.title, rs: shown.filter((r) => famOf.get(r.slug).has(f.slug)) })).filter((g) => g.rs.length);
+      .map((f) => ({ id: f.slug, title: f.title, def: f.def, rs: shown.filter((r) => famOf.get(r.slug).has(f.slug)) })).filter((g) => g.rs.length);
     const other = F.families.size ? [] : shown.filter((r) => !famOf.get(r.slug).size);
     if (other.length) fams.push({ id: "fam-none", title: "Not yet in a job family", rs: other });
     const wide = typeof matchMedia === "function" && matchMedia("(min-width: 64rem)").matches;
     const openByDefault = wide || fams.length === 1 || shown.length <= 6;
     results.replaceChildren(
       h("p", { class: "meta" }, "A role can be in more than one job family, so it may appear more than once."),
-      ...fams.map((g) => group(g.id, g.title, g.rs, openGroups.has(g.id) ? openGroups.get(g.id) : openByDefault)));
+      ...fams.map((g) => group(g.id, g.title, g.rs, openGroups.has(g.id) ? openGroups.get(g.id) : openByDefault, g.def)));
   }
-  function group(id, title, rs, open) {
+  function group(id, title, rs, open, def) {
     const panel = h("div", { class: "role-group__panel", id: `p-${id}`, hidden: !open }, h("ul", { class: "card-list" }, rs.map((r) => h("li", roleCard(r)))));
-    const btn = h("button", { class: "group-toggle", type: "button", "aria-expanded": String(open), "aria-controls": `p-${id}` },
+    // The family's one-line definition stays visible when the group is closed (its words, such as "authorization", help
+    // people find the right family).
+    const defEl = def ? h("p", { class: "role-group__def meta", id: `d-${id}` }, def) : null;
+    const btn = h("button", { class: "group-toggle", type: "button", "aria-expanded": String(open), "aria-controls": `p-${id}`, "aria-describedby": def ? `d-${id}` : null },
       icon("chevron-down"), h("span", { class: "group-toggle__title" }, title), h("span", { class: "group-toggle__count" }, `${fmt(rs.length)} ${rs.length === 1 ? "role" : "roles"}`));
     btn.addEventListener("click", () => {
       const o = btn.getAttribute("aria-expanded") !== "true";
@@ -163,15 +166,20 @@ export async function render({ section } = {}) {
       panel.hidden = !o;
       openGroups.set(id, o);
     });
-    return h("section", { class: "role-group", id, "aria-labelledby": `h-${id}` }, h("h2", { class: "role-group__h h3", id: `h-${id}` }, btn), panel);
+    return h("section", { class: "role-group", id, "aria-labelledby": `h-${id}` }, h("h2", { class: "role-group__h h3", id: `h-${id}` }, btn), defEl, panel);
   }
 
   update();
   count.node.textContent = `Showing ${fmt(roles.filter((r) => pass(r)).length)} of ${fmt(roles.length)} roles`;
 
+  // Scope, from core data: subject modules (vocabulary labels, core excluded) that hold at least one role listed here.
+  const subjectModules = Object.keys(core.labels?.module || {}).filter((ns) => ns !== "core");
+  const withRoles = new Set(roles.map((r) => r.module).filter((ns) => subjectModules.includes(ns)));
+  const scope = subjectModules.length ? h("p", { class: "roles-scope" }, fill(COPY.coverage.rolesLine, { n: fmt(withRoles.size), total: fmt(subjectModules.length) }), " ",
+    h("a", { href: "#/coverage" }, COPY.coverage.link)) : null;
   const node = h("div",
     pageHeader({ crumbs: [{ href: "#/", text: "Home" }, { text: "Roles" }], title: "Roles",
-      lede: "A role describes a kind of job: its tasks, the competencies it needs, and how it differs from one employer to another. Choose a role to see its work." }),
+      lede: "A role describes a kind of job: its tasks, the competencies it needs, and how it differs from one employer to another. Choose a role to see its work.", meta: scope }),
     h("div", { class: "page-body stack filter-page" },
       h("div", { class: "filter-box" }, panel),
       h("div", { class: "result-bar" }, count.node, chipsSlot),

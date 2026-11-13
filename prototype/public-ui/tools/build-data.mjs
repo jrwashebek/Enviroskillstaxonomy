@@ -682,6 +682,52 @@ const search = {
   hold: gc.tribal_hold.triggers.map((x) => (typeof x === "string" ? { p: x } : { p: x.pattern, cs: !!x.cs })),
 };
 
+// ---------------------------------------------------------------- coverage.js (the "What EMST covers" page, #/coverage)
+// The scope map (vocab/subsectors.yaml and vocab/modules.yaml: draft vocabularies, labels, clusters and waves only) joined
+// with what the view model holds. Roles carry no subsector in the model, so the page places them by home module, from
+// core.roles. Competencies are placed by their own subsector tags (Competency.subsectors); tasks by the competencies they
+// support. Core competencies carry no subsector tag, so the core practice areas share core's counts.
+const coverage = (() => {
+  const subsVocab = loadYaml(join(ROOT, "vocab", "subsectors.yaml"));
+  const modVocab = loadYaml(join(ROOT, "vocab", "modules.yaml"));
+  const coreNs = modVocab.core.namespace;
+  const nsOf = new Map([[modVocab.core.notation, coreNs], ...modVocab.terms.map((t) => [t.notation, t.namespace])]);
+  const shown = (s, where) => { if (releasable(s)) return true; dropped.push({ where, why: "text matches a Tribal-hold trigger" }); return false; };
+  const tasksOf = (cs) => new Set(cs.flatMap((c) => c.tasks.map((t) => t.slug)));
+  const terms = subsVocab.terms.filter((t) => shown(`${t.prefLabel} ${m.labels.subsector[t.notation] || ""}`, `coverage.subsectors.${t.notation}`));
+  for (const t of terms) if (!nsOf.has(t.module)) throw new Error(`coverage: subsector ${t.notation} names unknown module ${t.module}`);
+  const tagged = (code) => m.competencies.filter((c) => c.subsectors.some((s) => s.code === code));
+  // Editorial anchors for the permitting note (DEV_COVERAGE brief), looked up by title so that the build fails closed if
+  // a record is renamed or removed. Subsectors: energy projects (E01), transmission lines (E02) and mines (E04).
+  const byTitle = (title, list) => { const r = list.find((x) => x.title === title); if (!r) throw new Error(`coverage: no role "${title}"`); return r.slug; };
+  const PERMIT_ROLES = ["Environmental permit writer", "Environmental review specialist", "Environmental compliance inspector", "Enforcement case manager"];
+  const PERMIT_SUBSECTORS = ["E01", "E02", "E04"];
+  // Work outside the scope map: phrases searched in the scope map itself and in task statements, so the page states only what
+  // the data shows.
+  const BIOTECH = /\bbiotech\w*|\bbioremed\w*|\bsynthetic biolog\w*/i;
+  const taskRef = (t) => ({ slug: t.slug, stmt: t.statement, comp: t.supports[0] ? { slug: compById.get(t.supports[0].competency)?.slug || "", title: t.supports[0].title } : null });
+  const findTasks = (rx) => tasksSorted.filter((t) => rx.test(t.statement)).map(taskRef);
+  return {
+    note: "Scope map from vocab/subsectors.yaml and vocab/modules.yaml (draft vocabularies). Roles are placed by home module (core.roles); competencies by their subsector tags; tasks through the competencies they support.",
+    clusters: subsVocab.clusters.map((c) => ({ code: c.notation, label: String(c.prefLabel).replace(/\s*\([^)]*\)\s*$/, "") })),
+    modules: [
+      { ns: coreNs, label: m.labels.module[coreNs], core: true, nComps: m.coreCompetencies.length, nTasks: tasksOf(m.coreCompetencies).size },
+      ...modVocab.terms.map((t) => ({ ns: t.namespace, label: m.labels.module[t.namespace] || t.prefLabel, wave: t.wave, subsectors: t.subsectors })),
+    ],
+    subsectors: terms.map((t) => {
+      const cs = tagged(t.notation);
+      return { code: t.notation, label: m.labels.subsector[t.notation] || t.prefLabel, cluster: t.cluster, module: nsOf.get(t.module), comps: cs.map((c) => c.slug), nTasks: tasksOf(cs).size };
+    }),
+    permitting: { roles: PERMIT_ROLES.map((x) => byTitle(x, rolesMain)), subsectors: PERMIT_SUBSECTORS },
+    outside: {
+      biotechOnMap: subsVocab.terms.some((t) => BIOTECH.test(`${t.prefLabel} ${t.definition || ""}`)),
+      biotechTasks: findTasks(BIOTECH),
+      bioengineering: findTasks(/\bbioengineer\w*/i),
+      edna: findTasks(/\benvironmental DNA\b|\beDNA\b/i),
+    },
+  };
+})();
+
 function parseCsvText(text) {
   const rows = []; let row = []; let cur = ""; let q = false;
   for (let i = 0; i < text.length; i++) {
@@ -836,7 +882,7 @@ const toJs = (key, value) => {
 };
 mkdirSync(OUT, { recursive: true });
 // Remove only files this script generates; app/data holds nothing else.
-for (const f of readdirSync(OUT)) if (/^(core|search|search-tasks|change|hr|paths|sources|role-.+|comp-\d+|task-\d+)\.js$/.test(f) || f === "manifest.json") rmSync(join(OUT, f));
+for (const f of readdirSync(OUT)) if (/^(core|search|search-tasks|change|hr|paths|sources|coverage|role-.+|comp-\d+|task-\d+)\.js$/.test(f) || f === "manifest.json") rmSync(join(OUT, f));
 const written = [];
 const write = (name, key, value) => {
   const body = toJs(key, value);
@@ -852,6 +898,7 @@ write("search-tasks.js", "search:tasks", { docs: taskDocs });
 write("change.js", "change", change);
 write("hr.js", "hr", hr);
 write("paths.js", "paths", paths);
+write("coverage.js", "coverage", coverage);
 // Source titles for every source ID cited in the exported records, so "About this record" can name and link sources.
 {
   const srcRows = new Map();

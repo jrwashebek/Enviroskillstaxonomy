@@ -111,6 +111,47 @@ if (counts.variants.files !== m.variants.length) fail("3", "variants", JSON.stri
 if (counts.series.files !== m.series.length || counts.classes.files !== m.stateClasses.length) fail("3", "hr", JSON.stringify({ series: counts.series, classes: counts.classes }));
 if (counts.signals.files !== m.signals.length) fail("3", "signals", JSON.stringify(counts.signals));
 if (core.status?.held?.n !== m.counts.heldRecords) fail("3", "core.status.held", `held count ${core.status?.held?.n} != ${m.counts.heldRecords}`);
+// coverage.js (the "What EMST covers" page): the scope map and every count the page computes from it, recomputed here from
+// the model and the two vocabularies.
+const cov = D.coverage;
+const covCheck = { subsectors: 0, modules: 0, modulesWithRoles: 0 };
+if (!cov) fail("3", "coverage", "coverage.js is missing");
+else {
+  const subsV = yaml.load(readFileSync(join(ROOT, "vocab", "subsectors.yaml"), "utf-8"));
+  const modsV = yaml.load(readFileSync(join(ROOT, "vocab", "modules.yaml"), "utf-8"));
+  const coreNs = modsV.core.namespace;
+  const nsOf = new Map([[modsV.core.notation, coreNs], ...modsV.terms.map((t) => [t.notation, t.namespace])]);
+  const subs = cov.subsectors || [], mods = cov.modules || [];
+  covCheck.subsectors = subs.length; covCheck.modules = mods.filter((x) => !x.core).length;
+  if (subs.length !== subsV.terms.length) fail("3", "coverage", `${subs.length} subsectors, vocabulary has ${subsV.terms.length}`);
+  if (covCheck.modules !== modsV.terms.length) fail("3", "coverage", `${covCheck.modules} modules, vocabulary has ${modsV.terms.length}`);
+  if ((cov.clusters || []).length !== subsV.clusters.length) fail("3", "coverage", "cluster count differs from the vocabulary");
+  const tasksOf = (cs) => new Set(cs.flatMap((c) => c.tasks.map((t) => t.slug)));
+  for (const t of subsV.terms) {
+    const s = subs.find((x) => x.code === t.notation);
+    if (!s) { fail("3", "coverage", `subsector ${t.notation} missing`); continue; }
+    if (s.module !== nsOf.get(t.module) || s.cluster !== t.cluster) fail("3", `coverage ${t.notation}`, "module or cluster differs from the vocabulary");
+    const cs = m.competencies.filter((c) => c.subsectors.some((x) => x.code === t.notation));
+    if (!eqSet(new Set(s.comps || []), new Set(cs.map((c) => c.slug)))) fail("3", `coverage ${t.notation}`, "tagged competencies differ from the model");
+    if ((s.nTasks || 0) !== tasksOf(cs).size) fail("3", `coverage ${t.notation}`, `nTasks ${s.nTasks || 0} != ${tasksOf(cs).size}`);
+  }
+  for (const x of mods.filter((y) => !y.core)) for (const code of x.subsectors || []) if (subs.find((y) => y.code === code)?.module !== x.ns) fail("3", `coverage ${x.ns}`, `module lists ${code}, but the subsector names another module`);
+  const coreM = mods.find((x) => x.core);
+  if (!coreM || coreM.ns !== coreNs || coreM.nComps !== m.coreCompetencies.length || coreM.nTasks !== tasksOf(m.coreCompetencies).size) fail("3", "coverage core", "core counts differ from the model");
+  const covNs = new Set(mods.map((x) => x.ns));
+  for (const r of m.roles) {
+    if (!covNs.has(r.homeModule)) fail("3", "coverage", `role ${r.slug}: home module ${r.homeModule} is not on the scope map`);
+    const ix = (core.roles || []).find((x) => x.slug === r.slug);
+    if (ix && (ix.module || coreNs) !== r.homeModule) fail("3", "coverage", `role ${r.slug}: core.roles module differs from the model`);
+  }
+  covCheck.modulesWithRoles = new Set(m.rolesMain.map((r) => r.homeModule).filter((ns) => ns !== coreNs)).size;
+  const depth = { full: 0, lower: 0, emerging: 0 };
+  for (const r of core.roles || []) depth[r.whatsComingOnly ? "emerging" : r.depth === "P1" ? "full" : "lower"]++;
+  if (JSON.stringify(depth) !== JSON.stringify(m.stats.depth)) fail("3", "coverage", `depth groups ${JSON.stringify(depth)} != model ${JSON.stringify(m.stats.depth)}`);
+  // The roles index counts subject modules from core.labels.module; it must agree with the scope map.
+  const labelMods = Object.keys(core.labels?.module || {}).filter((ns) => ns !== coreNs);
+  if (labelMods.length !== covCheck.modules || labelMods.some((ns) => !covNs.has(ns))) fail("3", "coverage", "core.labels.module and the scope map list different modules");
+}
 
 // ---------------------------------------------------------------- 4. references resolve
 const R = new Set(roleFiles.map((r) => r.slug));
@@ -198,6 +239,11 @@ for (const [vs, x] of Object.entries(pa.variants || {})) { need(V, vs, "paths.va
 each(pa.edges, (e) => { need(V, e.from, "paths.edges", "from"); need(V, e.to, "paths.edges", "to"); each(e.gap, (g) => need(C, g.slug, "paths.edges", "gap competency")); });
 each(pa.translations, (t) => { if (t.from) need(V, t.from, "paths.translations", "from"); if (t.to) need(V, t.to, "paths.translations", "to"); });
 each(pa.pathways, (p) => { need(V, p.from, "paths.pathways", "from"); need(R, p.to, "paths.pathways", "to"); });
+// coverage
+const cv = D.coverage || {};
+each(cv.subsectors, (x) => each(x.comps, (c) => need(C, c, `coverage ${x.code}`, "competency")));
+each(cv.permitting?.roles, (r) => { need(R, r, "coverage.permitting", "role"); if (roleFiles.find((x) => x.slug === r)?.whatsComingOnly) fail("4", "coverage.permitting", `${r} is a What's-coming-only role`); });
+for (const k of ["biotechTasks", "bioengineering", "edna"]) each(cv.outside?.[k], (t) => { need(T, t.slug, `coverage.outside.${k}`, "task"); if (t.comp?.slug) need(C, t.comp.slug, `coverage.outside.${k}`, "competency"); });
 
 // ---------------------------------------------------------------- 5. forbidden content
 const gc = yaml.load(readFileSync(join(ROOT, "schema", "lint", "governed_content.yaml"), "utf-8"));
@@ -388,7 +434,7 @@ for (const p of problems) byRule[p.rule] = (byRule[p.rule] || 0) + 1;
 const ok = problems.length === 0;
 const groups = [["core.js", (s) => s.name === "core.js"], ["role-*.js", (s) => s.name.startsWith("role-")], ["comp-NN.js", (s) => s.name.startsWith("comp-")],
   ["task-NN.js", (s) => s.name.startsWith("task-")], ["search.js", (s) => s.name === "search.js"], ["search-tasks.js", (s) => s.name === "search-tasks.js"],
-  ["change.js", (s) => s.name === "change.js"], ["hr.js", (s) => s.name === "hr.js"], ["paths.js", (s) => s.name === "paths.js"]];
+  ["change.js", (s) => s.name === "change.js"], ["hr.js", (s) => s.name === "hr.js"], ["paths.js", (s) => s.name === "paths.js"], ["coverage.js", (s) => s.name === "coverage.js"]];
 const lines = [];
 lines.push(`Result: **${ok ? "PASS" : "FAIL"}** (${problems.length} problem${problems.length === 1 ? "" : "s"}${ok ? "" : ": " + JSON.stringify(byRule)}). Release ${m.release.id}; verified ${new Date().toISOString().slice(0, 10)} by \`tools/verify-data.mjs\`.`);
 lines.push("");
@@ -396,7 +442,7 @@ lines.push("| Check | Result |");
 lines.push("|---|---|");
 lines.push(`| 1. Parse and register | ${sizes.length} files; each registers exactly one key; pure JSON; \`<\` escaped |`);
 lines.push(`| 2. Size budget | core.js ${fmt(sizes.find((s) => s.name === "core.js")?.gz || 0)} KB gz / ${fmt(sizes.find((s) => s.name === "core.js")?.raw || 0)} KB raw (≤ 150 / 600); largest other file ${fmt(Math.max(...sizes.filter((s) => s.name !== "core.js").map((s) => s.gz)))} KB gz (≤ 120) |`);
-lines.push(`| 3. Counts | roles ${counts.roles.files}/${counts.roles.model}; competencies ${counts.comps.files}/${counts.comps.model}; tasks ${counts.tasks.files}/${counts.tasks.model}; variants ${counts.variants.files}/${counts.variants.model}; series ${counts.series.files}/${counts.series.model} (${counts.series.generated} generated profiles); classes ${counts.classes.files}/${counts.classes.model} (${counts.classes.generated} generated views); signals ${counts.signals.files}/${counts.signals.model} (${counts.signals.withheld} withheld); held records ${core.status?.held?.n} |`);
+lines.push(`| 3. Counts | roles ${counts.roles.files}/${counts.roles.model}; competencies ${counts.comps.files}/${counts.comps.model}; tasks ${counts.tasks.files}/${counts.tasks.model}; variants ${counts.variants.files}/${counts.variants.model}; series ${counts.series.files}/${counts.series.model} (${counts.series.generated} generated profiles); classes ${counts.classes.files}/${counts.classes.model} (${counts.classes.generated} generated views); signals ${counts.signals.files}/${counts.signals.model} (${counts.signals.withheld} withheld); held records ${core.status?.held?.n}; scope map ${covCheck.subsectors} subsectors, ${covCheck.modules} modules (${covCheck.modulesWithRoles} with listed roles) |`);
 lines.push(`| 4. References resolve | ${refsChecked} references checked |`);
 lines.push(`| 5. Forbidden content | ${stringsScanned} strings and ${objectsScanned} objects scanned (${seenText.size} distinct texts); ${eventsChecked} dated events checked; rules: gated keys, agentDraft, craft/exposure scores, ${tribal.length} Tribal-hold triggers, ${heldKeys.length} held seed keys, ${heldV1.size} held v1 codes, e-mail/phone, ${CLAIMS.length} retired-claim rules, ${wrongForms.length} register and do-not-publish wrong forms, ${dns.conflations.length} conflation rules, ${withheldPhrases.length} withheld phrases, ${judged.size} judgment-dated events, ${unvTitles.length} unverified instrument titles |`);
 lines.push("");

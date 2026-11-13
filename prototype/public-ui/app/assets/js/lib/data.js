@@ -51,6 +51,7 @@ export const change = () => load("change", "change");
 export const hr = () => load("hr", "hr");
 export const paths = () => load("paths", "paths");
 export const sources = () => load("sources", "sources");
+export const coverage = () => load("coverage", "coverage");
 
 const pad = (n) => String(n).padStart(2, "0");
 function shardFile(kind, n) {

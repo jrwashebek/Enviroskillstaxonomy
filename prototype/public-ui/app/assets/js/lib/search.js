@@ -260,7 +260,13 @@ export class SearchIndex {
       const best = codeHit || nt === nq || altExact || (synTitle && coverage === 1) || (["role", "series", "class"].includes(d.k) && nq.length > 3 && (" " + nt + " ").includes(" " + nq + " "));
       results.push({ doc: d, score: s + (best ? 100 : 0), complete: best || coverage === 1, best, fuzzy: e.fuzzy });
     }
-    results.sort((a, b) => (b.best - a.best) || (b.complete - a.complete) || (b.score - a.score) || a.doc.t.localeCompare(b.doc.t));
+    // Emerging roles (documents marked `wc` by searchsvc.js: shown only in What's changing) rank after every other role
+    // that matches equally well, that is, in the same tier (best match, matches every word, matches some words).
+    const tier = (r) => (r.best ? 2 : r.complete ? 1 : 0);
+    const floor = [Infinity, Infinity, Infinity];
+    for (const r of results) if (r.doc.k === "role" && !r.doc.wc) floor[tier(r)] = Math.min(floor[tier(r)], r.score);
+    for (const r of results) r.rank = r.doc.wc ? Math.min(r.score, floor[tier(r)] - 1e-6) : r.score;
+    results.sort((a, b) => (b.best - a.best) || (b.complete - a.complete) || (b.rank - a.rank) || a.doc.t.localeCompare(b.doc.t));
     const byKind = {};
     for (const r of results) byKind[r.doc.k] = (byKind[r.doc.k] || 0) + 1;
     return { results: results.slice(0, limit), total: results.length, byKind, notes };
