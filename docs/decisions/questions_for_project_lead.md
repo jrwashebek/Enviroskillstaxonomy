@@ -153,6 +153,8 @@
 
 ## Q17. A GitBook reading layer for the taxonomy
 
+- **Answered 2026-11-16: (c), guidebook plus a generated reference,** with the explorer kept for computed views and tasks. Recorded in `PROJECT_LEAD_DECISIONS.md`; the phases and conditions in the recommendation below apply. ADR-0020 (item 17) and ADR-0011 carry the amendment.
+- **Account found (2026-11-16):** the host organization already has a team organization on GitBook, with a paid two-user subscription set up in February 2026, and the project lead is a member. The "suspended" account noted below in ADR-0009 was a member's access being removed on the free plan in February 2026; the paid subscription restored it. Still to confirm before anything is published: who holds the owner (admin) role and the billing, against the condition that the account is owned by the host organization, not a person.
 - **Added:** 2026-11-13, at the project lead's request to "create a GitBook display / interaction with the taxonomy".
 - **Context:**
   - ADR-0020 (item 17) and ADR-0011 retired GitBook as the public interface. The compliance-product research gave three reasons:

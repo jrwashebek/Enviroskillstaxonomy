@@ -15,6 +15,7 @@ Answers from the project lead to `questions_for_project_lead.md`. Each answer su
 | Q13 | Sign-off before any package material goes public beyond the pilot cohort | **The project lead signs, after at least one named human subject-matter reviewer has read the report and briefs.** AI agent checks (including the adoption-lead role) are advisory only | 2026-10-24 | Project lead, working session |
 | Q14 | Role profiles fitted to each pilot organization (CR-FIX-B-002) | **Not added**; the pilot offer stays as designed (design §6, MOU Article 3) | 2026-10-24 | Project lead, working session |
 | Q15 | Move the repository to an organization account before external release (package re-check NH11) | **Decide later**, when a host organization is chosen; the repository stays where it is for the pilot preview | 2026-10-24 | Project lead, working session |
+| Q17 | A GitBook reading layer for the taxonomy | **(c) Guidebook plus a generated reference** for roles, competencies and modules; tasks, Compare, employer variants and exports stay in the explorer. Phased: (1) guidebook and coverage pages, (2) generated reference, (3) AI Assistant only after a red-team question set passes. Conditions: generated pages read-only and rebuilt from releases; claims-register, hold and held-description checks on the generated Markdown before every sync; the explorer stays the complete, accessible path to every record; accessibility test before launch; account owned by the host organization, not a person. Role-change expectations enter the reference only if Q16 allows | 2026-11-16 | Project lead, working session |
 
 ## Still open (defaults apply until answered)
 
@@ -28,7 +29,6 @@ Answers from the project lead to `questions_for_project_lead.md`. Each answer su
 | Q10 Retire task sequence v7; update project instructions | Repo follows the ADRs; companion-project descriptions flagged as v1 history |
 | Q11 Lead-signed invitation to inter-Tribal organizations to help form a Tribal Advisory Council (added 2026-10-23) | No invitation drafted for sending; no contact; content hold stays; WP-13 formation procedure internal only |
 | Q16 Role-change expectations on role pages (added 2026-11-13) | Withheld: role pages show outside signals, watch tasks and forming competencies only; the 13 role-change briefs stay in the pilot package |
-| Q17 GitBook reading layer (added 2026-11-13) | GitBook stays retired (ADR-0020 item 17, ADR-0011); the vision "EMST on GitBook" is a design proposal only |
 
 ## Note on the CC0 dedication (Q2)
 

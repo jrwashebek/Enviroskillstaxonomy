@@ -82,3 +82,4 @@ The structural verdicts rest on the audit's direct inspection of v1 and DE's rep
 ## Amendments
 
 - **2026-10-23 — CR-DE-003 / ADR-0029 §3 (CA).** This resolves the conflict between rule 4 and rule 5 over the stability tier. **The tier is not migrated**: it is a rule-determined summary (rule 5). The reform flags migrate as prior evidence and seed frozen historical driver events (ADR-0028 §3). The competency-level CLD flag, R9 severity and S-trajectory flag migrate as prior evidence only (`data/v2/assessments/emst-v1-cld/`). They are never a v2 value, never displayed, and never an input to the computed CLD.
+- **2026-11-16 — Q17 (project lead).** The Airtable/GitBook *pipeline* stays retired: GitBook is never edited as a source and never feeds the data. GitBook returns only as a reading layer generated from releases and synced one way from the repository (ADR-0020 amendment; `PROJECT_LEAD_DECISIONS.md`, Q17).

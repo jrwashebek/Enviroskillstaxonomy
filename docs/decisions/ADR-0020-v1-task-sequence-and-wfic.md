@@ -57,3 +57,7 @@ v7 is archived as v1 history. Remaining work is governed by ADRs, the Phase 4 bu
 ## Dissent and trade-offs
 
 - **None of the roles argued for F16.** The trade-off is continuity with v7 users who expected a 222+n count and an F16 family page.
+
+## Amendments
+
+- **2026-11-16 — Q17 (project lead).** Item 17 is amended. GitBook returns as a *reading layer*, not as the public interface or the source of truth: a guidebook plus a reference generated from each release (roles, competencies, modules), synced one way from the repository. The static explorer stays the complete, accessible path to every record and the only place for tasks, Compare, employer variants and exports. Item 19 is unchanged: nothing on GitBook publishes v1 as a standard. Phases and conditions: `PROJECT_LEAD_DECISIONS.md`, Q17.
